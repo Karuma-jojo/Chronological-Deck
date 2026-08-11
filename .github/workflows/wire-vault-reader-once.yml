@@ -1,0 +1,100 @@
+name: One-time Vault reader wiring
+
+on:
+  push:
+    branches:
+      - agent/vault-read-mode
+
+permissions:
+  contents: write
+
+jobs:
+  wire-reader:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vault-read-mode
+
+      - name: Wire reader and styles
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          ui = Path('js/vault-cloud-ui.js')
+          source = ui.read_text()
+          marker = 'import "./vault-reader.js";\n'
+          if marker not in source:
+              ui.write_text(marker + source)
+
+          css = Path('css/vault.css')
+          styles = r'''
+
+/* Read-first ARC document view */
+.vault-modebar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 0 12px;margin-bottom:14px;border-bottom:1px solid var(--border)}
+.vault-modebar-copy{display:grid;gap:3px}.vault-modebar-copy span{font-size:10px;color:var(--muted)}
+.vault-modebar .vault-actions{margin:0}
+.vault-read-view[hidden],.vault-edit-view[hidden]{display:none!important}
+.vault-document{max-width:900px;margin:0 auto;padding:8px 10px 36px}
+.vault-document-header{padding:16px 0 20px;border-bottom:1px solid var(--border);margin-bottom:18px}
+.vault-document-kicker{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.vault-document h1{font-size:clamp(24px,4vw,40px);line-height:1.08;margin:0 0 12px}
+.vault-document-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.vault-read-highlight,.vault-read-chronicle{border:1px solid var(--border);background:var(--panel2);border-radius:13px;padding:14px 16px;margin:14px 0}
+.vault-read-highlight{border-left:3px solid var(--green)}
+.vault-read-chronicle{border-left:3px solid var(--blue)}
+.vault-read-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:7px}
+.vault-read-toc{display:flex;gap:6px;flex-wrap:wrap;padding:10px 0 2px;margin:8px 0 18px}
+.vault-read-toc a{font-size:10px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:999px;padding:5px 8px;background:var(--panel2)}
+.vault-read-toc a:hover{color:var(--text);border-color:var(--blue)}
+.vault-read-sections{display:grid;gap:22px}
+.vault-read-section{scroll-margin-top:150px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.vault-read-section:last-child{border-bottom:0}
+.vault-read-section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:10px}
+.vault-read-section-head>div:first-child{display:flex;align-items:baseline;gap:10px;min-width:0}
+.vault-read-section-head h2{margin:0;font-size:20px;line-height:1.25}
+.vault-read-section-number{font:600 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted)}
+.vault-markdown{font-size:14px;line-height:1.72;color:var(--text)}
+.vault-markdown p{margin:9px 0}.vault-markdown h3,.vault-markdown h4,.vault-markdown h5,.vault-markdown h6{margin:18px 0 7px;line-height:1.3}
+.vault-markdown ul,.vault-markdown ol{padding-left:22px;margin:9px 0}.vault-markdown li{margin:4px 0}
+.vault-markdown blockquote{margin:12px 0;padding:8px 12px;border-left:3px solid var(--border);background:var(--panel2);color:var(--muted)}
+.vault-markdown pre{overflow:auto;border:1px solid var(--border);background:var(--panel2);border-radius:10px;padding:12px;font-size:12px;line-height:1.5}
+.vault-markdown code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--panel2);border-radius:5px;padding:1px 4px}
+.vault-markdown pre code{background:transparent;padding:0}.vault-markdown a{color:var(--blue)}
+.vault-math-block{white-space:pre-wrap;overflow:auto;margin:12px 0;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--panel2);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;text-align:center}
+.vault-read-empty{color:var(--muted);font-style:italic;padding:18px 0}
+@media(max-width:700px){.vault-modebar,.vault-read-section-head{align-items:stretch;flex-direction:column}.vault-document{padding-left:0;padding-right:0}}
+'''
+          text = css.read_text()
+          if '/* Read-first ARC document view */' not in text:
+              css.write_text(text.rstrip() + styles + '\n')
+
+          workflow = Path('.github/workflows/frontend-checks.yml')
+          checks = workflow.read_text()
+          syntax_anchor = '          node --input-type=module --check < js/vault.js\n'
+          syntax_line = '          node --input-type=module --check < js/vault-reader.js\n'
+          if syntax_line not in checks:
+              checks = checks.replace(syntax_anchor, syntax_anchor + syntax_line)
+          workflow.write_text(checks)
+          PY
+
+      - name: Validate modules
+        shell: bash
+        run: |
+          node --input-type=module --check < js/vault-reader.js
+          node --input-type=module --check < js/vault-cloud-ui.js
+
+      - name: Commit reader wiring
+        shell: bash
+        run: |
+          if git diff --quiet -- js/vault-cloud-ui.js css/vault.css .github/workflows/frontend-checks.yml; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/vault-cloud-ui.js css/vault.css .github/workflows/frontend-checks.yml
+          git commit -m "wire readable Vault document mode"
+          git push origin HEAD:agent/vault-read-mode
