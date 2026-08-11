@@ -1,0 +1,41 @@
+name: One-time Obsidian v0.3 upgrade
+
+on:
+  push:
+    branches:
+      - agent/obsidian-reader-v3
+    paths:
+      - scripts/upgrade-obsidian-v3-once.py
+      - .github/workflows/upgrade-obsidian-v3-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/obsidian-reader-v3
+          fetch-depth: 0
+
+      - name: Apply v0.3 patch
+        run: python scripts/upgrade-obsidian-v3-once.py
+
+      - name: Validate patched plugin syntax
+        run: node --check obsidian-plugin/main.js
+
+      - name: Commit generated patch
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add obsidian-plugin/main.js obsidian-plugin/manifest.json obsidian-plugin/README.md docs/obsidian-bridge.md
+          git commit -m "Upgrade Obsidian bridge to v0.3 reader"
+          git push origin HEAD:agent/obsidian-reader-v3
