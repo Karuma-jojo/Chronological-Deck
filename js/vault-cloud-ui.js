@@ -1,3 +1,4 @@
+import "./vault-reader.js";
 import { WORLD } from "./data/world.js";
 import {
   arcDocumentToMarkdown,
