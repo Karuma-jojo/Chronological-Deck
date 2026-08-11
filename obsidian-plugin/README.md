@@ -51,9 +51,8 @@ See `docs/obsidian-bridge.md` for the canonical ARC metadata/relationship contra
 
 - **Open current ARC in beautiful reader** opens a mobile-first rendered article using Obsidian's Markdown renderer.
 - Math is rendered with Obsidian MathJax. The reader understands both Obsidian `$...$` / `$$...$$` and legacy `\\(...\\)` / `\\[...\\]` delimiters.
-- **Fix math rendering in current ARC** permanently converts legacy delimiters outside fenced code blocks to Obsidian-compatible MathJax delimiters.
-- On phones (700px wide or less), Chrono-Deck applies no custom layout to Obsidian's normal editor; mobile editing uses Obsidian's native width and spacing.
-- On larger screens, `styles.css` applies the optional wider focus layout to ARC notes. For the cleanest editing experience, use Obsidian **Live Preview**.
+- **Fix math rendering in current ARC** can convert legacy delimiters outside fenced code blocks to Obsidian-compatible MathJax delimiters; use it only when a note actually needs conversion.
+- Chrono-Deck does not alter Obsidian's normal editor width or spacing. Obsidian owns the edit layout completely; `styles.css` styles only the dedicated ARC reader.
 - **Show current ARC revision storage** reports how many full revision snapshots remain and their approximate JSON size.
 
 ## Revision retention (v0.3)
