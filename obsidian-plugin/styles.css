@@ -1,4 +1,4 @@
-/* Chrono-Deck Bridge v0.3 — mobile-first ARC reader + focus editor */
+/* Chrono-Deck Bridge v0.3.1 — mobile-first ARC reader + desktop focus editor */
 
 .chrono-deck-reader-shell {
   width: min(1080px, 96vw);
@@ -186,42 +186,44 @@
   overflow-x: auto;
 }
 
-/* Focus editor: applies only while the active note has arc_id frontmatter. */
-body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-scroller {
-  line-height: 1.68;
+/* Desktop/tablet focus editor only. Mobile intentionally receives zero ARC-specific editor layout. */
+@media (min-width: 701px) {
+  body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-scroller {
+    line-height: 1.68;
+  }
+
+  body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-contentContainer {
+    width: min(1050px, 100%);
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-content {
+    padding-inline: clamp(14px, 3vw, 28px);
+    padding-bottom: 22vh;
+  }
+
+  body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .metadata-container {
+    margin: 12px clamp(14px, 3vw, 28px) 24px;
+    padding: 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 12px;
+    background: var(--background-secondary);
+    font-size: 0.88em;
+  }
+
+  body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-1,
+  body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-2,
+  body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-3 {
+    letter-spacing: -0.015em;
+  }
+
+  body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-formatting {
+    color: var(--text-faint);
+  }
 }
 
-body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-contentContainer {
-  width: min(860px, 100%);
-  max-width: 860px;
-  margin: 0 auto;
-}
-
-body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-content {
-  padding-inline: clamp(14px, 4vw, 34px);
-  padding-bottom: 22vh;
-}
-
-body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .metadata-container {
-  margin: 12px clamp(14px, 4vw, 34px) 24px;
-  padding: 12px;
-  border: 1px solid var(--background-modifier-border);
-  border-radius: 12px;
-  background: var(--background-secondary);
-  font-size: 0.88em;
-}
-
-body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-1,
-body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-2,
-body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-3 {
-  letter-spacing: -0.015em;
-}
-
-body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-formatting {
-  color: var(--text-faint);
-}
-
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .chrono-deck-reader-shell {
     width: 100vw;
     max-width: 100vw;
