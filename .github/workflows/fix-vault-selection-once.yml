@@ -1,0 +1,82 @@
+name: One-time Vault selection fix
+
+on:
+  push:
+    branches:
+      - agent/fix-vault-selection
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fix-vault-selection
+
+      - name: Fix filtered ARC selection opening
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('js/vault.js')
+          s = p.read_text()
+
+          old = '''function populateArcSelect(query = "") {
+  const wanted = String(query || "").trim().toLowerCase();
+  const previous = arcSelect.value || currentDocument?.arcId;
+  const matches = wanted ? nodes.filter((node) => searchable(node).includes(wanted)) : nodes;
+  arcSelect.innerHTML = "";
+  for (const node of matches) {
+    arcSelect.appendChild(option(node.id, `${node.arc || node.id} · ${node.title}`));
+  }
+  if (previous && matches.some((node) => node.id === previous)) arcSelect.value = previous;
+  el("vaultMatchCount").textContent = `${matches.length} registry node${matches.length === 1 ? "" : "s"}`;
+}
+'''
+          new = '''function populateArcSelect(query = "") {
+  const wanted = String(query || "").trim().toLowerCase();
+  const previous = arcSelect.value || currentDocument?.arcId;
+  const matches = wanted ? nodes.filter((node) => searchable(node).includes(wanted)) : nodes;
+  arcSelect.innerHTML = "";
+  for (const node of matches) {
+    arcSelect.appendChild(option(node.id, `${node.arc || node.id} · ${node.title}`));
+  }
+  if (previous && matches.some((node) => node.id === previous)) arcSelect.value = previous;
+  el("vaultMatchCount").textContent = `${matches.length} registry node${matches.length === 1 ? "" : "s"}`;
+  return matches;
+}
+'''
+          if old not in s:
+              raise SystemExit('populateArcSelect block not found')
+          s = s.replace(old, new, 1)
+
+          old2 = 'arcSearch.addEventListener("input", () => populateArcSelect(arcSearch.value));\narcSelect.addEventListener("change", () => openArc(arcSelect.value));'
+          new2 = '''arcSearch.addEventListener("input", async () => {
+  const matches = populateArcSelect(arcSearch.value);
+  if (matches.length === 1 && currentDocument?.arcId !== matches[0].id) {
+    arcSelect.value = matches[0].id;
+    await openArc(matches[0].id);
+  }
+});
+arcSelect.addEventListener("change", () => openArc(arcSelect.value));'''
+          if old2 not in s:
+              raise SystemExit('search listener block not found')
+          s = s.replace(old2, new2, 1)
+          p.write_text(s)
+          PY
+
+      - name: Validate JavaScript syntax
+        run: node --input-type=module --check < js/vault.js
+
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/vault.js
+          git commit -m "fix Vault ARC selection after filtering"
+          git push origin HEAD:agent/fix-vault-selection
