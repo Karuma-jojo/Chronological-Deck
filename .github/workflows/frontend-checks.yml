@@ -21,10 +21,17 @@ jobs:
           node --input-type=module --check < js/app.js
           node --input-type=module --check < js/data/world.js
           node --input-type=module --check < js/data/arc-store.js
+          node --input-type=module --check < js/data/supabase-arc-store.js
+          node --input-type=module --check < js/data/hybrid-arc-store.js
+          node --input-type=module --check < js/data/markdown-arc.js
+          node --input-type=module --check < js/vault-cloud-ui.js
           node --input-type=module --check < js/vault.js
 
       - name: Validate World Registry graph integrity
         run: node scripts/validate-world.mjs
+
+      - name: Validate Markdown ARC round-trip
+        run: node scripts/test-markdown.mjs
 
       - name: Validate GitHub Pages entrypoint wiring
         shell: bash
@@ -34,3 +41,4 @@ jobs:
           grep -q 'type="module" src="./js/app.js"' index.html
           grep -q 'type="module" src="./js/vault.js"' index.html
           grep -q 'id="vaultTab"' index.html
+          test -f supabase/arc-vault.sql

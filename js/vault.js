@@ -3,11 +3,13 @@ import {
   ARC_STATUSES,
   ARC_VISIBILITIES,
   SECTION_TYPES,
-  IndexedDbArcRepository,
   seedArcDocument,
 } from "./data/arc-store.js";
+import { HybridArcRepository } from "./data/hybrid-arc-store.js";
+import "./vault-cloud-ui.js";
 
-const repository = new IndexedDbArcRepository();
+const repository = new HybridArcRepository();
+globalThis.chronoArcRepository = repository;
 const nodes = [...WORLD.nodes].sort(
   (a, b) => (a.playOrder || 99999) - (b.playOrder || 99999) || a.id.localeCompare(b.id),
 );

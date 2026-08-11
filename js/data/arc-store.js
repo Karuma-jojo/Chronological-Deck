@@ -159,6 +159,16 @@ export class IndexedDbArcRepository {
     return values.map(normalizeArcDocument);
   }
 
+  /** Cache a cloud-sourced document locally without creating a second local revision. */
+  async cacheDocument(input) {
+    const db = await this.dbPromise;
+    const normalized = normalizeArcDocument(input);
+    const tx = db.transaction(DOC_STORE, "readwrite");
+    tx.objectStore(DOC_STORE).put(normalized);
+    await transactionDone(tx);
+    return clone(normalized);
+  }
+
   async save(input, note = "Saved") {
     const db = await this.dbPromise;
     const current = await this.load(input.arcId);
