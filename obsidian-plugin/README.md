@@ -1,6 +1,6 @@
 # Chrono-Deck Bridge for Obsidian
 
-Early private bridge for authoring Chrono-Deck ARC notes in Obsidian while keeping Supabase as the structured cloud index.
+Private mobile-compatible bridge for authoring Chrono-Deck ARC notes in Obsidian while keeping Supabase as the shared structured cloud hub.
 
 ## Install for private testing
 
@@ -14,17 +14,35 @@ Requires Obsidian 1.11.4+ because credentials use Obsidian SecretStorage.
 
 ## One-time configuration
 
-1. Run `supabase/obsidian-bridge.sql` in the same Supabase project where `supabase/arc-vault.sql` is already installed.
-2. In Obsidian plugin settings, enter the Supabase project URL and email.
-3. Add/select your **public publishable/anon key** through the SecretStorage control. Never use `service_role`.
-4. Run **Chrono-Deck: Sign in to Supabase**. Your password is prompted and is not stored.
+1. Run `supabase/arc-vault.sql` if the ARC Vault schema is not installed yet.
+2. Run `supabase/obsidian-bridge.sql` once.
+3. Run `supabase/obsidian-sync-v2.sql` once.
+4. In Obsidian plugin settings, enter the same Supabase project URL and account email on each device.
+5. Add/select your **public publishable/anon key** through SecretStorage. Never use `service_role`.
+6. Run **Chrono-Deck: Sign in to Supabase** on that device.
 
 ## Commands
 
 - **Validate current ARC note** — checks the required frontmatter contract.
 - **Sign in to Supabase** — creates a Supabase Auth session; tokens are kept in SecretStorage.
-- **Sync current ARC to Chrono-Deck** — sends document sections + typed relationships in one database transaction.
+- **Sync current ARC to Chrono-Deck** — pushes the current Markdown note, structured sections, metadata and relationships. The push includes the revision the local note was based on; Supabase rejects stale writes.
+- **Pull current ARC from Chrono-Deck** — updates the open ARC when the cloud has a newer revision. It refuses to overwrite locally edited content.
+- **Pull all Chrono-Deck ARCs to this device** — creates missing cloud ARCs under the configured ARC folder and updates clean tracked notes. Conflicts are skipped rather than overwritten.
 - **Create supplementary ARC from current note** — creates and cross-links a new `SUP-...` note locally.
 - **Open Chrono-Deck website** — opens the configured web app.
 
-See `docs/obsidian-bridge.md` for the canonical frontmatter and relationship contract.
+## Cross-device workflow
+
+Phone:
+
+`edit ARC -> Sync current ARC -> Supabase`
+
+Laptop / another phone:
+
+`Pull all Chrono-Deck ARCs -> edit -> Sync current ARC`
+
+The bridge stores `chrono_revision`, `chrono_synced_at` and a content fingerprint in synchronized ARC frontmatter. These are bookkeeping fields used to prevent accidental overwrites.
+
+This is ARC sync, not full Obsidian-vault sync: themes, workspace layout, unrelated notes and other plugin settings are not copied.
+
+See `docs/obsidian-bridge.md` for the canonical ARC metadata/relationship contract.
