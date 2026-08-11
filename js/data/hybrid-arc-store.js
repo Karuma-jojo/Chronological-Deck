@@ -124,6 +124,31 @@ export class HybridArcRepository {
     return saved;
   }
 
+  async importMarkdown(document, sourceMarkdown, note = "Imported Markdown") {
+    if (this.cloud.isSignedIn()) {
+      try {
+        const saved = await this.cloud.importMarkdown(document, sourceMarkdown, note);
+        await this.local.cacheDocument(saved);
+        this.setState("cloud");
+        return saved;
+      } catch (error) {
+        if (!this.shouldFallback(error)) throw error;
+        const saved = await this.local.importMarkdown(document, sourceMarkdown, note);
+        this.setState("local", `${this.warningFor(error)} Imported locally instead.`);
+        return saved;
+      }
+    }
+
+    const saved = await this.local.importMarkdown(document, sourceMarkdown, note);
+    this.setState(
+      "local",
+      this.cloud.isConfigured()
+        ? "Imported locally. Sign in and import again to upload this Markdown to Supabase."
+        : "Imported locally. Configure cloud sync to enable cross-device ARC storage.",
+    );
+    return saved;
+  }
+
   async listRevisions(arcId) {
     if (this.cloud.isSignedIn()) {
       try {
