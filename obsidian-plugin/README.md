@@ -47,13 +47,13 @@ This is ARC sync, not full Obsidian-vault sync: themes, workspace layout, unrela
 
 See `docs/obsidian-bridge.md` for the canonical ARC metadata/relationship contract.
 
-
-## Reader + editor experience (v0.3)
+## Reader + editor experience (v0.3.1)
 
 - **Open current ARC in beautiful reader** opens a mobile-first rendered article using Obsidian's Markdown renderer.
 - Math is rendered with Obsidian MathJax. The reader understands both Obsidian `$...$` / `$$...$$` and legacy `\\(...\\)` / `\\[...\\]` delimiters.
 - **Fix math rendering in current ARC** permanently converts legacy delimiters outside fenced code blocks to Obsidian-compatible MathJax delimiters.
-- While an `arc_id` note is active, `styles.css` applies a narrower, calmer focus layout to Obsidian's normal editor. For the cleanest editing experience, use Obsidian **Live Preview**.
+- On phones (700px wide or less), Chrono-Deck applies no custom layout to Obsidian's normal editor; mobile editing uses Obsidian's native width and spacing.
+- On larger screens, `styles.css` applies the optional wider focus layout to ARC notes. For the cleanest editing experience, use Obsidian **Live Preview**.
 - **Show current ARC revision storage** reports how many full revision snapshots remain and their approximate JSON size.
 
 ## Revision retention (v0.3)
