@@ -18,8 +18,17 @@ jobs:
       - name: Validate JavaScript module syntax
         shell: bash
         run: |
+          node --input-type=module --check < js/site-v11.js
           node --input-type=module --check < js/app.js
           node --input-type=module --check < js/data/world.js
+          node --input-type=module --check < js/data/law-node.js
+          node --input-type=module --check < js/data/law-foundations.js
+          node --input-type=module --check < js/data/law-jurisprudence.js
+          node --input-type=module --check < js/data/law-public.js
+          node --input-type=module --check < js/data/law-private.js
+          node --input-type=module --check < js/data/law-procedure.js
+          node --input-type=module --check < js/data/law-advanced.js
+          node --input-type=module --check < js/data/law-expansion.js
           node --input-type=module --check < js/data/arc-store.js
           node --input-type=module --check < js/data/supabase-arc-store.js
           node --input-type=module --check < js/data/hybrid-arc-store.js
@@ -42,12 +51,17 @@ jobs:
           grep -q 'href="./css/vault.css"' index.html
           grep -q 'href="./css/black-theme.css"' index.html
           grep -q 'href="./css/vault-reader-v4.css"' index.html
-          grep -q 'type="module" src="./js/app.js"' index.html
-          grep -q 'type="module" src="./js/vault.js"' index.html
+          grep -q 'type="module" src="./js/site-v11.js"' index.html
+          grep -q 'import "./data/law-expansion.js";' js/site-v11.js
+          grep -q 'await import("./app.js")' js/site-v11.js
+          grep -q 'await import("./vault.js")' js/site-v11.js
           grep -q 'import "./vault-reader.js";' js/vault-cloud-ui.js
           grep -q 'id="vaultTab"' index.html
+          grep -q 'Explore all 710' index.html
           test -f css/black-theme.css
           test -f css/vault-reader-v4.css
+          test -f js/data/law-expansion.js
+          test -f docs/t21-law-route.md
           test -f supabase/arc-vault.sql
 
       - name: Validate Obsidian bridge contract
