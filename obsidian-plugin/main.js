@@ -1,0 +1,582 @@
+const {
+  Modal,
+  Notice,
+  Plugin,
+  PluginSettingTab,
+  SecretComponent,
+  Setting,
+  normalizePath,
+  requestUrl,
+} = require("obsidian");
+
+const SESSION_SECRET_ID = "chrono-deck-session";
+const DOCUMENT_STATUSES = new Set(["raw", "editing", "polished"]);
+const VISIBILITIES = new Set(["private", "public"]);
+const CURRICULUM_ROLES = new Set(["core", "supplementary", "optional"]);
+const PRIORITIES = new Set(["must_do", "should_do", "nice_to_have"]);
+const PLANNING_STATUSES = new Set(["pending", "active", "deferred", "parked"]);
+const RELATION_FIELDS = [
+  ["prerequisites", "prerequisite"],
+  ["supplementary", "supplementary"],
+  ["supplementary_to", "supplementary_to"],
+  ["related", "related"],
+  ["deepens", "deepens"],
+  ["historical_next", "historical_next"],
+  ["depends_on", "depends_on"],
+  ["replaces", "replaces"],
+  ["part_of", "part_of"],
+  ["redirect_to", "redirect_to"],
+];
+
+const DEFAULT_SETTINGS = {
+  supabaseUrl: "",
+  email: "",
+  publishableKeySecret: "chrono-deck-supabase-key",
+  arcFolder: "Chrono-Deck/ARCs",
+  chronoDeckUrl: "https://karuma-jojo.github.io/Chronological-Deck/",
+};
+
+function cleanBase(value) {
+  return String(value || "").trim().replace(/\/+$/, "");
+}
+
+function asString(value, fallback = "") {
+  if (value === null || value === undefined) return fallback;
+  return String(value).trim();
+}
+
+function asList(value) {
+  if (value === null || value === undefined || value === "") return [];
+  return Array.isArray(value) ? value : [value];
+}
+
+function extractArcId(value) {
+  let text = asString(value);
+  if (!text) return "";
+  const wiki = text.match(/^!?\[\[([^\]]+)\]\]$/);
+  if (wiki) text = wiki[1].split("|")[0].split("#")[0].trim();
+  text = text.split("/").pop().replace(/\.md$/i, "").trim();
+  const leading = text.match(/^([A-Za-z][A-Za-z0-9_-]*\d[A-Za-z0-9_-]*)\b/);
+  if (leading) return leading[1].toUpperCase();
+  if (/^[A-Za-z][A-Za-z0-9_-]{2,63}$/.test(text)) return text.toUpperCase();
+  return "";
+}
+
+function inferSectionType(heading) {
+  const value = asString(heading).toLowerCase();
+  if (/proof|theorem|lemma|derivation|audit/.test(value)) return "proof";
+  if (/definition|terminology|vocabulary/.test(value)) return "definition";
+  if (/conclusion|result|principle|takeaway/.test(value)) return "conclusion";
+  if (/reflection|mistake|recovery|lesson|hardest/.test(value)) return "reflection";
+  if (/dialogue|hearing|conversation/.test(value)) return "dialogue";
+  if (/media|diagram|figure|image/.test(value)) return "media";
+  if (/prologue|opening|scene|narrative/.test(value)) return "narrative";
+  if (/mission|investigation|checkpoint|experiment|problem/.test(value)) return "investigation";
+  return "notes";
+}
+
+function slug(value) {
+  const normalized = asString(value)
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return normalized || "section";
+}
+
+function stripFrontmatter(content) {
+  return String(content || "").replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, "");
+}
+
+function splitMarkdown(body, defaultVisibility) {
+  const lines = String(body || "").replace(/\r\n/g, "\n").split("\n");
+  const chunks = [];
+  let current = { heading: "Opening", lines: [] };
+  let fenced = false;
+  let fenceChar = "";
+
+  const flush = () => {
+    const contentMarkdown = current.lines.join("\n").replace(/^\n+|\n+$/g, "");
+    if (contentMarkdown || current.heading !== "Opening") chunks.push({ heading: current.heading, contentMarkdown });
+  };
+
+  for (const line of lines) {
+    const fence = line.match(/^\s*(```+|~~~+)/);
+    if (fence) {
+      if (!fenced) {
+        fenced = true;
+        fenceChar = fence[1][0];
+      } else if (fence[1][0] === fenceChar) {
+        fenced = false;
+        fenceChar = "";
+      }
+    }
+    if (!fenced) {
+      const h2 = line.match(/^##\s+(.+)$/);
+      if (h2) {
+        flush();
+        current = { heading: h2[1].trim(), lines: [] };
+        continue;
+      }
+      if (current.heading === "Opening" && /^#\s+/.test(line)) continue;
+    }
+    current.lines.push(line);
+  }
+  flush();
+
+  let shortConclusion = "";
+  let experience = "";
+  const sections = [];
+  const seen = new Map();
+
+  for (const chunk of chunks) {
+    const key = chunk.heading.toLowerCase().replace(/\s+/g, " ").trim();
+    if (key === "short conclusion") {
+      shortConclusion = chunk.contentMarkdown;
+      continue;
+    }
+    if (key === "experience" || key === "experience / chronicle" || key === "experience / chronicle note") {
+      experience = chunk.contentMarkdown;
+      continue;
+    }
+    const base = slug(chunk.heading);
+    const number = (seen.get(base) || 0) + 1;
+    seen.set(base, number);
+    sections.push({
+      id: `obs-${base}-${number}`,
+      type: inferSectionType(chunk.heading),
+      heading: chunk.heading,
+      contentMarkdown: chunk.contentMarkdown,
+      visibility: defaultVisibility,
+      position: sections.length,
+    });
+  }
+
+  return { shortConclusion, experience, sections };
+}
+
+function collectRelationships(frontmatter, arcId) {
+  const rows = [];
+  for (const [field, relationType] of RELATION_FIELDS) {
+    for (const raw of asList(frontmatter?.[field])) {
+      const toArcId = extractArcId(raw);
+      if (!toArcId || toArcId === arcId) continue;
+      rows.push({ fromArcId: arcId, toArcId, relationType, position: rows.length });
+    }
+  }
+  const unique = new Map();
+  for (const row of rows) unique.set(`${row.relationType}:${row.toArcId}`, row);
+  return [...unique.values()].map((row, position) => ({ ...row, position }));
+}
+
+function validateFrontmatter(frontmatter, file) {
+  const errors = [];
+  const warnings = [];
+  const arcId = extractArcId(frontmatter?.arc_id);
+  if (!arcId) errors.push("arc_id is required and must be a stable ARC identifier.");
+  const status = asString(frontmatter?.document_status || "raw");
+  if (!DOCUMENT_STATUSES.has(status)) errors.push(`document_status must be one of: ${[...DOCUMENT_STATUSES].join(", ")}.`);
+  const visibility = asString(frontmatter?.visibility || "private");
+  if (!VISIBILITIES.has(visibility)) errors.push("visibility must be private or public.");
+  const role = asString(frontmatter?.curriculum_role || "core");
+  if (!CURRICULUM_ROLES.has(role)) errors.push(`curriculum_role must be one of: ${[...CURRICULUM_ROLES].join(", ")}.`);
+  const priority = asString(frontmatter?.priority || "should_do");
+  if (!PRIORITIES.has(priority)) errors.push(`priority must be one of: ${[...PRIORITIES].join(", ")}.`);
+  const planning = asString(frontmatter?.planning_status || "pending");
+  if (!PLANNING_STATUSES.has(planning)) errors.push(`planning_status must be one of: ${[...PLANNING_STATUSES].join(", ")}.`);
+  if (!asString(frontmatter?.title)) warnings.push("title is missing; the file name will be used.");
+  if (file && arcId && !file.basename.toUpperCase().startsWith(arcId)) warnings.push(`Prefer file names that start with ${arcId} so wikilink relationships resolve reliably.`);
+  return { arcId, errors, warnings };
+}
+
+class TextPromptModal extends Modal {
+  constructor(app, title, placeholder) {
+    super(app);
+    this.promptTitle = title;
+    this.placeholder = placeholder;
+  }
+  ask() {
+    return new Promise((resolve) => {
+      this.resolve = resolve;
+      this.open();
+    });
+  }
+  finish(value) {
+    if (!this.resolve) return;
+    const resolve = this.resolve;
+    this.resolve = null;
+    resolve(value);
+    this.close();
+  }
+  onOpen() {
+    const { contentEl } = this;
+    contentEl.createEl("h3", { text: this.promptTitle });
+    const input = contentEl.createEl("input", { type: "text", placeholder: this.placeholder || "" });
+    input.style.width = "100%";
+    const buttons = contentEl.createDiv({ cls: "chrono-deck-modal-actions" });
+    const cancel = buttons.createEl("button", { text: "Cancel" });
+    const submit = buttons.createEl("button", { text: "Create" });
+    submit.addClass("mod-cta");
+    cancel.onclick = () => this.finish(null);
+    submit.onclick = () => this.finish(input.value.trim() || null);
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") this.finish(input.value.trim() || null);
+      if (event.key === "Escape") this.finish(null);
+    });
+    setTimeout(() => input.focus(), 0);
+  }
+  onClose() {
+    this.contentEl.empty();
+    if (this.resolve) this.finish(null);
+  }
+}
+
+class PasswordModal extends Modal {
+  constructor(app, email) {
+    super(app);
+    this.email = email;
+  }
+  ask() {
+    return new Promise((resolve) => {
+      this.resolve = resolve;
+      this.open();
+    });
+  }
+  finish(value) {
+    if (!this.resolve) return;
+    const resolve = this.resolve;
+    this.resolve = null;
+    resolve(value);
+    this.close();
+  }
+  onOpen() {
+    const { contentEl } = this;
+    contentEl.createEl("h3", { text: "Sign in to Chrono-Deck" });
+    contentEl.createEl("p", { text: this.email || "Your configured Supabase account" });
+    const input = contentEl.createEl("input", { type: "password", placeholder: "Password" });
+    input.style.width = "100%";
+    const buttons = contentEl.createDiv({ cls: "chrono-deck-modal-actions" });
+    const cancel = buttons.createEl("button", { text: "Cancel" });
+    const submit = buttons.createEl("button", { text: "Sign in" });
+    submit.addClass("mod-cta");
+    cancel.onclick = () => this.finish(null);
+    submit.onclick = () => this.finish(input.value || null);
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") this.finish(input.value || null);
+      if (event.key === "Escape") this.finish(null);
+    });
+    setTimeout(() => input.focus(), 0);
+  }
+  onClose() {
+    this.contentEl.empty();
+    if (this.resolve) this.finish(null);
+  }
+}
+
+class ChronoDeckSettingTab extends PluginSettingTab {
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    containerEl.createEl("h2", { text: "Chrono-Deck Bridge" });
+
+    new Setting(containerEl)
+      .setName("Supabase project URL")
+      .setDesc("Same project used by the Chrono-Deck website.")
+      .addText((text) => text.setPlaceholder("https://YOURPROJECT.supabase.co").setValue(this.plugin.settings.supabaseUrl).onChange(async (value) => {
+        this.plugin.settings.supabaseUrl = cleanBase(value);
+        await this.plugin.saveSettings();
+      }));
+
+    new Setting(containerEl)
+      .setName("Supabase publishable key")
+      .setDesc("Stored in Obsidian SecretStorage; the note never contains it.")
+      .addComponent((el) => new SecretComponent(this.app, el).setValue(this.plugin.settings.publishableKeySecret).onChange(async (value) => {
+        this.plugin.settings.publishableKeySecret = value;
+        await this.plugin.saveSettings();
+      }));
+
+    new Setting(containerEl)
+      .setName("Email")
+      .setDesc("Supabase Auth email. The password is prompted when signing in and is never stored.")
+      .addText((text) => text.setPlaceholder("you@example.com").setValue(this.plugin.settings.email).onChange(async (value) => {
+        this.plugin.settings.email = value.trim();
+        await this.plugin.saveSettings();
+      }));
+
+    new Setting(containerEl)
+      .setName("ARC folder")
+      .setDesc("New supplementary ARC notes are created here.")
+      .addText((text) => text.setValue(this.plugin.settings.arcFolder).onChange(async (value) => {
+        this.plugin.settings.arcFolder = normalizePath(value || DEFAULT_SETTINGS.arcFolder);
+        await this.plugin.saveSettings();
+      }));
+
+    new Setting(containerEl)
+      .setName("Chrono-Deck website")
+      .addText((text) => text.setValue(this.plugin.settings.chronoDeckUrl).onChange(async (value) => {
+        this.plugin.settings.chronoDeckUrl = value.trim();
+        await this.plugin.saveSettings();
+      }));
+
+    new Setting(containerEl)
+      .setName("Account session")
+      .setDesc("Access/refresh tokens are stored in Obsidian SecretStorage, not data.json.")
+      .addButton((button) => button.setButtonText("Sign in").onClick(() => this.plugin.signInInteractively()))
+      .addButton((button) => button.setButtonText("Forget session").onClick(() => this.plugin.clearSession()));
+  }
+}
+
+module.exports = class ChronoDeckBridgePlugin extends Plugin {
+  async onload() {
+    await this.loadSettings();
+    this.statusEl = this.addStatusBarItem();
+    this.setStatus("Chrono-Deck · local");
+    this.addSettingTab(new ChronoDeckSettingTab(this.app, this));
+
+    this.addCommand({ id: "validate-current-arc", name: "Validate current ARC note", checkCallback: (checking) => {
+      const file = this.app.workspace.getActiveFile();
+      if (!file || file.extension !== "md") return false;
+      if (!checking) this.validateCurrentArc();
+      return true;
+    }});
+    this.addCommand({ id: "sign-in", name: "Sign in to Supabase", callback: () => this.signInInteractively() });
+    this.addCommand({ id: "sync-current-arc", name: "Sync current ARC to Chrono-Deck", checkCallback: (checking) => {
+      const file = this.app.workspace.getActiveFile();
+      if (!file || file.extension !== "md") return false;
+      if (!checking) this.syncCurrentArc();
+      return true;
+    }});
+    this.addCommand({ id: "create-supplementary-arc", name: "Create supplementary ARC from current note", checkCallback: (checking) => {
+      const file = this.app.workspace.getActiveFile();
+      if (!file || file.extension !== "md") return false;
+      if (!checking) this.createSupplementaryArc();
+      return true;
+    }});
+    this.addCommand({ id: "open-chrono-deck", name: "Open Chrono-Deck website", callback: () => window.open(this.settings.chronoDeckUrl || DEFAULT_SETTINGS.chronoDeckUrl, "_blank") });
+  }
+
+  async loadSettings() {
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+  }
+  async saveSettings() {
+    await this.saveData(this.settings);
+  }
+  setStatus(text) {
+    if (this.statusEl) this.statusEl.setText(text);
+  }
+  getActiveArcFile() {
+    const file = this.app.workspace.getActiveFile();
+    if (!file || file.extension !== "md") throw new Error("Open an ARC Markdown note first.");
+    return file;
+  }
+  getFrontmatter(file) {
+    return this.app.metadataCache.getFileCache(file)?.frontmatter || {};
+  }
+
+  async validateCurrentArc() {
+    try {
+      const file = this.getActiveArcFile();
+      const result = validateFrontmatter(this.getFrontmatter(file), file);
+      if (result.errors.length) return void new Notice(`Chrono-Deck: ${result.errors.join(" ")}`, 9000);
+      const tail = result.warnings.length ? ` Warnings: ${result.warnings.join(" ")}` : "";
+      new Notice(`Chrono-Deck: ${result.arcId} is valid.${tail}`, 7000);
+    } catch (error) {
+      new Notice(`Chrono-Deck: ${error.message}`, 7000);
+    }
+  }
+
+  async getPublishableKey() {
+    const id = asString(this.settings.publishableKeySecret);
+    if (!id) throw new Error("Choose a Supabase publishable-key secret in plugin settings.");
+    const value = this.app.secretStorage.getSecret(id);
+    if (!value) throw new Error(`SecretStorage has no value for “${id}”.`);
+    return value;
+  }
+  readSession() {
+    const raw = this.app.secretStorage.getSecret(SESSION_SECRET_ID);
+    if (!raw) return null;
+    try { return JSON.parse(raw); } catch { return null; }
+  }
+  writeSession(session) {
+    this.app.secretStorage.setSecret(SESSION_SECRET_ID, JSON.stringify(session));
+  }
+  async clearSession() {
+    this.app.secretStorage.setSecret(SESSION_SECRET_ID, "");
+    this.setStatus("Chrono-Deck · local");
+    new Notice("Chrono-Deck session removed from Obsidian SecretStorage.");
+  }
+
+  async authRequest(path, payload) {
+    const base = cleanBase(this.settings.supabaseUrl);
+    if (!base) throw new Error("Configure the Supabase project URL first.");
+    const key = await this.getPublishableKey();
+    const response = await requestUrl({
+      url: `${base}${path}`,
+      method: "POST",
+      headers: { apikey: key, "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      throw: false,
+    });
+    if (response.status < 200 || response.status >= 300) {
+      const message = response.json?.msg || response.json?.message || response.text || `HTTP ${response.status}`;
+      throw new Error(message);
+    }
+    return response.json;
+  }
+
+  async signInInteractively() {
+    try {
+      const email = asString(this.settings.email);
+      if (!email) throw new Error("Configure your Supabase email in plugin settings first.");
+      const password = await new PasswordModal(this.app, email).ask();
+      if (!password) return null;
+      const data = await this.authRequest("/auth/v1/token?grant_type=password", { email, password });
+      const session = this.normalizeSession(data);
+      this.writeSession(session);
+      this.setStatus(`Chrono-Deck · ${email}`);
+      new Notice("Chrono-Deck signed in.");
+      return session;
+    } catch (error) {
+      new Notice(`Chrono-Deck sign-in failed: ${error.message}`, 8000);
+      return null;
+    }
+  }
+  normalizeSession(data) {
+    if (!data?.access_token || !data?.refresh_token) throw new Error("Supabase did not return a usable session.");
+    return {
+      access_token: data.access_token,
+      refresh_token: data.refresh_token,
+      expires_at: data.expires_at || Math.floor(Date.now() / 1000) + Number(data.expires_in || 3600),
+      user: data.user ? { id: data.user.id, email: data.user.email } : null,
+    };
+  }
+  async ensureSession() {
+    let session = this.readSession();
+    if (!session) session = await this.signInInteractively();
+    if (!session) throw new Error("Sign-in cancelled.");
+    if (Number(session.expires_at || 0) > Math.floor(Date.now() / 1000) + 60) return session;
+    const data = await this.authRequest("/auth/v1/token?grant_type=refresh_token", { refresh_token: session.refresh_token });
+    session = this.normalizeSession(data);
+    this.writeSession(session);
+    return session;
+  }
+  async rpc(name, payload, session) {
+    const base = cleanBase(this.settings.supabaseUrl);
+    const key = await this.getPublishableKey();
+    const response = await requestUrl({
+      url: `${base}/rest/v1/rpc/${name}`,
+      method: "POST",
+      headers: { apikey: key, Authorization: `Bearer ${session.access_token}`, "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      throw: false,
+    });
+    if (response.status < 200 || response.status >= 300) {
+      const message = response.json?.message || response.json?.hint || response.text || `HTTP ${response.status}`;
+      throw new Error(message);
+    }
+    return response.json;
+  }
+
+  async buildSyncPayload(file) {
+    const frontmatter = this.getFrontmatter(file);
+    const validation = validateFrontmatter(frontmatter, file);
+    if (validation.errors.length) throw new Error(validation.errors.join(" "));
+    const arcId = validation.arcId;
+    const visibility = asString(frontmatter.visibility || "private");
+    const markdown = await this.app.vault.cachedRead(file);
+    const split = splitMarkdown(stripFrontmatter(markdown), visibility);
+    const document = {
+      schemaVersion: 2,
+      arcId,
+      canonicalLabel: asString(frontmatter.canonical_label || arcId),
+      title: asString(frontmatter.title || file.basename.replace(new RegExp(`^${arcId}\\s*[-—:]?\\s*`, "i"), ""), arcId),
+      status: asString(frontmatter.document_status || "raw"),
+      visibility,
+      curriculumRole: asString(frontmatter.curriculum_role || "core"),
+      priority: asString(frontmatter.priority || "should_do"),
+      planningStatus: asString(frontmatter.planning_status || "pending"),
+      sourceSystem: "obsidian",
+      sourcePath: file.path,
+      shortConclusion: split.shortConclusion,
+      experience: split.experience,
+      sections: split.sections,
+    };
+    return { document, relationships: collectRelationships(frontmatter, arcId), warnings: validation.warnings };
+  }
+
+  async syncCurrentArc() {
+    try {
+      const file = this.getActiveArcFile();
+      this.setStatus("Chrono-Deck · syncing…");
+      const payload = await this.buildSyncPayload(file);
+      const session = await this.ensureSession();
+      const result = await this.rpc("chrono_sync_obsidian_arc", {
+        p_document: payload.document,
+        p_relationships: payload.relationships,
+        p_note: `Synced from Obsidian: ${file.path}`,
+      }, session);
+      const revision = Number(result?.revision || result?.document?.revision || 0);
+      await this.app.fileManager.processFrontMatter(file, (fm) => {
+        fm.chrono_synced_at = new Date().toISOString();
+        if (revision) fm.chrono_revision = revision;
+      });
+      this.setStatus(`${payload.document.arcId} · synced${revision ? ` v${revision}` : ""}`);
+      const warningText = payload.warnings.length ? ` ${payload.warnings.join(" ")}` : "";
+      new Notice(`Synced ${payload.document.arcId}${revision ? ` revision ${revision}` : ""}.${warningText}`, 7000);
+    } catch (error) {
+      this.setStatus("Chrono-Deck · sync failed");
+      new Notice(`Chrono-Deck sync failed: ${error.message}`, 10000);
+    }
+  }
+
+  makeSupplementaryId() {
+    const raw = globalThis.crypto?.randomUUID
+      ? globalThis.crypto.randomUUID().replace(/-/g, "").slice(0, 10)
+      : `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
+    return `SUP-${raw.toUpperCase()}`;
+  }
+  async ensureFolder(path) {
+    const normalized = normalizePath(path || "");
+    if (!normalized) return;
+    const parts = normalized.split("/").filter(Boolean);
+    let current = "";
+    for (const part of parts) {
+      current = current ? `${current}/${part}` : part;
+      if (!this.app.vault.getAbstractFileByPath(current)) await this.app.vault.createFolder(current);
+    }
+  }
+  safeFileName(value) {
+    return asString(value, "Supplementary ARC").replace(/[\\/:*?"<>|#^[\]]/g, "-").replace(/\s+/g, " ").trim();
+  }
+  async createSupplementaryArc() {
+    try {
+      const source = this.getActiveArcFile();
+      const sourceValidation = validateFrontmatter(this.getFrontmatter(source), source);
+      if (sourceValidation.errors.length) throw new Error(sourceValidation.errors.join(" "));
+      const title = await new TextPromptModal(this.app, "New supplementary ARC", "Title").ask();
+      if (!title) return;
+      const id = this.makeSupplementaryId();
+      await this.ensureFolder(this.settings.arcFolder);
+      const filename = `${id} - ${this.safeFileName(title)}.md`;
+      const path = normalizePath(`${this.settings.arcFolder}/${filename}`);
+      const note = `---\narc_id: ${id}\ntitle: "${title.replace(/"/g, '\\"')}"\ndocument_status: raw\nvisibility: private\ncurriculum_role: supplementary\npriority: should_do\nplanning_status: pending\nsupplementary_to:\n  - "[[${source.basename}]]"\n---\n\n# ${title}\n\n## Mission\n\n\n## Investigation\n\n\n## Conclusion\n\n`;
+      const created = await this.app.vault.create(path, note);
+      await this.app.fileManager.processFrontMatter(source, (fm) => {
+        const existing = asList(fm.supplementary).map((item) => asString(item)).filter(Boolean);
+        const link = `[[${created.basename}]]`;
+        if (!existing.includes(link)) existing.push(link);
+        fm.supplementary = existing;
+      });
+      await this.app.workspace.getLeaf(true).openFile(created);
+      new Notice(`Created ${id} and linked it as supplementary to ${sourceValidation.arcId}.`);
+    } catch (error) {
+      new Notice(`Could not create supplementary ARC: ${error.message}`, 9000);
+    }
+  }
+};
