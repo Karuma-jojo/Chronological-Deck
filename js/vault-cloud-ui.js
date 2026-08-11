@@ -226,9 +226,39 @@ function installCloudSetup() {
     });
 }
 
+function currentOpenArcId() {
+  const meta = el("vaultMeta");
+  if (!meta) return "";
+  const children = [...meta.children];
+  for (let index = 0; index < children.length - 1; index += 2) {
+    if (children[index].textContent?.trim() === "Stable ID") {
+      return children[index + 1].textContent?.trim() || "";
+    }
+  }
+  return "";
+}
+
+function installFilteredArcAutoOpen() {
+  const search = el("vaultArcSearch");
+  const select = el("vaultArcSelect");
+  if (!search || !select || search.dataset.arcAutoOpenInstalled === "1") return;
+  search.dataset.arcAutoOpenInstalled = "1";
+
+  search.addEventListener("input", () => {
+    queueMicrotask(() => {
+      if (select.options.length !== 1) return;
+      const onlyArcId = select.options[0]?.value || "";
+      if (!onlyArcId || onlyArcId === currentOpenArcId()) return;
+      select.value = onlyArcId;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+  });
+}
+
 function init() {
   installMarkdownControls();
   installCloudSetup();
+  installFilteredArcAutoOpen();
   updateStorageBadge();
 
   const status = el("vaultStatus");
