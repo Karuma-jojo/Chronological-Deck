@@ -132,3 +132,17 @@ The note is not sent to Supabase until the user explicitly syncs it.
 ## Device model
 
 Supabase synchronizes Chrono-Deck ARC content and ARC metadata. It does not attempt to synchronize Obsidian themes, workspace layout, unrelated notes, hotkeys or third-party plugin configuration. Each device installs/configures the private Chrono-Deck Bridge once, signs into the same Supabase account, then uses Pull/Sync for ARC content.
+
+
+## Reader, MathJax, and revision retention (v0.3)
+
+The bridge now has a presentation layer without changing canonical ownership: the `.md` file remains authoritative on the device, while **Open current ARC in beautiful reader** renders its body through Obsidian's `MarkdownRenderer` and hides raw frontmatter from the reading surface.
+
+Chrono-Deck canonical Markdown should prefer Obsidian MathJax delimiters:
+
+- inline: `$x^2 + y^2 = z^2$`
+- display: `$$ ... $$`
+
+The reader temporarily normalizes legacy `\\(...\\)` and `\\[...\\]` forms for display. **Fix math rendering in current ARC** can persist that conversion while leaving fenced code blocks untouched.
+
+`supabase/obsidian-reader-v3.sql` adds bounded revision retention. The default policy keeps revision 1, the most recent 50 full snapshots, and every 25th older revision. This avoids unbounded duplication of complete Markdown/JSON snapshots while retaining dense recent history and sparse long-term milestones. Revision numbers themselves are never renumbered or reused.

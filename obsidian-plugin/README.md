@@ -46,3 +46,16 @@ The bridge stores `chrono_revision`, `chrono_synced_at` and a content fingerprin
 This is ARC sync, not full Obsidian-vault sync: themes, workspace layout, unrelated notes and other plugin settings are not copied.
 
 See `docs/obsidian-bridge.md` for the canonical ARC metadata/relationship contract.
+
+
+## Reader + editor experience (v0.3)
+
+- **Open current ARC in beautiful reader** opens a mobile-first rendered article using Obsidian's Markdown renderer.
+- Math is rendered with Obsidian MathJax. The reader understands both Obsidian `$...$` / `$$...$$` and legacy `\\(...\\)` / `\\[...\\]` delimiters.
+- **Fix math rendering in current ARC** permanently converts legacy delimiters outside fenced code blocks to Obsidian-compatible MathJax delimiters.
+- While an `arc_id` note is active, `styles.css` applies a narrower, calmer focus layout to Obsidian's normal editor. For the cleanest editing experience, use Obsidian **Live Preview**.
+- **Show current ARC revision storage** reports how many full revision snapshots remain and their approximate JSON size.
+
+## Revision retention (v0.3)
+
+Run `supabase/obsidian-reader-v3.sql` once. After successful Obsidian pushes, the plugin keeps revision 1, the latest 50 full snapshots, and every 25th older revision as a milestone. Revision numbers remain monotonic; pruning old snapshot rows does not reset the revision counter.

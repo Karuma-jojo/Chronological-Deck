@@ -1,4 +1,6 @@
 const {
+  Component,
+  MarkdownRenderer,
   Modal,
   Notice,
   Plugin,
@@ -276,6 +278,166 @@ function renderCloudMarkdown(cloud) {
   return `${lines.join("\n").replace(/\n+$/, "")}\n`;
 }
 
+
+function normalizeMathBody(body) {
+  const lines = String(body || "").replace(/\r\n/g, "\n").split("\n");
+  const output = [];
+  let buffer = [];
+  let fenced = false;
+  let fenceChar = "";
+
+  const flush = () => {
+    if (!buffer.length) return;
+    let text = buffer.join("\n");
+    text = text.replace(/\\\[([\s\S]*?)\\\]/g, (_, inner) => `$$\n${String(inner).trim()}\n$$`);
+    text = text.replace(/\\\(([\s\S]*?)\\\)/g, (_, inner) => `$${String(inner).trim()}$`);
+    output.push(...text.split("\n"));
+    buffer = [];
+  };
+
+  for (const line of lines) {
+    const fence = line.match(/^\s*(```+|~~~+)/);
+    if (fence) {
+      if (!fenced) {
+        flush();
+        fenced = true;
+        fenceChar = fence[1][0];
+        output.push(line);
+        continue;
+      }
+      output.push(line);
+      if (fence[1][0] === fenceChar) {
+        fenced = false;
+        fenceChar = "";
+      }
+      continue;
+    }
+    if (fenced) output.push(line);
+    else buffer.push(line);
+  }
+  flush();
+  return output.join("\n");
+}
+
+function normalizeObsidianMath(markdown) {
+  const text = String(markdown || "").replace(/\r\n/g, "\n");
+  const match = text.match(/^(---\n[\s\S]*?\n---(?:\n|$))/);
+  if (!match) return normalizeMathBody(text);
+  return `${match[1]}${normalizeMathBody(text.slice(match[1].length))}`;
+}
+
+function readerBody(markdown) {
+  const normalized = normalizeMathBody(stripFrontmatter(markdown));
+  return normalized.replace(/^\s*#\s+[^\n]+\n+/, "");
+}
+
+function formatBytes(value) {
+  const bytes = Math.max(0, Number(value || 0));
+  if (bytes < 1024) return `${bytes} B`;
+  const kb = bytes / 1024;
+  if (kb < 1024) return `${kb.toFixed(kb >= 100 ? 0 : 1)} KB`;
+  const mb = kb / 1024;
+  if (mb < 1024) return `${mb.toFixed(mb >= 100 ? 0 : 1)} MB`;
+  return `${(mb / 1024).toFixed(2)} GB`;
+}
+
+class ArcReaderModal extends Modal {
+  constructor(app, plugin, file) {
+    super(app);
+    this.plugin = plugin;
+    this.file = file;
+    this.renderComponent = null;
+  }
+
+  async onOpen() {
+    this.modalEl.addClass("chrono-deck-reader-shell");
+    await this.renderReader();
+  }
+
+  async renderReader() {
+    if (this.renderComponent) this.renderComponent.unload();
+    this.renderComponent = new Component();
+    this.renderComponent.load();
+
+    const { contentEl } = this;
+    contentEl.empty();
+    contentEl.addClass("chrono-deck-reader");
+
+    const fm = this.plugin.getFrontmatter(this.file);
+    const arcId = extractArcId(fm?.arc_id) || this.file.basename;
+    const title = asString(fm?.title || this.file.basename);
+    const revision = Number(fm?.chrono_revision || 0);
+
+    const hero = contentEl.createDiv({ cls: "chrono-deck-reader-hero" });
+    hero.createDiv({ cls: "chrono-deck-reader-kicker", text: arcId });
+    hero.createEl("h1", { cls: "chrono-deck-reader-title", text: title });
+
+    const pills = hero.createDiv({ cls: "chrono-deck-reader-pills" });
+    const pillValues = [
+      asString(fm?.document_status || fm?.status),
+      asString(fm?.curriculum_role),
+      revision ? `cloud v${revision}` : "local only",
+    ].filter(Boolean);
+    for (const value of pillValues) pills.createSpan({ cls: "chrono-deck-reader-pill", text: value });
+
+    const actions = hero.createDiv({ cls: "chrono-deck-reader-actions" });
+    const edit = actions.createEl("button", { text: "Edit note" });
+    edit.addClass("mod-cta");
+    edit.onclick = () => this.close();
+
+    const fixMath = actions.createEl("button", { text: "Fix math syntax" });
+    fixMath.onclick = async () => {
+      const changed = await this.plugin.normalizeMathInFile(this.file, false);
+      if (changed) await this.renderReader();
+      else new Notice("Chrono-Deck: math syntax is already Obsidian-compatible.");
+    };
+
+    const close = actions.createEl("button", { text: "Close" });
+    close.onclick = () => this.close();
+
+    const summaryItems = [
+      ["Setting", fm?.setting],
+      ["Domain", fm?.domain],
+      ["Mastery", fm?.mastery],
+      ["Effort", fm?.total_effort],
+    ].filter(([, value]) => asString(value));
+
+    if (summaryItems.length) {
+      const summary = contentEl.createDiv({ cls: "chrono-deck-reader-summary" });
+      for (const [label, raw] of summaryItems) {
+        const card = summary.createDiv({ cls: "chrono-deck-reader-summary-card" });
+        card.createDiv({ cls: "chrono-deck-reader-summary-label", text: label });
+        card.createDiv({ cls: "chrono-deck-reader-summary-value", text: asString(raw) });
+      }
+    }
+
+    const article = contentEl.createDiv({ cls: "markdown-preview-view chrono-deck-reader-markdown" });
+    const sizer = article.createDiv({ cls: "markdown-preview-sizer markdown-preview-section" });
+    const source = await this.app.vault.cachedRead(this.file);
+    await MarkdownRenderer.render(this.app, readerBody(source), sizer, this.file.path, this.renderComponent);
+
+    const headings = [...sizer.querySelectorAll("h2, h3")];
+    if (headings.length) {
+      const details = contentEl.createEl("details", { cls: "chrono-deck-reader-toc" });
+      details.createEl("summary", { text: `Sections (${headings.length})` });
+      const list = details.createDiv({ cls: "chrono-deck-reader-toc-list" });
+      for (const heading of headings) {
+        const button = list.createEl("button", { text: heading.textContent || "Section" });
+        button.onclick = () => heading.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      article.insertAdjacentElement("beforebegin", details);
+    }
+  }
+
+  onClose() {
+    if (this.renderComponent) {
+      this.renderComponent.unload();
+      this.renderComponent = null;
+    }
+    this.contentEl.empty();
+  }
+}
+
 class TextPromptModal extends Modal {
   constructor(app, title, placeholder) {
     super(app);
@@ -448,6 +610,36 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
       },
     });
     this.addCommand({ id: "pull-all-arcs", name: "Pull all Chrono-Deck ARCs to this device", callback: () => this.pullAllArcs() });
+    this.addCommand({
+      id: "open-arc-reader",
+      name: "Open current ARC in beautiful reader",
+      checkCallback: (checking) => {
+        const file = this.app.workspace.getActiveFile();
+        if (!file || file.extension !== "md") return false;
+        if (!checking) this.openArcReader();
+        return true;
+      },
+    });
+    this.addCommand({
+      id: "normalize-current-arc-math",
+      name: "Fix math rendering in current ARC",
+      checkCallback: (checking) => {
+        const file = this.app.workspace.getActiveFile();
+        if (!file || file.extension !== "md") return false;
+        if (!checking) this.normalizeCurrentArcMath();
+        return true;
+      },
+    });
+    this.addCommand({
+      id: "show-current-arc-revision-storage",
+      name: "Show current ARC revision storage",
+      checkCallback: (checking) => {
+        const file = this.app.workspace.getActiveFile();
+        if (!file || file.extension !== "md") return false;
+        if (!checking) this.showCurrentArcRevisionStorage();
+        return true;
+      },
+    });
     this.addCommand({ id: "create-supplementary-arc", name: "Create supplementary ARC from current note", checkCallback: (checking) => {
       const file = this.app.workspace.getActiveFile();
       if (!file || file.extension !== "md") return false;
@@ -455,6 +647,14 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
       return true;
     }});
     this.addCommand({ id: "open-chrono-deck", name: "Open Chrono-Deck website", callback: () => window.open(this.settings.chronoDeckUrl || DEFAULT_SETTINGS.chronoDeckUrl, "_blank") });
+
+    this.registerEvent(this.app.workspace.on("active-leaf-change", () => this.updateArcFocusClass()));
+    this.registerEvent(this.app.workspace.on("file-open", () => this.updateArcFocusClass()));
+    this.app.workspace.onLayoutReady(() => this.updateArcFocusClass());
+  }
+
+  onunload() {
+    document.body.classList.remove("chrono-deck-arc-active");
   }
 
   async loadSettings() {
@@ -473,6 +673,58 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
   }
   getFrontmatter(file) {
     return this.app.metadataCache.getFileCache(file)?.frontmatter || {};
+  }
+
+  updateArcFocusClass() {
+    const file = this.app.workspace.getActiveFile();
+    const frontmatter = file?.extension === "md" ? this.getFrontmatter(file) : {};
+    document.body.classList.toggle("chrono-deck-arc-active", Boolean(extractArcId(frontmatter?.arc_id)));
+  }
+
+  async openArcReader() {
+    try {
+      const file = this.getActiveArcFile();
+      const validation = validateFrontmatter(this.getFrontmatter(file), file);
+      if (validation.errors.length) throw new Error(validation.errors.join(" "));
+      new ArcReaderModal(this.app, this, file).open();
+    } catch (error) {
+      new Notice(`Chrono-Deck reader: ${error.message}`, 8000);
+    }
+  }
+
+  async normalizeMathInFile(file, notify = true) {
+    const source = await this.app.vault.read(file);
+    const normalized = normalizeObsidianMath(source);
+    if (normalized === source.replace(/\r\n/g, "\n")) return false;
+    await this.app.vault.modify(file, normalized);
+    if (notify) new Notice("Chrono-Deck: converted \\(…\\) / \\[…\\] math to Obsidian $ / $$ MathJax delimiters.", 7000);
+    return true;
+  }
+
+  async normalizeCurrentArcMath() {
+    try {
+      const file = this.getActiveArcFile();
+      const changed = await this.normalizeMathInFile(file, true);
+      if (!changed) new Notice("Chrono-Deck: math syntax is already Obsidian-compatible.");
+    } catch (error) {
+      new Notice(`Chrono-Deck math fix failed: ${error.message}`, 8000);
+    }
+  }
+
+  async showCurrentArcRevisionStorage() {
+    try {
+      const file = this.getActiveArcFile();
+      const validation = validateFrontmatter(this.getFrontmatter(file), file);
+      if (validation.errors.length) throw new Error(validation.errors.join(" "));
+      const session = await this.ensureSession();
+      const stats = await this.rpc("chrono_arc_revision_stats", { p_arc_id: validation.arcId }, session);
+      const count = Number(stats?.snapshotCount || 0);
+      const latest = Number(stats?.latestRevision || 0);
+      const bytes = Number(stats?.approxSnapshotBytes || 0);
+      new Notice(`${validation.arcId}: ${count} stored revision snapshot${count === 1 ? "" : "s"}, ${formatBytes(bytes)} snapshot JSON, latest revision v${latest}.`, 9000);
+    } catch (error) {
+      new Notice(`Chrono-Deck revision stats failed: ${error.message}. Run the v0.3 Supabase migration first.`, 9000);
+    }
   }
 
   async validateCurrentArc() {
@@ -787,9 +1039,20 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
         fm.chrono_synced_at = syncedAt;
         fm.chrono_fingerprint = fingerprint;
       });
+      let pruned = 0;
+      try {
+        pruned = Number(await this.rpc("chrono_prune_arc_revisions", {
+          p_arc_id: payload.document.arcId,
+          p_keep_recent: 50,
+          p_keep_every: 25,
+        }, session)) || 0;
+      } catch (pruneError) {
+        console.warn("Chrono-Deck revision pruning skipped; run the v0.3 migration if needed.", pruneError);
+      }
       this.setStatus(`${payload.document.arcId} · synced v${revision}`);
       const warningText = payload.warnings.length ? ` ${payload.warnings.join(" ")}` : "";
-      new Notice(`Synced ${payload.document.arcId} revision ${revision}.${warningText}`, 7000);
+      const pruneText = pruned ? ` Pruned ${pruned} old full snapshot${pruned === 1 ? "" : "s"}.` : "";
+      new Notice(`Synced ${payload.document.arcId} revision ${revision}.${pruneText}${warningText}`, 7000);
     } catch (error) {
       this.setStatus("Chrono-Deck · sync failed");
       new Notice(`Chrono-Deck sync failed: ${error.message}`, 10000);
