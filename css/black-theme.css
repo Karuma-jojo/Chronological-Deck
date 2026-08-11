@@ -1,27 +1,27 @@
 :root {
   color-scheme: dark;
-  --bg: #0d0d0d;
-  --panel: #151515;
-  --panel2: #1d1d1d;
-  --panel3: #262626;
-  --text: #f1f1ef;
-  --muted: #a1a1a1;
-  --border: #343434;
-  --accent: #777777;
-  --accent2: #b0b0b0;
-  --gold: #d0b168;
-  --purple: #ababab;
-  --red: #dc7777;
+  --bg: #080808;
+  --panel: #101010;
+  --panel2: #171717;
+  --panel3: #1d1d1d;
+  --text: #ececea;
+  --muted: #999999;
+  --border: #2a2a2a;
+  --accent: #666666;
+  --accent2: #a8a8a8;
+  --gold: #c9ab68;
+  --purple: #a4a4a4;
+  --red: #d87878;
   --green: #69c79b;
-  --blue: #9b9b9b;
-  --orange: #c89b6f;
-  --shadow: 0 8px 30px rgba(0, 0, 0, .3);
+  --blue: #969696;
+  --orange: #c09168;
+  --shadow: none;
 }
 
 html,
 body {
-  background: #0d0d0d !important;
-  color: var(--text);
+  background: #080808 !important;
+  color: var(--text) !important;
 }
 
 body {
@@ -29,8 +29,9 @@ body {
 }
 
 header {
-  background: rgba(13, 13, 13, .94) !important;
-  border-bottom-color: #2b2b2b !important;
+  background: rgba(8, 8, 8, .97) !important;
+  border-bottom-color: #242424 !important;
+  box-shadow: none !important;
 }
 
 .panel,
@@ -44,6 +45,7 @@ header {
 .vault-editor {
   background: var(--panel) !important;
   border-color: var(--border) !important;
+  box-shadow: none !important;
 }
 
 button,
@@ -56,26 +58,27 @@ textarea {
   background: var(--panel2) !important;
   border-color: var(--border) !important;
   color: var(--text) !important;
+  box-shadow: none !important;
 }
 
 button:hover,
 select:hover,
 input:hover,
 textarea:hover {
-  border-color: #555 !important;
+  border-color: #454545 !important;
 }
 
 button.primary,
 .tab.active {
-  background: #2c2c2c !important;
-  border-color: #555 !important;
-  color: #f5f5f5 !important;
+  background: #242424 !important;
+  border-color: #3d3d3d !important;
+  color: #f2f2f0 !important;
 }
 
 button.primary:hover,
 .tab.active:hover {
-  background: #343434 !important;
-  border-color: #666 !important;
+  background: #2a2a2a !important;
+  border-color: #4a4a4a !important;
 }
 
 .pill,
@@ -90,43 +93,127 @@ button.primary:hover,
 .vault-markdown blockquote,
 .vault-markdown pre,
 .vault-math-block {
-  background: var(--panel2) !important;
+  background: #141414 !important;
   border-color: var(--border) !important;
 }
 
+/* Keep the ARC reader flatter and darker than the surrounding chrome. */
+.arc-reader-card,
+.vault-library {
+  background: #0b0b0b !important;
+  border-color: #242424 !important;
+  box-shadow: none !important;
+}
+
+.vault-library-head,
+.arc-reader-header {
+  background: #0b0b0b !important;
+  border-color: #242424 !important;
+}
+
+.vault-library-item:hover {
+  background: #141414 !important;
+  border-color: #292929 !important;
+}
+
+.vault-library-item.active {
+  background: #191919 !important;
+  border-color: #383838 !important;
+}
+
+.arc-reader-source,
+.arc-reader-badge,
+.arc-reader-meta-card,
+.arc-reader-toc button,
+.arc-reader-body blockquote,
+.arc-reader-body .katex-display {
+  background: #121212 !important;
+  border-color: #262626 !important;
+}
+
+.arc-reader-toc {
+  background: #090909 !important;
+  border-color: #242424 !important;
+}
+
+.arc-reader-body {
+  color: #e5e5e2 !important;
+}
+
+.arc-reader-body h1,
+.arc-reader-body h2,
+.arc-reader-body h3,
+.arc-reader-body h4 {
+  color: #f0f0ee !important;
+}
+
+.arc-reader-body h2 {
+  border-bottom-color: #262626 !important;
+}
+
+.arc-reader-body blockquote {
+  border-left-color: #484848 !important;
+}
+
+.arc-reader-body pre {
+  background: #090909 !important;
+  border-color: #272727 !important;
+}
+
+.arc-reader-body code {
+  background: #181818 !important;
+}
+
+.arc-reader-body pre code {
+  background: transparent !important;
+}
+
+.arc-reader-body th {
+  background: #121212 !important;
+}
+
+.arc-reader-body th,
+.arc-reader-body td {
+  border-color: #292929 !important;
+}
+
+.arc-reader-body hr {
+  background: #262626 !important;
+}
+
 .progress {
-  background: #242424 !important;
+  background: #171717 !important;
   border-color: var(--border) !important;
 }
 
 .progress > i {
-  background: #888 !important;
+  background: #7d7d7d !important;
 }
 
 a,
 .vault-markdown a {
-  color: #d7d7d7;
+  color: #d7d7d5 !important;
 }
 
 a:hover,
 .vault-markdown a:hover {
-  color: #fff;
+  color: #fff !important;
 }
 
 .node.ready rect,
 .node.selected rect {
-  stroke: #8f8f8f !important;
+  stroke: #858585 !important;
 }
 
 .status-dot.ready {
-  fill: #8f8f8f !important;
+  fill: #858585 !important;
 }
 
 .edge.hot {
-  stroke: #9f9f9f !important;
+  stroke: #929292 !important;
 }
 
 ::selection {
-  background: #484848;
+  background: #3f3f3f;
   color: #fff;
 }
