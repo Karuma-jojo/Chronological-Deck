@@ -5,16 +5,62 @@ import {
   normalizeArcDocument,
 } from "./arc-store.js";
 
+const RELATION_FIELDS = [
+  ["prerequisites", "prerequisite"],
+  ["supplementary", "supplementary"],
+  ["supplementary_to", "supplementary_to"],
+  ["related", "related"],
+  ["deepens", "deepens"],
+  ["historical_next", "historical_next"],
+  ["depends_on", "depends_on"],
+  ["replaces", "replaces"],
+  ["part_of", "part_of"],
+  ["redirect_to", "redirect_to"],
+];
+
 function uid() {
   if (globalThis.crypto?.randomUUID) return crypto.randomUUID();
   return `section-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
+function unquote(value) {
+  const text = String(value || "").trim();
+  if (
+    (text.startsWith('"') && text.endsWith('"')) ||
+    (text.startsWith("'") && text.endsWith("'"))
+  ) {
+    return text.slice(1, -1);
+  }
+  return text;
+}
+
 function normalizeArcId(value) {
-  const match = String(value || "").toUpperCase().match(/\b(ARC|SIDE)\s*0*(\d{1,6})\b/);
+  let text = String(value || "").trim();
+  const wiki = text.match(/!?\[\[([^\]]+)\]\]/);
+  if (wiki) text = wiki[1].split("|")[0].split("#")[0].trim();
+  const sup = text.toUpperCase().match(/\bSUP-[A-Z0-9_-]{6,}\b/);
+  if (sup) return sup[0];
+  const match = text.toUpperCase().match(/\b(ARC|SIDE)\s*[-_ ]?0*(\d{1,6})\b/);
   if (!match) return "";
   const number = Number(match[2]);
   return `${match[1]}${String(number).padStart(3, "0")}`;
+}
+
+function asList(value) {
+  if (value === null || value === undefined || value === "") return [];
+  return Array.isArray(value) ? value : [value];
+}
+
+function scalar(meta, ...keys) {
+  for (const key of keys) {
+    const value = meta?.[key];
+    if (Array.isArray(value)) {
+      if (value.length) return String(value[0]);
+    } else if (value !== null && value !== undefined && String(value).trim()) {
+      return String(value);
+    }
+  }
+  return "";
 }
 
 function parseFrontmatter(source) {
@@ -27,16 +73,49 @@ function parseFrontmatter(source) {
   if (end < 0) return { meta: {}, body: text };
   const block = normalized.slice(4, end);
   const meta = {};
+  let listKey = "";
   for (const line of block.split("\n")) {
-    const match = line.match(/^([A-Za-z0-9_-]+)\s*:\s*(.*)$/);
-    if (!match) continue;
-    let value = match[2].trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-      value = value.slice(1, -1);
+    const item = line.match(/^\s+-\s+(.*)$/);
+    if (item && listKey) {
+      if (!Array.isArray(meta[listKey])) meta[listKey] = [];
+      meta[listKey].push(unquote(item[1]));
+      continue;
     }
-    meta[match[1].toLowerCase()] = value;
+    const match = line.match(/^([A-Za-z0-9_-]+)\s*:\s*(.*)$/);
+    if (!match) {
+      if (line.trim()) listKey = "";
+      continue;
+    }
+    const key = match[1].toLowerCase();
+    const raw = match[2].trim();
+    if (!raw) {
+      meta[key] = [];
+      listKey = key;
+    } else {
+      meta[key] = unquote(raw);
+      listKey = "";
+    }
   }
   return { meta, body: normalized.slice(end + 5) };
+}
+
+function collectRelationships(meta, arcId) {
+  const relationships = [];
+  for (const [field, relationType] of RELATION_FIELDS) {
+    for (const raw of asList(meta?.[field])) {
+      const toArcId = normalizeArcId(raw);
+      if (!toArcId || toArcId === arcId) continue;
+      relationships.push({
+        fromArcId: arcId,
+        toArcId,
+        relationType,
+        position: relationships.length,
+      });
+    }
+  }
+  const unique = new Map();
+  for (const row of relationships) unique.set(`${row.relationType}:${row.toArcId}`, row);
+  return [...unique.values()].map((row, position) => ({ ...row, position }));
 }
 
 function inferSectionType(heading) {
@@ -84,34 +163,18 @@ function cleanTitle(raw, arcId) {
   return title;
 }
 
-/**
- * Parse a human-editable Markdown ARC.
- *
- * Supported canonical form:
- * ---
- * arc_id: ARC005
- * status: editing
- * visibility: private
- * ---
- * # ARC005 — Title
- * ## Short Conclusion
- * ...
- * ## Experience / Chronicle
- * ...
- * ## [proof][private] Heading
- * ...
- *
- * Plain Markdown without tags/frontmatter also works: H2 headings become sections
- * and section types are inferred from heading words.
- */
+/** Parse a human-editable Markdown ARC, including the Obsidian bridge frontmatter contract. */
 export function parseArcMarkdown(source, { fallbackArcId = "", filename = "" } = {}) {
   const { meta, body } = parseFrontmatter(source);
   const lines = String(body || "").replace(/\r\n/g, "\n").split("\n");
   const fileArcId = normalizeArcId(filename);
-  let arcId = normalizeArcId(meta.arc_id || meta.arcid) || fileArcId || normalizeArcId(fallbackArcId);
-  let title = "";
-  const defaultVisibility = ARC_VISIBILITIES.includes(meta.visibility) ? meta.visibility : "private";
-  const status = ARC_STATUSES.includes(meta.status) ? meta.status : "raw";
+  let arcId = normalizeArcId(scalar(meta, "arc_id", "arcid")) || fileArcId || normalizeArcId(fallbackArcId);
+  let title = scalar(meta, "title");
+  const defaultVisibility = ARC_VISIBILITIES.includes(scalar(meta, "visibility"))
+    ? scalar(meta, "visibility")
+    : "private";
+  const requestedStatus = scalar(meta, "document_status", "status");
+  const status = ARC_STATUSES.includes(requestedStatus) ? requestedStatus : "raw";
   let shortConclusion = "";
   let experience = "";
   const sections = [];
@@ -155,7 +218,7 @@ export function parseArcMarkdown(source, { fallbackArcId = "", filename = "" } =
       if (h1) {
         const fromHeading = normalizeArcId(h1[1]);
         if (!arcId && fromHeading) arcId = fromHeading;
-        title = cleanTitle(h1[1], fromHeading || arcId);
+        if (!title) title = cleanTitle(h1[1], fromHeading || arcId);
         continue;
       }
 
@@ -209,9 +272,18 @@ export function parseArcMarkdown(source, { fallbackArcId = "", filename = "" } =
 
   return {
     arcId,
+    canonicalLabel: scalar(meta, "canonical_label") || arcId,
     title,
     status,
     visibility: defaultVisibility,
+    curriculumRole: scalar(meta, "curriculum_role") || "core",
+    priority: scalar(meta, "priority") || "should_do",
+    planningStatus: scalar(meta, "planning_status") || "pending",
+    sourceSystem: "web",
+    sourcePath: filename ? `web:${filename}` : "web:paste",
+    sourceMarkdown: String(source || ""),
+    relationships: collectRelationships(meta, arcId),
+    frontmatter: meta,
     shortConclusion,
     experience,
     sections,
@@ -225,6 +297,7 @@ export function applyMarkdownToDocument(baseDocument, parsed) {
   }
   return normalizeArcDocument({
     ...base,
+    ...parsed,
     title: parsed.title || base.title,
     status: parsed.status || base.status,
     visibility: parsed.visibility || base.visibility,
@@ -245,13 +318,30 @@ export function arcDocumentToMarkdown(input) {
   const lines = [
     "---",
     `arc_id: ${safeFrontmatterValue(document.arcId)}`,
-    `status: ${safeFrontmatterValue(document.status)}`,
+    `title: ${safeFrontmatterValue(document.title)}`,
+    `document_status: ${safeFrontmatterValue(document.status)}`,
     `visibility: ${safeFrontmatterValue(document.visibility)}`,
-    "---",
-    "",
-    `# ${document.canonicalLabel} — ${document.title}`,
-    "",
+    `curriculum_role: ${safeFrontmatterValue(document.curriculumRole || "core")}`,
+    `priority: ${safeFrontmatterValue(document.priority || "should_do")}`,
+    `planning_status: ${safeFrontmatterValue(document.planningStatus || "pending")}`,
   ];
+
+  const byType = new Map(RELATION_FIELDS.map(([field, relationType]) => [relationType, field]));
+  const relationshipGroups = new Map();
+  for (const row of document.relationships || []) {
+    const field = byType.get(row.relationType);
+    if (!field || !row.toArcId) continue;
+    if (!relationshipGroups.has(field)) relationshipGroups.set(field, []);
+    relationshipGroups.get(field).push(row.toArcId);
+  }
+  for (const [field] of RELATION_FIELDS) {
+    const ids = relationshipGroups.get(field) || [];
+    if (!ids.length) continue;
+    lines.push(`${field}:`);
+    for (const id of ids) lines.push(`  - ${JSON.stringify(`[[${id}]]`)}`);
+  }
+
+  lines.push("---", "", `# ${document.canonicalLabel} — ${document.title}`, "");
 
   if (document.shortConclusion) {
     lines.push("## Short Conclusion", "", document.shortConclusion.trim(), "");

@@ -79,6 +79,19 @@ function requestHeaders(context) {
   };
 }
 
+function normalizeCloudDocument(value) {
+  if (!value) return null;
+  return normalizeArcDocument({
+    ...value,
+    curriculumRole: value.curriculumRole || value.curriculum_role,
+    planningStatus: value.planningStatus || value.planning_status,
+    sourceSystem: value.sourceSystem || value.source_system,
+    sourcePath: value.sourcePath || value.source_path,
+    sourceMarkdown: value.sourceMarkdown || value.source_markdown,
+    relationships: Array.isArray(value.relationships) ? value.relationships : [],
+  });
+}
+
 export async function loadArcVaultSetupSql() {
   const response = await fetch("./supabase/arc-vault.sql", { cache: "no-store" });
   if (!response.ok) throw new Error(`Could not load ARC Vault SQL (${response.status}).`);
@@ -139,8 +152,14 @@ export class SupabaseArcRepository {
   }
 
   async load(arcId) {
-    const value = await this.rpc("chrono_load_arc_document", { p_arc_id: String(arcId) });
-    return value ? normalizeArcDocument(value) : null;
+    let value;
+    try {
+      value = await this.rpc("chrono_load_obsidian_arc", { p_arc_id: String(arcId) });
+    } catch (error) {
+      if (!(error instanceof CloudSchemaError)) throw error;
+      value = await this.rpc("chrono_load_arc_document", { p_arc_id: String(arcId) });
+    }
+    return normalizeCloudDocument(value);
   }
 
   async listDocuments() {
@@ -183,7 +202,43 @@ export class SupabaseArcRepository {
       p_document: normalizeArcDocument(input),
       p_note: String(note || "Saved"),
     });
-    return normalizeArcDocument(value);
+    return normalizeCloudDocument(value);
+  }
+
+  async importMarkdown(input, sourceMarkdown, note = "Imported Markdown") {
+    const normalized = normalizeArcDocument({
+      ...input,
+      sourceMarkdown: String(sourceMarkdown || ""),
+    });
+    const current = await this.load(normalized.arcId);
+    const expectedRevision = Number(current?.revision || 0);
+    const relationships = Array.isArray(input?.relationships) && input.relationships.length
+      ? input.relationships
+      : current?.relationships || [];
+    const documentPayload = {
+      ...normalized,
+      schemaVersion: 2,
+      curriculumRole: String(input?.curriculumRole || current?.curriculumRole || "core"),
+      priority: String(input?.priority || current?.priority || "should_do"),
+      planningStatus: String(input?.planningStatus || current?.planningStatus || "pending"),
+      sourceSystem: "web",
+      sourcePath: String(input?.sourcePath || "web-import"),
+      sourceMarkdown: String(sourceMarkdown || ""),
+    };
+
+    try {
+      await this.rpc("chrono_sync_obsidian_arc_v2", {
+        p_document: documentPayload,
+        p_relationships: relationships,
+        p_expected_revision: expectedRevision,
+        p_note: String(note || "Imported Markdown from Chrono-Deck website"),
+      });
+      return await this.load(normalized.arcId);
+    } catch (error) {
+      if (!(error instanceof CloudSchemaError)) throw error;
+      const saved = await this.save(normalized, note);
+      return normalizeArcDocument({ ...saved, sourceMarkdown: String(sourceMarkdown || "") });
+    }
   }
 
   async listRevisions(arcId) {
@@ -215,7 +270,7 @@ export class SupabaseArcRepository {
       p_arc_id: String(arcId),
       p_revision_id: String(revisionId),
     });
-    return normalizeArcDocument(value);
+    return normalizeCloudDocument(value);
   }
 
   async importDocument(input, note = "Imported") {

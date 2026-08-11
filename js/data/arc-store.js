@@ -46,6 +46,15 @@ function normalizeSection(section, position) {
   };
 }
 
+function normalizeRelationship(row, position) {
+  return {
+    fromArcId: String(row?.fromArcId || row?.from_arc_id || ""),
+    toArcId: String(row?.toArcId || row?.to_arc_id || ""),
+    relationType: String(row?.relationType || row?.relation_type || "related"),
+    position: Number.isInteger(row?.position) && row.position >= 0 ? row.position : position,
+  };
+}
+
 export function seedArcDocument(node) {
   if (!node?.id) throw new Error("Cannot seed an ARC document without a stable node ID.");
   const now = isoNow();
@@ -56,6 +65,13 @@ export function seedArcDocument(node) {
     title: String(node.title || node.arc || node.id),
     status: "raw",
     visibility: "private",
+    curriculumRole: "core",
+    priority: "should_do",
+    planningStatus: "pending",
+    sourceSystem: "",
+    sourcePath: "",
+    sourceMarkdown: "",
+    relationships: [],
     shortConclusion: "",
     experience: "",
     sections: [
@@ -79,6 +95,7 @@ export function normalizeArcDocument(input) {
   if (!input?.arcId) throw new Error("ARC document is missing arcId.");
   const now = isoNow();
   const sections = Array.isArray(input.sections) ? input.sections : [];
+  const relationships = Array.isArray(input.relationships) ? input.relationships : [];
   return {
     schemaVersion: ARC_SCHEMA_VERSION,
     arcId: String(input.arcId),
@@ -88,6 +105,13 @@ export function normalizeArcDocument(input) {
     visibility: ARC_VISIBILITIES.includes(input.visibility)
       ? input.visibility
       : "private",
+    curriculumRole: String(input.curriculumRole || "core"),
+    priority: String(input.priority || "should_do"),
+    planningStatus: String(input.planningStatus || "pending"),
+    sourceSystem: String(input.sourceSystem || ""),
+    sourcePath: String(input.sourcePath || ""),
+    sourceMarkdown: String(input.sourceMarkdown || ""),
+    relationships: relationships.map(normalizeRelationship),
     shortConclusion: String(input.shortConclusion || ""),
     experience: String(input.experience || ""),
     sections: sections.map(normalizeSection),
@@ -217,5 +241,9 @@ export class IndexedDbArcRepository {
   async importDocument(input, note = "Imported JSON") {
     const normalized = normalizeArcDocument(input);
     return this.save(normalized, note);
+  }
+
+  async importMarkdown(input, sourceMarkdown, note = "Imported Markdown") {
+    return this.save({ ...input, sourceMarkdown: String(sourceMarkdown || "") }, note);
   }
 }
