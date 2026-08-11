@@ -1,6 +1,6 @@
 # Chrono-Deck ↔ Obsidian bridge contract
 
-Obsidian is the primary human authoring surface for ARC documents. Supabase is the authenticated structured mirror/index. The World Registry in `js/data/world.js` remains the immutable seed for the original curriculum; user-created supplementary notes live in the database overlay and do not require editing `world.js`.
+Obsidian is the primary human authoring surface for ARC documents. Supabase is the authenticated structured mirror/index and cross-device ARC hub. The World Registry in `js/data/world.js` remains the immutable seed for the original curriculum; user-created supplementary notes live in the database overlay and do not require editing `world.js`.
 
 ## Canonical ARC note
 
@@ -66,7 +66,7 @@ The bridge converts these top-level Obsidian properties into rows in `arc_relati
 | `part_of` | `part_of` | this ARC is a component of target |
 | `redirect_to` | `redirect_to` | old/merged ARC resolves to target |
 
-Relationship values should be Obsidian wikilinks to files whose names begin with their stable ID. Plain IDs are also accepted.
+Relationship values should be Obsidian wikilinks to files whose names begin with their stable ID. Plain IDs are also accepted. Cloud-created files use the stable ID as the filename (`ARC004.md`) so reconstructed relationship links like `[[ARC004]]` remain portable.
 
 ## Stable IDs
 
@@ -76,7 +76,7 @@ User-created supplementary notes use locally generated IDs such as `SUP-A1B2C3D4
 
 Merges should preserve the old ID using `redirect_to` rather than deleting it. Splits should preserve the parent note and link new child IDs.
 
-## Sync semantics
+## Push semantics (v0.2)
 
 `Chrono-Deck: Sync current ARC to Chrono-Deck` performs one authenticated Supabase RPC call. The transaction atomically updates:
 
@@ -84,16 +84,38 @@ Merges should preserve the old ID using `redirect_to` rather than deleting it. S
 2. ordered `arc_sections`
 3. typed `arc_relationships`
 4. one immutable `arc_revisions` snapshot
+5. the exact current Obsidian Markdown source for cross-device reconstruction
 
-The note receives only convenience sync metadata (`chrono_synced_at`, `chrono_revision`) after a successful server commit.
+The client sends `p_expected_revision`, the cloud revision the local note was based on. Supabase holds a per-user/per-ARC transaction lock and rejects the write if the cloud revision no longer matches. A stale phone or laptop therefore cannot silently overwrite a newer device.
 
-The plugin never writes the Supabase publishable key, password, access token, or refresh token into an ARC note. The publishable key and session tokens use Obsidian SecretStorage; the password is only held in memory during sign-in.
+After a successful push, the note receives three bookkeeping properties:
 
-## Conflict policy (v0.1)
+- `chrono_revision`
+- `chrono_synced_at`
+- `chrono_fingerprint`
 
-Obsidian is authoritative for a note when the user explicitly runs **Sync current ARC**. There is no automatic background push in v0.1.
+The fingerprint ignores `chrono_*` properties themselves and is used only to tell whether a tracked local file has changed since its last successful push/pull.
 
-This intentionally avoids silent overwrites while the bridge is new. Pull/reconcile and background sync can be added later with explicit revision comparison.
+## Pull semantics (v0.2)
+
+**Pull current ARC from Chrono-Deck** loads the cloud copy for the open ARC.
+
+**Pull all Chrono-Deck ARCs to this device** lists the user's cloud ARCs and creates missing files under the configured ARC folder. New cloud-created files use stable filenames such as `Chrono-Deck/ARCs/ARC004.md`.
+
+For an existing local ARC:
+
+- same local/cloud revision → leave the file alone;
+- cloud newer + local fingerprint unchanged → update the local note;
+- cloud newer + local note edited → report a conflict and leave the local file untouched;
+- local revision newer than cloud → report a conflict and leave the local file untouched.
+
+There is deliberately no force-overwrite or background autosync in v0.2. Conflict resolution remains explicit while the bridge is being proven.
+
+Older ARC rows created by the website may not yet have an exact `source_markdown` copy. The pull path reconstructs a canonical Markdown note from the stored document, sections and relationships. Once that note is pushed from Obsidian, future pulls can preserve its exact Markdown source.
+
+## Security
+
+The plugin never writes the Supabase publishable key, password, access token, or refresh token into an ARC note. The publishable key and session tokens use Obsidian SecretStorage; the password is only held in memory during sign-in. Supabase Auth JWTs are sent to the Data API/RPC layer and RLS restricts rows to the signed-in user.
 
 ## Supplementary ARC creation
 
@@ -106,3 +128,7 @@ The plugin command **Create supplementary ARC from current note**:
 5. adds the child wikilink to the parent's `supplementary` property using Obsidian's frontmatter API.
 
 The note is not sent to Supabase until the user explicitly syncs it.
+
+## Device model
+
+Supabase synchronizes Chrono-Deck ARC content and ARC metadata. It does not attempt to synchronize Obsidian themes, workspace layout, unrelated notes, hotkeys or third-party plugin configuration. Each device installs/configures the private Chrono-Deck Bridge once, signs into the same Supabase account, then uses Pull/Sync for ARC content.
