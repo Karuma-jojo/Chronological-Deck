@@ -1,0 +1,245 @@
+/* Chrono-Deck Bridge v0.3 — mobile-first ARC reader + focus editor */
+
+.chrono-deck-reader-shell {
+  width: min(1080px, 96vw);
+  max-width: 1080px;
+  height: min(94vh, 1100px);
+  max-height: 94vh;
+  padding: 0;
+  overflow: hidden;
+}
+
+.chrono-deck-reader-shell .modal-content {
+  height: 100%;
+  padding: 0;
+  overflow: auto;
+}
+
+.chrono-deck-reader {
+  min-height: 100%;
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+
+.chrono-deck-reader-hero {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  padding: 18px clamp(18px, 4vw, 42px) 14px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  background: color-mix(in srgb, var(--background-primary) 92%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.chrono-deck-reader-kicker {
+  margin-bottom: 6px;
+  color: var(--text-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chrono-deck-reader-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.chrono-deck-reader-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.chrono-deck-reader-pill {
+  padding: 5px 9px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 999px;
+  background: var(--background-secondary);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.chrono-deck-reader-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.chrono-deck-reader-actions button {
+  min-height: 36px;
+}
+
+.chrono-deck-reader-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+  width: min(880px, calc(100% - 36px));
+  margin: 20px auto 0;
+}
+
+.chrono-deck-reader-summary-card {
+  padding: 12px 14px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  background: var(--background-secondary-alt);
+}
+
+.chrono-deck-reader-summary-label {
+  margin-bottom: 4px;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chrono-deck-reader-summary-value {
+  color: var(--text-normal);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.chrono-deck-reader-toc {
+  width: min(880px, calc(100% - 36px));
+  margin: 16px auto 0;
+  padding: 10px 14px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  background: var(--background-secondary);
+}
+
+.chrono-deck-reader-toc summary {
+  cursor: pointer;
+  color: var(--text-muted);
+  font-weight: 650;
+}
+
+.chrono-deck-reader-toc-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.chrono-deck-reader-toc-list button {
+  height: auto;
+  min-height: 30px;
+  padding: 4px 9px;
+  font-size: 0.78rem;
+}
+
+.chrono-deck-reader-markdown.markdown-preview-view {
+  padding: 10px 18px 56px;
+}
+
+.chrono-deck-reader-markdown .markdown-preview-sizer {
+  max-width: 880px;
+  margin: 0 auto;
+  padding-bottom: 15vh;
+}
+
+.chrono-deck-reader-markdown p,
+.chrono-deck-reader-markdown li {
+  font-size: clamp(1rem, 2.4vw, 1.08rem);
+  line-height: 1.72;
+}
+
+.chrono-deck-reader-markdown h2 {
+  margin-top: 2.5em;
+  padding-bottom: 0.32em;
+  border-bottom: 1px solid var(--background-modifier-border);
+  font-size: clamp(1.45rem, 4vw, 2rem);
+  letter-spacing: -0.018em;
+}
+
+.chrono-deck-reader-markdown h3 {
+  margin-top: 2em;
+  font-size: clamp(1.18rem, 3vw, 1.5rem);
+}
+
+.chrono-deck-reader-markdown blockquote {
+  margin-inline: 0;
+  padding: 12px 16px;
+  border-inline-start-width: 3px;
+  border-radius: 0 10px 10px 0;
+  background: var(--background-secondary);
+}
+
+.chrono-deck-reader-markdown .math-block,
+.chrono-deck-reader-markdown mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 1.4em 0;
+  padding: 12px 8px;
+  border-radius: 10px;
+  background: var(--background-secondary);
+}
+
+.chrono-deck-reader-markdown table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Focus editor: applies only while the active note has arc_id frontmatter. */
+body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-scroller {
+  line-height: 1.68;
+}
+
+body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-contentContainer {
+  width: min(860px, 100%);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-content {
+  padding-inline: clamp(14px, 4vw, 34px);
+  padding-bottom: 22vh;
+}
+
+body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .metadata-container {
+  margin: 12px clamp(14px, 4vw, 34px) 24px;
+  padding: 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  background: var(--background-secondary);
+  font-size: 0.88em;
+}
+
+body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-1,
+body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-2,
+body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-header-3 {
+  letter-spacing: -0.015em;
+}
+
+body.chrono-deck-arc-active .markdown-source-view.mod-cm6 .cm-formatting {
+  color: var(--text-faint);
+}
+
+@media (max-width: 600px) {
+  .chrono-deck-reader-shell {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .chrono-deck-reader-hero {
+    padding-top: max(14px, env(safe-area-inset-top));
+  }
+
+  .chrono-deck-reader-summary,
+  .chrono-deck-reader-toc {
+    width: calc(100% - 28px);
+  }
+
+  .chrono-deck-reader-markdown.markdown-preview-view {
+    padding-inline: 14px;
+  }
+}
