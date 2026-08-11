@@ -1,0 +1,63 @@
+name: One-time cloud Vault wiring
+
+on:
+  push:
+    branches:
+      - agent/cloud-vault-markdown
+
+permissions:
+  contents: write
+
+jobs:
+  wire-vault:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/cloud-vault-markdown
+
+      - name: Wire hybrid repository and Vault enhancements
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('js/vault.js')
+          source = path.read_text()
+
+          source = source.replace(
+              '  IndexedDbArcRepository,\n',
+              '',
+              1,
+          )
+          marker = '} from "./data/arc-store.js";\n\nconst repository = new IndexedDbArcRepository();'
+          replacement = '''} from "./data/arc-store.js";\nimport { HybridArcRepository } from "./data/hybrid-arc-store.js";\nimport "./vault-cloud-ui.js";\n\nconst repository = new HybridArcRepository();\nglobalThis.chronoArcRepository = repository;'''
+          if marker not in source:
+              raise SystemExit('Could not find Vault repository wiring marker')
+          source = source.replace(marker, replacement, 1)
+          path.write_text(source)
+          PY
+
+      - name: Validate JavaScript modules
+        run: |
+          node --check js/vault.js
+          node --check js/vault-cloud-ui.js
+          node --check js/data/arc-store.js
+          node --check js/data/hybrid-arc-store.js
+          node --check js/data/supabase-arc-store.js
+          node --check js/data/markdown-arc.js
+          node scripts/validate-world.mjs
+
+      - name: Commit wiring
+        shell: bash
+        run: |
+          if git diff --quiet -- js/vault.js; then
+            echo "No wiring changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/vault.js
+          git commit -m "wire cloud Vault repository"
+          git push origin HEAD:agent/cloud-vault-markdown
