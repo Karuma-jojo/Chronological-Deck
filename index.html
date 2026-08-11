@@ -6,6 +6,7 @@
 <meta name="color-scheme" content="dark light">
 <title>Chrono-Deck Scientific Mastery World v1.0 — Cloud Sync</title>
 <link rel="stylesheet" href="./css/app.css">
+<link rel="stylesheet" href="./css/vault.css">
 </head>
 <body>
 <div class="app">
@@ -21,13 +22,14 @@
       <span class="pill">IDs stay permanent</span>
       <span class="pill" id="syncPill">☁ Cloud sync: off</span>
       <span class="pill">Local/offline fallback stays enabled</span>
-      <span class="pill">Single-file / GitHub Pages ready</span>
+      <span class="pill">Modular / GitHub Pages ready</span>
     </div>
   </div>
   <div class="tabs">
     <button class="tab active" data-tab="route">Terminal route</button>
     <button class="tab" data-tab="explore">Explore all 630</button>
     <button class="tab" data-tab="story">Chronological story</button>
+    <button class="tab" data-tab="vault">Vault editor</button>
   </div>
 </header>
 
@@ -39,7 +41,6 @@
  <div class="metric"><b id="mRoute">—</b><span>selected terminal route</span></div>
  <div class="metric"><b id="mProgress">—</b><span>route cleared</span></div>
 </div>
-
 
 <details class="panel sync-panel" id="cloudSyncPanel">
   <summary>
@@ -178,8 +179,93 @@
   </div>
   <div id="storyList" class="story-list"></div>
 </section>
+
+<section id="vaultTab">
+  <div class="panel" style="padding:12px;margin-bottom:10px">
+    <div class="header-row">
+      <div>
+        <strong>Living ARC Vault</strong>
+        <div class="subtitle">The World Registry keeps stable IDs and prerequisite edges. ARC documents are editable records with independent sections and revision history.</div>
+      </div>
+      <div class="pills">
+        <span class="pill">IndexedDB local repository</span>
+        <span class="pill" id="vaultDirty">Saved</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="vault-shell">
+    <aside class="vault-sidebar">
+      <label for="vaultArcSearch">Find an ARC
+        <input id="vaultArcSearch" type="text" placeholder="ARC005, Zeno, proof…">
+      </label>
+      <label for="vaultArcSelect">World Registry node
+        <select id="vaultArcSelect"></select>
+      </label>
+      <div id="vaultMatchCount" class="vault-note"></div>
+      <div class="vault-divider"></div>
+      <div class="section-title">Stable registry metadata</div>
+      <div id="vaultMeta" class="vault-meta"></div>
+      <div class="vault-divider"></div>
+      <div class="vault-actions">
+        <button id="vaultExport">Export ARC JSON</button>
+        <button id="vaultImportBtn">Import ARC JSON</button>
+        <input id="vaultImportFile" class="hidden" type="file" accept="application/json,.json">
+      </div>
+      <div class="section-title">Revision history</div>
+      <label for="vaultRevisionSelect">Saved snapshots
+        <select id="vaultRevisionSelect"></select>
+      </label>
+      <button id="vaultRestore" type="button">Restore as new revision</button>
+      <p class="vault-note">Restoring never erases later history. The restored snapshot is saved as a new revision.</p>
+    </aside>
+
+    <div class="vault-editor">
+      <div class="vault-grid">
+        <label for="vaultTitle">Editable title
+          <input id="vaultTitle" type="text">
+        </label>
+        <label for="vaultDocStatus">Document status
+          <select id="vaultDocStatus"></select>
+        </label>
+        <label for="vaultVisibility">Default visibility
+          <select id="vaultVisibility"></select>
+        </label>
+      </div>
+
+      <div class="vault-grid two">
+        <label for="vaultConclusion">Short conclusion
+          <textarea id="vaultConclusion" class="vault-long" placeholder="What did this ARC establish?"></textarea>
+        </label>
+        <label for="vaultExperience">Experience / chronicle note
+          <textarea id="vaultExperience" class="vault-long" placeholder="What happened during the investigation?"></textarea>
+        </label>
+      </div>
+
+      <div class="vault-divider"></div>
+      <div class="header-row">
+        <div>
+          <strong>Sections</strong>
+          <div class="subtitle">Each section carries its own type, visibility, order and Markdown/LaTeX content.</div>
+        </div>
+        <button id="vaultAddSection" type="button">+ Add section</button>
+      </div>
+      <div id="vaultSections" class="vault-section-list"></div>
+
+      <div class="vault-divider"></div>
+      <label for="vaultRevisionNote">Revision note
+        <input id="vaultRevisionNote" type="text" placeholder="e.g. Fixed Zeno claim, added proof, polished wording">
+      </label>
+      <div class="vault-actions">
+        <button id="vaultSave" class="primary" type="button">Save revision</button>
+      </div>
+      <div id="vaultStatus" class="vault-status warn">Open an ARC to begin editing. Local ARC documents are not cloud-synced yet.</div>
+    </div>
+  </div>
+</section>
 </div>
 
-<script src="./js/app.js"></script>
+<script type="module" src="./js/app.js"></script>
+<script type="module" src="./js/vault.js"></script>
 </body>
 </html>

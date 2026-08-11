@@ -1,0 +1,36 @@
+name: Frontend integrity checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JavaScript module syntax
+        shell: bash
+        run: |
+          node --input-type=module --check < js/app.js
+          node --input-type=module --check < js/data/world.js
+          node --input-type=module --check < js/data/arc-store.js
+          node --input-type=module --check < js/vault.js
+
+      - name: Validate World Registry graph integrity
+        run: node scripts/validate-world.mjs
+
+      - name: Validate GitHub Pages entrypoint wiring
+        shell: bash
+        run: |
+          grep -q 'href="./css/app.css"' index.html
+          grep -q 'href="./css/vault.css"' index.html
+          grep -q 'type="module" src="./js/app.js"' index.html
+          grep -q 'type="module" src="./js/vault.js"' index.html
+          grep -q 'id="vaultTab"' index.html
