@@ -1,0 +1,583 @@
+/* Chrono-Deck web ARC reader v4 */
+#vaultTab .vault-shell {
+  display: grid;
+  grid-template-columns: minmax(230px, 290px) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+#vaultTab .vault-editor {
+  min-width: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.vault-library {
+  position: sticky;
+  top: 148px;
+  max-height: calc(100vh - 164px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.vault-library-head {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.vault-library-title-row,
+.arc-reader-topline,
+.arc-reader-actions,
+.vault-import-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.vault-library h2 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.vault-library-subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.vault-library-search {
+  width: 100%;
+  margin-top: 11px;
+}
+
+.vault-library-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.vault-library-list {
+  display: grid;
+  gap: 5px;
+  padding: 8px;
+  overflow: auto;
+}
+
+.vault-library-empty {
+  padding: 18px 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.vault-library-item {
+  appearance: none;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: start;
+  text-align: left;
+  padding: 9px 10px;
+  border: 1px solid transparent !important;
+  border-radius: 10px;
+  background: transparent !important;
+}
+
+.vault-library-item:hover {
+  background: #1d1d1d !important;
+  border-color: #303030 !important;
+}
+
+.vault-library-item.active {
+  background: #242424 !important;
+  border-color: #464646 !important;
+}
+
+.vault-library-id {
+  color: #c8c8c8;
+  font: 650 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  padding-top: 2px;
+}
+
+.vault-library-copy {
+  min-width: 0;
+}
+
+.vault-library-copy strong {
+  display: block;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vault-library-copy span,
+.vault-library-revision {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.arc-reader-card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.arc-reader-header {
+  padding: clamp(18px, 3vw, 34px) clamp(18px, 4vw, 48px) 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.arc-reader-topline {
+  margin-bottom: 13px;
+}
+
+.arc-reader-kicker {
+  color: #bdbdbd;
+  font: 700 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.arc-reader-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel2);
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.arc-reader-header h1 {
+  max-width: 980px;
+  margin: 0;
+  color: #f3f3f1;
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+
+.arc-reader-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.arc-reader-badge {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel2);
+  color: #b5b5b5;
+  font-size: 9px;
+  text-transform: lowercase;
+}
+
+.arc-reader-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.arc-reader-meta-card {
+  min-width: 0;
+  padding: 10px 11px;
+  border: 1px solid #303030;
+  border-radius: 10px;
+  background: #191919;
+}
+
+.arc-reader-meta-label {
+  margin-bottom: 4px;
+  color: #747474;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.arc-reader-meta-value {
+  color: #d6d6d4;
+  font-size: 10px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.arc-reader-actions {
+  justify-content: flex-start;
+  margin-top: 17px;
+}
+
+.arc-reader-actions button {
+  padding: 7px 10px;
+  font-size: 10px;
+}
+
+.arc-reader-toc {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 12px clamp(18px, 4vw, 48px);
+  border-bottom: 1px solid var(--border);
+  background: #121212;
+}
+
+.arc-reader-toc button {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #191919 !important;
+  color: #a8a8a8 !important;
+  font-size: 9px;
+}
+
+.arc-reader-body {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  padding: 28px clamp(18px, 4vw, 48px) 70px;
+  color: #e7e7e4;
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.75;
+}
+
+.arc-reader-body > :first-child {
+  margin-top: 0;
+}
+
+.arc-reader-body p {
+  margin: .85em 0;
+}
+
+.arc-reader-body h1,
+.arc-reader-body h2,
+.arc-reader-body h3,
+.arc-reader-body h4 {
+  color: #f2f2f0;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+
+.arc-reader-body h2 {
+  margin: 2.4em 0 .75em;
+  padding-bottom: .35em;
+  border-bottom: 1px solid #2e2e2e;
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+.arc-reader-body h3 {
+  margin: 1.8em 0 .65em;
+  font-size: clamp(18px, 2.4vw, 23px);
+}
+
+.arc-reader-body h4 {
+  margin: 1.5em 0 .55em;
+  font-size: 16px;
+}
+
+.arc-reader-body ul,
+.arc-reader-body ol {
+  padding-left: 1.55em;
+}
+
+.arc-reader-body li {
+  margin: .35em 0;
+}
+
+.arc-reader-body blockquote {
+  margin: 1.2em 0;
+  padding: .8em 1em;
+  border-left: 3px solid #555;
+  border-radius: 0 9px 9px 0;
+  background: #191919;
+  color: #c7c7c5;
+}
+
+.arc-reader-body pre {
+  overflow: auto;
+  padding: 13px 14px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background: #111;
+  color: #e1e1df;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.arc-reader-body code {
+  padding: .1em .3em;
+  border-radius: 5px;
+  background: #242424;
+  color: #ededeb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92em;
+}
+
+.arc-reader-body pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.arc-reader-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+}
+
+.arc-reader-body th,
+.arc-reader-body td {
+  padding: 8px 10px;
+  border: 1px solid #333;
+  text-align: left;
+}
+
+.arc-reader-body th {
+  background: #1c1c1c;
+}
+
+.arc-reader-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.arc-reader-body hr {
+  height: 1px;
+  margin: 2em 0;
+  border: 0;
+  background: #333;
+}
+
+.arc-reader-body .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 1.25em 0;
+  padding: 14px 10px;
+  border: 1px solid #2d2d2d;
+  border-radius: 10px;
+  background: #141414;
+}
+
+.arc-reader-body .katex {
+  color: #f1f1ef;
+}
+
+.arc-reader-render-error,
+.arc-reader-empty {
+  padding: 28px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.vault-wikilink {
+  display: inline;
+  padding: 0;
+  border: 0 !important;
+  background: transparent !important;
+  color: #d8d8d8 !important;
+  text-decoration: underline;
+  text-decoration-color: #555;
+  text-underline-offset: 2px;
+  font: inherit;
+}
+
+.vault-advanced {
+  margin-top: 12px;
+  border: 1px solid #2f2f2f;
+  border-radius: 12px;
+  background: #121212;
+}
+
+.vault-advanced > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  color: #a8a8a8;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.vault-advanced-note {
+  margin: 0;
+  padding: 0 14px 12px;
+  color: #777;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.vault-advanced-body {
+  display: grid;
+  gap: 12px;
+  padding: 0 12px 12px;
+}
+
+.vault-advanced-body .vault-sidebar {
+  position: static !important;
+  display: block !important;
+  max-width: none;
+  padding: 12px;
+  box-shadow: none;
+}
+
+.vault-advanced-body .vault-edit-view {
+  display: block !important;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+.vault-import-dialog {
+  width: min(760px, calc(100vw - 22px));
+  max-height: min(88vh, 900px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #3a3a3a;
+  border-radius: 14px;
+  background: #151515;
+  color: var(--text);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
+}
+
+.vault-import-dialog::backdrop {
+  background: rgba(0, 0, 0, .72);
+  backdrop-filter: blur(4px);
+}
+
+.vault-import-dialog-inner {
+  display: grid;
+  gap: 12px;
+  max-height: 88vh;
+  padding: 17px;
+  overflow: auto;
+}
+
+.vault-import-dialog h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.vault-import-dialog p {
+  margin: -5px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.vault-import-grid {
+  display: grid;
+  grid-template-columns: minmax(140px, .45fr) 1fr;
+  gap: 8px;
+}
+
+.vault-import-field label {
+  display: block;
+  margin-bottom: 5px;
+  color: #929292;
+  font-size: 9px;
+}
+
+.vault-import-field input,
+.vault-import-field textarea {
+  width: 100%;
+}
+
+.vault-import-source {
+  min-height: 330px;
+  resize: vertical;
+  font: 11px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+}
+
+.vault-import-status {
+  min-height: 18px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.vault-import-status.bad {
+  color: var(--red);
+}
+
+.vault-import-status.good {
+  color: var(--green);
+}
+
+@media (max-width: 900px) {
+  #vaultTab .vault-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .vault-library {
+    position: static;
+    max-height: none;
+  }
+
+  .vault-library-list {
+    max-height: 260px;
+  }
+}
+
+@media (max-width: 620px) {
+  .vault-library {
+    border-radius: 12px;
+  }
+
+  .arc-reader-card {
+    margin-inline: -1px;
+    border-radius: 12px;
+  }
+
+  .arc-reader-header {
+    padding: 18px 15px 17px;
+  }
+
+  .arc-reader-header h1 {
+    font-size: 30px;
+  }
+
+  .arc-reader-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .arc-reader-toc {
+    padding: 10px 14px;
+  }
+
+  .arc-reader-body {
+    padding: 23px 14px 58px;
+    font-size: 15px;
+    line-height: 1.72;
+  }
+
+  .vault-import-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vault-import-source {
+    min-height: 280px;
+  }
+}
