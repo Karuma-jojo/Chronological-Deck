@@ -1,9 +1,9 @@
 {
   "id": "chrono-deck-bridge",
   "name": "Chrono-Deck Bridge",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "minAppVersion": "1.11.4",
-  "description": "Author Chrono-Deck ARC notes in Obsidian and sync structured ARC data and relationships to Supabase.",
+  "description": "Author Chrono-Deck ARC notes in Obsidian and safely sync/pull them across devices through Supabase.",
   "author": "Karuma-jojo",
   "isDesktopOnly": false
 }
