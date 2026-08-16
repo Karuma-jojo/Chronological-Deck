@@ -29,6 +29,7 @@ jobs:
           node --input-type=module --check < js/data/law-procedure.js
           node --input-type=module --check < js/data/law-advanced.js
           node --input-type=module --check < js/data/law-expansion.js
+          node --input-type=module --check < js/data/t22-quant-research.js
           node --input-type=module --check < js/data/arc-store.js
           node --input-type=module --check < js/data/supabase-arc-store.js
           node --input-type=module --check < js/data/hybrid-arc-store.js
@@ -40,6 +41,9 @@ jobs:
 
       - name: Validate World Registry graph integrity
         run: node scripts/validate-world.mjs
+
+      - name: Validate T22 runtime integration
+        run: node scripts/validate-t22.mjs
 
       - name: Validate Markdown ARC round-trip
         run: node scripts/test-markdown.mjs
@@ -53,6 +57,7 @@ jobs:
           grep -q 'href="./css/vault-reader-v4.css"' index.html
           grep -q 'type="module" src="./js/site-v11.js"' index.html
           grep -q 'import "./data/law-expansion.js";' js/site-v11.js
+          grep -q 'await import("./data/t22-quant-research.js")' js/site-v11.js
           grep -q 'await import("./app.js")' js/site-v11.js
           grep -q 'await import("./vault.js")' js/site-v11.js
           grep -q 'import "./vault-reader.js";' js/vault-cloud-ui.js
@@ -61,6 +66,8 @@ jobs:
           test -f css/black-theme.css
           test -f css/vault-reader-v4.css
           test -f js/data/law-expansion.js
+          test -f js/data/t22-quant-research.js
+          test -f scripts/validate-t22.mjs
           test -f docs/t21-law-route.md
           test -f supabase/arc-vault.sql
 
