@@ -1,6 +1,8 @@
 import { WORLD } from "./world.js";
 
-export const T22_REQUIRED = [
+// Career-critical seeds. The final route is computed from these seeds plus the
+// full recursive mastery-prerequisite closure already encoded in WORLD.
+export const T22_SEEDS = [
   // Frozen 39-node scientific core.
   "ARC002",
   "ARC008",
@@ -42,12 +44,6 @@ export const T22_REQUIRED = [
   "ARC539",
   "ARC061",
 
-  // Mastery-prerequisite closure for the frozen core's Taylor-series node.
-  "ARC132",
-  "SIDE261",
-  "SIDE265",
-  "SIDE266",
-
   // Statistical research and inference.
   "ARC531",
   "ARC533",
@@ -88,6 +84,10 @@ export const T22_REQUIRED = [
   "SIDE466",
 ];
 
+// Exported after applyT22QuantResearch() runs. Keeping this as an array preserves
+// a stable public shape for any code that imports it.
+export const T22_REQUIRED = [];
+
 export const T22_DEFERRED_BRANCHES = {
   deepProbabilityAndStochasticCalculus: [
     "SIDE274",
@@ -125,11 +125,11 @@ export const T22_TERMINAL = {
   exit:
     "Form an empirical market hypothesis; build a leakage-safe reproducible research pipeline; implement and compare statistical/ML baselines; quantify uncertainty, multiple testing, transaction costs, market impact and failure modes; defend a research memo; and solve representative probability, statistics, optimization and algorithms interview problems. Research code must be independently executable, but production systems engineering is not part of this first-hire gate.",
   id: "T22",
-  required: [...T22_REQUIRED],
-  count: T22_REQUIRED.length,
+  required: T22_REQUIRED,
+  count: 0,
   gateways: ["MathStats", "CS", "Econ"],
   routePolicy:
-    "First-hire critical path. Deeper probability/stochastic calculus, desk-specific derivatives and fixed income, advanced econometrics, deep-learning stacks and systems engineering remain available as post-hire or target-role branches rather than blocking initial quantitative-research readiness.",
+    "First-hire critical path. The route starts from a focused quantitative-research seed set and automatically includes every mastery prerequisite required by the World Registry. Deeper optional specializations remain post-hire or target-role branches unless the registry makes them genuine prerequisites.",
 };
 
 function addTerminalTag(node, terminalId) {
@@ -141,20 +141,28 @@ function addTerminalTag(node, terminalId) {
   }
 }
 
-function assertPrerequisiteClosure(world, requiredIds) {
-  const required = new Set(requiredIds);
+export function computeMasteryClosure(world, seedIds) {
   const byId = new Map((world.nodes || []).map((node) => [node.id, node]));
+  const visiting = new Set();
+  const visited = new Set();
+  const ordered = [];
 
-  for (const id of requiredIds) {
+  function visit(id) {
+    if (visited.has(id)) return;
+    if (visiting.has(id)) throw new Error(`T22 mastery prerequisite cycle detected at ${id}.`);
+
     const node = byId.get(id);
     if (!node) throw new Error(`T22 requires missing node ${id}.`);
 
-    for (const prereq of node.masteryPrereqs || []) {
-      if (!required.has(prereq)) {
-        throw new Error(`T22 prerequisite closure failed: ${id} requires ${prereq}.`);
-      }
-    }
+    visiting.add(id);
+    for (const prereq of node.masteryPrereqs || []) visit(prereq);
+    visiting.delete(id);
+    visited.add(id);
+    ordered.push(id);
   }
+
+  for (const id of seedIds) visit(id);
+  return ordered;
 }
 
 export function applyT22QuantResearch(world = WORLD) {
@@ -166,26 +174,28 @@ export function applyT22QuantResearch(world = WORLD) {
     );
   }
 
-  if (new Set(T22_REQUIRED).size !== T22_REQUIRED.length) {
-    throw new Error("T22 required-node list contains duplicate stable IDs.");
+  if (new Set(T22_SEEDS).size !== T22_SEEDS.length) {
+    throw new Error("T22 seed-node list contains duplicate stable IDs.");
   }
 
-  assertPrerequisiteClosure(world, T22_REQUIRED);
+  const required = computeMasteryClosure(world, T22_SEEDS);
+  T22_REQUIRED.splice(0, T22_REQUIRED.length, ...required);
+  T22_TERMINAL.count = required.length;
 
   const byId = new Map((world.nodes || []).map((node) => [node.id, node]));
-  for (const id of T22_REQUIRED) addTerminalTag(byId.get(id), "T22");
+  for (const id of required) addTerminalTag(byId.get(id), "T22");
 
   world.version = "1.2";
   world.title = "Chrono-Deck Scientific Mastery World v1.2";
   world.terminals.push({
     ...T22_TERMINAL,
-    required: [...T22_TERMINAL.required],
+    required: [...required],
     gateways: [...T22_TERMINAL.gateways],
   });
 
   world.coreFrozenLabel = "39-node scientific core for T01–T20 and T22";
   world.corePolicy =
-    "Frozen for scientific routes T01–T20 and T22; T21 is a separate law and jurisprudence terminal that reuses only relevant reasoning and evidence nodes. T22 is a focused first-hire quantitative-research route that reuses the frozen scientific core and defers nonessential specialization rather than adding new nodes.";
+    "Frozen for scientific routes T01–T20 and T22; T21 is a separate law and jurisprudence terminal that reuses only relevant reasoning and evidence nodes. T22 is a focused first-hire quantitative-research route whose prerequisite closure is computed from the World Registry so route integrity cannot silently drift.";
 
   return world;
 }
