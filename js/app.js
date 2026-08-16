@@ -348,17 +348,23 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden && signedI
 
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
 function levelNum(l){return Number(String(l||"L0").replace(/\D/g,""))||0;}
+function activePrereqs(n){
+  const terminalSpecific=n?.terminalMasteryPrereqs?.[currentTerminal];
+  return Array.isArray(terminalSpecific)?terminalSpecific:(n?.masteryPrereqs||[]);
+}
+function activeTitle(n){return n?.terminalTitles?.[currentTerminal]||n?.title||n?.id||"";}
+function activeSummary(n){return n?.terminalSummaries?.[currentTerminal]||n?.summary||"";}
+function activeScope(n){return n?.terminalMasteryScope?.[currentTerminal]||n?.masteryScope||"";}
 function status(id){
   if(cleared.has(id)) return "cleared";
   const n=BYID.get(id); if(!n) return "locked";
-  const req=n.masteryPrereqs||[];
-  return req.every(x=>cleared.has(x)) ? "ready" : "locked";
+  return activePrereqs(n).every(x=>cleared.has(x)) ? "ready" : "locked";
 }
 function reqClosure(ids){
   const out=new Set(ids), stack=[...ids];
   while(stack.length){
     const u=stack.pop(), n=BYID.get(u);
-    for(const p of (n?.masteryPrereqs||[])){
+    for(const p of activePrereqs(n)){
       if(!out.has(p)){out.add(p);stack.push(p);}
     }
   }
@@ -369,7 +375,7 @@ function descendants(id){
   while(q.length){
     const u=q.shift();
     for(const n of WORLD.nodes){
-      if((n.masteryPrereqs||[]).includes(u) && !out.has(n.id)){out.add(n.id);q.push(n.id);}
+      if(activePrereqs(n).includes(u) && !out.has(n.id)){out.add(n.id);q.push(n.id);}
     }
   }
   return out;
@@ -391,13 +397,15 @@ terminalSelect.addEventListener("change",()=>{currentTerminal=terminalSelect.val
 function terminalPath(){return new Set(TERMINALS.get(currentTerminal).required);}
 
 function routeStage(n,t){
+  const terminalStage=n?.terminalStages?.[t.id];
+  if(Number.isInteger(terminalStage) && terminalStage>=0 && terminalStage<=4) return terminalStage;
   if(n.commonGroup==="Scientific Temperament") return 0;
   if(n.commonGroup==="Universal Foundations") return 1;
   if((n.gatewayTags||[]).some(g=>t.gateways.includes(g))) return 2;
   if(n.kind==="new" && levelNum(n.level)>=5) return 4;
   return 3;
 }
-const stageNames=["Scientific temperament","Universal foundations","Field gateway","Advanced field depth","Graduate forge"];
+const defaultStageNames=["Scientific temperament","Universal foundations","Field gateway","Advanced field depth","Graduate forge"];
 
 function wrapText(s,max=22){
   const ws=String(s).split(/\s+/), out=[];let line="";
@@ -415,7 +423,7 @@ function renderRoute(){
   const search=(document.getElementById("routeSearch").value||"").toLowerCase().trim();
   const filter=document.getElementById("routeFilter").value;
   const visible=[...path].map(id=>BYID.get(id)).filter(Boolean).filter(n=>{
-    if(search && !(n.id+" "+n.arc+" "+n.title+" "+n.summary+" "+(n.masteryScope||"")).toLowerCase().includes(search)) return false;
+    if(search && !(n.id+" "+n.arc+" "+activeTitle(n)+" "+activeSummary(n)+" "+activeScope(n)).toLowerCase().includes(search)) return false;
     const st=status(n.id);
     if(filter==="remaining" && st==="cleared") return false;
     if(filter==="ready" && st!=="ready") return false;
@@ -426,7 +434,9 @@ function renderRoute(){
 
   const cols=[[],[],[],[],[]];
   visible.forEach(n=>cols[routeStage(n,t)].push(n));
+  const orderedIndex=new Map((t.order||[]).map((id,index)=>[id,index]));
   cols.forEach(arr=>arr.sort((a,b)=>{
+    if(orderedIndex.size) return (orderedIndex.get(a.id)??9999)-(orderedIndex.get(b.id)??9999);
     const sa=status(a.id), sb=status(b.id);
     const rank={ready:0,locked:1,cleared:2};
     return rank[sa]-rank[sb] || levelNum(a.level)-levelNum(b.level) || (a.playOrder||9999)-(b.playOrder||9999) || a.id.localeCompare(b.id);
@@ -440,10 +450,11 @@ function renderRoute(){
   svg.setAttribute("viewBox",`0 0 1100 ${H}`);
   svg.style.height=H+"px";
   const pos=new Map();
+  const stageNames=t.stageNames||defaultStageNames;
 
   cols.forEach((arr,ci)=>{
     const lab=document.createElementNS("http://www.w3.org/2000/svg","text");
-    lab.setAttribute("x",colX[ci]);lab.setAttribute("y","27");lab.setAttribute("class","stage-label render");lab.textContent=stageNames[ci];svg.appendChild(lab);
+    lab.setAttribute("x",colX[ci]);lab.setAttribute("y","27");lab.setAttribute("class","stage-label render");lab.textContent=stageNames[ci]||defaultStageNames[ci];svg.appendChild(lab);
     const ct=document.createElementNS("http://www.w3.org/2000/svg","text");
     ct.setAttribute("x",colX[ci]);ct.setAttribute("y","43");ct.setAttribute("class","stage-count render");ct.textContent=`${arr.length} shown`;svg.appendChild(ct);
     arr.forEach((n,ri)=>pos.set(n.id,{x:colX[ci],y:top+ri*(nodeH+rowGap),w:nodeW,h:nodeH}));
@@ -452,7 +463,7 @@ function renderRoute(){
   // edges first
   visible.forEach(n=>{
     const b=pos.get(n.id); if(!b)return;
-    for(const p of (n.masteryPrereqs||[])){
+    for(const p of activePrereqs(n)){
       const a=pos.get(p); if(!a)return;
       const pathEl=document.createElementNS("http://www.w3.org/2000/svg","path");
       const x1=a.x+a.w,y1=a.y+a.h/2,x2=b.x,y2=b.y+b.h/2,mid=(x1+x2)/2;
@@ -471,7 +482,7 @@ function renderRoute(){
     if(focusSet && !focusSet.has(n.id))g.classList.add("searchdim");
     const r=document.createElementNS("http://www.w3.org/2000/svg","rect");r.setAttribute("width",p.w);r.setAttribute("height",p.h);g.appendChild(r);
     const dot=document.createElementNS("http://www.w3.org/2000/svg","circle");dot.setAttribute("cx","169");dot.setAttribute("cy","10");dot.setAttribute("r","4");dot.setAttribute("class",`status-dot ${st}`);g.appendChild(dot);
-    const lines=wrapText(n.title,27);
+    const lines=wrapText(activeTitle(n),27);
     lines.forEach((s,i)=>{const tx=document.createElementNS("http://www.w3.org/2000/svg","text");tx.setAttribute("x","8");tx.setAttribute("y",String(15+i*11));tx.setAttribute("class","t");tx.textContent=s;g.appendChild(tx);});
     const m=document.createElementNS("http://www.w3.org/2000/svg","text");m.setAttribute("x","8");m.setAttribute("y","43");m.setAttribute("class","m");m.textContent=`${n.arc} · ${n.level} · ${n.kind}`;g.appendChild(m);
     g.addEventListener("click",()=>{selectedNode=n.id;focusSet=null;showDetail(n.id);renderRoute();});
@@ -488,8 +499,11 @@ function renderRoute(){
 function showDetail(id){
   const n=BYID.get(id);if(!n)return;
   selectedNode=id;
-  document.getElementById("detailTitle").textContent=`${n.arc} · ${n.title}`;
-  document.getElementById("detailSummary").textContent=n.summary||"No summary stored.";
+  const t=TERMINALS.get(currentTerminal);
+  const currentStage=routeStage(n,t);
+  const stageNames=t.stageNames||defaultStageNames;
+  document.getElementById("detailTitle").textContent=`${n.arc} · ${activeTitle(n)}`;
+  document.getElementById("detailSummary").textContent=activeSummary(n)||"No summary stored.";
   const tags=document.getElementById("detailTags");tags.innerHTML="";
   const tagVals=[[n.kind,n.kind],[n.level,"term"],...(n.domains||[]).map(x=>[x,"term"])];
   tagVals.forEach(([txt,cl])=>{const s=document.createElement("span");s.className=`tag ${cl}`;s.textContent=txt;tags.appendChild(s);});
@@ -499,12 +513,12 @@ function showDetail(id){
   const lines=n.sourceStart?`lines ${n.sourceStart}–${n.sourceEnd}`:"Mastery Expansion v1.0";
   document.getElementById("detailKV").innerHTML=`
     <div>Status</div><div>${status(id)}</div>
-    <div>Stage</div><div>${esc(n.stage)}</div>
-    <div>Prereqs</div><div>${(n.masteryPrereqs||[]).map(x=>esc(BYID.get(x)?.arc||x)).join(", ")||"—"}</div>
+    <div>Stage</div><div>${esc(stageNames[currentStage]||n.stage)}</div>
+    <div>Prereqs</div><div>${activePrereqs(n).map(x=>esc(BYID.get(x)?.arc||x)).join(", ")||"—"}</div>
     <div>Used by</div><div>${termNames.length?esc(termNames.join(" · ")):"Optional / exploration"}</div>
     <div>Source</div><div>${n.kind==="existing"?"Current Chrono-Deck, "+lines:lines}</div>
     <div>Historical</div><div>${n.storyPrereqs?.length?esc(n.storyPrereqs.join(", ")):"—"}</div>
-    <div>Core scope</div><div>${n.masteryScope?esc(n.masteryScope):"—"}</div>`;
+    <div>Core scope</div><div>${activeScope(n)?esc(activeScope(n)):"—"}</div>`;
 }
 document.getElementById("clearedCheck").addEventListener("change",e=>{
   if(!selectedNode)return;e.target.checked?cleared.add(selectedNode):cleared.delete(selectedNode);saveProgress();
@@ -523,7 +537,7 @@ function renderProgress(){
   const pct=Math.round(done/t.count*100);
   document.getElementById("mProgress").textContent=`${done}/${t.count}`;
   document.getElementById("routeProgressBar").style.width=pct+"%";
-  document.getElementById("routeProgressText").textContent=`${done} cleared · ${t.count-done} remaining · ${pct}% of ${t.name}. Overall world: ${cleared.size}/630.`;
+  document.getElementById("routeProgressText").textContent=`${done} cleared · ${t.count-done} remaining · ${pct}% of ${t.name}. Overall world: ${cleared.size}/${WORLD.nodes.length}.`;
 }
 document.getElementById("resetProgress").addEventListener("click",()=>{
   if(confirm("Reset all mastery progress?")){cleared=new Set(WORLD.current.defaultCleared||[]);saveProgress();}
@@ -553,18 +567,18 @@ function renderExplore(){
   const q=(document.getElementById("exploreSearch").value||"").toLowerCase().trim();
   const d=document.getElementById("domainFilter").value,l=document.getElementById("levelFilter").value,k=document.getElementById("kindFilter").value,t=document.getElementById("terminalFilter").value;
   let arr=WORLD.nodes.filter(n=>{
-    if(q && !(n.id+" "+n.arc+" "+n.title+" "+n.summary+" "+(n.domains||[]).join(" ")).toLowerCase().includes(q))return false;
+    if(q && !(n.id+" "+n.arc+" "+activeTitle(n)+" "+activeSummary(n)+" "+(n.domains||[]).join(" ")).toLowerCase().includes(q))return false;
     if(d && !(n.domains||[]).includes(d))return false;
     if(l && n.level!==l)return false;
     if(k && n.kind!==k)return false;
     if(t && !(n.terminalTags||[]).includes(t))return false;
     return true;
   }).sort((a,b)=>(a.playOrder||9999)-(b.playOrder||9999)||a.id.localeCompare(b.id));
-  document.getElementById("exploreCount").textContent=`Showing ${arr.length} of 630 nodes.`;
+  document.getElementById("exploreCount").textContent=`Showing ${arr.length} of ${WORLD.nodes.length} nodes.`;
   const g=document.getElementById("exploreGrid");g.innerHTML="";
   arr.forEach(n=>{
     const c=document.createElement("div");c.className=`node-card ${cleared.has(n.id)?"cleared":""}`;
-    c.innerHTML=`<div class="meta"><span class="tag ${n.kind}">${esc(n.arc)}</span><span class="tag">${esc(n.level)}</span><span class="tag">${esc(status(n.id))}</span></div><h3>${esc(n.title)}</h3><p>${esc(n.summary).slice(0,220)}</p>`;
+    c.innerHTML=`<div class="meta"><span class="tag ${n.kind}">${esc(n.arc)}</span><span class="tag">${esc(n.level)}</span><span class="tag">${esc(status(n.id))}</span></div><h3>${esc(activeTitle(n))}</h3><p>${esc(activeSummary(n)).slice(0,220)}</p>`;
     c.addEventListener("click",()=>{switchTab("route");const candidate=(n.terminalTags||[])[0];if(candidate){currentTerminal=candidate;terminalSelect.value=candidate;}selectedNode=n.id;showDetail(n.id);renderRoute();renderProgress();});
     g.appendChild(c);
   });

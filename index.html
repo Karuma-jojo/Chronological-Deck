@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Chrono-Deck Scientific Mastery World v1.2 — Cloud Sync</title>
+<title>Chrono-Deck Scientific Mastery World v1.3 — Cloud Sync</title>
 <link rel="stylesheet" href="./css/app.css">
 <link rel="stylesheet" href="./css/vault.css">
 <link rel="stylesheet" href="./css/black-theme.css">
@@ -16,11 +16,12 @@
   <div class="header-row">
     <div>
       <h1>Chrono‑Deck Scientific Mastery World</h1>
-      <div class="subtitle">710-node knowledge world · 39-node FROZEN scientific core (16 temperament + 23 foundations) · 22 postgraduate terminal routes · app version 1.2</div>
+      <div class="subtitle">717-node knowledge world · 39-node FROZEN scientific core (16 temperament + 23 foundations) · 22 postgraduate terminal routes · app version 1.3</div>
     </div>
     <div class="pills">
       <span class="pill">Current story position: ARC 005</span>
       <span class="pill">39-node scientific core: FROZEN v0.2</span>
+      <span class="pill">T22: 58-node career strike path</span>
       <span class="pill">IDs stay permanent</span>
       <span class="pill" id="syncPill">☁ Cloud sync: off</span>
       <span class="pill">Local/offline fallback stays enabled</span>
@@ -29,16 +30,16 @@
   </div>
   <div class="tabs">
     <button class="tab active" data-tab="route">Terminal route</button>
-    <button class="tab" data-tab="explore">Explore all 710</button>
+    <button class="tab" data-tab="explore">Explore all 717</button>
     <button class="tab" data-tab="story">Chronological story</button>
     <button class="tab" data-tab="vault">Vault</button>
   </div>
 </header>
 
 <div class="metrics">
- <div class="metric"><b id="mWorld">710</b><span>world nodes</span></div>
+ <div class="metric"><b id="mWorld">717</b><span>world nodes</span></div>
  <div class="metric"><b id="mExisting">500</b><span>existing Chrono‑Deck</span></div>
- <div class="metric"><b id="mNew">210</b><span>new mastery arcs</span></div>
+ <div class="metric"><b id="mNew">217</b><span>new mastery arcs</span></div>
  <div class="metric"><b id="mCommon">39</b><span>FROZEN scientific core</span></div>
  <div class="metric"><b id="mRoute">—</b><span>selected terminal route</span></div>
  <div class="metric"><b id="mProgress">—</b><span>route cleared</span></div>
@@ -122,7 +123,7 @@
         <span><i style="background:var(--green)"></i>cleared</span>
         <span><i style="background:var(--blue)"></i>ready</span>
         <span><i style="background:var(--muted)"></i>locked / later</span>
-        <span><i style="background:var(--gold)"></i>ARC 501–710 expansion</span>
+        <span><i style="background:var(--gold)"></i>ARC 501–717 expansion</span>
       </div>
       <svg id="routeGraph" viewBox="0 0 1120 900" aria-label="Selected postgraduate prerequisite route">
         <defs>
@@ -177,7 +178,7 @@
 <section id="storyTab" class="story">
   <div class="panel" style="padding:12px;margin-bottom:10px">
     <strong>Original historical campaign preserved</strong>
-    <div class="subtitle">This mode keeps your chronology-first 250-main-arc story separate from mastery prerequisites. The same node can therefore have a historical unlock and a different mastery prerequisite path.</div>
+    <div class="subtitle">This mode keeps your chronology-first 250-main-arc story separate from mastery prerequisites. T22 now goes one step further: its 58-node first-hire strike path uses terminal-specific prerequisites, so historical depth can continue in parallel without blocking career readiness.</div>
   </div>
   <div id="storyList" class="story-list"></div>
 </section>
@@ -267,6 +268,6 @@
 </section>
 </div>
 
-<script type="module" src="./js/site-v11.js?v=1.2.1"></script>
+<script type="module" src="./js/site-v11.js?v=1.3.0"></script>
 </body>
 </html>
