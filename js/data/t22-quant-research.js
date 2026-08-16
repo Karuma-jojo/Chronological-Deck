@@ -42,6 +42,12 @@ export const T22_REQUIRED = [
   "ARC539",
   "ARC061",
 
+  // Mastery-prerequisite closure for the frozen core's Taylor-series node.
+  "ARC132",
+  "SIDE261",
+  "SIDE265",
+  "SIDE266",
+
   // Statistical research and inference.
   "ARC531",
   "ARC533",
