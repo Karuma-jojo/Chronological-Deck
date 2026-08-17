@@ -54,12 +54,13 @@ function migrateCompletedModules() {
 }
 
 function moduleIdFromDetail() {
-  if (selectedModuleId && T22_ATOMIC_MODULES[selectedModuleId]) return selectedModuleId;
   const text = document.getElementById("detailTitle")?.textContent || "";
   const match = text.match(/^(ARC|SIDE)\s+(\d+)/i);
-  if (!match) return null;
-  const id = `${match[1].toUpperCase()}${match[2]}`;
-  return T22_ATOMIC_MODULES[id] ? id : null;
+  if (match) {
+    const id = `${match[1].toUpperCase()}${match[2]}`;
+    if (T22_ATOMIC_MODULES[id]) return id;
+  }
+  return selectedModuleId && T22_ATOMIC_MODULES[selectedModuleId] ? selectedModuleId : null;
 }
 
 function detailStatus() {
@@ -175,8 +176,9 @@ function renderAtomicPanel() {
   const list = document.getElementById("t22AtomicList");
   if (!meta || !list) return;
 
-  meta.innerHTML = `<strong>Module ${moduleIndex + 1} / ${moduleIds.length} · ${doneCount}/${arcs.length} atomic arcs</strong><br>` +
+  const desiredMeta = `<strong>Module ${moduleIndex + 1} / ${moduleIds.length} · ${doneCount}/${arcs.length} atomic arcs</strong><br>` +
     `Nominal module effort: ~${arcs.length * T22_ATOMIC_TARGET_HOURS_PER_ARC} focused hours. Each atomic arc targets ~${T22_ATOMIC_TARGET_HOURS_PER_ARC}h; ${T22_ATOMIC_WORK_RANGE_HOURS[0]}–${T22_ATOMIC_WORK_RANGE_HOURS[1]}h is the normal range. If one exceeds that without advancing its central objective, split or defer the excess.`;
+  if (meta.innerHTML !== desiredMeta) meta.innerHTML = desiredMeta;
 
   list.innerHTML = "";
   arcs.forEach((arc, index) => {
@@ -203,16 +205,19 @@ function renderAtomicProgress() {
   if (document.getElementById("terminalSelect")?.value !== T22_ID) return;
   const done = [...allAtomicIds].filter((id) => atomicDone.has(id)).length;
   const pct = Math.round((done / T22_ATOMIC_COUNT) * 100);
-  const modulesDone = moduleIds.filter((id) => worldCleared().has(id)).length;
+  const cleared = worldCleared();
+  const modulesDone = moduleIds.filter((id) => cleared.has(id)).length;
 
   const metric = document.getElementById("mProgress");
   const bar = document.getElementById("routeProgressBar");
   const text = document.getElementById("routeProgressText");
-  if (metric) metric.textContent = `${done}/${T22_ATOMIC_COUNT}`;
-  if (bar) bar.style.width = `${pct}%`;
-  if (text) {
-    text.textContent = `${done} atomic arcs cleared · ${T22_ATOMIC_COUNT - done} remaining · ${pct}% of T22 by normalized work units · ${modulesDone}/${moduleIds.length} modules fully cleared · nominal full-path effort ~${T22_ATOMIC_TARGET_HOURS} focused hours.`;
-  }
+  const metricText = `${done}/${T22_ATOMIC_COUNT}`;
+  const barWidth = `${pct}%`;
+  const progressText = `${done} atomic arcs cleared · ${T22_ATOMIC_COUNT - done} remaining · ${pct}% of T22 by normalized work units · ${modulesDone}/${moduleIds.length} modules fully cleared · nominal full-path effort ~${T22_ATOMIC_TARGET_HOURS} focused hours.`;
+
+  if (metric && metric.textContent !== metricText) metric.textContent = metricText;
+  if (bar && bar.style.width !== barWidth) bar.style.width = barWidth;
+  if (text && text.textContent !== progressText) text.textContent = progressText;
 }
 
 function renderGraphWeights() {
@@ -224,19 +229,23 @@ function renderGraphWeights() {
     const done = arcs.filter((arc) => atomicDone.has(arc.id)).length;
     const index = moduleIds.indexOf(moduleId) + 1;
     const meta = group.querySelector(".m");
-    if (meta) meta.textContent = `M${String(index).padStart(2, "0")} · ${done}/${arcs.length} atoms · ~${arcs.length * T22_ATOMIC_TARGET_HOURS_PER_ARC}h`;
+    const desired = `M${String(index).padStart(2, "0")} · ${done}/${arcs.length} atoms · ~${arcs.length * T22_ATOMIC_TARGET_HOURS_PER_ARC}h`;
+    if (meta && meta.textContent !== desired) meta.textContent = desired;
   });
 }
 
 function renderHeader() {
   const pill = [...document.querySelectorAll("header .pill")]
     .find((candidate) => candidate.textContent.trim().startsWith("T22:"));
-  if (pill) pill.textContent = `T22: 58 modules · ${T22_ATOMIC_COUNT} atomic arcs`;
+  const pillText = `T22: 58 modules · ${T22_ATOMIC_COUNT} atomic arcs`;
+  if (pill && pill.textContent !== pillText) pill.textContent = pillText;
   const subtitle = document.querySelector("header .subtitle");
   if (subtitle && subtitle.textContent.includes("app version")) {
-    subtitle.textContent = subtitle.textContent.replace(/app version\s+[\d.]+/i, "app version 1.6");
+    const desired = subtitle.textContent.replace(/app version\s+[\d.]+/i, "app version 1.6");
+    if (subtitle.textContent !== desired) subtitle.textContent = desired;
   }
-  document.title = document.title.replace(/v[\d.]+/, "v1.6");
+  const desiredTitle = document.title.replace(/v[\d.]+/, "v1.6");
+  if (document.title !== desiredTitle) document.title = desiredTitle;
 }
 
 function escapeHtml(value) {
