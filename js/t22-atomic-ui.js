@@ -1,5 +1,6 @@
 import { WORLD } from "./data/world.js";
 import {
+  T22_ATOMIC_AUDIT_VERSION,
   T22_ATOMIC_MODULES,
   T22_ATOMIC_COUNT,
   T22_ATOMIC_TARGET_HOURS,
@@ -8,7 +9,8 @@ import {
 } from "./data/t22-atomic-arcs.js";
 
 const T22_ID = "T22";
-const ATOMIC_KEY = "chrono_t22_atomic_progress_v1";
+const ATOMIC_KEY = "chrono_t22_atomic_progress_v2";
+const LEGACY_ATOMIC_KEY = "chrono_t22_atomic_progress_v1";
 const WORLD_PROGRESS_KEY = "chrono_mastery_world_v1_progress";
 const terminal = WORLD.terminals.find((candidate) => candidate.id === T22_ID);
 const moduleIds = terminal?.order || [];
@@ -29,6 +31,18 @@ function saveAtomicProgress() {
   localStorage.setItem(ATOMIC_KEY, JSON.stringify([...atomicDone]));
 }
 
+function archiveLegacyAtomicProgress() {
+  if (localStorage.getItem(ATOMIC_KEY) !== null) return;
+  const legacy = localStorage.getItem(LEGACY_ATOMIC_KEY);
+  if (legacy !== null) {
+    // Audit v2 changed the meaning and granularity of many Axx IDs. Do not
+    // silently reinterpret v1 child checkmarks as mastery of different v2 units.
+    localStorage.setItem("chrono_t22_atomic_progress_v1_archived", legacy);
+  }
+  localStorage.setItem(ATOMIC_KEY, "[]");
+  atomicDone = new Set();
+}
+
 function worldCleared() {
   try {
     const parsed = JSON.parse(localStorage.getItem(WORLD_PROGRESS_KEY) || "[]");
@@ -45,8 +59,8 @@ function migrateCompletedModules() {
     if (!cleared.has(moduleId)) continue;
     const arcs = T22_ATOMIC_MODULES[moduleId] || [];
     if (arcs.every((arc) => atomicDone.has(arc.id))) continue;
-    // A module cleared before atomic tracking existed represents completed work.
-    // Preserve that progress by treating its newly introduced atomic children as complete.
+    // Macro modules that were already cleared remain cleared. Their audited
+    // children inherit completion; only partial v1 subprogress is reset.
     for (const arc of arcs) atomicDone.add(arc.id);
     changed = true;
   }
@@ -135,8 +149,6 @@ function syncSelectedModuleClear(moduleId) {
   if (!check || moduleIdFromDetail() !== moduleId || check.checked === complete) return;
 
   check.checked = complete;
-  // app.js owns world/module progress and cloud sync. Dispatch its existing
-  // change event instead of duplicating that state machine here.
   check.dispatchEvent(new Event("change", { bubbles: true }));
 }
 
@@ -147,8 +159,6 @@ function toggleAtomic(moduleId, index, checked) {
   if (checked) {
     atomicDone.add(arcs[index].id);
   } else {
-    // Preserve sequential mastery: reopening an earlier unit reopens every
-    // later atomic unit inside the same module.
     for (let i = index; i < arcs.length; i += 1) atomicDone.delete(arcs[i].id);
   }
 
@@ -176,8 +186,8 @@ function renderAtomicPanel() {
   const list = document.getElementById("t22AtomicList");
   if (!meta || !list) return;
 
-  const desiredMeta = `<strong>Module ${moduleIndex + 1} / ${moduleIds.length} · ${doneCount}/${arcs.length} atomic arcs</strong><br>` +
-    `Nominal module effort: ~${arcs.length * T22_ATOMIC_TARGET_HOURS_PER_ARC} focused hours. Each atomic arc targets ~${T22_ATOMIC_TARGET_HOURS_PER_ARC}h; ${T22_ATOMIC_WORK_RANGE_HOURS[0]}–${T22_ATOMIC_WORK_RANGE_HOURS[1]}h is the normal range. If one exceeds that without advancing its central objective, split or defer the excess.`;
+  const desiredMeta = `<strong>Module ${moduleIndex + 1} / ${moduleIds.length} · ${doneCount}/${arcs.length} atomic arcs · audit v${T22_ATOMIC_AUDIT_VERSION}</strong><br>` +
+    `Content-derived decomposition: there is no per-module arc cap. Nominal bookkeeping: ~${arcs.length * T22_ATOMIC_TARGET_HOURS_PER_ARC} focused hours. Each atomic arc targets ~${T22_ATOMIC_TARGET_HOURS_PER_ARC}h; ${T22_ATOMIC_WORK_RANGE_HOURS[0]}–${T22_ATOMIC_WORK_RANGE_HOURS[1]}h is the normal range. Oversized units split or move misplaced content.`;
   if (meta.innerHTML !== desiredMeta) meta.innerHTML = desiredMeta;
 
   list.innerHTML = "";
@@ -188,7 +198,7 @@ function renderAtomicPanel() {
     row.className = `t22-atomic-row${done ? " done" : ""}${!done && index === firstIncomplete && available ? " next" : ""}${!available ? " locked" : ""}`;
     row.innerHTML = `
       <input type="checkbox" ${done ? "checked" : ""} ${available ? "" : "disabled"}>
-      <span class="t22-atomic-title">${escapeHtml(arc.title)}<small>One central breakthrough → application/implementation when appropriate → unseen transfer.</small></span>
+      <span class="t22-atomic-title">${escapeHtml(arc.title)}<small>One principal obstacle → operational use → unfamiliar transfer.</small></span>
       <span class="t22-atomic-code">${escapeHtml(arc.id)} · ~${arc.targetHours}h</span>
     `;
     row.querySelector("input").addEventListener("change", (event) => toggleAtomic(moduleId, index, event.target.checked));
@@ -197,7 +207,7 @@ function renderAtomicPanel() {
 
   const note = document.createElement("div");
   note.className = "t22-atomic-progress-note";
-  note.textContent = "Atomic subprogress is stored locally in this browser. Completed 58-module checkpoints continue to use the existing Chrono-Deck progress/cloud system.";
+  note.textContent = "Atomic audit-v2 subprogress is local to this browser. Partial v1 atomic checkmarks are archived rather than reinterpreted; completed 58-module checkpoints are preserved through the existing Chrono-Deck progress/cloud system.";
   list.appendChild(note);
 }
 
@@ -213,7 +223,7 @@ function renderAtomicProgress() {
   const text = document.getElementById("routeProgressText");
   const metricText = `${done}/${T22_ATOMIC_COUNT}`;
   const barWidth = `${pct}%`;
-  const progressText = `${done} atomic arcs cleared · ${T22_ATOMIC_COUNT - done} remaining · ${pct}% of T22 by normalized work units · ${modulesDone}/${moduleIds.length} modules fully cleared · nominal full-path effort ~${T22_ATOMIC_TARGET_HOURS} focused hours.`;
+  const progressText = `${done} atomic arcs cleared · ${T22_ATOMIC_COUNT - done} remaining · ${pct}% of T22 by content-derived work units · ${modulesDone}/${moduleIds.length} modules fully cleared · nominal bookkeeping ~${T22_ATOMIC_TARGET_HOURS} focused hours.`;
 
   if (metric && metric.textContent !== metricText) metric.textContent = metricText;
   if (bar && bar.style.width !== barWidth) bar.style.width = barWidth;
@@ -241,10 +251,10 @@ function renderHeader() {
   if (pill && pill.textContent !== pillText) pill.textContent = pillText;
   const subtitle = document.querySelector("header .subtitle");
   if (subtitle && subtitle.textContent.includes("app version")) {
-    const desired = subtitle.textContent.replace(/app version\s+[\d.]+/i, "app version 1.6");
+    const desired = subtitle.textContent.replace(/app version\s+[\d.]+/i, "app version 1.7");
     if (subtitle.textContent !== desired) subtitle.textContent = desired;
   }
-  const desiredTitle = document.title.replace(/v[\d.]+/, "v1.6");
+  const desiredTitle = document.title.replace(/v[\d.]+/, "v1.7");
   if (document.title !== desiredTitle) document.title = desiredTitle;
 }
 
@@ -306,5 +316,6 @@ for (const targetId of ["detailTitle", "detailKV", "routeProgressText", "routeGr
 }
 
 ensureStyles();
+archiveLegacyAtomicProgress();
 migrateCompletedModules();
 render();
