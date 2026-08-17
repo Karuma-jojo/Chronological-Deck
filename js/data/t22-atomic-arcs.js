@@ -229,8 +229,7 @@ const PLAN = {
   ],
   ARC586: [
     "Gradient Descent and Line Search",
-    "Newton and Quasi-Newton Methods",
-    "Constrained Numerical Optimization",
+    "Newton, Quasi-Newton & Constrained Optimization",
     "Automatic Differentiation and Gradient Checking",
   ],
   ARC589: [
