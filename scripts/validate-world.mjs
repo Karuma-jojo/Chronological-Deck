@@ -46,12 +46,12 @@ expect(
 );
 
 expect(nodes.length === WORLD.worldCount, `WORLD.worldCount=${WORLD.worldCount}, but nodes.length=${nodes.length}.`);
-expect(nodes.length === 732, `Expected the v1.4 registry to contain 732 nodes, found ${nodes.length}.`);
-expect(WORLD.version === "1.4", `Expected WORLD.version=1.4, found ${WORLD.version}.`);
+expect(nodes.length === 734, `Expected the v1.5 registry to contain 734 nodes, found ${nodes.length}.`);
+expect(WORLD.version === "1.5", `Expected WORLD.version=1.5, found ${WORLD.version}.`);
 expect(WORLD.existingCount === 500, `Expected 500 historical/existing Chrono-Deck nodes, found ${WORLD.existingCount}.`);
-expect(WORLD.newCount === 232, `Expected 232 mastery-expansion nodes, found ${WORLD.newCount}.`);
+expect(WORLD.newCount === 234, `Expected 234 mastery-expansion nodes, found ${WORLD.newCount}.`);
 expect(T22_NEW_NODES.length === 7, `Expected T22 to add 7 focused nodes, found ${T22_NEW_NODES.length}.`);
-expect(T23_NEW_NODES.length === 15, `Expected T23 to add 15 focused nodes, found ${T23_NEW_NODES.length}.`);
+expect(T23_NEW_NODES.length === 17, `Expected T23 to add 17 focused nodes, found ${T23_NEW_NODES.length}.`);
 expect(idSet.size === ids.length, `Duplicate stable node IDs detected (${ids.length - idSet.size} duplicate entries).`);
 expect(terminals.length === 23, `Expected 23 terminal routes after T23 overlay, found ${terminals.length}.`);
 
@@ -159,6 +159,10 @@ const t23Set = new Set(T23_ORDER);
 const t23Position = new Map(T23_ORDER.map((id, index) => [id, index]));
 expect(t23Set.size === 66, `T23 order contains ${66 - t23Set.size} duplicate node(s).`);
 expect(Object.keys(T23_PREREQS).length === 66, `T23 prerequisite map should cover 66 nodes, found ${Object.keys(T23_PREREQS).length}.`);
+expect(!t23Set.has("SIDE263"), "T23 should compress standalone Sequences & Limits into its calculus presentation.");
+expect(!t23Set.has("SIDE267"), "T23 should compress standalone Taylor Approximation into its calculus presentation.");
+expect(t23Set.has("ARC733"), "T23 should require Kinematics & Rigid-Body Dynamics.");
+expect(t23Set.has("ARC734"), "T23 should require Waves, Electromagnetism & Propagation for Sensing.");
 
 for (const id of T23_ORDER) {
   const node = nodes.find((candidate) => candidate.id === id);
@@ -191,6 +195,23 @@ for (const node of T23_NEW_NODES) {
   expect(live?.deck === "T23 Universal Scientist Strike Path", `${node.id} has unexpected deck metadata.`);
 }
 
+const t23Calculus = nodes.find((node) => node.id === "ARC053");
+expect(
+  String(t23Calculus?.terminalTitles?.T23 || "").includes("Limits") &&
+    String(t23Calculus?.terminalMasteryScope?.T23 || "").includes("Taylor"),
+  "T23 calculus presentation should absorb limits and local Taylor approximation.",
+);
+const t23Neural = nodes.find((node) => node.id === "ARC599");
+expect(
+  String(t23Neural?.terminalTitles?.T23 || "").includes("Edge Inference"),
+  "T23 neural-network presentation should explicitly include edge inference.",
+);
+const t23Daq = nodes.find((node) => node.id === "ARC725");
+expect(
+  String(t23Daq?.title || "").includes("Real-Time Data Acquisition"),
+  "T23 ARC725 should explicitly gate real-time data acquisition.",
+);
+
 for (const id of [...(WORLD.commonScientific || []), ...(WORLD.commonFoundations || [])]) {
   expect(idSet.has(id), `Frozen scientific core references missing node ${id}.`);
 }
@@ -216,5 +237,5 @@ if (errors.length) {
 }
 
 console.log(
-  `World Registry OK: ${nodes.length} unique nodes, ${terminals.length} terminal routes; T01–T20 preserved, T21 law overlay validated, T22 58-node quantitative-research path validated, and T23 66-node universal-scientist path validated with ${T23_NEW_NODES.length} focused new nodes.`,
+  `World Registry OK: ${nodes.length} unique nodes, ${terminals.length} terminal routes; T01–T20 preserved, T21 law overlay validated, T22 58-node quantitative-research path validated, and T23 66-node universal-scientist path validated with ${T23_NEW_NODES.length} focused new nodes including physical dynamics, wave propagation, real-time DAQ and edge inference.`,
 );
