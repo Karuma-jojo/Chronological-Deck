@@ -59,7 +59,7 @@ jobs:
           grep -q 'href="./css/vault.css"' index.html
           grep -q 'href="./css/black-theme.css"' index.html
           grep -q 'href="./css/vault-reader-v4.css"' index.html
-          grep -q 'type="module" src="./js/site-v11.js?v=1.6.0"' index.html
+          grep -q 'type="module" src="./js/site-v11.js?v=1.7.0"' index.html
           grep -q 'import "./data/law-expansion.js";' js/site-v11.js
           grep -q 'await import("./data/t22-quant-research.js")' js/site-v11.js
           grep -q 'await import("./data/t23-universal-scientist.js")' js/site-v11.js
@@ -71,14 +71,15 @@ jobs:
           grep -q 'id="vaultTab"' index.html
           grep -q 'Explore all 734' index.html
           grep -q '734-node knowledge world' index.html
-          grep -q 'T22: 58 modules · 187 atomic arcs' index.html
+          grep -q 'T22: 58 modules · 596 atomic arcs' index.html
           grep -q 'T23: 66-node universal scientist path' index.html
           grep -q '23 postgraduate terminal routes' index.html
           grep -q 'terminalMasteryPrereqs' js/app.js
           grep -q 'terminalStages' js/app.js
           grep -q 'T22_ORDER.length !== 58' js/data/t22-quant-research.js
           grep -q 'T23_ORDER.length !== 66' js/data/t23-universal-scientist.js
-          grep -q 'atomicIds.size !== 187' js/data/t22-atomic-arcs.js
+          grep -q 'atomicIds.size !== 596' js/data/t22-atomic-arcs.js
+          grep -q 'T22_ATOMIC_AUDIT_VERSION = "2.0"' js/data/t22-atomic-arcs.js
           grep -q 'Kinematics & Rigid-Body Dynamics' js/data/t23-universal-scientist.js
           grep -q 'Waves, Electromagnetism & Propagation for Sensing' js/data/t23-universal-scientist.js
           grep -q 'Real-Time Data Acquisition, Sampling & Telemetry' js/data/t23-universal-scientist.js

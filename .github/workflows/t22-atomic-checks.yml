@@ -24,15 +24,16 @@ jobs:
           node --input-type=module --check < js/site-v11.js
           node --input-type=module --check < scripts/validate-t22-atomic.mjs
 
-      - name: Validate weighted T22 curriculum
+      - name: Validate content-derived T22 curriculum
         run: node scripts/validate-t22-atomic.mjs
 
-      - name: Validate T22 bootstrap wiring
+      - name: Validate T22 audit-v2 bootstrap wiring
         shell: bash
         run: |
-          grep -q 't22-atomic-arcs.js?v=1.6.0' js/site-v12.js
-          grep -q 't22-atomic-ui.js?v=1.6.0' js/site-v12.js
-          grep -q 'site-v12.js?v=1.6.0' js/site-v11.js
-          grep -q 'T22_ATOMIC_COUNT !== 187\|atomicIds.size !== 187' js/data/t22-atomic-arcs.js
-          grep -q 'chrono_t22_atomic_progress_v1' js/t22-atomic-ui.js
-          grep -q 'T22: 58 modules' js/t22-atomic-ui.js
+          grep -q 't22-atomic-arcs.js?v=1.7.0' js/site-v12.js
+          grep -q 't22-atomic-ui.js?v=1.7.0' js/site-v12.js
+          grep -q 'site-v12.js?v=1.7.0' js/site-v11.js
+          grep -q 'atomicIds.size !== 596' js/data/t22-atomic-arcs.js
+          grep -q 'T22_ATOMIC_AUDIT_VERSION = "2.0"' js/data/t22-atomic-arcs.js
+          grep -q 'chrono_t22_atomic_progress_v2' js/t22-atomic-ui.js
+          grep -q 'no per-module arc cap' js/t22-atomic-ui.js
