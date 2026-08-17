@@ -46,11 +46,11 @@ export const T23_NEW_NODES = [
   ),
   createT23Node(
     720,
-    "Scientific Data Engineering, Metadata & FAIR Stewardship",
+    "Scientific Data Engineering, Provenance & Stewardship",
     "L3",
-    "Turn raw observations into durable scientific assets whose origin, meaning and transformations can be reconstructed by other researchers.",
+    "Turn raw observations into durable scientific assets whose origin, meaning, timing and transformations can be reconstructed by other researchers.",
     ["ARC515", "ARC716", "ARC718"],
-    "Raw/bronze versus calibrated/derived layers; schemas; identifiers; units and conventions; timestamps; metadata and data dictionaries; provenance; versioning; checksums; Parquet, HDF5 and NetCDF concepts; chunking/compression; FAIR principles; persistent identifiers; reproducible ingestion and transformation manifests.",
+    "Raw versus calibrated/derived layers; schemas; identifiers; units and conventions; timestamps and time bases; metadata and data dictionaries; provenance; versioning; checksums; Parquet, HDF5 and NetCDF concepts; chunking/compression; reproducible ingestion and transformation manifests; FAIR principles as interoperability guidance rather than administrative ceremony.",
   ),
   createT23Node(
     721,
@@ -64,9 +64,9 @@ export const T23_NEW_NODES = [
     722,
     "Remote Sensing, Imaging & Image Formation",
     "L3",
-    "Understand how cameras and remote sensors form images so pixels retain physical meaning rather than becoming anonymous model inputs.",
-    ["ARC720", "SIDE276"],
-    "Image formation and point-spread functions; radiometry versus geometry; spatial/spectral/temporal resolution; optical, thermal, radar/SAR and sonar intuition; calibration and registration; noise and artifacts; segmentation/detection tasks; multispectral data; remote-sensing products; validating image-derived measurements against ground truth.",
+    "Connect optical, radar, sonar and other remote observations to the propagation physics and instrument response that give pixels and echoes physical meaning.",
+    ["ARC720", "SIDE276", "ARC734"],
+    "Image formation and point-spread functions; radiometry versus geometry; spatial/spectral/temporal resolution; optical, thermal, radar/SAR, lidar and sonar sensing; propagation, scattering and attenuation effects; calibration and registration; noise and artifacts; segmentation/detection tasks; multispectral data; remote-sensing products; validating image-derived measurements against ground truth.",
   ),
   createT23Node(
     723,
@@ -86,11 +86,11 @@ export const T23_NEW_NODES = [
   ),
   createT23Node(
     725,
-    "Sensors, Sampling, Data Acquisition & Telemetry",
+    "Real-Time Data Acquisition, Sampling & Telemetry",
     "L3",
-    "Connect scientific questions to real sensors and data-acquisition systems while respecting bandwidth, sampling and environmental constraints.",
+    "Capture high-rate physical measurements without silently losing timing, samples or causal ordering under real compute, bandwidth and power constraints.",
     ["ARC718", "ARC078", "ARC515"],
-    "Sensor families and transfer functions; sampling rate and aliasing; Nyquist intuition; ADC/DAC concepts; quantization; dynamic range; anti-alias filtering; trigger/event acquisition; channel synchronization; buffering; packet loss; telemetry links; power and bandwidth budgets; environmental qualification; acquisition logs and health channels.",
+    "Sensor transfer functions; sampling rate and aliasing; Nyquist intuition; ADC/DAC concepts; quantization and dynamic range; anti-alias filtering; trigger/event acquisition; interrupts/ISRs and DMA intuition; ring buffers and producer-consumer concurrency; deterministic timing; buffering, backpressure and overflow; dropped-sample and packet-sequence detection; channel synchronization and timestamping; telemetry links; power/bandwidth budgets; acquisition logs and health channels.",
   ),
   createT23Node(
     726,
@@ -112,9 +112,9 @@ export const T23_NEW_NODES = [
     728,
     "Robotics, Localization & Autonomous Field Systems",
     "L4",
-    "Integrate sensing, estimation, control and planning into autonomous systems capable of collecting useful science in difficult environments.",
-    ["ARC726", "ARC592", "ARC600"],
-    "Reference frames and robot kinematics; localization; GPS/IMU/vision/sonar sensor fusion; SLAM intuition; mapping; path planning; feedback and state estimation; autonomy levels; remote operation; communications loss; energy-aware missions; fail-safe and return-home logic; simulation, hardware-in-the-loop testing and scientific payload integration.",
+    "Integrate physical dynamics, sensing, estimation, control and planning into autonomous systems capable of collecting useful science in difficult environments.",
+    ["ARC726", "ARC592", "ARC600", "ARC733"],
+    "Reference frames and robot kinematics/dynamics; localization; GPS/IMU/vision/sonar sensor fusion; SLAM intuition; mapping; path planning; feedback and state estimation; autonomy levels; remote operation; communications loss; energy-aware missions; fail-safe and return-home logic; simulation, hardware-in-the-loop testing and scientific payload integration.",
   ),
   createT23Node(
     729,
@@ -148,6 +148,22 @@ export const T23_NEW_NODES = [
     ["ARC727", "ARC728", "ARC730", "ARC731"],
     "Choose one deep scientific home such as Earth/ocean/polar science, astronomy, biology, chemistry, medicine, robotics, materials or another rigorous field; study its domain foundations; work with a domain expert or research group; reproduce prior work; own a measurement-to-inference component; produce a versioned data/code package and uncertainty analysis; present/defend the result; document what required domain knowledge that T23 alone could not supply.",
   ),
+  createT23Node(
+    733,
+    "Kinematics & Rigid-Body Dynamics",
+    "L3",
+    "Model translation, rotation, inertia and forces well enough to derive the physical state equations that estimators, controllers and autonomous systems depend on.",
+    ["ARC511", "ARC512"],
+    "Reference frames; position, orientation, velocity and acceleration; rotation matrices and quaternion intuition; Newton-Euler equations; mass and inertia tensors; forces and torques; angular momentum; work and energy; constraints; linearization and state-space models; parameter identification; simplified vehicle/robot dynamics; recognizing when rigid-body assumptions fail.",
+  ),
+  createT23Node(
+    734,
+    "Waves, Electromagnetism & Propagation for Sensing",
+    "L3",
+    "Ground radar, sonar, lidar, imaging and telemetry in the physical laws of wave propagation instead of treating sensor outputs as abstract arrays.",
+    ["ARC512", "SIDE271"],
+    "Wave-equation intuition; superposition; phase and group velocity; reflection and refraction; diffraction and interference; attenuation, dispersion and scattering; impedance; acoustic propagation and sonar; electromagnetic field/wave intuition; polarization and antennas; radar/lidar range and link-budget intuition; propagation media and environmental effects; physical limits on sensing resolution.",
+  ),
 ];
 
 // T23 is a methodological scientist gate, not an encyclopedia of every science.
@@ -155,7 +171,7 @@ export const T23_NEW_NODES = [
 // readiness is judged by transferable measurement-to-inference competence plus
 // a defended collaboration in a real scientific domain.
 export const T23_ORDER = [
-  // Phase 1 — reality, measurement & mathematical modelling.
+  // Phase 1 — reality, measurement & physical/mathematical modelling.
   "SIDE478",
   "ARC501",
   "SIDE474",
@@ -163,8 +179,6 @@ export const T23_ORDER = [
   "ARC718",
   "ARC719",
   "ARC053",
-  "SIDE263",
-  "SIDE267",
   "ARC510",
   "ARC511",
   "SIDE276",
@@ -174,6 +188,8 @@ export const T23_ORDER = [
   "SIDE271",
   "ARC711",
   "ARC512",
+  "ARC733",
+  "ARC734",
   "ARC514",
 
   // Phase 2 — probability, inference & experimental science.
@@ -208,7 +224,7 @@ export const T23_ORDER = [
   "ARC723",
   "ARC724",
 
-  // Phase 4 — signals, time, inverse problems & machine learning.
+  // Phase 4 — signals, time, inverse problems & deployable learning.
   "ARC078",
   "SIDE464",
   "ARC542",
@@ -220,7 +236,7 @@ export const T23_ORDER = [
   "ARC599",
   "ARC600",
 
-  // Phase 5 — instruments, autonomy & field reliability.
+  // Phase 5 — real-time instrumentation, autonomy & field reliability.
   "ARC725",
   "ARC726",
   "ARC592",
@@ -242,9 +258,7 @@ export const T23_PREREQS = {
   ARC718: ["SIDE478", "SIDE474", "SIDE476"],
   ARC719: ["ARC718", "SIDE476"],
   ARC053: [],
-  SIDE263: ["ARC053"],
-  SIDE267: ["ARC053", "SIDE263"],
-  ARC510: ["ARC053", "SIDE263"],
+  ARC510: ["ARC053"],
   ARC511: [],
   SIDE276: ["ARC511"],
   SIDE278: ["SIDE276"],
@@ -253,6 +267,8 @@ export const T23_PREREQS = {
   SIDE271: ["ARC510", "SIDE276"],
   ARC711: ["SIDE271", "SIDE276"],
   ARC512: ["ARC510", "SIDE276"],
+  ARC733: ["ARC511", "ARC512"],
+  ARC734: ["ARC512", "SIDE271"],
   ARC514: ["SIDE271", "SIDE276"],
 
   ARC048: [],
@@ -281,13 +297,13 @@ export const T23_PREREQS = {
   ARC716: ["ARC515", "ARC713"],
   ARC720: ["ARC515", "ARC716", "ARC718"],
   ARC721: ["ARC720", "SIDE271"],
-  ARC722: ["ARC720", "SIDE276"],
+  ARC722: ["ARC720", "SIDE276", "ARC734"],
   ARC723: ["ARC720", "ARC503", "ARC508"],
   ARC724: ["ARC515", "ARC713", "ARC720"],
 
   ARC078: ["ARC053"],
   SIDE464: ["ARC078", "ARC515"],
-  ARC542: ["ARC539", "SIDE263"],
+  ARC542: ["ARC539", "ARC053"],
   ARC543: ["ARC542", "SIDE276"],
   ARC727: ["ARC543", "ARC585", "ARC514", "ARC719"],
   ARC593: ["ARC508", "ARC531", "ARC539"],
@@ -298,8 +314,8 @@ export const T23_PREREQS = {
 
   ARC725: ["ARC718", "ARC078", "ARC515"],
   ARC726: ["ARC725", "ARC713"],
-  ARC592: ["ARC078", "ARC543", "ARC514"],
-  ARC728: ["ARC726", "ARC592", "ARC600"],
+  ARC592: ["ARC078", "ARC543", "ARC514", "ARC733"],
+  ARC728: ["ARC726", "ARC592", "ARC600", "ARC733"],
   ARC729: ["ARC718", "ARC724", "ARC725"],
 
   ARC509: ["ARC508", "ARC515", "ARC720"],
@@ -330,28 +346,28 @@ export const T23_TERMINAL = {
   field: "General Science / Scientific Computing",
   umbrella: "Cross-Disciplinary Science",
   summary:
-    "A 66-node measurement-to-inference strike path for becoming unusually useful across scientific teams: scientific judgment, measurement and uncertainty, mathematical/statistical modelling, scientific programming and data stewardship, numerical computing, signals/time/space, machine learning, instrumentation, autonomous field systems, reproducibility, communication and research leadership. T23 is a transferable-method spine, not a substitute for domain expertise.",
+    "A 66-node measurement-to-inference strike path for becoming unusually useful across scientific teams: scientific judgment, metrology and uncertainty, mathematical and physical modelling, probability/statistics, scientific programming and provenance, numerical computing, waves/signals/time/space, deployable machine learning, real-time instrumentation, autonomous field systems, reproducibility, communication and research leadership. T23 is a transferable-method spine, not a substitute for domain expertise.",
   exit:
-    "Defend four artifacts: (1) a complete measurement-chain audit from phenomenon and instrument calibration through an uncertainty budget; (2) a raw multimodal scientific-data reconstruction with metadata/provenance, QC and spatiotemporal alignment; (3) a reproducible mechanistic/statistical/ML study with baselines, uncertainty, out-of-sample validation and computational profiling; and (4) a real team-science capstone in one chosen domain home, including a field/mission or acquisition plan, versioned data/code package, research memo/proposal and oral defense with a domain expert. T23 is not complete until the domain expert can identify a component you genuinely owned.",
+    "Defend four artifacts: (1) a complete measurement-chain audit from phenomenon and instrument calibration through an uncertainty budget; (2) a raw multimodal scientific-data reconstruction with provenance, QC and spatiotemporal alignment; (3) a reproducible mechanistic/statistical/ML study with baselines, uncertainty, out-of-sample validation and computational profiling; and (4) a real team-science capstone in one chosen domain home, including a field/mission or acquisition plan, versioned data/code package, research memo/proposal and oral defense with a domain expert. T23 is not complete until the domain expert can identify a component you genuinely owned.",
   id: T23_ID,
   required: [...T23_REQUIRED],
   order: [...T23_ORDER],
   count: T23_REQUIRED.length,
   gateways: ["MathStats", "CS", "Physics"],
   stageNames: [
-    "Reality, measurement & mathematical modelling",
+    "Reality, measurement & physical/mathematical modelling",
     "Probability, inference & experimental science",
     "Scientific computing & data systems",
-    "Signals, time, inverse problems & machine learning",
-    "Instruments, autonomy & field reliability",
+    "Signals, time, inverse problems & deployable learning",
+    "Real-time instrumentation, autonomy & field reliability",
     "Reproducibility, communication, leadership & domain proof",
   ],
   admissionAssumptions:
     "Basic arithmetic, algebra, functions and willingness to program are entry assumptions. The historical Chrono spine remains available to teach and deepen foundations, but it does not block T23 methodological progress.",
   routePolicy:
-    "T23 uses terminal-specific prerequisites to preserve a finite, topological universal-method path. It deliberately stops short of pretending that methods alone create a universal subject-matter expert: one serious domain home and collaboration are mandatory at the capstone, while deeper mathematics, domain science, ML and systems branches remain selectable according to the team and mission.",
+    "T23 uses terminal-specific prerequisites to preserve a finite, topological universal-method path. Limits and local Taylor approximation are compressed into the T23 calculus presentation rather than gated as separate arcs. It deliberately stops short of pretending that methods alone create a universal subject-matter expert: one serious domain home and collaboration are mandatory at the capstone, while deeper mathematics, domain science, ML and systems branches remain selectable according to the team and mission.",
   operatingModel:
-    "Own the inference chain: phenomenon → question → measurement → calibration → raw data → quality control → model → uncertainty → conclusion → next experiment. The target role is the computational/quantitative scientist who can move upstream toward measurement design and downstream toward defensible inference, then communicate and lead the next decision.",
+    "Own the inference chain: phenomenon → question → measurement → calibration → raw data → quality control → model → uncertainty → conclusion → next experiment. The target role is the computational/quantitative scientist who can move upstream toward measurement and instrument design, model enough physical reality to understand the sensor, and move downstream toward defensible inference and the next experiment.",
 };
 
 const T23_PHASES = [
@@ -364,6 +380,11 @@ const T23_PHASES = [
 ];
 
 const T23_PRESENTATION_OVERRIDES = {
+  ARC053: {
+    title: "Calculus, Limits & Local Approximation",
+    scope:
+      "Derivatives and rates of change; limits and convergence intuition needed for continuous models; local linearization; first- and higher-order Taylor approximation; approximation error intuition; using calculus as the local language of measurement, dynamics, optimization and uncertainty propagation.",
+  },
   ARC711: {
     title: "Matrix Calculus for Scientific Models",
     scope:
@@ -383,6 +404,11 @@ const T23_PRESENTATION_OVERRIDES = {
     title: "Efficient Scientific Data Querying",
     scope:
       "SQL and relational thinking; filtering/projection; joins and temporal joins; grouping/window operations; columnar formats; partitioning; predicate pushdown; lazy/out-of-core workflows; querying large scientific archives without copying the world into RAM.",
+  },
+  ARC599: {
+    title: "Neural Networks, Compression & Edge Inference",
+    scope:
+      "Minimal neural-network and backpropagation fundamentals needed to understand training; deployment versus training; quantization, pruning and distillation; operator and accelerator constraints; memory, latency, energy and thermal budgets; batch-one inference; representative calibration data; profiling on target hardware; distribution shift; fail-safe/fallback behavior; recognizing when a classical model is the better field choice.",
   },
   ARC509: {
     title: "Research Reproducibility, Provenance & Open Science",
@@ -465,8 +491,8 @@ export function applyT23UniversalScientist(world = WORLD) {
   validateT23Order(world);
   attachT23Metadata(world);
 
-  world.version = "1.4";
-  world.title = "Chrono-Deck Scientific Mastery World v1.4";
+  world.version = "1.5";
+  world.title = "Chrono-Deck Scientific Mastery World v1.5";
   world.worldCount = world.nodes.length;
   world.newCount = Number(world.newCount || 0) + T23_NEW_NODES.length;
   world.terminals.push({
@@ -480,7 +506,7 @@ export function applyT23UniversalScientist(world = WORLD) {
   world.coreFrozenLabel =
     "39-node scientific core for T01–T20; T22 and T23 run separate finite strike paths for quantitative research and universal scientific method";
   world.corePolicy =
-    "The 39-node scientific core remains frozen for T01–T20. T21 is a separate law and jurisprudence route. T22 is a 58-node quantitative-research hiring gate. T23 is a 66-node universal computational-and-field-science method gate that owns the measurement-to-inference chain while requiring one real domain apprenticeship rather than pretending transferable methods replace subject expertise.";
+    "The 39-node scientific core remains frozen for T01–T20. T21 is a separate law and jurisprudence route. T22 is a 58-node quantitative-research hiring gate. T23 is a 66-node universal computational-and-field-science method gate that owns the measurement-to-inference chain, now explicitly anchored in rigid-body dynamics, wave propagation, real-time acquisition and edge inference, while requiring one real domain apprenticeship rather than pretending transferable methods replace subject expertise.";
 
   return world;
 }
