@@ -30,6 +30,7 @@ jobs:
           node --input-type=module --check < js/data/law-advanced.js
           node --input-type=module --check < js/data/law-expansion.js
           node --input-type=module --check < js/data/t22-quant-research.js
+          node --input-type=module --check < js/data/t23-universal-scientist.js
           node --input-type=module --check < js/data/arc-store.js
           node --input-type=module --check < js/data/supabase-arc-store.js
           node --input-type=module --check < js/data/hybrid-arc-store.js
@@ -52,25 +53,30 @@ jobs:
           grep -q 'href="./css/vault.css"' index.html
           grep -q 'href="./css/black-theme.css"' index.html
           grep -q 'href="./css/vault-reader-v4.css"' index.html
-          grep -q 'type="module" src="./js/site-v11.js?v=1.3.0"' index.html
+          grep -q 'type="module" src="./js/site-v11.js?v=1.4.0"' index.html
           grep -q 'import "./data/law-expansion.js";' js/site-v11.js
           grep -q 'await import("./data/t22-quant-research.js")' js/site-v11.js
+          grep -q 'await import("./data/t23-universal-scientist.js")' js/site-v11.js
           grep -q 'await import("./app.js")' js/site-v11.js
           grep -q 'await import("./vault.js")' js/site-v11.js
           grep -q 'import "./vault-reader.js";' js/vault-cloud-ui.js
           grep -q 'id="vaultTab"' index.html
-          grep -q 'Explore all 717' index.html
-          grep -q '717-node knowledge world' index.html
+          grep -q 'Explore all 732' index.html
+          grep -q '732-node knowledge world' index.html
           grep -q 'T22: 58-node career strike path' index.html
-          grep -q '22 postgraduate terminal routes' index.html
+          grep -q 'T23: 66-node universal scientist path' index.html
+          grep -q '23 postgraduate terminal routes' index.html
           grep -q 'terminalMasteryPrereqs' js/app.js
           grep -q 'terminalStages' js/app.js
           grep -q 'T22_ORDER.length !== 58' js/data/t22-quant-research.js
+          grep -q 'T23_ORDER.length !== 66' js/data/t23-universal-scientist.js
           test -f css/black-theme.css
           test -f css/vault-reader-v4.css
           test -f js/data/law-expansion.js
           test -f js/data/t22-quant-research.js
+          test -f js/data/t23-universal-scientist.js
           test -f docs/t21-law-route.md
+          test -f docs/t23-universal-scientist.md
           test -f supabase/arc-vault.sql
 
       - name: Validate Obsidian bridge contract
