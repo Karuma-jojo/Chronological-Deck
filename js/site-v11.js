@@ -6,4 +6,4 @@
 // await import("./data/t23-universal-scientist.js")
 // await import("./app.js")
 // await import("./vault.js")
-await import("./site-v12.js?v=1.4.0");
+await import("./site-v12.js?v=1.5.0");
