@@ -2,19 +2,19 @@ import "./data/law-expansion.js";
 import { WORLD } from "./data/world.js";
 
 try {
-  await import("./data/t22-quant-research.js?v=1.6.0");
+  await import("./data/t22-quant-research.js?v=1.7.0");
 } catch (error) {
   console.error("T22 quantitative-research overlay failed to load; continuing without T22.", error);
 }
 
 try {
-  await import("./data/t23-universal-scientist.js?v=1.6.0");
+  await import("./data/t23-universal-scientist.js?v=1.7.0");
 } catch (error) {
   console.error("T23 universal-scientist overlay failed to load; continuing without T23.", error);
 }
 
 try {
-  await import("./data/t22-atomic-arcs.js?v=1.6.0");
+  await import("./data/t22-atomic-arcs.js?v=1.7.0");
 } catch (error) {
   console.error("T22 atomic-arc overlay failed to load; continuing with the 58-module macro route.", error);
 }
@@ -33,10 +33,10 @@ try {
   console.warn("Could not validate persisted terminal selection; continuing with app defaults.", error);
 }
 
-await import("./app.js?v=1.6.0");
+await import("./app.js?v=1.7.0");
 try {
-  await import("./t22-atomic-ui.js?v=1.6.0");
+  await import("./t22-atomic-ui.js?v=1.7.0");
 } catch (error) {
   console.error("T22 atomic progress UI failed to load; core route progress remains available.", error);
 }
-await import("./vault.js?v=1.6.0");
+await import("./vault.js?v=1.7.0");
