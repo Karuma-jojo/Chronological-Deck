@@ -20,7 +20,7 @@ import {
 } from "./lib/session-store.js";
 
 const APP_ROOT = path.dirname(fileURLToPath(import.meta.url));
-const WIDGET_URI = "ui://chrono-deck/t22-spire.html";
+const WIDGET_URI = "ui://chrono-deck/t22-spire-v2.html";
 const WIDGET_HTML = readFileSync(path.join(APP_ROOT, "public", "chrono-deck-widget.html"), "utf8");
 const PUBLIC_BASE_URL = process.env.CHRONO_PUBLIC_URL || `http://localhost:${Number(process.env.PORT || 8787)}`;
 const SLICE = getLaunchSlice();
@@ -37,9 +37,9 @@ function gamePayload(session = null, extras = {}) {
   return {
     app: {
       name: "Chrono-Deck: T22 Spire",
-      version: "0.1.0",
+      version: "0.2.0",
       engineVersion: "11.3",
-      launchStatus: "VERTICAL_SLICE",
+      launchStatus: "GAME_SHELL_V02",
     },
     ...SLICE,
     session,
@@ -64,7 +64,7 @@ function failure(error) {
 }
 
 function createChronoServer() {
-  const server = new McpServer({ name: "chrono-deck-t22-spire", version: "0.1.0" });
+  const server = new McpServer({ name: "chrono-deck-t22-spire", version: "0.2.0" });
 
   registerAppResource(
     server,
@@ -72,15 +72,21 @@ function createChronoServer() {
     WIDGET_URI,
     {
       mimeType: RESOURCE_MIME_TYPE,
-      description: "Polished T22 game screen with V11.3 controls, save/resume, and Dual Extract.",
-      _meta: { "openai/widgetPrefersBorder": false },
+      description: "Cinematic T22 Spire menu and focused V11.3 investigation chamber with save/resume and Dual Extract.",
+      _meta: {
+        ui: { prefersBorder: false },
+        "openai/widgetPrefersBorder": false,
+      },
     },
     async () => ({
       contents: [{
         uri: WIDGET_URI,
         mimeType: RESOURCE_MIME_TYPE,
         text: WIDGET_HTML,
-        _meta: { "openai/widgetPrefersBorder": false },
+        _meta: {
+          ui: { prefersBorder: false },
+          "openai/widgetPrefersBorder": false,
+        },
       }],
     }),
   );
@@ -90,14 +96,14 @@ function createChronoServer() {
     "open_t22_game",
     {
       title: "Open T22 game",
-      description: "Open the ChatGPT-native Chrono-Deck T22 game screen. Optionally resume a saved session by code.",
+      description: "Render the interactive Chrono-Deck T22 Spire game screen. Do not substitute a plain-text ARC list. Optionally resume a saved session by code.",
       inputSchema: { resumeCode: z.string().optional() },
       annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
       _meta: toolMeta("Opening the Spire…", "Spire opened"),
     },
     async ({ resumeCode }) => {
       try {
-        if (!resumeCode) return result("T22 launch slice ready. Choose one of the three Atomic ARCs.");
+        if (!resumeCode) return result("T22 Spire ready. Render the interactive game menu.");
         const session = await getSession(resumeCode);
         if (!session) throw new Error("Resume code not found.");
         return result(`Resumed ${session.arc.id} at ${session.phase}.`, session, {
@@ -114,7 +120,7 @@ function createChronoServer() {
     "start_t22_arc",
     {
       title: "Start T22 Atomic ARC",
-      description: "Create a durable V11.3 session for one of the three launch-slice T22 Atomic ARCs.",
+      description: "Create a durable V11.3 session for one of the three launch-certified T22 Atomic ARCs.",
       inputSchema: {
         arcId: z.enum(["T22-M01-A01", "T22-M01-A02", "T22-M01-A03"]),
         difficulty: z.string().max(80).optional(),
@@ -256,7 +262,7 @@ const httpServer = createHttpServer(async (req, res) => {
   }
   if (req.method === "GET" && url.pathname === "/") {
     res.writeHead(200, { "content-type": "application/json; charset=utf-8" });
-    res.end(JSON.stringify({ name: "Chrono-Deck T22 Spire", version: "0.1.0", mcp: MCP_PATH }));
+    res.end(JSON.stringify({ name: "Chrono-Deck T22 Spire", version: "0.2.0", mcp: MCP_PATH }));
     return;
   }
   if (req.method === "GET" && url.pathname === "/health") {
