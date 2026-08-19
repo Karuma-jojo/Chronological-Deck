@@ -15,21 +15,28 @@ const toolNames = [
   "dual_extract_t22",
 ];
 
-test("MCP server registers every UI workflow tool", () => {
+test("MCP server registers every T22 workflow tool", () => {
   for (const name of toolNames) {
     assert.match(serverSource, new RegExp(`registerAppTool\\([\\s\\S]*?"${name}"`));
   }
-  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v4\.html/);
-  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v4-chatgpt\.html/);
+  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v5\.html/);
   assert.match(serverSource, /StreamableHTTPServerTransport/);
 });
 
-test("ChatGPT outputTemplate uses a Skybridge resource while MCP Apps keeps the open resource MIME", () => {
-  assert.match(serverSource, /OPENAI_WIDGET_MIME_TYPE = "text\/html\+skybridge"/);
-  assert.match(serverSource, /"openai\/outputTemplate": OPENAI_WIDGET_URI/);
-  assert.match(serverSource, /ui: \{ resourceUri: MCP_WIDGET_URI \}/);
+test("render tool and resource use the current MCP Apps contract", () => {
+  assert.match(serverSource, /const WIDGET_URI = "ui:\/\/chrono-deck\/t22-spire-v5\.html"/);
+  assert.match(serverSource, /"openai\/outputTemplate": WIDGET_URI/);
+  assert.match(serverSource, /resourceUri: WIDGET_URI/);
   assert.match(serverSource, /mimeType: RESOURCE_MIME_TYPE/);
-  assert.match(serverSource, /mimeType: OPENAI_WIDGET_MIME_TYPE/);
+  assert.doesNotMatch(serverSource, /text\/html\+skybridge/);
+});
+
+test("only the opening tool owns the render template", () => {
+  assert.match(serverSource, /open_t22_game[\s\S]*?_meta: renderToolMeta/);
+  assert.match(serverSource, /start_t22_arc[\s\S]*?_meta: appToolMeta/);
+  assert.match(serverSource, /set_v11_control[\s\S]*?_meta: appToolMeta/);
+  assert.match(serverSource, /save_t22_checkpoint[\s\S]*?_meta: appToolMeta/);
+  assert.match(serverSource, /dual_extract_t22[\s\S]*?_meta: appToolMeta/);
 });
 
 test("widget exposes all reserved V11.3 controls", () => {
