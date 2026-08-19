@@ -1,0 +1,21 @@
+{
+  "name": "chrono-deck-chatgpt-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ChatGPT-native T22 Chrono-Deck vertical slice using the Spire Master Engine V11.3.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test && node ../scripts/validate-t22-atomic.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.0.1",
+    "@modelcontextprotocol/sdk": "^1.20.2",
+    "zod": "^3.25.76"
+  }
+}
+

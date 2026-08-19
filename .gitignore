@@ -1,0 +1,5 @@
+node_modules/
+chatgpt-app/data/sessions.json
+chatgpt-app/data/exports/
+chatgpt-app/.env
+
