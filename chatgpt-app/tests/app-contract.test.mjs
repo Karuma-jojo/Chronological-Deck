@@ -17,7 +17,7 @@ test("MCP server registers every UI workflow tool", () => {
   for (const name of toolNames) {
     assert.match(serverSource, new RegExp(`registerAppTool\\([\\s\\S]*?"${name}"`));
   }
-  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire\.html/);
+  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v2\.html/);
   assert.match(serverSource, /StreamableHTTPServerTransport/);
 });
 
@@ -36,3 +36,12 @@ test("widget and server agree on callable tool names", () => {
   }
 });
 
+test("v0.2 shell keeps cinematic navigation separate from the proof chamber", () => {
+  for (const id of ["view-home", "view-module", "view-dossier", "view-live", "ledger-drawer", "reveal-modal"]) {
+    assert.match(widgetSource, new RegExp(`id="${id}"`));
+  }
+  assert.match(widgetSource, /New Expedition/);
+  assert.match(widgetSource, /Enter the ARC/);
+  assert.match(widgetSource, /Reveal the decisive solution\?/);
+  assert.match(widgetSource, /Mission Ledger/);
+});
