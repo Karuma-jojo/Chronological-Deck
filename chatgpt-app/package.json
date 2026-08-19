@@ -1,6 +1,6 @@
 {
   "name": "chrono-deck-chatgpt-app",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "type": "module",
   "description": "ChatGPT-native T22 Chrono-Deck vertical slice using the Spire Master Engine V11.3.",
