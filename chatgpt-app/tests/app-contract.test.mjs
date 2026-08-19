@@ -19,7 +19,7 @@ test("MCP server registers every UI workflow tool", () => {
   for (const name of toolNames) {
     assert.match(serverSource, new RegExp(`registerAppTool\\([\\s\\S]*?"${name}"`));
   }
-  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v2\.html/);
+  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v3\.html/);
   assert.match(serverSource, /StreamableHTTPServerTransport/);
 });
 
