@@ -8,7 +8,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 
-import { getLaunchSlice } from "./lib/catalog.js";
+import { T22_CATALOG, getLaunchSlice, getModule } from "./lib/catalog.js";
 import { writeDualExtract } from "./lib/dual-extract.js";
 import {
   createSession,
@@ -32,6 +32,35 @@ const toolMeta = (invoking, invoked) => ({
   "openai/toolInvocation/invoking": invoking,
   "openai/toolInvocation/invoked": invoked,
 });
+
+const dataToolMeta = (invoking, invoked) => ({
+  "openai/widgetAccessible": true,
+  "openai/toolInvocation/invoking": invoking,
+  "openai/toolInvocation/invoked": invoked,
+});
+
+function dataResult(message, structuredContent) {
+  return {
+    content: [{ type: "text", text: message }],
+    structuredContent,
+  };
+}
+
+function resolveModule(moduleRef) {
+  const raw = String(moduleRef || "").trim();
+  if (!raw) return null;
+  const numeric = raw.match(/^(?:M(?:ODULE)?\s*)?(\d{1,2})$/i);
+  if (numeric) {
+    const index = Number(numeric[1]);
+    return T22_CATALOG.modules.find((module) => module.index === index) ?? null;
+  }
+  const upper = raw.toUpperCase();
+  const exactId = T22_CATALOG.modules.find((module) => module.id.toUpperCase() === upper);
+  if (exactId) return exactId;
+  const exactTitle = T22_CATALOG.modules.find((module) => module.title.toLowerCase() === raw.toLowerCase());
+  if (exactTitle) return exactTitle;
+  return T22_CATALOG.modules.find((module) => module.title.toLowerCase().includes(raw.toLowerCase())) ?? null;
+}
 
 function gamePayload(session = null, extras = {}) {
   return {
@@ -112,6 +141,80 @@ function createChronoServer() {
       } catch (error) {
         return failure(error);
       }
+    },
+  );
+
+  registerAppTool(
+    server,
+    "browse_t22_modules",
+    {
+      title: "Browse T22 modules",
+      description: "List the audited T22 modules for the visual Spire browser. This is catalog browsing only; it does not launch an ARC.",
+      inputSchema: { query: z.string().max(120).optional() },
+      annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
+      _meta: dataToolMeta("Reading the Spire index…", "Spire index ready"),
+    },
+    async ({ query }) => {
+      const needle = String(query || "").trim().toLowerCase();
+      const modules = T22_CATALOG.modules
+        .filter((module) => !needle || module.title.toLowerCase().includes(needle) || module.id.toLowerCase().includes(needle) || String(module.index) === needle)
+        .map((module) => ({
+          id: module.id,
+          index: module.index,
+          title: module.title,
+          atomicCount: module.atomicCount,
+          launchEnabled: module.launchEnabled,
+        }));
+      return dataResult(`${modules.length} T22 module${modules.length === 1 ? "" : "s"} found.`, {
+        kind: "t22-modules",
+        catalog: {
+          moduleCount: T22_CATALOG.moduleCount,
+          atomicCount: T22_CATALOG.atomicCount,
+          auditVersion: T22_CATALOG.auditVersion,
+        },
+        modules,
+      });
+    },
+  );
+
+  registerAppTool(
+    server,
+    "browse_t22_arcs",
+    {
+      title: "Browse T22 Atomic ARCs",
+      description: "List the audited Atomic ARC names for one T22 module by module number, module ID, or title. Catalog browsing does not make locked ARCs playable.",
+      inputSchema: { moduleRef: z.string().min(1).max(120) },
+      annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
+      _meta: dataToolMeta("Opening the module ledger…", "Atomic ARC ledger ready"),
+    },
+    async ({ moduleRef }) => {
+      const module = resolveModule(moduleRef);
+      if (!module) {
+        return {
+          isError: true,
+          content: [{ type: "text", text: `T22 module not found: ${moduleRef}` }],
+          structuredContent: { kind: "t22-arcs", error: "Module not found." },
+        };
+      }
+      return dataResult(`${module.atomicCount} Atomic ARCs in T22 Module ${module.index}.`, {
+        kind: "t22-arcs",
+        module: {
+          id: module.id,
+          index: module.index,
+          title: module.title,
+          atomicCount: module.atomicCount,
+          launchEnabled: module.launchEnabled,
+        },
+        arcs: module.arcs.map((arc) => ({
+          id: arc.id,
+          title: arc.title,
+          targetHours: arc.targetHours,
+          launchEnabled: arc.launchEnabled,
+          ...(arc.year ? { year: arc.year } : {}),
+          ...(arc.location ? { location: arc.location } : {}),
+          ...(arc.territory ? { territory: arc.territory } : {}),
+        })),
+      });
     },
   );
 
