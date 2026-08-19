@@ -27,8 +27,16 @@ test("widget exposes all reserved V11.3 controls", () => {
   for (const code of ["WALL", "HINT", "FORGE", "GUIDE", "REVEAL", "STATUS"]) {
     assert.match(widgetSource, new RegExp(`data-code="${code}"`));
   }
-  assert.match(widgetSource, /sendFollowUpMessage/);
-  assert.match(widgetSource, /requestDisplayMode/);
+});
+
+test("widget uses the MCP Apps lifecycle safely", () => {
+  assert.match(widgetSource, /ui\/initialize/);
+  assert.match(widgetSource, /ui\/notifications\/initialized/);
+  assert.match(widgetSource, /ui\/notifications\/tool-result/);
+  assert.match(widgetSource, /ui\/notifications\/size-changed/);
+  assert.match(widgetSource, /ui\/message/);
+  assert.match(widgetSource, /ui\/request-display-mode/);
+  assert.doesNotMatch(widgetSource, /setWidgetState/);
 });
 
 test("widget and server agree on callable tool names", () => {
