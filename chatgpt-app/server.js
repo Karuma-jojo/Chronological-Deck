@@ -20,14 +20,16 @@ import {
 } from "./lib/session-store.js";
 
 const APP_ROOT = path.dirname(fileURLToPath(import.meta.url));
-const WIDGET_URI = "ui://chrono-deck/t22-spire-v3.html";
+const MCP_WIDGET_URI = "ui://chrono-deck/t22-spire-v4.html";
+const OPENAI_WIDGET_URI = "ui://chrono-deck/t22-spire-v4-chatgpt.html";
+const OPENAI_WIDGET_MIME_TYPE = "text/html+skybridge";
 const WIDGET_HTML = readFileSync(path.join(APP_ROOT, "public", "chrono-deck-widget.html"), "utf8");
 const PUBLIC_BASE_URL = process.env.CHRONO_PUBLIC_URL || `http://localhost:${Number(process.env.PORT || 8787)}`;
 const SLICE = getLaunchSlice();
 
 const toolMeta = (invoking, invoked) => ({
-  ui: { resourceUri: WIDGET_URI },
-  "openai/outputTemplate": WIDGET_URI,
+  ui: { resourceUri: MCP_WIDGET_URI },
+  "openai/outputTemplate": OPENAI_WIDGET_URI,
   "openai/widgetAccessible": true,
   "openai/toolInvocation/invoking": invoking,
   "openai/toolInvocation/invoked": invoked,
@@ -66,7 +68,7 @@ function gamePayload(session = null, extras = {}) {
   return {
     app: {
       name: "Chrono-Deck: T22 Spire",
-      version: "0.2.1",
+      version: "0.2.2",
       engineVersion: "11.3",
       launchStatus: "GAME_SHELL_V02",
     },
@@ -92,33 +94,52 @@ function failure(error) {
   };
 }
 
-function createChronoServer() {
-  const server = new McpServer({ name: "chrono-deck-t22-spire", version: "0.2.1" });
-
+function registerWidgetResources(server) {
   registerAppResource(
     server,
-    "Chrono-Deck T22 game screen",
-    WIDGET_URI,
+    "Chrono-Deck T22 MCP App screen",
+    MCP_WIDGET_URI,
     {
       mimeType: RESOURCE_MIME_TYPE,
-      description: "Cinematic T22 Spire menu and focused V11.3 investigation chamber with save/resume and Dual Extract.",
-      _meta: {
-        ui: { prefersBorder: false },
-        "openai/widgetPrefersBorder": false,
-      },
+      description: "Cinematic T22 Spire menu and focused V11.3 investigation chamber.",
+      _meta: { ui: { prefersBorder: false } },
     },
     async () => ({
       contents: [{
-        uri: WIDGET_URI,
+        uri: MCP_WIDGET_URI,
         mimeType: RESOURCE_MIME_TYPE,
         text: WIDGET_HTML,
-        _meta: {
-          ui: { prefersBorder: false },
-          "openai/widgetPrefersBorder": false,
-        },
+        _meta: { ui: { prefersBorder: false } },
       }],
     }),
   );
+
+  // ChatGPT's legacy Apps SDK template path follows openai/outputTemplate and
+  // expects the Skybridge MIME type. Keep it separate from the open MCP Apps
+  // resource above so both hosts can fetch the same UI correctly.
+  registerAppResource(
+    server,
+    "Chrono-Deck T22 ChatGPT template",
+    OPENAI_WIDGET_URI,
+    {
+      mimeType: OPENAI_WIDGET_MIME_TYPE,
+      description: "ChatGPT Skybridge template for the Chrono-Deck T22 Spire.",
+      _meta: { "openai/widgetPrefersBorder": false },
+    },
+    async () => ({
+      contents: [{
+        uri: OPENAI_WIDGET_URI,
+        mimeType: OPENAI_WIDGET_MIME_TYPE,
+        text: WIDGET_HTML,
+        _meta: { "openai/widgetPrefersBorder": false },
+      }],
+    }),
+  );
+}
+
+function createChronoServer() {
+  const server = new McpServer({ name: "chrono-deck-t22-spire", version: "0.2.2" });
+  registerWidgetResources(server);
 
   registerAppTool(
     server,
@@ -336,7 +357,7 @@ function createChronoServer() {
 function applyCors(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "content-type, mcp-session-id");
+  res.setHeader("Access-Control-Allow-Headers", "content-type, mcp-session-id, mcp-protocol-version, last-event-id");
   res.setHeader("Access-Control-Expose-Headers", "Mcp-Session-Id");
 }
 
@@ -365,7 +386,7 @@ const httpServer = createHttpServer(async (req, res) => {
   }
   if (req.method === "GET" && url.pathname === "/") {
     res.writeHead(200, { "content-type": "application/json; charset=utf-8" });
-    res.end(JSON.stringify({ name: "Chrono-Deck T22 Spire", version: "0.2.1", mcp: MCP_PATH }));
+    res.end(JSON.stringify({ name: "Chrono-Deck T22 Spire", version: "0.2.2", mcp: MCP_PATH }));
     return;
   }
   if (req.method === "GET" && url.pathname === "/health") {
