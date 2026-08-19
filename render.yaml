@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://render.com/schema/render.yaml.json
+
+services:
+  - type: web
+    name: chrono-deck-t22-spire
+    runtime: docker
+    plan: starter
+    region: singapore
+    branch: feature/t22-v02-game-shell
+    dockerfilePath: ./chatgpt-app/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: CHRONO_DATA_DIR
+        value: /data
+      - key: CHRONO_PUBLIC_URL
+        fromService:
+          type: web
+          name: chrono-deck-t22-spire
+          envVarKey: RENDER_EXTERNAL_URL
+    disk:
+      name: chrono-deck-data
+      mountPath: /data
+      sizeGB: 1
