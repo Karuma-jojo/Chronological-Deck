@@ -19,8 +19,17 @@ test("MCP server registers every UI workflow tool", () => {
   for (const name of toolNames) {
     assert.match(serverSource, new RegExp(`registerAppTool\\([\\s\\S]*?"${name}"`));
   }
-  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v3\.html/);
+  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v4\.html/);
+  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v4-chatgpt\.html/);
   assert.match(serverSource, /StreamableHTTPServerTransport/);
+});
+
+test("ChatGPT outputTemplate uses a Skybridge resource while MCP Apps keeps the open resource MIME", () => {
+  assert.match(serverSource, /OPENAI_WIDGET_MIME_TYPE = "text\/html\+skybridge"/);
+  assert.match(serverSource, /"openai\/outputTemplate": OPENAI_WIDGET_URI/);
+  assert.match(serverSource, /ui: \{ resourceUri: MCP_WIDGET_URI \}/);
+  assert.match(serverSource, /mimeType: RESOURCE_MIME_TYPE/);
+  assert.match(serverSource, /mimeType: OPENAI_WIDGET_MIME_TYPE/);
 });
 
 test("widget exposes all reserved V11.3 controls", () => {
