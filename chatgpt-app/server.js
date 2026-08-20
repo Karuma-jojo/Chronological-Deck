@@ -1,45 +1,26 @@
-import { registerAppResource, registerAppTool, RESOURCE_MIME_TYPE } from "@modelcontextprotocol/ext-apps/server";
+import { registerAppTool } from "@modelcontextprotocol/ext-apps/server";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { createServer as createHttpServer } from "node:http";
-import { readFileSync } from "node:fs";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 
-import { T22_CATALOG, getLaunchSlice } from "./lib/catalog.js";
-import { writeDualExtract } from "./lib/dual-extract.js";
+import { T22_CATALOG, getArc } from "./lib/catalog.js";
 import {
-  createSession,
-  getSession,
-  registerExports,
-  saveCheckpoint,
-  sessionStorePaths,
-  setControl,
-} from "./lib/session-store.js";
+  archiveConfig,
+  archiveExtractPair,
+  publicArchiveUrls,
+  readArchiveEntry,
+  readProgress,
+  setProgress,
+  verifyArchiveEntry,
+} from "./lib/github-archive.js";
 
-const APP_ROOT = path.dirname(fileURLToPath(import.meta.url));
-const WIDGET_URI = "ui://chrono-deck/t22-spire-v5.html";
-const WIDGET_HTML = readFileSync(path.join(APP_ROOT, "public", "chrono-deck-widget.html"), "utf8");
-const PUBLIC_BASE_URL = process.env.CHRONO_PUBLIC_URL || `http://localhost:${Number(process.env.PORT || 8787)}`;
-const SLICE = getLaunchSlice();
-const APP_VERSION = "0.2.3";
+const APP_VERSION = "0.3.0";
+const MCP_PATH = "/mcp";
+const PROGRESS_STATES = ["not_started", "active", "core_cleared", "mastered"];
 
-const renderToolMeta = (invoking, invoked) => ({
-  ui: {
-    resourceUri: WIDGET_URI,
-    visibility: ["model", "app"],
-  },
-  "openai/outputTemplate": WIDGET_URI,
-  "openai/widgetAccessible": true,
-  "openai/toolInvocation/invoking": invoking,
-  "openai/toolInvocation/invoked": invoked,
-});
-
-const appToolMeta = (invoking, invoked) => ({
-  ui: { visibility: ["model", "app"] },
-  "openai/widgetAccessible": true,
+const toolMeta = (invoking, invoked) => ({
   "openai/toolInvocation/invoking": invoking,
   "openai/toolInvocation/invoked": invoked,
 });
@@ -51,334 +32,239 @@ function dataResult(message, structuredContent) {
   };
 }
 
-function resolveModule(moduleRef) {
-  const raw = String(moduleRef || "").trim();
-  if (!raw) return null;
-
-  const numeric = raw.match(/^(?:M(?:ODULE)?\s*)?(\d{1,2})$/i);
-  if (numeric) {
-    const index = Number(numeric[1]);
-    return T22_CATALOG.modules.find((module) => module.index === index) ?? null;
-  }
-
-  const upper = raw.toUpperCase();
-  const byId = T22_CATALOG.modules.find((module) => module.id.toUpperCase() === upper);
-  if (byId) return byId;
-
-  const lower = raw.toLowerCase();
-  const exactTitle = T22_CATALOG.modules.find((module) => module.title.toLowerCase() === lower);
-  if (exactTitle) return exactTitle;
-
-  return T22_CATALOG.modules.find((module) => module.title.toLowerCase().includes(lower)) ?? null;
-}
-
-function gamePayload(session = null, extras = {}) {
-  return {
-    app: {
-      name: "Chrono-Deck: T22 Spire",
-      version: APP_VERSION,
-      engineVersion: "11.3",
-      launchStatus: "GAME_SHELL_V02",
-    },
-    ...SLICE,
-    session,
-    ...extras,
-  };
-}
-
-function result(message, session = null, extras = {}) {
-  return {
-    content: [{ type: "text", text: message }],
-    structuredContent: gamePayload(session, extras),
-  };
-}
-
 function failure(error) {
-  const message = error instanceof Error ? error.message : "Unknown Chrono-Deck error.";
+  const message = error instanceof Error ? error.message : "Unknown Chrono-Deck archive error.";
   return {
     isError: true,
     content: [{ type: "text", text: message }],
-    structuredContent: gamePayload(null, { error: message }),
+    structuredContent: { ok: false, error: message },
   };
 }
 
-function registerWidgetResource(server) {
-  registerAppResource(
-    server,
-    "Chrono-Deck T22 game screen",
-    WIDGET_URI,
-    {},
-    async () => ({
-      contents: [
-        {
-          uri: WIDGET_URI,
-          mimeType: RESOURCE_MIME_TYPE,
-          text: WIDGET_HTML,
-          _meta: {
-            ui: { prefersBorder: false },
-            "openai/widgetPrefersBorder": false,
-          },
-        },
-      ],
-    }),
-  );
+function requireArc(arcId) {
+  const clean = String(arcId || "").trim().toUpperCase();
+  const selection = getArc(clean);
+  if (!selection) throw new Error(`Unknown T22 Atomic ARC: ${arcId}`);
+  return { arcId: clean, ...selection };
+}
+
+function archiveRootUrl() {
+  const [owner, repo] = archiveConfig.repo.split("/");
+  return `https://github.com/${owner}/${repo}/tree/${encodeURIComponent(archiveConfig.branch)}/${archiveConfig.prefix}`;
+}
+
+function progressSummary(progress) {
+  const counts = {
+    not_started: T22_CATALOG.atomicCount,
+    active: 0,
+    core_cleared: 0,
+    mastered: 0,
+  };
+  for (const entry of Object.values(progress.arcs || {})) {
+    const state = entry?.state;
+    if (!PROGRESS_STATES.includes(state) || state === "not_started") continue;
+    counts.not_started -= 1;
+    counts[state] += 1;
+  }
+  return counts;
 }
 
 function createChronoServer() {
   const server = new McpServer(
-    { name: "chrono-deck-t22-spire", version: APP_VERSION },
+    { name: "chrono-deck-t22-archive", version: APP_VERSION },
     {
       instructions:
-        "Chrono-Deck T22 is a historical mathematics RPG. open_t22_game is the only render tool; other tools update or fetch state for the mounted app. Preserve V11.3 control semantics.",
+        "Chrono-Deck is a barebones T22 archive. Its only jobs are to preserve the user's two finalized Markdown extracts per Atomic ARC and keep a synced progress ledger. Do not run a game, invent ARC content, or create a custom UI. When the user provides two finalized .md extracts, read their actual contents and archive them verbatim with archive_t22_extracts.",
     },
   );
 
-  registerWidgetResource(server);
-
   registerAppTool(
     server,
-    "open_t22_game",
+    "archive_t22_extracts",
     {
-      title: "Open T22 game",
+      title: "Archive T22 Markdown extracts",
       description:
-        "Render the interactive Chrono-Deck T22 Spire game screen. Do not substitute a plain-text ARC list. Optionally resume a saved session by code.",
-      inputSchema: { resumeCode: z.string().optional() },
-      annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
-      _meta: renderToolMeta("Opening the Spire…", "Spire opened"),
-    },
-    async ({ resumeCode }) => {
-      try {
-        if (!resumeCode) return result("T22 Spire ready. Render the interactive game menu.");
-        const session = await getSession(resumeCode);
-        if (!session) throw new Error("Resume code not found.");
-        return result(`Resumed ${session.arc.id} at ${session.phase}.`, session, {
-          modelInstruction: `Resume Chrono-Deck session ${session.resumeCode} from its saved checkpoint under V11.3. Current control state: [${session.controlState}].`,
-        });
-      } catch (error) {
-        return failure(error);
-      }
-    },
-  );
-
-  registerAppTool(
-    server,
-    "browse_t22_modules",
-    {
-      title: "Browse T22 modules",
-      description:
-        "List the audited T22 modules for the visual Spire browser. This is catalog browsing only; it does not launch an ARC.",
-      inputSchema: { query: z.string().max(120).optional() },
-      annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
-      _meta: appToolMeta("Reading the Spire index…", "Spire index ready"),
-    },
-    async ({ query }) => {
-      const needle = String(query || "").trim().toLowerCase();
-      const modules = T22_CATALOG.modules
-        .filter(
-          (module) =>
-            !needle ||
-            module.title.toLowerCase().includes(needle) ||
-            module.id.toLowerCase().includes(needle) ||
-            String(module.index) === needle,
-        )
-        .map((module) => ({
-          id: module.id,
-          index: module.index,
-          title: module.title,
-          atomicCount: module.atomicCount,
-          launchEnabled: module.launchEnabled,
-        }));
-
-      return dataResult(`${modules.length} T22 module${modules.length === 1 ? "" : "s"} found.`, {
-        kind: "t22-modules",
-        catalog: {
-          moduleCount: T22_CATALOG.moduleCount,
-          atomicCount: T22_CATALOG.atomicCount,
-          auditVersion: T22_CATALOG.auditVersion,
-        },
-        modules,
-      });
-    },
-  );
-
-  registerAppTool(
-    server,
-    "browse_t22_arcs",
-    {
-      title: "Browse T22 Atomic ARCs",
-      description:
-        "List the audited Atomic ARC names for one T22 module by module number, module ID, or title. Catalog browsing does not make locked ARCs playable.",
-      inputSchema: { moduleRef: z.string().min(1).max(120) },
-      annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
-      _meta: appToolMeta("Opening the module ledger…", "Atomic ARC ledger ready"),
-    },
-    async ({ moduleRef }) => {
-      const module = resolveModule(moduleRef);
-      if (!module) {
-        return {
-          isError: true,
-          content: [{ type: "text", text: `T22 module not found: ${moduleRef}` }],
-          structuredContent: { kind: "t22-arcs", error: "Module not found." },
-        };
-      }
-
-      return dataResult(`${module.atomicCount} Atomic ARCs in T22 Module ${module.index}.`, {
-        kind: "t22-arcs",
-        module: {
-          id: module.id,
-          index: module.index,
-          title: module.title,
-          atomicCount: module.atomicCount,
-          launchEnabled: module.launchEnabled,
-        },
-        arcs: module.arcs.map((arc) => ({
-          id: arc.id,
-          title: arc.title,
-          targetHours: arc.targetHours,
-          launchEnabled: arc.launchEnabled,
-          ...(arc.year ? { year: arc.year } : {}),
-          ...(arc.location ? { location: arc.location } : {}),
-          ...(arc.territory ? { territory: arc.territory } : {}),
-        })),
-      });
-    },
-  );
-
-  registerAppTool(
-    server,
-    "start_t22_arc",
-    {
-      title: "Start T22 Atomic ARC",
-      description: "Create a V11.3 session for one of the three launch-certified T22 Atomic ARCs.",
+        "Permanently archive the two finalized Markdown extracts for one T22 Atomic ARC in the public Git-backed archive. The files are stored at stable raw.md and polished.md paths; Git history preserves earlier revisions and SHA-256 hashes verify integrity.",
       inputSchema: {
-        arcId: z.enum(["T22-M01-A01", "T22-M01-A02", "T22-M01-A03"]),
-        difficulty: z.string().max(80).optional(),
-      },
-      annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },
-      _meta: appToolMeta("Sealing a Mission Contract…", "Mission Contract sealed"),
-    },
-    async ({ arcId, difficulty }) => {
-      try {
-        const session = await createSession({ arcId, difficulty });
-        return result(`Created ${arcId}. Resume code: ${session.resumeCode}. [WALL] is active.`, session, {
-          modelInstruction: `Boot ${arcId} in Live Play under Spire Master Engine V11.3. Difficulty: ${session.difficulty}. Historical setting: ${session.arc.year}, ${session.arc.location}. [WALL] is active. Construct the private finite Mission Contract, present only permitted boot information, open the encounter, and wait for the user's investigative move.`,
-        });
-      } catch (error) {
-        return failure(error);
-      }
-    },
-  );
-
-  registerAppTool(
-    server,
-    "set_v11_control",
-    {
-      title: "Set V11.3 control",
-      description: "Record an explicit V11.3 control code for the active Chrono-Deck session.",
-      inputSchema: {
-        resumeCode: z.string().min(8),
-        control: z.enum(["WALL", "HINT", "FORGE", "GUIDE", "REVEAL", "STATUS"]),
-      },
-      annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },
-      _meta: appToolMeta("Changing control state…", "Control state recorded"),
-    },
-    async ({ resumeCode, control }) => {
-      try {
-        const session = await setControl({ resumeCode, control });
-        const suffix =
-          control === "HINT" ? " One minimal hint is authorized; [WALL] remains the resting state." : "";
-        return result(`[${control}] recorded.${suffix}`, session, {
-          modelInstruction: `[${control}] for Chrono-Deck session ${session.resumeCode}. Obey the exact V11.3 control-code semantics.`,
-        });
-      } catch (error) {
-        return failure(error);
-      }
-    },
-  );
-
-  registerAppTool(
-    server,
-    "save_t22_checkpoint",
-    {
-      title: "Save T22 checkpoint",
-      description:
-        "Persist a spoiler-safe Chrono-Deck checkpoint for reliable resume. The game master should call this after major phase changes and when the user presses Save.",
-      inputSchema: {
-        resumeCode: z.string().min(8),
-        checkpoint: z.string().min(1).max(4000).optional(),
-        phase: z
-          .enum([
-            "BOOT",
-            "ENCOUNTER",
-            "INVESTIGATION",
-            "VERIFICATION",
-            "APPLICATIONS",
-            "CAPSTONE",
-            "TRANSFER",
-            "CLOSED_LEDGER",
-            "EXTRACTED",
-          ])
-          .optional(),
-        clearance: z
-          .enum(["Incomplete", "Core Cleared", "Core Cleared — Mastery Pending", "Fully Mastered"])
-          .optional(),
-        recoveryGateOwed: z.boolean().optional(),
-        eventLabel: z.string().max(120).optional(),
-        visibleState: z.string().max(2000).optional(),
-        acceptedClaims: z.array(z.string().max(500)).max(30).optional(),
-        provisionalClaims: z.array(z.string().max(500)).max(30).optional(),
-        unresolvedGate: z.string().max(1000).optional(),
-        proofDebt: z.array(z.string().max(500)).max(30).optional(),
-        assistanceSummary: z.string().max(1500).optional(),
-      },
-      annotations: {
-        readOnlyHint: false,
-        destructiveHint: false,
-        openWorldHint: false,
-        idempotentHint: true,
-      },
-      _meta: appToolMeta("Writing the campaign ledger…", "Checkpoint saved"),
-    },
-    async (args) => {
-      try {
-        const session = await saveCheckpoint(args);
-        return result(`Checkpoint saved under ${session.resumeCode}.`, session);
-      } catch (error) {
-        return failure(error);
-      }
-    },
-  );
-
-  registerAppTool(
-    server,
-    "dual_extract_t22",
-    {
-      title: "Dual Extract T22 session",
-      description:
-        "Write two independent Markdown artifacts for a Chrono-Deck session: a forensic raw dump and a polished learning extract.",
-      inputSchema: {
-        resumeCode: z.string().min(8),
+        arcId: z.string().min(8).max(32),
         rawMarkdown: z.string().min(40).max(500000),
         polishedMarkdown: z.string().min(40).max(500000),
+        progressState: z.enum(PROGRESS_STATES).optional(),
       },
-      annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },
-      _meta: appToolMeta("Forging two records…", "Dual Extract complete"),
+      annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: true },
+      _meta: toolMeta("Archiving Markdown…", "Markdown archived"),
     },
-    async ({ resumeCode, rawMarkdown, polishedMarkdown }) => {
+    async ({ arcId, rawMarkdown, polishedMarkdown, progressState }) => {
       try {
-        const session = await getSession(resumeCode);
-        if (!session) throw new Error("Resume code not found.");
-        const exports = await writeDualExtract({
-          session,
+        const selection = requireArc(arcId);
+        const archived = await archiveExtractPair({
+          arcId: selection.arcId,
+          title: selection.arc.title,
           rawMarkdown,
           polishedMarkdown,
-          publicBaseUrl: PUBLIC_BASE_URL,
+          progressState,
         });
-        const updated = await registerExports(session.resumeCode, exports);
-        const links = exports
-          .map((item) => `${item.kind === "raw" ? "Raw dump" : "Polished extract"}: ${item.url}`)
-          .join("\n");
-        return result(`Dual Extract complete.\n${links}`, updated, { exports });
+        return dataResult(`Archived ${selection.arcId} as two Git-backed Markdown files.`, {
+          ok: true,
+          arcId: selection.arcId,
+          title: selection.arc.title,
+          commitSha: archived.commitSha,
+          manifest: archived.manifest,
+          progress: archived.progress,
+          urls: archived.urls,
+          archiveRoot: archiveRootUrl(),
+        });
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  registerAppTool(
+    server,
+    "set_t22_progress",
+    {
+      title: "Set T22 progress",
+      description:
+        "Sync one Atomic ARC's progress state to the canonical public progress.json ledger. This does not alter the archived Markdown files.",
+      inputSchema: {
+        arcId: z.string().min(8).max(32),
+        state: z.enum(PROGRESS_STATES),
+        note: z.string().max(1000).optional(),
+      },
+      annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: true, idempotentHint: true },
+      _meta: toolMeta("Syncing progress…", "Progress synced"),
+    },
+    async ({ arcId, state, note }) => {
+      try {
+        const selection = requireArc(arcId);
+        const updated = await setProgress({ arcId: selection.arcId, state, note });
+        return dataResult(`${selection.arcId} progress synced to ${state}.`, {
+          ok: true,
+          arcId: selection.arcId,
+          title: selection.arc.title,
+          entry: updated.entry,
+          commitSha: updated.commitSha,
+          counts: progressSummary(updated.progress),
+          archiveRoot: archiveRootUrl(),
+        });
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  registerAppTool(
+    server,
+    "get_t22_progress",
+    {
+      title: "Get T22 progress",
+      description:
+        "Read the canonical synced T22 progress ledger from the public Git archive. Optionally return one Atomic ARC only.",
+      inputSchema: { arcId: z.string().min(8).max(32).optional() },
+      annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true },
+      _meta: toolMeta("Reading progress…", "Progress ready"),
+    },
+    async ({ arcId }) => {
+      try {
+        const progress = await readProgress();
+        if (arcId) {
+          const selection = requireArc(arcId);
+          return dataResult(`${selection.arcId} progress loaded.`, {
+            ok: true,
+            arcId: selection.arcId,
+            title: selection.arc.title,
+            entry: progress.arcs?.[selection.arcId] || { state: progress.defaultState || "not_started" },
+            archiveUrls: publicArchiveUrls(selection.arcId),
+          });
+        }
+        return dataResult("T22 progress ledger loaded.", {
+          ok: true,
+          terminal: "T22",
+          atomicCount: T22_CATALOG.atomicCount,
+          counts: progressSummary(progress),
+          updatedAt: progress.updatedAt,
+          arcs: progress.arcs || {},
+          archiveRoot: archiveRootUrl(),
+        });
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  registerAppTool(
+    server,
+    "get_t22_archive",
+    {
+      title: "Get T22 archive entry",
+      description:
+        "Read one archived T22 ARC entry and its stable public links. Markdown bodies are omitted by default to keep responses small; request includeMarkdown only when the actual notes are needed.",
+      inputSchema: {
+        arcId: z.string().min(8).max(32),
+        includeMarkdown: z.boolean().optional(),
+      },
+      annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true },
+      _meta: toolMeta("Reading archive…", "Archive entry ready"),
+    },
+    async ({ arcId, includeMarkdown = false }) => {
+      try {
+        const selection = requireArc(arcId);
+        const entry = await readArchiveEntry(selection.arcId);
+        if (!entry) {
+          return dataResult(`${selection.arcId} has no archived extract pair yet.`, {
+            ok: true,
+            arcId: selection.arcId,
+            archived: false,
+            urls: publicArchiveUrls(selection.arcId),
+          });
+        }
+        return dataResult(`${selection.arcId} archive entry loaded.`, {
+          ok: true,
+          archived: true,
+          arcId: selection.arcId,
+          title: selection.arc.title,
+          manifest: entry.manifest,
+          progress: entry.progress,
+          urls: entry.urls,
+          ...(includeMarkdown
+            ? { rawMarkdown: entry.rawMarkdown, polishedMarkdown: entry.polishedMarkdown }
+            : {}),
+        });
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  registerAppTool(
+    server,
+    "verify_t22_archive",
+    {
+      title: "Verify T22 archive integrity",
+      description:
+        "Re-read an ARC's two public Markdown files, recompute SHA-256 hashes, and compare them with manifest.json.",
+      inputSchema: { arcId: z.string().min(8).max(32) },
+      annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true },
+      _meta: toolMeta("Verifying hashes…", "Verification complete"),
+    },
+    async ({ arcId }) => {
+      try {
+        const selection = requireArc(arcId);
+        const verified = await verifyArchiveEntry(selection.arcId);
+        if (!verified) {
+          return dataResult(`${selection.arcId} has no archived extract pair to verify.`, {
+            ok: true,
+            arcId: selection.arcId,
+            archived: false,
+          });
+        }
+        return dataResult(
+          verified.ok
+            ? `${selection.arcId} archive hashes match.`
+            : `${selection.arcId} archive hash verification FAILED.`,
+          { ok: verified.ok, archived: true, ...verified },
+        );
       } catch (error) {
         return failure(error);
       }
@@ -391,30 +277,11 @@ function createChronoServer() {
 function applyCors(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, OPTIONS");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "content-type, authorization, mcp-session-id, mcp-protocol-version, last-event-id",
-  );
-  res.setHeader("Access-Control-Expose-Headers", "Mcp-Session-Id, MCP-Protocol-Version");
-}
-
-function safeExportPath(urlPath) {
-  const parts = urlPath.split("/").filter(Boolean).map(decodeURIComponent);
-  if (parts.length !== 4 || parts[0] !== "exports") return null;
-
-  const [, resumeCode, stamp, filename] = parts;
-  if (!/^CD-[0-9A-F]{6}-[0-9A-F]{6}$/.test(resumeCode)) return null;
-  if (!/^\d{4}-\d{2}-\d{2}T[0-9Z-]+$/.test(stamp)) return null;
-  if (!/^[a-z0-9-]+\.md$/.test(filename)) return null;
-
-  const root = path.join(sessionStorePaths.DATA_DIR, "exports");
-  const resolved = path.resolve(root, resumeCode, stamp, filename);
-  return resolved.startsWith(`${path.resolve(root)}${path.sep}`) ? { resolved, filename } : null;
+  res.setHeader("Access-Control-Allow-Headers", "content-type, mcp-session-id, accept");
+  res.setHeader("Access-Control-Expose-Headers", "Mcp-Session-Id");
 }
 
 const port = Number(process.env.PORT || 8787);
-const MCP_PATH = "/mcp";
-
 const httpServer = createHttpServer(async (req, res) => {
   const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
   applyCors(res);
@@ -426,15 +293,16 @@ const httpServer = createHttpServer(async (req, res) => {
 
   if (req.method === "GET" && url.pathname === "/") {
     res.writeHead(200, { "content-type": "application/json; charset=utf-8" });
-    res.end(
-      JSON.stringify({
-        name: "Chrono-Deck T22 Spire",
-        version: APP_VERSION,
-        mcp: MCP_PATH,
-        widget: WIDGET_URI,
-        widgetMimeType: RESOURCE_MIME_TYPE,
-      }),
-    );
+    res.end(JSON.stringify({
+      name: "Chrono-Deck T22 Archive",
+      version: APP_VERSION,
+      purpose: "plain-Markdown archive + synced progress only",
+      mcp: MCP_PATH,
+      archiveRepo: archiveConfig.repo,
+      archiveBranch: archiveConfig.branch,
+      archiveRoot: archiveRootUrl(),
+      githubWriteConfigured: Boolean(String(process.env.CHRONO_GITHUB_TOKEN || "").trim()),
+    }));
     return;
   }
 
@@ -443,35 +311,13 @@ const httpServer = createHttpServer(async (req, res) => {
     return;
   }
 
-  if (req.method === "GET" && url.pathname.startsWith("/exports/")) {
-    try {
-      const target = safeExportPath(url.pathname);
-      if (!target) throw new Error("Invalid export path.");
-      const markdown = await readFile(target.resolved);
-      res.writeHead(200, {
-        "content-type": "text/markdown; charset=utf-8",
-        "content-disposition": `attachment; filename="${target.filename}"`,
-        "cache-control": "private, max-age=300",
-      });
-      res.end(markdown);
-    } catch {
-      res.writeHead(404).end("Export not found");
-    }
-    return;
-  }
-
   if (url.pathname === MCP_PATH && new Set(["POST", "GET", "DELETE"]).has(req.method || "")) {
     const server = createChronoServer();
-    const transport = new StreamableHTTPServerTransport({
-      sessionIdGenerator: undefined,
-      enableJsonResponse: true,
-    });
-
+    const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
     res.on("close", () => {
       transport.close().catch(() => undefined);
       server.close().catch(() => undefined);
     });
-
     try {
       await server.connect(transport);
       await transport.handleRequest(req, res);
@@ -487,8 +333,8 @@ const httpServer = createHttpServer(async (req, res) => {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   httpServer.listen(port, () => {
-    console.log(`Chrono-Deck T22 Spire ${APP_VERSION} listening on ${PUBLIC_BASE_URL}${MCP_PATH}`);
+    console.log(`Chrono-Deck T22 Archive listening on port ${port}`);
   });
 }
 
-export { createChronoServer, gamePayload, httpServer, safeExportPath };
+export { createChronoServer, httpServer, progressSummary };
