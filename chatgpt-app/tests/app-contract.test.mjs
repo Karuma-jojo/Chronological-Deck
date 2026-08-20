@@ -2,73 +2,69 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
+import {
+  arcArchivePaths,
+  normalizeMarkdown,
+  sha256Utf8,
+} from "../lib/github-archive.js";
+
 const serverSource = await readFile(new URL("../server.js", import.meta.url), "utf8");
-const widgetSource = await readFile(new URL("../public/chrono-deck-widget.html", import.meta.url), "utf8");
+const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+const renderSource = await readFile(new URL("../../render.yaml", import.meta.url), "utf8");
 
 const toolNames = [
-  "open_t22_game",
-  "browse_t22_modules",
-  "browse_t22_arcs",
-  "start_t22_arc",
-  "set_v11_control",
-  "save_t22_checkpoint",
-  "dual_extract_t22",
+  "archive_t22_extracts",
+  "set_t22_progress",
+  "get_t22_progress",
+  "get_t22_archive",
+  "verify_t22_archive",
 ];
 
-test("MCP server registers every T22 workflow tool", () => {
+test("v0.3 exposes only archive and progress tools", () => {
   for (const name of toolNames) {
     assert.match(serverSource, new RegExp(`registerAppTool\\([\\s\\S]*?"${name}"`));
   }
-  assert.match(serverSource, /ui:\/\/chrono-deck\/t22-spire-v5\.html/);
-  assert.match(serverSource, /StreamableHTTPServerTransport/);
-});
-
-test("render tool and resource use the current MCP Apps contract", () => {
-  assert.match(serverSource, /const WIDGET_URI = "ui:\/\/chrono-deck\/t22-spire-v5\.html"/);
-  assert.match(serverSource, /"openai\/outputTemplate": WIDGET_URI/);
-  assert.match(serverSource, /resourceUri: WIDGET_URI/);
-  assert.match(serverSource, /mimeType: RESOURCE_MIME_TYPE/);
-  assert.doesNotMatch(serverSource, /text\/html\+skybridge/);
-});
-
-test("only the opening tool owns the render template", () => {
-  assert.match(serverSource, /open_t22_game[\s\S]*?_meta: renderToolMeta/);
-  assert.match(serverSource, /start_t22_arc[\s\S]*?_meta: appToolMeta/);
-  assert.match(serverSource, /set_v11_control[\s\S]*?_meta: appToolMeta/);
-  assert.match(serverSource, /save_t22_checkpoint[\s\S]*?_meta: appToolMeta/);
-  assert.match(serverSource, /dual_extract_t22[\s\S]*?_meta: appToolMeta/);
-});
-
-test("widget exposes all reserved V11.3 controls", () => {
-  for (const code of ["WALL", "HINT", "FORGE", "GUIDE", "REVEAL", "STATUS"]) {
-    assert.match(widgetSource, new RegExp(`data-code="${code}"`));
+  for (const retired of [
+    "open_t22_game",
+    "browse_t22_modules",
+    "browse_t22_arcs",
+    "start_t22_arc",
+    "set_v11_control",
+    "save_t22_checkpoint",
+    "dual_extract_t22",
+  ]) {
+    assert.doesNotMatch(serverSource, new RegExp(retired));
   }
+  assert.doesNotMatch(serverSource, /registerAppResource|WIDGET_URI|outputTemplate/);
 });
 
-test("widget uses the MCP Apps lifecycle safely", () => {
-  assert.match(widgetSource, /ui\/initialize/);
-  assert.match(widgetSource, /ui\/notifications\/initialized/);
-  assert.match(widgetSource, /ui\/notifications\/tool-result/);
-  assert.match(widgetSource, /ui\/notifications\/size-changed/);
-  assert.match(widgetSource, /ui\/message/);
-  assert.match(widgetSource, /ui\/request-display-mode/);
-  assert.doesNotMatch(widgetSource, /setWidgetState/);
+test("archive service is versioned as 0.3.0", () => {
+  assert.equal(packageJson.version, "0.3.0");
+  assert.match(serverSource, /const APP_VERSION = "0\.3\.0"/);
 });
 
-test("widget and server agree on callable tool names", () => {
-  for (const name of toolNames) assert.match(`${serverSource}\n${widgetSource}`, new RegExp(name));
-  for (const name of ["open_t22_game", "browse_t22_modules", "browse_t22_arcs", "start_t22_arc", "set_v11_control"]) {
-    assert.match(widgetSource, new RegExp(name));
-  }
+test("archive paths are stable and human-readable", () => {
+  assert.deepEqual(arcArchivePaths("T22-M01-A02"), {
+    base: "archive/arcs/T22-M01-A02",
+    raw: "archive/arcs/T22-M01-A02/raw.md",
+    polished: "archive/arcs/T22-M01-A02/polished.md",
+    manifest: "archive/arcs/T22-M01-A02/manifest.json",
+  });
 });
 
-test("v0.2 shell keeps cinematic navigation separate from the proof chamber", () => {
-  for (const id of ["view-home", "view-module", "view-browser", "view-dossier", "view-live", "ledger-drawer", "reveal-modal"]) {
-    assert.match(widgetSource, new RegExp(`id="${id}"`));
-  }
-  assert.match(widgetSource, /New Expedition/);
-  assert.match(widgetSource, /Browse the Spire/);
-  assert.match(widgetSource, /Enter the ARC/);
-  assert.match(widgetSource, /Reveal the decisive solution\?/);
-  assert.match(widgetSource, /Mission Ledger/);
+test("Markdown normalization and SHA-256 integrity are deterministic", () => {
+  const normalized = normalizeMarkdown("# Test\r\n\r\nThis is a sufficiently long archival Markdown body for testing.\r\n", "Test");
+  assert.equal(normalized, "# Test\n\nThis is a sufficiently long archival Markdown body for testing.\n");
+  assert.equal(
+    sha256Utf8("abc"),
+    "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+  );
+});
+
+test("Render declares the public archive target and keeps the write token secret", () => {
+  assert.match(renderSource, /CHRONO_ARCHIVE_REPO/);
+  assert.match(renderSource, /Karuma-jojo\/Chronological-Deck/);
+  assert.match(renderSource, /CHRONO_ARCHIVE_BRANCH[\s\S]*t22-archive/);
+  assert.match(renderSource, /CHRONO_GITHUB_TOKEN[\s\S]*sync: false/);
+  assert.doesNotMatch(renderSource, /CHRONO_DATA_DIR/);
 });
