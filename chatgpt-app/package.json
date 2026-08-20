@@ -1,9 +1,9 @@
 {
   "name": "chrono-deck-chatgpt-app",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
-  "description": "ChatGPT-native T22 Chrono-Deck vertical slice using the Spire Master Engine V11.3.",
+  "description": "Barebones T22 Markdown archive and synced progress ledger for Chrono-Deck.",
   "scripts": {
     "start": "node server.js",
     "test": "node --test tests/*.test.mjs",
