@@ -52,9 +52,9 @@ test("archive paths are stable and human-readable", () => {
   });
 });
 
-test("Markdown normalization and SHA-256 integrity are deterministic", () => {
-  const normalized = normalizeMarkdown("# Test\r\n\r\nThis is a sufficiently long archival Markdown body for testing.\r\n", "Test");
-  assert.equal(normalized, "# Test\n\nThis is a sufficiently long archival Markdown body for testing.\n");
+test("Markdown text is preserved exactly and SHA-256 is deterministic", () => {
+  const original = "# Test\r\n\r\nThis is a sufficiently long archival Markdown body for testing.\r\n";
+  assert.equal(normalizeMarkdown(original, "Test"), original);
   assert.equal(
     sha256Utf8("abc"),
     "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
