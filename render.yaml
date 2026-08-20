@@ -12,10 +12,11 @@ services:
     healthCheckPath: /health
     autoDeployTrigger: commit
     envVars:
-      - key: CHRONO_DATA_DIR
-        value: /tmp/chrono-deck
-      - key: CHRONO_PUBLIC_URL
-        fromService:
-          type: web
-          name: chrono-deck-t22-spire
-          envVarKey: RENDER_EXTERNAL_URL
+      - key: CHRONO_ARCHIVE_REPO
+        value: Karuma-jojo/Chronological-Deck
+      - key: CHRONO_ARCHIVE_BRANCH
+        value: t22-archive
+      - key: CHRONO_ARCHIVE_PREFIX
+        value: archive
+      - key: CHRONO_GITHUB_TOKEN
+        sync: false
