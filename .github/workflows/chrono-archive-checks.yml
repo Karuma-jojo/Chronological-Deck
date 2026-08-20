@@ -1,0 +1,37 @@
+name: Chrono-Deck archive checks
+
+on:
+  push:
+    branches:
+      - feature/t22-v02-game-shell
+  pull_request:
+    paths:
+      - "chatgpt-app/**"
+      - "render.yaml"
+      - ".github/workflows/chrono-archive-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  archive-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: chatgpt-app/package.json
+
+      - name: Install archive service dependencies
+        working-directory: chatgpt-app
+        run: npm install
+
+      - name: Run archive service tests
+        working-directory: chatgpt-app
+        run: npm test
+
+      - name: Validate the 596-ARC catalog
+        run: node scripts/validate-t22-atomic.mjs
