@@ -1,17 +1,54 @@
-# Chrono-Deck ChatGPT App — T22 Vertical Slice
+# Chrono-Deck T22 Archive MCP
 
-This directory contains a ChatGPT-native MCP App for the first three Atomic ARCs of T22 Module 01. ChatGPT remains the adaptive game master; the app supplies the polished game screen, authoritative session state, V11.3 control buttons, durable resume codes, and two-file extraction.
+This service has one deliberately narrow purpose: preserve the user's two finalized Markdown extracts for each T22 Atomic ARC and keep a synced progress ledger.
 
-## Launch content
+There is no game UI, no session engine, no resume-code system, no V11.3 control surface, and no duplicate conversation layer. ChatGPT handles study/play directly. This MCP only archives and retrieves records.
 
-- **Terminal:** T22 — Mathematical Quantitative Research & Capital Building
-- **Module:** ARC053 — Newton I: Calculus — The Fluxions
-- **Playable Atomic ARCs:** T22-M01-A01 through T22-M01-A03
-- **Expansion foundation:** all 58 T22 modules and 596 Atomic ARCs are read from the existing audited catalog. Only the first three are launch-enabled in this release.
+## Canonical storage
+
+The source of truth is the public Git branch:
+
+- repository: `Karuma-jojo/Chronological-Deck`
+- branch: `t22-archive`
+- root: `archive/`
+
+Stable ARC layout:
+
+```text
+archive/
+  README.md
+  progress.json
+  arcs/
+    T22-M01-A02/
+      raw.md
+      polished.md
+      manifest.json
+```
+
+The two Markdown files are stored exactly as supplied to the archive tool. `manifest.json` records SHA-256 hashes and UTF-8 byte counts. Updating the stable paths creates a new Git commit, so previous versions remain in Git history.
+
+## Progress states
+
+`progress.json` is the canonical synced ledger. Supported states are:
+
+- `not_started`
+- `active`
+- `core_cleared`
+- `mastered`
+
+Only non-default or explicitly changed ARC entries need to be present in the JSON file.
+
+## MCP tools
+
+- `archive_t22_extracts` — archive a finalized raw + polished Markdown pair; optionally sync progress in the same Git commit.
+- `set_t22_progress` — update one ARC's progress state.
+- `get_t22_progress` — read the whole progress ledger or one ARC.
+- `get_t22_archive` — read archive metadata/links, optionally including Markdown bodies.
+- `verify_t22_archive` — recompute both SHA-256 hashes and compare them with the manifest.
 
 ## Run locally
 
-Requires Node.js 20 or newer.
+Requires Node.js 20+.
 
 ```bash
 cd chatgpt-app
@@ -20,42 +57,40 @@ npm test
 npm start
 ```
 
-The server listens at `http://localhost:8787/mcp`. Set these environment variables as needed:
+The MCP endpoint is `http://localhost:8787/mcp`.
 
-- `PORT`: HTTP port.
-- `CHRONO_DATA_DIR`: directory for durable session and export storage.
-- `CHRONO_PUBLIC_URL`: public HTTPS origin used in download links.
+Environment variables:
 
-For cross-session saves in deployment, mount `CHRONO_DATA_DIR` on persistent storage. The default local directory is `chatgpt-app/data`.
+- `PORT` — HTTP port.
+- `CHRONO_ARCHIVE_REPO` — default `Karuma-jojo/Chronological-Deck`.
+- `CHRONO_ARCHIVE_BRANCH` — default `t22-archive`.
+- `CHRONO_ARCHIVE_PREFIX` — default `archive`.
+- `CHRONO_GITHUB_TOKEN` — fine-grained GitHub token used for writes. Give it access only to the archive repository with **Contents: Read and write**.
 
-The included Dockerfile uses the repository root as its build context:
+Reads work against the public repository without a token. Writes fail closed when `CHRONO_GITHUB_TOKEN` is absent.
 
-```bash
-docker build -f chatgpt-app/Dockerfile -t chrono-deck-t22 .
-docker run --rm -p 8787:8787 \
-  -e CHRONO_PUBLIC_URL=https://your-public-origin.example \
-  -e CHRONO_DATA_DIR=/data \
-  -v chrono-deck-data:/data \
-  chrono-deck-t22
-```
+## Render
 
-Use persistent storage for personal play. Add authentication and a user-scoped database before turning this single-player build into a public multi-user service.
+The service does not need a persistent disk because GitHub is the durable store. Render can remain on the free plan during development; a paid always-on instance only improves availability/cold-start behavior.
 
-## Connect to ChatGPT
+For an existing Render Blueprint, add `CHRONO_GITHUB_TOKEN` manually in the service's Environment settings. The Blueprint declares it with `sync: false` so the secret is never committed to Git.
 
-1. Deploy the server at a public HTTPS origin, or expose the local port through an HTTPS development tunnel.
-2. In ChatGPT, enable Developer mode under **Settings → Security and login**.
-3. In **Plugins**, add the server URL including `/mcp`.
-4. Select the new connection in a chat and ask: `Open the T22 Chrono-Deck game.`
+## Typical use
 
-The app does not call the OpenAI API and does not contain an OpenAI API key. The selected ChatGPT model runs the narrative and reasoning inside the conversation.
+Attach the two finalized `.md` files in ChatGPT and say, for example:
 
-## Interaction flow
+> Archive these as T22-M01-A02 and mark it mastered.
 
-1. `open_t22_game` displays the three-ARC launch screen or resumes a code.
-2. `start_t22_arc` seals a server-side session and returns a model instruction for V11.3 boot calibration.
-3. UI controls call `set_v11_control`, then send the exact reserved code as a ChatGPT turn.
-4. `save_t22_checkpoint` stores a spoiler-safe state summary plus visible state, accepted/provisional claims, unresolved gate, proof debt, assistance provenance, phase, clearance, and Recovery Gate status.
-5. `dual_extract_t22` writes independently composed raw-dump and polished-extract Markdown files and returns download links.
+ChatGPT should read the actual file contents and call `archive_t22_extracts` without rewriting the notes.
 
-The UI also supports ChatGPT fullscreen mode. Its composer remains the place where the player makes free-form investigative moves.
+Later:
+
+> Show my T22 progress.
+
+or:
+
+> Verify the archive integrity for T22-M01-A02.
+
+## Longevity
+
+No online provider can honestly guarantee 100-year availability. This design avoids lock-in: the canonical records are ordinary UTF-8 Markdown/JSON files in Git with stable paths and integrity hashes. Anyone who clones or mirrors the repository has a complete usable copy even if this MCP service disappears.
