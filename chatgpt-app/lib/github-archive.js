@@ -57,9 +57,9 @@ function apiPath(suffix) {
 }
 
 export function normalizeMarkdown(value, label) {
-  const clean = String(value || "").replace(/\r\n/g, "\n").trim();
-  if (clean.length < 40) throw new Error(`${label} is too short to archive.`);
-  return `${clean}\n`;
+  const preserved = String(value ?? "");
+  if (preserved.trim().length < 40) throw new Error(`${label} is too short to archive.`);
+  return preserved;
 }
 
 export function sha256Utf8(value) {
