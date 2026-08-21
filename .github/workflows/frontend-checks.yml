@@ -105,7 +105,7 @@ jobs:
           test -f obsidian-plugin/manifest.json
           test -f obsidian-plugin/styles.css
           grep -q '"id": "chrono-deck-bridge"' obsidian-plugin/manifest.json
-          grep -q '"version": "0.4.1"' obsidian-plugin/manifest.json
+          grep -q '"version": "0.4.2"' obsidian-plugin/manifest.json
           grep -q 'chrono_sync_obsidian_arc' supabase/obsidian-bridge.sql
           grep -q 'chrono_sync_obsidian_arc_v2' supabase/obsidian-sync-v2.sql
           grep -q 'chrono_load_obsidian_arc' supabase/obsidian-sync-v2.sql
