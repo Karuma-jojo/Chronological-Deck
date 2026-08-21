@@ -1002,18 +1002,27 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
   async presignMedia(payload, session) {
     const base = this.mediaGatewayBase();
     if (!base) throw new Error("Configure the Chrono-Deck media gateway first.");
-    const response = await requestUrl({
-      url: `${base}/presign`,
-      method: "POST",
-      headers: { Authorization: `Bearer ${session.access_token}`, "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      throw: false,
-    });
-    if (response.status < 200 || response.status >= 300) {
-      const message = response.json?.error || response.json?.message || response.text || `HTTP ${response.status}`;
-      throw new Error(`Media gateway: ${message}`);
+    let lastError = null;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        const response = await requestUrl({
+          url: `${base}/presign`,
+          method: "POST",
+          headers: { Authorization: `Bearer ${session.access_token}`, "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          throw: false,
+        });
+        if (response.status < 200 || response.status >= 300) {
+          const message = response.json?.error || response.json?.message || response.text || `HTTP ${response.status}`;
+          throw new Error(`Media gateway: ${message}`);
+        }
+        return response.json;
+      } catch (error) {
+        lastError = error;
+        if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, 700 * attempt));
+      }
     }
-    return response.json;
+    throw lastError || new Error("Media gateway request failed.");
   }
 
   resolveLocalMediaFile(sourceFile, target) {
@@ -1056,12 +1065,11 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
     const upload = await this.presignMedia({
       action: "upload", logicalArcId, contentHash, fileName: resolved.name, expiresSeconds: 600,
     }, session);
-    const headTicket = await this.presignMedia({ action: "head", objectKey: upload.objectKey, expiresSeconds: 300 }, session);
-    const head = await requestUrl({ url: headTicket.url, method: "HEAD", throw: false });
-    let remoteEtag = responseHeader(head, "etag");
-    let uploadedAt = new Date().toISOString();
+    let remoteEtag = asString(upload.remoteEtag || "");
+    const uploadedAt = new Date().toISOString();
 
-    if (head.status === 404) {
+    if (!upload.exists) {
+      if (!upload.url) throw new Error(`Media gateway returned no upload URL for ${resolved.path}.`);
       const put = await requestUrl({
         url: upload.url,
         method: "PUT",
@@ -1071,8 +1079,6 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
       });
       if (put.status < 200 || put.status >= 300) throw new Error(`R2 upload failed for ${resolved.path} (HTTP ${put.status}).`);
       remoteEtag = responseHeader(put, "etag");
-    } else if (head.status < 200 || head.status >= 300) {
-      throw new Error(`R2 existence check failed for ${resolved.path} (HTTP ${head.status}).`);
     }
 
     return {

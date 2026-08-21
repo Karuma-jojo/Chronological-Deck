@@ -108,6 +108,27 @@ const server = createServer(async (req, res) => {
           fileName: clean(body.fileName),
         });
         method = "PUT";
+
+        const headUrl = presignR2Object({ method: "HEAD", objectKey, expiresSeconds: 60 });
+        const head = await fetch(headUrl, { method: "HEAD" });
+        if (head.ok) {
+          sendJson(res, 200, {
+            action,
+            method,
+            objectKey,
+            url: null,
+            exists: true,
+            remoteEtag: clean(head.headers.get("etag")),
+            expiresSeconds,
+            storageBackend: "r2",
+          });
+          return;
+        }
+        if (head.status !== 404) {
+          console.error("Chrono-Deck R2 HEAD failed", head.status, await head.text().catch(() => ""));
+          sendJson(res, 502, { error: `R2 existence check failed (HTTP ${head.status})` });
+          return;
+        }
       } else if (action === "download") {
         objectKey = validateOwnedObjectKey(user.id, body.objectKey);
         method = "GET";
@@ -125,6 +146,8 @@ const server = createServer(async (req, res) => {
         method,
         objectKey,
         url: signedUrl,
+        exists: false,
+        remoteEtag: "",
         expiresSeconds,
         storageBackend: "r2",
       });
