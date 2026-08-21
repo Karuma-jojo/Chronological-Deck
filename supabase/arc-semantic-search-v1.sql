@@ -13,7 +13,7 @@ begin;
 create extension if not exists vector with schema extensions;
 
 create table if not exists public.arc_section_embeddings (
-  id bigint primary key generated always as identity,
+  id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
   arc_id text not null,
   logical_arc_id text not null,
@@ -44,7 +44,7 @@ create index if not exists arc_section_embeddings_user_logical_idx
   on public.arc_section_embeddings (user_id, logical_arc_id, document_type, arc_id, section_id, chunk_index);
 
 create index if not exists arc_section_embeddings_pending_idx
-  on public.arc_section_embeddings (user_id, embedded_at, id)
+  on public.arc_section_embeddings (user_id, embedded_at, created_at)
   where embedding is null;
 
 create index if not exists arc_section_embeddings_search_idx
@@ -97,7 +97,6 @@ declare
   v_position integer := 1;
   v_chunk_index integer := 0;
   v_chunk_size integer := 1800;
-  v_overlap integer := 200;
   v_step integer := 1600;
   v_chunk text;
 begin
