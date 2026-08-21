@@ -35,6 +35,7 @@ arc_id: T22-M01-A02-RAW
 logical_arc_id: T22-M01-A02
 document_type: raw_dump
 document_status: raw
+clearance: Core Cleared — Mastery Pending
 ```
 
 and:
@@ -48,7 +49,24 @@ arc_id: T22-M01-A02-POLISHED
 logical_arc_id: T22-M01-A02
 document_type: polished_extract
 document_status: editing
+clearance: Core Cleared — Mastery Pending
 ```
+
+The example clearance above is illustrative only. Use the actual clearance supported by the conversation.
+
+Legal academic clearance values are:
+
+- `Incomplete`
+- `Core Cleared`
+- `Core Cleared — Mastery Pending`
+- `Fully Mastered`
+
+`document_status` and `clearance` are different fields:
+
+- `document_status` describes the state of the Markdown representation (`raw`, `editing`, `polished`);
+- `clearance` describes the academic state of the logical ARC.
+
+RAW and POLISHED for the same logical ARC MUST carry the same academic `clearance`, unless the source conversation explicitly establishes that the ARC status changed between the creation of the two files.
 
 Use known ARC/module metadata when supported by the conversation or curriculum card. Do not invent unknown values.
 
@@ -191,7 +209,7 @@ Preferred tool:
 
 `suggest_arc_frontmatter_links`
 
-Provide it with the current ARC's known title, concise summary, topics, skills and error themes. It searches completed/parked polished ARC records and returns semantically similar candidates.
+Provide it with the current ARC's known title, concise summary, topics, skills and error themes. It searches academically completed/cleared polished ARC records and returns semantically similar candidates.
 
 You may also use:
 
@@ -246,6 +264,7 @@ Before finishing, verify:
 
 - both files use the same `logical_arc_id`;
 - their `arc_id` values are distinct;
+- both files carry the same academically correct `clearance`;
 - RAW and POLISHED were independently reconstructed from the source conversation;
 - provenance reflects actual informational effect;
 - no missing media blocked extraction;
