@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - agent/media-placement-cleanup-v043
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
