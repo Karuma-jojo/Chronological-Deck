@@ -2,13 +2,31 @@
 
 Private mobile-compatible bridge for authoring Chrono-Deck ARC notes in Obsidian while keeping Supabase as the shared structured cloud hub and Cloudflare R2 as the private ARC-media store.
 
-## Install for private testing
+## Install and update with BRAT (recommended)
 
-Copy this folder into your Obsidian vault as:
+Chrono-Deck Bridge is distributed as GitHub releases so private installs can update without manually copying plugin files.
+
+1. In Obsidian, open **Settings → Community plugins → Browse** and install **BRAT**.
+2. Enable BRAT.
+3. Open the Command Palette and run **BRAT: Add a beta plugin for testing**.
+4. Enter this repository:
+
+   `https://github.com/Karuma-jojo/Chronological-Deck`
+
+5. Choose the latest release when BRAT asks for a version.
+6. Enable **Chrono-Deck Bridge** under **Settings → Community plugins**.
+
+If an older manual copy of `chrono-deck-bridge` already exists, BRAT installs the same plugin ID into that plugin folder, replacing the release files. Reload or re-enable the plugin after the first BRAT install.
+
+Future Chrono-Deck Bridge releases are published with `main.js`, `manifest.json`, and `styles.css`, which BRAT can pull online. Plugin changes must bump the semantic version in `obsidian-plugin/manifest.json`; CI rejects plugin-asset changes that reuse an already-published version.
+
+### Manual fallback
+
+If BRAT is unavailable, copy the release assets into:
 
 `.obsidian/plugins/chrono-deck-bridge/`
 
-Then enable **Chrono-Deck Bridge** under **Settings → Community plugins**.
+Required release files are `main.js`, `manifest.json`, and `styles.css`. Then reload Obsidian and enable **Chrono-Deck Bridge**.
 
 Requires Obsidian 1.11.4+ because credentials use Obsidian SecretStorage.
 
