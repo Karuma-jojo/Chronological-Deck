@@ -3,7 +3,7 @@ import { withSupabase } from 'npm:@supabase/server@^1'
 const model = new Supabase.ai.Session('gte-small')
 
 interface EmbeddingRow {
-  id: number
+  id: string
   user_id: string
   arc_id: string
   logical_arc_id: string
