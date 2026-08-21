@@ -28,7 +28,7 @@ export default {
       .from('arc_section_embeddings')
       .select('id,arc_id,logical_arc_id,section_id,chunk_index,content')
       .is('embedding', null)
-      .order('id', { ascending: true })
+      .order('created_at', { ascending: true })
       .limit(limit)
 
     const logicalArcId = String(body.logicalArcId || '').trim()
@@ -41,7 +41,7 @@ export default {
       return Response.json({ ok: true, processed: 0, remainingHint: 0, logicalArcId: logicalArcId || null })
     }
 
-    const failures: Array<{ id: number; error: string }> = []
+    const failures: Array<{ id: string; error: string }> = []
     let processed = 0
 
     for (let offset = 0; offset < rows.length; offset += 8) {
@@ -64,11 +64,11 @@ export default {
             .eq('id', row.id)
 
           if (error) throw new Error(error.message)
-          return { ok: true as const, id: row.id }
+          return { ok: true as const, id: String(row.id) }
         } catch (error) {
           return {
             ok: false as const,
-            id: row.id,
+            id: String(row.id),
             error: error instanceof Error ? error.message : String(error),
           }
         }
