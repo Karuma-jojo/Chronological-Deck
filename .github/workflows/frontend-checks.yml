@@ -42,6 +42,7 @@ jobs:
           node --input-type=module --check < js/vault-reader.js
           node --input-type=module --check < js/vault.js
           node --check obsidian-plugin/main.js
+          node --check chatgpt-app/media-gateway.js
 
       - name: Validate World Registry graph integrity
         run: node scripts/validate-world.mjs
@@ -101,11 +102,12 @@ jobs:
           test -f supabase/obsidian-bridge.sql
           test -f supabase/obsidian-sync-v2.sql
           test -f supabase/obsidian-reader-v3.sql
+          test -f supabase/arc-media-placement-cleanup-v2.sql
           test -f docs/obsidian-bridge.md
           test -f obsidian-plugin/manifest.json
           test -f obsidian-plugin/styles.css
           grep -q '"id": "chrono-deck-bridge"' obsidian-plugin/manifest.json
-          grep -q '"version": "0.4.2"' obsidian-plugin/manifest.json
+          grep -q '"version": "0.4.3"' obsidian-plugin/manifest.json
           grep -q 'chrono_sync_obsidian_arc' supabase/obsidian-bridge.sql
           grep -q 'chrono_sync_obsidian_arc_v2' supabase/obsidian-sync-v2.sql
           grep -q 'chrono_load_obsidian_arc' supabase/obsidian-sync-v2.sql
@@ -118,6 +120,11 @@ jobs:
           grep -q 'CHRONO_MEDIA_BRIDGE_V1' obsidian-plugin/main.js
           grep -q 'chrono_sync_arc_media_manifest' obsidian-plugin/main.js
           grep -q 'chrono_load_arc_media_manifest' obsidian-plugin/main.js
+          grep -q 'show-current-arc-media-map' obsidian-plugin/main.js
+          grep -q 'purge-orphaned-media' obsidian-plugin/main.js
+          grep -q 'chrono_list_orphaned_arc_media' obsidian-plugin/main.js
+          grep -q 'chrono_forget_orphaned_arc_media' obsidian-plugin/main.js
+          grep -q 'action === "delete"' chatgpt-app/media-gateway.js
           grep -q 'chrono-deck-media.onrender.com' obsidian-plugin/main.js
           grep -q 'MarkdownRenderer.render' obsidian-plugin/main.js
           grep -q 'SecretStorage' obsidian-plugin/README.md
