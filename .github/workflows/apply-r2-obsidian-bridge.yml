@@ -26,12 +26,13 @@ jobs:
       - name: Commit patched files
         shell: bash
         run: |
+          git checkout -- .github/workflows/frontend-checks.yml
           if git diff --quiet; then
             echo "No patch changes required"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add obsidian-plugin/main.js obsidian-plugin/manifest.json .github/workflows/frontend-checks.yml
+          git add obsidian-plugin/main.js obsidian-plugin/manifest.json
           git commit -m "Wire Obsidian ARC media sync to R2"
           git push origin HEAD:agent/r2-obsidian-media-bridge
