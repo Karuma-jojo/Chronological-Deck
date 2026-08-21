@@ -146,3 +146,10 @@ Chrono-Deck canonical Markdown should prefer Obsidian MathJax delimiters:
 The reader temporarily normalizes legacy `\\(...\\)` and `\\[...\\]` forms for display. **Fix math rendering in current ARC** can persist that conversion while leaving fenced code blocks untouched.
 
 `supabase/obsidian-reader-v3.sql` adds bounded revision retention. The default policy keeps revision 1, the most recent 50 full snapshots, and every 25th older revision. This avoids unbounded duplication of complete Markdown/JSON snapshots while retaining dense recent history and sparse long-term milestones. Revision numbers themselves are never renumbered or reused.
+
+
+## Media placement and cleanup (v0.4.3)
+
+Each synced media occurrence now records its ARC/source path, 1-based Markdown line number, nearest heading, embed target and exact embed syntax in the Supabase media manifest. The R2 object remains content-addressed binary storage; placement belongs to the Markdown document/manifest layer.
+
+Removing an embed and syncing does not immediately destroy the R2 backup. The old R2 object becomes an explicit orphan candidate only when no current ARC manifest references that object key. Use `Chrono-Deck: Purge unreferenced Chrono-Deck media from cloud` and type `PURGE` to permanently delete those R2 objects and their small Supabase orphan records. Re-adding/re-syncing a reference before purge cancels its orphan status. A temporarily missing local binary whose Markdown embed still exists retains its previous cloud object, so cleanup cannot accidentally erase the recovery copy merely because a phone attachment was deleted.

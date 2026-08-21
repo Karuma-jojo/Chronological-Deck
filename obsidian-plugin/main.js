@@ -124,41 +124,84 @@ function isExternalVideoUrl(value) {
 }
 
 function discoverMediaReferences(markdown) {
-  const text = withoutFencedCode(markdown);
-  const found = new Map();
-  const add = (kind, target, altText = "") => {
+  const lines = String(markdown || "").replace(/\r\n/g, "\n").split("\n");
+  const refs = [];
+  let inFrontmatter = lines[0]?.trim() === "---";
+  let fenced = false;
+  let fenceChar = "";
+  let sourceHeading = "";
+
+  const add = (kind, target, altText, lineNumber, embedSyntax, charIndex = 0) => {
     const cleanTarget = asString(target);
     if (!cleanTarget) return;
-    const key = `${kind}:${cleanTarget}`;
-    if (!found.has(key)) found.set(key, { kind, target: cleanTarget, altText: asString(altText) });
+    const duplicate = refs.some((ref) => ref.lineNumber === lineNumber && ref.kind === kind && ref.target === cleanTarget && ref.charIndex === charIndex);
+    if (duplicate) return;
+    refs.push({
+      kind,
+      target: cleanTarget,
+      altText: asString(altText),
+      lineNumber,
+      sourceHeading,
+      embedTarget: cleanTarget,
+      embedSyntax: asString(embedSyntax),
+      charIndex,
+      position: refs.length,
+    });
   };
 
-  for (const match of text.matchAll(/!\[\[([^\]]+)\]\]/g)) {
-    const raw = match[1].split("|")[0].split("#")[0].trim();
-    if (raw) add("local", raw, match[1].includes("|") ? match[1].split("|").slice(1).join("|") : "");
-  }
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const lineNumber = index + 1;
 
-  for (const match of text.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)) {
-    const target = normalizeMarkdownTarget(match[2]);
-    if (!target) continue;
-    if (/^https?:\/\//i.test(target)) {
-      if (isExternalVideoUrl(target)) add("external", target, match[1]);
-    } else if (MEDIA_MIME_TYPES.has(fileExtension(target))) {
-      add("local", target, match[1]);
+    if (inFrontmatter) {
+      if (index > 0 && line.trim() === "---") inFrontmatter = false;
+      continue;
+    }
+
+    const fence = line.match(/^\s*(```+|~~~+)/);
+    if (fence) {
+      if (!fenced) { fenced = true; fenceChar = fence[1][0]; }
+      else if (fence[1][0] === fenceChar) { fenced = false; fenceChar = ""; }
+      continue;
+    }
+    if (fenced) continue;
+
+    const heading = line.match(/^\s*#{1,6}\s+(.+?)\s*$/);
+    if (heading) sourceHeading = heading[1].trim();
+
+    for (const match of line.matchAll(/!\[\[([^\]]+)\]\]/g)) {
+      const raw = match[1].split("|")[0].split("#")[0].trim();
+      if (!raw || !MEDIA_MIME_TYPES.has(fileExtension(raw))) continue;
+      const alt = match[1].includes("|") ? match[1].split("|").slice(1).join("|") : "";
+      add("local", raw, alt, lineNumber, match[0], match.index || 0);
+    }
+
+    for (const match of line.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)) {
+      const target = normalizeMarkdownTarget(match[2]);
+      if (!target) continue;
+      if (/^https?:\/\//i.test(target)) {
+        if (isExternalVideoUrl(target)) add("external", target, match[1], lineNumber, match[0], match.index || 0);
+      } else if (MEDIA_MIME_TYPES.has(fileExtension(target))) {
+        add("local", target, match[1], lineNumber, match[0], match.index || 0);
+      }
+    }
+
+    for (const match of line.matchAll(/(?<!!)\[[^\]]*\]\(([^)]+)\)/g)) {
+      const target = normalizeMarkdownTarget(match[1]);
+      if (target && !/^https?:\/\//i.test(target) && MEDIA_MIME_TYPES.has(fileExtension(target))) {
+        add("local", target, "", lineNumber, match[0], match.index || 0);
+      }
+    }
+
+    for (const match of line.matchAll(/https?:\/\/[^\s<>)\]]+/g)) {
+      const target = match[0].replace(/[.,;:!?]+$/, "");
+      if (!isExternalVideoUrl(target)) continue;
+      if (refs.some((ref) => ref.lineNumber === lineNumber && ref.target === target)) continue;
+      add("external", target, "", lineNumber, match[0], match.index || 0);
     }
   }
 
-  for (const match of text.matchAll(/(?<!!)\[[^\]]*\]\(([^)]+)\)/g)) {
-    const target = normalizeMarkdownTarget(match[1]);
-    if (target && !/^https?:\/\//i.test(target) && MEDIA_MIME_TYPES.has(fileExtension(target))) add("local", target, "");
-  }
-
-  for (const match of text.matchAll(/https?:\/\/[^\s<>)\]]+/g)) {
-    const target = match[0].replace(/[.,;:!?]+$/, "");
-    if (isExternalVideoUrl(target)) add("external", target, "");
-  }
-
-  return [...found.values()];
+  return refs.map((ref, position) => ({ ...ref, position }));
 }
 
 async function sha256Hex(arrayBuffer) {
@@ -803,6 +846,8 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
     });
 
     this.addCommand({ id: "show-archive-storage-health", name: "Show Chrono-Deck archive storage health", callback: () => this.showArchiveStorageHealth() });
+    this.addCommand({ id: "show-current-arc-media-map", name: "Show current ARC media map", callback: () => this.showCurrentArcMediaMap() });
+    this.addCommand({ id: "purge-orphaned-media", name: "Purge unreferenced Chrono-Deck media from cloud", callback: () => this.purgeOrphanedMedia() });
     this.addCommand({ id: "create-supplementary-arc", name: "Create supplementary ARC from current note", checkCallback: (checking) => {
       const file = this.app.workspace.getActiveFile();
       if (!file || file.extension !== "md") return false;
@@ -1035,16 +1080,33 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
     return null;
   }
 
+  mediaPlacement(ref, sourceFile) {
+    return {
+      position: Number.isInteger(ref?.position) ? ref.position : 0,
+      sourcePath: asString(sourceFile?.path),
+      lineNumber: Number(ref?.lineNumber || 0) || null,
+      sourceHeading: asString(ref?.sourceHeading),
+      embedTarget: asString(ref?.embedTarget || ref?.target),
+      embedSyntax: asString(ref?.embedSyntax),
+    };
+  }
+
+  mediaSlotKey(ref, sourceFile, kind = "local") {
+    return `M-${contentFingerprint(`${kind}:${asString(sourceFile?.path)}:${Number(ref?.lineNumber || 0)}:${Number(ref?.position || 0)}:${asString(ref?.target)}`)}`;
+  }
+
   async hashVaultFile(file) {
     const binary = await this.app.vault.readBinary(file);
     return { binary, contentHash: await sha256Hex(binary) };
   }
 
   async uploadLocalMedia(ref, sourceFile, logicalArcId, session) {
+    const placement = this.mediaPlacement(ref, sourceFile);
     const resolved = this.resolveLocalMediaFile(sourceFile, ref.target);
     if (!resolved) {
       return {
-        slotKey: `M-${contentFingerprint(`missing:${ref.target}`)}`,
+        ...placement,
+        slotKey: this.mediaSlotKey(ref, sourceFile, "missing"),
         mediaType: mediaType(ref.target), status: "missing", purpose: "Local ARC media",
         altText: ref.altText || "", fileName: asString(ref.target).split("/").pop() || "asset.bin",
         mimeType: mediaMimeType(ref.target), localPath: ref.target, storageBackend: "r2",
@@ -1054,7 +1116,8 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
     const byteSize = Number(resolved.stat?.size || 0);
     if (byteSize > MAX_MEDIA_BYTES) {
       return {
-        slotKey: `M-${contentFingerprint(`large:${resolved.path}`)}`,
+        ...placement,
+        slotKey: this.mediaSlotKey(ref, sourceFile, "large"),
         mediaType: mediaType(resolved.path), status: "skipped", purpose: "Local ARC media exceeds 100 MiB bridge safety cap",
         altText: ref.altText || "", fileName: resolved.name, mimeType: mediaMimeType(resolved.path),
         byteSize, localPath: resolved.path, storageBackend: "r2",
@@ -1082,7 +1145,8 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
     }
 
     return {
-      slotKey: `M-${contentFingerprint(`local:${resolved.path}`)}`,
+      ...placement,
+      slotKey: this.mediaSlotKey(ref, sourceFile, "local"),
       mediaType: mediaType(resolved.path), status: "uploaded", purpose: "Local ARC media",
       objectKey: upload.objectKey, altText: ref.altText || "", contentHash,
       fileName: resolved.name, mimeType: mediaMimeType(resolved.path), byteSize,
@@ -1094,25 +1158,57 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
     const frontmatter = this.getFrontmatter(file);
     const logicalArcId = inferLogicalArcId(frontmatter, arcId);
     const refs = discoverMediaReferences(markdown);
+    const previous = await this.loadMediaManifest(arcId, session);
     const items = [];
     const warnings = [];
+
+    const priorForRef = (ref) => previous.find((item) => {
+      if (asString(item?.storageBackend || "r2") !== "r2" || asString(item?.status) !== "uploaded" || !asString(item?.objectKey)) return false;
+      const target = normalizeMarkdownTarget(ref.target);
+      const priorTarget = normalizeMarkdownTarget(item?.embedTarget || item?.localPath || item?.fileName);
+      if (target && priorTarget && target === priorTarget) return true;
+      const targetName = target.split("/").pop();
+      return targetName && targetName === asString(item?.fileName);
+    });
 
     for (const ref of refs) {
       if (ref.kind === "external") {
         items.push({
-          slotKey: `M-${contentFingerprint(`external:${ref.target}`)}`,
+          ...this.mediaPlacement(ref, file),
+          slotKey: this.mediaSlotKey(ref, file, "external"),
           mediaType: "video", status: "linked", purpose: "External video",
           sourceUrl: ref.target, altText: ref.altText || "", storageBackend: "external",
         });
         continue;
       }
       try {
-        items.push(await this.uploadLocalMedia(ref, file, logicalArcId, session));
+        let item = await this.uploadLocalMedia(ref, file, logicalArcId, session);
+        if (item.status === "missing") {
+          const prior = priorForRef(ref);
+          if (prior) {
+            item = {
+              ...item,
+              status: "uploaded",
+              purpose: "Local ARC media (cloud copy retained while local binary is missing)",
+              objectKey: prior.objectKey,
+              contentHash: prior.contentHash,
+              fileName: prior.fileName || item.fileName,
+              mimeType: prior.mimeType || item.mimeType,
+              byteSize: prior.byteSize,
+              localPath: prior.localPath || item.localPath,
+              storageBackend: "r2",
+              remoteEtag: prior.remoteEtag,
+              uploadedAt: prior.uploadedAt,
+            };
+          }
+        }
+        items.push(item);
       } catch (error) {
         console.warn("Chrono-Deck media upload deferred", ref.target, error);
         warnings.push(`${ref.target}: ${error.message}`);
         items.push({
-          slotKey: `M-${contentFingerprint(`pending:${ref.target}`)}`,
+          ...this.mediaPlacement(ref, file),
+          slotKey: this.mediaSlotKey(ref, file, "pending"),
           mediaType: mediaType(ref.target), status: "pending", purpose: "Local ARC media upload deferred",
           altText: ref.altText || "", fileName: asString(ref.target).split("/").pop() || "asset.bin",
           mimeType: mediaMimeType(ref.target), localPath: ref.target, storageBackend: "r2",
@@ -1131,6 +1227,73 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
   async loadMediaManifest(arcId, session) {
     const value = await this.rpc("chrono_load_arc_media_manifest", { p_arc_id: arcId }, session);
     return Array.isArray(value) ? value : [];
+  }
+
+
+  async showCurrentArcMediaMap() {
+    try {
+      const file = this.getActiveArcFile();
+      const validation = validateFrontmatter(this.getFrontmatter(file), file);
+      if (validation.errors.length) throw new Error(validation.errors.join(" "));
+      const session = await this.ensureSession();
+      const manifest = await this.loadMediaManifest(validation.arcId, session);
+      if (!manifest.length) return void new Notice(`${validation.arcId}: no cloud media references are recorded yet.`, 7000);
+      const rows = manifest.slice(0, 8).map((item) => {
+        const line = Number(item?.lineNumber || 0) ? `L${Number(item.lineNumber)}` : "line ?";
+        const heading = asString(item?.sourceHeading) || "(no heading)";
+        const name = asString(item?.fileName || item?.embedTarget || item?.sourceUrl || "media");
+        return `${line} · ${heading} · ${name}`;
+      });
+      const tail = manifest.length > rows.length ? `\n…plus ${manifest.length - rows.length} more.` : "";
+      new Notice(`${validation.arcId} media map:\n${rows.join("\n")}${tail}`, 15000);
+    } catch (error) {
+      new Notice(`Chrono-Deck media map failed: ${error.message}`, 10000);
+    }
+  }
+
+  async listOrphanedMedia(session, logicalArcId = null) {
+    const value = await this.rpc("chrono_list_orphaned_arc_media", {
+      p_logical_arc_id: logicalArcId,
+      p_limit: 2000,
+    }, session);
+    return Array.isArray(value) ? value : [];
+  }
+
+  async purgeOrphanedMedia() {
+    try {
+      const session = await this.ensureSession();
+      const orphans = await this.listOrphanedMedia(session, null);
+      if (!orphans.length) return void new Notice("Chrono-Deck: no unreferenced R2 media objects are waiting for cleanup.", 8000);
+      const totalBytes = orphans.reduce((sum, item) => sum + Number(item?.byteSize || 0), 0);
+      const answer = await new TextPromptModal(
+        this.app,
+        `Purge ${orphans.length} unreferenced cloud media object${orphans.length === 1 ? "" : "s"} (${formatBytes(totalBytes)})? Type PURGE to confirm.`,
+        "PURGE",
+      ).ask();
+      if (answer !== "PURGE") return void new Notice("Chrono-Deck media purge cancelled.");
+
+      let deleted = 0;
+      let missing = 0;
+      const failures = [];
+      for (const item of orphans) {
+        const objectKey = asString(item?.objectKey);
+        if (!objectKey) continue;
+        try {
+          const result = await this.presignMedia({ action: "delete", objectKey }, session);
+          if (!result?.deleted && !result?.missing) throw new Error("gateway did not confirm deletion");
+          if (result?.missing) missing += 1;
+          await this.rpc("chrono_forget_orphaned_arc_media", { p_object_key: objectKey }, session);
+          deleted += 1;
+        } catch (error) {
+          failures.push(`${asString(item?.fileName || objectKey)}: ${error.message}`);
+        }
+      }
+      const failureText = failures.length ? ` Failed (${failures.length}): ${failures.slice(0, 3).join("; ")}${failures.length > 3 ? "; …" : ""}` : "";
+      const missingText = missing ? ` ${missing} object${missing === 1 ? " was" : "s were"} already absent in R2.` : "";
+      new Notice(`Chrono-Deck cloud cleanup: removed ${deleted} orphan record${deleted === 1 ? "" : "s"} and corresponding R2 object${deleted === 1 ? "" : "s"}.${missingText}${failureText}`, failures.length ? 15000 : 10000);
+    } catch (error) {
+      new Notice(`Chrono-Deck media purge failed: ${error.message}`, 12000);
+    }
   }
 
   mediaRestorePath(item, logicalArcId) {
@@ -1431,11 +1594,13 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
       const revision = Number(result?.revision || 0);
       let mediaStatus = "none";
       let mediaCount = 0;
+      let orphanCandidates = 0;
       const mediaWarnings = [];
       try {
         const media = await this.syncMediaForFile(file, payload.document.sourceMarkdown, payload.document.arcId, session);
         mediaStatus = asString(media.manifest?.mediaStatus || "none");
         mediaCount = media.items.filter((item) => item.status === "uploaded" || item.status === "linked").length;
+        orphanCandidates = Number(media.manifest?.orphanCandidates || 0);
         mediaWarnings.push(...media.warnings);
       } catch (error) {
         console.warn("Chrono-Deck media manifest sync deferred", error);
@@ -1467,8 +1632,9 @@ module.exports = class ChronoDeckBridgePlugin extends Plugin {
       const warningText = payload.warnings.length ? ` ${payload.warnings.join(" ")}` : "";
       const pruneText = pruned ? ` Pruned ${pruned} old full snapshot${pruned === 1 ? "" : "s"}.` : "";
       const mediaText = mediaCount ? ` Mirrored ${mediaCount} media item${mediaCount === 1 ? "" : "s"} to R2/external links.` : "";
+      const orphanText = orphanCandidates ? ` ${orphanCandidates} unreferenced cloud media object${orphanCandidates === 1 ? " is" : "s are"} now eligible for explicit cleanup.` : "";
       const mediaWarningText = mediaWarnings.length ? ` Media deferred: ${mediaWarnings.slice(0, 3).join("; ")}${mediaWarnings.length > 3 ? "; …" : ""}` : "";
-      new Notice(`Synced ${payload.document.arcId} revision ${revision}.${mediaText}${pruneText}${warningText}${mediaWarningText}`, mediaWarnings.length ? 12000 : 8000);
+      new Notice(`Synced ${payload.document.arcId} revision ${revision}.${mediaText}${orphanText}${pruneText}${warningText}${mediaWarningText}`, mediaWarnings.length ? 12000 : 9000);
     } catch (error) {
       this.setStatus("Chrono-Deck · sync failed");
       new Notice(`Chrono-Deck sync failed: ${error.message}`, 10000);

@@ -135,8 +135,26 @@ const server = createServer(async (req, res) => {
       } else if (action === "head") {
         objectKey = validateOwnedObjectKey(user.id, body.objectKey);
         method = "HEAD";
+      } else if (action === "delete") {
+        objectKey = validateOwnedObjectKey(user.id, body.objectKey);
+        const deleteUrl = presignR2Object({ method: "DELETE", objectKey, expiresSeconds: 60 });
+        const deleted = await fetch(deleteUrl, { method: "DELETE" });
+        if (deleted.ok || deleted.status === 404) {
+          sendJson(res, 200, {
+            action,
+            method: "DELETE",
+            objectKey,
+            deleted: deleted.ok,
+            missing: deleted.status === 404,
+            storageBackend: "r2",
+          });
+          return;
+        }
+        console.error("Chrono-Deck R2 DELETE failed", deleted.status, await deleted.text().catch(() => ""));
+        sendJson(res, 502, { error: `R2 delete failed (HTTP ${deleted.status})` });
+        return;
       } else {
-        sendJson(res, 400, { error: "action must be upload, download, or head" });
+        sendJson(res, 400, { error: "action must be upload, download, head, or delete" });
         return;
       }
 
