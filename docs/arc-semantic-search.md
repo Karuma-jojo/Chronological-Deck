@@ -82,13 +82,30 @@ find conceptually similar RAW/POLISHED passages even if those exact words were n
 
 ## Completion filter
 
-Semantic search defaults to completed/parked documents:
+Semantic search defaults to academically cleared ARC documents. Completion is deliberately **not** inferred from `planning_status`, because planning state and academic mastery are different dimensions.
+
+`completedOnly: true` includes documents whose normalized `clearance` is one of:
 
 ```text
-planning_status = parked
+core_cleared
+core_cleared_mastery_pending
+fully_mastered
 ```
 
-Set `completedOnly: false` only when unfinished/active documents should also be searched.
+and excludes:
+
+```text
+incomplete
+```
+
+The human-readable Markdown frontmatter values are:
+
+- `Incomplete`
+- `Core Cleared`
+- `Core Cleared — Mastery Pending`
+- `Fully Mastered`
+
+Set `completedOnly: false` only when unfinished/incomplete documents should also be searched.
 
 ## One-time setup
 
@@ -97,7 +114,8 @@ Run migrations in this order:
 1. existing ARC Vault / Obsidian bridge migrations;
 2. `supabase/arc-archive-v1.sql`;
 3. `supabase/arc-archive-sync-v1.sql`;
-4. `supabase/arc-semantic-search-v1.sql`.
+4. `supabase/arc-semantic-search-v1.sql`;
+5. `supabase/arc-clearance-semantic-completion-v1.sql`.
 
 Then deploy the Edge Functions:
 
@@ -108,6 +126,12 @@ supabase functions deploy arc-semantic-backfill
 ```
 
 `arc-embed-section` is designed for a Database Webhook and therefore uses secret-key authentication inside the function even though gateway JWT verification is disabled.
+
+## Academic clearance ingestion
+
+The clearance migration adds a first-class `arc_documents.clearance` field and teaches the Obsidian sync RPC to read `clearance:` directly from the source Markdown frontmatter. Existing synced records preserve their stored clearance if an older note lacks the field.
+
+Legacy canonical notes are backfilled conservatively from explicit academic-status statements only. This keeps `planning_status` available for workflow planning without abusing it as a proxy for mastery.
 
 ## Create the Database Webhook
 
