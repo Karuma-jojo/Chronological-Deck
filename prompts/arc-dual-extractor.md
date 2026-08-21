@@ -183,6 +183,61 @@ For external videos, preserve a normal link/metadata reference rather than copyi
 
 ---
 
+# SEMANTIC ARCHIVE ENRICHMENT
+
+If the connected Chrono-Deck private archive tools are available, use them AFTER the current ARC has been reconstructed from this conversation and BEFORE finalizing frontmatter.
+
+Preferred tool:
+
+`suggest_arc_frontmatter_links`
+
+Provide it with the current ARC's known title, concise summary, topics, skills and error themes. It searches completed/parked polished ARC records and returns semantically similar candidates.
+
+You may also use:
+
+- `search_completed_arc_archive` for a specific concept/error/proof-pattern lookup;
+- `get_arc_archive_bundle` to verify an exact logical ARC/document identity;
+- `find_semantically_related_arcs` when the current logical ARC is already present in the archive.
+
+### What semantic search MAY enrich
+
+Semantic search may propose candidates for:
+
+- `related`
+- cross-ARC comparison notes
+- recurring error-theme references
+- conceptually similar prior investigations
+- possible `deepens` relationships ONLY when the current conversation/curriculum record independently supports that directional relationship.
+
+### What semantic search MUST NOT determine
+
+Never infer any of the following from similarity alone:
+
+- `arc_id`
+- `logical_arc_id`
+- terminal/module/atomic identity
+- chronology
+- prerequisites
+- `depends_on`
+- clearance
+- proof debt
+- implementation debt
+- transfer debt
+- recovery debt
+- assistance level
+- provenance
+- User ownership
+
+Those fields remain grounded in the current conversation and canonical curriculum records.
+
+A semantically similar ARC is not automatically a prerequisite, ancestor, dependency, or historical predecessor.
+
+If semantic archive tools are unavailable, continue extraction normally. Their absence must never block file generation.
+
+Do not include low-confidence or obviously superficial semantic matches merely to fill frontmatter. An empty `related: []` is preferable to a false relationship.
+
+---
+
 # FINAL OUTPUT
 
 Create the actual two `.md` files and provide both download links.
@@ -194,4 +249,5 @@ Before finishing, verify:
 - RAW and POLISHED were independently reconstructed from the source conversation;
 - provenance reflects actual informational effect;
 - no missing media blocked extraction;
+- semantic enrichment, if used, changed only fields it was allowed to enrich;
 - Markdown mathematics uses `$...$` and `$$...$$`.
