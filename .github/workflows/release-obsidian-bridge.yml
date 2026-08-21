@@ -1,0 +1,92 @@
+name: Release Chrono-Deck Bridge
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "obsidian-plugin/main.js"
+      - "obsidian-plugin/manifest.json"
+      - "obsidian-plugin/styles.css"
+      - ".github/workflows/release-obsidian-bridge.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "obsidian-plugin/main.js"
+      - "obsidian-plugin/manifest.json"
+      - "obsidian-plugin/styles.css"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate plugin assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check obsidian-plugin/main.js
+          node - <<'NODE'
+          const fs = require('fs');
+          const manifest = JSON.parse(fs.readFileSync('obsidian-plugin/manifest.json', 'utf8'));
+          if (!/^\d+\.\d+\.\d+$/.test(manifest.version || '')) {
+            throw new Error(`manifest version must be x.y.z, got ${manifest.version}`);
+          }
+          if (manifest.id !== 'chrono-deck-bridge') {
+            throw new Error(`unexpected plugin id: ${manifest.id}`);
+          }
+          NODE
+          test -f obsidian-plugin/styles.css
+
+      - name: Require a fresh version on plugin changes
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=$(node -p "require('./obsidian-plugin/manifest.json').version")
+          if gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "::error::Chrono-Deck Bridge release $VERSION already exists. Bump obsidian-plugin/manifest.json before merging plugin asset changes."
+            exit 1
+          fi
+
+  release:
+    if: github.event_name == 'push'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish BRAT-compatible GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=$(node -p "require('./obsidian-plugin/manifest.json').version")
+
+          if gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "::error::Release $VERSION already exists. Bump the plugin manifest version for every new plugin-asset release."
+            exit 1
+          fi
+
+          mkdir -p release-assets
+          cp obsidian-plugin/main.js release-assets/main.js
+          cp obsidian-plugin/manifest.json release-assets/manifest.json
+          cp obsidian-plugin/styles.css release-assets/styles.css
+
+          gh release create "$VERSION" \
+            release-assets/main.js \
+            release-assets/manifest.json \
+            release-assets/styles.css \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "$VERSION" \
+            --notes "Chrono-Deck Bridge $VERSION. Install or update through BRAT using Karuma-jojo/Chronological-Deck."
