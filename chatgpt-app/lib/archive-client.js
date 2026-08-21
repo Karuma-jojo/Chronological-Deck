@@ -16,8 +16,6 @@ function boundedLimit(value, fallback = 12, max = 40) {
   return Math.max(1, Math.min(Math.trunc(parsed), max));
 }
 
-let authCache = null;
-
 async function requestJson(url, options = {}) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), DEFAULT_TIMEOUT_MS);
@@ -39,73 +37,19 @@ async function requestJson(url, options = {}) {
 function config() {
   return {
     base: cleanBase(requireEnv("CHRONO_SUPABASE_URL")),
-    anonKey: requireEnv("CHRONO_SUPABASE_ANON_KEY"),
-    email: requireEnv("CHRONO_SUPABASE_EMAIL"),
-    password: requireEnv("CHRONO_SUPABASE_PASSWORD"),
+    archiveToken: requireEnv("CHRONO_SUPABASE_ARCHIVE_TOKEN"),
   };
 }
 
-async function passwordLogin(cfg) {
-  const payload = await requestJson(`${cfg.base}/auth/v1/token?grant_type=password`, {
+async function archiveRequest(body) {
+  const cfg = config();
+  return requestJson(`${cfg.base}/functions/v1/arc-archive-access`, {
     method: "POST",
     headers: {
-      apikey: cfg.anonKey,
       "content-type": "application/json",
+      "x-chrono-archive-secret": cfg.archiveToken,
     },
-    body: JSON.stringify({ email: cfg.email, password: cfg.password }),
-  });
-  if (!payload?.access_token || !payload?.refresh_token) throw new Error("Supabase login did not return a usable session.");
-  authCache = {
-    accessToken: payload.access_token,
-    refreshToken: payload.refresh_token,
-    expiresAt: Number(payload.expires_at || Math.floor(Date.now() / 1000) + Number(payload.expires_in || 3600)),
-    userId: payload.user?.id || null,
-  };
-  return authCache;
-}
-
-async function refreshLogin(cfg) {
-  if (!authCache?.refreshToken) return passwordLogin(cfg);
-  try {
-    const payload = await requestJson(`${cfg.base}/auth/v1/token?grant_type=refresh_token`, {
-      method: "POST",
-      headers: {
-        apikey: cfg.anonKey,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ refresh_token: authCache.refreshToken }),
-    });
-    authCache = {
-      accessToken: payload.access_token,
-      refreshToken: payload.refresh_token,
-      expiresAt: Number(payload.expires_at || Math.floor(Date.now() / 1000) + Number(payload.expires_in || 3600)),
-      userId: payload.user?.id || authCache.userId || null,
-    };
-    return authCache;
-  } catch {
-    authCache = null;
-    return passwordLogin(cfg);
-  }
-}
-
-async function ensureSession() {
-  const cfg = config();
-  const now = Math.floor(Date.now() / 1000);
-  if (!authCache) return { cfg, session: await passwordLogin(cfg) };
-  if (authCache.expiresAt > now + 90) return { cfg, session: authCache };
-  return { cfg, session: await refreshLogin(cfg) };
-}
-
-async function authedRequest(path, { method = "POST", body = null } = {}) {
-  const { cfg, session } = await ensureSession();
-  return requestJson(`${cfg.base}${path}`, {
-    method,
-    headers: {
-      apikey: cfg.anonKey,
-      Authorization: `Bearer ${session.accessToken}`,
-      "content-type": "application/json",
-    },
-    body: body === null ? undefined : JSON.stringify(body),
+    body: JSON.stringify(body || {}),
   });
 }
 
@@ -118,14 +62,13 @@ export async function semanticSearchCompleted({
 }) {
   const cleanQuery = String(query || "").trim();
   if (!cleanQuery) throw new Error("Search query is required.");
-  const payload = await authedRequest("/functions/v1/arc-semantic-search", {
-    body: {
-      query: cleanQuery,
-      logicalArcId: logicalArcId || null,
-      documentType: documentType || null,
-      completedOnly: Boolean(completedOnly),
-      limit: boundedLimit(limit, 12, 40),
-    },
+  const payload = await archiveRequest({
+    mode: "search",
+    query: cleanQuery,
+    logicalArcId: logicalArcId || null,
+    documentType: documentType || null,
+    completedOnly: Boolean(completedOnly),
+    limit: boundedLimit(limit, 12, 40),
   });
   return {
     query: cleanQuery,
@@ -138,23 +81,23 @@ export async function semanticSearchCompleted({
 export async function loadArcBundle(logicalArcId) {
   const id = String(logicalArcId || "").trim();
   if (!id) throw new Error("logicalArcId is required.");
-  const payload = await authedRequest("/rest/v1/rpc/chrono_load_arc_bundle", {
-    body: { p_logical_arc_id: id },
-  });
-  return Array.isArray(payload) ? payload : [];
+  const payload = await archiveRequest({ mode: "bundle", logicalArcId: id });
+  return Array.isArray(payload?.documents) ? payload.documents : [];
 }
 
 export async function semanticRelatedArcs(logicalArcId, limit = 8) {
   const id = String(logicalArcId || "").trim();
   if (!id) throw new Error("logicalArcId is required.");
-  const payload = await authedRequest("/rest/v1/rpc/chrono_semantic_related_arcs", {
-    body: { p_logical_arc_id: id, p_limit: boundedLimit(limit, 8, 25) },
+  const payload = await archiveRequest({
+    mode: "related",
+    logicalArcId: id,
+    limit: boundedLimit(limit, 8, 25),
   });
-  return Array.isArray(payload) ? payload : [];
+  return Array.isArray(payload?.suggestions) ? payload.suggestions : [];
 }
 
 export async function semanticEmbeddingStatus() {
-  return authedRequest("/rest/v1/rpc/chrono_semantic_embedding_status", { body: {} });
+  return archiveRequest({ mode: "status" });
 }
 
 export async function suggestFrontmatterLinks({
@@ -213,5 +156,5 @@ export async function suggestFrontmatterLinks({
 }
 
 export function resetArchiveAuthCacheForTests() {
-  authCache = null;
+  // Kept for test compatibility; token-based access has no user-session cache.
 }
