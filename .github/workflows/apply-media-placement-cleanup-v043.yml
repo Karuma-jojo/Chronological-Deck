@@ -34,6 +34,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add obsidian-plugin/main.js obsidian-plugin/manifest.json chatgpt-app/media-gateway.js .github/workflows/frontend-checks.yml docs/obsidian-bridge.md
+          git add obsidian-plugin/main.js obsidian-plugin/manifest.json chatgpt-app/media-gateway.js docs/obsidian-bridge.md
           git commit -m "Track ARC media placement and add safe cloud cleanup"
           git push origin HEAD:agent/media-placement-cleanup-v043
