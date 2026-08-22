@@ -19,13 +19,19 @@ jobs:
         shell: bash
         run: |
           node --input-type=module --check < js/data/t22-atomic-arcs.js
+          node --input-type=module --check < js/data/t22-rich-syllabus.js
           node --input-type=module --check < js/t22-atomic-ui.js
           node --input-type=module --check < js/site-v12.js
           node --input-type=module --check < js/site-v11.js
           node --input-type=module --check < scripts/validate-t22-atomic.mjs
+          node --input-type=module --check < scripts/validate-t22-rich-syllabus.mjs
+          node --input-type=module --check < chatgpt-app/lib/catalog.js
 
       - name: Validate content-derived T22 curriculum
         run: node scripts/validate-t22-atomic.mjs
+
+      - name: Validate rich T22 syllabus contracts
+        run: node scripts/validate-t22-rich-syllabus.mjs
 
       - name: Validate T22 audit-v2 bootstrap wiring
         shell: bash
@@ -37,3 +43,5 @@ jobs:
           grep -q 'T22_ATOMIC_AUDIT_VERSION = "2.0"' js/data/t22-atomic-arcs.js
           grep -q 'chrono_t22_atomic_progress_v2' js/t22-atomic-ui.js
           grep -q 'no per-module arc cap' js/t22-atomic-ui.js
+          grep -q 'T22_RICH_SYLLABUS_VERSION = "3.0"' js/data/t22-rich-syllabus.js
+          grep -q 'Copy mission card' js/t22-atomic-ui.js

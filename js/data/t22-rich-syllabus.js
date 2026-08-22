@@ -1,0 +1,240 @@
+export const T22_RICH_SYLLABUS_VERSION = "3.0";
+
+const MODULE_1 = {
+  moduleId: "ARC053",
+  syllabusVersion: T22_RICH_SYLLABUS_VERSION,
+  roleTarget: "Quantitative research hybrid: mathematically dominant, implementation-capable, research-first.",
+  modulePurpose:
+    "Build the single-variable derivative as a local sensitivity and first-order modelling tool, then derive the core algebraic differentiation machinery needed later in optimization, probability, statistics, machine learning and scientific computing.",
+  moduleDestination:
+    "The learner can reconstruct a derivative from finite changes, justify local control, interpret differentiability as first-order local linearity, and derive/apply the core power, product/quotient and chain-rule structures without formula-only memorization.",
+  entryPrerequisites: [
+    "Basic arithmetic and algebra",
+    "Functions and function evaluation",
+    "Coordinates, line slope and average rate",
+    "Deductive reasoning and willingness to justify claims",
+  ],
+  explicitlyOutOfScope: [
+    "General sequence/function limit theory beyond what the active derivative argument requires",
+    "Integration and the Fundamental Theorem of Calculus",
+    "Taylor series or second-order approximation",
+    "Multivariable calculus, Jacobians or Hessians",
+    "Optimization and Newton methods",
+    "Implicit differentiation and a large catalogue of special-function derivative tricks",
+  ],
+  arcs: {
+    "T22-M01-A01": {
+      focus: "From finite secant rates to the need for an instantaneous rate.",
+      roleRelevance:
+        "Trains local-rate reasoning and disciplined inference from finite observations, a recurring pattern in empirical and mathematical modelling.",
+      purpose:
+        "Create the need for an instantaneous rate from quantities that are only directly measurable over finite intervals.",
+      principalObstacle:
+        "A rate at one instant cannot be computed by ordinary distance-over-time on a zero-length interval, yet finite secant rates can approach a stable candidate.",
+      entryPrerequisites: ["Algebra", "Functions", "Coordinates", "Slope / average rate"],
+      target:
+        "Independently construct a defensible meaning of instantaneous rate from families of finite secant rates without substituting a zero interval.",
+      requiredMastery: [
+        "Distinguish average rate from instantaneous rate",
+        "Compute and compare shrinking finite-interval rates",
+        "Identify a stable candidate without treating finite numerical agreement as proof",
+        "Explain why direct substitution of a zero interval is invalid",
+        "Transfer the finite-to-local-rate idea to a different changing quantity",
+      ],
+      applicationScope:
+        "One concrete changing-system application in which a local rate must be inferred from finite observations.",
+      transferScope:
+        "Different surface context, same finite-to-local rate problem; no cosmetic number swap.",
+      explicitlyOutOfScope: [
+        "General difference-quotient formalism",
+        "General epsilon-delta theory",
+        "Tangent/local-linearity interpretation",
+        "Differentiation rules",
+      ],
+      nextArcBoundary:
+        "A02 owns universal control of the shrinking-interval idea through the difference quotient.",
+    },
+    "T22-M01-A02": {
+      focus: "Universal vanishing-interval control and the difference quotient.",
+      roleRelevance:
+        "Builds quantifier discipline, error control and the distinction between a convenient sample path and a universal local claim.",
+      purpose:
+        "Turn the informal shrinking-secant idea into a controlled mathematical object whose local value is not an artifact of one convenient approach path.",
+      principalObstacle:
+        "Agreement along one family of shrinking intervals does not establish a unique local rate for all sufficiently nearby admissible choices.",
+      entryPrerequisites: [
+        "T22-M01-A01",
+        "Algebraic manipulation",
+        "Absolute value / elementary inequalities as needed",
+      ],
+      target:
+        "Construct and control a difference quotient under genuinely vanishing intervals with the correct logical quantifier order.",
+      requiredMastery: [
+        "Construct the relevant difference quotient",
+        "Handle asymmetric nearby points rather than only one symmetric sequence",
+        "Distinguish a special shrinking path from universal local control",
+        "Represent approximation error as a magnitude",
+        "Prove a tolerance-to-neighborhood statement in a concrete case",
+        "Distinguish candidate discovery from proof",
+      ],
+      applicationScope:
+        "One operational use of the established local-rate value after the central proof is secure.",
+      transferScope:
+        "A different function or setting in which a plausible shrinking family may or may not establish the universal claim.",
+      explicitlyOutOfScope: [
+        "General theory of limits",
+        "Tangent-line/local-linearity interpretation",
+        "Differentiation rules",
+        "General continuity theory",
+      ],
+      nextArcBoundary:
+        "A03 owns the geometric and modelling meaning of the derivative as a first-order local line.",
+    },
+    "T22-M01-A03": {
+      focus: "Tangent slope, local linearity and first-order sensitivity.",
+      roleRelevance:
+        "Local linearization is foundational for optimization, likelihood methods, Taylor approximations, numerical analysis, multivariable calculus and model sensitivity.",
+      purpose:
+        "Convert the derivative from a limiting number into the first-order local model of a nonlinear function.",
+      principalObstacle:
+        "Understand why one line captures first-order local behaviour, not merely why shrinking secants look visually tangent.",
+      entryPrerequisites: ["T22-M01-A01", "T22-M01-A02", "Equations of lines", "Algebra"],
+      target:
+        "Establish and use the local representation f(a+h) = f(a) + m h + r(h), where m is the derivative and the residual is negligible relative to h.",
+      requiredMastery: [
+        "Connect derivative and tangent slope without relying only on a picture",
+        "Construct the tangent / local linear approximation at a point",
+        "Explain first-order negligible error using error divided by displacement",
+        "Use the local line to estimate nearby function values",
+        "Distinguish small absolute error from first-order local accuracy",
+        "Diagnose a corner/cusp-style case where one local linear model fails",
+        "Defend the idea in an unfamiliar transfer",
+      ],
+      applicationScope:
+        "One nearby-value approximation or local-sensitivity problem using a genuinely nonlinear function.",
+      transferScope:
+        "Change surface/domain while preserving the question of whether one first-order local model captures nearby behaviour.",
+      explicitlyOutOfScope: [
+        "General Taylor series",
+        "Second-order approximation",
+        "Newton's method",
+        "Multivariable differentials",
+        "Derivative rules not yet established",
+      ],
+      nextArcBoundary:
+        "A04 owns systematic derivative structure for powers and polynomials.",
+    },
+    "T22-M01-A04": {
+      focus: "Power-rule structure from first principles rather than memorization.",
+      roleRelevance:
+        "Builds the habit of deriving reusable sensitivity laws from algebraic structure instead of treating calculus as a formula catalogue.",
+      purpose:
+        "Discover why the local sensitivity of x^n has coefficient n and exponent n-1.",
+      principalObstacle:
+        "Extract the first-order contribution of a power under a small perturbation and justify why the remaining terms vanish at smaller order.",
+      entryPrerequisites: [
+        "T22-M01-A01 through A03",
+        "Polynomial algebra",
+        "Factorization / binomial reasoning",
+      ],
+      target:
+        "Derive d(x^n)/dx = n x^(n-1) for positive integer n from the derivative definition or equivalent first-order increment structure.",
+      requiredMastery: [
+        "Derive rather than quote the power rule",
+        "Explain structurally where the coefficient n comes from",
+        "Use linearity plus the rule to differentiate finite polynomials",
+        "Distinguish derivation from pattern recognition",
+        "Transfer the perturbation structure to an unfamiliar polynomial-like expression",
+      ],
+      applicationScope:
+        "One polynomial sensitivity/rate model where the derivative has an interpretable operational meaning.",
+      transferScope:
+        "A changed algebraic surface requiring recognition of the same first-order power structure.",
+      explicitlyOutOfScope: [
+        "Arbitrary real powers",
+        "Logarithmic differentiation",
+        "Exponential/logarithmic derivative theory",
+        "General Taylor series",
+      ],
+      nextArcBoundary:
+        "A05 owns first-order change under products, reciprocals and ratios.",
+    },
+    "T22-M01-A05": {
+      focus: "First-order algebra: products, reciprocals and ratio sensitivity.",
+      roleRelevance:
+        "Directly trains perturbation propagation through algebraic combinations, a pattern that later reappears in statistical, financial and numerical models.",
+      purpose:
+        "Understand product and quotient rules as consequences of first-order change rather than unrelated formulas.",
+      principalObstacle:
+        "When several quantities change simultaneously, identify which increment terms survive at first order and which interaction terms become negligible.",
+      entryPrerequisites: ["T22-M01-A03", "T22-M01-A04", "Algebraic expansion", "Nonzero denominator logic"],
+      target:
+        "Derive the product rule from increment/local-linear structure, then derive reciprocal change and quotient behaviour with the necessary denominator condition.",
+      requiredMastery: [
+        "Derive the product rule from a two-factor perturbation",
+        "Explain why the cross-product of two small increments is not first-order",
+        "Derive the reciprocal derivative under a nonzero-value condition",
+        "Construct the quotient rule from product/reciprocal structure",
+        "State and use the denominator condition correctly",
+        "Apply the structure in a nontrivial algebraic sensitivity problem",
+      ],
+      applicationScope:
+        "Sensitivity of a quantity built multiplicatively or as a ratio, with interpretation of the resulting first-order effects.",
+      transferScope:
+        "A different model surface that requires recognizing first-order algebra rather than recalling a named rule.",
+      explicitlyOutOfScope: ["Composition / chain rule", "Implicit differentiation", "Logarithmic differentiation"],
+      nextArcBoundary:
+        "A06 owns nested dependence: one changing quantity feeding another.",
+    },
+    "T22-M01-A06": {
+      focus: "Composition, nested dependence and propagation of local sensitivity.",
+      roleRelevance:
+        "Core machinery for transformed variables, likelihoods, loss functions, optimization objectives, computational graphs and later matrix calculus.",
+      purpose:
+        "Reconstruct the chain rule as the propagation of local scaling through nested dependence.",
+      principalObstacle:
+        "A change in an outer quantity is mediated by an intermediate quantity whose own local scale of change must also be accounted for.",
+      entryPrerequisites: ["T22-M01-A03 through A05", "Function composition"],
+      target:
+        "Derive (f∘g)'(x) = f'(g(x)) g'(x) from local changes / local linearity rather than a memorized outside-inside mnemonic.",
+      requiredMastery: [
+        "Distinguish direct from mediated dependence",
+        "Derive the multiplicative scaling of local changes through a composition",
+        "Track evaluation points correctly",
+        "Apply the rule through more than one nesting layer",
+        "Diagnose an invalid chain-rule manipulation",
+        "Transfer the nested-sensitivity structure to an unfamiliar dependency problem",
+      ],
+      applicationScope:
+        "One sensitivity calculation involving an intermediate transformed variable or nested model component.",
+      transferScope:
+        "A different dependency structure requiring recognition of nested local scaling rather than syntactic formula matching.",
+      explicitlyOutOfScope: [
+        "Multivariable chain rule",
+        "Jacobians",
+        "Backpropagation as a full algorithm",
+        "Implicit differentiation",
+      ],
+      nextArcBoundary:
+        "The following module owns general convergence and limit machinery; later modules reactivate chain-rule structure in multivariable and matrix settings.",
+    },
+  },
+};
+
+export const T22_RICH_MODULES = Object.freeze({ ARC053: MODULE_1 });
+
+export function getT22RichModule(moduleId) {
+  return T22_RICH_MODULES[moduleId] ?? null;
+}
+
+export function enrichT22AtomicArc(moduleId, arc) {
+  const module = getT22RichModule(moduleId);
+  const rich = module?.arcs?.[arc?.id];
+  if (!rich) return { ...arc };
+  return {
+    ...arc,
+    syllabusVersion: module.syllabusVersion,
+    roleTarget: module.roleTarget,
+    ...rich,
+  };
+}
