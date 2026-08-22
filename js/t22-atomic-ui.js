@@ -7,6 +7,10 @@ import {
   T22_ATOMIC_TARGET_HOURS_PER_ARC,
   T22_ATOMIC_WORK_RANGE_HOURS,
 } from "./data/t22-atomic-arcs.js";
+import {
+  enrichT22AtomicArc,
+  getT22RichModule,
+} from "./data/t22-rich-syllabus.js";
 
 const T22_ID = "T22";
 const ATOMIC_KEY = "chrono_t22_atomic_progress_v2";
@@ -14,6 +18,7 @@ const LEGACY_ATOMIC_KEY = "chrono_t22_atomic_progress_v1";
 const WORLD_PROGRESS_KEY = "chrono_mastery_world_v1_progress";
 const terminal = WORLD.terminals.find((candidate) => candidate.id === T22_ID);
 const moduleIds = terminal?.order || [];
+const moduleById = new Map((WORLD.nodes || []).map((node) => [node.id, node]));
 const allAtomicIds = new Set(Object.values(T22_ATOMIC_MODULES).flat().map((arc) => arc.id));
 let atomicDone = loadAtomicProgress();
 let selectedModuleId = null;
@@ -107,8 +112,9 @@ function ensureStyles() {
   style.textContent = `
     #t22AtomicShell{margin-top:12px}
     .t22-atomic-callout{border:1px solid var(--border);background:var(--panel2);border-radius:10px;padding:8px 9px;font-size:10px;line-height:1.45;color:var(--muted);margin-bottom:8px}
+    .t22-atomic-contract{margin-top:7px;padding-top:7px;border-top:1px dashed var(--border);display:grid;gap:4px}
     .t22-atomic-list{display:grid;gap:6px}
-    .t22-atomic-row{display:grid;grid-template-columns:18px 1fr auto;gap:7px;align-items:start;border:1px solid var(--border);background:color-mix(in srgb,var(--panel2) 88%,transparent);border-radius:9px;padding:7px 8px;font-size:10px;line-height:1.35}
+    .t22-atomic-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:7px;align-items:start;border:1px solid var(--border);background:color-mix(in srgb,var(--panel2) 88%,transparent);border-radius:9px;padding:7px 8px;font-size:10px;line-height:1.35}
     .t22-atomic-row.done{border-color:color-mix(in srgb,var(--green) 55%,var(--border));background:color-mix(in srgb,var(--green) 8%,var(--panel2))}
     .t22-atomic-row.next{border-color:var(--blue)}
     .t22-atomic-row.locked{opacity:.52}
@@ -116,6 +122,14 @@ function ensureStyles() {
     .t22-atomic-code{color:var(--muted);font-size:9px;white-space:nowrap}
     .t22-atomic-title{color:var(--text)}
     .t22-atomic-title small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+    .t22-atomic-card{margin-top:6px;border-top:1px dashed var(--border);padding-top:5px;color:var(--muted)}
+    .t22-atomic-card summary{cursor:pointer;color:var(--text);font-size:9px;user-select:none}
+    .t22-atomic-card-body{display:grid;gap:5px;margin-top:6px}
+    .t22-atomic-card-body strong{color:var(--text)}
+    .t22-atomic-card-body ul{margin:2px 0 0 16px;padding:0}
+    .t22-atomic-card-body li{margin:1px 0}
+    .t22-copy-card{justify-self:start;border:1px solid var(--border);background:var(--panel);color:var(--text);border-radius:7px;padding:4px 7px;font:inherit;cursor:pointer}
+    .t22-copy-card:hover{border-color:var(--blue)}
     .t22-atomic-progress-note{margin-top:6px;color:var(--muted);font-size:9px;line-height:1.4}
   `;
   document.head.appendChild(style);
@@ -167,12 +181,87 @@ function toggleAtomic(moduleId, index, checked) {
   scheduleRender();
 }
 
+function renderList(items) {
+  if (!Array.isArray(items) || items.length === 0) return "<span>None specified.</span>";
+  return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+}
+
+function missionCardText(moduleId, moduleIndex, arc, richModule) {
+  const moduleNode = moduleById.get(moduleId);
+  const lines = [
+    `Module ${moduleIndex + 1} / ${moduleIds.length} · atomic audit v${T22_ATOMIC_AUDIT_VERSION} · syllabus contract v${arc.syllabusVersion}`,
+    `Parent: ${moduleId} — ${moduleNode?.title || moduleId}`,
+    `Atomic ARC: ${arc.id} — ${arc.title}`,
+    "",
+    `Role target: ${arc.roleTarget || richModule?.roleTarget || "Quantitative research"}`,
+    `Module purpose: ${richModule?.modulePurpose || ""}`,
+    `Module destination: ${richModule?.moduleDestination || ""}`,
+    "",
+    `Focus: ${arc.focus || ""}`,
+    `Quant-research relevance: ${arc.roleRelevance || ""}`,
+    `Purpose: ${arc.purpose || ""}`,
+    `Principal obstacle: ${arc.principalObstacle || ""}`,
+    "",
+    "Entry prerequisites:",
+    ...(arc.entryPrerequisites || []).map((item) => `- ${item}`),
+    "",
+    `Target: ${arc.target || ""}`,
+    "",
+    "Required mastery:",
+    ...(arc.requiredMastery || []).map((item) => `- ${item}`),
+    "",
+    `Application scope: ${arc.applicationScope || ""}`,
+    `Transfer scope: ${arc.transferScope || ""}`,
+    "",
+    "Explicitly out of scope:",
+    ...(arc.explicitlyOutOfScope || []).map((item) => `- ${item}`),
+    "",
+    `Next ARC boundary: ${arc.nextArcBoundary || ""}`,
+  ];
+  return lines.join("\n").trim();
+}
+
+async function copyMissionCard(moduleId, moduleIndex, arc, richModule, button) {
+  const original = button.textContent;
+  try {
+    await navigator.clipboard.writeText(missionCardText(moduleId, moduleIndex, arc, richModule));
+    button.textContent = "Copied";
+  } catch (error) {
+    button.textContent = "Copy failed";
+  }
+  window.setTimeout(() => { button.textContent = original; }, 1200);
+}
+
+function renderRichCard(moduleId, moduleIndex, arc, richModule) {
+  if (!arc.syllabusVersion) return "";
+  return `
+    <details class="t22-atomic-card">
+      <summary>Mission syllabus card · v${escapeHtml(arc.syllabusVersion)}</summary>
+      <div class="t22-atomic-card-body">
+        <div><strong>Quant-research relevance</strong><br>${escapeHtml(arc.roleRelevance)}</div>
+        <div><strong>Purpose</strong><br>${escapeHtml(arc.purpose)}</div>
+        <div><strong>Principal obstacle</strong><br>${escapeHtml(arc.principalObstacle)}</div>
+        <div><strong>Target</strong><br>${escapeHtml(arc.target)}</div>
+        <div><strong>Entry prerequisites</strong>${renderList(arc.entryPrerequisites)}</div>
+        <div><strong>Required mastery</strong>${renderList(arc.requiredMastery)}</div>
+        <div><strong>Application envelope</strong><br>${escapeHtml(arc.applicationScope)}</div>
+        <div><strong>Transfer envelope</strong><br>${escapeHtml(arc.transferScope)}</div>
+        <div><strong>Explicitly out of scope</strong>${renderList(arc.explicitlyOutOfScope)}</div>
+        <div><strong>Next-ARC boundary</strong><br>${escapeHtml(arc.nextArcBoundary)}</div>
+        <button class="t22-copy-card" type="button">Copy mission card</button>
+      </div>
+    </details>
+  `;
+}
+
 function renderAtomicPanel() {
   const shell = ensureAtomicPanel();
   if (!shell) return;
   const isT22 = document.getElementById("terminalSelect")?.value === T22_ID;
   const moduleId = isT22 ? moduleIdFromDetail() : null;
-  const arcs = moduleId ? T22_ATOMIC_MODULES[moduleId] : null;
+  const baseArcs = moduleId ? T22_ATOMIC_MODULES[moduleId] : null;
+  const richModule = moduleId ? getT22RichModule(moduleId) : null;
+  const arcs = baseArcs?.map((arc) => enrichT22AtomicArc(moduleId, arc));
 
   shell.style.display = arcs ? "block" : "none";
   setModuleCheckboxMode(Boolean(arcs));
@@ -186,28 +275,48 @@ function renderAtomicPanel() {
   const list = document.getElementById("t22AtomicList");
   if (!meta || !list) return;
 
-  const desiredMeta = `<strong>Module ${moduleIndex + 1} / ${moduleIds.length} · ${doneCount}/${arcs.length} atomic arcs · audit v${T22_ATOMIC_AUDIT_VERSION}</strong><br>` +
-    `Content-derived decomposition: there is no per-module arc cap. Nominal bookkeeping: ~${arcs.length * T22_ATOMIC_TARGET_HOURS_PER_ARC} focused hours. Each atomic arc targets ~${T22_ATOMIC_TARGET_HOURS_PER_ARC}h; ${T22_ATOMIC_WORK_RANGE_HOURS[0]}–${T22_ATOMIC_WORK_RANGE_HOURS[1]}h is the normal range. Oversized units split or move misplaced content.`;
+  const syllabusBadge = richModule ? ` · syllabus v${escapeHtml(richModule.syllabusVersion)}` : "";
+  const contract = richModule ? `
+    <div class="t22-atomic-contract">
+      <div><strong>Role target:</strong> ${escapeHtml(richModule.roleTarget)}</div>
+      <div><strong>Module purpose:</strong> ${escapeHtml(richModule.modulePurpose)}</div>
+      <div><strong>Destination:</strong> ${escapeHtml(richModule.moduleDestination)}</div>
+    </div>
+  ` : "";
+  const desiredMeta = `<strong>Module ${moduleIndex + 1} / ${moduleIds.length} · ${doneCount}/${arcs.length} atomic arcs · atomic audit v${T22_ATOMIC_AUDIT_VERSION}${syllabusBadge}</strong><br>` +
+    `Content-derived decomposition: there is no per-module arc cap. Nominal bookkeeping: ~${arcs.length * T22_ATOMIC_TARGET_HOURS_PER_ARC} focused hours. Each atomic arc targets ~${T22_ATOMIC_TARGET_HOURS_PER_ARC}h; ${T22_ATOMIC_WORK_RANGE_HOURS[0]}–${T22_ATOMIC_WORK_RANGE_HOURS[1]}h is the normal range. Oversized units split or move misplaced content.${contract}`;
   if (meta.innerHTML !== desiredMeta) meta.innerHTML = desiredMeta;
 
   list.innerHTML = "";
   arcs.forEach((arc, index) => {
     const done = atomicDone.has(arc.id);
     const available = status !== "locked" && (done || index === 0 || atomicDone.has(arcs[index - 1].id));
-    const row = document.createElement("label");
+    const row = document.createElement("div");
     row.className = `t22-atomic-row${done ? " done" : ""}${!done && index === firstIncomplete && available ? " next" : ""}${!available ? " locked" : ""}`;
     row.innerHTML = `
-      <input type="checkbox" ${done ? "checked" : ""} ${available ? "" : "disabled"}>
-      <span class="t22-atomic-title">${escapeHtml(arc.title)}<small>One principal obstacle → operational use → unfamiliar transfer.</small></span>
+      <input type="checkbox" aria-label="Mark ${escapeHtml(arc.id)} complete" ${done ? "checked" : ""} ${available ? "" : "disabled"}>
+      <div class="t22-atomic-title">
+        ${escapeHtml(arc.title)}
+        <small>${escapeHtml(arc.focus || "One principal obstacle → operational use → unfamiliar transfer.")}</small>
+        ${renderRichCard(moduleId, moduleIndex, arc, richModule)}
+      </div>
       <span class="t22-atomic-code">${escapeHtml(arc.id)} · ~${arc.targetHours}h</span>
     `;
     row.querySelector("input").addEventListener("change", (event) => toggleAtomic(moduleId, index, event.target.checked));
+    const copyButton = row.querySelector(".t22-copy-card");
+    copyButton?.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      copyMissionCard(moduleId, moduleIndex, arc, richModule, copyButton);
+    });
     list.appendChild(row);
   });
 
   const note = document.createElement("div");
   note.className = "t22-atomic-progress-note";
-  note.textContent = "Atomic audit-v2 subprogress is local to this browser. Partial v1 atomic checkmarks are archived rather than reinterpreted; completed 58-module checkpoints are preserved through the existing Chrono-Deck progress/cloud system.";
+  note.textContent = richModule
+    ? "Atomic progress still uses the v2 stable IDs; syllabus v3 enriches the card without reinterpreting completed A01/A02 work. Partial v1 checkmarks remain archived."
+    : "Atomic audit-v2 subprogress is local to this browser. Partial v1 atomic checkmarks are archived rather than reinterpreted; completed 58-module checkpoints are preserved through the existing Chrono-Deck progress/cloud system.";
   list.appendChild(note);
 }
 
