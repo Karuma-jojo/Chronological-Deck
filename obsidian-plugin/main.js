@@ -5,6 +5,18 @@ const LegacyChronoDeckBridge = require("./main-v043");
 const contract = require("./archive-contract-v3");
 
 module.exports = class ChronoDeckBridgePluginV3 extends LegacyChronoDeckBridge {
+  async rpc(name, payload, session) {
+    if (name !== "chrono_sync_obsidian_arc_v2") return await super.rpc(name, payload, session);
+    try {
+      return await super.rpc("chrono_sync_obsidian_arc_v3", payload, session);
+    } catch (error) {
+      const message = String(error?.message || error || "");
+      const missingV3 = /PGRST202|could not find the function|schema cache/i.test(message);
+      if (!missingV3) throw error;
+      return await super.rpc("chrono_sync_obsidian_arc_v2", payload, session);
+    }
+  }
+
   async validateCurrentArc() {
     try {
       const file = this.getActiveArcFile();
