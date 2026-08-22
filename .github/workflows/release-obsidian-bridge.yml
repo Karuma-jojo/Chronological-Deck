@@ -6,16 +6,25 @@ on:
       - main
     paths:
       - "obsidian-plugin/main.js"
+      - "obsidian-plugin/main-v043.js"
+      - "obsidian-plugin/archive-contract-v3.js"
       - "obsidian-plugin/manifest.json"
       - "obsidian-plugin/styles.css"
+      - "scripts/build-obsidian-bridge.mjs"
+      - "scripts/test-obsidian-contract-v3.mjs"
       - ".github/workflows/release-obsidian-bridge.yml"
   push:
     branches:
       - main
     paths:
       - "obsidian-plugin/main.js"
+      - "obsidian-plugin/main-v043.js"
+      - "obsidian-plugin/archive-contract-v3.js"
       - "obsidian-plugin/manifest.json"
       - "obsidian-plugin/styles.css"
+      - "scripts/build-obsidian-bridge.mjs"
+      - "scripts/test-obsidian-contract-v3.mjs"
+      - ".github/workflows/release-obsidian-bridge.yml"
 
 jobs:
   validate:
@@ -29,7 +38,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          node --check obsidian-plugin/archive-contract-v3.js
+          node --check obsidian-plugin/main-v043.js
           node --check obsidian-plugin/main.js
+          node scripts/test-obsidian-contract-v3.mjs
+          node scripts/build-obsidian-bridge.mjs /tmp/chrono-deck-main.js
+          node --check /tmp/chrono-deck-main.js
           node - <<'NODE'
           const fs = require('fs');
           const manifest = JSON.parse(fs.readFileSync('obsidian-plugin/manifest.json', 'utf8'));
@@ -78,7 +92,8 @@ jobs:
           fi
 
           mkdir -p release-assets
-          cp obsidian-plugin/main.js release-assets/main.js
+          node scripts/build-obsidian-bridge.mjs release-assets/main.js
+          node --check release-assets/main.js
           cp obsidian-plugin/manifest.json release-assets/manifest.json
           cp obsidian-plugin/styles.css release-assets/styles.css
 
