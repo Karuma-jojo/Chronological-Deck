@@ -78,11 +78,20 @@ export async function semanticSearchCompleted({
   };
 }
 
-export async function loadArcBundle(logicalArcId) {
+export async function loadArcBundleWithAuthority(logicalArcId) {
   const id = String(logicalArcId || "").trim();
   if (!id) throw new Error("logicalArcId is required.");
   const payload = await archiveRequest({ mode: "bundle", logicalArcId: id });
-  return Array.isArray(payload?.documents) ? payload.documents : [];
+  return {
+    logicalArcId: id,
+    authority: payload?.authority && typeof payload.authority === "object" ? payload.authority : null,
+    documents: Array.isArray(payload?.documents) ? payload.documents : [],
+  };
+}
+
+export async function loadArcBundle(logicalArcId) {
+  const bundle = await loadArcBundleWithAuthority(logicalArcId);
+  return bundle.documents;
 }
 
 export async function semanticRelatedArcs(logicalArcId, limit = 8) {

@@ -23,6 +23,11 @@ function requiredEnv(name: string) {
   return value
 }
 
+function missingRpc(error: { code?: string; message?: string } | null) {
+  const text = `${error?.code || ''} ${error?.message || ''}`
+  return /PGRST202|could not find the function|schema cache/i.test(text)
+}
+
 export default {
   fetch: withSupabase({ auth: 'none' }, async (req, ctx) => {
     let archiveSecret: string
@@ -65,19 +70,44 @@ export default {
         return Response.json({ error: 'logicalArcId is required.' }, { status: 400 })
       }
 
-      const { data, error } = await ctx.supabaseAdmin.rpc(
+      const modern = await ctx.supabaseAdmin.rpc(
+        'chrono_load_arc_bundle_with_authority_admin',
+        {
+          p_user_id: archiveUserId,
+          p_logical_arc_id: logicalArcId,
+        },
+      )
+
+      if (!modern.error) {
+        const payload = modern.data && typeof modern.data === 'object' ? modern.data as Record<string, unknown> : {}
+        return Response.json({
+          mode: 'bundle',
+          logicalArcId,
+          authority: payload.authority || null,
+          documents: Array.isArray(payload.documents) ? payload.documents : [],
+        })
+      }
+
+      // Safe rolling deployment: an older production schema can still serve
+      // document bundles until arc-logical-authority-v1 is applied.
+      if (!missingRpc(modern.error)) {
+        return Response.json({ error: modern.error.message }, { status: 500 })
+      }
+
+      const legacy = await ctx.supabaseAdmin.rpc(
         'chrono_load_arc_bundle_admin',
         {
           p_user_id: archiveUserId,
           p_logical_arc_id: logicalArcId,
         },
       )
-      if (error) return Response.json({ error: error.message }, { status: 500 })
+      if (legacy.error) return Response.json({ error: legacy.error.message }, { status: 500 })
 
       return Response.json({
         mode: 'bundle',
         logicalArcId,
-        documents: Array.isArray(data) ? data : [],
+        authority: null,
+        documents: Array.isArray(legacy.data) ? legacy.data : [],
       })
     }
 
