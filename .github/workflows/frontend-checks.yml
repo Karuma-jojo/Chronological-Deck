@@ -41,6 +41,8 @@ jobs:
           node --input-type=module --check < js/vault-cloud-ui.js
           node --input-type=module --check < js/vault-reader.js
           node --input-type=module --check < js/vault.js
+          node --check obsidian-plugin/archive-contract-v3.js
+          node --check obsidian-plugin/main-v043.js
           node --check obsidian-plugin/main.js
           node --check chatgpt-app/media-gateway.js
 
@@ -52,6 +54,20 @@ jobs:
 
       - name: Validate Markdown ARC round-trip
         run: node scripts/test-markdown.mjs
+
+      - name: Validate Obsidian Archive Contract V3
+        shell: bash
+        run: |
+          node scripts/test-obsidian-contract-v3.mjs
+          node scripts/build-obsidian-bridge.mjs /tmp/chrono-deck-main.js
+          node --check /tmp/chrono-deck-main.js
+          grep -q 'CHRONO-SECTION' obsidian-plugin/archive-contract-v3.js
+          grep -q 'core_cleared_mastery_pending' obsidian-plugin/archive-contract-v3.js
+          grep -q 'polished_extract' obsidian-plugin/archive-contract-v3.js
+          grep -q 'archiveMetadata' obsidian-plugin/archive-contract-v3.js
+          grep -q 'sourceFrontmatter' obsidian-plugin/archive-contract-v3.js
+          grep -q 'main-v043' obsidian-plugin/main.js
+          grep -q 'archive-contract-v3' obsidian-plugin/main.js
 
       - name: Validate GitHub Pages entrypoint wiring
         shell: bash
@@ -106,27 +122,31 @@ jobs:
           test -f docs/obsidian-bridge.md
           test -f obsidian-plugin/manifest.json
           test -f obsidian-plugin/styles.css
+          test -f obsidian-plugin/archive-contract-v3.js
+          test -f obsidian-plugin/main-v043.js
+          test -f scripts/build-obsidian-bridge.mjs
+          test -f scripts/test-obsidian-contract-v3.mjs
           grep -q '"id": "chrono-deck-bridge"' obsidian-plugin/manifest.json
-          grep -q '"version": "0.4.3"' obsidian-plugin/manifest.json
+          grep -q '"version": "0.5.0"' obsidian-plugin/manifest.json
           grep -q 'chrono_sync_obsidian_arc' supabase/obsidian-bridge.sql
           grep -q 'chrono_sync_obsidian_arc_v2' supabase/obsidian-sync-v2.sql
           grep -q 'chrono_load_obsidian_arc' supabase/obsidian-sync-v2.sql
           grep -q 'chrono_prune_arc_revisions' supabase/obsidian-reader-v3.sql
           grep -q 'chrono_arc_revision_stats' supabase/obsidian-reader-v3.sql
-          grep -q 'pull-all-arcs' obsidian-plugin/main.js
-          grep -q 'open-arc-reader' obsidian-plugin/main.js
-          grep -q 'normalize-current-arc-math' obsidian-plugin/main.js
-          grep -q 'chrono_prune_arc_revisions' obsidian-plugin/main.js
-          grep -q 'CHRONO_MEDIA_BRIDGE_V1' obsidian-plugin/main.js
-          grep -q 'chrono_sync_arc_media_manifest' obsidian-plugin/main.js
-          grep -q 'chrono_load_arc_media_manifest' obsidian-plugin/main.js
-          grep -q 'show-current-arc-media-map' obsidian-plugin/main.js
-          grep -q 'purge-orphaned-media' obsidian-plugin/main.js
-          grep -q 'chrono_list_orphaned_arc_media' obsidian-plugin/main.js
-          grep -q 'chrono_forget_orphaned_arc_media' obsidian-plugin/main.js
+          grep -q 'pull-all-arcs' obsidian-plugin/main-v043.js
+          grep -q 'open-arc-reader' obsidian-plugin/main-v043.js
+          grep -q 'normalize-current-arc-math' obsidian-plugin/main-v043.js
+          grep -q 'chrono_prune_arc_revisions' obsidian-plugin/main-v043.js
+          grep -q 'CHRONO_MEDIA_BRIDGE_V1' obsidian-plugin/main-v043.js
+          grep -q 'chrono_sync_arc_media_manifest' obsidian-plugin/main-v043.js
+          grep -q 'chrono_load_arc_media_manifest' obsidian-plugin/main-v043.js
+          grep -q 'show-current-arc-media-map' obsidian-plugin/main-v043.js
+          grep -q 'purge-orphaned-media' obsidian-plugin/main-v043.js
+          grep -q 'chrono_list_orphaned_arc_media' obsidian-plugin/main-v043.js
+          grep -q 'chrono_forget_orphaned_arc_media' obsidian-plugin/main-v043.js
           grep -q 'action === "delete"' chatgpt-app/media-gateway.js
-          grep -q 'chrono-deck-media.onrender.com' obsidian-plugin/main.js
-          grep -q 'MarkdownRenderer.render' obsidian-plugin/main.js
+          grep -q 'chrono-deck-media.onrender.com' obsidian-plugin/main-v043.js
+          grep -q 'MarkdownRenderer.render' obsidian-plugin/main-v043.js
           grep -q 'SecretStorage' obsidian-plugin/README.md
 
       - name: Validate Supabase production parity sources
