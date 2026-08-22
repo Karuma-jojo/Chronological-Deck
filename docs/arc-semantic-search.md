@@ -21,7 +21,9 @@ Semantic retrieval can safely help suggest:
 
 These are suggestions, not source-of-truth metadata.
 
-Identity fields such as `arc_id`, `logical_arc_id`, module position, title, clearance, assistance provenance, and recovery debt must still come from the current ARC conversation/curriculum record.
+Identity fields such as `arc_id`, `logical_arc_id`, module position, title,
+clearance, assistance provenance, and recovery debt must still come from the
+current ARC conversation/curriculum record.
 
 So the intended relationship is:
 
@@ -39,17 +41,24 @@ COMPLETED ARC SEMANTIC INDEX
 
 ## Architecture
 
+The production path is fully database-triggered. No Dashboard-created Database
+Webhook is required.
+
 ```text
 Obsidian ARC sync
     |
     v
 arc_sections
     |
-    | trigger creates overlapping semantic chunks
+    | chrono_seed_section_embedding_chunks()
     v
 arc_section_embeddings
     |
-    | Database Webhook
+    | AFTER INSERT trigger
+    v
+chrono_dispatch_embedding_job()
+    |
+    | pg_net POST + Vault-backed shared secret
     v
 arc-embed-section Edge Function
     |
@@ -62,27 +71,40 @@ arc-embed-section Edge Function
     +--> arc-semantic-search Edge Function
 ```
 
-The system uses Supabase's built-in `gte-small` model, so no OpenAI API key or external embedding provider is required.
+The system uses Supabase's built-in `gte-small` model, so no OpenAI API key or
+external embedding provider is required.
+
+`supabase/arc-embedding-webhook-v1.sql` contains the database dispatcher and
+trigger. The dispatcher reads `chrono_embed_webhook_secret` from Supabase Vault
+and sends it in `x-chrono-embed-secret`.
+
+`supabase/functions/arc-embed-section/index.ts` reads the matching
+`CHRONO_EMBED_WEBHOOK_SECRET` managed Edge Function secret. Never commit the
+secret value.
 
 ## Why hybrid search
 
-Pure vector search is good for meaning. Full-text search is good for exact equations, names, symbols, and phrases.
+Pure vector search is good for meaning. Full-text search is good for exact
+equations, names, symbols, and phrases.
 
 Chrono-Deck combines both:
 
 ```text
-hybrid score = semantic similarity + lexical boost
+hybrid score = 0.72 * semantic similarity + 0.28 * normalized lexical score
 ```
 
 This lets searches such as:
 
 > where did I confuse a favorable example with a universal proof?
 
-find conceptually similar RAW/POLISHED passages even if those exact words were never used, while exact phrases and terminology still get boosted.
+find conceptually similar RAW/POLISHED passages even if those exact words were
+never used, while exact phrases and terminology still get boosted.
 
 ## Completion filter
 
-Semantic search defaults to academically cleared ARC documents. Completion is deliberately **not** inferred from `planning_status`, because planning state and academic mastery are different dimensions.
+Semantic search defaults to academically cleared ARC documents. Completion is
+deliberately **not** inferred from `planning_status`, because planning state and
+academic mastery are different dimensions.
 
 `completedOnly: true` includes documents whose normalized `clearance` is one of:
 
@@ -105,17 +127,24 @@ The human-readable Markdown frontmatter values are:
 - `Core Cleared — Mastery Pending`
 - `Fully Mastered`
 
-Set `completedOnly: false` only when unfinished/incomplete documents should also be searched.
+Set `completedOnly: false` only when unfinished/incomplete documents should
+also be searched.
 
-## One-time setup
+## Production migration order
 
-Run migrations in this order:
+The live production ledger is recorded in `supabase/PRODUCTION-SCHEMA.md`.
+
+For the Archive/semantic layer, the important sequence is:
 
 1. existing ARC Vault / Obsidian bridge migrations;
 2. `supabase/arc-archive-v1.sql`;
 3. `supabase/arc-archive-sync-v1.sql`;
 4. `supabase/arc-semantic-search-v1.sql`;
-5. `supabase/arc-clearance-semantic-completion-v1.sql`.
+5. `supabase/arc-embedding-webhook-v1.sql`;
+6. `supabase/arc-archive-private-api-v1.sql`;
+7. `supabase/arc-clearance-semantic-completion-v1.sql`;
+8. `supabase/arc-clearance-admin-completion-fix.sql`;
+9. later storage/media migrations listed in `supabase/PRODUCTION-SCHEMA.md`.
 
 Then deploy the Edge Functions:
 
@@ -123,38 +152,49 @@ Then deploy the Edge Functions:
 supabase functions deploy arc-embed-section --no-verify-jwt
 supabase functions deploy arc-semantic-search
 supabase functions deploy arc-semantic-backfill
+supabase functions deploy arc-archive-access --no-verify-jwt
 ```
 
-`arc-embed-section` is designed for a Database Webhook and therefore uses secret-key authentication inside the function even though gateway JWT verification is disabled.
+`arc-embed-section` and `arc-archive-access` intentionally disable Supabase
+gateway JWT verification because they perform their own narrow shared-secret
+authentication. Their secret values must live in managed Edge Function secrets,
+not source code.
 
 ## Academic clearance ingestion
 
-The clearance migration adds a first-class `arc_documents.clearance` field and teaches the Obsidian sync RPC to read `clearance:` directly from the source Markdown frontmatter. Existing synced records preserve their stored clearance if an older note lacks the field.
+The clearance migration adds a first-class `arc_documents.clearance` field and
+teaches the Obsidian sync RPC to read `clearance:` directly from the source
+Markdown frontmatter. Existing synced records preserve their stored clearance
+if an older note lacks the field.
 
-Legacy canonical notes are backfilled conservatively from explicit academic-status statements only. This keeps `planning_status` available for workflow planning without abusing it as a proxy for mastery.
+Legacy canonical notes are backfilled conservatively from explicit
+academic-status statements only. This keeps `planning_status` available for
+workflow planning without abusing it as a proxy for mastery.
 
-## Create the Database Webhook
+## Automatic embedding dispatch
 
-In Supabase Dashboard:
+Every insert into `public.arc_section_embeddings` with `embedding IS NULL`
+fires `chrono_dispatch_embedding_job_trg`.
 
-1. Database → Webhooks → Create webhook.
-2. Table: `public.arc_section_embeddings`.
-3. Event: `INSERT` only.
-4. Destination: Supabase Edge Function.
-5. Function: `arc-embed-section`.
-6. Method: `POST`.
-7. Add the Supabase secret/service auth header using the Dashboard's secure webhook option.
-8. Create webhook.
+The trigger calls `chrono_dispatch_embedding_job()`, which:
 
-Only `INSERT` is needed because every ARC section change causes Chrono-Deck to rebuild that section's chunk rows.
+1. reads `chrono_embed_webhook_secret` from Supabase Vault;
+2. POSTs the new chunk row to `arc-embed-section` through `pg_net`;
+3. authenticates with `x-chrono-embed-secret`.
 
-After this one-time configuration, future ARC syncs automatically create fresh embedding rows and the webhook embeds them without per-ARC work.
+The Edge Function generates `gte-small` embeddings and updates the row only if
+its `embedding` column is still `NULL`. This makes duplicate job delivery safe
+and avoids overwriting an embedding that another worker already completed.
+
+No Dashboard-created webhook is part of the current production architecture.
 
 ## Backfill old ARC chunks
 
-The SQL migration creates semantic chunk rows for already-existing sections, but those old rows initially have `embedding = NULL` because the webhook did not exist when they were inserted.
+The SQL migration creates semantic chunk rows for already-existing sections, but
+older rows may initially have `embedding = NULL`.
 
-Call the authenticated `arc-semantic-backfill` function until `processed` becomes `0`.
+Call the authenticated `arc-semantic-backfill` function until `processed`
+becomes `0`.
 
 Example request body:
 
@@ -173,11 +213,12 @@ Or backfill one logical ARC:
 }
 ```
 
-This is a one-time migration/backlog operation, not a per-ARC workflow.
+This is a migration/backlog operation, not a per-ARC workflow.
 
 ## Semantic search API
 
-Call `arc-semantic-search` while authenticated with the user's normal Supabase session.
+Call `arc-semantic-search` while authenticated with the user's normal Supabase
+session.
 
 ### Meaning + keyword search
 
@@ -228,9 +269,15 @@ Each H2-backed `arc_section` is split into overlapping chunks of approximately:
 - 1800 characters per chunk;
 - 200 characters overlap.
 
-This is deliberately simple and stable. It prevents giant RAW sections from becoming one semantic blob while preserving enough neighboring context for mathematical reasoning.
+The current implementation uses a 1600-character step.
 
-The chunking policy can be changed later without changing the canonical Markdown files. Re-sync/rebuild simply regenerates the semantic derivative index.
+This is deliberately simple and stable. It prevents giant RAW sections from
+becoming one semantic blob while preserving enough neighboring context for
+mathematical reasoning.
+
+The chunking policy can be changed later without changing the canonical
+Markdown files. Re-sync/rebuild simply regenerates the semantic derivative
+index.
 
 ## Frontmatter rule
 
@@ -251,7 +298,10 @@ conversation -> extractor -> authoritative frontmatter
          related/search suggestions later
 ```
 
-If a future ChatGPT/Supabase connector gives the extractor live access to the completed archive, semantic results may be passed in as **enrichment context**. The extractor may then use supported candidates for `related` or `deepens`, but it must never use semantic similarity to invent:
+If a future ChatGPT/Supabase connector gives the extractor live access to the
+completed archive, semantic results may be passed in as **enrichment context**.
+The extractor may then use supported candidates for `related` or `deepens`, but
+it must never use semantic similarity to invent:
 
 - prerequisites;
 - proof ownership;
@@ -274,4 +324,4 @@ finish ARC
 -> done
 ```
 
-Embedding generation and semantic indexing are background infrastructure, not study work.
+Embedding generation and semantic indexing are infrastructure, not study work.

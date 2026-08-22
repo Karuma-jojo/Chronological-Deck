@@ -128,3 +128,21 @@ jobs:
           grep -q 'chrono-deck-media.onrender.com' obsidian-plugin/main.js
           grep -q 'MarkdownRenderer.render' obsidian-plugin/main.js
           grep -q 'SecretStorage' obsidian-plugin/README.md
+
+      - name: Validate Supabase production parity sources
+        shell: bash
+        run: |
+          test -f supabase/PRODUCTION-SCHEMA.md
+          test -f supabase/arc-embedding-webhook-v1.sql
+          test -f supabase/arc-archive-private-api-v1.sql
+          test -f supabase/functions/arc-archive-access/index.ts
+          test -f supabase/functions/arc-embed-section/index.ts
+          grep -q 'chrono_dispatch_embedding_job' supabase/arc-embedding-webhook-v1.sql
+          grep -q 'chrono_dispatch_embedding_job_trg' supabase/arc-embedding-webhook-v1.sql
+          grep -q 'chrono_semantic_embedding_status_admin' supabase/arc-archive-private-api-v1.sql
+          grep -q 'CHRONO_ARCHIVE_SECRET' supabase/functions/arc-archive-access/index.ts
+          grep -q 'CHRONO_ARCHIVE_USER_ID' supabase/functions/arc-archive-access/index.ts
+          grep -q 'CHRONO_EMBED_WEBHOOK_SECRET' supabase/functions/arc-embed-section/index.ts
+          grep -q "Deno.env.get" supabase/functions/arc-archive-access/index.ts
+          grep -q "Deno.env.get" supabase/functions/arc-embed-section/index.ts
+          ! grep -Eq "const (ARCHIVE_SECRET|WEBHOOK_SECRET) = ['\"]" supabase/functions/arc-archive-access/index.ts supabase/functions/arc-embed-section/index.ts
