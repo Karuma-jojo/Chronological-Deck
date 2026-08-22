@@ -8,6 +8,10 @@ const {
   T22_ATOMIC_MODULES,
   T22_ATOMIC_TARGET_HOURS,
 } = await import("../../js/data/t22-atomic-arcs.js");
+const {
+  enrichT22AtomicArc,
+  getT22RichModule,
+} = await import("../../js/data/t22-rich-syllabus.js");
 
 const T22 = WORLD.terminals.find((terminal) => terminal.id === "T22");
 const NODE_BY_ID = new Map(WORLD.nodes.map((node) => [node.id, node]));
@@ -41,6 +45,7 @@ const HISTORICAL_SETTINGS = {
 function serializeModule(moduleId, moduleIndex) {
   const node = NODE_BY_ID.get(moduleId);
   const atomicArcs = T22_ATOMIC_MODULES[moduleId] ?? [];
+  const richModule = getT22RichModule(moduleId);
   return {
     id: moduleId,
     index: moduleIndex + 1,
@@ -49,8 +54,14 @@ function serializeModule(moduleId, moduleIndex) {
     summary: node?.summary ?? "",
     atomicCount: atomicArcs.length,
     launchEnabled: moduleIndex === 0,
+    syllabusVersion: richModule?.syllabusVersion ?? null,
+    roleTarget: richModule?.roleTarget ?? null,
+    modulePurpose: richModule?.modulePurpose ?? null,
+    moduleDestination: richModule?.moduleDestination ?? null,
+    entryPrerequisites: richModule?.entryPrerequisites ?? [],
+    explicitlyOutOfScope: richModule?.explicitlyOutOfScope ?? [],
     arcs: atomicArcs.map((arc) => ({
-      ...arc,
+      ...enrichT22AtomicArc(moduleId, arc),
       launchEnabled: LAUNCH_ARC_IDS.has(arc.id),
       ...(HISTORICAL_SETTINGS[arc.id] ?? {}),
     })),
@@ -107,4 +118,3 @@ export function getLaunchSlice() {
 export function isLaunchArc(arcId) {
   return LAUNCH_ARC_IDS.has(arcId);
 }
-
