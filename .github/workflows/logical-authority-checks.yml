@@ -1,0 +1,48 @@
+name: Logical ARC authority checks
+
+on:
+  pull_request:
+    paths:
+      - "supabase/arc-logical-authority-v1.sql"
+      - "supabase/functions/arc-archive-access/index.ts"
+      - "chatgpt-app/lib/archive-client.js"
+      - "scripts/test-logical-authority-v1.mjs"
+      - "docs/logical-arc-authority.md"
+      - ".github/workflows/logical-authority-checks.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "supabase/arc-logical-authority-v1.sql"
+      - "supabase/functions/arc-archive-access/index.ts"
+      - "chatgpt-app/lib/archive-client.js"
+      - "scripts/test-logical-authority-v1.mjs"
+      - "docs/logical-arc-authority.md"
+      - ".github/workflows/logical-authority-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JavaScript syntax
+        shell: bash
+        run: |
+          node --input-type=module --check < chatgpt-app/lib/archive-client.js
+          node --input-type=module --check < scripts/test-logical-authority-v1.mjs
+
+      - name: Validate logical authority contract
+        run: node scripts/test-logical-authority-v1.mjs
+
+      - name: Validate migration/docs presence
+        shell: bash
+        run: |
+          test -f supabase/arc-logical-authority-v1.sql
+          test -f docs/logical-arc-authority.md
+          grep -q 'arc_logical_arc_revisions' supabase/arc-logical-authority-v1.sql
+          grep -q 'AUTHORITY_CONFLICT' supabase/arc-logical-authority-v1.sql
+          grep -q 'ordinary document sync NEVER overwrites established academic authority' supabase/arc-logical-authority-v1.sql
