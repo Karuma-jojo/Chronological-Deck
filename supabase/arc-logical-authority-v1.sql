@@ -1,11 +1,16 @@
 -- Chrono-Deck logical ARC authority v1
 --
--- Purpose:
---   * one authoritative academic/mastery row per logical ARC;
---   * RAW/POLISHED/canonical documents remain representations/snapshots;
---   * ordinary document sync may seed/enrich logical identity, but must not
---     silently roll back established mastery/recovery/provenance state;
---   * later authority changes use an explicit optimistic-lock RPC.
+-- One logical learning event gets one authoritative academic state.
+-- RAW/POLISHED/canonical documents remain representations/snapshots.
+--
+-- Safety rules:
+--   * ordinary document sync can seed authority and refresh identity/curriculum;
+--   * ordinary document sync NEVER overwrites established academic authority;
+--   * later clearance/recovery/provenance/debt changes use an explicit,
+--     optimistic-lock authority RPC;
+--   * every authority change gets a revision snapshot;
+--   * semantic completedOnly filtering reads logical authority first and only
+--     falls back to document clearance for pre-authority compatibility.
 --
 -- Run AFTER obsidian-archive-contract-v3.sql.
 
@@ -54,7 +59,6 @@ create table if not exists public.arc_logical_arcs (
   updated_at timestamptz not null default now(),
 
   primary key (user_id, logical_arc_id),
-
   constraint arc_logical_arcs_schema_version_check check (schema_version >= 1),
   constraint arc_logical_arcs_module_index_check check (module_index is null or module_index >= 0),
   constraint arc_logical_arcs_atomic_position_check check (atomic_position is null or atomic_position >= 0),
@@ -90,29 +94,143 @@ create table if not exists public.arc_logical_arcs (
   constraint arc_logical_arcs_authority_revision_check check (authority_revision >= 1)
 );
 
+create table if not exists public.arc_logical_arc_revisions (
+  user_id uuid not null,
+  logical_arc_id text not null,
+  authority_revision integer not null,
+  note text not null default '',
+  snapshot jsonb not null,
+  created_at timestamptz not null default now(),
+  primary key (user_id, logical_arc_id, authority_revision),
+  foreign key (user_id, logical_arc_id)
+    references public.arc_logical_arcs(user_id, logical_arc_id)
+    on delete cascade,
+  constraint arc_logical_arc_revisions_revision_check check (authority_revision >= 1),
+  constraint arc_logical_arc_revisions_snapshot_object_check check (jsonb_typeof(snapshot) = 'object')
+);
+
 create index if not exists arc_logical_arcs_user_clearance_idx
   on public.arc_logical_arcs (user_id, clearance, logical_arc_id);
 create index if not exists arc_logical_arcs_user_recovery_idx
   on public.arc_logical_arcs (user_id, recovery_state, logical_arc_id);
 create index if not exists arc_logical_arcs_curriculum_idx
   on public.arc_logical_arcs (user_id, terminal_id, module_id, module_index, atomic_position);
+create index if not exists arc_logical_arc_revisions_user_updated_idx
+  on public.arc_logical_arc_revisions (user_id, logical_arc_id, created_at desc);
 
 alter table public.arc_logical_arcs enable row level security;
+alter table public.arc_logical_arc_revisions enable row level security;
 
 drop policy if exists arc_logical_arcs_select_own on public.arc_logical_arcs;
 create policy arc_logical_arcs_select_own
   on public.arc_logical_arcs for select to authenticated
   using ((select auth.uid()) is not null and (select auth.uid()) = user_id);
 
--- Authority mutation is RPC-only. This is intentionally stricter than the
--- representation tables: authenticated clients may read their own authority
--- rows but cannot insert/update/delete them directly.
-revoke insert, update, delete on public.arc_logical_arcs from anon, authenticated;
-grant select on public.arc_logical_arcs to authenticated;
+drop policy if exists arc_logical_arc_revisions_select_own on public.arc_logical_arc_revisions;
+create policy arc_logical_arc_revisions_select_own
+  on public.arc_logical_arc_revisions for select to authenticated
+  using ((select auth.uid()) is not null and (select auth.uid()) = user_id);
 
--- Backfill one authority row per existing logical ARC. Prefer POLISHED, then
--- canonical, then RAW, then other representations. This is deterministic and
--- avoids averaging or synthesizing conflicting document state.
+-- Authority mutation is RPC-only.
+revoke insert, update, delete on public.arc_logical_arcs from anon, authenticated;
+revoke insert, update, delete on public.arc_logical_arc_revisions from anon, authenticated;
+grant select on public.arc_logical_arcs to authenticated;
+grant select on public.arc_logical_arc_revisions to authenticated;
+
+-- Shared serializer. SECURITY INVOKER keeps ordinary authenticated direct calls
+-- inside RLS, while service-role/security-definer callers can use it for admin
+-- reads without duplicating the JSON shape.
+create or replace function public.chrono_logical_arc_authority_json_internal(
+  p_user_id uuid,
+  p_logical_arc_id text
+)
+returns jsonb
+language sql
+stable
+security invoker
+set search_path = public
+as $$
+  select jsonb_build_object(
+    'schemaVersion', l.schema_version,
+    'logicalArcId', l.logical_arc_id,
+    'canonicalLabel', l.canonical_label,
+    'title', l.title,
+    'terminalId', l.terminal_id,
+    'terminalTitle', l.terminal_title,
+    'moduleId', l.module_id,
+    'moduleIndex', l.module_index,
+    'moduleTitle', l.module_title,
+    'canonicalNode', l.canonical_node,
+    'atomicPosition', l.atomic_position,
+    'atomicTotalInModule', l.atomic_total_in_module,
+    'atomicAuditVersion', l.atomic_audit_version,
+    'clearance', l.clearance,
+    'nominalControlStateFinal', l.nominal_control_state_final,
+    'highestEffectiveAssistance', l.highest_effective_assistance,
+    'recoveryState', l.recovery_state,
+    'unresolvedGate', l.unresolved_gate,
+    'focusedHours', l.focused_hours,
+    'startedAt', l.started_at,
+    'completedAt', l.completed_at,
+    'proofDebt', l.proof_debt,
+    'implementationDebt', l.implementation_debt,
+    'transferDebt', l.transfer_debt,
+    'recoveryDebt', l.recovery_debt,
+    'assistanceSummary', l.assistance_summary,
+    'provenanceSummary', l.provenance_summary,
+    'assistanceEvents', l.assistance_events,
+    'authorityRevision', l.authority_revision,
+    'identitySourceArcId', l.identity_source_arc_id,
+    'identitySourceDocumentType', l.identity_source_document_type,
+    'seededFromArcId', l.seeded_from_arc_id,
+    'seededFromDocumentType', l.seeded_from_document_type,
+    'createdAt', l.created_at,
+    'updatedAt', l.updated_at
+  )
+  from public.arc_logical_arcs l
+  where l.user_id = p_user_id
+    and l.logical_arc_id = p_logical_arc_id;
+$$;
+
+create or replace function public.chrono_load_logical_arc_authority(p_logical_arc_id text)
+returns jsonb
+language sql
+stable
+security invoker
+set search_path = public
+as $$
+  select public.chrono_logical_arc_authority_json_internal((select auth.uid()), p_logical_arc_id);
+$$;
+
+create or replace function public.chrono_load_logical_arc_revisions(
+  p_logical_arc_id text,
+  p_limit integer default 50
+)
+returns jsonb
+language sql
+stable
+security invoker
+set search_path = public
+as $$
+  select coalesce(jsonb_agg(
+    jsonb_build_object(
+      'authorityRevision', r.authority_revision,
+      'note', r.note,
+      'snapshot', r.snapshot,
+      'createdAt', r.created_at
+    ) order by r.authority_revision desc
+  ), '[]'::jsonb)
+  from (
+    select *
+    from public.arc_logical_arc_revisions
+    where user_id = (select auth.uid())
+      and logical_arc_id = p_logical_arc_id
+    order by authority_revision desc
+    limit greatest(1, least(coalesce(p_limit, 50), 500))
+  ) r;
+$$;
+
+-- Backfill deterministically: POLISHED > canonical > RAW > other.
 with ranked as (
   select
     d.*,
@@ -182,58 +300,21 @@ select
 from chosen d
 on conflict (user_id, logical_arc_id) do nothing;
 
-create or replace function public.chrono_load_logical_arc_authority(p_logical_arc_id text)
-returns jsonb
-language sql
-stable
-security invoker
-set search_path = public
-as $$
-  select jsonb_build_object(
-    'schemaVersion', l.schema_version,
-    'logicalArcId', l.logical_arc_id,
-    'canonicalLabel', l.canonical_label,
-    'title', l.title,
-    'terminalId', l.terminal_id,
-    'terminalTitle', l.terminal_title,
-    'moduleId', l.module_id,
-    'moduleIndex', l.module_index,
-    'moduleTitle', l.module_title,
-    'canonicalNode', l.canonical_node,
-    'atomicPosition', l.atomic_position,
-    'atomicTotalInModule', l.atomic_total_in_module,
-    'atomicAuditVersion', l.atomic_audit_version,
-    'clearance', l.clearance,
-    'nominalControlStateFinal', l.nominal_control_state_final,
-    'highestEffectiveAssistance', l.highest_effective_assistance,
-    'recoveryState', l.recovery_state,
-    'unresolvedGate', l.unresolved_gate,
-    'focusedHours', l.focused_hours,
-    'startedAt', l.started_at,
-    'completedAt', l.completed_at,
-    'proofDebt', l.proof_debt,
-    'implementationDebt', l.implementation_debt,
-    'transferDebt', l.transfer_debt,
-    'recoveryDebt', l.recovery_debt,
-    'assistanceSummary', l.assistance_summary,
-    'provenanceSummary', l.provenance_summary,
-    'assistanceEvents', l.assistance_events,
-    'authorityRevision', l.authority_revision,
-    'identitySourceArcId', l.identity_source_arc_id,
-    'identitySourceDocumentType', l.identity_source_document_type,
-    'seededFromArcId', l.seeded_from_arc_id,
-    'seededFromDocumentType', l.seeded_from_document_type,
-    'createdAt', l.created_at,
-    'updatedAt', l.updated_at
-  )
-  from public.arc_logical_arcs l
-  where l.user_id = (select auth.uid())
-    and l.logical_arc_id = p_logical_arc_id;
-$$;
+insert into public.arc_logical_arc_revisions (
+  user_id, logical_arc_id, authority_revision, note, snapshot, created_at
+)
+select
+  l.user_id,
+  l.logical_arc_id,
+  l.authority_revision,
+  'Backfilled logical authority from ' || coalesce(l.seeded_from_arc_id, 'existing document'),
+  public.chrono_logical_arc_authority_json_internal(l.user_id, l.logical_arc_id),
+  l.updated_at
+from public.arc_logical_arcs l
+on conflict (user_id, logical_arc_id, authority_revision) do nothing;
 
--- Seed authority if absent and keep only identity/curriculum fields refreshed
--- from the best available representation. Established academic authority is
--- never overwritten by ordinary document sync.
+-- Seed if absent. If authority already exists, only identity/curriculum fields
+-- can refresh from the best representation. Academic fields are untouched.
 create or replace function public.chrono_refresh_logical_arc_identity(
   p_user_id uuid,
   p_logical_arc_id text
@@ -247,7 +328,9 @@ declare
   v_auth_user_id uuid := (select auth.uid());
   v_doc public.arc_documents%rowtype;
   v_meta jsonb;
-  v_result jsonb;
+  v_existing public.arc_logical_arcs%rowtype;
+  v_new_revision integer;
+  v_snapshot jsonb;
 begin
   if p_user_id is null or nullif(btrim(p_logical_arc_id), '') is null then
     raise exception 'user_id and logical_arc_id are required';
@@ -255,6 +338,8 @@ begin
   if v_auth_user_id is not null and v_auth_user_id <> p_user_id then
     raise exception 'Not authorized for this logical ARC';
   end if;
+
+  perform pg_advisory_xact_lock(hashtextextended(p_user_id::text || ':' || p_logical_arc_id, 0));
 
   select d.* into v_doc
   from public.arc_documents d
@@ -274,111 +359,140 @@ begin
   if not found then return null; end if;
   v_meta := coalesce(v_doc.archive_metadata, '{}'::jsonb);
 
-  insert into public.arc_logical_arcs (
-    user_id, logical_arc_id, canonical_label, title,
-    terminal_id, terminal_title, module_id, module_index, module_title,
-    canonical_node, atomic_position, atomic_total_in_module, atomic_audit_version,
-    clearance, nominal_control_state_final, highest_effective_assistance,
-    recovery_state, unresolved_gate, focused_hours, started_at, completed_at,
-    proof_debt, implementation_debt, transfer_debt, recovery_debt,
-    assistance_summary, provenance_summary, assistance_events,
-    identity_source_arc_id, identity_source_document_type,
-    seeded_from_arc_id, seeded_from_document_type,
-    created_at, updated_at
-  ) values (
-    p_user_id,
-    p_logical_arc_id,
-    v_doc.canonical_label,
-    v_doc.title,
-    nullif(v_meta->>'terminalId', ''),
-    nullif(v_meta->>'terminalTitle', ''),
-    nullif(v_meta->>'moduleId', ''),
-    case when nullif(v_meta->>'moduleIndex', '') is null then null else (v_meta->>'moduleIndex')::integer end,
-    nullif(v_meta->>'moduleTitle', ''),
-    nullif(v_meta->>'canonicalNode', ''),
-    case when nullif(v_meta->>'atomicPosition', '') is null then null else (v_meta->>'atomicPosition')::integer end,
-    case when nullif(v_meta->>'atomicTotalInModule', '') is null then null else (v_meta->>'atomicTotalInModule')::integer end,
-    nullif(v_meta->>'atomicAuditVersion', ''),
-    v_doc.clearance,
-    nullif(v_meta->>'nominalControlStateFinal', ''),
-    nullif(v_meta->>'highestEffectiveAssistance', ''),
-    coalesce(nullif(v_meta->>'recoveryState', ''), 'unknown'),
-    nullif(v_meta->>'unresolvedGate', ''),
-    case when nullif(v_meta->>'focusedHours', '') is null then null else (v_meta->>'focusedHours')::numeric end,
-    case when nullif(v_meta->>'startedAt', '') is null then null else (v_meta->>'startedAt')::date end,
-    case when nullif(v_meta->>'completedAt', '') is null then null else (v_meta->>'completedAt')::date end,
-    case when jsonb_typeof(v_meta->'proofDebt') = 'array' then v_meta->'proofDebt' else '[]'::jsonb end,
-    case when jsonb_typeof(v_meta->'implementationDebt') = 'array' then v_meta->'implementationDebt' else '[]'::jsonb end,
-    case when jsonb_typeof(v_meta->'transferDebt') = 'array' then v_meta->'transferDebt' else '[]'::jsonb end,
-    case when jsonb_typeof(v_meta->'recoveryDebt') = 'array' then v_meta->'recoveryDebt' else '[]'::jsonb end,
-    nullif(v_meta->>'assistanceSummary', ''),
-    nullif(v_meta->>'provenanceSummary', ''),
-    case when jsonb_typeof(v_meta->'assistanceEvents') = 'array' then v_meta->'assistanceEvents' else '[]'::jsonb end,
-    v_doc.arc_id,
-    v_doc.document_type,
-    v_doc.arc_id,
-    v_doc.document_type,
-    v_doc.created_at,
-    v_doc.updated_at
-  )
-  on conflict (user_id, logical_arc_id) do update set
-    canonical_label = excluded.canonical_label,
-    title = excluded.title,
-    terminal_id = excluded.terminal_id,
-    terminal_title = excluded.terminal_title,
-    module_id = excluded.module_id,
-    module_index = excluded.module_index,
-    module_title = excluded.module_title,
-    canonical_node = excluded.canonical_node,
-    atomic_position = excluded.atomic_position,
-    atomic_total_in_module = excluded.atomic_total_in_module,
-    atomic_audit_version = excluded.atomic_audit_version,
-    identity_source_arc_id = excluded.identity_source_arc_id,
-    identity_source_document_type = excluded.identity_source_document_type,
-    updated_at = case
-      when row(
-        public.arc_logical_arcs.canonical_label,
-        public.arc_logical_arcs.title,
-        public.arc_logical_arcs.terminal_id,
-        public.arc_logical_arcs.terminal_title,
-        public.arc_logical_arcs.module_id,
-        public.arc_logical_arcs.module_index,
-        public.arc_logical_arcs.module_title,
-        public.arc_logical_arcs.canonical_node,
-        public.arc_logical_arcs.atomic_position,
-        public.arc_logical_arcs.atomic_total_in_module,
-        public.arc_logical_arcs.atomic_audit_version,
-        public.arc_logical_arcs.identity_source_arc_id,
-        public.arc_logical_arcs.identity_source_document_type
-      ) is distinct from row(
-        excluded.canonical_label,
-        excluded.title,
-        excluded.terminal_id,
-        excluded.terminal_title,
-        excluded.module_id,
-        excluded.module_index,
-        excluded.module_title,
-        excluded.canonical_node,
-        excluded.atomic_position,
-        excluded.atomic_total_in_module,
-        excluded.atomic_audit_version,
-        excluded.identity_source_arc_id,
-        excluded.identity_source_document_type
-      ) then now()
-      else public.arc_logical_arcs.updated_at
-    end;
+  select * into v_existing
+  from public.arc_logical_arcs l
+  where l.user_id = p_user_id and l.logical_arc_id = p_logical_arc_id
+  for update;
 
-  select public.chrono_load_logical_arc_authority(p_logical_arc_id) into v_result;
-  return v_result;
+  if not found then
+    insert into public.arc_logical_arcs (
+      user_id, logical_arc_id, canonical_label, title,
+      terminal_id, terminal_title, module_id, module_index, module_title,
+      canonical_node, atomic_position, atomic_total_in_module, atomic_audit_version,
+      clearance, nominal_control_state_final, highest_effective_assistance,
+      recovery_state, unresolved_gate, focused_hours, started_at, completed_at,
+      proof_debt, implementation_debt, transfer_debt, recovery_debt,
+      assistance_summary, provenance_summary, assistance_events,
+      identity_source_arc_id, identity_source_document_type,
+      seeded_from_arc_id, seeded_from_document_type,
+      authority_revision, created_at, updated_at
+    ) values (
+      p_user_id,
+      p_logical_arc_id,
+      v_doc.canonical_label,
+      v_doc.title,
+      nullif(v_meta->>'terminalId', ''),
+      nullif(v_meta->>'terminalTitle', ''),
+      nullif(v_meta->>'moduleId', ''),
+      case when nullif(v_meta->>'moduleIndex', '') is null then null else (v_meta->>'moduleIndex')::integer end,
+      nullif(v_meta->>'moduleTitle', ''),
+      nullif(v_meta->>'canonicalNode', ''),
+      case when nullif(v_meta->>'atomicPosition', '') is null then null else (v_meta->>'atomicPosition')::integer end,
+      case when nullif(v_meta->>'atomicTotalInModule', '') is null then null else (v_meta->>'atomicTotalInModule')::integer end,
+      nullif(v_meta->>'atomicAuditVersion', ''),
+      v_doc.clearance,
+      nullif(v_meta->>'nominalControlStateFinal', ''),
+      nullif(v_meta->>'highestEffectiveAssistance', ''),
+      coalesce(nullif(v_meta->>'recoveryState', ''), 'unknown'),
+      nullif(v_meta->>'unresolvedGate', ''),
+      case when nullif(v_meta->>'focusedHours', '') is null then null else (v_meta->>'focusedHours')::numeric end,
+      case when nullif(v_meta->>'startedAt', '') is null then null else (v_meta->>'startedAt')::date end,
+      case when nullif(v_meta->>'completedAt', '') is null then null else (v_meta->>'completedAt')::date end,
+      case when jsonb_typeof(v_meta->'proofDebt') = 'array' then v_meta->'proofDebt' else '[]'::jsonb end,
+      case when jsonb_typeof(v_meta->'implementationDebt') = 'array' then v_meta->'implementationDebt' else '[]'::jsonb end,
+      case when jsonb_typeof(v_meta->'transferDebt') = 'array' then v_meta->'transferDebt' else '[]'::jsonb end,
+      case when jsonb_typeof(v_meta->'recoveryDebt') = 'array' then v_meta->'recoveryDebt' else '[]'::jsonb end,
+      nullif(v_meta->>'assistanceSummary', ''),
+      nullif(v_meta->>'provenanceSummary', ''),
+      case when jsonb_typeof(v_meta->'assistanceEvents') = 'array' then v_meta->'assistanceEvents' else '[]'::jsonb end,
+      v_doc.arc_id,
+      v_doc.document_type,
+      v_doc.arc_id,
+      v_doc.document_type,
+      1,
+      v_doc.created_at,
+      v_doc.updated_at
+    );
+
+    v_snapshot := public.chrono_logical_arc_authority_json_internal(p_user_id, p_logical_arc_id);
+    insert into public.arc_logical_arc_revisions (
+      user_id, logical_arc_id, authority_revision, note, snapshot, created_at
+    ) values (
+      p_user_id,
+      p_logical_arc_id,
+      1,
+      'Seeded logical authority from ' || v_doc.arc_id,
+      v_snapshot,
+      v_doc.updated_at
+    );
+    return v_snapshot;
+  end if;
+
+  update public.arc_logical_arcs l
+  set
+    canonical_label = v_doc.canonical_label,
+    title = v_doc.title,
+    terminal_id = nullif(v_meta->>'terminalId', ''),
+    terminal_title = nullif(v_meta->>'terminalTitle', ''),
+    module_id = nullif(v_meta->>'moduleId', ''),
+    module_index = case when nullif(v_meta->>'moduleIndex', '') is null then null else (v_meta->>'moduleIndex')::integer end,
+    module_title = nullif(v_meta->>'moduleTitle', ''),
+    canonical_node = nullif(v_meta->>'canonicalNode', ''),
+    atomic_position = case when nullif(v_meta->>'atomicPosition', '') is null then null else (v_meta->>'atomicPosition')::integer end,
+    atomic_total_in_module = case when nullif(v_meta->>'atomicTotalInModule', '') is null then null else (v_meta->>'atomicTotalInModule')::integer end,
+    atomic_audit_version = nullif(v_meta->>'atomicAuditVersion', ''),
+    identity_source_arc_id = v_doc.arc_id,
+    identity_source_document_type = v_doc.document_type,
+    authority_revision = l.authority_revision + 1,
+    updated_at = now()
+  where l.user_id = p_user_id
+    and l.logical_arc_id = p_logical_arc_id
+    and row(
+      l.canonical_label, l.title, l.terminal_id, l.terminal_title,
+      l.module_id, l.module_index, l.module_title, l.canonical_node,
+      l.atomic_position, l.atomic_total_in_module, l.atomic_audit_version,
+      l.identity_source_arc_id, l.identity_source_document_type
+    ) is distinct from row(
+      v_doc.canonical_label,
+      v_doc.title,
+      nullif(v_meta->>'terminalId', ''),
+      nullif(v_meta->>'terminalTitle', ''),
+      nullif(v_meta->>'moduleId', ''),
+      case when nullif(v_meta->>'moduleIndex', '') is null then null else (v_meta->>'moduleIndex')::integer end,
+      nullif(v_meta->>'moduleTitle', ''),
+      nullif(v_meta->>'canonicalNode', ''),
+      case when nullif(v_meta->>'atomicPosition', '') is null then null else (v_meta->>'atomicPosition')::integer end,
+      case when nullif(v_meta->>'atomicTotalInModule', '') is null then null else (v_meta->>'atomicTotalInModule')::integer end,
+      nullif(v_meta->>'atomicAuditVersion', ''),
+      v_doc.arc_id,
+      v_doc.document_type
+    )
+  returning l.authority_revision into v_new_revision;
+
+  if v_new_revision is not null then
+    v_snapshot := public.chrono_logical_arc_authority_json_internal(p_user_id, p_logical_arc_id);
+    insert into public.arc_logical_arc_revisions (
+      user_id, logical_arc_id, authority_revision, note, snapshot, created_at
+    ) values (
+      p_user_id,
+      p_logical_arc_id,
+      v_new_revision,
+      'Refreshed logical identity from ' || v_doc.arc_id,
+      v_snapshot,
+      now()
+    );
+  end if;
+
+  return public.chrono_logical_arc_authority_json_internal(p_user_id, p_logical_arc_id);
 end;
 $$;
 
--- Explicit academic-authority mutation. This is the only normal write path for
--- clearance/recovery/provenance/debt after the logical row exists.
+-- Explicit academic-authority mutation. No representation document is rewritten.
 create or replace function public.chrono_update_logical_arc_authority(
   p_logical_arc_id text,
   p_patch jsonb,
-  p_expected_revision integer
+  p_expected_revision integer,
+  p_note text default 'Updated logical ARC authority'
 )
 returns jsonb
 language plpgsql
@@ -404,13 +518,16 @@ declare
   v_assistance_summary text;
   v_provenance_summary text;
   v_assistance_events jsonb;
-  v_updated boolean := false;
-  v_result jsonb;
+  v_new_revision integer;
+  v_changed_count bigint := 0;
+  v_snapshot jsonb;
 begin
   if v_user_id is null then raise exception 'Authentication required'; end if;
   if nullif(btrim(p_logical_arc_id), '') is null then raise exception 'logicalArcId is required'; end if;
   if p_patch is null or jsonb_typeof(p_patch) <> 'object' then raise exception 'patch must be a JSON object'; end if;
   if p_expected_revision is null or p_expected_revision < 1 then raise exception 'expected authority revision must be >= 1'; end if;
+
+  perform pg_advisory_xact_lock(hashtextextended(v_user_id::text || ':' || p_logical_arc_id, 0));
 
   select * into v_current
   from public.arc_logical_arcs l
@@ -432,23 +549,37 @@ begin
   ]::text[]));
   if v_unknown is not null then raise exception 'Unsupported authority patch fields: %', v_unknown; end if;
 
-  if p_patch ? 'proofDebt' and jsonb_typeof(p_patch->'proofDebt') <> 'array' then raise exception 'proofDebt must be an array'; end if;
-  if p_patch ? 'implementationDebt' and jsonb_typeof(p_patch->'implementationDebt') <> 'array' then raise exception 'implementationDebt must be an array'; end if;
-  if p_patch ? 'transferDebt' and jsonb_typeof(p_patch->'transferDebt') <> 'array' then raise exception 'transferDebt must be an array'; end if;
-  if p_patch ? 'recoveryDebt' and jsonb_typeof(p_patch->'recoveryDebt') <> 'array' then raise exception 'recoveryDebt must be an array'; end if;
-  if p_patch ? 'assistanceEvents' and jsonb_typeof(p_patch->'assistanceEvents') <> 'array' then raise exception 'assistanceEvents must be an array'; end if;
+  if p_patch ? 'proofDebt' and jsonb_typeof(p_patch->'proofDebt') is distinct from 'array' then raise exception 'proofDebt must be an array'; end if;
+  if p_patch ? 'implementationDebt' and jsonb_typeof(p_patch->'implementationDebt') is distinct from 'array' then raise exception 'implementationDebt must be an array'; end if;
+  if p_patch ? 'transferDebt' and jsonb_typeof(p_patch->'transferDebt') is distinct from 'array' then raise exception 'transferDebt must be an array'; end if;
+  if p_patch ? 'recoveryDebt' and jsonb_typeof(p_patch->'recoveryDebt') is distinct from 'array' then raise exception 'recoveryDebt must be an array'; end if;
+  if p_patch ? 'assistanceEvents' and jsonb_typeof(p_patch->'assistanceEvents') is distinct from 'array' then raise exception 'assistanceEvents must be an array'; end if;
 
   v_clearance := case when p_patch ? 'clearance'
     then public.chrono_normalize_clearance(p_patch->>'clearance') else v_current.clearance end;
   if v_clearance is null then raise exception 'Unsupported clearance value'; end if;
 
-  v_nominal := case when p_patch ? 'nominalControlStateFinal' then nullif(upper(btrim(p_patch->>'nominalControlStateFinal')), '') else v_current.nominal_control_state_final end;
-  v_effective := case when p_patch ? 'highestEffectiveAssistance' then nullif(upper(btrim(p_patch->>'highestEffectiveAssistance')), '') else v_current.highest_effective_assistance end;
-  v_recovery_state := case when p_patch ? 'recoveryState' then lower(btrim(p_patch->>'recoveryState')) else v_current.recovery_state end;
-  if v_recovery_state is null or v_recovery_state not in ('not_owed','owed','cleared','unknown') then raise exception 'Unsupported recoveryState value'; end if;
+  v_nominal := case when p_patch ? 'nominalControlStateFinal'
+    then nullif(upper(btrim(p_patch->>'nominalControlStateFinal')), '') else v_current.nominal_control_state_final end;
+  v_effective := case when p_patch ? 'highestEffectiveAssistance'
+    then nullif(upper(btrim(p_patch->>'highestEffectiveAssistance')), '') else v_current.highest_effective_assistance end;
+  v_recovery_state := case when p_patch ? 'recoveryState'
+    then lower(btrim(p_patch->>'recoveryState')) else v_current.recovery_state end;
+
+  if v_recovery_state is null or v_recovery_state not in ('not_owed','owed','cleared','unknown') then
+    raise exception 'Unsupported recoveryState value';
+  end if;
+  if v_nominal is not null and v_nominal not in ('WALL','HINT','FORGE','FORGE0','FORGE1','FORGE2','FORGE3','FORGE4','FORGE5','GUIDE','REVEAL') then
+    raise exception 'Unsupported nominalControlStateFinal value';
+  end if;
+  if v_effective is not null and v_effective not in ('WALL','HINT','FORGE','FORGE0','FORGE1','FORGE2','FORGE3','FORGE4','FORGE5','GUIDE','REVEAL') then
+    raise exception 'Unsupported highestEffectiveAssistance value';
+  end if;
 
   v_unresolved_gate := case when p_patch ? 'unresolvedGate' then nullif(p_patch->>'unresolvedGate', '') else v_current.unresolved_gate end;
-  v_focused_hours := case when p_patch ? 'focusedHours' then case when p_patch->'focusedHours' = 'null'::jsonb then null else (p_patch->>'focusedHours')::numeric end else v_current.focused_hours end;
+  v_focused_hours := case when p_patch ? 'focusedHours'
+    then case when p_patch->'focusedHours' = 'null'::jsonb then null else (p_patch->>'focusedHours')::numeric end
+    else v_current.focused_hours end;
   v_started_at := case when p_patch ? 'startedAt' then nullif(p_patch->>'startedAt', '')::date else v_current.started_at end;
   v_completed_at := case when p_patch ? 'completedAt' then nullif(p_patch->>'completedAt', '')::date else v_current.completed_at end;
   v_proof_debt := case when p_patch ? 'proofDebt' then p_patch->'proofDebt' else v_current.proof_debt end;
@@ -459,8 +590,6 @@ begin
   v_provenance_summary := case when p_patch ? 'provenanceSummary' then nullif(p_patch->>'provenanceSummary', '') else v_current.provenance_summary end;
   v_assistance_events := case when p_patch ? 'assistanceEvents' then p_patch->'assistanceEvents' else v_current.assistance_events end;
 
-  if v_nominal is not null and v_nominal not in ('WALL','HINT','FORGE','FORGE0','FORGE1','FORGE2','FORGE3','FORGE4','FORGE5','GUIDE','REVEAL') then raise exception 'Unsupported nominalControlStateFinal value'; end if;
-  if v_effective is not null and v_effective not in ('WALL','HINT','FORGE','FORGE0','FORGE1','FORGE2','FORGE3','FORGE4','FORGE5','GUIDE','REVEAL') then raise exception 'Unsupported highestEffectiveAssistance value'; end if;
   if v_focused_hours is not null and v_focused_hours < 0 then raise exception 'focusedHours must be >= 0 or null'; end if;
   if v_started_at is not null and v_completed_at is not null and v_completed_at < v_started_at then raise exception 'completedAt cannot precede startedAt'; end if;
 
@@ -495,17 +624,33 @@ begin
       v_recovery_state, v_unresolved_gate, v_focused_hours, v_started_at, v_completed_at,
       v_proof_debt, v_implementation_debt, v_transfer_debt, v_recovery_debt,
       v_assistance_summary, v_provenance_summary, v_assistance_events
-    );
-  get diagnostics v_updated = row_count;
+    )
+  returning l.authority_revision into v_new_revision;
+  get diagnostics v_changed_count = row_count;
 
-  select public.chrono_load_logical_arc_authority(p_logical_arc_id) into v_result;
-  return coalesce(v_result, '{}'::jsonb) || jsonb_build_object('noOp', not v_updated);
+  if v_changed_count > 0 then
+    v_snapshot := public.chrono_logical_arc_authority_json_internal(v_user_id, p_logical_arc_id);
+    insert into public.arc_logical_arc_revisions (
+      user_id, logical_arc_id, authority_revision, note, snapshot, created_at
+    ) values (
+      v_user_id,
+      p_logical_arc_id,
+      v_new_revision,
+      coalesce(nullif(btrim(p_note), ''), 'Updated logical ARC authority'),
+      v_snapshot,
+      now()
+    );
+  end if;
+
+  return coalesce(
+    public.chrono_logical_arc_authority_json_internal(v_user_id, p_logical_arc_id),
+    '{}'::jsonb
+  ) || jsonb_build_object('noOp', v_changed_count = 0);
 end;
 $$;
 
--- V3 document sync still owns representation storage. After it succeeds, seed
--- or refresh only logical identity/curriculum metadata and return an authority
--- snapshot. Academic authority is never overwritten here.
+-- V3 representation sync persists V3 document metadata/section roles, then
+-- seeds or refreshes logical identity only.
 create or replace function public.chrono_sync_obsidian_arc_v3(
   p_document jsonb,
   p_relationships jsonb default '[]'::jsonb,
@@ -589,8 +734,7 @@ begin
 end;
 $$;
 
--- Authenticated bundle with additive logical authority. The legacy bundle RPC
--- remains unchanged for compatibility.
+-- Additive bundle RPCs. The older document-array bundle stays unchanged.
 create or replace function public.chrono_load_arc_bundle_with_authority(p_logical_arc_id text)
 returns jsonb
 language sql
@@ -605,7 +749,6 @@ as $$
   );
 $$;
 
--- Service-role archive equivalents.
 create or replace function public.chrono_load_logical_arc_authority_admin(
   p_user_id uuid,
   p_logical_arc_id text
@@ -616,45 +759,7 @@ stable
 security definer
 set search_path = public
 as $$
-  select jsonb_build_object(
-    'schemaVersion', l.schema_version,
-    'logicalArcId', l.logical_arc_id,
-    'canonicalLabel', l.canonical_label,
-    'title', l.title,
-    'terminalId', l.terminal_id,
-    'terminalTitle', l.terminal_title,
-    'moduleId', l.module_id,
-    'moduleIndex', l.module_index,
-    'moduleTitle', l.module_title,
-    'canonicalNode', l.canonical_node,
-    'atomicPosition', l.atomic_position,
-    'atomicTotalInModule', l.atomic_total_in_module,
-    'atomicAuditVersion', l.atomic_audit_version,
-    'clearance', l.clearance,
-    'nominalControlStateFinal', l.nominal_control_state_final,
-    'highestEffectiveAssistance', l.highest_effective_assistance,
-    'recoveryState', l.recovery_state,
-    'unresolvedGate', l.unresolved_gate,
-    'focusedHours', l.focused_hours,
-    'startedAt', l.started_at,
-    'completedAt', l.completed_at,
-    'proofDebt', l.proof_debt,
-    'implementationDebt', l.implementation_debt,
-    'transferDebt', l.transfer_debt,
-    'recoveryDebt', l.recovery_debt,
-    'assistanceSummary', l.assistance_summary,
-    'provenanceSummary', l.provenance_summary,
-    'assistanceEvents', l.assistance_events,
-    'authorityRevision', l.authority_revision,
-    'identitySourceArcId', l.identity_source_arc_id,
-    'identitySourceDocumentType', l.identity_source_document_type,
-    'seededFromArcId', l.seeded_from_arc_id,
-    'seededFromDocumentType', l.seeded_from_document_type,
-    'createdAt', l.created_at,
-    'updatedAt', l.updated_at
-  )
-  from public.arc_logical_arcs l
-  where l.user_id = p_user_id and l.logical_arc_id = p_logical_arc_id;
+  select public.chrono_logical_arc_authority_json_internal(p_user_id, p_logical_arc_id);
 $$;
 
 create or replace function public.chrono_load_arc_bundle_with_authority_admin(
@@ -674,9 +779,6 @@ as $$
   );
 $$;
 
--- Read-only drift audit. Representation snapshots may legitimately diverge
--- after a later recovery/mastery authority update; this function makes that
--- divergence explicit rather than silently rewriting historical documents.
 create or replace function public.chrono_logical_authority_drift_admin(
   p_user_id uuid,
   p_logical_arc_id text default null
@@ -699,7 +801,7 @@ as $$
     d.logical_arc_id,
     d.arc_id,
     d.document_type,
-    d.clearance is distinct from l.clearance as clearance_drift,
+    d.clearance is distinct from l.clearance,
     case when d.archive_metadata ? 'recoveryState'
       then (d.archive_metadata->>'recoveryState') is distinct from l.recovery_state else false end,
     case when d.archive_metadata ? 'highestEffectiveAssistance'
@@ -714,8 +816,7 @@ as $$
   order by d.logical_arc_id, d.arc_id;
 $$;
 
--- Authority-aware semantic completion filtering. If a logical authority row
--- exists it wins; document clearance is only a compatibility fallback.
+-- Authority-aware semantic completion filtering.
 create or replace function public.chrono_hybrid_search_arc_chunks(
   p_query text,
   p_query_embedding extensions.vector(384),
@@ -928,15 +1029,19 @@ as $$
   limit greatest(1, least(coalesce(p_limit, 8), 50));
 $$;
 
+-- Tight function ACLs.
+revoke all on function public.chrono_logical_arc_authority_json_internal(uuid, text) from public, anon;
 revoke all on function public.chrono_refresh_logical_arc_identity(uuid, text) from public, anon;
-revoke all on function public.chrono_update_logical_arc_authority(text, jsonb, integer) from public, anon;
+revoke all on function public.chrono_update_logical_arc_authority(text, jsonb, integer, text) from public, anon;
 revoke all on function public.chrono_load_logical_arc_authority_admin(uuid, text) from public, anon, authenticated;
 revoke all on function public.chrono_load_arc_bundle_with_authority_admin(uuid, text) from public, anon, authenticated;
 revoke all on function public.chrono_logical_authority_drift_admin(uuid, text) from public, anon, authenticated;
 
+grant execute on function public.chrono_logical_arc_authority_json_internal(uuid, text) to authenticated, service_role;
 grant execute on function public.chrono_load_logical_arc_authority(text) to authenticated;
+grant execute on function public.chrono_load_logical_arc_revisions(text, integer) to authenticated;
 grant execute on function public.chrono_refresh_logical_arc_identity(uuid, text) to authenticated;
-grant execute on function public.chrono_update_logical_arc_authority(text, jsonb, integer) to authenticated;
+grant execute on function public.chrono_update_logical_arc_authority(text, jsonb, integer, text) to authenticated;
 grant execute on function public.chrono_sync_obsidian_arc_v3(jsonb, jsonb, integer, text) to authenticated;
 grant execute on function public.chrono_load_arc_bundle_with_authority(text) to authenticated;
 grant execute on function public.chrono_hybrid_search_arc_chunks(text, extensions.vector, text, text, boolean, integer) to authenticated;
