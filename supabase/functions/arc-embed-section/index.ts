@@ -14,15 +14,33 @@ interface EmbeddingRow {
 }
 
 interface WebhookPayload {
-  type: 'INSERT'
-  table: 'arc_section_embeddings'
-  schema: 'public'
-  record: EmbeddingRow
-  old_record: null
+  type?: string
+  table?: string
+  schema?: string
+  record?: EmbeddingRow
+}
+
+function requiredEnv(name: string) {
+  const value = String(Deno.env.get(name) || '').trim()
+  if (!value) throw new Error(`Missing required Edge Function secret: ${name}`)
+  return value
 }
 
 export default {
-  fetch: withSupabase({ auth: 'secret' }, async (req, ctx) => {
+  fetch: withSupabase({ auth: 'none' }, async (req, ctx) => {
+    let webhookSecret: string
+    try {
+      webhookSecret = requiredEnv('CHRONO_EMBED_WEBHOOK_SECRET')
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      console.error('Chrono-Deck embedding function is not configured:', message)
+      return Response.json({ error: 'Embedding service is not configured.' }, { status: 500 })
+    }
+
+    if (req.headers.get('x-chrono-embed-secret') !== webhookSecret) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const payload = await req.json() as WebhookPayload
     const row = payload?.record
 
@@ -49,6 +67,7 @@ export default {
           updated_at: new Date().toISOString(),
         })
         .eq('id', row.id)
+        .is('embedding', null)
 
       if (error) {
         console.error('Chrono-Deck embedding update failed:', error.message)
