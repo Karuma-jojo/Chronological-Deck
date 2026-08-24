@@ -138,23 +138,25 @@ const MODULE_1 = {
         "Factorization / binomial reasoning",
       ],
       target:
-        "Derive d(x^n)/dx = n x^(n-1) for positive integer n from the derivative definition or equivalent first-order increment structure.",
+        "Derive d(x^n)/dx = n x^(n-1) for positive integer n from the derivative definition or equivalent first-order increment structure, then justify the finite-sum and constant-multiple linearity needed to extend the result to polynomials.",
       requiredMastery: [
         "Derive rather than quote the power rule",
-        "Explain structurally where the coefficient n comes from",
-        "Use linearity plus the rule to differentiate finite polynomials",
+        "Explain structurally why n first-order single-perturbation contributions produce the coefficient n while n-1 factors retain x",
+        "Justify derivative linearity for finite sums and constant multiples from the difference quotient rather than assuming it as another memorized rule",
+        "Combine linearity with the power rule to differentiate finite polynomials",
         "Distinguish derivation from pattern recognition",
-        "Transfer the perturbation structure to an unfamiliar polynomial-like expression",
+        "Transfer the perturbation structure to an unfamiliar polynomial-like expression without importing later derivative rules",
       ],
       applicationScope:
         "One polynomial sensitivity/rate model where the derivative has an interpretable operational meaning.",
       transferScope:
-        "A changed algebraic surface requiring recognition of the same first-order power structure.",
+        "A changed algebraic or modelling surface requiring recognition of the same first-order power structure, without relying on product, reciprocal, quotient or chain rules not yet established.",
       explicitlyOutOfScope: [
         "Arbitrary real powers",
         "Logarithmic differentiation",
         "Exponential/logarithmic derivative theory",
         "General Taylor series",
+        "Product, reciprocal, quotient or chain rules as premises",
       ],
       nextArcBoundary:
         "A05 owns first-order change under products, reciprocals and ratios.",
@@ -166,22 +168,22 @@ const MODULE_1 = {
       purpose:
         "Understand product and quotient rules as consequences of first-order change rather than unrelated formulas.",
       principalObstacle:
-        "When several quantities change simultaneously, identify which increment terms survive at first order and which interaction terms become negligible.",
+        "When several quantities change simultaneously, identify which increment terms survive at first order, prove which interaction terms become negligible, and preserve the conditions under which reciprocal or ratio expressions remain defined.",
       entryPrerequisites: ["T22-M01-A03", "T22-M01-A04", "Algebraic expansion", "Nonzero denominator logic"],
       target:
-        "Derive the product rule from increment/local-linear structure, then derive reciprocal change and quotient behaviour with the necessary denominator condition.",
+        "Derive the product rule from increment/local-linear structure, then derive reciprocal change and quotient behaviour with the necessary denominator conditions rather than quoting named rules.",
       requiredMastery: [
         "Derive the product rule from a two-factor perturbation",
-        "Explain why the cross-product of two small increments is not first-order",
-        "Derive the reciprocal derivative under a nonzero-value condition",
+        "Prove that the cross-product of two first-order increments is negligible relative to the base displacement",
+        "Derive the reciprocal derivative from exact local algebra under a nonzero base-value condition and justify nearby denominator admissibility",
         "Construct the quotient rule from product/reciprocal structure",
-        "State and use the denominator condition correctly",
+        "State and use denominator conditions correctly",
         "Apply the structure in a nontrivial algebraic sensitivity problem",
       ],
       applicationScope:
         "Sensitivity of a quantity built multiplicatively or as a ratio, with interpretation of the resulting first-order effects.",
       transferScope:
-        "A different model surface that requires recognizing first-order algebra rather than recalling a named rule.",
+        "A different model surface that requires recognizing first-order product/ratio algebra rather than recalling a named rule, without using composition or chain-rule machinery.",
       explicitlyOutOfScope: ["Composition / chain rule", "Implicit differentiation", "Logarithmic differentiation"],
       nextArcBoundary:
         "A06 owns nested dependence: one changing quantity feeding another.",
@@ -193,16 +195,17 @@ const MODULE_1 = {
       purpose:
         "Reconstruct the chain rule as the propagation of local scaling through nested dependence.",
       principalObstacle:
-        "A change in an outer quantity is mediated by an intermediate quantity whose own local scale of change must also be accounted for.",
+        "A change in an outer quantity is mediated by an intermediate quantity whose own local scale of change must also be accounted for, without hiding unjustified division by an inner increment that may vanish along nearby points.",
       entryPrerequisites: ["T22-M01-A03 through A05", "Function composition"],
       target:
-        "Derive (f∘g)'(x) = f'(g(x)) g'(x) from local changes / local linearity rather than a memorized outside-inside mnemonic.",
+        "Derive (f∘g)'(x) = f'(g(x)) g'(x) from local changes / local linearity and controlled remainders rather than a memorized outside-inside mnemonic or an unsafe cancellation argument.",
       requiredMastery: [
         "Distinguish direct from mediated dependence",
-        "Derive the multiplicative scaling of local changes through a composition",
+        "Derive the multiplicative scaling of local changes through a composition using first-order local models",
+        "Control the composed remainder so the derivation remains valid even when the inner increment can be zero along nearby points",
         "Track evaluation points correctly",
         "Apply the rule through more than one nesting layer",
-        "Diagnose an invalid chain-rule manipulation",
+        "Diagnose an invalid chain-rule manipulation, including hidden division by a vanishing inner increment",
         "Transfer the nested-sensitivity structure to an unfamiliar dependency problem",
       ],
       applicationScope:
