@@ -196,6 +196,7 @@ end;
 $function$;
 
 revoke all on function public.chrono_delete_logical_arc(text, text) from public;
+revoke execute on function public.chrono_delete_logical_arc(text, text) from anon;
 grant execute on function public.chrono_delete_logical_arc(text, text) to authenticated;
 
 comment on function public.chrono_delete_logical_arc(text, text) is
