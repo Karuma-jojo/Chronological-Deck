@@ -20,6 +20,7 @@ jobs:
         run: |
           node --input-type=module --check < js/data/t22-atomic-arcs.js
           node --input-type=module --check < js/data/t22-rich-module-2.js
+          node --input-type=module --check < js/data/t22-rich-module-3.js
           node --input-type=module --check < js/data/t22-rich-syllabus.js
           node --input-type=module --check < js/t22-atomic-ui.js
           node --input-type=module --check < js/site-v12.js
@@ -46,5 +47,7 @@ jobs:
           grep -q 'no per-module arc cap' js/t22-atomic-ui.js
           grep -q 'T22_RICH_SYLLABUS_VERSION = "3.0"' js/data/t22-rich-syllabus.js
           grep -q 'SIDE263: MODULE_2' js/data/t22-rich-syllabus.js
+          grep -q 'ARC510: MODULE_3' js/data/t22-rich-syllabus.js
           grep -q 'T22-M02-A04' js/data/t22-rich-module-2.js
+          grep -q 'T22-M03-A08' js/data/t22-rich-module-3.js
           grep -q 'Copy mission card' js/t22-atomic-ui.js
