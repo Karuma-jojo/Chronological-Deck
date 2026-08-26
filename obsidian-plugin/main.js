@@ -146,12 +146,13 @@ module.exports = class ChronoDeckBridgePluginV3 extends LegacyChronoDeckBridge {
       const revisions = Number(result?.revisionSnapshotsDeleted || 0) + Number(result?.logicalRevisionSnapshotsDeleted || 0);
       const relationships = Number(result?.relationshipsDeleted || 0);
       const queuedMedia = Number(result?.r2ObjectsQueuedForSafePurge || 0);
+      const queuedText = queuedMedia
+        ? ` ${queuedMedia} now-unreferenced R2 object${queuedMedia === 1 ? " is" : "s are"} queued for the separate purge command.`
+        : "";
+      const summary = `${logicalArcId} deleted from Chrono-Deck cloud: ${documents} document${documents === 1 ? "" : "s"}, ${sections} section${sections === 1 ? "" : "s"}, ${embeddings} embedding chunk${embeddings === 1 ? "" : "s"}, ${revisions} revision snapshot${revisions === 1 ? "" : "s"}, and ${relationships} relationship${relationships === 1 ? "" : "s"} removed. Reset cloud markers on ${resetNotes} local note${resetNotes === 1 ? "" : "s"}. Local notes/assets were kept; R2 binaries were not deleted.${queuedText} Sync a kept note again to recreate the ARC in cloud.`;
 
       this.setStatus(`${logicalArcId} · deleted from cloud`);
-      new Notice(
-        `${logicalArcId} deleted from Chrono-Deck cloud: ${documents} document${documents === 1 ? "" : "s"}, ${sections} section${sections === 1 ? "" : "s"}, ${embeddings} embedding chunk${embeddings === 1 ? "" : "s"}, ${revisions} revision snapshot${revisions === 1 ? "" : "s"}, and ${relationships} relationship${relationships === 1 ? "" : "s"} removed. Reset cloud markers on ${resetNotes} local note${resetNotes === 1 ? "" : "s"}. Local notes/assets were kept; R2 binaries were not deleted.${queuedMedia ? ` ${queuedMedia} now-unreferenced R2 object${queuedMedia === 1 ? " is" : "s are"} queued for the separate purge command.` : ""} Sync a kept note again to recreate the ARC in cloud.",
-        16000,
-      );
+      new Notice(summary, 16000);
     } catch (error) {
       this.setStatus("Chrono-Deck · delete failed");
       new Notice(`Chrono-Deck ARC deletion failed: ${error.message}`, 12000);
