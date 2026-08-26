@@ -5,13 +5,23 @@
 -- become unreferenced are registered in arc_media_orphans for the existing
 -- explicit purge workflow.
 
+-- The logical authority table previously exposed read-only RLS. Deletion can stay
+-- SECURITY INVOKER by adding the same owner-only delete rule used by the document
+-- tables, avoiding elevated function privileges entirely.
+drop policy if exists arc_logical_arcs_delete_own on public.arc_logical_arcs;
+create policy arc_logical_arcs_delete_own
+on public.arc_logical_arcs
+for delete
+to authenticated
+using ((select auth.uid()) is not null and (select auth.uid()) = user_id);
+
 create or replace function public.chrono_delete_logical_arc(
   p_logical_arc_id text,
   p_confirm_logical_arc_id text
 )
 returns jsonb
 language plpgsql
-security definer
+security invoker
 set search_path = public, pg_temp
 as $function$
 declare
@@ -200,4 +210,4 @@ revoke execute on function public.chrono_delete_logical_arc(text, text) from ano
 grant execute on function public.chrono_delete_logical_arc(text, text) to authenticated;
 
 comment on function public.chrono_delete_logical_arc(text, text) is
-  'Deletes one authenticated user logical ARC and searchable derivatives. Keeps R2 binaries intact; newly unreferenced objects are queued in arc_media_orphans for explicit purge.';
+  'Deletes one authenticated user logical ARC and searchable derivatives under owner-only RLS. Keeps R2 binaries intact; newly unreferenced objects are queued in arc_media_orphans for explicit purge.';
