@@ -1,7 +1,7 @@
 import { WORLD } from "../js/data/world.js";
 
 await import("../js/data/law-expansion.js");
-await import("../js/data/t22-quant-research.js");
+const { T22_ORDER } = await import("../js/data/t22-quant-research.js");
 await import("../js/data/t23-universal-scientist.js");
 
 const {
@@ -58,7 +58,25 @@ const MODULE_SPECS = [
       "T22-M02-A04",
     ],
   },
+  {
+    moduleId: "ARC510",
+    expectedIds: [
+      "T22-M03-A01",
+      "T22-M03-A02",
+      "T22-M03-A03",
+      "T22-M03-A04",
+      "T22-M03-A05",
+      "T22-M03-A06",
+      "T22-M03-A07",
+      "T22-M03-A08",
+    ],
+  },
 ];
+
+expect(
+  JSON.stringify(T22_ORDER.slice(0, MODULE_SPECS.length)) === JSON.stringify(MODULE_SPECS.map((spec) => spec.moduleId)),
+  `Rich syllabus modules must form the exact T22 prefix; found ${JSON.stringify(MODULE_SPECS.map((spec) => spec.moduleId))} against route prefix ${JSON.stringify(T22_ORDER.slice(0, MODULE_SPECS.length))}.`,
+);
 
 for (const spec of MODULE_SPECS) {
   const { moduleId, expectedIds } = spec;
@@ -110,5 +128,5 @@ const totalCards = MODULE_SPECS.reduce(
   0,
 );
 console.log(
-  `T22 rich syllabus v${T22_RICH_SYLLABUS_VERSION} OK: ${MODULE_SPECS.length} modules expose ${totalCards} stable quant-research mission cards; audit-v2 IDs/titles/progress semantics preserved.`,
+  `T22 rich syllabus v${T22_RICH_SYLLABUS_VERSION} OK: ${MODULE_SPECS.length} modules expose ${totalCards} stable quant-research mission cards; exact route prefix and audit-v2 IDs/titles/progress semantics preserved.`,
 );
