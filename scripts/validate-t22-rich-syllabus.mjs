@@ -19,21 +19,7 @@ function expect(condition, message) {
 }
 
 expect(Boolean(WORLD.terminals.find((terminal) => terminal.id === "T22")), "T22 terminal must be registered before rich syllabus validation.");
-
-const moduleId = "ARC053";
-const baseArcs = T22_ATOMIC_MODULES[moduleId] || [];
-const richModule = getT22RichModule(moduleId);
-
 expect(T22_RICH_SYLLABUS_VERSION === "3.0", `Expected rich syllabus v3.0; found ${T22_RICH_SYLLABUS_VERSION}.`);
-expect(Boolean(richModule), "ARC053 must have a rich syllabus contract.");
-expect(richModule?.syllabusVersion === "3.0", `ARC053 should expose syllabusVersion=3.0; found ${richModule?.syllabusVersion}.`);
-expect(baseArcs.length === 6, `ARC053 should retain six stable atomic arcs; found ${baseArcs.length}.`);
-expect(Object.keys(richModule?.arcs || {}).length === 6, "ARC053 rich syllabus should cover all six atomic arcs.");
-expect(Boolean(richModule?.roleTarget), "ARC053 rich syllabus is missing roleTarget.");
-expect(Boolean(richModule?.modulePurpose), "ARC053 rich syllabus is missing modulePurpose.");
-expect(Boolean(richModule?.moduleDestination), "ARC053 rich syllabus is missing moduleDestination.");
-expect(Array.isArray(richModule?.entryPrerequisites) && richModule.entryPrerequisites.length > 0, "ARC053 needs module entry prerequisites.");
-expect(Array.isArray(richModule?.explicitlyOutOfScope) && richModule.explicitlyOutOfScope.length > 0, "ARC053 needs a module scope boundary.");
 
 const requiredScalarFields = [
   "focus",
@@ -51,35 +37,67 @@ const requiredListFields = [
   "explicitlyOutOfScope",
 ];
 
-for (const baseArc of baseArcs) {
-  const rich = richModule?.arcs?.[baseArc.id];
-  const arc = enrichT22AtomicArc(moduleId, baseArc);
-  expect(Boolean(rich), `${baseArc.id} is missing its rich syllabus card.`);
-  expect(arc.id === baseArc.id, `${baseArc.id} rich enrichment must preserve the stable atomic ID.`);
-  expect(arc.title === baseArc.title, `${baseArc.id} rich enrichment must preserve the audited v2 title.`);
-  expect(arc.targetHours === baseArc.targetHours, `${baseArc.id} rich enrichment must preserve bookkeeping hours.`);
-  expect(arc.syllabusVersion === "3.0", `${baseArc.id} should expose syllabusVersion=3.0.`);
-  for (const field of requiredScalarFields) {
-    expect(typeof arc[field] === "string" && arc[field].trim().length > 0, `${baseArc.id} is missing non-empty ${field}.`);
-  }
-  for (const field of requiredListFields) {
-    expect(Array.isArray(arc[field]) && arc[field].length > 0, `${baseArc.id} is missing non-empty ${field}.`);
-  }
-  expect(arc.requiredMastery.length >= 5, `${baseArc.id} should have at least five observable mastery checks.`);
-}
-
-const expectedIds = [
-  "T22-M01-A01",
-  "T22-M01-A02",
-  "T22-M01-A03",
-  "T22-M01-A04",
-  "T22-M01-A05",
-  "T22-M01-A06",
+const MODULE_SPECS = [
+  {
+    moduleId: "ARC053",
+    expectedIds: [
+      "T22-M01-A01",
+      "T22-M01-A02",
+      "T22-M01-A03",
+      "T22-M01-A04",
+      "T22-M01-A05",
+      "T22-M01-A06",
+    ],
+  },
+  {
+    moduleId: "SIDE263",
+    expectedIds: [
+      "T22-M02-A01",
+      "T22-M02-A02",
+      "T22-M02-A03",
+      "T22-M02-A04",
+    ],
+  },
 ];
-expect(
-  JSON.stringify(baseArcs.map((arc) => arc.id)) === JSON.stringify(expectedIds),
-  `ARC053 stable IDs drifted: ${JSON.stringify(baseArcs.map((arc) => arc.id))}.`,
-);
+
+for (const spec of MODULE_SPECS) {
+  const { moduleId, expectedIds } = spec;
+  const baseArcs = T22_ATOMIC_MODULES[moduleId] || [];
+  const richModule = getT22RichModule(moduleId);
+
+  expect(Boolean(richModule), `${moduleId} must have a rich syllabus contract.`);
+  expect(richModule?.moduleId === moduleId, `${moduleId} rich syllabus moduleId mismatch: ${richModule?.moduleId}.`);
+  expect(richModule?.syllabusVersion === "3.0", `${moduleId} should expose syllabusVersion=3.0; found ${richModule?.syllabusVersion}.`);
+  expect(baseArcs.length === expectedIds.length, `${moduleId} should retain ${expectedIds.length} stable atomic arcs; found ${baseArcs.length}.`);
+  expect(Object.keys(richModule?.arcs || {}).length === expectedIds.length, `${moduleId} rich syllabus should cover all ${expectedIds.length} atomic arcs.`);
+  expect(Boolean(richModule?.roleTarget), `${moduleId} rich syllabus is missing roleTarget.`);
+  expect(Boolean(richModule?.modulePurpose), `${moduleId} rich syllabus is missing modulePurpose.`);
+  expect(Boolean(richModule?.moduleDestination), `${moduleId} rich syllabus is missing moduleDestination.`);
+  expect(Array.isArray(richModule?.entryPrerequisites) && richModule.entryPrerequisites.length > 0, `${moduleId} needs module entry prerequisites.`);
+  expect(Array.isArray(richModule?.explicitlyOutOfScope) && richModule.explicitlyOutOfScope.length > 0, `${moduleId} needs a module scope boundary.`);
+
+  expect(
+    JSON.stringify(baseArcs.map((arc) => arc.id)) === JSON.stringify(expectedIds),
+    `${moduleId} stable IDs drifted: ${JSON.stringify(baseArcs.map((arc) => arc.id))}.`,
+  );
+
+  for (const baseArc of baseArcs) {
+    const rich = richModule?.arcs?.[baseArc.id];
+    const arc = enrichT22AtomicArc(moduleId, baseArc);
+    expect(Boolean(rich), `${baseArc.id} is missing its rich syllabus card.`);
+    expect(arc.id === baseArc.id, `${baseArc.id} rich enrichment must preserve the stable atomic ID.`);
+    expect(arc.title === baseArc.title, `${baseArc.id} rich enrichment must preserve the audited v2 title.`);
+    expect(arc.targetHours === baseArc.targetHours, `${baseArc.id} rich enrichment must preserve bookkeeping hours.`);
+    expect(arc.syllabusVersion === "3.0", `${baseArc.id} should expose syllabusVersion=3.0.`);
+    for (const field of requiredScalarFields) {
+      expect(typeof arc[field] === "string" && arc[field].trim().length > 0, `${baseArc.id} is missing non-empty ${field}.`);
+    }
+    for (const field of requiredListFields) {
+      expect(Array.isArray(arc[field]) && arc[field].length > 0, `${baseArc.id} is missing non-empty ${field}.`);
+    }
+    expect(arc.requiredMastery.length >= 5, `${baseArc.id} should have at least five observable mastery checks.`);
+  }
+}
 
 if (errors.length) {
   console.error(`T22 rich syllabus validation failed with ${errors.length} issue(s):`);
@@ -87,6 +105,10 @@ if (errors.length) {
   process.exit(1);
 }
 
+const totalCards = MODULE_SPECS.reduce(
+  (total, spec) => total + (T22_ATOMIC_MODULES[spec.moduleId]?.length || 0),
+  0,
+);
 console.log(
-  `T22 rich syllabus v${T22_RICH_SYLLABUS_VERSION} OK: ARC053 has ${baseArcs.length} stable quant-research mission cards; v2 progress semantics preserved.`,
+  `T22 rich syllabus v${T22_RICH_SYLLABUS_VERSION} OK: ${MODULE_SPECS.length} modules expose ${totalCards} stable quant-research mission cards; audit-v2 IDs/titles/progress semantics preserved.`,
 );
