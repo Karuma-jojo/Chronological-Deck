@@ -1,9 +1,9 @@
 {
   "id": "chrono-deck-bridge",
   "name": "Chrono-Deck Bridge",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "minAppVersion": "1.11.4",
-  "description": "Author Chrono-Deck ARC notes with V3 archive validation, safe Supabase sync, and private R2 media mirroring.",
+  "description": "Author Chrono-Deck ARC notes with V3 archive validation, safe Supabase sync/deletion, and private R2 media mirroring.",
   "author": "Karuma-jojo",
   "isDesktopOnly": false
 }

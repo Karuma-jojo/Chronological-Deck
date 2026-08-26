@@ -46,6 +46,7 @@ Requires Obsidian 1.11.4+ because credentials use Obsidian SecretStorage.
 - **Sync current ARC to Chrono-Deck** — pushes the current Markdown note, structured sections, metadata and relationships, then discovers local ARC media and mirrors missing content-addressed objects to private R2.
 - **Pull current ARC from Chrono-Deck** — updates the open ARC when the cloud has a newer revision and restores missing R2-backed assets. It refuses to overwrite locally edited Markdown or a locally different media file.
 - **Pull all Chrono-Deck ARCs to this device** — creates missing cloud ARCs, updates clean tracked notes, and restores missing media. Conflicts are skipped rather than overwritten.
+- **Delete current logical ARC from Chrono-Deck cloud** — requires typing the exact logical ARC ID. It removes the whole logical ARC from Supabase/search (including a RAW/POLISHED pair where present), clears the local cloud-sync markers so the kept notes can be re-uploaded, and leaves local notes/assets untouched. R2 binaries are not deleted immediately; objects that become unreferenced are queued for the separate explicit purge command.
 - **Show current ARC revision storage** — reports the full revision snapshots retained for the active ARC.
 - **Show Chrono-Deck archive storage health** — reports Markdown, revision, embedding, and ARC-table footprint.
 - **Create supplementary ARC from current note** — creates and cross-links a new `SUP-...` note locally.
@@ -64,6 +65,15 @@ Laptop or phone B:
 The bridge stores `chrono_revision`, `chrono_synced_at`, `chrono_fingerprint`, and media bookkeeping in synchronized ARC frontmatter. These `chrono_*` fields are machine-owned and excluded from substantive-content fingerprinting.
 
 This is ARC sync, not full Obsidian-vault sync: themes, workspace layout, unrelated notes and other plugin settings are not copied.
+
+## Safe logical ARC deletion
+
+Deletion is intentionally split into two stages:
+
+1. **Delete current logical ARC from Chrono-Deck cloud** removes the authenticated user's archive rows and searchable derivatives while keeping local Obsidian notes/assets and all R2 binaries.
+2. **Purge unreferenced Chrono-Deck media from cloud** can later remove R2 objects that are no longer referenced by any ARC. It has its own separate typed confirmation.
+
+This means an accidental or corrective archive deletion does not destroy the local source material or immediately destroy binary evidence. After deletion, syncing one of the retained local notes recreates that ARC in the cloud from revision 0.
 
 ## Local-first media behavior (v0.4)
 
