@@ -103,6 +103,18 @@ const MODULE_SPECS = [
       "T22-M06-A04",
     ],
   },
+  {
+    moduleId: "SIDE279",
+    expectedIds: [
+      "T22-M07-A01",
+      "T22-M07-A02",
+      "T22-M07-A03",
+      "T22-M07-A04",
+      "T22-M07-A05",
+      "T22-M07-A06",
+      "T22-M07-A07",
+    ],
+  },
 ];
 
 expect(
