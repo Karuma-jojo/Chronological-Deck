@@ -2,6 +2,7 @@ import { buildT22RichModule2 } from "./t22-rich-module-2.js";
 import { buildT22RichModule3 } from "./t22-rich-module-3.js";
 import { buildT22RichModule4 } from "./t22-rich-module-4.js";
 import { buildT22RichModule5 } from "./t22-rich-module-5.js";
+import { buildT22RichModule6 } from "./t22-rich-module-6.js";
 
 export const T22_RICH_SYLLABUS_VERSION = "3.0";
 
@@ -53,7 +54,7 @@ const MODULE_1 = {
       explicitlyOutOfScope: [
         "General difference-quotient formalism",
         "General epsilon-delta theory",
-        "Tangent/local-linearity interpretation",
+        "Tangent-line/local-linearity interpretation",
         "Differentiation rules",
       ],
       nextArcBoundary:
@@ -233,6 +234,7 @@ const MODULE_2 = buildT22RichModule2(T22_RICH_SYLLABUS_VERSION);
 const MODULE_3 = buildT22RichModule3(T22_RICH_SYLLABUS_VERSION);
 const MODULE_4 = buildT22RichModule4(T22_RICH_SYLLABUS_VERSION);
 const MODULE_5 = buildT22RichModule5(T22_RICH_SYLLABUS_VERSION);
+const MODULE_6 = buildT22RichModule6(T22_RICH_SYLLABUS_VERSION);
 
 export const T22_RICH_MODULES = Object.freeze({
   ARC053: MODULE_1,
@@ -240,6 +242,7 @@ export const T22_RICH_MODULES = Object.freeze({
   ARC510: MODULE_3,
   ARC511: MODULE_4,
   SIDE276: MODULE_5,
+  SIDE278: MODULE_6,
 });
 
 export function getT22RichModule(moduleId) {
