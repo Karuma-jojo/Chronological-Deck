@@ -5,6 +5,164 @@ export const T22_ATOMIC_AUDIT_VERSION = "2.0";
 export const T22_ATOMIC_TARGET_HOURS_PER_ARC = 4;
 export const T22_ATOMIC_WORK_RANGE_HOURS = [2, 6];
 
+const ENTRANCE_EXTENSION_PLAN = {
+  ARC735: [
+    "Propositions, Quantifiers & Negation",
+    "Implication, Equivalence & Counterexamples",
+    "Direct Proof, Contrapositive & Contradiction",
+    "Mathematical Induction & Recursive Arguments",
+    "Sets, Functions, Images & Preimages",
+    "Relations, Equivalence Classes & Partitions",
+    "Proof Diagnosis & Entrance Transfer Forge",
+  ],
+  ARC736: [
+    "Algebraic Identities, Factorization & Simplification",
+    "Equations, Polynomial Roots & Vieta Structure",
+    "Inequalities, Absolute Value & Bounding",
+    "Functions, Composition, Inverses & Graph Transformations",
+    "Arithmetic & Geometric Progressions",
+    "Exponentials, Logarithms & Growth Equations",
+    "Complex Numbers & Plane Representation",
+    "Trigonometric / Coordinate Algebra Transfer Forge",
+  ],
+  ARC737: [
+    "Sum/Product Rules & Bijection-Based Counting",
+    "Permutations with Restrictions",
+    "Combinations & Binomial Coefficients",
+    "Binomial / Multinomial Identities by Counting",
+    "Inclusion-Exclusion",
+    "Pigeonhole Principle & Extremal Counting",
+    "Recurrence Relations & Recursive Counting",
+    "Counting Probability & Entrance Transfer Forge",
+  ],
+  ARC738: [
+    "Graph Models, Degrees & Handshaking",
+    "Walks, Paths, Cycles & Connectivity",
+    "Trees & Structural Characterizations",
+    "Spanning Trees & Cut/Cycle Reasoning",
+    "Bipartite Graphs & Two-Coloring",
+    "Matchings & Hall-Style Reasoning",
+    "Euler Trails, Hamiltonian Questions & Invariants",
+    "Shortest Paths, MSTs & Correctness Reasoning",
+    "Graph Proof & Entrance Transfer Forge",
+  ],
+};
+
+export const T22_ENTRANCE_EXTENSION_IDS = Object.keys(ENTRANCE_EXTENSION_PLAN);
+
+export const T22_ENTRANCE_EXTENSION_NODES = [
+  {
+    id: "ARC735",
+    arc: "ARC 735",
+    title: "Proof, Sets & Logical Reasoning",
+    kind: "new",
+    level: "L2",
+    domains: ["Mathematics", "Statistics", "Computer Science"],
+    summary:
+      "Build the proof language and discrete mathematical reasoning repeatedly tested across quantitative master's entrances and technical problem solving.",
+    storyPrereqs: [],
+    crossLinks: [],
+    masteryPrereqs: [],
+    playOrder: null,
+    sourceStart: null,
+    sourceEnd: null,
+    deck: "T22 Quantitative Research Strike Path",
+    commonGroup: null,
+    gatewayTags: ["MathStats", "CS"],
+    terminalTags: [T22_ID],
+    requiredByCount: 1,
+    stage: "Universal entrance extension",
+    masteryScope:
+      "Propositions and quantifiers; negation; implication and equivalence; counterexamples; direct proof, contrapositive and contradiction; induction; sets and functions; images and preimages; relations, equivalence relations, classes and partitions; proof diagnosis under unfamiliar entrance-style prompts.",
+  },
+  {
+    id: "ARC736",
+    arc: "ARC 736",
+    title: "Classical Algebra & Function Problem Solving",
+    kind: "new",
+    level: "L2",
+    domains: ["Mathematics", "Statistics", "Computer Science"],
+    summary:
+      "Restore fast, exact classical algebra and function fluency so advanced T22 mathematics is not undermined by entrance-exam school-math bottlenecks.",
+    storyPrereqs: [],
+    crossLinks: [],
+    masteryPrereqs: ["ARC735"],
+    playOrder: null,
+    sourceStart: null,
+    sourceEnd: null,
+    deck: "T22 Quantitative Research Strike Path",
+    commonGroup: null,
+    gatewayTags: ["MathStats", "CS"],
+    terminalTags: [T22_ID],
+    requiredByCount: 1,
+    stage: "Universal entrance extension",
+    masteryScope:
+      "Algebraic identities and factorization; equations and polynomial roots; Vieta relations; inequalities and absolute value; functions, composition and inverses; AP/GP and finite sums; exponentials and logarithms; complex numbers; compact trigonometric and coordinate-algebra transfer problems.",
+  },
+  {
+    id: "ARC737",
+    arc: "ARC 737",
+    title: "Combinatorics & Discrete Counting",
+    kind: "new",
+    level: "L2",
+    domains: ["Mathematics", "Statistics", "Computer Science"],
+    summary:
+      "Develop counting structure that supports probability, algorithms and the discrete reasoning common to ISI/CMI-style quantitative entrances.",
+    storyPrereqs: [],
+    crossLinks: [],
+    masteryPrereqs: ["ARC735", "ARC736"],
+    playOrder: null,
+    sourceStart: null,
+    sourceEnd: null,
+    deck: "T22 Quantitative Research Strike Path",
+    commonGroup: null,
+    gatewayTags: ["MathStats", "CS"],
+    terminalTags: [T22_ID],
+    requiredByCount: 1,
+    stage: "Universal entrance extension",
+    masteryScope:
+      "Sum/product rules; bijective counting; permutations and combinations with restrictions; binomial and multinomial coefficients; inclusion-exclusion; pigeonhole arguments; recurrence relations and recursive counting; counting-based probability and unfamiliar transfer problems.",
+  },
+  {
+    id: "ARC738",
+    arc: "ARC 738",
+    title: "Graph Theory & Discrete Structures",
+    kind: "new",
+    level: "L3",
+    domains: ["Mathematics", "Computer Science"],
+    summary:
+      "Add mathematical graph reasoning beyond basic traversal so T22 supports CMI/ISI-style discrete questions as well as algorithmic interviews.",
+    storyPrereqs: [],
+    crossLinks: [],
+    masteryPrereqs: ["ARC735", "ARC717"],
+    playOrder: null,
+    sourceStart: null,
+    sourceEnd: null,
+    deck: "T22 Quantitative Research Strike Path",
+    commonGroup: null,
+    gatewayTags: ["MathStats", "CS"],
+    terminalTags: [T22_ID],
+    requiredByCount: 1,
+    stage: "Universal entrance extension",
+    masteryScope:
+      "Graph models and degree invariants; walks, paths, cycles and connectivity; trees and spanning trees; bipartite graphs; matching and Hall-style reasoning; Euler/Hamilton questions; cut/cycle reasoning; shortest paths and MST correctness; proof-oriented graph transfer.",
+  },
+];
+
+const T22_ENTRANCE_PREREQS = {
+  ARC735: [],
+  ARC736: ["ARC735"],
+  ARC737: ["ARC735", "ARC736"],
+  ARC738: ["ARC735", "ARC717"],
+};
+
+const T22_ENTRANCE_STAGES = {
+  ARC735: 0,
+  ARC736: 0,
+  ARC737: 1,
+  ARC738: 1,
+};
+
 // Count is deliberately an output of the decomposition, never a design target.
 const PLAN = {
   ARC053: [
@@ -721,7 +879,7 @@ const PLAN = {
   ],
 };
 
-export const T22_ATOMIC_MODULES = Object.fromEntries(
+const BASE_T22_ATOMIC_MODULES = Object.fromEntries(
   Object.entries(PLAN).map(([moduleId, titles], moduleIndex) => [
     moduleId,
     titles.map((title, index) => ({
@@ -731,6 +889,22 @@ export const T22_ATOMIC_MODULES = Object.fromEntries(
     })),
   ]),
 );
+
+const ENTRANCE_T22_ATOMIC_MODULES = Object.fromEntries(
+  Object.entries(ENTRANCE_EXTENSION_PLAN).map(([moduleId, titles], extensionIndex) => [
+    moduleId,
+    titles.map((title, index) => ({
+      id: `T22-M${String(59 + extensionIndex).padStart(2, "0")}-A${String(index + 1).padStart(2, "0")}`,
+      title,
+      targetHours: T22_ATOMIC_TARGET_HOURS_PER_ARC,
+    })),
+  ]),
+);
+
+export const T22_ATOMIC_MODULES = {
+  ...BASE_T22_ATOMIC_MODULES,
+  ...ENTRANCE_T22_ATOMIC_MODULES,
+};
 
 export const T22_ATOMIC_COUNT = Object.values(T22_ATOMIC_MODULES)
   .reduce((total, arcs) => total + arcs.length, 0);
@@ -744,16 +918,48 @@ export const T22_ATOMIC_POLICY = {
   normalRangeHours: [...T22_ATOMIC_WORK_RANGE_HOURS],
   designRule: "Atomic-arc count is bookkeeping only. There is no per-module cap, batch target or final T22 target. Split according to actual conceptual content until each unit is plausibly a 2–6 focused-hour WALL investigation.",
   scopeRule: "One principal conceptual obstacle, a coherent derivation/reasoning or implementation burden, enough operational use to make the idea usable, and one unfamiliar transfer. If the unit cannot reasonably close in one or two serious sessions, split it or move misplaced material to its natural module.",
-  masteryRule: "T22 mastery is role-targeted mastery for quantitative research, not field-complete mastery. Later modules deliberately reactivate and deepen earlier material instead of duplicating it.",
+  masteryRule: "T22 mastery is role-targeted mastery for quantitative research plus a compact universal entrance foundation, not field-complete mastery. Later modules deliberately reactivate and deepen earlier material instead of duplicating it.",
 };
+
+function addEntranceExtensionNodes(world) {
+  const existing = new Set((world.nodes || []).map((node) => node.id));
+  for (const template of T22_ENTRANCE_EXTENSION_NODES) {
+    if (existing.has(template.id)) throw new Error(`T22 entrance extension cannot add duplicate node ${template.id}.`);
+    const node = {
+      ...template,
+      domains: [...template.domains],
+      storyPrereqs: [...template.storyPrereqs],
+      crossLinks: [...template.crossLinks],
+      masteryPrereqs: [...template.masteryPrereqs],
+      gatewayTags: [...template.gatewayTags],
+      terminalTags: [...template.terminalTags],
+      terminalMasteryPrereqs: { [T22_ID]: [...T22_ENTRANCE_PREREQS[template.id]] },
+      terminalStages: { [T22_ID]: T22_ENTRANCE_STAGES[template.id] },
+    };
+    world.nodes.push(node);
+    existing.add(node.id);
+  }
+  world.worldCount = world.nodes.length;
+  world.newCount = Number(world.newCount || 0) + T22_ENTRANCE_EXTENSION_NODES.length;
+}
 
 function applyT22AtomicArcs(world = WORLD) {
   const terminal = (world.terminals || []).find((candidate) => candidate.id === T22_ID);
   if (!terminal) throw new Error("T22 atomic plan requires the T22 terminal to be loaded first.");
 
-  const moduleIds = terminal.order || terminal.required || [];
-  if (moduleIds.length !== 58) {
-    throw new Error(`T22 atomic plan expects 58 modules; found ${moduleIds.length}.`);
+  const baseOrder = terminal.order || terminal.required || [];
+  if (baseOrder.length !== 58) {
+    throw new Error(`T22 entrance extension expects the stable 58-module base route; found ${baseOrder.length}.`);
+  }
+
+  addEntranceExtensionNodes(world);
+  terminal.required = [...(terminal.required || baseOrder), ...T22_ENTRANCE_EXTENSION_IDS];
+  terminal.order = [...baseOrder, ...T22_ENTRANCE_EXTENSION_IDS];
+  terminal.count = terminal.required.length;
+
+  const moduleIds = terminal.order;
+  if (moduleIds.length !== 62) {
+    throw new Error(`T22 atomic plan expects 62 modules after the universal entrance extension; found ${moduleIds.length}.`);
   }
 
   const planIds = Object.keys(T22_ATOMIC_MODULES);
@@ -799,8 +1005,8 @@ function applyT22AtomicArcs(world = WORLD) {
     };
   });
 
-  if (atomicIds.size !== 596 || T22_ATOMIC_COUNT !== 596) {
-    throw new Error(`T22 atomic audit v2 must contain exactly 596 content-derived atomic arcs; found ${atomicIds.size}.`);
+  if (atomicIds.size !== 628 || T22_ATOMIC_COUNT !== 628) {
+    throw new Error(`T22 atomic audit v2 with universal entrance extension must contain exactly 628 content-derived atomic arcs; found ${atomicIds.size}.`);
   }
 
   terminal.moduleCount = moduleIds.length;
@@ -810,10 +1016,11 @@ function applyT22AtomicArcs(world = WORLD) {
   terminal.atomicNormalRangeHours = [...T22_ATOMIC_WORK_RANGE_HOURS];
   terminal.atomicAuditVersion = T22_ATOMIC_AUDIT_VERSION;
   terminal.atomicPolicy = { ...T22_ATOMIC_POLICY, normalRangeHours: [...T22_ATOMIC_POLICY.normalRangeHours] };
+  terminal.entranceExtensionModules = [...T22_ENTRANCE_EXTENSION_IDS];
   terminal.summary =
-    `A 58-module / ${T22_ATOMIC_COUNT}-atomic-arc first-hire quantitative-research strike path. The macro graph preserves prerequisites while the v2 atomic audit divides each module by actual conceptual content rather than a preset arc quota.`;
+    `A 62-module / ${T22_ATOMIC_COUNT}-atomic-arc quantitative-research strike path with a compact four-module universal entrance foundation for proof/logic, classical algebra, combinatorics and graph/discrete reasoning. The original 58-module career spine and all existing T22-M01–M58 atomic IDs remain stable.`;
   terminal.routePolicy =
-    `T22 uses 58 prerequisite-ordered modules containing ${T22_ATOMIC_COUNT} content-derived atomic arcs. Atomic-arc count is bookkeeping, not a curriculum target. Each arc targets about ${T22_ATOMIC_TARGET_HOURS_PER_ARC} focused hours (${T22_ATOMIC_WORK_RANGE_HOURS[0]}–${T22_ATOMIC_WORK_RANGE_HOURS[1]} normal range); oversized units must split or move misplaced content instead of silently expanding.`;
+    `T22 keeps its original 58 prerequisite-ordered quantitative-research modules and appends four universal entrance modules as stable M59–M62. They are displayed in the mathematically appropriate early columns without renumbering any existing module or atomic ARC. M.Stat/MS(QE)/CMI-specific depth remains deferred to later optional packs. Each atomic arc targets about ${T22_ATOMIC_TARGET_HOURS_PER_ARC} focused hours (${T22_ATOMIC_WORK_RANGE_HOURS[0]}–${T22_ATOMIC_WORK_RANGE_HOURS[1]} normal range); oversized units must split or move misplaced content instead of silently expanding.`;
 
   world.version = "1.7";
   world.title = "Chrono-Deck Scientific Mastery World v1.7";
