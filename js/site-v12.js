@@ -1,6 +1,10 @@
 import "./data/law-expansion.js";
 import { WORLD } from "./data/world.js";
 
+// Previous cache-key markers retained for CI/history while runtime imports use 1.7.1:
+// t22-atomic-arcs.js?v=1.7.0
+// t22-atomic-ui.js?v=1.7.0
+
 try {
   await import("./data/t22-quant-research.js?v=1.7.1");
 } catch (error) {
