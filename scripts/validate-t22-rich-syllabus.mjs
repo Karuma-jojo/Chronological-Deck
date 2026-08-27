@@ -164,6 +164,19 @@ const MODULE_SPECS = [
       "T22-M11-A08",
     ],
   },
+  {
+    moduleId: "ARC512",
+    expectedIds: [
+      "T22-M12-A01",
+      "T22-M12-A02",
+      "T22-M12-A03",
+      "T22-M12-A04",
+      "T22-M12-A05",
+      "T22-M12-A06",
+      "T22-M12-A07",
+      "T22-M12-A08",
+    ],
+  },
 ];
 
 expect(
