@@ -316,7 +316,7 @@ function renderAtomicPanel() {
   note.className = "t22-atomic-progress-note";
   note.textContent = richModule
     ? "Atomic progress still uses the v2 stable IDs; syllabus v3 enriches the card without reinterpreting completed A01/A02 work. Partial v1 checkmarks remain archived."
-    : "Atomic audit-v2 subprogress is local to this browser. Partial v1 atomic checkmarks are archived rather than reinterpreted; completed 58-module checkpoints are preserved through the existing Chrono-Deck progress/cloud system.";
+    : "Atomic audit-v2 subprogress is local to this browser. Partial v1 atomic checkmarks are archived rather than reinterpreted; completed module checkpoints are preserved through the existing Chrono-Deck progress/cloud system.";
   list.appendChild(note);
 }
 
@@ -356,7 +356,7 @@ function renderGraphWeights() {
 function renderHeader() {
   const pill = [...document.querySelectorAll("header .pill")]
     .find((candidate) => candidate.textContent.trim().startsWith("T22:"));
-  const pillText = `T22: 58 modules · ${T22_ATOMIC_COUNT} atomic arcs`;
+  const pillText = `T22: ${moduleIds.length} modules · ${T22_ATOMIC_COUNT} atomic arcs`;
   if (pill && pill.textContent !== pillText) pill.textContent = pillText;
   const subtitle = document.querySelector("header .subtitle");
   if (subtitle && subtitle.textContent.includes("app version")) {
