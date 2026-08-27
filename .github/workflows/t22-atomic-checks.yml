@@ -60,8 +60,11 @@ jobs:
           grep -q 't22-atomic-arcs.js?v=1.7.0' js/site-v12.js
           grep -q 't22-atomic-ui.js?v=1.7.0' js/site-v12.js
           grep -q 'site-v12.js?v=1.7.0' js/site-v11.js
-          grep -q 'atomicIds.size !== 596' js/data/t22-atomic-arcs.js
+          grep -q 'atomicIds.size !== 628' js/data/t22-atomic-arcs.js
           grep -q 'T22_ATOMIC_AUDIT_VERSION = "2.0"' js/data/t22-atomic-arcs.js
+          grep -q 'ARC735' js/data/t22-atomic-arcs.js
+          grep -q 'ARC738' js/data/t22-atomic-arcs.js
+          grep -q 'T22_ENTRANCE_EXTENSION_IDS' js/data/t22-atomic-arcs.js
           grep -q 'chrono_t22_atomic_progress_v2' js/t22-atomic-ui.js
           grep -q 'no per-module arc cap' js/t22-atomic-ui.js
           grep -q 'T22_RICH_SYLLABUS_VERSION = "3.0"' js/data/t22-rich-syllabus.js
