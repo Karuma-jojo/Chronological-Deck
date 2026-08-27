@@ -13,6 +13,7 @@ import { buildT22RichModule13 } from "./t22-rich-module-13.js";
 import { buildT22RichModule14 } from "./t22-rich-module-14.js";
 import { buildT22RichModule15 } from "./t22-rich-module-15.js";
 import { buildT22RichModule16 } from "./t22-rich-module-16.js";
+import { buildT22RichModule17 } from "./t22-rich-module-17.js";
 
 export const T22_RICH_SYLLABUS_VERSION = "3.0";
 
@@ -255,6 +256,7 @@ const MODULE_13 = buildT22RichModule13(T22_RICH_SYLLABUS_VERSION);
 const MODULE_14 = buildT22RichModule14(T22_RICH_SYLLABUS_VERSION);
 const MODULE_15 = buildT22RichModule15(T22_RICH_SYLLABUS_VERSION);
 const MODULE_16 = buildT22RichModule16(T22_RICH_SYLLABUS_VERSION);
+const MODULE_17 = buildT22RichModule17(T22_RICH_SYLLABUS_VERSION);
 
 export const T22_RICH_MODULES = Object.freeze({
   ARC053: MODULE_1,
@@ -273,6 +275,7 @@ export const T22_RICH_MODULES = Object.freeze({
   ARC717: MODULE_14,
   ARC585: MODULE_15,
   ARC713: MODULE_16,
+  ARC048: MODULE_17,
 });
 
 export function getT22RichModule(moduleId) {
