@@ -1,9 +1,11 @@
 import "./data/law-expansion.js";
 import { WORLD } from "./data/world.js";
 
-// Previous cache-key markers retained for CI/history while runtime imports use 1.7.1:
+// Previous cache-key markers retained for CI/history:
 // t22-atomic-arcs.js?v=1.7.0
 // t22-atomic-ui.js?v=1.7.0
+// t22-atomic-arcs.js?v=1.7.1
+// t22-atomic-ui.js?v=1.7.1
 
 try {
   await import("./data/t22-quant-research.js?v=1.7.1");
@@ -18,7 +20,9 @@ try {
 }
 
 try {
-  await import("./data/t22-atomic-arcs.js?v=1.7.1");
+  // Keep this URL identical to t22-atomic-ui.js's static import. Query-string
+  // variants are distinct ES modules and would execute the entrance extension twice.
+  await import("./data/t22-atomic-arcs.js");
 } catch (error) {
   console.error("T22 atomic-arc overlay failed to load; continuing with the 58-module macro route.", error);
 }
@@ -39,7 +43,7 @@ try {
 
 await import("./app.js?v=1.7.1");
 try {
-  await import("./t22-atomic-ui.js?v=1.7.1");
+  await import("./t22-atomic-ui.js?v=1.7.2");
 } catch (error) {
   console.error("T22 atomic progress UI failed to load; core route progress remains available.", error);
 }

@@ -8,5 +8,5 @@
 // await import("./app.js")
 // await import("./t22-atomic-ui.js")
 // await import("./vault.js")
-// Previous cache-key marker: site-v12.js?v=1.7.0
-await import("./site-v12.js?v=1.7.1");
+// Previous cache-key markers: site-v12.js?v=1.7.0, site-v12.js?v=1.7.1
+await import("./site-v12.js?v=1.7.2");
