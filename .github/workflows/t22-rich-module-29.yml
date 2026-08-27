@@ -1,0 +1,28 @@
+name: T22 rich module 29 checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-t22-rich-module-29:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate module 29 JavaScript syntax
+        run: |
+          node --input-type=module --check < js/data/t22-rich-module-29.js
+          node --input-type=module --check < scripts/validate-t22-rich-module-29.mjs
+          node --input-type=module --check < js/data/t22-rich-syllabus.js
+      - name: Validate module 29 rich contract
+        run: node scripts/validate-t22-rich-module-29.mjs
+      - name: Verify module 29 registry wiring
+        run: |
+          grep -q 'buildT22RichModule29' js/data/t22-rich-syllabus.js
+          grep -q 'ARC537: MODULE_29' js/data/t22-rich-syllabus.js
+          grep -q 'T22-M29-A09' js/data/t22-rich-module-29.js
