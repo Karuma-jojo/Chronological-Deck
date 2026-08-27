@@ -30,6 +30,7 @@ jobs:
           node --input-type=module --check < js/data/t22-rich-module-10.js
           node --input-type=module --check < js/data/t22-rich-module-11.js
           node --input-type=module --check < js/data/t22-rich-module-12.js
+          node --input-type=module --check < js/data/t22-rich-module-13.js
           node --input-type=module --check < js/data/t22-rich-syllabus.js
           node --input-type=module --check < js/t22-atomic-ui.js
           node --input-type=module --check < js/site-v12.js
@@ -66,6 +67,7 @@ jobs:
           grep -q 'SIDE271: MODULE_10' js/data/t22-rich-syllabus.js
           grep -q 'ARC711: MODULE_11' js/data/t22-rich-syllabus.js
           grep -q 'ARC512: MODULE_12' js/data/t22-rich-syllabus.js
+          grep -q 'ARC515: MODULE_13' js/data/t22-rich-syllabus.js
           grep -q 'T22-M02-A04' js/data/t22-rich-module-2.js
           grep -q 'T22-M03-A08' js/data/t22-rich-module-3.js
           grep -q 'T22-M04-A05' js/data/t22-rich-module-4.js
@@ -77,4 +79,5 @@ jobs:
           grep -q 'T22-M10-A07' js/data/t22-rich-module-10.js
           grep -q 'T22-M11-A08' js/data/t22-rich-module-11.js
           grep -q 'T22-M12-A08' js/data/t22-rich-module-12.js
+          grep -q 'T22-M13-A11' js/data/t22-rich-module-13.js
           grep -q 'Copy mission card' js/t22-atomic-ui.js
