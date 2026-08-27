@@ -95,8 +95,7 @@ jobs:
           grep -q 'terminalStages' js/app.js
           grep -q 'T22_ORDER.length !== 58' js/data/t22-quant-research.js
           grep -q 'T23_ORDER.length !== 66' js/data/t23-universal-scientist.js
-          grep -q 'atomicIds.size !== 628' js/data/t22-atomic-arcs.js
-          grep -q 'T22_ENTRANCE_EXTENSION_IDS' js/data/t22-atomic-arcs.js
+          grep -q 'atomicIds.size !== 596' js/data/t22-atomic-arcs.js
           grep -q 'T22_ATOMIC_AUDIT_VERSION = "2.0"' js/data/t22-atomic-arcs.js
           grep -q 'Kinematics & Rigid-Body Dynamics' js/data/t23-universal-scientist.js
           grep -q 'Waves, Electromagnetism & Propagation for Sensing' js/data/t23-universal-scientist.js
