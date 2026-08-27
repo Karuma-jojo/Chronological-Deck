@@ -1,3 +1,9 @@
+import { WORLD } from "../js/data/world.js";
+
+await import("../js/data/law-expansion.js");
+await import("../js/data/t22-quant-research.js");
+await import("../js/data/t23-universal-scientist.js");
+
 const { T22_ATOMIC_MODULES } = await import("../js/data/t22-atomic-arcs.js");
 const { getT22RichModule, enrichT22AtomicArc } = await import("../js/data/t22-rich-syllabus.js");
 
@@ -26,6 +32,7 @@ const listFields = ["entryPrerequisites", "requiredMastery", "explicitlyOutOfSco
 const errors = [];
 const expect = (condition, message) => { if (!condition) errors.push(message); };
 
+expect(Boolean(WORLD.terminals.find((terminal) => terminal.id === "T22")), "T22 terminal must be loaded before M23 validation.");
 const baseArcs = T22_ATOMIC_MODULES[moduleId] || [];
 const richModule = getT22RichModule(moduleId);
 expect(Boolean(richModule), `${moduleId} must have a rich syllabus contract.`);
