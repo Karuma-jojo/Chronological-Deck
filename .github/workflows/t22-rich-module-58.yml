@@ -1,0 +1,29 @@
+name: T22 rich module 58 checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-t22-rich-module-58:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate module 58 JavaScript syntax
+        run: |
+          node --input-type=module --check < js/data/t22-rich-module-58.js
+          node --input-type=module --check < scripts/validate-t22-rich-module-58.mjs
+          node --input-type=module --check < js/data/t22-rich-syllabus.js
+      - name: Validate module 58 rich contract
+        run: node scripts/validate-t22-rich-module-58.mjs
+      - name: Verify module 58 registry wiring and terminal boundary
+        run: |
+          grep -q 'buildT22RichModule58' js/data/t22-rich-syllabus.js
+          grep -q 'ARC560: MODULE_58' js/data/t22-rich-syllabus.js
+          grep -q 'T22-M58-A25' js/data/t22-rich-module-58.js
+          ! grep -q 'MODULE_59' js/data/t22-rich-syllabus.js
