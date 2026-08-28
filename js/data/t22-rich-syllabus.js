@@ -84,7 +84,7 @@ const MODULE_1 = {
         "Compute and compare shrinking finite-interval rates",
         "Identify a stable candidate without treating finite numerical agreement as proof",
         "Explain why direct substitution of a zero interval is invalid",
-        "Transfer the finite-to-local rate idea to a different changing quantity",
+        "Transfer the finite-to-local-rate idea to a different changing quantity",
       ],
       applicationScope:
         "One concrete changing-system application in which a local rate must be inferred from finite observations.",
