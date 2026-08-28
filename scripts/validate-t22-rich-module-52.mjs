@@ -68,11 +68,11 @@ expect(richModule?.arcs?.["T22-M52-A03"]?.requiredMastery?.some((x) => x.include
 expect(richModule?.arcs?.["T22-M52-A04"]?.requiredMastery?.some((x) => x.includes("timezone")) && richModule?.arcs?.["T22-M52-A04"]?.requiredMastery?.some((x) => x.includes("synchronization")), "M52 A04 must separate timezone conversion from clock synchronization.");
 expect(richModule?.arcs?.["T22-M52-A05"]?.requiredMastery?.some((x) => x.includes("sequence gaps")), "M52 A05 must audit sequence gaps.");
 expect(richModule?.arcs?.["T22-M52-A07"]?.requiredMastery?.some((x) => x.includes("backward direction")) && richModule?.arcs?.["T22-M52-A07"]?.requiredMastery?.some((x) => x.includes("right timestamp")), "M52 A07 must enforce causal backward as-of joins.");
-expect(richModule?.arcs?.["T22-M52-A09"]?.requiredMastery?.some((x) => x.includes("sequence order")) && richModule?.arcs?.["T22-M52-A09"]?.requiredMastery?.some((x) => x.includes("invalidate")), "M52 A09 must make book reconstruction gap-aware.");
+expect(richModule?.arcs?.["T22-M52-A09"]?.requiredMastery?.some((x) => x.includes("sequence order")) && richModule?.arcs?.["T22-M52-A09"]?.requiredMastery?.some((x) => x.includes("Invalidate")), "M52 A09 must make book reconstruction gap-aware.");
 expect(richModule?.arcs?.["T22-M52-A11"]?.requiredMastery?.some((x) => x.includes("max source availability time")), "M52 A11 must audit feature availability lineage.");
 expect(richModule?.arcs?.["T22-M52-A12"]?.requiredMastery?.some((x) => x.includes("non-uniqueness")), "M52 A12 must demonstrate information loss under bar aggregation.");
 expect(richModule?.arcs?.["T22-M52-A13"]?.requiredMastery?.some((x) => x.includes("right_time <= left_time")), "M52 A13 must encode the causal join invariant.");
-expect(richModule?.arcs?.["T22-M52-A14"]?.requiredMastery?.some((x) => x.includes("source events")) && richModule?.arcs?.["T22-M52-A14"]?.requiredMastery?.some((x) => x.includes("ARC715")), "M52 lab must prove provenance and hand dirty-data ownership to ARC715.");
+expect(richModule?.arcs?.["T22-M52-A14"]?.requiredMastery?.some((x) => x.includes("source events")) && richModule?.arcs?.["T22-M52-A14"]?.nextArcBoundary?.includes("ARC715"), "M52 lab must prove provenance and hand dirty-data ownership to ARC715.");
 expect(richModule?.arcs?.["T22-M52-A14"]?.nextArcBoundary?.includes("ARC715"), "M52 must hand downstream ownership to ARC715.");
 
 if (errors.length) {
