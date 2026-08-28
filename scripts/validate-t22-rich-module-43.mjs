@@ -75,7 +75,11 @@ expect(richModule?.arcs?.["T22-M43-A15"]?.requiredMastery?.some((x) => x.include
 expect(richModule?.arcs?.["T22-M43-A16"]?.requiredMastery?.some((x) => x.includes("Verify derivatives independently")), "M43 A16 must require independent derivative verification.");
 expect(richModule?.arcs?.["T22-M43-A16"]?.nextArcBoundary?.includes("ARC589"), "M43 must hand stochastic optimization ownership to ARC589.");
 expect(richModule?.explicitlyOutOfScope?.some((x) => x.includes("ARC589")), "M43 must preserve stochastic optimization ownership in ARC589.");
-expect(richModule?.explicitlyOutOfScope?.some((x) => x.includes("ARC599")), "M43 must preserve later neural training ownership in ARC599.");
+expect(
+  richModule?.explicitlyOutOfScope?.some((x) => x.includes("ARC593 onward")) &&
+    ["T22-M43-A12", "T22-M43-A14", "T22-M43-A16"].some((id) => richModule?.arcs?.[id]?.explicitlyOutOfScope?.some((x) => x.includes("ARC599"))),
+  "M43 must preserve later learning/neural-training ownership, including ARC599.",
+);
 
 if (errors.length) {
   console.error(`T22 M43 rich validation failed with ${errors.length} issue(s):`);
