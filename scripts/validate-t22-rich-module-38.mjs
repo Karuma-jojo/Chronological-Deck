@@ -57,7 +57,7 @@ for (const baseArc of baseArcs) {
 
 expect(richModule?.arcs?.["T22-M38-A01"]?.requiredMastery?.some((item) => item.includes("independence")), "M38 A01 must distinguish Markov dependence from independence.");
 expect(richModule?.arcs?.["T22-M38-A02"]?.requiredMastery?.some((item) => item.includes("row sums")), "M38 A02 must enforce stochastic-matrix validity.");
-expect(richModule?.arcs?.["T22-M38-A03"]?.target?.includes("Chapman-Kolmogorov"), "M38 A03 must operationalize Chapman-Kolmogorov composition.");
+expect(richModule?.arcs?.["T22-M38-A03"]?.focus?.includes("Chapman-Kolmogorov") && richModule?.arcs?.["T22-M38-A03"]?.requiredMastery?.some((item) => item.includes("Chapman-Kolmogorov")), "M38 A03 must operationalize Chapman-Kolmogorov composition.");
 expect(richModule?.arcs?.["T22-M38-A04"]?.requiredMastery?.some((item) => item.includes("closed")), "M38 A04 must distinguish closed communicating classes.");
 expect(richModule?.arcs?.["T22-M38-A05"]?.requiredMastery?.some((item) => item.includes("finite irreducible")), "M38 A05 must scope the finite irreducible recurrence result.");
 expect(richModule?.arcs?.["T22-M38-A06"]?.requiredMastery?.some((item) => item.includes("first-step")), "M38 A06 must derive first-step hitting-time equations.");
