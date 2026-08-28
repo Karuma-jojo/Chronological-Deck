@@ -1,0 +1,28 @@
+name: T22 rich module 51 checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-t22-rich-module-51:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate module 51 JavaScript syntax
+        run: |
+          node --input-type=module --check < js/data/t22-rich-module-51.js
+          node --input-type=module --check < scripts/validate-t22-rich-module-51.mjs
+          node --input-type=module --check < js/data/t22-rich-syllabus.js
+      - name: Validate module 51 rich contract
+        run: node scripts/validate-t22-rich-module-51.mjs
+      - name: Verify module 51 registry wiring
+        run: |
+          grep -q 'buildT22RichModule51' js/data/t22-rich-syllabus.js
+          grep -q 'ARC716: MODULE_51' js/data/t22-rich-syllabus.js
+          grep -q 'T22-M51-A11' js/data/t22-rich-module-51.js
