@@ -1,0 +1,28 @@
+name: T22 rich module 44 checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-t22-rich-module-44:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate module 44 JavaScript syntax
+        run: |
+          node --input-type=module --check < js/data/t22-rich-module-44.js
+          node --input-type=module --check < scripts/validate-t22-rich-module-44.mjs
+          node --input-type=module --check < js/data/t22-rich-syllabus.js
+      - name: Validate module 44 rich contract
+        run: node scripts/validate-t22-rich-module-44.mjs
+      - name: Verify module 44 registry wiring
+        run: |
+          grep -q 'buildT22RichModule44' js/data/t22-rich-syllabus.js
+          grep -q 'ARC589: MODULE_44' js/data/t22-rich-syllabus.js
+          grep -q 'T22-M44-A12' js/data/t22-rich-module-44.js
