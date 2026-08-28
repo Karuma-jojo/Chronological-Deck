@@ -36,6 +36,7 @@ import { buildT22RichModule36 } from "./t22-rich-module-36.js";
 import { buildT22RichModule37 } from "./t22-rich-module-37.js";
 import { buildT22RichModule38 } from "./t22-rich-module-38.js";
 import { buildT22RichModule39 } from "./t22-rich-module-39.js";
+import { buildT22RichModule40 } from "./t22-rich-module-40.js";
 
 export const T22_RICH_SYLLABUS_VERSION = "3.0";
 
@@ -83,7 +84,7 @@ const MODULE_1 = {
       applicationScope:
         "One concrete changing-system application in which a local rate must be inferred from finite observations.",
       transferScope:
-        "Different surface context, same finite-to-local rate problem; no cosmetic number swap.",
+        "Different surface/domain while preserving the question of whether one first-order local model captures nearby behaviour.",
       explicitlyOutOfScope: [
         "General difference-quotient formalism",
         "General epsilon-delta theory",
@@ -301,6 +302,7 @@ const MODULE_36 = buildT22RichModule36(T22_RICH_SYLLABUS_VERSION);
 const MODULE_37 = buildT22RichModule37(T22_RICH_SYLLABUS_VERSION);
 const MODULE_38 = buildT22RichModule38(T22_RICH_SYLLABUS_VERSION);
 const MODULE_39 = buildT22RichModule39(T22_RICH_SYLLABUS_VERSION);
+const MODULE_40 = buildT22RichModule40(T22_RICH_SYLLABUS_VERSION);
 
 export const T22_RICH_MODULES = Object.freeze({
   ARC053: MODULE_1,
@@ -342,6 +344,7 @@ export const T22_RICH_MODULES = Object.freeze({
   ARC543: MODULE_37,
   ARC524: MODULE_38,
   ARC525: MODULE_39,
+  ARC514: MODULE_40,
 });
 
 export function getT22RichModule(moduleId) {
