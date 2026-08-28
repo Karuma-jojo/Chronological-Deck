@@ -58,7 +58,7 @@ expect(richModule?.arcs?.["T22-M41-A01"]?.requiredMastery?.some((x) => x.include
 expect(richModule?.arcs?.["T22-M41-A02"]?.requiredMastery?.some((x) => x.includes("nonconvex witness")), "M41 A02 must require a constructive nonconvexity witness.");
 expect(richModule?.arcs?.["T22-M41-A05"]?.requiredMastery?.some((x) => x.includes("weak, strict and strong separation")), "M41 A05 must distinguish separation strengths.");
 expect(richModule?.arcs?.["T22-M41-A07"]?.requiredMastery?.some((x) => x.includes("local minimum") && x.includes("global")), "M41 A07 must connect convexity to global minima.");
-expect(richModule?.arcs?.["T22-M41-A08"]?.target?.includes("f(y)>=f(x)+grad f(x)^T(y-x)"), "M41 A08 must encode the first-order convexity inequality.");
+expect(richModule?.arcs?.["T22-M41-A08"]?.purpose?.includes("f(y)>=f(x)+grad f(x)^T(y-x)"), "M41 A08 must encode the first-order convexity inequality.");
 expect(richModule?.arcs?.["T22-M41-A09"]?.requiredMastery?.some((x) => x.includes("Hessian PSD")), "M41 A09 must operationalize the Hessian criterion.");
 expect(richModule?.arcs?.["T22-M41-A10"]?.requiredMastery?.some((x) => x.includes("strictly convex") && x.includes("not strongly")), "M41 A10 must separate strict from strong convexity.");
 expect(richModule?.arcs?.["T22-M41-A11"]?.target?.includes("0 in partial f(x*)"), "M41 A11 must encode subgradient optimality.");
