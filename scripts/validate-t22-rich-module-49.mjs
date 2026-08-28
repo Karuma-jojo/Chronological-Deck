@@ -7,7 +7,7 @@ const { T22_ATOMIC_MODULES, T22_ATOMIC_COUNT } = await import("../js/data/t22-at
 const { getT22RichModule, enrichT22AtomicArc } = await import("../js/data/t22-rich-syllabus.js");
 
 const moduleId = "ARC595";
-const expectedIds = Array.from({ length: 15 }, (_, i) => `T22-M49-A${String(i + 1).padStart(2, "0")}`);
+const expectedIds = Array.from({ length: 14 }, (_, i) => `T22-M49-A${String(i + 1).padStart(2, "0")}`);
 const expectedTitles = [
   "Recursive Partitioning",
   "Regression-Tree Split Criteria",
@@ -74,8 +74,8 @@ expect(richModule?.arcs?.["T22-M49-A10"]?.requiredMastery?.some((x) => x.include
 expect(richModule?.arcs?.["T22-M49-A11"]?.requiredMastery?.some((x) => x.includes("F_m(x)")), "M49 A11 must make stagewise boosting operational.");
 expect(richModule?.arcs?.["T22-M49-A12"]?.target?.includes("pseudo-residuals"), "M49 A12 must derive gradient boosting through loss gradients.");
 expect(richModule?.arcs?.["T22-M49-A13"]?.requiredMastery?.some((x) => x.includes("learning-rate")), "M49 A13 must couple shrinkage and stage count.");
-expect(richModule?.arcs?.["T22-M49-A15"]?.requiredMastery?.some((x) => x.includes("simple baseline")), "M49 lab must include a simple baseline.");
-expect(richModule?.arcs?.["T22-M49-A15"]?.nextArcBoundary?.includes("ARC599"), "M49 must hand downstream neural-network ownership to ARC599.");
+expect(richModule?.arcs?.["T22-M49-A14"]?.requiredMastery?.some((x) => x.includes("simple non-tree baseline")), "M49 lab must include a simple baseline.");
+expect(richModule?.arcs?.["T22-M49-A14"]?.nextArcBoundary?.includes("ARC599"), "M49 must hand downstream neural-network ownership to ARC599.");
 
 if (errors.length) {
   console.error(`T22 M49 rich validation failed with ${errors.length} issue(s):`);
