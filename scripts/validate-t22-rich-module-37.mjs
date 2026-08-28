@@ -58,7 +58,7 @@ for (const baseArc of baseArcs) {
 }
 
 expect(richModule?.arcs?.["T22-M37-A02"]?.requiredMastery?.some((item) => item.includes("Q") && item.includes("R")), "M37 A02 must distinguish process and measurement covariance.");
-expect(richModule?.arcs?.["T22-M37-A04"]?.requiredMastery?.some((item) => item.includes("F P F^T")), "M37 A04 must operationalize covariance propagation.");
+expect(richModule?.arcs?.["T22-M37-A04"]?.target?.includes("F P") && richModule?.arcs?.["T22-M37-A04"]?.target?.includes("Q"), "M37 A04 must operationalize covariance propagation.");
 expect(richModule?.arcs?.["T22-M37-A05"]?.requiredMastery?.some((item) => item.includes("innovation covariance")), "M37 A05 must construct innovation uncertainty.");
 expect(richModule?.arcs?.["T22-M37-A06"]?.requiredMastery?.some((item) => item.includes("Gaussian")), "M37 A06 must derive the update from Gaussian conditioning.");
 expect(richModule?.arcs?.["T22-M37-A07"]?.requiredMastery?.some((item) => item.includes("linear solve")), "M37 A07 must prefer stable solves over blind matrix inversion.");
