@@ -1,0 +1,28 @@
+name: T22 rich module 53 checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-t22-rich-module-53:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate module 53 JavaScript syntax
+        run: |
+          node --input-type=module --check < js/data/t22-rich-module-53.js
+          node --input-type=module --check < scripts/validate-t22-rich-module-53.mjs
+          node --input-type=module --check < js/data/t22-rich-syllabus.js
+      - name: Validate module 53 rich contract
+        run: node scripts/validate-t22-rich-module-53.mjs
+      - name: Verify module 53 registry wiring
+        run: |
+          grep -q 'buildT22RichModule53' js/data/t22-rich-syllabus.js
+          grep -q 'ARC715: MODULE_53' js/data/t22-rich-syllabus.js
+          grep -q 'T22-M53-A13' js/data/t22-rich-module-53.js
