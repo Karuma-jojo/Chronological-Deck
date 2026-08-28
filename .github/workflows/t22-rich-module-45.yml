@@ -1,0 +1,28 @@
+name: T22 rich module 45 checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-t22-rich-module-45:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate module 45 JavaScript syntax
+        run: |
+          node --input-type=module --check < js/data/t22-rich-module-45.js
+          node --input-type=module --check < scripts/validate-t22-rich-module-45.mjs
+          node --input-type=module --check < js/data/t22-rich-syllabus.js
+      - name: Validate module 45 rich contract
+        run: node scripts/validate-t22-rich-module-45.mjs
+      - name: Verify module 45 registry wiring
+        run: |
+          grep -q 'buildT22RichModule45' js/data/t22-rich-syllabus.js
+          grep -q 'ARC211: MODULE_45' js/data/t22-rich-syllabus.js
+          grep -q 'T22-M45-A09' js/data/t22-rich-module-45.js
