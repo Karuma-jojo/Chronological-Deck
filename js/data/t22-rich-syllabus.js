@@ -84,7 +84,7 @@ const MODULE_1 = {
       applicationScope:
         "One concrete changing-system application in which a local rate must be inferred from finite observations.",
       transferScope:
-        "Different surface/domain while preserving the question of whether one first-order local model captures nearby behaviour.",
+        "Different surface context, same finite-to-local rate problem; no cosmetic number swap.",
       explicitlyOutOfScope: [
         "General difference-quotient formalism",
         "General epsilon-delta theory",
