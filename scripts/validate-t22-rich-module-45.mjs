@@ -55,7 +55,7 @@ expect(richModule?.arcs?.["T22-M45-A01"]?.requiredMastery?.some((x) => x.include
 expect(richModule?.arcs?.["T22-M45-A02"]?.requiredMastery?.some((x) => x.includes("equal states") || x.includes("same")), "M45 A02 must test state sufficiency across histories.");
 expect(richModule?.arcs?.["T22-M45-A03"]?.requiredMastery?.some((x) => x.includes("replacement")), "M45 A03 must justify optimal substructure by replacement reasoning.");
 expect(richModule?.arcs?.["T22-M45-A04"]?.target?.includes("Bellman recurrence"), "M45 A04 must derive an operational Bellman recurrence.");
-expect(richModule?.arcs?.["T22-M45-A04"]?.requiredMastery?.some((x) => x.includes("brute force")), "M45 A04 must validate the recurrence independently on tiny instances.");
+expect(richModule?.arcs?.["T22-M45-A04"]?.requiredMastery?.some((x) => x.includes("exhaustive enumeration") || x.includes("brute force")), "M45 A04 must validate the recurrence independently on tiny instances.");
 expect(richModule?.arcs?.["T22-M45-A05"]?.requiredMastery?.some((x) => x.includes("dependency")), "M45 A05 must justify backward evaluation order.");
 expect(richModule?.arcs?.["T22-M45-A06"]?.requiredMastery?.some((x) => x.includes("canonical cache keys")), "M45 A06 must operationalize memoization state identity.");
 expect(richModule?.arcs?.["T22-M45-A07"]?.requiredMastery?.some((x) => x.includes("fill order")), "M45 A07 must operationalize tabulation dependency order.");
