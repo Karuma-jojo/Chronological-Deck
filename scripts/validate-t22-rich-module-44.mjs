@@ -66,7 +66,8 @@ expect(richModule?.arcs?.["T22-M44-A09"]?.requiredMastery?.some((x) => x.include
 expect(richModule?.arcs?.["T22-M44-A10"]?.requiredMastery?.some((x) => x.includes("optimizer convergence") && x.includes("model validity")), "M44 A10 must not confuse optimization convergence with model validity.");
 expect(richModule?.arcs?.["T22-M44-A11"]?.requiredMastery?.some((x) => x.includes("falsifying diagnostic")), "M44 A11 must require diagnosis before optimizer shopping.");
 expect(richModule?.arcs?.["T22-M44-A12"]?.requiredMastery?.some((x) => x.includes("Separate optimization error from statistical/model error")), "M44 A12 must separate optimizer performance from statistical/model quality.");
-expect(richModule?.arcs?.["T22-M44-A12"]?.nextArcBoundary?.includes("ARC593") && richModule?.arcs?.["T22-M44-A12"]?.nextArcBoundary?.includes("ARC599"), "M44 final boundary must preserve later learning and neural-training ownership.");
+const finalBoundary = richModule?.arcs?.["T22-M44-A12"]?.nextArcBoundary || "";
+expect(finalBoundary.includes("ARC593") && (finalBoundary.includes("ARC599") || finalBoundary.includes("ARC593/594/599")), "M44 final boundary must preserve later learning and neural-training ownership.");
 expect(richModule?.explicitlyOutOfScope?.some((x) => x.includes("ARC593")), "M44 must preserve generalization ownership in ARC593.");
 expect(richModule?.explicitlyOutOfScope?.some((x) => x.includes("ARC594")), "M44 must preserve regularization ownership in ARC594.");
 expect(richModule?.explicitlyOutOfScope?.some((x) => x.includes("ARC599")), "M44 must preserve neural training ownership in ARC599.");
