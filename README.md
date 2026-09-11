@@ -1,85 +1,38 @@
-# Chrono-Deck Scientific Mastery World v1.0
+# Chrono-Deck
 
-A 630-node interactive scientific knowledge graph with a frozen 39-node personal scientific core and postgraduate terminal routes.
+An interactive science and mathematics knowledge graph with historical study, research routes, entrance preparation and an ARC archive.
 
-## Deploy on GitHub Pages
+The current registry has **838 world nodes and 24 terminal routes**. The original 39-node scientific core is preserved. Stable IDs are never recycled.
 
-Replace the existing repository `index.html` with the `index.html` in this folder, commit/push, and GitHub Pages will serve the new version.
+- **T22:** 58 research modules, decomposed into 596 atomic ARCs, for mathematically led quantitative research.
+- **T23:** 66 nodes for computational and field science, across six stages.
+- **T25:** 46 M.Stat entrance units, with a selectable companion-exam extension. The complete catalogue contains 104 entrance units; the extra 58 are not all required for M.Stat.
 
-## Cloud sync setup (one time)
+Open `index.html` through a static HTTP server or the existing GitHub Pages site. There is no frontend package installation or build step. Deploy the complete repository assets together; replacing only the HTML is insufficient.
 
-Cloud sync is optional. The app always keeps a local/offline copy of progress.
+## Entrance preparation
 
-1. Create a Supabase project.
-2. Open **SQL Editor** and run `supabase_setup.sql`.
-3. In Supabase, copy your **Project URL** and the **public anon/publishable key**.
-4. Open Chrono-Deck and expand **Cloud sync**.
-5. Paste the Project URL + public anon/publishable key and click **Save cloud settings**.
-6. Create an account with email/password. If email confirmation is enabled, confirm it.
-7. Sign in with the same account on every device.
+Use **T25 · ISI entrance preparation** in the header, or select T25 in the terminal menu. Choose the M.Stat core or one companion exam, select a unit, and open a copy-ready investigation, learning, practice, review or project prompt.
 
-After sign-in:
-- local changes are pushed automatically after a short debounce;
-- open devices check the cloud about every 20 seconds;
-- when a device connects for the first time, local + cloud cleared arcs are merged to avoid accidental loss;
-- later changes use the latest cloud state;
-- local progress remains available if the network or cloud is unavailable.
+The [T25 route guide](docs/t25-entrance-prep.md) explains the official syllabus map, study flow, exam priorities, evidence backups and audit scope. The reference baseline is ISI 2026, the currently linked CMI syllabus, and the revised GATE 2027 syllabi. Recheck application-year rules.
 
-## Security
+## Progress and archive
 
-The public anon/publishable key is designed for browser clients when Row Level Security is enabled.
+Existing world and T22 progress keys are preserved. T25 concept checkmarks use the existing world-progress mechanism. T25 practice evidence and the companion-exam choice are **device-local**, with a separate evidence export/import. A concept checkmark is a self-assessment; it does not certify exam readiness.
 
-**Never put a Supabase `service_role` key or any secret/admin key in this public repository.**
+The page contains the existing optional cloud-sync setup controls. The [Obsidian bridge guide](docs/obsidian-bridge.md) describes the archive integration. These are separate from the T25 practice log. Keep backups using each relevant export control.
 
-The included SQL enables Row Level Security and permits each authenticated user to read/write only their own `user_id` row.
+The [ChatGPT-native app](chatgpt-app/) is a separate T22 vertical slice with its own launch coverage. Adding T25 to this website does not automatically add T25 game launches to that app.
 
-## Progress compatibility
+## Validation
 
-The v1.0 app preserves the existing localStorage keys used by v0.2, so progress already recorded in the same browser should carry over automatically.
+```sh
+node scripts/test-t25.mjs
+node scripts/validate-world.mjs
+node scripts/validate-t22-atomic.mjs
+node scripts/validate-t22-rich-syllabus.mjs
+node scripts/test-markdown.mjs
+node scripts/test-obsidian-contract-v3.mjs
+```
 
-You can still use **Export progress** / **Import progress** as an independent backup.
-
-# Chrono-Deck Scientific Mastery World v1.0
-
-A 630-node interactive scientific knowledge graph with a frozen 39-node personal scientific core and postgraduate terminal routes.
-
-## ChatGPT-native T22 game
-
-The [`chatgpt-app`](chatgpt-app/) directory contains a ChatGPT MCP App vertical slice for T22: one module, three launch-enabled Atomic ARCs, a polished fullscreen-capable game surface, Spire Master Engine V11.3 controls, durable save/resume codes, and Dual Extract Markdown downloads. Its catalog adapter reads the full audited T22 route so later expansion does not require a new application architecture.
-
-## Deploy on GitHub Pages
-
-Replace the existing repository `index.html` with the `index.html` in this folder, commit/push, and GitHub Pages will serve the new version.
-
-## Cloud sync setup (one time)
-
-Cloud sync is optional. The app always keeps a local/offline copy of progress.
-
-1. Create a Supabase project.
-2. Open **SQL Editor** and run `supabase_setup.sql`.
-3. In Supabase, copy your **Project URL** and the **public anon/publishable key**.
-4. Open Chrono-Deck and expand **Cloud sync**.
-5. Paste the Project URL + public anon/publishable key and click **Save cloud settings**.
-6. Create an account with email/password. If email confirmation is enabled, confirm it.
-7. Sign in with the same account on every device.
-
-After sign-in:
-- local changes are pushed automatically after a short debounce;
-- open devices check the cloud about every 20 seconds;
-- when a device connects for the first time, local + cloud cleared arcs are merged to avoid accidental loss;
-- later changes use the latest cloud state;
-- local progress remains available if the network or cloud is unavailable.
-
-## Security
-
-The public anon/publishable key is designed for browser clients when Row Level Security is enabled.
-
-**Never put a Supabase `service_role` key or any secret/admin key in this public repository.**
-
-The included SQL enables Row Level Security and permits each authenticated user to read/write only their own `user_id` row.
-
-## Progress compatibility
-
-The v1.0 app preserves the existing localStorage keys used by v0.2, so progress already recorded in the same browser should carry over automatically.
-
-You can still use **Export progress** / **Import progress** as an independent backup.
+The older world validator intentionally checks the registry through T23; the T25 test validates the final overlay and preserves that legacy baseline. Additional per-module checks live in `scripts/` and existing GitHub Actions workflows.

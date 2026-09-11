@@ -6,7 +6,7 @@ export function buildT22RichModule17(syllabusVersion) {
     modulePurpose:
       "Build probability from explicit outcome models, event algebra and counting into conditional reasoning, independence and expectation, so later Bayesian inference, random variables, sampling theory, stochastic models and market applications rest on auditable probability structure rather than intuition or formula recall.",
     moduleDestination:
-      "The learner can define an experiment and sample space, encode events precisely, count equiprobable outcomes without double counting, derive and apply the probability axioms and inclusion-exclusion, reason with conditional probability and independence without conflating them, and compute/interpret expectation as a probability-weighted long-run value in finite models.",
+      "The learner can define an experiment and sample space, encode events precisely, count equiprobable outcomes without double counting, state the probability axioms and derive/apply the resulting rules and inclusion-exclusion, reason with conditional probability and independence without conflating them, and compute/interpret expectation as a probability-weighted long-run value in finite models.",
     entryPrerequisites: [
       "Basic arithmetic, fractions, algebra and set notation",
       "Finite sums and products",
