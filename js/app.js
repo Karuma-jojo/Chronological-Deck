@@ -1,4 +1,5 @@
 import { WORLD } from "./data/world.js";
+import { routeLayout, validTerminalStage, DEFAULT_STAGE_NAMES } from "./route-layout.js";
 const BYID = new Map(WORLD.nodes.map(n => [n.id,n]));
 const TERMINALS = new Map(WORLD.terminals.map(t => [t.id,t]));
 const DEFAULT_TERM = "T05";
@@ -398,14 +399,14 @@ function terminalPath(){return new Set(TERMINALS.get(currentTerminal).required);
 
 function routeStage(n,t){
   const terminalStage=n?.terminalStages?.[t.id];
-  if(Number.isInteger(terminalStage) && terminalStage>=0 && terminalStage<=4) return terminalStage;
+  if(validTerminalStage(terminalStage,t)) return terminalStage;
   if(n.commonGroup==="Scientific Temperament") return 0;
   if(n.commonGroup==="Universal Foundations") return 1;
   if((n.gatewayTags||[]).some(g=>t.gateways.includes(g))) return 2;
   if(n.kind==="new" && levelNum(n.level)>=5) return 4;
   return 3;
 }
-const defaultStageNames=["Scientific temperament","Universal foundations","Field gateway","Advanced field depth","Graduate forge"];
+const defaultStageNames=DEFAULT_STAGE_NAMES;
 
 function wrapText(s,max=22){
   const ws=String(s).split(/\s+/), out=[];let line="";
@@ -432,7 +433,8 @@ function renderRoute(){
     return true;
   });
 
-  const cols=[[],[],[],[],[]];
+  const layout=routeLayout(t);
+  const cols=layout.stageNames.map(()=>[]);
   visible.forEach(n=>cols[routeStage(n,t)].push(n));
   const orderedIndex=new Map((t.order||[]).map((id,index)=>[id,index]));
   cols.forEach(arr=>arr.sort((a,b)=>{
@@ -444,19 +446,24 @@ function renderRoute(){
 
   const svg=document.getElementById("routeGraph");
   [...svg.querySelectorAll(".render")].forEach(e=>e.remove());
-  const colX=[20,240,460,680,900], nodeW=180,nodeH=48,rowGap=10,top=62;
+  const colX=layout.columns, nodeW=180,nodeH=48,rowGap=10,top=90;
   const maxRows=Math.max(...cols.map(x=>x.length),1);
   const H=Math.max(800,top+maxRows*(nodeH+rowGap)+70);
-  svg.setAttribute("viewBox",`0 0 1100 ${H}`);
+  svg.setAttribute("viewBox",`0 0 ${layout.width} ${H}`);
+  svg.style.minWidth=layout.width+"px";
   svg.style.height=H+"px";
   const pos=new Map();
-  const stageNames=t.stageNames||defaultStageNames;
+  const stageNames=layout.stageNames;
 
   cols.forEach((arr,ci)=>{
     const lab=document.createElementNS("http://www.w3.org/2000/svg","text");
-    lab.setAttribute("x",colX[ci]);lab.setAttribute("y","27");lab.setAttribute("class","stage-label render");lab.textContent=stageNames[ci]||defaultStageNames[ci];svg.appendChild(lab);
+    lab.setAttribute("x",colX[ci]);lab.setAttribute("y","22");lab.setAttribute("class","stage-label render");
+    wrapText(stageNames[ci],29).forEach((line,index)=>{
+      const span=document.createElementNS("http://www.w3.org/2000/svg","tspan");
+      span.setAttribute("x",colX[ci]);span.setAttribute("dy",index?"15":"0");span.textContent=line;lab.appendChild(span);
+    });svg.appendChild(lab);
     const ct=document.createElementNS("http://www.w3.org/2000/svg","text");
-    ct.setAttribute("x",colX[ci]);ct.setAttribute("y","43");ct.setAttribute("class","stage-count render");ct.textContent=`${arr.length} shown`;svg.appendChild(ct);
+    ct.setAttribute("x",colX[ci]);ct.setAttribute("y","74");ct.setAttribute("class","stage-count render");ct.textContent=`${arr.length} shown`;svg.appendChild(ct);
     arr.forEach((n,ri)=>pos.set(n.id,{x:colX[ci],y:top+ri*(nodeH+rowGap),w:nodeW,h:nodeH}));
   });
 
@@ -485,7 +492,10 @@ function renderRoute(){
     const lines=wrapText(activeTitle(n),27);
     lines.forEach((s,i)=>{const tx=document.createElementNS("http://www.w3.org/2000/svg","text");tx.setAttribute("x","8");tx.setAttribute("y",String(15+i*11));tx.setAttribute("class","t");tx.textContent=s;g.appendChild(tx);});
     const m=document.createElementNS("http://www.w3.org/2000/svg","text");m.setAttribute("x","8");m.setAttribute("y","43");m.setAttribute("class","m");m.textContent=`${n.arc} · ${n.level} · ${n.kind}`;g.appendChild(m);
-    g.addEventListener("click",()=>{selectedNode=n.id;focusSet=null;showDetail(n.id);renderRoute();});
+    const select=()=>{selectedNode=n.id;focusSet=null;showDetail(n.id);renderRoute();};
+    g.setAttribute("tabindex","0");g.setAttribute("role","button");g.setAttribute("aria-label",`${n.arc}: ${activeTitle(n)} (${st})`);
+    g.addEventListener("click",select);
+    g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select();}});
     svg.appendChild(g);
   }));
 
@@ -494,6 +504,7 @@ function renderRoute(){
       if(focusSet.has(e.dataset.source)&&focusSet.has(e.dataset.target)) e.classList.add("hot");
     });
   }
+  document.dispatchEvent(new CustomEvent("chrono:route-rendered",{detail:{terminal:currentTerminal}}));
 }
 
 function showDetail(id){
@@ -510,15 +521,16 @@ function showDetail(id){
   document.getElementById("nodeControls").classList.remove("hidden");
   const ck=document.getElementById("clearedCheck");ck.checked=cleared.has(id);
   const termNames=(n.terminalTags||[]).map(x=>TERMINALS.get(x)?.name).filter(Boolean);
-  const lines=n.sourceStart?`lines ${n.sourceStart}–${n.sourceEnd}`:"Mastery Expansion v1.0";
+  const lines=n.sourceStart?`lines ${n.sourceStart}–${n.sourceEnd}`:(n.sourceLabel||"Mastery Expansion v1.0");
   document.getElementById("detailKV").innerHTML=`
     <div>Status</div><div>${status(id)}</div>
     <div>Stage</div><div>${esc(stageNames[currentStage]||n.stage)}</div>
     <div>Prereqs</div><div>${activePrereqs(n).map(x=>esc(BYID.get(x)?.arc||x)).join(", ")||"—"}</div>
     <div>Used by</div><div>${termNames.length?esc(termNames.join(" · ")):"Optional / exploration"}</div>
-    <div>Source</div><div>${n.kind==="existing"?"Current Chrono-Deck, "+lines:lines}</div>
+    <div>Source</div><div>${esc(n.kind==="existing"?"Current Chrono-Deck, "+lines:lines)}</div>
     <div>Historical</div><div>${n.storyPrereqs?.length?esc(n.storyPrereqs.join(", ")):"—"}</div>
     <div>Core scope</div><div>${activeScope(n)?esc(activeScope(n)):"—"}</div>`;
+  document.dispatchEvent(new CustomEvent("chrono:node-selected",{detail:{terminal:currentTerminal,id}}));
 }
 document.getElementById("clearedCheck").addEventListener("change",e=>{
   if(!selectedNode)return;e.target.checked?cleared.add(selectedNode):cleared.delete(selectedNode);saveProgress();
@@ -603,6 +615,23 @@ function renderStory(){
 
 function updateAll(){renderRoute();renderProgress();renderExplore();renderStory();if(selectedNode)showDetail(selectedNode);}
 
+document.addEventListener("chrono:select-node",e=>{
+  const {terminal,id}=e.detail||{};
+  if(!TERMINALS.has(terminal)||!BYID.has(id))return;
+  // An optional T25 node can be explored without silently activating another exam.
+  // Navigation from the entrance panel itself only targets the selected plan.
+  currentTerminal=terminal;terminalSelect.value=terminal;
+  localStorage.setItem(TERMKEY,terminal);
+  selectedNode=id;focusSet=null;switchTab("route");updateAll();scheduleCloudPush();
+});
+document.addEventListener("chrono:t25-plan-changed",()=>{
+  const t=TERMINALS.get("T25");if(!t)return;
+  const option=[...terminalSelect.options].find(o=>o.value==="T25");
+  if(option)option.textContent=`T25 · ${t.name} (${t.count} arcs)`;
+  if(currentTerminal==="T25" && !t.required.includes(selectedNode))selectedNode=null;
+  focusSet=null;updateAll();
+});
+
 function switchTab(name){
   document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));
   document.getElementById("routeTab").style.display=name==="route"?"block":"none";
@@ -613,6 +642,10 @@ function switchTab(name){
 document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
 
 populateExploreFilters();
+document.getElementById("mWorld").textContent=WORLD.nodes.length;
+document.getElementById("mNew").textContent=WORLD.nodes.filter(n=>n.kind==="new").length;
+document.querySelector('.tab[data-tab="explore"]').textContent=`Explore all ${WORLD.nodes.length}`;
+document.getElementById("worldSummary").textContent=`${WORLD.nodes.length}-node knowledge world · 39-node FROZEN scientific core · ${WORLD.terminals.length} terminal routes · app version 1.8`;
 updateAll();
 hydrateSyncFields();
 if(signedIn()){

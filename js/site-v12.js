@@ -27,6 +27,12 @@ try {
   console.error("T22 atomic-arc overlay failed to load; continuing with the 58-module macro route.", error);
 }
 
+try {
+  await import("./data/t25-entrance-prep.js");
+} catch (error) {
+  console.error("T25 entrance overlay failed to load; existing routes remain available.", error);
+}
+
 // Recover from a persisted terminal selection that is unavailable in the
 // currently loaded registry (for example, T22/T23 saved during a stale
 // mixed-cache session). app.js assumes the persisted terminal exists, so clear
@@ -41,10 +47,15 @@ try {
   console.warn("Could not validate persisted terminal selection; continuing with app defaults.", error);
 }
 
-await import("./app.js?v=1.7.1");
+await import("./app.js?v=1.8.0");
 try {
   await import("./t22-atomic-ui.js?v=1.7.2");
 } catch (error) {
   console.error("T22 atomic progress UI failed to load; core route progress remains available.", error);
+}
+try {
+  await import("./t25-ui.js");
+} catch (error) {
+  console.error("T25 entrance UI failed to load; route progress remains available.", error);
 }
 await import("./vault.js?v=1.7.1");

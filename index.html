@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Chrono-Deck Scientific Mastery World v1.7 — Cloud Sync</title>
+<title>Chrono-Deck — Research & Entrance Preparation</title>
 <link rel="stylesheet" href="./css/app.css">
 <link rel="stylesheet" href="./css/vault.css">
 <link rel="stylesheet" href="./css/black-theme.css">
 <link rel="stylesheet" href="./css/vault-reader-v4.css">
+<link rel="stylesheet" href="./css/t25.css">
 </head>
 <body>
 <div class="app">
@@ -16,13 +17,14 @@
   <div class="header-row">
     <div>
       <h1>Chrono‑Deck Scientific Mastery World</h1>
-      <div class="subtitle">734-node knowledge world · 39-node FROZEN scientific core (16 temperament + 23 foundations) · 23 postgraduate terminal routes · app version 1.7</div>
+      <div class="subtitle" id="worldSummary">838-node knowledge world · 39-node FROZEN scientific core · 24 terminal routes · app version 1.8</div>
     </div>
     <div class="pills">
       <span class="pill">Current story position: ARC 005</span>
       <span class="pill">39-node scientific core: FROZEN v0.2</span>
       <span class="pill">T22: 58 modules · 596 atomic arcs</span>
       <span class="pill">T23: 66-node universal scientist path</span>
+      <button type="button" class="pill" id="openT25">T25 · ISI entrance preparation</button>
       <span class="pill">IDs stay permanent</span>
       <span class="pill" id="syncPill">☁ Cloud sync: off</span>
       <span class="pill">Local/offline fallback stays enabled</span>
@@ -31,16 +33,16 @@
   </div>
   <div class="tabs">
     <button class="tab active" data-tab="route">Terminal route</button>
-    <button class="tab" data-tab="explore">Explore all 734</button>
+    <button class="tab" data-tab="explore">Explore all 838</button>
     <button class="tab" data-tab="story">Chronological story</button>
     <button class="tab" data-tab="vault">Vault</button>
   </div>
 </header>
 
 <div class="metrics">
- <div class="metric"><b id="mWorld">734</b><span>world nodes</span></div>
+ <div class="metric"><b id="mWorld">838</b><span>world nodes</span></div>
  <div class="metric"><b id="mExisting">500</b><span>existing Chrono‑Deck</span></div>
- <div class="metric"><b id="mNew">234</b><span>new mastery arcs</span></div>
+ <div class="metric"><b id="mNew">338</b><span>new mastery arcs</span></div>
  <div class="metric"><b id="mCommon">39</b><span>FROZEN scientific core</span></div>
  <div class="metric"><b id="mRoute">—</b><span>selected terminal route</span></div>
  <div class="metric"><b id="mProgress">—</b><span>route cleared</span></div>
@@ -106,6 +108,7 @@
     <button id="highlightPrereqs">Highlight selected prerequisites</button>
     <button id="clearHighlight">Clear highlight</button>
   </div>
+  <section id="t25Panel" class="t25-panel" aria-label="T25 entrance laboratory" hidden></section>
   <div class="route-shell">
     <div class="graph-card">
       <div class="route-head">
@@ -270,6 +273,6 @@
 </div>
 
 <!-- Legacy integrity marker only: type="module" src="./js/site-v11.js?v=1.7.0" -->
-<script type="module" src="./js/site-v11.js?v=1.7.1"></script>
+<script type="module" src="./js/site-v11.js?v=1.8.0"></script>
 </body>
 </html>

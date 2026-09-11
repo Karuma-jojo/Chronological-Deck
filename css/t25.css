@@ -1,0 +1,41 @@
+.t25-panel { margin: 16px 0; padding: clamp(16px, 3vw, 32px); border: 1px solid #41454e; border-radius: 14px; background: #121419; color: #f0f1f4; font-size: 16px; line-height: 1.6; }
+.t25-panel[hidden] { display: none !important; }
+.t25-panel h2 { font-size: clamp(23px, 3vw, 34px); letter-spacing: -.03em; margin: 0 0 8px; }
+.t25-panel h3 { font-size: 20px; margin: 0 0 16px; }
+.t25-panel h4 { font-size: 17px; margin-bottom: 10px; }
+.t25-panel p { margin: 10px 0 16px; }
+.t25-panel a { color: #c7dbff; text-underline-offset: 3px; }
+.t25-heading { display: flex; justify-content: space-between; gap: 24px; align-items: start; }
+.t25-heading > div { max-width: 720px; }
+.t25-heading > label { min-width: 260px; }
+.t25-panel .t25-eyebrow { color: #b9d5ff; text-transform: uppercase; letter-spacing: .1em; font-size: 13px; margin-top: 0; }
+.t25-muted { color: #b9bfca; font-size: 14px; }
+.t25-loop { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 14px 0 24px; border-bottom: 1px solid #353944; margin-bottom: 24px; font-size: 14px; color: #cdd8eb; }
+.t25-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.t25-card { min-width: 0; padding: 20px; border: 1px solid #383e49; border-radius: 10px; background: #181b22; }
+.t25-panel > details { margin-top: 22px; }
+.t25-panel summary { padding: 0; font-size: 16px; cursor: pointer; color: #e4eaf4; }
+.t25-panel label { display: grid; gap: 6px; font-size: 14px; color: #cbd2de; }
+.t25-panel input, .t25-panel select, .t25-panel textarea { box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; border: 1px solid #586170; border-radius: 6px; padding: 10px; background: #0e1117; color: #f0f3f9; font-size: 16px; }
+.t25-panel textarea { resize: vertical; line-height: 1.55; }
+.t25-panel button { padding: 9px 12px; min-height: 42px; border: 1px solid #647086; border-radius: 6px; font-size: 14px; white-space: normal; background: #263247; color: #f1f5fc; cursor: pointer; }
+.t25-panel button:hover { background: #344862; }
+.t25-panel :focus-visible, #openT25:focus-visible { outline: 3px solid #b3d2ff; outline-offset: 3px; }
+.t25-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0; }
+.t25-panel .t25-link { background: transparent; border: 0; text-align: left; min-height: 32px; padding: 3px 5px; text-decoration: underline; text-underline-offset: 3px; color: #c7dbff; }
+.t25-panel ul { padding-left: 22px; }
+.t25-panel li { margin: 7px 0; }
+.t25-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+.t25-wide { grid-column: 1 / -1; }
+.t25-attempts { max-height: 360px; overflow-y: auto; overflow-wrap: anywhere; }
+.t25-attempts article { border-top: 1px solid #3b414d; padding: 14px 0 2px; }
+.t25-attempts p { white-space: pre-wrap; font-size: 14px; }
+.t25-import { max-width: 260px; }
+.t25-panel .t25-import input { padding: 6px; font-size: 14px; }
+.t25-table-wrap { overflow-x: auto; }
+.t25-panel table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.t25-panel th, .t25-panel td { padding: 12px; border-bottom: 1px solid #3b414d; vertical-align: top; min-width: 160px; }
+.t25-panel th { color: #cbdaf1; }
+#t25Status:not(:empty) { border-left: 3px solid #a7cafa; padding: 12px 16px; background: #202b3c; }
+@media (max-width: 1000px) { .t25-grid { grid-template-columns: 1fr; } .t25-heading { flex-direction: column; } .t25-heading > label { width: 100%; min-width: 0; } }
+@media (max-width: 480px) { .t25-card { padding: 14px; } .t25-form-grid { grid-template-columns: 1fr; } .t25-actions button { flex: 1 1 140px; } }
