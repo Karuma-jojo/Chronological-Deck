@@ -5,10 +5,12 @@ export const T25_EVIDENCE_KEY = "chrono_t25_evidence_v1";
 export const ASSISTANCE = { independent: "Independent", hinted: "Hint used", guided: "Guided work", solution_seen: "Solution seen" };
 export const QUESTION_KINDS = { official: "Official paper (reference recorded)", textbook: "Textbook / course", original: "Original exam-style", mock: "Mock / mixed set" };
 const MAX_ATTEMPTS = 5000;
+
 function shortText(value, max, required = false) {
   if (typeof value !== "string" || value.length > max || (required && !value.trim())) throw new Error("Invalid or overlong text in practice record.");
   return value.trim();
 }
+
 export function validateAttempt(a) {
   if (!a || typeof a !== "object" || !T25_BY_ID.has(a.unitId)) throw new Error("Practice record has an unknown unit.");
   if (!Object.hasOwn(ASSISTANCE, a.assistance) || !Object.hasOwn(QUESTION_KINDS, a.kind)) throw new Error("Unknown practice or assistance type.");
@@ -20,12 +22,14 @@ export function validateAttempt(a) {
   }
   return { id, unitId: a.unitId, date: a.date, ref, kind: a.kind, assistance: a.assistance, score: a.score, maxScore: a.maxScore, minutes: a.minutes, notes };
 }
+
 export function validateEvidence(data) {
   if (!data || data.version !== 1 || !Array.isArray(data.attempts) || data.attempts.length > MAX_ATTEMPTS) throw new Error("Expected a T25 evidence backup, version 1, with at most 5,000 records.");
   const attempts = data.attempts.map(validateAttempt);
   if (new Set(attempts.map(a => a.id)).size !== attempts.length) throw new Error("Duplicate record IDs in backup.");
   return { version: 1, attempts };
 }
+
 export function mergeEvidence(current, incoming) {
   const merged = new Map(validateEvidence(current).attempts.map(a => [a.id, a]));
   for (const a of validateEvidence(incoming).attempts) {
@@ -34,6 +38,7 @@ export function mergeEvidence(current, incoming) {
   }
   return validateEvidence({ version: 1, attempts: [...merged.values()] });
 }
+
 export function newAttempt(fields) {
   const id = globalThis.crypto?.randomUUID?.() ?? `attempt-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   return validateAttempt({ ...fields, id });
@@ -55,7 +60,7 @@ export function buildT25Prompt(unitId, mode = "investigate") {
     "Keep assistance provenance explicit. Simulation, a polished app, time spent or an AI-written proof does not establish independent mastery. Do not mark anything cleared automatically.",
   ];
   const instructions = {
-    investigate: "Use The Spire Master Engine V11.3 if its instructions are available; otherwise ask me to attach them rather than inventing a replacement. Select ONE central breakthrough within this unit and agree the bounded goal before sealing the wall. Keep later checklist items for separate sessions. Use the original [WALL], [HINT], [FORGE], [GUIDE], [REVEAL], [STATUS] controls: [WALL] does not expire because I struggle or time passes. Only my explicit help controls authorize hints or a reveal. Establish prerequisite definitions and a closed ledger first; do not reveal the intended solution path. Keep at most two closely related applications and one bounded transfer problem. Label fictional settings as fictional. Start with the prerequisite check and one concrete mathematical situation, then wait for my work.",
+    investigate: "Use the current λ T25 atomic workflow. If this parent unit has registered T25 atomic cards, select exactly ONE bounded card and compile that card with `λ-Compiler-T25-Sealed-Spire-Mission-CANONICAL.md`; do not seal the whole parent checklist as one mission. Run the resulting sealed Mission Package under the frozen canonical ω SPIRE Master + ω Runtime Guardian. Those runtime documents own [WALL], [HINT], [FORGE0] and the other assistance controls; do not restate or invent an older V11.3/[FORGE] control scheme. Establish prerequisite definitions and legal starting facts before blind play, preserve zero-novelty WALL behavior, and keep sibling/later T25 breakthroughs outside the mission. Start only after the bounded atomic target is identified.",
     learn: "Start an ordinary learning session, outside the sealed Spire wall. Supply unfamiliar definitions and one small worked example, then give me a related problem without its solution. Use this for prerequisite repair, not compulsory rediscovery of every convention. Ask for my paper work and wait. A later independent task will establish what I can reconstruct.",
     practice: "Run written entrance practice, one question at a time. Let me attempt it before feedback. For an official PYQ, use the actual paper content available in this chat or retrieve and verify it; record exam, year, paper and question number. Never invent a PYQ label. If no verified question is available, label your question ORIGINAL EXAM-STYLE and make no claim about official difficulty. Alternate short objective reasoning and descriptive proof/derivation as appropriate. Grade the reasoning against an explicit rubric after my attempt and track any assistance. Start topic practice now; do not require finishing the entire route first.",
     review: "Run a delayed retrieval check: ask me to reconstruct one key idea and then solve one unseen transfer problem on paper. Withhold the solution until I attempt it. Distinguish independent recovery from work done after hints or viewing a solution. Record the date, reference, time and exact error to repair; do not infer mastery from one percentage or invent admission cutoffs.",
