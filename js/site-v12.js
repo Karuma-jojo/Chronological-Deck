@@ -58,4 +58,9 @@ try {
 } catch (error) {
   console.error("T25 entrance UI failed to load; route progress remains available.", error);
 }
+try {
+  await import("./t25-atomic-ui.js");
+} catch (error) {
+  console.error("T25 atomic-card UI failed to load; parent-unit study remains available.", error);
+}
 await import("./vault.js?v=1.7.1");
