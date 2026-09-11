@@ -12,6 +12,9 @@ const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
 }[c]));
 
+const LAMBDA_COMPILER_URL = "./prompts/%CE%BB-Compiler-T25-Sealed-Spire-Mission-CANONICAL.md";
+const LAMBDA_EXTRACTOR_URL = "./prompts/%CE%BB-ARC-Extractor-T25-CANONICAL.md";
+
 const layer = document.createElement("div");
 layer.id = "t25AtomicLayer";
 contract.insertAdjacentElement("afterend", layer);
@@ -80,7 +83,7 @@ function render() {
   layer.innerHTML = `
     <details class="t25-atomic-box" open>
       <summary><strong>Atomic cards · ${esc(unitSelect.value)}</strong> · audit ${esc(T25_ATOMIC_AUDIT_VERSION)}</summary>
-      <p class="t25-muted">This parent unit has ${cards.length} bounded learning cards. Copy only one card at a time into the T25 mission compiler; do not use the whole parent unit as one SPIRE wall.</p>
+      <p class="t25-muted">This parent unit has ${cards.length} bounded learning cards. Copy only one card at a time into the λ T25 mission compiler; do not use the whole parent unit as one SPIRE wall.</p>
       <label>Atomic card
         <select id="t25AtomicSelect">${cards.map(c => `<option value="${esc(c.id)}">${esc(c.id)} · ${esc(c.title)}</option>`).join("")}</select>
       </label>
@@ -90,7 +93,10 @@ function render() {
       </label>
       <div class="t25-actions">
         <button type="button" id="t25AtomicCopy">Copy atomic card</button>
+        <a href="${LAMBDA_COMPILER_URL}" target="_blank" rel="noopener noreferrer">Open λ Compiler</a>
+        <a href="${LAMBDA_EXTRACTOR_URL}" target="_blank" rel="noopener noreferrer">Open λ ARC Extractor</a>
       </div>
+      <p class="t25-muted"><strong>Workflow:</strong> copy one card → λ Compiler → copy the sealed mission into the frozen ω SPIRE runtime → study → λ ARC Extractor at close.</p>
       <p class="t25-muted">Parent completion remains separate: clearing one atomic card does not automatically clear ${esc(unitSelect.value)}.</p>
     </details>`;
 
@@ -104,7 +110,7 @@ function render() {
     const status = document.getElementById("t25Status");
     try {
       await navigator.clipboard.writeText(text.value);
-      if (status) status.textContent = `${selectedAtomicId} copied. Compile this card as one bounded mission.`;
+      if (status) status.textContent = `${selectedAtomicId} copied. Compile this card as one bounded λ mission.`;
     } catch {
       text.focus();
       text.select();
