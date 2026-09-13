@@ -8,6 +8,7 @@ import { WORLD } from "./data/world.js";
 // t22-atomic-ui.js?v=1.7.1
 // t25-atomic-ui.js?v=1.8.1
 // t25-atomic-ui.js?v=1.8.2
+// t25-atomic-ui.js?v=1.8.3
 // t25-review-ui.js?v=1.8.1
 
 try {
@@ -62,7 +63,7 @@ try {
   console.error("T25 entrance UI failed to load; route progress remains available.", error);
 }
 try {
-  await import("./t25-atomic-ui.js?v=1.8.3");
+  await import("./t25-atomic-ui.js?v=1.8.4");
 } catch (error) {
   console.error("T25 atomic-card UI failed to load; parent-unit study remains available.", error);
 }
