@@ -1,4 +1,9 @@
-import { T25_ATOMIC_AUDIT_VERSION, T25_ATOMIC_BY_PARENT } from "./data/t25-atomic-arcs.js";
+import {
+  T25_ATOMIC_AUDIT_VERSION,
+  T25_ATOMIC_CARDS,
+  T25_ATOMIC_BY_PARENT,
+  T25_MSTAT_120_ROUTE,
+} from "./data/t25-atomic-arcs.js";
 
 const panel = document.getElementById("t25Panel");
 const unitSelect = document.getElementById("t25Unit");
@@ -22,15 +27,25 @@ contract.insertAdjacentElement("afterend", layer);
 
 let selectedAtomicId = null;
 
+function lines(label, values, prefix = "- ") {
+  return [label, ...(values || []).map((item, i) => prefix === "number" ? `${i + 1}. ${item}` : `${prefix}${item}`), ""];
+}
+
 function atomicCardText(card) {
   return [
     "T25 MSTAT-120 ATOMIC INVESTIGATION CARD",
     `Atomic audit: ${T25_ATOMIC_AUDIT_VERSION}`,
-    `Global route: ${routeNo(card)} / 120`,
+    `Global route: ${routeNo(card)} / ${T25_MSTAT_120_ROUTE.length}`,
     `Syllabus code: ${card.syllabusCode}`,
     `Parent unit: ${card.parentId}`,
     `Atomic ID: ${card.id}`,
     `Title: ${card.title}`,
+    "",
+    "FOCUS",
+    card.focus,
+    "",
+    "PURPOSE",
+    card.purpose,
     "",
     "CENTRAL CAPABILITY",
     card.centralCapability,
@@ -38,23 +53,27 @@ function atomicCardText(card) {
     "PRINCIPAL OBSTACLE",
     card.principalObstacle,
     "",
-    "REQUIRED OWNERSHIP",
-    ...card.requiredOwnership.map((item, i) => `${i + 1}. ${item}`),
+    ...lines("ENTRY PREREQUISITES", card.entryPrerequisites),
+    ...lines("REQUIRED OWNERSHIP", card.requiredOwnership, "number"),
+    "APPLICATION SCOPE",
+    card.applicationScope,
     "",
-    "IN SCOPE",
-    ...card.inScope.map(item => `- ${item}`),
+    "TRANSFER SCOPE",
+    card.transferScope,
     "",
-    "OUT OF SCOPE / DO NOT STEAL",
-    ...card.outOfScope.map(item => `- ${item}`),
-    "",
+    ...lines("IN SCOPE", card.inScope),
+    ...lines("OUT OF SCOPE / DO NOT STEAL", card.outOfScope),
     "EXIT CONDITION",
     card.exitCondition,
+    "",
+    "NEXT ARC BOUNDARY",
+    card.nextArcBoundary,
     "",
     "COMPILER BOUNDARY",
     "Treat this card as one bounded curriculum unit. Do not broaden it to the whole parent ARC. Preserve later T25 units and sibling atomic cards. Diagnose already-owned prerequisites instead of forcing rediscovery.",
     "",
     "ROUTE BOUNDARY",
-    "The canonical study route is global 001 -> 120. Parent ARC grouping is for curriculum organization only; it does not override the global route order.",
+    "The canonical study route is global 001 -> 120. Parent ARC grouping is for curriculum organization only; it does not override the global route order. A route-manifest entry is not a finished card until it has an authored atomic contract in T25_ATOMIC_CARDS.",
   ].join("\n");
 }
 
@@ -90,23 +109,30 @@ function render() {
 
   if (!cards.some(c => c.id === selectedAtomicId)) selectedAtomicId = cards[0].id;
   layer.hidden = false;
+  const authored = T25_ATOMIC_CARDS.length;
+  const nextSpec = T25_MSTAT_120_ROUTE[authored] || null;
+  const nextText = nextSpec
+    ? `Next unauthored route item: ${String(nextSpec.routeOrder).padStart(3, "0")} · ${nextSpec.syllabusCode} · ${nextSpec.title}.`
+    : "All 120 route items have authored atomic contracts.";
+
   layer.innerHTML = `
     <details class="t25-atomic-box" open>
       <summary><strong>MSTAT-120 atomic cards · ${esc(unitSelect.value)}</strong> · audit ${esc(T25_ATOMIC_AUDIT_VERSION)}</summary>
-      <p class="t25-muted">This parent unit contains ${cards.length} bounded cards from the canonical global 001→120 route. The numbers shown below are global study positions, not numbering restarted inside the parent.</p>
+      <p class="t25-muted"><strong>Progress:</strong> ${authored} / ${T25_MSTAT_120_ROUTE.length} cards individually authored. ${esc(nextText)}</p>
+      <p class="t25-muted">This parent currently contains ${cards.length} authored bounded card${cards.length === 1 ? "" : "s"}. Global numbers are study positions and never restart inside a parent ARC.</p>
       <label>Atomic card
         <select id="t25AtomicSelect">${cards.map(c => `<option value="${esc(c.id)}">${esc(routeNo(c))} · ${esc(c.syllabusCode)} · ${esc(c.title)}</option>`).join("")}</select>
       </label>
       <p id="t25AtomicSummary" class="t25-eyebrow"></p>
       <label>Copy-ready atomic card
-        <textarea id="t25AtomicCardText" rows="20" readonly></textarea>
+        <textarea id="t25AtomicCardText" rows="28" readonly></textarea>
       </label>
       <div class="t25-actions">
         <button type="button" id="t25AtomicCopy">Copy atomic card</button>
         <a href="${LAMBDA_COMPILER_URL}" target="_blank" rel="noopener noreferrer">Open λ Compiler</a>
         <a href="${LAMBDA_EXTRACTOR_URL}" target="_blank" rel="noopener noreferrer">Open λ ARC Extractor</a>
       </div>
-      <p class="t25-muted"><strong>Workflow:</strong> follow global 001→120 → copy one card → λ Compiler → frozen ω SPIRE runtime → study → λ ARC Extractor at close.</p>
+      <p class="t25-muted"><strong>Workflow:</strong> follow global 001→120 → copy one authored card → λ Compiler → frozen ω SPIRE runtime → study → λ ARC Extractor at close.</p>
       <p class="t25-muted">Parent completion remains separate: clearing one atomic card does not automatically clear ${esc(unitSelect.value)}.</p>
     </details>`;
 
