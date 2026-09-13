@@ -9,15 +9,15 @@ await import("../js/data/t23-universal-scientist.js");
 const { T22_ATOMIC_MODULES } = await import("../js/data/t22-atomic-arcs.js");
 const prior = structuredClone(WORLD);
 const { T25_BY_KEY, t25PlanUnits, readT25Plan, setT25Plan, applyT25EntrancePrep } = await import("../js/data/t25-entrance-prep.js");
-const { T25_CORE, T25_UNITS } = await import("../js/data/t25-units.js");
+const { T25_CORE, T25_UNITS } = await import("../js/data/t25-mstat-route.js");
 const { T25_COVERAGE } = await import("../js/data/t25-coverage.js");
 const { T25_EXAMS, T25_SOURCES } = await import("../js/data/t25-sources.js");
 const { validateAttempt, validateEvidence, mergeEvidence, buildT25Prompt } = await import("../js/t25-study.js");
 const { routeLayout, validTerminalStage } = await import("../js/route-layout.js");
 
-assert.equal(T25_CORE.length, 46);
-assert.equal(T25_UNITS.length, 104);
-assert.equal(WORLD.nodes.length, 838);
+assert.equal(T25_CORE.length, 50);
+assert.equal(T25_UNITS.length, 108);
+assert.equal(WORLD.nodes.length, 842);
 assert.equal(WORLD.terminals.length, 24);
 assert.equal(new Set(WORLD.nodes.map(n => n.id)).size, WORLD.nodes.length);
 assert.deepEqual(WORLD.nodes.slice(0, prior.nodes.length), prior.nodes, "T25 must not change old node contracts or progress defaults");
@@ -25,7 +25,7 @@ assert.deepEqual(WORLD.terminals.slice(0, prior.terminals.length), prior.termina
 assert.deepEqual(WORLD.current, prior.current);
 assert.deepEqual(WORLD.commonScientific, prior.commonScientific);
 assert.deepEqual(WORLD.commonFoundations, prior.commonFoundations);
-applyT25EntrancePrep(); assert.equal(WORLD.nodes.length, 838, "Overlay is idempotent");
+applyT25EntrancePrep(); assert.equal(WORLD.nodes.length, 842, "Overlay is idempotent");
 assert(T25_UNITS.every(u => Number(u.id.slice(3)) >= 801));
 const atoms = new Set(Object.values(T22_ATOMIC_MODULES).flat().map(a => a.id));
 for (const u of T25_UNITS) {
@@ -57,6 +57,12 @@ assert(!t25PlanUnits("mstat").some(u => u.source !== "mstat"));
 assert(!t25PlanUnits("cs").some(u => u.key === "python"), "C preparation should not acquire a Python prerequisite");
 const early = T25_BY_KEY.get("events");
 assert.deepEqual(early.prerequisites, ["sets", "counting"], "Finite probability need not wait for calculus or programming");
+assert.deepEqual(T25_CORE.slice(0, 12).map(u => u.key), [
+  "language", "sets", "equations", "progressions", "sequences", "trig",
+  "counting", "events", "conditional", "independence", "expectation", "discrete",
+], "M.Stat must start foundation -> counting/probability -> first random variables");
+assert.deepEqual(T25_CORE.slice(-3).map(u => u.key), ["lines", "conics", "exam"], "Geometry breadth must remain at the end before synthesis");
+for (const key of ["sequences", "orthogonal", "probbounds", "robustloss"]) assert(T25_BY_KEY.has(key), `Missing new parent ${key}`);
 assert.throws(() => t25PlanUnits("constructor"));
 assert.equal(readT25Plan({ getItem: () => "__proto__" }), "mstat");
 assert.equal(readT25Plan({ getItem: () => { throw new Error("blocked"); } }), "mstat");
@@ -101,7 +107,8 @@ checkModule(entry);
 for (const match of html.matchAll(/(?:href|src)="(\.\/[^"#?]+)(?:[?#][^"]*)?"/g)) assert(existsSync(match[1]), `Broken local asset ${match[1]}`);
 assert(paths.has(resolve("js/t25-ui.js")));
 assert(paths.has(resolve("js/data/t25-entrance-prep.js")));
+assert(paths.has(resolve("js/data/t25-mstat-route.js")));
 const app = readFileSync("js/app.js", "utf8"), ui = readFileSync("js/t25-ui.js", "utf8");
 for (const event of ["chrono:select-node", "chrono:node-selected", "chrono:route-rendered", "chrono:t25-plan-changed"]) assert(app.includes(event) && ui.includes(event), `Unwired ${event}`);
 for (const match of ui.matchAll(/\$\("([^"]+)"\)/g)) assert((html + ui).includes(`id="${match[1]}"`), `Missing UI element ${match[1]}`);
-console.log(`T25 checks passed: 7 topological plans; 104 unique units; full mapped source groups; valid T22 links; evidence validation/merge; unchanged legacy routes; 6-stage T23 layout; ${paths.size} reachable JS modules checked.`);
+console.log(`T25 checks passed: 7 topological plans; 108 unique units; 50-unit M.Stat parent route; full mapped source groups; valid T22 links; evidence validation/merge; unchanged legacy routes; 6-stage T23 layout; ${paths.size} reachable JS modules checked.`);
