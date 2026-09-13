@@ -1,9 +1,9 @@
-import {
+const {
   T25_ATOMIC_AUDIT_VERSION,
   T25_ATOMIC_CARDS,
   T25_ATOMIC_BY_ORDER,
   T25_MSTAT_120_ROUTE,
-} from "./data/t25-atomic-arcs.js?v=1.8.2";
+} = await import(`./data/t25-atomic-arcs.js?v=${Date.now()}`);
 
 const panel = document.getElementById("t25Panel");
 const unitSelect = document.getElementById("t25Unit");
