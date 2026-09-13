@@ -10,6 +10,7 @@ const { T22_ATOMIC_MODULES } = await import("../js/data/t22-atomic-arcs.js");
 const prior = structuredClone(WORLD);
 const { T25_BY_KEY, t25PlanUnits, readT25Plan, setT25Plan, applyT25EntrancePrep } = await import("../js/data/t25-entrance-prep.js");
 const { T25_CORE, T25_UNITS } = await import("../js/data/t25-mstat-route.js");
+const { T25_ATOMIC_CARDS, T25_ATOMIC_BY_ID, T25_ATOMIC_BY_ORDER, T25_ATOMIC_BY_PARENT } = await import("../js/data/t25-atomic-arcs.js");
 const { T25_COVERAGE } = await import("../js/data/t25-coverage.js");
 const { T25_EXAMS, T25_SOURCES } = await import("../js/data/t25-sources.js");
 const { validateAttempt, validateEvidence, mergeEvidence, buildT25Prompt } = await import("../js/t25-study.js");
@@ -63,6 +64,32 @@ assert.deepEqual(T25_CORE.slice(0, 12).map(u => u.key), [
 ], "M.Stat must start foundation -> counting/probability -> first random variables");
 assert.deepEqual(T25_CORE.slice(-3).map(u => u.key), ["lines", "conics", "exam"], "Geometry breadth must remain at the end before synthesis");
 for (const key of ["sequences", "orthogonal", "probbounds", "robustloss"]) assert(T25_BY_KEY.has(key), `Missing new parent ${key}`);
+
+// Canonical MSTAT-120 atomic route invariants.
+assert.equal(T25_ATOMIC_CARDS.length, 120);
+assert.equal(T25_ATOMIC_BY_ID.size, 120);
+assert.equal(T25_ATOMIC_BY_ORDER.size, 120);
+assert.deepEqual(T25_ATOMIC_CARDS.map(c => c.routeOrder), Array.from({ length: 120 }, (_, i) => i + 1));
+assert.equal(new Set(T25_ATOMIC_CARDS.map(c => c.syllabusCode)).size, 120);
+const coreIds = new Set(T25_CORE.map(u => u.id));
+for (const c of T25_ATOMIC_CARDS) {
+  assert(coreIds.has(c.parentId), `${c.syllabusCode} points outside the M.Stat parent route: ${c.parentId}`);
+  assert(c.title.length > 5 && c.centralCapability.length > 30 && c.exitCondition.length > 30);
+  assert(c.requiredOwnership.length >= 4 && c.inScope.length >= 3 && c.outOfScope.length >= 3);
+}
+for (const cards of T25_ATOMIC_BY_PARENT.values()) {
+  assert.deepEqual(cards.map(c => c.routeOrder), [...cards].map(c => c.routeOrder).sort((a, b) => a - b));
+}
+assert.equal(T25_ATOMIC_BY_ORDER.get(1).syllabusCode, "F1");
+assert.equal(T25_ATOMIC_BY_ORDER.get(21).syllabusCode, "J1");
+assert.equal(T25_ATOMIC_BY_ORDER.get(46).syllabusCode, "A1b", "Later algebra revisit must retain global position 046");
+assert.equal(T25_ATOMIC_BY_ORDER.get(81).syllabusCode, "O3b", "Order-statistic revisit must retain global position 081");
+assert.equal(T25_ATOMIC_BY_ORDER.get(120).syllabusCode, "G4");
+assert.equal(T25_ATOMIC_BY_ORDER.get(12).parentId, "ARC905");
+assert.equal(T25_ATOMIC_BY_ORDER.get(38).parentId, "ARC906");
+assert.equal(T25_ATOMIC_BY_ORDER.get(78).parentId, "ARC907");
+assert.equal(T25_ATOMIC_BY_ORDER.get(94).parentId, "ARC908");
+
 assert.throws(() => t25PlanUnits("constructor"));
 assert.equal(readT25Plan({ getItem: () => "__proto__" }), "mstat");
 assert.equal(readT25Plan({ getItem: () => { throw new Error("blocked"); } }), "mstat");
@@ -106,9 +133,11 @@ function checkModule(path) {
 checkModule(entry);
 for (const match of html.matchAll(/(?:href|src)="(\.\/[^"#?]+)(?:[?#][^"]*)?"/g)) assert(existsSync(match[1]), `Broken local asset ${match[1]}`);
 assert(paths.has(resolve("js/t25-ui.js")));
+assert(paths.has(resolve("js/t25-atomic-ui.js")));
+assert(paths.has(resolve("js/data/t25-atomic-arcs.js")));
 assert(paths.has(resolve("js/data/t25-entrance-prep.js")));
 assert(paths.has(resolve("js/data/t25-mstat-route.js")));
 const app = readFileSync("js/app.js", "utf8"), ui = readFileSync("js/t25-ui.js", "utf8");
 for (const event of ["chrono:select-node", "chrono:node-selected", "chrono:route-rendered", "chrono:t25-plan-changed"]) assert(app.includes(event) && ui.includes(event), `Unwired ${event}`);
 for (const match of ui.matchAll(/\$\("([^"]+)"\)/g)) assert((html + ui).includes(`id="${match[1]}"`), `Missing UI element ${match[1]}`);
-console.log(`T25 checks passed: 7 topological plans; 108 unique units; 50-unit M.Stat parent route; full mapped source groups; valid T22 links; evidence validation/merge; unchanged legacy routes; 6-stage T23 layout; ${paths.size} reachable JS modules checked.`);
+console.log(`T25 checks passed: 7 topological plans; 108 unique units; 50-unit M.Stat parent route; canonical 120-card atomic route; full mapped source groups; valid T22 links; evidence validation/merge; unchanged legacy routes; 6-stage T23 layout; ${paths.size} reachable JS modules checked.`);
