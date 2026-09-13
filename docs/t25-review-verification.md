@@ -49,7 +49,7 @@ The first ChatGPT-app test run lacked its SDK dependency, and the first SQL fixt
 
 - There was no authenticated **learner browser session** available for a real production item/attempt. Production schema/grants/FKs were inspected, but the browser end-to-end run uses isolated test users and the local SQL fixture. No fake production learning evidence was recorded.
 - PGlite serializes requests; stale-device behavior is tested, but there was no multi-connection production contention/load test.
-- Remote GitHub Actions and the final Pages deployment must be checked on the published branch/PR. Local tests do not certify a future deployment.
+- The first remote run passed the new review workflow and 32 other jobs. Its existing Pages-wiring check still expected bootstrap 1.8.0; the check was updated to the actual 1.8.1 URL. Final Pages deployment still follows merge; local tests do not certify that future deployment.
 - V1 has no automatic archive target generation, parent mixed-review UI, automatic grading, offline queue, notification schedule, Anki algorithm or mastery-recovery integration.
 
 Once the feature branch is merged and Pages has deployed, sign in normally, open **T25 → ARC801 → T25-ARC801-A01 → Revision Stack → Add review item → Prepare A01 absolute-value target → Save review item**. The database migration is already applied; do not create a second account or run a user-specific SQL seed. The initial due date is the local save date +3 days. To try the flow immediately, use **View review stack → Practice early**.
