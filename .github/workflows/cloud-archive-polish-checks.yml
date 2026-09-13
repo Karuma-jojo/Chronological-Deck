@@ -1,0 +1,27 @@
+name: Cloud archive and review polish checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate enhancement wiring
+        shell: bash
+        run: |
+          node --input-type=module --check < js/cloud-archive-ui.js
+          grep -q 'cloud-archive-ui.js?v=1.0.0' js/site-v12.js
+          grep -q 'Cloud ARC Archive' js/cloud-archive-ui.js
+          grep -q 'logicalArcId' js/cloud-archive-ui.js
+          grep -q 'Account-private' js/cloud-archive-ui.js
+          test -f css/cloud-archive.css
+          test -f css/t25-review.css
+          grep -q 'vault-archive-group' css/cloud-archive.css
+          grep -q '#t25ReviewSummary' css/t25-review.css
