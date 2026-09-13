@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "@playwright/test": "1.63.0"
+  },
+  "name": "chrono-deck-review-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "cd ../.. && node --test scripts/review-tests/*.test.mjs",
+    "test:sql": "cd ../.. && node --test scripts/review-tests/database.test.mjs scripts/review-tests/contracts.test.mjs",
+    "test:browser": "cd ../.. && node --test scripts/review-tests/browser.test.mjs"
+  }
+}

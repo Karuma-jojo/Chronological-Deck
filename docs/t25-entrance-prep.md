@@ -115,3 +115,7 @@ This is a curriculum and frontend integration audit. It is not a new security au
 - `scripts/test-t25.mjs`: new regression and contract checks.
 
 At each application-year review, update the source baseline, compare every official clause with the map, record additions/removals, and append new IDs if needed. Never recycle an ID or silently reinterpret old clearance evidence.
+
+## Atomic delayed review
+
+Use the compact **Revision Stack** beside a selected atomic card for manual review targets, self-evaluated attempts and date-based scheduling. [Review / retention guide](t25-review-retention.md). Academic clearance remains separate; the existing practice log and λ/ω archive flow are unchanged.

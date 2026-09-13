@@ -67,6 +67,7 @@ function renderCardBody() {
   if (text) text.value = atomicCardText(card);
   const summary = document.getElementById("t25AtomicSummary");
   if (summary) summary.textContent = `${card.id} · ${card.title}`;
+  document.dispatchEvent(new CustomEvent("chrono:t25-atomic-selected", { detail: { id: card.id, parentId: card.parentId } }));
 }
 
 function render() {
@@ -75,6 +76,7 @@ function render() {
     selectedAtomicId = null;
     layer.innerHTML = "";
     layer.hidden = true;
+    document.dispatchEvent(new CustomEvent("chrono:t25-atomic-selected", { detail: null }));
     return;
   }
 
@@ -122,19 +124,16 @@ function render() {
 }
 
 unitSelect.addEventListener("change", () => {
-  selectedAtomicId = null;
   queueMicrotask(render);
 });
 
 document.addEventListener("chrono:node-selected", event => {
   if (event.detail?.terminal === "T25") {
-    selectedAtomicId = null;
     queueMicrotask(render);
   }
 });
 
 document.addEventListener("chrono:t25-plan-changed", () => {
-  selectedAtomicId = null;
   queueMicrotask(render);
 });
 

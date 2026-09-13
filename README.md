@@ -22,6 +22,8 @@ Existing world and T22 progress keys are preserved. T25 concept checkmarks use t
 
 The page contains the existing optional cloud-sync setup controls. The [Obsidian bridge guide](docs/obsidian-bridge.md) describes the archive integration. These are separate from the T25 practice log. Keep backups using each relevant export control.
 
+T25 atomic cards also have a small cloud-backed [review / retention layer](docs/t25-review-retention.md), shown as **Revision Stack**. Delayed reviews never silently change academic clearance. It uses the existing cloud login and is separate from the device-local practice log.
+
 The [ChatGPT-native app](chatgpt-app/) is a separate T22 vertical slice with its own launch coverage. Adding T25 to this website does not automatically add T25 game launches to that app.
 
 ## Validation
