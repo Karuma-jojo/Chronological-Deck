@@ -34,6 +34,9 @@ jobs:
           node --input-type=module --check < js/data/t22-atomic-arcs.js
           node --input-type=module --check < js/t22-atomic-ui.js
           node --input-type=module --check < js/data/t23-universal-scientist.js
+          node --input-type=module --check < js/data/t25-mstat-route.js
+          node --input-type=module --check < js/data/t25-atomic-arcs.js
+          node --input-type=module --check < js/t25-atomic-ui.js
           node --input-type=module --check < js/data/arc-store.js
           node --input-type=module --check < js/data/supabase-arc-store.js
           node --input-type=module --check < js/data/hybrid-arc-store.js
@@ -79,7 +82,7 @@ jobs:
           grep -q 'href="./css/vault.css"' index.html
           grep -q 'href="./css/black-theme.css"' index.html
           grep -q 'href="./css/vault-reader-v4.css"' index.html
-          grep -q 'type="module" src="./js/site-v11.js?v=1.8.1"' index.html
+          grep -q 'type="module" src="./js/site-v11.js?v=1.8.3"' index.html
           grep -q 'import "./data/law-expansion.js";' js/site-v11.js
           grep -q 'await import("./data/t22-quant-research.js")' js/site-v11.js
           grep -q 'await import("./data/t23-universal-scientist.js")' js/site-v11.js
@@ -87,6 +90,9 @@ jobs:
           grep -q 'await import("./app.js")' js/site-v11.js
           grep -q 'await import("./t22-atomic-ui.js")' js/site-v11.js
           grep -q 'await import("./vault.js")' js/site-v11.js
+          grep -q 't25-atomic-ui.js?v=1.8.3' js/site-v12.js
+          grep -q 'MSTAT-120 · canonical 001→120 study route' js/t25-atomic-ui.js
+          grep -q 'Parent grouping (secondary context)' js/t25-atomic-ui.js
           grep -q 'import "./vault-reader.js";' js/vault-cloud-ui.js
           grep -q 'id="vaultTab"' index.html
           grep -q 'Explore all 838' index.html
