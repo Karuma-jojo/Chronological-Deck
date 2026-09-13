@@ -6,6 +6,8 @@ import { WORLD } from "./data/world.js";
 // t22-atomic-ui.js?v=1.7.0
 // t22-atomic-arcs.js?v=1.7.1
 // t22-atomic-ui.js?v=1.7.1
+// t25-atomic-ui.js?v=1.8.1
+// t25-review-ui.js?v=1.8.1
 
 try {
   await import("./data/t22-quant-research.js?v=1.7.1");
@@ -59,12 +61,12 @@ try {
   console.error("T25 entrance UI failed to load; route progress remains available.", error);
 }
 try {
-  await import("./t25-atomic-ui.js?v=1.8.1");
+  await import("./t25-atomic-ui.js?v=1.8.2");
 } catch (error) {
   console.error("T25 atomic-card UI failed to load; parent-unit study remains available.", error);
 }
 try {
-  await import("./t25-review-ui.js?v=1.8.1");
+  await import("./t25-review-ui.js?v=1.8.2");
 } catch (error) {
   console.error("T25 review layer unavailable; ordinary atomic study remains available.", error);
 }
