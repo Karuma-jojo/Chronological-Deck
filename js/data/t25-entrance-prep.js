@@ -1,11 +1,17 @@
 import { WORLD } from "./world.js";
-import { T25_CORE, T25_EXTRAS, T25_UNITS } from "./t25-units.js";
+import { T25_CORE, T25_EXTRAS, T25_UNITS } from "./t25-mstat-route.js";
 import { T25_EXAMS } from "./t25-sources.js";
 
 export const T25_PLAN_KEY = "chrono_t25_plan_v1";
 export const T25_BY_KEY = new Map(T25_UNITS.map(u => [u.key, u]));
 export const T25_BY_ID = new Map(T25_UNITS.map(u => [u.id, u]));
-export const T25_STAGE_NAMES = ["Elementary mathematics", "Calculus & linear algebra", "Probability & distributions", "Inference, designs & sampling", "Exam synthesis & extensions"];
+export const T25_STAGE_NAMES = [
+  "Foundations, algebra & discrete probability",
+  "Linear algebra & one-variable calculus",
+  "Distributions, joint laws & probability limits",
+  "Estimation, regression, inference & design",
+  "Geometry breadth, synthesis & extensions",
+];
 
 export function t25Storage() { try { return globalThis.localStorage; } catch { return null; } }
 export function readT25Plan(storage = t25Storage()) {
@@ -79,8 +85,8 @@ export function applyT25EntrancePrep(world = WORLD, plan = readT25Plan()) {
     exit: "Demonstrate syllabus coverage, independent written solutions, delayed recall and repeated timed-paper performance. The checkmark is a self-assessed concept milestone, not an admission forecast. Keep question references, assistance and corrections in the evidence log. Projects and T22 study provide supporting evidence; neither automatically clears an entrance unit.",
   });
   setT25Plan(plan, world, null);
-  world.version = "1.6";
-  world.title = "Chrono-Deck Scientific Mastery World v1.6";
+  world.version = "1.7";
+  world.title = "Chrono-Deck Scientific Mastery World v1.7";
   world.worldCount = world.nodes.length;
   world.newCount = world.nodes.filter(n => n.kind === "new").length;
   return world;
