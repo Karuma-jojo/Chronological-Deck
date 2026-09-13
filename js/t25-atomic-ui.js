@@ -3,7 +3,7 @@ import {
   T25_ATOMIC_CARDS,
   T25_ATOMIC_BY_PARENT,
   T25_MSTAT_120_ROUTE,
-} from "./data/t25-atomic-arcs.js";
+} from "./data/t25-atomic-arcs.js?v=1.8.2";
 
 const panel = document.getElementById("t25Panel");
 const unitSelect = document.getElementById("t25Unit");
