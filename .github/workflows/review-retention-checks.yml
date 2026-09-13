@@ -1,0 +1,20 @@
+name: T25 review retention checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: scripts/review-tests/package-lock.json
+      - run: npm ci --prefix scripts/review-tests
+      - run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - run: npm test --prefix scripts/review-tests

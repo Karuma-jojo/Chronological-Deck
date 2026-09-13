@@ -122,6 +122,7 @@ function setSyncStatus(msg,kind="warn"){
   if(sum) sum.textContent=msg;
 }
 function updateSyncUI(){
+  document.dispatchEvent(new CustomEvent("chrono:cloud-context-changed"));
   const pill=document.getElementById("syncPill");
   if(!pill)return;
   if(signedIn()){

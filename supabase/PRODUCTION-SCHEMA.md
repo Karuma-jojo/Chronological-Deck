@@ -101,3 +101,21 @@ Production parity is deliberately separate from the planned Archive Schema V2
 work. Future migrations may add logical-ARC authority, RAW/POLISHED pair
 constraints, structured assistance/recovery debt, curriculum coordinates, and
 stable semantic section roles.
+
+## Additive review / retention deployment — 2026-09-13
+
+The historical snapshot above predates the now-deployed logical authority and
+V3 archive changes; its “Next schema work” paragraph is historical, not a claim
+that those features remain absent. This entry records only the verified addition.
+
+`arc-review-retention-v1.sql` was applied to the existing Chrono-Deck project as
+migration `20260913025337_arc_review_retention_v1`. It adds `arc_review_items`,
+`arc_review_attempts`, five public invoker RPCs and three guarded workers in the
+non-exposed `chrono_review_private` schema. Owner-only SELECT RLS and RPC-only
+writes were verified. Review scheduling does not live in `arc_logical_arcs` and
+never modifies academic clearance. Logical deletion cascades through items to
+attempts. A01 authority and RAW/POLISHED row fingerprints were unchanged after
+application; no personal seed or review attempt was inserted.
+
+See [review / retention behavior](../docs/t25-review-retention.md) and
+[verification / release steps](../docs/t25-review-verification.md).

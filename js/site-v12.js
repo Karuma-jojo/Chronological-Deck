@@ -47,7 +47,7 @@ try {
   console.warn("Could not validate persisted terminal selection; continuing with app defaults.", error);
 }
 
-await import("./app.js?v=1.8.0");
+await import("./app.js?v=1.8.1");
 try {
   await import("./t22-atomic-ui.js?v=1.7.2");
 } catch (error) {
@@ -59,8 +59,13 @@ try {
   console.error("T25 entrance UI failed to load; route progress remains available.", error);
 }
 try {
-  await import("./t25-atomic-ui.js");
+  await import("./t25-atomic-ui.js?v=1.8.1");
 } catch (error) {
   console.error("T25 atomic-card UI failed to load; parent-unit study remains available.", error);
+}
+try {
+  await import("./t25-review-ui.js?v=1.8.1");
+} catch (error) {
+  console.error("T25 review layer unavailable; ordinary atomic study remains available.", error);
 }
 await import("./vault.js?v=1.7.1");
