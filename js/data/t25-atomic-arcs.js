@@ -7,6 +7,8 @@
 // AUTHORING INVARIANT:
 // T25_ATOMIC_CARDS contains only individually authored and audited session cards.
 // Route entries without finished contracts remain planned positions; no generic cards.
+// Fresh v4 logical IDs reserve A1001-A1162 inside each stable parent namespace,
+// preventing any accidental legacy-clearance transfer while remaining archive-compatible.
 
 import {
   T25_MSTAT_AUDIT_VERSION,
@@ -47,6 +49,8 @@ for (let i = 0; i < T25_ATOMIC_CARDS.length; i += 1) {
   if (!spec || spec.syllabusCode !== card.syllabusCode || spec.targetCode !== card.targetCode || spec.parentId !== card.parentId || spec.title !== card.title) {
     throw new Error(`Authored T25 v4 card ${card.id} does not match audited route position ${card.routeOrder}.`);
   }
+  const expectedLogicalId = `T25-${card.parentId}-A${1000 + card.routeOrder}`;
+  if (card.id !== expectedLogicalId) throw new Error(`Authored T25 v4 card ${card.id} must use fresh archive-compatible logical ID ${expectedLogicalId}.`);
   for (const field of ["focus","purpose","centralCapability","principalObstacle","applicationScope","transferScope","exitCondition","nextArcBoundary"]) {
     if (!card[field] || card[field].length < 20) throw new Error(`${card.id} has an incomplete ${field}.`);
   }
