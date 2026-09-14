@@ -23,6 +23,7 @@ import { T25_ATOMIC_V4_006_010 } from "./t25-atomic-v4-006-010.js";
 import { T25_ATOMIC_V4_011_015 } from "./t25-atomic-v4-011-015.js";
 import { T25_ATOMIC_V4_016_020 } from "./t25-atomic-v4-016-020.js";
 import { T25_ATOMIC_V4_021_025 } from "./t25-atomic-v4-021-025.js";
+import { T25_ATOMIC_V4_026_030 } from "./t25-atomic-v4-026-030.js";
 
 export const T25_ATOMIC_AUDIT_VERSION = T25_MSTAT_AUDIT_VERSION;
 export { T25_MSTAT_TARGETS, T25_MSTAT_ROUTE, T25_TARGET_BY_CODE, T25_ROUTE_BY_CODE };
@@ -38,6 +39,7 @@ export const T25_ATOMIC_CARDS = [
   ...T25_ATOMIC_V4_011_015,
   ...T25_ATOMIC_V4_016_020,
   ...T25_ATOMIC_V4_021_025,
+  ...T25_ATOMIC_V4_026_030,
 ].sort((a, b) => a.routeOrder - b.routeOrder);
 
 if (T25_MSTAT_TARGETS.length !== 80) throw new Error(`T25 audited target manifest must contain 80 targets; found ${T25_MSTAT_TARGETS.length}.`);
