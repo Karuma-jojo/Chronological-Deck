@@ -120,7 +120,7 @@ test('selected v4 atomic state survives parent redraw and sign-out clears privat
   await s.page.locator('#t25AtomicRouteSelect').selectOption('2');
   await s.page.waitForFunction(()=>document.querySelector('#t25AtomicSelect').value==='T25-ARC801-A1002');
   assert.match(await s.page.locator('#t25AtomicSummary').innerText(),/F1\.2/);
-  assert.match(await s.page.locator('#t25ReviewIdentity').innerText(),/T25-ARC801-A1002/);
+  await s.page.waitForFunction(()=>document.querySelector('#t25ReviewIdentity').textContent.includes('T25-ARC801-A1002'));
   await s.page.locator('#t25Unit').selectOption('ARC802');
   assert.equal(await s.page.locator('#t25AtomicSelect').inputValue(),'T25-ARC801-A1002','parent context browsing must not rewrite atomic chronology');
   assert.equal(await s.page.locator('#t25ReviewPanel').isVisible(),true,'review selection follows the atomic card, not the parent dropdown');
