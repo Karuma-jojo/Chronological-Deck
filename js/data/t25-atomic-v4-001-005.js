@@ -1,9 +1,10 @@
 // First hand-authored T25 M.Stat v4 session cards.
 // These are bounded session contracts from the audited v2.0 syllabus, not generated placeholders.
+// V4 logical IDs reserve A1001-A1162 so they stay distinct from legacy T25 atomic authority.
 
 export const T25_ATOMIC_V4_001_005 = [
   {
-    id:"T25V4-F1-01",routeOrder:1,syllabusCode:"F1.1",targetCode:"F1",parentId:"ARC801",
+    id:"T25-ARC801-A1001",routeOrder:1,syllabusCode:"F1.1",targetCode:"F1",parentId:"ARC801",
     title:"Compare domains before and after one cancellation.",
     focus:"Cancellation as an equality on the original legal domain, not permission to silently restore excluded inputs.",
     purpose:"Build the habit that every algebraic rewrite carries its domain with it, so later limits, likelihood supports and transformations do not inherit a false function equality.",
@@ -26,7 +27,7 @@ export const T25_ATOMIC_V4_001_005 = [
     mode:"learn",evidencePolicy:"diagnostic_if_established"
   },
   {
-    id:"T25V4-F1-02",routeOrder:2,syllabusCode:"F1.2",targetCode:"F1",parentId:"ARC801",
+    id:"T25-ARC801-A1002",routeOrder:2,syllabusCode:"F1.2",targetCode:"F1",parentId:"ARC801",
     title:"Justify principal-root, rational-power and log-law conditions on a new expression.",
     focus:"The sign and domain hypotheses hidden inside roots, rational powers and real logarithm identities.",
     purpose:"Prevent familiar-looking identities from being applied outside the real domain or with the wrong principal-value convention, especially the recurrent mistake sqrt(u²)=u for negative u.",
@@ -49,7 +50,7 @@ export const T25_ATOMIC_V4_001_005 = [
     mode:"learn",evidencePolicy:"diagnostic_if_established"
   },
   {
-    id:"T25V4-F2-01",routeOrder:3,syllabusCode:"F2.1",targetCode:"F2",parentId:"ARC801",
+    id:"T25-ARC801-A1003",routeOrder:3,syllabusCode:"F2.1",targetCode:"F2",parentId:"ARC801",
     title:"Classify each step of one equation as equivalent or implication-only.",
     focus:"Equations as claims about solution sets, with every algebraic step labelled by whether it is reversible under the stated conditions.",
     purpose:"Replace the habit of treating every familiar manipulation as an equivalence with a proof-level check of reversibility, so extraneous candidates and lost solutions are detected at the step that creates them.",
@@ -72,7 +73,7 @@ export const T25_ATOMIC_V4_001_005 = [
     mode:"learn",evidencePolicy:"diagnostic_if_established"
   },
   {
-    id:"T25V4-F2-02",routeOrder:4,syllabusCode:"F2.2",targetCode:"F2",parentId:"ARC801",
+    id:"T25-ARC801-A1004",routeOrder:4,syllabusCode:"F2.2",targetCode:"F2",parentId:"ARC801",
     title:"Solve one inequality by sign cases and check all boundary points.",
     focus:"Exact solution sets for rational or factored inequalities through critical points, sign intervals and boundary legality.",
     purpose:"Make inequality solving structural rather than rule-memorisation: every zero, pole and sign change must be accounted for, and equality endpoints must be admitted or excluded for a stated reason.",
@@ -95,7 +96,7 @@ export const T25_ATOMIC_V4_001_005 = [
     mode:"learn",evidencePolicy:"diagnostic_if_established"
   },
   {
-    id:"T25V4-F3-01",routeOrder:5,syllabusCode:"F3.1",targetCode:"F3",parentId:"ARC801",
+    id:"T25-ARC801-A1005",routeOrder:5,syllabusCode:"F3.1",targetCode:"F3",parentId:"ARC801",
     title:"Track one changed input and its legal domain.",
     focus:"Treating the entire argument of a function as the input object and pulling the original domain back through a fixed change of input.",
     purpose:"Eliminate substitution errors such as confusing f(x+h) with f(x)+h and establish the domain-preimage reasoning later required by composition, transformations, differentiation and likelihood support.",
