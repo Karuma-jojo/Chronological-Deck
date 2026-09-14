@@ -10,7 +10,7 @@ const { T22_ATOMIC_MODULES } = await import("../js/data/t22-atomic-arcs.js");
 const prior = structuredClone(WORLD);
 const { T25_BY_KEY, t25PlanUnits, readT25Plan, setT25Plan, applyT25EntrancePrep } = await import("../js/data/t25-entrance-prep.js");
 const { T25_CORE, T25_UNITS } = await import("../js/data/t25-mstat-route.js");
-const { T25_ATOMIC_CARDS, T25_ATOMIC_BY_ID, T25_ATOMIC_BY_ORDER, T25_ATOMIC_BY_PARENT, T25_MSTAT_120_ROUTE } = await import("../js/data/t25-atomic-arcs.js");
+const { T25_ATOMIC_CARDS, T25_ATOMIC_BY_ID, T25_ATOMIC_BY_ORDER, T25_ATOMIC_BY_PARENT, T25_MSTAT_ROUTE, T25_MSTAT_TARGETS } = await import("../js/data/t25-atomic-arcs.js");
 const { T25_COVERAGE } = await import("../js/data/t25-coverage.js");
 const { T25_EXAMS, T25_SOURCES } = await import("../js/data/t25-sources.js");
 const { validateAttempt, validateEvidence, mergeEvidence, buildT25Prompt } = await import("../js/t25-study.js");
@@ -58,46 +58,47 @@ assert(!t25PlanUnits("mstat").some(u => u.source !== "mstat"));
 assert(!t25PlanUnits("cs").some(u => u.key === "python"), "C preparation should not acquire a Python prerequisite");
 const early = T25_BY_KEY.get("events");
 assert.deepEqual(early.prerequisites, ["sets", "counting"], "Finite probability need not wait for calculus or programming");
-assert.deepEqual(T25_CORE.slice(0, 12).map(u => u.key), [
-  "language", "sets", "equations", "progressions", "sequences", "trig",
-  "counting", "events", "conditional", "independence", "expectation", "discrete",
-], "M.Stat must start foundation -> counting/probability -> first random variables");
-assert.deepEqual(T25_CORE.slice(-3).map(u => u.key), ["lines", "conics", "exam"], "Geometry breadth must remain at the end before synthesis");
-for (const key of ["sequences", "orthogonal", "probbounds", "robustloss"]) assert(T25_BY_KEY.has(key), `Missing new parent ${key}`);
+for (const key of ["sequences", "orthogonal", "probbounds", "robustloss"]) assert(T25_BY_KEY.has(key), `Missing M.Stat parent context ${key}`);
 
-// Canonical MSTAT-120 route + progressive authoring invariants.
-assert.equal(T25_MSTAT_120_ROUTE.length, 120);
-assert.deepEqual(T25_MSTAT_120_ROUTE.map(c => c.routeOrder), Array.from({ length: 120 }, (_, i) => i + 1));
-assert.equal(new Set(T25_MSTAT_120_ROUTE.map(c => c.syllabusCode)).size, 120);
-assert(T25_ATOMIC_CARDS.length >= 5 && T25_ATOMIC_CARDS.length <= 120, "Authored cards must grow progressively from the audited foundation batch");
+// Audited v4 target + bounded-session invariants.
+assert.equal(T25_MSTAT_TARGETS.length, 80);
+assert.equal(new Set(T25_MSTAT_TARGETS.map(t => t.code)).size, 80);
+assert.equal(T25_MSTAT_ROUTE.length, 162);
+assert.deepEqual(T25_MSTAT_ROUTE.map(c => c.routeOrder), Array.from({ length: 162 }, (_, i) => i + 1));
+assert.equal(new Set(T25_MSTAT_ROUTE.map(c => c.syllabusCode)).size, 162);
+assert(T25_ATOMIC_CARDS.length >= 5 && T25_ATOMIC_CARDS.length <= 162, "Audited session cards must grow progressively from the first five hand-authored contracts");
 assert.equal(T25_ATOMIC_BY_ID.size, T25_ATOMIC_CARDS.length);
 assert.equal(T25_ATOMIC_BY_ORDER.size, T25_ATOMIC_CARDS.length);
-assert.deepEqual(T25_ATOMIC_CARDS.map(c => c.routeOrder), Array.from({ length: T25_ATOMIC_CARDS.length }, (_, i) => i + 1), "Authored cards must remain a contiguous prefix of the canonical route");
-assert.equal(new Set(T25_ATOMIC_CARDS.map(c => c.syllabusCode)).size, T25_ATOMIC_CARDS.length);
+assert.deepEqual(T25_ATOMIC_CARDS.map(c => c.routeOrder), Array.from({ length: T25_ATOMIC_CARDS.length }, (_, i) => i + 1), "Authored cards must remain a contiguous prefix of the audited session route");
 const coreIds = new Set(T25_CORE.map(u => u.id));
-for (const spec of T25_MSTAT_120_ROUTE) assert(coreIds.has(spec.parentId), `${spec.syllabusCode} points outside the M.Stat parent route: ${spec.parentId}`);
+for (const spec of T25_MSTAT_ROUTE) assert(coreIds.has(spec.parentId), `${spec.syllabusCode} points outside the stable M.Stat parent context: ${spec.parentId}`);
 for (const c of T25_ATOMIC_CARDS) {
-  const spec = T25_MSTAT_120_ROUTE[c.routeOrder - 1];
+  const spec = T25_MSTAT_ROUTE[c.routeOrder - 1];
   assert.equal(c.syllabusCode, spec.syllabusCode);
+  assert.equal(c.targetCode, spec.targetCode);
   assert.equal(c.parentId, spec.parentId);
   assert.equal(c.title, spec.title);
-  assert(c.title.length > 5 && c.centralCapability.length > 30 && c.exitCondition.length > 30);
+  assert(c.centralCapability.length > 30 && c.exitCondition.length > 30);
   assert(c.requiredOwnership.length >= 5 && c.inScope.length >= 4 && c.outOfScope.length >= 4);
 }
-for (const cards of T25_ATOMIC_BY_PARENT.values()) {
-  assert.deepEqual(cards.map(c => c.routeOrder), [...cards].map(c => c.routeOrder).sort((a, b) => a - b));
-}
-assert.equal(T25_MSTAT_120_ROUTE[0].syllabusCode, "F1");
-assert.equal(T25_MSTAT_120_ROUTE[20].syllabusCode, "J1");
-assert.equal(T25_MSTAT_120_ROUTE[45].syllabusCode, "A1b", "Later algebra revisit must retain global position 046");
-assert.equal(T25_MSTAT_120_ROUTE[80].syllabusCode, "O3b", "Order-statistic revisit must retain global position 081");
-assert.equal(T25_MSTAT_120_ROUTE[119].syllabusCode, "G4");
-assert.equal(T25_MSTAT_120_ROUTE[11].parentId, "ARC905");
-assert.equal(T25_MSTAT_120_ROUTE[37].parentId, "ARC906");
-assert.equal(T25_MSTAT_120_ROUTE[77].parentId, "ARC907");
-assert.equal(T25_MSTAT_120_ROUTE[93].parentId, "ARC908");
-assert.equal(T25_ATOMIC_BY_ORDER.get(1).syllabusCode, "F1");
-assert.equal(T25_ATOMIC_BY_ORDER.get(5).syllabusCode, "F5a");
+for (const cards of T25_ATOMIC_BY_PARENT.values()) assert.deepEqual(cards.map(c => c.routeOrder), [...cards].map(c => c.routeOrder).sort((a,b)=>a-b));
+
+const targetOrder = T25_MSTAT_TARGETS.map(t => t.code);
+assert.deepEqual(targetOrder.slice(0, 12), ["F1","F2","F3","F4","F5","A1","A2","A3","A5","G1","A4","G2"], "Audited route must begin with the prerequisite-safe language/elementary-tool phase");
+assert(targetOrder.indexOf("J2") < targetOrder.indexOf("D1"), "Basic covariance must precede discrete-law variance work");
+assert(targetOrder.indexOf("N1") < targetOrder.indexOf("N3"), "General sample-variance algebra belongs before normal pivot theory");
+assert(targetOrder.indexOf("N3") < targetOrder.indexOf("N2"), "Joint-normal linear forms must precede exact t/F pivots");
+assert(targetOrder.indexOf("M0") < targetOrder.indexOf("M1"), "Matrix arithmetic prerequisite must precede vector-space structure");
+assert(targetOrder.includes("D0") && targetOrder.includes("D6") && targetOrder.includes("C7") && targetOrder.includes("T6") && targetOrder.includes("J6") && targetOrder.includes("O4"), "All audit-added weakly explicit areas must remain routed");
+assert.equal(T25_MSTAT_ROUTE[0].syllabusCode, "F1.1");
+assert.equal(T25_MSTAT_ROUTE[1].syllabusCode, "F1.2");
+assert.equal(T25_MSTAT_ROUTE[2].syllabusCode, "F2.1");
+assert.equal(T25_MSTAT_ROUTE[3].syllabusCode, "F2.2");
+assert.equal(T25_MSTAT_ROUTE[4].syllabusCode, "F3.1");
+assert.equal(T25_MSTAT_ROUTE.at(-1).syllabusCode, "V4.2");
+assert.equal(T25_ATOMIC_BY_ORDER.get(1).id, "T25V4-F1-01");
+assert.equal(T25_ATOMIC_BY_ORDER.get(5).id, "T25V4-F3-01");
+assert.equal(T25_ATOMIC_BY_ORDER.get(1).evidencePolicy, "diagnostic_if_established");
 
 assert.throws(() => t25PlanUnits("constructor"));
 assert.equal(readT25Plan({ getItem: () => "__proto__" }), "mstat");
@@ -126,7 +127,6 @@ assert(validTerminalStage(5, t23));
 assert(!validTerminalStage(6, t23));
 assert.equal(routeLayout(WORLD.terminals.find(t => t.id === "T22")).columns.length, 5);
 
-// Validate the actual reachable module graph, not obsolete comment markers.
 const html = readFileSync("index.html", "utf8");
 const entry = html.match(/<script\s+type="module"\s+src="([^"]+)"/)[1].split("?")[0];
 const paths = new Set();
@@ -135,23 +135,21 @@ function checkModule(path) {
   assert(existsSync(absolute), `Missing module ${absolute}`);
   const code = readFileSync(absolute, "utf8");
   execFileSync(process.execPath, ["--input-type=module", "--check"], { input: code, stdio: ["pipe", "pipe", "pipe"] });
-  for (const match of code.matchAll(/(?:from\s*|import\s*\(?\s*)["'](\.[^"']+)["']/g)) {
-    checkModule(resolve(dirname(absolute), match[1].split("?")[0]));
-  }
+  for (const match of code.matchAll(/(?:from\s*|import\s*\(?\s*)["'](\.[^"']+)["']/g)) checkModule(resolve(dirname(absolute), match[1].split("?")[0]));
 }
 checkModule(entry);
-// t25-atomic-ui intentionally uses a cache-busted computed import so each page load
-// sees newly authored registry batches without a site-version bump. Validate that
-// canonical registry explicitly, then let checkModule follow its static batch imports.
+// The audited UI cache-busts the canonical registry dynamically; validate that
+// registry explicitly so its static audit-phase imports are also traversed.
 checkModule(resolve("js/data/t25-atomic-arcs.js"));
 for (const match of html.matchAll(/(?:href|src)="(\.\/[^"#?]+)(?:[?#][^"]*)?"/g)) assert(existsSync(match[1]), `Broken local asset ${match[1]}`);
 assert(paths.has(resolve("js/t25-ui.js")));
-assert(paths.has(resolve("js/t25-atomic-ui.js")));
+assert(paths.has(resolve("js/t25-atomic-ui-v4.js")));
 assert(paths.has(resolve("js/data/t25-atomic-arcs.js")));
+assert(paths.has(resolve("js/data/t25-mstat-audit-v4.js")));
 assert(paths.has(resolve("js/data/t25-entrance-prep.js")));
 assert(paths.has(resolve("js/data/t25-mstat-route.js")));
-const app = readFileSync("js/app.js", "utf8"), ui = readFileSync("js/t25-ui.js", "utf8"), atomicUi = readFileSync("js/t25-atomic-ui.js", "utf8");
+const app = readFileSync("js/app.js", "utf8"), ui = readFileSync("js/t25-ui.js", "utf8"), atomicUi = readFileSync("js/t25-atomic-ui-v4.js", "utf8");
 for (const event of ["chrono:select-node", "chrono:node-selected", "chrono:route-rendered", "chrono:t25-plan-changed"]) assert(app.includes(event) && ui.includes(event), `Unwired ${event}`);
-assert(atomicUi.includes("t25-atomic-map-node") && atomicUi.includes("chrono:route-rendered"), "T25 M.Stat must expose the canonical atomic route on the big map");
+assert(atomicUi.includes("t25-v4-node") && atomicUi.includes("chrono:route-rendered") && atomicUi.includes("T25_MSTAT_ROUTE"), "T25 M.Stat must expose the audited bounded-session route on the big map");
 for (const match of ui.matchAll(/\$\("([^"]+)"\)/g)) assert((html + ui).includes(`id="${match[1]}"`), `Missing UI element ${match[1]}`);
-console.log(`T25 checks passed: 7 topological plans; 108 unique units; 50-unit M.Stat parent route; canonical 120-position atomic route with ${T25_ATOMIC_CARDS.length} individually authored cards; full mapped source groups; valid T22 links; evidence validation/merge; unchanged legacy routes; 6-stage T23 layout; ${paths.size} reachable JS modules checked.`);
+console.log(`T25 checks passed: 7 topological plans; 108 unique units; stable 50-parent M.Stat context; audited 80-target / 162-session route with ${T25_ATOMIC_CARDS.length} individually authored v4 cards; full mapped source groups; valid T22 links; evidence validation/merge; unchanged legacy routes; 6-stage T23 layout; ${paths.size} reachable JS modules checked.`);

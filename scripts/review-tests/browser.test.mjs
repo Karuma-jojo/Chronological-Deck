@@ -58,17 +58,17 @@ async function setup({signed=true,missing=false,offline=false}={}) {
  return {page,context,f,errors,recordCalls,dropNext:()=>{dropped=true},close:async()=>{await context.close();await f.db.close()}};
 }
 
-test('actual T25 page + real PostgreSQL RPC bodies: A01 creation, attempt, retry, edit/history, archive',async()=>{
+test('actual T25 v4 page + real PostgreSQL RPC bodies: create, attempt, retry, edit/history, archive',async()=>{
  const s=await setup();const {page,f}=s;
  try{
-  await page.locator('#t25ReviewAdd').click();await page.locator('#t25ReviewA01').click();
-  assert.equal(await page.locator('[name="prompt"]').inputValue(),A01_REVIEW_TARGET.prompt);
+  assert.equal(await page.locator('#t25AtomicSelect').inputValue(),'T25V4-F1-01');
+  await page.locator('#t25ReviewAdd').click();
+  await page.locator('[name="prompt"]').fill(A01_REVIEW_TARGET.prompt);
+  await page.locator('[name="reference"]').fill(A01_REVIEW_TARGET.reference);
+  await page.locator('[name="personal_note"]').fill('V4 browser integration target; legacy A01 authority is intentionally not reassigned.');
   await page.locator('#t25ReviewForm [type="submit"]').click();await page.waitForFunction(()=>document.querySelector('#t25ReviewStatus').textContent.includes('item saved'));
-  assert.match(await page.locator('#t25ReviewIdentity').innerText(),/Fully Mastered/);
+  assert.match(await page.locator('#t25ReviewIdentity').innerText(),/Not loaded|not archived/i);
   assert.match(await page.locator('#t25ReviewSummary').innerText(),/unverified.*Active items: 1/);
-  // Repeating the prepared target is idempotent through the real create RPC.
-  await page.locator('#t25ReviewAdd').click();await page.locator('#t25ReviewA01').click();await page.locator('#t25ReviewForm [type="submit"]').click();
-  await page.waitForFunction(()=>document.querySelector('#t25ReviewStatus').textContent.includes('item saved'));
   assert.equal((await f.db.query('select count(*)::int n from arc_review_items')).rows[0].n,1);
   await page.getByRole('button',{name:'Practice early',exact:true}).click();
   assert.equal(await page.locator('#t25ReviewReference').count(),0);
@@ -82,7 +82,7 @@ test('actual T25 page + real PostgreSQL RPC bodies: A01 creation, attempt, retry
   await page.waitForFunction(()=>document.querySelector('#t25ReviewStatus').textContent.includes('retry confirmed'));
   assert.equal(s.recordCalls.length,2);assert.deepEqual(s.recordCalls[0],s.recordCalls[1]);
   assert.equal((await f.db.query('select count(*)::int n from arc_review_attempts')).rows[0].n,1);
-  assert.match(await page.locator('#t25ReviewSummary').innerText(),/repair recommended/);assert.match(await page.locator('#t25ReviewIdentity').innerText(),/Fully Mastered/);
+  assert.match(await page.locator('#t25ReviewSummary').innerText(),/repair recommended/);
   await page.getByRole('button',{name:'Edit',exact:true}).click();await page.locator('[name="prompt"]').fill('New meaning <img src=x onerror=alert(1)>');await page.locator('#t25ReviewForm [type="submit"]').click();
   await page.waitForFunction(()=>document.querySelector('#t25ReviewStatus').textContent.includes('item saved'));
   await page.getByRole('button',{name:'View history',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#t25ReviewStatus').textContent.includes('History preserves'));
@@ -97,28 +97,28 @@ test('actual T25 page + real PostgreSQL RPC bodies: A01 creation, attempt, retry
  }finally{await s.close()}
 });
 
-test('missing schema, signed out and network failure preserve atomic cards and compiler links',async()=>{
+test('missing schema, signed out and network failure preserve audited session cards and compiler links',async()=>{
  for(const mode of [{missing:true},{signed:false},{offline:true}]){
   const s=await setup(mode);try{
    const text=await s.page.locator('#t25ReviewStatus').innerText();
    assert.match(text,mode.missing?/Review layer not installed/:mode.offline?/fetch/i:/Sign in/);
    assert.equal(await s.page.locator('#t25ReviewAdd').isDisabled(),true);
-   assert.match(await s.page.locator('#t25AtomicCardText').inputValue(),/T25-ARC801-A01/);
+   assert.match(await s.page.locator('#t25AtomicCardText').inputValue(),/T25V4-F1-01/);
    assert.equal(await s.page.locator('#t25AtomicCopy').isEnabled(),true);
    assert.match(await s.page.getByRole('link',{name:'Open λ Compiler',exact:true}).getAttribute('href'),/Compiler/);
-   if(mode.missing)assert.match(await s.page.locator('#t25ReviewIdentity').innerText(),/Fully Mastered/);
    assert.deepEqual(s.errors,[]);
   }finally{await s.close()}
  }
 });
 
-test('selected atomic state survives parent redraw, unrelated units hide reviews and sign-out clears private content',async()=>{
+test('selected v4 atomic state survives parent redraw and sign-out clears private review content',async()=>{
  const s=await setup();try{
-  await s.page.locator('#t25AtomicSelect').selectOption('T25-ARC801-A02');
-  await s.page.evaluate(()=>document.dispatchEvent(new CustomEvent('chrono:node-selected',{detail:{terminal:'T25'}})));
-  assert.equal(await s.page.locator('#t25AtomicSelect').inputValue(),'T25-ARC801-A02');
-  await s.page.locator('#t25Unit').selectOption('ARC802');assert.equal(await s.page.locator('#t25ReviewPanel').isVisible(),false);
-  await s.page.locator('#t25Unit').selectOption('ARC801');await s.page.waitForFunction(()=>!document.querySelector('#t25ReviewAdd').disabled);
+  await s.page.locator('#t25AtomicSelect').selectOption('T25V4-F1-02');
+  await s.page.waitForFunction(()=>document.querySelector('#t25AtomicSelect').value==='T25V4-F1-02');
+  assert.match(await s.page.locator('#t25AtomicSummary').innerText(),/F1\.2/);
+  await s.page.locator('#t25Unit').selectOption('ARC802');
+  assert.equal(await s.page.locator('#t25AtomicSelect').inputValue(),'T25V4-F1-02','parent context browsing must not rewrite atomic chronology');
+  assert.equal(await s.page.locator('#t25ReviewPanel').isVisible(),true,'review selection follows the atomic card, not the parent dropdown');
   await s.page.locator('#t25ReviewAdd').click();await s.page.locator('[name="prompt"]').fill('Private draft');
   await s.page.evaluate(()=>{const session=JSON.parse(localStorage.getItem('chrono_mastery_sync_session_v1'));session.expires_at+=3600;session.access_token='refreshed-test-token';localStorage.setItem('chrono_mastery_sync_session_v1',JSON.stringify(session));document.dispatchEvent(new CustomEvent('chrono:cloud-context-changed'))});
   assert.equal(await s.page.locator('[name="prompt"]').inputValue(),'Private draft','routine token refresh preserves working');

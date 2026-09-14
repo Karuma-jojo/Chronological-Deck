@@ -9,6 +9,7 @@ import { WORLD } from "./data/world.js";
 // t25-atomic-ui.js?v=1.8.1
 // t25-atomic-ui.js?v=1.8.2
 // t25-atomic-ui.js?v=1.8.3
+// t25-atomic-ui.js?v=1.8.4
 // t25-review-ui.js?v=1.8.1
 
 try {
@@ -24,8 +25,6 @@ try {
 }
 
 try {
-  // Keep this URL identical to t22-atomic-ui.js's static import. Query-string
-  // variants are distinct ES modules and would execute the entrance extension twice.
   await import("./data/t22-atomic-arcs.js");
 } catch (error) {
   console.error("T22 atomic-arc overlay failed to load; continuing with the 58-module macro route.", error);
@@ -37,16 +36,10 @@ try {
   console.error("T25 entrance overlay failed to load; existing routes remain available.", error);
 }
 
-// Recover from a persisted terminal selection that is unavailable in the
-// currently loaded registry (for example, T22/T23 saved during a stale
-// mixed-cache session). app.js assumes the persisted terminal exists, so clear
-// only this invalid selector value and preserve all progress data.
 try {
   const terminalKey = "chrono_mastery_world_v1_terminal";
   const persistedTerminal = localStorage.getItem(terminalKey);
-  if (persistedTerminal && !WORLD.terminals.some((terminal) => terminal.id === persistedTerminal)) {
-    localStorage.removeItem(terminalKey);
-  }
+  if (persistedTerminal && !WORLD.terminals.some((terminal) => terminal.id === persistedTerminal)) localStorage.removeItem(terminalKey);
 } catch (error) {
   console.warn("Could not validate persisted terminal selection; continuing with app defaults.", error);
 }
@@ -63,9 +56,9 @@ try {
   console.error("T25 entrance UI failed to load; route progress remains available.", error);
 }
 try {
-  await import("./t25-atomic-ui.js?v=1.8.4");
+  await import("./t25-atomic-ui-v4.js?v=2.0.0");
 } catch (error) {
-  console.error("T25 atomic-card UI failed to load; parent-unit study remains available.", error);
+  console.error("T25 audited atomic-session UI failed to load; parent-unit study remains available.", error);
 }
 try {
   await import("./t25-review-ui.js?v=1.8.2");
