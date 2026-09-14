@@ -17,6 +17,7 @@ import {
   T25_ROUTE_BY_CODE,
 } from "./t25-mstat-audit-v4.js";
 import { T25_ATOMIC_V4_001_005 } from "./t25-atomic-v4-001-005.js";
+import { T25_ATOMIC_V4_006_010 } from "./t25-atomic-v4-006-010.js";
 
 export const T25_ATOMIC_AUDIT_VERSION = T25_MSTAT_AUDIT_VERSION;
 export { T25_MSTAT_TARGETS, T25_MSTAT_ROUTE, T25_TARGET_BY_CODE, T25_ROUTE_BY_CODE };
@@ -26,7 +27,10 @@ export { T25_MSTAT_TARGETS, T25_MSTAT_ROUTE, T25_TARGET_BY_CODE, T25_ROUTE_BY_CO
 // degrades cosmetically instead of crashing while the new bundle propagates.
 export const T25_MSTAT_120_ROUTE = T25_MSTAT_ROUTE;
 
-export const T25_ATOMIC_CARDS = [...T25_ATOMIC_V4_001_005].sort((a, b) => a.routeOrder - b.routeOrder);
+export const T25_ATOMIC_CARDS = [
+  ...T25_ATOMIC_V4_001_005,
+  ...T25_ATOMIC_V4_006_010,
+].sort((a, b) => a.routeOrder - b.routeOrder);
 
 if (T25_MSTAT_TARGETS.length !== 80) throw new Error(`T25 audited target manifest must contain 80 targets; found ${T25_MSTAT_TARGETS.length}.`);
 if (T25_MSTAT_ROUTE.length !== 162) throw new Error(`T25 audited session route must contain 162 entries; found ${T25_MSTAT_ROUTE.length}.`);
