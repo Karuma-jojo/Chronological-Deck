@@ -140,6 +140,10 @@ function checkModule(path) {
   }
 }
 checkModule(entry);
+// t25-atomic-ui intentionally uses a cache-busted computed import so each page load
+// sees newly authored registry batches without a site-version bump. Validate that
+// canonical registry explicitly, then let checkModule follow its static batch imports.
+checkModule(resolve("js/data/t25-atomic-arcs.js"));
 for (const match of html.matchAll(/(?:href|src)="(\.\/[^"#?]+)(?:[?#][^"]*)?"/g)) assert(existsSync(match[1]), `Broken local asset ${match[1]}`);
 assert(paths.has(resolve("js/t25-ui.js")));
 assert(paths.has(resolve("js/t25-atomic-ui.js")));
