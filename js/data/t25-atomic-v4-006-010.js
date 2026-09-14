@@ -1,9 +1,10 @@
 // Hand-authored T25 M.Stat v4 session cards 006-010.
 // These contracts implement audited syllabus steps F3.2 through F5.2 only.
+// V4 logical IDs reserve A1001-A1162 so they stay distinct from legacy T25 atomic authority.
 
 export const T25_ATOMIC_V4_006_010 = [
   {
-    id:"T25V4-F3-02",routeOrder:6,syllabusCode:"F3.2",targetCode:"F3",parentId:"ARC801",
+    id:"T25-ARC801-A1006",routeOrder:6,syllabusCode:"F3.2",targetCode:"F3",parentId:"ARC801",
     title:"Analyse one parameter or affine-iteration question.",
     focus:"Separating the running variable from parameters and constants while tracking how an affine rule changes under composition or repeated application.",
     purpose:"Extend fixed changed-input reasoning into parameter-sensitive problems where the legal domain, output formula or repeated affine action can change qualitatively with the parameter value.",
@@ -26,7 +27,7 @@ export const T25_ATOMIC_V4_006_010 = [
     mode:"learn",evidencePolicy:"standard"
   },
   {
-    id:"T25V4-F4-01",routeOrder:7,syllabusCode:"F4.1",targetCode:"F4",parentId:"ARC801",
+    id:"T25-ARC801-A1007",routeOrder:7,syllabusCode:"F4.1",targetCode:"F4",parentId:"ARC801",
     title:"Negate one quantified claim and test a converse.",
     focus:"Reading the logical skeleton of a mathematical sentence before deciding whether the claim, its converse or its negation is true.",
     purpose:"Build the minimum proof-language discipline needed throughout M.Stat questions: universal claims require universal support, existential claims require a witness, and negation must reverse the quantifier rather than merely insert the word not.",
@@ -49,7 +50,7 @@ export const T25_ATOMIC_V4_006_010 = [
     mode:"learn",evidencePolicy:"standard"
   },
   {
-    id:"T25V4-F4-02",routeOrder:8,syllabusCode:"F4.2",targetCode:"F4",parentId:"ARC801",
+    id:"T25-ARC801-A1008",routeOrder:8,syllabusCode:"F4.2",targetCode:"F4",parentId:"ARC801",
     title:"Write one short proof or a decisive counterexample.",
     focus:"Closing a small mathematical claim with a complete chain of justified steps, or refuting it with one example that satisfies the assumptions and violates the conclusion.",
     purpose:"Prevent two opposite failure modes common in entrance work: treating several confirming examples as proof, and offering a counterexample that does not actually meet the claim's hypotheses.",
@@ -72,7 +73,7 @@ export const T25_ATOMIC_V4_006_010 = [
     mode:"learn",evidencePolicy:"standard"
   },
   {
-    id:"T25V4-F5-01",routeOrder:9,syllabusCode:"F5.1",targetCode:"F5",parentId:"ARC802",
+    id:"T25-ARC802-A1009",routeOrder:9,syllabusCode:"F5.1",targetCode:"F5",parentId:"ARC802",
     title:"Translate set operations and images/preimages by membership.",
     focus:"Reducing set expressions and function-set statements to precise element-membership conditions rather than manipulating set symbols by visual pattern alone.",
     purpose:"Create a reusable membership language for later probability events, supports, inverse images and equivalence classes, while keeping image/preimage notation distinct from inverse-function notation.",
@@ -95,7 +96,7 @@ export const T25_ATOMIC_V4_006_010 = [
     mode:"learn",evidencePolicy:"standard"
   },
   {
-    id:"T25V4-F5-02",routeOrder:10,syllabusCode:"F5.2",targetCode:"F5",parentId:"ARC802",
+    id:"T25-ARC802-A1010",routeOrder:10,syllabusCode:"F5.2",targetCode:"F5",parentId:"ARC802",
     title:"Check a relation and list its equivalence classes.",
     focus:"Testing reflexivity, symmetry and transitivity from the actual ordered-pair rule, then turning a valid equivalence relation into disjoint equivalence classes.",
     purpose:"Make relation questions proof-driven rather than pattern-driven and establish the partition viewpoint needed to reason cleanly about 'same-type' groupings on finite or elementary sets.",
