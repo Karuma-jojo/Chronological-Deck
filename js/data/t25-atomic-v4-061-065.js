@@ -56,7 +56,7 @@ export const T25_ATOMIC_V4_061_065 = [
     purpose:"Make limit calculations logically safe before differentiation begins: a two-sided limit exists only when the relevant nearby behaviours agree, and an undefined or mismatched point value does not by itself determine that limit.",
     centralCapability:"Given an elementary rational, piecewise or sign-sensitive function, evaluate a one-sided or two-sided limit using an explicitly stated limit criterion, choosing algebraic simplification, rationalisation or bounding as appropriate.",
     principalObstacle:"The learner may substitute at the target point too early, ignore different left/right formulas, cancel factors without noting the punctured domain, or trust a graph/calculator instead of establishing the nearby behaviour analytically.",
-    entryPrerequisites:["018-020 / A5 sequence, recurrence and function-behaviour discipline","006-007 / F3 changed inputs and parameter-aware functions","001-003 / domain-safe algebra and solution-set reasoning"],
+    entryPrerequisites:["018-020 / A5 sequence, recurrence and function-behaviour discipline","005-006 / F3 changed inputs and parameter-aware functions","001-003 / domain-safe algebra and solution-set reasoning"],
     requiredOwnership:[
       "Distinguish f(a) from lim_{x->a} f(x) and explain why a removable hole can leave the limit unchanged.",
       "Evaluate left-hand and right-hand limits separately when the formula, sign or domain changes at the target point.",
@@ -102,7 +102,7 @@ export const T25_ATOMIC_V4_061_065 = [
     purpose:"Anchor differentiation in its defining limit before reusable rules are introduced, so later symbolic derivatives retain their domain and local-change meaning rather than becoming pattern matching.",
     centralCapability:"Given a polynomial such as x^n for positive integer n or a low-degree polynomial combination, form the difference quotient, simplify it legally, take the limit and identify the resulting local sensitivity without invoking the power rule as a premise.",
     principalObstacle:"The learner may substitute h=0 before cancelling the common factor, quote the power rule that is supposed to be derived, or manipulate (x+h)^n incorrectly and lose the limiting secant-slope interpretation.",
-    entryPrerequisites:["063-064 / C1 finite limits and continuity reasoning","012-013 / A1 polynomial factors and algebraic identities","014-015 / A2 finite sums and elementary binomial structure"],
+    entryPrerequisites:["063-064 / C1 finite limits and continuity reasoning","012-013 / A1 polynomial factors and algebraic identities","014-015 / A2 finite sums; 030 / P2.2 binomial expansion"],
     requiredOwnership:[
       "Write f'(x)=lim_{h->0}[f(x+h)-f(x)]/h and interpret the quotient as a secant slope over a vanishing input change.",
       "Expand or factor f(x+h)-f(x) so the common factor h is exposed before taking the limit.",

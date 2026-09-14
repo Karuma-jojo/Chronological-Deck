@@ -11,7 +11,7 @@ export const T25_ATOMIC_V4_141_142 = [
     purpose: "Make the sign test a model-and-count construction rather than a memorised Binomial(n, 1/2) recipe that silently assumes away ties, dependence or the wrong null hypothesis.",
     centralCapability: "Define the sign variables from the observed differences or centred observations, justify their Bernoulli null law from the continuity/no-zero assumptions or a stated tie rule, and identify the effective sample size used by the count statistic.",
     principalObstacle: "Automatically assigning probability 1/2 to every sign, dropping zero observations without saying so, or confusing a paired median-difference null with equality of two arbitrary population medians produces a test for a different problem than the one stated.",
-    entryPrerequisites: ["T1 exact rejection-rule, size and power language", "D1 Bernoulli and binomial laws", "J1 independence of indicator variables"],
+    entryPrerequisites: ["T1 exact rejection-rule, size and power language", "D1 Bernoulli and binomial laws", "J1 indicator encoding; P6 independence of trials and events"],
     requiredOwnership: [
       "State the parameter/null claim the signs are intended to test",
       "Define each positive/negative sign indicator from the actual observation or paired difference",

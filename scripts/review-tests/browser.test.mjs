@@ -5,6 +5,7 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { resolve, extname } from 'node:path';
 import { A01_REVIEW_TARGET } from '../../js/data/review-store.js';
+import { T25_ATOMIC_CARDS } from '../../js/data/t25-atomic-arcs.js';
 import { fixture, USER } from './fixture.mjs';
 
 let server, browser, base;
@@ -57,6 +58,64 @@ async function setup({signed=true,missing=false,offline=false}={}) {
  await page.waitForFunction(()=>!document.querySelector('#t25ReviewStatus').textContent.includes('Loading'));
  return {page,context,f,errors,recordCalls,dropNext:()=>{dropped=true},close:async()=>{await context.close();await f.db.close()}};
 }
+
+test('all 162 authored sessions are reachable; navigation, search and terminal changes preserve the selected identity',async()=>{
+ const s=await setup({signed:false});const {page}=s;
+ try{
+  assert.equal(await page.locator('#t25AtomicRouteSelect option').count(),162);
+  assert.equal(await page.locator('#routeGraph .t25-v4-node.authored').count(),162);
+  assert.equal(await page.locator('#routeGraph .t25-v4-node.planned').count(),0);
+  const failures=await page.evaluate(async cards=>{
+   const failures=[];
+   for(const card of cards){
+    const select=document.querySelector('#t25AtomicRouteSelect');
+    select.value=String(card.routeOrder);select.dispatchEvent(new Event('change',{bubbles:true}));
+    await Promise.resolve();
+    const text=document.querySelector('#t25AtomicCardText').value;
+    if(document.querySelector('#t25AtomicSelect').value!==card.id ||
+       document.querySelector('#t25AtomicLayer').dataset.selectedAtomicId!==card.id ||
+       document.querySelector('#routeGraph .selected.t25-v4-node')?.dataset.atomicOrder!==String(card.routeOrder) ||
+       document.querySelector('#t25AtomicCopy').disabled ||
+       !text.includes(`Session code: ${card.syllabusCode}\n`) ||
+       !text.includes(`Atomic ID: ${card.id}\n`) || !text.includes(card.exitCondition))failures.push(card.syllabusCode);
+   }
+   return failures;
+  },T25_ATOMIC_CARDS.map(({routeOrder,syllabusCode,id,exitCondition})=>({routeOrder,syllabusCode,id,exitCondition})));
+  assert.deepEqual(failures,[]);
+  assert.equal(await page.locator('#t25AtomicNext').isDisabled(),true);
+  await page.locator('#t25AtomicPrev').click();
+  assert.equal(await page.locator('#t25AtomicRouteSelect').inputValue(),'161');
+  await page.locator('#routeSearch').fill('F1.2');
+  assert.equal(await page.locator('#routeGraph .t25-v4-node:not(.searchdim)').count(),1);
+  await page.locator('#routeGraph [data-atomic-order="2"]').press('Enter');
+  assert.equal(await page.locator('#t25AtomicSelect').inputValue(),T25_ATOMIC_CARDS[1].id);
+  await page.locator('#routeSearch').fill('');
+  await page.locator('#t25AtomicPrev').click();
+  assert.equal(await page.locator('#t25AtomicPrev').isDisabled(),true);
+  await page.locator('#t25AtomicRouteSelect').selectOption('162');
+  await page.locator('#t25Plan').selectOption('cmi');
+  assert.equal(await page.locator('#routeGraph .t25-v4-node').count(),0);
+  assert.equal(await page.locator('#t25AtomicSelect').inputValue(),T25_ATOMIC_CARDS.at(-1).id);
+  await page.locator('#t25Plan').selectOption('mstat');
+  assert.equal(await page.locator('#routeGraph .t25-v4-node').count(),162);
+  await page.locator('#terminalSelect').selectOption('T22');
+  assert.equal(await page.locator('#routeGraph .t25-v4-node').count(),0);
+  assert.equal(await page.locator('#routeGraph').evaluate(e=>e.style.minWidth),'1100px','T22 restores its five-column graph width');
+  assert.equal(await page.locator('#routeFilter').isDisabled(),false);
+  await page.locator('#terminalSelect').selectOption('T25');
+  assert.equal(await page.locator('#t25AtomicSelect').inputValue(),T25_ATOMIC_CARDS.at(-1).id);
+  await page.reload();await page.waitForSelector('#t25AtomicRouteSelect');
+  assert.equal(await page.locator('#t25AtomicRouteSelect').inputValue(),'162');
+  assert.equal(await page.locator('#routeGraph .t25-v4-node.authored').count(),162);
+  for(const name of ['Open λ Compiler','Open λ ARC Extractor']){
+   const href=await page.locator('#t25AtomicLayer').getByRole('link',{name,exact:true}).getAttribute('href');
+   assert.equal((await page.request.get(new URL(href,base).href)).status(),200,`${name} must open the actual canonical file`);
+  }
+  await page.setViewportSize({width:390,height:844});
+  assert.equal(await page.locator('#t25AtomicLayer').evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,'session controls fit the narrow viewport');
+  assert.deepEqual(s.errors,[]);
+ }finally{await s.close()}
+});
 
 test('actual T25 v4 page + real PostgreSQL RPC bodies: create, attempt, retry, edit/history, archive',async()=>{
  const s=await setup();const {page,f}=s;

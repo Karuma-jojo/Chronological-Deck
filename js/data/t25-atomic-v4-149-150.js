@@ -11,7 +11,7 @@ export const T25_ATOMIC_V4_149_150 = [
     purpose: "Make design-based sampling variance transparent instead of memorised, and prevent factor-of-N or factor-of-(N-1) mistakes caused by silently switching population-variance conventions midway through a derivation.",
     centralCapability: "Given a finite population of size N and a simple random sample of size n, derive unbiasedness and variance for the sample mean and expanded total under SRSWR and SRSWOR, express the without-replacement variance through a declared finite-population correction, and check limiting cases such as n=N.",
     principalObstacle: "The main trap is mixing superpopulation intuition with design randomness or combining incompatible definitions of finite-population variance, which produces missing N factors, wrong denominators, or an FPC that fails the census limit.",
-    entryPrerequisites: ["D1 expectation and variance for discrete random variables", "J2 conditioning and independence on finite supports", "N1 sums and covariance of random variables"],
+    entryPrerequisites: ["J1 expectation; J2 variance and covariance of finite-valued variables", "P4 conditioning and P6 independence on finite sample spaces", "N1 iid sample-mean variance; supply the fixed-population design conventions here"],
     requiredOwnership: [
       "State clearly that the finite population values are fixed and the randomness comes from the sampling design",
       "Define one finite-population mean and one variance convention before deriving any sampling variance",
@@ -51,7 +51,7 @@ export const T25_ATOMIC_V4_149_150 = [
     purpose: "Build design literacy: an algorithm is SRSWOR only if every size-n subset has probability 1 over choose(N,n), and sequential descriptions must be converted to unordered-sample probabilities before that claim is accepted.",
     centralCapability: "Given a multistage, sequential, or rule-based sampling algorithm, calculate the probability of an arbitrary unordered sample of size n, account for all orderings or paths that lead to it, and decide whether the design is genuinely SRSWOR.",
     principalObstacle: "A procedure can look symmetric locally while inducing unequal subset probabilities globally; another common error is comparing ordered-sequence probabilities with unordered-sample probabilities without summing over every admissible ordering.",
-    entryPrerequisites: ["S1.1 design-based SRS notation and finite-population setup", "P4 counting and combinatorial probability", "J1 event decomposition on finite sample spaces"],
+    entryPrerequisites: ["S1.1 design-based SRS notation and finite-population setup", "P1/P2 counting and combinatorial probability", "P3 event decomposition; J1 indicator representation"],
     requiredOwnership: [
       "State the defining SRSWOR requirement that every unordered size-n subset has probability 1/binomial(N,n)",
       "Distinguish an ordered draw sequence from the final unordered sample",

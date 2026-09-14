@@ -11,7 +11,7 @@ export const T25_ATOMIC_V4_153_154 = [
     purpose: "Make inclusion probabilities operational: the learner must identify what event includes a unit or pair and compute its probability correctly before any inverse-probability estimator is attempted.",
     centralCapability: "Given a fully specified finite-population sampling design, derive pi_i=P(i in s) and pi_ij=P(i and j in s), including designs where units can be reachable through overlapping selection routes, and distinguish these probabilities from draw probabilities or sample-set probabilities.",
     principalObstacle: "The main trap is treating a unit's inclusion probability as its probability on one draw, adding overlapping routes without correcting their intersection, or replacing pair inclusion pi_ij by pi_i pi_j without a justified independence statement.",
-    entryPrerequisites: ["S1 sample-set probabilities and design randomness", "P4 inclusion-exclusion for overlapping events", "J1 indicator-variable probability reasoning"],
+    entryPrerequisites: ["S1 sample-set probabilities and design randomness", "P3 inclusion-exclusion for overlapping events", "J1 indicator-variable probability reasoning"],
     requiredOwnership: [
       "Define the inclusion indicator I_i and identify pi_i=E(I_i)=P(i in s)",
       "Define pi_ij=E(I_i I_j)=P(i and j in s) for distinct units",

@@ -10,7 +10,7 @@ export const T25_ATOMIC_V4_085_088 = [
     purpose:"Make gamma/beta questions structurally transparent: first identify the kernel and parameter convention, then normalise or derive the required moment, and finally state the exact parameter range under which that moment actually exists.",
     centralCapability:"Given a gamma- or beta-type density or integral, recognise the appropriate normalising structure, convert correctly between rate and scale conventions, derive ordinary or inverse moments from the defining integral, and state the sharp existence condition before using the result.",
     principalObstacle:"The learner may confuse rate with scale, shift exponents incorrectly when matching gamma/beta integrals, quote a moment formula outside its convergence range, or assume inverse moments exist merely because positive moments do.",
-    entryPrerequisites:["083-084 / D3 continuous named laws and moment discipline","073-074 / C6 finite and improper integrals","043-044 / J2 expectation, variance and dependent-sum structure"],
+    entryPrerequisites:["083-084 / D3 continuous named laws and moment discipline","073-074 / C6 finite and improper integrals","037-040 / J1-J2 expectation, variance and dependent-sum structure"],
     requiredOwnership:[
       "State the gamma density under a declared shape-rate or shape-scale convention and translate between the two without changing the underlying law.",
       "Recognise the gamma integral integral_0^infinity x^{a-1}e^{-bx} dx through a legal rescaling and extract the normalising constant rather than memorising it blindly.",
@@ -56,7 +56,7 @@ export const T25_ATOMIC_V4_085_088 = [
     purpose:"Make nonlinear transformations reliable rather than formulaic: the support and preimage geometry come first, so monotone one-branch formulas are never applied blindly to square, absolute-value or other many-to-one maps.",
     centralCapability:"Given a continuous X and a scalar transform Y=g(X), determine the support of Y, derive F_Y from the event {g(X)<=y} or use a branchwise density formula, include every valid inverse branch and absolute Jacobian factor, and verify that the resulting law normalises.",
     principalObstacle:"The learner may substitute one inverse and forget another, omit the absolute derivative, carry the original support into the transformed variable unchanged, or use a density formula where the CDF-event route is simpler and safer.",
-    entryPrerequisites:["081-084 / D0-D3 CDFs, densities and continuous laws","067-068 / C3 legal differentiation","006-007 / F3 changed-input and parameter-aware function reasoning"],
+    entryPrerequisites:["081-084 / D0-D3 CDFs, densities and continuous laws","067-068 / C3 legal differentiation","005-006 / F3 changed-input and parameter-aware function reasoning"],
     requiredOwnership:[
       "Determine the image/support of Y before writing a transformed density, including endpoint effects from the support of X.",
       "For a one-to-one differentiable branch, derive f_Y(y)=f_X(g^{-1}(y))|d g^{-1}(y)/dy| under the stated regularity conditions.",

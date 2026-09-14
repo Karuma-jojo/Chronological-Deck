@@ -49,7 +49,7 @@ export const T25_ATOMIC_V4_127_130 = [
     purpose: "Prevent the false idea that any function of a sufficient statistic remains sufficient by separating reversible recoding from irreversible compression.",
     centralCapability: "Prove sufficiency is preserved by an invertible recoding, and show why a coarsened statistic may fail by exhibiting parameter dependence that the coarsening no longer retains.",
     principalObstacle: "Confusing 'function of a sufficient statistic' with 'sufficient' ignores whether the transformation is reversible and can erase distinctions that the likelihood still needs.",
-    entryPrerequisites: ["E5.1 factorisation and support-aware sufficiency", "F3 functions and inverse mappings", "J3 conditional laws"],
+    entryPrerequisites: ["E5.1 factorisation and support-aware sufficiency", "F3 functions; F5.3 inverse mappings on stated sets", "J3 conditional laws"],
     requiredOwnership: [
       "Explain why a one-to-one transform of a sufficient statistic is sufficient",
       "Recover the original sufficient statistic from an invertible recoding",

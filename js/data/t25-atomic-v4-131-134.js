@@ -11,7 +11,7 @@ export const T25_ATOMIC_V4_131_134 = [
     purpose: "Make testing quantities operational probabilities under specified parameter values rather than interchangeable labels attached to a critical region.",
     centralCapability: "Compute rejection and non-rejection probabilities under each relevant law, identify actual size and Type II error, and write the power function with the correct parameter dependence.",
     principalObstacle: "Using the nominal alpha as the answer without evaluating the discrete rejection probability, or computing every probability under the null law, destroys the distinction between size, Type II error and power.",
-    entryPrerequisites: ["D1 exact discrete/continuous laws and support", "D3 expectations and distribution calculations", "N1 standard named laws and quantiles"],
+    entryPrerequisites: ["D1/D2 discrete laws and D3 continuous laws with their supports", "D3 continuous distribution probabilities and standardisation", "N2 sampling pivots and their quantiles when a sample statistic is used"],
     requiredOwnership: [
       "State the null and alternative parameter sets before calculating probabilities",
       "Translate the rejection rule into an event under the model",
@@ -49,7 +49,7 @@ export const T25_ATOMIC_V4_131_134 = [
     purpose: "Prevent two common testing errors: treating a realised p-value as the probability that the null is true, and adding dependent rejection probabilities as though the events were disjoint or independent.",
     centralCapability: "Define the p-value as an appropriate null-tail extremeness probability for the observed data and bound the probability of a union of rejection events without assuming independence.",
     principalObstacle: "Confusing a random pre-data p-value with the fixed design size, reversing conditional meaning, or multiplying/adding event probabilities under unstated independence leads to invalid inference.",
-    entryPrerequisites: ["T1.1 size and power", "P1 union/intersection probability", "D1 null distributions and support"],
+    entryPrerequisites: ["T1.1 size and power", "P3 union/intersection probability and the union bound", "D1 null distributions and support"],
     requiredOwnership: [
       "Identify the null distribution used to calibrate extremeness",
       "Use the tail or two-sided convention stated by the test rather than inventing one",
@@ -125,7 +125,7 @@ export const T25_ATOMIC_V4_131_134 = [
     purpose: "Complete the simple-versus-simple argument by separating evidence ordering from null-probability calibration and by making discrete boundary randomisation explicit rather than silently overshooting alpha.",
     centralCapability: "Convert a likelihood-ratio ordering into an exact level-alpha most-powerful test, solve for any boundary randomisation probability, and compute the resulting power under the alternative.",
     principalObstacle: "Selecting a threshold from the alternative law, forcing an unattainable deterministic discrete size, or randomising away from the likelihood-ratio boundary violates the Neyman-Pearson construction.",
-    entryPrerequisites: ["T2.1 likelihood-ratio ordering", "T1.1 actual size and power", "D1 discrete/continuous probability calculations"],
+    entryPrerequisites: ["T2.1 likelihood-ratio ordering", "T1.1 actual size and power", "D1/D2 discrete and D3 continuous probability calculations"],
     requiredOwnership: [
       "Calibrate the critical region using probabilities under H0",
       "Choose the largest deterministic likelihood-ratio region whose null probability does not exceed alpha when appropriate",

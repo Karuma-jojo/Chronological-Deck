@@ -1,28 +1,44 @@
 # T25: M.Stat first, with a deliberate companion exam
 
-Reviewed 11 September 2026. This is an entrance study route inside Chrono-Deck, alongside T22 quantitative research and T23 scientific computing. It is a scope map, study launcher and evidence log—not a completed textbook, solved-paper collection or admission prediction.
+Official source baseline reviewed 11 September 2026; the completed 162-session route checked 14 September 2026. This is an entrance study route inside Chrono-Deck, alongside T22 quantitative research and T23 scientific computing. It provides study contracts, a launcher and evidence tools. Worked teaching and solutions are produced during study; the route does not predict admission.
 
 ## Why a separate terminal
 
 T22 covers a much broader research destination. Requiring its 596 atomic ARCs before practising entrance questions would introduce unnecessary prerequisites. Conversely, clearing an entrance exercise should not certify mastery of an entire research module.
 
-T25 therefore uses new stable world IDs **ARC801–ARC904**, while linking to relevant T22 atomic ARCs as supporting study. It adds no prerequisites to existing routes, does not infer completion from previous broad-module checkmarks, and does not repurpose ARC735–ARC738. T24 is not allocated by this change.
+T25 uses stable parent world IDs **ARC801–ARC908**, while linking to relevant T22 atomic ARCs as supporting study. It adds no prerequisites to existing routes, does not infer completion from previous broad-module checkmarks, and does not repurpose ARC735–ARC738. T24 is not allocated by this change.
 
-The M.Stat core has **46 units**. These are topic contracts of unequal breadth, not 46 identically sized lessons. A unit can need several short investigations and many ordinary exercises. The optional catalogue adds 58 units across other exams; they are not part of the M.Stat completion target unless the selected extension needs them.
+The current M.Stat learning route has **80 targets and 162 individually authored bounded session cards**, grouped into seven phases. The **50 parent units** are organizational context, not 50 equally sized lessons. The optional catalogue adds 58 parent units across other exams; they are not part of the M.Stat completion target unless the selected extension needs them.
+
+## Current session order
+
+| Sessions | Phase |
+| --- | --- |
+| 001–026 | Language and elementary tools |
+| 027–050 | Finite probability and basic statistics |
+| 051–080 | Matrices and calculus |
+| 081–100 | Distributions and conditioning |
+| 101–118 | Sampling laws and limits |
+| 119–142 | Estimation and testing |
+| 143–162 | Regression, sampling and designs |
+
+This is a prerequisite-safe learning order. Priority ranks in the audited target manifest are revision priorities, not permission to skip a prerequisite. Each target has two steps except F5 and A5, which have three. All 162 positions now have authored contracts; there are no planned-only gaps.
+
+Use the selected card's **central capability**, **entry prerequisites**, **session exit condition** and **out-of-scope boundary** to decide exactly what to tackle. One session is a bounded mathematical deliverable, not a promise of one calendar day. Its wider target scope supplies context; later target steps do not belong in the current mission.
 
 ## Exam priorities
 
 | Plan | Total units including core and shared prerequisites | Recommendation |
 | --- | ---: | --- |
-| M.Stat only | 46 | Default. Written mathematics, probability, inference, regression, designs and sampling. |
-| M.Stat + CMI MSc Data Science | 49 | Closest complementary entrance by syllabus overlap. Add number theory, discrete proof and pseudocode interpretation. This does not rank admission odds. |
-| M.Stat + GATE ST | 60 | Choose for a verified destination programme. Adds substantial analysis, stochastic processes and advanced inference. |
-| M.Stat + GATE DA | 61 | Choose for a computing destination. Adds Python, algorithms, databases, ML and AI. |
-| M.Stat + ISI MSQE | 54 | Choose when economics is an actual interest. Micro and macro are substantial additional subjects. |
-| M.Stat + GATE MA | 63 | Specialist alternative requiring advanced analysis, algebra, topology, ODE/PDE and numerical methods. |
-| M.Stat + GATE CS | 62 | Specialist alternative requiring C, algorithms, systems, automata, compilers and networks. |
+| M.Stat only | 50 | Default. Written mathematics, probability, inference, regression, designs and sampling. |
+| M.Stat + CMI MSc Data Science | 53 | Closest complementary entrance by syllabus overlap. Add number theory, discrete proof and pseudocode interpretation. This does not rank admission odds. |
+| M.Stat + GATE ST | 64 | Choose for a verified destination programme. Adds substantial analysis, stochastic processes and advanced inference. |
+| M.Stat + GATE DA | 65 | Choose for a computing destination. Adds Python, algorithms, databases, ML and AI. |
+| M.Stat + ISI MSQE | 58 | Choose when economics is an actual interest. Micro and macro are substantial additional subjects. |
+| M.Stat + GATE MA | 67 | Specialist alternative requiring advanced analysis, algebra, topology, ODE/PDE and numerical methods. |
+| M.Stat + GATE CS | 66 | Specialist alternative requiring C, algorithms, systems, automata, compilers and networks. |
 
-Counts measure catalogue organisation, not workload or difficulty. A broad optional module can be much larger than a core unit. One extension is displayed at a time; changing it preserves all concept and practice records.
+These are parent-catalogue counts, not session counts or workload estimates. A broad optional module can be much larger than a core parent unit. One extension is displayed at a time; changing it preserves all concept and practice records. The 162-session map belongs to the M.Stat-only view; extension views use the parent graph and retain the selected M.Stat session.
 
 For this goal, begin with **M.Stat**, adding the small CMI extension when the common foundations are stable. Choose ST or DA only after checking which exact postgraduate programmes accept that paper and your eventual degree. GATE permits at most two papers in 2027; ST + DA is currently allowed, as are the other pairs among the four papers considered here. Recheck the permitted combinations in the application year. GATE examination eligibility does not establish eligibility for an individual IISc, IIT, ISI or CMI programme. Degree nomenclature, transcript requirements and programme-specific admissions need their own verification.
 
@@ -49,12 +65,16 @@ An official syllabus is a scope reference, not a proof authority. Verify each ma
 
 1. Open **T25 · ISI entrance preparation** in the header, or choose T25 in the terminal selector.
 2. Leave the plan at **M.Stat core only** initially. Use the full coverage table to check what each unit is responsible for.
-3. Select a unit from the study dropdown or graph. Read its target and checklist. Existing T22 links open the parent module; select the named atomic ARC there for depth.
-4. Choose **Spire investigation**, **Learn prerequisites**, **Written practice**, **Delayed review**, or **Small project**. Open the prompt, copy it, and paste it into a study chat with your Spire instructions and relevant source material.
+3. Select a session from the **001–162 map or audited session dropdown**. Read its prerequisites and exit condition. Parent grouping is secondary context; changing it does not choose a different atomic session.
+4. Use **Copy authored session card** and **Open λ Compiler**. Compile just this session; then use the sealed mission with the frozen SPIRE Master/Guardian. After study, use the linked λ ARC Extractor for the existing RAW/POLISHED archive flow. The parent-level investigation/practice/project prompts remain optional tools, not an alternative chronology.
 5. Record written attempts with a question reference, assistance level, date, optional time/marks and a specific correction. Use the concept checkmark only when your evidence supports the whole unit target.
 6. Export the practice evidence periodically. Export world/T22 progress separately with their existing controls.
 
 Nothing launches an external model or transmits practice records when you choose a prompt. The website prepares text for your study chat. It does not silently mark a unit cleared or verify a claimed official question.
+
+For example, session **001 / F1.1** asks whether cancelling a common factor preserves a function's domain. Finish that deliverable before **002 / F1.2**, which handles root, power and logarithm hypotheses. Do not turn the whole ARC801 parent into one mission. If previous work already establishes the capability, use that evidence or a brief diagnostic instead of repeating it by default.
+
+Current cards have fresh logical IDs such as `T25-ARC801-A1001`. Legacy `T25-ARC801-A01` and earlier 120-route IDs remain historical identities. Their evidence is not deleted, reassigned or automatically copied into a new card's authority. A new card showing incomplete does not revoke an old clearance. **Authored** means the contract exists; it is independent of clearance and retention. See the [finalization audit](t25-finalization-audit.md) for the ownership boundary.
 
 ## A demanding but sustainable study loop
 
@@ -92,7 +112,7 @@ AI can write most interface, graphics and repetitive plumbing. The learner shoul
 - Imports validate all records before merging, deduplicate identical records and reject conflicting IDs. Data from inactive exam branches is retained. The import does not alter the selected exam or any completion flags.
 - No private learner archives, uploaded handbook PDFs, personal scores, credentials or admissions outcomes are committed by this feature.
 
-## Audit findings and verified fixes
+## Initial audit findings (11 September 2026)
 
 1. **Entrance scope and research scope were not separated.** T25 now maps the whole official M.Stat syllabus, including elementary mathematics, designs and sampling, with optional exam branches. T22's 58-module research contract is preserved.
 2. **T23 stage six was not supported by the graph renderer.** Stage bounds, column count and viewBox width now follow terminal stage names; long headings wrap. Five-stage routes retain five columns.
@@ -102,17 +122,20 @@ AI can write most interface, graphics and repetitive plumbing. The learner shoul
 
 Validation covers unique/stable IDs, prerequisite closure and order for all seven plans, source-map resolution, T22 atomic links, unchanged legacy route contracts, corrupt/invalid evidence handling, merge conflicts, negative marking, copied-prompt conditions, actual entrypoint/module reachability and the six-stage renderer. Existing world, T22, Markdown and archive-contract gates also run.
 
-This is a curriculum and frontend integration audit. It is not a new security audit of the existing cloud backend, an independent proof audit of all 596 T22 ARCs, a review of every historical transcript, or a visual browser test. This change is delivered on a review branch; the public Pages site changes only after the branch is merged and the normal Pages publication completes.
+The initial audit did not include a visual browser test. The [14 September finalization audit](t25-finalization-audit.md) adds actual Chromium coverage of all 162 sessions and the existing review/database regression suite. Neither audit certifies future generated proofs or historical transcripts. The public Pages site changes after merging a reviewed branch and completing the normal Pages publication.
 
 ## Editable files
 
-- `js/data/t25-units.js`: stable unit contracts, prerequisites, reuse links and project ideas.
+- `js/data/t25-mstat-audit-v4.js` and `t25-mstat-audit-phase-*.js`: canonical 80-target scope, prerequisite order and 162 session positions.
+- `js/data/t25-atomic-arcs.js` and `t25-atomic-v4-*.js`: current authored contracts, fresh logical identities and registry checks.
+- `js/data/t25-mstat-route.js`: current 50-parent M.Stat context and optional catalogue; `t25-units.js` retains the original parent definitions.
 - `js/data/t25-sources.js`: dated official references and exam-selection advice.
 - `js/data/t25-coverage.js`: source groups mapped to units.
 - `js/data/t25-entrance-prep.js`: overlay and plan/dependency logic.
 - `js/t25-study.js`: copy-ready prompts and practice-record validation.
-- `js/t25-ui.js`, `css/t25.css`: study panel and device-local evidence interface.
-- `scripts/test-t25.mjs`: new regression and contract checks.
+- `js/t25-atomic-ui-v4.js`: current 162-session map, selector and copy-ready contract.
+- `js/t25-ui.js`, `css/t25.css`: parent context and device-local practice evidence interface.
+- `scripts/test-t25.mjs`, `scripts/review-tests/`: route/contracts, real browser and review SQL regression checks.
 
 At each application-year review, update the source baseline, compare every official clause with the map, record additions/removals, and append new IDs if needed. Never recycle an ID or silently reinterpret old clearance evidence.
 

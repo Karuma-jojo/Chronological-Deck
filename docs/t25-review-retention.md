@@ -16,7 +16,7 @@ The existing T25 → atomic card → λ Compiler → sealed mission → frozen �
 ## Use it
 
 1. Sign in using the existing **Cross-device cloud sync** panel. No second login is added.
-2. Open T25, choose ARC801, then select the desired atomic card.
+2. Open T25 and choose the desired **001–162 audited session** in the map/dropdown. Parent grouping is secondary context.
 3. Expand **Revision Stack**. Clearance loads from logical authority; retention is displayed separately.
 4. Choose **Add review item**. Enter a type, prompt/problem, optional reference/rubric and personal note. Save.
 5. Use **Start due review**, or **View review stack → Practice early** before the scheduled date.
@@ -26,7 +26,11 @@ The existing T25 → atomic card → λ Compiler → sealed mission → frozen �
 
 There is no string-matching grader or LLM grading dependency. A checkbox that work was attempted is an explicit self-report, not verification of mathematical mastery. Reference text is rendered as safe plain text, including Unicode mathematics; v1 does not add a formula renderer.
 
-### The first A01 target
+### The legacy A01 target and current route
+
+The current 162-session selector uses fresh IDs (for example, `T25-ARC801-A1001` for F1.1 and `T25-ARC801-A1002` for F1.2). It does not select legacy `T25-ARC801-A01`, migrate its existing reviews, or inherit its clearance. The legacy prefill below applies only when that legacy identity is selected through a compatible interface; it is not a button on the new F1.1/F1.2 cards.
+
+On a current card, use the ordinary **Add review item** form for a new target associated with that card's existing logical authority. New authority rows are established through the existing archive flow, not by the review scheduler. If an absolute-value review already exists under the legacy A01 identity, leave that evidence there; do not recreate it merely because the curriculum has a new route. A cross-version review/history browser is not supplied by this finalization patch.
 
 Under `T25-ARC801-A01`, choose **Add review item → Prepare A01 absolute-value target → Save review item**. This prefills the ordinary authenticated create form:
 

@@ -11,7 +11,7 @@ export const T25_ATOMIC_V4_151_152 = [
     purpose: "Make the learner derive stratified precision from the sampling design rather than memorize a weighted-average formula detached from stratum sizes, within-stratum variation, or sampling fractions.",
     centralCapability: "Given stratum sizes, sample sizes, stratum sample means and a declared finite-population variance convention, construct an unbiased stratified mean or total estimator and derive its sampling variance under independent within-stratum SRSWOR.",
     principalObstacle: "The main trap is mixing population-share and sample-share weights, dropping stratum-specific finite-population corrections, or pooling variances as though the whole sample were one SRS; each stratum contributes according to its own population weight and sampling design.",
-    entryPrerequisites: ["S1 SRSWR/SRSWOR design expectation and variance", "J4 variance addition under conditioning/independence", "finite-population variance convention declared in S1"],
+    entryPrerequisites: ["S1 SRSWR/SRSWOR design expectation and variance", "J2 variance of weighted sums; P6 independence of sampling across strata", "finite-population variance convention declared in S1"],
     requiredOwnership: [
       "Define W_h=N_h/N and distinguish population-share weights from sample proportions n_h/n",
       "Construct the stratified mean estimator as sum_h W_h ybar_h and the total estimator as sum_h N_h ybar_h",
