@@ -87,7 +87,7 @@ export const T25_ATOMIC_V4_109_112 = [
     purpose: "Turn elementary inequalities into rigorous working tools rather than formula fragments, with assumptions checked before algebra and the event translated correctly.",
     centralCapability: "Derive and apply Markov and Chebyshev bounds with the correct random variable, threshold, centring, variance and legality conditions visible at every step.",
     principalObstacle: "Applying Markov to a signed variable, using Chebyshev without finite variance, confusing variance with standard deviation, or reversing event containment can produce a numerically plausible but invalid bound.",
-    entryPrerequisites: ["J2 expectation and variance", "P3 event manipulation", "F2 inequalities"],
+    entryPrerequisites: ["J1 expectation; J2 variance", "P3 event manipulation", "F2 inequalities"],
     requiredOwnership: [
       "State Markov's nonnegativity and finite-expectation requirement",
       "Rewrite a requested tail event into a legal Markov form when possible",

@@ -89,7 +89,7 @@ export const T25_ATOMIC_V4_159_162 = [
     purpose: "Make factorial effects operational rather than verbal: the learner must derive signed contrasts from cell means, state the coding/scaling convention, and recognize interaction as a difference of differences.",
     centralCapability: "For a 2^k or simple mixed-level factorial experiment, identify treatment combinations, construct main-effect and interaction contrasts from cell means or totals, state whether the reported quantity is a contrast, half-contrast, or effect under the chosen coding, and interpret interaction without collapsing it into marginal main effects.",
     principalObstacle: "The main trap is losing signs or scaling factors, treating an interaction as the sum of two main effects, or interpreting a main effect in isolation when the corresponding interaction is substantial.",
-    entryPrerequisites: ["V1 one-way treatment contrasts and ANOVA logic", "P2 conditional/marginal comparison logic used to interpret differences across factor levels"],
+    entryPrerequisites: ["V1 one-way treatment contrasts and ANOVA logic", "P2 product counting for the 2^k treatment combinations; J1 finite weighted averages"],
     requiredOwnership: [
       "Enumerate treatment combinations correctly for a 2^k or small mixed-level factorial design",
       "Construct a main-effect contrast by averaging/comparing the appropriate high-versus-low or level-specific cell means",
@@ -128,7 +128,7 @@ export const T25_ATOMIC_V4_159_162 = [
     purpose: "Close the route with the central factorial-inference discipline: an F denominator needs defensible error degrees of freedom, and those degrees of freedom come either from replication or from an explicit modelling assumption that selected interactions are negligible—not from wishful arithmetic.",
     centralCapability: "For a balanced 2^k or simple mixed-level factorial experiment, assign degrees of freedom to main effects and interactions, recover missing ANOVA entries, identify the available residual/error degrees of freedom from replication, and, when no replication exists, explain exactly what assumption is made if higher-order interactions are pooled as error.",
     principalObstacle: "The main trap is inventing residual degrees of freedom in an unreplicated factorial, silently pooling interactions without declaring the negligible-interaction assumption, or treating pooled interaction variation as if it were independently observed pure experimental error.",
-    entryPrerequisites: ["V4.1 factorial main-effect and interaction contrasts", "V1 exact F-test and residual mean-square logic", "P2 elementary probability structure for interpreting factor combinations"],
+    entryPrerequisites: ["V4.1 factorial main-effect and interaction contrasts", "V1 exact F-test and residual mean-square logic", "P2 product counting for factorial treatment combinations"],
     requiredOwnership: [
       "Count main-effect and interaction degrees of freedom from factor level counts, including the 1-df effects of balanced two-level factors",
       "Determine total degrees of freedom from the number of observations and reconcile them with all model and error components",

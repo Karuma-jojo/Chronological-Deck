@@ -48,7 +48,7 @@ export const T25_ATOMIC_V4_105_108 = [
     purpose: "Turn the structural law of an extreme into usable quantitative information while preserving the distinctions between continuous and discrete cases and between iid and merely independent samples.",
     centralCapability: "Compute or simplify a moment of a minimum or maximum from its actual law and re-derive the product form correctly when parameters or supports differ across observations.",
     principalObstacle: "Using a continuous tail integral for a discrete variable, forgetting shifts, or replacing unequal survival factors by a single nth power can give an answer with the right shape but the wrong value.",
-    entryPrerequisites: ["O1.1 extreme CDF/survival derivation", "J1 expectation", "D3 exponential law", "D1 geometric and discrete laws"],
+    entryPrerequisites: ["O1.1 extreme CDF/survival derivation", "J1 expectation", "D3 exponential law", "D2 geometric waiting-time laws"],
     requiredOwnership: [
       "Choose a valid expectation formula for the law and support at hand",
       "Carry shifts and scale parameters through an extreme-law calculation",

@@ -87,7 +87,7 @@ export const T25_ATOMIC_V4_119_122 = [
     purpose: "Teach method of moments as an estimating equation derived from the model, not as a memorised formula or a disguised likelihood calculation.",
     centralCapability: "Select a useful population moment, compute it under the model, match it to the sample analogue and solve for a legal one-parameter estimator while keeping identifiability and admissibility visible.",
     principalObstacle: "Matching the wrong empirical quantity, using a moment that does not identify the parameter, or accepting a formal algebraic solution outside the parameter space can create an estimator that is not actually valid for the model.",
-    entryPrerequisites: ["D1 discrete distribution moments", "D4 gamma/beta and moment calculations", "J2 expectations of statistics"],
+    entryPrerequisites: ["D1 discrete distribution moments", "D4 gamma/beta and moment calculations", "J1 expectations of statistics; J2 variance algebra"],
     requiredOwnership: [
       "Choose a population moment whose value depends on the unknown parameter and can identify it on the stated model space",
       "Compute that theoretical moment with the correct distribution parameterisation",

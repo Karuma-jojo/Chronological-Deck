@@ -56,7 +56,7 @@ export const T25_ATOMIC_V4_021_025 = [
     purpose:"Build the representation switch that makes multiplication, powers and roots geometrically transparent while preventing argument-branch mistakes from contaminating later roots-of-unity work.",
     centralCapability:"Given a nonzero complex number in Cartesian or polar form, compute its modulus and a valid argument from its quadrant, write the complete argument family when relevant, convert accurately between representations, and use conjugation/modulus relations without assigning an argument to zero.",
     principalObstacle:"Using arctan(y/x) blindly can place the argument in the wrong quadrant; learners also confuse one principal argument with all arguments, or write a polar angle for z=0 even though its argument is undefined.",
-    entryPrerequisites:["021-022 / G1 unit-circle angle and sign control","012-013 / A1 elementary polynomial/root algebra","001 / F1 principal-root and domain discipline"],
+    entryPrerequisites:["021-022 / G1 unit-circle angle and sign control","012-013 / A1 elementary polynomial/root algebra","002 / F1.2 principal-root and domain discipline"],
     requiredOwnership:[
       "Compute |z|=sqrt(x²+y²) and use the signs of x and y to locate a nonzero complex number in the correct quadrant before choosing an argument.",
       "Distinguish a chosen principal argument from the full family θ+2πk and state the convention being used when a principal range is requested.",

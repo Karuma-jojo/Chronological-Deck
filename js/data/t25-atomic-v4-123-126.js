@@ -11,7 +11,7 @@ export const T25_ATOMIC_V4_123_126 = [
     purpose: "Make likelihood a model-of-observation calculation rather than a reflexive product of densities, so the objective, support and feasible parameter region are all correct before differentiation begins.",
     centralCapability: "Construct a likelihood from the observation mechanism, simplify it without dropping support indicators, locate interior candidates when legitimate, and compare them with all feasible boundaries or interval pieces.",
     principalObstacle: "Writing the likelihood for latent unrounded values instead of recorded observations, dropping a support indicator as a 'constant', or solving a score equation before determining the feasible set can produce an MLE for the wrong problem.",
-    entryPrerequisites: ["D1/D2 sampling laws and support", "D5 transformed or censored laws", "C5 optimisation on a stated domain", "O1 support-extreme logic"],
+    entryPrerequisites: ["D1/D2 sampling laws and support", "D0/D5 atoms, transformed observations and support", "C5 optimisation on a stated domain", "O1 support-extreme logic"],
     requiredOwnership: [
       "State exactly what each observed datum records before writing its contribution to the likelihood",
       "Include parameter-dependent support or censoring/rounding events in the likelihood",

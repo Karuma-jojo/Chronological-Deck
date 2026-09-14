@@ -2,19 +2,21 @@
 
 An interactive science and mathematics knowledge graph with historical study, research routes, entrance preparation and an ARC archive.
 
-The current registry has **838 world nodes and 24 terminal routes**. The original 39-node scientific core is preserved. Stable IDs are never recycled.
+The current registry has **842 world nodes and 24 terminal routes**. The original 39-node scientific core is preserved. Stable IDs are never recycled.
 
 - **T22:** 58 research modules, decomposed into 596 atomic ARCs, for mathematically led quantitative research.
 - **T23:** 66 nodes for computational and field science, across six stages.
-- **T25:** 46 M.Stat entrance units, with a selectable companion-exam extension. The complete catalogue contains 104 entrance units; the extra 58 are not all required for M.Stat.
+- **T25:** 80 audited M.Stat targets, taught through **162 individually authored bounded sessions** in seven phases. Its 50 parent units provide context; the complete parent catalogue contains 108 units, including 58 optional companion-exam units.
 
 Open `index.html` through a static HTTP server or the existing GitHub Pages site. There is no frontend package installation or build step. Deploy the complete repository assets together; replacing only the HTML is insufficient.
 
 ## Entrance preparation
 
-Use **T25 · ISI entrance preparation** in the header, or select T25 in the terminal menu. Choose the M.Stat core or one companion exam, select a unit, and open a copy-ready investigation, learning, practice, review or project prompt.
+Use **T25 · ISI entrance preparation** in the header, or select T25 in the terminal menu. Leave the plan on M.Stat and select one session in the **001–162** map/dropdown. Copy that bounded card into the linked λ Compiler, then use the sealed mission with the existing SPIRE runtime. Parent numbers and optional exam units are secondary context, not the session order.
 
 The [T25 route guide](docs/t25-entrance-prep.md) explains the official syllabus map, study flow, exam priorities, evidence backups and audit scope. The reference baseline is ISI 2026, the currently linked CMI syllabus, and the revised GATE 2027 syllabi. Recheck application-year rules.
+
+The [162-session finalization audit](docs/t25-finalization-audit.md) records the current scope, corrected prerequisite links, validation results and remaining limits. Authored cards are ready to study; authored does not mean academically cleared.
 
 ## Progress and archive
 

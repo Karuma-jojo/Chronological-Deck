@@ -56,7 +56,7 @@ export const T25_ATOMIC_V4_081_084 = [
     purpose:"Make named distributions operational rather than mnemonic: every calculation must begin from support and parameterisation, and memorylessness should be derived from conditional probability rather than quoted as a slogan.",
     centralCapability:"Solve representative uniform and exponential probability or moment questions, keeping support and rate/scale conventions explicit, and prove or invoke exponential memorylessness only after checking the conditioning event and positive-time hypotheses.",
     principalObstacle:"The learner may use the wrong exponential parameter convention, forget support truncation, treat a uniform density height as an interval probability, or apply memorylessness to a non-exponential law or to an event that is not a residual-waiting-time statement.",
-    entryPrerequisites:["081-082 / D0 CDF/support/atom discipline","073-074 / C6 definite and improper integrals","039-044 / D1-D2 discrete named laws and waiting-time conventions","041-042 / J2 variance and covariance calculations"],
+    entryPrerequisites:["081-082 / D0 CDF/support/atom discipline","073-074 / C6 definite and improper integrals","041-044 / D1-D2 discrete named laws and waiting-time conventions","039-040 / J2 variance and covariance calculations"],
     requiredOwnership:[
       "For Uniform(a,b), state support and density, compute interval probabilities by length ratio/integration and derive at least one required moment directly.",
       "For an exponential law, state clearly whether the parameter is a rate and write the corresponding density, CDF and survival function on the correct support.",
@@ -79,7 +79,7 @@ export const T25_ATOMIC_V4_081_084 = [
     purpose:"Make normal-distribution calculations exact and convention-safe before later inference topics: standardisation is a change of variable with support/order consequences, not a table-look-up ritual.",
     centralCapability:"Given a normal variable with stated mean and variance, convert probability statements to standard-normal form without losing inequality direction or scale, use symmetry/complements correctly, and compute or derive the requested ordinary moment from Z=(X-mu)/sigma.",
     principalObstacle:"The learner may confuse variance with standard deviation, divide by sigma^2 instead of sigma, mishandle a negative affine coefficient, use a normal table before translating the event correctly, or quote higher moments without checking which parameterisation is being used.",
-    entryPrerequisites:["083 / D3.1 support/parameter discipline for named continuous laws","006-007 / F3 changed inputs and affine transformations","037-042 / J1-J2 expectation, variance and covariance algebra"],
+    entryPrerequisites:["083 / D3.1 support/parameter discipline for named continuous laws","005-006 / F3 changed inputs and affine transformations","037-040 / J1-J2 expectation, variance and covariance algebra"],
     requiredOwnership:[
       "Interpret X~N(mu,sigma^2) with sigma>0 and form Z=(X-mu)/sigma~N(0,1), distinguishing variance sigma^2 from standard deviation sigma.",
       "Translate one-sided and interval probability events into Z-inequalities, preserving or reversing inequality direction correctly under any additional affine transformation.",

@@ -55,7 +55,7 @@ export const T25_ATOMIC_V4_056_060 = [
     purpose:"Replace brute-force expansion with structure recognition, especially for tridiagonal or recursively patterned matrices typical of entrance questions.",
     centralCapability:"Given a small structured determinant sequence, expand along a sparse row or column to derive the correct recurrence with base cases, and use that recurrence to evaluate or identify singular parameter values.",
     principalObstacle:"The learner may quote a recurrence without deriving its signs and coefficients, omit base cases, or expand in a way that destroys the visible structure and creates unnecessary algebra.",
-    entryPrerequisites:["057 / M3.1 determinant rules and invertibility","014-015 / A2 sequences and recurrences","012-013 / A1 polynomial factor reasoning"],
+    entryPrerequisites:["057 / M3.1 determinant rules and invertibility","014-015 / A2 finite sums and geometric progressions; supply the recurrence definition when needed","012-013 / A1 polynomial factor reasoning"],
     requiredOwnership:[
       "Choose an expansion that preserves the repeated matrix pattern after taking minors.",
       "Derive the recurrence including correct signs and parameter coefficients rather than guessing it from examples.",

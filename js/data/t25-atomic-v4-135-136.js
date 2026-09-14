@@ -11,7 +11,7 @@ export const T25_ATOMIC_V4_135_136 = [
     purpose: "Turn normal-model testing into a legality check on assumptions and pivots rather than pattern-matching a formula from the appearance of a ratio.",
     centralCapability: "Read a normal-model testing problem, identify the exact parameter being tested and what nuisance quantities are known, derive the appropriate null pivot, and calibrate a one- or two-sided rejection rule from its exact distribution.",
     principalObstacle: "Automatically using z when sigma is estimated, calling any normal-over-square-root expression t, or forgetting that variance tests use a chi-square pivot with n-1 degrees of freedom leads to formally plausible but invalid tests.",
-    entryPrerequisites: ["T1 size, power and rejection-rule language", "N2 exact chi-square/t/F pivots and independence", "N1 standard normal and chi-square laws"],
+    entryPrerequisites: ["T1 size, power and rejection-rule language", "N2 exact chi-square/t/F pivots and independence", "D3 standard normal law; D4 chi-square as a gamma law"],
     requiredOwnership: [
       "State the null and alternative before selecting a statistic",
       "Distinguish known sigma from unknown sigma in a mean test",

@@ -66,11 +66,13 @@ assert.equal(new Set(T25_MSTAT_TARGETS.map(t => t.code)).size, 80);
 assert.equal(T25_MSTAT_ROUTE.length, 162);
 assert.deepEqual(T25_MSTAT_ROUTE.map(c => c.routeOrder), Array.from({ length: 162 }, (_, i) => i + 1));
 assert.equal(new Set(T25_MSTAT_ROUTE.map(c => c.syllabusCode)).size, 162);
-assert(T25_ATOMIC_CARDS.length >= 5 && T25_ATOMIC_CARDS.length <= 162, "Audited session cards must grow progressively from the first five hand-authored contracts");
+assert.equal(T25_ATOMIC_CARDS.length, 162, "The finalized route must ship all 162 authored contracts, not an unfinished prefix");
 assert.equal(T25_ATOMIC_BY_ID.size, T25_ATOMIC_CARDS.length);
 assert.equal(T25_ATOMIC_BY_ORDER.size, T25_ATOMIC_CARDS.length);
 assert.deepEqual(T25_ATOMIC_CARDS.map(c => c.routeOrder), Array.from({ length: T25_ATOMIC_CARDS.length }, (_, i) => i + 1), "Authored cards must remain a contiguous prefix of the audited session route");
 const coreIds = new Set(T25_CORE.map(u => u.id));
+const sessionsByCode = new Map(T25_MSTAT_ROUTE.map(s => [s.syllabusCode, s]));
+const targetSessions = new Map(T25_MSTAT_TARGETS.map(t => [t.code, T25_MSTAT_ROUTE.filter(s => s.targetCode === t.code)]));
 for (const spec of T25_MSTAT_ROUTE) assert(coreIds.has(spec.parentId), `${spec.syllabusCode} points outside the stable M.Stat parent context: ${spec.parentId}`);
 for (const c of T25_ATOMIC_CARDS) {
   const spec = T25_MSTAT_ROUTE[c.routeOrder - 1];
@@ -81,6 +83,28 @@ for (const c of T25_ATOMIC_CARDS) {
   assert.equal(c.id, `T25-${c.parentId}-A${1000 + c.routeOrder}`, "Fresh v4 logical IDs must remain archive-compatible without colliding with legacy atomic IDs");
   assert(c.centralCapability.length > 30 && c.exitCondition.length > 30);
   assert(c.requiredOwnership.length >= 5 && c.inScope.length >= 4 && c.outOfScope.length >= 4);
+  for (const prerequisite of c.entryPrerequisites) {
+    // Codes in prose still need to resolve to established material. The product
+    // name T25 is not a target code; audited target codes have one digit.
+    for (const [, code] of prerequisite.matchAll(/\b([A-Z]\d(?:\.\d+)?)\b/g)) {
+      const first = sessionsByCode.get(code) || targetSessions.get(code)?.[0];
+      assert(first, `${c.syllabusCode}: unknown prerequisite ${code}`);
+      assert(first.routeOrder < c.routeOrder || code === c.targetCode, `${c.syllabusCode}: future prerequisite ${code}`);
+    }
+    // A numbered link must identify the same topic as its code, not merely an
+    // existing earlier session (e.g. 041-042 / J2 incorrectly links to D1).
+    for (const [, from, to, code, endCode] of prerequisite.matchAll(/\b(\d{3})(?:-(\d{3}))?\s*\/\s*([A-Z]\d+(?:\.\d+)?)(?:-([A-Z]\d+(?:\.\d+)?))?\b/g)) {
+      const first = sessionsByCode.get(code) || targetSessions.get(code)?.[0];
+      const last = sessionsByCode.get(endCode || code) || targetSessions.get(endCode || code)?.at(-1);
+      assert(Number(from) >= first.routeOrder && Number(to || from) <= last.routeOrder && Number(from) <= Number(to || from), `${c.syllabusCode}: mismatched prerequisite position/code: ${prerequisite}`);
+      assert(Number(to || from) < c.routeOrder, `${c.syllabusCode}: prerequisite position is not earlier`);
+    }
+  }
+  const next = c.nextArcBoundary.match(/^(\d{3})\s*(?:·\s*)?([A-Z]\d+\.\d+)/);
+  if (next) {
+    assert.equal(Number(next[1]), c.routeOrder + 1, `${c.syllabusCode}: wrong next position`);
+    assert.equal(next[2], T25_MSTAT_ROUTE[c.routeOrder]?.syllabusCode, `${c.syllabusCode}: wrong next session code`);
+  }
 }
 for (const cards of T25_ATOMIC_BY_PARENT.values()) assert.deepEqual(cards.map(c => c.routeOrder), [...cards].map(c => c.routeOrder).sort((a,b)=>a-b));
 

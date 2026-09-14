@@ -10,7 +10,7 @@ export const T25_ATOMIC_V4_071_075 = [
     purpose:"Prevent the standard entrance-exam mistake of solving f'(x)=0 and declaring victory: optimisation is a comparison problem over a domain, not merely a critical-point equation.",
     centralCapability:"Given a differentiable or piecewise elementary objective on a stated interval/domain, identify every legitimate extremum candidate, classify or compare them using derivative/sign information, and determine the requested local or global optimum without ignoring boundaries.",
     principalObstacle:"The learner may equate critical points with extrema, omit endpoints or domain boundaries, apply a second-derivative test where it is inconclusive, or optimise over values that are not actually feasible.",
-    entryPrerequisites:["069-070 / C4 IVT, Rolle/MVT and monotonicity reasoning","067-068 / C3 legal differentiation","002-003 / F2 solution sets and domain constraints"],
+    entryPrerequisites:["069-070 / C4 IVT, Rolle/MVT and monotonicity reasoning","067-068 / C3 legal differentiation","001-004 / F1-F2 domain constraints and solution sets"],
     requiredOwnership:[
       "Translate the stated feasible domain into the exact interval/set over which the objective is being compared.",
       "Find interior critical points where f'=0 and also retain interior points where the derivative fails to exist but the function is defined.",
@@ -79,7 +79,7 @@ export const T25_ATOMIC_V4_071_075 = [
     purpose:"Make convergence logically prior to evaluation: an antiderivative expression cannot legitimise an improper integral whose defining limit fails to exist finitely.",
     centralCapability:"Given an elementary parameter-dependent improper integral, identify all improper points, split them into separate defining limits, determine convergence at each point using exact calculation or a justified comparison, and intersect the resulting parameter conditions.",
     principalObstacle:"The learner may cancel divergent pieces across a singularity, test only one endpoint, substitute infinity into an antiderivative as though it were a number, or quote a p-test with the wrong endpoint threshold.",
-    entryPrerequisites:["073 / C6.1 finite definite integration methods","063 / C1 one-sided limits","002-003 / F2 inequalities and parameter solution sets"],
+    entryPrerequisites:["073 / C6.1 finite definite integration methods","063 / C1 one-sided limits","003-004 / F2 equations, inequalities and solution sets"],
     requiredOwnership:[
       "Rewrite each improper endpoint, interior singularity or infinite tail as its own one-sided limit of proper integrals.",
       "Use the correct power threshold near zero/finite singularities and at infinity, deriving it from an antiderivative when uncertain rather than relying on memory alone.",

@@ -122,7 +122,7 @@ export const T25_ATOMIC_V4_097_100 = [
     purpose: "Complete the elementary stopping toolkit by handling the common exam twist where a standard waiting-time process is observed or conditioned partway through.",
     centralCapability: "Update the starting state or conditional law correctly, then apply the appropriate first-step recurrence without double-counting information or assuming memorylessness that has not been proved.",
     principalObstacle: "Treating every waiting process as memoryless, conditioning on an event and then reusing unconditional state probabilities, or counting elapsed time twice are the characteristic failure modes.",
-    entryPrerequisites: ["P5.1 first-step recurrences", "P4 conditional probability", "J1 conditional expectation", "D2 geometric waiting time"],
+    entryPrerequisites: ["P5.1 first-step recurrences", "P4 conditional probability", "J4.1 total expectation by conditioning on the first step", "D2 geometric waiting time"],
     requiredOwnership: [
       "Translate the additional information into the correct conditional starting state or law",
       "Determine whether genuine memorylessness applies before using it",

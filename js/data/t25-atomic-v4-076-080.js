@@ -79,7 +79,7 @@ export const T25_ATOMIC_V4_076_080 = [
     purpose:"Prepare tangent and normal problems with a coordinate representation that preserves the conic automatically, while avoiding the false idea that every convenient parametrisation covers every point in exactly one way.",
     centralCapability:"Given a standard conic and a supplied or familiar elementary parametrisation, verify that the parametrised coordinates lie on the conic, recover the point corresponding to a parameter value, and note any duplicated or exceptional coverage relevant to later tangent work.",
     principalObstacle:"The learner may use the wrong conic parametrisation, forget a scale factor, assume the parameter is literally a geometric angle in every conic, or ignore points where a rational parametrisation becomes undefined or fails to cover a special point.",
-    entryPrerequisites:["077-078 / G3 standard conics and focal geometry","006-007 / F3 functions and parameter-aware inputs","021-022 / G1 trigonometric identities for ellipse parametrisation"],
+    entryPrerequisites:["077-078 / G3 standard conics and focal geometry","005-006 / F3 functions and parameter-aware inputs","021-022 / G1 trigonometric identities for ellipse parametrisation"],
     requiredOwnership:[
       "Verify a parametrisation by direct substitution into the conic equation rather than trusting its appearance.",
       "Use a standard parabola parametrisation such as (at^2,2at) or its orientation-equivalent form with the correct scale.",
