@@ -18,12 +18,14 @@ import {
   T25_ATOMIC_CARDS as AUTHORED_001_025,
 } from "./t25-atomic-arcs-001-025.js";
 import { T25_ATOMIC_BATCH_026_030 } from "./t25-atomic-batch-026-030.js";
+import { T25_ATOMIC_BATCH_031_035 } from "./t25-atomic-batch-031-035.js";
 
 export { T25_ATOMIC_AUDIT_VERSION };
 export const T25_MSTAT_120_ROUTE = FROZEN_ROUTE;
 export const T25_ATOMIC_CARDS = [
   ...AUTHORED_001_025,
   ...T25_ATOMIC_BATCH_026_030,
+  ...T25_ATOMIC_BATCH_031_035,
 ].sort((a, b) => a.routeOrder - b.routeOrder);
 
 // ---------------------------------------------------------------------------
