@@ -28,7 +28,9 @@ export async function fixture() {
  await db.exec(`insert into auth.users values('${USER}'),('${OTHER}');
  insert into arc_logical_arcs(user_id,logical_arc_id,canonical_label,title,clearance,recovery_state) values
  ('${USER}','T25-ARC801-A01','A01','Domain-safe algebra','fully_mastered','not_owed'),
- ('${OTHER}','T25-ARC801-A01','A01','Other learner','fully_mastered','not_owed');
+ ('${OTHER}','T25-ARC801-A01','A01','Other learner','fully_mastered','not_owed'),
+ ('${USER}','T25-ARC801-A1001','V4-F1.1','Compare domains before and after one cancellation','incomplete','unknown'),
+ ('${USER}','T25-ARC801-A1002','V4-F1.2','Principal-root, rational-power and log-law conditions','incomplete','unknown');
  insert into arc_documents(user_id,arc_id,logical_arc_id,document_type) values
  ('${USER}','T25-ARC801-A01-RAW','T25-ARC801-A01','raw_dump'),
  ('${USER}','T25-ARC801-A01-POLISHED','T25-ARC801-A01','polished_extract');`);
