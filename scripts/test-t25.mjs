@@ -78,6 +78,7 @@ for (const c of T25_ATOMIC_CARDS) {
   assert.equal(c.targetCode, spec.targetCode);
   assert.equal(c.parentId, spec.parentId);
   assert.equal(c.title, spec.title);
+  assert.equal(c.id, `T25-${c.parentId}-A${1000 + c.routeOrder}`, "Fresh v4 logical IDs must remain archive-compatible without colliding with legacy atomic IDs");
   assert(c.centralCapability.length > 30 && c.exitCondition.length > 30);
   assert(c.requiredOwnership.length >= 5 && c.inScope.length >= 4 && c.outOfScope.length >= 4);
 }
@@ -96,8 +97,8 @@ assert.equal(T25_MSTAT_ROUTE[2].syllabusCode, "F2.1");
 assert.equal(T25_MSTAT_ROUTE[3].syllabusCode, "F2.2");
 assert.equal(T25_MSTAT_ROUTE[4].syllabusCode, "F3.1");
 assert.equal(T25_MSTAT_ROUTE.at(-1).syllabusCode, "V4.2");
-assert.equal(T25_ATOMIC_BY_ORDER.get(1).id, "T25V4-F1-01");
-assert.equal(T25_ATOMIC_BY_ORDER.get(5).id, "T25V4-F3-01");
+assert.equal(T25_ATOMIC_BY_ORDER.get(1).id, "T25-ARC801-A1001");
+assert.equal(T25_ATOMIC_BY_ORDER.get(5).id, "T25-ARC801-A1005");
 assert.equal(T25_ATOMIC_BY_ORDER.get(1).evidencePolicy, "diagnostic_if_established");
 
 assert.throws(() => t25PlanUnits("constructor"));
