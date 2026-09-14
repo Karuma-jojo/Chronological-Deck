@@ -14,14 +14,15 @@ import { T25_MSTAT_AUDIT_PHASE_6 } from "./t25-mstat-audit-phase-6.js";
 import { T25_MSTAT_AUDIT_PHASE_7 } from "./t25-mstat-audit-phase-7.js";
 
 export const T25_MSTAT_AUDIT_VERSION = "4.0-audited-v2-162";
+const withPhase = (targets, phase) => targets.map(target => ({ ...target, phase }));
 export const T25_MSTAT_TARGETS = [
-  ...T25_MSTAT_AUDIT_PHASE_1,
-  ...T25_MSTAT_AUDIT_PHASE_2,
-  ...T25_MSTAT_AUDIT_PHASE_3,
-  ...T25_MSTAT_AUDIT_PHASE_4,
-  ...T25_MSTAT_AUDIT_PHASE_5,
-  ...T25_MSTAT_AUDIT_PHASE_6,
-  ...T25_MSTAT_AUDIT_PHASE_7,
+  ...withPhase(T25_MSTAT_AUDIT_PHASE_1, 1),
+  ...withPhase(T25_MSTAT_AUDIT_PHASE_2, 2),
+  ...withPhase(T25_MSTAT_AUDIT_PHASE_3, 3),
+  ...withPhase(T25_MSTAT_AUDIT_PHASE_4, 4),
+  ...withPhase(T25_MSTAT_AUDIT_PHASE_5, 5),
+  ...withPhase(T25_MSTAT_AUDIT_PHASE_6, 6),
+  ...withPhase(T25_MSTAT_AUDIT_PHASE_7, 7),
 ];
 
 const PARENT_BY_TARGET = Object.freeze({
@@ -41,11 +42,13 @@ const PARENT_BY_TARGET = Object.freeze({
 
 if (T25_MSTAT_TARGETS.length !== 80) throw new Error(`Audited M.Stat target count must be 80; found ${T25_MSTAT_TARGETS.length}.`);
 if (new Set(T25_MSTAT_TARGETS.map(t => t.code)).size !== 80) throw new Error("Duplicate audited M.Stat target code.");
+if (new Set(T25_MSTAT_TARGETS.map(t => t.phase)).size !== 7) throw new Error("Audited M.Stat target phases must cover 1 through 7.");
 
 export const T25_TARGET_BY_CODE = new Map(T25_MSTAT_TARGETS.map((target, index) => [target.code, { ...target, targetOrder: index + 1, parentId: PARENT_BY_TARGET[target.code] }]));
 for (let i = 0; i < T25_MSTAT_TARGETS.length; i += 1) {
   const target = T25_MSTAT_TARGETS[i];
   if (!PARENT_BY_TARGET[target.code]) throw new Error(`Missing T25 parent context for audited target ${target.code}.`);
+  if (!Number.isInteger(target.phase) || target.phase < 1 || target.phase > 7) throw new Error(`Invalid audited phase for ${target.code}.`);
   for (const prerequisite of target.prerequisites) {
     const earlier = T25_MSTAT_TARGETS.findIndex(t => t.code === prerequisite);
     if (earlier < 0) throw new Error(`${target.code} refers to unknown prerequisite ${prerequisite}.`);
@@ -61,6 +64,7 @@ export const T25_MSTAT_ROUTE = T25_MSTAT_TARGETS.flatMap((target, targetIndex) =
     targetCode: target.code,
     targetOrder: targetIndex + 1,
     stepNumber: stepIndex + 1,
+    phase: target.phase,
     parentId: PARENT_BY_TARGET[target.code],
     title,
     targetTitle: target.title,
@@ -78,6 +82,7 @@ for (let i = 0; i < T25_MSTAT_ROUTE.length; i += 1) {
   if (T25_MSTAT_ROUTE[i].routeOrder !== i + 1) throw new Error(`Audited M.Stat route gap at ${i + 1}.`);
 }
 if (new Set(T25_MSTAT_ROUTE.map(r => r.syllabusCode)).size !== 162) throw new Error("Duplicate audited M.Stat session-step code.");
+if (new Set(T25_MSTAT_ROUTE.map(r => r.phase)).size !== 7) throw new Error("Audited M.Stat session route must retain all seven learning phases.");
 
 export const T25_ROUTE_BY_ORDER = new Map(T25_MSTAT_ROUTE.map(r => [r.routeOrder, r]));
 export const T25_ROUTE_BY_CODE = new Map(T25_MSTAT_ROUTE.map(r => [r.syllabusCode, r]));
