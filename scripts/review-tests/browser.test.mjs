@@ -52,7 +52,7 @@ async function setup({signed=true,missing=false,offline=false}={}) {
    return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(value)});
   }catch(e){return route.fulfill({status:400,contentType:'application/json',body:JSON.stringify({message:e.message})})}
  });
- await page.goto(base);await page.waitForSelector('#t25AtomicSelect');
+ await page.goto(base);await page.waitForSelector('#t25AtomicSelect',{state:'attached'});
  await page.locator('#t25ReviewPanel > summary').click();
  await page.waitForFunction(()=>!document.querySelector('#t25ReviewStatus').textContent.includes('Loading'));
  return {page,context,f,errors,recordCalls,dropNext:()=>{dropped=true},close:async()=>{await context.close();await f.db.close()}};
