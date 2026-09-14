@@ -65,6 +65,11 @@ try {
 } catch (error) {
   console.error("T25 review layer unavailable; ordinary atomic study remains available.", error);
 }
+try {
+  await import("./t25-review-selection-v4.js?v=2.0.0");
+} catch (error) {
+  console.error("T25 audited review-selection bridge unavailable; ordinary atomic study remains available.", error);
+}
 await import("./vault.js?v=1.7.1");
 try {
   await import("./cloud-archive-ui.js?v=1.0.0");
