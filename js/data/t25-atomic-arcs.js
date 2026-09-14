@@ -20,6 +20,7 @@ import {
 import { T25_ATOMIC_BATCH_026_030 } from "./t25-atomic-batch-026-030.js";
 import { T25_ATOMIC_BATCH_031_035 } from "./t25-atomic-batch-031-035.js";
 import { T25_ATOMIC_BATCH_036_040 } from "./t25-atomic-batch-036-040.js";
+import { T25_ATOMIC_BATCH_041_045 } from "./t25-atomic-batch-041-045.js";
 
 export { T25_ATOMIC_AUDIT_VERSION };
 export const T25_MSTAT_120_ROUTE = FROZEN_ROUTE;
@@ -28,6 +29,7 @@ export const T25_ATOMIC_CARDS = [
   ...T25_ATOMIC_BATCH_026_030,
   ...T25_ATOMIC_BATCH_031_035,
   ...T25_ATOMIC_BATCH_036_040,
+  ...T25_ATOMIC_BATCH_041_045,
 ].sort((a, b) => a.routeOrder - b.routeOrder);
 
 // ---------------------------------------------------------------------------
