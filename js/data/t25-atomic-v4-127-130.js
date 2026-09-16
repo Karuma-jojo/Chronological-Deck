@@ -112,7 +112,7 @@ export const T25_ATOMIC_V4_127_130 = [
     applicationScope: "Entrance-level models where a simple unbiased estimator can be conditioned on a low-dimensional sufficient statistic to produce a cleaner estimator with weakly smaller variance.",
     transferScope: "A new unbiased estimator/sufficient-statistic pair where the learner must derive the conditional expectation rather than rely on a memorised improved estimator.",
     exitCondition: "Given an unbiased estimator and sufficient statistic, compute the Rao-Blackwellised estimator, prove it is unbiased, compare variances correctly, and state why this alone does not establish minimum variance among all unbiased estimators.",
-    nextArcBoundary: "130 E6.2 adds the missing certificate: either completeness plus Lehmann-Scheffe or an attained information bound under valid regularity conditions."
+    nextArcBoundary: "130 E6.2 supplies two distinct minimum-variance certificates that must be mastered separately: Lehmann-Scheffe through completeness and an attained Cramer-Rao bound under valid regularity conditions."
   },
   {
     id: "T25-ARC831-A1130",
@@ -120,36 +120,40 @@ export const T25_ATOMIC_V4_127_130 = [
     syllabusCode: "E6.2",
     targetCode: "E6",
     parentId: "ARC831",
-    title: "Use one justified completeness or information-bound certificate of minimum variance.",
-    focus: "Certify a minimum-variance unbiased estimator using either completeness plus sufficiency or an attained Cramer-Rao bound in a regular standard model, with every hypothesis and comparator class stated.",
-    purpose: "Separate genuine optimality proofs from mere local variance comparisons and make regularity assumptions visible, especially where moving support invalidates routine information-bound arguments.",
-    centralCapability: "Recognise and execute one valid UMVU/minimum-variance certificate, and refuse a Cramer-Rao argument when its differentiability/support hypotheses are not satisfied.",
-    principalObstacle: "Calling the smallest variance seen so far 'minimum variance', invoking completeness without proving or being given it, or applying Cramer-Rao blindly to parameter-dependent-support models can produce false optimality claims.",
+    title: "Certify minimum variance by completeness and by an information bound.",
+    focus: "Master two separate optimality certificates on models where each is legal: completeness plus sufficiency through Lehmann-Scheffe, and attainment of a Cramer-Rao lower bound in a regular one-parameter model; diagnose when the information-bound route is unavailable.",
+    purpose: "Separate genuine optimality proofs from mere variance comparisons and prevent one successful certificate from being mistaken for mastery of the other, while keeping regularity and comparator-class assumptions explicit.",
+    centralCapability: "Execute both entrance-level minimum-variance certificate types independently: prove a UMVU conclusion from an unbiased function of a complete sufficient statistic, and prove efficiency/minimum variance within the relevant unbiased class by attaining a valid Cramer-Rao bound in a regular model; reject the standard information-bound argument when its hypotheses fail.",
+    principalObstacle: "The learner may call the smallest variance seen so far 'minimum variance', invoke completeness without proving or being given it, apply Cramer-Rao to parameter-dependent-support models, or clear the card after demonstrating only one of the two certificate families.",
     entryPrerequisites: ["E6.1 Rao-Blackwell improvement", "E5 sufficiency", "C3 differentiation", "E1 unbiasedness and variance"],
     requiredOwnership: [
-      "State the unbiased comparator class for the minimum-variance claim",
+      "State the unbiased comparator class and target parameter/function for every minimum-variance claim",
       "Use a supplied or established complete sufficient statistic with Lehmann-Scheffe correctly",
-      "Explain why a function of a complete sufficient statistic that is unbiased is unique in the relevant class",
-      "State the regularity assumptions needed before using a Cramer-Rao information bound",
-      "Compute the score/information and compare an estimator variance to the bound in a standard regular model",
-      "Recognise attainment of the bound as a valid certificate only when the hypotheses hold",
-      "Reject routine Cramer-Rao use in moving-support models and state that another argument is required"
+      "Explain why an unbiased function of a complete sufficient statistic is unique almost surely among unbiased functions of that statistic and yields the UMVU conclusion under the theorem's hypotheses",
+      "Keep completeness distinct from sufficiency: neither word may be inferred merely because a statistic is familiar",
+      "State the regularity assumptions supplied or verified before using a standard one-parameter Cramer-Rao inequality, including the legality of differentiating the model and the absence of the relevant moving-support obstruction",
+      "Compute the score/Fisher information and the appropriate Cramer-Rao lower bound for the unbiased target being estimated in a regular model",
+      "Compare the estimator variance with the bound and recognise exact attainment as the certificate under those hypotheses",
+      "Reject routine Cramer-Rao use in a parameter-dependent-support example and state that a different optimality argument would be required",
+      "Keep the Lehmann-Scheffe certificate and the information-bound certificate as separate evidence items; success on one does not certify the other"
     ],
     inScope: [
-      "One elementary Lehmann-Scheffe certificate",
+      "One elementary Lehmann-Scheffe/complete-sufficiency certificate",
       "One attained Cramer-Rao bound in a regular standard family",
-      "Explicit comparator-class and regularity statements",
-      "Recognition of moving-support failure of standard information-bound machinery"
+      "Explicit unbiased comparator class and target function",
+      "Regularity and moving-support boundary checks",
+      "Separate evidence for the two certificate families"
     ],
     outOfScope: [
       "General information geometry",
       "Bhattacharyya or Chapman-Robbins bounds",
       "Semiparametric efficiency",
-      "Full completeness theory for arbitrary exponential families"
+      "Full completeness theory for arbitrary exponential families",
+      "Advanced equality-condition theory beyond what the supplied regular model requires"
     ],
-    applicationScope: "Entrance problems asking for a justified UMVU/minimum-variance conclusion in a familiar regular family or from a complete sufficient statistic supplied or established in the problem.",
-    transferScope: "An unfamiliar optimality claim where the learner must decide which certificate, if any, is legally available before doing algebra and must identify a failed regularity condition when none is.",
-    exitCondition: "For one estimator, give a valid completeness/Lehmann-Scheffe or attained-Cramer-Rao certificate of minimum variance with hypotheses stated, and explain why the same argument may fail for a moving-support model.",
+    applicationScope: "Entrance problems asking for a justified UMVU/minimum-variance conclusion either from a complete sufficient statistic or from an attained regular-model information bound, with the method selected from the hypotheses rather than from superficial formula familiarity.",
+    transferScope: "An unfamiliar optimality claim where the learner must decide which certificate is legally available, refuse an invalid information-bound shortcut when support or differentiability conditions fail, and keep the two proof routes conceptually distinct.",
+    exitCondition: "Complete both sub-deliverables independently: (A) on one model, prove a UMVU conclusion from an unbiased function of a complete sufficient statistic using Lehmann-Scheffe; (B) on a separate regular one-parameter model, derive the relevant Cramer-Rao bound and verify exact variance attainment. Then diagnose one brief moving-support case in which the standard Cramer-Rao route is not licensed. All hypotheses and the unbiased comparator class must be stated.",
     nextArcBoundary: "131 T1.1 leaves point estimation and starts hypothesis testing: size, power and error probabilities for a specified rejection rule."
   }
 ];

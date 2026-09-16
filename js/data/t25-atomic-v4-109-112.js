@@ -44,36 +44,39 @@ export const T25_ATOMIC_V4_109_112 = [
     syllabusCode: "O3.2",
     targetCode: "O3",
     parentId: "ARC826",
-    title: "Contrast it with a shared-observation construction that has a diagonal atom.",
-    focus: "Analyse extrema built from overlapping sets of observations, separating the off-diagonal continuous region from any positive-probability equality event created by a shared observation.",
-    purpose: "Prevent automatic misuse of the standard joint-order-statistic density when the two extrema are not ranks from one common iid ordering and their dependence contains a singular component.",
-    centralCapability: "Recognise when shared observations create positive mass on X=Y, compute that atom directly from events, and combine it with the remaining continuous law without pretending a single two-dimensional density describes everything.",
-    principalObstacle: "Assuming equality has probability zero merely because the underlying variables are continuous, or forcing a purely absolutely continuous joint density onto a construction with a genuine diagonal atom.",
+    title: "Contrast it with shared-observation dependence carrying singular diagonal mass.",
+    focus: "Analyse extrema built from overlapping sets of continuous observations, separating the off-diagonal absolutely continuous region from any positive probability carried by the equality set U=V because of shared data.",
+    purpose: "Prevent automatic misuse of a standard two-dimensional density when the two statistics share observations: positive probability can lie on the diagonal without any individual point (u,u) being a joint atom.",
+    centralCapability: "Recognise when shared observations make P(U=V)>0, compute that equality probability directly from underlying sample events, represent it as a singular component supported on the diagonal rather than as a point atom, and combine it with any off-diagonal continuous contribution without pretending one planar density describes the whole law.",
+    principalObstacle: "The learner may assume P(U=V)=0 merely because the underlying observations are continuous, or may call positive probability on the whole diagonal a joint point atom even though every singleton (u,u) can still have probability zero; either mistake obscures the mixed-dimensional structure of the joint law.",
     entryPrerequisites: ["O3.1 joint order-statistic laws", "D0 atoms and mixed laws", "J3 joint-law support", "J5 recognition of singular transformed pairs"],
     requiredOwnership: [
-      "Identify which observations are shared between the two extrema",
-      "Characterise the event on which the two extrema are exactly equal",
-      "Compute the probability of the diagonal atom from the underlying sample events",
-      "Separate diagonal mass from the off-diagonal continuous contribution",
-      "Explain why continuity of each observation does not force P(U=V)=0 when U and V share data",
-      "Avoid applying the standard joint-order-statistic density unless its iid common-sample rank structure is actually present",
-      "Check that atomic and continuous pieces together carry total probability one"
+      "Identify which observations are shared between the two extrema or statistics",
+      "Characterise the event on which the two statistics are exactly equal",
+      "Compute P(U=V) from the underlying sample events rather than from a nonexistent planar density on the diagonal",
+      "Separate probability carried on the diagonal from the off-diagonal absolutely continuous contribution",
+      "Explain why P(U=V)>0 does not imply that any singleton (u,u) has positive probability; in the usual continuous shared-observation construction the diagonal component is singular with respect to planar area rather than a collection of point atoms",
+      "Recognise that the scalar difference U-V does have an atom at 0 whenever P(U=V)>0, even though the joint pair need not have a point atom",
+      "Avoid applying the standard joint-order-statistic density unless its common-iid-sample rank structure is actually present",
+      "Check that the diagonal singular component and all off-diagonal pieces together carry total probability one"
     ],
     inScope: [
       "Maxima/minima formed from overlapping subsets",
-      "Positive equality probability induced by a shared observation",
-      "Mixed joint laws with a diagonal atom plus continuous regions",
-      "Direct event-based probability calculations for the atom"
+      "Positive equality probability induced by shared observations",
+      "Singular probability supported on the diagonal plus off-diagonal continuous regions",
+      "Point-atom versus diagonal-mass distinction",
+      "Atom at zero for the scalar difference U-V",
+      "Direct event-based probability calculations for equality"
     ],
     outOfScope: [
-      "General singular measures on curves",
+      "General theory of singular measures on arbitrary curves",
       "Copula decomposition theory",
       "Extreme-value asymptotics",
       "Measure-theoretic disintegration of mixed joint laws"
     ],
-    applicationScope: "Entrance problems where two extrema or statistics reuse one or more observations, so their dependence cannot be diagnosed safely from marginal continuity or a standard iid rank formula.",
-    transferScope: "A new shared-data construction where the learner must discover whether equality or another lower-dimensional event has positive probability before selecting a density-based method.",
-    exitCondition: "Given a shared-observation extrema construction, identify and compute any equality atom, derive the remaining off-diagonal contribution as needed, and justify why a purely continuous joint density would be incomplete.",
+    applicationScope: "Entrance problems where two extrema or statistics reuse observations, so their dependence cannot be diagnosed safely from marginal continuity or a standard iid-rank formula and may include positive probability on a lower-dimensional equality set.",
+    transferScope: "A new shared-data construction where the learner must discover whether equality or another lower-dimensional event has positive probability, determine whether that probability is point-atomic or spread continuously along a lower-dimensional set, and choose the representation accordingly.",
+    exitCondition: "Given a shared-observation construction with continuous underlying data, determine whether P(U=V)>0, compute that probability when present, distinguish singular diagonal mass from a point atom, derive the remaining off-diagonal contribution as needed, and justify why a purely planar density is incomplete.",
     nextArcBoundary: "111 L1.1 leaves order-statistic structure and begins probability inequalities, where every bound must carry its sign and moment assumptions explicitly."
   },
   {

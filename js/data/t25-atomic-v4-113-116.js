@@ -36,7 +36,7 @@ export const T25_ATOMIC_V4_113_116 = [
     applicationScope: "Entrance problems asking whether a simple average or similarly structured estimator approaches its target in probability and requiring assumptions to be stated rather than hidden.",
     transferScope: "A new iid estimator that can be rewritten as an average or a term plus a vanishing error, requiring the learner to choose a legal consistency argument rather than pattern-match notation.",
     exitCondition: "Given an iid sample-average estimator, state the target and convergence mode, verify the required moment assumptions, and produce a complete proof of consistency with no appeal to unbiasedness alone.",
-    nextArcBoundary: "114 L2.2 removes the iid safety net and tests whether overlap or persistent correlation destroys the variance-decay argument."
+    nextArcBoundary: "114 L2.2 removes the iid safety net and asks for a valid probability-level consistency argument when overlap or dependence changes the usual concentration calculation."
   },
   {
     id: "T25-ARC829-A1114",
@@ -45,35 +45,41 @@ export const T25_ATOMIC_V4_113_116 = [
     targetCode: "L2",
     parentId: "ARC829",
     title: "Prove or refute consistency when terms overlap or remain correlated.",
-    focus: "Analyse an estimator built from overlapping or dependent terms by computing its mean and dependence-sensitive variance or MSE, then prove consistency or exhibit a nonvanishing obstruction.",
-    purpose: "Prevent illegal iid-WLLN applications and teach the learner to inspect covariance structure directly when repeated observations or shared components create dependence.",
-    centralCapability: "Decide consistency from the actual error structure, especially by showing variance or MSE tends to zero—or proving that it does not—without pretending dependent summands are iid.",
-    principalObstacle: "Overlapping terms can have the correct expectation while retaining enough covariance to prevent concentration; asymptotic unbiasedness alone therefore does not settle consistency.",
+    focus: "Analyse an estimator built from overlapping or dependent terms by tracking its actual error structure. Use expectation, covariance, variance or MSE when they provide valid sufficient control, but make the final consistency decision from convergence in probability rather than from moment behaviour alone.",
+    purpose: "Prevent illegal iid-WLLN applications and a subtler error: moments can be useful for proving concentration, but nonvanishing bias or variance does not by itself refute convergence in probability without additional assumptions.",
+    centralCapability: "For a dependent or overlapping estimator T_n of a fixed target theta, prove consistency by showing P(|T_n-theta|>epsilon)→0 for every epsilon>0—possibly via a justified MSE/Chebyshev bound—or refute consistency by exhibiting some fixed epsilon>0 for which the error probability stays bounded away from zero along an infinite subsequence; use moment calculations only in directions that are logically valid.",
+    principalObstacle: "The learner may correctly discover overlap or persistent covariance and then overreach: MSE→0 is sufficient for consistency, but failure of variance or bias to vanish is not a general converse because rare large errors can keep moments large while their probabilities vanish.",
     entryPrerequisites: ["L2.1 convergence in probability and WLLN", "J2 covariance and variance of sums", "L1 finite-sample probability bounds"],
     requiredOwnership: [
-      "Identify shared observations or other dependence among summands",
-      "Compute covariance contributions rather than replacing them by zero",
-      "Write Var of an average with all diagonal and off-diagonal terms",
-      "Use vanishing variance or MSE to prove convergence in probability when justified",
-      "Refute consistency by finding a persistent bias, variance or positive-probability error obstruction",
-      "Explain why asymptotic unbiasedness alone is insufficient",
-      "Recognise when regrouping into independent blocks is legal and when it is not"
+      "Identify shared observations or other dependence among summands before applying any iid law",
+      "Compute covariance contributions rather than replacing them by zero when a second-moment route is being used",
+      "Write Var of an average with all diagonal and off-diagonal terms when those moments are finite and relevant",
+      "Use E[(T_n-theta)^2]→0, or equivalently vanishing MSE, as a sufficient route to T_n→theta in probability via Markov/Chebyshev",
+      "When using bias and variance, require both bias→0 and variance→0 to obtain MSE→0; vanishing variance alone may concentrate around the wrong mean",
+      "Refute consistency only with a valid probability-level obstruction, for example a fixed epsilon>0 and an infinite subsequence n_k with P(|T_{n_k}-theta|>epsilon) bounded below by a positive constant, or an equivalent direct contradiction to convergence in probability",
+      "Treat persistent bias or nonvanishing variance as a diagnostic that demands further analysis, not as an automatic inconsistency certificate unless extra assumptions making the converse valid are explicitly supplied",
+      "Explain a rare-large-error counterexample in which T_n→theta in probability while a first or second moment fails to converge appropriately, showing why moment nonconvergence alone is insufficient",
+      "Explain why asymptotic unbiasedness alone is also insufficient for consistency",
+      "Recognise when regrouping into genuinely independent blocks is legal and when overlap prevents it"
     ],
     inScope: [
       "Overlapping-window averages",
       "Repeated-use estimators",
-      "Persistent correlation examples",
-      "Variance/MSE proofs or counterexamples for consistency"
+      "Persistent-correlation examples",
+      "Direct epsilon-probability proofs and refutations of consistency",
+      "MSE/Chebyshev as sufficient consistency tools",
+      "Moment nonconvergence as a warning rather than a general converse"
     ],
     outOfScope: [
       "Mixing conditions",
       "Martingale convergence theorems",
       "General dependent-process LLNs",
-      "Long-memory asymptotic theory"
+      "Long-memory asymptotic theory",
+      "Uniform-integrability theory except a brief note that extra assumptions can restore some moment converses"
     ],
-    applicationScope: "Entrance questions where an estimator resembles an average but its terms reuse observations or remain correlated, forcing a direct concentration or counterexample argument.",
-    transferScope: "An unfamiliar dependent statistic where the learner must discover the covariance pattern and determine whether averaging truly reduces uncertainty.",
-    exitCondition: "For a dependent or overlapping estimator, derive its expectation and variance/MSE from the actual dependence structure, then prove consistency or give a rigorous reason it fails.",
+    applicationScope: "Entrance questions where an estimator resembles an average but its terms reuse observations or remain correlated, forcing the learner to justify concentration directly rather than invoking an iid theorem or reading consistency off its moments.",
+    transferScope: "An unfamiliar dependent statistic where covariance calculations may reveal useful structure but the learner must still decide the convergence-in-probability question with a logically sufficient proof or a genuine fixed-epsilon obstruction.",
+    exitCondition: "For one dependent or overlapping estimator, identify the dependence structure, derive any relevant finite moments without dropping covariance terms, and then independently prove consistency by a valid probability bound or refute it by a fixed-epsilon nonvanishing error probability; explicitly explain why nonvanishing bias or variance alone would not settle the question.",
     nextArcBoundary: "115 L3.1 strengthens asymptotic control from convergence in probability to a correctly centred and square-root-scaled normal approximation."
   },
   {
