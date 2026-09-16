@@ -98,23 +98,24 @@ export const T25_ATOMIC_V4_031_035 = [
   {
     id:"T25-ARC819-A1035",routeOrder:35,syllabusCode:"P6.1",targetCode:"P6",parentId:"ARC819",
     title:"Test independence and contrast it with disjointness.",
-    focus:"Testing independence by factorisation and conditional invariance, while distinguishing it sharply from mutually exclusive events.",
-    purpose:"Prevent one of the most damaging probability confusions before pairwise/mutual independence: disjointness is about impossible co-occurrence, whereas independence is about unchanged probability under information.",
-    centralCapability:"Given two events in a finite or explicitly specified probability model, test independence using P(A∩B)=P(A)P(B) or an equivalent positive-denominator conditional criterion, test disjointness separately, and explain why nontrivial disjoint events cannot be independent.",
-    principalObstacle:"Because both notions involve intersections, learners may equate P(A∩B)=0 with independence, or infer independence from visual separation/symmetry without checking masses; they may also use conditional criteria when the conditioning event has probability zero.",
+    focus:"Testing independence by probability factorisation and conditional invariance while keeping set-theoretic disjointness separate from merely having an intersection of probability zero.",
+    purpose:"Prevent one of the most damaging probability confusions before pairwise/mutual independence: disjointness means impossible co-occurrence as sets, whereas independence means that the joint probability factorises or that positive-probability conditioning leaves the other event's probability unchanged.",
+    centralCapability:"Given two events in a finite or explicitly specified probability model, test independence using P(A∩B)=P(A)P(B) or an equivalent positive-denominator conditional criterion, test disjointness separately using A∩B=∅, and explain why nonempty probability-zero overlap is not the same thing as disjointness.",
+    principalObstacle:"Because both notions involve intersections, learners may equate P(A∩B)=0 with set-theoretic disjointness or with independence, infer independence from visual separation/symmetry without checking masses, or use a conditional criterion when the conditioning event has probability zero.",
     entryPrerequisites:["033-034 / P4 conditioning and Bayes","031 / P3 intersection/union probability arithmetic","027 / P1 explicit outcome modelling"],
     requiredOwnership:[
       "Test independence from the actual factorisation P(A∩B)=P(A)P(B), not from informal unrelatedness.",
-      "Test disjointness independently by whether A∩B is empty or has probability zero in the given model.",
-      "Prove that if A and B are disjoint with both probabilities positive, then they cannot be independent.",
+      "Test disjointness by the set statement A∩B=∅; do not replace it by P(A∩B)=0 unless the model guarantees that every elementary outcome in the intersection would have positive mass.",
+      "Give or diagnose a finite zero-mass counterexample in which A∩B is nonempty but P(A∩B)=0, and state why this does not make the events disjoint.",
+      "Prove that if A and B are disjoint with P(A)>0 and P(B)>0, then they cannot be independent.",
       "Use P(A|B)=P(A) only when P(B)>0 and recognise it as an equivalent independence test under that condition.",
-      "Construct or diagnose examples showing that overlapping events may be independent and disjoint events may fail independence."
+      "Construct or diagnose examples showing that overlapping events may be independent and that probability-zero events create trivial independence edge cases."
     ],
-    applicationScope:"Pairs of events in finite sample spaces, tables or elementary repeated experiments where intersections and marginal probabilities can be computed exactly.",
-    transferScope:"A fresh symmetric-looking experiment in which intuitive labels suggest independence but the factorisation fails, or in which overlapping events are unexpectedly independent and must be verified numerically/algebraically.",
-    inScope:["Event independence","Factorisation criterion","Conditional invariance criterion","Disjointness versus independence","Nontrivial disjoint-event incompatibility with independence"],
+    applicationScope:"Pairs of events in finite sample spaces, including weighted models with possible zero-mass elementary outcomes, where intersections and marginal probabilities can be computed exactly.",
+    transferScope:"A fresh model in which symmetry tempts an independence claim or a zero-mass overlap tempts a disjointness claim, requiring the learner to apply the set and probability criteria separately.",
+    inScope:["Event independence","Factorisation criterion","Conditional invariance criterion","Set-theoretic disjointness versus probability-zero overlap","Zero-probability edge cases"],
     outOfScope:["Pairwise versus mutual independence reserved for P6.2","Conditional independence after conditioning reserved for P6.2","Random-variable independence","Measure-theoretic independence"],
-    exitCondition:"For one unfamiliar pair of events, determine disjointness and independence separately from the probability law, justify each conclusion with the correct criterion, and explain why one notion does not imply the other except in trivial zero-probability cases.",
+    exitCondition:"For one unfamiliar pair of events in an explicitly specified model, determine set-theoretic disjointness and probabilistic independence separately, justify each conclusion with the correct criterion, and handle any zero-probability overlap or zero-marginal edge case without conflating the two notions.",
     nextArcBoundary:"036 · P6.2 extends from two-event independence to pairwise versus mutual independence and shows how conditioning can create or destroy independence.",
     mode:"learn",evidencePolicy:"standard"
   }
