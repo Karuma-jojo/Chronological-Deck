@@ -37,7 +37,7 @@ export const T25_ATOMIC_V4_159_162 = [
     applicationScope: "Entrance questions asking whether a treatment grid is a valid Latin square, how to complete a small partially filled square, which variables are the two blocks versus the treatment, or what additive model/randomisation corresponds to the design.",
     transferScope: "An unfamiliar experiment with two directional nuisance gradients where the learner must decide whether a Latin square is appropriate, construct or repair a valid treatment layout, and identify exactly which interaction claims the unreplicated additive design cannot support.",
     exitCondition: "Given p treatments and two p-level blocking factors, independently construct and verify a valid Latin square, state a legitimate randomisation scheme and identifiable additive model, and explain the no-interaction limitation.",
-    nextArcBoundary: "160 V3.2 keeps this Latin-square design and derives its ANOVA degrees of freedom and treatment test using the residual mean square; it does not introduce factorial treatment interactions."
+    nextArcBoundary: "160 V3.2 keeps this Latin-square design and derives its ANOVA degrees of freedom; the ordinary residual-mean-square treatment F test is available only when the residual degrees of freedom are positive."
   },
   {
     id: "T25-ARC841-A1160",
@@ -46,36 +46,40 @@ export const T25_ATOMIC_V4_159_162 = [
     targetCode: "V3",
     parentId: "ARC841",
     title: "Derive its degrees of freedom and compare treatments with the right error term.",
-    focus: "Build the elementary Latin-square ANOVA decomposition and degrees of freedom, use residual mean square rather than a row or column mean square to compare treatments, and make the residual/no-interaction limitation explicit.",
-    purpose: "Connect the Latin-square table to the design structure: total variation is partitioned among rows, columns, treatments and residual, with the treatment F ratio calibrated against residual variation under the additive normal common-variance model.",
-    centralCapability: "For a p-by-p Latin square with one observation per cell, derive row, column, treatment, residual and total degrees of freedom, construct the corresponding sums-of-squares decomposition, and form the treatment F statistic using MSTreatment/MSE while explaining what residual absorbs under violated additivity.",
-    principalObstacle: "The main trap is using RBD degrees of freedom, forgetting the second blocking source, using row or column mean square as the treatment denominator, or claiming the residual is pure error when interactions cannot be separately estimated from one observation per cell.",
+    focus: "Build the elementary Latin-square ANOVA decomposition and degrees of freedom, use residual mean square rather than a row or column mean square to compare treatments when residual degrees of freedom are positive, and explicitly diagnose the p=2 boundary where the usual F test is unavailable.",
+    purpose: "Connect the Latin-square table to the design structure without hiding the smallest-design failure: total variation partitions into rows, columns, treatments and residual, but an ordinary treatment F ratio needs a genuine residual mean square and therefore positive residual degrees of freedom.",
+    centralCapability: "For a p-by-p Latin square with one observation per cell, derive row, column, treatment, residual and total degrees of freedom and the corresponding sums-of-squares decomposition; when p≥3, form the treatment F statistic MSTreatment/MSE under the additive normal common-variance model, and when p=2, identify that the valid square has zero residual degrees of freedom so the standard residual-based F test cannot be formed.",
+    principalObstacle: "The learner may use RBD degrees of freedom, forget the second blocking source, use row or column mean square as the treatment denominator, call residual variation pure error despite unmodelled interactions, or mechanically form an F statistic for a 2-by-2 Latin square even though residual df=(p-1)(p-2)=0.",
     entryPrerequisites: ["V3.1 valid Latin-square construction, randomisation and additive model", "V2.2 blocked ANOVA decomposition and residual-error logic"],
     requiredOwnership: [
       "Assign p-1 degrees of freedom each to rows, columns and treatments",
-      "Derive residual degrees of freedom (p-1)(p-2) and total degrees of freedom p^2-1",
-      "Construct or recover row, column and treatment sums of squares from marginal totals/means and obtain residual by subtraction",
+      "Derive residual degrees of freedom (p-1)(p-2) and total degrees of freedom p^2-1, and check that all components sum correctly",
+      "Diagnose the boundary p=2 explicitly: a 2-by-2 Latin square is combinatorially valid, but residual df=0, MSE is not available as an error estimate, and the ordinary residual-based treatment F test cannot be performed",
+      "For p≥3, construct or recover row, column and treatment sums of squares from marginal totals/means and obtain residual by subtraction",
       "Check independently that both degrees of freedom and sums of squares partition consistently",
-      "Form the treatment test F=MSTreatment/MSE under independent normal common-variance additive errors",
-      "Explain why row and column mean squares are nuisance-block summaries rather than the standard denominator for treatment comparison",
-      "State that unmodelled interactions are inseparable from residual variation in the elementary unreplicated square",
-      "Recognise impossible or overparameterised ANOVA tables from inconsistent df or claimed separately estimated interactions"
+      "Form the treatment test F=MSTreatment/MSE only when residual df>0 and the stated independent normal common-variance additive-error assumptions justify that denominator",
+      "Explain why row and column mean squares are nuisance-block summaries rather than substitute denominators for treatment comparison",
+      "State that unmodelled interactions are inseparable from residual variation in the elementary unreplicated square, so residual is not automatically pure replicated error",
+      "Recognise impossible or overparameterised ANOVA tables from inconsistent df, nonexistent residual error, or claimed separately estimated interactions"
     ],
     inScope: [
       "Latin-square ANOVA decomposition",
       "Row, column, treatment, residual and total degrees of freedom",
-      "Treatment F test using residual mean square",
+      "Positive-residual-df requirement for the standard treatment F test",
+      "Explicit p=2 zero-residual-df boundary",
+      "Treatment F test using residual mean square for p≥3 under the stated model",
       "Residual interpretation under the additive/no-interaction limitation"
     ],
     outOfScope: [
       "Replicated Latin squares with separately estimable interaction components",
       "Missing-value corrections",
       "Graeco-Latin or crossover extensions",
+      "Alternative small-sample procedures invented to rescue the p=2 no-error-df case",
       "Factorial main-effect and interaction contrasts, which begin at V4"
     ],
-    applicationScope: "Entrance problems with raw or partial Latin-square ANOVA information asking for missing sums of squares, degrees of freedom, the correct treatment-test denominator, or diagnosis of an invalid analysis.",
-    transferScope: "A partially specified p-by-p design where the learner must infer p from the ANOVA table, reconstruct residual df or SS, and explain why strong row-by-treatment or column-by-treatment behaviour would undermine the elementary additive analysis.",
-    exitCondition: "Given a valid p-by-p Latin square, independently construct and audit its ANOVA table, form the treatment F test with the correct residual denominator, and state precisely what interaction structure is hidden in residual error.",
+    applicationScope: "Entrance problems with raw or partial Latin-square ANOVA information asking for missing sums of squares or degrees of freedom, the correct treatment-test denominator, or whether the design supplies any residual degrees of freedom at all.",
+    transferScope: "A partially specified p-by-p design where the learner must infer p from the ANOVA table, reconstruct residual df or SS, refuse the standard F test when residual df=0, and explain why strong row-by-treatment or column-by-treatment behaviour would undermine the elementary additive analysis.",
+    exitCondition: "Complete two boundary-aware tasks: (A) for one valid Latin square with p≥3, independently construct and audit its ANOVA table and form the treatment F test with the correct residual denominator and assumptions; (B) for p=2, correctly derive zero residual degrees of freedom and state that the ordinary residual-MSE F test is unavailable rather than inventing an error term.",
     nextArcBoundary: "161 V4.1 leaves nuisance-block designs and begins factorial treatment structure, where interactions are themselves target effects rather than unmodelled contamination."
   },
   {
