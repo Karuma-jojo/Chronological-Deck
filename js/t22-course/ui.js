@@ -48,7 +48,7 @@ function selectSession(order,kind='main'){
  $('previous').disabled=session.order===1;$('next').disabled=session.order===course.sessions.length;
  showProblem(session[kind]);window.history.replaceState(null,'',`?module=1&session=${session.order}`);
 }
-async function evaluator(){if(!keys)keys=await json('course/t22/generated/evaluator.json');return keys;}
+async function evaluator(){if(!keys){const parts=await Promise.all(course.evaluatorPacks.map(json));keys=Object.assign({},...parts);}return keys;}
 async function reveal(){
  const id=problemId,token=visit,saved=lastSaved;if(!saved)return;
  try{const refs=await evaluator();if(problemId!==id||visit!==token||lastSaved!==saved)return;const r=refs[id];
@@ -59,7 +59,9 @@ async function copy(text){try{await navigator.clipboard.writeText(text);tell('Co
 function download(name,data){const url=URL.createObjectURL(new Blob([data],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 
 async function init(){
- [course,roadmap]=await Promise.all([json('course/t22/generated/course.json'),json('course/t22/generated/roadmap.json')]);
+ const [meta,road]=await Promise.all([json('course/t22/generated/course-meta.json'),json('course/t22/generated/roadmap.json')]);
+ const packs=await Promise.all(meta.packs.map(json));
+ course={...meta,sessions:packs.flatMap(p=>p.sessions).sort((a,b)=>a.order-b.order),problems:Object.assign({},...packs.map(p=>p.problems))};roadmap=road;
  state=emptyEvidence();
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);}catch{storageOK=false;tell('Existing T22 Elite study storage could not be read. It has not been overwritten. Export any new work before leaving.');}
  renderRoadmap();sessionsList();
