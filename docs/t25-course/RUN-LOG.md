@@ -102,3 +102,10 @@ Next: λ compiler integration, release instructions, structure/evidence/math/bro
 - Added `RELEASE.md` with study instructions, rebuilding commands, limitations, evidence handling and honest source/validation status.
 - Fixed exposure recording for engine-packet exports of a main task not previously displayed (view count must be at least1 for a valid importable log).
 - Existing-panel JavaScript syntax passed. Full structural/math/browser tests are the next step. Commands listed in the release guide are the intended complete suite; remaining new scripts will be added before release.
+
+## Validation checkpoint: structure and evidence tests
+
+- Added `scripts/test-t25-course.mjs`. PASS on current rebuilt files: all162 contract hashes,361 public/reference pairs,324 plain/anime opening isolation checks,47 scope mappings,392 historical question IDs,19 assessment sets,objective answer bounds,evidence import/merge validation,packet exposure edge,delayed-review and repair scheduling.
+- Added `scripts/check-t25-course-math.py` for selected independent symbolic/exhaustive computations. First execution was blocked because SymPy was not installed; dependency installation is in progress. No mathematical-check pass is claimed yet.
+- Existing `scripts/test-t25.mjs` is running. Browser dependency setup is in progress; browser tests have not yet run.
+Next: complete math/browser checks and record their actual output. Preserve current work even if dependency setup fails.
