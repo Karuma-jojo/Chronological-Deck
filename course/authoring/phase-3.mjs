@@ -95,7 +95,7 @@ export default [
 'Does a sign change prove a unique root? Give a continuous counterexample on a specified interval and count its roots there.',
 'f(x)=x³−x on[−2,2] has endpoint values−6,6 but three roots−1,0,1. IVT alone does not give uniqueness.'],
 [70,'Rolle bounds root counts via derivative zeros; MVT bounds differences via derivatives. Check continuity on the closed interval and differentiability inside.',
-'If differentiable f:R→R satisfies f′(x)≥2 and f(0)=1, prove it has at most one zero and that any zero lies at or left of−1/2.',
+'If differentiable f:R→R satisfies f′(x)≥2 and f(0)=1, prove it has at most one zero. Prove or refute the claim that any zero lies at or left of−1/2; give the correct bound.',
 'MVT gives f(y)−f(x)≥2(y−x) for y>x,so strictly increasing. A root r must be negative;1=f(0)−f(r)≥−2r,so r≥−1/2, not at or left. The requested bound is false: f(x)=4x+1 has r=−1/4. Correct range[−1/2,0).',
 'For f:[0,1]→[0,1] continuous and differentiable inside with |f′|≤q<1, prove existence and uniqueness of a fixed point.',
 'g=f−x has g(0)≥0,g(1)≤0,so IVT. If two fixed points existed,MVT bound|f(a)−f(b)|≤q|a−b| contradicts equality for a≠b.'],

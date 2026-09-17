@@ -65,3 +65,12 @@ A normal HTTPS git push had no available terminal credentials. The authenticated
 For a checkpoint: read complete changed UTF-8 files, create a tree based on the current remote tree SHA, create a commit with current remote head as parent, update the branch without force, then verify returned success. Preserve concurrent remote work. Record the checkpoint's contents and checks in this file. A commit cannot contain its own SHA; use the branch tip/Git history or record the preceding checkpoint SHA.
 
 Local paths are disposable. Do not depend on them for future recovery. Current reconstruction workspace: `/workspace/scratch/a9cd1ef83eb4/t25-course`.
+
+## Checkpoint: source recovery and assessment supplements
+
+Completed after the initial log:
+- Fixed session70 wording to explicitly ask for proof/refutation of the false bound.
+- Recovered the historical v2 audit package and copied its 392-row classification ledger, 47-row official-scope crosswalk and audit notes into `course/sources/`. These are historical classifications, not a newly verified answer key. Current repaired cards remain authoritative.
+- Added `course/authoring/supplements.mjs`: 9 prerequisite-bridge tasks, 7 phase synthesis problems and 21 original objective questions, each with reference/answer. Total authored tasks now361 (324+9+7+21).
+- `node --check course/authoring/supplements.mjs` passed. Complete content/coverage/browser verification remains pending.
+Next: deterministic data build, study interface and anime/compiler integration.
