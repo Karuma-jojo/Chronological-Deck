@@ -45,7 +45,7 @@ function setPresentation(){
  const anime=$('presentation').value==='anime',p=course.problems[problemId];const ep=course.campaign.find(x=>x.phase===session.phase);
  put('scene',sceneText(ep));$('scene').hidden=!anime||!p?.order||$('contract').hidden;$('story').hidden=!anime||!p?.order||$('contract').hidden;
  options($('storyChoice'),ep.choice.map((v,i)=>[i,v]));$('storyChoice').value=state.story[ep.phase]?.choice??0;
- put('closure',state.story[ep.phase]?.completed?ep.closure:'The episode remains open. Pauses and incorrect attempts carry no story penalty.');
+ put('closure',state.story[ep.phase]?.completed?ep.closure+' '+ep.choiceOutcomes[state.story[ep.phase].choice]:'The episode remains open. Pauses and incorrect attempts carry no story penalty.');
 }
 function selectSession(order,kind='main'){
  session=course.sessions.find(s=>s.order===Number(order));if(!session)throw Error('Unknown session');
@@ -109,7 +109,7 @@ async function init(){
   showProblem(set.problems[0],'set');tell(`${set.title}. Provisional time guide: ${set.minutes} minutes. No countdown penalty. Items reuse the bank; this is not an unseen official mock.`);
  };
  $('bridges').replaceChildren(...course.bridges.flatMap(b=>[...b.tasks.map((id,i)=>button(`${b.title} · ${i+1}`,()=>{showProblem(id,'bridge');tell(`Prerequisite bridge. Open the learning note if needed; this grants no atomic clearance.`);}))]));
- $('saveChoice').onclick=()=>{const old=state.story[session.phase];state.story[session.phase]={choice:Number($('storyChoice').value),completed:old?.completed||false};persist('Story choice saved.');};
+ $('saveChoice').onclick=()=>{const old=state.story[session.phase];state.story[session.phase]={choice:Number($('storyChoice').value),completed:old?.completed||false};persist('Story choice saved.');setPresentation();};
  $('finishStory').onclick=()=>{state.story[session.phase]={choice:Number($('storyChoice').value),completed:true};persist('Your report of SPIRE phase certification was recorded for story continuity only.');setPresentation();};
  if(storageOK)tell(`Ready: ${course.sessions.length} sessions and ${Object.keys(course.problems).length} original tasks. Study records stay in this browser until exported.`);
 }

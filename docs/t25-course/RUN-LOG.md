@@ -138,3 +138,14 @@ Next: browser execution/visual QA; then final reproducibility and PR status upda
 - Passed: all162 sessions; no early reference fetch; public WALL clipboard isolation; save/reveal/review; export/import and invalid-import rejection; learning-note assistance; mixed-task scene/topic isolation; objective options; story continuity;390px no-overflow layout; async reference-navigation race; corrupt-record preservation; course link in the existing T25 panel.
 - Desktop/mobile screenshots generated and inspected. Text and controls are legible with no horizontal clipping; full-page capture needs scroll reset to place sticky navigation at its initial position. This is a screenshot refinement, not a runtime navigation failure.
 - Current concrete remaining work: final presentation/readability pass, deterministic rebuild verification, push final results and update PR156. Do not reauthor the bank or repeat source recovery.
+
+## Checkpoint: presentation polish and release build
+
+- Reworked public cast scenes into short dialogue and action; engine-policy explanations remain in the compiler/guide instead of dominating character speech.
+- Added two explicit closing outcomes per episode. Saved story choices now alter the rendered closure and survive evidence export/import.
+- Cleaned spacing in all authored task/reference files. Verified that this edit changed only whitespace against the remote version; no non-whitespace mathematical content changed.
+- Set course data version1.0.0; regenerated public/evaluator data. Structural/evidence tests and all55 selected mathematical checks passed again.
+- Added the SymPy check and deterministic result-file comparison to frontend CI. Documented Node/Python/Playwright dependencies in the release guide.
+- Updated screenshots to reset desktop scroll before capture.
+- The runtime's global Python user install disappeared after a session refresh; local validation now uses SymPy1.14.0 installed in a workspace dependency directory. This does not affect committed source; normal reproduction uses the documented dependency or CI installation.
+Next: final browser rerun for the changed story closure, deterministic rebuild comparison, remote/local file comparison and PR update. No reauthoring is needed.

@@ -33,7 +33,7 @@ try{
  await page.locator('summary').filter({hasText:'Mixed & objective sets'}).click();await page.selectOption('#setSelect','MIXED-1');await page.click('#startSet');assert.equal(await page.locator('#title').textContent(),'Mixed practice');assert(await page.locator('#scene').isHidden());await page.selectOption('#presentation','plain');await page.selectOption('#presentation','anime');assert(await page.locator('#scene').isHidden());assert.equal(await page.locator('#setItems button').count(),8);
  await page.selectOption('#setSelect','OBJECTIVE-1');await page.click('#startSet');assert((await page.locator('#problem').textContent()).includes('A.'));assert(!(await page.locator('#problem').textContent()).includes('Correct option'));
  await page.selectOption('#session','1');await page.click('#saveChoice');await page.click('#finishStory');assert((await page.locator('#closure').textContent()).includes('departure bell'));
- await mkdir('test-artifacts/t25-course',{recursive:true});await page.screenshot({path:'test-artifacts/t25-course/desktop.png',fullPage:true});
+ await mkdir('test-artifacts/t25-course',{recursive:true});await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:'test-artifacts/t25-course/desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'test-artifacts/t25-course/mobile.png',fullPage:true});
  results.push('Mixed set topic/scene isolation; objective options; story continuity; 390px layout without horizontal overflow');
  // Reveal race: leave a task while its first evaluator fetch is still pending.

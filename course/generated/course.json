@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-draft",
+  "version": "1.0.0",
   "baseCommit": "43ae1373bc33083dbe5a14eba174300dae44f5d8",
   "status": "Authored; current validation status is in docs/t25-course/RUN-LOG.md. Not learner-piloted.",
   "sources": {
@@ -2426,7 +2426,7 @@
         "evidencePolicy": "standard"
       },
       "contractHash": "1cb338b8059f788c891790ee62afda2140fb2844c8b73bb9ff2cad8d23e968e1",
-      "lesson": "Convexity means f(tx+(1−t)y)≤tf(x)+(1−t)f(y) for t∈[0,1]. Use the supplied definition, rather than an unearned derivative criterion.",
+      "lesson": "Convexity means f(tx+(1−t)y)≤tf(x)+(1−t)f(y) for t∈[0, 1]. Use the supplied definition, rather than an unearned derivative criterion.",
       "main": "T25-017-M",
       "transfer": "T25-017-T",
       "bridges": [],
@@ -7671,46 +7671,9 @@
           "General multivariate order-statistic theory beyond two selected ranks"
         ],
         "applicationScope": "Entrance-level problems involving two selected order statistics, a sample range, or a conditional extreme where the main work is combinatorial allocation plus support-aware integration.",
-       
-... 30397 bytes omitted ...
-atistic is almost a standard CLT form except for independent grouping or a nuisance scale that can be replaced by a consistent estimate.",
-        "transferScope": "An unfamiliar asymptotic statistic requiring the learner to decide whether its blocks are truly independent and whether each plug-in replacement is justified in probability.",
-        "exitCondition": "For a structured asymptotic statistic, justify the block decomposition or plug-in convergence, apply the appropriate elementary CLT/Slutsky step, and state the limiting law without hiding any legality condition.",
-        "nextArcBoundary": "117 O4.1 returns to order statistics and expresses a sample-quantile tail event as an empirical-count event before any asymptotic limit is taken."
-      },
-      "contractHash": "335d6bc7460bb490099b32abc82ddc5119ead930711b7f9fc1e3545ee670d01d",
-      "lesson": "Group dependent observations into independent blocks when justified. Replacing an unknown scale by a consistent estimator requires a convergence argument, not simply a substitution.",
-      "main": "T25-116-M",
-      "transfer": "T25-116-T",
-      "bridges": [],
-      "prerequisiteTargets": [
-        "L2",
-        "D3",
-        "N1"
-      ],
-      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
-    },
-    {
-      "order": 117,
-      "phase": 5,
-      "card": {
-        "id": "T25-ARC826-A1117",
-        "routeOrder": 117,
-        "syllabusCode": "O4.1",
-        "targetCode": "O4",
-        "parentId": "ARC826",
-        "title": "Express a quantile tail as an empirical-count event.",
-        "focus": "Translate an event involving an order statistic or sample quantile into an equivalent statement about how many observations fall below or above a fixed threshold.",
-        "purpose": "Replace fragile density memorisation with the exact finite-sample count event that later makes quantile consistency a direct law-of-large-numbers argument.",
-        "centralCapability": "Convert one-sided order-statistic events into empirical-count inequalities with the correct threshold direction, rank convention and binomial/indicator representation.",
-        "principalObstacle": "Off-by-one rank errors, reversing the count inequality, or silently switching between lower and upper empirical quantile conventions can invalidate the asymptotic argument before any limit theorem is applied.",
-        "entryPrerequisites": [
-          "O2 kth-order statistics",
-          "P2 binomial counts",
-          "L2 convergence in probability and WLLN"
-        ],
-        "requiredOwnership": [
-          "Write X_(k) <= x and X_(k) > x as equivalent statements about the number of Xi values at or below x",
+        "tra
+... 33208 bytes omitted ...
+or below x",
           "Track the exact integer threshold k, n-k+1 or its convention-equivalent form without off-by-one mistakes",
           "Represent the empirical count as a sum of Bernoulli indicators",
           "Identify the Bernoulli success probability as F(x) or the correct strict-inequality variant",
@@ -9529,7 +9492,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
         "nextArcBoundary": "149 S1.1 leaves model-based regression inference and begins design-based simple random sampling, where randomness comes from the sampling design and finite-population conventions must be declared explicitly."
       },
       "contractHash": "80ebdc16ea0f0e4286f164f09febaf66fdbdedaeb409fe43dc327ee8387970c4",
-      "lesson": "A fitted mean and a future observation have different variance. Prediction adds fresh error variance,not just uncertainty in the estimated coefficient.",
+      "lesson": "A fitted mean and a future observation have different variance. Prediction adds fresh error variance, not just uncertainty in the estimated coefficient.",
       "main": "T25-148-M",
       "transfer": "T25-148-T",
       "bridges": [],
@@ -9878,7 +9841,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
         "nextArcBoundary": "155 V1.1 leaves survey-sampling design inference entirely and begins randomized experimental design with the CRD treatment/error model and one-way ANOVA sum-of-squares decomposition."
       },
       "contractHash": "1397f2780ab1d85e1b33439d6b84dea7008cc4b3bb7662614067219b67bc2766",
-      "lesson": "Horvitz–Thompson unbiasedness uses E Ii=πi and linearity,not independence. Positive inclusion probabilities are necessary to estimate an arbitrary total this way.",
+      "lesson": "Horvitz–Thompson unbiasedness uses E Ii=πi and linearity, not independence. Positive inclusion probabilities are necessary to estimate an arbitrary total this way.",
       "main": "T25-154-M",
       "transfer": "T25-154-T",
       "bridges": [],
@@ -9994,7 +9957,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
         "nextArcBoundary": "157 V2.1 leaves one-factor CRD and introduces randomized blocks, where a nuisance blocking factor is separated from treatment and randomization occurs within blocks."
       },
       "contractHash": "de078479445aae733898e4ab97266f3b1b5837a0f594cf5b7e4744442c2e789c",
-      "lesson": "The exact CRD F test uses residual MSE,not treatment or total MS. A pre-specified contrast has its own standard error under the same model.",
+      "lesson": "The exact CRD F test uses residual MSE, not treatment or total MS. A pre-specified contrast has its own standard error under the same model.",
       "main": "T25-156-M",
       "transfer": "T25-156-T",
       "bridges": [],
@@ -10105,7 +10068,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
         "nextArcBoundary": "159 V3.1 adds a second nuisance blocking factor through a Latin square; it does not extend RBD by estimating treatment-by-block interaction."
       },
       "contractHash": "896375db090aadfe1b664e1705fa20057abeac177ea15869ef57e9de73e6c721",
-      "lesson": "RBD degrees of freedom are treatment t−1,block b−1,residual(t−1)(b−1). With one observation per cell,interaction cannot be separated from residual error.",
+      "lesson": "RBD degrees of freedom are treatment t−1, block b−1, residual(t−1)(b−1). With one observation per cell, interaction cannot be separated from residual error.",
       "main": "T25-158-M",
       "transfer": "T25-158-T",
       "bridges": [],
@@ -10159,7 +10122,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
         "nextArcBoundary": "160 V3.2 keeps this Latin-square design and derives its ANOVA degrees of freedom; the ordinary residual-mean-square treatment F test is available only when the residual degrees of freedom are positive."
       },
       "contractHash": "e8079d35a85118b1c6c189198b448b8bef8c725b456994f0f7303107babfefc2",
-      "lesson": "A Latin square places each treatment once in every row and column. Valid randomization permutes rows,columns and labels while preserving that constraint.",
+      "lesson": "A Latin square places each treatment once in every row and column. Valid randomization permutes rows, columns and labels while preserving that constraint.",
       "main": "T25-159-M",
       "transfer": "T25-159-T",
       "bridges": [],
@@ -10218,7 +10181,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
         "nextArcBoundary": "161 V4.1 leaves nuisance-block designs and begins factorial treatment structure, where interactions are themselves target effects rather than unmodelled contamination."
       },
       "contractHash": "4f1b2cffc66d663a9094412da0bb24b372c32eb06ed39fb003f852343ec9924b",
-      "lesson": "Latin-square residual df is(p−1)(p−2). At p=2 it is zero,so there is no ordinary residual-MSE F test without additional information.",
+      "lesson": "Latin-square residual df is(p−1)(p−2). At p=2 it is zero, so there is no ordinary residual-MSE F test without additional information.",
       "main": "T25-160-M",
       "transfer": "T25-160-T",
       "bridges": [],
@@ -10273,7 +10236,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
         "nextArcBoundary": "162 V4.2 keeps these factorial effects and supplies the ANOVA degrees of freedom and legitimate error term, including the distinction between replication and pooling assumed-negligible interactions."
       },
       "contractHash": "69d672036ba3a3ef1bd6d60c908b0d9a8a06176a4e8c5a5bd300e56305eb410e",
-      "lesson": "In a2² factorial,an effect is a difference of level averages. Coded-regression coefficients are half these effects when predictors use±1.",
+      "lesson": "In a2² factorial, an effect is a difference of level averages. Coded-regression coefficients are half these effects when predictors use±1.",
       "main": "T25-161-M",
       "transfer": "T25-161-T",
       "bridges": [],
@@ -10404,13 +10367,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-006-M": {
       "id": "T25-006-M",
-      "prompt": "For T(x)=ax+b with fixed real a,b derive T composed n times for positive integer n, including a=1. Classify fixed points.",
+      "prompt": "For T(x)=ax+b with fixed real a, b derive T composed n times for positive integer n, including a=1. Classify fixed points.",
       "order": 6,
       "kind": "main"
     },
     "T25-006-T": {
       "id": "T25-006-T",
-      "prompt": "Classify real a,b for which T(T(x))=x for every real x. Determine which of those maps have a unique fixed point.",
+      "prompt": "Classify real a, b for which T(T(x))=x for every real x. Determine which of those maps have a unique fixed point.",
       "order": 6,
       "kind": "transfer"
     },
@@ -10434,13 +10397,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-008-T": {
       "id": "T25-008-T",
-      "prompt": "Prove that if a,b are real and a²+b²=0 then a=b=0. Refute “a²=b² implies a=b” and state the correct conclusion.",
+      "prompt": "Prove that if a, b are real and a²+b²=0 then a=b=0. Refute “a²=b² implies a=b” and state the correct conclusion.",
       "order": 8,
       "kind": "transfer"
     },
     "T25-009-M": {
       "id": "T25-009-M",
-      "prompt": "For f:R→R, f(x)=x², A=[−2,0], B=[0,2], compute f(A∩B), f(A)∩f(B), and f^−1([1,4]). Prove the general preimage-intersection identity.",
+      "prompt": "For f:R→R, f(x)=x², A=[−2, 0], B=[0, 2], compute f(A∩B), f(A)∩f(B), and f^−1([1, 4]). Prove the general preimage-intersection identity.",
       "order": 9,
       "kind": "main"
     },
@@ -10452,7 +10415,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-010-M": {
       "id": "T25-010-M",
-      "prompt": "On{0,1,2,3,4,5}, define a~b iff a−b is divisible by3. Prove equivalence and list all distinct classes. Is aRb iff a≤b an equivalence relation?",
+      "prompt": "On{0, 1, 2, 3, 4, 5}, define a~b iff a−b is divisible by3. Prove equivalence and list all distinct classes. Is aRb iff a≤b an equivalence relation?",
       "order": 10,
       "kind": "main"
     },
@@ -10464,7 +10427,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-011-M": {
       "id": "T25-011-M",
-      "prompt": "Classify f:R→[0,∞), f(x)=x² as injective/surjective. Restrict its domain to make a bijection and verify both inverse identities.",
+      "prompt": "Classify f:R→[0, ∞), f(x)=x² as injective/surjective. Restrict its domain to make a bijection and verify both inverse identities.",
       "order": 11,
       "kind": "main"
     },
@@ -10482,7 +10445,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-012-T": {
       "id": "T25-012-T",
-      "prompt": "If α,β are roots of x²−5x+3, determine α²+β² and 1/α+1/β, justifying the reciprocals.",
+      "prompt": "If α, β are roots of x²−5x+3, determine α²+β² and 1/α+1/β, justifying the reciprocals.",
       "order": 12,
       "kind": "transfer"
     },
@@ -10494,19 +10457,19 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-013-T": {
       "id": "T25-013-T",
-      "prompt": "Find a,b such that x³+ax+b is divisible by (x−2)² by coefficient comparison. Can agreement at only three distinct points certify degree≤3 polynomial equality?",
+      "prompt": "Find a, b such that x³+ax+b is divisible by (x−2)² by coefficient comparison. Can agreement at only three distinct points certify degree≤3 polynomial equality?",
       "order": 13,
       "kind": "transfer"
     },
     "T25-014-M": {
       "id": "T25-014-M",
-      "prompt": "An AP has u3=7,u8=22. Find its first term, difference and first n-term sum. Derive Σ(k=0 to n−1)ar^k, including r=1 and a=0. If nonzero p,q,r form an HP, express q in terms of p,r with all conditions.",
+      "prompt": "An AP has u3=7, u8=22. Find its first term, difference and first n-term sum. Derive Σ(k=0 to n−1)ar^k, including r=1 and a=0. If nonzero p, q, r form an HP, express q in terms of p, r with all conditions.",
       "order": 14,
       "kind": "main"
     },
     "T25-014-T": {
       "id": "T25-014-T",
-      "prompt": "For u_k=5+2k,k=0,...,n−1, compute the sum. Evaluate Σ(k=2 to n)3·2^k for n≥2 and explain the indexing.",
+      "prompt": "For u_k=5+2k, k=0, ..., n−1, compute the sum. Evaluate Σ(k=2 to n)3·2^k for n≥2 and explain the indexing.",
       "order": 14,
       "kind": "transfer"
     },
@@ -10524,13 +10487,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-016-M": {
       "id": "T25-016-M",
-      "prompt": "For positive a,b prove (a+b)(1/a+1/b)≥4 and identify equality. Derive the AM≥GM≥HM chain for two positive numbers.",
+      "prompt": "For positive a, b prove (a+b)(1/a+1/b)≥4 and identify equality. Derive the AM≥GM≥HM chain for two positive numbers.",
       "order": 16,
       "kind": "main"
     },
     "T25-016-T": {
       "id": "T25-016-T",
-      "prompt": "For real x,y,z with x+y+z=6 prove x²+y²+z²≥12 and find every equality case. Does the product inequality above hold for arbitrary nonzero a,b?",
+      "prompt": "For real x, y, z with x+y+z=6 prove x²+y²+z²≥12 and find every equality case. Does the product inequality above hold for arbitrary nonzero a, b?",
       "order": 16,
       "kind": "transfer"
     },
@@ -10584,25 +10547,25 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-021-M": {
       "id": "T25-021-M",
-      "prompt": "If θ∈(π/2,π) and sinθ=3/5, determine cosθ,tanθ and sin2θ. A triangle has sides3,4 with included angleπ/3; find the opposite side using the cosine rule and state the sine rule.",
+      "prompt": "If θ∈(π/2, π) and sinθ=3/5, determine cosθ, tanθ and sin2θ. A triangle has sides3, 4 with included angleπ/3; find the opposite side using the cosine rule and state the sine rule.",
       "order": 21,
       "kind": "main"
     },
     "T25-021-T": {
       "id": "T25-021-T",
-      "prompt": "A circle of radius3 has an arc subtending2 radians. Find its length. Derive cos(α−β) for α=π/3,β=π/6 and explain the quadrant sign.",
+      "prompt": "A circle of radius3 has an arc subtending2 radians. Find its length. Derive cos(α−β) for α=π/3, β=π/6 and explain the quadrant sign.",
       "order": 21,
       "kind": "transfer"
     },
     "T25-022-M": {
       "id": "T25-022-M",
-      "prompt": "Solve2sin²x−sinx−1=0 on[0,2π). Then solve tanx=1 on R with its legal domain.",
+      "prompt": "Solve2sin²x−sinx−1=0 on[0, 2π). Then solve tanx=1 on R with its legal domain.",
       "order": 22,
       "kind": "main"
     },
     "T25-022-T": {
       "id": "T25-022-T",
-      "prompt": "Solve cos2x=cosx on[0,2π). Simplify √(sin²x) and state exactly when it equals sinx.",
+      "prompt": "Solve cos2x=cosx on[0, 2π). Simplify √(sin²x) and state exactly when it equals sinx.",
       "order": 22,
       "kind": "transfer"
     },
@@ -10614,7 +10577,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-023-T": {
       "id": "T25-023-T",
-      "prompt": "For z=−1+i compute conjugate, modulus, a principal argument in(−π,π], and z/conjugate(z). Explain the z=0 exception.",
+      "prompt": "For z=−1+i compute conjugate, modulus, a principal argument in(−π, π], and z/conjugate(z). Explain the z=0 exception.",
       "order": 23,
       "kind": "transfer"
     },
@@ -10632,13 +10595,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-025-M": {
       "id": "T25-025-M",
-      "prompt": "Find the line through(1,2),(1,−3). Find the centre and radius of x²+y²−4x+6y−12=0, then its distance from the origin.",
+      "prompt": "Find the line through(1, 2), (1, −3). Find the centre and radius of x²+y²−4x+6y−12=0, then its distance from the origin.",
       "order": 25,
       "kind": "main"
     },
     "T25-025-T": {
       "id": "T25-025-T",
-      "prompt": "Find the circle with diameter endpoints(−1,0),(3,4). Determine whether(1,0) lies inside,on,or outside it.",
+      "prompt": "Find the circle with diameter endpoints(−1, 0), (3, 4). Determine whether(1, 0) lies inside, on, or outside it.",
       "order": 25,
       "kind": "transfer"
     },
@@ -10662,7 +10625,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-027-T": {
       "id": "T25-027-T",
-      "prompt": "A bag has distinguishable balls R1,R2,B. Draw two without replacement in order. List the elementary outcomes and compute the probability of one red and one blue.",
+      "prompt": "A bag has distinguishable balls R1, R2, B. Draw two without replacement in order. List the elementary outcomes and compute the probability of one red and one blue.",
       "order": 27,
       "kind": "transfer"
     },
@@ -10674,7 +10637,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-028-T": {
       "id": "T25-028-T",
-      "prompt": "How many five-letter strings from A,B,C have exactly two As and one B? Repetition is allowed; explain the role of indistinguishable repeated letters.",
+      "prompt": "How many five-letter strings from A, B, C have exactly two As and one B? Repetition is allowed; explain the role of indistinguishable repeated letters.",
       "order": 28,
       "kind": "transfer"
     },
@@ -10704,7 +10667,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-031-M": {
       "id": "T25-031-M",
-      "prompt": "Events A,B have probabilities.6,.5 and intersection.2. Find union and neither. Prove P(A∪B)≤P(A)+P(B) and state its equality condition.",
+      "prompt": "Events A, B have probabilities.6, .5 and intersection.2. Find union and neither. Prove P(A∪B)≤P(A)+P(B) and state its equality condition.",
       "order": 31,
       "kind": "main"
     },
@@ -10722,7 +10685,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-032-T": {
       "id": "T25-032-T",
-      "prompt": "For U uniform(0,1), let Bn={U≤1/n}. Identify the decreasing intersection and its probability. Prove continuity from above using complements.",
+      "prompt": "For U uniform(0, 1), let Bn={U≤1/n}. Identify the decreasing intersection and its probability. Prove continuity from above using complements.",
       "order": 32,
       "kind": "transfer"
     },
@@ -10734,7 +10697,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-033-T": {
       "id": "T25-033-T",
-      "prompt": "A card is drawn uniformly from a standard52-card deck. Given it is a face card(J,Q,K), find probability it is a heart. Is conditioning on “a red black card” defined?",
+      "prompt": "A card is drawn uniformly from a standard52-card deck. Given it is a face card(J, Q, K), find probability it is a heart. Is conditioning on “a red black card” defined?",
       "order": 33,
       "kind": "transfer"
     },
@@ -10752,25 +10715,25 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-035-M": {
       "id": "T25-035-M",
-      "prompt": "For U uniform[0,1], A=[0,1/2], B=[1/2,1], test disjointness and independence. Can two disjoint positive-probability events be independent?",
+      "prompt": "For U uniform[0, 1], A=[0, 1/2], B=[1/2, 1], test disjointness and independence. Can two disjoint positive-probability events be independent?",
       "order": 35,
       "kind": "main"
     },
     "T25-035-T": {
       "id": "T25-035-T",
-      "prompt": "For two independent fair bits X,Y let A={X=1},B={Y=1}. Test independence and disjointness. What happens if one event has probability0?",
+      "prompt": "For two independent fair bits X, Y let A={X=1}, B={Y=1}. Test independence and disjointness. What happens if one event has probability0?",
       "order": 35,
       "kind": "transfer"
     },
     "T25-036-M": {
       "id": "T25-036-M",
-      "prompt": "Let X,Y be independent fair bits and Z=X xor Y. Show pairwise independence, refute mutual independence, and test X,Y independence given Z=0.",
+      "prompt": "Let X, Y be independent fair bits and Z=X xor Y. Show pairwise independence, refute mutual independence, and test X, Y independence given Z=0.",
       "order": 36,
       "kind": "main"
     },
     "T25-036-T": {
       "id": "T25-036-T",
-      "prompt": "A fair coin selects Θ∈{1/4,3/4}. Given Θ, X,Y are independent Bernoulli(Θ). Determine whether X,Y are independent without conditioning.",
+      "prompt": "A fair coin selects Θ∈{1/4, 3/4}. Given Θ, X, Y are independent Bernoulli(Θ). Determine whether X, Y are independent without conditioning.",
       "order": 36,
       "kind": "transfer"
     },
@@ -10782,7 +10745,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-037-T": {
       "id": "T25-037-T",
-      "prompt": "A random permutation of{1,...,n} is selected uniformly. Define the number F of fixed points by indicators and explain why the indicators need not be independent.",
+      "prompt": "A random permutation of{1, ..., n} is selected uniformly. Define the number F of fixed points by indicators and explain why the indicators need not be independent.",
       "order": 37,
       "kind": "transfer"
     },
@@ -10800,13 +10763,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-039-M": {
       "id": "T25-039-M",
-      "prompt": "Draw two values without replacement from{1,2,3}. Compute each mean and variance, their covariance and variance of their sum.",
+      "prompt": "Draw two values without replacement from{1, 2, 3}. Compute each mean and variance, their covariance and variance of their sum.",
       "order": 39,
       "kind": "main"
     },
     "T25-039-T": {
       "id": "T25-039-T",
-      "prompt": "Let Y=2X+3 with Var(X)=4. Find Cov(X,Y), Var(X+Y) and correlation. Contrast with the result of incorrectly assuming independence.",
+      "prompt": "Let Y=2X+3 with Var(X)=4. Find Cov(X, Y), Var(X+Y) and correlation. Contrast with the result of incorrectly assuming independence.",
       "order": 39,
       "kind": "transfer"
     },
@@ -10818,7 +10781,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-040-T": {
       "id": "T25-040-T",
-      "prompt": "Let Y0=0 and Yk=aY(k−1)+εk, where independent εk have mean0,varianceτ². Derive mean and variance, including a²=1.",
+      "prompt": "Let Y0=0 and Yk=aY(k−1)+εk, where independent εk have mean0, varianceτ². Derive mean and variance, including a²=1.",
       "order": 40,
       "kind": "transfer"
     },
@@ -10836,19 +10799,19 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-042-M": {
       "id": "T25-042-M",
-      "prompt": "In n independent trials categories have probabilities p1,p2,p3>0 summing1. Derive means, variances and Cov(N1,N2). Find N1 conditional on N3=k.",
+      "prompt": "In n independent trials categories have probabilities p1, p2, p3>0 summing1. Derive means, variances and Cov(N1, N2). Find N1 conditional on N3=k.",
       "order": 42,
       "kind": "main"
     },
     "T25-042-T": {
       "id": "T25-042-T",
-      "prompt": "For n=10,p=(.2,.3,.5), find E(N1+N2), Var(N1+N2), and E(N1|N3=4).",
+      "prompt": "For n=10, p=(.2, .3, .5), find E(N1+N2), Var(N1+N2), and E(N1|N3=4).",
       "order": 42,
       "kind": "transfer"
     },
     "T25-043-M": {
       "id": "T25-043-M",
-      "prompt": "Independent trials succeed with p∈(0,1). Derive the law, mean and memorylessness of T, trials through first success. Give the corresponding failures count.",
+      "prompt": "Independent trials succeed with p∈(0, 1). Derive the law, mean and memorylessness of T, trials through first success. Give the corresponding failures count.",
       "order": 43,
       "kind": "main"
     },
@@ -10860,25 +10823,25 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-044-M": {
       "id": "T25-044-M",
-      "prompt": "For X Poisson(λ), derive E[X(X−1)] and VarX. For independent X,Y with parametersλ,μ derive the distribution of X+Y.",
+      "prompt": "For X Poisson(λ), derive E[X(X−1)] and VarX. For independent X, Y with parametersλ, μ derive the distribution of X+Y.",
       "order": 44,
       "kind": "main"
     },
     "T25-044-T": {
       "id": "T25-044-T",
-      "prompt": "If Xn~Bin(n,λ/n), prove P(Xn=k)→e^−λ λ^k/k! for each fixed nonnegative integer k and n large enough. State what is fixed.",
+      "prompt": "If Xn~Bin(n, λ/n), prove P(Xn=k)→e^−λ λ^k/k! for each fixed nonnegative integer k and n large enough. State what is fixed.",
       "order": 44,
       "kind": "transfer"
     },
     "T25-045-M": {
       "id": "T25-045-M",
-      "prompt": "For independent Xi with common meanμ,varianceσ² derive E Xbar and Var Xbar. Repeat when all pair covariances equal c.",
+      "prompt": "For independent Xi with common meanμ, varianceσ² derive E Xbar and Var Xbar. Repeat when all pair covariances equal c.",
       "order": 45,
       "kind": "main"
     },
     "T25-045-T": {
       "id": "T25-045-T",
-      "prompt": "Let Xi=Z+εi with all variables independent, VarZ=τ²,Varεi=σ² and means0. Find Var Xbar and its large-n limit.",
+      "prompt": "Let Xi=Z+εi with all variables independent, VarZ=τ², Varεi=σ² and means0. Find Var Xbar and its large-n limit.",
       "order": 45,
       "kind": "transfer"
     },
@@ -10896,19 +10859,19 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-047-M": {
       "id": "T25-047-M",
-      "prompt": "For data1,2,2,5,10 compute mean, median, population-denominator variance and sample variance. Define quartiles by medians of the lower and upper halves and compute them.",
+      "prompt": "For data1, 2, 2, 5, 10 compute mean, median, population-denominator variance and sample variance. Define quartiles by medians of the lower and upper halves and compute them.",
       "order": 47,
       "kind": "main"
     },
     "T25-047-T": {
       "id": "T25-047-T",
-      "prompt": "For data0,0,1,3 find the empirical CDF and its left quantile q(p)=inf{x:F(x)≥p} at p=.5,.75. Contrast q(.5) with the average-of-middle-two median.",
+      "prompt": "For data0, 0, 1, 3 find the empirical CDF and its left quantile q(p)=inf{x:F(x)≥p} at p=.5, .75. Contrast q(.5) with the average-of-middle-two median.",
       "order": 47,
       "kind": "transfer"
     },
     "T25-048-M": {
       "id": "T25-048-M",
-      "prompt": "A dataset has n=4,sum10,sum squares30. Add x=5. Find the new mean and sample variance. State the effect of y=a+bx on mean, variance and standardized third central moment for b≠0.",
+      "prompt": "A dataset has n=4, sum10, sum squares30. Add x=5. Find the new mean and sample variance. State the effect of y=a+bx on mean, variance and standardized third central moment for b≠0.",
       "order": 48,
       "kind": "main"
     },
@@ -10920,13 +10883,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-049-M": {
       "id": "T25-049-M",
-      "prompt": "For x=(1,2,3),y=(1,4,9) compute Pearson and Spearman correlations, using average ranks for ties if any. State existence conditions.",
+      "prompt": "For x=(1, 2, 3), y=(1, 4, 9) compute Pearson and Spearman correlations, using average ranks for ties if any. State existence conditions.",
       "order": 49,
       "kind": "main"
     },
     "T25-049-T": {
       "id": "T25-049-T",
-      "prompt": "For x=(1,1,2),y=(1,2,3) compute average-rank Spearman correlation. Is the no-tie shortcut1−6Σd²/[n(n²−1)] valid here?",
+      "prompt": "For x=(1, 1, 2), y=(1, 2, 3) compute average-rank Spearman correlation. Is the no-tie shortcut1−6Σd²/[n(n²−1)] valid here?",
       "order": 49,
       "kind": "transfer"
     },
@@ -10938,37 +10901,37 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-050-T": {
       "id": "T25-050-T",
-      "prompt": "Let X take−1,0,1 equally and Y=X². Compute covariance and correlation; decide whether zero correlation implies independence.",
+      "prompt": "Let X take−1, 0, 1 equally and Y=X². Compute covariance and correlation; decide whether zero correlation implies independence.",
       "order": 50,
       "kind": "transfer"
     },
     "T25-051-M": {
       "id": "T25-051-M",
-      "prompt": "For A=[[1,2],[0,1]],B=[[1,0],[3,1]], compute AB,BA,(AB)^T and B^T A^T. Explain the dimensions of each.",
+      "prompt": "For A=[[1, 2], [0, 1]], B=[[1, 0], [3, 1]], compute AB, BA, (AB)^T and B^T A^T. Explain the dimensions of each.",
       "order": 51,
       "kind": "main"
     },
     "T25-051-T": {
       "id": "T25-051-T",
-      "prompt": "Let C=[[1,2,3],[4,5,6]]. Compute CC^T and explain why C^T C has a different size.",
+      "prompt": "Let C=[[1, 2, 3], [4, 5, 6]]. Compute CC^T and explain why C^T C has a different size.",
       "order": 51,
       "kind": "transfer"
     },
     "T25-052-M": {
       "id": "T25-052-M",
-      "prompt": "Solve x+y+z=3,2x+y+3z=6,x−y+z=1 by reversible row operations and verify.",
+      "prompt": "Solve x+y+z=3, 2x+y+3z=6, x−y+z=1 by reversible row operations and verify.",
       "order": 52,
       "kind": "main"
     },
     "T25-052-T": {
       "id": "T25-052-T",
-      "prompt": "A row operation multiplies a row by parameter a. Explain when it is reversible. Solve x+y=2,2x+2y=4 and describe the solution set dimension.",
+      "prompt": "A row operation multiplies a row by parameter a. Explain when it is reversible. Solve x+y=2, 2x+2y=4 and describe the solution set dimension.",
       "order": 52,
       "kind": "transfer"
     },
     "T25-053-M": {
       "id": "T25-053-M",
-      "prompt": "Which sets in R³ are subspaces: x+y+z=0; x+y+z=1; xyz=0? Give proofs or counterexamples. Test dependence of(1,0,1),(0,1,1),(1,1,2).",
+      "prompt": "Which sets in R³ are subspaces: x+y+z=0; x+y+z=1; xyz=0? Give proofs or counterexamples. Test dependence of(1, 0, 1), (0, 1, 1), (1, 1, 2).",
       "order": 53,
       "kind": "main"
     },
@@ -10980,7 +10943,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-054-M": {
       "id": "T25-054-M",
-      "prompt": "Find a basis and dimension of {(x,y,z,w):x+y+z=0,y+w=0}. Justify both basis properties.",
+      "prompt": "Find a basis and dimension of {(x, y, z, w):x+y+z=0, y+w=0}. Justify both basis properties.",
       "order": 54,
       "kind": "main"
     },
@@ -10992,7 +10955,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-055-M": {
       "id": "T25-055-M",
-      "prompt": "Classify solutions of x+y+z=1,2x+2y+2z=a. Give both ranks and solution dimension for every a.",
+      "prompt": "Classify solutions of x+y+z=1, 2x+2y+2z=a. Give both ranks and solution dimension for every a.",
       "order": 55,
       "kind": "main"
     },
@@ -11004,25 +10967,25 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-056-M": {
       "id": "T25-056-M",
-      "prompt": "For A=[[1,t],[t,1]], classify unique/no/infinitely many solutions of Ax=(1,1)^T for every real t.",
+      "prompt": "For A=[[1, t], [t, 1]], classify unique/no/infinitely many solutions of Ax=(1, 1)^T for every real t.",
       "order": 56,
       "kind": "main"
     },
     "T25-056-T": {
       "id": "T25-056-T",
-      "prompt": "Prove rank(AB)≤min(rankA,rankB) for conformable matrices, using images and kernel or column spans.",
+      "prompt": "Prove rank(AB)≤min(rankA, rankB) for conformable matrices, using images and kernel or column spans.",
       "order": 56,
       "kind": "transfer"
     },
     "T25-057-M": {
       "id": "T25-057-M",
-      "prompt": "For invertible square A,B prove (AB)^−1=B^−1 A^−1 by multiplication. Prove tr(AB)=tr(BA) from entries. State det(AB).",
+      "prompt": "For invertible square A, B prove (AB)^−1=B^−1 A^−1 by multiplication. Prove tr(AB)=tr(BA) from entries. State det(AB).",
       "order": 57,
       "kind": "main"
     },
     "T25-057-T": {
       "id": "T25-057-T",
-      "prompt": "If A is3×3 with detA=2, find det(3A),det(A^−1),det(A^T A). Is tr(A^−1)=1/trA generally true?",
+      "prompt": "If A is3×3 with detA=2, find det(3A), det(A^−1), det(A^T A). Is tr(A^−1)=1/trA generally true?",
       "order": 57,
       "kind": "transfer"
     },
@@ -11040,13 +11003,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-059-M": {
       "id": "T25-059-M",
-      "prompt": "For A=[[2,1],[0,2]], find eigenvalues/eigenspaces and decide diagonalizability. Contrast diag(2,2).",
+      "prompt": "For A=[[2, 1], [0, 2]], find eigenvalues/eigenspaces and decide diagonalizability. Contrast diag(2, 2).",
       "order": 59,
       "kind": "main"
     },
     "T25-059-T": {
       "id": "T25-059-T",
-      "prompt": "For B=[[2,1],[1,2]], produce P,D with B=PDP^−1 and verify.",
+      "prompt": "For B=[[2, 1], [1, 2]], produce P, D with B=PDP^−1 and verify.",
       "order": 59,
       "kind": "transfer"
     },
@@ -11058,7 +11021,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-060-T": {
       "id": "T25-060-T",
-      "prompt": "For B=[[2,1],[1,2]] find B^n for n≥0 and all real symmetric square roots that commute with B.",
+      "prompt": "For B=[[2, 1], [1, 2]] find B^n for n≥0 and all real symmetric square roots that commute with B.",
       "order": 60,
       "kind": "transfer"
     },
@@ -11076,19 +11039,19 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-062-M": {
       "id": "T25-062-M",
-      "prompt": "For H=(1/n)11^T show H²=H,H^T=H and derive ||y||²=||Hy||²+||(I−H)y||². Identify image and kernel.",
+      "prompt": "For H=(1/n)11^T show H²=H, H^T=H and derive ||y||²=||Hy||²+||(I−H)y||². Identify image and kernel.",
       "order": 62,
       "kind": "main"
     },
     "T25-062-T": {
       "id": "T25-062-T",
-      "prompt": "For P=[[1,1],[0,0]], check idempotence and whether ||y||²=||Py||²+||(I−P)y||² holds for all y. For A=diag(2,0), find a G satisfying AGA=A.",
+      "prompt": "For P=[[1, 1], [0, 0]], check idempotence and whether ||y||²=||Py||²+||(I−P)y||² holds for all y. For A=diag(2, 0), find a G satisfying AGA=A.",
       "order": 62,
       "kind": "transfer"
     },
     "T25-063-M": {
       "id": "T25-063-M",
-      "prompt": "For f(x)=|x|/x,x≠0, find both limits at0 and decide the two-sided limit. Prove lim(x→2)(3x+1)=7 using ε,δ.",
+      "prompt": "For f(x)=|x|/x, x≠0, find both limits at0 and decide the two-sided limit. Prove lim(x→2)(3x+1)=7 using ε, δ.",
       "order": 63,
       "kind": "main"
     },
@@ -11124,13 +11087,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-066-M": {
       "id": "T25-066-M",
-      "prompt": "For f(x)=x² when x<0 and ax+b when x≥0, find all a,b making f differentiable at0.",
+      "prompt": "For f(x)=x² when x<0 and ax+b when x≥0, find all a, b making f differentiable at0.",
       "order": 66,
       "kind": "main"
     },
     "T25-066-T": {
       "id": "T25-066-T",
-      "prompt": "Let f(0)=0,f(x)=x²sin(1/x) otherwise. Decide differentiability at0 and continuity of its derivative there.",
+      "prompt": "Let f(0)=0, f(x)=x²sin(1/x) otherwise. Decide differentiability at0 and continuity of its derivative there.",
       "order": 66,
       "kind": "transfer"
     },
@@ -11160,7 +11123,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-069-M": {
       "id": "T25-069-M",
-      "prompt": "Prove x³+x−1=0 has exactly one real root and locate it in(0,1), stating the role of each theorem.",
+      "prompt": "Prove x³+x−1=0 has exactly one real root and locate it in(0, 1), stating the role of each theorem.",
       "order": 69,
       "kind": "main"
     },
@@ -11178,19 +11141,19 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-070-T": {
       "id": "T25-070-T",
-      "prompt": "For f:[0,1]→[0,1] continuous and differentiable inside with |f′|≤q<1, prove existence and uniqueness of a fixed point.",
+      "prompt": "For f:[0, 1]→[0, 1] continuous and differentiable inside with |f′|≤q<1, prove existence and uniqueness of a fixed point.",
       "order": 70,
       "kind": "transfer"
     },
     "T25-071-M": {
       "id": "T25-071-M",
-      "prompt": "Find global extrema of f(x)=x³−3x on[−2,2], with every candidate checked.",
+      "prompt": "Find global extrema of f(x)=x³−3x on[−2, 2], with every candidate checked.",
       "order": 71,
       "kind": "main"
     },
     "T25-071-T": {
       "id": "T25-071-T",
-      "prompt": "Optimize x(1−x) on(0,1) and distinguish maximum,minimum,supremum,infimum.",
+      "prompt": "Optimize x(1−x) on(0, 1) and distinguish maximum, minimum, supremum, infimum.",
       "order": 71,
       "kind": "transfer"
     },
@@ -11268,13 +11231,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-078-M": {
       "id": "T25-078-M",
-      "prompt": "For x²/25+y²/9=1 find foci,eccentricity,directrices and verify the focus-distance relation at(5,0).",
+      "prompt": "For x²/25+y²/9=1 find foci, eccentricity, directrices and verify the focus-distance relation at(5, 0).",
       "order": 78,
       "kind": "main"
     },
     "T25-078-T": {
       "id": "T25-078-T",
-      "prompt": "For y²=8x find focus,directrix,eccentricity. For x²+y²=9 explain the eccentricity/directrix exception.",
+      "prompt": "For y²=8x find focus, directrix, eccentricity. For x²+y²=9 explain the eccentricity/directrix exception.",
       "order": 78,
       "kind": "transfer"
     },
@@ -11286,49 +11249,49 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-079-T": {
       "id": "T25-079-T",
-      "prompt": "For parabola y²=4ax with a>0, prove (at²,2at) parametrises every real point uniquely and find t for y=−6a.",
+      "prompt": "For parabola y²=4ax with a>0, prove (at², 2at) parametrises every real point uniquely and find t for y=−6a.",
       "order": 79,
       "kind": "transfer"
     },
     "T25-080-M": {
       "id": "T25-080-M",
-      "prompt": "Find the tangent and normal to x²/9+y²/4=1 at(0,2) and at(3,0). Explain any vertical-line exceptions.",
+      "prompt": "Find the tangent and normal to x²/9+y²/4=1 at(0, 2) and at(3, 0). Explain any vertical-line exceptions.",
       "order": 80,
       "kind": "main"
     },
     "T25-080-T": {
       "id": "T25-080-T",
-      "prompt": "For y²=4ax,a>0,derive tangent at(at²,2at) and the normal for t≠0, then handle t=0.",
+      "prompt": "For y²=4ax, a>0, derive tangent at(at², 2at) and the normal for t≠0, then handle t=0.",
       "order": 80,
       "kind": "transfer"
     },
     "T25-081-M": {
       "id": "T25-081-M",
-      "prompt": "Let F(x)=0 for x<0,(1+x)/2 for0≤x<1,and1 for x≥1. Verify the CDF conditions, find all atoms and a density for its continuous part, and compute P(0<X≤1/2).",
+      "prompt": "Let F(x)=0 for x<0, (1+x)/2 for0≤x<1, and1 for x≥1. Verify the CDF conditions, find all atoms and a density for its continuous part, and compute P(0<X≤1/2).",
       "order": 81,
       "kind": "main"
     },
     "T25-081-T": {
       "id": "T25-081-T",
-      "prompt": "For X uniform(0,1), is P(X=1/2) equal to its density value1? Give the CDF and calculate P(1/4<X≤3/4).",
+      "prompt": "For X uniform(0, 1), is P(X=1/2) equal to its density value1? Give the CDF and calculate P(1/4<X≤3/4).",
       "order": 81,
       "kind": "transfer"
     },
     "T25-082-M": {
       "id": "T25-082-M",
-      "prompt": "Let U uniform(−1,2) and Y=min(1,max(0,U)). Give the CDF, all atoms, continuous density and EY.",
+      "prompt": "Let U uniform(−1, 2) and Y=min(1, max(0, U)). Give the CDF, all atoms, continuous density and EY.",
       "order": 82,
       "kind": "main"
     },
     "T25-082-T": {
       "id": "T25-082-T",
-      "prompt": "X has P(X=0)=1/4 and, otherwise, is uniform(0,2). Find the CDF of Y=−X, its atoms and continuous density.",
+      "prompt": "X has P(X=0)=1/4 and, otherwise, is uniform(0, 2). Find the CDF of Y=−X, its atoms and continuous density.",
       "order": 82,
       "kind": "transfer"
     },
     "T25-083-M": {
       "id": "T25-083-M",
-      "prompt": "For U uniform(2,6) find P(U>5),EU,VarU. For X exponential with rate2 find P(X>3|X>1),EX and VarX.",
+      "prompt": "For U uniform(2, 6) find P(U>5), EU, VarU. For X exponential with rate2 find P(X>3|X>1), EX and VarX.",
       "order": 83,
       "kind": "main"
     },
@@ -11340,7 +11303,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-084-M": {
       "id": "T25-084-M",
-      "prompt": "If X~N(3,4), express P(1<X<7) using the standard normal CDF Φ. Compute E X² and E(X−3)^4.",
+      "prompt": "If X~N(3, 4), express P(1<X<7) using the standard normal CDF Φ. Compute E X² and E(X−3)^4.",
       "order": 84,
       "kind": "main"
     },
@@ -11352,55 +11315,55 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-085-M": {
       "id": "T25-085-M",
-      "prompt": "For X~Gamma(shape α>0,rate λ>0), derive E X^p for real p and its exact existence range. Use the gamma integral definition.",
+      "prompt": "For X~Gamma(shape α>0, rate λ>0), derive E X^p for real p and its exact existence range. Use the gamma integral definition.",
       "order": 85,
       "kind": "main"
     },
     "T25-085-T": {
       "id": "T25-085-T",
-      "prompt": "For U~Beta(a,b),a,b>0,derive E[U^r(1−U)^s] and the exact conditions on real r,s.",
+      "prompt": "For U~Beta(a, b), a, b>0, derive E[U^r(1−U)^s] and the exact conditions on real r, s.",
       "order": 85,
       "kind": "transfer"
     },
     "T25-086-M": {
       "id": "T25-086-M",
-      "prompt": "For independent Xi~Exp(rateλ),i=1,...,n,derive the MGF of their sum, its existence interval and the resulting law.",
+      "prompt": "For independent Xi~Exp(rateλ), i=1, ..., n, derive the MGF of their sum, its existence interval and the resulting law.",
       "order": 86,
       "kind": "main"
     },
     "T25-086-T": {
       "id": "T25-086-T",
-      "prompt": "Independent X~Poisson(λ),Y~Poisson(μ). Find the MGF of2X+Y and decide whether it is Poisson when λ>0.",
+      "prompt": "Independent X~Poisson(λ), Y~Poisson(μ). Find the MGF of2X+Y and decide whether it is Poisson when λ>0.",
       "order": 86,
       "kind": "transfer"
     },
     "T25-087-M": {
       "id": "T25-087-M",
-      "prompt": "X is uniform(−2,1),Y=X². Derive FY and a density, accounting for both branches and the support.",
+      "prompt": "X is uniform(−2, 1), Y=X². Derive FY and a density, accounting for both branches and the support.",
       "order": 87,
       "kind": "main"
     },
     "T25-087-T": {
       "id": "T25-087-T",
-      "prompt": "X~Exp(rate1),Y=e^−X. Find its law by the CDF, not by guessing.",
+      "prompt": "X~Exp(rate1), Y=e^−X. Find its law by the CDF, not by guessing.",
       "order": 87,
       "kind": "transfer"
     },
     "T25-088-M": {
       "id": "T25-088-M",
-      "prompt": "X~Exp(rateλ),K=floor X. Derive its PMF and identify a standard discrete law with its convention.",
+      "prompt": "X~Exp(rateλ), K=floor X. Derive its PMF and identify a standard discrete law with its convention.",
       "order": 88,
       "kind": "main"
     },
     "T25-088-T": {
       "id": "T25-088-T",
-      "prompt": "For X~Exp(rate1),Y=min(X,c),c>0,find atoms,continuous density and EY.",
+      "prompt": "For X~Exp(rate1), Y=min(X, c), c>0, find atoms, continuous density and EY.",
       "order": 88,
       "kind": "transfer"
     },
     "T25-089-M": {
       "id": "T25-089-M",
-      "prompt": "For standard Cauchy density1/[π(1+x²)],determine all real p for which E|X|^p is finite. Decide whether EX and the MGF at any t≠0 exist.",
+      "prompt": "For standard Cauchy density1/[π(1+x²)], determine all real p for which E|X|^p is finite. Decide whether EX and the MGF at any t≠0 exist.",
       "order": 89,
       "kind": "main"
     },
@@ -11412,97 +11375,97 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-090-M": {
       "id": "T25-090-M",
-      "prompt": "Let f(x)=c e^−|x|/b on R,b>0. Find c,mean,variance and the MGF with its existence interval.",
+      "prompt": "Let f(x)=c e^−|x|/b on R, b>0. Find c, mean, variance and the MGF with its existence interval.",
       "order": 90,
       "kind": "main"
     },
     "T25-090-T": {
       "id": "T25-090-T",
-      "prompt": "Density f(x)=c x on0<x<2. Normalize and find E X,VarX and P(X>1).",
+      "prompt": "Density f(x)=c x on0<x<2. Normalize and find E X, VarX and P(X>1).",
       "order": 90,
       "kind": "transfer"
     },
     "T25-091-M": {
       "id": "T25-091-M",
-      "prompt": "Joint density is c on0<x<y<1 and0 otherwise. Find c,both marginal densities,EX and EY.",
+      "prompt": "Joint density is c on0<x<y<1 and0 otherwise. Find c, both marginal densities, EX and EY.",
       "order": 91,
       "kind": "main"
     },
     "T25-091-T": {
       "id": "T25-091-T",
-      "prompt": "On x,y∈{0,1},joint masses in order00,01,10,11 are.1,.2,.3,.4. Find both marginals and E(XY).",
+      "prompt": "On x, y∈{0, 1}, joint masses in order00, 01, 10, 11 are.1, .2, .3, .4. Find both marginals and E(XY).",
       "order": 91,
       "kind": "transfer"
     },
     "T25-092-M": {
       "id": "T25-092-M",
-      "prompt": "For joint density2 on0<x<y<1,derive X|Y=y and test independence.",
+      "prompt": "For joint density2 on0<x<y<1, derive X|Y=y and test independence.",
       "order": 92,
       "kind": "main"
     },
     "T25-092-T": {
       "id": "T25-092-T",
-      "prompt": "For the four masses(.1,.2,.3,.4) on00,01,10,11,find P(X=1|Y=1) and test independence. Contrast with masses(.12,.18,.28,.42).",
+      "prompt": "For the four masses(.1, .2, .3, .4) on00, 01, 10, 11, find P(X=1|Y=1) and test independence. Contrast with masses(.12, .18, .28, .42).",
       "order": 92,
       "kind": "transfer"
     },
     "T25-093-M": {
       "id": "T25-093-M",
-      "prompt": "N~Poisson(λ). Given N,let S be the sum of N iid payoffs independent of N,each integrable with meanμ,empty sum0. Find ES with justification.",
+      "prompt": "N~Poisson(λ). Given N, let S be the sum of N iid payoffs independent of N, each integrable with meanμ, empty sum0. Find ES with justification.",
       "order": 93,
       "kind": "main"
     },
     "T25-093-T": {
       "id": "T25-093-T",
-      "prompt": "Choose P uniformly on(0,1),then X|P~Bin(n,P). Find EX and P(X=n).",
+      "prompt": "Choose P uniformly on(0, 1), then X|P~Bin(n, P). Find EX and P(X=n).",
       "order": 93,
       "kind": "transfer"
     },
     "T25-094-M": {
       "id": "T25-094-M",
-      "prompt": "For P uniform(0,1) and X|P~Bin(n,P),derive VarX.",
+      "prompt": "For P uniform(0, 1) and X|P~Bin(n, P), derive VarX.",
       "order": 94,
       "kind": "main"
     },
     "T25-094-T": {
       "id": "T25-094-T",
-      "prompt": "For the random sum S with N~Poisson(λ),payoff meanμ,varianceσ² and independent iid payoffs,derive VarS.",
+      "prompt": "For the random sum S with N~Poisson(λ), payoff meanμ, varianceσ² and independent iid payoffs, derive VarS.",
       "order": 94,
       "kind": "transfer"
     },
     "T25-095-M": {
       "id": "T25-095-M",
-      "prompt": "For independent uniform(0,1) X,Y derive the density of S=X+Y,including its support.",
+      "prompt": "For independent uniform(0, 1) X, Y derive the density of S=X+Y, including its support.",
       "order": 95,
       "kind": "main"
     },
     "T25-095-T": {
       "id": "T25-095-T",
-      "prompt": "For independent Exp(rate1) X,Y,find the CDF and density of R=X/Y.",
+      "prompt": "For independent Exp(rate1) X, Y, find the CDF and density of R=X/Y.",
       "order": 95,
       "kind": "transfer"
     },
     "T25-096-M": {
       "id": "T25-096-M",
-      "prompt": "For independent Exp(rate1) X,Y define U=X+Y,V=X/(X+Y). Find joint density and decide independence.",
+      "prompt": "For independent Exp(rate1) X, Y define U=X+Y, V=X/(X+Y). Find joint density and decide independence.",
       "order": 96,
       "kind": "main"
     },
     "T25-096-T": {
       "id": "T25-096-T",
-      "prompt": "For X uniform(−1,1),Y uniform(0,1) independent,transform U=X²,V=Y. Show all branches and find joint density.",
+      "prompt": "For X uniform(−1, 1), Y uniform(0, 1) independent, transform U=X², V=Y. Show all branches and find joint density.",
       "order": 96,
       "kind": "transfer"
     },
     "T25-097-M": {
       "id": "T25-097-M",
-      "prompt": "For data0,1,4,9 find all real a minimizing Σ(xi−a)² and all minimizing Σ|xi−a|. Prove both conclusions.",
+      "prompt": "For data0, 1, 4, 9 find all real a minimizing Σ(xi−a)² and all minimizing Σ|xi−a|. Prove both conclusions.",
       "order": 97,
       "kind": "main"
     },
     "T25-097-T": {
       "id": "T25-097-T",
-      "prompt": "For masses.2,.3,.5 at0,2,10,find squared- and absolute-loss minimizers.",
+      "prompt": "For masses.2, .3, .5 at0, 2, 10, find squared- and absolute-loss minimizers.",
       "order": 97,
       "kind": "transfer"
     },
@@ -11526,85 +11489,85 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-099-T": {
       "id": "T25-099-T",
-      "prompt": "For independent trials with success p∈(0,1),derive expected time until two consecutive successes.",
+      "prompt": "For independent trials with success p∈(0, 1), derive expected time until two consecutive successes.",
       "order": 99,
       "kind": "transfer"
     },
     "T25-100-M": {
       "id": "T25-100-M",
-      "prompt": "Roll a fair die until the first6 at time T. Given every earlier roll was odd,find the conditional law of T and ET under that conditioning.",
+      "prompt": "Roll a fair die until the first6 at time T. Given every earlier roll was odd, find the conditional law of T and ET under that conditioning.",
       "order": 100,
       "kind": "main"
     },
     "T25-100-T": {
       "id": "T25-100-T",
-      "prompt": "Toss a fair coin until a toss differs from the first toss. Find expected stopping time including the initial toss,by conditioning on the first result.",
+      "prompt": "Toss a fair coin until a toss differs from the first toss. Find expected stopping time including the initial toss, by conditioning on the first result.",
       "order": 100,
       "kind": "transfer"
     },
     "T25-101-M": {
       "id": "T25-101-M",
-      "prompt": "Let X,Y independent N(0,1). For U=X+Y,V=X−Y find joint normal parameters and decide independence. Explain precisely where normality enters.",
+      "prompt": "Let X, Y independent N(0, 1). For U=X+Y, V=X−Y find joint normal parameters and decide independence. Explain precisely where normality enters.",
       "order": 101,
       "kind": "main"
     },
     "T25-101-T": {
       "id": "T25-101-T",
-      "prompt": "Let jointly normal X,Y have variances4,9 and covariance3. Find Cov(X+Y,2X−Y) and decide independence of these two forms.",
+      "prompt": "Let jointly normal X, Y have variances4, 9 and covariance3. Find Cov(X+Y, 2X−Y) and decide independence of these two forms.",
       "order": 101,
       "kind": "transfer"
     },
     "T25-102-M": {
       "id": "T25-102-M",
-      "prompt": "Jointly normal X,Y have means1,2,variances4,9,covariance3. Derive Y|X=x,then give E(Y|X=3) and conditional variance.",
+      "prompt": "Jointly normal X, Y have means1, 2, variances4, 9, covariance3. Derive Y|X=x, then give E(Y|X=3) and conditional variance.",
       "order": 102,
       "kind": "main"
     },
     "T25-102-T": {
       "id": "T25-102-T",
-      "prompt": "Let X~N(0,1),Y=2X+1. Describe Y|X=x and explain why an ordinary two-dimensional density formula is invalid.",
+      "prompt": "Let X~N(0, 1), Y=2X+1. Describe Y|X=x and explain why an ordinary two-dimensional density formula is invalid.",
       "order": 102,
       "kind": "transfer"
     },
     "T25-103-M": {
       "id": "T25-103-M",
-      "prompt": "For iid Xi~N(μ,σ²),n≥2,show Xbar is independent of the residual vector and derive the law of Σ(Xi−Xbar)²/σ².",
+      "prompt": "For iid Xi~N(μ, σ²), n≥2, show Xbar is independent of the residual vector and derive the law of Σ(Xi−Xbar)²/σ².",
       "order": 103,
       "kind": "main"
     },
     "T25-103-T": {
       "id": "T25-103-T",
-      "prompt": "For independent X1,X2~N(μ,σ²),find laws and independence of (X1+X2)/2 and X1−X2. Does uncorrelatedness alone extend the result to arbitrary iid data?",
+      "prompt": "For independent X1, X2~N(μ, σ²), find laws and independence of (X1+X2)/2 and X1−X2. Does uncorrelatedness alone extend the result to arbitrary iid data?",
       "order": 103,
       "kind": "transfer"
     },
     "T25-104-M": {
       "id": "T25-104-M",
-      "prompt": "For iid normal sample size n≥2 with sample variance S²,derive the law of √n(Xbar−μ)/S. For two independent normal samples give the law of their variance ratio under equal population variances.",
+      "prompt": "For iid normal sample size n≥2 with sample variance S², derive the law of √n(Xbar−μ)/S. For two independent normal samples give the law of their variance ratio under equal population variances.",
       "order": 104,
       "kind": "main"
     },
     "T25-104-T": {
       "id": "T25-104-T",
-      "prompt": "Let Z~N(0,1) and V=Z². Is Z/√V a t variable with1 degree of freedom? Explain.",
+      "prompt": "Let Z~N(0, 1) and V=Z². Is Z/√V a t variable with1 degree of freedom? Explain.",
       "order": 104,
       "kind": "transfer"
     },
     "T25-105-M": {
       "id": "T25-105-M",
-      "prompt": "For iid Xi with continuous CDF F,derive maximum and minimum CDFs. Specialize to iid uniform(0,1),n≥1.",
+      "prompt": "For iid Xi with continuous CDF F, derive maximum and minimum CDFs. Specialize to iid uniform(0, 1), n≥1.",
       "order": 105,
       "kind": "main"
     },
     "T25-105-T": {
       "id": "T25-105-T",
-      "prompt": "For independent exponential ratesλ1,...,λn,find the minimum distribution and its mean.",
+      "prompt": "For independent exponential ratesλ1, ..., λn, find the minimum distribution and its mean.",
       "order": 105,
       "kind": "transfer"
     },
     "T25-106-M": {
       "id": "T25-106-M",
-      "prompt": "For n iid uniform(0,θ),θ>0,find E M and VarM for their maximum M.",
+      "prompt": "For n iid uniform(0, θ), θ>0, find E M and VarM for their maximum M.",
       "order": 106,
       "kind": "main"
     },
@@ -11616,19 +11579,19 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-107-M": {
       "id": "T25-107-M",
-      "prompt": "For n iid continuous observations with CDF F,derive P(X_(k)≤t). For n=5,k=3,F(t)=.5 compute it.",
+      "prompt": "For n iid continuous observations with CDF F, derive P(X_(k)≤t). For n=5, k=3, F(t)=.5 compute it.",
       "order": 107,
       "kind": "main"
     },
     "T25-107-T": {
       "id": "T25-107-T",
-      "prompt": "For four iid uniform(0,1),find P(X_(2)>.5) by an event-count argument.",
+      "prompt": "For four iid uniform(0, 1), find P(X_(2)>.5) by an event-count argument.",
       "order": 107,
       "kind": "transfer"
     },
     "T25-108-M": {
       "id": "T25-108-M",
-      "prompt": "Derive the density of X_(k) for iid continuous density f,CDF F. Specialize to uniform(0,1),and state endpoint cases.",
+      "prompt": "Derive the density of X_(k) for iid continuous density f, CDF F. Specialize to uniform(0, 1), and state endpoint cases.",
       "order": 108,
       "kind": "main"
     },
@@ -11640,31 +11603,31 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-109-M": {
       "id": "T25-109-M",
-      "prompt": "For n≥2 iid uniforms(0,1),derive the joint density of minimum U and maximum V and the density of range R=V−U.",
+      "prompt": "For n≥2 iid uniforms(0, 1), derive the joint density of minimum U and maximum V and the density of range R=V−U.",
       "order": 109,
       "kind": "main"
     },
     "T25-109-T": {
       "id": "T25-109-T",
-      "prompt": "For three iid uniforms,find the conditional law of the minimum given maximum v,using densities, and its conditional expectation.",
+      "prompt": "For three iid uniforms, find the conditional law of the minimum given maximum v, using densities, and its conditional expectation.",
       "order": 109,
       "kind": "transfer"
     },
     "T25-110-M": {
       "id": "T25-110-M",
-      "prompt": "For independent uniform(0,1) X1,X2,X3,let U=max(X1,X2),V=max(X2,X3). Derive joint CDF,probability U=V,and describe the off-diagonal density and diagonal mass.",
+      "prompt": "For independent uniform(0, 1) X1, X2, X3, let U=max(X1, X2), V=max(X2, X3). Derive joint CDF, probability U=V, and describe the off-diagonal density and diagonal mass.",
       "order": 110,
       "kind": "main"
     },
     "T25-110-T": {
       "id": "T25-110-T",
-      "prompt": "For the same construction with minima instead of maxima,find P(U=V) and diagonal measure. Is an ordinary joint density alone sufficient?",
+      "prompt": "For the same construction with minima instead of maxima, find P(U=V) and diagonal measure. Is an ordinary joint density alone sufficient?",
       "order": 110,
       "kind": "transfer"
     },
     "T25-111-M": {
       "id": "T25-111-M",
-      "prompt": "If X≥0,EX=3,derive P(X≥10)≤.3. If EY=2,VarY=4,derive a bound on P(|Y−2|≥5),stating every assumption.",
+      "prompt": "If X≥0, EX=3, derive P(X≥10)≤.3. If EY=2, VarY=4, derive a bound on P(|Y−2|≥5), stating every assumption.",
       "order": 111,
       "kind": "main"
     },
@@ -11676,337 +11639,337 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-112-M": {
       "id": "T25-112-M",
-      "prompt": "For iid meanμ,variance9,find an n ensuring P(|Xbar−μ|≥.5)≤.05 by Chebyshev. State whether the bound is exact.",
+      "prompt": "For iid meanμ, variance9, find an n ensuring P(|Xbar−μ|≥.5)≤.05 by Chebyshev. State whether the bound is exact.",
       "order": 112,
       "kind": "main"
     },
     "T25-112-T": {
       "id": "T25-112-T",
-      "prompt": "If Var Xbar=1/n+.2,what can Chebyshev guarantee about P(|Xbar−EXbar|≥1) as n grows? Can it certify a.05 bound?",
+      "prompt": "If Var Xbar=1/n+.2, what can Chebyshev guarantee about P(|Xbar−EXbar|≥1) as n grows? Can it certify a.05 bound?",
       "order": 112,
       "kind": "transfer"
     },
     "T25-113-M": {
       "id": "T25-113-M",
-      "prompt": "For iid Xi with meanμ and finite varianceσ²,prove Xbar→μ in probability. Then prove aXbar+b consistently estimates aμ+b for fixed a,b.",
+      "prompt": "For iid Xi with meanμ and finite varianceσ², prove Xbar→μ in probability. Then prove aXbar+b consistently estimates aμ+b for fixed a, b.",
       "order": 113,
       "kind": "main"
     },
     "T25-113-T": {
       "id": "T25-113-T",
-      "prompt": "For iid Bernoulli(p),prove the sample proportion consistently estimates p and derive a uniform-in-p Chebyshev bound.",
+      "prompt": "For iid Bernoulli(p), prove the sample proportion consistently estimates p and derive a uniform-in-p Chebyshev bound.",
       "order": 113,
       "kind": "transfer"
     },
     "T25-114-M": {
       "id": "T25-114-M",
-      "prompt": "Let iid Xi have meanμ,varianceσ² and Tn=Σ(i=1 to n)(Xi+X(i+1))/(2n). Prove consistency. Contrast Yn=μ+Z for a common fair sign Z.",
+      "prompt": "Let iid Xi have meanμ, varianceσ² and Tn=Σ(i=1 to n)(Xi+X(i+1))/(2n). Prove consistency. Contrast Yn=μ+Z for a common fair sign Z.",
       "order": 114,
       "kind": "main"
     },
     "T25-114-T": {
       "id": "T25-114-T",
-      "prompt": "Let En=n with probability1/n and0 otherwise. Determine convergence in probability to0,mean and variance. What does this show about moment-based refutations?",
+      "prompt": "Let En=n with probability1/n and0 otherwise. Determine convergence in probability to0, mean and variance. What does this show about moment-based refutations?",
       "order": 114,
       "kind": "transfer"
     },
     "T25-115-M": {
       "id": "T25-115-M",
-      "prompt": "For iid mean10,variance4,approximate P(Σ(i=1 to100)Xi>1020) by CLT and state assumptions and limitation.",
+      "prompt": "For iid mean10, variance4, approximate P(Σ(i=1 to100)Xi>1020) by CLT and state assumptions and limitation.",
       "order": 115,
       "kind": "main"
     },
     "T25-115-T": {
       "id": "T25-115-T",
-      "prompt": "Approximate P(X≥60) for X~Bin(100,.5),including continuity correction.",
+      "prompt": "Approximate P(X≥60) for X~Bin(100, .5), including continuity correction.",
       "order": 115,
       "kind": "transfer"
     },
     "T25-116-M": {
       "id": "T25-116-M",
-      "prompt": "Let iid Xi have meanμ,varianceσ²>0. Set Yi=X(2i−1)+X(2i). State a CLT for the average of m blocks and relate it to the original2m-observation average.",
+      "prompt": "Let iid Xi have meanμ, varianceσ²>0. Set Yi=X(2i−1)+X(2i). State a CLT for the average of m blocks and relate it to the original2m-observation average.",
       "order": 116,
       "kind": "main"
     },
     "T25-116-T": {
       "id": "T25-116-T",
-      "prompt": "For iid Bernoulli(p),0<p<1,justify √n(phat−p)/√[phat(1−phat)]⇒N(0,1). Address a zero denominator at finite n.",
+      "prompt": "For iid Bernoulli(p), 0<p<1, justify √n(phat−p)/√[phat(1−phat)]⇒N(0, 1). Address a zero denominator at finite n.",
       "order": 116,
       "kind": "transfer"
     },
     "T25-117-M": {
       "id": "T25-117-M",
-      "prompt": "For iid continuous F and k=ceil(np),express events X_(k)≤a and X_(k)>b using empirical counts. State the binomial parameters.",
+      "prompt": "For iid continuous F and k=ceil(np), express events X_(k)≤a and X_(k)>b using empirical counts. State the binomial parameters.",
       "order": 117,
       "kind": "main"
     },
     "T25-117-T": {
       "id": "T25-117-T",
-      "prompt": "Without continuity,express X_(k)<a and X_(k)≥a using a count and give its success probability.",
+      "prompt": "Without continuity, express X_(k)<a and X_(k)≥a using a count and give its success probability.",
       "order": 117,
       "kind": "transfer"
     },
     "T25-118-M": {
       "id": "T25-118-M",
-      "prompt": "Let k_n/n→p∈(0,1). Suppose for every ε>0,F(q−ε)<p<F(q+ε). Prove X_(k_n)→q in probability using WLLN on counts.",
+      "prompt": "Let k_n/n→p∈(0, 1). Suppose for every ε>0, F(q−ε)<p<F(q+ε). Prove X_(k_n)→q in probability using WLLN on counts.",
       "order": 118,
       "kind": "main"
     },
     "T25-118-T": {
       "id": "T25-118-T",
-      "prompt": "Let X be0 or2 with probability1/2 each. Can every point q∈[0,2] be a probability limit of the lower sample median X_(ceil(n/2))? Explain using q=1.",
+      "prompt": "Let X be0 or2 with probability1/2 each. Can every point q∈[0, 2] be a probability limit of the lower sample median X_(ceil(n/2))? Explain using q=1.",
       "order": 118,
       "kind": "transfer"
     },
     "T25-119-M": {
       "id": "T25-119-M",
-      "prompt": "For iid Xi with meanμ,varianceσ²,compare T=Xbar and U=cXbar as estimators of μ. Derive bias,variance,MSE for fixed real c.",
+      "prompt": "For iid Xi with meanμ, varianceσ², compare T=Xbar and U=cXbar as estimators of μ. Derive bias, variance, MSE for fixed real c.",
       "order": 119,
       "kind": "main"
     },
     "T25-119-T": {
       "id": "T25-119-T",
-      "prompt": "For the same assumptions,find bias of Xbar² for μ². Is its MSE determined by μ,σ²,n alone?",
+      "prompt": "For the same assumptions, find bias of Xbar² for μ². Is its MSE determined by μ, σ², n alone?",
       "order": 119,
       "kind": "transfer"
     },
     "T25-120-M": {
       "id": "T25-120-M",
-      "prompt": "For Xi iid N(μ,1),compare Xbar and Xbar/2 by MSE for μ. Find the exact parameter region where shrinkage improves risk.",
+      "prompt": "For Xi iid N(μ, 1), compare Xbar and Xbar/2 by MSE for μ. Find the exact parameter region where shrinkage improves risk.",
       "order": 120,
       "kind": "main"
     },
     "T25-120-T": {
       "id": "T25-120-T",
-      "prompt": "For iid Xi meanμ,varianceσ²,n≥2,let T=Xbar and U=X1. Find Cov(T,U) and Var(aT+(1−a)U);minimize over real a.",
+      "prompt": "For iid Xi meanμ, varianceσ², n≥2, let T=Xbar and U=X1. Find Cov(T, U) and Var(aT+(1−a)U); minimize over real a.",
       "order": 120,
       "kind": "transfer"
     },
     "T25-121-M": {
       "id": "T25-121-M",
-      "prompt": "For Xi iid uniform(0,θ),θ>0,derive the first-moment estimator and its bias/variance. Does it always exceed the sample maximum?",
+      "prompt": "For Xi iid uniform(0, θ), θ>0, derive the first-moment estimator and its bias/variance. Does it always exceed the sample maximum?",
       "order": 121,
       "kind": "main"
     },
     "T25-121-T": {
       "id": "T25-121-T",
-      "prompt": "For iid exponential rateλ>0,derive a first-moment estimator and explain whether solving moments proves unbiasedness.",
+      "prompt": "For iid exponential rateλ>0, derive a first-moment estimator and explain whether solving moments proves unbiasedness.",
       "order": 121,
       "kind": "transfer"
     },
     "T25-122-M": {
       "id": "T25-122-M",
-      "prompt": "For Gamma(shape α,rate λ),derive method-of-moments estimators from sample mean m>0 and empirical variance v>0. Handle v=0.",
+      "prompt": "For Gamma(shape α, rate λ), derive method-of-moments estimators from sample mean m>0 and empirical variance v>0. Handle v=0.",
       "order": 122,
       "kind": "main"
     },
     "T25-122-T": {
       "id": "T25-122-T",
-      "prompt": "For uniform(a,b),a<b,derive moment estimates from m and v>0. Does that construction automatically guarantee every observation falls between the fitted endpoints?",
+      "prompt": "For uniform(a, b), a<b, derive moment estimates from m and v>0. Does that construction automatically guarantee every observation falls between the fitted endpoints?",
       "order": 122,
       "kind": "transfer"
     },
     "T25-123-M": {
       "id": "T25-123-M",
-      "prompt": "For exact positive iid exponential observations with rateλ,derive its MLE and check the maximum. For iid uniform(0,θ) use density1/θ on[0,θ] and derive the MLE when sample maximum M>0.",
+      "prompt": "For exact positive iid exponential observations with rateλ, derive its MLE and check the maximum. For iid uniform(0, θ) use density1/θ on[0, θ] and derive the MLE when sample maximum M>0.",
       "order": 123,
       "kind": "main"
     },
     "T25-123-T": {
       "id": "T25-123-T",
-      "prompt": "Only integer floors Ki=floorXi of exponential(rateλ) data are recorded. Derive the likelihood and MLE,including all Ki=0.",
+      "prompt": "Only integer floors Ki=floorXi of exponential(rateλ) data are recorded. Derive the likelihood and MLE, including all Ki=0.",
       "order": 123,
       "kind": "transfer"
     },
     "T25-124-M": {
       "id": "T25-124-M",
-      "prompt": "Xi have density1 on[θ,θ+1],θ∈R. Characterize the full MLE set from observations with range≤1. What if the range exceeds1?",
+      "prompt": "Xi have density1 on[θ, θ+1], θ∈R. Characterize the full MLE set from observations with range≤1. What if the range exceeds1?",
       "order": 124,
       "kind": "main"
     },
     "T25-124-T": {
       "id": "T25-124-T",
-      "prompt": "For a single positive observation x from density1/θ on0<x<θ,θ>0,does an MLE exist? Contrast with the closed support convention0≤x≤θ.",
+      "prompt": "For a single positive observation x from density1/θ on0<x<θ, θ>0, does an MLE exist? Contrast with the closed support convention0≤x≤θ.",
       "order": 124,
       "kind": "transfer"
     },
     "T25-125-M": {
       "id": "T25-125-M",
-      "prompt": "From positive exponential(rateλ) data derive the MLE of the median and of Pλ(X>c),c>0.",
+      "prompt": "From positive exponential(rateλ) data derive the MLE of the median and of Pλ(X>c), c>0.",
       "order": 125,
       "kind": "main"
     },
     "T25-125-T": {
       "id": "T25-125-T",
-      "prompt": "For Bernoulli data with proportion phat,find MLEs of p² and p(1−p) overp∈[0,1]. Explain noninjectivity of the second map.",
+      "prompt": "For Bernoulli data with proportion phat, find MLEs of p² and p(1−p) overp∈[0, 1]. Explain noninjectivity of the second map.",
       "order": 125,
       "kind": "transfer"
     },
     "T25-126-M": {
       "id": "T25-126-M",
-      "prompt": "Independent Xi~N(μi,σ²) with knownσ² and constraintΣμi=0. For observed xi,find the MLE vector.",
+      "prompt": "Independent Xi~N(μi, σ²) with knownσ² and constraintΣμi=0. For observed xi, find the MLE vector.",
       "order": 126,
       "kind": "main"
     },
     "T25-126-T": {
       "id": "T25-126-T",
-      "prompt": "Independent X,Y~N(θ,1) withθ∈[0,1]. Find the constrained MLE for any observations x,y.",
+      "prompt": "Independent X, Y~N(θ, 1) withθ∈[0, 1]. Find the constrained MLE for any observations x, y.",
       "order": 126,
       "kind": "transfer"
     },
     "T25-127-M": {
       "id": "T25-127-M",
-      "prompt": "For iid uniform(0,θ),using closed support,prove the sample maximum sufficient. Is it valid to drop the support from the factorization?",
+      "prompt": "For iid uniform(0, θ), using closed support, prove the sample maximum sufficient. Is it valid to drop the support from the factorization?",
       "order": 127,
       "kind": "main"
     },
     "T25-127-T": {
       "id": "T25-127-T",
-      "prompt": "For iid Bernoulli(p),prove S=ΣXi sufficient and describe the conditional sample law given S=s for0<p<1.",
+      "prompt": "For iid Bernoulli(p), prove S=ΣXi sufficient and describe the conditional sample law given S=s for0<p<1.",
       "order": 127,
       "kind": "transfer"
     },
     "T25-128-M": {
       "id": "T25-128-M",
-      "prompt": "For two iid Exp(rateλ) observations,show sum S sufficient and determine whether maximum M alone is sufficient. Avoid using isolated zero-probability sample points as a conditional argument.",
+      "prompt": "For two iid Exp(rateλ) observations, show sum S sufficient and determine whether maximum M alone is sufficient. Avoid using isolated zero-probability sample points as a conditional argument.",
       "order": 128,
       "kind": "main"
     },
     "T25-128-T": {
       "id": "T25-128-T",
-      "prompt": "For a Bernoulli sample of size2,compare S,the one-to-one statistic3S+1,and parity S mod2 for sufficiency.",
+      "prompt": "For a Bernoulli sample of size2, compare S, the one-to-one statistic3S+1, and parity S mod2 for sufficiency.",
       "order": 128,
       "kind": "transfer"
     },
     "T25-129-M": {
       "id": "T25-129-M",
-      "prompt": "For iid Bernoulli(p),let U=X1 and S=ΣXi,n≥2. Compute E(U|S),show unbiasedness and compare variances.",
+      "prompt": "For iid Bernoulli(p), let U=X1 and S=ΣXi, n≥2. Compute E(U|S), show unbiasedness and compare variances.",
       "order": 129,
       "kind": "main"
     },
     "T25-129-T": {
       "id": "T25-129-T",
-      "prompt": "For iid Poisson(λ),estimate e^−λ by U=1{X1=0}. Find its conditional expectation given S=ΣXi and state why variance cannot increase.",
+      "prompt": "For iid Poisson(λ), estimate e^−λ by U=1{X1=0}. Find its conditional expectation given S=ΣXi and state why variance cannot increase.",
       "order": 129,
       "kind": "transfer"
     },
     "T25-130-M": {
       "id": "T25-130-M",
-      "prompt": "For iid Poisson(λ),λ>0,certify Xbar as UMVU using the supplied fact that S=ΣXi is complete sufficient. Separately derive Fisher information and certify attainment of the Cramér–Rao bound.",
+      "prompt": "For iid Poisson(λ), λ>0, certify Xbar as UMVU using the supplied fact that S=ΣXi is complete sufficient. Separately derive Fisher information and certify attainment of the Cramér–Rao bound.",
       "order": 130,
       "kind": "main"
     },
     "T25-130-T": {
       "id": "T25-130-T",
-      "prompt": "For iid Exp(rateλ),use scaleθ=1/λ>0. Given sum complete sufficient,certify Xbar forθ by both completeness and information. Do not infer one certificate from the other.",
+      "prompt": "For iid Exp(rateλ), use scaleθ=1/λ>0. Given sum complete sufficient, certify Xbar forθ by both completeness and information. Do not infer one certificate from the other.",
       "order": 130,
       "kind": "transfer"
     },
     "T25-131-M": {
       "id": "T25-131-M",
-      "prompt": "X~Bin(4,p). Reject H0:p=.5 for X≥3. Compute actual size,power atp=.75,and Type II error there.",
+      "prompt": "X~Bin(4, p). Reject H0:p=.5 for X≥3. Compute actual size, power atp=.75, and Type II error there.",
       "order": 131,
       "kind": "main"
     },
     "T25-131-T": {
       "id": "T25-131-T",
-      "prompt": "For X~N(μ,1),reject H0:μ≤0 ifX>1.645. Express size and power inΦ and locate the least favorable null.",
+      "prompt": "For X~N(μ, 1), reject H0:μ≤0 ifX>1.645. Express size and power inΦ and locate the least favorable null.",
       "order": 131,
       "kind": "transfer"
     },
     "T25-132-M": {
       "id": "T25-132-M",
-      "prompt": "For X~Bin(4,.5),observedX=3,find the upper-tail p-value. If five tests each have size≤.01,what familywise bound follows without independence?",
+      "prompt": "For X~Bin(4, .5), observedX=3, find the upper-tail p-value. If five tests each have size≤.01, what familywise bound follows without independence?",
       "order": 132,
       "kind": "main"
     },
     "T25-132-T": {
       "id": "T25-132-T",
-      "prompt": "For a two-sided standard-normal test observedz=−2,express the p-value. Explain why selecting the direction after looking at the sign and reporting a one-sided tail miscalibrates the original two-sided question.",
+      "prompt": "For a two-sided standard-normal test observedz=−2, express the p-value. Explain why selecting the direction after looking at the sign and reporting a one-sided tail miscalibrates the original two-sided question.",
       "order": 132,
       "kind": "transfer"
     },
     "T25-133-M": {
       "id": "T25-133-M",
-      "prompt": "For X~Bin(n,p),compare simple H0:p=p0 and H1:p=p1 with0<p0<p1<1. Derive the likelihood ratio ordering.",
+      "prompt": "For X~Bin(n, p), compare simple H0:p=p0 and H1:p=p1 with0<p0<p1<1. Derive the likelihood ratio ordering.",
       "order": 133,
       "kind": "main"
     },
     "T25-133-T": {
       "id": "T25-133-T",
-      "prompt": "For one Exp(rateλ) observation,compare H0:λ=1,H1:λ=2. Which tail is most powerful and why?",
+      "prompt": "For one Exp(rateλ) observation, compare H0:λ=1, H1:λ=2. Which tail is most powerful and why?",
       "order": 133,
       "kind": "transfer"
     },
     "T25-134-M": {
       "id": "T25-134-M",
-      "prompt": "On outcomes0,1,2,null masses(1/2,1/3,1/6),alternative masses(1/6,1/3,1/2). Construct the most powerful test of size1/4 and compute power.",
+      "prompt": "On outcomes0, 1, 2, null masses(1/2, 1/3, 1/6), alternative masses(1/6, 1/3, 1/2). Construct the most powerful test of size1/4 and compute power.",
       "order": 134,
       "kind": "main"
     },
     "T25-134-T": {
       "id": "T25-134-T",
-      "prompt": "For X~Bernoulli(p),testp=.2 againstp=.8 at exact size.1. Give the MP rule and power.",
+      "prompt": "For X~Bernoulli(p), testp=.2 againstp=.8 at exact size.1. Give the MP rule and power.",
       "order": 134,
       "kind": "transfer"
     },
     "T25-135-M": {
       "id": "T25-135-M",
-      "prompt": "For iid normal data with unknownμ,σ²,n≥2,derive a two-sided levelα test of μ=μ0 and a two-sided test ofσ²=σ0². Use lower-tail quantiles qν(p).",
+      "prompt": "For iid normal data with unknownμ, σ², n≥2, derive a two-sided levelα test of μ=μ0 and a two-sided test ofσ²=σ0². Use lower-tail quantiles qν(p).",
       "order": 135,
       "kind": "main"
     },
     "T25-135-T": {
       "id": "T25-135-T",
-      "prompt": "For normal Xi with knownσ²,derive a one-sided levelα test μ≤μ0 versusμ>μ0. Why is substituting an arbitrary variance estimate into the z cutoff not automatically exact?",
+      "prompt": "For normal Xi with knownσ², derive a one-sided levelα test μ≤μ0 versusμ>μ0. Why is substituting an arbitrary variance estimate into the z cutoff not automatically exact?",
       "order": 135,
       "kind": "transfer"
     },
     "T25-136-M": {
       "id": "T25-136-M",
-      "prompt": "For independent normal groups of sizes n1,n2 with common unknown variance,derive the pooled t test for equal means and prove the two-group ANOVA F equals t².",
+      "prompt": "For independent normal groups of sizes n1, n2 with common unknown variance, derive the pooled t test for equal means and prove the two-group ANOVA F equals t².",
       "order": 136,
       "kind": "main"
     },
     "T25-136-T": {
       "id": "T25-136-T",
-      "prompt": "Independent normal samples have known variances4 and9,sizes16 and25. Give the exact test statistic for equal means and explain why the pooled equal-variance t argument is inapplicable.",
+      "prompt": "Independent normal samples have known variances4 and9, sizes16 and25. Give the exact test statistic for equal means and explain why the pooled equal-variance t argument is inapplicable.",
       "order": 136,
       "kind": "transfer"
     },
     "T25-137-M": {
       "id": "T25-137-M",
-      "prompt": "From iid normal data derive an equal-tailed1−α confidence interval forσ² using lower-tail χ²ν quantiles,ν=n−1. Explain the reversal.",
+      "prompt": "From iid normal data derive an equal-tailed1−α confidence interval forσ² using lower-tail χ²ν quantiles, ν=n−1. Explain the reversal.",
       "order": 137,
       "kind": "main"
     },
     "T25-137-T": {
       "id": "T25-137-T",
-      "prompt": "For iid Exp(rateλ),use2λΣXi~χ²(2n) to derive an exact1−α equal-tail interval forλ.",
+      "prompt": "For iid Exp(rateλ), use2λΣXi~χ²(2n) to derive an exact1−α equal-tail interval forλ.",
       "order": 137,
       "kind": "transfer"
     },
     "T25-138-M": {
       "id": "T25-138-M",
-      "prompt": "For iid normal sample size n≥2,derive a1−α interval forμ and a prediction interval for an independent future observation Xnew.",
+      "prompt": "For iid normal sample size n≥2, derive a1−α interval forμ and a prediction interval for an independent future observation Xnew.",
       "order": 138,
       "kind": "main"
     },
     "T25-138-T": {
       "id": "T25-138-T",
-      "prompt": "For iid uniform(0,θ),maximumM,derive an exact one-sided1−α upper confidence bound forθ. State its coverage event.",
+      "prompt": "For iid uniform(0, θ), maximumM, derive an exact one-sided1−α upper confidence bound forθ. State its coverage event.",
       "order": 138,
       "kind": "transfer"
     },
     "T25-139-M": {
       "id": "T25-139-M",
-      "prompt": "For Bernoulli data with0<p<1,derive the usual Wald1−α interval and explain its approximation and range issue.",
+      "prompt": "For Bernoulli data with0<p<1, derive the usual Wald1−α interval and explain its approximation and range issue.",
       "order": 139,
       "kind": "main"
     },
     "T25-139-T": {
       "id": "T25-139-T",
-      "prompt": "For iid finite-variance data withσ²>0 and consistent sample variance,derive an asymptotic test of μ=μ0 and contrast it with exact normal-theory t inference.",
+      "prompt": "For iid finite-variance data withσ²>0 and consistent sample variance, derive an asymptotic test of μ=μ0 and contrast it with exact normal-theory t inference.",
       "order": 139,
       "kind": "transfer"
     },
@@ -12018,61 +11981,61 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-140-T": {
       "id": "T25-140-T",
-      "prompt": "If iid observations have Cauchy locationθ,may the finite-variance CLT justify a standard sample-mean z interval? Explain without assuming a mean exists.",
+      "prompt": "If iid observations have Cauchy locationθ, may the finite-variance CLT justify a standard sample-mean z interval? Explain without assuming a mean exists.",
       "order": 140,
       "kind": "transfer"
     },
     "T25-141-M": {
       "id": "T25-141-M",
-      "prompt": "For iid continuous observations under a null median m0 withP(X>m0)=P(X<m0)=1/2,derive the law of the number above m0. What should be checked before dropping zeros in rounded data?",
+      "prompt": "For iid continuous observations under a null median m0 withP(X>m0)=P(X<m0)=1/2, derive the law of the number above m0. What should be checked before dropping zeros in rounded data?",
       "order": 141,
       "kind": "main"
     },
     "T25-141-T": {
       "id": "T25-141-T",
-      "prompt": "Differences are−2,0,3,1,−1,4. Under a null model granting independent balanced nonzero signs,drop zeros,find effective n and the upper-tail p-value.",
+      "prompt": "Differences are−2, 0, 3, 1, −1, 4. Under a null model granting independent balanced nonzero signs, drop zeros, find effective n and the upper-tail p-value.",
       "order": 141,
       "kind": "transfer"
     },
     "T25-142-M": {
       "id": "T25-142-M",
-      "prompt": "For six independent balanced signs,consider a two-sided rule rejecting if all signs agree. Find exact size and its power when positive probability is.3.",
+      "prompt": "For six independent balanced signs, consider a two-sided rule rejecting if all signs agree. Find exact size and its power when positive probability is.3.",
       "order": 142,
       "kind": "main"
     },
     "T25-142-T": {
       "id": "T25-142-T",
-      "prompt": "For n=5 signs,construct an upper-tail nonrandomized test with size≤.05 and explain why adding the next integer count violates that level.",
+      "prompt": "For n=5 signs, construct an upper-tail nonrandomized test with size≤.05 and explain why adding the next integer count violates that level.",
       "order": 142,
       "kind": "transfer"
     },
     "T25-143-M": {
       "id": "T25-143-M",
-      "prompt": "Fit y=a+bx to(0,1),(1,2),(2,2) by deriving normal equations. Give fitted coefficients and residuals.",
+      "prompt": "Fit y=a+bx to(0, 1), (1, 2), (2, 2) by deriving normal equations. Give fitted coefficients and residuals.",
       "order": 143,
       "kind": "main"
     },
     "T25-143-T": {
       "id": "T25-143-T",
-      "prompt": "Fit y=bx through the origin to the same data. Find b,residuals,and check whether their sum must vanish.",
+      "prompt": "Fit y=bx through the origin to the same data. Find b, residuals, and check whether their sum must vanish.",
       "order": 143,
       "kind": "transfer"
     },
     "T25-144-M": {
       "id": "T25-144-M",
-      "prompt": "In full-rank least squares with an intercept and a group indicator D,prove the residual sum in each of the two groups is zero,even if other predictors are present.",
+      "prompt": "In full-rank least squares with an intercept and a group indicator D, prove the residual sum in each of the two groups is zero, even if other predictors are present.",
       "order": 144,
       "kind": "main"
     },
     "T25-144-T": {
       "id": "T25-144-T",
-      "prompt": "In a simple regression with intercept,replace every response yi by yi+c. Determine changes in intercept,slope,fitted values and residuals.",
+      "prompt": "In a simple regression with intercept, replace every response yi by yi+c. Determine changes in intercept, slope, fitted values and residuals.",
       "order": 144,
       "kind": "transfer"
     },
     "T25-145-M": {
       "id": "T25-145-M",
-      "prompt": "For simple regression with intercept and fixed nonconstant x,derive Var(bhat),Var(ahat),Cov(ahat,bhat) under mean-zero independent varianceσ² errors.",
+      "prompt": "For simple regression with intercept and fixed nonconstant x, derive Var(bhat), Var(ahat), Cov(ahat, bhat) under mean-zero independent varianceσ² errors.",
       "order": 145,
       "kind": "main"
     },
@@ -12084,43 +12047,43 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-146-M": {
       "id": "T25-146-M",
-      "prompt": "In yi=α+β+εi,which linear combinations c1α+c2β are identifiable? Construct an unbiased estimator of every identifiable combination.",
+      "prompt": "In yi=α+β+εi, which linear combinations c1α+c2β are identifiable? Construct an unbiased estimator of every identifiable combination.",
       "order": 146,
       "kind": "main"
     },
     "T25-146-T": {
       "id": "T25-146-T",
-      "prompt": "Let design columns be x and2x,with x nonzero. Identify the estimable coefficient combination and proveβ1 alone is not identifiable.",
+      "prompt": "Let design columns be x and2x, with x nonzero. Identify the estimable coefficient combination and proveβ1 alone is not identifiable.",
       "order": 146,
       "kind": "transfer"
     },
     "T25-147-M": {
       "id": "T25-147-M",
-      "prompt": "For y=Xβ+ε,ε~N(0,σ²I),rankX=p<n,derive the t statistic for H0:c^Tβ=d and its degrees of freedom.",
+      "prompt": "For y=Xβ+ε, ε~N(0, σ²I), rankX=p<n, derive the t statistic for H0:c^Tβ=d and its degrees of freedom.",
       "order": 147,
       "kind": "main"
     },
     "T25-147-T": {
       "id": "T25-147-T",
-      "prompt": "A reduced model rank2 and nested full model rank4 fit n=20 observations with SSEr=50,SSEf=30. Compute the exact-model F statistic and degrees of freedom.",
+      "prompt": "A reduced model rank2 and nested full model rank4 fit n=20 observations with SSEr=50, SSEf=30. Compute the exact-model F statistic and degrees of freedom.",
       "order": 147,
       "kind": "transfer"
     },
     "T25-148-M": {
       "id": "T25-148-M",
-      "prompt": "For simple normal regression with intercept,derive intervals at x0 for the mean response and a new independent response,using n>2.",
+      "prompt": "For simple normal regression with intercept, derive intervals at x0 for the mean response and a new independent response, using n>2.",
       "order": 148,
       "kind": "main"
     },
     "T25-148-T": {
       "id": "T25-148-T",
-      "prompt": "For n=10,x0=xbar,s=2,compare the two standard errors numerically and explain why the prediction interval remains wide as n grows.",
+      "prompt": "For n=10, x0=xbar, s=2, compare the two standard errors numerically and explain why the prediction interval remains wide as n grows.",
       "order": 148,
       "kind": "transfer"
     },
     "T25-149-M": {
       "id": "T25-149-M",
-      "prompt": "For population1,2,4,5,sample size2,find population mean,S² with denominatorN−1,and variance of sample mean under SRSWR and SRSWOR. Give total-estimator variances.",
+      "prompt": "For population1, 2, 4, 5, sample size2, find population mean, S² with denominatorN−1, and variance of sample mean under SRSWR and SRSWOR. Give total-estimator variances.",
       "order": 149,
       "kind": "main"
     },
@@ -12138,61 +12101,61 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-150-T": {
       "id": "T25-150-T",
-      "prompt": "From{1,2,3,4},choose uniformly one of{1,2},{2,3},{3,4},{4,1}. Compute inclusion probabilities and decide whether this is SRSWOR of size2.",
+      "prompt": "From{1, 2, 3, 4}, choose uniformly one of{1, 2}, {2, 3}, {3, 4}, {4, 1}. Compute inclusion probabilities and decide whether this is SRSWOR of size2.",
       "order": 150,
       "kind": "transfer"
     },
     "T25-151-M": {
       "id": "T25-151-M",
-      "prompt": "Strata sizes40,60 have sample sizes4,6,means10,20 and known finite-population S² values4,9 (denominator Nh−1). Under independent SRSWOR find estimated mean,total,and design variances.",
+      "prompt": "Strata sizes40, 60 have sample sizes4, 6, means10, 20 and known finite-population S² values4, 9 (denominator Nh−1). Under independent SRSWOR find estimated mean, total, and design variances.",
       "order": 151,
       "kind": "main"
     },
     "T25-151-T": {
       "id": "T25-151-T",
-      "prompt": "Explain why unweighted averaging of the two stratum sample means is biased for the population mean when the population weights differ. Give the expectation discrepancy forμ1=10,μ2=20 andweights.4,.6.",
+      "prompt": "Explain why unweighted averaging of the two stratum sample means is biased for the population mean when the population weights differ. Give the expectation discrepancy forμ1=10, μ2=20 andweights.4, .6.",
       "order": 151,
       "kind": "transfer"
     },
     "T25-152-M": {
       "id": "T25-152-M",
-      "prompt": "Two strata have sizes100,200 and standard deviations2,1. For fixed total sample30 derive the variance-minimizing continuous allocation and check feasibility.",
+      "prompt": "Two strata have sizes100, 200 and standard deviations2, 1. For fixed total sample30 derive the variance-minimizing continuous allocation and check feasibility.",
       "order": 152,
       "kind": "main"
     },
     "T25-152-T": {
       "id": "T25-152-T",
-      "prompt": "For the same strata,costs1,4 per observation,budget60,derive the continuous optimal allocation. Explain what to do if a continuous result exceeds a stratum size.",
+      "prompt": "For the same strata, costs1, 4 per observation, budget60, derive the continuous optimal allocation. Explain what to do if a continuous result exceeds a stratum size.",
       "order": 152,
       "kind": "transfer"
     },
     "T25-153-M": {
       "id": "T25-153-M",
-      "prompt": "For the four cyclic pairs on{1,2,3,4} chosen uniformly,find πi,πij for adjacent and opposite pairs,and indicator covariances.",
+      "prompt": "For the four cyclic pairs on{1, 2, 3, 4} chosen uniformly, find πi, πij for adjacent and opposite pairs, and indicator covariances.",
       "order": 153,
       "kind": "main"
     },
     "T25-153-T": {
       "id": "T25-153-T",
-      "prompt": "Draw twice independently and uniformly from N≥2 labels,then retain unique labels. Find probability a specified label is included and that two specified distinct labels are both included.",
+      "prompt": "Draw twice independently and uniformly from N≥2 labels, then retain unique labels. Find probability a specified label is included and that two specified distinct labels are both included.",
       "order": 153,
       "kind": "transfer"
     },
     "T25-154-M": {
       "id": "T25-154-M",
-      "prompt": "Under the four cyclic-pair design,population values are1,2,4,8. Compute the inverse-inclusion total estimate for each possible sample and verify unbiasedness by enumeration.",
+      "prompt": "Under the four cyclic-pair design, population values are1, 2, 4, 8. Compute the inverse-inclusion total estimate for each possible sample and verify unbiasedness by enumeration.",
       "order": 154,
       "kind": "main"
     },
     "T25-154-T": {
       "id": "T25-154-T",
-      "prompt": "For any finite-population design withπi>0,prove Σ(sample)yi/πi unbiased for total and derive the corresponding mean estimator. What if one unit hasπi=0?",
+      "prompt": "For any finite-population design withπi>0, prove Σ(sample)yi/πi unbiased for total and derive the corresponding mean estimator. What if one unit hasπi=0?",
       "order": 154,
       "kind": "transfer"
     },
     "T25-155-M": {
       "id": "T25-155-M",
-      "prompt": "Two treatment groups have observations(1,2,3) and(3,4,5). Give the CRD model and compute grand mean,betweenSS,withinSS,totalSS and all degrees of freedom.",
+      "prompt": "Two treatment groups have observations(1, 2, 3) and(3, 4, 5). Give the CRD model and compute grand mean, betweenSS, withinSS, totalSS and all degrees of freedom.",
       "order": 155,
       "kind": "main"
     },
@@ -12204,13 +12167,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-156-M": {
       "id": "T25-156-M",
-      "prompt": "For the two groups(1,2,3),(3,4,5),assuming independent normal common-variance errors,compute the treatment F and a t statistic for the mean difference.",
+      "prompt": "For the two groups(1, 2, 3), (3, 4, 5), assuming independent normal common-variance errors, compute the treatment F and a t statistic for the mean difference.",
       "order": 156,
       "kind": "main"
     },
     "T25-156-T": {
       "id": "T25-156-T",
-      "prompt": "For three groups of sizes4,5,6 and residualSSE30,construct a test statistic for contrastL=μ1−2μ2+μ3 using estimatedL=3. State degrees of freedom.",
+      "prompt": "For three groups of sizes4, 5, 6 and residualSSE30, construct a test statistic for contrastL=μ1−2μ2+μ3 using estimatedL=3. State degrees of freedom.",
       "order": 156,
       "kind": "transfer"
     },
@@ -12228,31 +12191,31 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-158-M": {
       "id": "T25-158-M",
-      "prompt": "Three blocks,each with two treatments,have rows(1,3),(2,5),(4,6). Compute the RBD ANOVA sums,df,MSE and treatmentF under the additive normal model.",
+      "prompt": "Three blocks, each with two treatments, have rows(1, 3), (2, 5), (4, 6). Compute the RBD ANOVA sums, df, MSE and treatmentF under the additive normal model.",
       "order": 158,
       "kind": "main"
     },
     "T25-158-T": {
       "id": "T25-158-T",
-      "prompt": "For4 treatments and5 blocks,SST100,SStr30,SSblock50. Complete the table and explain what residualSS contains if interaction exists.",
+      "prompt": "For4 treatments and5 blocks, SST100, SStr30, SSblock50. Complete the table and explain what residualSS contains if interaction exists.",
       "order": 158,
       "kind": "transfer"
     },
     "T25-159-M": {
       "id": "T25-159-M",
-      "prompt": "Construct a3×3 Latin square with treatmentsA,B,C. State the additive statistical model and a valid randomization procedure.",
+      "prompt": "Construct a3×3 Latin square with treatmentsA, B, C. State the additive statistical model and a valid randomization procedure.",
       "order": 159,
       "kind": "main"
     },
     "T25-159-T": {
       "id": "T25-159-T",
-      "prompt": "Is the array rowsAAB,BCC,CBA a Latin square? Diagnose it and explain why a visually balanced total treatment count is insufficient.",
+      "prompt": "Is the array rowsAAB, BCC, CBA a Latin square? Diagnose it and explain why a visually balanced total treatment count is insufficient.",
       "order": 159,
       "kind": "transfer"
     },
     "T25-160-M": {
       "id": "T25-160-M",
-      "prompt": "For a4×4 Latin square,SST120,SSrow20,SScolumn25,SStreatment45. Complete ANOVA and compute treatmentF with all assumptions.",
+      "prompt": "For a4×4 Latin square, SST120, SSrow20, SScolumn25, SStreatment45. Complete ANOVA and compute treatmentF with all assumptions.",
       "order": 160,
       "kind": "main"
     },
@@ -12264,25 +12227,25 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "T25-161-M": {
       "id": "T25-161-M",
-      "prompt": "Cell means in order(--),(+-),(-+),(++) are1,3,5,11. Find grand mean,A,B,AB effects and coefficients inμ=β0+βA a+βB b+βAB ab.",
+      "prompt": "Cell means in order(--), (+-), (-+), (++) are1, 3, 5, 11. Find grand mean, A, B, AB effects and coefficients inμ=β0+βA a+βB b+βAB ab.",
       "order": 161,
       "kind": "main"
     },
     "T25-161-T": {
       "id": "T25-161-T",
-      "prompt": "If cell means are2,4,5,7 in that order,compute interaction and explain its meaning as a difference of simple effects.",
+      "prompt": "If cell means are2, 4, 5, 7 in that order, compute interaction and explain its meaning as a difference of simple effects.",
       "order": 161,
       "kind": "transfer"
     },
     "T25-162-M": {
       "id": "T25-162-M",
-      "prompt": "A replicated2² factorial has r=3 observations per cell,SSA24,SSB6,SSAB3,SSE16. Complete ANOVA,Fstatistics and df under the normal equalvariance model.",
+      "prompt": "A replicated2² factorial has r=3 observations per cell, SSA24, SSB6, SSAB3, SSE16. Complete ANOVA, Fstatistics and df under the normal equalvariance model.",
       "order": 162,
       "kind": "main"
     },
     "T25-162-T": {
       "id": "T25-162-T",
-      "prompt": "In an unreplicated2³ factorial,how many total and pure-error df exist? What changes if the three-factor interaction is pooled as error?",
+      "prompt": "In an unreplicated2³ factorial, how many total and pure-error df exist? What changes if the three-factor interaction is pooled as error?",
       "order": 162,
       "kind": "transfer"
     },
@@ -12300,7 +12263,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "BR-I-3": {
       "id": "BR-I-3",
-      "prompt": "An argument verifies a claim for n=1,2,3 and declares it true for all positive integers. Explain the gap and exhibit a polynomial vanishing at those three integers but not4.",
+      "prompt": "An argument verifies a claim for n=1, 2, 3 and declares it true for all positive integers. Explain the gap and exhibit a polynomial vanishing at those three integers but not4.",
       "kind": "bridge",
       "bridge": "BR-I"
     },
@@ -12318,13 +12281,13 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "BR-N-3": {
       "id": "BR-N-3",
-      "prompt": "How many strings of three decimal digits,allowing leading zero,have digit sum divisible by3? Justify.",
+      "prompt": "How many strings of three decimal digits, allowing leading zero, have digit sum divisible by3? Justify.",
       "kind": "bridge",
       "bridge": "BR-N"
     },
     "BR-M-1": {
       "id": "BR-M-1",
-      "prompt": "For h(x,y)=x²y+3y² compute both partial derivatives.",
+      "prompt": "For h(x, y)=x²y+3y² compute both partial derivatives.",
       "kind": "bridge",
       "bridge": "BR-M"
     },
@@ -12336,19 +12299,19 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "BR-M-3": {
       "id": "BR-M-3",
-      "prompt": "For x=uv,y=u(1−v),compute the Jacobian determinant with respect to(u,v) and its absolute value whenu>0.",
+      "prompt": "For x=uv, y=u(1−v), compute the Jacobian determinant with respect to(u, v) and its absolute value whenu>0.",
       "kind": "bridge",
       "bridge": "BR-M"
     },
     "CAP-1": {
       "id": "CAP-1",
-      "prompt": "For fixed real a,solve (x²−a²)/(x−a)=2x over the original real domain. Justify every transformation. Then negate “for every a there exists a legal solution”.",
+      "prompt": "For fixed real a, solve (x²−a²)/(x−a)=2x over the original real domain. Justify every transformation. Then negate “for every a there exists a legal solution”.",
       "kind": "synthesis",
       "phase": 1
     },
     "CAP-2": {
       "id": "CAP-2",
-      "prompt": "Two fair dice are rolled. Let I indicate that the first die is even,J that the sum is even,and S=I+J. Derive the joint law of(I,J),ES,VarS andP(I=1|S=1).",
+      "prompt": "Two fair dice are rolled. Let I indicate that the first die is even, J that the sum is even, and S=I+J. Derive the joint law of(I, J), ES, VarS andP(I=1|S=1).",
       "kind": "synthesis",
       "phase": 2
     },
@@ -12360,31 +12323,31 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "CAP-4": {
       "id": "CAP-4",
-      "prompt": "Choose Θ uniformly on(0,1),then conditional onΘ draw independent Bernoulli(Θ) X,Y. Find the joint law,EX,VarX,Cov(X,Y),and conditional probabilityP(X=1|Y=1).",
+      "prompt": "Choose Θ uniformly on(0, 1), then conditional onΘ draw independent Bernoulli(Θ) X, Y. Find the joint law, EX, VarX, Cov(X, Y), and conditional probabilityP(X=1|Y=1).",
       "kind": "synthesis",
       "phase": 4
     },
     "CAP-5": {
       "id": "CAP-5",
-      "prompt": "For iid uniform(0,θ),maximum Mn,derive its law and proveMn→θ in probability. Find the limit law of n(1−Mn/θ) through its survival function.",
+      "prompt": "For iid uniform(0, θ), maximum Mn, derive its law and proveMn→θ in probability. Find the limit law of n(1−Mn/θ) through its survival function.",
       "kind": "synthesis",
       "phase": 5
     },
     "CAP-6": {
       "id": "CAP-6",
-      "prompt": "For iid uniform(0,θ) under closed support,derive MLE,an unbiased estimator based on the maximum,and a one-sided1−α upper confidence bound. Explain why these are distinct objects.",
+      "prompt": "For iid uniform(0, θ) under closed support, derive MLE, an unbiased estimator based on the maximum, and a one-sided1−α upper confidence bound. Explain why these are distinct objects.",
       "kind": "synthesis",
       "phase": 6
     },
     "CAP-7": {
       "id": "CAP-7",
-      "prompt": "Two randomized normal equal-variance groups have n1=n2=5,means2,4,and sample variances1,3. Derive the pooled mean-difference test,both ANOVA sums and the identityF=t². State why observational grouping would change the causal interpretation.",
+      "prompt": "Two randomized normal equal-variance groups have n1=n2=5, means2, 4, and sample variances1, 3. Derive the pooled mean-difference test, both ANOVA sums and the identityF=t². State why observational grouping would change the causal interpretation.",
       "kind": "synthesis",
       "phase": 7
     },
     "OBJ-01": {
       "id": "OBJ-01",
-      "prompt": "For f(x)=(x²−1)/(x−1) on its natural real domain,which statement is correct?",
+      "prompt": "For f(x)=(x²−1)/(x−1) on its natural real domain, which statement is correct?",
       "kind": "objective",
       "phase": 1,
       "options": [
@@ -12420,7 +12383,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-04": {
       "id": "OBJ-04",
-      "prompt": "Two events of probabilities.4,.5 are independent. Their intersection probability is:",
+      "prompt": "Two events of probabilities.4, .5 are independent. Their intersection probability is:",
       "kind": "objective",
       "phase": 2,
       "options": [
@@ -12432,7 +12395,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-05": {
       "id": "OBJ-05",
-      "prompt": "X,Y have variance1 each andcovariance−.5. Var(X+Y) equals:",
+      "prompt": "X, Y have variance1 each andcovariance−.5. Var(X+Y) equals:",
       "kind": "objective",
       "phase": 2,
       "options": [
@@ -12444,7 +12407,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-06": {
       "id": "OBJ-06",
-      "prompt": "For iid data with finitevarianceσ²,Σ(Xi−Xbar)²/n has expectation:",
+      "prompt": "For iid data with finite varianceσ², Σ(Xi−Xbar)²/n has expectation:",
       "kind": "objective",
       "phase": 2,
       "options": [
@@ -12480,7 +12443,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-09": {
       "id": "OBJ-09",
-      "prompt": "If f is differentiable at a,which is guaranteed?",
+      "prompt": "If f is differentiable at a, which is guaranteed?",
       "kind": "objective",
       "phase": 3,
       "options": [
@@ -12492,7 +12455,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-10": {
       "id": "OBJ-10",
-      "prompt": "For standard CauchyX,E|X|^p is finite exactly when:",
+      "prompt": "For standard CauchyX, E|X|^p is finite exactly when:",
       "kind": "objective",
       "phase": 4,
       "options": [
@@ -12504,7 +12467,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-11": {
       "id": "OBJ-11",
-      "prompt": "If E(X|Y)=Y andVar(X|Y)=2,withVarY=3,thenVarX is:",
+      "prompt": "If E(X|Y)=Y andVar(X|Y)=2, withVarY=3, thenVarX is:",
       "kind": "objective",
       "phase": 4,
       "options": [
@@ -12516,11 +12479,11 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-12": {
       "id": "OBJ-12",
-      "prompt": "For independent Exp1 X,Y,X/(X+Y) is:",
+      "prompt": "For independent Exp1 X, Y, X/(X+Y) is:",
       "kind": "objective",
       "phase": 4,
       "options": [
-        "Uniform(0,1)",
+        "Uniform(0, 1)",
         "Exponential",
         "Normal",
         "A point mass"
@@ -12552,14 +12515,14 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-15": {
       "id": "OBJ-15",
-      "prompt": "For iid normaldata,√n(Xbar−μ)/S has:",
+      "prompt": "For iid normaldata, √n(Xbar−μ)/S has:",
       "kind": "objective",
       "phase": 5,
       "options": [
         "Normal law exactly",
         "t withn df",
         "t withn−1 df",
-        "F with1,n df"
+        "F with1, n df"
       ]
     },
     "OBJ-16": {
@@ -12594,7 +12557,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
       "options": [
         "An exact95% interval",
         "Degenerate at0",
-        "Equal[0,1]",
+        "Equal[0, 1]",
         "Independent of the data"
       ]
     },
@@ -12624,7 +12587,7 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
     },
     "OBJ-21": {
       "id": "OBJ-21",
-      "prompt": "Under matching two-group normal equalvariance assumptions,ANOVA F equals:",
+      "prompt": "Under matching two-group normal equalvariance assumptions, ANOVA F equals:",
       "kind": "objective",
       "phase": 7,
       "options": [
@@ -12952,91 +12915,119 @@ atistic is almost a standard CLT form except for independent grouping or a nuisa
       "title": "The charter of Aster",
       "place": "Aster, a city built across the decks of a vast skyship",
       "incident": "The old charter has been challenged. Two guilds claim the right to name the expedition that will leave the city at dawn. The council has agreed to accept an independent mathematical record before choosing its next public action.",
-      "role": "You hold the expedition seal. Your completed mathematical record will become evidence in the council archive; the council, not a calculation about physics, decides the fictional charter dispute.",
-      "cast": "Nara wants the expedition open to outsiders. Kei wants its promises recorded before anyone departs. Neither supplies a mathematical judgment.",
+      "role": "You hold the expedition seal. Your completed record will enter the charter hearing and earn your delegation the right to speak.",
+      "cast": "Nara arrives with a travel-worn banner. “An expedition should belong to the people brave enough to join it.” Kei places an unsigned charter beside it. “Then let them hear what they are being promised.” The chamber doors open for your submission.",
       "choice": [
         "Hold the public hearing on the open deck",
         "Hold it in the lantern-lit archive"
       ],
-      "closure": "The accepted records enter the charter hearing. Aster authorizes the expedition, and the departure bell sounds."
+      "closure": "The accepted records enter the charter hearing. Aster authorizes the expedition, and the departure bell sounds.",
+      "choiceOutcomes": [
+        "The hearing moves to the open deck. Islanders gather along the rail as Nara raises the expedition banner.",
+        "Kei lights the archive lamps. The delegates take their places around the charter table."
+      ]
     },
     {
       "phase": 2,
       "title": "The fleet of unanswered letters",
       "place": "the harbor district beneath Aster’s engine towers",
       "incident": "A courier fleet has returned carrying petitions from islands that have not spoken to one another in years. The captains disagree over how the expedition should represent their requests. A public contest of independently justified investigations will establish the record used by the hearing.",
-      "role": "You are the expedition’s investigator. A certified submission earns the right to put the next petition before the assembly; it does not certify a vessel or predict a real voyage.",
-      "cast": "Sora, a courier, wants the smallest islands heard. Ren, a captain, wants every promise to have a named witness.",
+      "role": "You are the expedition’s investigator. A certified submission earns the right to put the islands’ next petition before the assembly.",
+      "cast": "Sora lays a bundle of weathered letters on the captain’s table. “The smallest islands sent these first.” Ren unrolls the assembly register. “Then someone must stand beside their promises.” Across the harbor, the waiting fleet lights its lamps.",
       "choice": [
         "Invite Sora to introduce the petitions",
         "Invite Ren to introduce the petitions"
       ],
-      "closure": "The petitions are entered into the public record. The fleet raises its banners and joins the expedition."
+      "closure": "The petitions are entered into the public record. The fleet raises its banners and joins the expedition.",
+      "choiceOutcomes": [
+        "Sora steps forward and reads the smallest island’s petition first.",
+        "Ren introduces the petitions and names a witness for each promise."
+      ]
     },
     {
       "phase": 3,
       "title": "The observatory above the storm",
       "place": "an abandoned observatory tethered above the cloud line",
       "incident": "A rival delegation has reached the observatory first and claimed its sealed archive. Its curator offers both delegations the same terms: present complete mathematical investigations before the archive hearing. The rivalry concerns who earns access, not whose unsupported answers sound more confident.",
-      "role": "You speak for Aster at the archive hearing. Your completed record earns an audience with the curator; it is not a physical safety calculation for the observatory.",
-      "cast": "Kei wants the archive made public. Nara wants time to ask why it was closed. The curator refuses to resolve the mathematics for either delegation.",
+      "role": "You speak for Aster at the archive hearing. Your completed record earns an audience with the curator and access to the expedition’s next destination.",
+      "cast": "Kei stops before the sealed archive doors. “If we earn the hearing, I want everyone to read what is inside.” Nara studies the curator’s empty chair. “First I want to know why it was closed.” Footsteps announce the rival delegation.",
       "choice": [
         "Ask for a public reading after the hearing",
         "Ask for a private conversation with the curator"
       ],
-      "closure": "The hearing accepts the expedition’s record. The curator opens the archive, and the next destination is revealed through the story."
+      "closure": "The hearing accepts the expedition’s record. The curator opens the archive, and the next destination is revealed through the story.",
+      "choiceOutcomes": [
+        "The curator announces a public reading. Kei carries the first volume into the waiting hall.",
+        "Nara joins you in the curator’s quiet study for the story behind the archive."
+      ]
     },
     {
       "phase": 4,
       "title": "The night market’s oath",
       "place": "a floating night market under thousands of paper lanterns",
       "incident": "The market’s hosts have promised the expedition an audience with an elusive mapmaker. A rival patron challenges that promise. The hosts require an independently established mathematical record before ruling on the dispute; no merchant sells clues or better odds of academic success.",
-      "role": "You prepare the record on which the fictional hosts will decide access to the audience.",
-      "cast": "Ren argues that an oath should survive a change of patron. Sora wants the mapmaker to hear the islands’ petitions first.",
+      "role": "You prepare the record on which the market’s hosts will decide whether to honor the promised audience.",
+      "cast": "Ren places the hosts’ invitation beneath a lantern. “An oath does not expire when a richer patron arrives.” Sora lifts the island petitions. “And the mapmaker should hear more than the patrons.” The market falls quiet as the hosts take their seats.",
       "choice": [
         "Bring the petitions to the audience",
         "Bring the expedition’s charter to the audience"
       ],
-      "closure": "The hosts honor the oath. The mapmaker receives the expedition, and your chosen document sets the subject of the conversation."
+      "closure": "The hosts honor the oath. The mapmaker receives the expedition, and your chosen document sets the subject of the conversation.",
+      "choiceOutcomes": [
+        "Sora unfolds the island petitions before the mapmaker, who asks where their writers call home.",
+        "Ren lays out the charter. The mapmaker asks which promise will guide the expedition next."
+      ]
     },
     {
       "phase": 5,
       "title": "Signals from the far shore",
       "place": "a relay station overlooking an unmapped sea",
       "incident": "An invitation arrives from the far shore. The station’s custodians will convene a diplomatic meeting once the expedition’s mathematical record has passed independent review. The invitation remains open while you work; no countdown changes the task.",
-      "role": "You establish the mathematical record required for the meeting. Story messages contain no coded mathematical hints.",
-      "cast": "Nara wants to accept the invitation openly. Kei wants the custodians’ account entered into the expedition diary.",
+      "role": "You establish the record required for the meeting. The invitation remains open while you work.",
+      "cast": "Nara reads the invitation aloud. “Someone beyond the charts is expecting us.” Kei opens the expedition diary. “Then this belongs in the account of our voyage.” Beyond the windows, dawn reaches the far shore.",
       "choice": [
         "Announce the meeting to the whole crew",
         "Record the invitation in the diary first"
       ],
-      "closure": "The custodians recognize the completed record and arrange the meeting. The expedition sails toward the far shore."
+      "closure": "The custodians recognize the completed record and arrange the meeting. The expedition sails toward the far shore.",
+      "choiceOutcomes": [
+        "Nara announces the meeting on deck. The crew gathers to hear the invitation together.",
+        "Kei enters the invitation in the diary, then hands you the pen to sign the account."
+      ]
     },
     {
       "phase": 6,
       "title": "The council of rival banners",
       "place": "a council hall carved into a coastal cliff",
       "incident": "Three delegations dispute who may carry the next expedition charter. The council has separated political testimony from mathematical certification. Your completed investigations determine whether Aster’s submission qualifies for the final hearing; they do not force anyone to agree with its politics.",
-      "role": "You are Aster’s independent verifier. The final hearing opens only after the mathematical work is certified through the normal engine process.",
-      "cast": "Sora wants a charter shared among the islands. Ren argues for one accountable expedition leader. Their disagreement never classifies your answers.",
+      "role": "You are Aster’s independent verifier. Your completed investigations bring its submission to the final hearing.",
+      "cast": "Sora stands beneath the island banners. “Let the charter belong to all of them.” Ren rests a hand on the empty captain’s chair. “And when a promise is broken, who answers?” The council calls Aster’s delegation forward.",
       "choice": [
         "Advocate a shared charter in the story hearing",
         "Advocate a named expedition leader in the story hearing"
       ],
-      "closure": "Aster’s submission is admitted. The council hears your chosen position and signs a charter for the next voyage."
+      "closure": "Aster’s submission is admitted. The council hears your chosen position and signs a charter for the next voyage.",
+      "choiceOutcomes": [
+        "Sora carries the shared charter beneath the island banners. Each delegation adds its name.",
+        "Ren places the charter beside the captain’s chair. The hearing records the crew’s chosen leader."
+      ]
     },
     {
       "phase": 7,
       "title": "The voyage you name",
       "place": "the launch deck of a newly commissioned expedition ship",
       "incident": "The new crew is ready to choose its first destination. The charter requires a final independent mathematical record before the ceremony. Your investigations complete that record; the ship’s engineering and physical safety are outside these exercises.",
-      "role": "You complete the expedition record and, afterward, choose the voyage’s public story. No additional academic boss is added after the normal completion gate.",
-      "cast": "Nara, Kei, Sora and Ren each offer a different account of what the journey meant to them. None assigns your feelings or speaks your choice for you.",
+      "role": "You complete the expedition record and then choose how the crew will name its next voyage.",
+      "cast": "Nara carries the old banner onto the launch deck. Kei brings the diary, Sora the island letters, and Ren the signed charter. The crew leaves a space beside the ship’s nameplate for your decision.",
       "choice": [
         "Name the voyage after the islands it connects",
         "Name it after a promise the crew chooses together"
       ],
-      "closure": "The completed record is sealed. The crew adopts your chosen account, the launch ceremony begins, and this episode ends."
+      "closure": "The completed record is sealed. The crew adopts your chosen account, the launch ceremony begins, and this episode ends.",
+      "choiceOutcomes": [
+        "The crew paints the island names beside the voyage’s title. Sora adds the smallest island last, where everyone can see it.",
+        "The crew gathers around the nameplate and agrees on a promise. Kei records it on the diary’s first new page."
+      ]
     }
   ],
   "scope": [

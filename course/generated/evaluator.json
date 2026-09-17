@@ -1,6 +1,6 @@
 {
   "T25-001-M": {
-    "reference": "Dom f=R\\{−1,2}, Dom g=R\\{−1}. Factoring gives (x−2)(x+2)/((x−2)(x+1)); cancel only for x≠2. Equality set R\\{−1,2}. The functions differ because their domains differ.",
+    "reference": "Dom f=R\\{−1, 2}, Dom g=R\\{−1}. Factoring gives (x−2)(x+2)/((x−2)(x+1)); cancel only for x≠2. Equality set R\\{−1, 2}. The functions differ because their domains differ.",
     "rubric": [
       {
         "points": 2,
@@ -22,7 +22,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-001-T": {
-    "reference": "P has domain R\\{−2,2}; Q has domain R\\{−2}. Factor x³−8=(x−2)(x²+2x+4); cancellation is legal only off ±2. Equality set R\\{−2,2}; the functions are not identical.",
+    "reference": "P has domain R\\{−2, 2}; Q has domain R\\{−2}. Factor x³−8=(x−2)(x²+2x+4); cancellation is legal only off ±2. Equality set R\\{−2, 2}; the functions are not identical.",
     "rubric": [
       {
         "points": 2,
@@ -66,7 +66,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-002-T": {
-    "reference": "The root is |ab|, agreeing with ab iff ab≥0. log(ab) requires ab>0; the split requires a,b>0. The quotient requires x+1≥0 and 2−x>0, so [−1,2).",
+    "reference": "The root is |ab|, agreeing with ab iff ab≥0. log(ab) requires ab>0; the split requires a, b>0. The quotient requires x+1≥0 and 2−x>0, so [−1, 2).",
     "rubric": [
       {
         "points": 2,
@@ -88,7 +88,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-003-M": {
-    "reference": "The equation requires x≥0. Squaring without that restriction is only forward implication and gives x²−x−2=0, candidates2,−1. Only2 satisfies the original. Division by x loses x=0; product equation has solutions0,1.",
+    "reference": "The equation requires x≥0. Squaring without that restriction is only forward implication and gives x²−x−2=0, candidates2, −1. Only2 satisfies the original. Division by x loses x=0; product equation has solutions0, 1.",
     "rubric": [
       {
         "points": 2,
@@ -132,7 +132,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-004-M": {
-    "reference": "Critical points−2,1,3; signs−,+,−,+ from left to right. Solution [−2,1]∪(3,∞). Zeros included; pole excluded. x−3 changes sign.",
+    "reference": "Critical points−2, 1, 3; signs−, +, −, + from left to right. Solution [−2, 1]∪(3, ∞). Zeros included; pole excluded. x−3 changes sign.",
     "rubric": [
       {
         "points": 2,
@@ -154,7 +154,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-004-T": {
-    "reference": "Exclude−2,1 before cancellation. Remaining sign is (x−1)/(x+2), negative only between−2 and1. The original has no legal zero; answer(−2,1).",
+    "reference": "Exclude−2, 1 before cancellation. Remaining sign is (x−1)/(x+2), negative only between−2 and1. The original has no legal zero; answer(−2, 1).",
     "rubric": [
       {
         "points": 2,
@@ -176,7 +176,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-005-M": {
-    "reference": "Cθ(x+h)=(x+h−2θ)/(x+h+θ), x≠−θ−h, with θ,h fixed. Cθ(θ)=−1/2 if θ≠0, undefined at0. R(θ)=(2−2θ)/(2+θ), θ≠−2, with θ now variable. Last value (x²−2θ)/(x²+θ): θ>0 all x; θ=0 x≠0; θ<0 exclude ±√(−θ).",
+    "reference": "Cθ(x+h)=(x+h−2θ)/(x+h+θ), x≠−θ−h, with θ, h fixed. Cθ(θ)=−1/2 if θ≠0, undefined at0. R(θ)=(2−2θ)/(2+θ), θ≠−2, with θ now variable. Last value (x²−2θ)/(x²+θ): θ>0 all x; θ=0 x≠0; θ<0 exclude ±√(−θ).",
     "rubric": [
       {
         "points": 2,
@@ -220,7 +220,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-006-M": {
-    "reference": "Induction gives a^n x+bΣ(j=0 to n−1)a^j. If a≠1 this is a^n x+b(1−a^n)/(1−a); if a=1 it is x+nb. Fixed point b/(1−a) for a≠1; all reals if a=1,b=0, none if a=1,b≠0.",
+    "reference": "Induction gives a^n x+bΣ(j=0 to n−1)a^j. If a≠1 this is a^n x+b(1−a^n)/(1−a); if a=1 it is x+nb. Fixed point b/(1−a) for a≠1; all reals if a=1, b=0, none if a=1, b≠0.",
     "rubric": [
       {
         "points": 2,
@@ -242,7 +242,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-006-T": {
-    "reference": "Coefficients give a²=1 and b(a+1)=0. Either a=1,b=0 (identity, all fixed) or a=−1, any b (unique fixed point b/2).",
+    "reference": "Coefficients give a²=1 and b(a+1)=0. Either a=1, b=0 (identity, all fixed) or a=−1, any b (unique fixed point b/2).",
     "rubric": [
       {
         "points": 2,
@@ -286,7 +286,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-007-T": {
-    "reference": "Negation: for every M there is positive integer n with n²>M; true. Product implication false at a=1,b=0. Converse a=0⇒ab=0 is true for every b.",
+    "reference": "Negation: for every M there is positive integer n with n²>M; true. Product implication false at a=1, b=0. Converse a=0⇒ab=0 is true for every b.",
     "rubric": [
       {
         "points": 2,
@@ -330,7 +330,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-008-T": {
-    "reference": "Both squares are nonnegative, so a positive one would force positive sum; hence both vanish. a=1,b=−1 refutes the claim. Factoring gives a=b or a=−b.",
+    "reference": "Both squares are nonnegative, so a positive one would force positive sum; hence both vanish. a=1, b=−1 refutes the claim. Factoring gives a=b or a=−b.",
     "rubric": [
       {
         "points": 2,
@@ -352,7 +352,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-009-M": {
-    "reference": "The first is{0}, second[0,4], preimage[−2,−1]∪[1,2]. x belongs to f^−1(U∩V) iff f(x) belongs to both U,V, iff x belongs to both preimages.",
+    "reference": "The first is{0}, second[0, 4], preimage[−2, −1]∪[1, 2]. x belongs to f^−1(U∩V) iff f(x) belongs to both U, V, iff x belongs to both preimages.",
     "rubric": [
       {
         "points": 2,
@@ -374,7 +374,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-009-T": {
-    "reference": "Membership is f(x)∉U on each side. For x², A={−1,1}, B={1}: f(A\\B)={1}, whereas f(A)\\f(B) is empty.",
+    "reference": "Membership is f(x)∉U on each side. For x², A={−1, 1}, B={1}: f(A\\B)={1}, whereas f(A)\\f(B) is empty.",
     "rubric": [
       {
         "points": 2,
@@ -396,7 +396,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-010-M": {
-    "reference": "Differences0, sign reversal and addition establish the three properties. Classes{0,3},{1,4},{2,5}. ≤ is not symmetric (0≤1 but1≰0).",
+    "reference": "Differences0, sign reversal and addition establish the three properties. Classes{0, 3}, {1, 4}, {2, 5}. ≤ is not symmetric (0≤1 but1≰0).",
     "rubric": [
       {
         "points": 2,
@@ -418,7 +418,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-010-T": {
-    "reference": "Equality of squares gives reflexivity,symmetry,transitivity. Class of nonzero x is{x,−x}; class of0 is{0}.",
+    "reference": "Equality of squares gives reflexivity, symmetry, transitivity. Class of nonzero x is{x, −x}; class of0 is{0}.",
     "rubric": [
       {
         "points": 2,
@@ -440,7 +440,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-011-M": {
-    "reference": "Not injective by ±1; surjective since √y is a preimage. On[0,∞) inverse√y gives both compositions identity. A negative-half-line restriction also works with−√y.",
+    "reference": "Not injective by ±1; surjective since √y is a preimage. On[0, ∞) inverse√y gives both compositions identity. A negative-half-line restriction also works with−√y.",
     "rubric": [
       {
         "points": 2,
@@ -550,7 +550,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-013-T": {
-    "reference": "Write (x−2)²(x+c); x² coefficient forces c=4, then a=−12,b=16. Three points insufficient: zero polynomial and product of their three linear factors agree there.",
+    "reference": "Write (x−2)²(x+c); x² coefficient forces c=4, then a=−12, b=16. Three points insufficient: zero polynomial and product of their three linear factors agree there.",
     "rubric": [
       {
         "points": 2,
@@ -572,7 +572,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-014-M": {
-    "reference": "d=3,u1=1; sum n(3n−1)/2. GP sum a(1−r^n)/(1−r) for r≠1, otherwise na; zero a gives0. 2/q=1/p+1/r yields q=2pr/(p+r), requiring p,r,p+r≠0.",
+    "reference": "d=3, u1=1; sum n(3n−1)/2. GP sum a(1−r^n)/(1−r) for r≠1, otherwise na; zero a gives0. 2/q=1/p+1/r yields q=2pr/(p+r), requiring p, r, p+r≠0.",
     "rubric": [
       {
         "points": 2,
@@ -682,7 +682,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-016-T": {
-    "reference": "Cauchy:36≤3(x²+y²+z²); equality x=y=z=2. No: a=1,b=−1 gives product0<4.",
+    "reference": "Cauchy:36≤3(x²+y²+z²); equality x=y=z=2. No: a=1, b=−1 gives product0<4.",
     "rubric": [
       {
         "points": 2,
@@ -704,7 +704,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-017-M": {
-    "reference": "The right side minus left is t(1−t)(x−y)²≥0; interior equality iff x=y. Negative square fails at x=−1,y=1,t=1/2:0≤−1 is false.",
+    "reference": "The right side minus left is t(1−t)(x−y)²≥0; interior equality iff x=y. Negative square fails at x=−1, y=1, t=1/2:0≤−1 is false.",
     "rubric": [
       {
         "points": 2,
@@ -726,7 +726,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-017-T": {
-    "reference": "Triangle inequality yields convexity; equality iff x,y have same weak sign, xy≥0. Repeated triangle inequality gives |(a+b+c)/3|≤(|a|+|b|+|c|)/3.",
+    "reference": "Triangle inequality yields convexity; equality iff x, y have same weak sign, xy≥0. Repeated triangle inequality gives |(a+b+c)/3|≤(|a|+|b|+|c|)/3.",
     "rubric": [
       {
         "points": 2,
@@ -792,7 +792,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-019-M": {
-    "reference": "Induction gives1≤a_n≤2; on[1,2],2+x≥x², hence a_(n+1)≥a_n. Monotone bounded convergence gives L∈[1,2], L²=2+L, so L=2.",
+    "reference": "Induction gives1≤a_n≤2; on[1, 2], 2+x≥x², hence a_(n+1)≥a_n. Monotone bounded convergence gives L∈[1, 2], L²=2+L, so L=2.",
     "rubric": [
       {
         "points": 2,
@@ -880,7 +880,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-021-M": {
-    "reference": "cosθ=−4/5,tanθ=−3/4,sin2θ=−24/25. Opposite side√(9+16−24·1/2)=√13. Sine rule a/sin A=b/sin B=c/sin C=2R.",
+    "reference": "cosθ=−4/5, tanθ=−3/4, sin2θ=−24/25. Opposite side√(9+16−24·1/2)=√13. Sine rule a/sin A=b/sin B=c/sin C=2R.",
     "rubric": [
       {
         "points": 2,
@@ -924,7 +924,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-022-M": {
-    "reference": "Sine values1,−1/2 give x=π/2,7π/6,11π/6. tan equation x=π/4+kπ,k∈Z; polesπ/2+kπ excluded from domain.",
+    "reference": "Sine values1, −1/2 give x=π/2, 7π/6, 11π/6. tan equation x=π/4+kπ, k∈Z; polesπ/2+kπ excluded from domain.",
     "rubric": [
       {
         "points": 2,
@@ -946,7 +946,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-022-T": {
-    "reference": "2c²−c−1=0 gives c=1 or−1/2, hence0,2π/3,4π/3. Root=|sinx|; equality iff sinx≥0.",
+    "reference": "2c²−c−1=0 gives c=1 or−1/2, hence0, 2π/3, 4π/3. Root=|sinx|; equality iff sinx≥0.",
     "rubric": [
       {
         "points": 2,
@@ -968,7 +968,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-023-M": {
-    "reference": "Modulus2,arg−π/3 mod2π. Cube8e^(−iπ)=−8. Reciprocal (1+i√3)/4, modulus1/2,argπ/3.",
+    "reference": "Modulus2, arg−π/3 mod2π. Cube8e^(−iπ)=−8. Reciprocal (1+i√3)/4, modulus1/2, argπ/3.",
     "rubric": [
       {
         "points": 2,
@@ -990,7 +990,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-023-T": {
-    "reference": "Conjugate−1−i,modulus√2,arg3π/4; ratio−i. At0 reciprocal and ratio undefined and argument unspecified.",
+    "reference": "Conjugate−1−i, modulus√2, arg3π/4; ratio−i. At0 reciprocal and ratio undefined and argument unspecified.",
     "rubric": [
       {
         "points": 2,
@@ -1012,7 +1012,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-024-M": {
-    "reference": "Roots2,−1+i√3,−1−i√3; three distinct roots exhaust a cubic. Writing z=x+iy and squaring distances yields x=0, the imaginary axis.",
+    "reference": "Roots2, −1+i√3, −1−i√3; three distinct roots exhaust a cubic. Writing z=x+iy and squaring distances yields x=0, the imaginary axis.",
     "rubric": [
       {
         "points": 2,
@@ -1034,7 +1034,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-024-T": {
-    "reference": "Nonzero roots2exp(i(π/4+kπ/2)),k=0,1,2,3. Zero equation has only0 (multiplicity4). Conjugate equation describes all real z.",
+    "reference": "Nonzero roots2exp(i(π/4+kπ/2)), k=0, 1, 2, 3. Zero equation has only0 (multiplicity4). Conjugate equation describes all real z.",
     "rubric": [
       {
         "points": 2,
@@ -1056,7 +1056,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-025-M": {
-    "reference": "Line x=1. Completing squares gives(x−2)²+(y+3)²=25; centre(2,−3),radius5,distance√13.",
+    "reference": "Line x=1. Completing squares gives(x−2)²+(y+3)²=25; centre(2, −3), radius5, distance√13.",
     "rubric": [
       {
         "points": 2,
@@ -1078,7 +1078,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-025-T": {
-    "reference": "Centre(1,2),radius√8; equation(x−1)²+(y−2)²=8. Point distance²4<8, hence inside.",
+    "reference": "Centre(1, 2), radius√8; equation(x−1)²+(y−2)²=8. Point distance²4<8, hence inside.",
     "rubric": [
       {
         "points": 2,
@@ -1100,7 +1100,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-026-M": {
-    "reference": "Distance3/√(m²+1)=√5 gives m=±2/√5. Foot from origin on mx−y+3=0 is(−3m/(1+m²),3/(1+m²))=(−5m/3,5/3).",
+    "reference": "Distance3/√(m²+1)=√5 gives m=±2/√5. Foot from origin on mx−y+3=0 is(−3m/(1+m²), 3/(1+m²))=(−5m/3, 5/3).",
     "rubric": [
       {
         "points": 2,
@@ -1122,7 +1122,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-026-T": {
-    "reference": "Factoring after substitution gives second point((t²−1)/(t²+1),−2t/(t²+1)). All circle points except(1,0) occur for finite t; both coordinates rational for rational t.",
+    "reference": "Factoring after substitution gives second point((t²−1)/(t²+1), −2t/(t²+1)). All circle points except(1, 0) occur for finite t; both coordinates rational for rational t.",
     "rubric": [
       {
         "points": 2,
@@ -1144,7 +1144,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-027-M": {
-    "reference": "Ω={(i,j):1≤i,j≤6}, each1/36. Counts for sums2,...,12 are1,2,3,4,5,6,5,4,3,2,1. Thus the sums are not equiprobable.",
+    "reference": "Ω={(i, j):1≤i, j≤6}, each1/36. Counts for sums2, ..., 12 are1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1. Thus the sums are not equiprobable.",
     "rubric": [
       {
         "points": 2,
@@ -1188,7 +1188,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-028-M": {
-    "reference": "8·7·6=336 ordered assignments. Each committee has3!=6 assignments, hence C(8,3)=56.",
+    "reference": "8·7·6=336 ordered assignments. Each committee has3!=6 assignments, hence C(8, 3)=56.",
     "rubric": [
       {
         "points": 2,
@@ -1210,7 +1210,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-028-T": {
-    "reference": "The remaining two letters must be C. Choose A positions C(5,2), then B position3:30=5!/(2!2!).",
+    "reference": "The remaining two letters must be C. Choose A positions C(5, 2), then B position3:30=5!/(2!2!).",
     "rubric": [
       {
         "points": 2,
@@ -1254,7 +1254,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-029-T": {
-    "reference": "If positions i1<i2<i3 satisfy successive gaps≥2, map to i1,i2−1,i3−2, a3-subset of{1,...,6}. Count C(6,3)=20.",
+    "reference": "If positions i1<i2<i3 satisfy successive gaps≥2, map to i1, i2−1, i3−2, a3-subset of{1, ..., 6}. Count C(6, 3)=20.",
     "rubric": [
       {
         "points": 2,
@@ -1298,7 +1298,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-030-T": {
-    "reference": "Swapping the first two entries bijects even and odd permutations;24/2=12. Flipping the first bit exchanges parity, so64/2=32.",
+    "reference": "Swapping the first two entries bijects even and odd permutations; 24/2=12. Flipping the first bit exchanges parity, so64/2=32.",
     "rubric": [
       {
         "points": 2,
@@ -1320,7 +1320,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-031-M": {
-    "reference": "Union.9,neither.1. Indicator identity gives union=sum−intersection. Equality iff P(A∩B)=0, which need not mean the intersection is empty.",
+    "reference": "Union.9, neither.1. Indicator identity gives union=sum−intersection. Equality iff P(A∩B)=0, which need not mean the intersection is empty.",
     "rubric": [
       {
         "points": 2,
@@ -1342,7 +1342,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-031-T": {
-    "reference": ".1≤P(union)≤.3. Identical events attain.1; three disjoint intervals of length.1 in uniform[0,1] attain.3.",
+    "reference": ".1≤P(union)≤.3. Identical events attain.1; three disjoint intervals of length.1 in uniform[0, 1] attain.3.",
     "rubric": [
       {
         "points": 2,
@@ -1386,7 +1386,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-032-T": {
-    "reference": "Intersection is empty on sample space(0,1), hence probability0, also limit1/n. Complements increase; P(intersection Bn)=1−limP(Bn^c)=limP(Bn).",
+    "reference": "Intersection is empty on sample space(0, 1), hence probability0, also limit1/n. Complements increase; P(intersection Bn)=1−limP(Bn^c)=limP(Bn).",
     "rubric": [
       {
         "points": 2,
@@ -1408,7 +1408,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-033-M": {
-    "reference": "Allowed pairs(2,6),(3,5),(4,4),(5,3),(6,2), each conditional probability1/5. First die uniform on{2,...,6}; at least one6 probability2/5.",
+    "reference": "Allowed pairs(2, 6), (3, 5), (4, 4), (5, 3), (6, 2), each conditional probability1/5. First die uniform on{2, ..., 6}; at least one6 probability2/5.",
     "rubric": [
       {
         "points": 2,
@@ -1540,7 +1540,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-036-M": {
-    "reference": "Each bit is fair; each pair has four equally likely pairs. P(X=0,Y=0,Z=0)=1/4≠1/8. Given Z=0, pairs00,11 have half each; marginal halves give product1/4 but joint00 is1/2.",
+    "reference": "Each bit is fair; each pair has four equally likely pairs. P(X=0, Y=0, Z=0)=1/4≠1/8. Given Z=0, pairs00, 11 have half each; marginal halves give product1/4 but joint00 is1/2.",
     "rubric": [
       {
         "points": 2,
@@ -1672,7 +1672,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-039-M": {
-    "reference": "Means2,variances2/3. E(XY)=(2+3+2+6+3+6)/6=11/3; covariance−1/3. Sum variance4/3−2/3=2/3.",
+    "reference": "Means2, variances2/3. E(XY)=(2+3+2+6+3+6)/6=11/3; covariance−1/3. Sum variance4/3−2/3=2/3.",
     "rubric": [
       {
         "points": 2,
@@ -1760,7 +1760,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-041-M": {
-    "reference": "Without replacement C(5,2)C(7,2)/C(12,4)=14/33. With replacement C(4,2)(5/12)²(7/12)². The latter has independent Bernoulli trials.",
+    "reference": "Without replacement C(5, 2)C(7, 2)/C(12, 4)=14/33. With replacement C(4, 2)(5/12)²(7/12)². The latter has independent Bernoulli trials.",
     "rubric": [
       {
         "points": 2,
@@ -1782,7 +1782,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-041-T": {
-    "reference": "P=C(K,k)C(N−K,n−k)/C(N,n), max(0,n−N+K)≤k≤min(n,K), integer k. Outside that range one required selection is impossible.",
+    "reference": "P=C(K, k)C(N−K, n−k)/C(N, n), max(0, n−N+K)≤k≤min(n, K), integer k. Outside that range one required selection is impossible.",
     "rubric": [
       {
         "points": 2,
@@ -1804,7 +1804,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-042-M": {
-    "reference": "ENi=npi,VarNi=npi(1−pi). Within a trial category indicators have product0, covariance−p1p2; across trials covariance0, hence−np1p2. Conditional law Bin(n−k,p1/(p1+p2)).",
+    "reference": "ENi=npi, VarNi=npi(1−pi). Within a trial category indicators have product0, covariance−p1p2; across trials covariance0, hence−np1p2. Conditional law Bin(n−k, p1/(p1+p2)).",
     "rubric": [
       {
         "points": 2,
@@ -1826,7 +1826,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-042-T": {
-    "reference": "Sum Bin(10,.5):mean5,variance2.5. Conditional mean6·.2/.5=2.4.",
+    "reference": "Sum Bin(10, .5):mean5, variance2.5. Conditional mean6·.2/.5=2.4.",
     "rubric": [
       {
         "points": 2,
@@ -1848,7 +1848,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-043-M": {
-    "reference": "P(T=t)=(1−p)^(t−1)p,t≥1; ET=1/p by first-step recursion or tail sum. P(T>s+t|T>s)=(1−p)^t=P(T>t). F=T−1 has support0,... and mean(1−p)/p.",
+    "reference": "P(T=t)=(1−p)^(t−1)p, t≥1; ET=1/p by first-step recursion or tail sum. P(T>s+t|T>s)=(1−p)^t=P(T>t). F=T−1 has support0, ... and mean(1−p)/p.",
     "rubric": [
       {
         "points": 2,
@@ -1870,7 +1870,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-043-T": {
-    "reference": "P(T=t)=C(t−1,r−1)p^r(1−p)^(t−r),t≥r. Last trial succeeds and preceding t−1 contain r−1 successes. Mean r/p by summing r independent geometric waits.",
+    "reference": "P(T=t)=C(t−1, r−1)p^r(1−p)^(t−r), t≥r. Last trial succeeds and preceding t−1 contain r−1 successes. Mean r/p by summing r independent geometric waits.",
     "rubric": [
       {
         "points": 2,
@@ -1914,7 +1914,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-044-T": {
-    "reference": "Expand C(n,k)(λ/n)^k(1−λ/n)^(n−k); the finite product n(n−1)…/n^k→1 and power→e^−λ. λ and k fixed, n→∞; this is pointwise mass convergence, not equality at finite n.",
+    "reference": "Expand C(n, k)(λ/n)^k(1−λ/n)^(n−k); the finite product n(n−1)…/n^k→1 and power→e^−λ. λ and k fixed, n→∞; this is pointwise mass convergence, not equality at finite n.",
     "rubric": [
       {
         "points": 2,
@@ -2024,7 +2024,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-047-M": {
-    "reference": "Mean4,median2,sum squared deviations54; descriptive variance54/5=10.8,sample13.5. Excluding the median, lower half1,2 gives Q1=1.5,upper5,10 gives Q3=7.5.",
+    "reference": "Mean4, median2, sum squared deviations54; descriptive variance54/5=10.8, sample13.5. Excluding the median, lower half1, 2 gives Q1=1.5, upper5, 10 gives Q3=7.5.",
     "rubric": [
       {
         "points": 2,
@@ -2046,7 +2046,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-047-T": {
-    "reference": "CDF0 below0,.5 on[0,1),.75 on[1,3),1 at/above3. q(.5)=0,q(.75)=1; average middle median.5. Both conventions must be named.",
+    "reference": "CDF0 below0, .5 on[0, 1), .75 on[1, 3), 1 at/above3. q(.5)=0, q(.75)=1; average middle median.5. Both conventions must be named.",
     "rubric": [
       {
         "points": 2,
@@ -2068,7 +2068,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-048-M": {
-    "reference": "New n5,sum15,squares55,mean3; sample variance(55−45)/4=2.5. Mean a+bmean,variance b²variance; standardized skewness multiplied by sign(b).",
+    "reference": "New n5, sum15, squares55, mean3; sample variance(55−45)/4=2.5. Mean a+bmean, variance b²variance; standardized skewness multiplied by sign(b).",
     "rubric": [
       {
         "points": 2,
@@ -2090,7 +2090,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-048-T": {
-    "reference": "Mean0,variance1,third moment0,fourth1; skewness0,excess1−3=−2. With variance0 denominators vanish, so these standardized measures are undefined.",
+    "reference": "Mean0, variance1, third moment0, fourth1; skewness0, excess1−3=−2. With variance0 denominators vanish, so these standardized measures are undefined.",
     "rubric": [
       {
         "points": 2,
@@ -2112,7 +2112,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-049-M": {
-    "reference": "Centered x=(−1,0,1), centered y=(−11/3,−2/3,13/3). Crosssum8,Sxx2,Syy98/3,so r=8/√(196/3)=4√3/7. Ranks identical,Spearman1. Both rank/value variances must be nonzero.",
+    "reference": "Centered x=(−1, 0, 1), centered y=(−11/3, −2/3, 13/3). Crosssum8, Sxx2, Syy98/3, so r=8/√(196/3)=4√3/7. Ranks identical, Spearman1. Both rank/value variances must be nonzero.",
     "rubric": [
       {
         "points": 2,
@@ -2134,7 +2134,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-049-T": {
-    "reference": "Ranks x=(1.5,1.5,3),y=(1,2,3),centered crosssum1.5,SS1.5 and2,so r=√3/2. The uncorrected no-tie shortcut is invalid.",
+    "reference": "Ranks x=(1.5, 1.5, 3), y=(1, 2, 3), centered crosssum1.5, SS1.5 and2, so r=√3/2. The uncorrected no-tie shortcut is invalid.",
     "rubric": [
       {
         "points": 2,
@@ -2178,7 +2178,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-050-T": {
-    "reference": "EX0,EY2/3,EXY0,so covariance0. Variances2/3 and2/9 positive,correlation0. Y is determined by X and nonconstant, hence dependent (e.g.X=0 iffY=0).",
+    "reference": "EX0, EY2/3, EXY0, so covariance0. Variances2/3 and2/9 positive, correlation0. Y is determined by X and nonconstant, hence dependent (e.g. X=0 iffY=0).",
     "rubric": [
       {
         "points": 2,
@@ -2200,7 +2200,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-051-M": {
-    "reference": "All2×2. AB=[[7,2],[3,1]],BA=[[1,2],[3,7]]. Both transposed-product displays equal[[7,3],[2,1]]. Thus AB≠BA.",
+    "reference": "All2×2. AB=[[7, 2], [3, 1]], BA=[[1, 2], [3, 7]]. Both transposed-product displays equal[[7, 3], [2, 1]]. Thus AB≠BA.",
     "rubric": [
       {
         "points": 2,
@@ -2222,7 +2222,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-051-T": {
-    "reference": "CC^T=[[14,32],[32,77]] is2×2; C^T C is3×3. Inner dimensions are3 in the first product and2 in the second.",
+    "reference": "CC^T=[[14, 32], [32, 77]] is2×2; C^T C is3×3. Inner dimensions are3 in the first product and2 in the second.",
     "rubric": [
       {
         "points": 2,
@@ -2266,7 +2266,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-052-T": {
-    "reference": "Reversible iff a≠0; a=0 can erase a constraint. Second equation redundant, (x,y)=(2−t,t),t∈R,an affine line of dimension1.",
+    "reference": "Reversible iff a≠0; a=0 can erase a constraint. Second equation redundant, (x, y)=(2−t, t), t∈R, an affine line of dimension1.",
     "rubric": [
       {
         "points": 2,
@@ -2288,7 +2288,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-053-M": {
-    "reference": "First is a homogeneous kernel, hence subspace. Second lacks zero. Third not closed: (1,0,1)+(0,1,0)=(1,1,1). Vectors dependent since v3=v1+v2.",
+    "reference": "First is a homogeneous kernel, hence subspace. Second lacks zero. Third not closed: (1, 0, 1)+(0, 1, 0)=(1, 1, 1). Vectors dependent since v3=v1+v2.",
     "rubric": [
       {
         "points": 2,
@@ -2332,7 +2332,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-054-M": {
-    "reference": "Let y=s,z=t; x=−s−t,w=−s. Basis(−1,1,0,−1),(−1,0,1,0),dimension2; y,z coordinates force independence.",
+    "reference": "Let y=s, z=t; x=−s−t, w=−s. Basis(−1, 1, 0, −1), (−1, 0, 1, 0), dimension2; y, z coordinates force independence.",
     "rubric": [
       {
         "points": 2,
@@ -2354,7 +2354,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-054-T": {
-    "reference": "Symmetric matrices[[a,b],[b,c]] have basis E11,E22,[[0,1],[1,0]],dimension3. Trace-zero uses[[1,0],[0,−1]] and offdiagonal basis,dimension2.",
+    "reference": "Symmetric matrices[[a, b], [b, c]] have basis E11, E22, [[0, 1], [1, 0]], dimension3. Trace-zero uses[[1, 0], [0, −1]] and offdiagonal basis, dimension2.",
     "rubric": [
       {
         "points": 2,
@@ -2376,7 +2376,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-055-M": {
-    "reference": "Coefficient rank1 always. If a=2 augmented rank1,dimension2 with x=1−s−t,y=s,z=t. Otherwise augmented rank2, inconsistent; no affine solution dimension is assigned.",
+    "reference": "Coefficient rank1 always. If a=2 augmented rank1, dimension2 with x=1−s−t, y=s, z=t. Otherwise augmented rank2, inconsistent; no affine solution dimension is assigned.",
     "rubric": [
       {
         "points": 2,
@@ -2398,7 +2398,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-055-T": {
-    "reference": "Rank≤3<5,so nontrivial kernel and no unique solution. Consistent dimension5−rank∈{2,3,4,5}.",
+    "reference": "Rank≤3<5, so nontrivial kernel and no unique solution. Consistent dimension5−rank∈{2, 3, 4, 5}.",
     "rubric": [
       {
         "points": 2,
@@ -2486,7 +2486,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-057-T": {
-    "reference": "54,1/2,4 respectively. False: A=I3 gives3 versus1/3.",
+    "reference": "54, 1/2, 4 respectively. False: A=I3 gives3 versus1/3.",
     "rubric": [
       {
         "points": 2,
@@ -2508,7 +2508,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-058-M": {
-    "reference": "Expansion yields Dn=2D(n−1)−D(n−2),D0=1,D1=2. Induction gives Dn=n+1,so never singular.",
+    "reference": "Expansion yields Dn=2D(n−1)−D(n−2), D0=1, D1=2. Induction gives Dn=n+1, so never singular.",
     "rubric": [
       {
         "points": 2,
@@ -2530,7 +2530,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-058-T": {
-    "reference": "On u eigenfactor1−c||u||²; on perpendicular vectors factor1. Singular iff c=1/||u||²,with kernel span(u).",
+    "reference": "On u eigenfactor1−c||u||²; on perpendicular vectors factor1. Singular iff c=1/||u||², with kernel span(u).",
     "rubric": [
       {
         "points": 2,
@@ -2552,7 +2552,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-059-M": {
-    "reference": "Only eigenvalue2,multiplicity2; eigenspace{(x,0)} dimension1,not diagonalizable. 2I has all vectors as eigenvectors and is diagonal already.",
+    "reference": "Only eigenvalue2, multiplicity2; eigenspace{(x, 0)} dimension1, not diagonalizable. 2I has all vectors as eigenvectors and is diagonal already.",
     "rubric": [
       {
         "points": 2,
@@ -2574,7 +2574,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-059-T": {
-    "reference": "Eigenpairs3 with(1,1),1 with(1,−1). P=[[1,1],[1,−1]],D=diag(3,1),P^−1=P/2. Direct multiplication verifies.",
+    "reference": "Eigenpairs3 with(1, 1), 1 with(1, −1). P=[[1, 1], [1, −1]], D=diag(3, 1), P^−1=P/2. Direct multiplication verifies.",
     "rubric": [
       {
         "points": 2,
@@ -2596,7 +2596,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-060-M": {
-    "reference": "Induction gives powers. Multiplication shows inverse I−tA/(1+t) for t≠−1. At t=−1 a nonzero image vector Av is in the kernel of I−A,so singular.",
+    "reference": "Induction gives powers. Multiplication shows inverse I−tA/(1+t) for t≠−1. At t=−1 a nonzero image vector Av is in the kernel of I−A, so singular.",
     "rubric": [
       {
         "points": 2,
@@ -2618,7 +2618,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-060-T": {
-    "reference": "Using its distinct eigenbasis, B^n=1/2[[3^n+1,3^n−1],[3^n−1,3^n+1]]. A commuting matrix preserves each one-dimensional eigenspace; roots have independent eigenvalues±√3,±1, giving four symmetric matrices P diag(±√3,±1)P^−1.",
+    "reference": "Using its distinct eigenbasis, B^n=1/2[[3^n+1, 3^n−1], [3^n−1, 3^n+1]]. A commuting matrix preserves each one-dimensional eigenspace; roots have independent eigenvalues±√3, ±1, giving four symmetric matrices P diag(±√3, ±1)P^−1.",
     "rubric": [
       {
         "points": 2,
@@ -2640,7 +2640,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-061-M": {
-    "reference": "Matrix[[1,a],[a,1]] eigenvalues1+a,1−a. Positive definite |a|<1; semidefinite |a|=1; indefinite |a|>1. Never negative definite.",
+    "reference": "Matrix[[1, a], [a, 1]] eigenvalues1+a, 1−a. Positive definite |a|<1; semidefinite |a|=1; indefinite |a|>1. Never negative definite.",
     "rubric": [
       {
         "points": 2,
@@ -2662,7 +2662,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-061-T": {
-    "reference": "All eigenvalues nonnegative and sum0,so all0; spectral decomposition gives A=0. A nonzero skew-symmetric matrix has v^TAv=0 and trace0,so symmetry is essential.",
+    "reference": "All eigenvalues nonnegative and sum0, so all0; spectral decomposition gives A=0. A nonzero skew-symmetric matrix has v^TAv=0 and trace0, so symmetry is essential.",
     "rubric": [
       {
         "points": 2,
@@ -2706,7 +2706,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-062-T": {
-    "reference": "P²=P but nonsymmetric. y=(0,1) gives left1,right1+2=3. G=diag(1/2,0) satisfies AGA=A; this generalized inverse need not be an ordinary inverse.",
+    "reference": "P²=P but nonsymmetric. y=(0, 1) gives left1, right1+2=3. G=diag(1/2, 0) satisfies AGA=A; this generalized inverse need not be an ordinary inverse.",
     "rubric": [
       {
         "points": 2,
@@ -2728,7 +2728,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-063-M": {
-    "reference": "Left−1,right1,so no two-sided limit. Given ε>0 chooseδ=ε/3;0<|x−2|<δ implies |3x+1−7|<ε.",
+    "reference": "Left−1, right1, so no two-sided limit. Given ε>0 chooseδ=ε/3; 0<|x−2|<δ implies |3x+1−7|<ε.",
     "rubric": [
       {
         "points": 2,
@@ -2750,7 +2750,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-063-T": {
-    "reference": "Left1,rightc,valuec. Continuity iff c=1.",
+    "reference": "Left1, rightc, valuec. Continuity iff c=1.",
     "rubric": [
       {
         "points": 2,
@@ -2794,7 +2794,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-064-T": {
-    "reference": "At0,|f(x)|=|x| ensures continuity. At a≠0 rational and irrational sequences approaching a yield limits a,−a,distinct.",
+    "reference": "At0, |f(x)|=|x| ensures continuity. At a≠0 rational and irrational sequences approaching a yield limits a, −a, distinct.",
     "rubric": [
       {
         "points": 2,
@@ -2860,7 +2860,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-066-M": {
-    "reference": "Continuity requires b=0; left difference quotient x→0,derivative0; right derivative a. Thus a=b=0.",
+    "reference": "Continuity requires b=0; left difference quotient x→0, derivative0; right derivative a. Thus a=b=0.",
     "rubric": [
       {
         "points": 2,
@@ -2882,7 +2882,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-066-T": {
-    "reference": "f(x)/x=x sin(1/x)→0,so f′(0)=0. For x≠0 derivative2xsin(1/x)−cos(1/x),which oscillates and has no limit0.",
+    "reference": "f(x)/x=x sin(1/x)→0, so f′(0)=0. For x≠0 derivative2xsin(1/x)−cos(1/x), which oscillates and has no limit0.",
     "rubric": [
       {
         "points": 2,
@@ -2904,7 +2904,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-067-M": {
-    "reference": "Domain x≠1. h′=[6x(x²+1)²(x−1)−(x²+1)³]/(x−1)²,from chain and quotient rules.",
+    "reference": "Domain x≠1. h′=[6x(x²+1)²(x−1)−(x²+1)³]/(x−1)², from chain and quotient rules.",
     "rubric": [
       {
         "points": 2,
@@ -2926,7 +2926,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-067-T": {
-    "reference": "Add/subtract f(x+h)g(x),separate increments and use continuity of differentiable functions. Derivative2x f(3x)+3x² f′(3x),where f is differentiable at3x.",
+    "reference": "Add/subtract f(x+h)g(x), separate increments and use continuity of differentiable functions. Derivative2x f(3x)+3x² f′(3x), where f is differentiable at3x.",
     "rubric": [
       {
         "points": 2,
@@ -2948,7 +2948,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-068-M": {
-    "reference": "x^x=exp(xlogx),derivative x^x(logx+1). log(sin x) requires sinx>0,i.e.(2kπ,(2k+1)π); derivative cotx there.",
+    "reference": "x^x=exp(xlogx), derivative x^x(logx+1). log(sin x) requires sinx>0, i.e.(2kπ, (2k+1)π); derivative cotx there.",
     "rubric": [
       {
         "points": 2,
@@ -2992,7 +2992,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-069-M": {
-    "reference": "Continuous polynomial has values−1,1 at0,1,so IVT gives existence. Derivative3x²+1>0 implies strict increase and at most one root.",
+    "reference": "Continuous polynomial has values−1, 1 at0, 1, so IVT gives existence. Derivative3x²+1>0 implies strict increase and at most one root.",
     "rubric": [
       {
         "points": 2,
@@ -3014,7 +3014,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-069-T": {
-    "reference": "f(x)=x³−x on[−2,2] has endpoint values−6,6 but three roots−1,0,1. IVT alone does not give uniqueness.",
+    "reference": "f(x)=x³−x on[−2, 2] has endpoint values−6, 6 but three roots−1, 0, 1. IVT alone does not give uniqueness.",
     "rubric": [
       {
         "points": 2,
@@ -3036,7 +3036,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-070-M": {
-    "reference": "MVT gives f(y)−f(x)≥2(y−x) for y>x,so strictly increasing. A root r must be negative;1=f(0)−f(r)≥−2r,so r≥−1/2, not at or left. The requested bound is false: f(x)=4x+1 has r=−1/4. Correct range[−1/2,0).",
+    "reference": "MVT gives f(y)−f(x)≥2(y−x) for y>x, so strictly increasing. A root r must be negative; 1=f(0)−f(r)≥−2r, so r≥−1/2, not at or left. The requested bound is false: f(x)=4x+1 has r=−1/4. Correct range[−1/2, 0).",
     "rubric": [
       {
         "points": 2,
@@ -3058,7 +3058,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-070-T": {
-    "reference": "g=f−x has g(0)≥0,g(1)≤0,so IVT. If two fixed points existed,MVT bound|f(a)−f(b)|≤q|a−b| contradicts equality for a≠b.",
+    "reference": "g=f−x has g(0)≥0, g(1)≤0, so IVT. If two fixed points existed, MVT bound|f(a)−f(b)|≤q|a−b| contradicts equality for a≠b.",
     "rubric": [
       {
         "points": 2,
@@ -3080,7 +3080,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-071-M": {
-    "reference": "f′=3(x²−1),critical±1. Values f(−2)=−2,f(−1)=2,f(1)=−2,f(2)=2. Max2 at−1,2;min−2 at−2,1.",
+    "reference": "f′=3(x²−1), critical±1. Values f(−2)=−2, f(−1)=2, f(1)=−2, f(2)=2. Max2 at−1, 2; min−2 at−2, 1.",
     "rubric": [
       {
         "points": 2,
@@ -3124,7 +3124,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-072-M": {
-    "reference": "Lagrange remainder=e^ξ x²/2 with ξ between0,x; bound e/2. Since ξ→0,ratio→1/2.",
+    "reference": "Lagrange remainder=e^ξ x²/2 with ξ between0, x; bound e/2. Since ξ→0, ratio→1/2.",
     "rubric": [
       {
         "points": 2,
@@ -3168,7 +3168,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-073-M": {
-    "reference": "First split at1:two triangles each1/2,total1. Parts for second gives[xe^x]₀¹−∫₀¹e^x dx=e−(e−1)=1.",
+    "reference": "First split at1:two triangles each1/2, total1. Parts for second gives[xe^x]₀¹−∫₀¹e^x dx=e−(e−1)=1.",
     "rubric": [
       {
         "points": 2,
@@ -3190,7 +3190,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-073-T": {
-    "reference": "u=1+x²,limits1,2 yieldslog2. Half-angle identity givesπ/2.",
+    "reference": "u=1+x², limits1, 2 yieldslog2. Half-angle identity givesπ/2.",
     "rubric": [
       {
         "points": 2,
@@ -3212,7 +3212,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-074-M": {
-    "reference": "Near0 comparable to x^p,requiring p>−1. At infinity comparable to x^(p−2),requiring p<1. Thus−1<p<1; endpoints logarithmically diverge.",
+    "reference": "Near0 comparable to x^p, requiring p>−1. At infinity comparable to x^(p−2), requiring p<1. Thus−1<p<1; endpoints logarithmically diverge.",
     "rubric": [
       {
         "points": 2,
@@ -3234,7 +3234,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-074-T": {
-    "reference": "u=logx converts to∫₀^∞u^−q du. Near0 requires q<1;infinity requires q>1. No q gives full convergence.",
+    "reference": "u=logx converts to∫₀^∞u^−q du. Near0 requires q<1; infinity requires q>1. No q gives full convergence.",
     "rubric": [
       {
         "points": 2,
@@ -3256,7 +3256,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-075-M": {
-    "reference": "Continuous x² on[0,1],uniform mesh1/n,right endpoints. Limit∫₀¹x²dx=1/3.",
+    "reference": "Continuous x² on[0, 1], uniform mesh1/n, right endpoints. Limit∫₀¹x²dx=1/3.",
     "rubric": [
       {
         "points": 2,
@@ -3278,7 +3278,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-075-T": {
-    "reference": "Each term=(1/n)/(1+(k/n)²). Continuous integrand on[0,1],limit arctan1−arctan0=π/4.",
+    "reference": "Each term=(1/n)/(1+(k/n)²). Continuous integrand on[0, 1], limit arctan1−arctan0=π/4.",
     "rubric": [
       {
         "points": 2,
@@ -3322,7 +3322,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-076-T": {
-    "reference": "For increasing log on[1,n],integral comparison gives ∫₁^n logx dx≤log(n!)≤∫₁^n logx dx+logn. Divide by n and subtractlogn:both bounds→−1; exponential limit e^−1.",
+    "reference": "For increasing log on[1, n], integral comparison gives ∫₁^n logx dx≤log(n!)≤∫₁^n logx dx+logn. Divide by n and subtractlogn:both bounds→−1; exponential limit e^−1.",
     "rubric": [
       {
         "points": 2,
@@ -3344,7 +3344,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-077-M": {
-    "reference": "(x−1)²+4(y+1)²=5−c. For c<5 an ellipse; c=5 a single point(1,−1); c>5 empty.",
+    "reference": "(x−1)²+4(y+1)²=5−c. For c<5 an ellipse; c=5 a single point(1, −1); c>5 empty.",
     "rubric": [
       {
         "points": 2,
@@ -3388,7 +3388,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-078-M": {
-    "reference": "a5,b3,c4. Foci(±4,0),e=4/5,directrices x=±25/4. For right focus distance1, right directrix distance5/4,ratio4/5.",
+    "reference": "a5, b3, c4. Foci(±4, 0), e=4/5, directrices x=±25/4. For right focus distance1, right directrix distance5/4, ratio4/5.",
     "rubric": [
       {
         "points": 2,
@@ -3410,7 +3410,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-078-T": {
-    "reference": "4p=8,p2:focus(2,0),directrix x=−2,e=1. Circle radius3 has c0,e0; no finite directrix supports distance=e·distance because focus-distance would not be0.",
+    "reference": "4p=8, p2:focus(2, 0), directrix x=−2, e=1. Circle radius3 has c0, e0; no finite directrix supports distance=e·distance because focus-distance would not be0.",
     "rubric": [
       {
         "points": 2,
@@ -3432,7 +3432,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-079-M": {
-    "reference": "x=3cost,y=2sint,t∈[0,2π) covers each point once; atπ/6,(3√3/2,1). Extending to R repeats every2π.",
+    "reference": "x=3cost, y=2sint, t∈[0, 2π) covers each point once; atπ/6, (3√3/2, 1). Extending to R repeats every2π.",
     "rubric": [
       {
         "points": 2,
@@ -3454,7 +3454,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-079-T": {
-    "reference": "Substitution verifies equation; any point has t=y/(2a),forcing x=at². t=−3 gives(9a,−6a).",
+    "reference": "Substitution verifies equation; any point has t=y/(2a), forcing x=at². t=−3 gives(9a, −6a).",
     "rubric": [
       {
         "points": 2,
@@ -3476,7 +3476,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-080-M": {
-    "reference": "Tangent gradient formula xx0/9+yy0/4=1. At(0,2):tangent y=2,normal x=0. At(3,0):tangent x=3,normal y=0. A single finite slope expression misses the latter tangent.",
+    "reference": "Tangent gradient formula xx0/9+yy0/4=1. At(0, 2):tangent y=2, normal x=0. At(3, 0):tangent x=3, normal y=0. A single finite slope expression misses the latter tangent.",
     "rubric": [
       {
         "points": 2,
@@ -3498,7 +3498,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-080-T": {
-    "reference": "Tangent ty=x+at² (from gradient). For t≠0 tangent slope1/t,normal slope−t: y−2at=−t(x−at²). At0 tangent x=0 and normal y=0; the same normal formula gives y=0.",
+    "reference": "Tangent ty=x+at² (from gradient). For t≠0 tangent slope1/t, normal slope−t: y−2at=−t(x−at²). At0 tangent x=0 and normal y=0; the same normal formula gives y=0.",
     "rubric": [
       {
         "points": 2,
@@ -3520,7 +3520,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-081-M": {
-    "reference": "Right-continuous and nondecreasing with proper limits. Jump1/2 at0,none at1. Continuous part density1/2 on(0,1),total mass1/2. Requested probability F(1/2)−F(0)=3/4−1/2=1/4.",
+    "reference": "Right-continuous and nondecreasing with proper limits. Jump1/2 at0, none at1. Continuous part density1/2 on(0, 1), total mass1/2. Requested probability F(1/2)−F(0)=3/4−1/2=1/4.",
     "rubric": [
       {
         "points": 2,
@@ -3542,7 +3542,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-081-T": {
-    "reference": "Point probability0,not1. CDF0 below0,x on[0,1],1 above1. Interval probability1/2.",
+    "reference": "Point probability0, not1. CDF0 below0, x on[0, 1], 1 above1. Interval probability1/2.",
     "rubric": [
       {
         "points": 2,
@@ -3564,7 +3564,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-082-M": {
-    "reference": "Atoms0 and1 each mass1/3. CDF0 below0,(y+1)/3 on0≤y<1,1 at/above1. Density1/3 on(0,1); EY=1/3+∫₀¹y/3dy=1/2.",
+    "reference": "Atoms0 and1 each mass1/3. CDF0 below0, (y+1)/3 on0≤y<1, 1 at/above1. Density1/3 on(0, 1); EY=1/3+∫₀¹y/3dy=1/2.",
     "rubric": [
       {
         "points": 2,
@@ -3586,7 +3586,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-082-T": {
-    "reference": "Y atom0 mass1/4. CDF0 for y<−2,3(y+2)/8 for−2≤y<0,1 for y≥0. Density3/8 on(−2,0). Left limit at0=3/4 differs from value1.",
+    "reference": "Y atom0 mass1/4. CDF0 for y<−2, 3(y+2)/8 for−2≤y<0, 1 for y≥0. Density3/8 on(−2, 0). Left limit at0=3/4 differs from value1.",
     "rubric": [
       {
         "points": 2,
@@ -3608,7 +3608,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-083-M": {
-    "reference": "Uniform1/4,mean4,variance16/12=4/3. Exponential survival e^−2x;conditional survival e^−4,mean1/2,variance1/4.",
+    "reference": "Uniform1/4, mean4, variance16/12=4/3. Exponential survival e^−2x; conditional survival e^−4, mean1/2, variance1/4.",
     "rubric": [
       {
         "points": 2,
@@ -3630,7 +3630,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-083-T": {
-    "reference": "Two integrations by parts give E X²=2/λ². P(X≤1/λ)=1−e^−1,independent of λ.",
+    "reference": "Two integrations by parts give E X²=2/λ². P(X≤1/λ)=1−e^−1, independent of λ.",
     "rubric": [
       {
         "points": 2,
@@ -3674,7 +3674,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-084-T": {
-    "reference": "Integrate−∫z³φ′=3∫z²φ=3,with vanishing boundary. Expansion gives8+6EZ²=14 since odd standard-normal moments vanish.",
+    "reference": "Integrate−∫z³φ′=3∫z²φ=3, with vanishing boundary. Expansion gives8+6EZ²=14 since odd standard-normal moments vanish.",
     "rubric": [
       {
         "points": 2,
@@ -3696,7 +3696,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-085-M": {
-    "reference": "E X^p=λ^−p Γ(α+p)/Γ(α),finite iff α+p>0; the exponential tail handles∞,near0 integrability requires exponentα+p−1>−1.",
+    "reference": "E X^p=λ^−p Γ(α+p)/Γ(α), finite iff α+p>0; the exponential tail handles∞, near0 integrability requires exponentα+p−1>−1.",
     "rubric": [
       {
         "points": 2,
@@ -3718,7 +3718,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-085-T": {
-    "reference": "Integral ratio B(a+r,b+s)/B(a,b),finite iff a+r>0 and b+s>0. Equality at either boundary gives logarithmic divergence.",
+    "reference": "Integral ratio B(a+r, b+s)/B(a, b), finite iff a+r>0 and b+s>0. Equality at either boundary gives logarithmic divergence.",
     "rubric": [
       {
         "points": 2,
@@ -3740,7 +3740,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-086-M": {
-    "reference": "MXi(t)=λ/(λ−t),t<λ. Product[λ/(λ−t)]^n identifies Gamma(shape n,rateλ). At t≥λ the integral diverges.",
+    "reference": "MXi(t)=λ/(λ−t), t<λ. Product[λ/(λ−t)]^n identifies Gamma(shape n, rateλ). At t≥λ the integral diverges.",
     "rubric": [
       {
         "points": 2,
@@ -3762,7 +3762,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-086-T": {
-    "reference": "M(t)=exp[λ(e^(2t)−1)+μ(e^t−1)],all real t. Mean2λ+μ,variance4λ+μ differ when λ>0,so not Poisson.",
+    "reference": "M(t)=exp[λ(e^(2t)−1)+μ(e^t−1)], all real t. Mean2λ+μ, variance4λ+μ differ when λ>0, so not Poisson.",
     "rubric": [
       {
         "points": 2,
@@ -3784,7 +3784,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-087-M": {
-    "reference": "FY=0 below0;2√y/3 for0≤y≤1;(1+√y)/3 for1≤y≤4;1 above4. Density1/(3√y) on(0,1),1/(6√y) on(1,4). No atoms.",
+    "reference": "FY=0 below0; 2√y/3 for0≤y≤1; (1+√y)/3 for1≤y≤4; 1 above4. Density1/(3√y) on(0, 1), 1/(6√y) on(1, 4). No atoms.",
     "rubric": [
       {
         "points": 2,
@@ -3806,7 +3806,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-087-T": {
-    "reference": "For0<y<1,P(Y≤y)=P(X≥−logy)=y. Thus uniform(0,1),with no endpoint atoms.",
+    "reference": "For0<y<1, P(Y≤y)=P(X≥−logy)=y. Thus uniform(0, 1), with no endpoint atoms.",
     "rubric": [
       {
         "points": 2,
@@ -3828,7 +3828,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-088-M": {
-    "reference": "P(K=k)=e^−λk−e^−λ(k+1)=(1−e^−λ)e^−λk,k≥0. Geometric failures-before-success with p=1−e^−λ.",
+    "reference": "P(K=k)=e^−λk−e^−λ(k+1)=(1−e^−λ)e^−λk, k≥0. Geometric failures-before-success with p=1−e^−λ.",
     "rubric": [
       {
         "points": 2,
@@ -3850,7 +3850,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-088-T": {
-    "reference": "Densitye^−y on(0,c),atom at c of mass e^−c. EY=∫₀^cP(X>t)dt=1−e^−c,also by adding atom contribution to integral.",
+    "reference": "Densitye^−y on(0, c), atom at c of mass e^−c. EY=∫₀^cP(X>t)dt=1−e^−c, also by adding atom contribution to integral.",
     "rubric": [
       {
         "points": 2,
@@ -3872,7 +3872,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-089-M": {
-    "reference": "Near0 requires p>−1;tails require p<1. Thus−1<p<1. EX is undefined because both positive and negative parts diverge; symmetric principal value0 is not expectation. For t>0 positive tail exponential divergence;for t<0 negative tail,so MGF infinite at every nonzero t.",
+    "reference": "Near0 requires p>−1; tails require p<1. Thus−1<p<1. EX is undefined because both positive and negative parts diverge; symmetric principal value0 is not expectation. For t>0 positive tail exponential divergence; for t<0 negative tail, so MGF infinite at every nonzero t.",
     "rubric": [
       {
         "points": 2,
@@ -3894,7 +3894,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-089-T": {
-    "reference": "Near0 requires p>−1;tail integrand comparable |x|^(p−3),so p<2. Range(−1,2). First absolute moment finite,symmetric mean0;second diverges,so no finite variance.",
+    "reference": "Near0 requires p>−1; tail integrand comparable |x|^(p−3), so p<2. Range(−1, 2). First absolute moment finite, symmetric mean0; second diverges, so no finite variance.",
     "rubric": [
       {
         "points": 2,
@@ -3916,7 +3916,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-090-M": {
-    "reference": "Integral2b gives c=1/(2b). Symmetry and integrability give mean0;second moment2b². Split integral gives M(t)=1/(1−b²t²) for|t|<1/b,diverges at/outside endpoints.",
+    "reference": "Integral2b gives c=1/(2b). Symmetry and integrability give mean0; second moment2b². Split integral gives M(t)=1/(1−b²t²) for|t|<1/b, diverges at/outside endpoints.",
     "rubric": [
       {
         "points": 2,
@@ -3938,7 +3938,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-090-T": {
-    "reference": "c=1/2. EX=(1/2)∫₀²x²=4/3,EX²=2,variance2/9. Tail integral3/4.",
+    "reference": "c=1/2. EX=(1/2)∫₀²x²=4/3, EX²=2, variance2/9. Tail integral3/4.",
     "rubric": [
       {
         "points": 2,
@@ -3960,7 +3960,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-091-M": {
-    "reference": "Area1/2 gives c2. fX(x)=2(1−x),fY(y)=2y on(0,1). EX=1/3,EY=2/3.",
+    "reference": "Area1/2 gives c2. fX(x)=2(1−x), fY(y)=2y on(0, 1). EX=1/3, EY=2/3.",
     "rubric": [
       {
         "points": 2,
@@ -3982,7 +3982,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-091-T": {
-    "reference": "P(X=1)=.7,P(Y=1)=.6;zero masses.3,.4. Product XY is1 only at11,so expectation.4.",
+    "reference": "P(X=1)=.7, P(Y=1)=.6; zero masses.3, .4. Product XY is1 only at11, so expectation.4.",
     "rubric": [
       {
         "points": 2,
@@ -4004,7 +4004,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-092-M": {
-    "reference": "fY=2y;conditional fX|Y=1/y on(0,y),uniform(0,y),for y∈(0,1). Support depends on y and joint cannot equal positive marginal product on the whole unit square,so dependent.",
+    "reference": "fY=2y; conditional fX|Y=1/y on(0, y), uniform(0, y), for y∈(0, 1). Support depends on y and joint cannot equal positive marginal product on the whole unit square, so dependent.",
     "rubric": [
       {
         "points": 2,
@@ -4026,7 +4026,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-092-T": {
-    "reference": "First conditional.4/.6=2/3≠.7,dependent. Second marginals X1=.7,Y1=.6;all cells factor,so independent.",
+    "reference": "First conditional.4/.6=2/3≠.7, dependent. Second marginals X1=.7, Y1=.6; all cells factor, so independent.",
     "rubric": [
       {
         "points": 2,
@@ -4048,7 +4048,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-093-M": {
-    "reference": "E(S|N)=Nμ;iterated expectation gives ES=λμ. Absolute integrability follows EΣ|payoff|=λE|payoff|<∞.",
+    "reference": "E(S|N)=Nμ; iterated expectation gives ES=λμ. Absolute integrability follows EΣ|payoff|=λE|payoff|<∞.",
     "rubric": [
       {
         "points": 2,
@@ -4114,7 +4114,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-094-T": {
-    "reference": "Conditional variance Nσ²,conditional mean Nμ. Total varianceλσ²+λμ². Requires finite payoff second moment.",
+    "reference": "Conditional variance Nσ², conditional mean Nμ. Total varianceλσ²+λμ². Requires finite payoff second moment.",
     "rubric": [
       {
         "points": 2,
@@ -4136,7 +4136,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-095-M": {
-    "reference": "Convolution length of(0,1)∩(s−1,s):fS=s for0<s<1,2−s for1≤s<2,0 otherwise.",
+    "reference": "Convolution length of(0, 1)∩(s−1, s):fS=s for0<s<1, 2−s for1≤s<2, 0 otherwise.",
     "rubric": [
       {
         "points": 2,
@@ -4158,7 +4158,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-095-T": {
-    "reference": "For r≥0,P(X≤rY)=∫₀∞(1−e^−ry)e^−y dy=r/(1+r). Density1/(1+r)² for r>0;CDF0 for r<0.",
+    "reference": "For r≥0, P(X≤rY)=∫₀∞(1−e^−ry)e^−y dy=r/(1+r). Density1/(1+r)² for r>0; CDF0 for r<0.",
     "rubric": [
       {
         "points": 2,
@@ -4180,7 +4180,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-096-M": {
-    "reference": "Inverse x=uv,y=u(1−v),support u>0,0<v<1,absolute Jacobian u. Jointu e^−u,product Gamma(2,1) density and uniform(0,1),so independent.",
+    "reference": "Inverse x=uv, y=u(1−v), support u>0, 0<v<1, absolute Jacobian u. Jointu e^−u, product Gamma(2, 1) density and uniform(0, 1), so independent.",
     "rubric": [
       {
         "points": 2,
@@ -4202,7 +4202,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-096-T": {
-    "reference": "Branches x=±√u,y=v each contribute original density1/2 times1/(2√u). Sum1/(2√u),0<u,v<1. Product support/density gives independence.",
+    "reference": "Branches x=±√u, y=v each contribute original density1/2 times1/(2√u). Sum1/(2√u), 0<u, v<1. Product support/density gives independence.",
     "rubric": [
       {
         "points": 2,
@@ -4224,7 +4224,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-097-M": {
-    "reference": "Squares complete to constant+4(a−3.5)²,unique mean3.5. Absolute loss has zero slope between middle values1,4 and slopes pointing toward that interval outside;all a∈[1,4].",
+    "reference": "Squares complete to constant+4(a−3.5)², unique mean3.5. Absolute loss has zero slope between middle values1, 4 and slopes pointing toward that interval outside; all a∈[1, 4].",
     "rubric": [
       {
         "points": 2,
@@ -4246,7 +4246,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-097-T": {
-    "reference": "Mean0+.6+5=5.6 is unique squared minimizer. Median condition P(X≤a)≥.5 andP(X≥a)≥.5 holds for all a∈[2,10],the absolute minimizers.",
+    "reference": "Mean0+.6+5=5.6 is unique squared minimizer. Median condition P(X≤a)≥.5 andP(X≥a)≥.5 holds for all a∈[2, 10], the absolute minimizers.",
     "rubric": [
       {
         "points": 2,
@@ -4268,7 +4268,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-098-M": {
-    "reference": "Let z=1/b>0. Median interval z∈[2,3]. Invert monotonically decreasing: b∈[1/3,1/2].",
+    "reference": "Let z=1/b>0. Median interval z∈[2, 3]. Invert monotonically decreasing: b∈[1/3, 1/2].",
     "rubric": [
       {
         "points": 2,
@@ -4290,7 +4290,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-098-T": {
-    "reference": "Weights total4,half2. All a∈[0,2] minimize first. Second in z=1/b>0 has medians[0,2] intersect(0,∞)=(0,2];thus b∈[1/2,∞),with no finite b representing z0.",
+    "reference": "Weights total4, half2. All a∈[0, 2] minimize first. Second in z=1/b>0 has medians[0, 2] intersect(0, ∞)=(0, 2]; thus b∈[1/2, ∞), with no finite b representing z0.",
     "rubric": [
       {
         "points": 2,
@@ -4312,7 +4312,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-099-M": {
-    "reference": "Let E0 no trailingH,E1 trailingH. E0=1+(E0+E1)/2;E1=1+E0/2. Solve E0=6,E1=4. Disjoint two-toss blocks succeed with probability1/4,so waiting is bounded by twice a geometric wait,finite.",
+    "reference": "Let E0 no trailingH, E1 trailingH. E0=1+(E0+E1)/2; E1=1+E0/2. Solve E0=6, E1=4. Disjoint two-toss blocks succeed with probability1/4, so waiting is bounded by twice a geometric wait, finite.",
     "rubric": [
       {
         "points": 2,
@@ -4334,7 +4334,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-099-T": {
-    "reference": "E0=1+(1−p)E0+pE1;E1=1+(1−p)E0. Solve E0=(1+p)/p². Disjoint success-pair blocks provide finite expectation bound2/p².",
+    "reference": "E0=1+(1−p)E0+pE1; E1=1+(1−p)E0. Solve E0=(1+p)/p². Disjoint success-pair blocks provide finite expectation bound2/p².",
     "rubric": [
       {
         "points": 2,
@@ -4356,7 +4356,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-100-M": {
-    "reference": "Joint probability T=t and condition is(3/6)^(t−1)(1/6). Sum over t gives1/3. Conditional mass2^−t,t≥1,geometric with success1/2,mean2.",
+    "reference": "Joint probability T=t and condition is(3/6)^(t−1)(1/6). Sum over t gives1/3. Conditional mass2^−t, t≥1, geometric with success1/2, mean2.",
     "rubric": [
       {
         "points": 2,
@@ -4378,7 +4378,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-100-T": {
-    "reference": "After the first toss,each further toss differs with probability1/2 independently. Additional waiting geometric trials mean2,so total mean3. Conditional on either first outcome same result.",
+    "reference": "After the first toss, each further toss differs with probability1/2 independently. Additional waiting geometric trials mean2, so total mean3. Conditional on either first outcome same result.",
     "rubric": [
       {
         "points": 2,
@@ -4400,7 +4400,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-101-M": {
-    "reference": "Means0,variances2,covarianceVarX−VarY=0. The linear transform is jointly normal; diagonal covariance makes the joint law a product. Zero covariance alone would not suffice.",
+    "reference": "Means0, variances2, covarianceVarX−VarY=0. The linear transform is jointly normal; diagonal covariance makes the joint law a product. Zero covariance alone would not suffice.",
     "rubric": [
       {
         "points": 2,
@@ -4422,7 +4422,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-101-T": {
-    "reference": "Cov=2·4−9+(2−1)·3=2≠0,so not independent. Variances of forms19 and13 respectively.",
+    "reference": "Cov=2·4−9+(2−1)·3=2≠0, so not independent. Variances of forms19 and13 respectively.",
     "rubric": [
       {
         "points": 2,
@@ -4444,7 +4444,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-102-M": {
-    "reference": "Coefficient3/4;residual Y−2−(3/4)(X−1) has covariance0 with X and normal variance9−9/4=27/4. Conditional mean2+.75(x−1),at3 equals3.5;variance27/4.",
+    "reference": "Coefficient3/4; residual Y−2−(3/4)(X−1) has covariance0 with X and normal variance9−9/4=27/4. Conditional mean2+.75(x−1), at3 equals3.5; variance27/4.",
     "rubric": [
       {
         "points": 2,
@@ -4466,7 +4466,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-102-T": {
-    "reference": "Point mass at2x+1,conditional variance0. Joint law lies on a line and covariance determinant0,so no nonsingular bivariate Lebesgue density.",
+    "reference": "Point mass at2x+1, conditional variance0. Joint law lies on a line and covariance determinant0, so no nonsingular bivariate Lebesgue density.",
     "rubric": [
       {
         "points": 2,
@@ -4488,7 +4488,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-103-M": {
-    "reference": "Choose orthonormal first vector1/√n,complete to basis. Standardized coordinates independent N(0,1);first is√n(Xbar−μ)/σ,residual coordinates remaining n−1. Residual squared norm is χ²(n−1) and independent of first.",
+    "reference": "Choose orthonormal first vector1/√n, complete to basis. Standardized coordinates independent N(0, 1); first is√n(Xbar−μ)/σ, residual coordinates remaining n−1. Residual squared norm is χ²(n−1) and independent of first.",
     "rubric": [
       {
         "points": 2,
@@ -4510,7 +4510,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-103-T": {
-    "reference": "Mean N(μ,σ²/2),differenceN(0,2σ²),covariance0 and jointly normal,so independent. Arbitrary iid data only guarantees covariance0;Bernoulli data give dependent mean/difference.",
+    "reference": "Mean N(μ, σ²/2), differenceN(0, 2σ²), covariance0 and jointly normal, so independent. Arbitrary iid data only guarantees covariance0; Bernoulli data give dependent mean/difference.",
     "rubric": [
       {
         "points": 2,
@@ -4532,7 +4532,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-104-M": {
-    "reference": "Normal numerator Z independent of V=(n−1)S²/σ²~χ²(n−1),so ratio t(n−1). Under equal variance,S1²/S2²~F(n1−1,n2−1),requiring independent samples.",
+    "reference": "Normal numerator Z independent of V=(n−1)S²/σ²~χ²(n−1), so ratio t(n−1). Under equal variance, S1²/S2²~F(n1−1, n2−1), requiring independent samples.",
     "rubric": [
       {
         "points": 2,
@@ -4554,7 +4554,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-104-T": {
-    "reference": "Ratio=signZ almost surely,with masses1/2 at±1. Although V~χ²1,it is not independent of Z,so t construction fails.",
+    "reference": "Ratio=signZ almost surely, with masses1/2 at±1. Although V~χ²1, it is not independent of Z, so t construction fails.",
     "rubric": [
       {
         "points": 2,
@@ -4576,7 +4576,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-105-M": {
-    "reference": "Fmax(t)=F(t)^n,Fmin(t)=1−[1−F(t)]^n. On0<t<1 uniform gives t^n and1−(1−t)^n,with0/1 extensions outside.",
+    "reference": "Fmax(t)=F(t)^n, Fmin(t)=1−[1−F(t)]^n. On0<t<1 uniform gives t^n and1−(1−t)^n, with0/1 extensions outside.",
     "rubric": [
       {
         "points": 2,
@@ -4598,7 +4598,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-105-T": {
-    "reference": "Survival product exp(−tΣλi),t≥0;minimumExp(rateΣλi),mean1/Σλi.",
+    "reference": "Survival product exp(−tΣλi), t≥0; minimumExp(rateΣλi), mean1/Σλi.",
     "rubric": [
       {
         "points": 2,
@@ -4620,7 +4620,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-106-M": {
-    "reference": "Density n m^(n−1)/θ^n on(0,θ). E M=nθ/(n+1),E M²=nθ²/(n+2),variance nθ²/[(n+1)²(n+2)].",
+    "reference": "Density n m^(n−1)/θ^n on(0, θ). E M=nθ/(n+1), E M²=nθ²/(n+2), variance nθ²/[(n+1)²(n+2)].",
     "rubric": [
       {
         "points": 2,
@@ -4642,7 +4642,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-106-T": {
-    "reference": "P(M≤k)=k²/36,k1,...,6;mass(2k−1)/36. MeanΣk(2k−1)/36=161/36.",
+    "reference": "P(M≤k)=k²/36, k1, ..., 6; mass(2k−1)/36. MeanΣk(2k−1)/36=161/36.",
     "rubric": [
       {
         "points": 2,
@@ -4664,7 +4664,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-107-M": {
-    "reference": "Count N=Σ1{Xi≤t}~Bin(n,F(t));probabilityΣ(j=k to n)C(n,j)F(t)^j[1−F(t)]^(n−j). Symmetry for Bin(5,.5) gives1/2.",
+    "reference": "Count N=Σ1{Xi≤t}~Bin(n, F(t)); probabilityΣ(j=k to n)C(n, j)F(t)^j[1−F(t)]^(n−j). Symmetry for Bin(5, .5) gives1/2.",
     "rubric": [
       {
         "points": 2,
@@ -4686,7 +4686,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-107-T": {
-    "reference": "At most1 observation≤.5. Probability(1+4)/16=5/16;strict versus weak threshold irrelevant here by continuity.",
+    "reference": "At most1 observation≤.5. Probability(1+4)/16=5/16; strict versus weak threshold irrelevant here by continuity.",
     "rubric": [
       {
         "points": 2,
@@ -4708,7 +4708,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-108-M": {
-    "reference": "Density n!/[(k−1)!(n−k)!] F^(k−1)(1−F)^(n−k)f. This is Beta(k,n+1−k) for uniforms. k1 gives n(1−F)^(n−1)f;kn gives nF^(n−1)f.",
+    "reference": "Density n!/[(k−1)!(n−k)!] F^(k−1)(1−F)^(n−k)f. This is Beta(k, n+1−k) for uniforms. k1 gives n(1−F)^(n−1)f; kn gives nF^(n−1)f.",
     "rubric": [
       {
         "points": 2,
@@ -4730,7 +4730,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-108-T": {
-    "reference": "Density30x²(1−x)² on(0,1). Mean30(1/4−2/5+1/6)=1/2;density integrates1.",
+    "reference": "Density30x²(1−x)² on(0, 1). Mean30(1/4−2/5+1/6)=1/2; density integrates1.",
     "rubric": [
       {
         "points": 2,
@@ -4752,7 +4752,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-109-M": {
-    "reference": "Joint n(n−1)(v−u)^(n−2),0<u<v<1. Integrate u from0 to1−r gives fR(r)=n(n−1)r^(n−2)(1−r),0<r<1.",
+    "reference": "Joint n(n−1)(v−u)^(n−2), 0<u<v<1. Integrate u from0 to1−r gives fR(r)=n(n−1)r^(n−2)(1−r), 0<r<1.",
     "rubric": [
       {
         "points": 2,
@@ -4774,7 +4774,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-109-T": {
-    "reference": "Joint6(v−u),marginalmaximum3v²;conditional2(v−u)/v² on(0,v),mean v/3.",
+    "reference": "Joint6(v−u), marginalmaximum3v²; conditional2(v−u)/v² on(0, v), mean v/3.",
     "rubric": [
       {
         "points": 2,
@@ -4796,7 +4796,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-110-M": {
-    "reference": "CDF uv min(u,v) for0≤u,v≤1,extended appropriately. Equality occurs when X2 is largest,probability1/3. Density2u foru<v,2v forv<u,total2/3. Diagonal measure P(U=V∈dt)=t²dt,total1/3;no fixed joint point has positive mass.",
+    "reference": "CDF uv min(u, v) for0≤u, v≤1, extended appropriately. Equality occurs when X2 is largest, probability1/3. Density2u foru<v, 2v forv<u, total2/3. Diagonal measure P(U=V∈dt)=t²dt, total1/3; no fixed joint point has positive mass.",
     "rubric": [
       {
         "points": 2,
@@ -4818,7 +4818,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-110-T": {
-    "reference": "Equality iff shared X2 is smallest,probability1/3. Diagonal density with respect to dt is(1−t)² on(0,1). Positive mass on a planar zero-area set prevents a density-only representation.",
+    "reference": "Equality iff shared X2 is smallest, probability1/3. Diagonal density with respect to dt is(1−t)² on(0, 1). Positive mass on a planar zero-area set prevents a density-only representation.",
     "rubric": [
       {
         "points": 2,
@@ -4840,7 +4840,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-111-M": {
-    "reference": "10·1{X≥10}≤X;expectations give.3. Apply Markov to(Y−2)² at25 to obtain4/25. Nonnegativity applies to the squared variable.",
+    "reference": "10·1{X≥10}≤X; expectations give.3. Apply Markov to(Y−2)² at25 to obtain4/25. Nonnegativity applies to the squared variable.",
     "rubric": [
       {
         "points": 2,
@@ -4862,7 +4862,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-111-T": {
-    "reference": "No:Z=±1 equally has mean0 but tail1/2. If EZ²<∞,P(|Z|≥a)≤EZ²/a² by Markov on Z².",
+    "reference": "No:Z=±1 equally has mean0 but tail1/2. If EZ²<∞, P(|Z|≥a)≤EZ²/a² by Markov on Z².",
     "rubric": [
       {
         "points": 2,
@@ -4884,7 +4884,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-112-M": {
-    "reference": "Bound9/(n·.25)=36/n. n≥720 suffices. It is an upper bound,not generally the actual probability.",
+    "reference": "Bound9/(n·.25)=36/n. n≥720 suffices. It is an upper bound, not generally the actual probability.",
     "rubric": [
       {
         "points": 2,
@@ -4906,7 +4906,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-112-T": {
-    "reference": "Upper bound1/n+.2,clipped at1 if needed. It approaches.2 and never certifies.05. Failure of this bound does not alone prove the actual tail exceeds.05.",
+    "reference": "Upper bound1/n+.2, clipped at1 if needed. It approaches.2 and never certifies.05. Failure of this bound does not alone prove the actual tail exceeds.05.",
     "rubric": [
       {
         "points": 2,
@@ -4928,7 +4928,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-113-M": {
-    "reference": "Chebyshev boundσ²/(nε²)→0. For a≠0 use thresholdε/|a|;a=0 is exact. This establishes convergence in probability,not almost-sure convergence by this argument.",
+    "reference": "Chebyshev boundσ²/(nε²)→0. For a≠0 use thresholdε/|a|; a=0 is exact. This establishes convergence in probability, not almost-sure convergence by this argument.",
     "rubric": [
       {
         "points": 2,
@@ -4950,7 +4950,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-113-T": {
-    "reference": "Variancep(1−p)/n≤1/(4n). Tail≤1/(4nε²) uniformly forp∈[0,1].",
+    "reference": "Variancep(1−p)/n≤1/(4n). Tail≤1/(4nε²) uniformly forp∈[0, 1].",
     "rubric": [
       {
         "points": 2,
@@ -4972,7 +4972,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-114-M": {
-    "reference": "ETn=μ,variance(4n−2)σ²/(4n²)→0;Chebyshev. For Yn,P(|Yn−μ|>.5)=1 for every n,so inconsistent,established by a nonvanishing tail.",
+    "reference": "ETn=μ, variance(4n−2)σ²/(4n²)→0; Chebyshev. For Yn, P(|Yn−μ|>.5)=1 for every n, so inconsistent, established by a nonvanishing tail.",
     "rubric": [
       {
         "points": 2,
@@ -4994,7 +4994,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-114-T": {
-    "reference": "For fixedε>0,n>ε,tail1/n→0. Mean1,secondmomentn,variance n−1. Nonvanishing bias or variance does not alone refute convergence in probability.",
+    "reference": "For fixedε>0, n>ε, tail1/n→0. Mean1, secondmomentn, variance n−1. Nonvanishing bias or variance does not alone refute convergence in probability.",
     "rubric": [
       {
         "points": 2,
@@ -5016,7 +5016,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-115-M": {
-    "reference": "Standardization(1020−1000)/(2√100)=1 gives1−Φ(1). iid finite nonzero variance;the probability is approximate with no finite-sample error bound supplied.",
+    "reference": "Standardization(1020−1000)/(2√100)=1 gives1−Φ(1). iid finite nonzero variance; the probability is approximate with no finite-sample error bound supplied.",
     "rubric": [
       {
         "points": 2,
@@ -5038,7 +5038,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-115-T": {
-    "reference": "Mean50,SD5. Threshold59.5 gives1−Φ(1.9). Without correction1−Φ(2);neither is the exact binomial tail.",
+    "reference": "Mean50, SD5. Threshold59.5 gives1−Φ(1.9). Without correction1−Φ(2); neither is the exact binomial tail.",
     "rubric": [
       {
         "points": 2,
@@ -5060,7 +5060,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-116-M": {
-    "reference": "Yi iid mean2μ,variance2σ². √m(Ybar−2μ)/(√2σ)⇒N(0,1). Original meanYbar/2 gives√(2m)(Xbar−μ)/σ⇒N(0,1).",
+    "reference": "Yi iid mean2μ, variance2σ². √m(Ybar−2μ)/(√2σ)⇒N(0, 1). Original meanYbar/2 gives√(2m)(Xbar−μ)/σ⇒N(0, 1).",
     "rubric": [
       {
         "points": 2,
@@ -5082,7 +5082,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-116-T": {
-    "reference": "CLT with true variance;WLLN and continuity give plug-in variance→p(1−p)>0;Slutsky gives result. Finite all-equal samples cause zero denominator and require a separately defined statistic;their probability p^n+(1−p)^n→0.",
+    "reference": "CLT with true variance; WLLN and continuity give plug-in variance→p(1−p)>0; Slutsky gives result. Finite all-equal samples cause zero denominator and require a separately defined statistic; their probability p^n+(1−p)^n→0.",
     "rubric": [
       {
         "points": 2,
@@ -5104,7 +5104,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-117-M": {
-    "reference": "First {Σ1{Xi≤a}≥k},countBin(n,F(a)). Second {Σ1{Xi≤b}≤k−1},countBin(n,F(b)). Continuity permits ignoring equalities at fixed thresholds.",
+    "reference": "First {Σ1{Xi≤a}≥k}, countBin(n, F(a)). Second {Σ1{Xi≤b}≤k−1}, countBin(n, F(b)). Continuity permits ignoring equalities at fixed thresholds.",
     "rubric": [
       {
         "points": 2,
@@ -5126,7 +5126,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-117-T": {
-    "reference": "Use N_< =Σ1{Xi<a},parameterF(a−). Events N_<≥k and N_<≤k−1 respectively;replacing F(a−) byF(a) can be wrong at atoms.",
+    "reference": "Use N_< =Σ1{Xi<a}, parameterF(a−). Events N_<≥k and N_<≤k−1 respectively; replacing F(a−) byF(a) can be wrong at atoms.",
     "rubric": [
       {
         "points": 2,
@@ -5148,7 +5148,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-118-M": {
-    "reference": "For lower tail,empirical fraction atq−ε converges toF(q−ε)<p while thresholdk_n/n→p,so probability of fraction≥threshold→0. Upper tail similarly usesF(q+ε)>p. Union bounds the two tails.",
+    "reference": "For lower tail, empirical fraction atq−ε converges toF(q−ε)<p while thresholdk_n/n→p, so probability of fraction≥threshold→0. Upper tail similarly usesF(q+ε)>p. Union bounds the two tails.",
     "rubric": [
       {
         "points": 2,
@@ -5170,7 +5170,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-118-T": {
-    "reference": "No. Every sample median is0 or2,so P(|median−1|>.5)=1. Population median nonuniqueness alone does not imply consistency at an arbitrary chosen median;strict separation fails around1.",
+    "reference": "No. Every sample median is0 or2, so P(|median−1|>.5)=1. Population median nonuniqueness alone does not imply consistency at an arbitrary chosen median; strict separation fails around1.",
     "rubric": [
       {
         "points": 2,
@@ -5192,7 +5192,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-119-M": {
-    "reference": "T bias0,variance/MSEσ²/n. U bias(c−1)μ,variance c²σ²/n,MSE c²σ²/n+(c−1)²μ².",
+    "reference": "T bias0, variance/MSEσ²/n. U bias(c−1)μ, variance c²σ²/n, MSE c²σ²/n+(c−1)²μ².",
     "rubric": [
       {
         "points": 2,
@@ -5214,7 +5214,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-119-T": {
-    "reference": "E Xbar²=μ²+σ²/n,biasσ²/n. MSE requires E Xbar⁴,which may not be finite or determined by those two moments;additional information is needed.",
+    "reference": "E Xbar²=μ²+σ²/n, biasσ²/n. MSE requires E Xbar⁴, which may not be finite or determined by those two moments; additional information is needed.",
     "rubric": [
       {
         "points": 2,
@@ -5236,7 +5236,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-120-M": {
-    "reference": "Risks1/n and1/(4n)+μ²/4. Shrinkage better iff μ²<3/n,equal at boundary,worse outside. No uniform dominance.",
+    "reference": "Risks1/n and1/(4n)+μ²/4. Shrinkage better iff μ²<3/n, equal at boundary, worse outside. No uniform dominance.",
     "rubric": [
       {
         "points": 2,
@@ -5258,7 +5258,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-120-T": {
-    "reference": "Covσ²/n. Varianceσ²[a²/n+(1−a)²+2a(1−a)/n]=σ²[1/n+(1−1/n)(1−a)²]. Minimum at a=1 ifσ²>0;all a ifσ²=0.",
+    "reference": "Covσ²/n. Varianceσ²[a²/n+(1−a)²+2a(1−a)/n]=σ²[1/n+(1−1/n)(1−a)²]. Minimum at a=1 ifσ²>0; all a ifσ²=0.",
     "rubric": [
       {
         "points": 2,
@@ -5280,7 +5280,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-121-M": {
-    "reference": "E X=θ/2,so θhat=2Xbar,unbiased,varianceθ²/(3n). It need not exceed max:sample(.1,.1,.9) gives2mean≈.733<.9,so it can be incompatible with that sample support.",
+    "reference": "E X=θ/2, so θhat=2Xbar, unbiased, varianceθ²/(3n). It need not exceed max:sample(.1, .1, .9) gives2mean≈.733<.9, so it can be incompatible with that sample support.",
     "rubric": [
       {
         "points": 2,
@@ -5302,7 +5302,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-121-T": {
-    "reference": "E X=1/λ gives λhat=1/Xbar when meanpositive. Nonlinear inversion does not preserve expectation;for n>1,ES^−1=λ/(n−1),so Eλhat=nλ/(n−1);for n1 expectation diverges.",
+    "reference": "E X=1/λ gives λhat=1/Xbar when meanpositive. Nonlinear inversion does not preserve expectation; for n>1, ES^−1=λ/(n−1), so Eλhat=nλ/(n−1); for n1 expectation diverges.",
     "rubric": [
       {
         "points": 2,
@@ -5324,7 +5324,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-122-M": {
-    "reference": "m=α/λ,v=α/λ² imply αhat=m²/v,λhat=m/v. If v0 and m>0,no finite positive α,λ fit both;do not divide by0.",
+    "reference": "m=α/λ, v=α/λ² imply αhat=m²/v, λhat=m/v. If v0 and m>0, no finite positive α, λ fit both; do not divide by0.",
     "rubric": [
       {
         "points": 2,
@@ -5346,7 +5346,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-122-T": {
-    "reference": "ahat=m−√(3v),bhat=m+√(3v). No:sample(0,0,0,0,10),m2,v16 gives upper2+√48<10. Moment fitting is not a support-constrained likelihood fit.",
+    "reference": "ahat=m−√(3v), bhat=m+√(3v). No:sample(0, 0, 0, 0, 10), m2, v16 gives upper2+√48<10. Moment fitting is not a support-constrained likelihood fit.",
     "rubric": [
       {
         "points": 2,
@@ -5368,7 +5368,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-123-M": {
-    "reference": "Exponential L=λ^n exp(−λΣxi),unique maximum n/Σxi since log second derivative−n/λ². Uniform L=θ^−n1{θ≥M},decreasing on[M,∞),maximumθ=M under the specified closed-endpoint version.",
+    "reference": "Exponential L=λ^n exp(−λΣxi), unique maximum n/Σxi since log second derivative−n/λ². Uniform L=θ^−n1{θ≥M}, decreasing on[M, ∞), maximumθ=M under the specified closed-endpoint version.",
     "rubric": [
       {
         "points": 2,
@@ -5390,7 +5390,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-123-T": {
-    "reference": "Let q=e^−λ∈(0,1),L=(1−q)^n q^S withS=ΣKi. IfS>0,qhat=S/(n+S),λhat=log(1+n/S). IfS0,L increases asλ→∞;supremum1 is not attained at finiteλ.",
+    "reference": "Let q=e^−λ∈(0, 1), L=(1−q)^n q^S withS=ΣKi. IfS>0, qhat=S/(n+S), λhat=log(1+n/S). IfS0, L increases asλ→∞; supremum1 is not attained at finiteλ.",
     "rubric": [
       {
         "points": 2,
@@ -5412,7 +5412,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-124-M": {
-    "reference": "All data legal iff θ≤minxi and θ≥maxxi−1. Likelihood1 on[max−1,min],so every point there maximizes. Range>1 gives zero likelihood for everyθ and indicates data outside the model;no informative fitted support.",
+    "reference": "All data legal iff θ≤minxi and θ≥maxxi−1. Likelihood1 on[max−1, min], so every point there maximizes. Range>1 gives zero likelihood for everyθ and indicates data outside the model; no informative fitted support.",
     "rubric": [
       {
         "points": 2,
@@ -5434,7 +5434,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-124-T": {
-    "reference": "Open support likelihoodθ^−1 forθ>x,zero otherwise;supremum1/x approached from above,not attained. Closed version attains atθ=x. Endpoint density conventions matter for formal pointwise likelihood statements.",
+    "reference": "Open support likelihoodθ^−1 forθ>x, zero otherwise; supremum1/x approached from above, not attained. Closed version attains atθ=x. Endpoint density conventions matter for formal pointwise likelihood statements.",
     "rubric": [
       {
         "points": 2,
@@ -5456,7 +5456,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-125-M": {
-    "reference": "λhat=1/Xbar. Median(log2)/λ gives Xbar log2;survival e^−λc gives exp(−c/Xbar). Both by invariance,not a claim of unbiasedness.",
+    "reference": "λhat=1/Xbar. Median(log2)/λ gives Xbar log2; survival e^−λc gives exp(−c/Xbar). Both by invariance, not a claim of unbiasedness.",
     "rubric": [
       {
         "points": 2,
@@ -5478,7 +5478,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-125-T": {
-    "reference": "Invariance gives phat² and phat(1−phat). Even though p and1−p have same second target value,the global likelihood maximizer maps to a global maximizer of profile likelihood over target fibers.",
+    "reference": "Invariance gives phat² and phat(1−phat). Even though p and1−p have same second target value, the global likelihood maximizer maps to a global maximizer of profile likelihood over target fibers.",
     "rubric": [
       {
         "points": 2,
@@ -5500,7 +5500,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-126-M": {
-    "reference": "MinimizeΣ(xi−μi)² subjectsum0. Lagrange equations give μihat=xi−xbar. Residual is constant vector orthogonal to constraint subspace;Pythagoras proves unique minimum.",
+    "reference": "MinimizeΣ(xi−μi)² subjectsum0. Lagrange equations give μihat=xi−xbar. Residual is constant vector orthogonal to constraint subspace; Pythagoras proves unique minimum.",
     "rubric": [
       {
         "points": 2,
@@ -5522,7 +5522,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-126-T": {
-    "reference": "Unconstrained minimizer m=(x+y)/2;objective=constant+2(θ−m)². Project to interval:max(0,min(1,m)). Includes both boundary cases.",
+    "reference": "Unconstrained minimizer m=(x+y)/2; objective=constant+2(θ−m)². Project to interval:max(0, min(1, m)). Includes both boundary cases.",
     "rubric": [
       {
         "points": 2,
@@ -5544,7 +5544,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-127-M": {
-    "reference": "Jointθ^−n1{0≤minxi}1{maxxi≤θ};gθ(M)=θ^−n1{M≤θ},h=1{min≥0}. Dropping support would falsely suggest the data do not affect parameter admissibility.",
+    "reference": "Jointθ^−n1{0≤minxi}1{maxxi≤θ}; gθ(M)=θ^−n1{M≤θ}, h=1{min≥0}. Dropping support would falsely suggest the data do not affect parameter admissibility.",
     "rubric": [
       {
         "points": 2,
@@ -5566,7 +5566,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-127-T": {
-    "reference": "Jointp^s(1−p)^(n−s) on binary vectors,factorization. Given S=s,all C(n,s) vectors equally likely,independent ofp.",
+    "reference": "Jointp^s(1−p)^(n−s) on binary vectors, factorization. Given S=s, all C(n, s) vectors equally likely, independent ofp.",
     "rubric": [
       {
         "points": 2,
@@ -5588,7 +5588,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-128-M": {
-    "reference": "Jointλ²e^−λS on positive quadrant proves sum sufficient. Given max=m,the minimum has densityλe^−λt/(1−e^−λm),0<t<m,depending onλ. Thus max is not sufficient.",
+    "reference": "Jointλ²e^−λS on positive quadrant proves sum sufficient. Given max=m, the minimum has densityλe^−λt/(1−e^−λm), 0<t<m, depending onλ. Thus max is not sufficient.",
     "rubric": [
       {
         "points": 2,
@@ -5610,7 +5610,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-128-T": {
-    "reference": "S sufficient;3S+1 invertibly recodes it. Given even parity,probabilityS=2 is p²/[p²+(1−p)²],parameter-dependent,so parity not sufficient forp∈(0,1).",
+    "reference": "S sufficient; 3S+1 invertibly recodes it. Given even parity, probabilityS=2 is p²/[p²+(1−p)²], parameter-dependent, so parity not sufficient forp∈(0, 1).",
     "rubric": [
       {
         "points": 2,
@@ -5632,7 +5632,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-129-M": {
-    "reference": "Exchangeability conditional on S yields E(X1|S)=S/n. Meanp,variancep(1−p)/n versusp(1−p) forU. Strict improvement for interiorp andn>1.",
+    "reference": "Exchangeability conditional on S yields E(X1|S)=S/n. Meanp, variancep(1−p)/n versusp(1−p) forU. Strict improvement for interiorp andn>1.",
     "rubric": [
       {
         "points": 2,
@@ -5654,7 +5654,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-129-T": {
-    "reference": "GivenS=s,X1~Bin(s,1/n),so estimator(1−1/n)^S,n≥2. Iterated expectation preserves EU=e^−λ. Total variance gives VarU=VarE(U|S)+EVar(U|S).",
+    "reference": "GivenS=s, X1~Bin(s, 1/n), so estimator(1−1/n)^S, n≥2. Iterated expectation preserves EU=e^−λ. Total variance gives VarU=VarE(U|S)+EVar(U|S).",
     "rubric": [
       {
         "points": 2,
@@ -5676,7 +5676,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-130-M": {
-    "reference": "Xbar=S/n is unbiased and a function of complete sufficientS,hence UMVU. ScoreS/λ−n,information n/λ;support parameter-independent and regular differentiation applies. Bound for unbiasedλ estimatorλ/n equals VarXbar.",
+    "reference": "Xbar=S/n is unbiased and a function of complete sufficientS, hence UMVU. ScoreS/λ−n, information n/λ; support parameter-independent and regular differentiation applies. Bound for unbiasedλ estimatorλ/n equals VarXbar.",
     "rubric": [
       {
         "points": 2,
@@ -5698,7 +5698,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-130-T": {
-    "reference": "Xbar unbiasedθ and function of sum gives UMVU. Scale score−n/θ+S/θ²,information n/θ² under positive fixed support. Boundθ²/n attained byVarXbar;both routes separately valid.",
+    "reference": "Xbar unbiasedθ and function of sum gives UMVU. Scale score−n/θ+S/θ², information n/θ² under positive fixed support. Boundθ²/n attained byVarXbar; both routes separately valid.",
     "rubric": [
       {
         "points": 2,
@@ -5742,7 +5742,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-131-T": {
-    "reference": "Power1−Φ(1.645−μ),increasing inμ. Supremum overμ≤0 occursμ0,size1−Φ(1.645),approximately.05.",
+    "reference": "Power1−Φ(1.645−μ), increasing inμ. Supremum overμ≤0 occursμ0, size1−Φ(1.645), approximately.05.",
     "rubric": [
       {
         "points": 2,
@@ -5764,7 +5764,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-132-M": {
-    "reference": "P0(X≥3)=5/16. Union bound familywise≤.05,regardless of dependence. Neither value is P(H0 true|data).",
+    "reference": "P0(X≥3)=5/16. Union bound familywise≤.05, regardless of dependence. Neither value is P(H0 true|data).",
     "rubric": [
       {
         "points": 2,
@@ -5786,7 +5786,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-132-T": {
-    "reference": "p=2[1−Φ(2)]. Post-selecting direction and using1−Φ(|z|) omits the equally extreme opposite tail;under the null either sign can trigger rejection.",
+    "reference": "p=2[1−Φ(2)]. Post-selecting direction and using1−Φ(|z|) omits the equally extreme opposite tail; under the null either sign can trigger rejection.",
     "rubric": [
       {
         "points": 2,
@@ -5808,7 +5808,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-133-M": {
-    "reference": "Ratio(p1/p0)^x[(1−p1)/(1−p0)]^(n−x);successive ratio factor p1(1−p0)/[p0(1−p1)]>1. Thus large x gives stronger alternative evidence.",
+    "reference": "Ratio(p1/p0)^x[(1−p1)/(1−p0)]^(n−x); successive ratio factor p1(1−p0)/[p0(1−p1)]>1. Thus large x gives stronger alternative evidence.",
     "rubric": [
       {
         "points": 2,
@@ -5830,7 +5830,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-133-T": {
-    "reference": "L1/L0=2e^−x decreasing inx,so small observations have largest ratio. Reject on a lower tail,with size calibrated under Exp1.",
+    "reference": "L1/L0=2e^−x decreasing inx, so small observations have largest ratio. Reject on a lower tail, with size calibrated under Exp1.",
     "rubric": [
       {
         "points": 2,
@@ -5852,7 +5852,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-134-M": {
-    "reference": "Ratios1/3,1,3. Reject2 (null1/6),randomize at1 withr satisfying1/6+r/3=1/4,so r1/4. Power1/2+(1/4)(1/3)=7/12.",
+    "reference": "Ratios1/3, 1, 3. Reject2 (null1/6), randomize at1 withr satisfying1/6+r/3=1/4, so r1/4. Power1/2+(1/4)(1/3)=7/12.",
     "rubric": [
       {
         "points": 2,
@@ -5874,7 +5874,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-134-T": {
-    "reference": "Outcome1 ratio4 versus.25 for0. Reject at1 with probability.5 and never at0. Size.2·.5=.1,power.8·.5=.4.",
+    "reference": "Outcome1 ratio4 versus.25 for0. Reject at1 with probability.5 and never at0. Size.2·.5=.1, power.8·.5=.4.",
     "rubric": [
       {
         "points": 2,
@@ -5896,7 +5896,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-135-M": {
-    "reference": "Mean statistic√n(Xbar−μ0)/S~t(n−1);reject absolute value>t_(n−1)(1−α/2). Variance statistic(n−1)S²/σ0²~χ²(n−1);reject belowq(α/2) oraboveq(1−α/2). Equal-tail variance test stated,not claimed UMP.",
+    "reference": "Mean statistic√n(Xbar−μ0)/S~t(n−1); reject absolute value>t_(n−1)(1−α/2). Variance statistic(n−1)S²/σ0²~χ²(n−1); reject belowq(α/2) oraboveq(1−α/2). Equal-tail variance test stated, not claimed UMP.",
     "rubric": [
       {
         "points": 2,
@@ -5918,7 +5918,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-135-T": {
-    "reference": "Z=√n(Xbar−μ0)/σ,rejectZ>Φ^−1(1−α). Unknown variance changes the finite-sample null law;with usualS under iid normality it is t,not exactlyz.",
+    "reference": "Z=√n(Xbar−μ0)/σ, rejectZ>Φ^−1(1−α). Unknown variance changes the finite-sample null law; with usualS under iid normality it is t, not exactlyz.",
     "rubric": [
       {
         "points": 2,
@@ -5940,7 +5940,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-136-M": {
-    "reference": "Sp²=[(n1−1)S1²+(n2−1)S2²]/(n1+n2−2). t=(Xbar1−Xbar2)/(Sp√(1/n1+1/n2)),dfn1+n2−2. BetweenSS=(difference)²/(1/n1+1/n2),df1;divide bySp² gives t².",
+    "reference": "Sp²=[(n1−1)S1²+(n2−1)S2²]/(n1+n2−2). t=(Xbar1−Xbar2)/(Sp√(1/n1+1/n2)), dfn1+n2−2. BetweenSS=(difference)²/(1/n1+1/n2), df1; divide bySp² gives t².",
     "rubric": [
       {
         "points": 2,
@@ -5962,7 +5962,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-136-T": {
-    "reference": "Z=(Xbar1−Xbar2)/√(4/16+9/25)=(difference)/√.61,standard normal under null. Variances known and unequal;no common unknown variance justified for pooling.",
+    "reference": "Z=(Xbar1−Xbar2)/√(4/16+9/25)=(difference)/√.61, standard normal under null. Variances known and unequal; no common unknown variance justified for pooling.",
     "rubric": [
       {
         "points": 2,
@@ -5984,7 +5984,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-137-M": {
-    "reference": "P(qν(α/2)≤νS²/σ²≤qν(1−α/2))=1−α. All positive,so interval[νS²/qν(1−α/2),νS²/qν(α/2)]. Division reverses endpoint order.",
+    "reference": "P(qν(α/2)≤νS²/σ²≤qν(1−α/2))=1−α. All positive, so interval[νS²/qν(1−α/2), νS²/qν(α/2)]. Division reverses endpoint order.",
     "rubric": [
       {
         "points": 2,
@@ -6006,7 +6006,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-137-T": {
-    "reference": "[q_(2n)(α/2)/(2ΣXi),q_(2n)(1−α/2)/(2ΣXi)]. Hereλ multiplies the positive sample sum,so no reciprocal endpoint reversal.",
+    "reference": "[q_(2n)(α/2)/(2ΣXi), q_(2n)(1−α/2)/(2ΣXi)]. Hereλ multiplies the positive sample sum, so no reciprocal endpoint reversal.",
     "rubric": [
       {
         "points": 2,
@@ -6028,7 +6028,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-138-M": {
-    "reference": "Mean Xbar±t_(n−1)(1−α/2)S/√n. Future Xnew−Xbar normal varianceσ²(1+1/n),independent ofS;prediction Xbar±t S√(1+1/n).",
+    "reference": "Mean Xbar±t_(n−1)(1−α/2)S/√n. Future Xnew−Xbar normal varianceσ²(1+1/n), independent ofS; prediction Xbar±t S√(1+1/n).",
     "rubric": [
       {
         "points": 2,
@@ -6050,7 +6050,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-138-T": {
-    "reference": "UM=M/α^(1/n). θ≤UM iffM/θ≥α^(1/n),probability1−α since CDF ofM/θ is u^n. Bound exceeds or equalsM;it concernsθ,not a future draw.",
+    "reference": "UM=M/α^(1/n). θ≤UM iffM/θ≥α^(1/n), probability1−α since CDF ofM/θ is u^n. Bound exceeds or equalsM; it concernsθ, not a future draw.",
     "rubric": [
       {
         "points": 2,
@@ -6072,7 +6072,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-139-M": {
-    "reference": "phat±z_(1−α/2)√[phat(1−phat)/n],from CLT and consistent plug-in. Approximate coverage asn→∞,not exact;endpoints may leave[0,1]. Simply clipping does not make the derivation exact.",
+    "reference": "phat±z_(1−α/2)√[phat(1−phat)/n], from CLT and consistent plug-in. Approximate coverage asn→∞, not exact; endpoints may leave[0, 1]. Simply clipping does not make the derivation exact.",
     "rubric": [
       {
         "points": 2,
@@ -6094,7 +6094,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-139-T": {
-    "reference": "√n(Xbar−μ0)/S⇒N(0,1),two-sidedz threshold asymptotic. Exact t law requires iid normal errors;finite variance alone gives no exact t distribution.",
+    "reference": "√n(Xbar−μ0)/S⇒N(0, 1), two-sidedz threshold asymptotic. Exact t law requires iid normal errors; finite variance alone gives no exact t distribution.",
     "rubric": [
       {
         "points": 2,
@@ -6116,7 +6116,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-140-M": {
-    "reference": "phat0 gives Wald interval[0,0],which is misleading for positivep. (1−p)^10=α gives upper1−α^(1/10). This is the zero-success endpoint of an exact binomial inversion procedure;other observations need their own endpoints.",
+    "reference": "phat0 gives Wald interval[0, 0], which is misleading for positivep. (1−p)^10=α gives upper1−α^(1/10). This is the zero-success endpoint of an exact binomial inversion procedure; other observations need their own endpoints.",
     "rubric": [
       {
         "points": 2,
@@ -6138,7 +6138,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-140-T": {
-    "reference": "No:ordinary Cauchy expectation and variance do not exist,so hypotheses fail. Failure of this theorem is not itself a proof of every alternative procedure;the stated z derivation is unjustified.",
+    "reference": "No:ordinary Cauchy expectation and variance do not exist, so hypotheses fail. Failure of this theorem is not itself a proof of every alternative procedure; the stated z derivation is unjustified.",
     "rubric": [
       {
         "points": 2,
@@ -6160,7 +6160,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-141-M": {
-    "reference": "Signs iid Bernoulli1/2,so countBin(n,.5). With zeros,dropping them is exact conditional on nonzero count only if nonzero signs remain iid balanced under the specified null;mere median membership with atoms need not ensure this.",
+    "reference": "Signs iid Bernoulli1/2, so countBin(n, .5). With zeros, dropping them is exact conditional on nonzero count only if nonzero signs remain iid balanced under the specified null; mere median membership with atoms need not ensure this.",
     "rubric": [
       {
         "points": 2,
@@ -6182,7 +6182,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-141-T": {
-    "reference": "Five nonzero signs,three positive. P(Bin(5,.5)≥3)=1/2. The balance assumption must be stated,not inferred from the deletion.",
+    "reference": "Five nonzero signs, three positive. P(Bin(5, .5)≥3)=1/2. The balance assumption must be stated, not inferred from the deletion.",
     "rubric": [
       {
         "points": 2,
@@ -6226,7 +6226,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-142-T": {
-    "reference": "Reject only S=5,size1/32=.03125. IncludingS=4 raises size(5+1)/32=.1875. Randomization could use part of the boundary mass if exact.05 were required.",
+    "reference": "Reject only S=5, size1/32=.03125. IncludingS=4 raises size(5+1)/32=.1875. Randomization could use part of the boundary mass if exact.05 were required.",
     "rubric": [
       {
         "points": 2,
@@ -6248,7 +6248,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-143-M": {
-    "reference": "EquationsΣ(y−a−bx)=0 andΣx(y−a−bx)=0. xbar1,ybar5/3,Sxx2,Sxy1; b1/2,a7/6. Residuals−1/6,1/3,−1/6.",
+    "reference": "EquationsΣ(y−a−bx)=0 andΣx(y−a−bx)=0. xbar1, ybar5/3, Sxx2, Sxy1; b1/2, a7/6. Residuals−1/6, 1/3, −1/6.",
     "rubric": [
       {
         "points": 2,
@@ -6270,7 +6270,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-143-T": {
-    "reference": "b=Σxy/Σx²=6/5. Residuals1,4/5,−2/5 sum7/5≠0. OnlyΣx residual=0 is enforced;no intercept equation.",
+    "reference": "b=Σxy/Σx²=6/5. Residuals1, 4/5, −2/5 sum7/5≠0. OnlyΣx residual=0 is enforced; no intercept equation.",
     "rubric": [
       {
         "points": 2,
@@ -6292,7 +6292,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-144-M": {
-    "reference": "Intercept column givesΣei=0;indicator givesΣDi ei=0 for group1. Subtraction gives group0 sum0. Assumes an ordinary unconstrained least-squares fit.",
+    "reference": "Intercept column givesΣei=0; indicator givesΣDi ei=0 for group1. Subtraction gives group0 sum0. Assumes an ordinary unconstrained least-squares fit.",
     "rubric": [
       {
         "points": 2,
@@ -6314,7 +6314,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-144-T": {
-    "reference": "Sxy unchanged since centered responses unchanged;slope unchanged. Intercept increasesc,fitted values increasec,residuals unchanged.",
+    "reference": "Sxy unchanged since centered responses unchanged; slope unchanged. Intercept increasesc, fitted values increasec, residuals unchanged.",
     "rubric": [
       {
         "points": 2,
@@ -6336,7 +6336,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-145-M": {
-    "reference": "bhat=b+Σ(xi−xbar)εi/Sxx. Varb=σ²/Sxx;ahat=a+εbar−xbar(bhat−b);Cov(εbar,bhat)=0. Vara=σ²(1/n+xbar²/Sxx),Cov=−σ²xbar/Sxx.",
+    "reference": "bhat=b+Σ(xi−xbar)εi/Sxx. Varb=σ²/Sxx; ahat=a+εbar−xbar(bhat−b); Cov(εbar, bhat)=0. Vara=σ²(1/n+xbar²/Sxx), Cov=−σ²xbar/Sxx.",
     "rubric": [
       {
         "points": 2,
@@ -6358,7 +6358,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-145-T": {
-    "reference": "E bhat=b+cΣ(xi−xbar)(zi−zbar)/Sxx. No bias if c=0 or centered x,z orthogonal (assumingSxx>0).",
+    "reference": "E bhat=b+cΣ(xi−xbar)(zi−zbar)/Sxx. No bias if c=0 or centered x, z orthogonal (assumingSxx>0).",
     "rubric": [
       {
         "points": 2,
@@ -6380,7 +6380,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-146-M": {
-    "reference": "Null directions(t,−t);invariance requiresc1=c2=c. Estimandc(α+β),estimated byc ybar. Separateα,β not identifiable.",
+    "reference": "Null directions(t, −t); invariance requiresc1=c2=c. Estimandc(α+β), estimated byc ybar. Separateα, β not identifiable.",
     "rubric": [
       {
         "points": 2,
@@ -6402,7 +6402,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-146-T": {
-    "reference": "Mean vectorx(β1+2β2),soγ=β1+2β2 identifiable,estimated(x^T y)/(x^T x). Shift(β1,β2)→(β1−2t,β2+t) leaves law unchanged under same errors but changesβ1.",
+    "reference": "Mean vectorx(β1+2β2), soγ=β1+2β2 identifiable, estimated(x^T y)/(x^T x). Shift(β1, β2)→(β1−2t, β2+t) leaves law unchanged under same errors but changesβ1.",
     "rubric": [
       {
         "points": 2,
@@ -6424,7 +6424,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-147-M": {
-    "reference": "βhat=(X^TX)^−1X^Ty;normal numerator varianceσ²c^T(X^TX)^−1c. s²=SSE/(n−p) independent of fitted coordinates. t=(c^Tβhat−d)/(s√[c^T(X^TX)^−1c])~t(n−p) fornonzero contrast.",
+    "reference": "βhat=(X^TX)^−1X^Ty; normal numerator varianceσ²c^T(X^TX)^−1c. s²=SSE/(n−p) independent of fitted coordinates. t=(c^Tβhat−d)/(s√[c^T(X^TX)^−1c])~t(n−p) for nonzero contrast.",
     "rubric": [
       {
         "points": 2,
@@ -6446,7 +6446,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-147-T": {
-    "reference": "F=[(50−30)/(4−2)]/[30/(20−4)]=16/3,df(2,16). Exact null F needs normal independent common-variance errors and correct reduced mean model.",
+    "reference": "F=[(50−30)/(4−2)]/[30/(20−4)]=16/3, df(2, 16). Exact null F needs normal independent common-variance errors and correct reduced mean model.",
     "rubric": [
       {
         "points": 2,
@@ -6468,7 +6468,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-148-M": {
-    "reference": "h0=1/n+(x0−xbar)²/Sxx. Mean interval yhat0±t_(n−2)(1−α/2)s√h0;prediction uses√(1+h0). Same normal model and independent future error required.",
+    "reference": "h0=1/n+(x0−xbar)²/Sxx. Mean interval yhat0±t_(n−2)(1−α/2)s√h0; prediction uses√(1+h0). Same normal model and independent future error required.",
     "rubric": [
       {
         "points": 2,
@@ -6490,7 +6490,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-148-T": {
-    "reference": "Mean SE2/√10;prediction SE2√1.1. At mean design point,mean uncertainty vanishes withn but fresh observation varianceσ² remains.",
+    "reference": "Mean SE2/√10; prediction SE2√1.1. At mean design point, mean uncertainty vanishes withn but fresh observation varianceσ² remains.",
     "rubric": [
       {
         "points": 2,
@@ -6512,7 +6512,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-149-M": {
-    "reference": "Mean3,sum squared deviations10,S²10/3. WR variance[(N−1)/N]S²/n=5/4;WOR(1−n/N)S²/n=5/6. Total N ybar variances multiply16:20 and40/3.",
+    "reference": "Mean3, sum squared deviations10, S²10/3. WR variance[(N−1)/N]S²/n=5/4; WOR(1−n/N)S²/n=5/6. Total N ybar variances multiply16:20 and40/3.",
     "rubric": [
       {
         "points": 2,
@@ -6534,7 +6534,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-149-T": {
-    "reference": "Each draw varianceσN²=(N−1)S²/N;distinct-drawcov=−σN²/(N−1)=−S²/N. Sum gives(1−n/N)S²/n. At n=N variance0.",
+    "reference": "Each draw varianceσN²=(N−1)S²/N; distinct-drawcov=−σN²/(N−1)=−S²/N. Sum gives(1−n/N)S²/n. At n=N variance0.",
     "rubric": [
       {
         "points": 2,
@@ -6556,7 +6556,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-150-M": {
-    "reference": "Each n-subset occupies the first n slots in n! ways and remaining slots in(N−n)! ways. Probability n!(N−n)!/N!=1/C(N,n).",
+    "reference": "Each n-subset occupies the first n slots in n! ways and remaining slots in(N−n)! ways. Probability n!(N−n)!/N!=1/C(N, n).",
     "rubric": [
       {
         "points": 2,
@@ -6578,7 +6578,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-150-T": {
-    "reference": "Each unit appears in2/4 samples,πi1/2. Only4 of6 subsets possible,so not SRSWOR despite equal inclusions.",
+    "reference": "Each unit appears in2/4 samples, πi1/2. Only4 of6 subsets possible, so not SRSWOR despite equal inclusions.",
     "rubric": [
       {
         "points": 2,
@@ -6600,7 +6600,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-151-M": {
-    "reference": "Weights.4,.6 give mean16,total1600. Varmean=.4²(.9)4/4+.6²(.9)9/6=.144+.486=.63. Vartotal100²·.63=6300.",
+    "reference": "Weights.4, .6 give mean16, total1600. Varmean=.4²(.9)4/4+.6²(.9)9/6=.144+.486=.63. Vartotal100²·.63=6300.",
     "rubric": [
       {
         "points": 2,
@@ -6622,7 +6622,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-151-T": {
-    "reference": "Unweighted expectation15 versus target16,bias−1. Weighting by sample shares only agrees when allocation happens to match population shares.",
+    "reference": "Unweighted expectation15 versus target16, bias−1. Weighting by sample shares only agrees when allocation happens to match population shares.",
     "rubric": [
       {
         "points": 2,
@@ -6644,7 +6644,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-152-M": {
-    "reference": "Variable partΣWh²Sh²/nh;Lagrange gives nh∝NhSh. Products200,200 give15,15,bothpositive and below stratum sizes.",
+    "reference": "Variable partΣWh²Sh²/nh; Lagrange gives nh∝NhSh. Products200, 200 give15, 15, both positive and below stratum sizes.",
     "rubric": [
       {
         "points": 2,
@@ -6666,7 +6666,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-152-T": {
-    "reference": "nh∝NhSh/√ch,ratio200:100=2:1. Cost n1+4n2=60 gives20,10,feasible integers. If boundviolated,fix saturatedstratum atNh and optimize remaining budget;do not blindly round or exceed population.",
+    "reference": "nh∝NhSh/√ch, ratio200:100=2:1. Cost n1+4n2=60 gives20, 10, feasible integers. If bound violated, fix saturated stratum atNh and optimize remaining budget; do not blindly round or exceed population.",
     "rubric": [
       {
         "points": 2,
@@ -6688,7 +6688,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-153-M": {
-    "reference": "πi1/2. Adjacent joint1/4,opposite0. Covadjacent0;Covopposite−1/4. Zero covariance for some pairs does not make all inclusion indicators mutually independent.",
+    "reference": "πi1/2. Adjacent joint1/4, opposite0. Covadjacent0; Covopposite−1/4. Zero covariance for some pairs does not make all inclusion indicators mutually independent.",
     "rubric": [
       {
         "points": 2,
@@ -6710,7 +6710,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-153-T": {
-    "reference": "πi=1−(1−1/N)²=2/N−1/N². Both included only by two orders of those labels,πij=2/N². Distinct-sample size is random.",
+    "reference": "πi=1−(1−1/N)²=2/N−1/N². Both included only by two orders of those labels, πij=2/N². Distinct-sample size is random.",
     "rubric": [
       {
         "points": 2,
@@ -6732,7 +6732,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-154-M": {
-    "reference": "πi1/2;estimates2 times pair sums:6,12,24,18,average15=true total. Dependence of inclusion indicators does not impair the argument.",
+    "reference": "πi1/2; estimates2 times pair sums:6, 12, 24, 18, average15=true total. Dependence of inclusion indicators does not impair the argument.",
     "rubric": [
       {
         "points": 2,
@@ -6754,7 +6754,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-154-T": {
-    "reference": "WriteΣIi yi/πi,expectationΣyi. Divide by knownN for mean. Ifπi0,the formula undefined and an arbitrary unseen unit value cannot be recovered unbiasedly from that design without extra model information.",
+    "reference": "WriteΣIi yi/πi, expectationΣyi. Divide by known N for mean. Ifπi0, the formula undefined and an arbitrary unseen unit value cannot be recovered unbiasedly from that design without extra model information.",
     "rubric": [
       {
         "points": 2,
@@ -6776,7 +6776,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-155-M": {
-    "reference": "ModelYij=μ+τi+εij withidentifiabilityconstraint and randomizedassignment;normal independent equalvarianceerrors needed later for exactF. Grand3,groupmeans2,4. Between6,within4,total10;df1,4,5.",
+    "reference": "ModelYij=μ+τi+εij with identifiability constraint and randomized assignment; normal independent equal variance errors needed later for exactF. Grand3, group means2, 4. Between6, within4, total10; df1, 4, 5.",
     "rubric": [
       {
         "points": 2,
@@ -6798,7 +6798,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-155-T": {
-    "reference": "Expand squares;cross term for eachgroup containsΣ(yi−groupmean)=0. Thus SST=Σwithinresidual²+Σni(groupmean−grand)²,irrespective of normality.",
+    "reference": "Expand squares; cross term for each group containsΣ(yi−groupmean)=0. Thus SST=Σwithin residual²+Σni(groupmean−grand)², irrespective of normality.",
     "rubric": [
       {
         "points": 2,
@@ -6820,7 +6820,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-156-M": {
-    "reference": "MSE4/4=1;F=(6/1)/1=6,df1,4. Difference2,t=2/√(1/3+1/3)=√6,df4;its square equalsF.",
+    "reference": "MSE4/4=1; F=(6/1)/1=6, df1, 4. Difference2, t=2/√(1/3+1/3)=√6, df4; its square equalsF.",
     "rubric": [
       {
         "points": 2,
@@ -6842,7 +6842,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-156-T": {
-    "reference": "Error df15−3=12,MSE2.5. Variance estimate2.5(1/4+4/5+1/6)=73/24. t=3/√(73/24),df12 under normal equalvariance assumptions. Contrast coefficients sum0.",
+    "reference": "Error df15−3=12, MSE2.5. Variance estimate2.5(1/4+4/5+1/6)=73/24. t=3/√(73/24), df12 under normal equalvariance assumptions. Contrast coefficients sum0.",
     "rubric": [
       {
         "points": 2,
@@ -6864,7 +6864,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-157-M": {
-    "reference": "Within each block independently permute the3 treatment labels over3 units. ModelYij=μ+τi+βj+εij,withzero-sumconstraints. Treatment is manipulated;block records nuisance grouping. Oneobs/cell does not separately estimate treatment-block interaction.",
+    "reference": "Within each block independently permute the3 treatment labels over3 units. ModelYij=μ+τi+βj+εij, with zero-sum constraints. Treatment is manipulated; block records nuisance grouping. Oneobs/cell does not separately estimate treatment-block interaction.",
     "rubric": [
       {
         "points": 2,
@@ -6886,7 +6886,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-157-T": {
-    "reference": "Treatment then varies only between blocks,so treatment and block columns overlap;within-block treatment comparisons are absent. The ordinary complete-block additive treatment analysis is not supported.",
+    "reference": "Treatment then varies only between blocks, so treatment and block columns overlap; within-block treatment comparisons are absent. The ordinary complete-block additive treatment analysis is not supported.",
     "rubric": [
       {
         "points": 2,
@@ -6908,7 +6908,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-158-M": {
-    "reference": "Grand3.5,totalSS17.5. TreatmentSS49/6,blockSS9,residual1/3. df1,2,2,total5. MSE1/6,treatmentF49. Exact inference requires additive normal commonvariance errors.",
+    "reference": "Grand3.5, totalSS17.5. TreatmentSS49/6, blockSS9, residual1/3. df1, 2, 2, total5. MSE1/6, treatmentF49. Exact inference requires additive normal common variance errors.",
     "rubric": [
       {
         "points": 2,
@@ -6930,7 +6930,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-158-T": {
-    "reference": "Residual20;df treatment3,block4,residual12,total19. MSE5/3,MS treatment10,F6. With oneobservation/cell interaction and error are inseparable;the additive-modelF may not have its claimed null law.",
+    "reference": "Residual20; df treatment3, block4, residual12, total19. MSE5/3, MS treatment10, F6. With one observation/cell interaction and error are inseparable; the additive-modelF may not have its claimed null law.",
     "rubric": [
       {
         "points": 2,
@@ -6952,7 +6952,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-159-M": {
-    "reference": "RowsABC,BCA,CAB work. ModelYij=μ+ri+cj+τ_(assignedij)+εij,withzero-sumconstraints. Randomly permute rows,columns and treatment labels;not arbitrary independent cell shuffling.",
+    "reference": "RowsABC, BCA, CAB work. ModelYij=μ+ri+cj+τ_(assignedij)+εij, with zero-sum constraints. Randomly permute rows, columns and treatment labels; not arbitrary independent cell shuffling.",
     "rubric": [
       {
         "points": 2,
@@ -6974,7 +6974,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-159-T": {
-    "reference": "No:firstrow repeatsA;second repeatsC;third isdistinct but columns alsofail. Each treatment appearing3 times overall does not guarantee one perrow andcolumn.",
+    "reference": "No:firstrow repeatsA; second repeatsC; third isdistinct but columns alsofail. Each treatment appearing3 times overall does not guarantee one per row and column.",
     "rubric": [
       {
         "points": 2,
@@ -6996,7 +6996,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-160-M": {
-    "reference": "Residual30. df total15,eachfactor3,residual6. MSE5,MStr15,F3 withdf3,6 under additive independent normal commonvariance errors and validrandomization.",
+    "reference": "Residual30. df total15, each factor3, residual6. MSE5, MStr15, F3 withdf3, 6 under additive independent normal common variance errors and validrandomization.",
     "rubric": [
       {
         "points": 2,
@@ -7018,7 +7018,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-160-T": {
-    "reference": "Rank1+3(p−1)=3p−2;residualp²−(3p−2)=(p−1)(p−2). Atp2 zero,no residual variance estimate orordinaryF denominator. Replication or justified external error information is needed.",
+    "reference": "Rank1+3(p−1)=3p−2; residualp²−(3p−2)=(p−1)(p−2). Atp2 zero, no residual variance estimate orordinaryF denominator. Replication or justified external error information is needed.",
     "rubric": [
       {
         "points": 2,
@@ -7040,7 +7040,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-161-M": {
-    "reference": "Grand5. A effect(3+11−1−5)/2=4;B(5+11−1−3)/2=6;AB(1+11−3−5)/2=2. Coefficientsβ0=5,βA2,βB3,βAB1.",
+    "reference": "Grand5. A effect(3+11−1−5)/2=4; B(5+11−1−3)/2=6; AB(1+11−3−5)/2=2. Coefficientsβ0=5, βA2, βB3, βAB1.",
     "rubric": [
       {
         "points": 2,
@@ -7062,7 +7062,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-161-T": {
-    "reference": "A simple effect2 at eachB level,difference0,ABeffect0. Equivalent contrast(2+7−4−5)/2=0. Additivity holds for these four means.",
+    "reference": "A simple effect2 at each B level, difference0, ABeffect0. Equivalent contrast(2+7−4−5)/2=0. Additivity holds for these four means.",
     "rubric": [
       {
         "points": 2,
@@ -7084,7 +7084,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-162-M": {
-    "reference": "N12,totaldf11. Eachfactor/interactiondf1,error4(r−1)=8. MSE2;FA12,FB3,FAB1.5,eachwithdf1,8. TotalSS49.",
+    "reference": "N12, total df11. Eachfactor/interactiondf1, error4(r−1)=8. MSE2; FA12, FB3, FAB1.5, eachwithdf1, 8. TotalSS49.",
     "rubric": [
       {
         "points": 2,
@@ -7106,7 +7106,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "T25-162-T": {
-    "reference": "Eightobs,totaldf7;intercept plus7effects saturates data,pureerrordf0. PoolingABC supplies1model-based errordf only by assuming that interaction is negligible/zero;it is not independently replicated pure error and may bias tests if assumption fails.",
+    "reference": "Eightobs, total df7; intercept plus7effects saturates data, pure error df0. PoolingABC supplies1model-based error df only by assuming that interaction is negligible/zero; it is not independently replicated pure error and may bias tests if assumption fails.",
     "rubric": [
       {
         "points": 2,
@@ -7128,7 +7128,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-I-1": {
-    "reference": "Base n1. Assuming k sum k(k+1)/2,add k+1 to obtain(k+1)(k+2)/2. This proves all positive integers.",
+    "reference": "Base n1. Assuming k sum k(k+1)/2, add k+1 to obtain(k+1)(k+2)/2. This proves all positive integers.",
     "rubric": [
       {
         "points": 2,
@@ -7150,7 +7150,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-I-2": {
-    "reference": "Base1≥1. From2^k≥k+1,2^(k+1)≥2k+2≥k+2 since k≥0.",
+    "reference": "Base1≥1. From2^k≥k+1, 2^(k+1)≥2k+2≥k+2 since k≥0.",
     "rubric": [
       {
         "points": 2,
@@ -7172,7 +7172,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-I-3": {
-    "reference": "No induction step or universal argument. (n−1)(n−2)(n−3) vanishes at1,2,3 but equals6 at4.",
+    "reference": "No induction step or universal argument. (n−1)(n−2)(n−3) vanishes at1, 2, 3 but equals6 at4.",
     "rubric": [
       {
         "points": 2,
@@ -7194,7 +7194,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-N-1": {
-    "reference": "Write(2a+1)(2b+1)=2(2ab+a+b)+1,with integer expression in parentheses.",
+    "reference": "Write(2a+1)(2b+1)=2(2ab+a+b)+1, with integer expression in parentheses.",
     "rubric": [
       {
         "points": 2,
@@ -7216,7 +7216,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-N-2": {
-    "reference": "Ifa−b=3r andb−c=3s,then a−c=3(r+s),so3 divides it.",
+    "reference": "Ifa−b=3r andb−c=3s, then a−c=3(r+s), so3 divides it.",
     "rubric": [
       {
         "points": 2,
@@ -7238,7 +7238,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-N-3": {
-    "reference": "Digit remainder counts4,3,3. All same remainder contribute4³+3³+3³=118;one of each contributes6·4·3·3=216,total334.",
+    "reference": "Digit remainder counts4, 3, 3. All same remainder contribute4³+3³+3³=118; one of each contributes6·4·3·3=216, total334.",
     "rubric": [
       {
         "points": 2,
@@ -7260,7 +7260,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-M-1": {
-    "reference": "hx=2xy,hy=x²+6y.",
+    "reference": "hx=2xy, hy=x²+6y.",
     "rubric": [
       {
         "points": 2,
@@ -7282,7 +7282,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-M-2": {
-    "reference": "∫₀¹∫₀^y dxdy=1/2;equivalently∫₀¹∫x¹ dydx=1/2.",
+    "reference": "∫₀¹∫₀^y dxdy=1/2; equivalently∫₀¹∫x¹ dydx=1/2.",
     "rubric": [
       {
         "points": 2,
@@ -7304,7 +7304,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "BR-M-3": {
-    "reference": "Matrix[[v,u],[1−v,−u]],determinant−uv−u(1−v)=−u;absoluteu.",
+    "reference": "Matrix[[v, u], [1−v, −u]], determinant−uv−u(1−v)=−u; absoluteu.",
     "rubric": [
       {
         "points": 2,
@@ -7326,7 +7326,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "CAP-1": {
-    "reference": "Exclude x=a. Factoring givesx+a=2x,only candidatex=a,illegal. No solutions for anya. Negation:there exists a such that every legal x fails the equation;indeed all a satisfy it.",
+    "reference": "Exclude x=a. Factoring givesx+a=2x, only candidatex=a, illegal. No solutions for anya. Negation:there exists a such that every legal x fails the equation; indeed all a satisfy it.",
     "rubric": [
       {
         "points": 2,
@@ -7348,7 +7348,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "CAP-2": {
-    "reference": "Each pair00,01,10,11 has probability1/4 because parity bits of dice are independent. ES1,VarS1/2. ConditionalS1 gives two equal possibilities,probability1/2.",
+    "reference": "Each pair00, 01, 10, 11 has probability1/4 because parity bits of dice are independent. ES1, VarS1/2. ConditionalS1 gives two equal possibilities, probability1/2.",
     "rubric": [
       {
         "points": 2,
@@ -7370,7 +7370,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "CAP-3": {
-    "reference": "Real eigenvaluesλi satisfyΣ(λi−1)²=trA²−2trA+n=0. Eachλi1,and orthogonal diagonalization givesI. Without symmetry I+N for nonzero square-zero N has both tracesn but is notI.",
+    "reference": "Real eigenvaluesλi satisfyΣ(λi−1)²=trA²−2trA+n=0. Eachλi1, and orthogonal diagonalization givesI. Without symmetry I+N for nonzero square-zero N has both tracesn but is notI.",
     "rubric": [
       {
         "points": 2,
@@ -7392,7 +7392,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "CAP-4": {
-    "reference": "Mass11=EΘ²=1/3,00=1/3,01=10=1/6. MarginalBernoulli1/2,mean1/2,variance1/4,cov1/12,conditional(1/3)/(1/2)=2/3.",
+    "reference": "Mass11=EΘ²=1/3, 00=1/3, 01=10=1/6. MarginalBernoulli1/2, mean1/2, variance1/4, cov1/12, conditional(1/3)/(1/2)=2/3.",
     "rubric": [
       {
         "points": 2,
@@ -7414,7 +7414,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "CAP-5": {
-    "reference": "CDF(m/θ)^n on[0,θ]. Lower-tail deviationprob(1−ε/θ)^n→0 for0<ε<θ;upper deviations impossible. For fixedt≥0,survival(1−t/n)^n for n>t→e^−t,soExp1 limit.",
+    "reference": "CDF(m/θ)^n on[0, θ]. Lower-tail deviationprob(1−ε/θ)^n→0 for0<ε<θ; upper deviations impossible. For fixedt≥0, survival(1−t/n)^n for n>t→e^−t, soExp1 limit.",
     "rubric": [
       {
         "points": 2,
@@ -7436,7 +7436,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "CAP-6": {
-    "reference": "MLEM. EM=nθ/(n+1),so(n+1)M/n unbiased. Upper boundM/α^(1/n) coversθ withprob1−α. Maximization,expectation andcoverage solve different requirements.",
+    "reference": "MLEM. EM=nθ/(n+1), so(n+1)M/n unbiased. Upper boundM/α^(1/n) coversθ withprob1−α. Maximization, expectation andcoverage solve different requirements.",
     "rubric": [
       {
         "points": 2,
@@ -7458,7 +7458,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "CAP-7": {
-    "reference": "Sp²=(4+12)/8=2;difference2,SE√(.8),t=√5,df8. BetweenSS=5·1²+5·1²=10,within16;F10/2=5=t². Random assignment supports treatment comparisons;observational groups alone do not remove confounding.",
+    "reference": "Sp²=(4+12)/8=2; difference2, SE√(.8), t=√5, df8. BetweenSS=5·1²+5·1²=10, within16; F10/2=5=t². Random assignment supports treatment comparisons; observational groups alone do not remove confounding.",
     "rubric": [
       {
         "points": 2,
@@ -7480,7 +7480,7 @@
     "marking": "Human review required. Accept every valid route. Reallocate genuinely inapplicable rubric points before marking. A task score is not automatic card clearance."
   },
   "OBJ-01": {
-    "reference": "Original denominator excludes1;the restricted rewrite isx+1 onR\\{1}.",
+    "reference": "Original denominator excludes1; the restricted rewrite isx+1 onR\\{1}.",
     "rubric": [
       {
         "points": 2,
@@ -7526,7 +7526,7 @@
     "answer": 1
   },
   "OBJ-03": {
-    "reference": "The root bound is3;repeated roots count only once as distinct roots.",
+    "reference": "The root bound is3; repeated roots count only once as distinct roots.",
     "rubric": [
       {
         "points": 2,
@@ -7664,7 +7664,7 @@
     "answer": 2
   },
   "OBJ-09": {
-    "reference": "Differentiability implies continuity,but none of the other claims follows.",
+    "reference": "Differentiability implies continuity, but none of the other claims follows.",
     "rubric": [
       {
         "points": 2,
@@ -7687,7 +7687,7 @@
     "answer": 1
   },
   "OBJ-10": {
-    "reference": "Local integrability at0 requiresp>−1;tails requirep<1.",
+    "reference": "Local integrability at0 requiresp>−1; tails requirep<1.",
     "rubric": [
       {
         "points": 2,
@@ -7756,7 +7756,7 @@
     "answer": 0
   },
   "OBJ-13": {
-    "reference": "Diagonal has planarLebesguemeasure0;positive mass there is singular,not necessarily a point atom.",
+    "reference": "Diagonal has planar Lebesgue measure0; positive mass there is singular, not necessarily a point atom.",
     "rubric": [
       {
         "points": 2,
@@ -7802,7 +7802,7 @@
     "answer": 1
   },
   "OBJ-15": {
-    "reference": "Independentnormal/chi-square construction uses residualdfn−1.",
+    "reference": "Independentnormal/chi-square construction uses residual dfn−1.",
     "rubric": [
       {
         "points": 2,
@@ -7825,7 +7825,7 @@
     "answer": 2
   },
   "OBJ-16": {
-    "reference": "The bound certifies variance optimality in its stated class,not the other properties.",
+    "reference": "The bound certifies variance optimality in its stated class, not the other properties.",
     "rubric": [
       {
         "points": 2,
@@ -7940,7 +7940,7 @@
     "answer": 2
   },
   "OBJ-21": {
-    "reference": "BetweenSS divided bypooledMSE equals the squaredpooledt statistic.",
+    "reference": "BetweenSS divided bypooled MSE equals the squaredpooled t statistic.",
     "rubric": [
       {
         "points": 2,

@@ -44,6 +44,8 @@ Static source files are inspectable: hiding references is a normal-display bound
 
 ## Maintain and reproduce
 
+Use Node22 or newer, Python3 with SymPy1.14.0, and Playwright (the existing `scripts/review-tests` npm package installs it). Install its Chromium browser, or set `REVIEW_CHROMIUM_PATH` to a compatible local executable.
+
 Edit `course/authoring/phase-*.mjs` for lesson/main/transfer material, `supplements.mjs` for bridges/synthesis/objectives, and `campaign.mjs` for fiction. Rebuild with:
 
 ```sh
