@@ -56,6 +56,12 @@ jobs:
       - name: Validate T25 entrance plans, evidence and entrypoint integration
         run: node scripts/test-t25.mjs
 
+      - name: Validate T25 course and reproducible generated content
+        run: |
+          node scripts/build-t25-course.mjs
+          node scripts/test-t25-course.mjs
+          git diff --exit-code -- course/generated/course.json course/generated/evaluator.json docs/t25-course/SYLLABUS.md
+
       - name: Validate T22 atomic curriculum
         run: node scripts/validate-t22-atomic.mjs
 

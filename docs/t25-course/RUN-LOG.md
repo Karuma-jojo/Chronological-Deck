@@ -123,3 +123,18 @@ Next: complete math/browser checks and record their actual output. Preserve curr
 - `node scripts/test-t25.mjs` PASSED: 7 topological plans,108 unique units,stable50-parent context,80 targets/162 cards,source mappings,T22 links,evidence validation,unchanged legacy routes,146 reachable JS modules.
 - Browser execution initially failed because the Chromium executable was absent; CDN installation attempts encountered502/timeouts. An earlier workspace contains a Chromium binary being checked as a fallback. The browser test now accepts `REVIEW_CHROMIUM_PATH` for a known local binary. Browser PASS is not yet claimed.
 Next: browser execution/visual QA; then final reproducibility and PR status update.
+
+## Checkpoint: CI wiring and browser-test correction
+
+- Added structural/reproducible-build checks to frontend CI and the course browser test to the existing review-retention workflow. Browser loading supports that workflow's installed Playwright dependency.
+- Added `course/sources/PROVENANCE.md` to distinguish the recovered historical classification package from current card authority and newly authored references.
+- Added `test-artifacts/` to ignore generated screenshots locally.
+- The local fallback Chromium153 executable works. The first full browser run passed navigation,reference gates,copying,attempt/review/import checks,all162 sessions,mixed/objective isolation,story,narrow layout and the async reveal race before a test-harness timeout waiting for an option element to be visible. Options need only be attached; that wait was corrected. Rerun in progress; full browser PASS remains pending.
+- User reiterated: continue without restarting and push progress as it is made. Current work remains on the same branch and PR156.
+
+## Validation checkpoint: complete browser pass
+
+- `REVIEW_CHROMIUM_PATH=/workspace/scratch/348b562d24c0/tmp/review-browser/chromium node scripts/test-t25-course-browser.mjs` PASSED after correcting the hidden-option test wait.
+- Passed: all162 sessions; no early reference fetch; public WALL clipboard isolation; save/reveal/review; export/import and invalid-import rejection; learning-note assistance; mixed-task scene/topic isolation; objective options; story continuity;390px no-overflow layout; async reference-navigation race; corrupt-record preservation; course link in the existing T25 panel.
+- Desktop/mobile screenshots generated and inspected. Text and controls are legible with no horizontal clipping; full-page capture needs scroll reset to place sticky navigation at its initial position. This is a screenshot refinement, not a runtime navigation failure.
+- Current concrete remaining work: final presentation/readability pass, deterministic rebuild verification, push final results and update PR156. Do not reauthor the bank or repeat source recovery.
