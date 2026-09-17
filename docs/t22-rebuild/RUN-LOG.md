@@ -1,100 +1,83 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M65 DEPENDENCY-AUDITED / MACRO-FROZEN; DEDICATED T22 COURSE SCAFFOLD + M01 AUTHORED; STOP BEFORE M02**
+State: **ASTRA A-01–A-06 RESOLVED AND VALIDATED; M01 ACCEPTED; M02 IS THE NEXT MODULE BOUNDARY**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
+Current validated head before this log update: `95f49e6d1737109149a1cab33e3ba1f9f30b3702`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
-Current macro skeleton: `docs/t22-rebuild/M65-SKELETON.md`
-Current machine-readable dependency graph: `docs/t22-rebuild/m65.dependencies.json`
-Current dependency audit: `docs/t22-rebuild/M65-DEPENDENCY-AUDIT.md`
-Dedicated learner surface: `t22-course.html`
 
-## Current architecture decision
+## Current authorities
 
-The old live T22 remains a 58-module / 596-atomic first-hire route and is not rewritten in place. The enhanced course uses a separate 65-module macro skeleton beginning around Class-10 mathematics and progressing toward quantitative trading/research, empirical projects and adversarial research defense.
+- `M65-SKELETON.md` — 65 macro capability families / order.
+- `m65.dependencies.json` — current executable semantic prerequisite graph (`M65-semantic-r1-2026-09-18`).
+- `SEMANTIC-PREREQUISITES.json` — 65-row per-module reused/adapted/new ledger and bridge gate.
+- `M65-DEPENDENCY-AUDIT.md` — current dependency/semantic-gate policy.
+- `ASTRA-FINDINGS.md` — bounded Astra review that produced A-01 through A-06.
+- `ASTRA-RESOLUTION.md` — repair table and validation evidence.
+- `docs/t22-course/M01-ACCEPTANCE.md` — M01 prerequisite/ownership acceptance record.
+- `t22-course.html` — dedicated T22 Elite learner surface.
 
-The M65 macro order has now passed a bounded explicit dependency audit: 65 unique modules, every declared prerequisite resolves, and every declared prerequisite occurs earlier in the proposed order. Macro ownership/count is therefore frozen for M01 authoring. A future M66 requires a written argument that the capability cannot live inside an existing module without corrupting that module's exit standard.
+## Preserved systems
 
-## Dedicated course architecture
+The historical live T22 remains a separate 58-module / 596-atomic route. Its progress authority is not migrated or overwritten. T25 is untouched. T22 Elite continues to use its separate local evidence key `chrono_t22_elite_course_evidence_v1`.
 
-A separate `t22-course.html` learner surface now exists on this branch. It is intentionally separate from the historical Chrono-Deck T22 route/map surface.
+## A-01 through A-06 status
 
-Key rules:
+All six high-priority Astra findings are resolved for M01 and protected by persistent regression gates:
 
-- stable evidence identity is based on stable module/session/obligation IDs, not route position;
-- M01 session IDs follow `T22V3::T22E-FND01::Sxx@1`;
-- main/transfer obligations are separately versioned;
-- saved attempts record the current session contract hash;
-- if a future contract changes, old evidence is preserved but treated as stale for current independent-evidence summaries;
-- learning-note use, reference exposure and assistance are recorded;
-- the T22 Elite evidence key is `chrono_t22_elite_course_evidence_v1`, separate from historical T22 and T25 storage;
-- study evidence never automatically grants legacy T22 atomic clearance.
+- A-01: assessment fingerprinting covers prompt + obligation version + evaluator marking contract; stale evidence is preserved but not silently trusted.
+- A-02: answer-bearing packet export records both fixed tasks as reference-exposed before clipboard output; fresh solution-free probe request exists.
+- A-03: reviews attach to original attempts and do not create artificial practice days; main/transfer are tracked separately.
+- A-04: early prerequisite leakage repaired; S01-S08 have explicit source/JIT prerequisite audit.
+- A-05: all 17 sessions now have novice explanation + worked example + guided check; 85/85 ownership claims are mapped to observable tasks; targeted gaps were repaired.
+- A-06: semantic ancestry is now a module-publication gate; known missing edges and four named bridge owners are recorded.
 
-## M01 authored — and only M01
+Additional S12 exceptional-branch corrections, product-default review labeling, stable session lookup and authoring provenance were also incorporated.
 
-`T22E-FND01` — **Quantitative Foundations I — Numeracy & Algebra**
+## Verified checkpoint evidence
 
-17 bounded sessions:
+Successful GitHub Actions run: `35271225456` on head `95f49e6d1737109149a1cab33e3ba1f9f30b3702`.
 
-1. signed numbers, order & operation structure;
-2. fractions as numbers;
-3. ratios, proportions & rates;
-4. percentages & percentage points;
-5. sequential percentage change & reverse percentages;
-6. units, conversions & dimensional reasoning;
-7. estimation, scale & numerical sanity checks;
-8. powers, roots & scientific notation;
-9. algebraic expressions, substitution & expansion;
-10. factoring & algebraic identities;
-11. linear equations & reversible transformations;
-12. formulas, rearrangement & parameters;
-13. simultaneous linear equations & constraint intersection;
-14. inequalities & sign-aware algebra;
-15. absolute value as distance;
-16. quadratic equations as algebraic constraints;
-17. integrated M01 quantitative-algebra synthesis.
+Green checks:
 
-Every session has a bounded capability contract, principal obstacle, entry prerequisites, five required-ownership claims, in/out-of-scope boundary, exit condition, learning note, main investigation, transfer investigation and evaluator rubric.
+- syntax;
+- 65-node topological graph;
+- 65-row semantic ledger and authored-module gate;
+- M01 17 sessions / 34 fixed tasks;
+- every rubric totals 10;
+- novice teaching checks;
+- 85/85 ownership mappings;
+- prerequisite-order checks;
+- independent reference/math calculations;
+- A-01/A-02/A-03 evidence regressions;
+- real Chromium learner workflow: load, lesson provenance, save/reveal/review, export/import/reload, dual-task packet exposure, post-exposure provenance, fresh-probe path, corrupt-storage preservation and mobile width.
 
-Total current M01 bank: **34 original main/transfer tasks**.
+Two earlier runs failed only because the test harness used overly strict binary-floating-point equality. Those assertions were replaced with scale-aware numerical tolerances; the final run passed.
 
-## Validation completed before repository write
+## Required acceptance gate for every later module
 
-Local deterministic validation passed:
+Before any module M02+ is marked `authored`:
 
-- M65 graph: 65 unique modules, all prerequisite IDs resolve, all edges point backward in the declared topological order;
-- M01: 17 contiguous sessions and 34 unique tasks/evaluators;
-- every session has a stable versioned ID and recomputable SHA-256 contract hash;
-- every evaluator rubric totals 10 points;
-- representative numerical references were independently rechecked;
-- JS syntax checks passed for the T22 course core and UI;
-- static HTTP smoke test successfully served `t22-course.html` and loaded the M01 course JSON.
-
-One cross-runtime contract-hash serialization mismatch was found during local validation and fixed before repository write.
-
-## Historical Stage-A work retained
-
-The earlier 56-core + 17-optional Stage-A route and its audit material remain useful historical evidence but are no longer the current macro-count decision. They remain in `docs/t22-rebuild/` and git history.
-
-## Explicit non-actions / safety boundary
-
-- No M02 atomic authoring.
-- No historical T22 runtime-route replacement.
-- No migration of `chrono_t22_atomic_progress_v2`.
-- No T25 course/evidence modification.
-- No cloud-schema migration.
-- No merge to `main`.
-- No deployment.
+1. inspect actual new/reused content and trace semantic prerequisites;
+2. mark its semantic-ledger row accepted and add any missing earlier edge / bounded bridge;
+3. list every new symbol/operation and its earlier taught source or JIT bridge;
+4. provide novice-usable instruction with worked examples and guided practice before independent assessment;
+5. map every required-ownership claim to observable main/transfer/project evidence;
+6. independently verify references/mathematics and rubric totals;
+7. preserve assessment-fingerprint / answer-exposure / review-event semantics;
+8. run the T22 Elite structural, semantic, evidence and browser checks green;
+9. record the checkpoint and only then expose the module as authored.
 
 ## Next action
 
-**Stop at M01.** The next content action is a dedicated M01 audit/use pass: inspect the learner surface, challenge session order/boundaries, independently solve a sample of main/transfer tasks, and repair M01 if needed. Only after M01 is accepted should M02 be opened.
+Open **M02 · T22E-FND02 — Quantitative Foundations II: Functions & Precalculus** only. Do not author M03 in the same module pass. Perform M02 semantic boundary audit first, then build and validate M02 under the acceptance gate above.
 
-## Latest Astra review — current M65/M01
+## Explicit non-actions
 
-Reviewed exact content commit `da0776048f47f1b9d98ad71589e015d132c309f9`. See `ASTRA-FINDINGS.md` and `audit/check-current.mjs`.
-
-Disposition: usable after bounded repairs; Sol can own subsequent development. Before M02, resolve A-01–A-06: assessment fingerprint, evaluator-packet exposure, review/retention events, prerequisite order, ownership/teaching coverage, and semantic macro dependencies. Preserve M65 and existing work; do not restart from historical Stage A. The review script reproduces current defects; convert these into desired-behavior regression tests after repairs. Run a browser evidence workflow before accepting M01. Save a resolution table and verified commit checkpoints. No merge or deployment performed by this audit.
-
+- No merge to `main`.
+- No GitHub Pages deployment.
+- No historical T22 progress migration.
+- No T25 modification.
+- No cloud-schema migration.
