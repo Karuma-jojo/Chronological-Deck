@@ -56,6 +56,21 @@ jobs:
       - name: Validate T25 entrance plans, evidence and entrypoint integration
         run: node scripts/test-t25.mjs
 
+      - name: Validate T25 course and reproducible generated content
+        run: |
+          node scripts/build-t25-course.mjs
+          node scripts/test-t25-course.mjs
+          git diff --exit-code -- course/generated/course.json course/generated/evaluator.json docs/t25-course/SYLLABUS.md
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate selected T25 mathematical results
+        run: |
+          python -m pip install sympy==1.14.0
+          python scripts/check-t25-course-math.py
+          git diff --exit-code -- course/generated/math-validation.json
+
       - name: Validate T22 atomic curriculum
         run: node scripts/validate-t22-atomic.mjs
 

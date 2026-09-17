@@ -1,0 +1,48 @@
+official_scope_item,target_ids,note
+"Arithmetic, geometric and harmonic progressions",A2 A3,Named official scope
+Trigonometry,G1,Named official scope
+Straight lines and circles,G2,Named official scope
+"Parabolas, ellipses and hyperbolas",G3 G4,Named official scope
+Elementary set theory,F5,Named official scope
+Functions and relations,F3 F5 A5,Named official scope
+Permutations and combinations,P1 P2,Named official scope
+Binomial and multinomial theorem,P2 D1,P2 includes coefficient identities and expansion structure
+Theory of equations,F2 A1 C4,Named official scope
+Complex numbers and De Moivre,A4,Named official scope
+Vector spaces,M1 M2,Named official scope
+"Determinant, rank, trace and inverse",M0 M2 M3 M4,Named official scope
+Systems of linear equations,M0 M2,Named official scope
+Eigenvalues and eigenvectors,M4 M5,Named official scope
+Limits and continuity of functions of one variable,C1 A5,Named official scope
+Differentiation and integration,C2 C3 C6 C7,Named official scope
+Applications of differential calculus; maxima and minima,C4 C5,Named official scope
+"Sample spaces, probability and combinatorial probability",P1 P2 P3,Named official scope
+"Conditional probability, independence and Bayes",P4 P6,Named official scope
+Random variables and expectations,J1 J3 J4 D0,Named official scope
+Moments and moment generating functions,J2 D4,Named official scope
+Standard univariate discrete distributions,D1 D2,"Bernoulli, binomial, hypergeometric, geometric, negative binomial, Poisson; discrete uniform through counting"
+Standard univariate continuous distributions,D3 D4 D6 N2,"Uniform, exponential, normal, gamma, beta, chi-square, t, F; compact Cauchy/Laplace extensions"
+Distributions of functions of a random variable,D5 J5,"Includes branches, rounded/censored observations and transformations of pairs"
+Distributions of order statistics,O1 O2 O3 O4,Named official scope; empirical-count bridge is useful support
+"Joint, marginal and conditional probability distributions",J3 J4 J5,Named official scope
+Multinomial distribution,D1,Named official scope
+Bivariate and multivariate normal distributions,N3,Named official scope
+Sampling distributions of statistics,N1 N2 O1 O2,Named official scope
+WLLN and CLT: statements and applications,L1 L2 L3 O4,No full general convergence-theory course required
+Descriptive statistical measures,R5,"Includes declared variance, quantile, skewness and kurtosis conventions"
+Pearson product-moment and Spearman rank correlation,R1,Includes existence conditions and ties
+Simple and multiple linear regression,R2 R3,Named official scope
+Unbiasedness and minimum variance,E1 E6,"Supporting certificates are selected tools, not separately named official topics"
+Sufficiency,E5 E6,Named official scope
+Maximum likelihood and method of moments,E2 E3 E4,Named official scope
+Tests of hypotheses: basic concepts,T1 T3 T5 T6,Sign/count tests are compact evidence-led support
+Simple applications of Neyman-Pearson lemma,T2,Named official scope
+Confidence intervals,T4 T5,Named official scope
+Inference related to regression,R4,Named official scope; retained despite low standalone count
+CRD and analysis,V1,Named official scope
+RBD and analysis,V2,Named official scope
+LSD and analysis,V3,Named official scope
+ANOVA,V1 V2 V3 V4,Named official scope
+Elements of factorial designs,V4,Named official scope
+SRSWR and SRSWOR,S1 S3,Named official scope
+Stratification,S2,Named official scope; retained despite no dedicated primary label in this corpus

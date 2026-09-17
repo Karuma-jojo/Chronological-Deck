@@ -18,3 +18,6 @@ jobs:
       - run: npm ci --prefix scripts/review-tests
       - run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
       - run: npm test --prefix scripts/review-tests
+
+      - name: Validate T25 course browser workflow
+        run: node scripts/test-t25-course-browser.mjs

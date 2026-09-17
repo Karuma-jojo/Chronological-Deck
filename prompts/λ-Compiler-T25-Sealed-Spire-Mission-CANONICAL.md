@@ -1,4 +1,4 @@
-# λ Compiler — T25 Atomic Investigation → Sealed SPIRE Mission — CANONICAL V1.0
+# λ Compiler — T25 Atomic Investigation → Sealed SPIRE Mission — CANONICAL V1.2 — Course Bank + Anime Presentation
 
 **Family:** λ · T25 academic tooling  
 **Purpose:** compile ONE T25 atomic investigation card into ONE portable sealed mission for the frozen canonical SPIRE runtime.  
@@ -1159,6 +1159,51 @@ Return only:
 `[END PLAYER-FACING OPENING]`
 
 The package is intended to be copied IN FULL into a fresh chat after the canonical SPIRE Master / Guardian environment.
+
+---
+
+## 41. OPTIONAL COURSE BANK AND ANIME PRESENTATION
+
+This section adds presentation and source handling. It does not change the frozen Master, Guardian, assistance controls, proof obligations, recovery rules or clearance authority.
+
+### 41.1 Course packet provenance
+
+When a course packet is supplied, identify its atomic ID, course version and current-card hash. Compare the supplied card with the current registry when accessible; if they disagree, use the current authoritative contract and report the discrepancy inside the sealed provenance section. Never invent validation. A bank reference is a candidate evaluator argument, not a certificate of correctness.
+
+Compile only the selected bounded session. Preserve the exact mathematical quantities, domains, hypotheses and intended difficulty when the supplied task is sound. If it is defective or insufficient, repair it before sealing and record the academic reason in engine-only provenance. Do not change the mathematics merely to fit a plot.
+
+Add a sealed OBLIGATION–EVIDENCE MAP: for each required-ownership item, identify which task could elicit it and what independent evidence would establish it. An unelicited or unobserved obligation stays pending. Add a bounded fresh probe when necessary; do not silently award an entire card for two correct formulas. Accept all logically valid routes. Use earlier legitimate evidence where the runtime authorizes it, and stop when the actual completion gate is met.
+
+Keep lesson notes, reference answers, rubric guidance, future tasks and the decisive bridge inside engine-only material. A learning note opened in a study interface is assistance, not permission to teach during WALL. Static file separation is a presentation boundary, not cryptographic secrecy.
+
+Track independently attempted, assisted, previously exposed and repeated work separately. A reused transfer or delayed review is not genuinely unseen merely because its date or set label changed. Course self-ratings, timestamps and story choices never write or revoke academic clearance. Historical question-route metadata is not an independently certified answer key.
+
+### 41.2 Freeze mathematics before narrative
+
+Presentation defaults to PLAIN unless ANIME is requested or the supplied packet explicitly selects it. For ANIME, first finish and validate the academic mission, then write a NARRATIVE CONTRACT — PRESENTATION ONLY inside the sealed mission. It must specify:
+
+- An original fictional setting and a concrete public incident.
+- A player role, visible objective and consequence tied to the completed mathematical deliverable.
+- A small cast with distinct motives, disagreement and future story interests.
+- At least one optional nonacademic choice whose options have no effect on mathematical difficulty, help, score or clearance.
+- Stage consequences for each legitimately released deliverable, closure at the normal completion gate, and a pause state without penalties.
+- Only publicly established continuity; no invented shared history, assigned player feelings or presumed loyalty.
+
+Use sustained scenes, rival agendas, expedition decisions, hearings, access and relationships to create stakes. A mathematical certification can govern a fictional charter, contest or audience; do not pretend a pure algebra task verifies real physical safety or an engineered system. Dialogue should serve the incident, not repeatedly announce that characters will not help.
+
+The opening has a brief scene followed by the exact frozen mission task. Fiction surrounds and motivates the work; it does not replace the mathematical statement, scatter assumptions through dialogue or force the player to decode lore to understand the task. Removing the fiction must leave the same academic mission.
+
+### 41.3 WALL leak checks
+
+Do not use narrative analogies that supply the decisive mathematical structure: holes, forbidden coordinates, hidden branches, missing cases, shrinking uncertainty, locked parameters or similar devices when they cue the live task. Do not encode answers in object counts, names, ordering, lighting, emotional reactions or character confidence. Do not let the cast classify an unsupported answer, select an approach, name a useful special case or reveal future tasks.
+
+A story outcome may occur only after the whole relevant public deliverable has been certified under the existing runtime. No intermediate reaction may act as a correctness oracle. Wrong attempts, requests, pauses and elapsed time cause no relationship loss, resource loss, deadlines, deaths or attempt penalties. An optional story choice may change subsequent fiction, never the mathematics or assistance rules.
+
+When the Master permits fictional narration, use `[ANIME]` and `[SCENE — FICTION]` for the scene and `[MISSION TASK]` for the frozen problem. These labels create no permission to violate a stricter installed Guardian grammar. Under a stricter Guardian, obey that grammar and retain the narrative contract for compatible use; never weaken WALL to make the scene more lively.
+
+### 41.4 Output compatibility
+
+Keep the two outer blocks required by section40. Place COURSE PROVENANCE, OBLIGATION–EVIDENCE MAP and NARRATIVE CONTRACT inside `[SPIRE SEALED MISSION — ENGINE ONLY]`. Place only the authorized fiction and frozen public problem inside `[PLAYER-FACING OPENING]`. Do not print lesson notes, answers, failure maps or marking hints there.
 
 ---
 
