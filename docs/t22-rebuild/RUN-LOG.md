@@ -1,106 +1,95 @@
 # T22 rebuild recovery state
 
-Date: 2026-09-17
-State: **STAGE A COMPLETE — STOPPED AT ASTRA ARCHITECTURE-REVIEW CHECKPOINT**
+Date: 2026-09-18
+State: **T22 ELITE M65 MACRO SKELETON WRITTEN — STOP BEFORE ATOMIC AUTHORING**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
-Scaffold/audit base: `2b2d595b7eba84455f3225a545a96835d5d428fc`
-Architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
+Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
+Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
+Current enhanced macro-skeleton artifact: `docs/t22-rebuild/M65-SKELETON.md`
 
-## Verified state
+## Current decision
 
-- The recorded architecture checkpoint is 5 commits ahead of the scaffold/audit base and 0 behind it at the time of Stage A completion.
-- Base→architecture compare changes only `docs/t22-rebuild/` files.
-- No T22 runtime route, learner-progress storage, cloud schema, T25 implementation/evidence, merge target or deployed site was changed.
-- No force push was used.
-- T25 was inspected only as a selective architecture/reference implementation and was not restarted.
-- No `AGENTS.md` was found by repository search during Stage A.
+The original live T22 has 58 required macro modules and was designed as a first-hire strike path with arithmetic/algebra/functions/reasoning assumed at admission. The new target is broader and deeper: begin around Class-10 mathematics and build toward unusually strong quantitative-trading / quantitative-research capability, with projects and research artifacts threaded through the route.
 
-## Stage A deliverables completed
+A new **65-module macro skeleton** has therefore been written before any further atomic authoring.
 
-- `INVENTORY.md` — current T22 registries/evidence/runtime surfaces and migration hazards.
-- `FINDINGS.md` — architecture defects, consequences and proposed repairs.
-- `SOURCE-MAP.md` — current role/curriculum/documentation evidence and inference limits.
-- `ROUTE.md` — repaired default/optional prerequisite sequence and manual sample ancestry traces.
-- `route.dependencies.json` — machine-readable 73-node proposal.
-- `MIGRATION.md` — v2 freeze, v3 identity, equivalence rules, `ARC515` split map and adapted/optional module policy.
-- Three complete architecture samples:
-  - `samples/T22V3-F01-percentages-units.md`
-  - `samples/T22V3-T00-finite-trading-decision.md`
-  - `samples/T22V3-R00-temporal-validation.md`
-- `REVIEW-PACKET.md` — exact architecture checkpoint, checks, decisions, risks and Astra questions.
+The design deliberately uses large macro modules as capability families. Each module may later contain many atomic sessions, main/transfer investigations, coding labs, prerequisite bridges, delayed reviews, cumulative challenges and project artifacts. Module count is not a proxy for workload.
 
-## Important Stage A repairs made after auditing the first proposal
+## M58 -> M65 structural changes
 
-1. Restored `ARC211` deterministic dynamic programming as optional depth and restored its prerequisite role for optional `ARC590` MDPs.
-2. Reconciled the current `ARC515` eleven-theme programming module into four staged v3 capabilities (`C00–C03`) rather than losing debugging/tests/reproducibility obligations.
-3. Added explicit core Git/version-control and basic complexity ownership to `C03` because the build specification requires them and optional `ARC717` must not be the first place complexity appears.
-4. Moved full existing `ARC586` numerical optimization/autodiff to optional depth because its actual rich contract requires `ARC582 + ARC585 + ARC711 + ARC514`; the first proposal's lighter core prerequisites would have been invalid for unchanged reuse.
-5. Restored `ARC514` as a direct prerequisite for core `ARC553` to match the current asset-pricing rich contract.
-6. Made temporal validation (`R00`) and research-engineering/testing discipline (`C03`) explicit prerequisites for later market-data research where the invariant is actually needed.
-7. Marked `ARC558`/`ARC559` prerequisite retargeting as materially adapted v3 work rather than pretending old child evidence is automatically equivalent.
+The enhanced skeleton adds seven net macro capabilities while retaining the substantive ownership of the original 58-module route:
 
-## Route validation performed
+1. `T22E-FND01` — Quantitative Foundations I: numeracy & algebra.
+2. `T22E-FND02` — Quantitative Foundations II: functions & precalculus.
+3. `T22E-DISC01` — mathematical reasoning & discrete foundations, including the counting/combinatorics prerequisite for finite probability.
+4. `T22E-TRD01` — trading games & decisions under uncertainty, absorbing the Stage-A T00/T01 ideas into one substantial macro family.
+5. `T22E-MKT01` — Markets 0: prices, returns & trading mechanics.
+6. Historical `ARC515` is replaced prospectively by two staged macro capabilities:
+   - `T22E-CODE01` — quant programming & simulation foundations;
+   - `T22E-CODE02` — scientific computing & research engineering.
+   This replacement contributes +1 net macro module.
+7. `T22E-TEMP01` — temporal research design & walk-forward validation.
 
-Independent Stage A graph check:
+Arithmetic check: 58 - 1 historical broad programming module + 2 replacement programming modules + 3 foundations + 1 trading-decision module + 1 market-basics module + 1 temporal-research module = **65**.
 
-- default/core nodes: 56;
-- optional nodes: 17;
-- total unique nodes: 73;
-- every prerequisite resolves to a proposed node;
-- every prerequisite occurs earlier in the declared default+optional topological order;
-- no backward edge/cycle under that order;
-- 57 of the current 58 T22 macro IDs are retained explicitly;
-- current `ARC515` is the sole macro intentionally split/replaced;
-- `ARC211 → ARC590` and advanced `ARC586` ancestry are explicit.
+## Placement decisions
 
-Manual ancestry traces for all three samples are recorded in `ROUTE.md`.
+- Foundations occupy M01-M03 so no university topic relies on hidden school-math assumptions.
+- Finite probability is M04; the first genuine trading-decision family immediately follows at M05.
+- Bayes is M06, market mechanics M07, and first code/simulation M08.
+- Analysis and linear algebra follow only after the launchpad is owned.
+- Scientific-computing/research-engineering depth appears at M21 after the learner has mathematics worth computing with.
+- Statistical research occupies M25-M42.
+- Temporal validation is M43, before SQL/market-data alignment and dirty-data work at M44-M46.
+- Microstructure follows real market-data handling at M47.
+- Stochastic-process depth occupies M48-M50.
+- Optimization/control/finance occupies M51-M60.
+- Statistical learning occupies M61-M64.
+- M65 remains the end-to-end empirical strategy research and adversarial-defense capstone.
 
-## Sample validation performed
+## Merge audit
 
-Independent arithmetic/numerical checks were performed for all three sample main/transfer references. Key rechecked values are recorded in `REVIEW-PACKET.md` and the sample files.
+No additional macro merge was accepted.
 
-For temporal-join semantics, current pandas documentation was rechecked: backward `merge_asof` chooses the last right key less than or equal to the left key; nearest chooses the closest key and can therefore be future information.
+The following candidate pairs remain separate because they have distinct capability/exit standards even under the Pandora-box module model:
 
-## Public-source verification performed
+- Fisher information/efficiency vs likelihood-ratio/optimal testing;
+- causal identification vs experimental design;
+- Markov-chain / martingale-stopping depth vs Poisson-renewal / continuous-time-event depth;
+- numerical optimization vs stochastic-gradient methods;
+- deterministic dynamic programming vs Markov decision processes;
+- market microstructure vs execution/TCA.
 
-Current pages were rechecked on 2026-09-17 for:
+Large internal scope is not by itself a reason to split or merge a module.
 
-- Jane Street Quantitative Research;
-- IMC 2027 Graduate Quantitative Trader;
-- IMC 2027 Graduate Quantitative Researcher;
-- Two Sigma Quantitative Research & Data Science;
-- MIT OCW 18.05 probability/statistics;
-- MIT OCW 18.06SC linear algebra;
-- pandas `merge_asof`;
-- scikit-learn leakage/time-series validation guidance.
+## Project policy
 
-See `SOURCE-MAP.md` for URLs and limitations.
+Projects are now explicitly a second axis rather than extra macro modules. The route may repeatedly reopen the same project at higher mathematical/research maturity. Candidate artifacts include a probability casino, tiny market maker, Monte Carlo lab, planted-leakage study, signal/factor research lab, walk-forward time-series study, market-data reconstruction, microstructure study, execution/TCA lab, portfolio robustness study, ML-alpha study, reproduction project, deliberate failure project, independent research project and final thesis/defense.
 
-## Known limits / blockers
+Exact project gates are deferred until their owning modules are individually designed.
 
-- v3 is **not wired into runtime**. Existing v2 validators intentionally remain v2 validators.
-- No learner-progress migration has been executed.
-- No learner pilot or empirical retention study has been performed.
-- Stage A did not certify every one of the current 596 atomic arcs; it audited route/evidence architecture and dependency-sensitive rich contracts necessary to make the proposal.
-- Full existing `ARC586` was moved optional, but Astra must decide whether a smaller core numerical-solver-literacy bridge is needed.
-- Proposed `ARC558` entry is materially retargeted around `MKT00 + ARC714 + R00`; Astra must inspect whether any true `ARC553` prerequisite remains.
-- Evidence-equivalence rules are proposals until Astra reviews identity/hash semantics.
+## Historical Stage-A work retained
 
-## Actual validation/runtime limitation
+The earlier Stage-A audit remains useful evidence and is preserved in git history and the existing documentation set:
 
-Stage A documentation and graph/sample checks were performed through repository inspection and independent calculations. No new v3 Node/browser runtime suite exists yet, and existing v2 validators were not modified or misrepresented as proof of the new architecture. A local clone attempt in this environment could not resolve `github.com`; repository persistence/verification therefore used the GitHub connector/API rather than a local git working tree.
+- `INVENTORY.md`
+- `FINDINGS.md`
+- `SOURCE-MAP.md`
+- `ROUTE.md`
+- `route.dependencies.json`
+- `MIGRATION.md`
+- three Stage-A sample modules
+- `REVIEW-PACKET.md`
 
-## Next action — Astra architecture review only
+Those documents describe the previous 56-core + 17-optional proposal and should now be treated as **historical design/audit material**, not the current macro-count decision. The new current macro skeleton is `M65-SKELETON.md`.
 
-1. Read `START-HERE.md`, this `RUN-LOG.md`, `REVIEW-PACKET.md` and `ASTRA-AUDIT.md`.
-2. Audit the recorded architecture checkpoint `c7c66737b84b7951973c31d40c6895a3bdb9d94b` and the current handoff metadata.
-3. Independently trace prerequisite chains and independently solve all three sample main/transfer tasks before comparing keys.
-4. Review migration/evidence semantics and the `ARC515` split, `ARC211/ARC590`, `ARC586`, `ARC558` and core/optional decisions specifically.
-5. Write `docs/t22-rebuild/ASTRA-FINDINGS.md` with exact reviewed SHA, evidence, severity, repair criteria and disposition.
-6. Commit/push the bounded review on this same branch.
-7. **Stop. Do not bulk-author Stage B, merge or deploy unless the workflow subsequently directs it.**
+## Runtime / learner-state safety
 
-## Checkpoint convention
+No live T22 runtime route, learner-progress storage, cloud schema, T25 course/evidence, merge target or deployed site was changed by this macro-skeleton step. No progress migration was executed. `ARC515` has not yet been replaced in runtime; the two-code-module split is architectural only until implementation is deliberately authorized.
 
-The architecture SHA above is deliberately stable and reviewable. `REVIEW-PACKET.md` and this updated recovery log are committed afterward as metadata-only handoff files; do not create an endless chain of commits merely to insert a commit's own SHA into itself. Astra should record the actual branch head it reviews.
+## Stop boundary
+
+**Stop here. Do not author M01 atomics, rewrite runtime T22, migrate progress, merge or deploy yet.**
+
+The next permitted design action is a bounded dependency/order audit of `M65-SKELETON.md`. After the macro skeleton is accepted/frozen, open **M01 only** and design it to T25-style atomic rigor before touching M02.
