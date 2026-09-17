@@ -91,3 +91,10 @@ The earlier 56-core + 17-optional Stage-A route and its audit material remain us
 ## Next action
 
 **Stop at M01.** The next content action is a dedicated M01 audit/use pass: inspect the learner surface, challenge session order/boundaries, independently solve a sample of main/transfer tasks, and repair M01 if needed. Only after M01 is accepted should M02 be opened.
+
+## Latest Astra review — current M65/M01
+
+Reviewed exact content commit `da0776048f47f1b9d98ad71589e015d132c309f9`. See `ASTRA-FINDINGS.md` and `audit/check-current.mjs`.
+
+Disposition: usable after bounded repairs; Sol can own subsequent development. Before M02, resolve A-01–A-06: assessment fingerprint, evaluator-packet exposure, review/retention events, prerequisite order, ownership/teaching coverage, and semantic macro dependencies. Preserve M65 and existing work; do not restart from historical Stage A. The review script reproduces current defects; convert these into desired-behavior regression tests after repairs. Run a browser evidence workflow before accepting M01. Save a resolution table and verified commit checkpoints. No merge or deployment performed by this audit.
+
