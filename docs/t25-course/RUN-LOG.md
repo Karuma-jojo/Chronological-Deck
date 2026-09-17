@@ -157,3 +157,11 @@ GitHub's clean-build check failed on the generated `course.json`: the terminal t
 Upload procedure is now strengthened: read each file in at most50,000-character chunks, reject any omission/truncation marker, upload a Git blob and compare its returned SHA with local `git hash-object` before creating a tree/commit. No unverified blob is used in the checkpoint. Reuploading the complete generated file with this check; then compare all branch-changed files to local blobs. Do not mark release ready until CI reruns successfully.
 
 The final local browser rerun passed after the story update. A deterministic rebuild of all three generated course/syllabus artifacts was byte-identical locally. Remote reproducibility remains pending the repaired upload.
+
+## Validation checkpoint: verified remote files and compiler baseline
+
+- After the repaired upload, compared all35 changed files against their remote Git blob IDs: zero mismatches. Authored source,generated data,compiler,UI,docs and test scripts are all actually saved on the branch.
+- GitHub frontend integrity workflow PASSED at a07c4e0, including the new clean rebuild,structure/evidence and mathematical checks.34 of35 workflows were successful; the review workflow's sole failure was the legacy full-file checksum for the intentionally updated λ compiler.
+- Updated that checksum to the requested V1.2 file. Added a separate test that removes only the new §41 and restores the version header, then verifies the entire remaining compiler byte-for-byte against the original V1.0 SHA-256. This preserves the old compiler body instead of dropping its protection.
+- Both local contract tests PASSED. All other runtime/T22/extractor/archive pins remain unchanged. CI rerun on this repair is pending.
+Next: wait for the final GitHub review workflow,then finish release status and PR description. Do not restart content work.
