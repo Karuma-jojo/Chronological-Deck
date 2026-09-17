@@ -116,3 +116,10 @@ Next: complete math/browser checks and record their actual output. Preserve curr
 - Code review found that a mixed-bank task could retain the previously selected session's scene/title. Fixed external-task context: mixed work hides the topic contract and scene, including after a presentation toggle. Bridge tasks use their own heading.
 - Bumped the site entrypoint/bootstrap cache chain so the existing-panel course link can refresh on deployment.
 - Browser script syntax passed; execution awaits browser installation. Dependency/test sessions are still being polled. These are authored checks, not a browser-pass claim yet.
+
+## Validation checkpoint: mathematics and existing T25 suite
+
+- Installed SymPy1.14.0; `python scripts/check-t25-course-math.py` PASSED all55 selected symbolic/exhaustive checks. Detailed IDs/results are in `course/generated/math-validation.json`. This is not certification of every reference.
+- `node scripts/test-t25.mjs` PASSED: 7 topological plans,108 unique units,stable50-parent context,80 targets/162 cards,source mappings,T22 links,evidence validation,unchanged legacy routes,146 reachable JS modules.
+- Browser execution initially failed because the Chromium executable was absent; CDN installation attempts encountered502/timeouts. An earlier workspace contains a Chromium binary being checked as a fallback. The browser test now accepts `REVIEW_CHROMIUM_PATH` for a known local binary. Browser PASS is not yet claimed.
+Next: browser execution/visual QA; then final reproducibility and PR status update.
