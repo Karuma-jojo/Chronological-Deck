@@ -74,3 +74,13 @@ Completed after the initial log:
 - Added `course/authoring/supplements.mjs`: 9 prerequisite-bridge tasks, 7 phase synthesis problems and 21 original objective questions, each with reference/answer. Total authored tasks now361 (324+9+7+21).
 - `node --check course/authoring/supplements.mjs` passed. Complete content/coverage/browser verification remains pending.
 Next: deterministic data build, study interface and anime/compiler integration.
+
+## Checkpoint: deterministic build and narrative campaign
+
+- Added seven original campaign episodes in `course/authoring/campaign.mjs`, with public stakes, character motives, optional nonacademic choices and closure. No task answers or structural clue metaphors appear in these scene texts.
+- Added `scripts/build-t25-course.mjs`; it rebuilds public course data, separately fetched evaluator references and a current-contract syllabus from authored source plus the current registry.
+- Build completed successfully: 162 sessions, 361 tasks, 19 assessment sets, 47 crosswalk rows, 392 historical question routes.
+- Sets comprise 7 phase written checkpoints, 7 short objective calibrations and 5 cumulative written sets. They reuse the bank; they are not 5 fresh complete PSA/PSB mock papers. Provisional timing is explicitly labeled.
+- Generated files include contract hashes, required-ownership requirements, prerequisite target links and warnings against automatic clearance.
+- Live official-syllabus and programme-page requests failed (timeout/502); no claim of a newer syllabus verification is made. The supplied 2026 baseline remains the source.
+Next: isolated evidence helpers and browser UI; then compiler integration and validation.
