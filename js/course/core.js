@@ -38,7 +38,7 @@ export function mergeEvidence(a,b,course){
  return validateEvidence(out,course);
 }
 export function expose(state,id,at=new Date().toISOString(),kind){
- const old=state.exposures[id];state.exposures[id]={...old,firstSeen:old?.firstSeen||at,lastSeen:at,views:(old?.views||0)+(kind?0:1)};
+ const old=state.exposures[id];state.exposures[id]={...old,firstSeen:old?.firstSeen||at,lastSeen:at,views:Math.max(1,(old?.views||0)+(kind?0:1))};
  if(kind)state.exposures[id][kind]??=at;
  return state.exposures[id];
 }

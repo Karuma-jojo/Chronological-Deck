@@ -56,7 +56,7 @@ try {
   console.error("T25 entrance UI failed to load; route progress remains available.", error);
 }
 try {
-  await import("./t25-atomic-ui-v4.js?v=2.0.0");
+  await import("./t25-atomic-ui-v4.js?v=2.0.1");
 } catch (error) {
   console.error("T25 audited atomic-session UI failed to load; parent-unit study remains available.", error);
 }

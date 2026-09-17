@@ -94,3 +94,11 @@ Next: isolated evidence helpers and browser UI; then compiler integration and va
 - Failed/corrupt local storage is not overwritten; new work remains in memory with an export warning. Import validates known task IDs, fields, dates and review links; conflicting IDs are rejected rather than silently overwritten.
 - `node --check` passed for both JavaScript modules. Browser tests and edge-case verification still pending.
 Next: λ compiler integration, release instructions, structure/evidence/math/browser tests. The new HTML currently links to a release guide that is still to be authored.
+
+## Checkpoint: compiler and existing-deck integration
+
+- Updated λ compiler to V1.2 with §41: current-card provenance, obligation/evidence mapping, exact mathematical task preservation, assisted/exposed evidence distinctions, optional ANIME contract, leak checks and strict Guardian precedence. Master/Guardian/extractor remain unchanged.
+- Added a session-specific course link to the existing T25 panel and bumped its module cache key.
+- Added `RELEASE.md` with study instructions, rebuilding commands, limitations, evidence handling and honest source/validation status.
+- Fixed exposure recording for engine-packet exports of a main task not previously displayed (view count must be at least1 for a valid importable log).
+- Existing-panel JavaScript syntax passed. Full structural/math/browser tests are the next step. Commands listed in the release guide are the intended complete suite; remaining new scripts will be added before release.
