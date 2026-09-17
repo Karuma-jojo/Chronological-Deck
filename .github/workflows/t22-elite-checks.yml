@@ -9,6 +9,7 @@ on:
       - 't22-course.html'
       - 'css/t22-course.css'
       - 'scripts/test-t22-elite-*.mjs'
+      - 'scripts/test-t22-semantic-gates.mjs'
       - 'docs/t22-rebuild/**'
       - '.github/workflows/t22-elite-checks.yml'
   workflow_dispatch:
@@ -28,10 +29,13 @@ jobs:
           node --check js/t22-course/overrides.js
           node --check js/t22-course/ui.js
           node --check scripts/test-t22-elite-m01.mjs
+          node --check scripts/test-t22-semantic-gates.mjs
+          node --check scripts/test-t22-elite-course-browser.mjs
           node --check docs/t22-rebuild/audit/check-current.mjs
-      - name: Structural, pedagogy and evidence regressions
+      - name: Structural, pedagogy, semantic and evidence regressions
         run: |
           node scripts/test-t22-elite-m01.mjs
+          node scripts/test-t22-semantic-gates.mjs
           node docs/t22-rebuild/audit/check-current.mjs
       - name: Install browser-test dependency
         run: npm ci --prefix scripts/review-tests

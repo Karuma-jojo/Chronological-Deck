@@ -3,41 +3,15 @@ import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
 import {prepareAssessmentFingerprints} from '../js/t22-course/core.js';
 import {applyCourseOverrides} from '../js/t22-course/overrides.js';
-const root=new URL('../',import.meta.url);
-const read=p=>JSON.parse(fs.readFileSync(new URL(p,root),'utf8'));
-const meta=read('course/t22/generated/course-meta.json');
-const roadmap=read('course/t22/generated/roadmap.json');
-const deps=read('docs/t22-rebuild/m65.dependencies.json');
-const packs=meta.packs.map(read),evalPacks=meta.evaluatorPacks.map(read),repair=read(meta.repairPack);
-const course={...meta,sessions:packs.flatMap(p=>p.sessions).sort((a,b)=>a.order-b.order),problems:Object.assign({},...packs.map(p=>p.problems))};
-const evaluator=Object.assign({},...evalPacks);applyCourseOverrides(course,evaluator,repair);await prepareAssessmentFingerprints(course,evaluator);
-assert.equal(roadmap.modules.length,65);assert.equal(deps.modules.length,65);assert.equal(new Set(roadmap.modules.map(m=>m.id)).size,65);assert.equal(new Set(deps.modules.map(m=>m.id)).size,65);
-const pos=new Map(deps.modules.map(x=>[x.id,x.order]));for(const m of deps.modules)for(const p of m.prerequisites){assert(pos.has(p),`${m.id} missing prereq ${p}`);assert(pos.get(p)<m.order,`${m.id} has backward prereq ${p}`);}
-assert.equal(course.module.id,'T22E-FND01');assert.equal(course.sessions.length,17);assert.equal(Object.keys(course.problems).length,34);assert.equal(Object.keys(evaluator).length,34);
-assert.deepEqual(course.sessions.map(s=>s.order),Array.from({length:17},(_,i)=>i+1));assert.equal(new Set(course.sessions.map(s=>s.id)).size,17);
+const root=new URL('../',import.meta.url);const read=p=>JSON.parse(fs.readFileSync(new URL(p,root),'utf8'));
+const meta=read('course/t22/generated/course-meta.json'),roadmap=read('course/t22/generated/roadmap.json'),deps=read('docs/t22-rebuild/m65.dependencies.json');const packs=meta.packs.map(read),evalPacks=meta.evaluatorPacks.map(read),repair=read(meta.repairPack);
+const course={...meta,sessions:packs.flatMap(p=>p.sessions).sort((a,b)=>a.order-b.order),problems:Object.assign({},...packs.map(p=>p.problems))};const evaluator=Object.assign({},...evalPacks);applyCourseOverrides(course,evaluator,repair);await prepareAssessmentFingerprints(course,evaluator);
+assert.equal(roadmap.modules.length,65);assert.equal(deps.modules.length,65);assert.equal(new Set(roadmap.modules.map(m=>m.id)).size,65);assert.equal(new Set(deps.modules.map(m=>m.id)).size,65);const pos=new Map(deps.modules.map(x=>[x.id,x.order]));for(const m of deps.modules)for(const p of m.prerequisites){assert(pos.has(p),`${m.id} missing prereq ${p}`);assert(pos.get(p)<m.order,`${m.id} has backward prereq ${p}`);}
+assert.equal(course.module.id,'T22E-FND01');assert.equal(course.sessions.length,17);assert.equal(Object.keys(course.problems).length,34);assert.equal(Object.keys(evaluator).length,34);assert.deepEqual(course.sessions.map(s=>s.order),Array.from({length:17},(_,i)=>i+1));assert.equal(new Set(course.sessions.map(s=>s.id)).size,17);
 const sort=x=>Array.isArray(x)?x.map(sort):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,sort(x[k])])):x;
-for(const s of course.sessions){
- assert.match(s.id,/^T22V3::T22E-FND01::S\d\d@1$/);assert.equal(s.contractHash.length,64);assert.equal(s.requiredOwnership.length,5);assert(s.entryPrerequisites.length>=1);assert(s.inScope.length>=4&&s.outOfScope.length>=4);
- const contract={id:s.id,title:s.title,focus:s.focus,purpose:s.purpose,centralCapability:s.centralCapability,principalObstacle:s.principalObstacle,entryPrerequisites:s.entryPrerequisites,requiredOwnership:s.requiredOwnership,applicationScope:s.applicationScope,transferScope:s.transferScope,inScope:s.inScope,outOfScope:s.outOfScope,exitCondition:s.exitCondition};
- assert.equal(crypto.createHash('sha256').update(JSON.stringify(sort(contract))).digest('hex'),s.contractHash,`contract hash drift ${s.id}`);
- assert(s.lesson.includes('Worked example:'),`${s.id} lacks worked example`);assert(s.lesson.includes('Guided check:'),`${s.id} lacks guided practice`);
- const coverage=course.claimCoverage[s.id];assert(Array.isArray(coverage)&&coverage.length===s.requiredOwnership.length,`${s.id} coverage must map all ownership claims`);
- for(const entries of coverage){assert(entries.length>=1);for(const kind of entries)assert(['main','transfer'].includes(kind),`${s.id} invalid evidence kind ${kind}`);}
- for(const id of [s.main,s.transfer]){assert(course.problems[id]);assert(evaluator[id]);assert.equal(evaluator[id].rubric.reduce((a,x)=>a+x.points,0),10,`${id} rubric must total10`);assert.match(course.assessmentFingerprints[id],/^[0-9a-f]{64}$/);}
-}
+for(const s of course.sessions){assert.match(s.id,/^T22V3::T22E-FND01::S\d\d@1$/);assert.equal(s.contractHash.length,64);assert.equal(s.requiredOwnership.length,5);assert(s.entryPrerequisites.length>=1);assert(s.inScope.length>=4&&s.outOfScope.length>=4);const contract={id:s.id,title:s.title,focus:s.focus,purpose:s.purpose,centralCapability:s.centralCapability,principalObstacle:s.principalObstacle,entryPrerequisites:s.entryPrerequisites,requiredOwnership:s.requiredOwnership,applicationScope:s.applicationScope,transferScope:s.transferScope,inScope:s.inScope,outOfScope:s.outOfScope,exitCondition:s.exitCondition};assert.equal(crypto.createHash('sha256').update(JSON.stringify(sort(contract))).digest('hex'),s.contractHash,`contract hash drift ${s.id}`);assert(s.lesson.includes('Worked example:'),`${s.id} lacks worked example`);assert(s.lesson.includes('Guided check:'),`${s.id} lacks guided practice`);const coverage=course.claimCoverage[s.id];assert(Array.isArray(coverage)&&coverage.length===s.requiredOwnership.length,`${s.id} coverage must map all ownership claims`);for(const entries of coverage){assert(entries.length>=1);for(const kind of entries)assert(['main','transfer'].includes(kind),`${s.id} invalid evidence kind ${kind}`);}for(const id of [s.main,s.transfer]){assert(course.problems[id]);assert(evaluator[id]);assert.equal(evaluator[id].rubric.reduce((a,x)=>a+x.points,0),10,`${id} rubric must total10`);assert.match(course.assessmentFingerprints[id],/^[0-9a-f]{64}$/);}}
 for(let i=1;i<=8;i++){const rows=course.instructionalAudit[`S${String(i).padStart(2,'0')}`];assert(Array.isArray(rows)&&rows.length>=1,`S${i} lacks prereq-symbol audit`);for(const row of rows){assert(row.item&&row.source);}}
-assert(!course.problems['T22V3::T22E-FND01::S01-M@1'].prompt.includes('√7'),'S01 must not assess roots before S08');
-assert(!course.problems['T22V3::T22E-FND01::S07-M@1'].prompt.includes('10^'),'S07 must not require scientific notation before S08');
-assert(course.sessions.find(s=>s.order===8).lesson.includes('a^(m/n)'),'S08 must teach rational exponents');
-assert(course.sessions.find(s=>s.order===14).lesson.includes('Interval notation'),'S14 must teach interval notation');
-assert(course.problems['T22V3::T22E-FND01::S16-M@1'].prompt.includes('2x²+3x−1'),'S16 must probe general quadratic solution');
-assert(course.problems['T22V3::T22E-FND01::S15-T@1'].prompt.includes('<−2')&&course.problems['T22V3::T22E-FND01::S15-T@1'].prompt.includes('≥−2'),'S15 must probe negative thresholds');
-assert(evaluator['T22V3::T22E-FND01::S12-M@1'].reference.includes('any V0≠0'));assert(evaluator['T22V3::T22E-FND01::S12-T@1'].reference.includes('any nonzero a'));
-// Independently derived expected values, not string-only answer checks.
-assert.equal(-18-(7-3*(-4))+2**3,-29);assert.deepEqual([-3,-2.75,-2.7,-2.6].sort((a,b)=>a-b),[-3,-2.75,-2.7,-2.6]);
-assert.equal(3/8+5/12-1/6,5/8);assert.equal((5/6)*(3/10),1/4);assert.equal(24000*1.125*.875,23625);assert.equal(18000/(2.5*60),120);
-assert.equal(1980000*.0031,6138);assert.equal(497*61,30317);assert.equal(16**(.75),8);assert.equal(27**(2/3),9);
-const r1=(-3+Math.sqrt(17))/4,r2=(-3-Math.sqrt(17))/4;for(const r of [r1,r2])assert(Math.abs(2*r*r+3*r-1)<1e-10);
-assert.equal(50000*1.1*.96-240,52560);assert.equal((52560/50000-1)*100,5.12);
+assert(!course.problems['T22V3::T22E-FND01::S01-M@1'].prompt.includes('√7'));assert(!course.problems['T22V3::T22E-FND01::S07-M@1'].prompt.includes('10^'));assert(course.sessions.find(s=>s.order===8).lesson.includes('a^(m/n)'));assert(course.sessions.find(s=>s.order===14).lesson.includes('Interval notation'));assert(course.problems['T22V3::T22E-FND01::S16-M@1'].prompt.includes('2x²+3x−1'));assert(course.problems['T22V3::T22E-FND01::S15-T@1'].prompt.includes('<−2')&&course.problems['T22V3::T22E-FND01::S15-T@1'].prompt.includes('≥−2'));assert(evaluator['T22V3::T22E-FND01::S12-M@1'].reference.includes('any V0≠0'));assert(evaluator['T22V3::T22E-FND01::S12-T@1'].reference.includes('any nonzero a'));
+const close=(a,b,tol=1e-12)=>assert(Math.abs(a-b)<tol,`${a} != ${b}`);close(-18-(7-3*(-4))+2**3,-29);assert.deepEqual([-3,-2.75,-2.7,-2.6].sort((a,b)=>a-b),[-3,-2.75,-2.7,-2.6]);close(3/8+5/12-1/6,5/8);close((5/6)*(3/10),1/4);close(24000*1.125*.875,23625);close(18000/(2.5*60),120);close(1980000*.0031,6138);close(497*61,30317);close(16**(.75),8);close(27**(2/3),9,1e-10);const r1=(-3+Math.sqrt(17))/4,r2=(-3-Math.sqrt(17))/4;for(const r of [r1,r2])assert(Math.abs(2*r*r+3*r-1)<1e-10);close(50000*1.1*.96-240,52560);close((52560/50000-1)*100,5.12,1e-10);
 for(const p of ['t22-course.html','css/t22-course.css','js/t22-course/core.js','js/t22-course/ui.js','js/t22-course/overrides.js'])assert(fs.existsSync(new URL(p,root)),`missing ${p}`);
 console.log('PASS: M65 topological structure; M01 17 sessions/34 tasks; novice lessons; 85/85 ownership claims mapped; A-04/A-05 targeted probes; fingerprints and independent math checks.');
