@@ -1,6 +1,16 @@
 # T25 course build — recovery checkpoint
 
-Updated: 2026-09-17. Status: IN PROGRESS. Not deployed and not learner-piloted.
+Updated: 2026-09-17. Status: IMPLEMENTATION COMPLETE; reviewable in PR156. Not merged/deployed and not learner-piloted.
+
+## Current state — start here on resumption
+
+The full course implementation is authored and pushed. Do not rebuild it. Completed:361 original tasks/references,162 lessons,19 sets,7 campaign episodes,source mapping,study UI/evidence storage,compiler integration,local structure/math/browser/regression checks,verified remote blob comparison and CI gates.
+
+Validated code checkpoint: `303154c952cb94c269a63e85967e0b916d49533c`. All35 GitHub workflows PASSED, including frontend structure/rebuild/mathematics checks and the existing review suite plus new course browser test. Local browser,55 selected mathematical checks,162-card contract checks and existing T25 regressions also passed. The final documentation/preview checkpoint adds no academic or application logic.
+
+Next action on resumption: inspect PR156 and the current branch tip. If the user requests publication, merge/deploy only after the required gates remain green. Otherwise review or improve this existing release; do not reauthor it. A learner pilot and independent full-reference review remain future quality work, not completed evidence. The website has not been merged/deployed.
+
+Local dependency overrides, if needed: `PYTHONPATH=/workspace/scratch/a9cd1ef83eb4/python-deps` for SymPy; `REVIEW_CHROMIUM_PATH=/workspace/scratch/348b562d24c0/tmp/review-browser/chromium` for the fallback browser. These are conveniences only; install the documented dependencies in a fresh workspace.
 
 ## Resume here, do not restart
 
@@ -38,7 +48,7 @@ Total: 162 lessons, 324 original tasks and corresponding evaluator references. T
 
 Each rebuilt phase passed `node --check` locally. Remote file fetch confirmed phase 7 is accessible on the branch. No complete mathematical, coverage or browser validation has run on this rebuilt bank yet.
 
-## Next work (ordered)
+## Original reconstruction checklist (historical; see current state and later checkpoints)
 
 1. Fix session 70 main wording: it currently requests a false bound as a proof; change to explicitly ask the learner to prove or refute that bound (reference already identifies the correct direction).
 2. Recover/copy the v2 syllabus traceability metadata; current repository contracts remain authoritative over historical source wording. Local recovery found the complete 2026-09-14 audit package (80 targets / 162 sessions), including the 392-row classification ledger and 47-row scope crosswalk. Preserve source provenance; do not claim independently solving all 392 problems.
@@ -165,3 +175,14 @@ The final local browser rerun passed after the story update. A deterministic reb
 - Updated that checksum to the requested V1.2 file. Added a separate test that removes only the new §41 and restores the version header, then verifies the entire remaining compiler byte-for-byte against the original V1.0 SHA-256. This preserves the old compiler body instead of dropping its protection.
 - Both local contract tests PASSED. All other runtime/T22/extractor/archive pins remain unchanged. CI rerun on this repair is pending.
 Next: wait for the final GitHub review workflow,then finish release status and PR description. Do not restart content work.
+
+
+## Final implementation checkpoint
+
+- All35 GitHub workflows passed on303154c952cb94c269a63e85967e0b916d49533c.
+- Local validation passed:162 current contract hashes;361 task/reference pairs;324 plain/anime public-opening isolation checks;47 scope mappings;392 historical route identities;19 sets;import/merge and retention logic;55 selected symbolic/exhaustive checks;all162 browser navigation choices;reference gates and navigation race;desktop/mobile layout;existing T25 regression suite;compiler original-body preservation.
+- All35 files changed before the final compiler-pin repair were compared against remote Git blobs with zero mismatches. Subsequent checkpoint uploads individually verify every blob hash before moving the branch.
+- Saved desktop/mobile interface previews alongside this log. These are test-session screenshots, not evidence of learner mastery or deployment.
+- Reproducible content is version1.0.0. The course has not been learner-piloted, all361 references have not been independently examiner-certified, timing is provisional, and reused sets are not unseen full official mock papers.
+- Existing stable162 IDs,current card contracts,Master/Guardian,extractor,T22 and database authority remain unchanged. λ compiler adds the explicitly requested presentation/source section while preserving its full original body.
+- Delivery: PR156 on `codex/t25-complete-course`. All work is remotely checkpointed; final status is review-ready,not merged or live.

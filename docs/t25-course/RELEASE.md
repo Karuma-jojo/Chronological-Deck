@@ -2,7 +2,7 @@
 
 This course layer keeps the current 80 targets and 162 stable session IDs. It adds concrete practice, evaluator references, prerequisites, mixed review and optional anime fiction around the existing curriculum.
 
-**Status:** see [RUN-LOG.md](RUN-LOG.md) for the exact checkpoint and validation evidence. Authored material is not a learner-piloted or independently certified “9.9/10” course. A branch or draft PR does not mean the live site has changed.
+**Status:** implementation complete and validated for review in PR156. All35 GitHub workflows passed on the final code checkpoint. See [RUN-LOG.md](RUN-LOG.md) for precise test evidence and [PREVIEW.md](PREVIEW.md) for interface screenshots. This is not a learner-piloted or independently certified “9.9/10” course. It has not been merged or deployed.
 
 ## What is included
 
