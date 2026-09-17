@@ -3,11 +3,11 @@
 Status: complete architecture-review sample. Not wired into runtime.
 Evidence identity proposal: `T22V3::T22V3-R00::A01@1`
 Parent capability: `T22V3-R00`
-Direct prerequisites: `ARC508`, `ARC542`, `T22V3-C02`, `T22V3-MKT00`
+Direct prerequisites: `ARC508`, `ARC542`, `T22V3-C03`, `T22V3-MKT00`
 
 ## Why this sample is intentionally advanced
 
-This module is **not** offered to a beginner. Its ancestry includes foundations, finite probability, scientific Python, sampling/estimation, least squares/regression, validation/leakage, time series and basic market-time language.
+This module is **not** offered to a beginner. Its ancestry includes foundations, finite probability, scientific Python, research-engineering/testing discipline, sampling/estimation, least squares/regression, validation/leakage, time series and basic market-time language.
 
 The architecture is being tested for both ends of the route: can it teach a novice honestly, and can it later enforce research discipline that prevents a sophisticated but invalid backtest?
 
@@ -227,7 +227,7 @@ The learner must name the temporal inequality, not merely say “use time-series
 
 # Coding boundary
 
-The main task must first be solved on paper. Then code should encode the invariants rather than replace the reasoning.
+The main task must first be solved on paper. Then code should encode the invariants rather than replace the reasoning. `T22V3-C03` is a direct prerequisite because this extension assumes the learner already knows how to express assumptions as assertions/tests and preserve a reproducible change history.
 
 Appropriate implementation work after clearance:
 
@@ -242,7 +242,7 @@ Libraries are tools, not guarantees. A time-aware splitter cannot infer the econ
 
 # Validation evidence for Stage A
 
-Independent calculation during authoring verified:
+Independent calculation during authoring and Stage A completion verified:
 
 - train mean `13`;
 - population variance `5`;

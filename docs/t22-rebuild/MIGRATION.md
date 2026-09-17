@@ -6,7 +6,7 @@ Status: architecture proposal only. No migration is executed in Stage A.
 
 **A learner's old evidence may remain historical evidence, but it must never be silently reinterpreted as a different intellectual obligation.**
 
-The current v2 atomic IDs (`T22-Mxx-Axx`) are route-position based. The proposed v3 route changes order, adds bridges, splits some capabilities and makes some existing advanced modules optional. Therefore a direct in-place reuse of positional IDs is unsafe.
+The current v2 atomic IDs (`T22-Mxx-Axx`) are route-position based. The proposed v3 route changes order, adds bridges, splits one broad programming capability and makes some existing advanced modules optional. Therefore direct in-place reuse of positional IDs is unsafe.
 
 ## 1. Freeze existing evidence
 
@@ -61,20 +61,38 @@ Policy:
 - do not inherit completion;
 - retain old evidence visibly as prior learning/history.
 
-A changed prompt with a new transfer requirement is not the same obligation merely because its title is similar.
+A changed prompt with a new transfer requirement or changed prerequisite contract is not the same obligation merely because its title is similar.
 
 ### Class C — split module
 
-Likely example: the current broad Python/software capability is decomposed into `C00` primitives, `C01` exact enumeration/simulation and `C02` scientific Python/data work.
+The current `ARC515` is deliberately decomposed in the proposed route. This is a content migration, not a claim that one old macro checkmark proves all new children.
+
+Proposed responsibility map:
+
+| Current `ARC515` theme | Proposed v3 owner |
+|---|---|
+| A01 Python expressions/types/control flow | `T22V3-C00` |
+| A02 functions/decomposition/interfaces | `T22V3-C00` |
+| A03 core containers/representation | `T22V3-C00` |
+| A04 NumPy shape/indexing | `T22V3-C02` |
+| A05 broadcasting | `T22V3-C02` |
+| A06 vectorization/equivalence | `T22V3-C02` |
+| A07 controlled RNG/reproducible random experiments | `T22V3-C01` |
+| A08 pandas tables/alignment/transformation | `T22V3-C02` |
+| A09 plotting as diagnostic evidence | `T22V3-C02` |
+| A10 debugging/assertions/tests/invariants | `T22V3-C03` |
+| A11 clean rerunnable mini research artifact | `T22V3-C03`, later deepened by `ARC509` |
+| build-spec version-control + basic complexity requirement | `T22V3-C03`; optional `ARC717` deepens algorithms |
 
 Policy:
 - never mark all split children complete from one old macro checkmark;
-- exact sub-obligations may inherit only after manual/content-hash equivalence review;
-- otherwise the learner receives recognition/history without a false v3 clearance.
+- exact sub-obligations may inherit only after task/rubric equivalence review;
+- otherwise the learner receives recognition/history without false v3 clearance;
+- old `ARC515` remains visible as historical evidence even though it is not an explicit v3 route node.
 
 ### Class D — early bridge extracted from advanced content
 
-Example: `MKT00` teaches only prices/payoffs/returns/bid-ask/basic orders while deep `ARC553` and `ARC558` remain later.
+Example: `MKT00` teaches prices/payoffs/returns/bid-ask/basic orders while deep `ARC553` and `ARC558` remain later.
 
 Policy:
 - create a new bridge identity;
@@ -83,13 +101,27 @@ Policy:
 
 ### Class E — optionalized module
 
-Examples: matrix calculus, ODEs, formal efficiency theory, MDPs, deep neural nets.
+Examples include matrix calculus, ODEs, numerical linear algebra, deterministic DP/MDPs, full numerical optimization/autodiff, formal efficiency theory and deep neural nets.
 
 Policy:
 - keep the module addressable;
 - preserve all historical completions and archive links;
-- remove only the requirement that it be completed on the default path;
+- remove only the requirement that it be completed on the default route;
 - no evidence is deleted or downgraded.
+
+`ARC211` and `ARC586` are explicitly retained under this class. `ARC211` remains upstream of optional `ARC590`; `ARC586` remains available under its actual advanced prerequisites rather than being reused under a weaker entry contract.
+
+### Class F — reused ID with materially retargeted v3 prerequisite/content boundary
+
+Some current rich modules can be educationally reused only after a bounded v3 adaptation. Examples:
+
+- proposed core `ARC558` uses new `MKT00` plus `ARC714/R00` rather than requiring full `ARC553` first;
+- proposed core `ARC559` does not require optional performance-engineering `ARC713` as a universal prerequisite.
+
+Policy:
+- preserve the stable parent/content lineage, but treat affected child obligations as new versions unless exact equivalence is proven;
+- no automatic child clearance merely because the old macro ID matches;
+- document the changed prerequisite/content boundary in the authoring source and equivalence manifest.
 
 ## 4. Macro-completion inheritance must change for v3
 
@@ -163,6 +195,7 @@ Astra should explicitly decide whether:
 1. parent-keyed ID + local obligation ID + obligation version is sufficient, or a content hash should be part of authoritative identity;
 2. any macro-level historical completion should be allowed to map to v3 without child-level evidence;
 3. exact-equivalence mapping should require two independent checks (mechanical hash + human review);
-4. new bridge obligations should ever be auto-cleared from a stronger old module, or merely shown as "prior evidence available" until reviewed.
+4. new bridge obligations should ever be auto-cleared from a stronger old module, or merely shown as `prior evidence available` until reviewed;
+5. a reused parent such as adapted `ARC558` should retain the parent ID while all materially changed child obligations receive new versions, or whether the adaptation warrants a new parent capability ID.
 
 Bulk authoring must not begin until these evidence semantics are accepted or repaired.
