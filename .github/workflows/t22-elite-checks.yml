@@ -1,0 +1,41 @@
+name: T22 Elite checks
+
+on:
+  push:
+    branches: [codex/t22-pedagogical-rebuild]
+    paths:
+      - 'course/t22/**'
+      - 'js/t22-course/**'
+      - 't22-course.html'
+      - 'css/t22-course.css'
+      - 'scripts/test-t22-elite-*.mjs'
+      - 'docs/t22-rebuild/**'
+      - '.github/workflows/t22-elite-checks.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax checks
+        run: |
+          node --check js/t22-course/core.js
+          node --check js/t22-course/overrides.js
+          node --check js/t22-course/ui.js
+          node --check scripts/test-t22-elite-m01.mjs
+          node --check docs/t22-rebuild/audit/check-current.mjs
+      - name: Structural, pedagogy and evidence regressions
+        run: |
+          node scripts/test-t22-elite-m01.mjs
+          node docs/t22-rebuild/audit/check-current.mjs
+      - name: Install browser-test dependency
+        run: npm ci --prefix scripts/review-tests
+      - name: Install Chromium
+        run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - name: Browser evidence workflow
+        run: node scripts/test-t22-elite-course-browser.mjs

@@ -1,4 +1,5 @@
 import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,exposeAnswersForSession,taskText,reviewQueue,moduleEvidenceSummary,compilerPacket,freshProbePacket,evidenceIsCurrent,prepareAssessmentFingerprints} from './core.js';
+import {applyCourseOverrides} from './overrides.js';
 
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
@@ -61,9 +62,10 @@ function download(name,data){const url=URL.createObjectURL(new Blob([data],{type
 
 async function init(){
  const [meta,road]=await Promise.all([json('course/t22/generated/course-meta.json'),json('course/t22/generated/roadmap.json')]);
- const [packs,evalParts]=await Promise.all([Promise.all(meta.packs.map(json)),Promise.all(meta.evaluatorPacks.map(json))]);
+ const [packs,evalParts,repair]=await Promise.all([Promise.all(meta.packs.map(json)),Promise.all(meta.evaluatorPacks.map(json)),meta.repairPack?json(meta.repairPack):Promise.resolve(null)]);
  keys=Object.assign({},...evalParts);
  course={...meta,sessions:packs.flatMap(p=>p.sessions).sort((a,b)=>a.order-b.order),problems:Object.assign({},...packs.map(p=>p.problems))};roadmap=road;
+ applyCourseOverrides(course,keys,repair);
  await prepareAssessmentFingerprints(course,keys);
  state=emptyEvidence();
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);}catch{storageOK=false;tell('Existing T22 Elite study storage could not be read. It has not been overwritten. Export any new work before leaving.');}
@@ -85,12 +87,7 @@ async function init(){
  $('copyTask').onclick=()=>copy('[T22 ELITE — LEARNER TASK]\n\n'+taskText(course.problems[problemId]));
  $('copyPacket').onclick=async()=>{
   const targetSession=session,targetProblem=problemId,token=visit;
-  try{
-   const refs=await evaluator();
-   if(visit!==token||problemId!==targetProblem||session.id!==targetSession.id){tell('Evaluator-packet export cancelled because navigation changed.');return;}
-   const at=new Date().toISOString();exposeAnswersForSession(state,targetSession,at);persist('Answer-bearing packet export recorded for both fixed tasks.');
-   await copy(compilerPacket(course,targetSession,refs,targetProblem));renderHistory();renderQueue();renderModuleEvidence();
-  }catch(e){tell(e.message);}
+  try{const refs=await evaluator();if(visit!==token||problemId!==targetProblem||session.id!==targetSession.id){tell('Evaluator-packet export cancelled because navigation changed.');return;}const at=new Date().toISOString();exposeAnswersForSession(state,targetSession,at);persist('Answer-bearing packet export recorded for both fixed tasks.');await copy(compilerPacket(course,targetSession,refs,targetProblem));renderHistory();renderQueue();renderModuleEvidence();}catch(e){tell(e.message);}
  };
  $('copyFreshProbe').onclick=()=>copy(freshProbePacket(course,session));
  $('export').onclick=()=>download('t22-elite-study-record.json',JSON.stringify(state,null,2));

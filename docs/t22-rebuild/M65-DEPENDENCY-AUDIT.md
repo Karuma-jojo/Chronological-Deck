@@ -1,46 +1,57 @@
-# T22 Elite M65 — Dependency Audit & Freeze Record
+# T22 Elite M65 — dependency and semantic-gate record
 
-Status: **macro skeleton dependency-audited and frozen for M01 authoring**
+Status: **65-module macro ownership/order frozen; explicit graph topologically valid; semantic ancestry is checked module-by-module before publication.**
 
-This audit applies to `M65-SKELETON.md` and `m65.dependencies.json`. It freezes macro ownership/order, not the eventual internal atomic-session counts.
+Current graph: `m65.dependencies.json` version `M65-semantic-r1-2026-09-18`.  
+Semantic ledger: `SEMANTIC-PREREQUISITES.json`.  
+Current recovery authority: `RUN-LOG.md`.
 
-## Audit result
+## What is frozen
 
-- 65 unique macro modules.
-- Every declared prerequisite resolves to one of the 65 modules.
-- Every prerequisite occurs earlier than the module that consumes it.
-- Therefore the declared chronology is a valid topological order of the explicit dependency graph.
-- M01 has no hidden module prerequisite.
-- School-level numeracy/algebra/functions/reasoning are no longer admission assumptions: M01-M03 own them.
-- Finite uncertainty appears by M04 and a genuine trading-decision family by M05.
-- Code first appears only after arithmetic/discrete/probability foundations (M08), then matures into research engineering at M21.
-- Temporal validation is an explicit gate (M43) before market-data reconstruction (M45), dirty-data research (M46) and the final capstone.
-- Market mechanics (M07) precede market data, microstructure, asset pricing and execution.
-- The final capstone (M65) depends on inference, validation, provenance, time series, temporal validity, dirty-data discipline, portfolio context, execution and statistical learning.
+- The 65 macro capability families and their pedagogical order are the working architecture.
+- A new M66 requires written evidence that no current module can own the capability without corrupting its exit standard.
+- Stable IDs, not presentation positions, own evidence identity.
 
-## Important dependency decisions
+## What is deliberately *not* frozen
 
-1. **M02 and M03 are not forced into a single chain.** Both consume M01. M03 appears after M02 pedagogically, but its discrete/proof ownership does not pretend to require all of precalculus.
-2. **M04 probability requires M03**, making counting/sets/reasoning explicit rather than hidden.
-3. **M05 trading games requires M04**, but **M07 market mechanics is conceptually light** and does not require calculus or statistics.
-4. **M08 simulation requires M04 and M03**, preventing code from becoming a substitute for the finite mathematics it is meant to check.
-5. **M21 scientific computing follows the linear-algebra engine**, so array shapes/vectorization can be connected to real mathematical objects.
-6. **M26 random variables waits until integration exists**, so continuous distributions need no hidden calculus bridge.
-7. **M43 temporal research design requires both generic validation (M39) and time-series structure (M42)** plus market vocabulary and research-engineering discipline.
-8. **M47 microstructure precedes M56 execution**; knowing how the market behaves is distinct from choosing how to trade through it.
-9. **M49 precedes M50** so Brownian/continuous-time extensions can reuse discrete stochastic-process/martingale intuition without making them mandatory earlier.
-10. **M57 numerical optimization consumes matrix calculus, numerical linear algebra, constrained optimization and research engineering**; it is no longer smuggled into a lighter prerequisite chain.
-11. **M59 deterministic DP precedes M60 MDP**, preserving the recursion/value-function prerequisite.
-12. **M64 neural networks consumes statistical learning, matrix calculus and stochastic-gradient machinery** rather than teaching those prerequisites implicitly.
+The prerequisite edge list is corrigible when semantic inspection of real authored content reveals a missing prerequisite. A topological graph is not proof that inherited rich-module material is teachable under those edges. Before a module becomes learner-facing, its actual lessons/tasks must be traced to earlier accepted instruction or a bounded internal bridge, and its semantic-ledger row must be marked `accepted`.
 
-## Freeze rule
+## Current graph validation
 
-From this checkpoint onward, a new macro module requires written evidence that no existing module can own the capability without corrupting that module's exit standard. Normal discoveries should become one of:
+- 65 unique macro IDs.
+- Every declared prerequisite resolves to a module in the graph.
+- Every declared prerequisite occurs earlier than its consumer.
+- M01 has no hidden macro prerequisite and has passed the first semantic/pedagogical repair gate.
+- Only modules marked `accepted` in the semantic ledger may be marked `authored` in the learner roadmap.
 
-- an atomic session inside the owning module;
-- a just-in-time prerequisite bridge;
-- a project/lab;
-- a delayed transfer/review task;
-- optional specialization depth.
+## Astra A-06 edge repairs
 
-The module number is presentation only. Stable IDs, not positions, own evidence identity.
+The first semantic pass added these previously implicit edges:
+
+1. **M07 `T22E-MKT01` ← M02 `T22E-FND02`** because M07 explicitly owns log returns and therefore needs logarithms.
+2. **M26 `ARC517` ← M18 `SIDE271`** to provide multivariable coordinate context before joint continuous laws; bounded bridge `M26-B01` still teaches iterated integration/support geometry explicitly.
+3. **M33 `ARC531` ← M21 `T22E-CODE02`** because its retained numerical-MLE work needs basic solver execution/diagnostics; bridge `M33-B01` teaches only objective/domain/convergence/status interpretation, leaving advanced numerical optimization to M57.
+4. **M42 `ARC542` ← M02 `T22E-FND02`** to make polynomial/precalculus ancestry executable; bridge `M42-B01` owns the minimal complex-root/modulus machinery used by AR stability.
+
+## Named adaptation / bridge owners
+
+- **M09 / SIDE263 — `M09-B01`:** the old entry contract that assumed ARC053 cannot be copied. M09 is adapted to teach sequence/function limits without derivatives; ARC053 remains downstream at M10.
+- **M26 / ARC517 — `M26-B01`:** planar support, iterated integrals and normalization before joint continuous-density tasks.
+- **M33 / ARC531 — `M33-B01`:** basic numerical MLE solver interpretation/checking, not Newton/quasi-Newton/autodiff theory.
+- **M42 / ARC542 — `M42-B01`:** minimal complex numbers, conjugate roots, modulus and unit-circle stability criterion if the retained polynomial-root task remains.
+
+These bridge declarations are design obligations, not claims that the future module has already been authored or passed.
+
+## Continuing acceptance rule
+
+At each module boundary:
+
+1. inspect the real reused/new content, not only its title;
+2. classify the module `new`, `reused` or `adapted`;
+3. trace every actual prerequisite to an earlier accepted owner or declare a bounded internal bridge;
+4. add any missing executable graph edge;
+5. run the 65-node topological validator;
+6. update the semantic ledger to `accepted` only after the module's teaching/tasks/coverage checks pass;
+7. only then expose the module as `authored` in the learner roadmap.
+
+This supersedes the earlier wording that described the first topological pass as a complete dependency freeze. Macro ownership/order remains frozen; semantic ancestry remains intentionally reviewable.
