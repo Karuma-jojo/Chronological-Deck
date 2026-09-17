@@ -84,3 +84,13 @@ Next: deterministic data build, study interface and anime/compiler integration.
 - Generated files include contract hashes, required-ownership requirements, prerequisite target links and warnings against automatic clearance.
 - Live official-syllabus and programme-page requests failed (timeout/502); no claim of a newer syllabus verification is made. The supplied 2026 baseline remains the source.
 Next: isolated evidence helpers and browser UI; then compiler integration and validation.
+
+## Checkpoint: study interface and evidence helpers
+
+- Added `t25-course.html`, `css/t25-course.css`, `js/course/core.js` and `js/course/ui.js`.
+- Features: 162-session navigation/search, main/transfer tasks, explicitly assisted learning notes, plain/anime presentation, prerequisite bridges, 19 practice sets, answer-before-reference gate, separate immutable saved attempts and self-review records, exposure history, 7/21/60-day retention queue, JSON export/import and story choices.
+- Storage key `chrono_t25_course_evidence_v1` is separate from existing clearance/review data. No Supabase/schema or academic-clearance writes occur.
+- References fetch only on explicit reveal or engine-packet export. Async reveal captures task/visit/attempt identity and aborts if the user navigates before fetch completion.
+- Failed/corrupt local storage is not overwritten; new work remains in memory with an export warning. Import validates known task IDs, fields, dates and review links; conflicting IDs are rejected rather than silently overwritten.
+- `node --check` passed for both JavaScript modules. Browser tests and edge-case verification still pending.
+Next: λ compiler integration, release instructions, structure/evidence/math/browser tests. The new HTML currently links to a release guide that is still to be authored.
