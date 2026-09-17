@@ -1,95 +1,93 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **T22 ELITE M65 MACRO SKELETON WRITTEN — STOP BEFORE ATOMIC AUTHORING**
+State: **M65 DEPENDENCY-AUDITED / MACRO-FROZEN; DEDICATED T22 COURSE SCAFFOLD + M01 AUTHORED; STOP BEFORE M02**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
-Current enhanced macro-skeleton artifact: `docs/t22-rebuild/M65-SKELETON.md`
+Current macro skeleton: `docs/t22-rebuild/M65-SKELETON.md`
+Current machine-readable dependency graph: `docs/t22-rebuild/m65.dependencies.json`
+Current dependency audit: `docs/t22-rebuild/M65-DEPENDENCY-AUDIT.md`
+Dedicated learner surface: `t22-course.html`
 
-## Current decision
+## Current architecture decision
 
-The original live T22 has 58 required macro modules and was designed as a first-hire strike path with arithmetic/algebra/functions/reasoning assumed at admission. The new target is broader and deeper: begin around Class-10 mathematics and build toward unusually strong quantitative-trading / quantitative-research capability, with projects and research artifacts threaded through the route.
+The old live T22 remains a 58-module / 596-atomic first-hire route and is not rewritten in place. The enhanced course uses a separate 65-module macro skeleton beginning around Class-10 mathematics and progressing toward quantitative trading/research, empirical projects and adversarial research defense.
 
-A new **65-module macro skeleton** has therefore been written before any further atomic authoring.
+The M65 macro order has now passed a bounded explicit dependency audit: 65 unique modules, every declared prerequisite resolves, and every declared prerequisite occurs earlier in the proposed order. Macro ownership/count is therefore frozen for M01 authoring. A future M66 requires a written argument that the capability cannot live inside an existing module without corrupting that module's exit standard.
 
-The design deliberately uses large macro modules as capability families. Each module may later contain many atomic sessions, main/transfer investigations, coding labs, prerequisite bridges, delayed reviews, cumulative challenges and project artifacts. Module count is not a proxy for workload.
+## Dedicated course architecture
 
-## M58 -> M65 structural changes
+A separate `t22-course.html` learner surface now exists on this branch. It is intentionally separate from the historical Chrono-Deck T22 route/map surface.
 
-The enhanced skeleton adds seven net macro capabilities while retaining the substantive ownership of the original 58-module route:
+Key rules:
 
-1. `T22E-FND01` — Quantitative Foundations I: numeracy & algebra.
-2. `T22E-FND02` — Quantitative Foundations II: functions & precalculus.
-3. `T22E-DISC01` — mathematical reasoning & discrete foundations, including the counting/combinatorics prerequisite for finite probability.
-4. `T22E-TRD01` — trading games & decisions under uncertainty, absorbing the Stage-A T00/T01 ideas into one substantial macro family.
-5. `T22E-MKT01` — Markets 0: prices, returns & trading mechanics.
-6. Historical `ARC515` is replaced prospectively by two staged macro capabilities:
-   - `T22E-CODE01` — quant programming & simulation foundations;
-   - `T22E-CODE02` — scientific computing & research engineering.
-   This replacement contributes +1 net macro module.
-7. `T22E-TEMP01` — temporal research design & walk-forward validation.
+- stable evidence identity is based on stable module/session/obligation IDs, not route position;
+- M01 session IDs follow `T22V3::T22E-FND01::Sxx@1`;
+- main/transfer obligations are separately versioned;
+- saved attempts record the current session contract hash;
+- if a future contract changes, old evidence is preserved but treated as stale for current independent-evidence summaries;
+- learning-note use, reference exposure and assistance are recorded;
+- the T22 Elite evidence key is `chrono_t22_elite_course_evidence_v1`, separate from historical T22 and T25 storage;
+- study evidence never automatically grants legacy T22 atomic clearance.
 
-Arithmetic check: 58 - 1 historical broad programming module + 2 replacement programming modules + 3 foundations + 1 trading-decision module + 1 market-basics module + 1 temporal-research module = **65**.
+## M01 authored — and only M01
 
-## Placement decisions
+`T22E-FND01` — **Quantitative Foundations I — Numeracy & Algebra**
 
-- Foundations occupy M01-M03 so no university topic relies on hidden school-math assumptions.
-- Finite probability is M04; the first genuine trading-decision family immediately follows at M05.
-- Bayes is M06, market mechanics M07, and first code/simulation M08.
-- Analysis and linear algebra follow only after the launchpad is owned.
-- Scientific-computing/research-engineering depth appears at M21 after the learner has mathematics worth computing with.
-- Statistical research occupies M25-M42.
-- Temporal validation is M43, before SQL/market-data alignment and dirty-data work at M44-M46.
-- Microstructure follows real market-data handling at M47.
-- Stochastic-process depth occupies M48-M50.
-- Optimization/control/finance occupies M51-M60.
-- Statistical learning occupies M61-M64.
-- M65 remains the end-to-end empirical strategy research and adversarial-defense capstone.
+17 bounded sessions:
 
-## Merge audit
+1. signed numbers, order & operation structure;
+2. fractions as numbers;
+3. ratios, proportions & rates;
+4. percentages & percentage points;
+5. sequential percentage change & reverse percentages;
+6. units, conversions & dimensional reasoning;
+7. estimation, scale & numerical sanity checks;
+8. powers, roots & scientific notation;
+9. algebraic expressions, substitution & expansion;
+10. factoring & algebraic identities;
+11. linear equations & reversible transformations;
+12. formulas, rearrangement & parameters;
+13. simultaneous linear equations & constraint intersection;
+14. inequalities & sign-aware algebra;
+15. absolute value as distance;
+16. quadratic equations as algebraic constraints;
+17. integrated M01 quantitative-algebra synthesis.
 
-No additional macro merge was accepted.
+Every session has a bounded capability contract, principal obstacle, entry prerequisites, five required-ownership claims, in/out-of-scope boundary, exit condition, learning note, main investigation, transfer investigation and evaluator rubric.
 
-The following candidate pairs remain separate because they have distinct capability/exit standards even under the Pandora-box module model:
+Total current M01 bank: **34 original main/transfer tasks**.
 
-- Fisher information/efficiency vs likelihood-ratio/optimal testing;
-- causal identification vs experimental design;
-- Markov-chain / martingale-stopping depth vs Poisson-renewal / continuous-time-event depth;
-- numerical optimization vs stochastic-gradient methods;
-- deterministic dynamic programming vs Markov decision processes;
-- market microstructure vs execution/TCA.
+## Validation completed before repository write
 
-Large internal scope is not by itself a reason to split or merge a module.
+Local deterministic validation passed:
 
-## Project policy
+- M65 graph: 65 unique modules, all prerequisite IDs resolve, all edges point backward in the declared topological order;
+- M01: 17 contiguous sessions and 34 unique tasks/evaluators;
+- every session has a stable versioned ID and recomputable SHA-256 contract hash;
+- every evaluator rubric totals 10 points;
+- representative numerical references were independently rechecked;
+- JS syntax checks passed for the T22 course core and UI;
+- static HTTP smoke test successfully served `t22-course.html` and loaded the M01 course JSON.
 
-Projects are now explicitly a second axis rather than extra macro modules. The route may repeatedly reopen the same project at higher mathematical/research maturity. Candidate artifacts include a probability casino, tiny market maker, Monte Carlo lab, planted-leakage study, signal/factor research lab, walk-forward time-series study, market-data reconstruction, microstructure study, execution/TCA lab, portfolio robustness study, ML-alpha study, reproduction project, deliberate failure project, independent research project and final thesis/defense.
-
-Exact project gates are deferred until their owning modules are individually designed.
+One cross-runtime contract-hash serialization mismatch was found during local validation and fixed before repository write.
 
 ## Historical Stage-A work retained
 
-The earlier Stage-A audit remains useful evidence and is preserved in git history and the existing documentation set:
+The earlier 56-core + 17-optional Stage-A route and its audit material remain useful historical evidence but are no longer the current macro-count decision. They remain in `docs/t22-rebuild/` and git history.
 
-- `INVENTORY.md`
-- `FINDINGS.md`
-- `SOURCE-MAP.md`
-- `ROUTE.md`
-- `route.dependencies.json`
-- `MIGRATION.md`
-- three Stage-A sample modules
-- `REVIEW-PACKET.md`
+## Explicit non-actions / safety boundary
 
-Those documents describe the previous 56-core + 17-optional proposal and should now be treated as **historical design/audit material**, not the current macro-count decision. The new current macro skeleton is `M65-SKELETON.md`.
+- No M02 atomic authoring.
+- No historical T22 runtime-route replacement.
+- No migration of `chrono_t22_atomic_progress_v2`.
+- No T25 course/evidence modification.
+- No cloud-schema migration.
+- No merge to `main`.
+- No deployment.
 
-## Runtime / learner-state safety
+## Next action
 
-No live T22 runtime route, learner-progress storage, cloud schema, T25 course/evidence, merge target or deployed site was changed by this macro-skeleton step. No progress migration was executed. `ARC515` has not yet been replaced in runtime; the two-code-module split is architectural only until implementation is deliberately authorized.
-
-## Stop boundary
-
-**Stop here. Do not author M01 atomics, rewrite runtime T22, migrate progress, merge or deploy yet.**
-
-The next permitted design action is a bounded dependency/order audit of `M65-SKELETON.md`. After the macro skeleton is accepted/frozen, open **M01 only** and design it to T25-style atomic rigor before touching M02.
+**Stop at M01.** The next content action is a dedicated M01 audit/use pass: inspect the learner surface, challenge session order/boundaries, independently solve a sample of main/transfer tasks, and repair M01 if needed. Only after M01 is accepted should M02 be opened.
