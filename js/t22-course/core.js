@@ -6,10 +6,39 @@ const stamp=x=>typeof x==='string'&&/^\d{4}-\d\d-\d\dT/.test(x)&&Number.isFinite
 const assistanceValues=new Set(['independent','concept_hint','method_hint','guided','ai_assisted','revealed']);
 const resultValues=new Set(['unreviewed','secure','shaky','incorrect']);
 const errorValues=new Set(['','concept','model','units','arithmetic','algebra','logic','method','justification','careless','time']);
+const hex64=x=>typeof x==='string'&&/^[0-9a-f]{64}$/i.test(x);
 
-function sessionForProblem(course,problemId){
- const p=course.problems[problemId];
- return p?course.sessions[p.order-1]:null;
+function canonical(value){
+ if(Array.isArray(value)) return value.map(canonical);
+ if(obj(value)) return Object.fromEntries(Object.keys(value).sort().map(k=>[k,canonical(value[k])]));
+ return value;
+}
+async function sha256(value){
+ const data=new TextEncoder().encode(typeof value==='string'?value:JSON.stringify(canonical(value)));
+ const digest=await globalThis.crypto.subtle.digest('SHA-256',data);
+ return [...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+export function sessionForProblem(course,problemId){
+ return course.sessions.find(s=>s.main===problemId||s.transfer===problemId||(Array.isArray(s.replacements)&&s.replacements.includes(problemId)))||null;
+}
+export async function prepareAssessmentFingerprints(course,keys){
+ const fingerprints={};
+ for(const [problemId,problem] of Object.entries(course.problems)){
+  const evaluator=keys?.[problemId];
+  if(!evaluator) throw Error(`Missing evaluator for assessment fingerprint ${problemId}`);
+  const session=sessionForProblem(course,problemId);
+  fingerprints[problemId]=await sha256({
+   problemId,
+   obligationVersion:problem.obligationVersion,
+   kind:problem.kind,
+   prompt:problem.prompt,
+   sessionId:session?.id||null,
+   markingContract:{reference:evaluator.reference,rubric:evaluator.rubric,marking:evaluator.marking}
+  });
+ }
+ course.assessmentFingerprints=fingerprints;
+ course.assessmentEquivalences=course.assessmentEquivalences||{};
+ return course;
 }
 
 export function validateEvidence(value,course){
@@ -18,13 +47,19 @@ export function validateEvidence(value,course){
  for(const a of value.attempts){
   const session=sessionForProblem(course,a?.problemId);
   if(!obj(a)||typeof a.id!=='string'||a.id.length>120||seen.has(a.id)||!session||!stamp(a.at)||typeof a.answer!=='string'||a.answer.length>100000||!assistanceValues.has(a.assistance)||!resultValues.has(a.result)||!Number.isFinite(a.minutes)||a.minutes<0||a.minutes>100000||typeof a.referenceSeenBefore!=='boolean'||typeof a.noteSeenDuringAttempt!=='boolean'||!errorValues.has(a.error)||typeof a.contractHash!=='string'||a.contractHash.length!==64) throw Error('Invalid or duplicate T22 Elite attempt');
+  if(a.assessmentFingerprint!==undefined&&!hex64(a.assessmentFingerprint)) throw Error('Invalid assessment fingerprint');
   if(a.reviewOf!==undefined&&(typeof a.reviewOf!=='string'||a.reviewOf===a.id)) throw Error('Invalid review link');
   seen.add(a.id);
-  out.attempts.push({id:a.id,problemId:a.problemId,at:a.at,answer:a.answer,assistance:a.assistance,result:a.result,minutes:a.minutes,referenceSeenBefore:a.referenceSeenBefore,noteSeenDuringAttempt:a.noteSeenDuringAttempt,error:a.error,contractHash:a.contractHash,...(a.reviewOf?{reviewOf:a.reviewOf}:{})});
+  out.attempts.push({
+   id:a.id,problemId:a.problemId,at:a.at,answer:a.answer,assistance:a.assistance,result:a.result,minutes:a.minutes,
+   referenceSeenBefore:a.referenceSeenBefore,noteSeenDuringAttempt:a.noteSeenDuringAttempt,error:a.error,contractHash:a.contractHash,
+   ...(a.assessmentFingerprint?{assessmentFingerprint:a.assessmentFingerprint}:{}),
+   ...(a.reviewOf?{reviewOf:a.reviewOf}:{})
+  });
  }
  for(const a of out.attempts) if(a.reviewOf){
   const p=out.attempts.find(x=>x.id===a.reviewOf);
-  if(!p||p.problemId!==a.problemId||p.answer!==a.answer) throw Error('Review does not match its saved attempt');
+  if(!p||p.reviewOf||p.problemId!==a.problemId||p.answer!==a.answer) throw Error('Review does not match its original saved attempt');
  }
  for(const [id,e] of Object.entries(value.exposures)){
   if(!Object.hasOwn(course.problems,id)||!obj(e)||!stamp(e.firstSeen)||!stamp(e.lastSeen)||Date.parse(e.lastSeen)<Date.parse(e.firstSeen)||!Number.isInteger(e.views)||e.views<1) throw Error('Invalid exposure');
@@ -61,35 +96,77 @@ export function expose(state,id,at=new Date().toISOString(),kind){
  if(kind) state.exposures[id][kind]??=at;
  return state.exposures[id];
 }
+export function exposeAnswersForSession(state,session,at=new Date().toISOString()){
+ for(const id of [session.main,session.transfer]){
+  expose(state,id,at,'packetExportedAt');
+  expose(state,id,at,'referenceSeenAt');
+ }
+}
 
 export function taskText(problem){return problem.prompt;}
-export function evidenceIsCurrent(attempt,course){const s=sessionForProblem(course,attempt.problemId); return !!s&&attempt.contractHash===s.contractHash;}
+function assessmentFingerprintAccepted(attempt,course){
+ const current=course.assessmentFingerprints?.[attempt.problemId];
+ if(!current||!attempt.assessmentFingerprint) return false;
+ if(attempt.assessmentFingerprint===current) return true;
+ return (course.assessmentEquivalences?.[attempt.problemId]||[]).includes(attempt.assessmentFingerprint);
+}
+export function evidenceIsCurrent(attempt,course){
+ const s=sessionForProblem(course,attempt.problemId);
+ return !!s&&attempt.contractHash===s.contractHash&&assessmentFingerprintAccepted(attempt,course);
+}
+function originalsFor(state,problemId){
+ return state.attempts.filter(a=>!a.reviewOf&&a.problemId===problemId).sort((a,b)=>a.at.localeCompare(b.at));
+}
+function latestReview(state,root){
+ return state.attempts.filter(a=>a.reviewOf===root.id).sort((a,b)=>a.at.localeCompare(b.at)).at(-1)||null;
+}
+export function effectiveAttempt(root,state){
+ const review=latestReview(state,root);
+ return {root,review,result:review?.result??root.result,error:review?.error??root.error};
+}
+function qualifies(root,state,course){
+ const e=effectiveAttempt(root,state);
+ return evidenceIsCurrent(root,course)&&e.result==='secure'&&root.assistance==='independent'&&!root.noteSeenDuringAttempt&&!root.referenceSeenBefore;
+}
+function taskStatus(course,state,problemId,label){
+ const roots=originalsFor(state,problemId);
+ const current=roots.filter(a=>evidenceIsCurrent(a,course));
+ const qualified=current.filter(a=>qualifies(a,state,course));
+ if(qualified.length) return {ok:true,qualified,roots,current,label};
+ if(!roots.length) return {ok:false,reason:`${label} investigation still needed`,priority:1,replacementNeeded:!!state.exposures[problemId]?.referenceSeenAt,qualified,roots,current,label};
+ if(!current.length) return {ok:false,reason:`${label} has only stale-contract/assessment evidence`,priority:0,replacementNeeded:!!state.exposures[problemId]?.referenceSeenAt,qualified,roots,current,label};
+ const latest=current.at(-1),eff=effectiveAttempt(latest,state);
+ if(eff.result==='unreviewed') return {ok:false,reason:`${label} attempt awaits review`,priority:2,replacementNeeded:false,qualified,roots,current,label};
+ if(['shaky','incorrect'].includes(eff.result)) return {ok:false,reason:`Repair ${label.toLowerCase()} difficulty`,priority:0,replacementNeeded:!!state.exposures[problemId]?.referenceSeenAt,qualified,roots,current,label};
+ return {ok:false,reason:`Fresh independent ${label.toLowerCase()} evidence still needed`,priority:1,replacementNeeded:!!state.exposures[problemId]?.referenceSeenAt,qualified,roots,current,label};
+}
 
 export function reviewQueue(course,state,now=Date.now()){
  const rows=[];
  for(const s of course.sessions){
-  const events=state.attempts.filter(a=>[s.main,s.transfer].includes(a.problemId));
-  if(!events.length){rows.push({order:s.order,reason:'No attempt recorded',priority:5,due:null});continue;}
-  const current=events.filter(a=>evidenceIsCurrent(a,course));
-  if(!current.length){rows.push({order:s.order,reason:'Only stale-contract evidence exists',priority:0,due:null});continue;}
-  const latest=current.at(-1);
-  if(['shaky','incorrect'].includes(latest.result)){rows.push({order:s.order,reason:'Repair recorded difficulty',priority:0,due:null});continue;}
-  if(latest.result==='unreviewed'){rows.push({order:s.order,reason:'Saved attempt awaits review',priority:2,due:null});continue;}
-  const secure=current.filter(a=>a.result==='secure'&&a.assistance==='independent'&&!a.noteSeenDuringAttempt&&!a.referenceSeenBefore);
-  if(!secure.length){rows.push({order:s.order,reason:'Fresh independent evidence still needed',priority:1,due:null});continue;}
-  const days=[...new Set(secure.map(a=>a.at.slice(0,10)))]; const last=secure.at(-1);
-  const due=Date.parse(last.at)+course.reviewDays[Math.min(days.length-1,course.reviewDays.length-1)]*86400000;
-  rows.push({order:s.order,reason:due<=now?'Delayed transfer/retention review due':'Next delayed review',priority:due<=now?1:4,due});
+  const main=taskStatus(course,state,s.main,'Main');
+  const transfer=taskStatus(course,state,s.transfer,'Transfer');
+  const firstMissing=!main.ok?main:!transfer.ok?transfer:null;
+  if(firstMissing){
+   const suffix=firstMissing.replacementNeeded?' · fixed reference exposed; use a fresh replacement probe':'';
+   rows.push({order:s.order,sessionId:s.id,reason:firstMissing.reason+suffix,priority:firstMissing.priority,due:null,replacementNeeded:firstMissing.replacementNeeded});
+   continue;
+  }
+  const genuine=[...main.qualified,...transfer.qualified].sort((a,b)=>a.at.localeCompare(b.at));
+  const days=[...new Set(genuine.map(a=>a.at.slice(0,10)))];
+  const last=genuine.at(-1);
+  const interval=course.reviewDays[Math.min(days.length-1,course.reviewDays.length-1)];
+  const due=Date.parse(last.at)+interval*86400000;
+  rows.push({order:s.order,sessionId:s.id,reason:due<=now?'Delayed retrieval review due (default interval)':'Next retrieval review (default interval)',priority:due<=now?1:4,due,replacementNeeded:false});
  }
  return rows.sort((a,b)=>a.priority-b.priority||(a.due??Infinity)-(b.due??Infinity)||a.order-b.order);
 }
 
 export function moduleEvidenceSummary(course,state){
  const rows=course.sessions.map(s=>{
-  const attempts=state.attempts.filter(a=>[s.main,s.transfer].includes(a.problemId)&&evidenceIsCurrent(a,course));
-  const independentSecure=attempts.filter(a=>a.result==='secure'&&a.assistance==='independent'&&!a.noteSeenDuringAttempt&&!a.referenceSeenBefore);
-  const kinds=new Set(independentSecure.map(a=>course.problems[a.problemId]?.kind));
-  return {order:s.order,main:kinds.has('main'),transfer:kinds.has('transfer')};
+  const main=originalsFor(state,s.main).some(a=>qualifies(a,state,course));
+  const transfer=originalsFor(state,s.transfer).some(a=>qualifies(a,state,course));
+  return {order:s.order,sessionId:s.id,main,transfer};
  });
  return {sessions:rows,total:rows.length,both:rows.filter(r=>r.main&&r.transfer).length};
 }
@@ -97,15 +174,30 @@ export function moduleEvidenceSummary(course,state){
 export function compilerPacket(course,session,keys,problemId=session.main){
  const other=problemId===session.main?session.transfer:session.main;
  return [
-  '[T22 ELITE — ENGINE ONLY; DO NOT PRINT REFERENCES TO LEARNER]',
+  '[T22 ELITE — ENGINE ONLY; ANSWER-BEARING PACKET]',
   `Course ${course.version}; route ${course.routeVersion}; module ${course.module.id}; session ${session.id}; contract ${session.contractHash}`,
   'SESSION CONTRACT', JSON.stringify({title:session.title,focus:session.focus,purpose:session.purpose,centralCapability:session.centralCapability,principalObstacle:session.principalObstacle,entryPrerequisites:session.entryPrerequisites,requiredOwnership:session.requiredOwnership,applicationScope:session.applicationScope,transferScope:session.transferScope,inScope:session.inScope,outOfScope:session.outOfScope,exitCondition:session.exitCondition},null,2),
   'CURRENT TASK', taskText(course.problems[problemId]),
   'CURRENT REFERENCE', keys[problemId].reference,
-  'SIBLING TASK — DO NOT LEAK EARLY', taskText(course.problems[other]),
+  'SIBLING TASK', taskText(course.problems[other]),
   'SIBLING REFERENCE', keys[other].reference,
   'LEARNING NOTE — ASSISTANCE, NOT INDEPENDENT EVIDENCE', session.lesson,
   'ASSESSMENT RULES', 'Accept any mathematically valid route. Separate arithmetic slips from conceptual failure. Do not infer mastery of unobserved required-ownership items. A saved/reviewed attempt is study evidence, not automatic macro-module clearance.',
   '[END ENGINE INPUT]'
  ].join('\n\n');
+}
+export function freshProbePacket(course,session){
+ return [
+  '[T22 ELITE — FRESH REPLACEMENT PROBE REQUEST; NO SOLUTION IN LEARNER OUTPUT]',
+  `Module ${course.module.id}; session ${session.id}; contract ${session.contractHash}`,
+  'CAPABILITY',session.centralCapability,
+  'REQUIRED OWNERSHIP',...session.requiredOwnership.map(x=>`- ${x}`),
+  'TRANSFER SCOPE',session.transferScope,
+  'AUTHORING RULES',
+  '- Produce one genuinely fresh problem whose surface and numbers are not copied from the fixed main/transfer tasks.',
+  '- Test one or more still-relevant ownership claims and require visible reasoning.',
+  '- Do not reveal, hint at, or append the solution/reference in the learner-facing output.',
+  '- State any assumptions needed for an unambiguous problem.',
+  '- This ad-hoc probe is practice/assessment material only until registered with a stable obligation ID and evaluator; it does not silently create course clearance.'
+ ].join('\n');
 }
