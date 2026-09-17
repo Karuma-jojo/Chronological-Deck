@@ -149,3 +149,11 @@ Next: browser execution/visual QA; then final reproducibility and PR status upda
 - Updated screenshots to reset desktop scroll before capture.
 - The runtime's global Python user install disappeared after a session refresh; local validation now uses SymPy1.14.0 installed in a workspace dependency directory. This does not affect committed source; normal reproduction uses the documented dependency or CI installation.
 Next: final browser rerun for the changed story closure, deterministic rebuild comparison, remote/local file comparison and PR update. No reauthoring is needed.
+
+## Release-blocking defect found and repair
+
+GitHub's clean-build check failed on the generated `course.json`: the terminal transfer silently inserted a byte-omission marker into that approximately1MB output. Source authoring remained intact, and rebuilding restored the complete file. Local tests passed because they used the complete local file; the CI diff correctly caught the uploaded artifact mismatch.
+
+Upload procedure is now strengthened: read each file in at most50,000-character chunks, reject any omission/truncation marker, upload a Git blob and compare its returned SHA with local `git hash-object` before creating a tree/commit. No unverified blob is used in the checkpoint. Reuploading the complete generated file with this check; then compare all branch-changed files to local blobs. Do not mark release ready until CI reruns successfully.
+
+The final local browser rerun passed after the story update. A deterministic rebuild of all three generated course/syllabus artifacts was byte-identical locally. Remote reproducibility remains pending the repaired upload.

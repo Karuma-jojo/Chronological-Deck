@@ -7671,9 +7671,446 @@
           "General multivariate order-statistic theory beyond two selected ranks"
         ],
         "applicationScope": "Entrance-level problems involving two selected order statistics, a sample range, or a conditional extreme where the main work is combinatorial allocation plus support-aware integration.",
-        "tra
-... 33208 bytes omitted ...
-or below x",
+        "transferScope": "An unfamiliar pair of order ranks or transformed spacing where the learner must rebuild the coefficient and integration region instead of recalling a canned formula.",
+        "exitCondition": "For an iid continuous sample, derive or justify the joint law of two selected order statistics, obtain one requested conditional or range law, and verify support and normalisation.",
+        "nextArcBoundary": "110 O3.2 breaks the iid-order-statistic template by analysing extrema that share observations and may place positive probability on the diagonal."
+      },
+      "contractHash": "ef23c29c6f8b0ad1beb3efa998f266e9b2879e2402d3e78f047982de98726a18",
+      "lesson": "Joint order statistics require allocation of observations to disjoint intervals. Marginal or conditional laws must respect the triangular ordering support.",
+      "main": "T25-109-M",
+      "transfer": "T25-109-T",
+      "bridges": [],
+      "prerequisiteTargets": [
+        "O2",
+        "J3",
+        "J5"
+      ],
+      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
+    },
+    {
+      "order": 110,
+      "phase": 5,
+      "card": {
+        "id": "T25-ARC826-A1110",
+        "routeOrder": 110,
+        "syllabusCode": "O3.2",
+        "targetCode": "O3",
+        "parentId": "ARC826",
+        "title": "Contrast it with shared-observation dependence carrying singular diagonal mass.",
+        "focus": "Analyse extrema built from overlapping sets of continuous observations, separating the off-diagonal absolutely continuous region from any positive probability carried by the equality set U=V because of shared data.",
+        "purpose": "Prevent automatic misuse of a standard two-dimensional density when the two statistics share observations: positive probability can lie on the diagonal without any individual point (u,u) being a joint atom.",
+        "centralCapability": "Recognise when shared observations make P(U=V)>0, compute that equality probability directly from underlying sample events, represent it as a singular component supported on the diagonal rather than as a point atom, and combine it with any off-diagonal continuous contribution without pretending one planar density describes the whole law.",
+        "principalObstacle": "The learner may assume P(U=V)=0 merely because the underlying observations are continuous, or may call positive probability on the whole diagonal a joint point atom even though every singleton (u,u) can still have probability zero; either mistake obscures the mixed-dimensional structure of the joint law.",
+        "entryPrerequisites": [
+          "O3.1 joint order-statistic laws",
+          "D0 atoms and mixed laws",
+          "J3 joint-law support",
+          "J5 recognition of singular transformed pairs"
+        ],
+        "requiredOwnership": [
+          "Identify which observations are shared between the two extrema or statistics",
+          "Characterise the event on which the two statistics are exactly equal",
+          "Compute P(U=V) from the underlying sample events rather than from a nonexistent planar density on the diagonal",
+          "Separate probability carried on the diagonal from the off-diagonal absolutely continuous contribution",
+          "Explain why P(U=V)>0 does not imply that any singleton (u,u) has positive probability; in the usual continuous shared-observation construction the diagonal component is singular with respect to planar area rather than a collection of point atoms",
+          "Recognise that the scalar difference U-V does have an atom at 0 whenever P(U=V)>0, even though the joint pair need not have a point atom",
+          "Avoid applying the standard joint-order-statistic density unless its common-iid-sample rank structure is actually present",
+          "Check that the diagonal singular component and all off-diagonal pieces together carry total probability one"
+        ],
+        "inScope": [
+          "Maxima/minima formed from overlapping subsets",
+          "Positive equality probability induced by shared observations",
+          "Singular probability supported on the diagonal plus off-diagonal continuous regions",
+          "Point-atom versus diagonal-mass distinction",
+          "Atom at zero for the scalar difference U-V",
+          "Direct event-based probability calculations for equality"
+        ],
+        "outOfScope": [
+          "General theory of singular measures on arbitrary curves",
+          "Copula decomposition theory",
+          "Extreme-value asymptotics",
+          "Measure-theoretic disintegration of mixed joint laws"
+        ],
+        "applicationScope": "Entrance problems where two extrema or statistics reuse observations, so their dependence cannot be diagnosed safely from marginal continuity or a standard iid-rank formula and may include positive probability on a lower-dimensional equality set.",
+        "transferScope": "A new shared-data construction where the learner must discover whether equality or another lower-dimensional event has positive probability, determine whether that probability is point-atomic or spread continuously along a lower-dimensional set, and choose the representation accordingly.",
+        "exitCondition": "Given a shared-observation construction with continuous underlying data, determine whether P(U=V)>0, compute that probability when present, distinguish singular diagonal mass from a point atom, derive the remaining off-diagonal contribution as needed, and justify why a purely planar density is incomplete.",
+        "nextArcBoundary": "111 L1.1 leaves order-statistic structure and begins probability inequalities, where every bound must carry its sign and moment assumptions explicitly."
+      },
+      "contractHash": "67d9b5dda05dcf654ac8f366a244eeb6d972dbf733a51ae5e7aeb92ec0ce653a",
+      "lesson": "A shared observation can create positive probability along a diagonal even with continuous marginals. A diagonal component is not a point atom at a fixed coordinate.",
+      "main": "T25-110-M",
+      "transfer": "T25-110-T",
+      "bridges": [],
+      "prerequisiteTargets": [
+        "O2",
+        "J3",
+        "J5"
+      ],
+      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
+    },
+    {
+      "order": 111,
+      "phase": 5,
+      "card": {
+        "id": "T25-ARC907-A1111",
+        "routeOrder": 111,
+        "syllabusCode": "L1.1",
+        "targetCode": "L1",
+        "parentId": "ARC907",
+        "title": "Apply Markov/Chebyshev with all moment and sign conditions.",
+        "focus": "Select Markov or Chebyshev from the quantity being bounded, state the required nonnegativity or finite-moment assumptions, and derive a valid one-sided or two-sided probability bound.",
+        "purpose": "Turn elementary inequalities into rigorous working tools rather than formula fragments, with assumptions checked before algebra and the event translated correctly.",
+        "centralCapability": "Derive and apply Markov and Chebyshev bounds with the correct random variable, threshold, centring, variance and legality conditions visible at every step.",
+        "principalObstacle": "Applying Markov to a signed variable, using Chebyshev without finite variance, confusing variance with standard deviation, or reversing event containment can produce a numerically plausible but invalid bound.",
+        "entryPrerequisites": [
+          "J1 expectation; J2 variance",
+          "P3 event manipulation",
+          "F2 inequalities"
+        ],
+        "requiredOwnership": [
+          "State Markov's nonnegativity and finite-expectation requirement",
+          "Rewrite a requested tail event into a legal Markov form when possible",
+          "State Chebyshev for a finite-variance variable centred at its mean",
+          "Use variance over squared deviation threshold with correct units",
+          "Justify every event inclusion used to transfer a bound",
+          "Recognise when the assumptions fail and refuse the inequality",
+          "Distinguish a bound from an exact probability"
+        ],
+        "inScope": [
+          "Markov bounds for nonnegative random variables",
+          "Chebyshev bounds for deviations from a finite mean",
+          "Simple transformed nonnegative quantities such as squared deviations",
+          "Assumption and event-containment checks"
+        ],
+        "outOfScope": [
+          "Chernoff or exponential-moment bounds",
+          "Hoeffding or Bernstein inequalities",
+          "Martingale concentration",
+          "Measure-theoretic refinements of moment inequalities"
+        ],
+        "applicationScope": "Entrance questions asking for guaranteed tail control from limited moment information, especially when the exact distribution is unavailable or deliberately irrelevant.",
+        "transferScope": "An unfamiliar tail event where the learner must invent a useful nonnegative quantity or centring before choosing Markov or Chebyshev.",
+        "exitCondition": "For a supplied random variable and tail event, choose a legal inequality, state all assumptions, derive the bound from event containment, and explain why the result is only an upper bound.",
+        "nextArcBoundary": "112 L1.2 applies these bounds to sample averages and asks whether the numerical bound says anything useful rather than merely being formally correct."
+      },
+      "contractHash": "6782800564117f322385b2e64d0ffeb11846546ed78580e262468bafb7eb44df",
+      "lesson": "Markov requires a nonnegative variable and positive threshold; Chebyshev requires finite variance. A bound greater than1 is valid but uninformative.",
+      "main": "T25-111-M",
+      "transfer": "T25-111-T",
+      "bridges": [],
+      "prerequisiteTargets": [
+        "J2"
+      ],
+      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
+    },
+    {
+      "order": 112,
+      "phase": 5,
+      "card": {
+        "id": "T25-ARC907-A1112",
+        "routeOrder": 112,
+        "syllabusCode": "L1.2",
+        "targetCode": "L1",
+        "parentId": "ARC907",
+        "title": "Judge whether the resulting bound is informative for a sample average.",
+        "focus": "Compute a Markov/Chebyshev-style bound for a sample-average error from its mean and variance structure, then assess whether the bound is nontrivial, shrinking and quantitatively informative.",
+        "purpose": "Connect finite-sample moment bounds to the logic that later supports consistency while preventing the common mistake of treating any derived upper bound as a sharp probability estimate.",
+        "centralCapability": "Derive a sample-average deviation bound with the correct dependence-sensitive variance and interpret its magnitude, scaling in n and limitations.",
+        "principalObstacle": "Blindly substituting Var(X)/n when observations are dependent, reporting bounds above one without comment, or treating a loose upper bound as an approximation obscures the actual information content.",
+        "entryPrerequisites": [
+          "L1.1 Markov/Chebyshev legality",
+          "J2 covariance and variance of sums",
+          "N1 sample-average notation"
+        ],
+        "requiredOwnership": [
+          "Compute Var of an average from the actual covariance structure rather than assuming independence",
+          "Use the iid variance reduction sigma^2/n only when iid or appropriate independence assumptions are established",
+          "Apply Chebyshev to P(|Xbar-mu|>=epsilon) with the correct epsilon-squared denominator",
+          "Cap the interpretation of a probability upper bound at the trivial ceiling one",
+          "Decide whether the bound decreases with n and at what elementary rate",
+          "Explain why a nontrivial upper bound is not an estimate of the true tail probability",
+          "Identify when the bound is too loose to answer the practical question"
+        ],
+        "inScope": [
+          "Sample-average deviation bounds",
+          "Independent or explicitly dependent finite collections",
+          "Variance scaling and covariance contributions",
+          "Interpretation of trivial versus informative bounds"
+        ],
+        "outOfScope": [
+          "Central-limit approximations",
+          "Large-deviation rates",
+          "Sub-Gaussian concentration",
+          "General convergence theorems beyond what the finite-sample bound itself implies"
+        ],
+        "applicationScope": "Finite-sample probability bounds for averages and simple statistics where only first and second moments are available and the learner must assess the usefulness of the guarantee.",
+        "transferScope": "A sample-average-like statistic with mild dependence, requiring the learner to rebuild its variance before deciding whether Chebyshev provides meaningful control.",
+        "exitCondition": "For a sample-average error event, derive the correct variance-based upper bound from the stated dependence assumptions, simplify its n-scaling, and judge explicitly whether the resulting guarantee is informative.",
+        "nextArcBoundary": "113 L2.1 turns shrinking probability bounds into a formal convergence-in-probability and consistency statement via the weak law or a vanishing-error argument."
+      },
+      "contractHash": "2694b40eb6372f11c097a9acc8a5fcb790e8d1fcaab28e262695ed2b1dc0ec17",
+      "lesson": "For independent observations finite variance gives a Chebyshev sample-size guarantee. It is a distribution-free bound, often more conservative than a normal approximation.",
+      "main": "T25-112-M",
+      "transfer": "T25-112-T",
+      "bridges": [],
+      "prerequisiteTargets": [
+        "J2"
+      ],
+      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
+    },
+    {
+      "order": 113,
+      "phase": 5,
+      "card": {
+        "id": "T25-ARC829-A1113",
+        "routeOrder": 113,
+        "syllabusCode": "L2.1",
+        "targetCode": "L2",
+        "parentId": "ARC829",
+        "title": "State WLLN and prove one iid-average consistency claim.",
+        "focus": "State convergence in probability and the weak law precisely, then prove consistency of an iid sample average under the audited moment assumptions rather than invoking a vague law-of-large-numbers slogan.",
+        "purpose": "Turn finite-sample probability bounds into a formal asymptotic statement while keeping the estimator, target, assumptions and mode of convergence explicit.",
+        "centralCapability": "Prove that an iid average converges in probability to its population mean and identify exactly which assumptions justify the argument used.",
+        "principalObstacle": "Confusing almost-sure convergence with convergence in probability, omitting the finite-mean assumption, or treating unbiasedness by itself as a proof of consistency.",
+        "entryPrerequisites": [
+          "L1 Markov/Chebyshev bounds",
+          "N1 sample averages and moments",
+          "P3 probability events"
+        ],
+        "requiredOwnership": [
+          "State convergence in probability using an epsilon probability statement",
+          "State the iid WLLN with a finite absolute mean assumption",
+          "Identify the probability limit and the estimator sequence before calculating",
+          "Prove a sample-average consistency claim by WLLN or by a valid vanishing-variance argument when stronger moments are available",
+          "Distinguish unbiasedness from consistency",
+          "Explain why a finite-variance Chebyshev proof is sufficient but not the only route to the audited WLLN statement",
+          "Keep the target parameter fixed while n changes"
+        ],
+        "inScope": [
+          "Convergence in probability",
+          "Consistency of iid sample averages",
+          "WLLN under finite absolute mean",
+          "Chebyshev/MSE consistency proofs when finite variance is available"
+        ],
+        "outOfScope": [
+          "Strong law of large numbers",
+          "General modes of weak convergence",
+          "Ergodic theorems",
+          "Triangular-array laws of large numbers"
+        ],
+        "applicationScope": "Entrance problems asking whether a simple average or similarly structured estimator approaches its target in probability and requiring assumptions to be stated rather than hidden.",
+        "transferScope": "A new iid estimator that can be rewritten as an average or a term plus a vanishing error, requiring the learner to choose a legal consistency argument rather than pattern-match notation.",
+        "exitCondition": "Given an iid sample-average estimator, state the target and convergence mode, verify the required moment assumptions, and produce a complete proof of consistency with no appeal to unbiasedness alone.",
+        "nextArcBoundary": "114 L2.2 removes the iid safety net and asks for a valid probability-level consistency argument when overlap or dependence changes the usual concentration calculation."
+      },
+      "contractHash": "cda36007d3721f10397718fbedc24e8fb54577b1a535fb628815d9b6c5f207eb",
+      "lesson": "WLLN gives convergence in probability of iid averages under its stated integrability assumptions. A proof via Chebyshev uses the stronger finite-variance condition.",
+      "main": "T25-113-M",
+      "transfer": "T25-113-T",
+      "bridges": [],
+      "prerequisiteTargets": [
+        "L1",
+        "N1"
+      ],
+      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
+    },
+    {
+      "order": 114,
+      "phase": 5,
+      "card": {
+        "id": "T25-ARC829-A1114",
+        "routeOrder": 114,
+        "syllabusCode": "L2.2",
+        "targetCode": "L2",
+        "parentId": "ARC829",
+        "title": "Prove or refute consistency when terms overlap or remain correlated.",
+        "focus": "Analyse an estimator built from overlapping or dependent terms by tracking its actual error structure. Use expectation, covariance, variance or MSE when they provide valid sufficient control, but make the final consistency decision from convergence in probability rather than from moment behaviour alone.",
+        "purpose": "Prevent illegal iid-WLLN applications and a subtler error: moments can be useful for proving concentration, but nonvanishing bias or variance does not by itself refute convergence in probability without additional assumptions.",
+        "centralCapability": "For a dependent or overlapping estimator T_n of a fixed target theta, prove consistency by showing P(|T_n-theta|>epsilon)→0 for every epsilon>0—possibly via a justified MSE/Chebyshev bound—or refute consistency by exhibiting some fixed epsilon>0 for which the error probability stays bounded away from zero along an infinite subsequence; use moment calculations only in directions that are logically valid.",
+        "principalObstacle": "The learner may correctly discover overlap or persistent covariance and then overreach: MSE→0 is sufficient for consistency, but failure of variance or bias to vanish is not a general converse because rare large errors can keep moments large while their probabilities vanish.",
+        "entryPrerequisites": [
+          "L2.1 convergence in probability and WLLN",
+          "J2 covariance and variance of sums",
+          "L1 finite-sample probability bounds"
+        ],
+        "requiredOwnership": [
+          "Identify shared observations or other dependence among summands before applying any iid law",
+          "Compute covariance contributions rather than replacing them by zero when a second-moment route is being used",
+          "Write Var of an average with all diagonal and off-diagonal terms when those moments are finite and relevant",
+          "Use E[(T_n-theta)^2]→0, or equivalently vanishing MSE, as a sufficient route to T_n→theta in probability via Markov/Chebyshev",
+          "When using bias and variance, require both bias→0 and variance→0 to obtain MSE→0; vanishing variance alone may concentrate around the wrong mean",
+          "Refute consistency only with a valid probability-level obstruction, for example a fixed epsilon>0 and an infinite subsequence n_k with P(|T_{n_k}-theta|>epsilon) bounded below by a positive constant, or an equivalent direct contradiction to convergence in probability",
+          "Treat persistent bias or nonvanishing variance as a diagnostic that demands further analysis, not as an automatic inconsistency certificate unless extra assumptions making the converse valid are explicitly supplied",
+          "Explain a rare-large-error counterexample in which T_n→theta in probability while a first or second moment fails to converge appropriately, showing why moment nonconvergence alone is insufficient",
+          "Explain why asymptotic unbiasedness alone is also insufficient for consistency",
+          "Recognise when regrouping into genuinely independent blocks is legal and when overlap prevents it"
+        ],
+        "inScope": [
+          "Overlapping-window averages",
+          "Repeated-use estimators",
+          "Persistent-correlation examples",
+          "Direct epsilon-probability proofs and refutations of consistency",
+          "MSE/Chebyshev as sufficient consistency tools",
+          "Moment nonconvergence as a warning rather than a general converse"
+        ],
+        "outOfScope": [
+          "Mixing conditions",
+          "Martingale convergence theorems",
+          "General dependent-process LLNs",
+          "Long-memory asymptotic theory",
+          "Uniform-integrability theory except a brief note that extra assumptions can restore some moment converses"
+        ],
+        "applicationScope": "Entrance questions where an estimator resembles an average but its terms reuse observations or remain correlated, forcing the learner to justify concentration directly rather than invoking an iid theorem or reading consistency off its moments.",
+        "transferScope": "An unfamiliar dependent statistic where covariance calculations may reveal useful structure but the learner must still decide the convergence-in-probability question with a logically sufficient proof or a genuine fixed-epsilon obstruction.",
+        "exitCondition": "For one dependent or overlapping estimator, identify the dependence structure, derive any relevant finite moments without dropping covariance terms, and then independently prove consistency by a valid probability bound or refute it by a fixed-epsilon nonvanishing error probability; explicitly explain why nonvanishing bias or variance alone would not settle the question.",
+        "nextArcBoundary": "115 L3.1 strengthens asymptotic control from convergence in probability to a correctly centred and square-root-scaled normal approximation."
+      },
+      "contractHash": "e55c12967576cd3902b972fd6059f6cec17305df848983c4eb2a6cc008d31e5a",
+      "lesson": "Consistency is a probability statement. Vanishing MSE is sufficient; nonvanishing moments alone are not a general inconsistency proof without extra conditions.",
+      "main": "T25-114-M",
+      "transfer": "T25-114-T",
+      "bridges": [],
+      "prerequisiteTargets": [
+        "L1",
+        "N1"
+      ],
+      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
+    },
+    {
+      "order": 115,
+      "phase": 5,
+      "card": {
+        "id": "T25-ARC829-A1115",
+        "routeOrder": 115,
+        "syllabusCode": "L3.1",
+        "targetCode": "L3",
+        "parentId": "ARC829",
+        "title": "Centre/scale a sum and calibrate a normal quantile.",
+        "focus": "Apply the iid finite-positive-variance central limit theorem with the exact centring and square-root scaling, then convert a probability or quantile request into the corresponding standard-normal approximation.",
+        "purpose": "Make CLT use structurally correct: identify the sum's mean and variance first, standardise second, and mark the resulting statement as an approximation or limit rather than an exact finite-sample law.",
+        "centralCapability": "Construct the standardised statistic (S_n-nmu)/(sigma sqrt(n)) or its average equivalent and use a normal quantile with the correct direction and scale.",
+        "principalObstacle": "Using n instead of sqrt(n), centring at the wrong value, forgetting the variance factor, or reporting an asymptotic normal approximation as an exact distribution produces deceptively tidy errors.",
+        "entryPrerequisites": [
+          "L2 convergence in probability",
+          "D3 normal standardisation",
+          "N1 means and variances of sums"
+        ],
+        "requiredOwnership": [
+          "State the iid finite-positive-variance CLT assumptions",
+          "Compute the exact finite-sample mean and variance of the sum or average",
+          "Centre by n mu for sums or mu for averages",
+          "Scale by sigma sqrt(n) for sums or sigma/sqrt(n) for averages",
+          "Translate the target event into a standard-normal inequality without reversing signs",
+          "Use an appropriate normal quantile and clearly label the result as asymptotic or approximate",
+          "Apply continuity correction when approximating a lattice probability and the problem warrants it"
+        ],
+        "inScope": [
+          "iid finite-variance sums and averages",
+          "Normal approximation to lattice sums with continuity correction",
+          "Quantile calibration from a CLT approximation",
+          "Differences of independent sums after mean/variance aggregation"
+        ],
+        "outOfScope": [
+          "Berry-Esseen error bounds",
+          "Stable-law limits",
+          "General triangular-array CLTs",
+          "Functional central limit theorems"
+        ],
+        "applicationScope": "Entrance problems requiring a limiting normal law or approximate tail/quantile for a large iid sum or average after correct finite-sample mean and variance bookkeeping.",
+        "transferScope": "A new sum or difference of independent blocks where the learner must derive the combined centring and scaling before invoking a normal approximation.",
+        "exitCondition": "Given an iid sum or average, state the CLT assumptions, derive the exact centring and square-root scaling, obtain the requested normal approximation or quantile, and mark its asymptotic status explicitly.",
+        "nextArcBoundary": "116 L3.2 tests whether a nonstandard statistic can be reduced to independent blocks or a consistent plug-in without invoking general weak-convergence machinery."
+      },
+      "contractHash": "beba914e654dfe35aa77777cafcb65e7f25cf58bd9269d7188a3433793486cec",
+      "lesson": "CLT centers by the true mean and scales by the square root of variance. It is an approximation at finite n; continuity correction can improve integer-count approximations.",
+      "main": "T25-115-M",
+      "transfer": "T25-115-T",
+      "bridges": [],
+      "prerequisiteTargets": [
+        "L2",
+        "D3",
+        "N1"
+      ],
+      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
+    },
+    {
+      "order": 116,
+      "phase": 5,
+      "card": {
+        "id": "T25-ARC829-A1116",
+        "routeOrder": 116,
+        "syllabusCode": "L3.2",
+        "targetCode": "L3",
+        "parentId": "ARC829",
+        "title": "Justify a block grouping or consistent plug-in approximation.",
+        "focus": "Extend an elementary CLT argument by grouping genuinely independent blocks or replacing an unknown deterministic scale with a consistent plug-in term through a stated Slutsky/continuous-mapping step.",
+        "purpose": "Handle the mild asymptotic manipulations that appear in entrance problems without smuggling in unjustified independence or an oversized weak-convergence toolkit.",
+        "centralCapability": "Reduce a structured statistic to a standard CLT plus a legal consistency argument, while stating precisely why blocking or plug-in replacement preserves the limiting conclusion.",
+        "principalObstacle": "Grouping overlapping blocks as though they were independent, replacing a random denominator merely because it looks stable, or invoking Slutsky without first establishing the required probability limit invalidates the approximation.",
+        "entryPrerequisites": [
+          "L3.1 iid CLT standardisation",
+          "L2 consistency",
+          "J2 covariance and independence"
+        ],
+        "requiredOwnership": [
+          "Verify that proposed blocks are independent before applying a blockwise CLT",
+          "Compute each block contribution's mean and variance on the chosen scale",
+          "Establish convergence in probability of every plug-in term before replacement",
+          "Use an elementary Slutsky or continuous-mapping statement only after its ingredients are proved",
+          "Keep random-denominator limits away from zero when division is used",
+          "Distinguish an exact algebraic regrouping from an asymptotic approximation",
+          "State the final limiting distribution with its centring and scale intact"
+        ],
+        "inScope": [
+          "Independent block regrouping",
+          "Consistent variance or scale plug-ins",
+          "Elementary Slutsky arguments",
+          "Simple continuous mappings of consistent quantities"
+        ],
+        "outOfScope": [
+          "General weak-convergence theory",
+          "Delta method beyond elementary continuous mappings",
+          "Dependent-block CLTs",
+          "Empirical-process asymptotics"
+        ],
+        "applicationScope": "Entrance problems where a statistic is almost a standard CLT form except for independent grouping or a nuisance scale that can be replaced by a consistent estimate.",
+        "transferScope": "An unfamiliar asymptotic statistic requiring the learner to decide whether its blocks are truly independent and whether each plug-in replacement is justified in probability.",
+        "exitCondition": "For a structured asymptotic statistic, justify the block decomposition or plug-in convergence, apply the appropriate elementary CLT/Slutsky step, and state the limiting law without hiding any legality condition.",
+        "nextArcBoundary": "117 O4.1 returns to order statistics and expresses a sample-quantile tail event as an empirical-count event before any asymptotic limit is taken."
+      },
+      "contractHash": "335d6bc7460bb490099b32abc82ddc5119ead930711b7f9fc1e3545ee670d01d",
+      "lesson": "Group dependent observations into independent blocks when justified. Replacing an unknown scale by a consistent estimator requires a convergence argument, not simply a substitution.",
+      "main": "T25-116-M",
+      "transfer": "T25-116-T",
+      "bridges": [],
+      "prerequisiteTargets": [
+        "L2",
+        "D3",
+        "N1"
+      ],
+      "evidenceWarning": "Map each required-ownership item to actual independent evidence. These two tasks do not automatically discharge every obligation. Compile a bounded fresh probe for any unobserved claim."
+    },
+    {
+      "order": 117,
+      "phase": 5,
+      "card": {
+        "id": "T25-ARC826-A1117",
+        "routeOrder": 117,
+        "syllabusCode": "O4.1",
+        "targetCode": "O4",
+        "parentId": "ARC826",
+        "title": "Express a quantile tail as an empirical-count event.",
+        "focus": "Translate an event involving an order statistic or sample quantile into an equivalent statement about how many observations fall below or above a fixed threshold.",
+        "purpose": "Replace fragile density memorisation with the exact finite-sample count event that later makes quantile consistency a direct law-of-large-numbers argument.",
+        "centralCapability": "Convert one-sided order-statistic events into empirical-count inequalities with the correct threshold direction, rank convention and binomial/indicator representation.",
+        "principalObstacle": "Off-by-one rank errors, reversing the count inequality, or silently switching between lower and upper empirical quantile conventions can invalidate the asymptotic argument before any limit theorem is applied.",
+        "entryPrerequisites": [
+          "O2 kth-order statistics",
+          "P2 binomial counts",
+          "L2 convergence in probability and WLLN"
+        ],
+        "requiredOwnership": [
+          "Write X_(k) <= x and X_(k) > x as equivalent statements about the number of Xi values at or below x",
           "Track the exact integer threshold k, n-k+1 or its convention-equivalent form without off-by-one mistakes",
           "Represent the empirical count as a sum of Bernoulli indicators",
           "Identify the Bernoulli success probability as F(x) or the correct strict-inequality variant",
