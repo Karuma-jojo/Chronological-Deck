@@ -109,3 +109,10 @@ Next: λ compiler integration, release instructions, structure/evidence/math/bro
 - Added `scripts/check-t25-course-math.py` for selected independent symbolic/exhaustive computations. First execution was blocked because SymPy was not installed; dependency installation is in progress. No mathematical-check pass is claimed yet.
 - Existing `scripts/test-t25.mjs` is running. Browser dependency setup is in progress; browser tests have not yet run.
 Next: complete math/browser checks and record their actual output. Preserve current work even if dependency setup fails.
+
+## Checkpoint: browser regression script and mixed-task isolation fix
+
+- Added `scripts/test-t25-course-browser.mjs` covering all162 navigation choices, deferred references, WALL clipboard text, saved attempts/reviews, import/export, assisted-note provenance, mixed/objective sets, story continuity, narrow layout, an asynchronous reveal/navigation race, corrupt-storage preservation and the existing-deck link.
+- Code review found that a mixed-bank task could retain the previously selected session's scene/title. Fixed external-task context: mixed work hides the topic contract and scene, including after a presentation toggle. Bridge tasks use their own heading.
+- Bumped the site entrypoint/bootstrap cache chain so the existing-panel course link can refresh on deployment.
+- Browser script syntax passed; execution awaits browser installation. Dependency/test sessions are still being polled. These are authored checks, not a browser-pass claim yet.

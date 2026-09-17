@@ -25,7 +25,7 @@ function renderHistory(){
  const items=state.attempts.filter(a=>a.problemId===problemId).slice(-12).reverse();
  $('history').replaceChildren(...items.map(a=>{const el=document.createElement('article');el.textContent=`${a.at} · ${a.assistance} · ${a.result}${a.reviewOf?' · review of saved attempt':''}\n${a.referenceSeenBefore?'Reference previously exposed. ':''}${a.noteSeenDuringAttempt?'Learning note used during attempt. ':''}\n${a.answer}`;return el;}));
 }
-function showProblem(id){
+function showProblem(id,context='session'){
  if(problemId)drafts.set(problemId,$('answer').value);
  problemId=id;visit++;lastSaved=null;noteSeen=false;
  const p=course.problems[id];const prior=state.exposures[id];referenceBefore=!!prior?.referenceSeenAt;
@@ -36,12 +36,14 @@ function showProblem(id){
  renderHistory();renderQueue();
  $('copyOpening').disabled=!p.order;$('copyPacket').disabled=!p.order;
  // A mixed or bridge task uses no session scene that could imply a mathematical connection.
- $('scene').hidden=!p.order||$('presentation').value!=='anime';
- $('story').hidden=!p.order||$('presentation').value!=='anime';
+ $('scene').hidden=context!=='session'||!p.order||$('presentation').value!=='anime';
+ $('story').hidden=context!=='session'||!p.order||$('presentation').value!=='anime';
+ $('contract').hidden=context!=='session';
+ if(context!=='session'){put('title',context==='bridge'?'Prerequisite bridge':'Mixed practice');put('sessionMeta','Practice bank · no topic label supplied');}
 }
 function setPresentation(){
  const anime=$('presentation').value==='anime',p=course.problems[problemId];const ep=course.campaign.find(x=>x.phase===session.phase);
- put('scene',sceneText(ep));$('scene').hidden=!anime||!p?.order;$('story').hidden=!anime||!p?.order;
+ put('scene',sceneText(ep));$('scene').hidden=!anime||!p?.order||$('contract').hidden;$('story').hidden=!anime||!p?.order||$('contract').hidden;
  options($('storyChoice'),ep.choice.map((v,i)=>[i,v]));$('storyChoice').value=state.story[ep.phase]?.choice??0;
  put('closure',state.story[ep.phase]?.completed?ep.closure:'The episode remains open. Pauses and incorrect attempts carry no story penalty.');
 }
@@ -103,10 +105,10 @@ async function init(){
  options($('setSelect'),course.sets.map(s=>[s.id,`${s.title} · ${s.minutes} min guide`]));
  $('startSet').onclick=()=>{
   const set=course.sets.find(s=>s.id===$('setSelect').value);
-  $('setItems').replaceChildren(...set.problems.map((id,i)=>button(`Item ${i+1}${state.exposures[id]?' · previously displayed':''}`,()=>showProblem(id))));
-  showProblem(set.problems[0]);tell(`${set.title}. Provisional time guide: ${set.minutes} minutes. No countdown penalty. Items reuse the bank; this is not an unseen official mock.`);
+  $('setItems').replaceChildren(...set.problems.map((id,i)=>button(`Item ${i+1}${state.exposures[id]?' · previously displayed':''}`,()=>showProblem(id,'set'))));
+  showProblem(set.problems[0],'set');tell(`${set.title}. Provisional time guide: ${set.minutes} minutes. No countdown penalty. Items reuse the bank; this is not an unseen official mock.`);
  };
- $('bridges').replaceChildren(...course.bridges.flatMap(b=>[...b.tasks.map((id,i)=>button(`${b.title} · ${i+1}`,()=>{showProblem(id);tell(`Prerequisite bridge. Open the learning note if needed; this grants no atomic clearance.`);}))]));
+ $('bridges').replaceChildren(...course.bridges.flatMap(b=>[...b.tasks.map((id,i)=>button(`${b.title} · ${i+1}`,()=>{showProblem(id,'bridge');tell(`Prerequisite bridge. Open the learning note if needed; this grants no atomic clearance.`);}))]));
  $('saveChoice').onclick=()=>{const old=state.story[session.phase];state.story[session.phase]={choice:Number($('storyChoice').value),completed:old?.completed||false};persist('Story choice saved.');};
  $('finishStory').onclick=()=>{state.story[session.phase]={choice:Number($('storyChoice').value),completed:true};persist('Your report of SPIRE phase certification was recorded for story continuity only.');setPresentation();};
  if(storageOK)tell(`Ready: ${course.sessions.length} sessions and ${Object.keys(course.problems).length} original tasks. Study records stay in this browser until exported.`);
