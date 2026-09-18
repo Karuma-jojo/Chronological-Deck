@@ -1,5 +1,5 @@
 {
-  "version": "m03-authoring-v1-candidate",
+  "version": "m03-authoring-v1.1-observability-reviewed",
   "instructionVersion": "m03-instruction-v1",
   "module": {
     "order": 3,
@@ -33,8 +33,8 @@
   },
   "coverageAudit": {
     "version": "m03-observability-v1-2026-09-18",
-    "status": "150/150 authored with exact public-request/rubric evidence",
-    "policy": "Each ownership claim is tied to the exact Main public task and an exact scoring criterion; Transfer is a distinct changed-surface probe."
+    "status": "150/150 manually reviewed for observability; five cross-task directions are pinned to Transfer",
+    "policy": "Every ownership claim is tied to the exact public task that actually observes it and to an exact rubric criterion. Cross-task claims are not allowed to default to Main merely because a mapping exists."
   },
   "sessions": [
     {
@@ -2759,23 +2759,23 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "Correct changed-surface result."
+          "criterion": "Computes the labeled-team assignment count correctly as 8!/(3!3!2!)=560."
         },
         {
           "points": 2,
-          "criterion": "Uses the intended underlying capability."
+          "criterion": "Uses the multinomial count for labeled groups of fixed sizes."
         },
         {
           "points": 2,
-          "criterion": "Shows auditable reasoning."
+          "criterion": "Explains why internal order within each team is divided out."
         },
         {
           "points": 2,
-          "criterion": "Respects all stated assumptions/domains."
+          "criterion": "Keeps Red, Blue and Green as distinct team labels."
         },
         {
           "points": 2,
-          "criterion": "States the requested conclusion precisely."
+          "criterion": "States the final assignment count and its counting interpretation clearly."
         }
       ],
       "marking": "Accept valid alternate reasoning; preserve domains, assumptions and proof/counting distinctions."
@@ -2915,23 +2915,23 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "Correct changed-surface result."
+          "criterion": "Counts multiples of 2 in 1..100 correctly."
         },
         {
           "points": 2,
-          "criterion": "Uses the intended underlying capability."
+          "criterion": "Counts multiples of 5 in 1..100 correctly."
         },
         {
           "points": 2,
-          "criterion": "Shows auditable reasoning."
+          "criterion": "Identifies the overlap as multiples of 10."
         },
         {
           "points": 2,
-          "criterion": "Respects all stated assumptions/domains."
+          "criterion": "Applies inclusion-exclusion to the divisibility-by-2-or-5 count."
         },
         {
           "points": 2,
-          "criterion": "States the requested conclusion precisely."
+          "criterion": "Obtains the final union count 60."
         }
       ],
       "marking": "Accept valid alternate reasoning; preserve domains, assumptions and proof/counting distinctions."
@@ -2967,23 +2967,23 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "Correct changed-surface result."
+          "criterion": "Uses the eleven selected integers as pigeons."
         },
         {
           "points": 2,
-          "criterion": "Uses the intended underlying capability."
+          "criterion": "Designs the ten consecutive-pair pigeonholes {1,2},{3,4},...,{19,20}."
         },
         {
           "points": 2,
-          "criterion": "Shows auditable reasoning."
+          "criterion": "Applies pigeonhole correctly to force two selected integers into one pair."
         },
         {
           "points": 2,
-          "criterion": "Respects all stated assumptions/domains."
+          "criterion": "Concludes those two selected integers are consecutive."
         },
         {
           "points": 2,
-          "criterion": "States the requested conclusion precisely."
+          "criterion": "Does not claim a particular pair is forced."
         }
       ],
       "marking": "Accept valid alternate reasoning; preserve domains, assumptions and proof/counting distinctions."
@@ -3019,23 +3019,23 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "Correct changed-surface result."
+          "criterion": "Uses pigeonhole on 4 domain elements and 3 codomain values to prove noninjectivity."
         },
         {
           "points": 2,
-          "criterion": "Uses the intended underlying capability."
+          "criterion": "Counts all functions as 3^4=81."
         },
         {
           "points": 2,
-          "criterion": "Shows auditable reasoning."
+          "criterion": "Subtracts functions missing one codomain value using 3·2^4."
         },
         {
           "points": 2,
-          "criterion": "Respects all stated assumptions/domains."
+          "criterion": "Adds back functions missing two codomain values using 3·1^4."
         },
         {
           "points": 2,
-          "criterion": "States the requested conclusion precisely."
+          "criterion": "Counts surjective functions by inclusion-exclusion and obtains 36."
         }
       ],
       "marking": "Accept valid alternate reasoning; preserve domains, assumptions and proof/counting distinctions."
@@ -3458,7 +3458,7 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
         "main"
@@ -3515,7 +3515,7 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ]
     ],
     "T22V3::T22E-DISC01::S29@1": [
@@ -3529,7 +3529,7 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
         "main"
@@ -3546,10 +3546,10 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
-        "main"
+        "transfer"
       ]
     ]
   },
@@ -4581,10 +4581,10 @@
       },
       {
         "claim": "Use multinomial count for labeled groups.",
-        "task": "main",
-        "publicRequest": "How many distinct strings can be formed from BALLOON? Identify repeats, write the corrected factorial formula, explain the overcounting divided out, and validate on AAB by listing its distinct strings.",
+        "task": "transfer",
+        "publicRequest": "Eight distinct people are assigned to labeled teams Red(3),Blue(3),Green(2). Count assignments and explain internal-order division versus team labels.",
         "rubricEvidence": [
-          "Demonstrates: Use multinomial count for labeled groups."
+          "Uses the multinomial count for labeled groups of fixed sizes."
         ]
       },
       {
@@ -4723,10 +4723,10 @@
       },
       {
         "claim": "Apply inclusion-exclusion to divisibility counting.",
-        "task": "main",
-        "publicRequest": "Among100 users,60 use A,45 use B,25 use both. Find union, explain the correction, find neither, find exactly one, and write the set logic.",
+        "task": "transfer",
+        "publicRequest": "How many integers1 through100 are divisible by2 or5? Use inclusion-exclusion and identify overlap.",
         "rubricEvidence": [
-          "Demonstrates: Apply inclusion-exclusion to divisibility counting."
+          "Applies inclusion-exclusion to the divisibility-by-2-or-5 count."
         ]
       }
     ],
@@ -4757,10 +4757,10 @@
       },
       {
         "claim": "Design non-obvious holes.",
-        "task": "main",
-        "publicRequest": "Twenty-five records are assigned to6 categories. Identify pigeons/holes, compute the guaranteed minimum occupancy, prove the ceiling bound, explain existence-not-identity, and state the simpler collision for13 people assigned to12 birth months.",
+        "task": "transfer",
+        "publicRequest": "Eleven distinct integers are chosen from {1,2,…,20}. Prove two chosen integers must be consecutive by designing10 pigeonholes.",
         "rubricEvidence": [
-          "Demonstrates: Design non-obvious holes."
+          "Designs the ten consecutive-pair pigeonholes {1,2},{3,4},...,{19,20}."
         ]
       },
       {
@@ -4799,18 +4799,18 @@
       },
       {
         "claim": "Use pigeonhole to prove noninjectivity.",
-        "task": "main",
-        "publicRequest": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
+        "task": "transfer",
+        "publicRequest": "Let D have4 elements and C have3 elements. Prove no f:D→C can be injective. Count all functions, then use inclusion-exclusion on missing codomain values to count surjective functions.",
         "rubricEvidence": [
-          "Demonstrates: Use pigeonhole to prove noninjectivity."
+          "Uses pigeonhole on 4 domain elements and 3 codomain values to prove noninjectivity."
         ]
       },
       {
         "claim": "Count surjective finite functions by inclusion-exclusion.",
-        "task": "main",
-        "publicRequest": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
+        "task": "transfer",
+        "publicRequest": "Let D have4 elements and C have3 elements. Prove no f:D→C can be injective. Count all functions, then use inclusion-exclusion on missing codomain values to count surjective functions.",
         "rubricEvidence": [
-          "Demonstrates: Count surjective finite functions by inclusion-exclusion."
+          "Counts surjective functions by inclusion-exclusion and obtains 36."
         ]
       }
     ]
