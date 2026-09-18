@@ -1,4 +1,4 @@
-import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,exposeAnswersForSession,taskText,reviewQueue,moduleEvidenceSummary,compilerPacket,freshProbePacket,evidenceIsCurrent,prepareAssessmentFingerprints} from './core.js';
+import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,exposeAnswersForSession,taskText,reviewQueue,moduleEvidenceSummary,compilerPacket,freshProbePacket,evidenceIsCurrent,prepareAssessmentFingerprints,migrateHistoricalLessonAnswerExposure,answerExposureAt} from './core.js';
 import {applyCourseOverrides} from './overrides.js';
 
 const $=id=>document.getElementById(id);
