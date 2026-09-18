@@ -1,5 +1,5 @@
 {
-  "version": "m04-authoring-v1-candidate",
+  "version": "m04-authoring-v1.1-preacceptance-audit",
   "instructionVersion": "m04-instruction-v1",
   "module": {
     "order": 4,
@@ -35,9 +35,9 @@
     ]
   },
   "coverageAudit": {
-    "version": "m04-observability-v1-2026-09-18",
-    "status": "120/120 authored with exact Main public-task/rubric evidence; semantic audit recorded 24/24",
-    "policy": "Main tasks are intentionally written to request all five ownership claims. Transfer independently probes the same capability on changed surfaces. Mapping existence is insufficient unless the public task actually requests the criterion."
+    "version": "m04-observability-v1.1-preacceptance-2026-09-18",
+    "status": "120/120 exact Main claim mappings; 24/24 semantic separation re-read after preacceptance audit",
+    "policy": "Each Main explicitly requests its five ownership claims. Preacceptance semantic review also removes hidden theorem dependencies and answer-equivalent lesson structures."
   },
   "sessions": [
     {
@@ -421,7 +421,7 @@
         "Compute both sides of the independence test.",
         "Conclude independence or dependence from equality/inequality.",
         "Distinguish definition from causal intuition.",
-        "Use the product rule to compute a joint probability when independence is given."
+        "Use product factorization to recompute a joint probability after independence is established."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
       "transferScope": "A changed finite uncertainty surface requiring the same reasoning without naming the method.",
@@ -435,7 +435,7 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Test independence numerically and use it only when justified.",
-      "lesson": "Events A and B are independent when P(A∩B)=P(A)P(B). This is a probability statement, not a claim that one event physically causes nothing about the other. If independence is given or proved, the joint factors. Worked example: Roll a fair die twice. A='first roll is even' and B='second roll is6'. P(A)=1/2,P(B)=1/6 and P(A∩B)=3/36=1/12=(1/2)(1/6), so they are independent. Guided check: On a uniform die, test A={1,2,3} and B={1,4} using the product criterion.",
+      "lesson": "Events A and B are independent when P(A∩B)=P(A)P(B). This is a probability statement, not a claim that one event physically causes nothing about the other. Once independence is established or given, the same factorization can be used to compute the joint. Worked example: Roll a fair die twice. A='first roll is even' and B='second roll is6'. P(A)=1/2,P(B)=1/6 and P(A∩B)=3/36=1/12=(1/2)(1/6), so they are independent; the factorization then reproduces the same joint. Guided check: On a uniform die, test A={1,2,3} and B={1,4} using the product criterion.",
       "main": "T22V3::ARC048::S11-M@1",
       "transfer": "T22V3::ARC048::S11-T@1"
     },
@@ -470,7 +470,7 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Diagnose dependence from conditioning and connect both definitions.",
-      "lesson": "For P(B)>0, A and B are independent exactly when P(A|B)=P(A). If conditioning on B changes A's probability, they are dependent. Multiplying the equality by P(B) recovers the product criterion. Worked example: From a bag with2 red and2 blue, draw two without replacement. P(second red)=1/2 by symmetry, but P(second red | first red)=1/3, so the draw-colour events are dependent. Guided check: With replacement from the same bag, compare P(second red) and P(second red | first red).",
+      "lesson": "For P(B)>0, A and B are independent exactly when P(A|B)=P(A). If conditioning on B changes A's probability, they are dependent. The unconditional probability can be obtained from the disjoint first-stage branches already owned from probability trees. Worked example: From a bag with2 red and2 blue, draw two without replacement. P(second red)=(2/4)(1/3)+(2/4)(2/3)=1/2, while P(second red | first red)=1/3, so the draw-colour events are dependent. Guided check: With replacement from the same bag, compute P(second red) from the two first-draw branches and compare it with P(second red | first red).",
       "main": "T22V3::ARC048::S12-M@1",
       "transfer": "T22V3::ARC048::S12-T@1"
     },
@@ -541,7 +541,7 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Audit a three-event independence claim at pair and triple levels.",
-      "lesson": "For three events A,B,C, pairwise independence means each pair factors. Mutual independence additionally requires P(A∩B∩C)=P(A)P(B)P(C) (and thus all nonempty subfamilies factor). Pairwise checks alone can miss a three-way constraint. Worked example: On uniform Ω={1,2,3,4}, let A={1,2},B={1,3},C={1,4}. Each event has probability1/2 and each pair intersects only at{1}, probability1/4, so every pair is independent. But the triple intersection also has probability1/4, not1/8, so the three are not mutually independent. Guided check: For three genuinely independent fair coin tosses, let A,B,C be 'toss1 H','toss2 H','toss3 H'. Check one pair and the triple product.",
+      "lesson": "For three events A,B,C, pairwise independence means each of the three pairs factors. Mutual independence requires those pairwise conditions and also P(A∩B∩C)=P(A)P(B)P(C). Pairwise checks alone therefore do not logically settle the triple. Worked example: Toss three fair coins independently and let A,B,C mean heads on toss1,toss2,toss3. Each marginal is1/2, every pair intersection is1/4, and the triple intersection is1/8, so the three events are mutually independent. As a contrasting ordinary dependence example on one fair die, E='even' and F='>3' have joint2/6 while P(E)P(F)=1/4, so even the pair condition fails. Guided check: State exactly which four factorization checks are needed to establish mutual independence of three events.",
       "main": "T22V3::ARC048::S14-M@1",
       "transfer": "T22V3::ARC048::S14-T@1"
     },
@@ -781,7 +781,7 @@
         "Derive it from finite weighted sums.",
         "Apply it to aX+bY+c.",
         "Explain independence is not required.",
-        "Reject the false rule E[XY]=E[X]E[Y] without independence."
+        "Reject extending linearity to nonlinear operations such as squaring."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
       "transferScope": "A changed finite uncertainty surface requiring the same reasoning without naming the method.",
@@ -795,7 +795,7 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Use and justify linearity on dependent finite quantities.",
-      "lesson": "On one finite sample space, E[aX+bY+c]=aE[X]+bE[Y]+c because finite sums distribute over addition and constants. No independence assumption appears. By contrast, E[XY]=E[X]E[Y] is not a general rule. Worked example: On two equally likely outcomes, X=(0,2) and Y=(1,3). E[X]=1,E[Y]=2. Directly, 2X−Y+5 has values4,6, mean5; linearity gives2·1−2+5=5. Guided check: If E[X]=3 and E[Y]=−1, compute E[4X+2Y−7] and state whether independence is needed.",
+      "lesson": "On one finite sample space, E[aX+bY+c]=aE[X]+bE[Y]+c because finite sums distribute over addition and constants. No independence assumption appears. Linearity concerns sums and scalar multiples; it does not say nonlinear operations commute with expectation. Worked example: On two equally likely outcomes, X=(0,2) and Y=(1,3). E[X]=1,E[Y]=2. Directly, 2X−Y+5 has values4,6, mean5; linearity gives2·1−2+5=5. But E[X²]=(0+4)/2=2, while(E[X])²=1, so squaring is not linear. Guided check: If E[X]=3 and E[Y]=−1, compute E[4X+2Y−7] and state whether independence is needed.",
       "main": "T22V3::ARC048::S21-M@1",
       "transfer": "T22V3::ARC048::S21-T@1"
     },
@@ -903,7 +903,7 @@
         "Formal random-variable distribution machinery"
       ],
       "exitCondition": "Solve a multi-step finite uncertainty problem and defend each selected rule.",
-      "lesson": "Synthesis begins by naming the partition, events and numerical values before calculating. Use path multiplication for leaves, total probability for a forward marginal, compare conditional and marginal probabilities for independence, then take a probability-weighted average of leaf values if a numerical payoff is supplied. Do not reverse conditionals unless the task explicitly enters M06. Worked example: A request is type A with.4 or B with.6. Conditional success is.5 or.25. Leaf success probabilities are.20 and.15, so total success=.35. Since P(success|A)=.5 differs from .35, type and success are dependent. If success pays2 and failure0, expected payoff=.7. Guided check: A device is mode L with.3 or R with.7; conditional alarm rates are.2 and.4. Compute total alarm and say whether mode and alarm are independent.",
+      "lesson": "Synthesis begins by naming the partition, events and numerical values before calculating. Use path multiplication for leaves, total probability for a forward marginal, compare conditional and marginal probabilities for independence, then take a probability-weighted average if a numerical value is supplied. Do not reverse conditionals unless the task explicitly enters M06. Worked example: A shipment comes from North with probability0.2 or South with0.8. Conditional on North, damage probability is0.10; conditional on South it is0.30. The damage leaves are.02 and.24, so total damage=.26. Since P(damage|North)=.10 differs from.26, source and damage are dependent. If damage has value−5 and no-damage value1, expected value is(−5)(.26)+1(.74)=−.56. Guided check: A device is mode L with.3 or R with.7; conditional alarm rates are.2 and.4. Compute total alarm and say whether mode and alarm are independent.",
       "main": "T22V3::ARC048::S24-M@1",
       "transfer": "T22V3::ARC048::S24-T@1"
     }
@@ -1053,7 +1053,7 @@
       "id": "T22V3::ARC048::S11-M@1",
       "order": 11,
       "kind": "main",
-      "prompt": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B), test the product criterion, and then use independence to compute P(A^c∩B). Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
+      "prompt": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S11-T@1": {
@@ -1067,7 +1067,7 @@
       "id": "T22V3::ARC048::S12-M@1",
       "order": 12,
       "kind": "main",
-      "prompt": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A), P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
+      "prompt": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S12-T@1": {
@@ -1193,14 +1193,14 @@
       "id": "T22V3::ARC048::S21-M@1",
       "order": 21,
       "kind": "main",
-      "prompt": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, and explain why no independence assumption is required. Also state why this does not imply E[XY]=E[X]E[Y].",
+      "prompt": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S21-T@1": {
       "id": "T22V3::ARC048::S21-T@1",
       "order": 21,
       "kind": "transfer",
-      "prompt": "Suppose finite payoffs U,V have E[U]=−2 and E[V]=5, possibly dependent. Compute E[−3U+4V+1], state whether dependence matters for this calculation, and explain which product-style expectation identity would require additional assumptions.",
+      "prompt": "Suppose finite payoffs U,V have E[U]=−2 and E[V]=5, possibly dependent. Compute E[−3U+4V+1], state whether dependence matters for this calculation, and explain why a nonlinear quantity such as E[U²] cannot be recovered from E[U] alone.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S22-M@1": {
@@ -1768,27 +1768,27 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S11-M@1": {
-      "reference": "P(A)=1/2;P(B)=1/3;joint=6/36=1/6=product, so independent. A^c is also independent of B, so P(A^c∩B)=1/2·1/3=1/6.",
+      "reference": "P(A)=1/2;P(B)=1/3;joint=6/36=1/6. Product=(1/2)(1/3)=1/6, so independent. Recomputed joint by factorization is1/6.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "P(A)=1/2 and P(B)=1/3."
+          "criterion": "Computes P(A)=1/2 and P(B)=1/3."
         },
         {
           "points": 2,
-          "criterion": "Joint1/6."
+          "criterion": "Computes P(A∩B)=1/6 by direct counting."
         },
         {
           "points": 2,
-          "criterion": "Product equality explicitly checked."
+          "criterion": "Checks P(A)P(B)=1/6 and concludes independence."
         },
         {
           "points": 2,
-          "criterion": "Independence conclusion tied to the definition, not wording."
+          "criterion": "Explains that independence is established by the probability equality, not the verbal separation of the dice."
         },
         {
           "points": 2,
-          "criterion": "P(A^c∩B)=1/6 using justified independence."
+          "criterion": "Recomputes the joint as P(A)P(B)=1/6 after independence is established."
         }
       ],
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
@@ -1820,27 +1820,27 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S12-M@1": {
-      "reference": "P(A)=4/6=2/3 by symmetry. P(A|B)=3/5, not2/3, so dependent. P(A∩B)=4/6·3/5=2/5 whereas P(A)P(B)=4/9. P(B)>0 required for conditional definition.",
+      "reference": "P(A)=P(B)P(A|B)+P(B^c)P(A|B^c)=(4/6)(3/5)+(2/6)(4/5)=2/3. P(A|B)=3/5≠2/3, dependent. Joint=(4/6)(3/5)=2/5 whereas P(A)P(B)=4/9. P(B)>0 required.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Unconditional P(A)=2/3."
+          "criterion": "Computes P(A)=2/3 from the two first-draw branches rather than assuming it."
         },
         {
           "points": 2,
-          "criterion": "Conditional P(A|B)=3/5."
+          "criterion": "Computes P(A|B)=3/5."
         },
         {
           "points": 2,
-          "criterion": "Dependence correctly concluded from inequality."
+          "criterion": "Concludes dependence from 3/5≠2/3."
         },
         {
           "points": 2,
-          "criterion": "Product test2/5 versus4/9 is consistent."
+          "criterion": "Checks joint2/5 versus product4/9 for the same diagnosis."
         },
         {
           "points": 2,
-          "criterion": "Positive-denominator condition stated."
+          "criterion": "States the P(B)>0 requirement for the conditional criterion."
         }
       ],
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
@@ -2288,53 +2288,53 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S21-M@1": {
-      "reference": "E[X]=2,E[Y]=3. E[3X−2Y+5]=6−6+5=5. Combined values3,9,3 average5. No independence needed; multiplicative factorization is a different property and can fail.",
+      "reference": "E[X]=2,E[Y]=3. Linearity gives5. Combined values3,9,3 average5. No independence is needed. E[X²]=(0+4+16)/3=20/3 whereas(E[X])²=4, so expectation does not commute with squaring.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "E[X]=2,E[Y]=3."
+          "criterion": "Computes E[X]=2 and E[Y]=3."
         },
         {
           "points": 2,
-          "criterion": "Linearity gives5."
+          "criterion": "Uses linearity to obtain E[3X−2Y+5]=5."
         },
         {
           "points": 2,
-          "criterion": "Direct combined values3,9,3 and mean5."
+          "criterion": "Directly evaluates combined values3,9,3 and verifies mean5."
         },
         {
           "points": 2,
-          "criterion": "No-independence explanation correct."
+          "criterion": "Explains correctly that independence is not required for linearity."
         },
         {
           "points": 2,
-          "criterion": "E[XY] factorization is correctly rejected as a general consequence."
+          "criterion": "Computes E[X²]=20/3 and contrasts it with (E[X])²=4, rejecting nonlinear misuse of linearity."
         }
       ],
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S21-T@1": {
-      "reference": "=6+20+1=27. Dependence does not affect linearity. E[UV]=E[U]E[V] would need suitable independence, not linearity alone.",
+      "reference": "=6+20+1=27. Dependence does not affect linearity. E[U] alone does not determine E[U²]; squaring is nonlinear and needs more information about U's outcome values/probabilities.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Expectation27."
+          "criterion": "Computes expectation27."
         },
         {
           "points": 2,
-          "criterion": "Linearity applied correctly."
+          "criterion": "Applies linearity with the coefficients/signs correctly."
         },
         {
           "points": 2,
-          "criterion": "Dependence correctly declared irrelevant."
+          "criterion": "States that dependence between U and V is irrelevant for this linear combination."
         },
         {
           "points": 2,
-          "criterion": "Product identity identified."
+          "criterion": "States that E[U²] is not determined by E[U] alone."
         },
         {
           "points": 2,
-          "criterion": "Need for extra assumptions stated."
+          "criterion": "Attributes the limitation to nonlinearity rather than to a missing independence assumption."
         }
       ],
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
@@ -3331,41 +3331,41 @@
       {
         "claim": "State the product definition of independence.",
         "task": "main",
-        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B), test the product criterion, and then use independence to compute P(A^c∩B). Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
+        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
         "rubricEvidence": [
-          "P(A)=1/2 and P(B)=1/3."
+          "Computes P(A)=1/2 and P(B)=1/3."
         ]
       },
       {
         "claim": "Compute both sides of the independence test.",
         "task": "main",
-        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B), test the product criterion, and then use independence to compute P(A^c∩B). Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
+        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
         "rubricEvidence": [
-          "Joint1/6."
+          "Computes P(A∩B)=1/6 by direct counting."
         ]
       },
       {
         "claim": "Conclude independence or dependence from equality/inequality.",
         "task": "main",
-        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B), test the product criterion, and then use independence to compute P(A^c∩B). Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
+        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
         "rubricEvidence": [
-          "Product equality explicitly checked."
+          "Checks P(A)P(B)=1/6 and concludes independence."
         ]
       },
       {
         "claim": "Distinguish definition from causal intuition.",
         "task": "main",
-        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B), test the product criterion, and then use independence to compute P(A^c∩B). Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
+        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
         "rubricEvidence": [
-          "Independence conclusion tied to the definition, not wording."
+          "Explains that independence is established by the probability equality, not the verbal separation of the dice."
         ]
       },
       {
-        "claim": "Use the product rule to compute a joint probability when independence is given.",
+        "claim": "Use product factorization to recompute a joint probability after independence is established.",
         "task": "main",
-        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B), test the product criterion, and then use independence to compute P(A^c∩B). Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
+        "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
         "rubricEvidence": [
-          "P(A^c∩B)=1/6 using justified independence."
+          "Recomputes the joint as P(A)P(B)=1/6 after independence is established."
         ]
       }
     ],
@@ -3373,41 +3373,41 @@
       {
         "claim": "State the conditional criterion for independence when P(B)>0.",
         "task": "main",
-        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A), P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
+        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
         "rubricEvidence": [
-          "Unconditional P(A)=2/3."
+          "Computes P(A)=2/3 from the two first-draw branches rather than assuming it."
         ]
       },
       {
         "claim": "Compare P(A|B) with P(A).",
         "task": "main",
-        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A), P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
+        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
         "rubricEvidence": [
-          "Conditional P(A|B)=3/5."
+          "Computes P(A|B)=3/5."
         ]
       },
       {
         "claim": "Diagnose dependence from a change.",
         "task": "main",
-        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A), P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
+        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
         "rubricEvidence": [
-          "Dependence correctly concluded from inequality."
+          "Concludes dependence from 3/5≠2/3."
         ]
       },
       {
         "claim": "Relate the conditional criterion to the product rule.",
         "task": "main",
-        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A), P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
+        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
         "rubricEvidence": [
-          "Product test2/5 versus4/9 is consistent."
+          "Checks joint2/5 versus product4/9 for the same diagnosis."
         ]
       },
       {
         "claim": "Respect the positive-denominator condition.",
         "task": "main",
-        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A), P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
+        "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
         "rubricEvidence": [
-          "Positive-denominator condition stated."
+          "States the P(B)>0 requirement for the conditional criterion."
         ]
       }
     ],
@@ -3751,41 +3751,41 @@
       {
         "claim": "State linearity for finite expectations.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, and explain why no independence assumption is required. Also state why this does not imply E[XY]=E[X]E[Y].",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
-          "E[X]=2,E[Y]=3."
+          "Computes E[X]=2 and E[Y]=3."
         ]
       },
       {
         "claim": "Derive it from finite weighted sums.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, and explain why no independence assumption is required. Also state why this does not imply E[XY]=E[X]E[Y].",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
-          "Linearity gives5."
+          "Uses linearity to obtain E[3X−2Y+5]=5."
         ]
       },
       {
         "claim": "Apply it to aX+bY+c.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, and explain why no independence assumption is required. Also state why this does not imply E[XY]=E[X]E[Y].",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
-          "Direct combined values3,9,3 and mean5."
+          "Directly evaluates combined values3,9,3 and verifies mean5."
         ]
       },
       {
         "claim": "Explain independence is not required.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, and explain why no independence assumption is required. Also state why this does not imply E[XY]=E[X]E[Y].",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
-          "No-independence explanation correct."
+          "Explains correctly that independence is not required for linearity."
         ]
       },
       {
-        "claim": "Reject the false rule E[XY]=E[X]E[Y] without independence.",
+        "claim": "Reject extending linearity to nonlinear operations such as squaring.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, and explain why no independence assumption is required. Also state why this does not imply E[XY]=E[X]E[Y].",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
-          "E[XY] factorization is correctly rejected as a general consequence."
+          "Computes E[X²]=20/3 and contrasts it with (E[X])²=4, rejecting nonlinear misuse of linearity."
         ]
       }
     ],
@@ -4482,11 +4482,11 @@
       },
       "T22V3::ARC048::S11@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses even-first/second=6 and guided one-die subsets; Main uses >4 second die and Transfer uses even/multiple-of3."
+        "note": "Lesson tests different events; Main uses first-even/second>4 and asks direct-count then factorization. No complement-independence theorem is assumed."
       },
       "T22V3::ARC048::S12@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses2R/2B; fixed tasks use4W/2B and abstract F/G probabilities."
+        "note": "Lesson derives the marginal on a 2R/2B bag; Main uses 4W/2B and explicitly requires forward-branch derivation, avoiding an unproved symmetry shortcut."
       },
       "T22V3::ARC048::S13@1": {
         "status": "reviewed-separated",
@@ -4494,7 +4494,7 @@
       },
       "T22V3::ARC048::S14@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses numeric Ω={1,2,3,4}; Main uses XOR bits; Transfer uses letter-labelled four-point space."
+        "note": "Instruction now demonstrates a genuinely mutually independent triple plus a simple dependent pair; the pairwise-but-not-mutual phenomenon is left for the fixed Main/Transfer to discover."
       },
       "T22V3::ARC048::S15@1": {
         "status": "reviewed-separated",
@@ -4522,7 +4522,7 @@
       },
       "T22V3::ARC048::S21@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses two-outcome X/Y values and guided symbolic expectations; fixed tasks use three-outcome data and abstract U,V."
+        "note": "Lesson uses a two-outcome direct verification and a squaring counterexample; Main uses different three-outcome X,Y data, and Transfer is symbolic. No random-variable product-independence rule is introduced."
       },
       "T22V3::ARC048::S22@1": {
         "status": "reviewed-separated",
@@ -4534,7 +4534,7 @@
       },
       "T22V3::ARC048::S24@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses request A/B with .4/.6 and success .5/.25; fixed tasks use different conditional rates and numerical payoffs."
+        "note": "Worked synthesis now uses North/South, .2/.8, damage .1/.3 and values −5/1; fixed tasks use systems/channels with different probabilities and scores."
       }
     }
   },

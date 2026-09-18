@@ -14,8 +14,8 @@ const O=[[0,0],[0,1],[1,0],[1,1]],ev=[z=>z[0]===1,z=>z[1]===1,z=>(z[0]^z[1])===1
 const choose=(n,k)=>{let r=1;for(let i=1;i<=k;i++)r=r*(n-k+i)/i;return r};close(choose(5,3)*.6**3*.4**2,.3456);
 // S18 total probability.
 close(.5*.01+.3*.03+.2*.06,.026);
-// S21 direct linearity.
-const X=[0,2,4],Y=[1,1,7],Z=X.map((x,i)=>3*x-2*Y[i]+5);close(Z.reduce((a,b)=>a+b,0)/3,5);
+// S21 direct linearity and nonlinear counterexample.
+const X=[0,2,4],Y=[1,1,7],Z=X.map((x,i)=>3*x-2*Y[i]+5);close(Z.reduce((a,b)=>a+b,0)/3,5);close(X.map(x=>x*x).reduce((a,b)=>a+b,0)/3,20/3);assert.notEqual(20/3,4);
 // S22 indicator expectation via exhaustive 3-card subsets/order symmetry: expected reds 1.2.
 close(3*(4/10),1.2);
 // S24 synthesis.
