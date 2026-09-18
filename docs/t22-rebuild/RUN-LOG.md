@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M05 SEPARATE CHECKPOINT COMPLETE; M06 MAY NOW OPEN; M07 CLOSED**
+State: **M06 BOUNDARY OPEN; M06 AUTHORING ONLY; M07 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -297,3 +297,14 @@ M05 is internally frozen at:
 - unchanged shared evidence key.
 
 **M06 · ARC502 may now open as a separate module build. M07 remains forbidden.**
+
+
+## M06 boundary opened — current authoring action
+
+M05 is frozen at its own separate review checkpoint.
+
+M06 · `ARC502` is now the only open content module. Its 24-session route and exact probability-updating boundary are frozen in `docs/t22-course/M06-BOUNDARY.md`.
+
+M06 depends directly on accepted M04, not on M05 preference/decision theory.
+
+**Complete, validate, push and hand off M06 separately. STOP before M07.**
