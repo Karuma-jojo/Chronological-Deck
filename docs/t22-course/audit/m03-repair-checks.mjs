@@ -16,3 +16,17 @@ const course={...a,sessions:a.sessions,problems:a.problems,instructionVersion:a.
 const state={schema:'t22e-course-evidence-v1',attempts:[{id:'pre',problemId:s29.main,at:preAt,answer:'pre-exposure work',assistance:'independent',minutes:5,result:'secure',error:'',referenceSeenBefore:false,noteSeenDuringAttempt:false,contractHash:'0'.repeat(64),assessmentFingerprint:'1'.repeat(64)}],artifacts:[],exposures:{[s29.main]:{firstSeen:oldAt,lastSeen:oldAt,views:1,lessonSeenAt:oldAt,lessonContentVersion:'m03-instruction-v1'}}};
 assert.equal(migrateHistoricalLessonAnswerExposure(state,course),true);assert.equal(state.exposures[s29.main].lessonAnswerSeenAt,oldAt);assert.equal(state.exposures[s29.main].referenceSeenAt,oldAt);assert.equal(state.attempts[0].at,preAt);assert.equal(state.attempts[0].referenceSeenBefore,false);assert.equal(migrateHistoricalLessonAnswerExposure(state,course),false);
 console.log('PASS M03 repair gate: semantic separation audit 30/30; worked reasoning strengthened; S21 direction fixed; S18/S30 assessment versions repaired; timestamp-aware M03 historical exposure preserved.');
+
+// Bounded independent follow-up: no hidden S21 marking obligation; new instruction is not historical leakage.
+assert.equal(a.evaluators[s21.transfer].rubric.reduce((sum,r)=>sum+r.points,0),10);
+assert(!a.evaluators[s21.transfer].rubric.some(r=>r.criterion.includes('set-valued preimage')));
+const current={attempts:[],artifacts:[],exposures:{[s29.main]:{firstSeen:oldAt,lastSeen:oldAt,views:1,lessonSeenAt:oldAt,lessonContentVersion:a.instructionVersion}}};
+assert.equal(migrateHistoricalLessonAnswerExposure(current,course),false);
+assert.equal(current.exposures[s29.main].referenceSeenAt,undefined);
+const {prepareContractHashes,prepareAssessmentFingerprints,moduleEvidenceSummary}=await import('../../../js/t22-course/core.js');
+await prepareContractHashes(course);await prepareAssessmentFingerprints(course,a.evaluators);
+state.attempts[0].contractHash=s29.contractHash;state.attempts[0].assessmentFingerprint=course.assessmentFingerprints[s29.main];
+assert.equal(moduleEvidenceSummary(course,state).sessions.find(s=>s.sessionId===s29.id).main,true,'Independent secure work before exposure remains qualifying');
+const after={...state,attempts:[{...state.attempts[0],id:'after',at:'2026-09-18T09:00:00.000Z'}]};
+assert.equal(moduleEvidenceSummary(course,after).sessions.find(s=>s.sessionId===s29.id).main,false,'The same work after historical exposure cannot qualify independently');
+console.log('PASS bounded follow-up: S21 only scores public requests; current separated instruction is clean; pre-exposure evidence qualifies and post-exposure evidence does not.');

@@ -2563,19 +2563,15 @@
           "criterion": "Shows both codomain values a and b are hit, so g is surjective."
         },
         {
-          "points": 2,
+          "points": 4,
           "criterion": "Explains concretely why one inverse value at a cannot recover both original inputs 1 and 2."
         },
         {
           "points": 2,
           "criterion": "Concludes that g is not bijective and has no two-sided inverse function."
-        },
-        {
-          "points": 2,
-          "criterion": "Distinguishes a set-valued preimage such as g⁻¹({a})={1,2} from a two-sided inverse function."
         }
       ],
-      "marking": "Accept any correct classification plus a concrete collision-based explanation that a noninjective map cannot have a two-sided inverse."
+      "marking": "Accept any correct classification plus a concrete collision-based explanation that a noninjective map cannot have a two-sided inverse. Score only classification and the requested inverse-impossibility explanation. A preimage-versus-inverse comparison is optional and earns no separately required marks."
     },
     "T22V3::T22E-DISC01::S22-M@1": {
       "reference": "Reflexive/symmetric; transitive because even differences add; classes are evens and odds.",

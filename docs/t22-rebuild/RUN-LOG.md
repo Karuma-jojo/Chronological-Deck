@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M03-01→M03-04 REPAIRED AND FULLY VALIDATED; BOUNDED RE-REVIEW REQUIRED; M04 CLOSED**
+State: **M03 BOUNDED INDEPENDENT REVIEW ACCEPTED; NEXT AUTHORING BOUNDARY M04 ONLY**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -174,3 +174,10 @@ M03-01 through M03-04 from `docs/t22-course/M03-ASTRA-REVIEW.md` are implemented
 - 30/30 lessons have a recorded semantic separation review.
 
 **Current boundary: stop for a bounded review of these repairs. Do not author M04 until that review accepts M03 or returns bounded M03 follow-up findings.**
+
+
+## M03 bounded independent review — current authority
+
+Reviewed Sol head `dee1d3b2057b61b2cc7bc27acaffc2ba7734b3e5`; verified full repair run `35329318149`. **M03-01 through M03-04 accepted.** See `docs/t22-course/M03-ASTRA-FOLLOWUP.md`. Reviewer removed one unasked S21-T scoring criterion and reassigned its marks to the requested explanation; focused M03 checks passed. Added checks for clean current instruction, qualifying pre-exposure evidence and disqualified post-exposure evidence.
+
+**Next authoring boundary: M04 only, then stop with its handoff for independent review.** No M04 content, merge or deployment occurred in this review. This section supersedes earlier pending-re-review instructions. Three-module batching is not yet recommended; retain individual module checkpoints and consider M05–M06 together only after M04 review.

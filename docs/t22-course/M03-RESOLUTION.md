@@ -190,3 +190,8 @@ The independent reviewer does **not** need to re-audit unchanged M01/M02 or all 
 If these repairs are accepted, M03 may be frozen and M04 can be explicitly opened under a fresh boundary audit.
 
 **STOP: M04 remains un-authored pending this bounded repair review.**
+
+
+## Independent bounded acceptance supplement
+
+See `M03-ASTRA-FOLLOWUP.md`: all four findings accepted after independent review of Sol head `dee1d3b2057b61b2cc7bc27acaffc2ba7734b3e5`. The reviewer removed the unasked S21 Transfer preimage-comparison scoring criterion described above and reassigned its 2 marks to the required collision-based inverse-impossibility explanation. Focused gates passed, including evidence qualification before/after historical exposure. The former stop-for-re-review instruction is now superseded: the next authoring boundary is M04 only, followed by review.
