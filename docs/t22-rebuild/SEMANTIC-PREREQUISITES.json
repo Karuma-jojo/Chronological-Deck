@@ -30,9 +30,9 @@
       "order": 4,
       "id": "ARC048",
       "mode": "adapted",
-      "semanticStatus": "boundary-accepted-content-candidate",
+      "semanticStatus": "accepted",
       "bridges": [],
-      "note": "M04 boundary accepted: sole macro prerequisite T22E-DISC01. M04 owns finite probability models, event algebra, conditional probability, independence, repeated finite trials, total probability and finite expectation. Bayes/posterior inversion stays M06; trading decisions/fair price/bankroll stay M05; formal random-variable distributions/variance/covariance/conditional expectation stay M26."
+      "note": "M04 accepted after 24-session authoring, 120/120 exact claim observability, 24/24 semantic instruction-separation audit, preacceptance hidden-prerequisite repair, independent probability/expectation rederivation and shared four-module Chromium/evidence validation. M05 trading decisions and M06 Bayes remain closed."
     },
     {
       "order": 5,

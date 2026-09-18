@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M03 ACCEPTED; M04 SEMANTIC BOUNDARY OPEN; M05/M06 CLOSED**
+State: **M04 INTERNALLY ACCEPTED AFTER 24/48/120 + FOUR-MODULE CHROMIUM; HANDOFF NEXT; M05/M06 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -197,3 +197,22 @@ M04 · `ARC048` boundary is now frozen for authoring:
 - publication requires literal + semantic instruction separation, exact claim observability, independent mathematics, shared-runtime/Chromium evidence validation and a review handoff.
 
 **Do not author M05/M06 in this pass.**
+
+
+## M04 internal acceptance
+
+M04 · `ARC048` has cleared the complete internal publication gate:
+
+- 24 sessions;
+- 48 fixed Main/Transfer assessments;
+- 120/120 ownership claims with exact public-task/rubric evidence;
+- 24/24 recorded semantic lesson/task separation audits;
+- explicit prerequisite/JIT ownership;
+- conditional-denominator and independence-definition guards;
+- finite expectation interpretation/linearity/indicator checks;
+- independent mathematics rederivation;
+- shared four-module runtime under unchanged `chrono_t22_elite_course_evidence_v1`;
+- four-module Chromium save/reveal/review, draft provenance, packet exposure and export/import;
+- successful run `35358556729` at preacceptance-hardened head `d8c8bd678ff816e62c859ac4d3add327fcafd23f`.
+
+**Next: write M04 review handoff and stop. M05/M06 remain closed.**

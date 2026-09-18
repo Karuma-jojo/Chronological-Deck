@@ -11,6 +11,7 @@ for(const m of deps.modules){assert(ledBy.has(m.id),`missing semantic ledger row
 for(const row of ledger.entries){assert(['new','reused','adapted'].includes(row.mode));assert(['accepted','pending-boundary-audit','boundary-accepted-content-candidate','planned-with-known-edge','planned-with-known-bridge'].includes(row.semanticStatus));assert(Array.isArray(row.bridges));}
 assert(ledBy.get('T22E-FND01').semanticStatus==='accepted');
 assert(ledBy.get('T22E-DISC01').semanticStatus==='accepted','M03 publication state must remain semantically accepted');
+assert(ledBy.get('ARC048').semanticStatus==='accepted','M04 publication state must remain semantically accepted');
 // M03 semantic-boundary repair.
 assert(depBy.get('T22E-DISC01').prerequisites.includes('T22E-FND02'),'M03 formal map reasoning requires M02 function foundations');
 // Astra A-06 named ancestry repairs.

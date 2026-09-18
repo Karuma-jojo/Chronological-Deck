@@ -1,11 +1,11 @@
 {
-  "version": "m04-authoring-v1.1-preacceptance-audit",
+  "version": "m04-authoring-v1.1-accepted",
   "instructionVersion": "m04-instruction-v1",
   "module": {
     "order": 4,
     "id": "ARC048",
     "title": "Finite Probability, Conditional Probability, Independence & Expectation",
-    "status": "candidate-static",
+    "status": "authored-v1.1-accepted",
     "destination": "Model finite uncertainty rigorously, condition correctly, distinguish dependence from independence, and compute finite expectations without prematurely using Bayes, decision theory or formal distribution machinery.",
     "gate": "Page completion is not clearance. Every ownership claim must be observable in a public fixed task, references stay locked until save, and current instruction must remain semantically distinct from fixed assessment content.",
     "nextBoundary": "M05 owns trading-game decisions and risk preferences; M06 owns Bayes/posterior updating. M04 stops at forward finite probability and expectation."

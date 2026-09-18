@@ -1,7 +1,7 @@
 # M04 boundary & authoring contract — ARC048
 
 Date: 2026-09-18  
-Status: **semantic boundary accepted; content candidate may be authored; M05/M06 remain closed**
+Status: **FINAL INTERNAL ACCEPTED — 24 sessions / 48 fixed tasks / 120 ownership claims; M05/M06 remain closed**
 
 ## Semantic ancestry
 
@@ -111,3 +111,17 @@ Independent review should especially attack:
 - indicator expectations;
 - semantic lesson/task leakage in classic probability puzzles;
 - whether any M05/M06/M26 concept was pulled upstream prematurely.
+
+
+## Acceptance evidence
+
+M04 passed its publication gate after a deliberate preacceptance semantic audit.
+
+- `482d519371c1db2908fdf11f9cfff6cb9c9035b4` — initial 24-session candidate. M04's own structural/math gates passed; the workflow stopped only because the historical M03 stop-boundary checker still prohibited existence of `m04.json`.
+- `9a827267b3e692f8d857777bc97c8a2f98a789cf` — stop boundary advanced from M03 to M04 after explicit user authorization.
+- `1738b6a9f1a79b1a6cd406a01698c0a65c224354` — M04 loaded through the existing shared authoring-pack runtime with roadmap availability `validation`.
+- `d8c8bd678ff816e62c859ac4d3add327fcafd23f` — preacceptance semantic hardening repaired S11 hidden complement-independence, S12 unexplained symmetry, S14 answer-structure rehearsal, S21 downstream product-expectation drift and S24 near-isomorphic synthesis instruction. GitHub Actions run `35358556729` — **SUCCESS**, including four-module Chromium.
+
+The evidence key remains `chrono_t22_elite_course_evidence_v1`. Historical T22 and T25 state are unchanged.
+
+**Review boundary:** create `M04-REVIEW-HANDOFF.md` and stop. Do not author M05 or M06.
