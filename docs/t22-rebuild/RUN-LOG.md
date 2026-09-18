@@ -81,3 +81,7 @@ Open **M02 · T22E-FND02 — Quantitative Foundations II: Functions & Precalculu
 - No historical T22 progress migration.
 - No T25 modification.
 - No cloud-schema migration.
+
+## Subsequent independent follow-up
+
+See `M01-FOLLOWUP.md` (reviewed ead0b27f26153f92e16d7c4017df6bc5b2048ef6). A-01–A-03 repairs and successful CI verified. Final M01 acceptance is pending A-07: worked/guided examples currently repeat fixed assessment questions. Repair instruction/assessment separation and exposure provenance, validate and push; then proceed to M02. Preserve all existing work and records.
