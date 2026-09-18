@@ -46,8 +46,9 @@
       "order": 6,
       "id": "ARC502",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "boundary-accepted-content-candidate",
+      "bridges": [],
+      "note": "M06 boundary opened as a probability-updating module directly on accepted ARC048. Owns base rates, finite Bayes derivation/normalization, odds/LR updating, sequential evidence and prior/model sensitivity. M05 decision utility, M07 market mechanics, M26 density/distribution machinery, M33 formal likelihood/MLE and M35 LR testing remain separate."
     },
     {
       "order": 7,
