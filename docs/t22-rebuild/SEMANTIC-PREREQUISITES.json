@@ -32,7 +32,7 @@
       "mode": "adapted",
       "semanticStatus": "accepted",
       "bridges": [],
-      "note": "M04 accepted after 24-session authoring, 120/120 exact claim observability, 24/24 semantic instruction-separation audit, preacceptance hidden-prerequisite repair, independent probability/expectation rederivation and shared four-module Chromium/evidence validation. M05 trading decisions and M06 Bayes remain closed."
+      "note": "M04 remains semantically accepted after independent review findings M04-01→M04-04 were bounded and repaired at implementation head 10df637dbb46bd4985a1f98fc298c746b52bf1fd. Repair adds S11 complement-independence derivation, a complete 120-claim semantic observability re-audit with S05/S13 Transfer mappings, obligationVersion=2 repairs for S05-T and S21-M, an S22 positional-marginal derivation, and S04 prerequisite cleanup. Bounded independent follow-up remains required before M05/M06 open."
     },
     {
       "order": 5,
