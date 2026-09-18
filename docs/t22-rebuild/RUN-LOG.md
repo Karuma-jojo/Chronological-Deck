@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M01 + M02 FINAL-ACCEPTED ON REBUILD BRANCH; STOP FOR REVIEW BEFORE M03**
+State: **M02 INDEPENDENT REVIEW COMPLETE — FOUR BOUNDED REPAIRS BEFORE M03**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current validated M02 runtime head before acceptance-state commit: `f3be88268358c938006056386f93a9f662f7316d`
@@ -99,3 +99,8 @@ Read `docs/t22-course/M02-REVIEW-HANDOFF.md` before any further authoring. It re
 ## Subsequent independent follow-up
 
 `M01-FOLLOWUP.md` produced A-07. A-07 is resolved and validated at run `35303082691`; M01 is final-accepted as the reusable module template. M02 may proceed, but M03 remains closed until M02 independently clears every publication gate.
+
+## Independent M02 review
+
+Reviewed `f49479068d8fb3416dbe823e9fdacd628d90e268`; see `docs/t22-course/M02-ASTRA-REVIEW.md`. M01 A-07 repaired examples checked; CI run 35305984203 verified successful; local M02 validator passed. M02-01 through M02-04 remain: recurrence justification, unsaved module-switch draft preservation, observable ownership coverage, and range/unit-circle novice bridges. Preserve architecture/content; Sol resolves and validates on this branch, records verified checkpoints, then opens M03 only. Do not restart or merge/deploy. The attached reproduction demonstrates a defect and must be converted to desired-behavior tests after repair.
+
