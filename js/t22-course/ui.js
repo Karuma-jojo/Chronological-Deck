@@ -68,16 +68,16 @@ async function init(){
  applyCourseOverrides(course,keys,repair);
  await prepareAssessmentFingerprints(course,keys);
  state=emptyEvidence();
- try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);}catch{storageOK=false;tell('Existing T22 Elite study storage could not be read. It has not been overwritten. Export any new work before leaving.');}
+ try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);if(migrateHistoricalLessonAnswerExposure(state,course))persist('Historical answer-containing lesson exposure was conservatively migrated; prior attempts were preserved.');}catch{storageOK=false;tell('Existing T22 Elite study storage could not be read. It has not been overwritten. Export any new work before leaving.');}
  renderRoadmap();sessionsList();
  const requested=Math.min(course.sessions.length,Math.max(1,Number(new URLSearchParams(location.search).get('session'))||1));selectSession(requested);
  put('moduleTitle',`M01 · ${course.module.title}`);put('moduleDestination',course.module.destination);put('moduleGate',course.module.gate);put('assessmentWarning',course.assessmentWarning);
  $('search').addEventListener('input',sessionsList);$('session').addEventListener('change',()=>selectSession($('session').value));
  $('previous').onclick=()=>selectSession(session.order-1);$('next').onclick=()=>selectSession(session.order+1);$('mainTask').onclick=()=>selectSession(session.order,'main');$('transferTask').onclick=()=>selectSession(session.order,'transfer');
- $('note').onclick=()=>{put('learning','LEARNING NOTE — ASSISTANCE, NOT INDEPENDENT EVIDENCE\n\n'+session.lesson);$('learning').hidden=false;noteSeen=true;if($('assistance').value==='independent')$('assistance').value='guided';expose(state,problemId,undefined,'lessonSeenAt');persist('Learning note opened; assistance exposure recorded.');};
+ $('note').onclick=()=>{put('learning','LEARNING NOTE — ASSISTANCE, NOT INDEPENDENT EVIDENCE\n\n'+session.lesson);$('learning').hidden=false;noteSeen=true;if($('assistance').value==='independent')$('assistance').value='guided';const e=expose(state,problemId,undefined,'lessonSeenAt');e.lessonContentVersion=course.instructionVersion;persist('Learning note opened; assistance exposure recorded.');};
  $('save').onclick=()=>{
   const answer=$('answer').value.trim(),minutes=Number($('minutes').value);if(!answer){tell('Record your working or attempted reasoning before saving.');return;}if(answer.length>100000||!Number.isFinite(minutes)||minutes<0||minutes>100000){tell('Check answer length and minutes.');return;}
-  const referenceSeenBefore=!!state.exposures[problemId]?.referenceSeenAt;
+  const referenceSeenBefore=!!answerExposureAt(state,problemId);
   const assistance=referenceSeenBefore?'revealed':noteSeen&&$('assistance').value==='independent'?'guided':$('assistance').value;
   const a={id:uuid(),problemId,at:new Date().toISOString(),answer,assistance,minutes,result:'unreviewed',error:'',referenceSeenBefore,noteSeenDuringAttempt:noteSeen,contractHash:session.contractHash,assessmentFingerprint:course.assessmentFingerprints[problemId]};
   state.attempts.push(a);lastSaved=a.id;$('reveal').disabled=false;$('review').disabled=false;persist('Attempt saved. No mastery clearance was granted.');renderHistory();renderQueue();renderModuleEvidence();
@@ -91,7 +91,7 @@ async function init(){
  };
  $('copyFreshProbe').onclick=()=>copy(freshProbePacket(course,session));
  $('export').onclick=()=>download('t22-elite-study-record.json',JSON.stringify(state,null,2));
- $('import').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>15000000)throw Error('Evidence file is too large');const incoming=validateEvidence(JSON.parse(await file.text()),course);state=mergeEvidence(state,incoming,course);persist('Evidence merged; existing attempts retained.');renderHistory();renderQueue();renderModuleEvidence();}catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}};
+ $('import').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>15000000)throw Error('Evidence file is too large');const incoming=validateEvidence(JSON.parse(await file.text()),course);state=mergeEvidence(state,incoming,course);const migrated=migrateHistoricalLessonAnswerExposure(state,course);persist(migrated?'Evidence merged; legacy answer-containing lesson exposure migrated conservatively.':'Evidence merged; existing attempts retained.');renderHistory();renderQueue();renderModuleEvidence();}catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}};
  if(storageOK)tell(`Ready: ${course.sessions.length} authored M01 sessions, ${Object.keys(course.problems).length} fixed tasks, 65-module roadmap.`);
 }
 init().catch(e=>tell('T22 Elite course could not start: '+e.message));

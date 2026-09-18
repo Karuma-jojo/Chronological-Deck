@@ -15,6 +15,9 @@ export function applyCourseOverrides(course,keys,patch){
  }
  course.instructionalAudit=patch.prerequisiteAudit||{};
  course.claimCoverage=patch.coverage||{};
+ course.instructionSeparation=patch.instructionSeparation||{};
+ course.historicalLessonAnswerOverlap=patch.historicalLessonAnswerOverlap||null;
+ course.instructionVersion=patch.instructionVersion||null;
  course.authoringPolicy=patch.authoringPolicy||null;
  return course;
 }

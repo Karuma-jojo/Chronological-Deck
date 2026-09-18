@@ -1,84 +1,978 @@
 {
-  "version": "m01-repairs-1.1",
-  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state.",
+  "version": "m01-repairs-1.2-a07",
+  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts.",
   "lessons": {
-    "T22V3::T22E-FND01::S01@1": "A signed number has a sign and a magnitude. On the number line, farther left means smaller, so −8<−3. Read a numerical expression from its grouping outward: parentheses first, then powers, then multiplication/division, then addition/subtraction. A leading minus outside a power is applied after the power unless the negative base is parenthesized. Worked example: −5−[2−(−3)]+2² = −5−5+4 = −6. Guided check: evaluate −2³+(−2)³−[4−(−1)] and predict the sign before calculating.",
-    "T22V3::T22E-FND01::S02@1": "A fraction a/b is one number, with b≠0. Equivalent fractions come from multiplying numerator and denominator by the same nonzero factor. Addition/subtraction needs a common unit, so use a common denominator; multiplication multiplies numerators and denominators; division by a nonzero fraction multiplies by its reciprocal. Worked example: 3/4+5/6 = 9/12+10/12 = 19/12, while (3/4)(8/9)=2/3 and (3/4)÷(9/8)=(3/4)(8/9)=2/3. Guided check: reduce 18/24, then compute 5/6−1/4 and (5/6)(3/10) exactly.",
-    "T22V3::T22E-FND01::S03@1": "A ratio compares multiplicatively. The ratio 6:9 reduces to 2:3 because both entries are divided by3; order matters. A rate is a ratio with units, such as 120 messages/minute. Direct proportion means the same scale factor applies to all parts. Worked example: a 2:3 mixture with total ₹25,000 has five parts, so one part is ₹5,000 and the amounts are ₹10,000 and ₹15,000. Guided check: reduce 12:18:30, then allocate a total of ₹50,000 in that reduced ratio.",
-    "T22V3::T22E-FND01::S04@1": "Percent means per hundred: 8%=0.08. To find p% of a base B, multiply B by p/100. Relative percent change uses the original value in the denominator; percentage-point change subtracts displayed percentages. Worked example: 20%→25% is +5 percentage points but a relative increase of (25−20)/20=25%. Guided check: for 40%→46%, compute both changes and write 46% as a decimal.",
-    "T22V3::T22E-FND01::S05@1": "Sequential percentage changes are multipliers, not labels to add. +10% means ×1.10 and −10% means ×0.90, so ₹100 becomes ₹99, a net −1%. To reverse a known move, divide by its multiplier: if ₹800 is after a20% reduction, the original was 800/0.8=₹1,000. Worked example: +20% then −25% gives multiplier1.2×0.75=0.9. Guided check: starting from ₹2,000, apply +15% then −10%, and compute the net percent change.",
-    "T22V3::T22E-FND01::S06@1": "Treat units like algebraic factors. A conversion factor equals one in different units, so unwanted units cancel. Worked example: 72 km/h ×(1000 m/1 km)×(1 h/3600 s)=20 m/s. Quantities can be added only when dimensions match; speed+time is meaningless because length/time cannot be added to time. A pure ratio or percentage is dimensionless unless a definition supplies units. Guided check: convert 90 km/h to m/s and explain why speed×time has units of distance.",
-    "T22V3::T22E-FND01::S07@1": "Estimate before exact calculation. Replace awkward numbers by nearby friendly values, track decimal scale separately, and say whether your estimate is a rough central estimate or a genuine upper/lower bound. Worked example: 497×61≈500×60=30,000, so an exact answer around thirty thousand is plausible; three million is not. Guided check: estimate 2,980,000×0.0021 without scientific notation, give a plausible range, then explain which decimal-place mistakes your estimate would catch.",
-    "T22V3::T22E-FND01::S08@1": "For multiplication, a^m a^n=a^(m+n); for a≠0, a^(−n)=1/a^n. Rational exponents encode roots: in ordinary real-number cases, a^(m/n)=(nth root of a)^m; when n is even, a must be nonnegative for a real principal root. Thus 16^(3/4)=(fourth root16)^3=2³=8 and 27^(2/3)=(cube root27)²=9. The principal square root is nonnegative, so √(a²)=|a|. Scientific notation is c×10^k with 1≤|c|<10. Worked example: (3×10⁴)(2×10⁻³)=6×10¹=60. Guided check: evaluate 81^(3/4), 8^(−2/3), and normalize 42×10⁵.",
-    "T22V3::T22E-FND01::S09@1": "A variable is a placeholder for a complete value. Substitute with parentheses around negatives, distribute to every term, and combine only like terms. Worked example: if x=−2, then 3x²−x =3(−2)²−(−2)=14. Also 2(a+3)−(a−1)=2a+6−a+1=a+7. A numerical check can catch mistakes but does not prove an identity for every input. Guided check: simplify 3(2x−5)−2(x+1), then compare both forms at x=−1.",
-    "T22V3::T22E-FND01::S10@1": "Factoring reverses expansion. First remove a greatest common factor. For a non-monic quadratic ax²+bx+c, one beginner-safe route is the ac method: find two numbers whose product is ac and sum is b, split bx, then factor by grouping. Worked example: 6x²−x−2 has ac=−12; 3 and−4 sum to−1, so 6x²+3x−4x−2=3x(2x+1)−2(2x+1)=(3x−2)(2x+1). Difference of squares gives A²−B²=(A−B)(A+B). Always expand back to verify. You may factor a common factor from a sum, but you may not cancel a term across addition. Guided check: factor 8x²+10x+3 and verify by expansion.",
-    "T22V3::T22E-FND01::S11@1": "An equation is a constraint: legal transformations must preserve the same solution set. Add/subtract the same quantity on both sides, or multiply/divide both sides by the same known nonzero quantity. Worked example: (x−1)/3+2=5. Subtract2 to get (x−1)/3=3, multiply by3 to get x−1=9, then x=10; substitute into the original to check. Guided check: solve (2x+1)/4−3=2 with a visible reversible chain.",
-    "T22V3::T22E-FND01::S12@1": "Treat a formula as an equation whose requested symbol is the unknown and whose other symbols are parameters. Division introduces a condition, and a rearranged form can exclude a parameter branch that the original equation still admits. Worked example: y=kx+b gives x=(y−b)/k only when k≠0; if k=0 the original becomes y=b and must be considered separately. Verify rearrangements by substituting them back into the original relation. Guided check: from A=P(1+r), solve for P and describe separately what happens when 1+r=0.",
-    "T22V3::T22E-FND01::S13@1": "A system asks for one pair satisfying every constraint simultaneously. Substitution replaces a variable by an equivalent expression; elimination adds/subtracts scaled equations to remove a variable. Worked example: x+y=9 and x−y=1. Adding gives2x=10, so x=5 and y=4; both originals check. Guided check: solve 2x+y=11 and x−y=1 by elimination, then verify both equations.",
-    "T22V3::T22E-FND01::S14@1": "Inequalities describe sets, not single answers. Adding/subtracting the same quantity preserves order; multiplying/dividing by a positive number preserves order; multiplying/dividing by a negative number reverses it. Interval notation records endpoints: [a,b] includes both, (a,b) excludes both, mixed brackets include only the square-bracket endpoint, and infinity always uses a parenthesis, e.g. [3,∞) or (−∞,2). Worked example: −2x>6 gives x<−3, written (−∞,−3). Guided check: solve 5−3x≤14 and give interval notation plus one inside and one outside test point.",
-    "T22V3::T22E-FND01::S15@1": "Absolute value is distance: |x| is distance from0 and |x−a| is distance from a. For c≥0, |u|≤c means −c≤u≤c, while |u|>c means u<−c or u>c. Because absolute value is always nonnegative, |u|<c is impossible when c≤0 if the inequality is strict at0, while |u|≥c is automatic for every real u when c<0. Worked example: |x−3|≤2 gives1≤x≤5. Guided check: solve |2x+1|>5, then decide |x−4|<−1 and |x−4|≥−1 immediately from nonnegativity.",
-    "T22V3::T22E-FND01::S16@1": "Put a quadratic in ax²+bx+c=0 form with a≠0. Factoring plus the zero-product property is efficient when factors are visible; never divide away a factor before handling its zero case. When factoring is inconvenient, use x=(−b±√(b²−4ac))/(2a). The discriminant D=b²−4ac gives two real roots if D>0, one repeated real root if D=0, and no real roots if D<0. Worked example: 2x²+3x−1=0 has D=17, so x=(−3±√17)/4. Guided check: solve 3x²−2x−2=0 by the formula and classify x²+4x+7=0 by discriminant.",
-    "T22V3::T22E-FND01::S17@1": "A synthesis problem hides the chapter label. Start by naming quantities and units, estimate scale, translate percentage moves into multipliers, write one equation, solve it, and then recompute the full process as a check. Worked example: if C×1.05−100=20,900, then estimate C near20,000; solve1.05C=21,000 so C=20,000; substitution confirms. Guided check: a value rises8%, falls5%, then pays a fixed fee; write the symbolic final value and the break-even fee before inserting any numbers."
+    "T22V3::T22E-FND01::S01@1": "A signed number has a sign and a magnitude. On the number line, farther left means smaller. Read a numerical expression from its grouping outward: parentheses first, then powers, then multiplication/division, then addition/subtraction. A leading minus outside a power is applied after the power unless the negative base is parenthesized. Worked example: −6−[3−(−2)]+3² = −6−5+9 = −2. Guided check: evaluate −4²+(−4)²−[6−(−2)] and predict the sign before calculating.",
+    "T22V3::T22E-FND01::S02@1": "A fraction a/b is one number, with b≠0. Equivalent fractions come from multiplying numerator and denominator by the same nonzero factor. Addition/subtraction needs a common denominator; multiplication multiplies numerators and denominators; division by a nonzero fraction multiplies by its reciprocal. Worked example: 2/5+7/10=4/10+7/10=11/10; (4/7)(21/10)=6/5; and (5/8)÷(15/16)=(5/8)(16/15)=2/3. Guided check: reduce 21/35, then compute 7/12−1/8 and (4/9)(3/14) exactly.",
+    "T22V3::T22E-FND01::S03@1": "A ratio compares multiplicatively; order matters. A rate is a ratio with units. Direct proportion means the same scale factor applies to every part. Worked example: a 4:7 mixture with total ₹33,000 has eleven parts, so one part is ₹3,000 and the amounts are ₹12,000 and ₹21,000. Guided check: reduce 15:25:10, then allocate ₹60,000 in that reduced ratio and verify the parts sum to the total.",
+    "T22V3::T22E-FND01::S04@1": "Percent means per hundred. Relative percent change uses the original value in the denominator; percentage-point change subtracts displayed percentages. Worked example: 30%→36% is +6 percentage points but a relative increase of 6/30=20%. Guided check: for 55%→44%, report the percentage-point and relative changes, then write 44% as a decimal and 0.625 as a fraction and percentage.",
+    "T22V3::T22E-FND01::S05@1": "Sequential percentage changes are multipliers, not labels to add. To reverse a known move, divide by its multiplier. Worked example: ₹2,500 rising 8% and then falling 20% becomes 2500×1.08×0.80=₹2,160, a net −13.6%. Guided check: start from ₹3,000, apply +12% then −7%, compute the final value and net change, and explain why the two labels should not simply be added.",
+    "T22V3::T22E-FND01::S06@1": "Treat units like algebraic factors. Conversion factors equal one, so unwanted units cancel. Quantities can be added only when dimensions match, while a pure ratio or percentage is dimensionless unless a definition supplies units. Worked example: 54 km/h×(1000 m/1 km)×(1 h/3600 s)=15 m/s. Guided check: convert 108 km/h to m/s, then explain from units alone why speed×time has the dimension of distance.",
+    "T22V3::T22E-FND01::S07@1": "Estimate before exact calculation. Replace awkward numbers by nearby friendly values, track decimal scale separately, and distinguish a rough central estimate from a proved bound. Worked example: 603×48≈600×50=30,000, so an exact answer near thirty thousand is plausible whereas three million is not. Guided check: estimate 4,120,000×0.0019, give a plausible range, then describe a decimal-place error your estimate would catch.",
+    "T22V3::T22E-FND01::S08@1": "Exponent laws apply to multiplicative structure. For a≠0, a^(−n)=1/a^n. Rational exponents encode roots in their real domain, and the principal square root is nonnegative, so √(a²)=|a|. Scientific notation is c×10^k with 1≤|c|<10. Worked example: 32^(2/5)=4, 125^(−1/3)=1/5, and (4×10^5)(3×10^−2)=1.2×10^4. Guided check: evaluate 64^(2/3), 16^(−3/4), and normalize 37×10^6.",
+    "T22V3::T22E-FND01::S09@1": "A variable is a placeholder for a complete value. Substitute with parentheses around negatives, distribute to every term, and combine only like terms. Worked example: if x=−3, then 2x²+x=2(−3)²+(−3)=15; also 3(a+2)−2(a−4)=a+14. A numerical check can catch mistakes but does not prove an identity for every input. Guided check: simplify 5(2x−1)−4(x+3), then compare both forms at x=−2.",
+    "T22V3::T22E-FND01::S10@1": "Factoring reverses expansion. First remove a greatest common factor. For a non-monic quadratic ax²+bx+c, one beginner-safe route is the ac method: find two numbers whose product is ac and sum is b, split bx, then factor by grouping. Worked example: 12x²+x−6 has ac=−72; 9 and −8 sum to1, so 12x²+9x−8x−6=3x(4x+3)−2(4x+3)=(3x−2)(4x+3). Difference of squares gives A²−B²=(A−B)(A+B). Guided check: factor 10x²+7x+1 by splitting the middle term and verify by expansion.",
+    "T22V3::T22E-FND01::S11@1": "An equation is a constraint: legal transformations preserve the same solution set. Add/subtract the same quantity on both sides, or multiply/divide both sides by the same known nonzero quantity. Worked example: (x+2)/5−1=3 gives (x+2)/5=4, then x+2=20, so x=18; substitution checks it. Guided check: solve (3x−2)/7+4=5 with a visible reversible chain and verify the candidate.",
+    "T22V3::T22E-FND01::S12@1": "Treat a formula as an equation whose requested symbol is the unknown and whose other symbols are parameters. Division introduces a condition, and a rearranged form can exclude a parameter branch that the original equation still admits. Worked example: F=ma gives m=F/a only for a≠0; when a=0 the original relation requires F=0 and m is not determined by division. Guided check: from y=c+dt, solve for d and separately describe the t=0 branch.",
+    "T22V3::T22E-FND01::S13@1": "A system asks for one pair satisfying every constraint simultaneously. Substitution replaces a variable by an equivalent expression; elimination combines equations to remove a variable. Worked example: x+y=11 and 2x−y=7. Adding gives3x=18, so x=6 and y=5; both originals check. Guided check: solve 3x+2y=16 and x−y=2 by elimination, then verify both equations.",
+    "T22V3::T22E-FND01::S14@1": "Inequalities describe sets. Addition/subtraction preserves order; positive scaling preserves order; negative scaling reverses it. Interval notation uses square brackets for included finite endpoints, parentheses for excluded endpoints, and parentheses at infinity. Worked example: −5x≥20 gives x≤−4, written (−∞,−4]. Guided check: solve 4−2x>10, give interval notation, and test one point inside and one outside your solution.",
+    "T22V3::T22E-FND01::S15@1": "Absolute value is distance: |x| is distance from0 and |x−a| is distance from a. For c≥0, |u|≤c gives a bounded interval while |u|>c gives two outside rays. Absolute value is always nonnegative, so negative thresholds can make a condition impossible or automatic. Worked example: |x−6|≤3 gives3≤x≤9. Guided check: solve |3x+2|>8, then decide |y+1|<−3 and |y+1|≥−3 immediately from nonnegativity.",
+    "T22V3::T22E-FND01::S16@1": "Put a quadratic in ax²+bx+c=0 form with a≠0. Factoring plus the zero-product property is efficient when factors are visible; when it is inconvenient, use x=(−b±√(b²−4ac))/(2a). The discriminant D=b²−4ac classifies the number of real roots. Worked example: 3x²+x−1=0 has D=13, so x=(−1±√13)/6. Guided check: solve 2x²−5x−2=0 by the formula and classify x²+6x+10=0 by its discriminant.",
+    "T22V3::T22E-FND01::S17@1": "A synthesis problem hides the chapter label. Name quantities and units, estimate scale, translate percentage moves into multipliers, write an equation, solve it, and recompute the process as a check. Worked example: if C×1.08−150=21,450, then 1.08C=21,600 and C=20,000; substitution confirms. Guided check: a value rises7%, falls3%, then pays a fixed fee; write the symbolic final value and a break-even-fee inequality before inserting any numbers."
   },
   "problems": {
-    "T22V3::T22E-FND01::S01-M@1": {"prompt": "Evaluate exactly: −18 − [7 − 3(−4)] + 2^3. Then order from smallest to largest: −3, −2.75, −2.7, −2.6. Give one quick sign/magnitude sanity check for each part.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S01-T@1": {"prompt": "Without a calculator, evaluate −3^2 + (−3)^2 − 2[5−(−1)]. Then decide which is larger: −2.75 or −2.8, and justify using number-line order rather than calculator authority.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S02-T@1": {"prompt": "Which is larger, 17/28 or 5/8? Then compute and reduce (5/6)(3/10) explicitly, and use that result to evaluate 1 − [2/3 − (5/6)(3/10)] exactly.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S03-T@1": {"prompt": "A risk-budget ratio is quoted Equity:Bond:Cash = 10:6:4. Reduce it to the simplest whole-number ratio. If the total budget is ₹84,000, allocate each part and state the equity amount as a fraction of the total.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S04-T@1": {"prompt": "A fill probability rises from 40% to 46%. Give the percentage-point increase and relative percent increase. Write 46% as a decimal. Then convert 0.375 to both a fraction in lowest terms and a percentage.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S06-M@1": {"prompt": "Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S07-M@1": {"prompt": "Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S10-T@1": {"prompt": "Factor completely 12x²−18x, then factor x²+5x+6 and 4a²−12ab+9b². Name the identity used in the last case. Finally, can an x be 'cancelled' from x²+x to leave x+1 without first writing a product? Explain.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S12-M@1": {"prompt": "Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S12-T@1": {"prompt": "Given q=(a−b)/(a+b) with a+b≠0, solve for a in terms of b and q. State the condition required by the solved form, describe the original q=1 branch separately, and verify the ordinary rearrangement by substitution.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S13-T@1": {"prompt": "A desk wants positions x and y satisfying x+y=14 and 3x−2y=17. Solve by elimination and verify the pair in both original constraints.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S14-M@1": {"prompt": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S15-T@1": {"prompt": "Solve |x+2|>4 and interpret it as a distance from −2. Briefly state what |x| measures. Then decide the solution sets of |3x−1|<−2 and |3x−1|≥−2 without case-heavy algebra.", "obligationVersion": 2},
-    "T22V3::T22E-FND01::S16-M@1": {"prompt": "Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.", "obligationVersion": 2}
+    "T22V3::T22E-FND01::S01-M@1": {
+      "prompt": "Evaluate exactly: −18 − [7 − 3(−4)] + 2^3. Then order from smallest to largest: −3, −2.75, −2.7, −2.6. Give one quick sign/magnitude sanity check for each part.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S01-T@1": {
+      "prompt": "Without a calculator, evaluate −3^2 + (−3)^2 − 2[5−(−1)]. Then decide which is larger: −2.75 or −2.8, and justify using number-line order rather than calculator authority.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S02-T@1": {
+      "prompt": "Which is larger, 17/28 or 5/8? Then compute and reduce (5/6)(3/10) explicitly, and use that result to evaluate 1 − [2/3 − (5/6)(3/10)] exactly.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S03-T@1": {
+      "prompt": "A risk-budget ratio is quoted Equity:Bond:Cash = 10:6:4. Reduce it to the simplest whole-number ratio. If the total budget is ₹84,000, allocate each part and state the equity amount as a fraction of the total.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S04-T@1": {
+      "prompt": "A fill probability rises from 40% to 46%. Give the percentage-point increase and relative percent increase. Write 46% as a decimal. Then convert 0.375 to both a fraction in lowest terms and a percentage.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S06-M@1": {
+      "prompt": "Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S07-M@1": {
+      "prompt": "Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S10-T@1": {
+      "prompt": "Factor completely 12x²−18x, then factor x²+5x+6 and 4a²−12ab+9b². Name the identity used in the last case. Finally, can an x be 'cancelled' from x²+x to leave x+1 without first writing a product? Explain.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S12-M@1": {
+      "prompt": "Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S12-T@1": {
+      "prompt": "Given q=(a−b)/(a+b) with a+b≠0, solve for a in terms of b and q. State the condition required by the solved form, describe the original q=1 branch separately, and verify the ordinary rearrangement by substitution.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S13-T@1": {
+      "prompt": "A desk wants positions x and y satisfying x+y=14 and 3x−2y=17. Solve by elimination and verify the pair in both original constraints.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S14-M@1": {
+      "prompt": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S15-T@1": {
+      "prompt": "Solve |x+2|>4 and interpret it as a distance from −2. Briefly state what |x| measures. Then decide the solution sets of |3x−1|<−2 and |3x−1|≥−2 without case-heavy algebra.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S16-M@1": {
+      "prompt": "Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.",
+      "obligationVersion": 2
+    }
   },
   "evaluators": {
-    "T22V3::T22E-FND01::S01-M@1": {"reference": "Inside brackets: 3(−4)=−12, so 7−(−12)=19. Thus −18−19+8=−29. Ordering: −3 < −2.75 < −2.7 < −2.6. Sanity: the bracket is positive and large, so the expression should lie well below −18; all four ordered values lie between −3 and −2.6.", "rubric": [{"points":3,"criterion":"Nested expression is evaluated with correct grouping and sign logic."},{"points":3,"criterion":"All four signed decimals/integers are ordered correctly."},{"points":2,"criterion":"Ordering is justified by number-line/sign reasoning."},{"points":2,"criterion":"A sensible magnitude/sign sanity check is stated."}]},
-    "T22V3::T22E-FND01::S01-T@1": {"reference": "−3²=−9 while (−3)²=9. The bracket is6, so the expression is −9+9−12=−12. Also −2.75 is larger than −2.8 because it lies to the right on the number line.", "rubric": [{"points":5,"criterion":"Correctly distinguishes −3² from (−3)² and gets −12."},{"points":2,"criterion":"Correctly identifies −2.75 as larger."},{"points":3,"criterion":"Justification uses number-line order rather than calculator authority."}]},
-    "T22V3::T22E-FND01::S02-T@1": {"reference": "17/28=34/56 and5/8=35/56, so5/8 is larger. (5/6)(3/10)=15/60=1/4. Then 2/3−1/4=5/12 and1−5/12=7/12.", "rubric": [{"points":3,"criterion":"Comparison is correct and justified exactly."},{"points":2,"criterion":"Fraction product is explicitly reduced to1/4."},{"points":3,"criterion":"Nested expression is simplified to7/12."},{"points":2,"criterion":"All cancellation/common-denominator steps are valid."}]},
-    "T22V3::T22E-FND01::S03-T@1": {"reference": "10:6:4 reduces by2 to5:3:2. Total ratio parts=10, so one part=₹8,400. Equity=₹42,000, Bond=₹25,200, Cash=₹16,800. Equity is5/10=1/2 of total.", "rubric": [{"points":2,"criterion":"Reduces10:6:4 to5:3:2 while preserving order."},{"points":2,"criterion":"Recognizes10 total reduced-ratio parts."},{"points":4,"criterion":"All three allocations are correct."},{"points":1,"criterion":"Equity fraction is1/2."},{"points":1,"criterion":"Amounts sum back to₹84,000."}]},
-    "T22V3::T22E-FND01::S04-T@1": {"reference": "Increase=6 percentage points. Relative increase=6/40=15%. 46%=0.46. Also0.375=375/1000=3/8=37.5%.", "rubric": [{"points":4,"criterion":"6 percentage points and15% relative increase are both correct."},{"points":2,"criterion":"46% is correctly written as0.46."},{"points":3,"criterion":"0.375 is converted to3/8 and37.5%."},{"points":1,"criterion":"The original40% is used as the relative-change base."}]},
-    "T22V3::T22E-FND01::S06-M@1": {"reference": "72×1000/3600=20 m/s. Fee=0.0025×80000=₹200. The number0.25%=0.0025 is a pure ratio, so it is dimensionless. speed+time is invalid because length/time cannot be added to time, and neither side has the length dimension required for distance.", "rubric": [{"points":3,"criterion":"72 km/h is correctly converted to20 m/s with unit cancellation."},{"points":2,"criterion":"Fee₹200 is correct."},{"points":2,"criterion":"Explains that the percentage is dimensionless."},{"points":2,"criterion":"Dimensional defect in speed+time is correctly identified."},{"points":1,"criterion":"Units are shown rather than stripped early."}]},
-    "T22V3::T22E-FND01::S07-M@1": {"reference": "A rough central estimate is2,000,000×0.003≈6,000; a plausible rough range such as5,000–7,000 is reasonable but is not a proved bound. Exact:1,980,000×0.0031=6,138. Therefore61,380 is implausible by a factor of10.", "rubric": [{"points":3,"criterion":"Produces a reasonable estimate around6,000."},{"points":1,"criterion":"Correctly labels the estimate/range as rough rather than a strict proved bound."},{"points":3,"criterion":"Exact result6,138 is correct."},{"points":2,"criterion":"Rejects61,380 as about10× too large."},{"points":1,"criterion":"Explains the decimal-scale sanity check."}]},
-    "T22V3::T22E-FND01::S10-T@1": {"reference": "12x²−18x=6x(2x−3). x²+5x+6=(x+2)(x+3). 4a²−12ab+9b²=(2a−3b)², a perfect-square identity. You cannot cancel an x across x²+x as written; first factor x²+x=x(x+1). Cancellation only makes sense inside an appropriate quotient and with the cancelled factor nonzero.", "rubric": [{"points":2,"criterion":"Extracts GCF:6x(2x−3)."},{"points":2,"criterion":"Factors x²+5x+6 correctly."},{"points":3,"criterion":"Recognizes (2a−3b)² and names/justifies the perfect-square identity."},{"points":3,"criterion":"Rejects illegal cancellation across addition and explains factorization/product requirement."}]},
-    "T22V3::T22E-FND01::S12-M@1": {"reference": "rV0=V1−V0, so V1=V0(1+r). For1+r≠0, V0=V1/(1+r). If r=−1, the original equation requires V1=0 and remains valid for any V0≠0; the solved V0 form is simply unavailable on that branch. Substituting V1/(1+r) into V0(1+r) recovers V1 when r≠−1.", "rubric": [{"points":2,"criterion":"Derives V1=V0(1+r)."},{"points":3,"criterion":"Derives V0=V1/(1+r) for r≠−1."},{"points":2,"criterion":"Retains original V0≠0 condition."},{"points":2,"criterion":"Correctly describes exceptional r=−1 branch: V1=0, any V0≠0."},{"points":1,"criterion":"Performs a valid substitution/recomposition check."}]},
-    "T22V3::T22E-FND01::S12-T@1": {"reference": "q(a+b)=a−b gives a(q−1)=−b(1+q), so for q≠1, a=b(1+q)/(1−q). The original requires a+b≠0; under this ordinary parameterization that also forces b≠0. If q=1, the original equation becomes a+b=a−b, so b=0; then any nonzero a is valid because a+b=a≠0. Substitution verifies the q≠1 formula.", "rubric": [{"points":4,"criterion":"Correct ordinary rearrangement a=b(1+q)/(1−q)."},{"points":2,"criterion":"States q≠1 for the solved form and retains original denominator condition."},{"points":3,"criterion":"Correctly describes q=1 branch: b=0 with any nonzero a."},{"points":1,"criterion":"Performs a valid substitution/recomposition check."}]},
-    "T22V3::T22E-FND01::S13-T@1": {"reference": "Eliminate y by doubling x+y=14 to2x+2y=28 and add to3x−2y=17:5x=45, so x=9 and y=5. Checks:9+5=14 and27−10=17.", "rubric": [{"points":4,"criterion":"Uses a valid elimination operation."},{"points":3,"criterion":"Gets x=9,y=5."},{"points":3,"criterion":"Verifies both original constraints."}]},
-    "T22V3::T22E-FND01::S14-M@1": {"reference": "First multiply by positive10:2(2x−3)≤5(x+4), so4x−6≤5x+20 and x≥−26, i.e.[−26,∞). For example0 satisfies and−27 fails. Second:−6x+3>9, so−6x>6; divide by−6 and reverse: x<−1, i.e.(−∞,−1). For example−2 satisfies and0 fails.", "rubric": [{"points":3,"criterion":"First inequality gives [−26,∞) with correct inclusive boundary."},{"points":3,"criterion":"Second gives (−∞,−1) and correctly reverses direction."},{"points":2,"criterion":"Interval/ray notation is correct."},{"points":2,"criterion":"Inside/outside test points correctly verify both solution descriptions."}]},
-    "T22V3::T22E-FND01::S15-T@1": {"reference": "|x+2|>4 means distance from−2 exceeds4, so x<−6 or x>2. |x| is distance from0. Since absolute value is always nonnegative, |3x−1|<−2 has no real solution, while |3x−1|≥−2 is true for every real x.", "rubric": [{"points":4,"criterion":"Gets x<−6 or x>2 and interprets distance from−2."},{"points":2,"criterion":"States |x| is distance from0."},{"points":2,"criterion":"Negative-threshold strict inequality is correctly empty."},{"points":2,"criterion":"Negative-threshold ≥ inequality is correctly all real numbers, justified by nonnegativity."}]},
-    "T22V3::T22E-FND01::S16-M@1": {"reference": "x²−7x+12=(x−3)(x−4), so x=3,4. For2x²+3x−1=0, D=3²−4(2)(−1)=17, so x=(−3±√17)/4. For x²+2x+5=0, D=4−20=−16<0, hence no real roots.", "rubric": [{"points":3,"criterion":"First quadratic is factored and solved as3,4 using zero-product logic."},{"points":4,"criterion":"Second quadratic is solved exactly as(−3±√17)/4 using a valid general method."},{"points":2,"criterion":"Third discriminant is−16 and no real roots is concluded."},{"points":1,"criterion":"No valid root is cancelled away and formula assumptions are respected."}]}
+    "T22V3::T22E-FND01::S01-M@1": {
+      "reference": "Inside brackets: 3(−4)=−12, so 7−(−12)=19. Thus −18−19+8=−29. Ordering: −3 < −2.75 < −2.7 < −2.6. Sanity: the bracket is positive and large, so the expression should lie well below −18; all four ordered values lie between −3 and −2.6.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Nested expression is evaluated with correct grouping and sign logic."
+        },
+        {
+          "points": 3,
+          "criterion": "All four signed decimals/integers are ordered correctly."
+        },
+        {
+          "points": 2,
+          "criterion": "Ordering is justified by number-line/sign reasoning."
+        },
+        {
+          "points": 2,
+          "criterion": "A sensible magnitude/sign sanity check is stated."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S01-T@1": {
+      "reference": "−3²=−9 while (−3)²=9. The bracket is6, so the expression is −9+9−12=−12. Also −2.75 is larger than −2.8 because it lies to the right on the number line.",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Correctly distinguishes −3² from (−3)² and gets −12."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly identifies −2.75 as larger."
+        },
+        {
+          "points": 3,
+          "criterion": "Justification uses number-line order rather than calculator authority."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S02-T@1": {
+      "reference": "17/28=34/56 and5/8=35/56, so5/8 is larger. (5/6)(3/10)=15/60=1/4. Then 2/3−1/4=5/12 and1−5/12=7/12.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Comparison is correct and justified exactly."
+        },
+        {
+          "points": 2,
+          "criterion": "Fraction product is explicitly reduced to1/4."
+        },
+        {
+          "points": 3,
+          "criterion": "Nested expression is simplified to7/12."
+        },
+        {
+          "points": 2,
+          "criterion": "All cancellation/common-denominator steps are valid."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S03-T@1": {
+      "reference": "10:6:4 reduces by2 to5:3:2. Total ratio parts=10, so one part=₹8,400. Equity=₹42,000, Bond=₹25,200, Cash=₹16,800. Equity is5/10=1/2 of total.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Reduces10:6:4 to5:3:2 while preserving order."
+        },
+        {
+          "points": 2,
+          "criterion": "Recognizes10 total reduced-ratio parts."
+        },
+        {
+          "points": 4,
+          "criterion": "All three allocations are correct."
+        },
+        {
+          "points": 1,
+          "criterion": "Equity fraction is1/2."
+        },
+        {
+          "points": 1,
+          "criterion": "Amounts sum back to₹84,000."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S04-T@1": {
+      "reference": "Increase=6 percentage points. Relative increase=6/40=15%. 46%=0.46. Also0.375=375/1000=3/8=37.5%.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "6 percentage points and15% relative increase are both correct."
+        },
+        {
+          "points": 2,
+          "criterion": "46% is correctly written as0.46."
+        },
+        {
+          "points": 3,
+          "criterion": "0.375 is converted to3/8 and37.5%."
+        },
+        {
+          "points": 1,
+          "criterion": "The original40% is used as the relative-change base."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S06-M@1": {
+      "reference": "72×1000/3600=20 m/s. Fee=0.0025×80000=₹200. The number0.25%=0.0025 is a pure ratio, so it is dimensionless. speed+time is invalid because length/time cannot be added to time, and neither side has the length dimension required for distance.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "72 km/h is correctly converted to20 m/s with unit cancellation."
+        },
+        {
+          "points": 2,
+          "criterion": "Fee₹200 is correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that the percentage is dimensionless."
+        },
+        {
+          "points": 2,
+          "criterion": "Dimensional defect in speed+time is correctly identified."
+        },
+        {
+          "points": 1,
+          "criterion": "Units are shown rather than stripped early."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S07-M@1": {
+      "reference": "A rough central estimate is2,000,000×0.003≈6,000; a plausible rough range such as5,000–7,000 is reasonable but is not a proved bound. Exact:1,980,000×0.0031=6,138. Therefore61,380 is implausible by a factor of10.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Produces a reasonable estimate around6,000."
+        },
+        {
+          "points": 1,
+          "criterion": "Correctly labels the estimate/range as rough rather than a strict proved bound."
+        },
+        {
+          "points": 3,
+          "criterion": "Exact result6,138 is correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Rejects61,380 as about10× too large."
+        },
+        {
+          "points": 1,
+          "criterion": "Explains the decimal-scale sanity check."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S10-T@1": {
+      "reference": "12x²−18x=6x(2x−3). x²+5x+6=(x+2)(x+3). 4a²−12ab+9b²=(2a−3b)², a perfect-square identity. You cannot cancel an x across x²+x as written; first factor x²+x=x(x+1). Cancellation only makes sense inside an appropriate quotient and with the cancelled factor nonzero.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Extracts GCF:6x(2x−3)."
+        },
+        {
+          "points": 2,
+          "criterion": "Factors x²+5x+6 correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Recognizes (2a−3b)² and names/justifies the perfect-square identity."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects illegal cancellation across addition and explains factorization/product requirement."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S12-M@1": {
+      "reference": "rV0=V1−V0, so V1=V0(1+r). For1+r≠0, V0=V1/(1+r). If r=−1, the original equation requires V1=0 and remains valid for any V0≠0; the solved V0 form is simply unavailable on that branch. Substituting V1/(1+r) into V0(1+r) recovers V1 when r≠−1.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Derives V1=V0(1+r)."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives V0=V1/(1+r) for r≠−1."
+        },
+        {
+          "points": 2,
+          "criterion": "Retains original V0≠0 condition."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly describes exceptional r=−1 branch: V1=0, any V0≠0."
+        },
+        {
+          "points": 1,
+          "criterion": "Performs a valid substitution/recomposition check."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S12-T@1": {
+      "reference": "q(a+b)=a−b gives a(q−1)=−b(1+q), so for q≠1, a=b(1+q)/(1−q). The original requires a+b≠0; under this ordinary parameterization that also forces b≠0. If q=1, the original equation becomes a+b=a−b, so b=0; then any nonzero a is valid because a+b=a≠0. Substitution verifies the q≠1 formula.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Correct ordinary rearrangement a=b(1+q)/(1−q)."
+        },
+        {
+          "points": 2,
+          "criterion": "States q≠1 for the solved form and retains original denominator condition."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly describes q=1 branch: b=0 with any nonzero a."
+        },
+        {
+          "points": 1,
+          "criterion": "Performs a valid substitution/recomposition check."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S13-T@1": {
+      "reference": "Eliminate y by doubling x+y=14 to2x+2y=28 and add to3x−2y=17:5x=45, so x=9 and y=5. Checks:9+5=14 and27−10=17.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Uses a valid elimination operation."
+        },
+        {
+          "points": 3,
+          "criterion": "Gets x=9,y=5."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies both original constraints."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S14-M@1": {
+      "reference": "First multiply by positive10:2(2x−3)≤5(x+4), so4x−6≤5x+20 and x≥−26, i.e.[−26,∞). For example0 satisfies and−27 fails. Second:−6x+3>9, so−6x>6; divide by−6 and reverse: x<−1, i.e.(−∞,−1). For example−2 satisfies and0 fails.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "First inequality gives [−26,∞) with correct inclusive boundary."
+        },
+        {
+          "points": 3,
+          "criterion": "Second gives (−∞,−1) and correctly reverses direction."
+        },
+        {
+          "points": 2,
+          "criterion": "Interval/ray notation is correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Inside/outside test points correctly verify both solution descriptions."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S15-T@1": {
+      "reference": "|x+2|>4 means distance from−2 exceeds4, so x<−6 or x>2. |x| is distance from0. Since absolute value is always nonnegative, |3x−1|<−2 has no real solution, while |3x−1|≥−2 is true for every real x.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Gets x<−6 or x>2 and interprets distance from−2."
+        },
+        {
+          "points": 2,
+          "criterion": "States |x| is distance from0."
+        },
+        {
+          "points": 2,
+          "criterion": "Negative-threshold strict inequality is correctly empty."
+        },
+        {
+          "points": 2,
+          "criterion": "Negative-threshold ≥ inequality is correctly all real numbers, justified by nonnegativity."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S16-M@1": {
+      "reference": "x²−7x+12=(x−3)(x−4), so x=3,4. For2x²+3x−1=0, D=3²−4(2)(−1)=17, so x=(−3±√17)/4. For x²+2x+5=0, D=4−20=−16<0, hence no real roots.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "First quadratic is factored and solved as3,4 using zero-product logic."
+        },
+        {
+          "points": 4,
+          "criterion": "Second quadratic is solved exactly as(−3±√17)/4 using a valid general method."
+        },
+        {
+          "points": 2,
+          "criterion": "Third discriminant is−16 and no real roots is concluded."
+        },
+        {
+          "points": 1,
+          "criterion": "No valid root is cancelled away and formula assumptions are respected."
+        }
+      ]
+    }
   },
   "prerequisiteAudit": {
-    "S01": [{"item":"signed arithmetic and parentheses","source":"entry readiness: whole-number arithmetic plus negative-number meaning; lesson gives operation hierarchy"},{"item":"integer powers such as 2^3 and −3^2","source":"just-in-time S01 lesson explicitly teaches power-before-leading-minus; only integer powers are used"}],
-    "S02": [{"item":"fraction notation, common denominators, reciprocal division","source":"S02 lesson teaches all before independent assessment"}],
-    "S03": [{"item":"colon ratio notation and compound units","source":"S03 lesson defines ratios/rates before assessment; fraction arithmetic from S02"}],
-    "S04": [{"item":"percent, decimal and percentage-point notation","source":"S04 lesson defines each; ratios/fractions from S02-S03"}],
-    "S05": [{"item":"percentage multipliers and reverse percentages","source":"S05 lesson derives multiplier method before assessment; percent meaning from S04"}],
-    "S06": [{"item":"conversion-factor chains and dimensional compatibility","source":"S06 lesson explicitly demonstrates cancellation before assessment; rate/ratio tools from S03"}],
-    "S07": [{"item":"rounding, decimal scale, rough central estimate versus bound","source":"S07 lesson teaches these directly; no scientific notation is required in the assessment"}],
-    "S08": [{"item":"integer/negative/rational exponents, roots, scientific notation","source":"S08 lesson explicitly defines each, including rational exponent domain caveat, with worked and guided examples before assessment"}]
+    "S01": [
+      {
+        "item": "signed arithmetic and parentheses",
+        "source": "entry readiness: whole-number arithmetic plus negative-number meaning; lesson gives operation hierarchy"
+      },
+      {
+        "item": "integer powers such as 2^3 and −3^2",
+        "source": "just-in-time S01 lesson explicitly teaches power-before-leading-minus; only integer powers are used"
+      }
+    ],
+    "S02": [
+      {
+        "item": "fraction notation, common denominators, reciprocal division",
+        "source": "S02 lesson teaches all before independent assessment"
+      }
+    ],
+    "S03": [
+      {
+        "item": "colon ratio notation and compound units",
+        "source": "S03 lesson defines ratios/rates before assessment; fraction arithmetic from S02"
+      }
+    ],
+    "S04": [
+      {
+        "item": "percent, decimal and percentage-point notation",
+        "source": "S04 lesson defines each; ratios/fractions from S02-S03"
+      }
+    ],
+    "S05": [
+      {
+        "item": "percentage multipliers and reverse percentages",
+        "source": "S05 lesson derives multiplier method before assessment; percent meaning from S04"
+      }
+    ],
+    "S06": [
+      {
+        "item": "conversion-factor chains and dimensional compatibility",
+        "source": "S06 lesson explicitly demonstrates cancellation before assessment; rate/ratio tools from S03"
+      }
+    ],
+    "S07": [
+      {
+        "item": "rounding, decimal scale, rough central estimate versus bound",
+        "source": "S07 lesson teaches these directly; no scientific notation is required in the assessment"
+      }
+    ],
+    "S08": [
+      {
+        "item": "integer/negative/rational exponents, roots, scientific notation",
+        "source": "S08 lesson explicitly defines each, including rational exponent domain caveat, with worked and guided examples before assessment"
+      }
+    ]
   },
   "coverage": {
-    "T22V3::T22E-FND01::S01@1": [["main"],["main"],["transfer"],["main","transfer"],["main"]],
-    "T22V3::T22E-FND01::S02@1": [["main"],["main"],["main","transfer"],["transfer"],["main"]],
-    "T22V3::T22E-FND01::S03@1": [["transfer"],["transfer"],["main"],["main","transfer"],["main"]],
-    "T22V3::T22E-FND01::S04@1": [["transfer"],["main"],["main","transfer"],["main","transfer"],["main","transfer"]],
-    "T22V3::T22E-FND01::S05@1": [["main","transfer"],["main","transfer"],["main","transfer"],["main"],["main"]],
-    "T22V3::T22E-FND01::S06@1": [["main","transfer"],["main","transfer"],["main"],["main"],["main"]],
-    "T22V3::T22E-FND01::S07@1": [["main","transfer"],["main"],["main"],["main","transfer"],["main","transfer"]],
-    "T22V3::T22E-FND01::S08@1": [["main","transfer"],["transfer"],["main"],["main","transfer"],["main","transfer"]],
-    "T22V3::T22E-FND01::S09@1": [["main"],["main","transfer"],["transfer"],["transfer"],["transfer"]],
-    "T22V3::T22E-FND01::S10@1": [["transfer"],["main"],["main","transfer"],["main"],["transfer"]],
-    "T22V3::T22E-FND01::S11@1": [["main"],["main","transfer"],["transfer"],["main"],["main"]],
-    "T22V3::T22E-FND01::S12@1": [["main","transfer"],["main","transfer"],["main","transfer"],["main","transfer"],["main","transfer"]],
-    "T22V3::T22E-FND01::S13@1": [["main","transfer"],["main","transfer"],["transfer"],["main","transfer"],["main","transfer"]],
-    "T22V3::T22E-FND01::S14@1": [["main","transfer"],["main","transfer"],["main"],["main","transfer"],["main","transfer"]],
-    "T22V3::T22E-FND01::S15@1": [["transfer"],["main","transfer"],["main"],["transfer"],["transfer"]],
-    "T22V3::T22E-FND01::S16@1": [["main"],["main","transfer"],["main"],["main"],["main"]],
-    "T22V3::T22E-FND01::S17@1": [["main","transfer"],["main","transfer"],["main"],["main","transfer"],["main"]]
+    "T22V3::T22E-FND01::S01@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND01::S02@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND01::S03@1": [
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND01::S04@1": [
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S05@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND01::S06@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND01::S07@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S08@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S09@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S10@1": [
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S11@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND01::S12@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S13@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S14@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S15@1": [
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND01::S16@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND01::S17@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ]
+  },
+  "instructionVersion": "m01-instruction-a07-separated-v1",
+  "instructionSeparation": {
+    "T22V3::T22E-FND01::S01@1": {
+      "main": [
+        "−18 − [7 − 3(−4)] + 2^3",
+        "−3, −2.75, −2.7, −2.6"
+      ],
+      "transfer": [
+        "−3^2 + (−3)^2 − 2[5−(−1)]",
+        "−2.75 or −2.8"
+      ]
+    },
+    "T22V3::T22E-FND01::S02@1": {
+      "main": [
+        "3/8 + 5/12 − 1/6",
+        "(7/9) ÷ (14/15)"
+      ],
+      "transfer": [
+        "17/28 or 5/8",
+        "(5/6)(3/10)"
+      ]
+    },
+    "T22V3::T22E-FND01::S03@1": {
+      "main": [
+        "360 orders in 12 minutes",
+        "7.5 minutes"
+      ],
+      "transfer": [
+        "10:6:4",
+        "₹84,000"
+      ]
+    },
+    "T22V3::T22E-FND01::S04@1": {
+      "main": [
+        "8% to 6%",
+        "2,500 cases"
+      ],
+      "transfer": [
+        "40% to 46%",
+        "0.375"
+      ]
+    },
+    "T22V3::T22E-FND01::S05@1": {
+      "main": [
+        "₹24,000",
+        "12.5%",
+        "₹960"
+      ],
+      "transfer": [
+        "₹50,000",
+        "falls4%",
+        "rises5%"
+      ]
+    },
+    "T22V3::T22E-FND01::S06@1": {
+      "main": [
+        "72 km/h",
+        "0.25% of ₹80,000",
+        "distance = speed + time"
+      ],
+      "transfer": [
+        "18,000 messages in 2.5 minutes",
+        "40 seconds"
+      ]
+    },
+    "T22V3::T22E-FND01::S07@1": {
+      "main": [
+        "1,980,000 × 0.0031",
+        "61,380"
+      ],
+      "transfer": [
+        "497 requests each second for 61 seconds",
+        "3,031,700"
+      ]
+    },
+    "T22V3::T22E-FND01::S08@1": {
+      "main": [
+        "(3×10^4)(2×10^−3)",
+        "16^(3/4)",
+        "√[(-7)^2]"
+      ],
+      "transfer": [
+        "(5×10^−6)/(2×10^3)",
+        "27^(2/3)",
+        "(−4)^2 and −4^2"
+      ]
+    },
+    "T22V3::T22E-FND01::S09@1": {
+      "main": [
+        "E=3x²−2xy+y²",
+        "(2a−3)(a+4)"
+      ],
+      "transfer": [
+        "4(2x−3)−3(x+5)+2x",
+        "x=2"
+      ]
+    },
+    "T22V3::T22E-FND01::S10@1": {
+      "main": [
+        "6x²−x−2",
+        "9y²−25"
+      ],
+      "transfer": [
+        "12x²−18x",
+        "x²+5x+6",
+        "4a²−12ab+9b²"
+      ]
+    },
+    "T22V3::T22E-FND01::S11@1": {
+      "main": [
+        "(3x−5)/2 − (x+1)/3 = 4"
+      ],
+      "transfer": [
+        "5−2(3x−4)=3(x+1)+7",
+        "kx=b"
+      ]
+    },
+    "T22V3::T22E-FND01::S12@1": {
+      "main": [
+        "r=(V1−V0)/V0",
+        "r=−1"
+      ],
+      "transfer": [
+        "q=(a−b)/(a+b)",
+        "q=1"
+      ]
+    },
+    "T22V3::T22E-FND01::S13@1": {
+      "main": [
+        "2x+3y=19",
+        "x−y=2"
+      ],
+      "transfer": [
+        "x+y=14",
+        "3x−2y=17"
+      ]
+    },
+    "T22V3::T22E-FND01::S14@1": {
+      "main": [
+        "(2x−3)/5 ≤ (x+4)/2",
+        "−3(2x−1)>9"
+      ],
+      "transfer": [
+        "7−4x≥19",
+        "2<3x+5≤14"
+      ]
+    },
+    "T22V3::T22E-FND01::S15@1": {
+      "main": [
+        "|2x−5|≤7",
+        "2(x−2.5)"
+      ],
+      "transfer": [
+        "|x+2|>4",
+        "|3x−1|<−2",
+        "|3x−1|≥−2"
+      ]
+    },
+    "T22V3::T22E-FND01::S16@1": {
+      "main": [
+        "x²−7x+12=0",
+        "2x²+3x−1=0",
+        "x²+2x+5=0"
+      ],
+      "transfer": [
+        "3x²−12x+9=0",
+        "kx²+2x+1=0"
+      ]
+    },
+    "T22V3::T22E-FND01::S17@1": {
+      "main": [
+        "₹52,560",
+        "rises10%, then falls4%",
+        "₹240 fee"
+      ],
+      "transfer": [
+        "rises by a decimal rate a",
+        "falls by decimal rate b",
+        "fixed fee f"
+      ]
+    }
+  },
+  "historicalLessonAnswerOverlap": {
+    "version": "m01-repairs-1.1-pre-a07",
+    "rationale": "These fixed assessments had exact numeric/algebraic answers or exact subanswers embedded in the former lesson text. Any legacy lesson exposure lacking the new instructionVersion is conservatively treated as answer exposure for the listed fixed tasks from that timestamp onward.",
+    "sessions": {
+      "T22V3::T22E-FND01::S02@1": [
+        "T22V3::T22E-FND01::S02-T@1"
+      ],
+      "T22V3::T22E-FND01::S04@1": [
+        "T22V3::T22E-FND01::S04-T@1"
+      ],
+      "T22V3::T22E-FND01::S06@1": [
+        "T22V3::T22E-FND01::S06-M@1"
+      ],
+      "T22V3::T22E-FND01::S07@1": [
+        "T22V3::T22E-FND01::S07-T@1"
+      ],
+      "T22V3::T22E-FND01::S08@1": [
+        "T22V3::T22E-FND01::S08-M@1",
+        "T22V3::T22E-FND01::S08-T@1"
+      ],
+      "T22V3::T22E-FND01::S10@1": [
+        "T22V3::T22E-FND01::S10-M@1"
+      ],
+      "T22V3::T22E-FND01::S16@1": [
+        "T22V3::T22E-FND01::S16-M@1"
+      ]
+    }
   }
 }

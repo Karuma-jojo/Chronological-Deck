@@ -1,8 +1,13 @@
 {
-  "version": "T22E-course-0.1.3",
+  "version": "T22E-course-0.1.4",
   "routeVersion": "M65-semantic-r1-2026-09-18",
   "evidenceSchema": "t22e-course-evidence-v1",
-  "reviewDays": [2, 7, 21, 60],
+  "reviewDays": [
+    2,
+    7,
+    21,
+    60
+  ],
   "reviewPolicy": "Product-default spacing intervals for practice scheduling only; not validated retention estimates.",
   "assessmentEquivalences": {},
   "repairPack": "course/t22/authoring/m01-repairs-1.1.json",
@@ -12,7 +17,7 @@
     "order": 1,
     "id": "T22E-FND01",
     "title": "Quantitative Foundations I — Numeracy & Algebra",
-    "status": "authored-v1.1-repaired",
+    "status": "authored-v1.2-a07-candidate",
     "destination": "From a Class-10-ish starting point, become reliable with exact numerical reasoning, ratios/percentages/units, estimation, symbolic algebra, equations, inequalities, absolute value and elementary quadratics—without hidden calculator dependence.",
     "gate": "M01 is not cleared by page completion. Clearance requires independent evidence across the session ownership claims plus delayed transfer/synthesis evidence. The dedicated course page records study evidence; it does not silently rewrite legacy T22 progress.",
     "nextBoundary": "M02 owns functions, domains/ranges, graphs, coordinate geometry, parameters, transformations, exponentials/logarithms, sequences, sigma notation and essential trigonometry. M01 must not pre-teach those as the main capability."

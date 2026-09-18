@@ -64,7 +64,8 @@ export function validateEvidence(value,course){
  for(const [id,e] of Object.entries(value.exposures)){
   if(!Object.hasOwn(course.problems,id)||!obj(e)||!stamp(e.firstSeen)||!stamp(e.lastSeen)||Date.parse(e.lastSeen)<Date.parse(e.firstSeen)||!Number.isInteger(e.views)||e.views<1) throw Error('Invalid exposure');
   const safe={firstSeen:e.firstSeen,lastSeen:e.lastSeen,views:e.views};
-  for(const k of ['referenceSeenAt','lessonSeenAt','packetExportedAt']) if(e[k]!==undefined){if(!stamp(e[k])) throw Error('Invalid exposure timestamp');safe[k]=e[k];}
+  for(const k of ['referenceSeenAt','lessonSeenAt','lessonAnswerSeenAt','packetExportedAt']) if(e[k]!==undefined){if(!stamp(e[k])) throw Error('Invalid exposure timestamp');safe[k]=e[k];}
+  if(e.lessonContentVersion!==undefined){if(typeof e.lessonContentVersion!=='string'||e.lessonContentVersion.length>120) throw Error('Invalid lesson content version');safe.lessonContentVersion=e.lessonContentVersion;}
   out.exposures[id]=safe;
  }
  for(const a of value.artifacts){
@@ -84,7 +85,9 @@ export function mergeEvidence(a,b,course){
  for(const [id,e] of Object.entries(b.exposures)){
   const old=out.exposures[id]; if(!old){out.exposures[id]=e; continue;}
   const joined={firstSeen:[old.firstSeen,e.firstSeen].sort()[0],lastSeen:[old.lastSeen,e.lastSeen].sort().at(-1),views:Math.max(old.views,e.views)};
-  for(const k of ['referenceSeenAt','lessonSeenAt','packetExportedAt']){const v=[old[k],e[k]].filter(Boolean).sort(); if(v.length) joined[k]=v[0];}
+  for(const k of ['referenceSeenAt','lessonSeenAt','lessonAnswerSeenAt','packetExportedAt']){const v=[old[k],e[k]].filter(Boolean).sort(); if(v.length) joined[k]=v[0];}
+  const versioned=[old,e].filter(x=>x.lessonContentVersion).sort((x,y)=>(x.lessonSeenAt||x.lastSeen).localeCompare(y.lessonSeenAt||y.lastSeen));
+  if(versioned.length) joined.lessonContentVersion=versioned.at(-1).lessonContentVersion;
   out.exposures[id]=joined;
  }
  return validateEvidence(out,course);
@@ -101,6 +104,32 @@ export function exposeAnswersForSession(state,session,at=new Date().toISOString(
   expose(state,id,at,'packetExportedAt');
   expose(state,id,at,'referenceSeenAt');
  }
+}
+
+export function migrateHistoricalLessonAnswerExposure(state,course){
+ const spec=course.historicalLessonAnswerOverlap?.sessions||{};
+ let changed=false;
+ for(const [sessionId,targetIds] of Object.entries(spec)){
+  const s=course.sessions.find(x=>x.id===sessionId); if(!s) continue;
+  const legacyTimes=[s.main,s.transfer].map(id=>state.exposures[id]).filter(e=>e?.lessonSeenAt&&e.lessonContentVersion!==course.instructionVersion).map(e=>e.lessonSeenAt).sort();
+  if(!legacyTimes.length) continue;
+  const at=legacyTimes[0];
+  for(const id of targetIds){
+   const old=state.exposures[id];
+   const firstSeen=[old?.firstSeen,at].filter(Boolean).sort()[0];
+   const lastSeen=[old?.lastSeen,at].filter(Boolean).sort().at(-1);
+   const referenceSeenAt=[old?.referenceSeenAt,at].filter(Boolean).sort()[0];
+   const lessonAnswerSeenAt=[old?.lessonAnswerSeenAt,at].filter(Boolean).sort()[0];
+   const next={...old,firstSeen,lastSeen,views:Math.max(1,old?.views||0),referenceSeenAt,lessonAnswerSeenAt};
+   if(JSON.stringify(old||null)!==JSON.stringify(next)){state.exposures[id]=next;changed=true;}
+  }
+ }
+ return changed;
+}
+export function answerExposureAt(state,problemId){return state.exposures[problemId]?.referenceSeenAt||null;}
+function answerExposedBy(state,attempt){
+ const at=answerExposureAt(state,attempt.problemId);
+ return !!at&&Date.parse(at)<=Date.parse(attempt.at);
 }
 
 export function taskText(problem){return problem.prompt;}
@@ -126,7 +155,7 @@ export function effectiveAttempt(root,state){
 }
 function qualifies(root,state,course){
  const e=effectiveAttempt(root,state);
- return evidenceIsCurrent(root,course)&&e.result==='secure'&&root.assistance==='independent'&&!root.noteSeenDuringAttempt&&!root.referenceSeenBefore;
+ return evidenceIsCurrent(root,course)&&e.result==='secure'&&root.assistance==='independent'&&!root.noteSeenDuringAttempt&&!root.referenceSeenBefore&&!answerExposedBy(state,root);
 }
 function taskStatus(course,state,problemId,label){
  const roots=originalsFor(state,problemId);
