@@ -80,9 +80,13 @@ Before any module M02+ is marked `authored`:
 
 M02 · `T22E-FND02` is final-accepted on this rebuild branch after 24-session / 48-task authoring, 120/120 ownership mapping, prerequisite-symbol and instruction-separation audits, independent mathematics checks, shared-runtime/evidence integration and successful Chromium validation. Validation run: `35304147761` on `f3be88268358c938006056386f93a9f662f7316d`.
 
+## Review handoff
+
+Read `docs/t22-course/M02-REVIEW-HANDOFF.md` before any further authoring. It records the exact M02 commit chain, changed files, coverage, validation history, carried-forward findings and uncertainties.
+
 ## Next action
 
-**STOP FOR REVIEW. Do not open M03 yet.** First read the M02 `REVIEW-HANDOFF` once recorded. When explicitly continued, open **M03 · T22E-DISC01 — Mathematical Reasoning & Discrete Foundations** only and begin with its semantic boundary audit; fix known findings before copying any M01/M02 pattern.
+**STOP FOR REVIEW. Do not open M03 yet.** When explicitly continued, open **M03 · T22E-DISC01 — Mathematical Reasoning & Discrete Foundations** only and begin with its semantic boundary audit; fix known findings before copying any M01/M02 pattern.
 
 ## Explicit non-actions
 
