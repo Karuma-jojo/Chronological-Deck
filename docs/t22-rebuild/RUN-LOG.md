@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M05 INTERNAL ACCEPTED; PREPARING SEPARATE M05 REVIEW HANDOFF; M06 CONTENT STILL CLOSED**
+State: **M05 SEPARATE CHECKPOINT COMPLETE; M06 MAY NOW OPEN; M07 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -281,3 +281,19 @@ M05 · `T22E-TRD01` now has:
 - browser regression extended through M05 for save/reveal/review, unsaved draft provenance, packet answer exposure and cross-module export/import.
 
 **Next: create and verify M05 review handoff. M06 content remains closed until that separate M05 checkpoint is pushed.**
+
+
+## M05 separate review checkpoint complete
+
+M05 review handoff: `docs/t22-course/M05-REVIEW-HANDOFF.md`.
+
+Persistent handoff gate: `docs/t22-course/audit/m05-handoff-checks.mjs`.
+
+M05 is internally frozen at:
+- `m05-authoring-v1.0-internal-accepted`;
+- 24 sessions / 48 fixed tasks / 120 ownership claims;
+- semantic status `accepted`;
+- course metadata `T22E-course-0.5.0-m05`;
+- unchanged shared evidence key.
+
+**M06 · ARC502 may now open as a separate module build. M07 remains forbidden.**
