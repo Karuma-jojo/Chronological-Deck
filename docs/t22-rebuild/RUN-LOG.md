@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M03 FINAL-ACCEPTED; REVIEW HANDOFF CREATED; STOP BEFORE M04**
+State: **M03 INDEPENDENT REVIEW: M03-01–M03-04 REQUIRE REPAIR; STOP BEFORE M04**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -11,7 +11,7 @@ Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
 ## Current authorities
 
 - `M65-SKELETON.md` — 65 macro capability families / order.
-- `m65.dependencies.json` — current executable semantic prerequisite graph (`M65-semantic-r1-2026-09-18`).
+- `m65.dependencies.json` — current executable semantic prerequisite graph (`M65-semantic-r2-2026-09-18`).
 - `SEMANTIC-PREREQUISITES.json` — 65-row per-module reused/adapted/new ledger and bridge gate.
 - `M65-DEPENDENCY-AUDIT.md` — current dependency/semantic-gate policy.
 - `ASTRA-FINDINGS.md` — bounded Astra review that produced A-01 through A-06.
@@ -84,9 +84,9 @@ M02 · `T22E-FND02` is final-accepted on this rebuild branch after 24-session / 
 
 Read `docs/t22-course/M02-REVIEW-HANDOFF.md` before any further authoring. It records the exact M02 commit chain, changed files, coverage, validation history, carried-forward findings and uncertainties.
 
-## Next action
+## Historical next action after M02 (superseded below)
 
-**STOP FOR REVIEW. Do not open M03 yet.** When explicitly continued, open **M03 · T22E-DISC01 — Mathematical Reasoning & Discrete Foundations** only and begin with its semantic boundary audit; fix known findings before copying any M01/M02 pattern.
+**At that checkpoint: STOP FOR REVIEW. Do not open M03 yet.** When explicitly continued, open **M03 · T22E-DISC01 — Mathematical Reasoning & Discrete Foundations** only and begin with its semantic boundary audit; fix known findings before copying any M01/M02 pattern.
 
 ## Explicit non-actions
 
@@ -150,3 +150,10 @@ A persistent `docs/t22-course/audit/m03-handoff-checks.mjs` gate now verifies ha
 ## M01 S01 engine packet export
 
 Exported the repaired first T22 Elite session at source commit `2251cb2abbeb10d408ca80aa0de56461cfa9554f` to `docs/t22-course/packets/T22-Elite-M01-S01-Compiled-Engine-Prompt.md`. Uses the canonical base packs plus `m01-repairs-1.2-a07` overlay; both tasks use obligation version 2. Verified contract hash and computed assessment fingerprints using the source runtime. The exact compilerPacket() output is wrapped with WALL attachment instructions, provenance and the canonical evaluator rubrics. This is an answer-bearing engine attachment, not learner-facing lesson text. No curriculum, runtime, user evidence or main-branch changes. M03 review remains pending; M04 remains closed.
+
+
+## Current independent M03 review — authoritative next action
+
+Reviewed `e0fc59c36e79bee8e6767e666803020461c5e32e`; see `docs/t22-course/M03-ASTRA-REVIEW.md`. Mathematical review and independent enumerations passed, and the recorded remote integration run was verified. Existing structural/handoff checks also pass, but **M03-01 through M03-04 remain open**: instructional/fixed-task overlap; incomplete novice explanations and definitions; S21 claim-5 task mapping; three-event inclusion-exclusion bridge.
+
+**Next: repair these four findings, update M03 resolution/handoff, rerun gates and push. Stop for a bounded review of the repairs before M04.** No M04 authoring was authorized or performed by this review. Recommended cadence after repair acceptance: M04 alone; if clean, trial M05–M06 as a two-module batch; only then consider up to three per review, retaining individual module gates and pushes. This section supersedes earlier forward-looking instructions in this log.
