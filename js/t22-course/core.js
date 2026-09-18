@@ -18,6 +18,20 @@ async function sha256(value){
  const digest=await globalThis.crypto.subtle.digest('SHA-256',data);
  return [...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
+function sessionContractPayload(s){return {id:s.id,title:s.title,focus:s.focus,purpose:s.purpose,centralCapability:s.centralCapability,principalObstacle:s.principalObstacle,entryPrerequisites:s.entryPrerequisites,requiredOwnership:s.requiredOwnership,applicationScope:s.applicationScope,transferScope:s.transferScope,inScope:s.inScope,outOfScope:s.outOfScope,exitCondition:s.exitCondition};}
+export async function prepareContractHashes(course){
+ for(const s of course.sessions){
+  const exact=await sha256(sessionContractPayload(s));
+  if(s.contractHash&&s.contractHash!==exact) throw Error(`Contract hash drift ${s.id}`);
+  s.contractHash=exact;
+ }
+ return course;
+}
+function moduleForSession(course,session){
+ return course.modules?.find(m=>m.id===session.moduleId)||(course.module?.id===session.moduleId?course.module:null);
+}
+function scopedSessions(course,moduleId){return moduleId?course.sessions.filter(s=>s.moduleId===moduleId):course.sessions;}
+
 export function sessionForProblem(course,problemId){
  return course.sessions.find(s=>s.main===problemId||s.transfer===problemId||(Array.isArray(s.replacements)&&s.replacements.includes(problemId)))||null;
 }
@@ -170,9 +184,9 @@ function taskStatus(course,state,problemId,label){
  return {ok:false,reason:`Fresh independent ${label.toLowerCase()} evidence still needed`,priority:1,replacementNeeded:!!state.exposures[problemId]?.referenceSeenAt,qualified,roots,current,label};
 }
 
-export function reviewQueue(course,state,now=Date.now()){
+export function reviewQueue(course,state,now=Date.now(),moduleId=null){
  const rows=[];
- for(const s of course.sessions){
+ for(const s of scopedSessions(course,moduleId)){
   const main=taskStatus(course,state,s.main,'Main');
   const transfer=taskStatus(course,state,s.transfer,'Transfer');
   const firstMissing=!main.ok?main:!transfer.ok?transfer:null;
@@ -191,8 +205,8 @@ export function reviewQueue(course,state,now=Date.now()){
  return rows.sort((a,b)=>a.priority-b.priority||(a.due??Infinity)-(b.due??Infinity)||a.order-b.order);
 }
 
-export function moduleEvidenceSummary(course,state){
- const rows=course.sessions.map(s=>{
+export function moduleEvidenceSummary(course,state,moduleId=null){
+ const rows=scopedSessions(course,moduleId).map(s=>{
   const main=originalsFor(state,s.main).some(a=>qualifies(a,state,course));
   const transfer=originalsFor(state,s.transfer).some(a=>qualifies(a,state,course));
   return {order:s.order,sessionId:s.id,main,transfer};
@@ -201,10 +215,10 @@ export function moduleEvidenceSummary(course,state){
 }
 
 export function compilerPacket(course,session,keys,problemId=session.main){
- const other=problemId===session.main?session.transfer:session.main;
+ const other=problemId===session.main?session.transfer:session.main,mod=moduleForSession(course,session);
  return [
   '[T22 ELITE — ENGINE ONLY; ANSWER-BEARING PACKET]',
-  `Course ${course.version}; route ${course.routeVersion}; module ${course.module.id}; session ${session.id}; contract ${session.contractHash}`,
+  `Course ${course.version}; route ${course.routeVersion}; module ${mod?.id||session.moduleId}; session ${session.id}; contract ${session.contractHash}`,
   'SESSION CONTRACT', JSON.stringify({title:session.title,focus:session.focus,purpose:session.purpose,centralCapability:session.centralCapability,principalObstacle:session.principalObstacle,entryPrerequisites:session.entryPrerequisites,requiredOwnership:session.requiredOwnership,applicationScope:session.applicationScope,transferScope:session.transferScope,inScope:session.inScope,outOfScope:session.outOfScope,exitCondition:session.exitCondition},null,2),
   'CURRENT TASK', taskText(course.problems[problemId]),
   'CURRENT REFERENCE', keys[problemId].reference,
@@ -216,9 +230,10 @@ export function compilerPacket(course,session,keys,problemId=session.main){
  ].join('\n\n');
 }
 export function freshProbePacket(course,session){
+ const mod=moduleForSession(course,session);
  return [
   '[T22 ELITE — FRESH REPLACEMENT PROBE REQUEST; NO SOLUTION IN LEARNER OUTPUT]',
-  `Module ${course.module.id}; session ${session.id}; contract ${session.contractHash}`,
+  `Module ${mod?.id||session.moduleId}; session ${session.id}; contract ${session.contractHash}`,
   'CAPABILITY',session.centralCapability,
   'REQUIRED OWNERSHIP',...session.requiredOwnership.map(x=>`- ${x}`),
   'TRANSFER SCOPE',session.transferScope,

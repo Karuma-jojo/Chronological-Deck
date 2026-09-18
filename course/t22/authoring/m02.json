@@ -4,7 +4,7 @@
     "order": 2,
     "id": "T22E-FND02",
     "title": "Quantitative Foundations II — Functions & Precalculus",
-    "status": "candidate-static",
+    "status": "candidate-runtime-validation",
     "destination": "From reliable algebra, become fluent with functions as objects, legal domains/ranges, graphs and transformations, finite indexed models, exponential/logarithmic reasoning, log returns and the minimal trigonometry needed by later quantitative work.",
     "gate": "M02 is not cleared by page completion. Publication requires semantic ancestry, prerequisite-symbol audit, novice instruction, claim coverage, independent math/reference validation, evidence integrity and browser validation.",
     "nextBoundary": "M03 owns proof habits, logic, sets/maps and combinatorics. M09 owns limits, convergence and infinite-series arguments. M02 must not certify either family."
@@ -3321,5 +3321,6 @@
       ]
     }
   },
-  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation."
+  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation.",
+  "instructionVersion": "m02-instruction-v1"
 }

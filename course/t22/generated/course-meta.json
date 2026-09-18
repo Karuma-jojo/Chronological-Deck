@@ -1,5 +1,5 @@
 {
-  "version": "T22E-course-0.1.4",
+  "version": "T22E-course-0.2.0-validation",
   "routeVersion": "M65-semantic-r1-2026-09-18",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
@@ -17,7 +17,7 @@
     "order": 1,
     "id": "T22E-FND01",
     "title": "Quantitative Foundations I — Numeracy & Algebra",
-    "status": "authored-v1.2-a07-candidate",
+    "status": "authored-v1.2-a07-accepted",
     "destination": "From a Class-10-ish starting point, become reliable with exact numerical reasoning, ratios/percentages/units, estimation, symbolic algebra, equations, inequalities, absolute value and elementary quadratics—without hidden calculator dependence.",
     "gate": "M01 is not cleared by page completion. Clearance requires independent evidence across the session ownership claims plus delayed transfer/synthesis evidence. The dedicated course page records study evidence; it does not silently rewrite legacy T22 progress.",
     "nextBoundary": "M02 owns functions, domains/ranges, graphs, coordinate geometry, parameters, transformations, exponentials/logarithms, sequences, sigma notation and essential trigonometry. M01 must not pre-teach those as the main capability."
@@ -34,5 +34,40 @@
     "course/t22/generated/eval-m01-006-010.json",
     "course/t22/generated/eval-m01-011-015.json",
     "course/t22/generated/eval-m01-016-017.json"
+  ],
+  "moduleSources": [
+    {
+      "order": 1,
+      "id": "T22E-FND01",
+      "sourceType": "legacy-packs",
+      "module": {
+        "order": 1,
+        "id": "T22E-FND01",
+        "title": "Quantitative Foundations I — Numeracy & Algebra",
+        "status": "authored-v1.2-a07-accepted",
+        "destination": "From a Class-10-ish starting point, become reliable with exact numerical reasoning, ratios/percentages/units, estimation, symbolic algebra, equations, inequalities, absolute value and elementary quadratics—without hidden calculator dependence.",
+        "gate": "M01 is not cleared by page completion. Clearance requires independent evidence across the session ownership claims plus delayed transfer/synthesis evidence. The dedicated course page records study evidence; it does not silently rewrite legacy T22 progress.",
+        "nextBoundary": "M02 owns functions, domains/ranges, graphs, coordinate geometry, parameters, transformations, exponentials/logarithms, sequences, sigma notation and essential trigonometry. M01 must not pre-teach those as the main capability."
+      },
+      "packs": [
+        "course/t22/generated/m01-001-005.json",
+        "course/t22/generated/m01-006-010.json",
+        "course/t22/generated/m01-011-015.json",
+        "course/t22/generated/m01-016-017.json"
+      ],
+      "evaluatorPacks": [
+        "course/t22/generated/eval-m01-001-005.json",
+        "course/t22/generated/eval-m01-006-010.json",
+        "course/t22/generated/eval-m01-011-015.json",
+        "course/t22/generated/eval-m01-016-017.json"
+      ],
+      "repairPack": "course/t22/authoring/m01-repairs-1.1.json"
+    },
+    {
+      "order": 2,
+      "id": "T22E-FND02",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m02.json"
+    }
   ]
 }
