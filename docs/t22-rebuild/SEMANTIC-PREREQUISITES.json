@@ -14,9 +14,9 @@
       "order": 2,
       "id": "T22E-FND02",
       "mode": "new",
-      "semanticStatus": "boundary-accepted-content-candidate",
+      "semanticStatus": "accepted",
       "bridges": [],
-      "note": "M02 boundary audited: sole module prerequisite M01. Owns functions/precalculus, finite sequences/sigma and essential trig; excludes M03 proof/discrete material and M09 limits/convergence/infinite series. Canonical authored candidate: course/t22/authoring/m02.json. Learner-facing acceptance still requires runtime/evidence/browser gates."
+      "note": "M02 final-accepted after boundary audit, 24-session/48-task authoring, 120/120 ownership mapping, prerequisite-symbol and instruction-separation audits, independent mathematics checks, shared evidence/runtime integration and real Chromium validation. Do not copy M02 patterns into M03 without first applying known findings and M03's own semantic boundary audit."
     },
     {
       "order": 3,

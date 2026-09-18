@@ -16,7 +16,7 @@
       "prerequisites": [
         "T22E-FND01"
       ],
-      "availability": "validation"
+      "availability": "authored"
     },
     {
       "order": 3,

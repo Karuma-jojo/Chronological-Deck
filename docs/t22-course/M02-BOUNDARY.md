@@ -1,6 +1,6 @@
 # M02 boundary & authoring contract — T22E-FND02
 
-Status: **semantic boundary accepted; authored content candidate; not learner-facing until all gates pass**
+Status: **FINAL ACCEPTED on rebuild branch; learner-facing in branch runtime; no merge/deploy**
 
 Prerequisite module: **M01 · T22E-FND01 only**.
 
@@ -51,3 +51,11 @@ The canonical source is `course/t22/authoring/m02.json`. Before roadmap availabi
 8. only then may semantic status and roadmap availability become accepted/authored.
 
 No M03 authoring is allowed in this pass.
+
+## Acceptance evidence
+
+- Content/runtime validation head: `f3be88268358c938006056386f93a9f662f7316d`.
+- GitHub Actions **T22 Elite checks** run `35304147761`: **SUCCESS**.
+- Passed syntax; M01 regressions; M02 24-session/48-task structure; 120/120 ownership mapping; prerequisite and instruction-separation audits; independent M02 mathematics checks; 65-row semantic/topological gate; evidence semantics; and real Chromium M01+M02 module scoping, shared-evidence preservation, M02 save/reveal/review, packet exposure, cross-module export/import, A-07 legacy/current behavior, corrupt-storage safety and mobile-width checks.
+
+This acceptance closes M02 only. M03 remains unopened until review handoff is recorded and the next module is explicitly started.
