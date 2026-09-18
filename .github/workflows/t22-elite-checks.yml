@@ -11,6 +11,7 @@ on:
       - 'scripts/test-t22-elite-*.mjs'
       - 'scripts/test-t22-semantic-gates.mjs'
       - 'docs/t22-rebuild/**'
+      - 'docs/t22-course/audit/**'
       - '.github/workflows/t22-elite-checks.yml'
   workflow_dispatch:
 
