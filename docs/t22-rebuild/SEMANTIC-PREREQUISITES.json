@@ -30,8 +30,9 @@
       "order": 4,
       "id": "ARC048",
       "mode": "adapted",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "boundary-accepted-content-candidate",
+      "bridges": [],
+      "note": "M04 boundary accepted: sole macro prerequisite T22E-DISC01. M04 owns finite probability models, event algebra, conditional probability, independence, repeated finite trials, total probability and finite expectation. Bayes/posterior inversion stays M06; trading decisions/fair price/bankroll stay M05; formal random-variable distributions/variance/covariance/conditional expectation stay M26."
     },
     {
       "order": 5,
