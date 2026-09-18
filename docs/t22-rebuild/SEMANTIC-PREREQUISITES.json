@@ -38,8 +38,9 @@
       "order": 5,
       "id": "T22E-TRD01",
       "mode": "new",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "boundary-accepted-content-candidate",
+      "bridges": [],
+      "note": "M05 boundary opened after M04 independent follow-up acceptance. Direct prerequisite ARC048 is sufficient for finite games, expectation, bankroll arithmetic, finite utility and simple adversarial tables. Bayes/updating stays M06; market mechanics M07; variance/distribution theory M26; Kelly/optimization, DP/MDP and formal minimax remain later."
     },
     {
       "order": 6,
