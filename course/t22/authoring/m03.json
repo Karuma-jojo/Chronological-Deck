@@ -1,11 +1,11 @@
 {
-  "version": "m03-authoring-v1.1-observability-reviewed",
+  "version": "m03-authoring-v1.1-accepted",
   "instructionVersion": "m03-instruction-v1",
   "module": {
     "order": 3,
     "id": "T22E-DISC01",
     "title": "Mathematical Reasoning & Discrete Foundations",
-    "status": "candidate-static",
+    "status": "authored-v1.1-accepted",
     "destination": "State claims precisely, prove/refute them, reason with sets/maps, and execute deterministic finite counting before probability.",
     "gate": "Page completion is not clearance. Every ownership claim has exact public-request/rubric evidence; universal proof tasks require general reasoning.",
     "nextBoundary": "M04 owns probability, conditional probability, independence and expectation. M03 stops at deterministic finite counting."

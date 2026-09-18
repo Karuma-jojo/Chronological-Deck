@@ -1,7 +1,7 @@
 # M03 boundary & authoring contract — T22E-DISC01
 
 Date: 2026-09-18  
-Status: **semantic boundary accepted; content not yet authored/accepted**
+Status: **FINAL ACCEPTED — 30 sessions / 60 fixed tasks / 150 ownership claims; M04 remains closed**
 
 ## Semantic ancestry
 
@@ -83,3 +83,15 @@ Before M03 is marked authored:
 8. Chromium validates module selection, save/reveal/review, draft provenance and cross-module export/import;
 9. semantic status + roadmap become accepted/authored only after those checks pass;
 10. create M03 REVIEW-HANDOFF and stop. No M04 authoring.
+
+
+## Acceptance evidence
+
+M03 passed its publication gate in two stages:
+
+- `db52b613f9a0adcc1e2ae9fd628cb28d033083f9` — 150/150 ownership claims manually re-audited for actual observability. Five cross-task directions were corrected and pinned to Transfer: S25 multinomial grouping; S28 divisibility inclusion-exclusion; S29 engineered pigeonholes; S30 finite-function noninjectivity; S30 surjection inclusion-exclusion. GitHub Actions run `35310713858` — **SUCCESS**.
+- `d3f3e8b70abf51e297c545fdc739ad506262e90f` — M03 loaded through the existing authoring-pack runtime. Chromium exercised 3-module selection, 30-session M03 scoping, M03 save/reveal/review, unsaved-draft + assistance provenance across module round-trips, answer-bearing packet exposure and three-module export/import. GitHub Actions run `35325699018` — **SUCCESS**.
+
+The evidence key remains `chrono_t22_elite_course_evidence_v1`. Historical T22 progress and T25 state were not changed.
+
+**Review boundary:** create `M03-REVIEW-HANDOFF.md` and stop. Do not author M04 in this pass.

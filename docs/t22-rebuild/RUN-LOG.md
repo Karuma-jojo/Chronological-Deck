@@ -1,10 +1,10 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M02-01→M02-04 RESOLVED AND FULLY VALIDATED; M03 IS THE ONLY NEXT MODULE**
+State: **M03 FINAL-ACCEPTED AFTER STATIC + OBSERVABILITY + THREE-MODULE CHROMIUM GATES; M04 CLOSED PENDING REVIEW**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
-Current validated M02 runtime head before acceptance-state commit: `f3be88268358c938006056386f93a9f662f7316d`
+Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
 
@@ -118,3 +118,21 @@ Reviewed `f49479068d8fb3416dbe823e9fdacd628d90e268`; see `docs/t22-course/M02-AS
 ## M03 boundary opened
 
 M03 · `T22E-DISC01` is the only open module. Semantic audit added prerequisite edge M03←M02 in addition to M01 because formal map/image/preimage/injective-surjective reasoning builds on M02 functions. Route authority bumped to `M65-semantic-r2-2026-09-18`. Content remains unpublished until M03's own gates pass. M04 remains closed.
+
+
+## M03 completion
+
+M03 · `T22E-DISC01` is accepted on this rebuild branch.
+
+- semantic ancestry: M01 + M02;
+- atomic sessions: 30;
+- fixed Main/Transfer assessments: 60;
+- required-ownership claims: 150/150 with exact public-task/rubric evidence;
+- manually repaired cross-task mappings: S25 claim 3; S28 claim 5; S29 claim 4; S30 claims 4-5 → Transfer;
+- instruction/assessment separation checked on both fixed tasks for all 30 sessions;
+- independent deterministic proof/counting regression checks passed;
+- shared runtime integration retained `chrono_t22_elite_course_evidence_v1`;
+- 3-module Chromium validation passed at run `35325699018` on `d3f3e8b70abf51e297c545fdc739ad506262e90f`;
+- observability audit passed at run `35310713858` on `db52b613f9a0adcc1e2ae9fd628cb28d033083f9`.
+
+**Next:** write M03 review handoff, verify it, and stop. M04 must not be authored until review explicitly continues the build.

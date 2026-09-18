@@ -22,9 +22,9 @@
       "order": 3,
       "id": "T22E-DISC01",
       "mode": "new",
-      "semanticStatus": "boundary-accepted-content-candidate",
+      "semanticStatus": "accepted",
       "bridges": [],
-      "note": "M03 boundary audit repaired semantic ancestry: depends on M01 and M02. M02 is required because M03 formalizes functions as maps, image/preimage and injective/surjective/bijective/inverse claims rather than re-teaching elementary function meaning. M03 owns logic/proof/sets/relations/maps/finite counting; excludes probability (M04) and analysis/limits (M09). Content not yet accepted."
+      "note": "M03 accepted after repaired M01+M02 ancestry audit, 30-session authoring, 150/150 manual claim observability review, instruction-separation checks, independent proof/counting regressions and shared three-module Chromium/evidence validation. M04 probability remains the next closed boundary."
     },
     {
       "order": 4,
