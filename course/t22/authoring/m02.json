@@ -3326,7 +3326,7 @@
     "T22V3::T22E-FND02::S19@1": {
       "main": [
         "Σ(k=1..5)(2k−1)",
-        "Expand"
+        "into its five terms before evaluating it"
       ],
       "transfer": [
         "Σ(j=0..4)3·2^j",
@@ -3347,8 +3347,7 @@
     "T22V3::T22E-FND02::S21@1": {
       "main": [
         "150°",
-        "reference angle/quadrant",
-        "arc-displacement divided by radius"
+        "radius4"
       ],
       "transfer": [
         "−45°",
