@@ -3,7 +3,7 @@
 Date: 2026-09-18  
 Branch: `codex/t22-pedagogical-rebuild`  
 Stable module ID: `ARC502`  
-Status: **BOUNDARY ACCEPTED FOR M06 AUTHORING ONLY**
+Status: **INTERNAL ACCEPTED — REVIEW HANDOFF CREATED; M07 CLOSED**
 
 ## Entry authority
 
@@ -117,3 +117,12 @@ Preserve shared fingerprints, lesson provenance, packet exposure, unsaved-draft 
 Complete, validate and hand off M06 separately.
 
 **STOP AFTER M06. Do not author M07.**
+
+
+## Completion update
+
+M06 is internally accepted at authoring version `m06-authoring-v1.0-internal-accepted` and integrated in course metadata `T22E-course-0.6.0-m06`.
+
+Review handoff: `M06-REVIEW-HANDOFF.md`.
+
+**M07 remains closed.**
