@@ -8,7 +8,7 @@ assert.equal(deps.version,'M65-semantic-r1-2026-09-18');assert.equal(deps.module
 const depBy=new Map(deps.modules.map(m=>[m.id,m])),pos=new Map(deps.modules.map(m=>[m.id,m.order])),ledBy=new Map(ledger.entries.map(m=>[m.id,m]));
 assert.equal(depBy.size,65);assert.equal(ledBy.size,65);
 for(const m of deps.modules){assert(ledBy.has(m.id),`missing semantic ledger row ${m.id}`);assert.equal(ledBy.get(m.id).order,m.order);for(const p of m.prerequisites){assert(pos.has(p),`${m.id} missing prerequisite ${p}`);assert(pos.get(p)<m.order,`${m.id} backward prerequisite ${p}`);}}
-for(const row of ledger.entries){assert(['new','reused','adapted'].includes(row.mode));assert(['accepted','pending-boundary-audit','planned-with-known-edge','planned-with-known-bridge'].includes(row.semanticStatus));assert(Array.isArray(row.bridges));}
+for(const row of ledger.entries){assert(['new','reused','adapted'].includes(row.mode));assert(['accepted','pending-boundary-audit','boundary-accepted-content-candidate','planned-with-known-edge','planned-with-known-bridge'].includes(row.semanticStatus));assert(Array.isArray(row.bridges));}
 assert(ledBy.get('T22E-FND01').semanticStatus==='accepted');
 // Astra A-06 named ancestry repairs.
 assert(depBy.get('T22E-MKT01').prerequisites.includes('T22E-FND02'),'M07 log returns require M02 logarithms');
