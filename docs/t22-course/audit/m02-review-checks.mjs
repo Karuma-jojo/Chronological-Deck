@@ -3,9 +3,9 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 const src=fs.readFileSync('js/t22-course/ui.js','utf8');
-const start=src.indexOf('function captureDraft('),end=src.indexOf('async function reveal(');
-assert(start>=0&&end>start,'draft functions must remain discoverable');
-const body=src.slice(start,end);
+const start=src.indexOf('function captureDraft('),mid=src.indexOf('function selectSession('),sel=src.indexOf('function selectModule('),end=src.indexOf('async function reveal(');
+assert(start>=0&&mid>start&&sel>mid&&end>sel,'draft functions must remain discoverable');
+const body=src.slice(start,mid)+src.slice(sel,end);
 const elements=new Map();
 const context=vm.createContext({elements,console,Map});
 vm.runInContext(`
