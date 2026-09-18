@@ -2,7 +2,7 @@
 
 Reviewed head: `f49479068d8fb3416dbe823e9fdacd628d90e268`.
 Branch: `codex/t22-pedagogical-rebuild`.
-Disposition: **usable after four bounded repairs; finish them before M03**. Preserve the 24-session structure and existing work. Sol should implement the repairs, document evidence and then open M03; another full redesign or compulsory Astra re-audit is unnecessary.
+Disposition: **M02-01 through M02-04 RESOLVED AND VALIDATED**. The 24-session structure and existing work were preserved. The repaired module is cleared for M03 to open under the established gates; no redesign or compulsory Astra re-audit is required.
 
 ## Verified scope
 
@@ -78,3 +78,28 @@ Resolve M02-01 through M02-04 on the existing branch. Update references/prompts 
 
 No legacy T22/T25 changes, migration, merge or deployment are required by this review.
 
+
+## Resolution checkpoint
+
+Resolved implementation head: `5fa0ab4ec6059d3726dcfff4198843bf6a5e61a9`.  
+Successful GitHub Actions run: `35307392781` — **SUCCESS**.
+
+| Finding | Resolution | Persistent acceptance evidence |
+| --- | --- | --- |
+| M02-01 recurrence reference | S20 transfer now requires an all-future recurrence argument. Reference proves forward invariance: from (y_n≤0), (y_{n+1}=2y_n−1≤−1), so every term stays at least distance 1 from fixed point 1. A finite prefix alone explicitly earns no reasoning points. | M02 validator asserts invariant/reference/rubric wording; focused audit iterates the closed form/invariant; Chromium suite remains green. |
+| M02-02 module-switch draft loss | Drafts are keyed by stable problem ID and preserve exact nonempty text, assistance, minutes and note provenance across module switches. Empty/no-working navigation is not treated as an assisted draft, preserving the existing fresh-reconstruction behavior. | Focused audit now expects restoration; Chromium tests main+transfer drafts across M01→M02→M01 and verifies a restored note-assisted draft cannot be silently saved as independent. |
+| M02-03 unobservable ownership mappings | Manually reviewed all 120 claims. Added explicit public requests/rubric evidence where direction was missing, including S01 rule/output distinction, S08 inverse-vs-reciprocal, S12 percent→base, S13 inverse/base/ln conditions, S17 indexed-function view, S18 inferred ratio/check, S19 expansion, S20 iteration, and S21 radian ratio. Added machine-readable `claimEvidence` with exact public request + rubric criterion(s) for 120/120 claims. | M02 validator checks 120/120 exact claim/request/rubric links and targeted semantic guards. This is observability, not psychometric mastery certification. |
+| M02-04 novice bridges | S02 now defines range, demonstrates bound+attainability, and introduces union notation. S21 now teaches orientation, radians, derives 30°/45°/60° values and reference-angle/quadrant rules; S22 names S21 as source. | Prerequisite audit entries and lesson-content guards are executable in M02 validator. |
+
+Also incorporated review P2 clarifications while touching affected material: finite geometric-sum subtract/cancel derivation; real-valued-vs-first-integer discrete doubling convention; and A/B≠0 scope for ordinary sinusoid period/amplitude language.
+
+Repair commit chain after reviewed head `e08f273f53be5741e2e41d038edd462655837a85`:
+
+- `7aa89f2c3817cb0f036dfae63f8d07bcf3e9455f` — content + 120-claim observability repair.
+- `80e7755e675f60c11fc587b4240f34a71a3f0bcd` — module-switch draft/provenance repair + browser regression.
+- `0f51845864b6f09d179dcb94ec8d802e1cff7581` and `d27f3d27ba42ae24b23edd0af6a697bd9f428529` — tighten exact instruction-separation markers.
+- `1e87a00697bc4c3e3147003c41c48aed79cb88c6` — convert/fix focused review regression harness.
+- `7cd060f9894f7314f0e1861656d90fbdee13bbec` — ensure audit-regression edits trigger CI.
+- `5fa0ab4ec6059d3726dcfff4198843bf6a5e61a9` — scope saved assistance provenance to actual nonempty drafts, reconciling M02-02 with fresh reconstruction behavior.
+
+Earlier repair runs intentionally failed on exact separation markers, a focused-test harness collision, and a browser expectation that encoded the old provenance behavior. Those failures were repaired rather than bypassed. Run `35307392781` is the first full green repair run.

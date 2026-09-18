@@ -4,11 +4,11 @@
     "order": 2,
     "id": "T22E-FND02",
     "title": "Quantitative Foundations II — Functions & Precalculus",
-    "status": "repair-candidate-m02-01-through-04",
+    "status": "authored-v1.1-independent-review-repaired",
     "destination": "From reliable algebra, become fluent with functions as objects, legal domains/ranges, graphs and transformations, finite indexed models, exponential/logarithmic reasoning, log returns and the minimal trigonometry needed by later quantitative work.",
     "gate": "M02 is not cleared by page completion. Publication requires semantic ancestry, prerequisite-symbol audit, novice instruction, claim coverage, independent math/reference validation, evidence integrity and browser validation.",
     "nextBoundary": "M03 owns proof habits, logic, sets/maps and combinatorics. M09 owns limits, convergence and infinite-series arguments. M02 must not certify either family.",
-    "acceptance": "Previous author-validation superseded by bounded independent review M02-01 through M02-04; reaccept only after green gates."
+    "acceptance": "M02-01 through M02-04 from M02-ASTRA-REVIEW.md resolved; full T22 Elite checks including Chromium passed at run 35307392781 on 5fa0ab4ec6059d3726dcfff4198843bf6a5e61a9. Assessment changes stale prior fixed-task evidence through fingerprints rather than deleting it."
   },
   "boundary": {
     "prerequisiteModules": [

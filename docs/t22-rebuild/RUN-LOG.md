@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M02 INDEPENDENT REVIEW COMPLETE — FOUR BOUNDED REPAIRS BEFORE M03**
+State: **M02-01→M02-04 RESOLVED AND FULLY VALIDATED; M03 IS THE ONLY NEXT MODULE**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current validated M02 runtime head before acceptance-state commit: `f3be88268358c938006056386f93a9f662f7316d`
@@ -102,5 +102,15 @@ Read `docs/t22-course/M02-REVIEW-HANDOFF.md` before any further authoring. It re
 
 ## Independent M02 review
 
-Reviewed `f49479068d8fb3416dbe823e9fdacd628d90e268`; see `docs/t22-course/M02-ASTRA-REVIEW.md`. M01 A-07 repaired examples checked; CI run 35305984203 verified successful; local M02 validator passed. M02-01 through M02-04 remain: recurrence justification, unsaved module-switch draft preservation, observable ownership coverage, and range/unit-circle novice bridges. Preserve architecture/content; Sol resolves and validates on this branch, records verified checkpoints, then opens M03 only. Do not restart or merge/deploy. The attached reproduction demonstrates a defect and must be converted to desired-behavior tests after repair.
+Reviewed `f49479068d8fb3416dbe823e9fdacd628d90e268`; see `docs/t22-course/M02-ASTRA-REVIEW.md`. **M02-01 through M02-04 are resolved.** Final repaired implementation run `35307392781` on `5fa0ab4ec6059d3726dcfff4198843bf6a5e61a9` passed syntax, M01/M02 structural-pedagogy-semantic-evidence gates, focused review regressions and Chromium. The 120-claim audit now records exact public-task/rubric evidence. M03 may open, but no later module may be authored in the same pass.
 
+
+## M02 independent-review resolution
+
+- M02-01 all-future recurrence justification repaired.
+- M02-02 nonempty unsaved working preserves text + assistance/minutes/note provenance across module switches.
+- M02-03 120/120 claims manually re-audited with exact request/rubric evidence; direction-of-task gaps repaired.
+- M02-04 range and unit-circle novice bridges added.
+- Successful full repair run: `35307392781` at `5fa0ab4ec6059d3726dcfff4198843bf6a5e61a9`.
+
+**Next:** build M03 only, beginning with semantic ancestry/boundary audit. Stop with M03 review handoff. No M04 authoring.

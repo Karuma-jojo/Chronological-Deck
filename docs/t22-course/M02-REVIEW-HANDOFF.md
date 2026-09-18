@@ -2,7 +2,7 @@
 
 Date: 2026-09-18  
 Branch: `codex/t22-pedagogical-rebuild`  
-Status: **FINAL ACCEPTED ON REBUILD BRANCH — STOP FOR REVIEW BEFORE M03**  
+Status: **FINAL ACCEPTED AFTER INDEPENDENT M02-01→04 REPAIR — M03 MAY OPEN ONLY UNDER GATES**  
 Baseline before M02: `49c25dd1b22c5d111da97184c9ca494c4b3c326e`  
 Accepted M02 state: `3bccf31d457b6698b351b29bd9b8185be62741c5`
 
@@ -108,3 +108,9 @@ Before M03 copies any pattern, preserve these repaired rules:
 
 **STOP HERE. M03 has not been authored.**  
 On explicit continuation: read this handoff + RUN-LOG first, audit M03 semantic ancestry and ownership boundary, fix any known affected pattern before reuse, then author M03 only and produce its own REVIEW-HANDOFF before advancing.
+
+## Independent-review repair supplement
+
+The later bounded review in `M02-ASTRA-REVIEW.md` found M02-01 through M02-04. All four are resolved. See that file's resolution checkpoint for exact behavior and commit chain. Final repaired implementation validation: run `35307392781` on `5fa0ab4ec6059d3726dcfff4198843bf6a5e61a9` — **SUCCESS**.
+
+The strongest new rule carried into later modules is that a nonempty claim-count is insufficient: every required-ownership claim must have an exact public request and rubric criterion that actually observes the claimed direction/capability.
