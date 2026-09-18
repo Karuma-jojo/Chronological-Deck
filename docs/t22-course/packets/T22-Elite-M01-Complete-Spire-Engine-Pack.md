@@ -108,7 +108,7 @@ A signed number has a sign and a magnitude. On the number line, farther left mea
 
 Evaluate exactly: −18 − [7 − 3(−4)] + 2^3. Then order from smallest to largest: −3, −2.75, −2.7, −2.6. Give one quick sign/magnitude sanity check for each part.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S01-M@1`  
 Obligation version: `2`
 
 ### MAIN REFERENCE — SEALED / ENGINE ONLY
@@ -138,11 +138,13 @@ Inside brackets: 3(−4)=−12, so 7−(−12)=19. Thus −18−19+8=−29. Orde
 ]
 ```
 
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
+
 ## TRANSFER TASK — release only at normal transfer stage
 
 Without a calculator, evaluate −3^2 + (−3)^2 − 2[5−(−1)]. Then decide which is larger: −2.75 or −2.8, and justify using number-line order rather than calculator authority.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S01-T@1`  
 Obligation version: `2`
 
 ### TRANSFER REFERENCE — SEALED / ENGINE ONLY
@@ -167,6 +169,8 @@ Obligation version: `2`
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## Ownership / provenance metadata
 
@@ -322,7 +326,7 @@ Marking: Human/AI review required. Accept every mathematically valid route. A ta
 
 Which is larger, 17/28 or 5/8? Then compute and reduce (5/6)(3/10) explicitly, and use that result to evaluate 1 − [2/3 − (5/6)(3/10)] exactly.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S02-T@1`  
 Obligation version: `2`
 
 ### TRANSFER REFERENCE — SEALED / ENGINE ONLY
@@ -351,6 +355,8 @@ Obligation version: `2`
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## Ownership / provenance metadata
 
@@ -506,7 +512,7 @@ Marking: Human/AI review required. Accept every mathematically valid route. A ta
 
 A risk-budget ratio is quoted Equity:Bond:Cash = 10:6:4. Reduce it to the simplest whole-number ratio. If the total budget is ₹84,000, allocate each part and state the equity amount as a fraction of the total.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S03-T@1`  
 Obligation version: `2`
 
 ### TRANSFER REFERENCE — SEALED / ENGINE ONLY
@@ -539,6 +545,8 @@ Obligation version: `2`
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## Ownership / provenance metadata
 
@@ -690,7 +698,7 @@ Marking: Human/AI review required. Accept every mathematically valid route. A ta
 
 A fill probability rises from 40% to 46%. Give the percentage-point increase and relative percent increase. Write 46% as a decimal. Then convert 0.375 to both a fraction in lowest terms and a percentage.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S04-T@1`  
 Obligation version: `2`
 
 ### TRANSFER REFERENCE — SEALED / ENGINE ONLY
@@ -719,6 +727,8 @@ Increase=6 percentage points. Relative increase=6/40=15%. 46%=0.46. Also0.375=37
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## Ownership / provenance metadata
 
@@ -1022,7 +1032,7 @@ Treat units like algebraic factors. Conversion factors equal one, so unwanted un
 
 Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S06-M@1`  
 Obligation version: `2`
 
 ### MAIN REFERENCE — SEALED / ENGINE ONLY
@@ -1055,6 +1065,8 @@ Obligation version: `2`
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## TRANSFER TASK — release only at normal transfer stage
 
@@ -1212,7 +1224,7 @@ Estimate before exact calculation. Replace awkward numbers by nearby friendly va
 
 Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S07-M@1`  
 Obligation version: `2`
 
 ### MAIN REFERENCE — SEALED / ENGINE ONLY
@@ -1245,6 +1257,8 @@ A rough central estimate is2,000,000×0.003≈6,000; a plausible rough range suc
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## TRANSFER TASK — release only at normal transfer stage
 
@@ -1780,7 +1794,7 @@ Marking: Human/AI review required. Accept every mathematically valid route. A ta
 
 Factor completely 12x²−18x, then factor x²+5x+6 and 4a²−12ab+9b². Name the identity used in the last case. Finally, can an x be 'cancelled' from x²+x to leave x+1 without first writing a product? Explain.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S10-T@1`  
 Obligation version: `2`
 
 ### TRANSFER REFERENCE — SEALED / ENGINE ONLY
@@ -1809,6 +1823,8 @@ Obligation version: `2`
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## Ownership / provenance metadata
 
@@ -2084,7 +2100,7 @@ Treat a formula as an equation whose requested symbol is the unknown and whose o
 
 Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S12-M@1`  
 Obligation version: `2`
 
 ### MAIN REFERENCE — SEALED / ENGINE ONLY
@@ -2118,11 +2134,13 @@ rV0=V1−V0, so V1=V0(1+r). For1+r≠0, V0=V1/(1+r). If r=−1, the original equ
 ]
 ```
 
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
+
 ## TRANSFER TASK — release only at normal transfer stage
 
 Given q=(a−b)/(a+b) with a+b≠0, solve for a in terms of b and q. State the condition required by the solved form, describe the original q=1 branch separately, and verify the ordinary rearrangement by substitution.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S12-T@1`  
 Obligation version: `2`
 
 ### TRANSFER REFERENCE — SEALED / ENGINE ONLY
@@ -2151,6 +2169,8 @@ q(a+b)=a−b gives a(q−1)=−b(1+q), so for q≠1, a=b(1+q)/(1−q). The origi
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## Ownership / provenance metadata
 
@@ -2295,7 +2315,7 @@ Marking: Human/AI review required. Accept every mathematically valid route. A ta
 
 A desk wants positions x and y satisfying x+y=14 and 3x−2y=17. Solve by elimination and verify the pair in both original constraints.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S13-T@1`  
 Obligation version: `2`
 
 ### TRANSFER REFERENCE — SEALED / ENGINE ONLY
@@ -2320,6 +2340,8 @@ Eliminate y by doubling x+y=14 to2x+2y=28 and add to3x−2y=17:5x=45, so x=9 and
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## Ownership / provenance metadata
 
@@ -2427,7 +2449,7 @@ Inequalities describe sets. Addition/subtraction preserves order; positive scali
 
 Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S14-M@1`  
 Obligation version: `2`
 
 ### MAIN REFERENCE — SEALED / ENGINE ONLY
@@ -2456,6 +2478,8 @@ First multiply by positive10:2(2x−3)≤5(x+4), so4x−6≤5x+20 and x≥−26,
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## TRANSFER TASK — release only at normal transfer stage
 
@@ -2627,7 +2651,7 @@ Marking: Human/AI review required. Accept every mathematically valid route. A ta
 
 Solve |x+2|>4 and interpret it as a distance from −2. Briefly state what |x| measures. Then decide the solution sets of |3x−1|<−2 and |3x−1|≥−2 without case-heavy algebra.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S15-T@1`  
 Obligation version: `2`
 
 ### TRANSFER REFERENCE — SEALED / ENGINE ONLY
@@ -2656,6 +2680,8 @@ Obligation version: `2`
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## Ownership / provenance metadata
 
@@ -2762,7 +2788,7 @@ Put a quadratic in ax²+bx+c=0 form with a≠0. Factoring plus the zero-product 
 
 Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.
 
-Task ID: `undefined`  
+Task ID: `T22V3::T22E-FND01::S16-M@1`  
 Obligation version: `2`
 
 ### MAIN REFERENCE — SEALED / ENGINE ONLY
@@ -2791,6 +2817,8 @@ x²−7x+12=(x−3)(x−4), so x=3,4. For2x²+3x−1=0, D=3²−4(2)(−1)=17, s
   }
 ]
 ```
+
+Marking: Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module.
 
 ## TRANSFER TASK — release only at normal transfer stage
 
