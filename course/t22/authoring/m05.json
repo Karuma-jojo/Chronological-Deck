@@ -1127,7 +1127,7 @@
       "id": "T22V3::T22E-TRD01::S11-M@1",
       "order": 11,
       "kind": "main",
-      "prompt": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why the final 104 is not a  −? 'loss from the initial bankroll' even though it is in drawdown.",
+      "prompt": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why final wealth 104 is not a loss relative to the initial bankroll even though it is in drawdown from the running peak.",
       "obligationVersion": 1
     },
     "T22V3::T22E-TRD01::S11-T@1": {
@@ -3405,7 +3405,7 @@
       {
         "claim": "Compute the running peak of a wealth path.",
         "task": "main",
-        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why the final 104 is not a  −? 'loss from the initial bankroll' even though it is in drawdown.",
+        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why final wealth 104 is not a loss relative to the initial bankroll even though it is in drawdown from the running peak.",
         "rubricEvidence": [
           "Running peaks 100,120,120,120,130,130 are correct."
         ]
@@ -3413,7 +3413,7 @@
       {
         "claim": "Compute drawdown amount from running peak.",
         "task": "main",
-        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why the final 104 is not a  −? 'loss from the initial bankroll' even though it is in drawdown.",
+        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why final wealth 104 is not a loss relative to the initial bankroll even though it is in drawdown from the running peak.",
         "rubricEvidence": [
           "Drawdown amounts 0,0,30,12,0,26 are correct."
         ]
@@ -3421,7 +3421,7 @@
       {
         "claim": "Compute drawdown percentage using the running peak denominator.",
         "task": "main",
-        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why the final 104 is not a  −? 'loss from the initial bankroll' even though it is in drawdown.",
+        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why final wealth 104 is not a loss relative to the initial bankroll even though it is in drawdown from the running peak.",
         "rubricEvidence": [
           "Drawdown percentages 0,0,25%,10%,0,20% are correct."
         ]
@@ -3429,7 +3429,7 @@
       {
         "claim": "Find maximum drawdown over a finite path.",
         "task": "main",
-        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why the final 104 is not a  −? 'loss from the initial bankroll' even though it is in drawdown.",
+        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why final wealth 104 is not a loss relative to the initial bankroll even though it is in drawdown from the running peak.",
         "rubricEvidence": [
           "Maximum drawdown amount30 and percentage25% are identified."
         ]
@@ -3437,7 +3437,7 @@
       {
         "claim": "Distinguish drawdown from loss relative to initial bankroll.",
         "task": "main",
-        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why the final 104 is not a  −? 'loss from the initial bankroll' even though it is in drawdown.",
+        "publicRequest": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why final wealth 104 is not a loss relative to the initial bankroll even though it is in drawdown from the running peak.",
         "rubricEvidence": [
           "Drawdown-from-peak is distinguished from gain/loss versus initial wealth."
         ]
