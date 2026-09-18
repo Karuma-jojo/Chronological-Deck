@@ -1,12 +1,27 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M05 + M06 SEPARATE CHECKPOINTS COMPLETE; STOP BEFORE M07**
+State: **M05 + M06 INDEPENDENT REVIEW: REPAIRS REQUIRED; M07 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
+
+## Current independent review — 2026-09-18
+
+Review source: `docs/t22-course/M05-M06-ASTRA-REVIEW.md`.
+Reviewed branch head: `9efe72ee1c87579b4ba5ab491f31f259a976752e`.
+
+M05 and M06 are **not yet independently accepted/frozen**. This status supersedes their earlier internal acceptance/handoff claims below. Preserve the existing authored work and repair the bounded findings; do not restart.
+
+Required fixes: actual failing M05 CI gate; exact assessment-answer/practice overlap in both modules; positional claim/rubric mappings; unrequested rubric obligations; M05 S12 first-passage transfer; historical exposure and obligation-version handling where affected.
+
+Latest relevant inspected Actions run `35376362609` failed at `scripts/test-t22-elite-m05.mjs:45`; browser tests were skipped. Local current M05 test reproduces it. M06 static, both math and both handoff scripts pass, which does not resolve the semantic findings.
+
+Next action: Sol repairs only M05/M06 and their necessary shared guards/provenance, writes `M05-M06-RESOLUTION.md`, pushes and verifies a full green repair-head Actions run, then stops for independent review. M07 stays closed. No merge/deploy/T25/legacy-T22 changes.
+
+Autonomy: no all-upcoming or three-module approval. After accepted repairs, M07 alone is the next trial.
 
 ## Current authorities
 
