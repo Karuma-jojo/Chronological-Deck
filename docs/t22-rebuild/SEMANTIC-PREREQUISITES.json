@@ -38,9 +38,9 @@
       "order": 5,
       "id": "T22E-TRD01",
       "mode": "new",
-      "semanticStatus": "boundary-accepted-content-candidate",
+      "semanticStatus": "accepted",
       "bridges": [],
-      "note": "M05 boundary opened after M04 independent follow-up acceptance. Direct prerequisite ARC048 is sufficient for finite games, expectation, bankroll arithmetic, finite utility and simple adversarial tables. Bayes/updating stays M06; market mechanics M07; variance/distribution theory M26; Kelly/optimization, DP/MDP and formal minimax remain later."
+      "note": "M05 authored as a 24-session finite decision module on accepted ARC048: payoff accounting, EV/fair price/break-even, loss probability, repeated expectation, bankroll/drawdown/finite ruin, explicit loss constraints, multiplicative recovery, finite utility/CE, statewise/maximin and simple 2x2 adversarial algebra. Bayes remains M06; market mechanics M07; formal distribution/variance M26; Kelly/general optimization/DP/MDP/formal minimax remain later."
     },
     {
       "order": 6,
