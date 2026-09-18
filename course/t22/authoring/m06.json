@@ -1,11 +1,11 @@
 {
-  "version": "m06-authoring-v1.0-candidate",
+  "version": "m06-authoring-v1.0-internal-accepted",
   "instructionVersion": "m06-instruction-v1",
   "module": {
     "order": 6,
     "id": "ARC502",
     "title": "Bayes, Base Rates & Sequential Updating",
-    "status": "authored-v1-candidate",
+    "status": "authored-v1-internal-accepted",
     "destination": "Turn finite evidence models into disciplined posterior updates: respect base rates, derive Bayes, normalize complete hypothesis sets, use odds/LRs correctly, update sequentially without double counting, and stress-test priors/likelihoods.",
     "gate": "Clearance requires exact conditioning denominators, complete hypothesis normalization, observable ownership evidence and explicit dependence/model assumptions—not formula recall.",
     "nextBoundary": "M07 owns market prices, returns and trading mechanics. M06 stops at finite evidence updating and robustness."
