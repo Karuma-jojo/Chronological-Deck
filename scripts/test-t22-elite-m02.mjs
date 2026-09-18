@@ -5,7 +5,7 @@ const a=JSON.parse(fs.readFileSync('course/t22/authoring/m02.json','utf8'));
 assert.equal(a.module.id,'T22E-FND02');assert.equal(a.module.order,2);assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01']);
 assert.equal(a.sessions.length,24);assert.equal(Object.keys(a.problems).length,48);assert.equal(Object.keys(a.evaluators).length,48);
 assert.deepEqual(a.sessions.map(s=>s.order),Array.from({length:24},(_,i)=>i+1));
-assert.equal(new Set(a.sessions.map(s=>s.id)).size,24);assert.equal(Object.keys(a.coverage).length,24);assert.equal(Object.keys(a.instructionSeparation).length,24);
+assert.equal(new Set(a.sessions.map(s=>s.id)).size,24);assert.equal(Object.keys(a.coverage).length,24);assert.equal(Object.keys(a.instructionSeparation).length,24);assert.equal(Object.keys(a.claimEvidence||{}).length,24);assert.equal(a.coverageAudit?.status,'120/120 manually reviewed after M02-03; direction-of-task mismatches repaired before acceptance');
 const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 const hashes=new Set();
 for(const s of a.sessions){
@@ -13,11 +13,24 @@ for(const s of a.sessions){
  const contract={id:s.id,title:s.title,focus:s.focus,purpose:s.purpose,centralCapability:s.centralCapability,principalObstacle:s.principalObstacle,entryPrerequisites:s.entryPrerequisites,requiredOwnership:s.requiredOwnership,applicationScope:s.applicationScope,transferScope:s.transferScope,inScope:s.inScope,outOfScope:s.outOfScope,exitCondition:s.exitCondition};
  const h=crypto.createHash('sha256').update(JSON.stringify(stable(contract))).digest('hex');assert(!hashes.has(h));hashes.add(h);
  const cov=a.coverage[s.id];assert.equal(cov.length,5);for(const x of cov){assert(x.length);for(const k of x)assert(['main','transfer'].includes(k));}
+ const ce=a.claimEvidence[s.id];assert.equal(ce.length,5);ce.forEach((e,i)=>{assert.equal(e.claim,s.requiredOwnership[i]);assert(['main','transfer'].includes(e.task));const pid=s[e.task];assert.equal(e.publicRequest,a.problems[pid].prompt);assert(Array.isArray(e.rubricEvidence)&&e.rubricEvidence.length);for(const criterion of e.rubricEvidence)assert(a.evaluators[pid].rubric.some(r=>r.criterion===criterion),s.id+' claim evidence rubric must be exact');});
  const audit=a.prerequisiteAudit['S'+String(s.order).padStart(2,'0')];assert(Array.isArray(audit)&&audit.length);for(const x of audit)assert(x.item&&x.source);
  const sep=a.instructionSeparation[s.id];for(const [kind,pid] of [['main',s.main],['transfer',s.transfer]]){assert(a.problems[pid]);assert(a.evaluators[pid]);assert.equal(a.evaluators[pid].rubric.reduce((z,r)=>z+r.points,0),10);assert(sep[kind]?.length);for(const f of sep[kind]){assert(a.problems[pid].prompt.includes(f),s.id+' separation fragment missing in task: '+f);assert(!s.lesson.includes(f),s.id+' lesson leaks '+kind+' fragment: '+f);}}
 }
-assert.equal([...hashes].length,24);assert.equal(Object.values(a.coverage).flat().length,120);
+assert.equal([...hashes].length,24);assert.equal(Object.values(a.coverage).flat().length,120);assert.equal(Object.values(a.claimEvidence).flat().length,120);
+
 const close=(x,y,t=1e-9)=>assert(Math.abs(x-y)<=t*Math.max(1,Math.abs(x),Math.abs(y)),x+' != '+y);
+
+// M02-01..04 semantic acceptance guards.
+const s2=a.sessions.find(s=>s.order===2),s8=a.sessions.find(s=>s.order===8),s12=a.sessions.find(s=>s.order===12),s13=a.sessions.find(s=>s.order===13),s18=a.sessions.find(s=>s.order===18),s20=a.sessions.find(s=>s.order===20),s21=a.sessions.find(s=>s.order===21);
+assert(s2.lesson.includes('range is the set of outputs')&&s2.lesson.includes('∪ means union'));
+assert(a.problems[s8.main].prompt.includes('reciprocal 1/f(y)'));
+assert(a.problems[s12.transfer].prompt.includes('grows 6% per period'));
+assert(a.problems[s13.main].prompt.includes('allowed real logarithm-base conditions'));
+assert(a.problems[s18.transfer].prompt.includes('Infer its constant ratio')&&a.problems[s18.transfer].prompt.includes('sanity check'));
+assert(a.evaluators[s20.transfer].reference.includes('forward invariance')&&a.evaluators[s20.transfer].rubric.some(r=>r.criterion.includes('finite prefix alone earns no reasoning points')));
+assert(s21.lesson.includes('cos45°=sin45°=√2/2')&&s21.lesson.includes('I(+,+), II(−,+), III(−,−), IV(+,−)'));
+
 // Independent mathematics — explicit recalculation across all 24 sessions.
 assert.equal(3*5-4,11);assert.equal(3*(-2)-4,-10); // S01
 assert.equal(Math.min(...[-2,-1,0,1,2,3].map(x=>x*x+1)),1);assert.equal(Math.max(...[-2,-1,0,1,2,3].map(x=>x*x+1)),10); // S02
@@ -45,4 +58,4 @@ close(2*Math.PI/2,Math.PI);assert.deepEqual([Math.PI/6,5*Math.PI/6].map(v=>Math.
 const q=n=>50*1.2**n;close(Array.from({length:6},(_,n)=>q(n)).reduce((u,v)=>u+v,0),496.496);close(q(3),86.4);close([0,1,2,3,4].map(k=>2+3*Math.sin(k*Math.PI/2)).reduce((u,v)=>u+v,0),10,1e-8); // S24
 // S22 task's recovered 3-4-5 triangle: sin=3/5, quadrant II implies cos=-4/5 and tan=-3/4.
 close((3/5)**2+(-4/5)**2,1);close((3/5)/(-4/5),-3/4);
-console.log('PASS: M02 boundary; 24 sessions/48 tasks; 120/120 ownership mappings; all-session prerequisite and instruction-separation audits; independent math checks across every session.');
+console.log('PASS: M02 repaired review candidate; 24 sessions/48 tasks; 120/120 claim-level public-request/rubric evidence mappings; M02-01/03/04 content guards; all-session prerequisite/separation audits; independent math checks.');
