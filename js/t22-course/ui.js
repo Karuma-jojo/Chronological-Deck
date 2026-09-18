@@ -48,7 +48,9 @@ function sessionsList(){
 function contractText(s){return [s.centralCapability,'PRINCIPAL OBSTACLE',s.principalObstacle,'ENTRY PREREQUISITES',...s.entryPrerequisites,'REQUIRED OWNERSHIP',...s.requiredOwnership,'APPLICATION SCOPE',s.applicationScope,'TRANSFER SCOPE',s.transferScope,'EXIT CONDITION',s.exitCondition,'OUT OF SCOPE',...s.outOfScope].join('\n\n');}
 function captureDraft(){
  if(!problemId)return;
- drafts.set(problemId,{answer:$('answer').value,assistance:$('assistance').value,minutes:$('minutes').value,noteSeen:!!noteSeen});
+ const answer=$('answer').value;
+ if(!answer){drafts.delete(problemId);return;}
+ drafts.set(problemId,{answer,assistance:$('assistance').value,minutes:$('minutes').value,noteSeen:!!noteSeen});
 }
 function showProblem(id){
  captureDraft();
