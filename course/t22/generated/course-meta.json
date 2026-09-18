@@ -1,5 +1,5 @@
 {
-  "version": "T22E-course-0.2.0-validation",
+  "version": "T22E-course-0.3.0-validation",
   "routeVersion": "M65-semantic-r2-2026-09-18",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
@@ -68,6 +68,12 @@
       "id": "T22E-FND02",
       "sourceType": "authoring-pack",
       "source": "course/t22/authoring/m02.json"
+    },
+    {
+      "order": 3,
+      "id": "T22E-DISC01",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m03.json"
     }
   ]
 }
