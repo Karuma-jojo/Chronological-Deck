@@ -1,7 +1,7 @@
 # M01 follow-up review
 
 Reviewed: ead0b27f26153f92e16d7c4017df6bc5b2048ef6.
-Disposition: platform repairs accepted on this bounded review; M01 needs one final assessment-separation repair before final acceptance. Sol may continue to M02 once it passes. No restart or mandatory repeated Astra review is needed.
+Disposition: **A-07 resolved and validated. M01 final-accepted; Sol may continue to M02 under the established module gates.** No restart or mandatory repeated Astra review is needed.
 
 ## Verified
 
@@ -28,3 +28,16 @@ Required bounded repair:
 5. Recheck the targeted examples/references and rerun existing structural/evidence/browser gates. Update acceptance and recovery logs, push a verified checkpoint, then continue with M02 only under the established module-by-module gates.
 
 The remaining repair is limited. The 65-module inventory and most M01 work should be retained. No merge/deployment is authorized by this review.
+
+## A-07 resolution
+
+Resolved on implementation head `1dc914c3d505abc7dd7b38b29ff1be0d3ea5c3d8`.
+
+- all 17 lessons/guided checks were audited against both fixed assessments;
+- exact assessment-number reuse was removed while preserving comparable skill/difficulty;
+- historical exact-answer lesson exposure is migrated with timestamp provenance instead of silently forgotten;
+- pre-exposure attempts remain preserved and eligible; post-exposure attempts are not independent;
+- new separated lesson exposure is versioned and is ordinary guided study, not permanent answer contamination;
+- structural/content regression and browser lesson→navigate→return regressions were added.
+
+GitHub Actions run `35303082691` passed all structural, semantic, evidence and browser steps. No merge or deployment occurred.

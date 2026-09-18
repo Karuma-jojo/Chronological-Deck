@@ -1,4 +1,4 @@
-# Astra A-01 through A-06 resolution record
+# Astra A-01 through A-07 resolution record
 
 Date: 2026-09-18  
 Branch: `codex/t22-pedagogical-rebuild`  
@@ -15,6 +15,7 @@ Astra review commit: `a2e45d168436d7875fcdfbe0efd5de850d806c0f`
 | **A-04 hidden prerequisites in early M01** | S01 assessment no longer uses fractions/radicals; S07 no longer requires scientific notation; S08 now teaches rational exponents and real-domain caveats before assessment; S14 teaches interval notation. A machine-readable S01-S08 prerequisite-source audit names the prior/JIT teaching source for each new notation/operation. | `scripts/test-t22-elite-m01.mjs` rejects the old S01/S07 leakage and requires prerequisite-audit rows plus the repaired S08/S14 instruction. |
 | **A-05 notes/assessment under-covered ownership** | All 17 learning notes now contain a novice explanation, worked example and guided check. Targeted tasks now observe fraction multiplication, ratio reduction, percent-decimal conversion, dimensionless percentages, estimate type, GCF/illegal cancellation, formula verification/exception branches, elimination, interval checks, negative absolute-value thresholds and a genuine quadratic-formula case. Added an 85-claim machine-readable coverage map. | Validator requires `Worked example`, `Guided check`, and exactly one nonempty evidence mapping for every one of 17×5 required-ownership claims; all active evaluator rubrics must total 10. |
 | **A-06 topological graph was not a semantic-prerequisite proof** | Added 65-row `SEMANTIC-PREREQUISITES.json`. Only accepted modules may be learner-facing. Added missing graph edges M07←M02, M26←M18, M33←M21 and M42←M02. Locked bounded bridge owners: M09-B01 limits without derivatives; M26-B01 iterated integration/support geometry; M33-B01 basic numerical-MLE solver interpretation; M42-B01 complex roots/modulus for AR stability. | `scripts/test-t22-semantic-gates.mjs` requires all 65 ledger rows, topological validity, named edges/bridges and semantic acceptance for every roadmap module marked authored. The same gate is required module-by-module going forward. |
+| **A-07 worked instruction repeated live assessment answers** | Re-authored all 17 M01 lessons so worked/guided examples use distinct data from both fixed tasks. Added a 17-row instruction-separation ledger plus historical exact-answer overlap ledger. Legacy exposures are migrated at their original timestamp; attempts before exposure remain valid and later attempts are excluded from independent evidence. New lesson exposures carry an instruction-content version so general method study is not permanently contaminated. | M01 validator checks all 17 separation rows against both tasks. Browser regression tests current lesson→navigate→return as independent method study and legacy answer-containing lesson→navigate→return as revealed evidence. |
 
 ## Additional audit corrections incorporated
 
@@ -57,3 +58,10 @@ A-01 through A-06 are accepted for the current M01 implementation. M02 may now o
 semantic ancestry → prerequisite-symbol audit → novice lesson/worked/guided path → claim-to-task coverage → assessment fingerprints/evidence semantics → independent math/reference checks → browser workflow → green checkpoint.
 
 No merge or deployment has occurred.
+
+## A-07 verified checkpoint
+
+Implementation head: `1dc914c3d505abc7dd7b38b29ff1be0d3ea5c3d8`.  
+GitHub Actions **T22 Elite checks** run: `35303082691` — **SUCCESS**.
+
+The first A-07 runs intentionally failed on two useful gates: one separation-fragment collision / retained prerequisite-teaching check, then a missing UI import that prevented browser startup. Both were repaired before acceptance. The successful run passed syntax, structural/pedagogy/semantic/evidence checks, Chromium workflow, historical exposure migration, and current-vs-legacy lesson navigation behavior.

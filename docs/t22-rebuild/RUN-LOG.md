@@ -1,10 +1,10 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **ASTRA A-01–A-06 RESOLVED AND VALIDATED; M01 ACCEPTED; M02 IS THE NEXT MODULE BOUNDARY**
+State: **ASTRA A-01–A-07 RESOLVED AND VALIDATED; M01 FINAL-ACCEPTED; M02 OPEN UNDER ESTABLISHED QUALITY GATES**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
-Current validated head before this log update: `95f49e6d1737109149a1cab33e3ba1f9f30b3702`
+Current validated implementation head before this log update: `1dc914c3d505abc7dd7b38b29ff1be0d3ea5c3d8`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
 
@@ -23,7 +23,7 @@ Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
 
 The historical live T22 remains a separate 58-module / 596-atomic route. Its progress authority is not migrated or overwritten. T25 is untouched. T22 Elite continues to use its separate local evidence key `chrono_t22_elite_course_evidence_v1`.
 
-## A-01 through A-06 status
+## A-01 through A-07 status
 
 All six high-priority Astra findings are resolved for M01 and protected by persistent regression gates:
 
@@ -33,12 +33,15 @@ All six high-priority Astra findings are resolved for M01 and protected by persi
 - A-04: early prerequisite leakage repaired; S01-S08 have explicit source/JIT prerequisite audit.
 - A-05: all 17 sessions now have novice explanation + worked example + guided check; 85/85 ownership claims are mapped to observable tasks; targeted gaps were repaired.
 - A-06: semantic ancestry is now a module-publication gate; known missing edges and four named bridge owners are recorded.
+- A-07: all 17 learning notes were audited against both fixed assessments and now use distinct instructional data. A seven-session historical-overlap ledger conservatively migrates former exact-answer lesson exposure, preserving pre-exposure attempts and invalidating only later supposedly-independent evidence. New lesson exposures carry `instructionVersion` so ordinary method study is not permanently contaminated.
 
 Additional S12 exceptional-branch corrections, product-default review labeling, stable session lookup and authoring provenance were also incorporated.
 
 ## Verified checkpoint evidence
 
-Successful GitHub Actions run: `35271225456` on head `95f49e6d1737109149a1cab33e3ba1f9f30b3702`.
+Successful pre-A07 baseline run: `35271225456` on head `95f49e6d1737109149a1cab33e3ba1f9f30b3702`.
+
+Successful A-07 final run: `35303082691` on head `1dc914c3d505abc7dd7b38b29ff1be0d3ea5c3d8`.
 
 Green checks:
 
@@ -52,7 +55,10 @@ Green checks:
 - prerequisite-order checks;
 - independent reference/math calculations;
 - A-01/A-02/A-03 evidence regressions;
-- real Chromium learner workflow: load, lesson provenance, save/reveal/review, export/import/reload, dual-task packet exposure, post-exposure provenance, fresh-probe path, corrupt-storage preservation and mobile width.
+- real Chromium learner workflow: load, lesson provenance, save/reveal/review, export/import/reload, dual-task packet exposure, post-exposure provenance, fresh-probe path, corrupt-storage preservation and mobile width;
+- A-07 all-17 instruction/task separation audit;
+- legacy exact-answer lesson exposure migration with timestamp-aware preservation of pre-exposure attempts;
+- browser lesson → navigate away/back regressions for both current separated instruction and historical contaminated instruction.
 
 Two earlier runs failed only because the test harness used overly strict binary-floating-point equality. Those assertions were replaced with scale-aware numerical tolerances; the final run passed.
 
@@ -84,4 +90,4 @@ Open **M02 · T22E-FND02 — Quantitative Foundations II: Functions & Precalculu
 
 ## Subsequent independent follow-up
 
-See `M01-FOLLOWUP.md` (reviewed ead0b27f26153f92e16d7c4017df6bc5b2048ef6). A-01–A-03 repairs and successful CI verified. Final M01 acceptance is pending A-07: worked/guided examples currently repeat fixed assessment questions. Repair instruction/assessment separation and exposure provenance, validate and push; then proceed to M02. Preserve all existing work and records.
+`M01-FOLLOWUP.md` produced A-07. A-07 is resolved and validated at run `35303082691`; M01 is final-accepted as the reusable module template. M02 may proceed, but M03 remains closed until M02 independently clears every publication gate.
