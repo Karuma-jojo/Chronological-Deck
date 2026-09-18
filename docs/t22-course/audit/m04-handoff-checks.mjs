@@ -29,13 +29,13 @@ assert(!by(4).lesson.includes('generated independently'));
 
 assert.equal(road.modules.find(x=>x.id==='ARC048').availability,'authored');
 assert.equal(led.entries.find(x=>x.id==='ARC048').semanticStatus,'accepted');
-assert.equal(road.modules.find(x=>x.id==='T22E-TRD01').availability,'planned');
-assert.equal(road.modules.find(x=>x.id==='ARC502').availability,'planned');
+assert(['planned','authored'].includes(road.modules.find(x=>x.id==='T22E-TRD01').availability));
+assert(['planned','authored'].includes(road.modules.find(x=>x.id==='ARC502').availability));
+assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'planned');
 assert.equal(meta.version,'T22E-course-0.4.1-m04-astra-r1');
 assert(meta.moduleSources.some(x=>x.id==='ARC048'&&x.source==='course/t22/authoring/m04.json'));
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
-assert(!fs.existsSync('course/t22/authoring/m05.json'));
-assert(!fs.existsSync('course/t22/authoring/m06.json'));
+assert(!fs.existsSync('course/t22/authoring/m07.json'),'M07 must remain closed during the authorized M05→M06 trial');
 
 for(const s of a.sessions){
   assert.equal(s.requiredOwnership.length,5);
@@ -71,4 +71,4 @@ for(const token of [
   'STOP FOR BOUNDED FOLLOW-UP REVIEW'
 ]) assert(res.includes(token),token);
 
-console.log('PASS: M04 Astra repair handoff matches 24/48/120 state, versioned S05-T/S21-M contracts, repaired S11/S22 prerequisites, shared evidence key and closed M05/M06 boundary.');
+console.log('PASS: M04 Astra repair handoff matches 24/48/120 state, versioned S05-T/S21-M contracts, repaired S11/S22 prerequisites, shared evidence key and closed M07 boundary during the authorized M05→M06 trial.');
