@@ -342,3 +342,8 @@ Shared evidence key remains `chrono_t22_elite_course_evidence_v1`.
 Historical M04/M05 handoff gates were made forward-compatible with later global course-meta versions while preserving their own accepted module invariants and the hard M07 stop.
 
 **STOP. M07 · T22E-MKT01 remains planned and no `course/t22/authoring/m07.json` may be created under this mission.**
+
+
+## M01 S02 engine packet export
+
+Exported `docs/t22-course/packets/T22-Elite-M01-S02-Compiled-Engine-Prompt.md` from frozen source `182ff837e140f69b9f7736f9b1164678e6c76836`. Verified M01 contains 17 sessions across its four canonical packs. S02 uses the repaired lesson and obligation-version-2 Transfer; runtime contract hash and assessment fingerprints were checked. Includes unchanged runtime compilerPacket() output with WALL attachment instructions and sealed evaluator supplement. No learner clearance is inferred from export. This documentation-only export does not alter the active authoring/review boundary or course/runtime content.
