@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M06 BOUNDARY OPEN; M06 AUTHORING ONLY; M07 CLOSED**
+State: **M06 INTERNAL ACCEPTED; PREPARING M06 REVIEW HANDOFF; M07 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -308,3 +308,18 @@ M06 · `ARC502` is now the only open content module. Its 24-session route and ex
 M06 depends directly on accepted M04, not on M05 preference/decision theory.
 
 **Complete, validate, push and hand off M06 separately. STOP before M07.**
+
+
+## M06 internal publication gate
+
+M06 · `ARC502` now has:
+- 24 sessions / 48 fixed Main+Transfer tasks;
+- 120/120 exact ownership claim → Main/rubric evidence links;
+- 24/24 semantic instruction-separation records;
+- explicit denominator, hypothesis-completeness and conditional-dependence scoring obligations;
+- no M05 utility/bankroll dependency, M07 market mechanics, M26 density/distribution machinery, M33 MLE or M35 LR-test optimality leakage;
+- independent math covering counts, Bayes normalization, odds/LRs, sequential evidence, dependence/double-counting and sensitivity;
+- shared runtime integration under unchanged `chrono_t22_elite_course_evidence_v1`;
+- browser regression extended through M06 for save/reveal/review, drafts, packet exposure and cross-module export/import.
+
+**Next: create and verify M06 review handoff, then STOP before M07.**
