@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M04 FINAL INTERNAL ACCEPTED; REVIEW HANDOFF CREATED; STOP BEFORE M05/M06**
+State: **M04 ASTRA REPAIRS IMPLEMENTED; STOP FOR BOUNDED FOLLOW-UP BEFORE M05/M06**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -225,3 +225,21 @@ Read `docs/t22-course/M04-REVIEW-HANDOFF.md` before further authoring. It record
 A persistent `docs/t22-course/audit/m04-handoff-checks.mjs` gate verifies the handoff against repository state and asserts M05/M06 remain planned with no authoring packs.
 
 **STOP FOR REVIEW. Do not author M05 or M06 until M04 independent review is accepted or bounded M04 findings are repaired.**
+
+
+## M04 Astra repair resolution — current authority
+
+Independent review `7d377d847728a7ebec6e4b81f2864238bd0b1683` found M04-01 through M04-04. The bounded repair implementation ends at `10df637dbb46bd4985a1f98fc298c746b52bf1fd`.
+
+- **M04-01 resolved:** S11 derives complement-independence from product independence + complement probability.
+- **M04-02 resolved:** 120/120 ownership mappings manually re-audited against exact public task and scoring criteria. S05 claim 3 and S13 claim 5 are deliberately Transfer-owned.
+- **Assessment versioning:** S05-T and S21-M are the only materially changed fixed contracts and are now `obligationVersion=2`; older attempts are preserved but become stale under the existing fingerprint system.
+- **M04-03 resolved:** S22 derives positional marginals for without-replacement sampling from labelled ordered samples before using indicators.
+- **M04-04 resolved:** S04 removes premature independence language.
+- Instruction version: `m04-instruction-astra-r1`.
+- Course metadata version: `T22E-course-0.4.1-m04-astra-r1`.
+- Shared evidence key remains `chrono_t22_elite_course_evidence_v1`.
+- Repair-sensitive structural and independent-math regressions are persistent.
+- Resolution ledger: `docs/t22-course/M04-RESOLUTION.md`.
+
+**Current boundary: STOP FOR BOUNDED INDEPENDENT FOLLOW-UP OF THESE M04 REPAIRS. Do not author M05 or M06 yet.**
