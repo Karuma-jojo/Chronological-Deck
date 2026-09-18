@@ -63,6 +63,9 @@
       "main": "T22V3::T22E-FND01::S01-M@1",
       "transfer": "T22V3::T22E-FND01::S01-T@1",
       "mainTask": {
+        "id": "T22V3::T22E-FND01::S01-M@1",
+        "order": 1,
+        "kind": "main",
         "prompt": "Evaluate exactly: −18 − [7 − 3(−4)] + 2^3. Then order from smallest to largest: −3, −2.75, −2.7, −2.6. Give one quick sign/magnitude sanity check for each part.",
         "obligationVersion": 2
       },
@@ -85,9 +88,13 @@
             "points": 2,
             "criterion": "A sensible magnitude/sign sanity check is stated."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
+        "id": "T22V3::T22E-FND01::S01-T@1",
+        "order": 1,
+        "kind": "transfer",
         "prompt": "Without a calculator, evaluate −3^2 + (−3)^2 − 2[5−(−1)]. Then decide which is larger: −2.75 or −2.8, and justify using number-line order rather than calculator authority.",
         "obligationVersion": 2
       },
@@ -106,7 +113,8 @@
             "points": 3,
             "criterion": "Justification uses number-line order rather than calculator authority."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "coverage": [
         [
@@ -218,6 +226,9 @@
         "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
+        "id": "T22V3::T22E-FND01::S02-T@1",
+        "order": 2,
+        "kind": "transfer",
         "prompt": "Which is larger, 17/28 or 5/8? Then compute and reduce (5/6)(3/10) explicitly, and use that result to evaluate 1 − [2/3 − (5/6)(3/10)] exactly.",
         "obligationVersion": 2
       },
@@ -240,7 +251,8 @@
             "points": 2,
             "criterion": "All cancellation/common-denominator steps are valid."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "coverage": [
         [
@@ -350,6 +362,9 @@
         "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
+        "id": "T22V3::T22E-FND01::S03-T@1",
+        "order": 3,
+        "kind": "transfer",
         "prompt": "A risk-budget ratio is quoted Equity:Bond:Cash = 10:6:4. Reduce it to the simplest whole-number ratio. If the total budget is ₹84,000, allocate each part and state the equity amount as a fraction of the total.",
         "obligationVersion": 2
       },
@@ -376,7 +391,8 @@
             "points": 1,
             "criterion": "Amounts sum back to₹84,000."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "coverage": [
         [
@@ -484,6 +500,9 @@
         "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
+        "id": "T22V3::T22E-FND01::S04-T@1",
+        "order": 4,
+        "kind": "transfer",
         "prompt": "A fill probability rises from 40% to 46%. Give the percentage-point increase and relative percent increase. Write 46% as a decimal. Then convert 0.375 to both a fraction in lowest terms and a percentage.",
         "obligationVersion": 2
       },
@@ -506,7 +525,8 @@
             "points": 1,
             "criterion": "The original40% is used as the relative-change base."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "coverage": [
         [
@@ -723,6 +743,9 @@
       "main": "T22V3::T22E-FND01::S06-M@1",
       "transfer": "T22V3::T22E-FND01::S06-T@1",
       "mainTask": {
+        "id": "T22V3::T22E-FND01::S06-M@1",
+        "order": 6,
+        "kind": "main",
         "prompt": "Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.",
         "obligationVersion": 2
       },
@@ -749,7 +772,8 @@
             "points": 1,
             "criterion": "Units are shown rather than stripped early."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
         "id": "T22V3::T22E-FND01::S06-T@1",
@@ -861,6 +885,9 @@
       "main": "T22V3::T22E-FND01::S07-M@1",
       "transfer": "T22V3::T22E-FND01::S07-T@1",
       "mainTask": {
+        "id": "T22V3::T22E-FND01::S07-M@1",
+        "order": 7,
+        "kind": "main",
         "prompt": "Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.",
         "obligationVersion": 2
       },
@@ -887,7 +914,8 @@
             "points": 1,
             "criterion": "Explains the decimal-scale sanity check."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
         "id": "T22V3::T22E-FND01::S07-T@1",
@@ -1278,6 +1306,9 @@
         "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
+        "id": "T22V3::T22E-FND01::S10-T@1",
+        "order": 10,
+        "kind": "transfer",
         "prompt": "Factor completely 12x²−18x, then factor x²+5x+6 and 4a²−12ab+9b². Name the identity used in the last case. Finally, can an x be 'cancelled' from x²+x to leave x+1 without first writing a product? Explain.",
         "obligationVersion": 2
       },
@@ -1300,7 +1331,8 @@
             "points": 3,
             "criterion": "Rejects illegal cancellation across addition and explains factorization/product requirement."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "coverage": [
         [
@@ -1501,6 +1533,9 @@
       "main": "T22V3::T22E-FND01::S12-M@1",
       "transfer": "T22V3::T22E-FND01::S12-T@1",
       "mainTask": {
+        "id": "T22V3::T22E-FND01::S12-M@1",
+        "order": 12,
+        "kind": "main",
         "prompt": "Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.",
         "obligationVersion": 2
       },
@@ -1527,9 +1562,13 @@
             "points": 1,
             "criterion": "Performs a valid substitution/recomposition check."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
+        "id": "T22V3::T22E-FND01::S12-T@1",
+        "order": 12,
+        "kind": "transfer",
         "prompt": "Given q=(a−b)/(a+b) with a+b≠0, solve for a in terms of b and q. State the condition required by the solved form, describe the original q=1 branch separately, and verify the ordinary rearrangement by substitution.",
         "obligationVersion": 2
       },
@@ -1552,7 +1591,8 @@
             "points": 1,
             "criterion": "Performs a valid substitution/recomposition check."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "coverage": [
         [
@@ -1659,6 +1699,9 @@
         "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
+        "id": "T22V3::T22E-FND01::S13-T@1",
+        "order": 13,
+        "kind": "transfer",
         "prompt": "A desk wants positions x and y satisfying x+y=14 and 3x−2y=17. Solve by elimination and verify the pair in both original constraints.",
         "obligationVersion": 2
       },
@@ -1677,7 +1720,8 @@
             "points": 3,
             "criterion": "Verifies both original constraints."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "coverage": [
         [
@@ -1754,6 +1798,9 @@
       "main": "T22V3::T22E-FND01::S14-M@1",
       "transfer": "T22V3::T22E-FND01::S14-T@1",
       "mainTask": {
+        "id": "T22V3::T22E-FND01::S14-M@1",
+        "order": 14,
+        "kind": "main",
         "prompt": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
         "obligationVersion": 2
       },
@@ -1776,7 +1823,8 @@
             "points": 2,
             "criterion": "Inside/outside test points correctly verify both solution descriptions."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
         "id": "T22V3::T22E-FND01::S14-T@1",
@@ -1903,6 +1951,9 @@
         "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
+        "id": "T22V3::T22E-FND01::S15-T@1",
+        "order": 15,
+        "kind": "transfer",
         "prompt": "Solve |x+2|>4 and interpret it as a distance from −2. Briefly state what |x| measures. Then decide the solution sets of |3x−1|<−2 and |3x−1|≥−2 without case-heavy algebra.",
         "obligationVersion": 2
       },
@@ -1925,7 +1976,8 @@
             "points": 2,
             "criterion": "Negative-threshold ≥ inequality is correctly all real numbers, justified by nonnegativity."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "coverage": [
         [
@@ -2001,6 +2053,9 @@
       "main": "T22V3::T22E-FND01::S16-M@1",
       "transfer": "T22V3::T22E-FND01::S16-T@1",
       "mainTask": {
+        "id": "T22V3::T22E-FND01::S16-M@1",
+        "order": 16,
+        "kind": "main",
         "prompt": "Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.",
         "obligationVersion": 2
       },
@@ -2023,7 +2078,8 @@
             "points": 1,
             "criterion": "No valid root is cancelled away and formula assumptions are respected."
           }
-        ]
+        ],
+        "marking": "Human/AI review required. Accept every mathematically valid route. A task score is evidence for this task only; it does not automatically clear every required-ownership item or the module."
       },
       "transferTask": {
         "id": "T22V3::T22E-FND01::S16-T@1",
