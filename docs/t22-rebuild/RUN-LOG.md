@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M04 ASTRA REPAIRS IMPLEMENTED; STOP FOR BOUNDED FOLLOW-UP BEFORE M05/M06**
+State: **M04 INDEPENDENT FOLLOW-UP ACCEPTED; NEXT RECOMMENDED PASS M05 THEN M06 ONLY**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -243,3 +243,10 @@ Independent review `7d377d847728a7ebec6e4b81f2864238bd0b1683` found M04-01 throu
 - Resolution ledger: `docs/t22-course/M04-RESOLUTION.md`.
 
 **Current boundary: STOP FOR BOUNDED INDEPENDENT FOLLOW-UP OF THESE M04 REPAIRS. Do not author M05 or M06 yet.**
+
+
+## M04 bounded independent acceptance — current authority
+
+Reviewed repair/handoff head `87ccf3ef9686de47af25232dce27f818de033b05`. **M04-01 through M04-04 closed; M04 accepted/frozen.** See `docs/t22-course/M04-ASTRA-FOLLOWUP.md`. Verified exact-head full-suite run `35368721291` SUCCESS and locally reran M04 structural, independent-math and handoff checks: all PASS. Re-read the repaired teaching and all 120 revised claim/task/rubric mappings. No additional course-content edit was needed.
+
+**Next recommended authoring pass: M05 then M06, one at a time, with separate validation, handoffs and verified pushes; stop before M07.** Advance existing stop guards deliberately when that pass is authorized. This approval does not itself author M05/M06, merge or deploy. This section supersedes earlier pending-M04-review instructions.

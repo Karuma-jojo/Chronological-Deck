@@ -5,7 +5,7 @@ Branch: `codex/t22-pedagogical-rebuild`
 Independent review: `docs/t22-course/M04-ASTRA-REVIEW.md`  
 Review commit: `7d377d847728a7ebec6e4b81f2864238bd0b1683`  
 Repair implementation head: `10df637dbb46bd4985a1f98fc298c746b52bf1fd`  
-Status: **M04-01 through M04-04 implemented; stop for bounded follow-up review before M05/M06**
+Status: **M04-01 through M04-04 independently accepted; see M04-ASTRA-FOLLOWUP.md**
 
 ## Scope
 
@@ -133,6 +133,11 @@ The implementation was written and re-read from the branch at `10df637dbb46bd498
 
 The repository workflow is push-triggered for these changed paths. The available GitHub connector in this session does not enumerate push-triggered workflow-run IDs, so this document does **not** invent or claim a remote run number. The final handoff checker is updated below to make the repair state executable in the normal T22 Elite workflow.
 
-## Stop boundary
+## Historical repair stop boundary (superseded below)
 
 **STOP FOR BOUNDED FOLLOW-UP REVIEW OF M04-01 THROUGH M04-04. Do not author M05 or M06 yet.**
+
+
+## Independent acceptance and verified remote validation
+
+The bounded follow-up accepted all four repairs at reviewed head `87ccf3ef9686de47af25232dce27f818de033b05`. Remote full-suite run `35368721291` was directly verified SUCCESS; local M04 structural, math and handoff checks also passed. See `M04-ASTRA-FOLLOWUP.md` for scope, version comparisons and the recommended M05–M06 authoring boundary. The pending-follow-up stop instruction above is superseded.

@@ -2,7 +2,7 @@
 
 Date: 2026-09-18  
 Branch: `codex/t22-pedagogical-rebuild`  
-Status: **ASTRA REPAIRS IMPLEMENTED — STOP FOR BOUNDED FOLLOW-UP REVIEW; M05/M06 NOT AUTHORED**  
+Status: **BOUNDED INDEPENDENT FOLLOW-UP ACCEPTED — M04 FROZEN; M05/M06 NOT AUTHORED**  
 Pre-M04 baseline: `829699fce941cdedf59b76aa2d656ca93d283e0b`  
 Original accepted M04 state: `d23b9d3b1b618904f907f8f6d6bfaef55c72873e`  
 Independent review commit: `7d377d847728a7ebec6e4b81f2864238bd0b1683`  
@@ -179,7 +179,7 @@ Astra should especially attack these areas:
 
 Any finding should be written as a bounded M04 finding. Do not repair M05 or M06 during M04 review.
 
-## Review boundary
+## Historical repair-review boundary (superseded by acceptance below)
 
 **STOP HERE FOR BOUNDED FOLLOW-UP REVIEW OF THE ASTRA REPAIRS. M05 and M06 have not been authored.**
 
@@ -190,3 +190,8 @@ Next action:
 - otherwise return only bounded M04 follow-up findings.
 
 No merge to `main` and no deployment were performed.
+
+
+## Independent acceptance — current boundary
+
+M04-01 through M04-04 are accepted after review of `87ccf3ef9686de47af25232dce27f818de033b05`; see `M04-ASTRA-FOLLOWUP.md`. Full workflow `35368721291` passed, as did local structural/math/handoff reruns. No further content repair was required. M04 may be frozen. Next recommended pass: M05 then M06 with individual gates and handoffs, stopping before M07. No new module was authored during approval.
