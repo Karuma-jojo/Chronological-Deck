@@ -35,36 +35,40 @@ M03 explicitly does **not** own:
 - abstract algebra/group theory;
 - measure/cardinality of infinite sets beyond elementary countable examples.
 
-## Planned atomic route — 26 sessions
+## Atomic route — 30 sessions
 
 01. Mathematical statements, truth values & predicates  
-02. AND / OR / NOT and truth tables  
+02. AND, OR, NOT & truth tables  
 03. Implication, converse, inverse & contrapositive  
 04. Biconditionals; necessary & sufficient conditions  
-05. Universal and existential quantifiers  
-06. Negating quantified statements correctly  
+05. Universal & existential quantifiers  
+06. Negating quantified claims correctly  
 07. Counterexamples, boundary cases & claim debugging  
-08. Direct proof architecture  
-09. Contrapositive and contradiction  
-10. Integers, divisibility & parity language  
-11. Proofs with divisibility, parity and remainders  
-12. Mathematical induction  
-13. Strong induction & recursive claims  
-14. Sets, membership, subsets & equality  
-15. Power sets, cardinality & finite subset counting  
-16. Union, intersection, difference & complement  
-17. Set identities and De Morgan laws  
-18. Cartesian products & relations  
-19. Functions as mappings; image & preimage  
-20. Injective, surjective, bijective & inverse claims  
-21. Equivalence relations & partitions  
-22. Addition/product counting principles  
-23. Permutations, factorials & repeated objects  
-24. Combinations, binomial coefficients & subsets  
-25. Stars-and-bars, complement counting, inclusion-exclusion & pigeonhole  
-26. M03 synthesis — claims, proof, sets & finite counting
+08. Integers, divisibility & parity language  
+09. Direct proof architecture  
+10. Proof by contraposition  
+11. Proof by contradiction  
+12. Remainder classes & exhaustive proof cases  
+13. Mathematical induction  
+14. Strong induction & recursive claims  
+15. Sets, membership, subsets & equality  
+16. Power sets & finite cardinality  
+17. Union, intersection, difference & complement  
+18. Set identities & De Morgan laws  
+19. Cartesian products & relations  
+20. Functions as mappings; domain, codomain, image & preimage  
+21. Injective, surjective, bijective & inverse claims  
+22. Equivalence relations & partitions  
+23. Addition & product counting principles  
+24. Permutations, factorials & ordered selections  
+25. Permutations with repeated objects & multinomial grouping  
+26. Combinations, binomial coefficients & subsets  
+27. Stars-and-bars: combinations with repetition  
+28. Complement counting & inclusion-exclusion  
+29. Pigeonhole principle  
+30. M03 synthesis — claims, proof, sets & finite counting
 
-The session count is allowed to change only if the authoring audit proves a capability cannot remain bounded at this granularity.
+The authoring audit expanded the provisional 26 to 30 because repeated-object permutations, combinations, stars-and-bars, inclusion-exclusion and pigeonhole have distinct failure modes and deserve bounded sessions. Probability remains outside M03.
 
 ## Publication gate
 
