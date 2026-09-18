@@ -1,29 +1,29 @@
-// Reproduce reviewed defects at f494790; not a whole-course certification.
+// Focused M02 review regressions. These are supplementary to the real Chromium workflow.
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 const src=fs.readFileSync('js/t22-course/ui.js','utf8');
-const show=src.slice(src.indexOf('function showProblem('),src.indexOf('function selectSession('));
-const select=src.slice(src.indexOf('function selectModule('),src.indexOf('async function reveal('));
+const start=src.indexOf('function captureDraft('),end=src.indexOf('async function reveal(');
+assert(start>=0&&end>start,'draft functions must remain discoverable');
+const body=src.slice(start,end);
 const elements=new Map();
 const context=vm.createContext({elements,console,Map});
 vm.runInContext(`
-const $=id=>{if(!elements.has(id))elements.set(id,{value:''});return elements.get(id)};
+const $=id=>{if(!elements.has(id))elements.set(id,{value:'',hidden:false,disabled:false});return elements.get(id)};
 const drafts=new Map();let problemId=null,visit=0,lastSaved=null,noteSeen=false,activeModuleId='M01',session=null;
-const course={problems:{m1:{kind:'main',prompt:'one'},m2:{kind:'main',prompt:'two'}}},state={exposures:{}};
+const course={problems:{m1:{kind:'main',prompt:'one'},m2:{kind:'main',prompt:'two'}},modules:[{id:'M01',order:1,title:'one'},{id:'M02',order:2,title:'two'}],sessions:[]},state={exposures:{}};
 const put=()=>{},expose=()=>{},persist=()=>{},renderHistory=()=>{},renderQueue=()=>{},renderModuleEvidence=()=>{},taskText=p=>p.prompt;
-const moduleMeta=id=>({id}),applyModuleHeader=()=>{},sessionsList=()=>{},renderRoadmap=()=>{};
+const moduleMeta=id=>course.modules.find(m=>m.id===(id||activeModuleId)),moduleCode=()=>activeModuleId,moduleSessions=()=>[],applyModuleHeader=()=>{},sessionsList=()=>{},renderRoadmap=()=>{};
 const selectSession=()=>showProblem(activeModuleId==='M01'?'m1':'m2');
-${show}
-${select}
-showProblem('m1');$('answer').value='valuable unsaved derivation';
+${body}
+showProblem('m1');$('answer').value='valuable unsaved derivation';$('assistance').value='guided';$('minutes').value='7';noteSeen=true;
 selectModule('M02');selectModule('M01');
-globalThis.restored=$('answer').value;
+globalThis.restored={answer:$('answer').value,assistance:$('assistance').value,minutes:$('minutes').value,noteSeen};
 `,context);
-assert.equal(context.restored,'','Expected current defect to reproduce');
-// Independent check of S20: all terms are <=0 by forward invariance.
-let y=0;for(let n=0;n<16;n++){assert(y<=0);assert.equal(y,1-2**n);y=2*y-1;}
-// Domain and identity checks supplement (not replace) manual derivations.
-for(const x of [-8,-3,0,3,7])if(x!==-1&&x!==2)assert(Math.abs((x*x-4)/(x*x-x-2)-(x+2)/(x+1))<1e-12);
-const results={reviewedCommit:'f49479068d8fb3416dbe823e9fdacd628d90e268',unsavedDraftLostOnModuleRoundTrip:context.restored==='',recurrenceInvariantChecks:'PASS',rationalIdentitySpotChecks:'PASS',method:'Actual UI function bodies executed in a minimal mocked DOM; no local browser rerun'};
-console.log(JSON.stringify(results,null,2));
+assert.deepEqual(JSON.parse(JSON.stringify(context.restored)),{answer:'valuable unsaved derivation',assistance:'guided',minutes:'7',noteSeen:true});
+// M02-01: recurrence invariant establishes an all-future obstruction, not a finite-prefix guess.
+let y=0;for(let n=0;n<20;n++){assert(y<=0);assert.equal(y,1-2**n);assert(Math.abs(y-1)>=1);y=2*y-1;}
+const a=JSON.parse(fs.readFileSync('course/t22/authoring/m02.json','utf8'));
+assert.equal(Object.values(a.claimEvidence||{}).flat().length,120);
+for(const s of a.sessions)for(const e of a.claimEvidence[s.id]){const pid=s[e.task];assert.equal(e.publicRequest,a.problems[pid].prompt);for(const c of e.rubricEvidence)assert(a.evaluators[pid].rubric.some(r=>r.criterion===c));}
+console.log(JSON.stringify({unsavedDraftRoundTrip:'PASS',assistanceProvenance:'PASS',recurrenceAllFutureInvariant:'PASS',claimEvidence:'120/120 exact public-task/rubric links'},null,2));

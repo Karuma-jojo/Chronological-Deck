@@ -23,6 +23,15 @@ try{
  await page.click('#reveal');await page.waitForSelector('#reference:not([hidden])');assert((await page.locator('#reference').textContent()).includes('f(5)=11'));await page.click('#saveReview');
  // Switching back to M01 must restore its 17-session surface and retain both modules' evidence.
  await page.selectOption('#module','T22E-FND01');assert.equal(await page.locator('#session option').count(),17);state=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));assert(state.attempts.some(a=>a.problemId.includes('T22E-FND01'))&&state.attempts.some(a=>a.problemId.includes('T22E-FND02')));
+ // M02-02: unsaved drafts and assistance provenance survive a module round-trip.
+ const draftCtx=await browser.newContext();const dp=await draftCtx.newPage();await dp.goto(base+'/t22-course.html?module=1&session=2');await dp.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+ await dp.click('#note');await dp.fill('#answer','main unsaved derivation — keep exactly');await dp.click('#transferTask');await dp.fill('#answer','transfer unsaved derivation — keep exactly');await dp.selectOption('#assistance','method_hint');
+ await dp.selectOption('#module','T22E-FND02');await dp.selectOption('#module','T22E-FND01');await dp.selectOption('#session','2');
+ assert.equal(await dp.locator('#answer').inputValue(),'main unsaved derivation — keep exactly');assert.equal(await dp.locator('#assistance').inputValue(),'guided');
+ await dp.selectOption('#assistance','independent');await dp.click('#save');let ds=await dp.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));assert.equal(ds.attempts.at(-1).assistance,'guided','restored note provenance must prevent silent independent relabeling');
+ await dp.click('#transferTask');assert.equal(await dp.locator('#answer').inputValue(),'transfer unsaved derivation — keep exactly');assert.equal(await dp.locator('#assistance').inputValue(),'method_hint');
+ await draftCtx.close();
+
  // Fresh M01 context: answer-bearing packet marks both fixed tasks.
  const packetCtx=await browser.newContext({permissions:['clipboard-read','clipboard-write']});const pp=await packetCtx.newPage();await pp.goto(base+'/t22-course.html?module=1&session=1');await pp.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));await pp.click('#copyPacket');const packet=await pp.evaluate(()=>navigator.clipboard.readText());assert(packet.includes('CURRENT REFERENCE')&&packet.includes('SIBLING REFERENCE'));let ps=await pp.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));let ids=Object.keys(ps.exposures).filter(x=>x.includes('T22E-FND01::S01-'));assert.equal(ids.length,2);for(const id of ids)assert(ps.exposures[id].referenceSeenAt);
  await pp.click('#transferTask');await pp.fill('#answer','Post-packet transfer work');await pp.click('#save');ps=await pp.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));assert.equal(ps.attempts.at(-1).assistance,'revealed');assert.equal(ps.attempts.at(-1).referenceSeenBefore,true);
@@ -39,6 +48,6 @@ try{
  // Corrupt local evidence remains untouched instead of silently resetting.
  const corrupt=await browser.newContext();await corrupt.addInitScript(()=>localStorage.setItem('chrono_t22_elite_course_evidence_v1','{broken'));const cp=await corrupt.newPage();await cp.goto(base+'/t22-course.html');await cp.waitForSelector('#session option',{state:'attached'});assert((await cp.locator('#status').textContent()).includes('not been overwritten'));assert.equal(await cp.evaluate(()=>localStorage.getItem('chrono_t22_elite_course_evidence_v1')),'{broken');await corrupt.close();
  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);
- console.log('PASS browser: M01+M02 module scoping; shared evidence preservation; M02 save/reveal/review; cross-module export/import; packet exposure on both modules; A-07 current/legacy behavior; fresh probe; corrupt-storage preservation; mobile width.');
+ console.log('PASS browser: M01+M02 module scoping; M02-02 unsaved draft + assistance provenance across module round-trip; shared evidence preservation; M02 save/reveal/review; cross-module export/import; packet exposure; A-07 current/legacy behavior; fresh probe; corrupt-storage preservation; mobile width.');
  await context.close();
 }finally{await browser?.close();await new Promise(r=>server.close(r));}

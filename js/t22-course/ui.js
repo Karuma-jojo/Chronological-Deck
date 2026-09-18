@@ -46,14 +46,19 @@ function sessionsList(){
  if(list.some(s=>s.id===session?.id))$('session').value=String(session.order);
 }
 function contractText(s){return [s.centralCapability,'PRINCIPAL OBSTACLE',s.principalObstacle,'ENTRY PREREQUISITES',...s.entryPrerequisites,'REQUIRED OWNERSHIP',...s.requiredOwnership,'APPLICATION SCOPE',s.applicationScope,'TRANSFER SCOPE',s.transferScope,'EXIT CONDITION',s.exitCondition,'OUT OF SCOPE',...s.outOfScope].join('\n\n');}
+function captureDraft(){
+ if(!problemId)return;
+ drafts.set(problemId,{answer:$('answer').value,assistance:$('assistance').value,minutes:$('minutes').value,noteSeen:!!noteSeen});
+}
 function showProblem(id){
- if(problemId)drafts.set(problemId,$('answer').value);
- problemId=id;visit++;lastSaved=null;noteSeen=false;
+ captureDraft();
+ problemId=id;visit++;lastSaved=null;
+ const draft=drafts.get(id);noteSeen=!!draft?.noteSeen;
  const p=course.problems[id],prior=state.exposures[id];
  put('taskMeta',`${p.kind.toUpperCase()} · ${id}`);put('problem',taskText(p));
  put('exposure',prior?`Previously displayed in this browser log (${prior.views} view${prior.views===1?'':'s'}).${prior.referenceSeenAt?' Answer-bearing material has been exposed for this task.':''}`:'First display in this browser log. Outside exposure is unknown.');
  expose(state,id);persist();
- $('answer').value=drafts.get(id)||'';$('assistance').value='independent';$('minutes').value='0';$('reference').hidden=true;put('reference','');$('learning').hidden=true;put('learning','');$('reveal').disabled=true;$('review').disabled=true;renderHistory();renderQueue();renderModuleEvidence();
+ $('answer').value=draft?.answer||'';$('assistance').value=draft?.assistance||'independent';$('minutes').value=draft?.minutes??'0';$('reference').hidden=true;put('reference','');$('learning').hidden=true;put('learning','');$('reveal').disabled=true;$('review').disabled=true;renderHistory();renderQueue();renderModuleEvidence();
 }
 function selectSession(orderOrId,kind='main'){
  const list=moduleSessions(),wanted=typeof orderOrId==='string'&&orderOrId.includes('::')?list.find(s=>s.id===orderOrId):list.find(s=>s.order===Number(orderOrId));
@@ -69,7 +74,7 @@ function applyModuleHeader(){
 }
 function selectModule(id,requested=1){
  if(!moduleMeta(id))throw Error('Unknown authored module');
- activeModuleId=id;session=null;problemId=null;$('search').value='';applyModuleHeader();sessionsList();renderRoadmap();selectSession(requested);
+ captureDraft();activeModuleId=id;session=null;problemId=null;$('search').value='';applyModuleHeader();sessionsList();renderRoadmap();selectSession(requested);
 }
 async function reveal(){
  const id=problemId,token=visit,saved=lastSaved;if(!saved)return;
