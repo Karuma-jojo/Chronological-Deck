@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M05 BOUNDARY OPEN; M05 AUTHORING ONLY; M06 CONTENT CLOSED UNTIL M05 CHECKPOINT**
+State: **M05 INTERNAL ACCEPTED; PREPARING SEPARATE M05 REVIEW HANDOFF; M06 CONTENT STILL CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -266,3 +266,18 @@ Key separations:
 - Kelly, general optimization, DP/MDP and formal minimax remain later.
 
 **Complete, validate and push M05 separately before M06 content begins. M07 remains closed.**
+
+
+## M05 internal publication gate
+
+M05 · `T22E-TRD01` now has:
+- 24 sessions / 48 fixed Main+Transfer tasks;
+- 120/120 exact ownership claim → Main/rubric evidence links;
+- 24/24 instruction-separation records;
+- explicit criterion discipline separating EV, loss probability, hard bankroll constraints, utility and adversarial worst-case rules;
+- no Bayes/M06, market-mechanics/M07, formal variance/M26, Kelly/general optimization, DP/MDP or formal minimax leakage;
+- independent arithmetic checks covering all 24 session families;
+- shared runtime integration under unchanged `chrono_t22_elite_course_evidence_v1`;
+- browser regression extended through M05 for save/reveal/review, unsaved draft provenance, packet answer exposure and cross-module export/import.
+
+**Next: create and verify M05 review handoff. M06 content remains closed until that separate M05 checkpoint is pushed.**
