@@ -1,5 +1,5 @@
 {
-  "version": "T22E-course-0.5.0-m05",
+  "version": "T22E-course-0.6.0-m06",
   "routeVersion": "M65-semantic-r2-2026-09-18",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
@@ -86,6 +86,12 @@
       "id": "T22E-TRD01",
       "sourceType": "authoring-pack",
       "source": "course/t22/authoring/m05.json"
+    },
+    {
+      "order": 6,
+      "id": "ARC502",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m06.json"
     }
   ]
 }
