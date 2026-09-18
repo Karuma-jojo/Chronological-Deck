@@ -1,11 +1,11 @@
 {
-  "version": "m05-authoring-v1.0-candidate",
+  "version": "m05-authoring-v1.0-internal-accepted",
   "instructionVersion": "m05-instruction-v1",
   "module": {
     "order": 5,
     "id": "T22E-TRD01",
     "title": "Trading Games & Decisions Under Uncertainty",
-    "status": "authored-v1-candidate",
+    "status": "authored-v1-internal-accepted",
     "destination": "Turn finite games with known probabilities into auditable payoff, break-even, bankroll, utility and adversarial decision analyses while keeping descriptive metrics separate from explicit preferences/constraints.",
     "gate": "Page completion is not clearance. Every owned decision capability must be observable in a fixed task, all decision criteria must be named, and instruction must remain answer-distinct from fixed assessments.",
     "nextBoundary": "M06 owns Bayes, base rates, likelihood ratios and sequential belief updating. M07 owns market prices, returns and trading mechanics."
