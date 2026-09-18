@@ -7,6 +7,10 @@ Accepted M04 implementation checkpoint: `d23b9d3b1b618904f907f8f6d6bfaef55c72873
 Verified handoff workflow: GitHub Actions run `35358966763` — **SUCCESS**  
 Scope: **M04 only — no M05/M06 authoring, no main merge, no deployment**
 
+## Resolution update — 2026-09-18
+
+M04-01 through M04-04 have been implemented in the bounded repair pass ending at `10df637dbb46bd4985a1f98fc298c746b52bf1fd`. See `M04-RESOLUTION.md` for exact changes, assessment versioning and provenance decisions. The findings below remain the immutable review rationale; current status is **repaired, awaiting bounded independent follow-up before M05/M06**.
+
 ## Verdict
 
 **M04 is mathematically strong and provenance-safe, but it is not yet independently acceptable as the probability foundation for M05/M06/M26.**
