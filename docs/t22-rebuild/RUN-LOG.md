@@ -145,3 +145,8 @@ Read `docs/t22-course/M03-REVIEW-HANDOFF.md` before any further authoring. It re
 A persistent `docs/t22-course/audit/m03-handoff-checks.mjs` gate now verifies handoff consistency with accepted repository state and asserts M04 remains planned with no `course/t22/authoring/m04.json`.
 
 **STOP FOR REVIEW. Do not open M04 until the M03 independent review is accepted or bounded M03 findings are repaired.**
+
+
+## M01 S01 engine packet export
+
+Exported the repaired first T22 Elite session at source commit `2251cb2abbeb10d408ca80aa0de56461cfa9554f` to `docs/t22-course/packets/T22-Elite-M01-S01-Compiled-Engine-Prompt.md`. Uses the canonical base packs plus `m01-repairs-1.2-a07` overlay; both tasks use obligation version 2. Verified contract hash and computed assessment fingerprints using the source runtime. The exact compilerPacket() output is wrapped with WALL attachment instructions, provenance and the canonical evaluator rubrics. This is an answer-bearing engine attachment, not learner-facing lesson text. No curriculum, runtime, user evidence or main-branch changes. M03 review remains pending; M04 remains closed.
