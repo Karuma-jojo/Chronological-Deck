@@ -4,9 +4,15 @@ Date: 2026-09-18
 Reviewed branch: `codex/t22-pedagogical-rebuild`
 Reviewed head: `e0fc59c36e79bee8e6767e666803020461c5e32e`
 M03 authored source: `course/t22/authoring/m03.json`
-Verdict: **Mathematical backbone passes this review; independent pedagogical acceptance withheld pending M03-01 through M03-04.**
+Verdict at review time: **Mathematical backbone passed; independent pedagogical acceptance was withheld pending M03-01 through M03-04.** Current status: **all four repairs implemented and validated; bounded re-review pending.**
 
 This is a review of the new T22 Elite M03, not historical T22. No course tasks, runtime or user evidence were modified by this review. Do not propagate the affected authoring patterns to later modules before repair.
+
+## Resolution update — 2026-09-18
+
+M03-01 through M03-04 have been implemented and fully validated in the bounded repair pass. Repair implementation checkpoint: `439e0bc55ff694d9d188f8b76bfb8dabca4b7adb`; GitHub Actions run `35329318149` — **SUCCESS**. See `M03-RESOLUTION.md` for exact changes, provenance handling and validation history.
+
+The original findings below remain as the immutable review record. Status is now **repaired, awaiting bounded independent re-review before M04**.
 
 ## What was checked
 

@@ -24,7 +24,7 @@
       "mode": "new",
       "semanticStatus": "accepted",
       "bridges": [],
-      "note": "M03 accepted after repaired M01+M02 ancestry audit, 30-session authoring, 150/150 manual claim observability review, instruction-separation checks, independent proof/counting regressions and shared three-module Chromium/evidence validation. M04 probability remains the next closed boundary."
+      "note": "M03 semantic boundary remains accepted. Astra findings M03-01→M03-04 were repaired and fully validated at implementation head 439e0bc55ff694d9d188f8b76bfb8dabca4b7adb / run 35329318149. Repair includes semantic lesson/task separation, novice worked reasoning, S21 claim-5 Transfer observability, three-event inclusion-exclusion bridge/derivation, and timestamp-aware M03 historical lesson exposure. Independent bounded repair review is still required before opening M04."
     },
     {
       "order": 4,

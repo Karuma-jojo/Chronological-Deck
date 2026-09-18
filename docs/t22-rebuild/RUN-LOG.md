@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M03 INDEPENDENT REVIEW: M03-01–M03-04 REQUIRE REPAIR; STOP BEFORE M04**
+State: **M03-01→M03-04 REPAIRED AND FULLY VALIDATED; BOUNDED RE-REVIEW REQUIRED; M04 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -157,3 +157,20 @@ Exported the repaired first T22 Elite session at source commit `2251cb2abbeb10d4
 Reviewed `e0fc59c36e79bee8e6767e666803020461c5e32e`; see `docs/t22-course/M03-ASTRA-REVIEW.md`. Mathematical review and independent enumerations passed, and the recorded remote integration run was verified. Existing structural/handoff checks also pass, but **M03-01 through M03-04 remain open**: instructional/fixed-task overlap; incomplete novice explanations and definitions; S21 claim-5 task mapping; three-event inclusion-exclusion bridge.
 
 **Next: repair these four findings, update M03 resolution/handoff, rerun gates and push. Stop for a bounded review of the repairs before M04.** No M04 authoring was authorized or performed by this review. Recommended cadence after repair acceptance: M04 alone; if clean, trial M05–M06 as a two-module batch; only then consider up to three per review, retaining individual module gates and pushes. This section supersedes earlier forward-looking instructions in this log.
+
+
+## M03 Astra repair resolution
+
+M03-01 through M03-04 from `docs/t22-course/M03-ASTRA-REVIEW.md` are implemented.
+
+- Repair implementation head: `439e0bc55ff694d9d188f8b76bfb8dabca4b7adb`.
+- Full green implementation run: `35329318149`.
+- Resolution ledger: `docs/t22-course/M03-RESOLUTION.md`.
+- M03 instruction version: `m03-instruction-astra-r1`.
+- S18-T and S30-T are materially changed `obligationVersion=2` assessments.
+- Historical M03 lesson exposure is targeted and timestamp-aware for S11-T, S12-M, S22-M and S29-M; pre-exposure attempts are preserved.
+- S21 claim 5 is pinned to Transfer.
+- S28 now derives the three-set inclusion-exclusion bridge; S30 applies/derives it on sets of functions.
+- 30/30 lessons have a recorded semantic separation review.
+
+**Current boundary: stop for a bounded review of these repairs. Do not author M04 until that review accepts M03 or returns bounded M03 follow-up findings.**

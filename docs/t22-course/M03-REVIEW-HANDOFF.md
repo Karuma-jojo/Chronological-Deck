@@ -2,9 +2,10 @@
 
 Date: 2026-09-18  
 Branch: `codex/t22-pedagogical-rebuild`  
-Status: **FINAL ACCEPTED — STOP FOR INDEPENDENT REVIEW; M04 NOT AUTHORED**  
+Status: **M03-01→M03-04 REPAIRS VERIFIED — STOP FOR BOUNDED RE-REVIEW; M04 NOT AUTHORED**  
 Baseline before M03: `1d8137a3807c683f6efab8eb3251a238f0cc0291`  
-Accepted M03 implementation state: `2fab663fea7395a6c20ba49b338708e52c562b8b`
+Original accepted M03 state: `2fab663fea7395a6c20ba49b338708e52c562b8b`  
+Verified Astra-repair implementation state: `439e0bc55ff694d9d188f8b76bfb8dabca4b7adb`
 
 ## Exact M03 commit chain
 
@@ -32,6 +33,32 @@ The accepted implementation is 6 commits ahead / 0 behind the pre-M03 baseline.
 - `scripts/test-t22-semantic-gates.mjs`
 
 No M04/ARC048 authoring file was changed or created in this chain. No T25 file, historical T22 progress authority, merge target or deployment file was modified.
+
+## Astra repair supplement — M03-01 through M03-04
+
+Independent review at `M03-ASTRA-REVIEW.md` found four bounded issues. All four have been repaired and validated; exact details are in `M03-RESOLUTION.md`.
+
+Repair implementation commits:
+
+1. `91d34e52b8ca5b6a39838bb932a45b0781782723` — teaching, assessment and provenance repairs.
+2. `995c10729a1bcfbf0873b8d948dbcc93b9c98685` — strengthened M03 validator + real Chromium historical-exposure regression.
+3. `439e0bc55ff694d9d188f8b76bfb8dabca4b7adb` — browser wait timing repair; full repair suite green.
+
+Full repair run: `35329318149` — **SUCCESS**.
+
+Repair outcomes:
+
+- **M03-01:** 30/30 semantic lesson/task audit recorded; S11/S12/S22/S29 decontaminated; S18 Transfer replaced by a distinct distributive identity; M03 historical lesson overlap now uses timestamp-aware per-session instruction versions.
+- **M03-02:** complete novice reasoning added at the cited bottlenecks and several other thin examples; exact prerequisite/JIT owners recorded for the repaired sessions.
+- **M03-03:** S21 claim 5 moved from Main to Transfer with concrete task-specific scoring; Main no longer awards an unasked non-bijection claim.
+- **M03-04:** S28 derives the three-set inclusion-exclusion bridge; S30 Transfer now explicitly derives/applies it to missing-output sets of functions and is obligationVersion 2.
+- S18 Transfer is also obligationVersion 2.
+- Instruction version: `m03-instruction-astra-r1`.
+- Evidence key remains `chrono_t22_elite_course_evidence_v1`.
+- Pre-exposure attempts are preserved; only work at/after mapped historical lesson exposure is marked answer-exposed.
+
+The current 150-claim audit pins **six** Transfer directions: S21 claim 5, S25 claim 3, S28 claim 5, S29 claim 4, and S30 claims 4–5.
+
 
 ## Semantic boundary
 
@@ -92,7 +119,7 @@ After the first all-150 structural mapping existed, every claim was reread again
 - **S30 claim 4** — pigeonhole proof of finite-function noninjectivity → Transfer.
 - **S30 claim 5** — count surjective finite functions by inclusion-exclusion → Transfer.
 
-The M03 validator pins these directions so they cannot silently default back to Main.
+The M03 validator pins these directions so they cannot silently default back to Main. The post-Astra repair adds **S21 claim 5 → Transfer**, bringing the pinned cross-task directions to six.
 
 ## Validation history
 
@@ -158,7 +185,7 @@ Any finding should be written as a bounded M03 finding. Do not repair M04 as par
 
 ## Review boundary
 
-**STOP HERE. M03 is complete for independent review. M04 has not been authored.**
+**STOP HERE. M03 repairs are fully validated and awaiting bounded independent re-review. M04 has not been authored.**
 
 After review, either:
 
