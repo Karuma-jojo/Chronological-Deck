@@ -29,12 +29,14 @@ jobs:
           node --check js/t22-course/overrides.js
           node --check js/t22-course/ui.js
           node --check scripts/test-t22-elite-m01.mjs
+          node --check scripts/test-t22-elite-m02.mjs
           node --check scripts/test-t22-semantic-gates.mjs
           node --check scripts/test-t22-elite-course-browser.mjs
           node --check docs/t22-rebuild/audit/check-current.mjs
       - name: Structural, pedagogy, semantic and evidence regressions
         run: |
           node scripts/test-t22-elite-m01.mjs
+          node scripts/test-t22-elite-m02.mjs
           node scripts/test-t22-semantic-gates.mjs
           node docs/t22-rebuild/audit/check-current.mjs
       - name: Install browser-test dependency

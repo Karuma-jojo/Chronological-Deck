@@ -1,0 +1,3326 @@
+{
+  "version": "m02-authoring-v1",
+  "module": {
+    "order": 2,
+    "id": "T22E-FND02",
+    "title": "Quantitative Foundations II — Functions & Precalculus",
+    "status": "candidate-static",
+    "destination": "From reliable algebra, become fluent with functions as objects, legal domains/ranges, graphs and transformations, finite indexed models, exponential/logarithmic reasoning, log returns and the minimal trigonometry needed by later quantitative work.",
+    "gate": "M02 is not cleared by page completion. Publication requires semantic ancestry, prerequisite-symbol audit, novice instruction, claim coverage, independent math/reference validation, evidence integrity and browser validation.",
+    "nextBoundary": "M03 owns proof habits, logic, sets/maps and combinatorics. M09 owns limits, convergence and infinite-series arguments. M02 must not certify either family."
+  },
+  "boundary": {
+    "prerequisiteModules": [
+      "T22E-FND01"
+    ],
+    "owns": [
+      "functions and changed inputs",
+      "domains/ranges and graphs",
+      "coordinate geometry and linear models",
+      "piecewise rules and transformations",
+      "composition and elementary inverses",
+      "polynomial/rational/root function families",
+      "exponentials/logarithms and log returns",
+      "finite arithmetic/geometric sequences and sigma notation",
+      "elementary recurrences without convergence claims",
+      "essential radians/unit-circle/trig graphs"
+    ],
+    "excludes": [
+      "formal proof/quantifiers/sets/combinatorics (M03)",
+      "limits/convergence/infinite series (M09)",
+      "calculus",
+      "probability",
+      "complex-number theory beyond later bounded bridges"
+    ]
+  },
+  "sessions": [
+    {
+      "order": 1,
+      "id": "T22V3::T22E-FND02::S01@1",
+      "moduleId": "T22E-FND02",
+      "title": "Functions as input-output objects",
+      "focus": "Function notation, inputs, outputs, rules and changed inputs.",
+      "purpose": "Turn formulas from static algebra into reusable mappings before graphs, models and composition.",
+      "centralCapability": "Evaluate a function at numerical and symbolic inputs, distinguish rule/input/output, and build a simple rule from a verbal relationship.",
+      "principalObstacle": "Learners often treat f(x) as f times x or replace only part of a changed input.",
+      "entryPrerequisites": [
+        "M01 symbolic substitution",
+        "M01 linear equations and parameters"
+      ],
+      "requiredOwnership": [
+        "Interpret f(x) as the output assigned to input x.",
+        "Substitute an entire numerical or symbolic input with parentheses when needed.",
+        "Distinguish a function rule from one evaluated output.",
+        "Identify independent input and dependent output in context.",
+        "Translate a simple verbal input-output rule into function notation."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Function notation",
+        "Numerical evaluation",
+        "Changed inputs",
+        "Input/output roles",
+        "Simple model rules"
+      ],
+      "outOfScope": [
+        "Formal set-theoretic function definitions reserved for M03",
+        "Composition reserved for S07",
+        "Inverse functions reserved for S08",
+        "Limits"
+      ],
+      "exitCondition": "Evaluate one unfamiliar changed-input expression and write one contextual function rule with input/output roles stated.",
+      "lesson": "A function is a rule that assigns one output to each legal input. The notation f(x) names the output, not multiplication. Replace the whole input slot: if g(u)=2u+5, then g(a−1)=2(a−1)+5=2a+3. Worked example: for g(u)=2u+5, g(4)=13 and g(−3)=−1. Guided check: if H(t)=7−3t, find H(2), H(z+2), and say which symbol is the input.",
+      "main": "T22V3::T22E-FND02::S01-M@1",
+      "transfer": "T22V3::T22E-FND02::S01-T@1"
+    },
+    {
+      "order": 2,
+      "id": "T22V3::T22E-FND02::S02@1",
+      "moduleId": "T22E-FND02",
+      "title": "Domains, ranges & legal inputs",
+      "focus": "Natural domains, denominator/root restrictions and simple ranges.",
+      "purpose": "Make legal-input reasoning automatic before composition, logs, rational functions and data models.",
+      "centralCapability": "Determine a real domain from algebraic restrictions and determine simple ranges from elementary structure or a stated restricted domain.",
+      "principalObstacle": "A simplified formula can hide excluded inputs, and square-root/denominator conditions are often applied incompletely.",
+      "entryPrerequisites": [
+        "M01 inequalities",
+        "M01 roots and algebra"
+      ],
+      "requiredOwnership": [
+        "Exclude denominator zeros from the original expression.",
+        "Require even-root radicands to be nonnegative.",
+        "Strengthen a root condition to strict positivity when the root is in a denominator.",
+        "Intersect simultaneous domain restrictions.",
+        "Determine a simple range from an elementary graph/algebraic restriction."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Natural real domains",
+        "Denominator exclusions",
+        "Square-root restrictions",
+        "Restriction intersections",
+        "Simple ranges"
+      ],
+      "outOfScope": [
+        "Logarithmic domains until S13",
+        "Formal topology",
+        "Limits/asymptotes",
+        "Complex domains"
+      ],
+      "exitCondition": "State the exact domain of one mixed root/rational expression and the range of one elementary restricted function.",
+      "lesson": "A domain is the set of legal inputs. Denominators cannot be zero. For a real principal square root, the radicand must be ≥0; if that square root is itself a denominator, it must be >0. Intersect all restrictions. Worked example: r(x)=√(x−1)/(x+4) requires x≥1, which already avoids −4, so the domain is [1,∞). Guided check: find the domain of 1/√(9−y) and the range of z² on −1≤z≤4.",
+      "main": "T22V3::T22E-FND02::S02-M@1",
+      "transfer": "T22V3::T22E-FND02::S02-T@1"
+    },
+    {
+      "order": 3,
+      "id": "T22V3::T22E-FND02::S03@1",
+      "moduleId": "T22E-FND02",
+      "title": "Graphs, coordinates & geometric reading",
+      "focus": "Graphs as input-output point sets, intercepts, tables, distance and midpoint.",
+      "purpose": "Build visual/coordinate fluency before slope, transformations and later empirical plots.",
+      "centralCapability": "Translate among rule, table and graph points; identify intercepts; and compute elementary coordinate distance/midpoint.",
+      "principalObstacle": "A graph is often treated as a picture disconnected from the function values it represents.",
+      "entryPrerequisites": [
+        "M02-S01 function evaluation",
+        "M01 roots"
+      ],
+      "requiredOwnership": [
+        "Interpret (x,f(x)) as a graph point.",
+        "Build a finite value table from a rule.",
+        "Identify x- and y-intercepts algebraically.",
+        "Compute distance between two coordinate points.",
+        "Compute the midpoint of two coordinate points."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Coordinate plane",
+        "Function tables",
+        "Graph points",
+        "Intercepts",
+        "Distance/midpoint"
+      ],
+      "outOfScope": [
+        "Slope as a model parameter until S04",
+        "Conic sections",
+        "Calculus geometry",
+        "Plotting software"
+      ],
+      "exitCondition": "From one unfamiliar rule, produce points/intercepts and one exact distance or midpoint calculation.",
+      "lesson": "The graph of y=f(x) consists of points (x,f(x)). A y-intercept uses x=0; an x-intercept solves f(x)=0. For points (x₁,y₁),(x₂,y₂), distance is √[(x₂−x₁)²+(y₂−y₁)²] and midpoint averages coordinates. Worked example: y=x+2 has intercepts (−2,0),(0,2). Guided check: tabulate y=x²−1 at x=−1,0,2 and find the distance between the first two graph points.",
+      "main": "T22V3::T22E-FND02::S03-M@1",
+      "transfer": "T22V3::T22E-FND02::S03-T@1"
+    },
+    {
+      "order": 4,
+      "id": "T22V3::T22E-FND02::S04@1",
+      "moduleId": "T22E-FND02",
+      "title": "Linear functions, slope & units",
+      "focus": "Slope as change per input unit, intercepts and line equations.",
+      "purpose": "Prepare quantitative model interpretation, local change intuition and later regression.",
+      "centralCapability": "Recover and interpret a linear function from points or slope/intercept information, carrying units through slope.",
+      "principalObstacle": "Slope is memorized as a fraction without interpreting numerator/denominator units or checking consistency.",
+      "entryPrerequisites": [
+        "M02-S03 coordinates",
+        "M01 linear equations and units"
+      ],
+      "requiredOwnership": [
+        "Compute slope Δy/Δx from two distinct-x points.",
+        "Interpret slope units as output units per input unit.",
+        "Write a line equation from two points or a point and slope.",
+        "Identify intercept meaning in a context.",
+        "Use a linear model forward and backward."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Slope",
+        "Slope-intercept form",
+        "Point-slope reasoning",
+        "Units",
+        "Linear prediction/inversion"
+      ],
+      "outOfScope": [
+        "Least squares",
+        "Correlation",
+        "Derivative definitions",
+        "Nonlinear interpolation"
+      ],
+      "exitCondition": "Build and interpret one line from data points, including slope units and one inverse-use calculation.",
+      "lesson": "For a line, slope m=(y₂−y₁)/(x₂−x₁) is output change per input change. Once m is known, y=mx+b and one point determines b. Worked example: through (1,4),(5,12), m=2 and y=2x+2. Guided check: find the line through (−2,7),(4,−5), state slope units generically, and verify both points.",
+      "main": "T22V3::T22E-FND02::S04-M@1",
+      "transfer": "T22V3::T22E-FND02::S04-T@1"
+    },
+    {
+      "order": 5,
+      "id": "T22V3::T22E-FND02::S05@1",
+      "moduleId": "T22E-FND02",
+      "title": "Piecewise functions & absolute-value graphs",
+      "focus": "Branch conditions, boundary inclusion and piecewise representations.",
+      "purpose": "Prepare for threshold rules, transaction costs and later piecewise models.",
+      "centralCapability": "Evaluate and describe a piecewise function at boundaries and convert a basic absolute-value rule to piecewise form.",
+      "principalObstacle": "Learners often apply the wrong branch at an endpoint or ignore branch conditions after simplification.",
+      "entryPrerequisites": [
+        "M01 absolute value",
+        "M01 inequalities",
+        "M02-S03 graphs"
+      ],
+      "requiredOwnership": [
+        "Choose the correct branch from its stated condition.",
+        "Handle included/excluded boundary points exactly.",
+        "Compute a piecewise function range in an elementary case.",
+        "Rewrite |x−a| as two linear branches.",
+        "Interpret the vertex/range of a translated absolute-value graph."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Piecewise rules",
+        "Endpoint conditions",
+        "Absolute-value piecewise form",
+        "Simple ranges",
+        "Graph vertices"
+      ],
+      "outOfScope": [
+        "Continuity as a limit concept",
+        "Optimization",
+        "Splines",
+        "Indicator notation"
+      ],
+      "exitCondition": "Evaluate a new piecewise rule at boundary-adjacent inputs and convert one shifted absolute value into correct branches.",
+      "lesson": "A piecewise function is one function with different rules on different input regions. The condition chooses the rule. For |x−a|, values left of a use a−x and values at/right use x−a. Worked example: |x−1|={1−x for x<1; x−1 for x≥1}. Guided check: evaluate a two-branch rule at the boundary and rewrite |x+4| piecewise.",
+      "main": "T22V3::T22E-FND02::S05-M@1",
+      "transfer": "T22V3::T22E-FND02::S05-T@1"
+    },
+    {
+      "order": 6,
+      "id": "T22V3::T22E-FND02::S06@1",
+      "moduleId": "T22E-FND02",
+      "title": "Graph transformations & parameters",
+      "focus": "Shifts, reflections, stretches/compressions and transformed domains/ranges.",
+      "purpose": "Make parameter effects predictable before modeling, trig graphs and local approximations.",
+      "centralCapability": "Read a transformed function from a base graph/rule and determine key points, domain/range and parameter effects.",
+      "principalObstacle": "Horizontal changes act inside the input and are commonly given the wrong direction.",
+      "entryPrerequisites": [
+        "M02-S02 domains/ranges",
+        "M02-S03 graphs",
+        "M01 algebra"
+      ],
+      "requiredOwnership": [
+        "Interpret f(x−h)+k as a horizontal/vertical shift.",
+        "Interpret −f(x) and f(−x) as reflections.",
+        "Interpret vertical scaling af(x).",
+        "Track domain/range through elementary transformations.",
+        "Read key geometric features from a transformed standard function."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Translations",
+        "Reflections",
+        "Vertical scaling",
+        "Quadratic/root transformations",
+        "Domain/range tracking"
+      ],
+      "outOfScope": [
+        "General affine conjugacy",
+        "Derivative-based shape analysis",
+        "Fourier transformations",
+        "Data normalization"
+      ],
+      "exitCondition": "Describe and verify one unfamiliar transformation sequence and recover domain/range/key point.",
+      "lesson": "Changes outside f act on outputs; changes inside act on inputs. For q(x)=(x+2)²−4, the x² graph shifts left2 and down4. Multiplying outputs by −1 reflects across the x-axis. Worked example: y=3(x+1)²−2 has vertex(−1,−2). Guided check: describe y=−(x−4)²+7 and state its vertex and range.",
+      "main": "T22V3::T22E-FND02::S06-M@1",
+      "transfer": "T22V3::T22E-FND02::S06-T@1"
+    },
+    {
+      "order": 7,
+      "id": "T22V3::T22E-FND02::S07@1",
+      "moduleId": "T22E-FND02",
+      "title": "Composition & changed-input domains",
+      "focus": "f∘g, order sensitivity and legal-input tracing.",
+      "purpose": "Prepare nested models, data pipelines and later chain-rule thinking without calculus.",
+      "centralCapability": "Compute compositions in both orders and determine their domains from the inner output and outer-input restrictions.",
+      "principalObstacle": "Composition is mistaken for multiplication or treated as commutative.",
+      "entryPrerequisites": [
+        "M02-S01 changed inputs",
+        "M02-S02 domains"
+      ],
+      "requiredOwnership": [
+        "Compute (f∘g)(x)=f(g(x)).",
+        "Compute both composition orders without assuming equality.",
+        "Track the inner function output into the outer domain.",
+        "State exact composition domains in elementary rational cases.",
+        "Evaluate a composition at a specific input as a check."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Two-function composition",
+        "Order sensitivity",
+        "Domain tracing",
+        "Algebraic simplification",
+        "Numerical checks"
+      ],
+      "outOfScope": [
+        "Chain rule",
+        "Category-theoretic composition",
+        "Functional equations",
+        "Iteration beyond simple links"
+      ],
+      "exitCondition": "Compute both orders for an unfamiliar pair and give the correct domain of each.",
+      "lesson": "In f∘g, g acts first and its output becomes f's input. Order matters. Worked example: f(x)=x+4,g(x)=3x gives f(g(x))=3x+4 but g(f(x))=3x+12. Guided check: compose f(x)=x² and g(x)=x−2 in both orders and compare at x=3.",
+      "main": "T22V3::T22E-FND02::S07-M@1",
+      "transfer": "T22V3::T22E-FND02::S07-T@1"
+    },
+    {
+      "order": 8,
+      "id": "T22V3::T22E-FND02::S08@1",
+      "moduleId": "T22E-FND02",
+      "title": "One-to-one functions & inverses",
+      "focus": "Inverse functions, domain/range swapping and needed restrictions.",
+      "purpose": "Prepare log/exponential inversion, quantile ideas and reversible model transformations.",
+      "centralCapability": "Decide elementary one-to-one behavior, construct an inverse by solving y=f(x), and verify domain/range/compositions.",
+      "principalObstacle": "The symbol f⁻¹ is confused with 1/f, and non-one-to-one rules are inverted without restricting the domain.",
+      "entryPrerequisites": [
+        "M02-S01 functions",
+        "M02-S02 domains/ranges",
+        "M01 formula rearrangement"
+      ],
+      "requiredOwnership": [
+        "Distinguish inverse function notation from reciprocal notation.",
+        "Construct an inverse of a one-to-one elementary function.",
+        "Swap domain/range correctly between a function and inverse.",
+        "Recognize why x² on R has no function inverse.",
+        "Restrict a standard non-one-to-one function to obtain an inverse."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Linear inverses",
+        "Quadratic restriction",
+        "Composition verification",
+        "Domain/range swap",
+        "One-to-one intuition"
+      ],
+      "outOfScope": [
+        "Formal injective/surjective proofs reserved for M03",
+        "Inverse trigonometric theory",
+        "Implicit inversion",
+        "Jacobian inverse theorem"
+      ],
+      "exitCondition": "Construct and verify one inverse and repair one non-invertible standard function by an explicit domain restriction.",
+      "lesson": "An inverse reverses input and output. Write y=f(x), solve for x, then rename. f⁻¹ is not 1/f. A function needs one-to-one behavior on its chosen domain. Worked example: f(x)=5x+2 has f⁻¹(y)=(y−2)/5. Guided check: invert h(x)=(x−4)/3 and verify both compositions.",
+      "main": "T22V3::T22E-FND02::S08-M@1",
+      "transfer": "T22V3::T22E-FND02::S08-T@1"
+    },
+    {
+      "order": 9,
+      "id": "T22V3::T22E-FND02::S09@1",
+      "moduleId": "T22E-FND02",
+      "title": "Polynomial functions: zeros, multiplicity & shape",
+      "focus": "Degree, leading term, factored zeros and crossing/touching behavior.",
+      "purpose": "Prepare algebraic models, characteristic polynomials and later local/global analysis.",
+      "centralCapability": "Read degree, leading behavior, zeros and elementary multiplicity effects from a factored polynomial.",
+      "principalObstacle": "A repeated factor is treated like an ordinary crossing and leading behavior is ignored.",
+      "entryPrerequisites": [
+        "M01 factoring",
+        "M02-S03 graphs"
+      ],
+      "requiredOwnership": [
+        "Identify polynomial degree and leading coefficient.",
+        "Read zeros from a factored polynomial.",
+        "Identify zero multiplicity from repeated factors.",
+        "Distinguish odd-multiplicity crossing from even-multiplicity touching in elementary graphs.",
+        "Infer left/right end behavior from degree parity and leading sign."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Factored polynomials",
+        "Degree",
+        "Leading coefficient",
+        "Zeros/multiplicity",
+        "Qualitative end behavior"
+      ],
+      "outOfScope": [
+        "Fundamental theorem of algebra",
+        "Complex roots",
+        "Derivative-based turning points",
+        "Polynomial division theory"
+      ],
+      "exitCondition": "From one factored polynomial, state degree, zeros/multiplicities and a coherent qualitative graph description.",
+      "lesson": "In factored form, each factor x−r gives zero r; its exponent is the multiplicity. Odd multiplicity changes sign through the zero; even multiplicity keeps the local sign. The leading term determines far-left/far-right direction. Worked example: (x+2)²(x−4) has degree3, double zero−2 and simple zero4. Guided check: analyze −(x−1)³(x+5) for degree, zeros, multiplicities and end directions.",
+      "main": "T22V3::T22E-FND02::S09-M@1",
+      "transfer": "T22V3::T22E-FND02::S09-T@1"
+    },
+    {
+      "order": 10,
+      "id": "T22V3::T22E-FND02::S10@1",
+      "moduleId": "T22E-FND02",
+      "title": "Rational functions: holes, exclusions & asymptotic shape",
+      "focus": "Original domains, cancellation holes, denominator poles and large-x leading ratios.",
+      "purpose": "Prevent illegal cancellation/domain loss before likelihoods, transfer functions and data normalizations.",
+      "centralCapability": "Simplify a rational function while retaining original exclusions and distinguish removable holes from nonremovable denominator singularities.",
+      "principalObstacle": "Cancellation is treated as erasing an excluded input, making two formulas falsely identical as functions.",
+      "entryPrerequisites": [
+        "M01 factoring",
+        "M02-S02 domains",
+        "M02-S09 polynomials"
+      ],
+      "requiredOwnership": [
+        "Factor numerator/denominator before cancellation.",
+        "Retain every exclusion from the original denominator.",
+        "Identify a cancelled denominator zero as a hole.",
+        "Identify a remaining denominator zero as a vertical singularity/asymptote in elementary cases.",
+        "Use leading-degree/coefficient comparison for elementary large-|x| horizontal behavior."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Rational simplification",
+        "Domain exclusions",
+        "Holes",
+        "Vertical asymptotes",
+        "Horizontal leading ratios"
+      ],
+      "outOfScope": [
+        "Formal limits",
+        "Oblique asymptotes",
+        "Partial fractions",
+        "Complex poles"
+      ],
+      "exitCondition": "Audit one unfamiliar rational function with a cancellation and state its domain, hole and remaining asymptotic features.",
+      "lesson": "A cancellation gives an equivalent formula only on the original domain. A cancelled denominator factor leaves a hole; a denominator zero that remains produces an unbounded vertical feature in these elementary examples. Equal top/bottom degree gives horizontal large-|x| level from leading-coefficient ratio. Worked example: (x²−9)/(x²−x−6) reduces to (x+3)/(x+2), while x=3 remains a hole and x=−2 remains excluded. Guided check: factor (x²+x−6)/(x²−4) and classify its excluded inputs.",
+      "main": "T22V3::T22E-FND02::S10-M@1",
+      "transfer": "T22V3::T22E-FND02::S10-T@1"
+    },
+    {
+      "order": 11,
+      "id": "T22V3::T22E-FND02::S11@1",
+      "moduleId": "T22E-FND02",
+      "title": "Root & power functions",
+      "focus": "Fractional powers, transformed roots, domains/ranges and simple equations.",
+      "purpose": "Connect M01 exponent mechanics to function families used in scaling laws and transformations.",
+      "centralCapability": "Analyze elementary root/power functions for legal real inputs, ranges and simple inverse equations.",
+      "principalObstacle": "Rational exponents are manipulated without checking real-domain restrictions or principal-root sign.",
+      "entryPrerequisites": [
+        "M01 rational exponents",
+        "M02-S02 domains",
+        "M02-S06 transformations"
+      ],
+      "requiredOwnership": [
+        "Determine domains of translated/scaled even-root functions.",
+        "Determine simple ranges from principal-root structure.",
+        "Evaluate simple rational powers with odd roots.",
+        "Handle reciprocal-root strict domain restrictions.",
+        "Solve a simple root-function equation and check the result."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Square-root functions",
+        "Simple rational powers",
+        "Reciprocal roots",
+        "Domains/ranges",
+        "Elementary equations"
+      ],
+      "outOfScope": [
+        "General real exponent definition",
+        "Complex branches",
+        "Calculus of power functions",
+        "Nested radical equations"
+      ],
+      "exitCondition": "Analyze one transformed root function and one reciprocal/rational-power function without losing domain conditions.",
+      "lesson": "A root function carries its root-domain rule everywhere. For √(ax+b), require ax+b≥0; if the root is downstairs, require >0. Odd roots accept negative inputs. Worked example: y=√(3−x) has domain x≤3 and range y≥0. Guided check: find domain/range of √(2x+8)−4 and evaluate (−27)^(2/3).",
+      "main": "T22V3::T22E-FND02::S11-M@1",
+      "transfer": "T22V3::T22E-FND02::S11-T@1"
+    },
+    {
+      "order": 12,
+      "id": "T22V3::T22E-FND02::S12@1",
+      "moduleId": "T22E-FND02",
+      "title": "Exponential functions: growth & decay",
+      "focus": "Positive-base exponential models, per-step multipliers and graph behavior.",
+      "purpose": "Prepare compounding, log inversion, decay models and later stochastic growth notation.",
+      "centralCapability": "Interpret and evaluate A·b^t models, linking base b to per-unit multiplicative growth or decay.",
+      "principalObstacle": "The base is confused with an additive change and percentages are added across periods instead of compounded.",
+      "entryPrerequisites": [
+        "M01 exponents/percent multipliers",
+        "M02-S01 functions"
+      ],
+      "requiredOwnership": [
+        "Recognize b>1 as growth and 0<b<1 as decay.",
+        "Interpret b as the multiplier per one input unit.",
+        "Translate a percent growth/decay rate to an exponential base.",
+        "Evaluate an exponential model at integer inputs.",
+        "Identify initial value from t=0."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Discrete exponential models",
+        "Growth/decay factors",
+        "Percent bases",
+        "Initial value",
+        "Finite evaluation"
+      ],
+      "outOfScope": [
+        "Logarithmic solving until S15",
+        "Continuous compounding until S16",
+        "Limits",
+        "Differential equations"
+      ],
+      "exitCondition": "Build/evaluate one growth or decay model and explain its per-step multiplier and initial value.",
+      "lesson": "In A·b^t, A is the t=0 value and b is the multiplier for each +1 in t. Eight-percent growth uses b=1.08; twelve-percent decay uses b=0.88. Worked example: 200(1.05)^t starts at200 and multiplies by1.05 per period. Guided check: interpret and evaluate 900(0.92)^t at t=0,1,2.",
+      "main": "T22V3::T22E-FND02::S12-M@1",
+      "transfer": "T22V3::T22E-FND02::S12-T@1"
+    },
+    {
+      "order": 13,
+      "id": "T22V3::T22E-FND02::S13@1",
+      "moduleId": "T22E-FND02",
+      "title": "Logarithms as inverse exponentials",
+      "focus": "log_b y=x iff b^x=y, natural logs and log domains.",
+      "purpose": "Create the inverse language needed for growth equations, log returns and later likelihoods.",
+      "centralCapability": "Translate exactly between logarithmic and exponential statements, evaluate elementary logs and enforce positive log arguments.",
+      "principalObstacle": "Logs are treated as a button rather than an inverse function with a strict positive-input domain.",
+      "entryPrerequisites": [
+        "M02-S08 inverses",
+        "M02-S12 exponentials"
+      ],
+      "requiredOwnership": [
+        "Use log_b(y)=x iff b^x=y.",
+        "State base conditions b>0,b≠1.",
+        "Evaluate elementary exact logarithms.",
+        "Recognize ln as log base e.",
+        "Require every real logarithm argument to be positive."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Log definition",
+        "Exact log values",
+        "Natural log",
+        "Domains",
+        "Inverse identities"
+      ],
+      "outOfScope": [
+        "Log laws until S14",
+        "Log equations until S15",
+        "Complex logarithms",
+        "Calculus"
+      ],
+      "exitCondition": "Convert and evaluate unfamiliar elementary log statements and state a correct log-function domain.",
+      "lesson": "log_b(y) asks: what exponent on b gives y? Thus log_b(y)=x exactly when b^x=y, with b>0,b≠1 and y>0. ln is base e. Worked example: log₂8=3 because2³=8; log₁₀0.01=−2. Guided check: evaluate log₅125 and state the domain of ln(7−x).",
+      "main": "T22V3::T22E-FND02::S13-M@1",
+      "transfer": "T22V3::T22E-FND02::S13-T@1"
+    },
+    {
+      "order": 14,
+      "id": "T22V3::T22E-FND02::S14@1",
+      "moduleId": "T22E-FND02",
+      "title": "Log laws with domain discipline",
+      "focus": "Products, quotients, powers and the legality of splitting real logs.",
+      "purpose": "Prevent later likelihood/log-return algebra from silently changing domains.",
+      "centralCapability": "Use log laws on legal positive factors and audit identities whose split form has a smaller domain.",
+      "principalObstacle": "log(ab)=log a+log b is applied when a,b are individually negative or zero even though only the product is positive.",
+      "entryPrerequisites": [
+        "M02-S13 logarithms",
+        "M01 algebra"
+      ],
+      "requiredOwnership": [
+        "Use log(ab)=log a+log b when individual real logs are defined.",
+        "Use log(a/b)=log a−log b under positive-domain conditions.",
+        "Use log(a^k)=k log a under an explicitly legal base/argument condition.",
+        "Retain domain restrictions when expanding/condensing logs.",
+        "Use ln(x²)=2ln|x| for x≠0 rather than illegally assuming x>0."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Product/quotient/power log laws",
+        "Domain checks",
+        "Absolute-value correction",
+        "Expansion/condensation",
+        "Natural/base-b logs"
+      ],
+      "outOfScope": [
+        "Complex log branches",
+        "Differentiation",
+        "Entropy identities",
+        "Likelihood theory"
+      ],
+      "exitCondition": "Simplify one legal log expression and repair one false identity by stating exact domains.",
+      "lesson": "Real log laws are identities on their common legal domain. Splitting log(ab) into log a+log b requires a>0 and b>0, even though ab>0 could also happen with both negative. For x≠0, ln(x²)=2ln|x|. Worked example: for u,v>0, ln(9u²/v)=ln9+2lnu−lnv. Guided check: audit ln((z+2)²)=2ln(z+2) over the real line.",
+      "main": "T22V3::T22E-FND02::S14-M@1",
+      "transfer": "T22V3::T22E-FND02::S14-T@1"
+    },
+    {
+      "order": 15,
+      "id": "T22V3::T22E-FND02::S15@1",
+      "moduleId": "T22E-FND02",
+      "title": "Exponential & logarithmic equations",
+      "focus": "Same-base solving, taking logs and domain checks.",
+      "purpose": "Enable exact time/parameter recovery in exponential models without guesswork.",
+      "centralCapability": "Solve elementary exponential/log equations exactly, choosing same-base algebra or logarithms and checking domain restrictions.",
+      "principalObstacle": "Taking logs is used mechanically without isolating a positive exponential expression or checking log-equation candidates.",
+      "entryPrerequisites": [
+        "M02-S12 exponentials",
+        "M02-S13/S14 logarithms",
+        "M01 equations"
+      ],
+      "requiredOwnership": [
+        "Solve an exponential equation by matching bases when possible.",
+        "Take logs to solve a positive exponential equation when bases do not match.",
+        "Solve a one-log equation using inverse operations.",
+        "Combine legal log terms before solving.",
+        "Reject log-equation candidates that violate the original positive-argument domain."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Elementary exp equations",
+        "Natural-log solving",
+        "Single-variable log equations",
+        "Domain checks",
+        "Exact logarithmic answers"
+      ],
+      "outOfScope": [
+        "Lambert W",
+        "Numerical root-finding",
+        "Complex solutions",
+        "Calculus"
+      ],
+      "exitCondition": "Solve one unfamiliar exponential and one logarithmic equation with exact-domain justification.",
+      "lesson": "If bases match, equate exponents. Otherwise isolate the positive exponential and take logs: b^x=c gives x=ln c/ln b. For log equations, preserve positive arguments and check candidates. Worked example: 3·5^x=75 gives5^x=25, so x=2. Guided check: solve 2e^(0.3t)=9 exactly and solve ln(y+4)=ln12.",
+      "main": "T22V3::T22E-FND02::S15-M@1",
+      "transfer": "T22V3::T22E-FND02::S15-T@1"
+    },
+    {
+      "order": 16,
+      "id": "T22V3::T22E-FND02::S16@1",
+      "moduleId": "T22E-FND02",
+      "title": "Growth time, compounding & log returns",
+      "focus": "Discrete/continuous growth clocks and additive log returns.",
+      "purpose": "Supply the exact logarithmic return language required by M07 markets without smuggling it into finance later.",
+      "centralCapability": "Compute arithmetic and log returns, use log additivity across positive price ratios, and solve doubling times in discrete/continuous growth models.",
+      "principalObstacle": "Arithmetic returns are added across periods and log returns are used without requiring positive prices.",
+      "entryPrerequisites": [
+        "M01 percentage returns",
+        "M02-S12-S15 exponentials/logarithms"
+      ],
+      "requiredOwnership": [
+        "Compute a one-period arithmetic return (P1−P0)/P0.",
+        "Compute log return ln(P1/P0) for positive prices.",
+        "Show consecutive log returns add to the total log return.",
+        "Compute cumulative simple return from endpoint prices.",
+        "Solve doubling time for A e^(rt) and A(1+g)^t."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Positive-price returns",
+        "Log-return additivity",
+        "Discrete growth",
+        "Continuous exponential growth",
+        "Doubling time"
+      ],
+      "outOfScope": [
+        "Annualization conventions",
+        "Stochastic returns",
+        "Portfolio returns",
+        "Market microstructure"
+      ],
+      "exitCondition": "Given a short positive price path and a growth model, compute both return types and an exact doubling time.",
+      "lesson": "For positive prices, simple return is P₁/P₀−1; log return is ln(P₁/P₀). Consecutive log returns add because log ratios telescope. In Ae^(rt), doubling solves e^(rt)=2. Worked example: 50→55 has simple return10% and log return ln1.1. Guided check: for 200→180→198, compute both simple period returns and show the two log returns sum to ln(198/200).",
+      "main": "T22V3::T22E-FND02::S16-M@1",
+      "transfer": "T22V3::T22E-FND02::S16-T@1"
+    },
+    {
+      "order": 17,
+      "id": "T22V3::T22E-FND02::S17@1",
+      "moduleId": "T22E-FND02",
+      "title": "Arithmetic sequences & finite sums",
+      "focus": "Indexing, common difference, nth terms and finite AP sums.",
+      "purpose": "Prepare indexed data/time steps and finite series before convergence is introduced later.",
+      "centralCapability": "Model and solve finite arithmetic sequences with explicit indexing and finite-sum formulas.",
+      "principalObstacle": "Off-by-one errors arise when the first term and index origin are not stated.",
+      "entryPrerequisites": [
+        "M01 linear algebraic formulas",
+        "M02-S01 functions"
+      ],
+      "requiredOwnership": [
+        "Treat a sequence as a function on integer indices.",
+        "Use a_n=a_1+(n−1)d with stated indexing.",
+        "Recover d and a_1 from two indexed terms.",
+        "Compute a requested finite arithmetic term.",
+        "Compute a finite arithmetic sum without invoking infinite-series ideas."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Arithmetic sequences",
+        "1-based indexing",
+        "Nth term",
+        "Parameter recovery",
+        "Finite AP sums"
+      ],
+      "outOfScope": [
+        "Sequence convergence reserved for M09",
+        "Infinite sums",
+        "Induction proof reserved M03",
+        "Difference equations beyond S20"
+      ],
+      "exitCondition": "Recover an arithmetic sequence from indexed data and compute an unfamiliar term and finite sum.",
+      "lesson": "An arithmetic sequence adds the same difference d each step. With first term a₁, a_n=a₁+(n−1)d. The finite sum is n(a₁+a_n)/2. Worked example: a₁=5,d=3 gives a₆=20 and S₆=75. Guided check: if a₃=11 and a₇=27, recover d and a₁.",
+      "main": "T22V3::T22E-FND02::S17-M@1",
+      "transfer": "T22V3::T22E-FND02::S17-T@1"
+    },
+    {
+      "order": 18,
+      "id": "T22V3::T22E-FND02::S18@1",
+      "moduleId": "T22E-FND02",
+      "title": "Geometric sequences & finite geometric sums",
+      "focus": "Constant ratios, nth terms and finite GP sums including r=1.",
+      "purpose": "Prepare compounding, discounted cashflows and finite weighted sums without premature infinite-series claims.",
+      "centralCapability": "Compute terms and finite sums of geometric sequences with explicit treatment of the r=1 branch.",
+      "principalObstacle": "The finite-sum formula is used with wrong indexing or division by 1−r when r=1.",
+      "entryPrerequisites": [
+        "M01 exponents",
+        "M02-S17 sequence indexing"
+      ],
+      "requiredOwnership": [
+        "Identify a constant ratio r.",
+        "Use g_n=g_1 r^(n−1).",
+        "Compute a finite geometric sum for r≠1.",
+        "Handle r=1 separately.",
+        "Check a finite sum against term scale/count."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Geometric sequences",
+        "Finite GP sums",
+        "Growth/decay ratios",
+        "r=1 branch",
+        "Finite checks"
+      ],
+      "outOfScope": [
+        "Infinite geometric series reserved M09",
+        "Convergence tests",
+        "Present-value conventions",
+        "Power series"
+      ],
+      "exitCondition": "Compute one unfamiliar finite geometric sequence term/sum and state the exceptional r=1 formula.",
+      "lesson": "A geometric sequence multiplies by a constant ratio r. With first term g₁, g_n=g₁r^(n−1). For r≠1, S_n=g₁(1−r^n)/(1−r); for r=1, S_n=ng₁. Worked example: 5,15,45,... has r=3 and S₄=200. Guided check: find the sixth term and first-six sum of 64,32,16,...",
+      "main": "T22V3::T22E-FND02::S18-M@1",
+      "transfer": "T22V3::T22E-FND02::S18-T@1"
+    },
+    {
+      "order": 19,
+      "id": "T22V3::T22E-FND02::S19@1",
+      "moduleId": "T22E-FND02",
+      "title": "Sigma notation & finite indexed sums",
+      "focus": "Σ notation, bounds, reindexing and finite arithmetic/geometric expressions.",
+      "purpose": "Create compact notation used everywhere in probability, statistics, linear algebra and objectives.",
+      "centralCapability": "Read, expand, evaluate and reindex finite sigma expressions without off-by-one errors.",
+      "principalObstacle": "Lower/upper bounds are ignored or the index is treated as a fixed unknown rather than a running placeholder.",
+      "entryPrerequisites": [
+        "M02-S17/S18 finite sequences",
+        "M01 algebra"
+      ],
+      "requiredOwnership": [
+        "Read lower/upper sigma bounds and count terms.",
+        "Expand a finite sigma expression into terms.",
+        "Evaluate a finite sigma exactly.",
+        "Write an explicit finite pattern in sigma notation.",
+        "Reindex a finite sum while preserving the same terms."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Finite Σ",
+        "Index bounds",
+        "Arithmetic/geometric sums",
+        "Reindexing",
+        "Term counting"
+      ],
+      "outOfScope": [
+        "Infinite series",
+        "Double sums",
+        "Expectation notation until probability",
+        "Asymptotic sums"
+      ],
+      "exitCondition": "Move both directions between finite sigma notation and an explicit list, including one correct reindexing.",
+      "lesson": "Σ tells an index to run through stated integer values. Expand a few terms before applying formulas; the bounds are part of the object. Worked example: Σ(k=1..4)(k+2)=3+4+5+6=18. Guided check: write 2+5+8+11+14 as a sigma sum and reindex Σ(j=3..6)j to start at0.",
+      "main": "T22V3::T22E-FND02::S19-M@1",
+      "transfer": "T22V3::T22E-FND02::S19-T@1"
+    },
+    {
+      "order": 20,
+      "id": "T22V3::T22E-FND02::S20@1",
+      "moduleId": "T22E-FND02",
+      "title": "Recurrences, iteration & fixed-point candidates",
+      "focus": "One-step recurrences, seed dependence and fixed-point equations without convergence shortcuts.",
+      "purpose": "Prepare M09 limits and later dynamic programming while inoculating against L=f(L) as a convergence proof.",
+      "centralCapability": "Generate recurrence terms, solve algebraic fixed-point candidates and clearly separate that calculation from proving convergence.",
+      "principalObstacle": "A learner solves L=f(L) and immediately declares that every recurrence converges to L.",
+      "entryPrerequisites": [
+        "M02-S17 sequence indexing",
+        "M01 equations",
+        "M02-S01 functions"
+      ],
+      "requiredOwnership": [
+        "Generate terms from a stated seed and recurrence.",
+        "Interpret recurrence as repeated application of a function.",
+        "Solve L=f(L) for a fixed-point candidate.",
+        "State that a fixed-point equation alone does not prove convergence.",
+        "Use an explicit recurrence example to refute an unjustified convergence claim."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "One-step recurrences",
+        "Iteration",
+        "Fixed-point candidates",
+        "Seed tracking",
+        "Non-convergence counterexample by terms"
+      ],
+      "outOfScope": [
+        "Formal convergence proofs reserved M09",
+        "Stability derivatives",
+        "Dynamic programming",
+        "Markov chains"
+      ],
+      "exitCondition": "Compute terms/fixed points for one recurrence and correctly state what has and has not been proved about long-run behavior.",
+      "lesson": "A recurrence plus a seed defines terms step by step. A fixed point L satisfies L=f(L), but solving that equation only identifies a possible stationary value; it does not prove x_n approaches it. Worked example: x_{n+1}=x_n/3+2 has fixed point3. Guided check: generate four terms of y_{n+1}=−y_n with y0=1 and compare with its fixed point.",
+      "main": "T22V3::T22E-FND02::S20-M@1",
+      "transfer": "T22V3::T22E-FND02::S20-T@1"
+    },
+    {
+      "order": 21,
+      "id": "T22V3::T22E-FND02::S21@1",
+      "moduleId": "T22E-FND02",
+      "title": "Angles, radians & the unit circle",
+      "focus": "Degree/radian conversion, arc length and cosine/sine coordinates.",
+      "purpose": "Provide the minimal geometric language later calculus, oscillations and periodic time series require.",
+      "centralCapability": "Convert angle units, locate standard unit-circle angles and use radians in arc-length calculations.",
+      "principalObstacle": "Radians are treated as arbitrary units rather than the dimensionless ratio arc length/radius.",
+      "entryPrerequisites": [
+        "M01 fractions/roots",
+        "M02-S03 coordinates"
+      ],
+      "requiredOwnership": [
+        "Convert degrees to radians and back.",
+        "Interpret θ radians as arc length divided by radius.",
+        "Use s=rθ for oriented arc displacement when θ is in radians.",
+        "Read (cosθ,sinθ) from the unit circle at standard angles.",
+        "Determine signs from the quadrant."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Degrees/radians",
+        "Unit circle",
+        "Standard angles",
+        "Arc length",
+        "Quadrant signs"
+      ],
+      "outOfScope": [
+        "Trig identities beyond S22",
+        "Inverse trig",
+        "Calculus",
+        "Complex exponential form"
+      ],
+      "exitCondition": "Convert and locate one unfamiliar standard angle and compute one radian arc displacement exactly.",
+      "lesson": "One radian subtends an arc equal to the radius, so θ=s/r and s=rθ. A full turn is2π radians=360°. On the unit circle the point is(cosθ,sinθ). Worked example: 120°=2π/3 with point(−1/2,√3/2). Guided check: convert 315° to radians and find the unit-circle coordinates.",
+      "main": "T22V3::T22E-FND02::S21-M@1",
+      "transfer": "T22V3::T22E-FND02::S21-T@1"
+    },
+    {
+      "order": 22,
+      "id": "T22V3::T22E-FND02::S22@1",
+      "moduleId": "T22E-FND02",
+      "title": "Sine, cosine, tangent & core identities",
+      "focus": "Exact standard values, quadrant signs, tan=sin/cos and sin²+cos²=1.",
+      "purpose": "Build the small trig toolkit required for derivatives, periodic models and projections.",
+      "centralCapability": "Compute exact trig values and recover a missing trig ratio from quadrant information using the Pythagorean identity.",
+      "principalObstacle": "Signs and square roots are chosen without quadrant information, or tan is used where cos=0.",
+      "entryPrerequisites": [
+        "M02-S21 unit circle",
+        "M01 roots"
+      ],
+      "requiredOwnership": [
+        "Compute exact sin/cos/tan at standard unit-circle angles.",
+        "Use tanθ=sinθ/cosθ when cosθ≠0.",
+        "Use sin²θ+cos²θ=1.",
+        "Choose the correct sign from the stated quadrant.",
+        "Simplify a basic identity under its legal denominator condition."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Exact trig values",
+        "Quadrant signs",
+        "Pythagorean identity",
+        "Tangent",
+        "Simple simplification"
+      ],
+      "outOfScope": [
+        "Sum/difference formulas",
+        "Inverse trig",
+        "General identity proofs",
+        "Calculus"
+      ],
+      "exitCondition": "Recover an exact trig triple from partial/quadrant information and simplify one elementary identity legally.",
+      "lesson": "On the unit circle, cos is x-coordinate and sin is y-coordinate; tan=sin/cos where cos≠0. The radius-one equation gives sin²θ+cos²θ=1. Worked example: at 2π/3, sin=√3/2, cos=−1/2, tan=−√3. Guided check: if cosθ=5/13 in quadrant IV, find sinθ and tanθ.",
+      "main": "T22V3::T22E-FND02::S22-M@1",
+      "transfer": "T22V3::T22E-FND02::S22-T@1"
+    },
+    {
+      "order": 23,
+      "id": "T22V3::T22E-FND02::S23@1",
+      "moduleId": "T22E-FND02",
+      "title": "Trig graphs, periodicity & basic equations",
+      "focus": "Amplitude/midline/period/phase shifts and standard-angle equations.",
+      "purpose": "Prepare oscillatory models and later time-series/analysis work without overloading trigonometry.",
+      "centralCapability": "Read parameters of simple sine/cosine graphs and solve basic trig equations on a bounded interval.",
+      "principalObstacle": "Period scaling and phase shifts are read with the same direction as outer transformations, producing factor/sign errors.",
+      "entryPrerequisites": [
+        "M02-S06 transformations",
+        "M02-S21/S22 trig values"
+      ],
+      "requiredOwnership": [
+        "Identify amplitude and midline of A sin(B(x−h))+D or cosine form.",
+        "Compute period2π/|B| for sin/cos.",
+        "Interpret horizontal phase shift h.",
+        "Solve sin x=c at standard values on [0,2π).",
+        "Solve cos(Bx)=c at standard values on a stated bounded interval."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Sin/cos graphs",
+        "Amplitude",
+        "Period",
+        "Midline/phase shift",
+        "Basic bounded equations"
+      ],
+      "outOfScope": [
+        "General inverse-trig solution families",
+        "Sum/product identities",
+        "Fourier series",
+        "Calculus"
+      ],
+      "exitCondition": "Read one transformed trig model and solve one bounded standard-angle equation exactly.",
+      "lesson": "For y=A sin(B(x−h))+D, amplitude=|A|, midline y=D, period=2π/|B| and horizontal shift=h. Solve bounded trig equations by unit-circle locations. Worked example: y=4cos(3x)+2 has amplitude4, midline2, period2π/3. Guided check: solve sin x=√2/2 on [0,2π).",
+      "main": "T22V3::T22E-FND02::S23-M@1",
+      "transfer": "T22V3::T22E-FND02::S23-T@1"
+    },
+    {
+      "order": 24,
+      "id": "T22V3::T22E-FND02::S24@1",
+      "moduleId": "T22E-FND02",
+      "title": "M02 synthesis — functions, finite models & periodic structure",
+      "focus": "Coordinating domain/inverse/log, finite sigma/geometric and trig reasoning without topic labels.",
+      "purpose": "Demonstrate transferable precalculus control before M03 reasoning and later analysis.",
+      "centralCapability": "Model and solve an unfamiliar finite quantitative situation by selecting appropriate function, log, indexed-sum and trig representations.",
+      "principalObstacle": "Topic labels cue procedures; synthesis exposes whether the learner can choose representations and preserve domains independently.",
+      "entryPrerequisites": [
+        "M02-S01 through S23",
+        "No M03 proof/combinatorics or M09 limit concept required"
+      ],
+      "requiredOwnership": [
+        "Combine a function domain with an inverse/log transformation.",
+        "Transform an exponential/geometric sequence with logarithms.",
+        "Evaluate a finite geometric sigma sum.",
+        "Use a trig function's range and standard-angle solutions.",
+        "Coordinate exact algebra and domain checks across representations."
+      ],
+      "applicationScope": "Elementary real-valued functions and finite quantitative models.",
+      "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
+      "inScope": [
+        "Function/log synthesis",
+        "Finite geometric sequence",
+        "Sigma notation",
+        "Basic trig model",
+        "Exact domain checks"
+      ],
+      "outOfScope": [
+        "Proof induction",
+        "Limits/convergence",
+        "Probability",
+        "Calculus"
+      ],
+      "exitCondition": "Complete both an unfamiliar log/geometric synthesis and a periodic-function synthesis with exact checks and no hidden M03+ machinery.",
+      "lesson": "Synthesis starts by naming the object: function, indexed sequence, finite sum or periodic rule. Preserve domains first, then choose algebra. Worked example: if a_n=20(1.1)^n and H(x)=ln(x/20), then H(a_n)=n ln1.1. Guided check: for u_k=30(0.8)^k, write a finite sigma sum and find a log transform that turns multiplicative change into an additive term.",
+      "main": "T22V3::T22E-FND02::S24-M@1",
+      "transfer": "T22V3::T22E-FND02::S24-T@1"
+    }
+  ],
+  "problems": {
+    "T22V3::T22E-FND02::S01-M@1": {
+      "id": "T22V3::T22E-FND02::S01-M@1",
+      "order": 1,
+      "kind": "main",
+      "prompt": "Let f(x)=3x−4. Find f(5), f(−2), and f(t+1). For each, identify the input supplied and the output produced. Explain why f(t+1) is not f(t)+1 in general.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S01-T@1": {
+      "id": "T22V3::T22E-FND02::S01-T@1",
+      "order": 1,
+      "kind": "transfer",
+      "prompt": "A data plan charges a fixed ₹60 plus ₹25 per GB used. Define a cost function C(g), identify its input and output with units, compute C(7), and find g when C(g)=₹310.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S02-M@1": {
+      "id": "T22V3::T22E-FND02::S02-M@1",
+      "order": 2,
+      "kind": "main",
+      "prompt": "Find the natural real domain of f(x)=√(x+3)/(x−1). Separately, if h(x)=x²+1 is restricted to −2≤x≤3, find its range.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S02-T@1": {
+      "id": "T22V3::T22E-FND02::S02-T@1",
+      "order": 2,
+      "kind": "transfer",
+      "prompt": "Find the natural real domain of g(t)=1/√(5−t). Then find the domain and range of k(x)=√(4−x²).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S03-M@1": {
+      "id": "T22V3::T22E-FND02::S03-M@1",
+      "order": 3,
+      "kind": "main",
+      "prompt": "For f(x)=2x−3, make a table at x=−1,0,2,4; give both intercepts; then find the exact distance and midpoint between the graph points corresponding to x=−1 and x=2.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S03-T@1": {
+      "id": "T22V3::T22E-FND02::S03-T@1",
+      "order": 3,
+      "kind": "transfer",
+      "prompt": "For q(x)=x²−4, tabulate x=−2,−1,0,1,2; give all intercepts; then find the distance and midpoint between the two x-intercepts.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S04-M@1": {
+      "id": "T22V3::T22E-FND02::S04-M@1",
+      "order": 4,
+      "kind": "main",
+      "prompt": "A line passes through (2,5) and (8,17). Find its slope, equation, both intercepts, and the output at x=10. If x is hours and y is units produced, state the slope units.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S04-T@1": {
+      "id": "T22V3::T22E-FND02::S04-T@1",
+      "order": 4,
+      "kind": "transfer",
+      "prompt": "A linear cost model passes through (100,250) and (160,370), where x is units and y is rupees. Find the model, interpret slope and intercept, and find x when cost is ₹500.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S05-M@1": {
+      "id": "T22V3::T22E-FND02::S05-M@1",
+      "order": 5,
+      "kind": "main",
+      "prompt": "Let f(x)=2x+1 for x<0; f(x)=x² for 0≤x≤2; and f(x)=5 for x>2. Find f(−2),f(0),f(2),f(3), state which rules own x=0 and x=2, and find the range.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S05-T@1": {
+      "id": "T22V3::T22E-FND02::S05-T@1",
+      "order": 5,
+      "kind": "transfer",
+      "prompt": "Rewrite p(x)=|x−3| as a piecewise function, identify its vertex and range, and evaluate p(1) and p(5).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S06-M@1": {
+      "id": "T22V3::T22E-FND02::S06-M@1",
+      "order": 6,
+      "kind": "main",
+      "prompt": "Starting from y=x², analyze g(x)=−2(x−3)²+5. Describe every transformation, give the vertex, domain and range, and compute g(1).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S06-T@1": {
+      "id": "T22V3::T22E-FND02::S06-T@1",
+      "order": 6,
+      "kind": "transfer",
+      "prompt": "Starting from f(u)=√u, analyze p(x)=√(2−x)+1. Describe the input transformation, give domain/range and endpoint, and compute p(−7).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S07-M@1": {
+      "id": "T22V3::T22E-FND02::S07-M@1",
+      "order": 7,
+      "kind": "main",
+      "prompt": "Let f(x)=2x+3 and g(x)=x²−1. Find f∘g and g∘f, simplify both, and evaluate each at x=1. Are the compositions equal?",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S07-T@1": {
+      "id": "T22V3::T22E-FND02::S07-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "Let f(x)=1/(x−2) and g(x)=x+1. Find and simplify f∘g and g∘f, and give the exact natural domain of each composition.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S08-M@1": {
+      "id": "T22V3::T22E-FND02::S08-M@1",
+      "order": 8,
+      "kind": "main",
+      "prompt": "For f(x)=3x−7 on R, find f⁻¹, state the domain/range of both maps, and verify f⁻¹(f(x))=x and f(f⁻¹(y))=y.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S08-T@1": {
+      "id": "T22V3::T22E-FND02::S08-T@1",
+      "order": 8,
+      "kind": "transfer",
+      "prompt": "Explain why h(x)=x² on R has no inverse function. Restrict h to [0,∞), give the inverse with its domain/range, and verify the two inverse identities on the restricted domains.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S09-M@1": {
+      "id": "T22V3::T22E-FND02::S09-M@1",
+      "order": 9,
+      "kind": "main",
+      "prompt": "For p(x)=(x−2)²(x+1), state degree and leading coefficient, list zeros with multiplicities, say where the graph crosses or only touches the x-axis, and state left/right end behavior.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S09-T@1": {
+      "id": "T22V3::T22E-FND02::S09-T@1",
+      "order": 9,
+      "kind": "transfer",
+      "prompt": "For q(x)=−2(x+3)(x−1)², state degree/leading coefficient, zeros/multiplicities, crossing/touching behavior, and left/right end behavior.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S10-M@1": {
+      "id": "T22V3::T22E-FND02::S10-M@1",
+      "order": 10,
+      "kind": "main",
+      "prompt": "Analyze r(x)=(x²−4)/(x²−x−2): factor and simplify legally, give the original domain, locate any hole and vertical asymptote, and state the horizontal asymptote suggested by leading terms.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S10-T@1": {
+      "id": "T22V3::T22E-FND02::S10-T@1",
+      "order": 10,
+      "kind": "transfer",
+      "prompt": "Analyze s(x)=(2x²+3x−2)/(x²−4): simplify, give original domain, hole, vertical asymptote and horizontal asymptote.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S11-M@1": {
+      "id": "T22V3::T22E-FND02::S11-M@1",
+      "order": 11,
+      "kind": "main",
+      "prompt": "For f(x)=√(2x−6)+1, find domain and range, identify its endpoint, and solve f(x)=5 with a check.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S11-T@1": {
+      "id": "T22V3::T22E-FND02::S11-T@1",
+      "order": 11,
+      "kind": "transfer",
+      "prompt": "Analyze g(x)=(x+4)^(2/3): state its real domain and minimum possible value, and compute g(−12). Separately give the domain of h(x)=1/√(x+1).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S12-M@1": {
+      "id": "T22V3::T22E-FND02::S12-M@1",
+      "order": 12,
+      "kind": "main",
+      "prompt": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S12-T@1": {
+      "id": "T22V3::T22E-FND02::S12-T@1",
+      "order": 12,
+      "kind": "transfer",
+      "prompt": "A quantity follows g(t)=1200(0.85)^t. State whether it grows or decays, give the percent change per period, and compute g(1) and g(3).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S13-M@1": {
+      "id": "T22V3::T22E-FND02::S13-M@1",
+      "order": 13,
+      "kind": "main",
+      "prompt": "Evaluate log₂32, log₁₀0.001 and ln(e³). Then state the natural real domain of L(x)=ln(x−4).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S13-T@1": {
+      "id": "T22V3::T22E-FND02::S13-T@1",
+      "order": 13,
+      "kind": "transfer",
+      "prompt": "Evaluate log₃(1/27) and 3^(log₃7). Then state the domain of M(x)=log₅(2−x).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S14-M@1": {
+      "id": "T22V3::T22E-FND02::S14-M@1",
+      "order": 14,
+      "kind": "main",
+      "prompt": "Assume x>0. Simplify ln(8x²)−ln(2x). Separately, for a,b,c>0 expand log₃(a²b/c). State the domain assumptions used.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S14-T@1": {
+      "id": "T22V3::T22E-FND02::S14-T@1",
+      "order": 14,
+      "kind": "transfer",
+      "prompt": "Audit the claim ln((x−1)²)=2ln(x−1) over the real line. Give the left-side domain, the right-side domain, the equality set of the written claim, and a corrected identity valid on the full left-side domain.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S15-M@1": {
+      "id": "T22V3::T22E-FND02::S15-M@1",
+      "order": 15,
+      "kind": "main",
+      "prompt": "Solve 5·2^x=40, solve 3^(2t)=10 exactly, and solve ln(x−2)=ln7. State any domain condition used.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S15-T@1": {
+      "id": "T22V3::T22E-FND02::S15-T@1",
+      "order": 15,
+      "kind": "transfer",
+      "prompt": "Solve 100e^(−0.4t)=20. Then solve log₂(x+1)+log₂(x−1)=3 over the reals, with the original domain enforced.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S16-M@1": {
+      "id": "T22V3::T22E-FND02::S16-M@1",
+      "order": 16,
+      "kind": "main",
+      "prompt": "A positive price path is P0=80, P1=100, P2=90. Compute both arithmetic returns, the cumulative simple return from P0 to P2, both log returns, and show their sum equals the total log return.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S16-T@1": {
+      "id": "T22V3::T22E-FND02::S16-T@1",
+      "order": 16,
+      "kind": "transfer",
+      "prompt": "For V(t)=5000e^(0.06t), derive the exact doubling time. Separately, for W(t)=5000(1.04)^t, derive the exact doubling time in periods. State why the logarithms are legal.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S17-M@1": {
+      "id": "T22V3::T22E-FND02::S17-M@1",
+      "order": 17,
+      "kind": "main",
+      "prompt": "An arithmetic sequence has a1=7 and common difference d=4. Find a10 and S10.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S17-T@1": {
+      "id": "T22V3::T22E-FND02::S17-T@1",
+      "order": 17,
+      "kind": "transfer",
+      "prompt": "An arithmetic sequence satisfies a4=13 and a9=28. Find d, a1, a20 and S20.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S18-M@1": {
+      "id": "T22V3::T22E-FND02::S18-M@1",
+      "order": 18,
+      "kind": "main",
+      "prompt": "A geometric sequence has g1=3 and r=2. Find g8 and S8.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S18-T@1": {
+      "id": "T22V3::T22E-FND02::S18-T@1",
+      "order": 18,
+      "kind": "transfer",
+      "prompt": "A geometric sequence starts at160 with ratio1/2. Find the sixth term and the sum of the first six terms. Then state the first-six sum if the ratio were1 instead.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S19-M@1": {
+      "id": "T22V3::T22E-FND02::S19-M@1",
+      "order": 19,
+      "kind": "main",
+      "prompt": "Evaluate Σ(k=1..5)(2k−1). Then write 4+7+10+13+16+19+22+25 in sigma notation with an index starting at0.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S19-T@1": {
+      "id": "T22V3::T22E-FND02::S19-T@1",
+      "order": 19,
+      "kind": "transfer",
+      "prompt": "Evaluate Σ(j=0..4)3·2^j. Then reindex Σ(k=3..7)k so the new index starts at0, and evaluate the sum.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S20-M@1": {
+      "id": "T22V3::T22E-FND02::S20-M@1",
+      "order": 20,
+      "kind": "main",
+      "prompt": "Let x0=10 and x_(n+1)=0.5x_n+3. Compute x1,x2,x3 and solve the fixed-point equation L=0.5L+3. State precisely whether that algebra alone proves convergence.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S20-T@1": {
+      "id": "T22V3::T22E-FND02::S20-T@1",
+      "order": 20,
+      "kind": "transfer",
+      "prompt": "Let y0=0 and y_(n+1)=2y_n−1. Compute y1,y2,y3, find the fixed point, and use the terms to assess the claim that the sequence converges to that fixed point.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S21-M@1": {
+      "id": "T22V3::T22E-FND02::S21-M@1",
+      "order": 21,
+      "kind": "main",
+      "prompt": "Convert150° to radians, give its unit-circle coordinates, and find the arc length on a circle of radius4 for that positive angle.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S21-T@1": {
+      "id": "T22V3::T22E-FND02::S21-T@1",
+      "order": 21,
+      "kind": "transfer",
+      "prompt": "Convert −45° to radians, give its unit-circle coordinates, and find the oriented arc displacement for radius10.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S22-M@1": {
+      "id": "T22V3::T22E-FND02::S22-M@1",
+      "order": 22,
+      "kind": "main",
+      "prompt": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S22-T@1": {
+      "id": "T22V3::T22E-FND02::S22-T@1",
+      "order": 22,
+      "kind": "transfer",
+      "prompt": "For cos x≠0 simplify (1−sin²x)/cos x. Then give sin, cos and tan at x=π/3 exactly.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S23-M@1": {
+      "id": "T22V3::T22E-FND02::S23-M@1",
+      "order": 23,
+      "kind": "main",
+      "prompt": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S23-T@1": {
+      "id": "T22V3::T22E-FND02::S23-T@1",
+      "order": 23,
+      "kind": "transfer",
+      "prompt": "For y=−3cos(2x)+4, state amplitude, period and midline. Then solve cos(2x)=0 for x in [0,π).",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S24-M@1": {
+      "id": "T22V3::T22E-FND02::S24-M@1",
+      "order": 24,
+      "kind": "main",
+      "prompt": "Let q_n=50(1.2)^n for n=0,…,5 and h(x)=ln(x/50). State h's domain and inverse. Show h(q_n)=n ln1.2. Evaluate Σ(n=0..5) q_n exactly or as a terminating decimal, and find the index n for which q_n=86.4.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-FND02::S24-T@1": {
+      "id": "T22V3::T22E-FND02::S24-T@1",
+      "order": 24,
+      "kind": "transfer",
+      "prompt": "Let p(θ)=2+3sinθ for 0≤θ≤2π. Find its range, compute p(π/6), solve p(θ)=3.5 on the interval, then evaluate Σ(k=0..4) p(kπ/2).",
+      "obligationVersion": 1
+    }
+  },
+  "evaluators": {
+    "T22V3::T22E-FND02::S01-M@1": {
+      "reference": "f(5)=11; f(−2)=−10; f(t+1)=3(t+1)−4=3t−1. The supplied inputs are 5, −2 and t+1. In general f(t+1) need not equal f(t)+1 because the rule acts on the entire changed input.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "All three evaluations are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Changed input is substituted as a whole."
+        },
+        {
+          "points": 2,
+          "criterion": "Input/output roles are stated."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why f(t+1)=f(t)+1 is not a general law."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S01-T@1": {
+      "reference": "C(g)=60+25g, with input g in GB and output C in rupees. C(7)=₹235. Solving 60+25g=310 gives g=10 GB.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct function rule C(g)=60+25g."
+        },
+        {
+          "points": 2,
+          "criterion": "Input/output and units are identified."
+        },
+        {
+          "points": 2,
+          "criterion": "C(7)=₹235."
+        },
+        {
+          "points": 3,
+          "criterion": "Solves C(g)=310 to g=10 GB."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S02-M@1": {
+      "reference": "For f, require x+3≥0 and x−1≠0, so domain [−3,1)∪(1,∞). For h on [−2,3], x² ranges from0 to9, so h ranges from1 to10: [1,10].",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Correct f domain with both root and denominator restrictions."
+        },
+        {
+          "points": 3,
+          "criterion": "Correct h range [1,10]."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why the restrictions are intersected rather than handled separately."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S02-T@1": {
+      "reference": "For g, 5−t must be strictly positive, so t<5. For k, 4−x²≥0 gives −2≤x≤2. Its principal-root output ranges from0 to2, so range [0,2].",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct g domain t<5."
+        },
+        {
+          "points": 4,
+          "criterion": "Correct k domain [−2,2]."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct k range [0,2]."
+        },
+        {
+          "points": 1,
+          "criterion": "Uses strict positivity for the denominator root."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S03-M@1": {
+      "reference": "Values are −5,−3,1,5. y-intercept (0,−3); x-intercept (3/2,0). Points (−1,−5),(2,1) have distance √45=3√5 and midpoint (1/2,−2).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct table."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct intercepts."
+        },
+        {
+          "points": 3,
+          "criterion": "Correct exact distance 3√5."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct midpoint (1/2,−2)."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S03-T@1": {
+      "reference": "Values 0,−3,−4,−3,0. x-intercepts (−2,0),(2,0); y-intercept (0,−4). Distance between x-intercepts is4 and midpoint is(0,0).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct table."
+        },
+        {
+          "points": 3,
+          "criterion": "Correct intercepts."
+        },
+        {
+          "points": 2,
+          "criterion": "Distance 4."
+        },
+        {
+          "points": 2,
+          "criterion": "Midpoint (0,0)."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S04-M@1": {
+      "reference": "m=(17−5)/(8−2)=2. Using (2,5), b=1, so y=2x+1. y-intercept (0,1), x-intercept (−1/2,0). At x=10, y=21. Slope units: units produced per hour.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Slope2 and equation y=2x+1."
+        },
+        {
+          "points": 2,
+          "criterion": "Both intercepts correct."
+        },
+        {
+          "points": 2,
+          "criterion": "y(10)=21."
+        },
+        {
+          "points": 3,
+          "criterion": "Slope units correctly interpreted."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S04-T@1": {
+      "reference": "m=120/60=2 rupees per unit. b=50, so C(x)=2x+50. The intercept is fixed cost ₹50. Setting 2x+50=500 gives x=225 units.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct slope2 and units."
+        },
+        {
+          "points": 3,
+          "criterion": "Correct model C(x)=2x+50."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct fixed-cost interpretation."
+        },
+        {
+          "points": 2,
+          "criterion": "Solves x=225."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S05-M@1": {
+      "reference": "f(−2)=−3,f(0)=0,f(2)=4,f(3)=5. x=0 and x=2 belong to the middle branch. First branch has range (−∞,1); middle [0,4]; last {5}; total range (−∞,4]∪{5}.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "All four values correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Boundary ownership correct."
+        },
+        {
+          "points": 3,
+          "criterion": "Range (−∞,4]∪{5} correct."
+        },
+        {
+          "points": 1,
+          "criterion": "Branch conditions are used explicitly."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S05-T@1": {
+      "reference": "p(x)=3−x for x<3 and x−3 for x≥3. Vertex (3,0), range [0,∞). p(1)=2 and p(5)=2.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Correct two branches and conditions."
+        },
+        {
+          "points": 2,
+          "criterion": "Vertex (3,0)."
+        },
+        {
+          "points": 2,
+          "criterion": "Range [0,∞)."
+        },
+        {
+          "points": 2,
+          "criterion": "Both evaluations equal2."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S06-M@1": {
+      "reference": "Shift right3, vertically stretch by2, reflect across x-axis, then shift up5. Vertex(3,5), domain R, range (−∞,5]. g(1)=−2(−2)²+5=−3.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "All transformations correctly described."
+        },
+        {
+          "points": 2,
+          "criterion": "Vertex(3,5)."
+        },
+        {
+          "points": 2,
+          "criterion": "Domain R and range y≤5."
+        },
+        {
+          "points": 2,
+          "criterion": "g(1)=−3."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S06-T@1": {
+      "reference": "2−x=−(x−2): reflect the input horizontally and shift the root endpoint to x=2, then shift output up1. Domain x≤2; range y≥1; endpoint(2,1). p(−7)=√9+1=4.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct horizontal reflection/shift description."
+        },
+        {
+          "points": 3,
+          "criterion": "Domain x≤2 and range y≥1."
+        },
+        {
+          "points": 2,
+          "criterion": "Endpoint(2,1)."
+        },
+        {
+          "points": 2,
+          "criterion": "p(−7)=4."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S07-M@1": {
+      "reference": "(f∘g)(x)=2(x²−1)+3=2x²+1. (g∘f)(x)=(2x+3)²−1=4x²+12x+8. At x=1 they are3 and24, so they are not equal.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct f∘g."
+        },
+        {
+          "points": 3,
+          "criterion": "Correct g∘f."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct values3 and24 at x=1."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly rejects commutativity."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S07-T@1": {
+      "reference": "f(g(x))=1/(x−1), domain x≠1. g(f(x))=1/(x−2)+1=(x−1)/(x−2), domain x≠2. The domains differ because different inner/outer restrictions apply.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct f∘g and domain x≠1."
+        },
+        {
+          "points": 3,
+          "criterion": "Correct g∘f and domain x≠2."
+        },
+        {
+          "points": 2,
+          "criterion": "Legal simplification shown."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains order/domain difference."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S08-M@1": {
+      "reference": "y=3x−7 gives x=(y+7)/3, so f⁻¹(y)=(y+7)/3. Both f and f⁻¹ have domain/range R. Substitution in either direction returns the original input.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Correct inverse (x+7)/3."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct domains/ranges."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies f⁻¹∘f."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies f∘f⁻¹."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S08-T@1": {
+      "reference": "On R, h(2)=h(−2)=4, so it is not one-to-one. Restricted to [0,∞), h maps [0,∞) to [0,∞) bijectively; inverse h⁻¹(y)=√y. √(x²)=x for x≥0 and (√y)²=y for y≥0.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct reason x² on R is not invertible."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct restriction [0,∞)."
+        },
+        {
+          "points": 3,
+          "criterion": "Inverse √y with correct domains/ranges."
+        },
+        {
+          "points": 2,
+          "criterion": "Both restricted inverse identities verified."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S09-M@1": {
+      "reference": "Degree3, leading coefficient+1. Zeros: x=2 multiplicity2 (touch/no sign change) and x=−1 multiplicity1 (cross/sign change). Positive-leading cubic: left end down, right end up.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Degree3 and leading coefficient+1."
+        },
+        {
+          "points": 3,
+          "criterion": "Zeros and multiplicities correct."
+        },
+        {
+          "points": 3,
+          "criterion": "Touch/cross behavior correct."
+        },
+        {
+          "points": 2,
+          "criterion": "End behavior correct."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S09-T@1": {
+      "reference": "Degree3, leading coefficient−2. Zero−3 simple (cross); zero1 double (touch). Negative-leading cubic: left end up, right end down.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Degree3 and leading coefficient−2."
+        },
+        {
+          "points": 3,
+          "criterion": "Zeros/multiplicities correct."
+        },
+        {
+          "points": 3,
+          "criterion": "Cross/touch behavior correct."
+        },
+        {
+          "points": 2,
+          "criterion": "End behavior correct."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S10-M@1": {
+      "reference": "Factor numerator (x−2)(x+2), denominator (x−2)(x+1). Original domain excludes2 and−1. Reduced rule (x+2)/(x+1) off those inputs. Hole at x=2 with missing y=4/3; vertical asymptote x=−1; horizontal asymptote y=1.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct factorization/reduced rule with restrictions."
+        },
+        {
+          "points": 2,
+          "criterion": "Original domain excludes−1,2."
+        },
+        {
+          "points": 2,
+          "criterion": "Hole (2,4/3)."
+        },
+        {
+          "points": 2,
+          "criterion": "Vertical x=−1 and horizontal y=1."
+        },
+        {
+          "points": 1,
+          "criterion": "Explicitly retains cancelled exclusion."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S10-T@1": {
+      "reference": "Numerator=(2x−1)(x+2), denominator=(x−2)(x+2). Domain excludes−2,2. Reduced (2x−1)/(x−2). Hole at x=−2 with y=5/4; vertical asymptote x=2; horizontal asymptote y=2.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct factorization/reduction and domain."
+        },
+        {
+          "points": 2,
+          "criterion": "Hole (−2,5/4)."
+        },
+        {
+          "points": 2,
+          "criterion": "Vertical asymptote x=2."
+        },
+        {
+          "points": 2,
+          "criterion": "Horizontal asymptote y=2."
+        },
+        {
+          "points": 1,
+          "criterion": "Cancelled input remains excluded."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S11-M@1": {
+      "reference": "Require2x−6≥0, so x≥3. Principal root≥0 gives range y≥1 and endpoint(3,1). f(x)=5 gives √(2x−6)=4, so2x−6=16 and x=11; check gives5.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Domain [3,∞)."
+        },
+        {
+          "points": 2,
+          "criterion": "Range [1,∞) and endpoint(3,1)."
+        },
+        {
+          "points": 3,
+          "criterion": "Solves x=11."
+        },
+        {
+          "points": 2,
+          "criterion": "Checks root/domain legality."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S11-T@1": {
+      "reference": "Cube roots allow all real x, and squaring makes g≥0; minimum0 at x=−4. g(−12)=(−8)^(2/3)=(−2)²=4. For h, x+1 must be strictly positive, so domain x>−1.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "g domain all real and minimum0."
+        },
+        {
+          "points": 3,
+          "criterion": "g(−12)=4."
+        },
+        {
+          "points": 3,
+          "criterion": "h domain x>−1."
+        },
+        {
+          "points": 1,
+          "criterion": "Explains odd-root vs denominator-root conditions."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S12-M@1": {
+      "reference": "Initial500. Multiplier1.08. Growth rate8% per period. f(2)=500×1.08²=583.2.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Initial value500."
+        },
+        {
+          "points": 2,
+          "criterion": "Multiplier1.08."
+        },
+        {
+          "points": 2,
+          "criterion": "Growth8%."
+        },
+        {
+          "points": 4,
+          "criterion": "f(2)=583.2 with compounding."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S12-T@1": {
+      "reference": "Decay because0.85<1; 15% decrease per period. g(1)=1020. g(3)=1200×0.85³=736.95.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Identifies decay."
+        },
+        {
+          "points": 2,
+          "criterion": "15% decrease."
+        },
+        {
+          "points": 2,
+          "criterion": "g(1)=1020."
+        },
+        {
+          "points": 4,
+          "criterion": "g(3)=736.95."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S13-M@1": {
+      "reference": "log₂32=5; log₁₀0.001=−3; ln(e³)=3. Domain x−4>0, so x>4.",
+      "rubric": [
+        {
+          "points": 6,
+          "criterion": "Three exact log values correct."
+        },
+        {
+          "points": 3,
+          "criterion": "Domain x>4."
+        },
+        {
+          "points": 1,
+          "criterion": "Uses positive-argument condition."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S13-T@1": {
+      "reference": "log₃(1/27)=−3. 3^(log₃7)=7. Domain2−x>0, so x<2.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "log₃(1/27)=−3."
+        },
+        {
+          "points": 3,
+          "criterion": "Inverse identity gives7."
+        },
+        {
+          "points": 3,
+          "criterion": "Domain x<2."
+        },
+        {
+          "points": 1,
+          "criterion": "States log argument must be positive."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S14-M@1": {
+      "reference": "ln(8x²)−ln(2x)=ln((8x²)/(2x))=ln(4x). log₃(a²b/c)=2log₃a+log₃b−log₃c. Assumptions x,a,b,c>0 make every individual real log legal.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "First expression simplifies to ln(4x)."
+        },
+        {
+          "points": 4,
+          "criterion": "Second expansion correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Positivity/domain assumptions stated."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S14-T@1": {
+      "reference": "Left side is defined for x≠1. Right side requires x>1. Therefore the written identity holds on x>1, not on all x≠1. Correct full-domain identity: ln((x−1)²)=2ln|x−1| for x≠1.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Left domain x≠1."
+        },
+        {
+          "points": 2,
+          "criterion": "Right domain x>1."
+        },
+        {
+          "points": 2,
+          "criterion": "Equality set x>1."
+        },
+        {
+          "points": 4,
+          "criterion": "Corrects to 2ln|x−1| on x≠1."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S15-M@1": {
+      "reference": "2^x=8 so x=3. Taking ln:2t ln3=ln10, so t=ln10/(2ln3). ln equality gives x−2=7 with x>2, so x=9.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "x=3."
+        },
+        {
+          "points": 3,
+          "criterion": "t=ln10/(2ln3)."
+        },
+        {
+          "points": 3,
+          "criterion": "x=9."
+        },
+        {
+          "points": 1,
+          "criterion": "Log-domain condition stated."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S15-T@1": {
+      "reference": "e^(−0.4t)=0.2, so −0.4t=ln0.2=−ln5 and t=ln5/0.4. For logs require x>1; combine to log₂(x²−1)=3, so x²−1=8, x=±3, but only x=3 is legal.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "t=ln5/0.4."
+        },
+        {
+          "points": 2,
+          "criterion": "Original log domain x>1."
+        },
+        {
+          "points": 2,
+          "criterion": "Candidates ±3 obtained."
+        },
+        {
+          "points": 2,
+          "criterion": "Rejects −3 and keeps x=3."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S16-M@1": {
+      "reference": "Arithmetic returns:100/80−1=25%; 90/100−1=−10%. Cumulative simple return=90/80−1=12.5%. Log returns ln(100/80)=ln1.25 and ln(90/100)=ln0.9; sum=ln(1.25·0.9)=ln1.125=ln(90/80).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Both arithmetic returns correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Cumulative simple return12.5%."
+        },
+        {
+          "points": 3,
+          "criterion": "Both log returns correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows log additivity to ln1.125."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S16-T@1": {
+      "reference": "Continuous: e^(0.06t)=2, so t=ln2/0.06. Discrete:1.04^t=2, so t=ln2/ln1.04. Log arguments2 and bases/growth factors are positive; ln1.04>0.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Continuous doubling time ln2/0.06."
+        },
+        {
+          "points": 4,
+          "criterion": "Discrete doubling time ln2/ln1.04."
+        },
+        {
+          "points": 2,
+          "criterion": "Legality/positivity explained."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S17-M@1": {
+      "reference": "a10=7+9·4=43. S10=10(7+43)/2=250.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "a10=43."
+        },
+        {
+          "points": 4,
+          "criterion": "S10=250."
+        },
+        {
+          "points": 2,
+          "criterion": "Indexing uses n−1 correctly."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S17-T@1": {
+      "reference": "Five steps from a4 to a9 add15, so d=3. a1=13−3·3=4. a20=4+19·3=61. S20=20(4+61)/2=650.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "d=3."
+        },
+        {
+          "points": 2,
+          "criterion": "a1=4."
+        },
+        {
+          "points": 3,
+          "criterion": "a20=61."
+        },
+        {
+          "points": 3,
+          "criterion": "S20=650."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S18-M@1": {
+      "reference": "g8=3·2^7=384. S8=3(2^8−1)/(2−1)=3·255=765.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "g8=384."
+        },
+        {
+          "points": 4,
+          "criterion": "S8=765."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses seven powers from g1 to g8 / correct indexing."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S18-T@1": {
+      "reference": "g6=160(1/2)^5=5. S6=160[1−(1/2)^6]/(1−1/2)=315. If r=1, six terms each160 sum to960.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Sixth term5."
+        },
+        {
+          "points": 4,
+          "criterion": "Finite sum315."
+        },
+        {
+          "points": 2,
+          "criterion": "r=1 sum960."
+        },
+        {
+          "points": 1,
+          "criterion": "Treats r=1 separately rather than dividing by zero."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S19-M@1": {
+      "reference": "Odd terms:1+3+5+7+9=25. The second pattern is Σ(k=0..7)(4+3k).",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "First sum=25 with correct bounds/terms."
+        },
+        {
+          "points": 4,
+          "criterion": "Correct sigma representation Σ(k=0..7)(4+3k)."
+        },
+        {
+          "points": 1,
+          "criterion": "Eight terms are accounted for."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S19-T@1": {
+      "reference": "First=3(1+2+4+8+16)=93. Reindex with i=k−3: Σ(i=0..4)(i+3). Value3+4+5+6+7=25.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Geometric sigma sum=93."
+        },
+        {
+          "points": 3,
+          "criterion": "Correct reindex Σ(i=0..4)(i+3)."
+        },
+        {
+          "points": 2,
+          "criterion": "Reindexed value25."
+        },
+        {
+          "points": 1,
+          "criterion": "Preserves exactly five terms."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S20-M@1": {
+      "reference": "x1=8,x2=7,x3=6.5. Fixed-point candidate L=6. The equation only says6 would remain6 if reached; it does not by itself prove x_n→6.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Terms8,7,6.5 correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Fixed point6."
+        },
+        {
+          "points": 3,
+          "criterion": "Explicitly rejects fixed-point equation as a convergence proof."
+        },
+        {
+          "points": 1,
+          "criterion": "Explains stationary meaning of the fixed point."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S20-T@1": {
+      "reference": "y1=−1,y2=−3,y3=−7. Fixed point solves L=2L−1, so L=1. The displayed terms move away from1; the fixed-point equation does not establish convergence and this seed gives an immediate counterexample to that claim.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Terms−1,−3,−7."
+        },
+        {
+          "points": 2,
+          "criterion": "Fixed point1."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly rejects convergence claim using terms."
+        },
+        {
+          "points": 1,
+          "criterion": "Separates candidate from proof."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S21-M@1": {
+      "reference": "150°=5π/6. Unit-circle point(cos,sin)=(−√3/2,1/2). Arc length s=4·5π/6=10π/3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "5π/6."
+        },
+        {
+          "points": 4,
+          "criterion": "Coordinates (−√3/2,1/2)."
+        },
+        {
+          "points": 3,
+          "criterion": "Arc length10π/3."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S21-T@1": {
+      "reference": "−45°=−π/4. Coordinates(√2/2,−√2/2). Oriented arc displacement s=10(−π/4)=−5π/2; geometric arc length magnitude is5π/2.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "−π/4."
+        },
+        {
+          "points": 4,
+          "criterion": "Correct coordinates."
+        },
+        {
+          "points": 3,
+          "criterion": "Oriented displacement −5π/2 with magnitude distinction."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S22-M@1": {
+      "reference": "At5π/4, sin=−√2/2, cos=−√2/2, tan=1. If sin=3/5 in quadrant II, cos is negative: cos=−4/5 and tan=(3/5)/(−4/5)=−3/4.",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Exact triple at5π/4 correct."
+        },
+        {
+          "points": 3,
+          "criterion": "cos=−4/5."
+        },
+        {
+          "points": 2,
+          "criterion": "tan=−3/4 with quadrant sign."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S22-T@1": {
+      "reference": "1−sin²x=cos²x, so quotient=cos x because cos x≠0. Atπ/3: sin=√3/2, cos=1/2, tan=√3.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Simplifies to cos x with condition used."
+        },
+        {
+          "points": 6,
+          "criterion": "Exact trig triple atπ/3 correct."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S23-M@1": {
+      "reference": "Amplitude2, period2π, midline y=1, shift rightπ/2. sin x=1/2 at x=π/6 and5π/6 in [0,2π).",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "All four graph parameters correct."
+        },
+        {
+          "points": 5,
+          "criterion": "Solutions π/6 and5π/6 only."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S23-T@1": {
+      "reference": "Amplitude3, periodπ, midline4. cos(2x)=0 when2x=π/2 or3π/2 in [0,2π), so x=π/4 or3π/4.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Amplitude3, periodπ, midline4."
+        },
+        {
+          "points": 6,
+          "criterion": "Solutions π/4,3π/4 with interval handled correctly."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S24-M@1": {
+      "reference": "h domain x>0; h⁻¹(y)=50e^y. h(q_n)=ln((50·1.2^n)/50)=nln1.2. Sum=50[1.2^6−1]/0.2=496.496. Since50·1.2^3=86.4, n=3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correct h domain and inverse."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct log-linearization h(q_n)=nln1.2."
+        },
+        {
+          "points": 3,
+          "criterion": "Finite sum496.496."
+        },
+        {
+          "points": 2,
+          "criterion": "Correct index n=3."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    },
+    "T22V3::T22E-FND02::S24-T@1": {
+      "reference": "Range [−1,5]. p(π/6)=2+3/2=3.5. Equation p=3.5 gives sinθ=1/2, so θ=π/6,5π/6. Samples at kπ/2 are2,5,2,−1,2, summing10.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Range [−1,5]."
+        },
+        {
+          "points": 2,
+          "criterion": "p(π/6)=3.5."
+        },
+        {
+          "points": 3,
+          "criterion": "Solutions π/6,5π/6."
+        },
+        {
+          "points": 3,
+          "criterion": "Finite sigma sample sum10."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+    }
+  },
+  "coverage": {
+    "T22V3::T22E-FND02::S01@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S02@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S03@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S04@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S05@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S06@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S07@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND02::S08@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S09@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S10@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S11@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-FND02::S12@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S13@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S14@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S15@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S16@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S17@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S18@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S19@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S20@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S21@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S22@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S23@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-FND02::S24@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ]
+  },
+  "prerequisiteAudit": {
+    "S01": [
+      {
+        "item": "f(x) notation",
+        "source": "JIT in S01"
+      },
+      {
+        "item": "symbolic changed input",
+        "source": "M01-S09 substitution plus JIT function input-slot explanation"
+      }
+    ],
+    "S02": [
+      {
+        "item": "domain notation using intervals",
+        "source": "M01-S14 interval notation"
+      },
+      {
+        "item": "principal-root legality",
+        "source": "M01-S08"
+      },
+      {
+        "item": "intersection of restrictions",
+        "source": "JIT in S02"
+      }
+    ],
+    "S03": [
+      {
+        "item": "ordered-pair graph interpretation",
+        "source": "JIT in S03"
+      },
+      {
+        "item": "distance formula",
+        "source": "JIT in S03 using M01 Pythagorean/root arithmetic"
+      },
+      {
+        "item": "midpoint formula",
+        "source": "JIT in S03"
+      }
+    ],
+    "S04": [
+      {
+        "item": "slope Δy/Δx",
+        "source": "JIT in S04 using M01 rates"
+      },
+      {
+        "item": "line equation from point",
+        "source": "JIT in S04 using M01 rearrangement"
+      }
+    ],
+    "S05": [
+      {
+        "item": "piecewise brace/conditions",
+        "source": "JIT in S05 using M01 inequalities"
+      },
+      {
+        "item": "absolute-value branch form",
+        "source": "M01-S15 plus JIT graph connection"
+      }
+    ],
+    "S06": [
+      {
+        "item": "inside-vs-outside transformation notation",
+        "source": "JIT in S06"
+      },
+      {
+        "item": "domain/range transport",
+        "source": "M02-S02"
+      }
+    ],
+    "S07": [
+      {
+        "item": "composition symbol ∘",
+        "source": "JIT in S07"
+      },
+      {
+        "item": "outer-domain check",
+        "source": "M02-S02 plus JIT composition tracing"
+      }
+    ],
+    "S08": [
+      {
+        "item": "inverse notation f⁻¹",
+        "source": "JIT in S08"
+      },
+      {
+        "item": "one-to-one requirement",
+        "source": "JIT intuition in S08; formal map proof reserved M03"
+      }
+    ],
+    "S09": [
+      {
+        "item": "multiplicity as factor exponent",
+        "source": "JIT in S09 from M01 factoring"
+      },
+      {
+        "item": "qualitative end behavior",
+        "source": "JIT in S09"
+      }
+    ],
+    "S10": [
+      {
+        "item": "hole vs remaining denominator zero",
+        "source": "JIT in S10"
+      },
+      {
+        "item": "leading-coefficient horizontal behavior",
+        "source": "JIT qualitative rule in S10; formal limit proof deferred M09"
+      }
+    ],
+    "S11": [
+      {
+        "item": "root function domain",
+        "source": "M01-S08 plus M02-S02"
+      },
+      {
+        "item": "rational-power function interpretation",
+        "source": "M01-S08"
+      }
+    ],
+    "S12": [
+      {
+        "item": "A·b^t function family",
+        "source": "JIT in S12 from M01 exponents"
+      },
+      {
+        "item": "percent-to-base conversion",
+        "source": "M01-S04/S05"
+      }
+    ],
+    "S13": [
+      {
+        "item": "log_b inverse notation",
+        "source": "JIT in S13 from S08/S12"
+      },
+      {
+        "item": "e and ln notation",
+        "source": "JIT in S13"
+      }
+    ],
+    "S14": [
+      {
+        "item": "log product/quotient/power laws",
+        "source": "JIT in S14"
+      },
+      {
+        "item": "absolute-value log correction",
+        "source": "JIT in S14 using M01 absolute value"
+      }
+    ],
+    "S15": [
+      {
+        "item": "taking logs of exponential equations",
+        "source": "JIT in S15 from S13 inverse definition"
+      },
+      {
+        "item": "candidate domain check",
+        "source": "S13/S14"
+      }
+    ],
+    "S16": [
+      {
+        "item": "log return ln(P1/P0)",
+        "source": "JIT in S16 from S14 log ratio law"
+      },
+      {
+        "item": "continuous model e^(rt)",
+        "source": "JIT in S16 from S12 exponential family"
+      }
+    ],
+    "S17": [
+      {
+        "item": "sequence index notation a_n",
+        "source": "JIT in S17"
+      },
+      {
+        "item": "finite AP sum formula",
+        "source": "JIT derivation/pairing in S17"
+      }
+    ],
+    "S18": [
+      {
+        "item": "finite GP sum formula",
+        "source": "JIT in S18"
+      },
+      {
+        "item": "r=1 exceptional branch",
+        "source": "JIT in S18"
+      }
+    ],
+    "S19": [
+      {
+        "item": "Σ and running index",
+        "source": "JIT in S19"
+      },
+      {
+        "item": "reindex substitution",
+        "source": "JIT in S19 using M01 substitution"
+      }
+    ],
+    "S20": [
+      {
+        "item": "recurrence x_(n+1)=f(x_n)",
+        "source": "JIT in S20 from sequence/function notation"
+      },
+      {
+        "item": "fixed-point candidate",
+        "source": "JIT in S20; convergence proof explicitly deferred M09"
+      }
+    ],
+    "S21": [
+      {
+        "item": "radian definition",
+        "source": "JIT in S21"
+      },
+      {
+        "item": "unit-circle cos/sin coordinates",
+        "source": "JIT in S21 from coordinate geometry"
+      }
+    ],
+    "S22": [
+      {
+        "item": "tan=sin/cos",
+        "source": "JIT in S22"
+      },
+      {
+        "item": "sin²+cos²=1",
+        "source": "JIT from unit-circle equation in S22"
+      }
+    ],
+    "S23": [
+      {
+        "item": "period 2π/|B|",
+        "source": "JIT in S23 from S21 full-turn radians"
+      },
+      {
+        "item": "phase-shift parameter h",
+        "source": "M02-S06 transformations"
+      }
+    ],
+    "S24": [
+      {
+        "item": "cross-topic synthesis",
+        "source": "Only S01-S23 capabilities; explicit M03/M09 exclusion"
+      },
+      {
+        "item": "finite sigma over function samples",
+        "source": "S19 + S23"
+      }
+    ]
+  },
+  "instructionSeparation": {
+    "T22V3::T22E-FND02::S01@1": {
+      "main": [
+        "f(x)=3x−4",
+        "f(t+1)"
+      ],
+      "transfer": [
+        "₹60 plus ₹25",
+        "C(g)=₹310"
+      ]
+    },
+    "T22V3::T22E-FND02::S02@1": {
+      "main": [
+        "√(x+3)/(x−1)",
+        "x²+1",
+        "−2≤x≤3"
+      ],
+      "transfer": [
+        "1/√(5−t)",
+        "√(4−x²)"
+      ]
+    },
+    "T22V3::T22E-FND02::S03@1": {
+      "main": [
+        "f(x)=2x−3",
+        "x=−1,0,2,4",
+        "x=−1 and x=2"
+      ],
+      "transfer": [
+        "q(x)=x²−4",
+        "x=−2,−1,0,1,2"
+      ]
+    },
+    "T22V3::T22E-FND02::S04@1": {
+      "main": [
+        "(2,5) and (8,17)",
+        "x=10"
+      ],
+      "transfer": [
+        "(100,250) and (160,370)",
+        "₹500"
+      ]
+    },
+    "T22V3::T22E-FND02::S05@1": {
+      "main": [
+        "2x+1 for x<0",
+        "0≤x≤2",
+        "f(x)=5 for x>2"
+      ],
+      "transfer": [
+        "p(x)=|x−3|",
+        "p(1) and p(5)"
+      ]
+    },
+    "T22V3::T22E-FND02::S06@1": {
+      "main": [
+        "−2(x−3)²+5",
+        "g(1)"
+      ],
+      "transfer": [
+        "√(2−x)+1",
+        "p(−7)"
+      ]
+    },
+    "T22V3::T22E-FND02::S07@1": {
+      "main": [
+        "f(x)=2x+3",
+        "g(x)=x²−1",
+        "x=1"
+      ],
+      "transfer": [
+        "f(x)=1/(x−2)",
+        "g(x)=x+1"
+      ]
+    },
+    "T22V3::T22E-FND02::S08@1": {
+      "main": [
+        "f(x)=3x−7"
+      ],
+      "transfer": [
+        "h(x)=x² on R",
+        "Restrict h to [0,∞)"
+      ]
+    },
+    "T22V3::T22E-FND02::S09@1": {
+      "main": [
+        "(x−2)²(x+1)"
+      ],
+      "transfer": [
+        "−2(x+3)(x−1)²"
+      ]
+    },
+    "T22V3::T22E-FND02::S10@1": {
+      "main": [
+        "(x²−4)/(x²−x−2)"
+      ],
+      "transfer": [
+        "(2x²+3x−2)/(x²−4)"
+      ]
+    },
+    "T22V3::T22E-FND02::S11@1": {
+      "main": [
+        "√(2x−6)+1",
+        "f(x)=5"
+      ],
+      "transfer": [
+        "(x+4)^(2/3)",
+        "g(−12)",
+        "1/√(x+1)"
+      ]
+    },
+    "T22V3::T22E-FND02::S12@1": {
+      "main": [
+        "500(1.08)^t",
+        "f(2)"
+      ],
+      "transfer": [
+        "1200(0.85)^t",
+        "g(3)"
+      ]
+    },
+    "T22V3::T22E-FND02::S13@1": {
+      "main": [
+        "log₂32",
+        "log₁₀0.001",
+        "ln(x−4)"
+      ],
+      "transfer": [
+        "log₃(1/27)",
+        "3^(log₃7)",
+        "log₅(2−x)"
+      ]
+    },
+    "T22V3::T22E-FND02::S14@1": {
+      "main": [
+        "ln(8x²)−ln(2x)",
+        "log₃(a²b/c)"
+      ],
+      "transfer": [
+        "ln((x−1)²)=2ln(x−1)"
+      ]
+    },
+    "T22V3::T22E-FND02::S15@1": {
+      "main": [
+        "5·2^x=40",
+        "3^(2t)=10",
+        "ln(x−2)=ln7"
+      ],
+      "transfer": [
+        "100e^(−0.4t)=20",
+        "log₂(x+1)+log₂(x−1)=3"
+      ]
+    },
+    "T22V3::T22E-FND02::S16@1": {
+      "main": [
+        "P0=80, P1=100, P2=90"
+      ],
+      "transfer": [
+        "5000e^(0.06t)",
+        "5000(1.04)^t"
+      ]
+    },
+    "T22V3::T22E-FND02::S17@1": {
+      "main": [
+        "a1=7",
+        "d=4",
+        "a10",
+        "S10"
+      ],
+      "transfer": [
+        "a4=13",
+        "a9=28",
+        "a20",
+        "S20"
+      ]
+    },
+    "T22V3::T22E-FND02::S18@1": {
+      "main": [
+        "g1=3",
+        "r=2",
+        "g8",
+        "S8"
+      ],
+      "transfer": [
+        "starts at160",
+        "ratio1/2",
+        "sixth term"
+      ]
+    },
+    "T22V3::T22E-FND02::S19@1": {
+      "main": [
+        "Σ(k=1..5)(2k−1)",
+        "4+7+10+13+16+19+22+25"
+      ],
+      "transfer": [
+        "Σ(j=0..4)3·2^j",
+        "Σ(k=3..7)k"
+      ]
+    },
+    "T22V3::T22E-FND02::S20@1": {
+      "main": [
+        "x0=10",
+        "0.5x_n+3"
+      ],
+      "transfer": [
+        "y0=0",
+        "2y_n−1"
+      ]
+    },
+    "T22V3::T22E-FND02::S21@1": {
+      "main": [
+        "150°",
+        "radius4"
+      ],
+      "transfer": [
+        "−45°",
+        "radius10"
+      ]
+    },
+    "T22V3::T22E-FND02::S22@1": {
+      "main": [
+        "θ=5π/4",
+        "sinθ=3/5"
+      ],
+      "transfer": [
+        "(1−sin²x)/cos x",
+        "x=π/3"
+      ]
+    },
+    "T22V3::T22E-FND02::S23@1": {
+      "main": [
+        "2sin(x−π/2)+1",
+        "sin x=1/2"
+      ],
+      "transfer": [
+        "−3cos(2x)+4",
+        "cos(2x)=0"
+      ]
+    },
+    "T22V3::T22E-FND02::S24@1": {
+      "main": [
+        "q_n=50(1.2)^n",
+        "h(x)=ln(x/50)",
+        "q_n=86.4"
+      ],
+      "transfer": [
+        "p(θ)=2+3sinθ",
+        "p(θ)=3.5",
+        "Σ(k=0..4) p(kπ/2)"
+      ]
+    }
+  },
+  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation."
+}

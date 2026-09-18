@@ -2,70 +2,498 @@
   "version": "semantic-ledger-r1-2026-09-18",
   "policy": "Every macro module must have a ledger row. Before its learner-facing authoring is published, semanticStatus must be accepted and every actual prerequisite in the authored content must trace to an earlier accepted module or a bounded bridge owned by this module. Topological position alone is not evidence of semantic ancestry.",
   "entries": [
-    {"order":1,"id":"T22E-FND01","mode":"new","semanticStatus":"accepted","bridges":[],"note":"M01 repaired under Astra A-01–A-05."},
-    {"order":2,"id":"T22E-FND02","mode":"new","semanticStatus":"pending-boundary-audit","bridges":[],"note":"Must be semantically audited before M02 authoring is accepted."},
-    {"order":3,"id":"T22E-DISC01","mode":"new","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":4,"id":"ARC048","mode":"adapted","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":5,"id":"T22E-TRD01","mode":"new","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":6,"id":"ARC502","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":7,"id":"T22E-MKT01","mode":"new","semanticStatus":"planned-with-known-edge","bridges":[],"note":"Log-return ownership requires M02 logarithms; explicit T22E-FND02 edge added in semantic graph r1."},
-    {"order":8,"id":"T22E-CODE01","mode":"new","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":9,"id":"SIDE263","mode":"adapted","semanticStatus":"planned-with-known-bridge","bridges":[{"id":"M09-B01","owner":"SIDE263","title":"Limit foundations without derivatives","before":"first derivative-dependent legacy material","content":"Teach sequence/function limit language, epsilon-style intuition appropriate to route level, algebraic limit laws and squeeze/monotone arguments without assuming ARC053. Legacy entry text that names ARC053 is not reusable."}]},
-    {"order":10,"id":"ARC053","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":11,"id":"ARC510","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":12,"id":"SIDE267","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":13,"id":"ARC511","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":14,"id":"SIDE276","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":15,"id":"SIDE278","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":16,"id":"SIDE279","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":17,"id":"SIDE280","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":18,"id":"SIDE271","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":19,"id":"ARC711","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":20,"id":"ARC512","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":21,"id":"T22E-CODE02","mode":"new","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":22,"id":"ARC717","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":23,"id":"ARC585","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":24,"id":"ARC713","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":25,"id":"ARC503","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":26,"id":"ARC517","mode":"adapted","semanticStatus":"planned-with-known-bridge","bridges":[{"id":"M26-B01","owner":"ARC517","title":"Iterated integration and support geometry","before":"joint continuous-density laws / former A08","content":"Describe planar support regions, write inner/outer bounds in both orders where feasible, evaluate bounded iterated integrals and check normalization. One-variable integration comes from ARC510; multivariable coordinate context comes from SIDE271. SIDE271 edge added in semantic graph r1."}]},
-    {"order":27,"id":"ARC504","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":28,"id":"ARC712","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":29,"id":"SIDE476","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":30,"id":"ARC513","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":31,"id":"ARC505","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":32,"id":"ARC537","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":33,"id":"ARC531","mode":"adapted","semanticStatus":"planned-with-known-bridge","bridges":[{"id":"M33-B01","owner":"ARC531","title":"Basic numerical MLE solver interpretation","before":"numerical MLE task / former A09","content":"Use a simple one-dimensional or library solver as a research instrument; specify objective and parameter domain, inspect convergence/status, compare nearby/objective values and reject infeasible results. This does not teach Newton/quasi-Newton/autodiff; those remain M57. T22E-CODE02 edge added in semantic graph r1."}]},
-    {"order":34,"id":"ARC533","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":35,"id":"ARC534","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":36,"id":"ARC539","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":37,"id":"ARC506","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":38,"id":"ARC507","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":39,"id":"ARC508","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":40,"id":"ARC509","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":41,"id":"ARC541","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":42,"id":"ARC542","mode":"adapted","semanticStatus":"planned-with-known-bridge","bridges":[{"id":"M42-B01","owner":"ARC542","title":"Complex roots and modulus for AR stability","before":"polynomial-root stability task / former A10","content":"Introduce i²=−1, conjugate pairs for real-coefficient polynomials, modulus |a+bi|=sqrt(a²+b²), and the unit-circle root criterion used by the retained stability task. This is a bounded time-series bridge, not a general complex-analysis module. T22E-FND02 edge added in semantic graph r1."}]},
-    {"order":43,"id":"T22E-TEMP01","mode":"new","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":44,"id":"ARC716","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":45,"id":"ARC714","mode":"adapted","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":46,"id":"ARC715","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":47,"id":"ARC558","mode":"adapted","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":48,"id":"ARC543","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":49,"id":"ARC524","mode":"adapted","semanticStatus":"pending-boundary-audit","bridges":[],"note":"Expanded title may add martingale/stopping foundations; exact boundary must be audited before authoring."},
-    {"order":50,"id":"ARC525","mode":"adapted","semanticStatus":"pending-boundary-audit","bridges":[],"note":"Expanded title may add Brownian foundations; exact boundary must be audited before authoring."},
-    {"order":51,"id":"ARC514","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":52,"id":"ARC581","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":53,"id":"ARC582","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":54,"id":"ARC553","mode":"adapted","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":55,"id":"ARC554","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":56,"id":"ARC559","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":57,"id":"ARC586","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":58,"id":"ARC589","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":59,"id":"ARC211","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":60,"id":"ARC590","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":61,"id":"ARC593","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":62,"id":"ARC594","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":63,"id":"ARC595","mode":"reused","semanticStatus":"pending-boundary-audit","bridges":[]},
-    {"order":64,"id":"ARC599","mode":"adapted","semanticStatus":"pending-boundary-audit","bridges":[],"note":"Modern representation-learning expansion must be bounded at authoring time."},
-    {"order":65,"id":"ARC560","mode":"adapted","semanticStatus":"pending-boundary-audit","bridges":[]}
+    {
+      "order": 1,
+      "id": "T22E-FND01",
+      "mode": "new",
+      "semanticStatus": "accepted",
+      "bridges": [],
+      "note": "M01 repaired under Astra A-01–A-05."
+    },
+    {
+      "order": 2,
+      "id": "T22E-FND02",
+      "mode": "new",
+      "semanticStatus": "boundary-accepted-content-candidate",
+      "bridges": [],
+      "note": "M02 boundary audited: sole module prerequisite M01. Owns functions/precalculus, finite sequences/sigma and essential trig; excludes M03 proof/discrete material and M09 limits/convergence/infinite series. Canonical authored candidate: course/t22/authoring/m02.json. Learner-facing acceptance still requires runtime/evidence/browser gates."
+    },
+    {
+      "order": 3,
+      "id": "T22E-DISC01",
+      "mode": "new",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 4,
+      "id": "ARC048",
+      "mode": "adapted",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 5,
+      "id": "T22E-TRD01",
+      "mode": "new",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 6,
+      "id": "ARC502",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 7,
+      "id": "T22E-MKT01",
+      "mode": "new",
+      "semanticStatus": "planned-with-known-edge",
+      "bridges": [],
+      "note": "Log-return ownership requires M02 logarithms; explicit T22E-FND02 edge added in semantic graph r1."
+    },
+    {
+      "order": 8,
+      "id": "T22E-CODE01",
+      "mode": "new",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 9,
+      "id": "SIDE263",
+      "mode": "adapted",
+      "semanticStatus": "planned-with-known-bridge",
+      "bridges": [
+        {
+          "id": "M09-B01",
+          "owner": "SIDE263",
+          "title": "Limit foundations without derivatives",
+          "before": "first derivative-dependent legacy material",
+          "content": "Teach sequence/function limit language, epsilon-style intuition appropriate to route level, algebraic limit laws and squeeze/monotone arguments without assuming ARC053. Legacy entry text that names ARC053 is not reusable."
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "id": "ARC053",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 11,
+      "id": "ARC510",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 12,
+      "id": "SIDE267",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 13,
+      "id": "ARC511",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 14,
+      "id": "SIDE276",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 15,
+      "id": "SIDE278",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 16,
+      "id": "SIDE279",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 17,
+      "id": "SIDE280",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 18,
+      "id": "SIDE271",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 19,
+      "id": "ARC711",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 20,
+      "id": "ARC512",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 21,
+      "id": "T22E-CODE02",
+      "mode": "new",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 22,
+      "id": "ARC717",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 23,
+      "id": "ARC585",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 24,
+      "id": "ARC713",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 25,
+      "id": "ARC503",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 26,
+      "id": "ARC517",
+      "mode": "adapted",
+      "semanticStatus": "planned-with-known-bridge",
+      "bridges": [
+        {
+          "id": "M26-B01",
+          "owner": "ARC517",
+          "title": "Iterated integration and support geometry",
+          "before": "joint continuous-density laws / former A08",
+          "content": "Describe planar support regions, write inner/outer bounds in both orders where feasible, evaluate bounded iterated integrals and check normalization. One-variable integration comes from ARC510; multivariable coordinate context comes from SIDE271. SIDE271 edge added in semantic graph r1."
+        }
+      ]
+    },
+    {
+      "order": 27,
+      "id": "ARC504",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 28,
+      "id": "ARC712",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 29,
+      "id": "SIDE476",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 30,
+      "id": "ARC513",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 31,
+      "id": "ARC505",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 32,
+      "id": "ARC537",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 33,
+      "id": "ARC531",
+      "mode": "adapted",
+      "semanticStatus": "planned-with-known-bridge",
+      "bridges": [
+        {
+          "id": "M33-B01",
+          "owner": "ARC531",
+          "title": "Basic numerical MLE solver interpretation",
+          "before": "numerical MLE task / former A09",
+          "content": "Use a simple one-dimensional or library solver as a research instrument; specify objective and parameter domain, inspect convergence/status, compare nearby/objective values and reject infeasible results. This does not teach Newton/quasi-Newton/autodiff; those remain M57. T22E-CODE02 edge added in semantic graph r1."
+        }
+      ]
+    },
+    {
+      "order": 34,
+      "id": "ARC533",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 35,
+      "id": "ARC534",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 36,
+      "id": "ARC539",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 37,
+      "id": "ARC506",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 38,
+      "id": "ARC507",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 39,
+      "id": "ARC508",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 40,
+      "id": "ARC509",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 41,
+      "id": "ARC541",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 42,
+      "id": "ARC542",
+      "mode": "adapted",
+      "semanticStatus": "planned-with-known-bridge",
+      "bridges": [
+        {
+          "id": "M42-B01",
+          "owner": "ARC542",
+          "title": "Complex roots and modulus for AR stability",
+          "before": "polynomial-root stability task / former A10",
+          "content": "Introduce i²=−1, conjugate pairs for real-coefficient polynomials, modulus |a+bi|=sqrt(a²+b²), and the unit-circle root criterion used by the retained stability task. This is a bounded time-series bridge, not a general complex-analysis module. T22E-FND02 edge added in semantic graph r1."
+        }
+      ]
+    },
+    {
+      "order": 43,
+      "id": "T22E-TEMP01",
+      "mode": "new",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 44,
+      "id": "ARC716",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 45,
+      "id": "ARC714",
+      "mode": "adapted",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 46,
+      "id": "ARC715",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 47,
+      "id": "ARC558",
+      "mode": "adapted",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 48,
+      "id": "ARC543",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 49,
+      "id": "ARC524",
+      "mode": "adapted",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": [],
+      "note": "Expanded title may add martingale/stopping foundations; exact boundary must be audited before authoring."
+    },
+    {
+      "order": 50,
+      "id": "ARC525",
+      "mode": "adapted",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": [],
+      "note": "Expanded title may add Brownian foundations; exact boundary must be audited before authoring."
+    },
+    {
+      "order": 51,
+      "id": "ARC514",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 52,
+      "id": "ARC581",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 53,
+      "id": "ARC582",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 54,
+      "id": "ARC553",
+      "mode": "adapted",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 55,
+      "id": "ARC554",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 56,
+      "id": "ARC559",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 57,
+      "id": "ARC586",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 58,
+      "id": "ARC589",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 59,
+      "id": "ARC211",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 60,
+      "id": "ARC590",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 61,
+      "id": "ARC593",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 62,
+      "id": "ARC594",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 63,
+      "id": "ARC595",
+      "mode": "reused",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    },
+    {
+      "order": 64,
+      "id": "ARC599",
+      "mode": "adapted",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": [],
+      "note": "Modern representation-learning expansion must be bounded at authoring time."
+    },
+    {
+      "order": 65,
+      "id": "ARC560",
+      "mode": "adapted",
+      "semanticStatus": "pending-boundary-audit",
+      "bridges": []
+    }
   ]
 }
