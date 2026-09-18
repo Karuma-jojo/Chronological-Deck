@@ -23,7 +23,8 @@
       "id": "T22E-DISC01",
       "title": "Mathematical Reasoning & Discrete Foundations",
       "prerequisites": [
-        "T22E-FND01"
+        "T22E-FND01",
+        "T22E-FND02"
       ],
       "availability": "planned"
     },

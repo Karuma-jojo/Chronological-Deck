@@ -114,3 +114,7 @@ Reviewed `f49479068d8fb3416dbe823e9fdacd628d90e268`; see `docs/t22-course/M02-AS
 - Successful full repair run: `35307392781` at `5fa0ab4ec6059d3726dcfff4198843bf6a5e61a9`.
 
 **Next:** build M03 only, beginning with semantic ancestry/boundary audit. Stop with M03 review handoff. No M04 authoring.
+
+## M03 boundary opened
+
+M03 · `T22E-DISC01` is the only open module. Semantic audit added prerequisite edge M03←M02 in addition to M01 because formal map/image/preimage/injective-surjective reasoning builds on M02 functions. Route authority bumped to `M65-semantic-r2-2026-09-18`. Content remains unpublished until M03's own gates pass. M04 remains closed.
