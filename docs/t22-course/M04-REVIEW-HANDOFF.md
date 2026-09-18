@@ -2,9 +2,11 @@
 
 Date: 2026-09-18  
 Branch: `codex/t22-pedagogical-rebuild`  
-Status: **FINAL INTERNAL ACCEPTED — STOP FOR INDEPENDENT REVIEW; M05/M06 NOT AUTHORED**  
+Status: **ASTRA REPAIRS IMPLEMENTED — STOP FOR BOUNDED FOLLOW-UP REVIEW; M05/M06 NOT AUTHORED**  
 Pre-M04 baseline: `829699fce941cdedf59b76aa2d656ca93d283e0b`  
-Accepted M04 state: `d23b9d3b1b618904f907f8f6d6bfaef55c72873e`
+Original accepted M04 state: `d23b9d3b1b618904f907f8f6d6bfaef55c72873e`  
+Independent review commit: `7d377d847728a7ebec6e4b81f2864238bd0b1683`  
+Astra repair implementation checkpoint: `10df637dbb46bd4985a1f98fc298c746b52bf1fd`
 
 ## Exact M04 commit chain
 
@@ -16,6 +18,26 @@ Accepted M04 state: `d23b9d3b1b618904f907f8f6d6bfaef55c72873e`
 6. `d23b9d3b1b618904f907f8f6d6bfaef55c72873e` — Accept M04 after hardened probability quality gates.
 
 This chain is 6 commits ahead / 0 behind the accepted M03 baseline.
+
+## Independent review and bounded Astra repair
+
+Independent review at `7d377d847728a7ebec6e4b81f2864238bd0b1683` returned M04-01 through M04-04. The bounded repair implementation ends at `10df637dbb46bd4985a1f98fc298c746b52bf1fd`:
+
+- `ba1f67b9b83ae800bdf16b4a1febd1afbb3211b5` — repair M04 teaching and 120-claim observability.
+- `13e67689909dd19666fd94daa0f436cd2b1b550e` — pin the complete human-audited claim/task/rubric plan in persistent regression checks.
+- `10df637dbb46bd4985a1f98fc298c746b52bf1fd` — expand independent repair-sensitive probability checks.
+
+Resolved findings:
+
+1. **M04-01:** S11 now derives independence with a complemented event from product independence + complement probability.
+2. **M04-02:** all 120 ownership mappings were semantically re-audited. S05 claim 3 and S13 claim 5 are deliberately Transfer-owned. S05-T and S21-M are material `obligationVersion=2` repairs.
+3. **M04-03:** S22 now derives positional marginals for without-replacement sampling from labelled ordered samples rather than asserting symmetry.
+4. **M04-04:** S04 no longer invokes independence before S11.
+
+See `docs/t22-course/M04-RESOLUTION.md` for exact repair and provenance/versioning decisions.
+
+Current instruction version: `m04-instruction-astra-r1`.
+Evidence key remains unchanged: `chrono_t22_elite_course_evidence_v1`.
 
 ## Changed files across the M04 implementation chain
 
@@ -79,7 +101,7 @@ M04 has **24 bounded sessions**.
 - Sessions: **24/24** contiguous.
 - Fixed assessments: **48/48** — one Main + one Transfer per session.
 - Required-ownership claims: **120/120**.
-- Claim observability: **120/120 exact Main public-task + exact rubric links**.
+- Claim observability: **120/120 manually re-audited exact fixed-task + exact rubric links**; S05 claim 3 and S13 claim 5 intentionally use Transfer.
 - Evaluators: **48/48**, each totaling 10 points.
 - Prerequisite/JIT audits: **24/24**.
 - Semantic lesson/task separation audit: **24/24**.
@@ -159,11 +181,12 @@ Any finding should be written as a bounded M04 finding. Do not repair M05 or M06
 
 ## Review boundary
 
-**STOP HERE. M04 is internally accepted and ready for independent review. M05 and M06 have not been authored.**
+**STOP HERE FOR BOUNDED FOLLOW-UP REVIEW OF THE ASTRA REPAIRS. M05 and M06 have not been authored.**
 
-After review:
+Next action:
 
-- repair bounded M04 findings and rerun the same gates; or
-- if M04 is accepted, explicitly open the next agreed module boundary.
+- independently re-check only M04-01 through M04-04 and the associated observability/provenance regressions;
+- if those repairs are accepted, explicitly open the next agreed module boundary;
+- otherwise return only bounded M04 follow-up findings.
 
 No merge to `main` and no deployment were performed.
