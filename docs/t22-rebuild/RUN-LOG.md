@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M06 INTERNAL ACCEPTED; PREPARING M06 REVIEW HANDOFF; M07 CLOSED**
+State: **M05 + M06 SEPARATE CHECKPOINTS COMPLETE; STOP BEFORE M07**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -323,3 +323,22 @@ M06 · `ARC502` now has:
 - browser regression extended through M06 for save/reveal/review, drafts, packet exposure and cross-module export/import.
 
 **Next: create and verify M06 review handoff, then STOP before M07.**
+
+
+## M06 separate review checkpoint complete — final authority for this pass
+
+M06 review handoff: `docs/t22-course/M06-REVIEW-HANDOFF.md`.
+
+Persistent handoff gate: `docs/t22-course/audit/m06-handoff-checks.mjs`.
+
+Current authored Elite route: **M01 → M02 → M03 → M04 → M05 → M06**.
+
+M05 is separately frozen at `m05-authoring-v1.0-internal-accepted`.
+
+M06 is separately frozen at `m06-authoring-v1.0-internal-accepted`.
+
+Shared evidence key remains `chrono_t22_elite_course_evidence_v1`.
+
+Historical M04/M05 handoff gates were made forward-compatible with later global course-meta versions while preserving their own accepted module invariants and the hard M07 stop.
+
+**STOP. M07 · T22E-MKT01 remains planned and no `course/t22/authoring/m07.json` may be created under this mission.**
