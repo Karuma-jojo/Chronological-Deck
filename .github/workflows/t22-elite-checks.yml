@@ -43,6 +43,7 @@ jobs:
           node --check docs/t22-course/audit/m04-independent-math.mjs
           node --check docs/t22-course/audit/m04-handoff-checks.mjs
           node --check docs/t22-course/audit/m05-independent-math.mjs
+          node --check docs/t22-course/audit/m05-handoff-checks.mjs
           node --check docs/t22-course/audit/m03-repair-checks.mjs
       - name: Structural, pedagogy, semantic and evidence regressions
         run: |
@@ -59,6 +60,7 @@ jobs:
           node docs/t22-course/audit/m04-independent-math.mjs
           node docs/t22-course/audit/m04-handoff-checks.mjs
           node docs/t22-course/audit/m05-independent-math.mjs
+          node docs/t22-course/audit/m05-handoff-checks.mjs
           node docs/t22-course/audit/m03-repair-checks.mjs
       - name: Install browser-test dependency
         run: npm ci --prefix scripts/review-tests
