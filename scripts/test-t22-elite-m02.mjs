@@ -28,7 +28,7 @@ assert.equal(-2*(1-3)**2+5,-3);assert.equal(Math.sqrt(2-(-7))+1,4);
 assert.equal(2*(1**2-1)+3,3);assert.equal((2*1+3)**2-1,24);
 for(const x of [-3,0,5])close(((3*x-7)+7)/3,x);assert.equal(Math.sqrt(9),3);
 const p=x=>(x-2)**2*(x+1);assert.equal(p(2),0);assert.equal(p(-1),0);assert(Math.sign(p(-2))!==Math.sign(p(0)));
-for(const x of [-4,0,3])if(x!==-1&&x!==2)close((x*x-4)/(x*x-x-2),(x+2)/(x+1));close((2*2+3*2-2)/(2*2-4),Infinity,0); // excluded input sentinel not used further
+for(const x of [-4,0,3])if(x!==-1&&x!==2)close((x*x-4)/(x*x-x-2),(x+2)/(x+1));assert.equal(2*2-4,0);const sr=x=>(2*x*x+3*x-2)/(x*x-4),srr=x=>(2*x-1)/(x-2);for(const x of [-5,0,4])close(sr(x),srr(x));close(srr(-2),5/4);
 assert.equal(Math.sqrt(2*11-6)+1,5);assert.equal(Math.cbrt(-8)**2,4);
 close(500*1.08**2,583.2);close(1200*.85**3,736.95);
 close(Math.log(32)/Math.log(2),5);close(Math.log(.001)/Math.log(10),-3);
@@ -42,6 +42,6 @@ let x=10;for(let i=0;i<3;i++)x=.5*x+3;close(x,6.5);let y=0;for(let i=0;i<3;i++)y
 close(150*Math.PI/180,5*Math.PI/6);close(4*5*Math.PI/6,10*Math.PI/3);
 close(Math.sin(5*Math.PI/4),-Math.SQRT1_2);close(Math.tan(5*Math.PI/4),1,1e-8);
 close(2*Math.PI/2,Math.PI);assert.deepEqual([Math.PI/6,5*Math.PI/6].map(v=>Math.round(Math.sin(v)*2)),[1,1]);
-const q=n=>50*1.2**n;close(Array.from({length:6},(_,n)=>q(n)).reduce((u,v)=>u+v,0),496.496);assert.equal(q(3),86.39999999999999);
+const q=n=>50*1.2**n;close(Array.from({length:6},(_,n)=>q(n)).reduce((u,v)=>u+v,0),496.496);close(q(3),86.4);
 close([0,1,2,3,4].map(k=>2+3*Math.sin(k*Math.PI/2)).reduce((u,v)=>u+v,0),10,1e-8);
 console.log('PASS: M02 boundary; 24 sessions/48 tasks; 120/120 ownership mappings; all-session prerequisite and instruction-separation audits; independent math checks across every session.');

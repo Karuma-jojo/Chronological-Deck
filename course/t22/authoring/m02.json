@@ -3254,9 +3254,8 @@
         "S8"
       ],
       "transfer": [
-        "starts at160",
-        "ratio1/2",
-        "sixth term"
+        "starts at160 with ratio1/2",
+        "if the ratio were1"
       ]
     },
     "T22V3::T22E-FND02::S19@1": {
