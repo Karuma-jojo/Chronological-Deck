@@ -1,11 +1,11 @@
 {
-  "version": "m04-authoring-v1.1-accepted",
-  "instructionVersion": "m04-instruction-v1",
+  "version": "m04-authoring-v1.2-astra-r1",
+  "instructionVersion": "m04-instruction-astra-r1",
   "module": {
     "order": 4,
     "id": "ARC048",
     "title": "Finite Probability, Conditional Probability, Independence & Expectation",
-    "status": "authored-v1.1-accepted",
+    "status": "authored-v1.2-astra-repaired",
     "destination": "Model finite uncertainty rigorously, condition correctly, distinguish dependence from independence, and compute finite expectations without prematurely using Bayes, decision theory or formal distribution machinery.",
     "gate": "Page completion is not clearance. Every ownership claim must be observable in a public fixed task, references stay locked until save, and current instruction must remain semantically distinct from fixed assessment content.",
     "nextBoundary": "M05 owns trading-game decisions and risk preferences; M06 owns Bayes/posterior updating. M04 stops at forward finite probability and expectation."
@@ -35,9 +35,9 @@
     ]
   },
   "coverageAudit": {
-    "version": "m04-observability-v1.1-preacceptance-2026-09-18",
-    "status": "120/120 exact Main claim mappings; 24/24 semantic separation re-read after preacceptance audit",
-    "policy": "Each Main explicitly requests its five ownership claims. Preacceptance semantic review also removes hidden theorem dependencies and answer-equivalent lesson structures."
+    "version": "m04-observability-astra-r1-2026-09-18",
+    "status": "120/120 semantically re-audited exact fixed-task → rubric mappings; S05 claim 3 and S13 claim 5 intentionally map to Transfer; 24/24 semantic separation retained",
+    "policy": "Every ownership claim is manually pinned to the exact fixed public task and one or more evaluator criteria that actually observe it. Cross-task mappings are allowed when the Transfer is the genuine observer. S05-T and S21-M are obligationVersion=2 because their assessment contracts materially changed during Astra repair."
   },
   "sessions": [
     {
@@ -183,7 +183,7 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Translate verbal complements exactly and use them to simplify probability calculations.",
-      "lesson": "The complement A^c contains exactly the outcomes not in A, so A and A^c partition Ω and P(A^c)=1−P(A). Therefore P(Ω)=1 and P(∅)=0. 'At least one' is often the complement of 'none.' Worked example: A uniform 8-sided spinner is labelled1–8. Event A='multiple of3' is {3,6}; A^c has six outcomes, so P(A^c)=6/8=3/4=1−1/4. Guided check: Three equally likely binary answers are generated independently only as a sample-space listing exercise. Using the 8 equally likely strings, find the probability of at least one 1 by complementing the single string 000.",
+      "lesson": "The complement A^c contains exactly the outcomes not in A, so A and A^c partition Ω and P(A^c)=1−P(A). Therefore P(Ω)=1 and P(∅)=0. 'At least one' is often the complement of 'none.' Worked example: A uniform 8-sided spinner is labelled1–8. Event A='multiple of3' is {3,6}; A^c has six outcomes, so P(A^c)=6/8=3/4=1−1/4. Guided check: Choose one of the eight 3-bit strings uniformly. Find the probability of at least one 1 by complementing the single string 000.",
       "main": "T22V3::ARC048::S04-M@1",
       "transfer": "T22V3::ARC048::S04-T@1"
     },
@@ -435,7 +435,7 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Test independence numerically and use it only when justified.",
-      "lesson": "Events A and B are independent when P(A∩B)=P(A)P(B). This is a probability statement, not a claim that one event physically causes nothing about the other. Once independence is established or given, the same factorization can be used to compute the joint. Worked example: Roll a fair die twice. A='first roll is even' and B='second roll is6'. P(A)=1/2,P(B)=1/6 and P(A∩B)=3/36=1/12=(1/2)(1/6), so they are independent; the factorization then reproduces the same joint. Guided check: On a uniform die, test A={1,2,3} and B={1,4} using the product criterion.",
+      "lesson": "Events A and B are independent when P(A∩B)=P(A)P(B). This is a probability statement, not a claim that one event physically causes nothing about the other. Once independence is established or given, the same factorization can be used to compute the joint. Worked example: Roll a fair die twice. A='first roll is even' and B='second roll is6'. P(A)=1/2,P(B)=1/6 and P(A∩B)=3/36=1/12=(1/2)(1/6), so they are independent; the factorization then reproduces the same joint. A useful complement consequence follows from the same definition: if A and B are independent, then A is split into the disjoint pieces A∩B and A∩B^c, so P(A∩B^c)=P(A)−P(A∩B)=P(A)−P(A)P(B)=P(A)(1−P(B))=P(A)P(B^c). Therefore A and B^c are also independent; this is derived, not assumed. Guided check: On a uniform die, test A={1,2,3} and B={1,4} using the product criterion.",
       "main": "T22V3::ARC048::S11-M@1",
       "transfer": "T22V3::ARC048::S11-T@1"
     },
@@ -832,7 +832,7 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Compute an expected finite count using indicators under dependent sampling.",
-      "lesson": "For event A, the indicator I_A is1 when A occurs and0 otherwise, so E[I_A]=1·P(A)+0·P(A^c)=P(A). If N=I1+⋯+Ik counts occurrences, linearity gives E[N]=ΣP(event_i), even when the indicators are dependent. Worked example: Draw two balls without replacement from a bag with3 red and2 blue. Let I1,I2 indicate red on each draw. By symmetry P(red on each position)=3/5, so E[number red]=E[I1]+E[I2]=6/5, despite dependence between draws. Guided check: Choose a 2-person committee uniformly from4 people, two of whom are labelled A-type. Define indicators for each A-type person being selected and compute the expected number selected.",
+      "lesson": "For event A, the indicator I_A is1 when A occurs and0 otherwise, so E[I_A]=1·P(A)+0·P(A^c)=P(A). If N=I1+⋯+Ik counts occurrences, linearity gives E[N]=ΣP(event_i), even when the indicators are dependent. For sampling without replacement, the marginal probability at a fixed draw position can be justified without assuming independence: temporarily label all objects. Every ordered sample of distinct labelled objects is equally likely, and at any fixed position each original labelled object appears equally often. Therefore the chance that position i has a red object equals the initial red fraction. Worked example: Draw two balls without replacement from a bag with3 red and2 blue. For either draw position each of the five labelled balls is equally likely to occupy that position, so P(red at position i)=3/5. Let I1,I2 indicate red on each draw. Then E[number red]=E[I1]+E[I2]=3/5+3/5=6/5, despite dependence between draws. Guided check: Choose a 2-person committee uniformly from4 people, two of whom are labelled A-type. Define indicators for each A-type person being selected and compute the expected number selected.",
       "main": "T22V3::ARC048::S22-M@1",
       "transfer": "T22V3::ARC048::S22-T@1"
     },
@@ -976,8 +976,8 @@
       "id": "T22V3::ARC048::S05-T@1",
       "order": 5,
       "kind": "transfer",
-      "prompt": "A uniform card is chosen from {1,2,...,12}. Let C='multiple of3' and D='number greater than10'. Determine C∩D and C∪D, decide whether the events are disjoint, and compute their probabilities. If they are disjoint, explicitly use the addition rule.",
-      "obligationVersion": 1
+      "prompt": "A uniform card is chosen from {1,2,...,12}. Let C='multiple of3' and D='number is 10 or 11'. Determine C∩D and C∪D, decide whether the events are disjoint, compute P(C),P(D),P(C∪D), and explicitly use P(C∪D)=P(C)+P(D) after establishing disjointness.",
+      "obligationVersion": 2
     },
     "T22V3::ARC048::S06-M@1": {
       "id": "T22V3::ARC048::S06-M@1",
@@ -1193,8 +1193,8 @@
       "id": "T22V3::ARC048::S21-M@1",
       "order": 21,
       "kind": "main",
-      "prompt": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
-      "obligationVersion": 1
+      "prompt": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). First derive from the finite weighted-sum definition that E[aX+bY+c]=aE[X]+bE[Y]+c, using distributivity and ΣP(ω)=1. Then compute E[X] and E[Y], apply the identity to E[3X−2Y+5], verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
+      "obligationVersion": 2
     },
     "T22V3::ARC048::S21-T@1": {
       "id": "T22V3::ARC048::S21-T@1",
@@ -1482,27 +1482,27 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S05-T@1": {
-      "reference": "C={3,6,9,12};D={11,12};intersection{12};union{3,6,9,11,12}; not disjoint; probabilities1/12 and5/12.",
+      "reference": "C={3,6,9,12}; D={10,11}; C∩D=∅; C∪D={3,6,9,10,11,12}. Thus P(C)=4/12=1/3, P(D)=2/12=1/6, and because the events are disjoint P(C∪D)=1/3+1/6=1/2.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "C,D correct."
+          "criterion": "C and D are listed correctly."
         },
         {
           "points": 2,
-          "criterion": "Intersection/union correct."
+          "criterion": "C∩D=∅ and C∪D={3,6,9,10,11,12} are correct."
         },
         {
           "points": 2,
-          "criterion": "Disjointness decision correct."
+          "criterion": "Disjointness is explicitly established from the empty intersection."
         },
         {
           "points": 2,
-          "criterion": "Intersection probability correct."
+          "criterion": "P(C)=1/3 and P(D)=1/6 are computed correctly."
         },
         {
           "points": 2,
-          "criterion": "Union probability correct with no illegal disjoint addition."
+          "criterion": "The disjoint addition rule is explicitly used to obtain P(C∪D)=1/2."
         }
       ],
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
@@ -2288,15 +2288,15 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S21-M@1": {
-      "reference": "E[X]=2,E[Y]=3. Linearity gives5. Combined values3,9,3 average5. No independence is needed. E[X²]=(0+4+16)/3=20/3 whereas(E[X])²=4, so expectation does not commute with squaring.",
+      "reference": "From E[Z]=Σω Z(ω)P(ω), E[aX+bY+c]=Σω[aX(ω)+bY(ω)+c]P(ω)=aΣωX(ω)P(ω)+bΣωY(ω)P(ω)+cΣωP(ω)=aE[X]+bE[Y]+c because ΣωP(ω)=1. Here E[X]=2 and E[Y]=3, so E[3X−2Y+5]=3·2−2·3+5=5. Direct combined values are3,9,3, whose mean is5. No independence is needed. E[X²]=(0+4+16)/3=20/3 whereas(E[X])²=4, so expectation does not commute with squaring.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Computes E[X]=2 and E[Y]=3."
+          "criterion": "Derives finite linearity from the weighted-sum definition using distributivity and ΣP(ω)=1."
         },
         {
           "points": 2,
-          "criterion": "Uses linearity to obtain E[3X−2Y+5]=5."
+          "criterion": "Computes E[X]=2,E[Y]=3 and applies linearity to obtain E[3X−2Y+5]=5."
         },
         {
           "points": 2,
@@ -2573,7 +2573,7 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
         "main"
@@ -2715,7 +2715,7 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ]
     ],
     "T22V3::ARC048::S14@1": [
@@ -2979,7 +2979,8 @@
         "task": "main",
         "publicRequest": "On Ω={a,b,c,d,e}, suppose P(a)=0.08,P(b)=0.17,P(c)=p,P(d)=0.30,P(e)=0.15. Find p by normalization, verify every atomic probability is legal, compute P({b,c,e}), and explain why assigning 0.25 to c without checking the total would not define a valid model.",
         "rubricEvidence": [
-          "Event probability 0.62 is computed by summing member weights."
+          "Missing mass p=0.30 is derived by normalization.",
+          "The invalid 0.25 proposal is rejected because normalization fails."
         ]
       },
       {
@@ -2987,7 +2988,7 @@
         "task": "main",
         "publicRequest": "On Ω={a,b,c,d,e}, suppose P(a)=0.08,P(b)=0.17,P(c)=p,P(d)=0.30,P(e)=0.15. Find p by normalization, verify every atomic probability is legal, compute P({b,c,e}), and explain why assigning 0.25 to c without checking the total would not define a valid model.",
         "rubricEvidence": [
-          "The invalid 0.25 proposal is rejected because normalization fails."
+          "Event probability 0.62 is computed by summing member weights."
         ]
       }
     ],
@@ -3071,7 +3072,8 @@
         "task": "main",
         "publicRequest": "A uniformly random 4-bit string is chosen from {0,1}^4. Let A be 'at least one 1'. Identify A^c exactly, compute P(A) using the complement rule, state P(Ω) and P(∅), and explain why 'all bits are 1' is not the complement of A.",
         "rubricEvidence": [
-          "The incorrect 'all1' complement is rejected accurately."
+          "A^c is exactly {0000}.",
+          "Complement rule gives15/16."
         ]
       }
     ],
@@ -3094,10 +3096,11 @@
       },
       {
         "claim": "Use P(A∪B)=P(A)+P(B) for disjoint events.",
-        "task": "main",
-        "publicRequest": "A uniform die is rolled. Let A='result is even' and B='result is greater than 4'. List A,B,A∩B,A∪B, decide whether A and B are disjoint, compute P(A∩B) and P(A∪B) directly from the finite space, and explain why P(A)+P(B) cannot be used without correction here.",
+        "task": "transfer",
+        "publicRequest": "A uniform card is chosen from {1,2,...,12}. Let C='multiple of3' and D='number is 10 or 11'. Determine C∩D and C∪D, decide whether the events are disjoint, compute P(C),P(D),P(C∪D), and explicitly use P(C∪D)=P(C)+P(D) after establishing disjointness.",
         "rubricEvidence": [
-          "P(A∩B)=1/6."
+          "Disjointness is explicitly established from the empty intersection.",
+          "The disjoint addition rule is explicitly used to obtain P(C∪D)=1/2."
         ]
       },
       {
@@ -3105,7 +3108,7 @@
         "task": "main",
         "publicRequest": "A uniform die is rolled. Let A='result is even' and B='result is greater than 4'. List A,B,A∩B,A∪B, decide whether A and B are disjoint, compute P(A∩B) and P(A∪B) directly from the finite space, and explain why P(A)+P(B) cannot be used without correction here.",
         "rubricEvidence": [
-          "P(A∪B)=2/3 by direct count."
+          "Blind addition is rejected because outcome6 would be counted twice."
         ]
       },
       {
@@ -3113,7 +3116,8 @@
         "task": "main",
         "publicRequest": "A uniform die is rolled. Let A='result is even' and B='result is greater than 4'. List A,B,A∩B,A∪B, decide whether A and B are disjoint, compute P(A∩B) and P(A∪B) directly from the finite space, and explain why P(A)+P(B) cannot be used without correction here.",
         "rubricEvidence": [
-          "Blind addition is rejected because outcome6 would be counted twice."
+          "P(A∩B)=1/6.",
+          "P(A∪B)=2/3 by direct count."
         ]
       }
     ],
@@ -3131,7 +3135,7 @@
         "task": "main",
         "publicRequest": "Suppose P(A)=0.55,P(B)=0.40 and P(A∩B)=0.18. Compute P(A∪B), explain the subtraction term, then suppose instead that P(A∪B)=0.77 with the same marginals and solve for the implied intersection. Check that both intersection values obey 0≤P(A∩B)≤min(P(A),P(B)).",
         "rubricEvidence": [
-          "Union0.77."
+          "Overlap correction explained."
         ]
       },
       {
@@ -3139,7 +3143,7 @@
         "task": "main",
         "publicRequest": "Suppose P(A)=0.55,P(B)=0.40 and P(A∩B)=0.18. Compute P(A∪B), explain the subtraction term, then suppose instead that P(A∪B)=0.77 with the same marginals and solve for the implied intersection. Check that both intersection values obey 0≤P(A∩B)≤min(P(A),P(B)).",
         "rubricEvidence": [
-          "Overlap correction explained."
+          "Union0.77."
         ]
       },
       {
@@ -3181,7 +3185,8 @@
         "task": "main",
         "publicRequest": "A uniform integer is chosen from1 through12. Let A='multiple of3' and B='even'. Compute P(A|B) by explicitly listing the B-restricted universe, compute P(B|A), explain why the denominators differ, and state why P(A|C) is undefined if C=∅.",
         "rubricEvidence": [
-          "P(B|A)=1/2."
+          "B-restricted universe is listed correctly.",
+          "Different denominators/reference populations are explained."
         ]
       },
       {
@@ -3189,6 +3194,7 @@
         "task": "main",
         "publicRequest": "A uniform integer is chosen from1 through12. Let A='multiple of3' and B='even'. Compute P(A|B) by explicitly listing the B-restricted universe, compute P(B|A), explain why the denominators differ, and state why P(A|C) is undefined if C=∅.",
         "rubricEvidence": [
+          "P(B|A)=1/2.",
           "Different denominators/reference populations are explained."
         ]
       },
@@ -3223,7 +3229,7 @@
         "task": "main",
         "publicRequest": "Suppose P(B)=0.48,P(A|B)=0.35 and P(A)=0.42. Compute P(A∩B), then compute P(B|A) using the same intersection, verify both multiplication-rule orderings give the same joint probability, and check the joint probability is no larger than either marginal.",
         "rubricEvidence": [
-          "P(B|A)=0.40."
+          "Reverse ordering reproduces0.168."
         ]
       },
       {
@@ -3231,7 +3237,7 @@
         "task": "main",
         "publicRequest": "Suppose P(B)=0.48,P(A|B)=0.35 and P(A)=0.42. Compute P(A∩B), then compute P(B|A) using the same intersection, verify both multiplication-rule orderings give the same joint probability, and check the joint probability is no larger than either marginal.",
         "rubricEvidence": [
-          "Reverse ordering reproduces0.168."
+          "P(B|A)=0.40."
         ]
       },
       {
@@ -3257,7 +3263,7 @@
         "task": "main",
         "publicRequest": "A part comes from line X with probability0.55 or line Y with0.45. Given X, it passes inspection with probability0.90; given Y, it passes with probability0.70. Build the full two-stage tree, compute all four leaf probabilities, verify they sum to1, and compute the probability of pass and of fail by adding the appropriate disjoint leaves.",
         "rubricEvidence": [
-          "Four leaf probabilities are computed by path multiplication."
+          "Tree branches and complements are labelled correctly."
         ]
       },
       {
@@ -3265,7 +3271,7 @@
         "task": "main",
         "publicRequest": "A part comes from line X with probability0.55 or line Y with0.45. Given X, it passes inspection with probability0.90; given Y, it passes with probability0.70. Build the full two-stage tree, compute all four leaf probabilities, verify they sum to1, and compute the probability of pass and of fail by adding the appropriate disjoint leaves.",
         "rubricEvidence": [
-          "Leaf sum equals1."
+          "Four leaf probabilities are computed by path multiplication."
         ]
       },
       {
@@ -3273,7 +3279,8 @@
         "task": "main",
         "publicRequest": "A part comes from line X with probability0.55 or line Y with0.45. Given X, it passes inspection with probability0.90; given Y, it passes with probability0.70. Build the full two-stage tree, compute all four leaf probabilities, verify they sum to1, and compute the probability of pass and of fail by adding the appropriate disjoint leaves.",
         "rubricEvidence": [
-          "Pass probability0.81 by adding pass leaves."
+          "Pass probability0.81 by adding pass leaves.",
+          "Fail probability0.19 by adding fail leaves."
         ]
       },
       {
@@ -3281,7 +3288,7 @@
         "task": "main",
         "publicRequest": "A part comes from line X with probability0.55 or line Y with0.45. Given X, it passes inspection with probability0.90; given Y, it passes with probability0.70. Build the full two-stage tree, compute all four leaf probabilities, verify they sum to1, and compute the probability of pass and of fail by adding the appropriate disjoint leaves.",
         "rubricEvidence": [
-          "Fail probability0.19 by adding fail leaves."
+          "Leaf sum equals1."
         ]
       }
     ],
@@ -3291,7 +3298,7 @@
         "task": "main",
         "publicRequest": "A bag contains5 green and3 yellow balls. Compute P(green then yellow) with replacement and without replacement, showing every conditional denominator. Then compute P(green on second draw | green on first) in each protocol and explain what changed.",
         "rubricEvidence": [
-          "With-replacement path15/64."
+          "Protocol/state-change explanation is correct."
         ]
       },
       {
@@ -3299,7 +3306,7 @@
         "task": "main",
         "publicRequest": "A bag contains5 green and3 yellow balls. Compute P(green then yellow) with replacement and without replacement, showing every conditional denominator. Then compute P(green on second draw | green on first) in each protocol and explain what changed.",
         "rubricEvidence": [
-          "Without-replacement path15/56."
+          "With-replacement path15/64."
         ]
       },
       {
@@ -3307,7 +3314,7 @@
         "task": "main",
         "publicRequest": "A bag contains5 green and3 yellow balls. Compute P(green then yellow) with replacement and without replacement, showing every conditional denominator. Then compute P(green on second draw | green on first) in each protocol and explain what changed.",
         "rubricEvidence": [
-          "Conditional denominators8 versus7 are explicit."
+          "Without-replacement path15/56."
         ]
       },
       {
@@ -3315,6 +3322,7 @@
         "task": "main",
         "publicRequest": "A bag contains5 green and3 yellow balls. Compute P(green then yellow) with replacement and without replacement, showing every conditional denominator. Then compute P(green on second draw | green on first) in each protocol and explain what changed.",
         "rubricEvidence": [
+          "Conditional denominators8 versus7 are explicit.",
           "Second-green conditionals5/8 and4/7 are correct."
         ]
       },
@@ -3323,6 +3331,7 @@
         "task": "main",
         "publicRequest": "A bag contains5 green and3 yellow balls. Compute P(green then yellow) with replacement and without replacement, showing every conditional denominator. Then compute P(green on second draw | green on first) in each protocol and explain what changed.",
         "rubricEvidence": [
+          "Second-green conditionals5/8 and4/7 are correct.",
           "Protocol/state-change explanation is correct."
         ]
       }
@@ -3333,7 +3342,7 @@
         "task": "main",
         "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
         "rubricEvidence": [
-          "Computes P(A)=1/2 and P(B)=1/3."
+          "Checks P(A)P(B)=1/6 and concludes independence."
         ]
       },
       {
@@ -3341,7 +3350,8 @@
         "task": "main",
         "publicRequest": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
         "rubricEvidence": [
-          "Computes P(A∩B)=1/6 by direct counting."
+          "Computes P(A∩B)=1/6 by direct counting.",
+          "Checks P(A)P(B)=1/6 and concludes independence."
         ]
       },
       {
@@ -3375,7 +3385,8 @@
         "task": "main",
         "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
         "rubricEvidence": [
-          "Computes P(A)=2/3 from the two first-draw branches rather than assuming it."
+          "Concludes dependence from 3/5≠2/3.",
+          "States the P(B)>0 requirement for the conditional criterion."
         ]
       },
       {
@@ -3383,7 +3394,8 @@
         "task": "main",
         "publicRequest": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
         "rubricEvidence": [
-          "Computes P(A|B)=3/5."
+          "Computes P(A|B)=3/5.",
+          "Concludes dependence from 3/5≠2/3."
         ]
       },
       {
@@ -3425,7 +3437,8 @@
         "task": "main",
         "publicRequest": "On a uniform draw from {1,2,3,4,5,6,7,8}, let A={1,2} and B={3,4,5}. Show A and B are mutually exclusive, test independence numerically, prove from their positive probabilities why disjointness forces dependence here, and then explain why replacing A by ∅ changes the independence conclusion.",
         "rubricEvidence": [
-          "Marginal/product values computed correctly."
+          "Marginal/product values computed correctly.",
+          "Dependence conclusion follows from0≠3/32."
         ]
       },
       {
@@ -3433,7 +3446,8 @@
         "task": "main",
         "publicRequest": "On a uniform draw from {1,2,3,4,5,6,7,8}, let A={1,2} and B={3,4,5}. Show A and B are mutually exclusive, test independence numerically, prove from their positive probabilities why disjointness forces dependence here, and then explain why replacing A by ∅ changes the independence conclusion.",
         "rubricEvidence": [
-          "Dependence conclusion follows from0≠3/32."
+          "Dependence conclusion follows from0≠3/32.",
+          "General positive-probability disjoint argument is stated."
         ]
       },
       {
@@ -3441,15 +3455,16 @@
         "task": "main",
         "publicRequest": "On a uniform draw from {1,2,3,4,5,6,7,8}, let A={1,2} and B={3,4,5}. Show A and B are mutually exclusive, test independence numerically, prove from their positive probabilities why disjointness forces dependence here, and then explain why replacing A by ∅ changes the independence conclusion.",
         "rubricEvidence": [
-          "General positive-probability disjoint argument is stated."
+          "Zero-probability edge case with ∅ is correct."
         ]
       },
       {
         "claim": "Give or diagnose examples of each relationship.",
-        "task": "main",
-        "publicRequest": "On a uniform draw from {1,2,3,4,5,6,7,8}, let A={1,2} and B={3,4,5}. Show A and B are mutually exclusive, test independence numerically, prove from their positive probabilities why disjointness forces dependence here, and then explain why replacing A by ∅ changes the independence conclusion.",
+        "task": "transfer",
+        "publicRequest": "A fair die is rolled. C='result is1' and D='result is2'. Classify them as disjoint/not disjoint and independent/dependent with calculation. Then give one pair of independent, non-disjoint events on a two-die experiment and justify it.",
         "rubricEvidence": [
-          "Zero-probability edge case with ∅ is correct."
+          "Valid non-disjoint independent pair supplied.",
+          "Pair justified numerically."
         ]
       }
     ],
@@ -3459,7 +3474,8 @@
         "task": "main",
         "publicRequest": "Let two fair bits X,Y be chosen uniformly from {00,01,10,11}. Define A={X=1}, B={Y=1}, and C={X⊕Y=1}. Compute each marginal probability, all three pair intersections, test pairwise independence, compute A∩B∩C, and decide whether A,B,C are mutually independent.",
         "rubricEvidence": [
-          "All three marginals1/2."
+          "Each pair intersection1/4.",
+          "Pairwise independence correctly concluded."
         ]
       },
       {
@@ -3467,7 +3483,8 @@
         "task": "main",
         "publicRequest": "Let two fair bits X,Y be chosen uniformly from {00,01,10,11}. Define A={X=1}, B={Y=1}, and C={X⊕Y=1}. Compute each marginal probability, all three pair intersections, test pairwise independence, compute A∩B∩C, and decide whether A,B,C are mutually independent.",
         "rubricEvidence": [
-          "Each pair intersection1/4."
+          "Triple intersection0 computed.",
+          "Mutual independence correctly rejected because0≠1/8."
         ]
       },
       {
@@ -3475,6 +3492,7 @@
         "task": "main",
         "publicRequest": "Let two fair bits X,Y be chosen uniformly from {00,01,10,11}. Define A={X=1}, B={Y=1}, and C={X⊕Y=1}. Compute each marginal probability, all three pair intersections, test pairwise independence, compute A∩B∩C, and decide whether A,B,C are mutually independent.",
         "rubricEvidence": [
+          "Each pair intersection1/4.",
           "Pairwise independence correctly concluded."
         ]
       },
@@ -3491,6 +3509,8 @@
         "task": "main",
         "publicRequest": "Let two fair bits X,Y be chosen uniformly from {00,01,10,11}. Define A={X=1}, B={Y=1}, and C={X⊕Y=1}. Compute each marginal probability, all three pair intersections, test pairwise independence, compute A∩B∩C, and decide whether A,B,C are mutually independent.",
         "rubricEvidence": [
+          "Pairwise independence correctly concluded.",
+          "Triple intersection0 computed.",
           "Mutual independence correctly rejected because0≠1/8."
         ]
       }
@@ -3501,7 +3521,7 @@
         "task": "main",
         "publicRequest": "A device passes each independent test with probability0.8. For four tests, compute the probabilities of the exact paths P,P,F,P and F,P,P,P, explain why they match, express the probability of any exact path with three passes and one failure as a power product, and state what assumption lets you multiply the trial probabilities.",
         "rubricEvidence": [
-          "Failure probability0.2."
+          "Independence/constant-p assumption stated."
         ]
       },
       {
@@ -3509,7 +3529,7 @@
         "task": "main",
         "publicRequest": "A device passes each independent test with probability0.8. For four tests, compute the probabilities of the exact paths P,P,F,P and F,P,P,P, explain why they match, express the probability of any exact path with three passes and one failure as a power product, and state what assumption lets you multiply the trial probabilities.",
         "rubricEvidence": [
-          "First exact path0.1024."
+          "Failure probability0.2."
         ]
       },
       {
@@ -3517,6 +3537,7 @@
         "task": "main",
         "publicRequest": "A device passes each independent test with probability0.8. For four tests, compute the probabilities of the exact paths P,P,F,P and F,P,P,P, explain why they match, express the probability of any exact path with three passes and one failure as a power product, and state what assumption lets you multiply the trial probabilities.",
         "rubricEvidence": [
+          "First exact path0.1024.",
           "Second exact path0.1024."
         ]
       },
@@ -3533,7 +3554,7 @@
         "task": "main",
         "publicRequest": "A device passes each independent test with probability0.8. For four tests, compute the probabilities of the exact paths P,P,F,P and F,P,P,P, explain why they match, express the probability of any exact path with three passes and one failure as a power product, and state what assumption lets you multiply the trial probabilities.",
         "rubricEvidence": [
-          "Independence/constant-p assumption stated."
+          "Power form .8^3·.2 and equality explanation."
         ]
       }
     ],
@@ -3585,7 +3606,7 @@
         "task": "main",
         "publicRequest": "Four independent sensors detect an event with probability0.25 each. Compute P(none detect), P(at least one detects), and P(all detect). Explain why the complement calculation for 'at least one' is simpler than summing the cases of exactly1,2,3,4 detections.",
         "rubricEvidence": [
-          "None=.31640625."
+          "Complement relationship stated correctly."
         ]
       },
       {
@@ -3593,7 +3614,7 @@
         "task": "main",
         "publicRequest": "Four independent sensors detect an event with probability0.25 each. Compute P(none detect), P(at least one detects), and P(all detect). Explain why the complement calculation for 'at least one' is simpler than summing the cases of exactly1,2,3,4 detections.",
         "rubricEvidence": [
-          "At least one=.68359375."
+          "None=.31640625."
         ]
       },
       {
@@ -3609,6 +3630,7 @@
         "task": "main",
         "publicRequest": "Four independent sensors detect an event with probability0.25 each. Compute P(none detect), P(at least one detects), and P(all detect). Explain why the complement calculation for 'at least one' is simpler than summing the cases of exactly1,2,3,4 detections.",
         "rubricEvidence": [
+          "At least one=.68359375.",
           "Complement relationship stated correctly."
         ]
       },
@@ -3635,7 +3657,7 @@
         "task": "main",
         "publicRequest": "A component comes from machine M1 with probability0.50, M2 with0.30 or M3 with0.20. Their defect probabilities are0.01,0.03 and0.06. Show {M1,M2,M3} is a partition of the source event, compute each source-and-defect contribution, sum them to obtain the overall defect probability, and state explicitly what posterior question is not being answered.",
         "rubricEvidence": [
-          "Three joint contributions .005,.009,.012."
+          "Partition/disjoint-exhaustive structure stated."
         ]
       },
       {
@@ -3643,7 +3665,7 @@
         "task": "main",
         "publicRequest": "A component comes from machine M1 with probability0.50, M2 with0.30 or M3 with0.20. Their defect probabilities are0.01,0.03 and0.06. Show {M1,M2,M3} is a partition of the source event, compute each source-and-defect contribution, sum them to obtain the overall defect probability, and state explicitly what posterior question is not being answered.",
         "rubricEvidence": [
-          "Total defect probability .026."
+          "Three joint contributions .005,.009,.012."
         ]
       },
       {
@@ -3651,6 +3673,7 @@
         "task": "main",
         "publicRequest": "A component comes from machine M1 with probability0.50, M2 with0.30 or M3 with0.20. Their defect probabilities are0.01,0.03 and0.06. Show {M1,M2,M3} is a partition of the source event, compute each source-and-defect contribution, sum them to obtain the overall defect probability, and state explicitly what posterior question is not being answered.",
         "rubricEvidence": [
+          "Total defect probability .026.",
           "Law of total probability written/applied."
         ]
       },
@@ -3659,6 +3682,7 @@
         "task": "main",
         "publicRequest": "A component comes from machine M1 with probability0.50, M2 with0.30 or M3 with0.20. Their defect probabilities are0.01,0.03 and0.06. Show {M1,M2,M3} is a partition of the source event, compute each source-and-defect contribution, sum them to obtain the overall defect probability, and state explicitly what posterior question is not being answered.",
         "rubricEvidence": [
+          "Law of total probability written/applied.",
           "Posterior P(Mi|defect) correctly identified as not computed."
         ]
       }
@@ -3669,7 +3693,7 @@
         "task": "main",
         "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
         "rubricEvidence": [
-          "Probability normalization checked."
+          "Three weighted terms −.6,.5,2.1."
         ]
       },
       {
@@ -3693,7 +3717,7 @@
         "task": "main",
         "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
         "rubricEvidence": [
-          "Weighted-average interpretation correct."
+          "Probability normalization checked."
         ]
       },
       {
@@ -3701,6 +3725,7 @@
         "task": "main",
         "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
         "rubricEvidence": [
+          "Weighted-average interpretation correct.",
           "No claim that2 must occur/ be guaranteed."
         ]
       }
@@ -3711,7 +3736,8 @@
         "task": "main",
         "publicRequest": "A number is chosen uniformly from {2,5,8,11,14,17}. Compute the expected chosen number by direct arithmetic mean and by symmetric pairing, explain why the two methods agree, and state why simply averaging distinct payoff labels would fail if some labels corresponded to more atomic outcomes than others.",
         "rubricEvidence": [
-          "Direct mean9.5."
+          "Direct mean9.5.",
+          "Agreement tied to equal atomic weights."
         ]
       },
       {
@@ -3719,7 +3745,7 @@
         "task": "main",
         "publicRequest": "A number is chosen uniformly from {2,5,8,11,14,17}. Compute the expected chosen number by direct arithmetic mean and by symmetric pairing, explain why the two methods agree, and state why simply averaging distinct payoff labels would fail if some labels corresponded to more atomic outcomes than others.",
         "rubricEvidence": [
-          "Correct symmetric pairs."
+          "Direct mean9.5."
         ]
       },
       {
@@ -3727,6 +3753,7 @@
         "task": "main",
         "publicRequest": "A number is chosen uniformly from {2,5,8,11,14,17}. Compute the expected chosen number by direct arithmetic mean and by symmetric pairing, explain why the two methods agree, and state why simply averaging distinct payoff labels would fail if some labels corresponded to more atomic outcomes than others.",
         "rubricEvidence": [
+          "Correct symmetric pairs.",
           "Pairing gives9.5."
         ]
       },
@@ -3735,7 +3762,7 @@
         "task": "main",
         "publicRequest": "A number is chosen uniformly from {2,5,8,11,14,17}. Compute the expected chosen number by direct arithmetic mean and by symmetric pairing, explain why the two methods agree, and state why simply averaging distinct payoff labels would fail if some labels corresponded to more atomic outcomes than others.",
         "rubricEvidence": [
-          "Agreement tied to equal atomic weights."
+          "Multiplicity/nonuniform caveat stated."
         ]
       },
       {
@@ -3743,6 +3770,7 @@
         "task": "main",
         "publicRequest": "A number is chosen uniformly from {2,5,8,11,14,17}. Compute the expected chosen number by direct arithmetic mean and by symmetric pairing, explain why the two methods agree, and state why simply averaging distinct payoff labels would fail if some labels corresponded to more atomic outcomes than others.",
         "rubricEvidence": [
+          "Agreement tied to equal atomic weights.",
           "Multiplicity/nonuniform caveat stated."
         ]
       }
@@ -3751,31 +3779,31 @@
       {
         "claim": "State linearity for finite expectations.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). First derive from the finite weighted-sum definition that E[aX+bY+c]=aE[X]+bE[Y]+c, using distributivity and ΣP(ω)=1. Then compute E[X] and E[Y], apply the identity to E[3X−2Y+5], verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
-          "Computes E[X]=2 and E[Y]=3."
+          "Derives finite linearity from the weighted-sum definition using distributivity and ΣP(ω)=1."
         ]
       },
       {
         "claim": "Derive it from finite weighted sums.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). First derive from the finite weighted-sum definition that E[aX+bY+c]=aE[X]+bE[Y]+c, using distributivity and ΣP(ω)=1. Then compute E[X] and E[Y], apply the identity to E[3X−2Y+5], verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
-          "Uses linearity to obtain E[3X−2Y+5]=5."
+          "Derives finite linearity from the weighted-sum definition using distributivity and ΣP(ω)=1."
         ]
       },
       {
         "claim": "Apply it to aX+bY+c.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). First derive from the finite weighted-sum definition that E[aX+bY+c]=aE[X]+bE[Y]+c, using distributivity and ΣP(ω)=1. Then compute E[X] and E[Y], apply the identity to E[3X−2Y+5], verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
-          "Directly evaluates combined values3,9,3 and verifies mean5."
+          "Computes E[X]=2,E[Y]=3 and applies linearity to obtain E[3X−2Y+5]=5."
         ]
       },
       {
         "claim": "Explain independence is not required.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). First derive from the finite weighted-sum definition that E[aX+bY+c]=aE[X]+bE[Y]+c, using distributivity and ΣP(ω)=1. Then compute E[X] and E[Y], apply the identity to E[3X−2Y+5], verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
           "Explains correctly that independence is not required for linearity."
         ]
@@ -3783,7 +3811,7 @@
       {
         "claim": "Reject extending linearity to nonlinear operations such as squaring.",
         "task": "main",
-        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). Compute E[X] and E[Y], compute E[3X−2Y+5] by linearity, verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
+        "publicRequest": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). First derive from the finite weighted-sum definition that E[aX+bY+c]=aE[X]+bE[Y]+c, using distributivity and ΣP(ω)=1. Then compute E[X] and E[Y], apply the identity to E[3X−2Y+5], verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
         "rubricEvidence": [
           "Computes E[X²]=20/3 and contrasts it with (E[X])²=4, rejecting nonlinear misuse of linearity."
         ]
@@ -4035,8 +4063,16 @@
         "source": "M04-S10"
       },
       {
+        "item": "complement rule",
+        "source": "M04-S04"
+      },
+      {
         "item": "independence definition",
         "source": "Defined JIT S11"
+      },
+      {
+        "item": "independence with a complemented event",
+        "source": "Derived JIT in S11 from product independence + complement rule"
       }
     ],
     "S12": [
@@ -4157,6 +4193,10 @@
         "source": "M04-S03"
       },
       {
+        "item": "without-replacement ordered-sample model",
+        "source": "M04-S10 + M03 finite counting; positional marginal derived JIT in S22"
+      },
+      {
         "item": "indicator definition",
         "source": "Defined/derived JIT S22"
       }
@@ -4241,8 +4281,8 @@
         "uniform die is rolled. Let A='result is even'"
       ],
       "transfer": [
-        "A uniform card is chosen from {1,2,...,12}. Let",
-        "uniform card is chosen from {1,2,...,12}. Let C='multiple"
+        "number is 10 or 11",
+        "explicitly use P(C∪D)=P(C)+P(D)"
       ]
     },
     "T22V3::ARC048::S06@1": {
@@ -4397,8 +4437,8 @@
     },
     "T22V3::ARC048::S21@1": {
       "main": [
-        "On three equally likely outcomes ω1,ω2,ω3, let X",
-        "three equally likely outcomes ω1,ω2,ω3, let X take"
+        "three equally likely outcomes ω1,ω2,ω3",
+        "using distributivity and ΣP(ω)=1"
       ],
       "transfer": [
         "Suppose finite payoffs U,V have E[U]=−2 and E[V]=5,",
@@ -4458,7 +4498,7 @@
       },
       "T22V3::ARC048::S05@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses different die subsets and abstract 10-outcome counts; fixed tasks use even/>4 die events and multiples on1–12."
+        "note": "Lesson uses different die subsets and an abstract 10-outcome check; Main diagnoses an overlapping die pair, while obligationVersion=2 Transfer uses disjoint multiples-of-3 versus {10,11} so the disjoint addition rule is genuinely observed."
       },
       "T22V3::ARC048::S06@1": {
         "status": "reviewed-separated",
@@ -4482,7 +4522,7 @@
       },
       "T22V3::ARC048::S11@1": {
         "status": "reviewed-separated",
-        "note": "Lesson tests different events; Main uses first-even/second>4 and asks direct-count then factorization. No complement-independence theorem is assumed."
+        "note": "Lesson uses first-roll-even/second-roll-6 plus a symbolic derivation of complement-independence. Main uses first-even/second>4; Transfer uses even/multiple-of-3 on one die. The theorem is now explicitly taught without revealing either fixed numerical answer."
       },
       "T22V3::ARC048::S12@1": {
         "status": "reviewed-separated",
@@ -4522,11 +4562,11 @@
       },
       "T22V3::ARC048::S21@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses a two-outcome direct verification and a squaring counterexample; Main uses different three-outcome X,Y data, and Transfer is symbolic. No random-variable product-independence rule is introduced."
+        "note": "Lesson derives finite linearity conceptually on a distinct two-outcome X,Y example and blocks nonlinear misuse. obligationVersion=2 Main now explicitly asks for the weighted-sum derivation on different three-outcome data; Transfer remains symbolic. No E[XY] rule is introduced."
       },
       "T22V3::ARC048::S22@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses2 draws from3R/2B and a 2-person committee; fixed tasks use3 draws from10 cards and 5-of-12 committee."
+        "note": "Lesson derives positional marginals using labelled ordered samples on2 draws from3R/2B and uses a 2-person committee guided check; fixed tasks use3 draws from10 cards and a 5-of-12 committee."
       },
       "T22V3::ARC048::S23@1": {
         "status": "reviewed-separated",
@@ -4538,5 +4578,5 @@
       }
     }
   },
-  "authoringPolicy": "Original T22 Elite M04 material. Every session teaches before testing with numerically/surface-distinct examples. Conditional denominators, independence assumptions and expectation interpretation are explicit. M05/M06/M26 boundaries remain closed."
+  "authoringPolicy": "Original T22 Elite M04 material, repaired under M04 Astra findings. Every session teaches before testing with surface-distinct examples; claim observability is manually task/rubric pinned rather than positionally inferred. Conditional denominators, independence assumptions and expectation interpretation are explicit. M05/M06/M26 boundaries remain closed."
 }
