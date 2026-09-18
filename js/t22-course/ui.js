@@ -88,7 +88,7 @@ async function copy(text){try{await navigator.clipboard.writeText(text);tell('Co
 function download(name,data){const url=URL.createObjectURL(new Blob([data],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 
 async function loadCourse(meta){
- const allSessions=[],allProblems={},allKeys={},allModules=[];let legacyPolicy={};
+ const allSessions=[],allProblems={},allKeys={},allModules=[],historicalOverlapSessions={};let legacyPolicy={};
  for(const spec of meta.moduleSources||[]){
   if(spec.sourceType==='legacy-packs'){
    const [packs,evalParts,repair]=await Promise.all([Promise.all(spec.packs.map(json)),Promise.all(spec.evaluatorPacks.map(json)),spec.repairPack?json(spec.repairPack):Promise.resolve(null)]);
@@ -96,14 +96,16 @@ async function loadCourse(meta){
    applyCourseOverrides(local,localKeys,repair);
    for(const s of local.sessions)s.instructionVersion=local.instructionVersion||meta.version;
    allSessions.push(...local.sessions);Object.assign(allProblems,local.problems);Object.assign(allKeys,localKeys);allModules.push(spec.module);
-   legacyPolicy={instructionVersion:local.instructionVersion,historicalLessonAnswerOverlap:local.historicalLessonAnswerOverlap,instructionSeparation:local.instructionSeparation};
+   Object.assign(historicalOverlapSessions,local.historicalLessonAnswerOverlap?.sessions||{});
+   legacyPolicy={instructionVersion:local.instructionVersion,instructionSeparation:local.instructionSeparation};
   }else if(spec.sourceType==='authoring-pack'){
    const a=await json(spec.source);
    for(const s of a.sessions)s.instructionVersion=a.instructionVersion||a.version;
+   Object.assign(historicalOverlapSessions,a.historicalLessonAnswerOverlap?.sessions||{});
    allSessions.push(...a.sessions);Object.assign(allProblems,a.problems);Object.assign(allKeys,a.evaluators);allModules.push(a.module);
   }else throw Error(`Unknown module source type ${spec.sourceType}`);
  }
- const built={...meta,...legacyPolicy,modules:allModules.sort((a,b)=>a.order-b.order),sessions:allSessions,problems:allProblems};
+ const built={...meta,...legacyPolicy,historicalLessonAnswerOverlap:{version:'combined-module-overlap-v1',sessions:historicalOverlapSessions},modules:allModules.sort((a,b)=>a.order-b.order),sessions:allSessions,problems:allProblems};
  await prepareContractHashes(built);await prepareAssessmentFingerprints(built,allKeys);
  return {built,allKeys};
 }
@@ -111,7 +113,7 @@ async function init(){
  const [meta,road]=await Promise.all([json('course/t22/generated/course-meta.json'),json('course/t22/generated/roadmap.json')]);roadmap=road;
  const loaded=await loadCourse(meta);course=loaded.built;keys=loaded.allKeys;
  state=emptyEvidence();
- try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);if(migrateHistoricalLessonAnswerExposure(state,course))persist('Historical answer-containing M01 lesson exposure was conservatively migrated; prior attempts were preserved.');}catch{storageOK=false;tell('Existing T22 Elite study storage could not be read. It has not been overwritten. Export any new work before leaving.');}
+ try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);if(migrateHistoricalLessonAnswerExposure(state,course))persist('Historical answer-containing lesson exposure was conservatively migrated; prior attempts were preserved.');}catch{storageOK=false;tell('Existing T22 Elite study storage could not be read. It has not been overwritten. Export any new work before leaving.');}
  options($('module'),modules().map(m=>[m.id,`${moduleCode(m.id)} · ${m.title}`]));
  const params=new URLSearchParams(location.search),requestedModule=Number(params.get('module'))||1,requestedSession=Math.max(1,Number(params.get('session'))||1);
  const initial=modules().find(m=>m.order===requestedModule)||modules()[0];selectModule(initial.id,Math.min(moduleSessions(initial.id).length,requestedSession));

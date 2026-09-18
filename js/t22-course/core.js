@@ -125,7 +125,8 @@ export function migrateHistoricalLessonAnswerExposure(state,course){
  let changed=false;
  for(const [sessionId,targetIds] of Object.entries(spec)){
   const s=course.sessions.find(x=>x.id===sessionId); if(!s) continue;
-  const legacyTimes=[s.main,s.transfer].map(id=>state.exposures[id]).filter(e=>e?.lessonSeenAt&&e.lessonContentVersion!==course.instructionVersion).map(e=>e.lessonSeenAt).sort();
+  const currentInstructionVersion=s.instructionVersion||course.instructionVersion||course.version;
+  const legacyTimes=[s.main,s.transfer].map(id=>state.exposures[id]).filter(e=>e?.lessonSeenAt&&e.lessonContentVersion!==currentInstructionVersion).map(e=>e.lessonSeenAt).sort();
   if(!legacyTimes.length) continue;
   const at=legacyTimes[0];
   for(const id of targetIds){
