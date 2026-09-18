@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M03 FINAL-ACCEPTED AFTER STATIC + OBSERVABILITY + THREE-MODULE CHROMIUM GATES; M04 CLOSED PENDING REVIEW**
+State: **M03 FINAL-ACCEPTED; REVIEW HANDOFF CREATED; STOP BEFORE M04**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -136,3 +136,12 @@ M03 · `T22E-DISC01` is accepted on this rebuild branch.
 - observability audit passed at run `35310713858` on `db52b613f9a0adcc1e2ae9fd628cb28d033083f9`.
 
 **Next:** write M03 review handoff, verify it, and stop. M04 must not be authored until review explicitly continues the build.
+
+
+## M03 review handoff
+
+Read `docs/t22-course/M03-REVIEW-HANDOFF.md` before any further authoring. It records the exact six-commit M03 implementation chain, 30/60/150 coverage, five manually repaired Transfer mappings, all validation run IDs, shared-runtime evidence checks and the bounded uncertainty list for independent review.
+
+A persistent `docs/t22-course/audit/m03-handoff-checks.mjs` gate now verifies handoff consistency with accepted repository state and asserts M04 remains planned with no `course/t22/authoring/m04.json`.
+
+**STOP FOR REVIEW. Do not open M04 until the M03 independent review is accepted or bounded M03 findings are repaired.**

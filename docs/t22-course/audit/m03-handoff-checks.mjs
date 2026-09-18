@@ -1,0 +1,10 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const a=read('course/t22/authoring/m03.json'),meta=read('course/t22/generated/course-meta.json'),road=read('course/t22/generated/roadmap.json'),led=read('docs/t22-rebuild/SEMANTIC-PREREQUISITES.json');
+const hand=fs.readFileSync('docs/t22-course/M03-REVIEW-HANDOFF.md','utf8'),core=fs.readFileSync('js/t22-course/core.js','utf8');
+assert.equal(a.module.status,'authored-v1.1-accepted');assert.equal(a.sessions.length,30);assert.equal(Object.keys(a.problems).length,60);assert.equal(Object.values(a.claimEvidence).flat().length,150);
+assert.equal(road.modules.find(x=>x.id==='T22E-DISC01').availability,'authored');assert.equal(road.modules.find(x=>x.id==='ARC048').availability,'planned');assert.equal(led.entries.find(x=>x.id==='T22E-DISC01').semanticStatus,'accepted');
+assert(meta.moduleSources.some(x=>x.id==='T22E-DISC01'&&x.source==='course/t22/authoring/m03.json'));assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));assert(!fs.existsSync('course/t22/authoring/m04.json'));
+const by=n=>a.sessions.find(s=>s.order===n);const pins=[[25,2],[28,4],[29,3],[30,3],[30,4]];for(const [n,i] of pins)assert.equal(a.claimEvidence[by(n).id][i].task,'transfer');
+for(const token of ['2fab663fea7395a6c20ba49b338708e52c562b8b','35310713858','35325699018','35325912278','30/30','60/60','150/150','STOP HERE. M03 is complete for independent review. M04 has not been authored.'])assert(hand.includes(token),token);
+console.log('PASS: M03 handoff matches accepted 30/60/150 repository state; five Transfer mappings pinned; shared evidence key unchanged; M04 remains planned/un-authored.');
