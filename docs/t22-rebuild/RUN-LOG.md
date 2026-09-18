@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-18
-State: **M04 INTERNALLY ACCEPTED AFTER 24/48/120 + FOUR-MODULE CHROMIUM; HANDOFF NEXT; M05/M06 CLOSED**
+State: **M04 FINAL INTERNAL ACCEPTED; REVIEW HANDOFF CREATED; STOP BEFORE M05/M06**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -216,3 +216,12 @@ M04 · `ARC048` has cleared the complete internal publication gate:
 - successful run `35358556729` at preacceptance-hardened head `d8c8bd678ff816e62c859ac4d3add327fcafd23f`.
 
 **Next: write M04 review handoff and stop. M05/M06 remain closed.**
+
+
+## M04 review handoff
+
+Read `docs/t22-course/M04-REVIEW-HANDOFF.md` before further authoring. It records the exact six-commit M04 chain, 24/48/120 coverage, the preacceptance semantic fixes, all key validation runs, four-module evidence checks and bounded reviewer targets.
+
+A persistent `docs/t22-course/audit/m04-handoff-checks.mjs` gate verifies the handoff against repository state and asserts M05/M06 remain planned with no authoring packs.
+
+**STOP FOR REVIEW. Do not author M05 or M06 until M04 independent review is accepted or bounded M04 findings are repaired.**
