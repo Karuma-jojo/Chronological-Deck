@@ -1,7 +1,7 @@
 # M04 boundary & authoring contract — ARC048
 
 Date: 2026-09-18  
-Status: **FINAL INTERNAL ACCEPTED — 24 sessions / 48 fixed tasks / 120 ownership claims; M05/M06 remain closed**
+Status: **ASTRA-REPAIRED — 24 sessions / 48 fixed tasks / 120 ownership claims; bounded follow-up pending; M05/M06 remain closed**
 
 ## Semantic ancestry
 
@@ -125,3 +125,17 @@ M04 passed its publication gate after a deliberate preacceptance semantic audit.
 The evidence key remains `chrono_t22_elite_course_evidence_v1`. Historical T22 and T25 state are unchanged.
 
 **Review boundary:** create `M04-REVIEW-HANDOFF.md` and stop. Do not author M05 or M06.
+
+
+## Independent Astra repair update — 2026-09-18
+
+Independent review `7d377d847728a7ebec6e4b81f2864238bd0b1683` returned M04-01 through M04-04. All four were implemented by repair head `10df637dbb46bd4985a1f98fc298c746b52bf1fd`; see `M04-RESOLUTION.md`.
+
+- S11 derives complement-independence explicitly.
+- 120/120 claim mappings were manually re-audited; S05 claim 3 and S13 claim 5 are Transfer-owned.
+- S05-T and S21-M are `obligationVersion=2` because their fixed assessment contracts materially changed.
+- S22 derives positional marginals from labelled ordered samples.
+- S04 no longer invokes independence before S11.
+- Evidence key and shared runtime are unchanged.
+
+**Boundary remains closed beyond M04 until bounded follow-up accepts these repairs.**
