@@ -3,7 +3,7 @@
 Date: 2026-09-24  
 Branch: `codex/t22-pedagogical-rebuild`  
 Stable module: `T22E-MKT01`  
-Status: **CERBERUS-HARDENED CANDIDATE — FULL-SUITE VALIDATION PENDING; INDEPENDENT ASTRA REVIEW NEXT; M08 CLOSED**
+Status: **CERBERUS-HARDENED CANDIDATE — FULL SUITE VERIFIED; INDEPENDENT ASTRA REVIEW NEXT; M08 CLOSED**
 
 ## Scope
 
@@ -57,7 +57,20 @@ The browser regression is extended through M07:
 
 ## Validation state
 
-Pending exact-head full T22 Elite Actions verification. Do not infer success from prior six-module runs.
+Verified implementation head: `84baddc69643f4654eb87bf05ed907febf37b077`.
+
+Complete T22 Elite Actions run `35927759177` succeeded on that exact SHA. Job `107406819179` completed successfully, including:
+- syntax checks;
+- structural/pedagogy/semantic/evidence regressions;
+- M07 CERBERUS structural/pedagogy gate: PASS;
+- M07 independent market-arithmetic/counterexample checks: PASS;
+- M07 handoff/integration gate: PASS;
+- Chromium installation: PASS;
+- real seven-module browser evidence workflow: PASS.
+
+The browser log explicitly confirms M01+M02+M03+M04+M05+M06+M07 module scoping, M07 unsaved-draft/assistance provenance, save/reveal/review, seven-module export/import, packet exposure through M07, corrupt-storage preservation and mobile width.
+
+This is builder-side verification, not independent acceptance. M07 remains a candidate for Astra review.
 
 ## Reviewer mission
 
