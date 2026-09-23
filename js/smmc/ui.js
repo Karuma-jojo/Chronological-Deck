@@ -299,10 +299,11 @@ function renderResearch(show){
 async function init(){
   const initialParams=new URLSearchParams(location.search);
   const explicitWorkspace=initialParams.has('tab')||initialParams.has('unit')||initialParams.has('task')||initialParams.has('problem');
-  let navReconciled=false;
+  let navReconciled=false,navReconcilePromise=null;
   if(!explicitWorkspace&&!hasStoredWorkspaceNav()&&workspaceCloudState().signedIn){
+    navReconcilePromise=reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;});
     await Promise.race([
-      reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;}),
+      navReconcilePromise,
       new Promise(resolve=>setTimeout(resolve,700))
     ]);
   }
@@ -364,7 +365,7 @@ async function init(){
       persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();tell('SMMC record imported.');
     }catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}
   };
-  if(!navReconciled)void reconcileWorkspaceNavCloud().finally(enableWorkspaceNavCloud);
+  if(!navReconciled)void (navReconcilePromise||reconcileWorkspaceNavCloud()).finally(enableWorkspaceNavCloud);
   else enableWorkspaceNavCloud();
   renderCloudBadge();
   void reconcileSmmcCloud();
