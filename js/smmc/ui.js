@@ -2,9 +2,10 @@ import ledger from '../../course/smmc/ledger.mjs';
 import { SMMC_UNITS_V1 } from '../../course/smmc/authoring/units-v1.mjs';
 import { SMMC_PUBLIC_PROBLEMS_V1 } from '../../course/smmc/authoring/public-problems-v1.mjs';
 import {
-  emptySmmcState, validateSmmcState, markExposure, exposureClass,
+  emptySmmcState, validateSmmcState, mergeSmmcState, markExposure, exposureClass,
   selfReportUnitComplete, certifiedUnitIds,
 } from '../../course/smmc/runtime/exposure.mjs';
+import { emptySmmcStudy, validateSmmcStudy, mergeSmmcStudy } from '../../course/smmc/runtime/study.mjs';
 import { unlockStatus } from '../../course/smmc/runtime/unlock.mjs';
 import { officialPaperUrl } from '../../course/smmc/sources-v1.mjs';
 import { routeStepsForT25Targets } from '../../course/smmc/t25-crosswalk.mjs';
@@ -18,7 +19,7 @@ const uuid=()=>crypto.randomUUID();
 const tell=x=>$('status').textContent=x;
 const put=(id,text)=>$(id).textContent=text;
 let histState=emptySmmcState();
-let studyState={version:1,attempts:[]};
+let studyState=emptySmmcStudy();
 let evaluatorPromise=null;
 const evaluatorBank=()=>evaluatorPromise??=import('../../course/smmc/authoring/evaluator-v1.mjs').then(m=>m.SMMC_EVALUATOR_V1);
 let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study';
@@ -33,18 +34,6 @@ function persist(){
     localStorage.setItem(STUDY_KEY,JSON.stringify(studyState));
     return true;
   }catch{storageOK=false;tell('Browser storage is unavailable. Export before leaving if you want to keep this session.');return false;}
-}
-function validateStudy(x){
-  if(!x||typeof x!=='object'||x.version!==1||!Array.isArray(x.attempts)||x.attempts.length>10000)throw Error('Unsupported neutral study record');
-  const known=new Set(Object.keys(SMMC_PUBLIC_PROBLEMS_V1)),seen=new Set(),out={version:1,attempts:[]};
-  for(const a of x.attempts){
-    if(!a||typeof a!=='object'||typeof a.id!=='string'||seen.has(a.id)||!known.has(a.taskId)||
-      typeof a.at!=='string'||!Number.isFinite(Date.parse(a.at))||typeof a.answer!=='string'||a.answer.length>100000||
-      !['independent','neutral-tool','hint','guided','revealed'].includes(a.assistance)||
-      !Number.isFinite(a.minutes)||a.minutes<0||a.minutes>100000||typeof a.referenceSeenBefore!=='boolean')throw Error('Invalid neutral attempt');
-    seen.add(a.id);out.attempts.push({...a});
-  }
-  return out;
 }
 function download(name,obj){
   const url=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));
@@ -236,7 +225,7 @@ function renderResearch(show){
 async function init(){
   try{
     const h=localStorage.getItem(HIST_KEY);if(h)histState=validateSmmcState(JSON.parse(h),ledger,moduleIds,allUnitIds);
-    const s=localStorage.getItem(STUDY_KEY);if(s)studyState=validateStudy(JSON.parse(s));
+    const s=localStorage.getItem(STUDY_KEY);if(s)studyState=validateSmmcStudy(JSON.parse(s),Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
   }catch(e){storageOK=false;tell('Existing SMMC browser record could not be read and has not been overwritten. Export from this session if needed.');}
   const params=new URLSearchParams(location.search),remembered=readWorkspaceNav();
   const requestedTab=params.get('tab')==='map'?'map':params.get('tab')==='study'?'study':remembered.smmc.tab;
@@ -288,7 +277,7 @@ async function init(){
   $('import').onchange=async e=>{
     const file=e.target.files[0];if(!file)return;try{
       if(file.size>10000000)throw Error('Record is too large');const incoming=JSON.parse(await file.text());
-      histState=validateSmmcState(incoming.historical,ledger,moduleIds,allUnitIds);studyState=validateStudy(incoming.neutralStudy);
+      histState=validateSmmcState(incoming.historical,ledger,moduleIds,allUnitIds);studyState=validateSmmcStudy(incoming.neutralStudy,Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
       persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();tell('SMMC record imported.');
     }catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}
   };
