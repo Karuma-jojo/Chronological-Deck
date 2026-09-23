@@ -32,11 +32,50 @@ function csvLine(line){return [...line.matchAll(/(?:^|,)("(?:[^"]|"")*"|[^,]*)/g
 const rawScope=await readFile(new URL('../course/sources/official-scope-2026.csv',import.meta.url),'utf8');
 const scope=rawScope.trim().split(/\r?\n/).slice(1).map(line=>{const [item,codes,note]=csvLine(line);return{item,targets:codes.split(/\s+/).filter(Boolean),note};});
 const questionRoutes=JSON.parse(await readFile(new URL('../course/sources/question-routes-2026-09-14.json',import.meta.url),'utf8'));
-const publicData={version:'1.0.0',baseCommit:'43ae1373bc33083dbe5a14eba174300dae44f5d8',status:'Authored; current validation status is in docs/t25-course/RUN-LOG.md. Not learner-piloted.',sources:{syllabus:'https://admission.isical.ac.in/Syllabus/MStat-PSA-PSB-Syllabus-2026.pdf',program:'https://admission.isical.ac.in/Programs/MStat.html',historicalAudit:'2026-09-14 v2 classification metadata; not a newly certified solution key'},targets,sessions,problems,bridges:bridgeData,sets,campaign,scope,questionRoutes,reviewDays:[7,21,60],assessmentWarning:'Sets reuse bank tasks and are not complete official-format mock papers. Timing is provisional. Exposure is local-log evidence only; outside exposure is unknown. Preserve genuinely unseen official papers for exam simulation.'};
+const assessmentWarning='Sets reuse bank tasks and are not complete official-format mock papers. Timing is provisional. Exposure is local-log evidence only; outside exposure is unknown. Preserve genuinely unseen official papers for exam simulation.';
+const publicData={version:'1.0.0',baseCommit:'43ae1373bc33083dbe5a14eba174300dae44f5d8',status:'Authored; current validation status is in docs/t25-course/RUN-LOG.md. Not learner-piloted.',sources:{syllabus:'https://admission.isical.ac.in/Syllabus/MStat-PSA-PSB-Syllabus-2026.pdf',program:'https://admission.isical.ac.in/Programs/MStat.html',historicalAudit:'2026-09-14 v2 classification metadata; not a newly certified solution key'},targets,sessions,problems,bridges:bridgeData,sets,campaign,scope,questionRoutes,reviewDays:[7,21,60],assessmentWarning};
+
+const runtimeCard=card=>({
+ id:card.id,
+ syllabusCode:card.syllabusCode,
+ title:card.title,
+ targetCode:card.targetCode,
+ centralCapability:card.centralCapability,
+ entryPrerequisites:card.entryPrerequisites,
+ requiredOwnership:card.requiredOwnership,
+ exitCondition:card.exitCondition,
+ outOfScope:card.outOfScope,
+});
+const runtimeSessions=sessions.map(s=>({
+ order:s.order,
+ phase:s.phase,
+ card:runtimeCard(s.card),
+ main:s.main,
+ transfer:s.transfer,
+ evidenceWarning:s.evidenceWarning,
+}));
+const runtimeBridges=bridgeData.map(b=>({id:b.id,title:b.title,tasks:b.tasks}));
+const runtimeData={
+ version:publicData.version,
+ sessions:runtimeSessions,
+ problems,
+ bridges:runtimeBridges,
+ sets,
+ campaign,
+ reviewDays:publicData.reviewDays,
+ assessmentWarning,
+};
+const notesData={
+ sessions:Object.fromEntries(sessions.map(s=>[s.order,s.lesson])),
+ bridges:Object.fromEntries(bridgeData.map(b=>[b.id,b.lesson])),
+};
+
 await mkdir(new URL('../course/generated/',import.meta.url),{recursive:true});
 await writeFile(new URL('../course/generated/course.json',import.meta.url),JSON.stringify(publicData,null,2)+'\n');
+await writeFile(new URL('../course/generated/runtime.json',import.meta.url),JSON.stringify(runtimeData)+'\n');
+await writeFile(new URL('../course/generated/notes.json',import.meta.url),JSON.stringify(notesData)+'\n');
 await writeFile(new URL('../course/generated/evaluator.json',import.meta.url),JSON.stringify(references,null,2)+'\n');
 await mkdir(new URL('../docs/t25-course/',import.meta.url),{recursive:true});
 const md=['# T25 current course syllabus','',`80 targets; ${sessions.length} sessions; ${Object.keys(problems).length} original tasks.`,``,publicData.status,'','Current repository card contracts govern. Historical question routes are provenance, not certified solutions.','',...sessions.flatMap(s=>[`## ${String(s.order).padStart(3,'0')} · ${s.card.syllabusCode} · ${s.card.title}`,'',s.card.centralCapability,'','Prerequisites: '+s.card.entryPrerequisites.join('; '),'','Required ownership:',...s.card.requiredOwnership.map(x=>'- '+x),'','Exit: '+s.card.exitCondition,'','Out of scope: '+s.card.outOfScope.join('; '),'']), '## Official-scope crosswalk','',...scope.map(x=>`- ${x.item}: ${x.targets.join(', ')} — ${x.note}`)];
 await writeFile(new URL('../docs/t25-course/SYLLABUS.md',import.meta.url),md.join('\n')+'\n');
-console.log(`Built ${sessions.length} sessions, ${Object.keys(problems).length} tasks, ${sets.length} sets, ${scope.length} scope rows, ${questionRoutes.length} historical question routes.`);
+console.log(`Built ${sessions.length} sessions, ${Object.keys(problems).length} tasks, ${sets.length} sets, ${scope.length} scope rows, ${questionRoutes.length} historical question routes. Runtime payload and lazy note bank emitted separately.`);
