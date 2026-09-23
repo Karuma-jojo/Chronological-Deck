@@ -92,6 +92,50 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "gives a recovery map or uniqueness argument",
       "distinguishes positive from nonnegative integer parts"
     ]
+  },
+  {
+    id: "S-BRIDGE-AN1-U01",
+    moduleId: "S-BRIDGE-AN1",
+    kind: "bridge",
+    orderWithinModule: 1,
+    title: "Positive-series comparison and harmonic divergence",
+    t25Targets: ["A2", "A5"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "For a positive-term series, comparison preserves the direction of difficulty: if 0≤b_n≤a_n and Σb_n diverges, then Σa_n diverges; if 0≤a_n≤b_n and Σb_n converges, then Σa_n converges.",
+      "A divergent subseries forces the full positive series to diverge.",
+      "The harmonic series diverges by grouping terms in dyadic blocks: each block from 2^k+1 through 2^(k+1) contributes at least 1/2.",
+      "When comparing, state the inequality for all sufficiently large n and keep the comparison constant explicit."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-AN1-01",
+    transferTaskId: "S-NEUTRAL-AN1-02",
+    completionEvidence: [
+      "proves harmonic divergence by a valid block argument",
+      "chooses the correct comparison direction for divergence",
+      "states why finite initial terms do not affect convergence"
+    ]
+  },
+  {
+    id: "S-METHOD-X1-U01",
+    moduleId: "S-METHOD-X1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Introduce an auxiliary object that exposes structure",
+    t25Targets: ["A3", "M0"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "An auxiliary object is useful only if it converts the original claim into a statement with clearer structure.",
+      "Typical moves include introducing differences, partial sums, a graph, a polynomial, or a transformed variable.",
+      "The new object must be reversible enough that information proved about it can be translated back to the original problem.",
+      "After introducing it, state explicitly what property has become simpler and why."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-X1-01",
+    transferTaskId: "S-NEUTRAL-X1-02",
+    completionEvidence: [
+      "introduces a useful transformed object rather than decorative notation",
+      "proves the transformed statement cleanly",
+      "translates the conclusion back to the original variables"
+    ]
   }
 ]);
 
