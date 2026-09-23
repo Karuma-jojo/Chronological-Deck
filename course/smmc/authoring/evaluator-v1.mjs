@@ -54,6 +54,60 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must not cancel 5 while leaving modulus 50 unchanged.",
       "Must give the complete solution x≡6 (mod 10), not a single integer."
     ]
+  },
+  "S-NEUTRAL-GR1-01": {
+    reference: [
+      "Choose a vertex v0 and one incident edge, then continue at each new vertex along the edge different from the one just used.",
+      "Because the graph is finite, some vertex repeats. Take the first repetition; the vertices between the two occurrences form a cycle.",
+      "Every vertex on that cycle already uses both of its incident edges inside the cycle because its degree is 2.",
+      "Therefore no edge can leave the cycle. Since G is connected, there cannot be any additional vertex outside it.",
+      "Hence the whole graph is exactly one cycle."
+    ].join(" "),
+    rubric: [
+      "Must use finiteness to force a repetition.",
+      "Must explain why degree 2 prevents an edge from leaving the discovered cycle.",
+      "Must use connectedness to conclude there are no other vertices."
+    ]
+  },
+  "S-NEUTRAL-GR1-02": {
+    reference: [
+      "Make one vertex for each person and join two vertices exactly when the two people know each other.",
+      "Mutual acquaintance makes this a simple undirected graph, and every vertex has degree 2.",
+      "Each connected component is therefore a cycle.",
+      "Seat the people from each component in that cycle order around one circular table.",
+      "Then each person has exactly the two adjacent cycle vertices, which are exactly the two acquaintances."
+    ].join(" "),
+    rubric: [
+      "Must make the graph translation explicit.",
+      "May cite the degree-2 component lemma only if it has already been established.",
+      "Must explain how the cycle order gives the required seating."
+    ]
+  },
+  "S-NEUTRAL-K1-01": {
+    reference: [
+      "Write n identical marks in a row and consider the n-1 gaps between consecutive marks.",
+      "Choose k-1 gaps for separators. The resulting k blocks have positive sizes x1,...,xk summing to n.",
+      "Conversely any ordered positive k-tuple summing to n uniquely determines separator positions after x1 marks, then after x1+x2 marks, and so on.",
+      "Thus the encoding is bijective with the (k-1)-subsets of n-1 gaps, giving C(n-1,k-1)."
+    ].join(" "),
+    rubric: [
+      "Must specify both forward encoding and recovery.",
+      "Must explain why block sizes are positive.",
+      "A stars-and-bars drawing is acceptable if reversibility is stated."
+    ]
+  },
+  "S-NEUTRAL-K1-02": {
+    reference: [
+      "Replace xi by yi=xi+1. Then each yi is positive and y1+...+yk=n+k.",
+      "By the positive-parts bijection, the number is C(n+k-1,k-1).",
+      "Equivalently, encode n stars and k-1 separators directly; empty blocks are now allowed.",
+      "The answer differs from the positive-parts count because zeros are permitted, which shifts each coordinate by one in the reduction."
+    ].join(" "),
+    rubric: [
+      "Must give a reversible encoding or an explicit bijective reduction to positive parts.",
+      "Must obtain C(n+k-1,k-1).",
+      "Must explain the role of allowing zero entries."
+    ]
   }
 });
 
