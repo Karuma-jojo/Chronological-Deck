@@ -69,7 +69,9 @@ export function validateSmmcState(value, ledger, knownModuleIds = []) {
       attempt.minutes < 0 ||
       attempt.minutes > 100000 ||
       typeof attempt.statementSeenBefore !== "boolean" ||
+      typeof attempt.domainMetadataSeenBefore !== "boolean" ||
       typeof attempt.materialHintSeenBefore !== "boolean" ||
+      typeof attempt.evaluatorSeenBefore !== "boolean" ||
       typeof attempt.solutionSeenBefore !== "boolean"
     ) {
       throw new Error("Invalid or duplicate SMMC attempt");
@@ -84,7 +86,9 @@ export function validateSmmcState(value, ledger, knownModuleIds = []) {
       result: attempt.result,
       minutes: attempt.minutes,
       statementSeenBefore: attempt.statementSeenBefore,
+      domainMetadataSeenBefore: attempt.domainMetadataSeenBefore,
       materialHintSeenBefore: attempt.materialHintSeenBefore,
+      evaluatorSeenBefore: attempt.evaluatorSeenBefore,
       solutionSeenBefore: attempt.solutionSeenBefore,
     });
   }
@@ -139,13 +143,18 @@ export function markExposure(state, problemId, kind, at = new Date().toISOString
 
 export function exposureClass(state, problemId) {
   const e = state.exposures[problemId] || {};
-  const solutionContaminated = Boolean(e.solutionSeenAt || e.materialHintSeenAt);
-  if (solutionContaminated) {
+  const contaminationReason =
+    e.solutionSeenAt ? "solution-seen" :
+    e.evaluatorSeenAt ? "evaluator-seen" :
+    e.materialHintSeenAt ? "material-hint-seen" :
+    e.domainMetadataSeenAt ? "domain-metadata-seen" :
+    null;
+  if (contaminationReason) {
     return {
       class: "development",
       sealedPaperEligible: false,
       transferEligible: false,
-      reason: e.solutionSeenAt ? "solution-seen" : "material-hint-seen",
+      reason: contaminationReason,
     };
   }
   if (e.statementSeenAt) {
