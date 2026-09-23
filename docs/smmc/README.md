@@ -75,7 +75,7 @@ It should not mechanically reuse the seven T25 episode boundaries.
 
 ## Current build status
 
-Batches 1–7 audit 64 official problems through 2023: 56 East-core A/B problems and 8 C-session supplementary problems. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
+Batches 1–9 audit the complete 88-problem official corpus through 2025: 72 East-core A/B problems and 16 C-session supplementary problems. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
 
 
 The 2019 audit added `SERIES` as a secondary content tag and `EXCHANGE-ARGUMENT` as a reusable method. Neither requires a new top-level domain.
@@ -117,3 +117,27 @@ The 2022 audit added `CEIL` as a secondary tag. No new primary domain was requir
 The 2023 audit required no new primary domain, no new secondary content tag and no new method tag. Existing vocabulary was sufficient for all twelve official problems.
 
 This is evidence in favour of keeping the six-domain backbone stable and allowing richness to live in secondary tags, method tags and bridge needs rather than proliferating top-level subjects.
+
+
+## Full-corpus architecture freeze
+
+The complete evidence synthesis is in `docs/smmc/FINAL-SYNTHESIS-2017-2025.md`.
+
+Structured curriculum contracts live in `course/smmc/curriculum-v1.mjs` and define:
+- six mandatory core bridges;
+- three optional specialist modules;
+- nine method modules;
+- GREEN/AMBER/RED unlock behavior;
+- learner/evaluator visibility rules;
+- Aster anti-leak rules.
+
+The full ledger currently validates at:
+- 88 official problems;
+- 72 East-core;
+- 16 supplementary C;
+- GREEN 39 / AMBER 27 / RED 22 overall;
+- East GREEN 30 / AMBER 24 / RED 18.
+
+The six-domain top-level taxonomy remains canonical. Per-problem primary labels on several hybrids remain under explicit reconciliation because the independently authored ledger does not yet reproduce the newer SMMC-2027 aggregate domain table. See `docs/smmc/DOMAIN-RECONCILIATION-2017-2025.md`.
+
+Do not allocate study hours from the provisional independent primary-domain counts until that reconciliation closes. Bridge, method, prerequisite and overlap metadata are already safe to use.
