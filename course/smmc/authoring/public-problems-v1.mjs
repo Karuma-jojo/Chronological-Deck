@@ -73,6 +73,30 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-METHOD-X1-U01",
     role: "transfer",
     prompt: "Let x1,...,xn be real numbers with x1+...+xn=0. Prove that Σ_{1≤i<j≤n}(xi-xj)² = n Σ_{i=1}^n xi². Organize the proof by introducing or expanding an auxiliary aggregate quantity rather than summing pairwise terms one at a time."
+  },
+  "S-NEUTRAL-N1-03": {
+    id: "S-NEUTRAL-N1-03",
+    unitId: "S-BRIDGE-N1-U02",
+    role: "main",
+    prompt: "Solve the simultaneous congruences x≡2 (mod 3), x≡3 (mod 5), and x≡2 (mod 7). Give the unique residue class modulo 105 and justify why it is unique modulo the product."
+  },
+  "S-NEUTRAL-N1-04": {
+    id: "S-NEUTRAL-N1-04",
+    unitId: "S-BRIDGE-N1-U02",
+    role: "transfer",
+    prompt: "How many residue classes modulo 30 are coprime to 30? Solve by treating residues modulo 2, 3, and 5 as independent CRT coordinates, and explain why each allowed coordinate choice gives exactly one class modulo 30."
+  },
+  "S-NEUTRAL-I1-01": {
+    id: "S-NEUTRAL-I1-01",
+    unitId: "S-METHOD-I1-U01",
+    role: "main",
+    prompt: "Let F0=0, F1=1, and F_{n+2}=F_{n+1}+F_n. Prove that F_n is even exactly when 3 divides n. Do not induct on the single statement 'F_n is even iff 3|n'; instead formulate and prove a stronger repeating parity pattern for triples of consecutive terms."
+  },
+  "S-NEUTRAL-I1-02": {
+    id: "S-NEUTRAL-I1-02",
+    unitId: "S-METHOD-I1-U01",
+    role: "transfer",
+    prompt: "Prove that every integer n≥12 can be written as n=4a+5b with nonnegative integers a,b. Use an induction architecture that makes clear why several consecutive base cases are needed and why adding 4 closes the induction."
   }
 });
 
