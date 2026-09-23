@@ -100,3 +100,39 @@ Remote-source structural validation passed after the 2017/2018 schema stabilizat
 A branch comparison against `main` after the checkpoint showed the branch ahead only by additive SMMC work, with no changed/deleted pre-existing files. The diff consists of seven new paths under `course/smmc/`, `docs/smmc/` and `scripts/validate-smmc-ledger.mjs`.
 
 The local container could not resolve github.com, so validation was executed directly against the remote file contents fetched through the authenticated GitHub connector rather than a local clone. No CI run is claimed.
+
+
+## Batch 3 — 2019 audit
+
+Source basis: official Simon Marais Mathematics Competition 2019 solutions PDF from simonmarais.org. The official solution text and page images were inspected before classification.
+
+Added:
+- `course/smmc/ledger-2019.mjs`;
+- 2019 aggregation in `ledger.mjs`;
+- `SERIES` secondary content tag;
+- `EXCHANGE-ARGUMENT` method tag;
+- validator coverage through 2019.
+
+### 2019 first-pass result
+
+- GREEN: 1
+- AMBER: 3
+- RED: 4
+- East-relevant: 8/8
+- Open-problem item: B4.
+
+### Combined 2017–2019 result
+
+- Problems: 24
+- GREEN: 4
+- AMBER: 9
+- RED: 11
+
+### 2019 findings
+
+- A2 reveals adjacent-swap/exchange reasoning as a reusable SMMC method that is not an independent content domain.
+- A4 and B2 confirm that general infinite-series convergence/remainder machinery is a real SMMC gap: current T25 explicitly leaves general series-convergence tests outside its scope.
+- B3 reinforces finite graph/clique/extremal-compression reasoning as a recurring RED family rather than an isolated curiosity.
+- The six primary domains remain sufficient. No seventh primary domain was added.
+
+The overlap labels continue to mean prerequisite coverage/fairness, not predicted difficulty or expected score.
