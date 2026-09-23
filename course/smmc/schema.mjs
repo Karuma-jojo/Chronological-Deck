@@ -18,7 +18,7 @@ export const SMMC_ASSESSMENT_ROLES = Object.freeze([
 
 export const SMMC_SECONDARY_TAGS = Object.freeze([
   "POLY", "LA", "CX", "FF", "FE", "INEQ", "CONVEX", "GRAPH", "GAME",
-  "TILING", "REC", "GF", "CONST", "SEQ", "SERIES", "FLOOR", "ASYM", "INT", "ODE", "FUNC",
+  "TILING", "REC", "GF", "CONST", "SEQ", "SERIES", "FLOOR", "CEIL", "ASYM", "INT", "ODE", "FUNC",
   "MOD", "DIO", "VAL", "PRIME", "GCD", "EUCLID", "COORD", "VECTOR-GEO",
   "CONVEX-GEO", "LATTICE", "POLYHEDRAL", "PROJECTIVE-GEO", "COND", "EXPECT", "INDICATOR",
   "RANDOM-WALK", "STOPPING", "RANDOM-PROCESS",
