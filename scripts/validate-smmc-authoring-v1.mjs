@@ -87,14 +87,14 @@ const amberBlocked = unlockStatus(amber, { clearedT25Targets: amber.t25Targets }
 expect(amberBlocked.status === "locked-smmc-bridge", "Mapped AMBER problem should require its bridge.");
 const amberReady = unlockStatus(amber, {
   clearedT25Targets: amber.t25Targets,
-  completedModules: ["S-BRIDGE-N1"],
+  certifiedModules: ["S-BRIDGE-N1"],
 });
 expect(amberReady.status === "ready-transfer" && amberReady.ready, "Mapped AMBER should unlock after bridge completion.");
 
 const red = ledger.find(x => x.id === "SMMC-2025-A4");
 const redReady = unlockStatus(red, {
   clearedT25Targets: red.t25Targets,
-  completedModules: ["S-SPECIAL-ALG2"],
+  certifiedModules: ["S-SPECIAL-ALG2"],
 });
 expect(redReady.status === "ready-development" && redReady.ready, "RED problems must unlock only as development.");
 
