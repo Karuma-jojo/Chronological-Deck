@@ -2,11 +2,11 @@ import { SMMC_REQUIREMENTS_V1 } from "../requirements-v1.mjs";
 
 export function unlockStatus(problem, {
   clearedT25Targets = [],
-  certifiedModules = [],
+  certifiedUnits = [],
   requirements = SMMC_REQUIREMENTS_V1,
 } = {}) {
   const clearedTargets = new Set(clearedT25Targets);
-  const certified = new Set(certifiedModules);
+  const certified = new Set(certifiedUnits);
 
   const missingT25 = problem.t25Targets.filter(code => !clearedTargets.has(code));
   if (missingT25.length) {
@@ -14,7 +14,7 @@ export function unlockStatus(problem, {
       status: "locked-t25",
       ready: false,
       missingT25,
-      missingModules: [],
+      missingUnits: [],
     };
   }
 
@@ -23,7 +23,7 @@ export function unlockStatus(problem, {
       status: "ready-transfer",
       ready: true,
       missingT25: [],
-      missingModules: [],
+      missingUnits: [],
     };
   }
 
@@ -33,17 +33,17 @@ export function unlockStatus(problem, {
       status: "requirement-map-pending",
       ready: false,
       missingT25: [],
-      missingModules: [],
+      missingUnits: [],
     };
   }
 
-  const missingModules = required.filter(id => !certified.has(id));
-  if (missingModules.length) {
+  const missingUnits = required.filter(id => !certified.has(id));
+  if (missingUnits.length) {
     return {
       status: problem.overlap === "red" ? "locked-specialist" : "locked-smmc-bridge",
       ready: false,
       missingT25: [],
-      missingModules,
+      missingUnits,
     };
   }
 
@@ -51,7 +51,7 @@ export function unlockStatus(problem, {
     status: problem.overlap === "red" ? "ready-development" : "ready-transfer",
     ready: true,
     missingT25: [],
-    missingModules: [],
+    missingUnits: [],
   };
 }
 
