@@ -350,3 +350,75 @@ Remote validation against the controlled SMMC schema and live canonical 80-targe
 - all controlled tags/methods valid;
 - all stable `t25Targets` resolve;
 - B4 open-problem protection remains intact through 2022.
+
+
+## Batch 7 — 2023 A/B/C audit
+
+Source basis: official `smmc2023solutions.pdf` from the Simon Marais project.
+
+Added:
+- `course/smmc/ledger-2023.mjs`;
+- 2023 aggregation in `ledger.mjs`;
+- validator coverage through 2023.
+
+No schema vocabulary expansion was required.
+
+### 2023 result
+
+All official 2023 problems:
+- GREEN: 8
+- AMBER: 4
+- RED: 0
+
+East-core A+B:
+- GREEN: 6
+- AMBER: 2
+- RED: 0
+
+C supplementary:
+- GREEN: 2
+- AMBER: 2
+- RED: 0
+
+### Combined 2017–2023 result
+
+Official problems audited: 64
+- GREEN: 27
+- AMBER: 22
+- RED: 15
+
+East-core audited: 56
+- GREEN: 22
+- AMBER: 20
+- RED: 14
+
+Supplementary C audited: 8
+- GREEN: 5
+- AMBER: 2
+- RED: 1
+
+### 2023 findings
+
+- A1 is a direct T25 transfer through geometric series/coordinates or complex recurrence.
+- A2 needs only a bounded convex-function/upper-envelope bridge; this does not justify a new primary domain.
+- A3 and A4 are strong examples where ordinary T25 content is enough but SMMC demands inventive construction/invariant thinking.
+- B1 is a clean vector-geometry/triangle-inequality transfer.
+- B2 is a direct expectation + induction transfer.
+- B3 is an especially strong validation of T25 linear algebra: the official proof is essentially basis/dimension/direct-sum reasoning already owned by M1/M2.
+- B4 remains `open-problem`: part (a) is accessible with a small quadratic-irrational conjugation bridge, while the official document provides only known partial results for part (b), including a 2-adic valuation argument.
+- C1 strengthens the provisional contest-number-theory bridge via CRT/totient/coprime residue counting.
+- C2 and C3 are direct coordinate-geometry and inequality/Riemann-sum transfers.
+- C4 strengthens the SMMC methods case for pursuit/guarding and adversarial construction, but still does not require a new mathematical domain.
+
+### Verification
+
+Remote validation against the controlled SMMC schema and live canonical 80-target T25 manifest passed:
+- 64/64 official rows;
+- 56 East-core + 8 supplementary;
+- unique IDs;
+- correct pre-2022 A/B and 2022+ A/B/C structure;
+- all A/B rows East-relevant and all C rows supplementary;
+- all controlled tags/methods valid;
+- all stable `t25Targets` resolve;
+- all B4 open-problem protections remain intact through 2023;
+- totals: GREEN 27, AMBER 22, RED 15.
