@@ -161,6 +161,62 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must use the zero-sum condition explicitly.",
       "Must obtain the exact coefficient n."
     ]
+  },
+  "S-NEUTRAL-N1-03": {
+    reference: [
+      "From x≡2 (mod 3) and x≡3 (mod 5), write x=2+3k. Then 2+3k≡3 (mod 5), so 3k≡1 (mod 5).",
+      "Since 3^{-1}≡2 (mod 5), k≡2 (mod 5), hence x≡8 (mod 15).",
+      "Now write x=8+15t and impose x≡2 (mod 7): 8+15t≡2, so 1+t≡2 (mod 7), hence t≡1 (mod 7).",
+      "Therefore x≡23 (mod 105).",
+      "Because 3,5,7 are pairwise coprime, CRT gives uniqueness modulo 3·5·7=105."
+    ].join(" "),
+    rubric: [
+      "Must satisfy all three congruences.",
+      "Must state uniqueness modulo 105.",
+      "A different constructive CRT route is acceptable."
+    ]
+  },
+  "S-NEUTRAL-N1-04": {
+    reference: [
+      "A class modulo 30 is coprime to 30 exactly when it is nonzero modulo 2, modulo 3, and modulo 5.",
+      "There is 1 nonzero class modulo 2, 2 modulo 3, and 4 modulo 5.",
+      "By CRT, every choice of these coordinates corresponds to exactly one class modulo 30.",
+      "Hence there are 1·2·4=8 classes coprime to 30.",
+      "They are 1,7,11,13,17,19,23,29 modulo 30."
+    ].join(" "),
+    rubric: [
+      "Must connect coprimality with nonzero residues modulo 2,3,5.",
+      "Must use CRT uniqueness or an equivalent one-to-one argument.",
+      "Must obtain 8."
+    ]
+  },
+  "S-NEUTRAL-I1-01": {
+    reference: [
+      "Strengthen the claim to the triple pattern (F_{3k},F_{3k+1},F_{3k+2})≡(0,1,1) modulo 2 for every k≥0.",
+      "Base k=0 gives (0,1,1).",
+      "Assume a triple has parity (0,1,1). Then the next three terms have parities 1+1≡0, 1+0≡1, and 0+1≡1 modulo 2.",
+      "So the pattern reproduces itself for k+1.",
+      "Therefore F_n is even exactly at indices divisible by 3."
+    ].join(" "),
+    rubric: [
+      "Must state the strengthened triple pattern.",
+      "Must prove the entire triple advances to the next triple.",
+      "Must conclude the original iff statement."
+    ]
+  },
+  "S-NEUTRAL-I1-02": {
+    reference: [
+      "Verify the consecutive base cases 12=3·4, 13=2·4+5, 14=4+2·5, and 15=3·5.",
+      "Now suppose m≥12 has a representation m=4a+5b.",
+      "Then m+4=4(a+1)+5b also has one.",
+      "Every n≥12 is congruent modulo 4 to exactly one of 12,13,14,15, so repeated addition of 4 reaches every later integer.",
+      "Equivalently this is induction with a four-case base window and step n→n+4."
+    ].join(" "),
+    rubric: [
+      "Must establish enough consecutive base cases.",
+      "Must explain why a step of +4 covers all later integers from that base window.",
+      "Must keep coefficients nonnegative."
+    ]
   }
 });
 
