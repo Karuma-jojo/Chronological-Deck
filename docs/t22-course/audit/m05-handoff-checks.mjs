@@ -11,7 +11,7 @@ const hand=fs.readFileSync('docs/t22-course/M05-REVIEW-HANDOFF.md','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 assert.equal(a.version,'m05-authoring-astra-r1');
 assert.equal(a.instructionVersion,'m05-instruction-astra-r1');
-assert.equal(a.module.status,'authored-repaired-awaiting-independent-review');
+assert.equal(a.module.status,'authored-astra-repaired-independent-accepted');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
