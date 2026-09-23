@@ -278,3 +278,75 @@ Remote validation against the live T25 80-target manifest passed:
 - all stable `t25Targets` resolve to canonical T25 targets;
 - all five historical B4s remain explicitly `open-problem`;
 - totals: GREEN 11, AMBER 16, RED 13.
+
+
+## Batch 6 — 2022 A/B/C audit
+
+Source basis: official `smmc-2022-solutions.pdf` from the Simon Marais project.
+
+Structural change:
+- 2022 introduces the 12-problem A/B/C era;
+- A+B remain East-core;
+- C is retained as official supplementary material with `eastRelevant: false`;
+- the validator now enforces pre-2022 eight-problem years versus 2022+ twelve-problem years.
+
+Added:
+- `course/smmc/ledger-2022.mjs`;
+- 2022 aggregation in `ledger.mjs`;
+- `CEIL` secondary tag;
+- generalized A/B/C validator logic.
+
+### 2022 result
+
+All official 2022 problems:
+- GREEN: 8
+- AMBER: 2
+- RED: 2
+
+East-core A+B only:
+- GREEN: 5
+- AMBER: 2
+- RED: 1
+
+C supplementary:
+- GREEN: 3
+- AMBER: 0
+- RED: 1
+
+### Combined 2017–2022 result
+
+Official problems audited: 52
+- GREEN: 19
+- AMBER: 18
+- RED: 15
+
+East-core audited: 48
+- GREEN: 16
+- AMBER: 18
+- RED: 14
+
+Supplementary C audited: 4
+- GREEN: 3
+- RED: 1
+
+### 2022 findings
+
+- A1, A2, A3, B1 and B2 are direct T25 transfer problems despite very different surface forms.
+- A4 is a strong RED confirmation for `S-BRIDGE-N1`: the official number-theory route uses multiplicative orders, unit groups, p-adic valuations and factorial-valuation estimates beyond T25/BR-N.
+- B3 supports a bounded game-strategy bridge rather than a full combinatorial-game-theory course; elementary P/N-position induction is sufficient for one official route.
+- B4 reinforces invariant-region / discrete-dynamics methods. Part (a) is accessible with a dedicated method bridge; part (b) remains unresolved in the official solution document and is retained as `open-problem`.
+- C2 is an independent RED confirmation for `S-BRIDGE-A1`: comparison/subseries divergence and the harmonic benchmark are genuinely outside current T25.
+- C3 demonstrates why C is useful supplementary material: a probability/random-walk problem becomes GREEN through a recurrence-and-induction route without requiring generating functions.
+- The six primary domains remain sufficient.
+
+### Verification
+
+Remote validation against the controlled SMMC schema and live canonical 80-target T25 manifest passed:
+- 52/52 official rows;
+- 48 East-core + 4 supplementary;
+- unique IDs;
+- correct A/B structure before 2022 and A/B/C structure from 2022;
+- all A/B rows East-relevant and all 2022 C rows supplementary;
+- all controlled tags/methods valid;
+- all stable `t25Targets` resolve;
+- B4 open-problem protection remains intact through 2022.
