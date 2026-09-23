@@ -49,6 +49,30 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-METHOD-K1-U01",
     role: "transfer",
     prompt: "For integers n≥0 and k≥1, count the ordered k-tuples of nonnegative integers (x1,...,xk) with x1+...+xk=n by giving a reversible encoding. Explain explicitly why the answer differs from the positive-parts version."
+  },
+  "S-NEUTRAL-AN1-01": {
+    id: "S-NEUTRAL-AN1-01",
+    unitId: "S-BRIDGE-AN1-U01",
+    role: "main",
+    prompt: "Prove that the harmonic series Σ(n=1 to ∞) 1/n diverges by grouping terms into blocks whose endpoints are powers of 2. Your proof must give a uniform positive lower bound for every sufficiently late block."
+  },
+  "S-NEUTRAL-AN1-02": {
+    id: "S-NEUTRAL-AN1-02",
+    unitId: "S-BRIDGE-AN1-U01",
+    role: "transfer",
+    prompt: "Decide whether Σ(n=1 to ∞) 1/(n+√n) converges or diverges. Give a direct comparison with a standard benchmark series and justify the comparison inequality."
+  },
+  "S-NEUTRAL-X1-01": {
+    id: "S-NEUTRAL-X1-01",
+    unitId: "S-METHOD-X1-U01",
+    role: "main",
+    prompt: "Let a,b>0 with a+b=s fixed. Prove that ab≤s²/4 by introducing an auxiliary quantity that measures the imbalance between a and b. State exactly where equality occurs."
+  },
+  "S-NEUTRAL-X1-02": {
+    id: "S-NEUTRAL-X1-02",
+    unitId: "S-METHOD-X1-U01",
+    role: "transfer",
+    prompt: "Let x1,...,xn be real numbers with x1+...+xn=0. Prove that Σ_{1≤i<j≤n}(xi-xj)² = n Σ_{i=1}^n xi². Organize the proof by introducing or expanding an auxiliary aggregate quantity rather than summing pairwise terms one at a time."
   }
 });
 
