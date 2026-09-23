@@ -82,21 +82,21 @@ expect(greenMissing.status === "locked-t25", "GREEN problem should remain locked
 const greenReady = unlockStatus(green, { clearedT25Targets: green.t25Targets });
 expect(greenReady.status === "ready-transfer" && greenReady.ready, "GREEN problem should unlock after T25 prerequisites.");
 
-const amber = ledger.find(x => x.id === "SMMC-2021-A2");
+const amber = ledger.find(x => x.id === "SMMC-2021-A3");
 const amberBlocked = unlockStatus(amber, { clearedT25Targets: amber.t25Targets });
 expect(amberBlocked.status === "locked-smmc-bridge", "Mapped AMBER problem should require its bridge.");
 const amberReady = unlockStatus(amber, {
   clearedT25Targets: amber.t25Targets,
-  certifiedModules: ["S-BRIDGE-N1"],
+  certifiedUnits: ["S-BRIDGE-GR1-U01"],
 });
 expect(amberReady.status === "ready-transfer" && amberReady.ready, "Mapped AMBER should unlock after bridge completion.");
 
 const red = ledger.find(x => x.id === "SMMC-2025-A4");
 const redReady = unlockStatus(red, {
   clearedT25Targets: red.t25Targets,
-  certifiedModules: ["S-SPECIAL-ALG2"],
+  certifiedUnits: ["S-BRIDGE-GR1-U01"],
 });
-expect(redReady.status === "ready-development" && redReady.ready, "RED problems must unlock only as development.");
+expect(redReady.status === "requirement-map-pending" && !redReady.ready, "Unmapped RED problem must stay fail-closed.");
 
 const pending = ledger.find(x => x.id === "SMMC-2019-A2");
 const pendingStatus = unlockStatus(pending, { clearedT25Targets: pending.t25Targets });
