@@ -55,7 +55,7 @@ let histState=emptySmmcState();
 let studyState=emptySmmcStudy();
 let evaluatorPromise=null;
 const evaluatorBank=()=>evaluatorPromise??=import('../../course/smmc/authoring/evaluator-v1.mjs').then(m=>m.SMMC_EVALUATOR_V1);
-let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study',cloudReady=false,cloudApplying=false;
+let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study',cloudReady=false,cloudApplying=false,cloudReconciling=false;
 let researchVisible=false,paperVisible=false;
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
 const moduleIds=[...new Set(SMMC_UNITS_V1.map(x=>x.moduleId))];
@@ -88,8 +88,9 @@ function persist(){
   return true;
 }
 async function reconcileSmmcCloud(){
+  if(cloudReconciling)return;
   if(!workspaceCloudState().signedIn){cloudReady=true;cloudBadge('local','Local');return;}
-  cloudBadge('syncing','Syncing…');
+  cloudReconciling=true;cloudBadge('syncing','Syncing…');
   try{
     const [historical,study]=await Promise.all([
       reconcileWorkspaceScope(
@@ -106,7 +107,7 @@ async function reconcileSmmcCloud(){
     applySmmcCloudResult('historical',historical);
     applySmmcCloudResult('study',study);
   }catch(error){cloudBadge('error','Saved locally');}
-  finally{cloudReady=true;}
+  finally{cloudReady=true;cloudReconciling=false;}
 }
 function download(name,obj){
   const url=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));
