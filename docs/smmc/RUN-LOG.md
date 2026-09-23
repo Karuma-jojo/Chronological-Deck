@@ -151,3 +151,60 @@ Remote-source validation after Batch 3 passed:
 - combined overlap counts are GREEN 4, AMBER 9, RED 11.
 
 A fresh comparison with `main` shows the companion branch ahead with zero divergence behind and only additive SMMC paths. No pre-existing T25/Aster/compiler/runtime file is modified. No CI run is claimed for this documentation/data-only checkpoint.
+
+
+## Crosswalk repair — stable T25 target codes
+
+During the 2020 pre-write audit, the previous `t25Sessions` numeric links were found to be partly inherited from an older T25 numbering layout. The old validator checked only that a number lay in 1–162, so it could not detect semantic drift.
+
+Repair completed before freezing 2020:
+
+- all 2017–2019 rows now use stable `t25Targets` codes;
+- `course/smmc/t25-crosswalk.mjs` resolves those codes to live route positions when needed;
+- the validator now checks target codes against canonical T25 rather than trusting raw route numbers;
+- no canonical T25 file was changed.
+
+## Batch 4 — 2020 audit
+
+Source basis: official 2020 SMMC problem/solution material stored in the Simon Marais project.
+
+Added:
+- `course/smmc/ledger-2020.mjs`;
+- 2020 aggregation in `ledger.mjs`;
+- `PROJECTIVE-GEO` secondary tag;
+- `BIJECTION` method tag;
+- validator coverage through 2020.
+
+### 2020 first-pass result
+
+- GREEN: 4
+- AMBER: 3
+- RED: 1
+- East-relevant: 8/8
+- Open-problem item: B4.
+
+### Combined 2017–2020 result
+
+- Problems: 32
+- GREEN: 8
+- AMBER: 12
+- RED: 12
+
+### 2020 findings
+
+- A1 and A2 are strong examples of SMMC problems that need creativity but essentially no new mathematical content beyond T25 plus existing bridges.
+- A4 looks like difficult spatial geometry on the surface, but an official route reduces it to Gram structure, fifth roots of unity, eigenstructure and rank-nullity; this makes it an AMBER rather than a RED problem.
+- B1 is a direct linear-algebra/combinatorics transfer and is GREEN.
+- B4 is a genuine specialist extension: the official prime-case construction uses finite fields, cyclic multiplicative groups and projective geometry, while the full classification is open.
+
+### Verification
+
+A remote-source validation against the live canonical T25 manifest passed:
+
+- 32/32 problem rows parsed;
+- unique IDs;
+- exactly four A and four B problems per year for 2017–2020;
+- all primary domains/tags/methods controlled by schema;
+- every `t25Targets` entry resolves to one of the 80 canonical T25 targets;
+- all four historical B4 items remain explicitly `open-problem`;
+- overlap totals: GREEN 8, AMBER 12, RED 12.
