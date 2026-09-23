@@ -116,10 +116,14 @@ export function validateSmmcState(value, ledger, knownModuleIds = []) {
   for (const [moduleId, moduleState] of Object.entries(value.modules)) {
     if (!moduleIds.has(moduleId)) throw new Error(`Unknown SMMC module ${moduleId}`);
     if (!moduleState || typeof moduleState !== "object") throw new Error("Invalid SMMC module state");
-    const safe = { completed: Boolean(moduleState.completed) };
-    if (moduleState.completedAt !== undefined) {
-      if (!stamp(moduleState.completedAt)) throw new Error("Invalid module completion timestamp");
-      safe.completedAt = moduleState.completedAt;
+    const safe = { selfReportedComplete: Boolean(moduleState.selfReportedComplete) };
+    if (moduleState.selfReportedAt !== undefined) {
+      if (!stamp(moduleState.selfReportedAt)) throw new Error("Invalid module self-report timestamp");
+      safe.selfReportedAt = moduleState.selfReportedAt;
+    }
+    if (moduleState.certifiedAt !== undefined) {
+      if (!stamp(moduleState.certifiedAt)) throw new Error("Invalid module certification timestamp");
+      safe.certifiedAt = moduleState.certifiedAt;
     }
     out.modules[moduleId] = safe;
   }
@@ -173,7 +177,25 @@ export function exposureClass(state, problemId) {
   };
 }
 
-export function completeModule(state, moduleId, at = new Date().toISOString()) {
-  state.modules[moduleId] = { completed: true, completedAt: at };
+export function selfReportModuleComplete(state, moduleId, at = new Date().toISOString()) {
+  state.modules[moduleId] = {
+    ...state.modules[moduleId],
+    selfReportedComplete: true,
+    selfReportedAt: state.modules[moduleId]?.selfReportedAt || at,
+  };
   return state.modules[moduleId];
+}
+
+export function certifyModule(state, moduleId, at = new Date().toISOString()) {
+  state.modules[moduleId] = {
+    ...state.modules[moduleId],
+    certifiedAt: state.modules[moduleId]?.certifiedAt || at,
+  };
+  return state.modules[moduleId];
+}
+
+export function certifiedModuleIds(state) {
+  return Object.entries(state.modules)
+    .filter(([, value]) => Boolean(value?.certifiedAt))
+    .map(([moduleId]) => moduleId);
 }
