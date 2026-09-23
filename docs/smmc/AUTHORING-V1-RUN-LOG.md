@@ -215,3 +215,52 @@ Remote semantic simulation passed:
 - an unrelated unmapped AMBER problem remains `requirement-map-pending` even when all current units are certified.
 
 No browser/UI work has been started.
+
+
+## Checkpoint F — learner-facing SMMC page
+
+Added:
+- `smmc-course.html`;
+- `css/smmc-course.css`;
+- `js/smmc/ui.js`;
+- `scripts/test-smmc-course-browser.mjs`;
+- dedicated `SMMC authoring checks` GitHub Actions workflow.
+
+### Access model
+
+The SMMC companion now has its own page instead of living only in internal ledgers.
+
+Study view:
+- browse authored bridge/method units;
+- open main/transfer neutral tasks;
+- save neutral attempts;
+- open evaluator references only after saving;
+- self-report unit completion;
+- neutral practice is stored separately from historical-PYQ exposure.
+
+Historical map:
+- browse all 88 official problem records;
+- preview T25 prerequisite status from manually entered target codes;
+- exact-unit certification gates remain fail-closed;
+- GREEN/AMBER/RED is hidden by default;
+- explicit research-label reveal records private-metadata exposure for only that selected problem;
+- another unrevealed historical problem remains sealed.
+
+This is intentional: color/domain/method metadata is useful for planning but is not automatically shown for a problem the learner may want to preserve as unseen competition evidence.
+
+### Browser contract
+
+The new browser smoke test checks:
+- page reaches Ready state;
+- exactly 8 authored units;
+- exactly 16 neutral tasks;
+- neutral attempt save/reveal works;
+- self-report does not create certification;
+- historical map has 88 problems;
+- research metadata starts hidden;
+- 2021 A3 remains bridge-locked when only T25 targets are entered;
+- revealing 2021 A3 research metadata displays AMBER and contaminates only 2021 A3;
+- 2022 C2 remains sealed when its research metadata has not been revealed.
+
+GitHub Pages target path after merge:
+`https://karuma-jojo.github.io/Chronological-Deck/smmc-course.html`.
