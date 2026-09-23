@@ -152,6 +152,6 @@ export function restoreViewport({ focusId, scrollY = 0 } = {}) {
         return;
       }
     }
-    window.scrollTo({ top: nonnegative(scrollY), left: 0, behavior: "instant" });
+    window.scrollTo(0, nonnegative(scrollY));
   }));
 }
