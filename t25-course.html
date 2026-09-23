@@ -1,13 +1,14 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>T25 · The Aster Course</title><link rel="stylesheet" href="css/t25-course.css"></head><body>
 <header><a href="index.html">← Chronological Deck</a><span class="eyebrow">T25 · M.STAT</span><h1>The Aster Course</h1><p>162 sessions. A mathematical record you earn.</p>
-<nav class="workspace-nav" aria-label="Mathematics workspace">
+
+<div class="actions"><button id="export">Export study record</button><label class="button">Import record<input id="import" type="file" accept="application/json" hidden></label><a href="docs/t25-course/RELEASE.md">Study guide</a><a href="docs/t25-course/RUN-LOG.md">Build & validation log</a></div></header>
+<p id="status" role="status" aria-live="polite">Loading the course…</p>
+<nav class="workspace-nav workspace-dock" aria-label="Mathematics workspace">
   <a id="workspaceT25" class="workspace-link" href="t25-course.html">T25 plain</a>
   <a id="workspaceAster" class="workspace-link" href="t25-course.html?presentation=anime">Aster</a>
   <a id="workspaceSMMC" class="workspace-link" href="smmc-course.html">SMMC companion</a>
   <span id="workspacePosition" class="workspace-position"></span>
 </nav>
-<div class="actions"><button id="export">Export study record</button><label class="button">Import record<input id="import" type="file" accept="application/json" hidden></label><a href="docs/t25-course/RELEASE.md">Study guide</a><a href="docs/t25-course/RUN-LOG.md">Build & validation log</a></div></header>
-<p id="status" role="status" aria-live="polite">Loading the course…</p>
 <div class="layout"><aside><label for="search">Find a session</label><input id="search" type="search" placeholder="Number, code or topic"><label for="session">Session</label><select id="session"></select><div class="actions"><button id="previous">← Previous</button><button id="next">Next →</button></div><label for="presentation">Presentation</label><select id="presentation"><option value="plain">Plain</option><option value="anime">Anime · Aster expedition</option></select><details><summary>Review queue</summary><p class="small">Study evidence only. Repetition is retention practice, not unseen transfer.</p><div id="queue"></div></details><details><summary>Mixed & objective sets</summary><p class="small" id="setWarning"></p><select id="setSelect" aria-label="Assessment set"></select><button id="startSet">Open set</button><div id="setItems"></div></details><details><summary>Prerequisite bridges</summary><div id="bridges"></div></details><details><summary>Sources & syllabus</summary><a href="docs/t25-course/SYLLABUS.md">Current 162-session syllabus</a><p class="small">The historical 392-question ledger classifies topics; it is not a certified answer key. Current repaired card contracts govern.</p></details></aside>
 <main><div id="sessionMeta" class="eyebrow"></div><h2 id="title"></h2>
 <section id="workspaceConnections" class="workspace-connections">
