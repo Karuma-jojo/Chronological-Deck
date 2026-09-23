@@ -28,7 +28,7 @@ The ledger preserves compressed structure with secondary tags. The current contr
 
 Important examples include:
 
-`POLY LA CX FF FE INEQ CONVEX GRAPH GAME TILING REC GF CONST SEQ ASYM INT ODE FUNC MOD DIO VAL PRIME EUCLID COORD VECTOR-GEO CONVEX-GEO LATTICE POLYHEDRAL COND EXPECT INDICATOR RANDOM-WALK STOPPING RANDOM-PROCESS`.
+`POLY LA CX FF FE INEQ CONVEX GRAPH GAME TILING REC GF CONST SEQ SERIES ASYM INT ODE FUNC MOD DIO VAL PRIME EUCLID COORD VECTOR-GEO CONVEX-GEO LATTICE POLYHEDRAL COND EXPECT INDICATOR RANDOM-WALK STOPPING RANDOM-PROCESS`.
 
 The 2018 audit added `GF` for generating functions. That is intentionally a secondary tag rather than a seventh primary domain.
 
@@ -36,7 +36,7 @@ The 2018 audit added `GF` for generating functions. That is intentionally a seco
 
 Methods are independent of domain. The controlled vocabulary is also in `schema.mjs`.
 
-It includes proof architectures, structural methods, transformations, analytic methods and exploration tools such as induction, minimal counterexample, invariants, parity, symmetry, extremal reasoning, double counting, normalization, graph reformulation, recurrence reformulation, bounding, monotonicity, construction, parameterization and generating functions.
+It includes proof architectures, structural methods, transformations, analytic methods and exploration tools such as induction, minimal counterexample, invariants, parity, symmetry, extremal reasoning, double counting, normalization, graph reformulation, recurrence reformulation, bounding, monotonicity, construction, parameterization, generating functions and exchange arguments.
 
 ## T25 overlap
 
@@ -75,4 +75,7 @@ It should not mechanically reuse the seven T25 episode boundaries.
 
 ## Current build status
 
-Batches 1–2 establish the taxonomy/schema and audit all 16 East-relevant problems from 2017–2018. See `RUN-LOG.md`, `ledger-2017.mjs`, `ledger-2018.mjs` and `ledger.mjs`.
+Batches 1–3 establish the taxonomy/schema and audit all 24 East-relevant problems from 2017–2019. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
+
+
+The 2019 audit added `SERIES` as a secondary content tag and `EXCHANGE-ARGUMENT` as a reusable method. Neither requires a new top-level domain.
