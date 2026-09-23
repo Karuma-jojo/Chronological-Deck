@@ -297,3 +297,70 @@ Regression coverage:
 - statement-only evidence remains transfer-eligible under the evidence model;
 - material hints remain contaminating;
 - browser smoke test checks the 2021 A3 official paper URL, reversible metadata visibility, reversible paper preview, and absence of automatic exposure writes.
+
+
+## Workspace-navigation checkpoint — T25 ↔ Aster ↔ SMMC
+
+Goal: treat T25, Aster presentation and SMMC companion as one continuous mathematics workspace rather than separate destinations.
+
+Added:
+- `js/workspace-nav.js` — device-local UI-location memory only;
+- top-level T25 / Aster / SMMC workspace navigation on both course pages;
+- bidirectional mathematical cross-links;
+- URL-addressable resume positions.
+
+Shared navigation state remembers only:
+- last T25 session number;
+- plain vs Aster presentation;
+- last SMMC tab;
+- last SMMC authored unit;
+- last SMMC neutral task;
+- last SMMC historical problem.
+
+It does **not** store or grant:
+- T25 clearance;
+- SMMC certification;
+- attempt scores;
+- evaluator exposure;
+- story completion authority.
+
+### T25 → SMMC
+
+For the current T25 session, the page derives its stable target code and lists historical SMMC problems whose `t25Targets` contain that target.
+
+Connections reveal only:
+- year/problem identifier;
+- East vs C-supplementary status.
+
+They do not reveal:
+- GREEN/AMBER/RED;
+- method tags;
+- bridge diagnosis;
+- solution route.
+
+Clicking a connection opens the SMMC historical map on that exact problem.
+
+### SMMC → T25 / Aster
+
+For an authored SMMC unit or selected historical problem, stable T25 target codes are resolved through the live audited T25 manifest.
+
+Each mapped session exposes:
+- Open T25;
+- Open in Aster.
+
+Both point to the same exact T25 session. Aster is treated as presentation state over T25, not a separate academic route.
+
+### Resume behavior
+
+Examples:
+- T25 session 007 → SMMC problem → T25 returns to session 007;
+- T25 session 007 Plain → Aster remains session 007;
+- SMMC historical problem → T25/Aster → SMMC returns to the same historical problem;
+- SMMC unit + transfer task → T25/Aster → SMMC returns to the same unit and task.
+
+URLs also carry the visible position:
+- `t25-course.html?session=N&presentation=plain|anime`;
+- `smmc-course.html?tab=study&unit=...&task=...`;
+- `smmc-course.html?tab=map&problem=...`.
+
+Added `scripts/test-math-workspace-browser.mjs` and included it in the SMMC CI gate.
