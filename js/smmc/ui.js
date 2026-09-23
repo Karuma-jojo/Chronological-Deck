@@ -77,6 +77,31 @@ function renderHistory(){
   const rows=studyState.attempts.filter(a=>a.taskId===currentTaskId).slice(-12).reverse();
   $('history').replaceChildren(...rows.map(a=>{const el=document.createElement('article');el.textContent=a.at+' · '+a.assistance+' · '+a.minutes+' min\n'+(a.referenceSeenBefore?'Reference had already been seen.\n':'')+a.answer;return el;}));
 }
+
+function renderOverlapSummary(){
+  const tally=rows=>({
+    green:rows.filter(x=>x.overlap==='green').length,
+    amber:rows.filter(x=>x.overlap==='amber').length,
+    red:rows.filter(x=>x.overlap==='red').length,
+  });
+  const groups=[
+    ['All 88',tally(ledger)],
+    ['East A+B',tally(ledger.filter(x=>x.eastRelevant))],
+  ];
+  $('overlapSummary').replaceChildren(...groups.map(([title,count])=>{
+    const box=document.createElement('section');box.className='overlap-group';
+    const h=document.createElement('h3');h.textContent=title;box.append(h);
+    const stats=document.createElement('div');stats.className='overlap-stats';
+    for(const key of ['green','amber','red']){
+      const item=document.createElement('div');item.className='overlap-stat '+key;
+      const n=document.createElement('strong');n.textContent=count[key];
+      const label=document.createElement('span');label.textContent=key.toUpperCase();
+      item.append(n,label);stats.append(item);
+    }
+    box.append(stats);return box;
+  }));
+}
+
 function problemLabel(p){return p.year+' '+p.session+p.problem+' · '+(p.eastRelevant?'East':'C supplementary');}
 function renderProblemList(){
   const q=$('problemSearch').value.trim().toLowerCase();
@@ -126,7 +151,7 @@ async function init(){
     const h=localStorage.getItem(HIST_KEY);if(h)histState=validateSmmcState(JSON.parse(h),ledger,moduleIds,allUnitIds);
     const s=localStorage.getItem(STUDY_KEY);if(s)studyState=validateStudy(JSON.parse(s));
   }catch(e){storageOK=false;tell('Existing SMMC browser record could not be read and has not been overwritten. Export from this session if needed.');}
-  renderUnitList();renderUnit(SMMC_UNITS_V1[0].id);renderProblemList();renderHistorical(ledger[0].id);
+  renderUnitList();renderUnit(SMMC_UNITS_V1[0].id);renderProblemList();renderOverlapSummary();renderHistorical(ledger[0].id);
   $('unitSearch').oninput=renderUnitList;$('unitSelect').onchange=()=>renderUnit($('unitSelect').value);
   $('prevUnit').onclick=()=>{const i=SMMC_UNITS_V1.findIndex(x=>x.id===currentUnit.id);if(i>0)renderUnit(SMMC_UNITS_V1[i-1].id);};
   $('nextUnit').onclick=()=>{const i=SMMC_UNITS_V1.findIndex(x=>x.id===currentUnit.id);if(i<SMMC_UNITS_V1.length-1)renderUnit(SMMC_UNITS_V1[i+1].id);};
