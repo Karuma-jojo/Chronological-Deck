@@ -2,11 +2,33 @@ import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,taskText
 import SMMC_CONNECTIONS_BY_T25 from '../../course/smmc/connection-index-v1.mjs';
 import {readWorkspaceNav,rememberT25Location,t25Href,smmcHref,restoreViewport} from '../workspace-nav.js';
 import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
+import {workspaceCloudState,reconcileWorkspaceScope,scheduleWorkspaceScopeSync} from '../workspace-cloud.js';
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
 const uuid=()=>crypto.randomUUID();
-let course,state,session,problemId,lastSaved=null,keys=null,notesPromise=null,fullCoursePromise=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main';
+let course,state,session,problemId,lastSaved=null,keys=null,notesPromise=null,fullCoursePromise=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main',cloudReady=false,cloudApplying=false;
 const put=(id,text)=>$(id).textContent=text;
+function cloudBadge(kind='local',text){
+ const el=$('workspaceCloud');if(!el)return;
+ el.className='workspace-cloud '+(kind==='local'?'':kind);
+ el.textContent=text||(kind==='synced'?'Synced ☁':kind==='syncing'?'Saving…':kind==='error'?'Cloud issue':'Local');
+}
+function renderCloudBadge(){
+ const cloud=workspaceCloudState();
+ cloudBadge(cloud.signedIn?'syncing':'local',cloud.signedIn?'Checking ☁':'Local');
+}
+function applyT25CloudResult(result){
+ if(result.status==='error'){cloudBadge('error','Saved locally');return;}
+ if(result.status==='local-only'){cloudBadge('local','Local');return;}
+ if(result.payload){
+   cloudApplying=true;
+   state=result.payload;
+   if(storageOK)try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{storageOK=false;}
+   renderHistory();renderQueue();setPresentation();
+   cloudApplying=false;
+ }
+ cloudBadge('synced','Synced ☁');
+}
 async function json(url){const r=await fetch(url);if(!r.ok)throw Error(`Could not load ${url} (${r.status})`);return r.json();}
 async function runtimeCourse(){try{return await json('course/generated/runtime.json');}catch{return json('course/generated/course.json');}}
 async function fullCourse(){return fullCoursePromise??=json('course/generated/course.json');}
@@ -24,7 +46,25 @@ async function noteBank(){
 function persist(message){
  if(storageOK){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{storageOK=false;}}
  if(message)tell(message+(storageOK?'':' — held in memory only; export now to keep it.'));
+ if(cloudReady&&!cloudApplying){
+   if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
+   scheduleWorkspaceScopeSync(
+     't25_course',
+     ()=>state,
+     (local,remote)=>remote?mergeEvidence(local,remote,course):local,
+     applyT25CloudResult
+   );
+ }
  return storageOK;
+}
+async function reconcileT25Cloud(){
+ if(!workspaceCloudState().signedIn){cloudReady=true;cloudBadge('local','Local');return;}
+ cloudBadge('syncing','Syncing…');
+ try{
+   const result=await reconcileWorkspaceScope('t25_course',state,(local,remote)=>remote?mergeEvidence(local,remote,course):local);
+   applyT25CloudResult(result);
+ }catch(error){cloudBadge('error','Saved locally');}
+ finally{cloudReady=true;}
 }
 function options(select,items){select.replaceChildren(...items.map(([value,label])=>{const o=document.createElement('option');o.value=value;o.textContent=label;return o;}));}
 function button(label,fn){const b=document.createElement('button');b.textContent=label;b.addEventListener('click',fn);return b;}
@@ -170,6 +210,10 @@ async function init(){
  $('bridges').replaceChildren(...course.bridges.flatMap(b=>[...b.tasks.map((id,i)=>button(`${b.title} · ${i+1}`,()=>{showProblem(id,'bridge');tell(`Prerequisite bridge. Open the learning note if needed; this grants no atomic clearance.`);}))]));
  $('saveChoice').onclick=()=>{const old=state.story[session.phase];state.story[session.phase]={choice:Number($('storyChoice').value),completed:old?.completed||false};persist('Story choice saved.');setPresentation();};
  $('finishStory').onclick=()=>{state.story[session.phase]={choice:Number($('storyChoice').value),completed:true};persist('Your report of SPIRE phase certification was recorded for story continuity only.');setPresentation();};
+ renderCloudBadge();
+ void reconcileT25Cloud();
+ document.addEventListener('chrono:cloud-context-changed',()=>{cloudReady=false;void reconcileT25Cloud();});
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&cloudReady&&workspaceCloudState().signedIn)void reconcileT25Cloud();});
  window.addEventListener('pagehide',()=>{
    if(problemId)writeWorkspaceDraft('t25',problemId,$('answer').value);
    rememberT25Location({session:session.order,presentation:$('presentation').value,task:currentTaskKind,scrollY:window.scrollY});
