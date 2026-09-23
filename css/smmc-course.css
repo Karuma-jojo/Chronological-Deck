@@ -60,3 +60,18 @@ footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var
 .t25-connection .actions{margin:0}
 .t25-connection .actions a{font-size:.86rem}
 @media(max-width:800px){.workspace-nav{align-items:stretch}.workspace-link{justify-content:center}.workspace-position{width:100%;margin:0}.connection-list{grid-template-columns:1fr}}
+
+.workspace-dock{
+  position:sticky;top:0;z-index:50;
+  margin:0;padding:8px max(16px,calc((100vw - 1280px)/2));
+  background:rgba(14,20,31,.94);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 24px rgba(0,0,0,.18)
+}
+.workspace-dock .workspace-position{margin-left:auto}
+#problem,#histTitle,#unitTitle,.task{scroll-margin-top:76px}
+@media(max-width:800px){
+  .workspace-dock{padding:8px 12px;gap:6px}
+  .workspace-dock .workspace-position{margin-left:0;width:100%;text-align:center}
+}

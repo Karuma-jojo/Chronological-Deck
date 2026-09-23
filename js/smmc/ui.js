@@ -9,7 +9,8 @@ import {
 import { unlockStatus } from '../../course/smmc/runtime/unlock.mjs';
 import { officialPaperUrl } from '../../course/smmc/sources-v1.mjs';
 import { routeStepsForT25Targets } from '../../course/smmc/t25-crosswalk.mjs';
-import {readWorkspaceNav,rememberSmmcLocation,t25Href,smmcHref} from '../workspace-nav.js';
+import {readWorkspaceNav,rememberSmmcLocation,t25Href,smmcHref,restoreViewport} from '../workspace-nav.js';
+import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
 
 const $=id=>document.getElementById(id);
 const HIST_KEY='chrono_smmc_historical_evidence_v1';
@@ -74,8 +75,8 @@ function renderT25Connections(targetCodes,containerId){
     const title=document.createElement('strong');title.textContent=`${String(step.routeOrder).padStart(3,'0')} · ${step.syllabusCode} · ${step.title}`;
     const small=document.createElement('small');small.textContent=`${step.targetCode} · ${step.targetTitle}`;
     const actions=document.createElement('div');actions.className='actions';
-    const plain=document.createElement('a');plain.className='button';plain.textContent='Open T25';plain.href=t25Href({session:step.routeOrder,presentation:'plain'});
-    const aster=document.createElement('a');aster.className='button';aster.textContent='Open in Aster';aster.href=t25Href({session:step.routeOrder,presentation:'anime'});
+    const plain=document.createElement('a');plain.className='button';plain.textContent='Open T25';plain.href=t25Href({session:step.routeOrder,presentation:'plain',task:'main',focus:'problem'});
+    const aster=document.createElement('a');aster.className='button';aster.textContent='Open in Aster';aster.href=t25Href({session:step.routeOrder,presentation:'anime',task:'main',focus:'problem'});
     actions.append(plain,aster);card.append(title,small,actions);return card;
   }));
 }
@@ -87,12 +88,26 @@ function replaceSmmcUrl(){
     problemId:currentProblem?.id||null,
   }));
 }
-function switchTab(which,updateUrl=true){
+function saveViewport(){
+  rememberSmmcLocation({
+    tab:currentTab,
+    unitId:currentUnit?.id||null,
+    taskId:currentTaskId||null,
+    problemId:currentProblem?.id||null,
+    scrollY:window.scrollY,
+  });
+}
+function switchTab(which,updateUrl=true,restore=true,saveCurrent=true){
+  if(saveCurrent)saveViewport();
   const study=which==='study';currentTab=study?'study':'map';
   $('studyView').hidden=!study;$('studyNav').hidden=!study;$('mapView').hidden=study;$('mapNav').hidden=study;
   $('tabStudy').classList.toggle('active',study);$('tabMap').classList.toggle('active',!study);
   rememberSmmcLocation({tab:currentTab,unitId:currentUnit?.id||null,taskId:currentTaskId||null,problemId:currentProblem?.id||null});
   renderWorkspaceNav();if(updateUrl)replaceSmmcUrl();
+  if(restore){
+    const remembered=readWorkspaceNav();
+    restoreViewport({scrollY:remembered.smmc.scroll[currentTab]});
+  }
 }
 function unitLabel(u){return (u.kind==='bridge'?'Bridge':'Method')+' · '+u.id+' · '+u.title;}
 function renderUnitList(){
@@ -116,9 +131,10 @@ function renderUnit(id,preferredTask=null){
   renderWorkspaceNav();
 }
 function showTask(id){
+  if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);
   currentTaskId=id;const p=SMMC_PUBLIC_PROBLEMS_V1[id];
   put('taskMeta',p.role.toUpperCase()+' · '+id);put('problemText',p.prompt);
-  $('answer').value='';$('assistance').value='independent';$('minutes').value='0';$('revealRef').disabled=true;$('reference').hidden=true;put('referenceText','');
+  $('answer').value=readWorkspaceDraft('smmc',id);$('assistance').value='independent';$('minutes').value='0';$('revealRef').disabled=true;$('reference').hidden=true;put('referenceText','');
   renderHistory();
   if(currentUnit){rememberSmmcLocation({unitId:currentUnit.id,taskId:id});if(currentTab==='study')replaceSmmcUrl();}
   renderWorkspaceNav();
@@ -228,8 +244,9 @@ async function init(){
   const requestedTask=params.get('task')||remembered.smmc.taskId;
   const requestedProblem=params.get('problem')||remembered.smmc.problemId;
   const problem=ledger.find(x=>x.id===requestedProblem)||ledger[0];
-  renderUnitList();renderUnit(unit.id,requestedTask);renderProblemList();renderOverlapSummary();renderHistorical(problem.id);switchTab(requestedTab,false);replaceSmmcUrl();
+  renderUnitList();renderUnit(unit.id,requestedTask);renderProblemList();renderOverlapSummary();renderHistorical(problem.id);switchTab(requestedTab,false,false,false);replaceSmmcUrl();
   $('unitSearch').oninput=renderUnitList;$('unitSelect').onchange=()=>renderUnit($('unitSelect').value);
+  $('answer').addEventListener('input',()=>{if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);});
   $('prevUnit').onclick=()=>{const i=SMMC_UNITS_V1.findIndex(x=>x.id===currentUnit.id);if(i>0)renderUnit(SMMC_UNITS_V1[i-1].id);};
   $('nextUnit').onclick=()=>{const i=SMMC_UNITS_V1.findIndex(x=>x.id===currentUnit.id);if(i<SMMC_UNITS_V1.length-1)renderUnit(SMMC_UNITS_V1[i+1].id);};
   $('mainTask').onclick=()=>showTask(currentUnit.mainTaskId);$('transferTask').onclick=()=>showTask(currentUnit.transferTaskId);
@@ -238,7 +255,7 @@ async function init(){
     if(answer.length>100000||!Number.isFinite(minutes)||minutes<0||minutes>100000){tell('Check answer length and minutes.');return;}
     const hadReference=studyState.attempts.some(a=>a.taskId===currentTaskId&&a.referenceOpenedAt);
     studyState.attempts.push({id:uuid(),taskId:currentTaskId,at:new Date().toISOString(),answer,assistance:$('assistance').value,minutes,referenceSeenBefore:hadReference});
-    $('revealRef').disabled=false;persist();renderHistory();tell('Neutral training attempt saved. Historical PYQ exposure unchanged.');
+    clearWorkspaceDraft('smmc',currentTaskId);$('revealRef').disabled=false;persist();renderHistory();tell('Neutral training attempt saved. Historical PYQ exposure unchanged.');
   };
   $('revealRef').onclick=()=>{
     const r=SMMC_EVALUATOR_V1[currentTaskId];put('referenceText',r.reference+'\n\n'+r.rubric.map(x=>'• '+x).join('\n'));$('reference').hidden=false;
@@ -271,6 +288,13 @@ async function init(){
       persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();tell('SMMC record imported.');
     }catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}
   };
-  if(storageOK)tell('Ready: '+SMMC_UNITS_V1.length+' authored units, '+Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length+' neutral tasks, and '+ledger.length+' historical problem records.');
+  window.addEventListener('pagehide',()=>{
+    if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);
+    saveViewport();
+  });
+  const focus=params.get('focus');
+  const rememberedAfter=readWorkspaceNav();
+  restoreViewport({focusId:focus,scrollY:rememberedAfter.smmc.scroll[currentTab]});
+  if(storageOK)tell('Ready: '+SMMC_UNITS_V1.length+' authored units, '+Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length+' neutral tasks, and '+ledger.length+' historical problem records. Resumed '+(currentTab==='map'?problemLabel(currentProblem):currentUnit.id+' · '+currentTaskId)+'.');
 }
 init().catch(e=>tell('SMMC companion could not start: '+e.message));
