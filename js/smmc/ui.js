@@ -11,6 +11,7 @@ import { officialPaperUrl } from '../../course/smmc/sources-v1.mjs';
 import { routeStepsForT25Targets } from '../../course/smmc/t25-crosswalk.mjs';
 import {readWorkspaceNav,rememberSmmcLocation,t25Href,smmcHref,restoreViewport} from '../workspace-nav.js';
 import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
+import {workspaceCloudState,reconcileWorkspaceScope,scheduleWorkspaceScopeSync} from '../workspace-cloud.js';
 
 const $=id=>document.getElementById(id);
 const HIST_KEY='chrono_smmc_historical_evidence_v1';
@@ -18,11 +19,43 @@ const STUDY_KEY='chrono_smmc_neutral_study_v1';
 const uuid=()=>crypto.randomUUID();
 const tell=x=>$('status').textContent=x;
 const put=(id,text)=>$(id).textContent=text;
+function cloudBadge(kind='local',text){
+  const el=$('workspaceCloud');if(!el)return;
+  el.className='workspace-cloud '+(kind==='local'?'':kind);
+  el.textContent=text||(kind==='synced'?'Synced ☁':kind==='syncing'?'Saving…':kind==='error'?'Cloud issue':'Local');
+}
+function renderCloudBadge(){
+  const cloud=workspaceCloudState();
+  cloudBadge(cloud.signedIn?'syncing':'local',cloud.signedIn?'Checking ☁':'Local');
+}
+function refreshSmmcViews(){
+  renderUnit(currentUnit?.id||SMMC_UNITS_V1[0].id,currentTaskId);
+  if(currentProblem)renderHistorical(currentProblem.id);
+  renderHistory();
+}
+function applySmmcCloudResult(kind,result){
+  if(result.status==='error'){cloudBadge('error','Saved locally');return;}
+  if(result.status==='local-only'){cloudBadge('local','Local');return;}
+  if(result.payload){
+    cloudApplying=true;
+    if(kind==='historical')histState=result.payload;
+    else studyState=result.payload;
+    if(storageOK){
+      try{
+        localStorage.setItem(HIST_KEY,JSON.stringify(histState));
+        localStorage.setItem(STUDY_KEY,JSON.stringify(studyState));
+      }catch{storageOK=false;}
+    }
+    refreshSmmcViews();
+    cloudApplying=false;
+  }
+  cloudBadge('synced','Synced ☁');
+}
 let histState=emptySmmcState();
 let studyState=emptySmmcStudy();
 let evaluatorPromise=null;
 const evaluatorBank=()=>evaluatorPromise??=import('../../course/smmc/authoring/evaluator-v1.mjs').then(m=>m.SMMC_EVALUATOR_V1);
-let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study';
+let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study',cloudReady=false,cloudApplying=false;
 let researchVisible=false,paperVisible=false;
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
 const moduleIds=[...new Set(SMMC_UNITS_V1.map(x=>x.moduleId))];
@@ -32,8 +65,48 @@ function persist(){
   try{
     localStorage.setItem(HIST_KEY,JSON.stringify(histState));
     localStorage.setItem(STUDY_KEY,JSON.stringify(studyState));
-    return true;
-  }catch{storageOK=false;tell('Browser storage is unavailable. Export before leaving if you want to keep this session.');return false;}
+  }catch{
+    storageOK=false;
+    tell('Browser storage is unavailable. Export before leaving if you want to keep this session.');
+    return false;
+  }
+  if(cloudReady&&!cloudApplying){
+    if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
+    scheduleWorkspaceScopeSync(
+      'smmc_historical',
+      ()=>histState,
+      (local,remote)=>mergeSmmcState(local,remote,ledger,moduleIds,allUnitIds),
+      result=>applySmmcCloudResult('historical',result)
+    );
+    scheduleWorkspaceScopeSync(
+      'smmc_study',
+      ()=>studyState,
+      (local,remote)=>mergeSmmcStudy(local,remote,Object.keys(SMMC_PUBLIC_PROBLEMS_V1)),
+      result=>applySmmcCloudResult('study',result)
+    );
+  }
+  return true;
+}
+async function reconcileSmmcCloud(){
+  if(!workspaceCloudState().signedIn){cloudReady=true;cloudBadge('local','Local');return;}
+  cloudBadge('syncing','Syncing…');
+  try{
+    const [historical,study]=await Promise.all([
+      reconcileWorkspaceScope(
+        'smmc_historical',
+        histState,
+        (local,remote)=>mergeSmmcState(local,remote,ledger,moduleIds,allUnitIds)
+      ),
+      reconcileWorkspaceScope(
+        'smmc_study',
+        studyState,
+        (local,remote)=>mergeSmmcStudy(local,remote,Object.keys(SMMC_PUBLIC_PROBLEMS_V1))
+      ),
+    ]);
+    applySmmcCloudResult('historical',historical);
+    applySmmcCloudResult('study',study);
+  }catch(error){cloudBadge('error','Saved locally');}
+  finally{cloudReady=true;}
 }
 function download(name,obj){
   const url=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));
@@ -281,6 +354,10 @@ async function init(){
       persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();tell('SMMC record imported.');
     }catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}
   };
+  renderCloudBadge();
+  void reconcileSmmcCloud();
+  document.addEventListener('chrono:cloud-context-changed',()=>{cloudReady=false;void reconcileSmmcCloud();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&cloudReady&&workspaceCloudState().signedIn)void reconcileSmmcCloud();});
   window.addEventListener('pagehide',()=>{
     if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);
     saveViewport();
