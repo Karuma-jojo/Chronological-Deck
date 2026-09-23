@@ -5,9 +5,22 @@ import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../wor
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
 const uuid=()=>crypto.randomUUID();
-let course,state,session,problemId,lastSaved=null,keys=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main';
+let course,state,session,problemId,lastSaved=null,keys=null,notesPromise=null,fullCoursePromise=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main';
 const put=(id,text)=>$(id).textContent=text;
 async function json(url){const r=await fetch(url);if(!r.ok)throw Error(`Could not load ${url} (${r.status})`);return r.json();}
+async function runtimeCourse(){try{return await json('course/generated/runtime.json');}catch{return json('course/generated/course.json');}}
+async function fullCourse(){return fullCoursePromise??=json('course/generated/course.json');}
+async function noteBank(){
+ if(notesPromise)return notesPromise;
+ notesPromise=json('course/generated/notes.json').catch(async()=>{
+   const full=await fullCourse();
+   return {
+     sessions:Object.fromEntries(full.sessions.map(s=>[s.order,s.lesson])),
+     bridges:Object.fromEntries(full.bridges.map(b=>[b.id,b.lesson])),
+   };
+ });
+ return notesPromise;
+}
 function persist(message){
  if(storageOK){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{storageOK=false;}}
  if(message)tell(message+(storageOK?'':' — held in memory only; export now to keep it.'));
@@ -100,7 +113,7 @@ async function reveal(){
 async function copy(text){try{await navigator.clipboard.writeText(text);tell('Copied.');}catch{const area=document.createElement('textarea');area.value=text;area.readOnly=true;area.setAttribute('aria-label','Copy text manually');$('status').replaceChildren('Clipboard unavailable. Copy the text below:',area);area.select();}}
 function download(name,data){const url=URL.createObjectURL(new Blob([data],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 async function init(){
- course=await json('course/generated/course.json');state=emptyEvidence();
+ course=await runtimeCourse();state=emptyEvidence();
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);}catch{storageOK=false;tell('Existing study storage could not be read. It has not been overwritten. New work is held in memory; export it before leaving.');}
  const params=new URLSearchParams(location.search),remembered=readWorkspaceNav();
  const requestedPresentation=params.get('presentation');
@@ -112,11 +125,13 @@ async function init(){
  $('answer').addEventListener('input',()=>{if(problemId)writeWorkspaceDraft('t25',problemId,$('answer').value);});
  $('previous').onclick=()=>selectSession(session.order-1);$('next').onclick=()=>selectSession(session.order+1);
  $('mainTask').onclick=()=>selectSession(session.order);$('transferTask').onclick=()=>selectSession(session.order,'transfer');$('presentation').onchange=setPresentation;
- $('note').onclick=()=>{
-  const p=course.problems[problemId],b=course.bridges.find(x=>x.tasks.includes(problemId));
-  const note=p.order?course.sessions[p.order-1].lesson:b?.lesson;
-  if(!note){tell('No learning note is attached to this synthesis or objective task.');return;}
-  put('learning','LEARNING NOTE — ASSISTANCE, OUTSIDE WALL\n\n'+note);$('learning').hidden=false;noteSeen=true;$('assistance').value='guided';expose(state,problemId,undefined,'lessonSeenAt');persist('Learning note opened; assistance recorded for this attempt.');
+ $('note').onclick=async()=>{
+  try{
+   const p=course.problems[problemId],b=course.bridges.find(x=>x.tasks.includes(problemId)),notes=await noteBank();
+   const note=p.order?notes.sessions[p.order]:b?notes.bridges[b.id]:null;
+   if(!note){tell('No learning note is attached to this synthesis or objective task.');return;}
+   put('learning','LEARNING NOTE — ASSISTANCE, OUTSIDE WALL\n\n'+note);$('learning').hidden=false;noteSeen=true;$('assistance').value='guided';expose(state,problemId,undefined,'lessonSeenAt');persist('Learning note opened; assistance recorded for this attempt.');
+  }catch(e){tell('Could not load learning note: '+e.message);}
  };
  $('save').onclick=()=>{
   const answer=$('answer').value.trim(),minutes=Number($('minutes').value);
@@ -134,8 +149,12 @@ async function init(){
  };
  $('copyOpening').onclick=()=>{const p=course.problems[problemId];copy(publicOpening(course,course.sessions[p.order-1],$('presentation').value==='anime',problemId));};
  $('copyPacket').onclick=async()=>{
-  const s=course.sessions[course.problems[problemId].order-1],anime=$('presentation').value==='anime';
-  try{const refs=await evaluator();await copy(compilerPacket(course,s,refs,anime));expose(state,s.main,undefined,'packetExportedAt');persist();}catch(e){tell(e.message);}
+  const anime=$('presentation').value==='anime';
+  try{
+    const [full,refs]=await Promise.all([fullCourse(),evaluator()]);
+    const s=full.sessions[full.problems[problemId].order-1];
+    await copy(compilerPacket(full,s,refs,anime));expose(state,s.main,undefined,'packetExportedAt');persist();
+  }catch(e){tell(e.message);}
  };
  $('export').onclick=()=>download('t25-study-record.json',JSON.stringify(state,null,2));
  $('import').onchange=async e=>{
