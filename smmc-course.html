@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SMMC × T25 Companion</title>
+  <link rel="stylesheet" href="css/smmc-course.css">
+</head>
+<body>
+<header>
+  <a href="index.html">← Chronological Deck</a>
+  <span class="eyebrow">SMMC × T25</span>
+  <h1>Simon Marais Companion</h1>
+  <p>Bridges, methods, sealed-transfer discipline, and evidence-aware historical mapping.</p>
+  <div class="actions">
+    <button id="export">Export SMMC record</button>
+    <label class="button">Import record<input id="import" type="file" accept="application/json" hidden></label>
+    <a href="docs/smmc/FINAL-SYNTHESIS-2017-2025.md">Architecture</a>
+    <a href="docs/smmc/AUTHORING-V1-RUN-LOG.md">Build log</a>
+  </div>
+</header>
+
+<p id="status" role="status" aria-live="polite">Loading SMMC companion…</p>
+
+<nav class="tabs" aria-label="SMMC views">
+  <button id="tabStudy" class="active">Study units</button>
+  <button id="tabMap">Historical map</button>
+</nav>
+
+<div class="layout">
+  <aside>
+    <section id="studyNav">
+      <label for="unitSearch">Find a unit</label>
+      <input id="unitSearch" type="search" placeholder="Bridge, method, topic">
+      <label for="unitSelect">Unit</label>
+      <select id="unitSelect"></select>
+      <div class="actions">
+        <button id="prevUnit">← Previous</button>
+        <button id="nextUnit">Next →</button>
+      </div>
+      <p class="small">Neutral tasks do not consume historical SMMC PYQs.</p>
+    </section>
+
+    <section id="mapNav" hidden>
+      <label for="problemSearch">Find a historical problem</label>
+      <input id="problemSearch" type="search" placeholder="Year, A/B/C, synopsis">
+      <label for="problemSelect">Problem</label>
+      <select id="problemSelect"></select>
+      <label for="t25Input">Cleared T25 targets</label>
+      <input id="t25Input" placeholder="Example: F4,P2,A5">
+      <button id="applyTargets">Apply T25 target list</button>
+      <p class="small">This page does not read T25 clearance automatically yet. Enter target codes only if you want the historical unlock preview.</p>
+    </section>
+  </aside>
+
+  <main>
+    <section id="studyView">
+      <div id="unitMeta" class="eyebrow"></div>
+      <h2 id="unitTitle"></h2>
+      <p id="unitProgress" class="small"></p>
+      <section class="note"><h3>Learning note</h3><div id="learningNote" class="text"></div></section>
+      <div class="actions">
+        <button id="mainTask">Main task</button>
+        <button id="transferTask">Transfer task</button>
+      </div>
+      <section class="task">
+        <div id="taskMeta" class="eyebrow"></div>
+        <div id="problemText" class="text problem"></div>
+      </section>
+      <label for="answer">Your working</label>
+      <textarea id="answer" rows="10" placeholder="Record your reasoning. Incomplete work is fine."></textarea>
+      <div class="fields">
+        <label>Assistance
+          <select id="assistance">
+            <option value="independent">Independent</option>
+            <option value="neutral-tool">Neutral tool lesson</option>
+            <option value="hint">Hint used</option>
+            <option value="guided">Guided</option>
+            <option value="revealed">Reference already seen</option>
+          </select>
+        </label>
+        <label>Minutes<input id="minutes" type="number" min="0" max="100000" value="0"></label>
+      </div>
+      <div class="actions">
+        <button id="saveAttempt" class="primary">Save attempt</button>
+        <button id="revealRef" disabled>Open evaluator reference</button>
+        <button id="selfReport">Self-report unit complete</button>
+      </div>
+      <p class="small">Self-report is only your progress note. It does not certify the unit and cannot unlock historical PYQs.</p>
+      <section id="reference" hidden><h3>Evaluator reference</h3><div id="referenceText" class="text"></div></section>
+      <details><summary>Saved attempts for this task</summary><div id="history"></div></details>
+    </section>
+
+    <section id="mapView" hidden>
+      <div class="map-head">
+        <div>
+          <div class="eyebrow">Historical corpus</div>
+          <h2 id="histTitle">Choose a problem</h2>
+        </div>
+        <span id="unlockBadge" class="badge neutral">Locked</span>
+      </div>
+      <div id="overlapSummary" class="overlap-summary" aria-label="Historical overlap totals"></div>
+      <p class="small">Aggregate totals are safe planning metadata. Individual problem colors remain hidden until you explicitly reveal them.</p>
+      <p id="histExposure" class="small"></p>
+      <p id="histSynopsis" class="text"></p>
+      <section id="safeInfo">
+        <h3>Unseen-safe information</h3>
+        <div id="unlockText" class="text"></div>
+      </section>
+      <section id="researchInfo" hidden>
+        <h3>Research metadata · no longer pristine</h3>
+        <div id="researchColor" class="color-row"></div>
+        <div id="researchDetails" class="text"></div>
+      </section>
+      <div class="actions">
+        <button id="revealResearch">Reveal GREEN / AMBER / RED research label</button>
+      </div>
+      <p class="warning">Revealing research metadata is treated as contamination for pristine unseen-transfer purposes. It is useful for planning, but don't reveal it for a paper you want to preserve as a mock.</p>
+    </section>
+  </main>
+</div>
+
+<footer>SMMC companion evidence is separate from T25 academic clearance. Historical problem metadata stays private until explicitly revealed.</footer>
+<script type="module" src="js/smmc/ui.js"></script>
+</body>
+</html>

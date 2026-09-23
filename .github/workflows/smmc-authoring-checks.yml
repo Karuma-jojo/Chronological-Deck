@@ -1,0 +1,23 @@
+name: SMMC authoring checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  smmc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: scripts/review-tests/package-lock.json
+      - run: npm ci --prefix scripts/review-tests
+      - run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - name: Validate SMMC authoring contracts
+        run: node scripts/validate-smmc-authoring-v1.mjs
+      - name: Validate SMMC browser workflow
+        run: node scripts/test-smmc-course-browser.mjs
