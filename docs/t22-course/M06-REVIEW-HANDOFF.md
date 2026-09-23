@@ -3,13 +3,13 @@
 Date: 2026-09-23
 Branch: `codex/t22-pedagogical-rebuild`
 Stable module: `ARC502`
-Status: **BOUNDED REPAIRS VERIFIED BY PRINCIPAL BUILDER; INDEPENDENT REVIEW STILL DISTINCT; M07 CLOSED**
+Status: **BOUNDED INDEPENDENT FOLLOW-UP ACCEPTED — M06 FROZEN; M07 CLOSED**
 
 ## Authority and recovery
 
 Recovered remote head: `bd0b54f71524b831ec264d9fcae1afb3d2dfd7dc`, unchanged since the independent batch review. Direct parent: `9efe72ee1c87579b4ba5ab491f31f259a976752e`. Commit ancestry, all repository file hashes and both module boundaries were checked. No `AGENTS.md` exists in this tree.
 
-Historical M06 content checkpoint: `66deecfa1f21b7730e702c4c0587a1f021212319`. Its internal acceptance label was superseded by `M05-M06-ASTRA-REVIEW.md`. This handoff does not resurrect that acceptance or claim a new independent review.
+Historical M06 content checkpoint: `66deecfa1f21b7730e702c4c0587a1f021212319`. Its internal acceptance label was superseded by `M05-M06-ASTRA-REVIEW.md`. The repaired module has now passed a separate bounded independent follow-up. See `M05-M06-ASTRA-FOLLOWUP.md`; the earlier superseded internal acceptance is not being reused.
 
 Read `M05-M06-RESOLUTION.md` for current implementation SHA, full Actions result and recovery instructions. Read `M05-M06-SEMANTIC-AUDIT.md` for the 48-session audit and all 240 claim links.
 
@@ -37,10 +37,10 @@ Required gate is the complete `.github/workflows/t22-elite-checks.yml` run, incl
 
 Implementation checkpoint: `efea44476e30a0daf45675e15889788e082900a2`. Complete [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076) finished **success** on this exact pushed head. Job107374356454 was inspected: syntax, structural/pedagogy/semantic/evidence regressions, dependency installation, Chromium installation and Browser evidence workflow all succeeded. Logs contain both the new repair-browser PASS and the existing six-module browser PASS. All46 non-browser workflow commands also passed locally. Local Chromium was unavailable, so browser evidence is the actual remote execution, not a claimed local run.
 
-Limits: pinned semantic snapshots prevent drift but cannot decide semantic truth. External SPIRE/offline lesson access not present in the evidence store cannot be reconstructed. Existing user work is not automatically recertified. A separate independent review is still distinct from this principal-builder verification.
+Limits: pinned semantic snapshots prevent drift but cannot reconstruct external SPIRE/offline lesson exposure not present in the evidence store. Existing user work is not automatically recertified. The bounded independent follow-up has accepted the repaired current contracts; learner difficulty/retention calibration remains empirical.
 
 ## Stop boundary
 
 **STOP before M07. STOP HERE. Do not author M07.**
 
-No merge to main, deployment, T25 modification, legacy T22 migration or larger batch is part of this repair. After an accepted repair review, M07 alone is the proposed next trial; it requires a subsequent instruction.
+No merge to main, deployment, T25 modification, legacy T22 migration or larger batch is part of this repair. The repair review is accepted. M07 alone is the proposed next trial, but it remains closed until explicitly authorized.
