@@ -1,3 +1,4 @@
+import { DEFAULT_CLOUD_CONFIG } from './cloud-defaults.js';
 // Lightweight cross-device workspace sync over the existing Chrono-Deck Supabase session.
 // Local storage remains authoritative for immediate writes; this is an account-private durable mirror.
 
@@ -12,7 +13,7 @@ function readJson(key){
 }
 function cleanBase(value){return String(value||"").trim().replace(/\/+$/,"");}
 function context(){
-  const config=readJson(CFG_KEY)||{},session=readJson(SESSION_KEY)||{};
+  const config={...DEFAULT_CLOUD_CONFIG,...(readJson(CFG_KEY)||{})},session=readJson(SESSION_KEY)||{};
   return {
     url:cleanBase(config.url),
     key:String(config.key||"").trim(),
