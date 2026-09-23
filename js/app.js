@@ -651,6 +651,15 @@ document.querySelector('.tab[data-tab="explore"]').textContent=`Explore all ${WO
 document.getElementById("worldSummary").textContent=`${WORLD.nodes.length}-node knowledge world · 39-node FROZEN scientific core · ${WORLD.terminals.length} terminal routes · app version 1.8`;
 updateAll();
 hydrateSyncFields();
+function focusCloudPanel(){
+  const panel=document.getElementById("cloudSyncPanel");
+  if(!panel)return;
+  panel.open=true;
+  requestAnimationFrame(()=>panel.scrollIntoView({block:"start"}));
+}
+if(location.hash==="#cloudSyncPanel")focusCloudPanel();
+window.addEventListener("hashchange",()=>{if(location.hash==="#cloudSyncPanel")focusCloudPanel();});
+document.getElementById("syncPill")?.addEventListener("click",focusCloudPanel);
 if(signedIn()){
   initialCloudReconcile();
 }else{
