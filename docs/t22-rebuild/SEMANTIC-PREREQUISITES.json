@@ -54,9 +54,9 @@
       "order": 7,
       "id": "T22E-MKT01",
       "mode": "new",
-      "semanticStatus": "planned-with-known-edge",
+      "semanticStatus": "boundary-accepted-content-candidate",
       "bridges": [],
-      "note": "Log-return ownership requires M02 logarithms; explicit T22E-FND02 edge added in semantic graph r1."
+      "note": "M07 boundary locked and CERBERUS-hardened candidate authored: price/cash-flow/payoff separation; simple/gross/log/total returns; long/short P&L; signed exposure; average-cost realized/unrealized accounting; bid/ask/spread; basic market/limit order and fill mechanics; partial-fill weighting; fees and auditable trade ledgers. M02 logarithm edge is explicit. Deep microstructure M47, asset pricing M54, execution/TCA M56, portfolio theory M55 and data engineering M45-M46 remain deferred. Independent Astra review pending."
     },
     {
       "order": 8,
