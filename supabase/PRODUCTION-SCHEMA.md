@@ -119,3 +119,5 @@ application; no personal seed or review attempt was inserted.
 
 See [review / retention behavior](../docs/t25-review-retention.md) and
 [verification / release steps](../docs/t25-review-verification.md).
+
+- `workspace_state_v1` — `supabase/workspace-state-v1.sql`: account-private T25/SMMC/workspace snapshots with RLS and optimistic lock versions.
