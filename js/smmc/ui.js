@@ -1,7 +1,6 @@
 import ledger from '../../course/smmc/ledger.mjs';
 import { SMMC_UNITS_V1 } from '../../course/smmc/authoring/units-v1.mjs';
 import { SMMC_PUBLIC_PROBLEMS_V1 } from '../../course/smmc/authoring/public-problems-v1.mjs';
-import { SMMC_EVALUATOR_V1 } from '../../course/smmc/authoring/evaluator-v1.mjs';
 import {
   emptySmmcState, validateSmmcState, markExposure, exposureClass,
   selfReportUnitComplete, certifiedUnitIds,
@@ -20,6 +19,8 @@ const tell=x=>$('status').textContent=x;
 const put=(id,text)=>$(id).textContent=text;
 let histState=emptySmmcState();
 let studyState={version:1,attempts:[]};
+let evaluatorPromise=null;
+const evaluatorBank=()=>evaluatorPromise??=import('../../course/smmc/authoring/evaluator-v1.mjs').then(m=>m.SMMC_EVALUATOR_V1);
 let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study';
 let researchVisible=false,paperVisible=false;
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
@@ -257,10 +258,13 @@ async function init(){
     studyState.attempts.push({id:uuid(),taskId:currentTaskId,at:new Date().toISOString(),answer,assistance:$('assistance').value,minutes,referenceSeenBefore:hadReference});
     clearWorkspaceDraft('smmc',currentTaskId);$('revealRef').disabled=false;persist();renderHistory();tell('Neutral training attempt saved. Historical PYQ exposure unchanged.');
   };
-  $('revealRef').onclick=()=>{
-    const r=SMMC_EVALUATOR_V1[currentTaskId];put('referenceText',r.reference+'\n\n'+r.rubric.map(x=>'• '+x).join('\n'));$('reference').hidden=false;
-    const latest=[...studyState.attempts].reverse().find(a=>a.taskId===currentTaskId);if(latest)latest.referenceOpenedAt=latest.referenceOpenedAt||new Date().toISOString();
-    persist();tell('Evaluator reference opened for this neutral task.');
+  $('revealRef').onclick=async()=>{
+    try{
+      const bank=await evaluatorBank(),r=bank[currentTaskId];
+      put('referenceText',r.reference+'\n\n'+r.rubric.map(x=>'• '+x).join('\n'));$('reference').hidden=false;
+      const latest=[...studyState.attempts].reverse().find(a=>a.taskId===currentTaskId);if(latest)latest.referenceOpenedAt=latest.referenceOpenedAt||new Date().toISOString();
+      persist();tell('Evaluator reference opened for this neutral task.');
+    }catch(err){tell('Could not load evaluator reference: '+err.message);}
   };
   $('selfReport').onclick=()=>{selfReportUnitComplete(histState,currentUnit.id);persist();renderUnit(currentUnit.id);tell('Unit self-report saved. This does not certify or unlock historical problems.');};
   $('tabStudy').onclick=()=>switchTab('study');$('tabMap').onclick=()=>switchTab('map');
