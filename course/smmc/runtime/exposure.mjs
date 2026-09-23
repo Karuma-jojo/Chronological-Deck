@@ -147,6 +147,64 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
   return out;
 }
 
+
+function earliest(a,b) {
+  return [a,b].filter(Boolean).sort()[0];
+}
+
+export function mergeSmmcState(local, remote, ledger, knownModuleIds = [], knownUnitIds = []) {
+  const a = validateSmmcState(local, ledger, knownModuleIds, knownUnitIds);
+  const b = remote
+    ? validateSmmcState(remote, ledger, knownModuleIds, knownUnitIds)
+    : emptySmmcState();
+
+  const attempts = new Map(a.attempts.map(x => [x.id,x]));
+  for (const x of b.attempts) {
+    const old = attempts.get(x.id);
+    if (old && JSON.stringify(old) !== JSON.stringify(x)) {
+      throw new Error("Conflicting SMMC historical attempt ID");
+    }
+    attempts.set(x.id,x);
+  }
+
+  const exposures = {};
+  for (const problemId of new Set([...Object.keys(a.exposures),...Object.keys(b.exposures)])) {
+    const x=a.exposures[problemId]||{}, y=b.exposures[problemId]||{}, joined={};
+    for (const key of ["statementSeenAt","materialHintSeenAt","solutionSeenAt","evaluatorSeenAt","domainMetadataSeenAt"]) {
+      const value=earliest(x[key],y[key]);
+      if(value)joined[key]=value;
+    }
+    exposures[problemId]=joined;
+  }
+
+  const modules = {};
+  for (const id of new Set([...Object.keys(a.modules),...Object.keys(b.modules)])) {
+    const x=a.modules[id]||{}, y=b.modules[id]||{};
+    modules[id]={
+      selfReportedComplete:Boolean(x.selfReportedComplete||y.selfReportedComplete),
+      ...(earliest(x.selfReportedAt,y.selfReportedAt)?{selfReportedAt:earliest(x.selfReportedAt,y.selfReportedAt)}:{}),
+    };
+  }
+
+  const units = {};
+  for (const id of new Set([...Object.keys(a.units),...Object.keys(b.units)])) {
+    const x=a.units[id]||{}, y=b.units[id]||{};
+    units[id]={
+      selfReportedComplete:Boolean(x.selfReportedComplete||y.selfReportedComplete),
+      ...(earliest(x.selfReportedAt,y.selfReportedAt)?{selfReportedAt:earliest(x.selfReportedAt,y.selfReportedAt)}:{}),
+      ...(earliest(x.certifiedAt,y.certifiedAt)?{certifiedAt:earliest(x.certifiedAt,y.certifiedAt)}:{}),
+    };
+  }
+
+  return validateSmmcState({
+    version:SMMC_STATE_VERSION,
+    attempts:[...attempts.values()].sort((x,y)=>x.at.localeCompare(y.at)),
+    exposures,
+    modules,
+    units,
+  }, ledger, knownModuleIds, knownUnitIds);
+}
+
 export function markExposure(state, problemId, kind, at = new Date().toISOString()) {
   const allowed = new Set([
     "statementSeenAt",
