@@ -97,8 +97,8 @@ function saveViewport(){
     scrollY:window.scrollY,
   });
 }
-function switchTab(which,updateUrl=true,restore=true){
-  saveViewport();
+function switchTab(which,updateUrl=true,restore=true,saveCurrent=true){
+  if(saveCurrent)saveViewport();
   const study=which==='study';currentTab=study?'study':'map';
   $('studyView').hidden=!study;$('studyNav').hidden=!study;$('mapView').hidden=study;$('mapNav').hidden=study;
   $('tabStudy').classList.toggle('active',study);$('tabMap').classList.toggle('active',!study);
@@ -244,7 +244,7 @@ async function init(){
   const requestedTask=params.get('task')||remembered.smmc.taskId;
   const requestedProblem=params.get('problem')||remembered.smmc.problemId;
   const problem=ledger.find(x=>x.id===requestedProblem)||ledger[0];
-  renderUnitList();renderUnit(unit.id,requestedTask);renderProblemList();renderOverlapSummary();renderHistorical(problem.id);switchTab(requestedTab,false,false);replaceSmmcUrl();
+  renderUnitList();renderUnit(unit.id,requestedTask);renderProblemList();renderOverlapSummary();renderHistorical(problem.id);switchTab(requestedTab,false,false,false);replaceSmmcUrl();
   $('unitSearch').oninput=renderUnitList;$('unitSelect').onchange=()=>renderUnit($('unitSelect').value);
   $('answer').addEventListener('input',()=>{if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);});
   $('prevUnit').onclick=()=>{const i=SMMC_UNITS_V1.findIndex(x=>x.id===currentUnit.id);if(i>0)renderUnit(SMMC_UNITS_V1[i-1].id);};
