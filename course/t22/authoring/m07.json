@@ -3085,7 +3085,7 @@
       {
         "claim": "Define an order as an instruction rather than an execution.",
         "task": "main",
-        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 100.50 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
+        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
           "The order is identified as an instruction for12 units, not an execution."
         ]
@@ -3093,7 +3093,7 @@
       {
         "claim": "Define a quote as displayed market information rather than a completed trade.",
         "task": "main",
-        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 100.50 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
+        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
           "The 99/101 quote is identified as displayed market information."
         ]
@@ -3101,7 +3101,7 @@
       {
         "claim": "Define a fill/trade as an executed quantity at an execution price.",
         "task": "main",
-        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 100.50 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
+        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
           "The actual fill is identified as7 units at100.50."
         ]
@@ -3109,7 +3109,7 @@
       {
         "claim": "Compute the unfilled remainder of a partially filled order.",
         "task": "main",
-        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 100.50 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
+        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
           "Unfilled remainder 5 is computed correctly."
         ]
@@ -3117,7 +3117,7 @@
       {
         "claim": "Update a signed position from the executed quantity rather than the submitted quantity.",
         "task": "main",
-        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 100.50 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
+        "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
           "Signed position is updated from−2 to+5 using the fill, with the submitted-quantity error rejected."
         ]
