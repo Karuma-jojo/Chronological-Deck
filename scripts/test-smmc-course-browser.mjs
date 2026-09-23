@@ -1,3 +1,4 @@
+// Current-head PR gate.
 // PR-gate smoke test for the current SMMC UI head.
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
