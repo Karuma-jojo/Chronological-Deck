@@ -1,6 +1,6 @@
 # Current bounded repair — 2026-09-23
 
-M05/M06 repairs verified. Implementation `efea44476e30a0daf45675e15889788e082900a2` passed the complete [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076), including real Chromium. Push/head, all job steps and logs inspected. See `M05-M06-RESOLUTION.md` and `../t22-rebuild/RUN-LOG.md` for authoritative recovery. M07 remains closed. Earlier internal acceptance below is historical.
+M05/M06 repairs are independently accepted and frozen. Implementation `efea44476e30a0daf45675e15889788e082900a2` passed the complete [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076), including real Chromium. The bounded follow-up is recorded in `M05-M06-ASTRA-FOLLOWUP.md`; see `M05-M06-RESOLUTION.md` and `../t22-rebuild/RUN-LOG.md` for recovery. M07 remains closed. Earlier internal acceptance below is historical.
 
 # T22 Elite course build log
 
