@@ -1,5 +1,5 @@
 {
-  "version": "T22E-course-0.6.1-m05-m06-repair",
+  "version": "T22E-course-0.7.0-m07-cerberus-candidate",
   "routeVersion": "M65-semantic-r2-2026-09-18",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
@@ -92,6 +92,12 @@
       "id": "ARC502",
       "sourceType": "authoring-pack",
       "source": "course/t22/authoring/m06.json"
+    },
+    {
+      "order": 7,
+      "id": "T22E-MKT01",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m07.json"
     }
   ]
 }
