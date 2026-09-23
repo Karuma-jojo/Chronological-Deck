@@ -2,11 +2,11 @@ import { SMMC_REQUIREMENTS_V1 } from "../requirements-v1.mjs";
 
 export function unlockStatus(problem, {
   clearedT25Targets = [],
-  completedModules = [],
+  certifiedModules = [],
   requirements = SMMC_REQUIREMENTS_V1,
 } = {}) {
   const clearedTargets = new Set(clearedT25Targets);
-  const completed = new Set(completedModules);
+  const certified = new Set(certifiedModules);
 
   const missingT25 = problem.t25Targets.filter(code => !clearedTargets.has(code));
   if (missingT25.length) {
@@ -37,7 +37,7 @@ export function unlockStatus(problem, {
     };
   }
 
-  const missingModules = required.filter(id => !completed.has(id));
+  const missingModules = required.filter(id => !certified.has(id));
   if (missingModules.length) {
     return {
       status: problem.overlap === "red" ? "locked-specialist" : "locked-smmc-bridge",
