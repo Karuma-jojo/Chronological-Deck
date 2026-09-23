@@ -58,14 +58,6 @@
   <div class="sync-body">
     <div class="sync-grid">
       <div class="sync-field">
-        <label for="syncUrl">Supabase project URL</label>
-        <input id="syncUrl" type="url" placeholder="https://YOURPROJECT.supabase.co" autocomplete="off">
-      </div>
-      <div class="sync-field">
-        <label for="syncKey">Publishable / anon key</label>
-        <input id="syncKey" type="password" placeholder="Paste the public anon/publishable key" autocomplete="off">
-      </div>
-      <div class="sync-field">
         <label for="syncEmail">Email</label>
         <input id="syncEmail" type="email" placeholder="you@example.com" autocomplete="email">
       </div>
@@ -75,22 +67,32 @@
       </div>
     </div>
     <div class="sync-actions">
-      <button id="saveSyncConfig">Save cloud settings</button>
       <button id="syncSignUp">Create account</button>
       <button id="syncSignIn" class="primary">Sign in</button>
       <button id="syncNow">Sync now</button>
       <button id="syncSignOut">Sign out</button>
       <button id="disconnectSync" class="ghost">Disconnect this device</button>
     </div>
-    <div id="syncStatus" class="sync-status warn">Cloud sync is optional. Local progress still works exactly as before.</div>
-    <div class="sync-note">
-      First-time setup: create a free Supabase project, run the SQL below once, then paste your Project URL and <b>public anon/publishable key</b> here.
-      Never paste a <b>service_role</b> or secret key into this public GitHub Pages app. Row-level security below restricts each account to its own progress.
-    </div>
+    <div id="syncStatus" class="sync-status warn">Local progress is always saved first. Sign in to mirror durable progress across devices.</div>
+    <div class="sync-note">Chrono-Deck is preconfigured for this deployment. Account data is protected by per-user row-level security.</div>
     <details style="margin-top:10px">
-      <summary style="padding:0;font-size:11px;font-weight:650">One-time Supabase SQL setup</summary>
-      <textarea id="syncSql" class="sync-sql" readonly></textarea>
-      <div class="sync-actions"><button id="copySyncSql">Copy SQL</button></div>
+      <summary style="padding:0;font-size:11px;font-weight:650">Advanced · self-hosting / alternate Supabase project</summary>
+      <div class="sync-grid">
+        <div class="sync-field">
+          <label for="syncUrl">Supabase project URL</label>
+          <input id="syncUrl" type="url" autocomplete="off">
+        </div>
+        <div class="sync-field">
+          <label for="syncKey">Publishable / anon key</label>
+          <input id="syncKey" type="password" autocomplete="off">
+        </div>
+      </div>
+      <div class="sync-actions"><button id="saveSyncConfig">Save alternate cloud settings</button></div>
+      <details style="margin-top:10px">
+        <summary style="padding:0;font-size:11px;font-weight:650">Legacy world-progress setup SQL</summary>
+        <textarea id="syncSql" class="sync-sql" readonly></textarea>
+        <div class="sync-actions"><button id="copySyncSql">Copy SQL</button></div>
+      </details>
     </details>
   </div>
 </details>
