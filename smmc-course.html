@@ -12,6 +12,12 @@
   <span class="eyebrow">SMMC × T25</span>
   <h1>Simon Marais Companion</h1>
   <p>Bridges, methods, sealed-transfer discipline, and evidence-aware historical mapping.</p>
+  <nav class="workspace-nav" aria-label="Mathematics workspace">
+    <a id="workspaceT25" class="workspace-link" href="t25-course.html">T25 plain</a>
+    <a id="workspaceAster" class="workspace-link" href="t25-course.html?presentation=anime">Aster</a>
+    <a id="workspaceSMMC" class="workspace-link active" href="smmc-course.html">SMMC companion</a>
+    <span id="workspacePosition" class="workspace-position"></span>
+  </nav>
   <div class="actions">
     <button id="export">Export SMMC record</button>
     <label class="button">Import record<input id="import" type="file" accept="application/json" hidden></label>
@@ -58,6 +64,11 @@
       <div id="unitMeta" class="eyebrow"></div>
       <h2 id="unitTitle"></h2>
       <p id="unitProgress" class="small"></p>
+      <section class="workspace-connections">
+        <div class="connection-head"><h3>T25 connections</h3><a id="resumeT25FromUnit" class="button" href="t25-course.html">Resume T25</a></div>
+        <p class="small">Mapped T25 sessions for this bridge/method unit. Open plain or Aster without losing this SMMC position.</p>
+        <div id="unitT25Connections"></div>
+      </section>
       <section class="note"><h3>Learning note</h3><div id="learningNote" class="text"></div></section>
       <div class="actions">
         <button id="mainTask">Main task</button>
@@ -122,6 +133,11 @@
       <section id="safeInfo">
         <h3>Unseen-safe information</h3>
         <div id="unlockText" class="text"></div>
+      </section>
+      <section class="workspace-connections">
+        <div class="connection-head"><h3>T25 connections</h3><a id="resumeT25FromProblem" class="button" href="t25-course.html">Resume T25</a></div>
+        <p class="small">These are prerequisite/map connections only. They do not reveal GREEN/AMBER/RED or method metadata.</p>
+        <div id="problemT25Connections"></div>
       </section>
       <section id="researchInfo" hidden>
         <h3>Research metadata</h3>
