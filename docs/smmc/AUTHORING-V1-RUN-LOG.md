@@ -108,3 +108,39 @@ This is a source-level runtime simulation against fetched branch contents, not a
 2. Expand explicit requirement mappings only when the exact bridge has been authored/certification-scoped.
 3. Add a dedicated SMMC study UI only after unit/runtime contracts stabilize.
 4. Preserve historical PYQ statements and evaluator metadata behind the existing exposure contract.
+
+
+## Checkpoint C — graph + encoding units
+
+Added two more original neutral units:
+
+### S-BRIDGE-GR1-U01 — Degrees, components and cycle structure
+
+Focus:
+- finite simple graph language;
+- degree and connected components;
+- proof that finite connected 2-regular graphs are cycles;
+- translating mutual-acquaintance statements into graph structure.
+
+### S-METHOD-K1-U01 — Encode an object so it can be recovered
+
+Focus:
+- explicit reversible encodings;
+- recovery/uniqueness;
+- positive compositions;
+- nonnegative stars-and-bars transfer;
+- distinguishing a forward map from a genuine bijection.
+
+The public bank now contains 8 original neutral tasks and 8 separate evaluator references.
+
+Source-level syntax/structure validation passed:
+- 4 unique unit IDs;
+- 8 public prompts;
+- 8 evaluator entries;
+- every unit has both main and transfer tasks;
+- learner-facing prompts contain no historical SMMC problem identifier or Simon Marais source name;
+- learner self-report remains non-certifying;
+- explicit module certification remains separately represented;
+- unlock runtime remains syntactically valid.
+
+No historical SMMC problem was consumed by these training units.
