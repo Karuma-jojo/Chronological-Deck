@@ -144,3 +144,74 @@ Source-level syntax/structure validation passed:
 - unlock runtime remains syntactically valid.
 
 No historical SMMC problem was consumed by these training units.
+
+
+## Checkpoint D — exact-unit certification hardening
+
+The original module-level certification model was found to be too coarse.
+
+Example failure mode:
+- `S-BRIDGE-N1-U01` teaches Euclid/Bézout/linear congruences;
+- the broader `S-BRIDGE-N1` module also contains later CRT, valuations, rational-root and divisibility material;
+- certifying the module after only U01 could therefore unlock historical problems whose exact missing content had not been taught.
+
+Repair:
+- learner state now has separate `units`;
+- historical requirement rows reference exact authored unit IDs;
+- `certifyUnit` / `certifiedUnitIds` are the only SMMC authoring credentials accepted by the unlock runtime;
+- module-level self-report remains progress metadata only;
+- the requirement map was deliberately reduced from 38 coarse rows to exact rows that are fully justified by authored units;
+- all other non-GREEN problems remain `requirement-map-pending`.
+
+Currently exact historical unlock rows are:
+- `SMMC-2021-A3` -> `S-BRIDGE-GR1-U01`;
+- `SMMC-2022-C2` -> `S-BRIDGE-AN1-U01`;
+- `SMMC-2023-C1` -> `S-BRIDGE-N1-U01` + `S-BRIDGE-N1-U02`.
+
+## Checkpoint E — series, translation, CRT and induction units
+
+Added:
+
+### S-BRIDGE-AN1-U01 — Positive-series comparison and harmonic divergence
+- dyadic-block proof of harmonic divergence;
+- comparison direction for positive series;
+- divergent benchmark transfer.
+
+### S-METHOD-X1-U01 — Introduce an auxiliary object that exposes structure
+- transformed variables/aggregate identities;
+- proving the transformed claim;
+- translating back to the original problem.
+
+### S-BRIDGE-N1-U02 — Chinese remainders and coprime residue counting
+- constructive CRT for pairwise coprime moduli;
+- uniqueness modulo the product;
+- square-free totient/coprime coordinate counting.
+
+### S-METHOD-I1-U01 — Strengthen the induction claim until the step closes
+- block/state induction;
+- strengthened hypotheses;
+- multi-base induction windows;
+- recurrence/invariant carry-forward.
+
+The authoring bank now contains:
+- 8 units;
+- 16 original neutral learner-facing tasks;
+- 16 separate evaluator references.
+
+No historical SMMC statement has been consumed by the neutral bank.
+
+## Checkpoint E validation
+
+Remote semantic simulation passed:
+- 8 unique units;
+- 16 public tasks;
+- 16 evaluator references;
+- every exact requirement references an authored unit;
+- learner self-report does not certify a unit;
+- exact unit certification is preserved through state validation;
+- 2021 A3 unlocks as transfer only after GR1-U01;
+- 2022 C2 unlocks as development only after AN1-U01;
+- 2023 C1 unlocks as transfer only after both N1-U01 and N1-U02;
+- an unrelated unmapped AMBER problem remains `requirement-map-pending` even when all current units are certified.
+
+No browser/UI work has been started.
