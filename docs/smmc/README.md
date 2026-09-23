@@ -75,7 +75,7 @@ It should not mechanically reuse the seven T25 episode boundaries.
 
 ## Current build status
 
-Batches 1–4 establish the taxonomy/schema and audit all 32 East-relevant problems from 2017–2020. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
+Batches 1–5 establish the taxonomy/schema and audit all 40 East-relevant problems from 2017–2021. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
 
 
 The 2019 audit added `SERIES` as a secondary content tag and `EXCHANGE-ARGUMENT` as a reusable method. Neither requires a new top-level domain.
@@ -88,3 +88,12 @@ SMMC ledgers use `t25Targets` (stable audited target codes such as `A5`, `M3`, `
 This replaces the earlier raw-number linkage, which was vulnerable to semantic drift when T25 was reordered. The validator now rejects unknown target codes against the canonical 80-target T25 manifest.
 
 The 2020 audit added `PROJECTIVE-GEO` as a secondary content tag and `BIJECTION` as a reusable method. The six primary domains remain unchanged.
+
+
+## Five-year bridge synthesis
+
+After completing 2017–2021, repeated non-T25 gaps are recorded provisionally in `docs/smmc/BRIDGE-CANDIDATES-2017-2021.md`.
+
+No candidate is yet canonical curriculum. The 2022–2025 audit is an explicit authoring gate.
+
+The 2021 audit added `GCD` and `FLOOR` as secondary content tags. The six primary domains remain unchanged.
