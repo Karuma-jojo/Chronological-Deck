@@ -24,6 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Build lean learner payloads
+        run: node scripts/build-t25-course.mjs
+
       - name: Upload complete static repository
         uses: actions/upload-pages-artifact@v4
         with:
