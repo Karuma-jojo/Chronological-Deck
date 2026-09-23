@@ -5,9 +5,9 @@
     "order": 6,
     "id": "ARC502",
     "title": "Bayes, Base Rates & Sequential Updating",
-    "status": "authored-repaired-awaiting-independent-review",
+    "status": "authored-astra-repaired-independent-accepted",
     "destination": "Turn finite evidence models into disciplined posterior updates: respect base rates, derive Bayes, normalize complete hypothesis sets, use odds/LRs correctly, update sequentially without double counting, and stress-test priors/likelihoods.",
-    "gate": "Clearance requires exact conditioning denominators, complete hypothesis normalization, observable ownership evidence and explicit dependence/model assumptions\u2014not formula recall.",
+    "gate": "Clearance requires exact conditioning denominators, complete hypothesis normalization, observable ownership evidence and explicit dependence/model assumptions—not formula recall.",
     "nextBoundary": "M07 owns market prices, returns and trading mechanics. M06 stops at finite evidence updating and robustness."
   },
   "boundary": {
@@ -85,7 +85,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S01 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "Conditional probability always names the denominator population. P(E|H) asks: among H cases, what fraction show E? P(H|E) asks: among E cases, what fraction are H? Swapping the bar changes the reference set. Worked example: Among100 cases,20 are H; 16 of those show E, while 20 non-H cases also show E. Then P(E|H)=16/20=.8, but P(H|E)=16/(16+20)=4/9. Guided check: In a table with30 H cases,18 H\u2229E cases and12 non-H E cases, compute both directions.",
+      "lesson": "Conditional probability always names the denominator population. P(E|H) asks: among H cases, what fraction show E? P(H|E) asks: among E cases, what fraction are H? Swapping the bar changes the reference set. Worked example: Among100 cases,20 are H; 16 of those show E, while 20 non-H cases also show E. Then P(E|H)=16/20=.8, but P(H|E)=16/(16+20)=4/9. Guided check: In a table with30 H cases,18 H∩E cases and12 non-H E cases, compute both directions.",
       "main": "T22V3::ARC502::S01-M@1",
       "transfer": "T22V3::ARC502::S01-T@1"
     },
@@ -180,14 +180,14 @@
       "title": "Reconstruct a posterior from counts before formulas",
       "focus": "Compute posterior directly from a contingency/frequency table.",
       "purpose": "Keep Bayes grounded in the definition of conditional probability.",
-      "centralCapability": "Read H\u2229E and H^c\u2229E counts from a finite table. Compute total E count.",
+      "centralCapability": "Read H∩E and H^c∩E counts from a finite table. Compute total E count.",
       "principalObstacle": "Formula recall replaces identification of the actual conditioned subset.",
       "entryPrerequisites": [
         "M06-S01 conditional denominators",
         "M06-S02 frequency tables"
       ],
       "requiredOwnership": [
-        "Read H\u2229E and H^c\u2229E counts from a finite table.",
+        "Read H∩E and H^c∩E counts from a finite table.",
         "Compute total E count.",
         "Compute P(H|E) directly from counts.",
         "Check the result lies in [0,1].",
@@ -211,7 +211,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S04 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "Before using Bayes, a posterior can be read directly from counts: among all E cases, what fraction are H? Worked example:42 H\u2229E and58 H^c\u2229E means100 E cases total, so P(H|E)=.42. No formula beyond conditional probability is needed. Guided check: A table shows24 C\u2229S and36 C^c\u2229S; compute P(C|S).",
+      "lesson": "Before using Bayes, a posterior can be read directly from counts: among all E cases, what fraction are H? Worked example:42 H∩E and58 H^c∩E means100 E cases total, so P(H|E)=.42. No formula beyond conditional probability is needed. Guided check: A table shows24 C∩S and36 C^c∩S; compute P(C|S).",
       "main": "T22V3::ARC502::S04-M@1",
       "transfer": "T22V3::ARC502::S04-T@1"
     },
@@ -264,15 +264,15 @@
       "title": "Derive binary Bayes from joint probability factorizations",
       "focus": "Derive Bayes' rule instead of memorizing it.",
       "purpose": "Show exactly where the numerator and denominator come from.",
-      "centralCapability": "Write P(H\u2229E)=P(E|H)P(H). Write P(H\u2229E)=P(H|E)P(E).",
+      "centralCapability": "Write P(H∩E)=P(E|H)P(H). Write P(H∩E)=P(H|E)P(E).",
       "principalObstacle": "The formula is remembered with swapped terms or used when P(E)=0.",
       "entryPrerequisites": [
         "M04-S07 conditional probability",
         "M04-S08 multiplication rule"
       ],
       "requiredOwnership": [
-        "Write P(H\u2229E)=P(E|H)P(H).",
-        "Write P(H\u2229E)=P(H|E)P(E).",
+        "Write P(H∩E)=P(E|H)P(H).",
+        "Write P(H∩E)=P(H|E)P(E).",
         "Equate the two joint factorizations.",
         "Derive P(H|E)=P(E|H)P(H)/P(E).",
         "State the requirement P(E)>0."
@@ -295,7 +295,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S06 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "The same joint probability can be factored in two directions: P(H\u2229E)=P(E|H)P(H)=P(H|E)P(E). If P(E)>0, divide by P(E) to obtain Bayes' rule. Worked example: If P(H)=.25,P(E|H)=.6 and P(E)=.3, then the joint is.15 and P(H|E)=.15/.3=.5. Guided check: Derive the identity symbolically before substituting P(H)=.4,P(E|H)=.5,P(E)=.25.",
+      "lesson": "The same joint probability can be factored in two directions: P(H∩E)=P(E|H)P(H)=P(H|E)P(E). If P(E)>0, divide by P(E) to obtain Bayes' rule. Worked example: If P(H)=.25,P(E|H)=.6 and P(E)=.3, then the joint is.15 and P(H|E)=.15/.3=.5. Guided check: Derive the identity symbolically before substituting P(H)=.4,P(E|H)=.5,P(E)=.25.",
       "main": "T22V3::ARC502::S06-M@1",
       "transfer": "T22V3::ARC502::S06-T@1"
     },
@@ -306,7 +306,7 @@
       "title": "Construct the Bayes denominator with total probability",
       "focus": "Build P(E) from an exhaustive binary partition.",
       "purpose": "Make normalization explicit rather than magical.",
-      "centralCapability": "State that H,H^c form a disjoint exhaustive partition. Compute P(H\u2229E) from prior and likelihood.",
+      "centralCapability": "State that H,H^c form a disjoint exhaustive partition. Compute P(H∩E) from prior and likelihood.",
       "principalObstacle": "The competing H^c route to the evidence is omitted.",
       "entryPrerequisites": [
         "M04-S18 total probability",
@@ -314,8 +314,8 @@
       ],
       "requiredOwnership": [
         "State that H,H^c form a disjoint exhaustive partition.",
-        "Compute P(H\u2229E) from prior and likelihood.",
-        "Compute P(H^c\u2229E) from complement prior and likelihood.",
+        "Compute P(H∩E) from prior and likelihood.",
+        "Compute P(H^c∩E) from complement prior and likelihood.",
         "Build P(E) by adding the two routes.",
         "Use that denominator to compute the posterior."
       ],
@@ -421,7 +421,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S09 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "For a finite partition H1,...,Hk, each posterior is P(Hi|E)=P(E|Hi)P(Hi)/\u03a3j P(E|Hj)P(Hj). The denominator includes every hypothesis in the stated exhaustive set. Worked example: priors(.5,.5), likelihoods(.2,.6) give contributions(.1,.3), posterior(.25,.75). Guided check: Three priors(.4,.4,.2), likelihoods(.5,.25,.5): compute unnormalized contributions.",
+      "lesson": "For a finite partition H1,...,Hk, each posterior is P(Hi|E)=P(E|Hi)P(Hi)/Σj P(E|Hj)P(Hj). The denominator includes every hypothesis in the stated exhaustive set. Worked example: priors(.5,.5), likelihoods(.2,.6) give contributions(.1,.3), posterior(.25,.75). Guided check: Three priors(.4,.4,.2), likelihoods(.5,.25,.5): compute unnormalized contributions.",
       "main": "T22V3::ARC502::S09-M@1",
       "transfer": "T22V3::ARC502::S09-T@1"
     },
@@ -504,7 +504,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S11 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "Bayes normalizes over the model's hypothesis set. If a real alternative is omitted, the calculation can be internally correct for the truncated set yet misleading about the world. Worked example: Contributions .20,.05,.15 total.40 imply posterior H1=.50. If H3 is omitted, .20/(.20+.05)=.80\u2014a different conditional model. Guided check: Contributions .1,.1,.2; compare full versus omitting the third.",
+      "lesson": "Bayes normalizes over the model's hypothesis set. If a real alternative is omitted, the calculation can be internally correct for the truncated set yet misleading about the world. Worked example: Contributions .20,.05,.15 total.40 imply posterior H1=.50. If H3 is omitted, .20/(.20+.05)=.80—a different conditional model. Guided check: Contributions .1,.1,.2; compare full versus omitting the third.",
       "main": "T22V3::ARC502::S11-M@1",
       "transfer": "T22V3::ARC502::S11-T@1"
     },
@@ -512,17 +512,17 @@
       "order": 12,
       "id": "T22V3::ARC502::S12@1",
       "moduleId": "ARC502",
-      "title": "Probability \u2194 odds conversion",
+      "title": "Probability ↔ odds conversion",
       "focus": "Represent a binary probability as odds and invert odds back to probability.",
       "purpose": "Prepare the multiplicative form of Bayesian updating.",
-      "centralCapability": "Define odds O=p/(1\u2212p) for 0<p<1. Convert probability to odds.",
+      "centralCapability": "Define odds O=p/(1−p) for 0<p<1. Convert probability to odds.",
       "principalObstacle": "Odds are treated as a probability or the conversion denominator is wrong.",
       "entryPrerequisites": [
         "M01 ratios/fractions",
         "M06-S08 binary posterior"
       ],
       "requiredOwnership": [
-        "Define odds O=p/(1\u2212p) for 0<p<1.",
+        "Define odds O=p/(1−p) for 0<p<1.",
         "Convert probability to odds.",
         "Interpret odds as a ratio H:H^c.",
         "Invert odds via p=O/(1+O).",
@@ -546,7 +546,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S12 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "For binary H versus H^c with probability p=P(H), odds are O=p/(1\u2212p). Odds 3 means H:H^c=3:1 and corresponds to p=3/4. Conversely p=O/(1+O). Worked example: p=.2 gives odds.2/.8=.25=1:4. Guided check: Convert p=.6 to odds and odds2:3 to probability.",
+      "lesson": "For binary H versus H^c with probability p=P(H), odds are O=p/(1−p). Odds 3 means H:H^c=3:1 and corresponds to p=3/4. Conversely p=O/(1+O). Worked example: p=.2 gives odds.2/.8=.25=1:4. Guided check: Convert p=.6 to odds and odds2:3 to probability.",
       "main": "T22V3::ARC502::S12-M@1",
       "transfer": "T22V3::ARC502::S12-T@1"
     },
@@ -596,7 +596,7 @@
       "order": 14,
       "id": "T22V3::ARC502::S14@1",
       "moduleId": "ARC502",
-      "title": "Derive posterior odds = prior odds \u00d7 likelihood ratio",
+      "title": "Derive posterior odds = prior odds × likelihood ratio",
       "focus": "Derive the odds form of Bayes' rule.",
       "purpose": "Make evidence updates multiplicative after probability-form Bayes is owned.",
       "centralCapability": "Write posterior odds P(H1|E)/P(H0|E). Substitute Bayes expressions for numerator and denominator.",
@@ -610,7 +610,7 @@
         "Write posterior odds P(H1|E)/P(H0|E).",
         "Substitute Bayes expressions for numerator and denominator.",
         "Cancel the common P(E) normalizer.",
-        "Derive posterior odds = prior odds \u00d7 LR.",
+        "Derive posterior odds = prior odds × LR.",
         "Apply the identity and convert posterior odds back to probability."
       ],
       "applicationScope": "Finite Bayesian evidence problems with explicit discrete hypotheses, priors and likelihood models.",
@@ -631,7 +631,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S14 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "Take the ratio of the two Bayes posteriors. The common evidence denominator cancels, leaving posterior odds = [P(H1)/P(H0)]\u00d7[P(E|H1)/P(E|H0)]. Worked example: prior p=.25 gives odds1/3; LR6 gives posterior odds2; posterior probability2/3. Guided check: Prior odds1:4 and LR2.",
+      "lesson": "Take the ratio of the two Bayes posteriors. The common evidence denominator cancels, leaving posterior odds = [P(H1)/P(H0)]×[P(E|H1)/P(E|H0)]. Worked example: prior p=.25 gives odds1/3; LR6 gives posterior odds2; posterior probability2/3. Guided check: Prior odds1:4 and LR2.",
       "main": "T22V3::ARC502::S14-M@1",
       "transfer": "T22V3::ARC502::S14-T@1"
     },
@@ -766,14 +766,14 @@
       "title": "Joint evidence likelihood via the chain rule",
       "focus": "Factor P(E1,E2|H) using conditional probability.",
       "purpose": "Prepare dependent-evidence updating without assuming independence.",
-      "centralCapability": "Write P(E1\u2229E2|H)=P(E1|H)P(E2|E1,H). Compute a joint evidence likelihood under H.",
+      "centralCapability": "Write P(E1∩E2|H)=P(E1|H)P(E2|E1,H). Compute a joint evidence likelihood under H.",
       "principalObstacle": "Marginal evidence likelihoods are multiplied automatically.",
       "entryPrerequisites": [
         "M04-S08 multiplication rule",
         "M06-S17 sequential updating"
       ],
       "requiredOwnership": [
-        "Write P(E1\u2229E2|H)=P(E1|H)P(E2|E1,H).",
+        "Write P(E1∩E2|H)=P(E1|H)P(E2|E1,H).",
         "Compute a joint evidence likelihood under H.",
         "Compute the analogous joint likelihood under H0.",
         "Form a joint likelihood ratio.",
@@ -839,7 +839,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S19 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "E1 and E2 are conditionally independent given H when P(E1,E2|H)=P(E1|H)P(E2|H). The same check must be done under H0 if you want both joint likelihoods to factor. Worked example: Under H, marginals .7,.4 and joint .28 pass because .7\u00d7.4=.28. Under H0, marginals .3,.2 and joint .09 fail because .3\u00d7.2=.06\u2260.09. Thus the product rule may hold in one world and fail in the other. Guided check: Test marginals .8,.5 with joint .4 under a specified hypothesis.",
+      "lesson": "E1 and E2 are conditionally independent given H when P(E1,E2|H)=P(E1|H)P(E2|H). The same check must be done under H0 if you want both joint likelihoods to factor. Worked example: Under H, marginals .7,.4 and joint .28 pass because .7×.4=.28. Under H0, marginals .3,.2 and joint .09 fail because .3×.2=.06≠.09. Thus the product rule may hold in one world and fail in the other. Guided check: Test marginals .8,.5 with joint .4 under a specified hypothesis.",
       "main": "T22V3::ARC502::S19-M@1",
       "transfer": "T22V3::ARC502::S19-T@1"
     },
@@ -881,7 +881,7 @@
         "MCMC/Bayesian networks/filtering"
       ],
       "exitCondition": "Independently solve and explain M06-S20 on a fresh finite evidence model, including denominators/assumptions.",
-      "lesson": "If E1,E2 are conditionally independent under both H1 and H0, then joint LR=[P(E1|H1)P(E2|H1)]/[P(E1|H0)P(E2|H0)]=LR1\u00d7LR2. Worked example: Likelihood pairs (.7,.35) and (.6,.2), with conditional independence under both hypotheses, give LRs2 and3. The joint likelihoods are .42 and .07, so joint LR6=2\u00d73. Guided check: For different evidence with LRs2 and4, conditional independence under both hypotheses, and prior odds1:5, compute posterior odds and probability.",
+      "lesson": "If E1,E2 are conditionally independent under both H1 and H0, then joint LR=[P(E1|H1)P(E2|H1)]/[P(E1|H0)P(E2|H0)]=LR1×LR2. Worked example: Likelihood pairs (.7,.35) and (.6,.2), with conditional independence under both hypotheses, give LRs2 and3. The joint likelihoods are .42 and .07, so joint LR6=2×3. Guided check: For different evidence with LRs2 and4, conditional independence under both hypotheses, and prior odds1:5, compute posterior odds and probability.",
       "main": "T22V3::ARC502::S20-M@1",
       "transfer": "T22V3::ARC502::S20-T@1"
     },
@@ -1020,7 +1020,7 @@
       "centralCapability": "Compute a posterior from prior and joint/conditional evidence likelihoods. Reproduce the update in odds/LR form.",
       "principalObstacle": "A final posterior is reported without showing assumptions, dependence or sensitivity.",
       "entryPrerequisites": [
-        "M06-S01\u2013S23",
+        "M06-S01–S23",
         "M04 finite probability foundations"
       ],
       "requiredOwnership": [
@@ -1100,14 +1100,14 @@
       "id": "T22V3::ARC502::S04-M@1",
       "order": 4,
       "kind": "main",
-      "prompt": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H\u2229E and H^c\u2229E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
+      "prompt": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H∩E and H^c∩E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
       "obligationVersion": 1
     },
     "T22V3::ARC502::S04-T@1": {
       "id": "T22V3::ARC502::S04-T@1",
       "order": 4,
       "kind": "transfer",
-      "prompt": "A table records30 A\u2229B cases and70 A^c\u2229B cases. Compute P(A|B) directly and state the conditioning denominator.",
+      "prompt": "A table records30 A∩B cases and70 A^c∩B cases. Compute P(A|B) directly and state the conditioning denominator.",
       "obligationVersion": 2
     },
     "T22V3::ARC502::S05-M@1": {
@@ -1128,7 +1128,7 @@
       "id": "T22V3::ARC502::S06-M@1",
       "order": 6,
       "kind": "main",
-      "prompt": "Starting only from the multiplication rule, write the two factorizations of P(H\u2229E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
+      "prompt": "Starting only from the multiplication rule, write the two factorizations of P(H∩E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
       "obligationVersion": 1
     },
     "T22V3::ARC502::S06-T@1": {
@@ -1324,7 +1324,7 @@
       "id": "T22V3::ARC502::S20-M@1",
       "order": 20,
       "kind": "main",
-      "prompt": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1\u00d7LR2, then update prior odds1:2 and convert to posterior probability.",
+      "prompt": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1×LR2, then update prior odds1:2 and convert to posterior probability.",
       "obligationVersion": 1
     },
     "T22V3::ARC502::S20-T@1": {
@@ -1393,7 +1393,7 @@
   },
   "evaluators": {
     "T22V3::ARC502::S01-M@1": {
-      "reference": "P(E|H)=80/100=.80. Total E cases=80+180=260, so P(H|E)=80/260=4/13\u2248.3077. The denominators are100 H cases versus260 E cases. Equating them reverses the conditioning population.",
+      "reference": "P(E|H)=80/100=.80. Total E cases=80+180=260, so P(H|E)=80/260=4/13≈.3077. The denominators are100 H cases versus260 E cases. Equating them reverses the conditioning population.",
       "rubric": [
         {
           "points": 2,
@@ -1401,7 +1401,7 @@
         },
         {
           "points": 2,
-          "criterion": "P(H|E)=4/13\u2248.3077 is correct."
+          "criterion": "P(H|E)=4/13≈.3077 is correct."
         },
         {
           "points": 2,
@@ -1445,7 +1445,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model."
     },
     "T22V3::ARC502::S02-M@1": {
-      "reference": "H count100; H^c count9900. E from H=90; E from H^c=495. Total E=585. Posterior fraction=90/585=6/39=2/13\u2248.1538.",
+      "reference": "H count100; H^c count9900. E from H=90; E from H^c=495. Total E=585. Posterior fraction=90/585=6/39=2/13≈.1538.",
       "rubric": [
         {
           "points": 2,
@@ -1465,13 +1465,13 @@
         },
         {
           "points": 2,
-          "criterion": "Posterior frequency90/585=2/13\u2248.1538 is correct."
+          "criterion": "Posterior frequency90/585=2/13≈.1538 is correct."
         }
       ],
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S02-T@1": {
-      "reference": "H=400,H^c=19600. Evidence counts300 and392, total692. Posterior=300/692=75/173\u2248.4335.",
+      "reference": "H=400,H^c=19600. Evidence counts300 and392, total692. Posterior=300/692=75/173≈.4335.",
       "rubric": [
         {
           "points": 2,
@@ -1491,13 +1491,13 @@
         },
         {
           "points": 2,
-          "criterion": "Posterior75/173\u2248.4335 is correct."
+          "criterion": "Posterior75/173≈.4335 is correct."
         }
       ],
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model."
     },
     "T22V3::ARC502::S03-M@1": {
-      "reference": "H=100,H^c=4900. True positives=95; false positives=196; total E=291. P(H|E)=95/291\u2248.3265. The .95 conditions on H, whereas the posterior conditions on the291 evidence-positive cases. The false-positive .04 is the fraction of non-H cases showing E.",
+      "reference": "H=100,H^c=4900. True positives=95; false positives=196; total E=291. P(H|E)=95/291≈.3265. The .95 conditions on H, whereas the posterior conditions on the291 evidence-positive cases. The false-positive .04 is the fraction of non-H cases showing E.",
       "rubric": [
         {
           "points": 2,
@@ -1513,7 +1513,7 @@
         },
         {
           "points": 2,
-          "criterion": "Posterior95/291\u2248.3265 is correct."
+          "criterion": "Posterior95/291≈.3265 is correct."
         },
         {
           "points": 2,
@@ -1523,7 +1523,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S03-T@1": {
-      "reference": "H=300,H^c=9700; true signals240,false signals97,total337; posterior240/337\u2248.7122.",
+      "reference": "H=300,H^c=9700; true signals240,false signals97,total337; posterior240/337≈.7122.",
       "rubric": [
         {
           "points": 2,
@@ -1549,7 +1549,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
     },
     "T22V3::ARC502::S04-M@1": {
-      "reference": "H\u2229E=42,H^c\u2229E=94,total E=136. P(H|E)=42/136=21/68\u2248.3088, which is in[0,1]. The denominator is all136 evidence-positive cases.",
+      "reference": "H∩E=42,H^c∩E=94,total E=136. P(H|E)=42/136=21/68≈.3088, which is in[0,1]. The denominator is all136 evidence-positive cases.",
       "rubric": [
         {
           "points": 2,
@@ -1561,7 +1561,7 @@
         },
         {
           "points": 2,
-          "criterion": "Posterior21/68\u2248.3088 is correct."
+          "criterion": "Posterior21/68≈.3088 is correct."
         },
         {
           "points": 2,
@@ -1579,7 +1579,7 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "A\u2229B count is used correctly."
+          "criterion": "A∩B count is used correctly."
         },
         {
           "points": 2,
@@ -1601,7 +1601,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
     },
     "T22V3::ARC502::S05-M@1": {
-      "reference": "Need prior plus both evidence likelihoods (or equivalent P(E)). Missing P(E|H^c). With .05: .08/(.08+.9(.05))=.08/.125=.64. With .20: .08/(.08+.18)=4/13\u2248.3077. Supplying the false-positive likelihood or total P(E) resolves it.",
+      "reference": "Need prior plus both evidence likelihoods (or equivalent P(E)). Missing P(E|H^c). With .05: .08/(.08+.9(.05))=.08/.125=.64. With .20: .08/(.08+.18)=4/13≈.3077. Supplying the false-positive likelihood or total P(E) resolves it.",
       "rubric": [
         {
           "points": 2,
@@ -1617,7 +1617,7 @@
         },
         {
           "points": 2,
-          "criterion": "Posterior examples .64 and4/13\u2248.3077 are correct."
+          "criterion": "Posterior examples .64 and4/13≈.3077 are correct."
         },
         {
           "points": 2,
@@ -1653,7 +1653,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model."
     },
     "T22V3::ARC502::S06-M@1": {
-      "reference": "P(H\u2229E)=P(E|H)P(H)=P(H|E)P(E). For P(E)>0, P(H|E)=P(E|H)P(H)/P(E). Numerically=.70(.30)/.40=.21/.40=.525.",
+      "reference": "P(H∩E)=P(E|H)P(H)=P(H|E)P(E). For P(E)>0, P(H|E)=P(E|H)P(H)/P(E). Numerically=.70(.30)/.40=.21/.40=.525.",
       "rubric": [
         {
           "points": 2,
@@ -1679,7 +1679,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S06-T@1": {
-      "reference": "P(A\u2229B)=P(B|A)P(A)=P(A|B)P(B); hence posterior=.9(.2)/.3=.6, for P(B)>0.",
+      "reference": "P(A∩B)=P(B|A)P(A)=P(A|B)P(B); hence posterior=.9(.2)/.3=.6, for P(B)>0.",
       "rubric": [
         {
           "points": 2,
@@ -1713,11 +1713,11 @@
         },
         {
           "points": 2,
-          "criterion": "H\u2229E contribution .16 is correct."
+          "criterion": "H∩E contribution .16 is correct."
         },
         {
           "points": 2,
-          "criterion": "H^c\u2229E contribution .08 is correct."
+          "criterion": "H^c∩E contribution .08 is correct."
         },
         {
           "points": 2,
@@ -1757,7 +1757,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model."
     },
     "T22V3::ARC502::S08-M@1": {
-      "reference": "P(H)=.05,P(H^c)=.95. Likelihoods .90 and.10. Numerator=.045. Denominator=.045+.095=.14. Posterior=.045/.14=9/28\u2248.3214. Under this binary model, the posterior is the H fraction among evidence-positive cases.",
+      "reference": "P(H)=.05,P(H^c)=.95. Likelihoods .90 and.10. Numerator=.045. Denominator=.045+.095=.14. Posterior=.045/.14=9/28≈.3214. Under this binary model, the posterior is the H fraction among evidence-positive cases.",
       "rubric": [
         {
           "points": 2,
@@ -1777,13 +1777,13 @@
         },
         {
           "points": 2,
-          "criterion": "Posterior9/28\u2248.3214 is correct and interpreted conditionally on the model."
+          "criterion": "Posterior9/28≈.3214 is correct and interpreted conditionally on the model."
         }
       ],
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S08-T@1": {
-      "reference": "Numerator=.15; competing route=.8(.25)=.20; denominator=.35; posterior=3/7\u2248.4286.",
+      "reference": "Numerator=.15; competing route=.8(.25)=.20; denominator=.35; posterior=3/7≈.4286.",
       "rubric": [
         {
           "points": 2,
@@ -1887,7 +1887,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S10-T@1": {
-      "reference": "Counts H200\u2192100 evidence; H^c800\u219280 evidence; posterior100/180=5/9. Algebra .1/(.1+.08)=5/9. Disagreement would flag a translation, denominator or arithmetic error in representing the same model.",
+      "reference": "Counts H200→100 evidence; H^c800→80 evidence; posterior100/180=5/9. Algebra .1/(.1+.08)=5/9. Disagreement would flag a translation, denominator or arithmetic error in representing the same model.",
       "rubric": [
         {
           "points": 2,
@@ -1913,7 +1913,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model."
     },
     "T22V3::ARC502::S11-M@1": {
-      "reference": "Contributions:.20,.06,.16; full denominator.42; correct P(H1|E)=.20/.42=10/21\u2248.4762. Omitting H3 gives .20/(.20+.06)=10/13\u2248.7692. Bayes cannot compensate for an omitted plausible route to E. All three declared alternatives can generate E and must appear in the full denominator.",
+      "reference": "Contributions:.20,.06,.16; full denominator.42; correct P(H1|E)=.20/.42=10/21≈.4762. Omitting H3 gives .20/(.20+.06)=10/13≈.7692. Bayes cannot compensate for an omitted plausible route to E. All three declared alternatives can generate E and must appear in the full denominator.",
       "rubric": [
         {
           "points": 2,
@@ -1925,11 +1925,11 @@
         },
         {
           "points": 2,
-          "criterion": "Correct posterior10/21\u2248.4762 is correct."
+          "criterion": "Correct posterior10/21≈.4762 is correct."
         },
         {
           "points": 2,
-          "criterion": "Omitted-H3 posterior10/13\u2248.7692 is correct."
+          "criterion": "Omitted-H3 posterior10/13≈.7692 is correct."
         },
         {
           "points": 2,
@@ -1965,7 +1965,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model."
     },
     "T22V3::ARC502::S12-M@1": {
-      "reference": "For p=.30, O=.3/.7=3/7\u2248.4286, ratio3:7. Odds4:1 means O=4 and probability4/(1+4)=.8. Formulas O=p/(1\u2212p), p=O/(1+O). Odds are a ratio and can exceed1; probability remains in[0,1].",
+      "reference": "For p=.30, O=.3/.7=3/7≈.4286, ratio3:7. Odds4:1 means O=4 and probability4/(1+4)=.8. Formulas O=p/(1−p), p=O/(1+O). Odds are a ratio and can exceed1; probability remains in[0,1].",
       "rubric": [
         {
           "points": 2,
@@ -1995,7 +1995,7 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": ".75\u21923:1 is correct."
+          "criterion": ".75→3:1 is correct."
         },
         {
           "points": 2,
@@ -2003,7 +2003,7 @@
         },
         {
           "points": 2,
-          "criterion": "1:4\u2192.20 is correct."
+          "criterion": "1:4→.20 is correct."
         },
         {
           "points": 2,
@@ -2069,7 +2069,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
     },
     "T22V3::ARC502::S14-M@1": {
-      "reference": "Posterior odds=[P(E|H1)P(H1)/P(E)]/[P(E|H0)P(H0)/P(E)]=prior odds\u00d7LR. Prior p=.2 gives odds.2/.8=.25=1/4. Posterior odds=.75=3/4. Posterior probability=.75/1.75=3/7\u2248.4286.",
+      "reference": "Posterior odds=[P(E|H1)P(H1)/P(E)]/[P(E|H0)P(H0)/P(E)]=prior odds×LR. Prior p=.2 gives odds.2/.8=.25=1/4. Posterior odds=.75=3/4. Posterior probability=.75/1.75=3/7≈.4286.",
       "rubric": [
         {
           "points": 2,
@@ -2173,7 +2173,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
     },
     "T22V3::ARC502::S16-M@1": {
-      "reference": "A prior odds=1/99; posterior odds=4/99; posterior=4/103\u2248.0388. B prior odds=1; posterior odds=4; posterior=.8. Same LR4 has the same multiplicative evidence strength but starts from very different base rates.",
+      "reference": "A prior odds=1/99; posterior odds=4/99; posterior=4/103≈.0388. B prior odds=1; posterior odds=4; posterior=.8. Same LR4 has the same multiplicative evidence strength but starts from very different base rates.",
       "rubric": [
         {
           "points": 2,
@@ -2185,7 +2185,7 @@
         },
         {
           "points": 2,
-          "criterion": "Posteriors4/103\u2248.0388 and.8 are correct."
+          "criterion": "Posteriors4/103≈.0388 and.8 are correct."
         },
         {
           "points": 2,
@@ -2199,7 +2199,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S16-T@1": {
-      "reference": "Prior.1 odds1/9\u2192post odds1/3\u2192posterior.25. Prior.4 odds2/3\u2192post odds2\u2192posterior2/3. The same odds multiplier starts from different prior odds, so the posterior probabilities differ.",
+      "reference": "Prior.1 odds1/9→post odds1/3→posterior.25. Prior.4 odds2/3→post odds2→posterior2/3. The same odds multiplier starts from different prior odds, so the posterior probabilities differ.",
       "rubric": [
         {
           "points": 2,
@@ -2251,7 +2251,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S17-T@1": {
-      "reference": "Start odds.5. After LR3 odds1.5\u2192posterior.6. Then\u00d7.5 gives odds.75\u2192posterior3/7\u2248.4286.",
+      "reference": "Start odds.5. After LR3 odds1.5→posterior.6. Then×.5 gives odds.75→posterior3/7≈.4286.",
       "rubric": [
         {
           "points": 2,
@@ -2303,7 +2303,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S18-T@1": {
-      "reference": "Joint under A=.30; under A^c=.12; LR=2.5. The products are .6\u00d7.5 and .3\u00d7.4 using the supplied conditional second factors; independence is not needed.",
+      "reference": "Joint under A=.30; under A^c=.12; LR=2.5. The products are .6×.5 and .3×.4 using the supplied conditional second factors; independence is not needed.",
       "rubric": [
         {
           "points": 2,
@@ -2329,7 +2329,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
     },
     "T22V3::ARC502::S19-M@1": {
-      "reference": "Under H, .6(.5)=.30, so independence holds given H. Under H0, .2(.4)=.08\u2260.12, so it fails given H0. Because both numerator and denominator joint likelihoods must factor, marginal LRs cannot be multiplied directly here.",
+      "reference": "Under H, .6(.5)=.30, so independence holds given H. Under H0, .2(.4)=.08≠.12, so it fails given H0. Because both numerator and denominator joint likelihoods must factor, marginal LRs cannot be multiplied directly here.",
       "rubric": [
         {
           "points": 2,
@@ -2341,7 +2341,7 @@
         },
         {
           "points": 2,
-          "criterion": "H0 calculation .12\u2260.08 is correct."
+          "criterion": "H0 calculation .12≠.08 is correct."
         },
         {
           "points": 2,
@@ -2381,7 +2381,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model."
     },
     "T22V3::ARC502::S20-M@1": {
-      "reference": "LR1=3,LR2=2. Joint H1=.30,joint H0=.05, joint LR=6=3\u00d72. Prior odds=.5, posterior odds=3, posterior probability3/4=.75.",
+      "reference": "LR1=3,LR2=2. Joint H1=.30,joint H0=.05, joint LR=6=3×2. Prior odds=.5, posterior odds=3, posterior probability3/4=.75.",
       "rubric": [
         {
           "points": 2,
@@ -2393,7 +2393,7 @@
         },
         {
           "points": 2,
-          "criterion": "Joint LR6 equals product LR1\u00d7LR2."
+          "criterion": "Joint LR6 equals product LR1×LR2."
         },
         {
           "points": 2,
@@ -2407,7 +2407,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S20-T@1": {
-      "reference": "LRs2 and3, product6. Prior odds.25\u2192posterior odds1.5\u2192probability.6.",
+      "reference": "LRs2 and3, product6. Prior odds.25→posterior odds1.5→probability.6.",
       "rubric": [
         {
           "points": 2,
@@ -2433,7 +2433,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model."
     },
     "T22V3::ARC502::S21-M@1": {
-      "reference": "Because D duplicates E, P(E,D|H1)=.50 and under H0=.10, so correct joint LR=5. Naive multiplication gives25. Given E, P(D|H1,E)=P(D|H0,E)=1, so conditional LR2=1 and sequential product5\u00d71=5. Exact processing of the same joint evidence cannot change the final joint likelihood by order; only an inconsistent independence approximation does.",
+      "reference": "Because D duplicates E, P(E,D|H1)=.50 and under H0=.10, so correct joint LR=5. Naive multiplication gives25. Given E, P(D|H1,E)=P(D|H0,E)=1, so conditional LR2=1 and sequential product5×1=5. Exact processing of the same joint evidence cannot change the final joint likelihood by order; only an inconsistent independence approximation does.",
       "rubric": [
         {
           "points": 2,
@@ -2485,7 +2485,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
     },
     "T22V3::ARC502::S22-M@1": {
-      "reference": "Prior.01: .008/(.008+.99(.2))=.008/.206=4/103\u2248.0388. Prior.10: .08/(.08+.18)=4/13\u2248.3077. Prior.50: .4/(.4+.1)=.8. The posterior varies greatly, so conclusions are prior-sensitive. The table does not identify the true prior; it audits dependence on that input.",
+      "reference": "Prior.01: .008/(.008+.99(.2))=.008/.206=4/103≈.0388. Prior.10: .08/(.08+.18)=4/13≈.3077. Prior.50: .4/(.4+.1)=.8. The posterior varies greatly, so conclusions are prior-sensitive. The table does not identify the true prior; it audits dependence on that input.",
       "rubric": [
         {
           "points": 2,
@@ -2493,11 +2493,11 @@
         },
         {
           "points": 2,
-          "criterion": "Posterior4/103\u2248.0388 for prior.01 is correct."
+          "criterion": "Posterior4/103≈.0388 for prior.01 is correct."
         },
         {
           "points": 2,
-          "criterion": "Posteriors4/13\u2248.3077 and.8 are correct."
+          "criterion": "Posteriors4/13≈.3077 and.8 are correct."
         },
         {
           "points": 2,
@@ -2511,7 +2511,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S22-T@1": {
-      "reference": "Prior.2: .18/(.18+.24)=3/7\u2248.4286. Prior.6: .54/(.54+.12)=9/11\u2248.8182. Same evidence model gives materially different posteriors.",
+      "reference": "Prior.2: .18/(.18+.24)=3/7≈.4286. Prior.6: .54/(.54+.12)=9/11≈.8182. Same evidence model gives materially different posteriors.",
       "rubric": [
         {
           "points": 2,
@@ -2537,7 +2537,7 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
     },
     "T22V3::ARC502::S23-M@1": {
-      "reference": "False-positive .05: posterior .08/(.08+.045)=.64. At .10: .08/.17=8/17\u2248.4706. At .20: .08/.26=4/13\u2248.3077. The varying input is P(E|H^c). Bayes is conditional on whichever evidence model is supplied; estimating/calibrating the false-positive rate on relevant data would reduce this model uncertainty.",
+      "reference": "False-positive .05: posterior .08/(.08+.045)=.64. At .10: .08/.17=8/17≈.4706. At .20: .08/.26=4/13≈.3077. The varying input is P(E|H^c). Bayes is conditional on whichever evidence model is supplied; estimating/calibrating the false-positive rate on relevant data would reduce this model uncertainty.",
       "rubric": [
         {
           "points": 2,
@@ -2545,11 +2545,11 @@
         },
         {
           "points": 2,
-          "criterion": "Posterior8/17\u2248.4706 for .10 is correct."
+          "criterion": "Posterior8/17≈.4706 for .10 is correct."
         },
         {
           "points": 2,
-          "criterion": "Posterior4/13\u2248.3077 for .20 is correct."
+          "criterion": "Posterior4/13≈.3077 for .20 is correct."
         },
         {
           "points": 2,
@@ -2563,7 +2563,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S23-T@1": {
-      "reference": "At .05: .15/(.15+.04)=15/19\u2248.7895. At .25: .15/(.15+.20)=3/7\u2248.4286. Posterior is strongly sensitive to the false-signal rate.",
+      "reference": "At .05: .15/(.15+.04)=15/19≈.7895. At .25: .15/(.15+.20)=3/7≈.4286. Posterior is strongly sensitive to the false-signal rate.",
       "rubric": [
         {
           "points": 2,
@@ -2589,11 +2589,11 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not award posterior claims unsupported by the stated model. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
     },
     "T22V3::ARC502::S24-M@1": {
-      "reference": "Joint likelihood under H=.8(.6)=.48; under H^c=.1(.3)=.03. Numerator=.05(.48)=.024; competing=.95(.03)=.0285; denominator=.0525; posterior=.024/.0525=16/35\u2248.4571. LRs8 and2 give product16; prior odds1/19\u2192posterior odds16/19\u2192probability16/35. Conditional independence under both hypotheses justifies multiplication. With prior.02, odds1/49\u00d716=16/49\u2192posterior16/65\u2248.2462. Conclusion: posterior support depends on the stated binary hypothesis set, prior and conditional-independence likelihood model; changing the prior materially changes the result.",
+      "reference": "Joint likelihood under H=.8(.6)=.48; under H^c=.1(.3)=.03. Numerator=.05(.48)=.024; competing=.95(.03)=.0285; denominator=.0525; posterior=.024/.0525=16/35≈.4571. LRs8 and2 give product16; prior odds1/19→posterior odds16/19→probability16/35. Conditional independence under both hypotheses justifies multiplication. With prior.02, odds1/49×16=16/49→posterior16/65≈.2462. Conclusion: posterior support depends on the stated binary hypothesis set, prior and conditional-independence likelihood model; changing the prior materially changes the result.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Joint likelihoods, Bayes denominator and posterior16/35\u2248.4571 are correct."
+          "criterion": "Joint likelihoods, Bayes denominator and posterior16/35≈.4571 are correct."
         },
         {
           "points": 2,
@@ -2605,7 +2605,7 @@
         },
         {
           "points": 2,
-          "criterion": "Prior-.02 sensitivity posterior16/65\u2248.2462 is correct."
+          "criterion": "Prior-.02 sensitivity posterior16/65≈.2462 is correct."
         },
         {
           "points": 2,
@@ -2615,7 +2615,7 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Penalize conditioning-direction or model-assumption errors even when arithmetic is tidy."
     },
     "T22V3::ARC502::S24-T@1": {
-      "reference": "LRs3.5 and4, product14. Prior odds1/9\u219214/9\u2192posterior14/23\u2248.6087. Joint likelihoods.28 and.02 give numerator.028, competing.018, same posterior14/23. Prior.05 odds1/19\u00d714=14/19\u2192posterior14/33\u2248.4242. This sensitivity is conditional on the exhaustive binary model, supplied likelihoods and independence under each hypothesis.",
+      "reference": "LRs3.5 and4, product14. Prior odds1/9→14/9→posterior14/23≈.6087. Joint likelihoods.28 and.02 give numerator.028, competing.018, same posterior14/23. Prior.05 odds1/19×14=14/19→posterior14/33≈.4242. This sensitivity is conditional on the exhaustive binary model, supplied likelihoods and independence under each hypothesis.",
       "rubric": [
         {
           "points": 2,
@@ -3075,7 +3075,7 @@
         "publicRequest": "In a population of1000 cases,100 satisfy hypothesis H. Evidence E appears in80 of the H cases and180 of the900 non-H cases. Compute P(E|H), compute P(H|E), state the denominator used in each calculation, compare the two values, and explain the conditioning-direction error that would occur if they were equated. Explain what population each conditional refers to.",
         "rubricEvidence": [
           "P(E|H)=.80 is correct.",
-          "P(H|E)=4/13\u2248.3077 is correct."
+          "P(H|E)=4/13≈.3077 is correct."
         ]
       },
       {
@@ -3134,7 +3134,7 @@
         "task": "main",
         "publicRequest": "Use a hypothetical population of10000. H has base rate1%; P(E|H)=.90 and P(E|H^c)=.05. Compute the H and non-H counts, the expected E counts from each group, total E count, and the fraction of E cases that are H.",
         "rubricEvidence": [
-          "Posterior frequency90/585=2/13\u2248.1538 is correct."
+          "Posterior frequency90/585=2/13≈.1538 is correct."
         ]
       }
     ],
@@ -3168,7 +3168,7 @@
         "task": "main",
         "publicRequest": "In5000 cases, H prevalence is2%. P(E|H)=.95 and P(E|H^c)=.04. Compute true-positive and false-positive counts, total positive-evidence count, P(H|E), and explain quantitatively why .95 must not be reported as the posterior probability. State the meaning of each supplied likelihood in its own denominator population.",
         "rubricEvidence": [
-          "Posterior95/291\u2248.3265 is correct."
+          "Posterior95/291≈.3265 is correct."
         ]
       },
       {
@@ -3182,9 +3182,9 @@
     ],
     "T22V3::ARC502::S04@1": [
       {
-        "claim": "Read H\u2229E and H^c\u2229E counts from a finite table.",
+        "claim": "Read H∩E and H^c∩E counts from a finite table.",
         "task": "main",
-        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H\u2229E and H^c\u2229E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
+        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H∩E and H^c∩E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
         "rubricEvidence": [
           "Intersection counts42 and94 are identified correctly."
         ]
@@ -3192,7 +3192,7 @@
       {
         "claim": "Compute total E count.",
         "task": "main",
-        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H\u2229E and H^c\u2229E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
+        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H∩E and H^c∩E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
         "rubricEvidence": [
           "Total evidence count136 is correct."
         ]
@@ -3200,15 +3200,15 @@
       {
         "claim": "Compute P(H|E) directly from counts.",
         "task": "main",
-        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H\u2229E and H^c\u2229E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
+        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H∩E and H^c∩E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
         "rubricEvidence": [
-          "Posterior21/68\u2248.3088 is correct."
+          "Posterior21/68≈.3088 is correct."
         ]
       },
       {
         "claim": "Check the result lies in [0,1].",
         "task": "main",
-        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H\u2229E and H^c\u2229E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
+        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H∩E and H^c∩E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
         "rubricEvidence": [
           "Probability-range check is correct."
         ]
@@ -3216,7 +3216,7 @@
       {
         "claim": "Explain the answer using the conditioned evidence subset.",
         "task": "main",
-        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H\u2229E and H^c\u2229E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
+        "publicRequest": "A frequency table has60 H cases and940 H^c cases. Of the H cases,42 show evidence E; of the H^c cases,94 show E. Compute H∩E and H^c∩E counts, total E count, P(H|E), verify the probability range, and explain the denominator in words.",
         "rubricEvidence": [
           "Denominator is explained as the evidence-positive subset."
         ]
@@ -3252,7 +3252,7 @@
         "task": "main",
         "publicRequest": "You are told P(H)=.10 and P(E|H)=.80, but P(E|H^c) is not given. State the information needed for a binary posterior, identify the missing term, explain why P(H|E) is not uniquely identifiable, compute P(H|E) under alternative values P(E|H^c)=.05 and .20, and state what extra information would resolve the problem.",
         "rubricEvidence": [
-          "Posterior examples .64 and4/13\u2248.3077 are correct."
+          "Posterior examples .64 and4/13≈.3077 are correct."
         ]
       },
       {
@@ -3266,17 +3266,17 @@
     ],
     "T22V3::ARC502::S06@1": [
       {
-        "claim": "Write P(H\u2229E)=P(E|H)P(H).",
+        "claim": "Write P(H∩E)=P(E|H)P(H).",
         "task": "main",
-        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H\u2229E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
+        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H∩E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
         "rubricEvidence": [
           "First joint factorization P(E|H)P(H) is correct."
         ]
       },
       {
-        "claim": "Write P(H\u2229E)=P(H|E)P(E).",
+        "claim": "Write P(H∩E)=P(H|E)P(E).",
         "task": "main",
-        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H\u2229E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
+        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H∩E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
         "rubricEvidence": [
           "Reverse factorization P(H|E)P(E) is correct."
         ]
@@ -3284,7 +3284,7 @@
       {
         "claim": "Equate the two joint factorizations.",
         "task": "main",
-        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H\u2229E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
+        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H∩E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
         "rubricEvidence": [
           "The equality of the two joint expressions is used."
         ]
@@ -3292,7 +3292,7 @@
       {
         "claim": "Derive P(H|E)=P(E|H)P(H)/P(E).",
         "task": "main",
-        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H\u2229E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
+        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H∩E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
         "rubricEvidence": [
           "Bayes' rule is derived and P(E)>0 stated."
         ]
@@ -3300,7 +3300,7 @@
       {
         "claim": "State the requirement P(E)>0.",
         "task": "main",
-        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H\u2229E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
+        "publicRequest": "Starting only from the multiplication rule, write the two factorizations of P(H∩E), equate them, derive Bayes' rule for P(H|E), state the nonzero-denominator condition, then apply it to P(H)=.30,P(E|H)=.70,P(E)=.40.",
         "rubricEvidence": [
           "Bayes' rule is derived and P(E)>0 stated."
         ]
@@ -3316,19 +3316,19 @@
         ]
       },
       {
-        "claim": "Compute P(H\u2229E) from prior and likelihood.",
+        "claim": "Compute P(H∩E) from prior and likelihood.",
         "task": "main",
         "publicRequest": "Let P(H)=.20,P(E|H)=.80 and P(E|H^c)=.10. Verify the binary partition, compute both joint contributions to E, construct P(E), and compute P(H|E).",
         "rubricEvidence": [
-          "H\u2229E contribution .16 is correct."
+          "H∩E contribution .16 is correct."
         ]
       },
       {
-        "claim": "Compute P(H^c\u2229E) from complement prior and likelihood.",
+        "claim": "Compute P(H^c∩E) from complement prior and likelihood.",
         "task": "main",
         "publicRequest": "Let P(H)=.20,P(E|H)=.80 and P(E|H^c)=.10. Verify the binary partition, compute both joint contributions to E, construct P(E), and compute P(H|E).",
         "rubricEvidence": [
-          "H^c\u2229E contribution .08 is correct."
+          "H^c∩E contribution .08 is correct."
         ]
       },
       {
@@ -3386,7 +3386,7 @@
         "task": "main",
         "publicRequest": "A rare condition H has prior probability .05. Evidence E appears with probability .90 under H and .10 under H^c. Identify the prior/complement and both likelihoods, compute the numerator, construct the denominator, and compute P(H|E). Interpret the posterior under the stated model.",
         "rubricEvidence": [
-          "Posterior9/28\u2248.3214 is correct and interpreted conditionally on the model."
+          "Posterior9/28≈.3214 is correct and interpreted conditionally on the model."
         ]
       }
     ],
@@ -3496,7 +3496,7 @@
         "task": "main",
         "publicRequest": "H1,H2,H3 are mutually exclusive and exhaustive with priors .50,.30,.20 and likelihoods P(E|Hi)=.40,.20,.80. Compute the correct evidence denominator and P(H1|E). Then compute the value an analyst would report if H3 were wrongly omitted and normalization used only H1,H2. Explain the modeling error. State why the full denominator must include all three hypotheses.",
         "rubricEvidence": [
-          "Correct posterior10/21\u2248.4762 is correct."
+          "Correct posterior10/21≈.4762 is correct."
         ]
       },
       {
@@ -3504,7 +3504,7 @@
         "task": "main",
         "publicRequest": "H1,H2,H3 are mutually exclusive and exhaustive with priors .50,.30,.20 and likelihoods P(E|Hi)=.40,.20,.80. Compute the correct evidence denominator and P(H1|E). Then compute the value an analyst would report if H3 were wrongly omitted and normalization used only H1,H2. Explain the modeling error. State why the full denominator must include all three hypotheses.",
         "rubricEvidence": [
-          "Omitted-H3 posterior10/13\u2248.7692 is correct."
+          "Omitted-H3 posterior10/13≈.7692 is correct."
         ]
       },
       {
@@ -3518,7 +3518,7 @@
     ],
     "T22V3::ARC502::S12@1": [
       {
-        "claim": "Define odds O=p/(1\u2212p) for 0<p<1.",
+        "claim": "Define odds O=p/(1−p) for 0<p<1.",
         "task": "main",
         "publicRequest": "For p=.30, compute odds in decimal and ratio form. Then convert odds4:1 back to probability. State both conversion formulas, interpret 4:1 in words, and explain why odds4 is not probability4.",
         "rubricEvidence": [
@@ -3627,7 +3627,7 @@
         ]
       },
       {
-        "claim": "Derive posterior odds = prior odds \u00d7 LR.",
+        "claim": "Derive posterior odds = prior odds × LR.",
         "task": "main",
         "publicRequest": "Derive the posterior-odds identity from Bayes' rule for H1 versus H0. Then let prior P(H1)=.20 and LR(E)=3. Compute prior odds, posterior odds and posterior probability.",
         "rubricEvidence": [
@@ -3707,7 +3707,7 @@
         "task": "main",
         "publicRequest": "Use the same LR=4 in two settings. Setting A has prior P(H)=.01; setting B has prior P(H)=.50. Convert each prior to odds, update by LR4, convert to posterior probability, compare the results, and explain the role of the base rate.",
         "rubricEvidence": [
-          "Posteriors4/103\u2248.0388 and.8 are correct."
+          "Posteriors4/103≈.0388 and.8 are correct."
         ]
       },
       {
@@ -3773,7 +3773,7 @@
     ],
     "T22V3::ARC502::S18@1": [
       {
-        "claim": "Write P(E1\u2229E2|H)=P(E1|H)P(E2|E1,H).",
+        "claim": "Write P(E1∩E2|H)=P(E1|H)P(E2|E1,H).",
         "task": "main",
         "publicRequest": "Under H1, P(E1|H1)=.50 and P(E2|E1,H1)=.80. Under H0, P(E1|H0)=.40 and P(E2|E1,H0)=.25. Write the chain-rule factorization under each hypothesis, compute both joint evidence likelihoods, compute their joint LR, and explain why multiplying unconditional P(E1|H)P(E2|H) would require an extra assumption.",
         "rubricEvidence": [
@@ -3835,7 +3835,7 @@
         "task": "main",
         "publicRequest": "Under H, P(E1|H)=.60,P(E2|H)=.50 and P(E1,E2|H)=.30. Under H0, the corresponding values are .20,.40 and joint .12. Test conditional independence under each hypothesis, show the product comparisons, explain whether the same conclusion holds in both worlds, and state whether marginal LRs may be multiplied directly.",
         "rubricEvidence": [
-          "H0 calculation .12\u2260.08 is correct."
+          "H0 calculation .12≠.08 is correct."
         ]
       },
       {
@@ -3859,7 +3859,7 @@
       {
         "claim": "Compute marginal LR for each evidence item.",
         "task": "main",
-        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1\u00d7LR2, then update prior odds1:2 and convert to posterior probability.",
+        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1×LR2, then update prior odds1:2 and convert to posterior probability.",
         "rubricEvidence": [
           "LR1=3 and LR2=2 are correct."
         ]
@@ -3867,7 +3867,7 @@
       {
         "claim": "Use conditional independence to factor both joint likelihoods.",
         "task": "main",
-        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1\u00d7LR2, then update prior odds1:2 and convert to posterior probability.",
+        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1×LR2, then update prior odds1:2 and convert to posterior probability.",
         "rubricEvidence": [
           "Joint likelihoods .30 and .05 are correct."
         ]
@@ -3875,15 +3875,15 @@
       {
         "claim": "Show joint LR equals product of marginal LRs.",
         "task": "main",
-        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1\u00d7LR2, then update prior odds1:2 and convert to posterior probability.",
+        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1×LR2, then update prior odds1:2 and convert to posterior probability.",
         "rubricEvidence": [
-          "Joint LR6 equals product LR1\u00d7LR2."
+          "Joint LR6 equals product LR1×LR2."
         ]
       },
       {
         "claim": "Update prior odds with the product LR.",
         "task": "main",
-        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1\u00d7LR2, then update prior odds1:2 and convert to posterior probability.",
+        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1×LR2, then update prior odds1:2 and convert to posterior probability.",
         "rubricEvidence": [
           "Prior odds1:2 update to posterior odds3."
         ]
@@ -3891,7 +3891,7 @@
       {
         "claim": "Convert the resulting odds to posterior probability.",
         "task": "main",
-        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1\u00d7LR2, then update prior odds1:2 and convert to posterior probability.",
+        "publicRequest": "Assume E1,E2 are conditionally independent under both H1 and H0. P(E1|H1)=.60,P(E1|H0)=.20; P(E2|H1)=.50,P(E2|H0)=.25. Compute LR1 and LR2, compute both joint likelihoods, verify joint LR=LR1×LR2, then update prior odds1:2 and convert to posterior probability.",
         "rubricEvidence": [
           "Posterior probability.75 is correct."
         ]
@@ -3953,8 +3953,8 @@
         "task": "main",
         "publicRequest": "Keep P(E|H)=.80 and P(E|H^c)=.20 fixed. Compute P(H|E) for priors .01,.10,.50. Compare the three posteriors, state whether the result is prior-sensitive over this range, and explain what the exercise can and cannot tell you about which prior is empirically correct.",
         "rubricEvidence": [
-          "Posterior4/103\u2248.0388 for prior.01 is correct.",
-          "Posteriors4/13\u2248.3077 and.8 are correct."
+          "Posterior4/103≈.0388 for prior.01 is correct.",
+          "Posteriors4/13≈.3077 and.8 are correct."
         ]
       },
       {
@@ -3997,8 +3997,8 @@
         "publicRequest": "Fix prior P(H)=.10 and P(E|H)=.80. Compute P(H|E) when P(E|H^c)=.05,.10,.20. Compare the results, identify the model input causing the change, explain why Bayes itself is not contradicted, and name one empirical check or dataset quantity that would help constrain that input.",
         "rubricEvidence": [
           "Posterior .64 for false-positive .05 is correct.",
-          "Posterior8/17\u2248.4706 for .10 is correct.",
-          "Posterior4/13\u2248.3077 for .20 is correct."
+          "Posterior8/17≈.4706 for .10 is correct.",
+          "Posterior4/13≈.3077 for .20 is correct."
         ]
       },
       {
@@ -4032,7 +4032,7 @@
         "task": "main",
         "publicRequest": "Binary H versus H^c has prior P(H)=.05. Evidence E1 has likelihoods .80 under H and .10 under H^c. Evidence E2 has likelihoods .60 under H and .30 under H^c, and E1,E2 are conditionally independent given both hypotheses. Compute the joint-likelihood Bayes posterior, reproduce it from prior odds and product LR, explicitly justify the LR multiplication, recompute the posterior if the prior were .02 with likelihoods unchanged, and write a calibrated conclusion that states the model assumptions without making a decision recommendation.",
         "rubricEvidence": [
-          "Joint likelihoods, Bayes denominator and posterior16/35\u2248.4571 are correct."
+          "Joint likelihoods, Bayes denominator and posterior16/35≈.4571 are correct."
         ]
       },
       {
@@ -4056,7 +4056,7 @@
         "task": "main",
         "publicRequest": "Binary H versus H^c has prior P(H)=.05. Evidence E1 has likelihoods .80 under H and .10 under H^c. Evidence E2 has likelihoods .60 under H and .30 under H^c, and E1,E2 are conditionally independent given both hypotheses. Compute the joint-likelihood Bayes posterior, reproduce it from prior odds and product LR, explicitly justify the LR multiplication, recompute the posterior if the prior were .02 with likelihoods unchanged, and write a calibrated conclusion that states the model assumptions without making a decision recommendation.",
         "rubricEvidence": [
-          "Prior-.02 sensitivity posterior16/65\u2248.2462 is correct."
+          "Prior-.02 sensitivity posterior16/65≈.2462 is correct."
         ]
       },
       {
@@ -4295,15 +4295,15 @@
     "S24": [
       {
         "item": "base rates/Bayes",
-        "source": "M06-S02\u2013S11"
+        "source": "M06-S02–S11"
       },
       {
         "item": "odds/LRs/sequential evidence",
-        "source": "M06-S12\u2013S21"
+        "source": "M06-S12–S21"
       },
       {
         "item": "sensitivity",
-        "source": "M06-S22\u2013S23"
+        "source": "M06-S22–S23"
       }
     ]
   },
@@ -4337,7 +4337,7 @@
         "A frequency table has60 H cases and940 H^c cases. Of the H c"
       ],
       "transfer": [
-        "A table records30 A\u2229B cases and70 A^c\u2229B cases. Compute P(A|B"
+        "A table records30 A∩B cases and70 A^c∩B cases. Compute P(A|B"
       ]
     },
     "T22V3::ARC502::S05@1": {
@@ -4507,7 +4507,7 @@
     "sessions": {
       "T22V3::ARC502::S01@1": {
         "status": "reviewed-separated",
-        "note": "Worked20 H/16 H-evidence/20 non-H evidence and guided30/18/12 differ from Main100/80/180 and Transfer50/35/45. Claims1\u20132 map to interpreted denominators, claim3 to both calculations, claim4 to both denominators. Later old S05/S10/S22/S23 disclosed Main subanswers; source-ledger links preserve that history."
+        "note": "Worked20 H/16 H-evidence/20 non-H evidence and guided30/18/12 differ from Main100/80/180 and Transfer50/35/45. Claims1–2 map to interpreted denominators, claim3 to both calculations, claim4 to both denominators. Later old S05/S10/S22/S23 disclosed Main subanswers; source-ledger links preserve that history."
       },
       "T22V3::ARC502::S02@1": {
         "status": "reviewed-separated",
