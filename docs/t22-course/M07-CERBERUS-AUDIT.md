@@ -172,7 +172,17 @@ Astra should spend its expensive pass primarily on:
 6. task-specific rubric fairness after the C-02 repair;
 7. exact accepted-state CI/browser logs.
 
+## Exact-head verification
+
+Verified implementation head: `84baddc69643f4654eb87bf05ed907febf37b077`. Full T22 Elite Actions run `35927759177`, job `107406819179`, concluded **success**. The exact logs contain:
+- PASS M07 CERBERUS structural/pedagogy — 24 sessions, 48 fixed tasks, 120 explicit semantic links;
+- PASS M07 independent math — returns/logs, long-short signs, bid/ask execution, limit constraints, weighted fills, average-cost accounting, fees and ledger reconciliation;
+- PASS M07 handoff — M02 logarithm edge, seven-module runtime integration, shared evidence key and M08 stop;
+- PASS real Chromium seven-module workflow through M07.
+
+Two early CI failures were useful adversarial catches rather than bypassed gates: repaired public prompts had stale `claimEvidence.publicRequest`, and a repaired S02 evaluator criterion had stale `rubricEvidence`. Both semantic ledgers were corrected to the live contracts; the equality/semantic gates were retained.
+
 ## Current disposition
 
-**Strong CERBERUS candidate; not independently frozen.**  
-Complete full-suite validation and produce the M07 review handoff. Then stop. M08 remains closed.
+**Strong CERBERUS candidate with full exact-head verification; not independently frozen.**  
+Hand to Astra for bounded independent M07 review. Stop. M08 remains closed.
