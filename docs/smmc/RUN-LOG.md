@@ -422,3 +422,105 @@ Remote validation against the controlled SMMC schema and live canonical 80-targe
 - all stable `t25Targets` resolve;
 - all B4 open-problem protections remain intact through 2023;
 - totals: GREEN 27, AMBER 22, RED 15.
+
+
+## Batch 8–9 — 2024 and 2025 final corpus pass
+
+Source basis:
+- official 2024 SMMC solutions from simonmarais.org;
+- official 2025 SMMC solutions from simonmarais.org.
+
+The 2024/2025 Library index was not reliable, so these final two year ledgers were source-audited directly from the official SMMC PDFs. PDF page images were also inspected during the audit.
+
+Added:
+- `course/smmc/ledger-2024.mjs`;
+- `course/smmc/ledger-2025.mjs`;
+- final 2017–2025 aggregation in `ledger.mjs`;
+- final method vocabulary additions required by the source audit.
+
+### 2024 result
+
+All 12:
+- GREEN 7
+- AMBER 1
+- RED 4
+
+East A+B:
+- GREEN 5
+- AMBER 1
+- RED 2
+
+### 2025 result
+
+All 12:
+- GREEN 5
+- AMBER 4
+- RED 3
+
+East A+B:
+- GREEN 3
+- AMBER 3
+- RED 2
+
+### Complete corpus result
+
+Official problems: 88
+- GREEN 39
+- AMBER 27
+- RED 22
+
+East-core: 72
+- GREEN 30
+- AMBER 24
+- RED 18
+
+Supplementary C: 16
+- GREEN 9
+- AMBER 3
+- RED 4
+
+All B4 rows remain explicitly protected as `open-problem`.
+
+## Full-corpus primary-domain reconciliation finding
+
+A final aggregate check found that the independently authored per-problem primary labels do not reproduce the newer SMMC-2027 six-domain benchmark counts.
+
+No labels were changed merely to force agreement.
+
+Added:
+- `docs/smmc/DOMAIN-RECONCILIATION-2017-2025.md`.
+
+The six-domain vocabulary is frozen. Only the single primary label of some hybrid problems remains pending reconciliation. Frequency-based study allocation must use the newer aggregate benchmark until the per-problem rubric is reconciled.
+
+## Companion architecture v1.0 freeze
+
+Added:
+- `course/smmc/curriculum-v1.mjs`;
+- `scripts/validate-smmc-curriculum.mjs`;
+- `docs/smmc/FINAL-SYNTHESIS-2017-2025.md`.
+
+Architecture:
+- 6 mandatory core SMMC bridges;
+- 3 optional specialist extensions;
+- 9 explicit problem-solving method modules;
+- demand-driven GREEN/AMBER/RED unlock policy;
+- private metadata rules for transfer/sealed PYQs;
+- exposure-aware historical-corpus preservation;
+- timed S-PAPER evidence as the final readiness measure;
+- Aster remains optional, clue-free and academically powerless.
+
+### Full remote-source validation
+
+Passed:
+- 88/88 official problem rows;
+- 72 East / 16 supplementary;
+- unique IDs;
+- correct pre-2022 A/B and 2022+ A/B/C structure;
+- all controlled tags and methods;
+- every stable `t25Targets` code resolves against the live 80-target canonical T25 manifest;
+- every 2017–2025 B4 remains `open-problem`;
+- all curriculum content-module evidence IDs resolve to real ledger problems;
+- 9 content modules and 9 method modules have unique IDs;
+- Aster optional/anti-leak contract remains present.
+
+No canonical T25/Aster/compiler/runtime file was modified by this companion build.
