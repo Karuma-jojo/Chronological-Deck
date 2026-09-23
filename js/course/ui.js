@@ -1,4 +1,5 @@
 import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,taskText,sceneText,publicOpening,compilerPacket,reviewQueue} from './core.js';
+import {buildPrerequisiteIndex,prerequisiteParts} from './prerequisites.js';
 import SMMC_CONNECTIONS_BY_T25 from '../../course/smmc/connection-index-v1.mjs';
 import {readWorkspaceNav,rememberT25Location,t25Href,smmcHref,restoreViewport,hasStoredWorkspaceNav,reconcileWorkspaceNavCloud,enableWorkspaceNavCloud} from '../workspace-nav.js';
 import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
@@ -6,7 +7,7 @@ import {workspaceCloudState,reconcileWorkspaceScope,scheduleWorkspaceScopeSync} 
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
 const uuid=()=>crypto.randomUUID();
-let course,state,session,problemId,lastSaved=null,keys=null,notesPromise=null,fullCoursePromise=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main',cloudReady=false,cloudApplying=false,cloudReconciling=false;
+let course,state,session,problemId,lastSaved=null,keys=null,notesPromise=null,fullCoursePromise=null,prerequisiteIndex=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main',cloudReady=false,cloudApplying=false,cloudReconciling=false;
 const put=(id,text)=>$(id).textContent=text;
 function cloudBadge(kind='local',text){
  const el=$('workspaceCloud');if(!el)return;
@@ -69,6 +70,39 @@ async function reconcileT25Cloud(){
 }
 function options(select,items){select.replaceChildren(...items.map(([value,label])=>{const o=document.createElement('option');o.value=value;o.textContent=label;return o;}));}
 function button(label,fn){const b=document.createElement('button');b.textContent=label;b.addEventListener('click',fn);return b;}
+function contractBlock(text,className='contract-line'){const el=document.createElement('div');el.className=className;el.textContent=text;return el;}
+function renderPrerequisite(text){
+ const line=document.createElement('div');line.className='contract-prerequisite';
+ const resolved=prerequisiteParts(text,prerequisiteIndex,session.order);
+ for(const part of resolved.parts){
+  if(!part.order){line.append(document.createTextNode(part.text));continue;}
+  const destination=course.sessions[part.order-1];
+  const a=document.createElement('a');a.className='prerequisite-link';a.dataset.prerequisiteOrder=String(part.order);
+  a.href=t25Href({session:part.order,presentation:$('presentation').value==='anime'?'anime':'plain',task:'main'});
+  a.textContent=part.text;
+  a.title=`Open prerequisite session ${String(part.order).padStart(3,'0')} · ${destination.card.syllabusCode}`;
+  line.append(a);
+ }
+ if(resolved.assumed){
+  const badge=document.createElement('span');badge.className='prerequisite-assumed';badge.textContent='assumed foundation';badge.title='No dedicated earlier T25 prerequisite session is registered for this basic input.';
+  line.append(' ',badge);
+ }
+ return line;
+}
+function renderContract(){
+ if(!session||!prerequisiteIndex)return;
+ const box=$('contractText');
+ const nodes=[contractBlock(session.card.centralCapability)];
+ nodes.push(contractBlock('PREREQUISITES','contract-heading'));
+ nodes.push(...session.card.entryPrerequisites.map(renderPrerequisite));
+ nodes.push(contractBlock('Linked identifiers open the relevant earlier T25 session. “Assumed foundation” marks a basic input with no dedicated earlier T25 route.','contract-note'));
+ nodes.push(contractBlock('REQUIRED OWNERSHIP','contract-heading'));
+ nodes.push(...session.card.requiredOwnership.map(x=>contractBlock(x)));
+ nodes.push(contractBlock('EXIT','contract-heading'),contractBlock(session.card.exitCondition));
+ nodes.push(contractBlock('OUT OF SCOPE','contract-heading'),...session.card.outOfScope.map(x=>contractBlock(x)));
+ nodes.push(contractBlock(session.evidenceWarning,'contract-note'));
+ box.replaceChildren(...nodes);
+}
 function sessionsList(){
  const q=$('search').value.toLowerCase().trim();const list=course.sessions.filter(s=>`${s.order} ${s.card.syllabusCode} ${s.card.title}`.toLowerCase().includes(q));
  options($('session'),list.map(s=>[s.order,`${String(s.order).padStart(3,'0')} · ${s.card.syllabusCode} · ${s.card.title}`]));
@@ -129,7 +163,7 @@ function setPresentation(){
  const anime=$('presentation').value==='anime',p=course.problems[problemId];const ep=course.campaign.find(x=>x.phase===session.phase);
  rememberT25Location({session:session.order,presentation:anime?'anime':'plain',task:currentTaskKind});
  window.history.replaceState(null,'',t25Href({session:session.order,presentation:anime?'anime':'plain',task:currentTaskKind}));
- renderWorkspaceNav();
+ renderWorkspaceNav();renderContract();
  put('scene',sceneText(ep));$('scene').hidden=!anime||!p?.order||$('contract').hidden;$('story').hidden=!anime||!p?.order||$('contract').hidden;
  options($('storyChoice'),ep.choice.map((v,i)=>[i,v]));$('storyChoice').value=state.story[ep.phase]?.choice??0;
  put('closure',state.story[ep.phase]?.completed?ep.closure+' '+ep.choiceOutcomes[state.story[ep.phase].choice]:'The episode remains open. Pauses and incorrect attempts carry no story penalty.');
@@ -139,7 +173,7 @@ function selectSession(order,kind='main'){
  currentTaskKind=kind==='transfer'?'transfer':'main';
  $('search').value='';sessionsList();$('session').value=session.order;
  put('sessionMeta',`Phase ${session.phase} · ${session.card.id}`);put('title',session.card.title);
- put('contractText',[session.card.centralCapability,'PREREQUISITES',...session.card.entryPrerequisites,'REQUIRED OWNERSHIP',...session.card.requiredOwnership,'EXIT',session.card.exitCondition,'OUT OF SCOPE',...session.card.outOfScope,session.evidenceWarning].join('\n\n'));
+ renderContract();
  $('previous').disabled=session.order===1;$('next').disabled=session.order===162;
  showProblem(session[currentTaskKind]);setPresentation();renderSmmcConnections();
 }
@@ -164,7 +198,7 @@ async function init(){
      new Promise(resolve=>setTimeout(resolve,700))
    ]);
  }
- course=await runtimeCourse();state=emptyEvidence();
+ course=await runtimeCourse();prerequisiteIndex=buildPrerequisiteIndex(course.sessions);state=emptyEvidence();
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);}catch{storageOK=false;tell('Existing study storage could not be read. It has not been overwritten. New work is held in memory; export it before leaving.');}
  const params=initialParams,remembered=readWorkspaceNav();
  const requestedPresentation=params.get('presentation');
