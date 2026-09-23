@@ -1,0 +1,38 @@
+export const SMMC_PRIMARY_DOMAINS = Object.freeze({
+  S1: "Algebra + Linear Algebra",
+  S2: "Combinatorics + Discrete Mathematics",
+  S3: "Analysis + Calculus",
+  S4: "Number Theory",
+  S5: "Geometry",
+  S6: "Probability",
+});
+
+export const SMMC_OVERLAP = Object.freeze(["green", "amber", "red"]);
+
+export const SMMC_ASSESSMENT_ROLES = Object.freeze([
+  "development",
+  "transfer",
+  "sealed",
+  "open-problem",
+]);
+
+export const SMMC_SECONDARY_TAGS = Object.freeze([
+  "POLY", "LA", "CX", "FF", "FE", "INEQ", "CONVEX", "GRAPH", "GAME",
+  "TILING", "REC", "GF", "CONST", "SEQ", "ASYM", "INT", "ODE", "FUNC",
+  "MOD", "DIO", "VAL", "PRIME", "EUCLID", "COORD", "VECTOR-GEO",
+  "CONVEX-GEO", "LATTICE", "POLYHEDRAL", "COND", "EXPECT", "INDICATOR",
+  "RANDOM-WALK", "STOPPING", "RANDOM-PROCESS",
+]);
+
+export const SMMC_METHOD_TAGS = Object.freeze([
+  "DIRECT", "CONTRADICTION", "CONTRAPOSITIVE", "INDUCTION", "STRONG-INDUCTION",
+  "MINIMAL-COUNTEREXAMPLE", "DESCENT", "EXISTENCE", "COUNTEREXAMPLE",
+  "INVARIANT", "MONOVARIANT", "PARITY", "COLORING", "SYMMETRY", "EXTREMAL",
+  "PIGEONHOLE", "DOUBLE-COUNTING", "AVERAGING", "CASE-DECOMPOSITION",
+  "SUBSTITUTION", "NORMALIZATION", "FACTORIZATION", "AUXILIARY-OBJECT",
+  "COORDINATES", "GRAPH-REFORMULATION", "RECURRENCE-REFORMULATION",
+  "CROSS-DOMAIN", "BOUNDING", "MONOTONICITY", "CONVEXITY", "SMOOTHING",
+  "SMALL-CASES", "EDGE-CASES", "CONJECTURE", "EQUALITY-CASE",
+  "LEMMA-EXTRACTION", "CONSTRUCTION", "OPTIMIZATION", "PARAMETERIZATION",
+  "GENERATING-FUNCTION",
+]);
