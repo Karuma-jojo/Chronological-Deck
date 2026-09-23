@@ -27,7 +27,7 @@ for(const s of a.sessions){
 assert.equal(road.modules.find(x=>x.id==='T22E-TRD01').availability,'authored');
 assert.equal(sem.entries.find(x=>x.id==='T22E-TRD01').semanticStatus,'accepted');
 assert(['planned','authored'].includes(road.modules.find(x=>x.id==='ARC502').availability));
-assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'planned');
+assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'validation');
 assert(meta.moduleSources.some(x=>x.id==='T22E-TRD01'&&x.source==='course/t22/authoring/m05.json'));
 assert(meta.moduleSources.some(x=>x.id==='T22E-TRD01'&&x.source==='course/t22/authoring/m05.json'),'M05 source must remain registered as later modules are added');
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
