@@ -8,6 +8,7 @@ export const emptySmmcState = () => ({
   attempts: [],
   exposures: {},
   modules: {},
+  units: {},
 });
 
 const stamp = value =>
@@ -30,7 +31,7 @@ const results = new Set([
   "incorrect",
 ]);
 
-export function validateSmmcState(value, ledger, knownModuleIds = []) {
+export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitIds = []) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     throw new Error("Invalid SMMC state");
   }
@@ -46,9 +47,13 @@ export function validateSmmcState(value, ledger, knownModuleIds = []) {
   if (!value.modules || typeof value.modules !== "object" || Array.isArray(value.modules)) {
     throw new Error("Invalid SMMC module state");
   }
+  if (!value.units || typeof value.units !== "object" || Array.isArray(value.units)) {
+    throw new Error("Invalid SMMC unit state");
+  }
 
   const problemIds = new Set(ledger.map(x => x.id));
   const moduleIds = new Set(knownModuleIds);
+  const unitIds = new Set(knownUnitIds);
   const seenAttempts = new Set();
   const out = emptySmmcState();
 
@@ -121,11 +126,22 @@ export function validateSmmcState(value, ledger, knownModuleIds = []) {
       if (!stamp(moduleState.selfReportedAt)) throw new Error("Invalid module self-report timestamp");
       safe.selfReportedAt = moduleState.selfReportedAt;
     }
-    if (moduleState.certifiedAt !== undefined) {
-      if (!stamp(moduleState.certifiedAt)) throw new Error("Invalid module certification timestamp");
-      safe.certifiedAt = moduleState.certifiedAt;
-    }
     out.modules[moduleId] = safe;
+  }
+
+  for (const [unitId, unitState] of Object.entries(value.units)) {
+    if (!unitIds.has(unitId)) throw new Error(`Unknown SMMC unit ${unitId}`);
+    if (!unitState || typeof unitState !== "object") throw new Error("Invalid SMMC unit state");
+    const safe = { selfReportedComplete: Boolean(unitState.selfReportedComplete) };
+    if (unitState.selfReportedAt !== undefined) {
+      if (!stamp(unitState.selfReportedAt)) throw new Error("Invalid unit self-report timestamp");
+      safe.selfReportedAt = unitState.selfReportedAt;
+    }
+    if (unitState.certifiedAt !== undefined) {
+      if (!stamp(unitState.certifiedAt)) throw new Error("Invalid unit certification timestamp");
+      safe.certifiedAt = unitState.certifiedAt;
+    }
+    out.units[unitId] = safe;
   }
 
   return out;
@@ -186,16 +202,25 @@ export function selfReportModuleComplete(state, moduleId, at = new Date().toISOS
   return state.modules[moduleId];
 }
 
-export function certifyModule(state, moduleId, at = new Date().toISOString()) {
-  state.modules[moduleId] = {
-    ...state.modules[moduleId],
-    certifiedAt: state.modules[moduleId]?.certifiedAt || at,
+export function selfReportUnitComplete(state, unitId, at = new Date().toISOString()) {
+  state.units[unitId] = {
+    ...state.units[unitId],
+    selfReportedComplete: true,
+    selfReportedAt: state.units[unitId]?.selfReportedAt || at,
   };
-  return state.modules[moduleId];
+  return state.units[unitId];
 }
 
-export function certifiedModuleIds(state) {
-  return Object.entries(state.modules)
+export function certifyUnit(state, unitId, at = new Date().toISOString()) {
+  state.units[unitId] = {
+    ...state.units[unitId],
+    certifiedAt: state.units[unitId]?.certifiedAt || at,
+  };
+  return state.units[unitId];
+}
+
+export function certifiedUnitIds(state) {
+  return Object.entries(state.units)
     .filter(([, value]) => Boolean(value?.certifiedAt))
-    .map(([moduleId]) => moduleId);
+    .map(([unitId]) => unitId);
 }
