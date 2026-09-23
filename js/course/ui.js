@@ -6,7 +6,7 @@ import {workspaceCloudState,reconcileWorkspaceScope,scheduleWorkspaceScopeSync} 
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
 const uuid=()=>crypto.randomUUID();
-let course,state,session,problemId,lastSaved=null,keys=null,notesPromise=null,fullCoursePromise=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main',cloudReady=false,cloudApplying=false;
+let course,state,session,problemId,lastSaved=null,keys=null,notesPromise=null,fullCoursePromise=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main',cloudReady=false,cloudApplying=false,cloudReconciling=false;
 const put=(id,text)=>$(id).textContent=text;
 function cloudBadge(kind='local',text){
  const el=$('workspaceCloud');if(!el)return;
@@ -58,13 +58,14 @@ function persist(message){
  return storageOK;
 }
 async function reconcileT25Cloud(){
+ if(cloudReconciling)return;
  if(!workspaceCloudState().signedIn){cloudReady=true;cloudBadge('local','Local');return;}
- cloudBadge('syncing','Syncing…');
+ cloudReconciling=true;cloudBadge('syncing','Syncing…');
  try{
    const result=await reconcileWorkspaceScope('t25_course',state,(local,remote)=>remote?mergeEvidence(local,remote,course):local);
    applyT25CloudResult(result);
  }catch(error){cloudBadge('error','Saved locally');}
- finally{cloudReady=true;}
+ finally{cloudReady=true;cloudReconciling=false;}
 }
 function options(select,items){select.replaceChildren(...items.map(([value,label])=>{const o=document.createElement('option');o.value=value;o.textContent=label;return o;}));}
 function button(label,fn){const b=document.createElement('button');b.textContent=label;b.addEventListener('click',fn);return b;}
