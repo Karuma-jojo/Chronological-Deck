@@ -1,6 +1,10 @@
+# Current M07 candidate — 2026-09-24
+
+M01–M06 remain accepted/frozen. M07 · `T22E-MKT01` is a 24-session / 48-assessment / 120-claim CERBERUS-hardened candidate, fully verified on implementation head `84baddc69643f4654eb87bf05ed907febf37b077` by T22 Elite Actions run `35927759177` (job `107406819179`), including real Chromium and the seven-module evidence workflow. M07 is **not independently accepted/frozen yet**; next action is bounded Astra review. M08 remains closed. See `M07-BOUNDARY.md`, `M07-CERBERUS-AUDIT.md`, and `M07-REVIEW-HANDOFF.md`.
+
 # Current bounded repair — 2026-09-23
 
-M05/M06 repairs are independently accepted and frozen. Implementation `efea44476e30a0daf45675e15889788e082900a2` passed the complete [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076), including real Chromium. The bounded follow-up is recorded in `M05-M06-ASTRA-FOLLOWUP.md`; see `M05-M06-RESOLUTION.md` and `../t22-rebuild/RUN-LOG.md` for recovery. M07 remains closed. Earlier internal acceptance below is historical.
+M05/M06 repairs are independently accepted and frozen. Implementation `efea44476e30a0daf45675e15889788e082900a2` passed the complete [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076), including real Chromium. The bounded follow-up is recorded in `M05-M06-ASTRA-FOLLOWUP.md`; see `M05-M06-RESOLUTION.md` and `../t22-rebuild/RUN-LOG.md` for recovery. That M05/M06 checkpoint remains historical authority for those modules; M07 was subsequently explicitly authorized. Earlier internal acceptance below is historical.
 
 # T22 Elite course build log
 
