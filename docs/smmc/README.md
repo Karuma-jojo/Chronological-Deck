@@ -75,7 +75,7 @@ It should not mechanically reuse the seven T25 episode boundaries.
 
 ## Current build status
 
-Batches 1–6 audit 52 official problems through 2022: 48 East-core A/B problems and 4 C-session supplementary problems. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
+Batches 1–7 audit 64 official problems through 2023: 56 East-core A/B problems and 8 C-session supplementary problems. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
 
 
 The 2019 audit added `SERIES` as a secondary content tag and `EXCHANGE-ARGUMENT` as a reusable method. Neither requires a new top-level domain.
@@ -110,3 +110,10 @@ For the East preparation track:
 The validator enforces this distinction so official-corpus counts and East-core counts cannot silently mix.
 
 The 2022 audit added `CEIL` as a secondary tag. No new primary domain was required.
+
+
+## 2023 taxonomy result
+
+The 2023 audit required no new primary domain, no new secondary content tag and no new method tag. Existing vocabulary was sufficient for all twelve official problems.
+
+This is evidence in favour of keeping the six-domain backbone stable and allowing richness to live in secondary tags, method tags and bridge needs rather than proliferating top-level subjects.
