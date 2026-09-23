@@ -26,7 +26,7 @@ for(const session of sessions){
   }
 }
 
-assert.equal(unresolved.length,0,"Every learner-facing prerequisite must resolve to an earlier T25 route or be explicitly classified as an assumed foundation.");
+if(unresolved.length) throw new Error(`Unresolved learner-facing prerequisites: ${JSON.stringify(unresolved)}`);
 const observedAssumed=new Set(sessions.flatMap(s=>s.card.entryPrerequisites).filter(t=>prerequisiteParts(t,index,Infinity).assumed));
 for(const text of ASSUMED_FOUNDATION_PREREQUISITES) assert(observedAssumed.has(text),`Stale assumed-foundation classification: ${text}`);
 
