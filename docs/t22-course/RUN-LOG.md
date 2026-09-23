@@ -1,3 +1,7 @@
+# Current bounded repair — 2026-09-23
+
+M05/M06 repairs implemented; validation in progress. See `M05-M06-RESOLUTION.md` and `../t22-rebuild/RUN-LOG.md` for authoritative recovery. M07 remains closed. Earlier internal acceptance below is historical.
+
 # T22 Elite course build log
 
 ## 2026-09-18 — M01 platform + authored-module checkpoint

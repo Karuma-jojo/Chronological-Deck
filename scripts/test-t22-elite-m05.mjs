@@ -1,7 +1,9 @@
+import {checkModule} from '../docs/t22-course/audit/m05-m06-semantic-checks.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 const a=JSON.parse(fs.readFileSync('course/t22/authoring/m05.json','utf8'));
+checkModule(a);
 const by=n=>a.sessions.find(s=>s.order===n);
 assert.equal(a.module.id,'T22E-TRD01');
 assert.equal(a.boundary.prerequisiteModules.length,1);
@@ -22,7 +24,7 @@ for(const s of a.sessions){
  assert(!hashes.has(h));hashes.add(h);
  for(const kind of ['main','transfer']){
    const id=s[kind],ev=a.evaluators[id];
-   assert.equal(a.problems[id].obligationVersion,1);
+   assert([1,2].includes(a.problems[id].obligationVersion));
    assert.equal(ev.rubric.length,5);
    assert.equal(ev.rubric.reduce((z,r)=>z+r.points,0),10);
    for(const f of a.instructionSeparation[s.id][kind]){
@@ -30,19 +32,13 @@ for(const s of a.sessions){
      assert(!s.lesson.includes(f),`S${s.order} ${kind} lesson leaks fixed-task fragment`);
    }
  }
- a.claimEvidence[s.id].forEach((e,i)=>{
-   assert.equal(e.claim,s.requiredOwnership[i]);
-   assert.equal(e.task,'main');
-   assert.equal(e.publicRequest,a.problems[s.main].prompt);
-   assert.deepEqual(e.rubricEvidence,[a.evaluators[s.main].rubric[i].criterion]);
-   assert.deepEqual(a.coverage[s.id][i],['main']);
- });
  assert(a.prerequisiteAudit['S'+String(s.order).padStart(2,'0')]?.length);
 }
 assert(by(3).lesson.includes('fair entry fee')&&by(3).lesson.includes('not a claim about anyone'));
 assert(by(6).lesson.includes('EV and loss probability are different summaries'));
 assert(by(9).lesson.includes('Independence is not required'));
-assert(by(12).lesson.includes('finite')&&by(12).lesson.includes('ruin'));
+assert(/finite.*plays/.test(by(12).lesson) && by(12).lesson.includes('first hit') && by(12).lesson.includes('absorption') && by(12).lesson.includes('prefix'));
+assert(a.problems[by(12).transfer].prompt.includes('unstopped endpoint'));
 assert(by(13).lesson.includes('constraint')&&by(13).lesson.includes('optimal stake'));
 assert(by(16).lesson.includes('preferences or constraints'));
 assert(by(17).lesson.includes('utility')&&by(17).lesson.includes('not dollars'));
@@ -52,4 +48,4 @@ assert(by(24).lesson.includes('model facts first'));
 for(const bad of ['Bayes\' rule','posterior odds','bid/ask','log return','Kelly criterion','variance']){
   assert(!a.sessions.some(s=>s.lesson.includes(bad)),`M05 lesson boundary leak: ${bad}`);
 }
-console.log('PASS M05 structural/pedagogy: 24 sessions, 48 tasks, 120 exact claim→Main/rubric links, 10-point evaluators, prerequisite and separation ledgers, decision-criterion boundary guards.');
+console.log('PASS M05 structural/pedagogy: 24 sessions, 48 tasks, 120 reviewed semantic claim→task/rubric links, 10-point evaluators, prerequisite and separation ledgers, decision-criterion boundary guards.');

@@ -1,0 +1,2057 @@
+{
+  "baselineCommit": "bd0b54f71524b831ec264d9fcae1afb3d2dfd7dc",
+  "review": "docs/t22-course/M05-M06-SEMANTIC-AUDIT.md",
+  "limitation": "Pinned manual review is a drift guard, not an automated proof of semantic truth.",
+  "modules": {
+    "T22E-TRD01": {
+      "sessions": {
+        "T22V3::T22E-TRD01::S01@1": {
+          "reviewHash": "28ca6c571d2daa83aea69a10725b14f0471fbc2a2970ca5509db431176cdf965",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S02@1": {
+          "reviewHash": "9cc7d073e97752d1977b90f2c1310ab52266931e0d026b9aa7aeb58d9bc796af",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S03@1": {
+          "reviewHash": "54ead03744ef199b03efd844a80d2295332364af51426abb10dba158eb51f441",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3,
+                5
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4,
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S04@1": {
+          "reviewHash": "afc9a7d27f542101caef8ac69d9466c877df08421c4b57f98aee457869e4260a",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S05@1": {
+          "reviewHash": "e211e8e52655ed2588dcbb9d63ce76ec70d68f39872bb814f3ebd24a7e000538",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S06@1": {
+          "reviewHash": "d3164fb4e2936dfc3f39852f82d465718ee3e35ddb6200b2393b79dd3f9c1e30",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S07@1": {
+          "reviewHash": "de032f4310ce6d8083657e52be538d197b385d94137e33497188a448d48c3573",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S08@1": {
+          "reviewHash": "58eeeaccd0da8aca585bbde7f29386dabcc6bcd56621da8404486103414ddb5a",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S09@1": {
+          "reviewHash": "b017a1df74d85691b18b1eaebde3e5ab67aabc6ed0ecc35c24791abe146de556",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2,
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S10@1": {
+          "reviewHash": "16f4a490ea5933ee05d2cfa03edead392c694722f4fcdb5e4eb008cd1f6ca4a5",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S11@1": {
+          "reviewHash": "becea9ae5c4a064452892b1a1f574e58c8f26361fb6841b494fa42ecefc7c977",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S12@1": {
+          "reviewHash": "4062fb127a2b1e1de0f99e77f1f44bd91bbbdaecd6ca8a90606df7e6c5761b81",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "transfer",
+              "rows": [
+                5
+              ]
+            },
+            {
+              "task": "transfer",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "transfer",
+              "rows": [
+                3,
+                4
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S13@1": {
+          "reviewHash": "2d888bffa086f587f78ef80820bc6ff03d426cc31c8d8cb10f9dcc229be1b5ad",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S14@1": {
+          "reviewHash": "887275bb387d50911d04dddb7a5eda8427f4eb49688437d71c00eea6edcec46d",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2,
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S15@1": {
+          "reviewHash": "0d94ede3e00dbd5c997f1f8a2893ffe1923cd9e270777db24e582d3a10bed4a6",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S16@1": {
+          "reviewHash": "f53b75cde8a68b6fc90128dfde8334ad8d00a71b581b33b4ac2612a9ba203681",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S17@1": {
+          "reviewHash": "646ed6ab0e4009f8ac0f255cf410191378b4d4bd6d7a4355a2e2a7021be1b9f0",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S18@1": {
+          "reviewHash": "f8498c9e35c4d30aa1be2eac149f20a1d88d6192a144be1991df81048d256b11",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S19@1": {
+          "reviewHash": "df2191449faf55bb7d5c3df98bc7de584d0b383db5b9e2d560974611ea4609b4",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S20@1": {
+          "reviewHash": "5c2e670b01856607e010724505b8f2842d9894fa2ea97dc05797b808508d9850",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1,
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S21@1": {
+          "reviewHash": "a9a680caadca689681ff3224c10c4baa08923a98828e2c768508744b504a459a",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S22@1": {
+          "reviewHash": "4787db872f670210680634e8cc2a39dbc92a1f11e035c1991afd7a1448e2eea5",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S23@1": {
+          "reviewHash": "803b67dcb24d9c70306af1f9d1dacf00790cb81f2d907482929e5183f8d2db07",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::T22E-TRD01::S24@1": {
+          "reviewHash": "f06a92d142fd8f4ccb39f534c623e31f2942541503afaf3a0a7141ee4fbdda2b",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        }
+      },
+      "baseline": {
+        "assessmentFingerprints": {
+          "T22V3::T22E-TRD01::S01-M@1": "263847e2fe1dc81bb7ddb68cae74922c12db7ce0c1cc301d7d99f098e8be2683",
+          "T22V3::T22E-TRD01::S01-T@1": "a7808ceea7eda8dca1b97a64f29b103ee32ff3ff431e7735c2b6a71ab3c42865",
+          "T22V3::T22E-TRD01::S02-M@1": "dad745ebfa4b006b946b499c8cda42caf0a936b24af9dc9c2578fb51e5a20ca0",
+          "T22V3::T22E-TRD01::S02-T@1": "c14a1a90b4ced98108969926c0e4858e1515fbba78bcc46233fe00908a7dd8bb",
+          "T22V3::T22E-TRD01::S03-M@1": "9597f650eae2811067947f6431e5485c55eaa4a33840eaa84daf4bd12b2da8fc",
+          "T22V3::T22E-TRD01::S03-T@1": "03da2a79055e0be6c321bb6869f1d1de904ff617cc02625a839592ff4c0dc196",
+          "T22V3::T22E-TRD01::S04-M@1": "9f4eefbfa5b0cddb6461b6059e7556238720ce4dac36d8f2a9e730001d125e0f",
+          "T22V3::T22E-TRD01::S04-T@1": "958c9f6f44079dda377c111873ff270a45ebabd4c9ac2db1c9bca25b920a31ed",
+          "T22V3::T22E-TRD01::S05-M@1": "d08b4761aaadb43646e7601670b84ba040ef059bb3cac0e4a06dfaf0ca2eca6f",
+          "T22V3::T22E-TRD01::S05-T@1": "7602e6e68f3b1f94e51fd97e33ccef59504234b0af94f362d51ea40527ae60b7",
+          "T22V3::T22E-TRD01::S06-M@1": "5684f7155aa11b5981b3616724edb5b32f8686ef40fb0ee9b43ba15569388007",
+          "T22V3::T22E-TRD01::S06-T@1": "6a6ad3a7c913f73018ec4af5b6f74bf00409fad1f9abd5cf9c7d640d2514f8e6",
+          "T22V3::T22E-TRD01::S07-M@1": "68c1a8bba11f14079900e3a85d9b63d67a59ac74226c7c56b4d442f40a25303b",
+          "T22V3::T22E-TRD01::S07-T@1": "85883c5a321135d23781c2cea28d90bd09b9fcb96976d60bb40ca64bdcc3f9d8",
+          "T22V3::T22E-TRD01::S08-M@1": "3ddae96c78b8db52f4d2bf9f68552031c2a0bbc1b3044fe4d32a148430f0fe27",
+          "T22V3::T22E-TRD01::S08-T@1": "ff85823d15328c0b8afd73767e5143a06aa65085115198438971e9b670724d36",
+          "T22V3::T22E-TRD01::S09-M@1": "91c2c859bf40ab15784b708260b2af09b9f2d18d1caec9f1c13ffc1c3c3772bb",
+          "T22V3::T22E-TRD01::S09-T@1": "75e9c2a7cf1d46d9bd2dcdc74d1fe4b74428b220a6905e9bc3eb740a740df53e",
+          "T22V3::T22E-TRD01::S10-M@1": "2d65bb06f224f36aa87e2bc8f9c15de238289e1ee3384273af882ac01f037dfe",
+          "T22V3::T22E-TRD01::S10-T@1": "a359dc9dc3f0b0f92a4570ccfa340124123b770207d54d82d7f7cd4d68691f4e",
+          "T22V3::T22E-TRD01::S11-M@1": "41fb110289d2f6c0a15eba052cc212f5969bb0bd85ef16c3088d448f0b51a147",
+          "T22V3::T22E-TRD01::S11-T@1": "00802d3179a44154ae577830b01c6fd9cd4b883f5f87b4a6bcfc5232ac18bbeb",
+          "T22V3::T22E-TRD01::S12-M@1": "058adca864b81a0f9c34be8f5231dde6b04ae97061ab5e51763ddc643a2808b6",
+          "T22V3::T22E-TRD01::S12-T@1": "d8d79803cc1f0bed102137f0c9a250bc7e1cf365d880b661961c9050fa5f0146",
+          "T22V3::T22E-TRD01::S13-M@1": "33b8b2da48df70c45dd329048e92252b0bfce4c32712d51fee925e8d6092faec",
+          "T22V3::T22E-TRD01::S13-T@1": "b32a8cf92ce40e57511523592104b084b79a9304ea201f9336b4fbdeb62eb9e0",
+          "T22V3::T22E-TRD01::S14-M@1": "d0f619bf0f7ea78017b7c7674502c82a953518846a5cacc64f72125ea5ee964f",
+          "T22V3::T22E-TRD01::S14-T@1": "55aacd74df13901f9f0c760dde48164a34a6f3cde1f4d2a5a347e80a04c89202",
+          "T22V3::T22E-TRD01::S15-M@1": "b7712b976753106471422852b1b9e9dfc8d906dfaebc6854be1a18b39cc6c8d5",
+          "T22V3::T22E-TRD01::S15-T@1": "f6509a61b1a68966e99dba27b1a6bdf6b10d75088de9bad76aec7154d12ac295",
+          "T22V3::T22E-TRD01::S16-M@1": "791bbeceaba1b7fe330c650d233a2168d656b0b6e92bfe3aa7768ecfbec0d3a8",
+          "T22V3::T22E-TRD01::S16-T@1": "df5ddaa2abd048977d623ef0b43712f0738b8bc6e1df5843b81656ffd9005240",
+          "T22V3::T22E-TRD01::S17-M@1": "fbadf706af42ec02b5b801ec1acd9b9e421a4ff2261472a651d13e623742cfc5",
+          "T22V3::T22E-TRD01::S17-T@1": "139a2dc37ed0686debe21b0d24b2d276174c4791f3e4fb42d52d6353068f7aab",
+          "T22V3::T22E-TRD01::S18-M@1": "027252cd217f9586dfe853d4bf7561610853f6e84c787e073cb1cad29a4d40ed",
+          "T22V3::T22E-TRD01::S18-T@1": "c99d27e14a65ceabf3e96154ca5c0fbe92fc9f56f09fa85805416e65a771c82a",
+          "T22V3::T22E-TRD01::S19-M@1": "3e9c4a7522b8e8abe06b39fa260a3af3871919a1e9802878aef07724a9d84450",
+          "T22V3::T22E-TRD01::S19-T@1": "1bf897ece21d29ffedf2ac1a3041be486381cd1ce02947cec96e4e8b1434e888",
+          "T22V3::T22E-TRD01::S20-M@1": "a9ff97a54a2211984190c29aac59edbf988ab6c61fc50ba2f55145461f585e81",
+          "T22V3::T22E-TRD01::S20-T@1": "312bfad7bc8471585b83b22f8fad5c606545553aa350112b0f07fe77c05093f2",
+          "T22V3::T22E-TRD01::S21-M@1": "c0d66e8f04c3af037e17e7053100e756b9a8a59c96ace04ee232f43f376bc054",
+          "T22V3::T22E-TRD01::S21-T@1": "29a4bc921ccc78d2fe5d86473bf5cd519bb28395644c7930ee17944d4c07acf8",
+          "T22V3::T22E-TRD01::S22-M@1": "826984ee732571b7ae4a4c9eef0b1ef9380ab35c8e9e073cc0768ec65e923cf8",
+          "T22V3::T22E-TRD01::S22-T@1": "45af728a98e4b11d172eff716d0d6abfe7d32eba780bd74e5c732ee9cc1e732d",
+          "T22V3::T22E-TRD01::S23-M@1": "71fb4d3ed8dca6d02427ef31e19589ccc91df8ef1ff989e7929d45cd39148e4e",
+          "T22V3::T22E-TRD01::S23-T@1": "0dbecbcfebf5fcbc8bc75f9beaaafeb508fc2ebf7240d8f247f8d59e8660e9d4",
+          "T22V3::T22E-TRD01::S24-M@1": "e9a42aa13cd37f53a01605a683048d82f0382188949a463f03ae96b3e6ccf1be",
+          "T22V3::T22E-TRD01::S24-T@1": "1131ba42f3777e1bd831c1b0ff8fa2320c56ff0728746d16ff53316d108c2303"
+        },
+        "contractHashes": {
+          "T22V3::T22E-TRD01::S01@1": "22bf8567e39b099798684b435779e02ae9025fabdb3748119f26961bc922c894",
+          "T22V3::T22E-TRD01::S02@1": "f1476f9787b83c15415b485fcf366d28cec21b5011db54df8c5bd34b7fb2446e",
+          "T22V3::T22E-TRD01::S03@1": "7096e3cdb5242b450306931e2f16135bb55c0f63b01a389140b94e8e5118629c",
+          "T22V3::T22E-TRD01::S04@1": "a8aa8f2967aa9664f858c9b42141e0a2fdd52d8b68c20b00b1fcfddd8a92ecd0",
+          "T22V3::T22E-TRD01::S05@1": "7b0a974ec14804ae8979cb63efe39251119a52d5af70c919eb4b8dbd98f81a15",
+          "T22V3::T22E-TRD01::S06@1": "c0bfb494830285d435a012465dd2b69c884b710a0cfdf3c5fe9610f244cd45fd",
+          "T22V3::T22E-TRD01::S07@1": "85bdeb6600c77f4ee19b5239446d10ce259a65421bc739c3ed1d6de4b0adfc23",
+          "T22V3::T22E-TRD01::S08@1": "0960c150210f5cee5b6a7d1799affeaccc7e9448679c103da1244d36451b1c16",
+          "T22V3::T22E-TRD01::S09@1": "371929f9e1545fad2b089508a76b24c610e59729fb7f48b1d8f63713a916b36e",
+          "T22V3::T22E-TRD01::S10@1": "af97e9eb0e6458e922d21629b5309ba45f234b13e0863305ebe46651a0f79ea5",
+          "T22V3::T22E-TRD01::S11@1": "1441f2d49af51dfb4f7a5e5601ca018b7c94b24625206323ce73fcbb93442777",
+          "T22V3::T22E-TRD01::S12@1": "9bffb5ad80dc069813fb231ec6aeecbce0437fcc0577caaada4f52ff7906a081",
+          "T22V3::T22E-TRD01::S13@1": "f21e7676cbbd2a7b96fb29162f8e0676b9890266c98bd209e42d384d5200e721",
+          "T22V3::T22E-TRD01::S14@1": "152920e380d975c8610492090866211aef580c0ec4efe4e7b0f7c80d800c998c",
+          "T22V3::T22E-TRD01::S15@1": "c0a32e5b19759873b8505c4482eb4046806ca0f68eb1e920bf7aa0d5f0954bee",
+          "T22V3::T22E-TRD01::S16@1": "13c8562ea294d8b72d560e4a0be83699eafc134e4686080a80823eea7d18c0a2",
+          "T22V3::T22E-TRD01::S17@1": "6af6f0ede65581c6f4ad13019a8f99c13ef7bf5cdb3bfeabaa5edcec67e15e01",
+          "T22V3::T22E-TRD01::S18@1": "f55774ad08a9142c99ad0295715961ea22f4c8f1cf6f0911c4f46db67e5a65c4",
+          "T22V3::T22E-TRD01::S19@1": "ed392f7efbe43000e26bf3c5f56a8f9e59d6015fffcd9c97c84c169d3620cad6",
+          "T22V3::T22E-TRD01::S20@1": "3000703af5a0f1daf1610eaea5279045a500e499756d01476f92ea77f5dafccb",
+          "T22V3::T22E-TRD01::S21@1": "e166481b68f84363245aac63be8a43e916a7067ae6d7dd029201996d0d465bc8",
+          "T22V3::T22E-TRD01::S22@1": "e26b7aa7f3c905fdcdda7e40a6a93f5dbcf01988dbaf7341faf26d7c467e1a74",
+          "T22V3::T22E-TRD01::S23@1": "47f7d79edb23bb4bc14cebafe6410aa4280b8987485bcf2a112ae204897aaea1",
+          "T22V3::T22E-TRD01::S24@1": "cbad7fd3e5b267e74b90acc224e43227ab13a3ab0d10304db4993c1daba230dd"
+        }
+      }
+    },
+    "ARC502": {
+      "sessions": {
+        "T22V3::ARC502::S01@1": {
+          "reviewHash": "a46cfa96cbbca315b10445c83c2825edaf0a67cc7dd02810fca659aae31d91b0",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                1,
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3,
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S02@1": {
+          "reviewHash": "6e11af1647b89a4a6c06fddcf73a95fc0ccfe46e77c91b9d30a30bca0c95c01d",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S03@1": {
+          "reviewHash": "0de00f5678c9756edf002d6ad303970724b0c70a13aeaf19a707d0247ae2f766",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S04@1": {
+          "reviewHash": "4a69ae146a1f57f47a4f24bb857945b46d3ad91837fb69be4c54bd0812b3e070",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S05@1": {
+          "reviewHash": "7d6e3664db611c0a132797ad93ca893c4674c2847223dd75c965e179ee2e127f",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S06@1": {
+          "reviewHash": "cda359a44bee9767205f3a8cd95694f49925f9b388f816161cc90424c214c8d0",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S07@1": {
+          "reviewHash": "d5332d2640c0f792320f31b4c30d9974209fbc9f7d3e38704cde2adc7535966f",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S08@1": {
+          "reviewHash": "65ae59ae5fca53dda18abb23f980e1c5ef2961ffab3cd308d4041830563cba2f",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S09@1": {
+          "reviewHash": "35faa970e41aea686bf51f8c96858a389ecf36d151fa36d28339f25d19b3423d",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S10@1": {
+          "reviewHash": "18d692777f172fdab283c693df8f5cff67a02da66a0fa1417ede34f764bf902c",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S11@1": {
+          "reviewHash": "41982d9de2ac7f6f1f32d0379aee444cc434c26394dd983d1efaaf647d6d3603",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S12@1": {
+          "reviewHash": "865ca3a404469d29680f5b1f25f04818c54c04dd4f6d3efbf5346c39819d41d9",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                1,
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S13@1": {
+          "reviewHash": "c4427129188ccb85188d04e73d5c665870ecf21cdffb4e32b0566c4bc4b2f5eb",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S14@1": {
+          "reviewHash": "1afecb3c3893271c62a94be866d04275cdbeca48ae95b99a46db326e59e0f76f",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S15@1": {
+          "reviewHash": "b13903b0e9a3d4a89bfe631585638c61a957b90e619ead839134f3ad84ed56f6",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S16@1": {
+          "reviewHash": "bcce6ac902f0c61e4d0cc8677ff6363831448af8a5e9955d88b63d06d8384aef",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S17@1": {
+          "reviewHash": "42503dc586f6f0bb8443580fa7e20edc10c7dea26e9a0264d44c747f639bf2a9",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1,
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4,
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S18@1": {
+          "reviewHash": "3892b2e0fa208835d9db348c767e2f551180fdc86ed67a1ac7b7cf6dab611201",
+          "obligationVersions": {
+            "main": 2,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S19@1": {
+          "reviewHash": "5b89af30c3daa8663b939b91d165d82a727e5e64cf468540b90e316196a134a7",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 1
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S20@1": {
+          "reviewHash": "349a0095934d9d4b9232a6ccf501e917eeda43cc33f01b1e2abbd8017bf07d9e",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S21@1": {
+          "reviewHash": "2a74358280a94a48c287d1d858b1a7da08286bff659cc841b776391d12ed1fcf",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S22@1": {
+          "reviewHash": "2b1407ac786205991901a0175884b405bd922d7a98bdcfa44acc2350d0274c17",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2,
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S23@1": {
+          "reviewHash": "dc3ec1ef9e10fafd0f67c588dbe607f57a8a98f075e76b3911a571f47ba6b5b4",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        },
+        "T22V3::ARC502::S24@1": {
+          "reviewHash": "25333653a50c4173db44be609a71919d923c167ba1233c586fe483cede633fbf",
+          "obligationVersions": {
+            "main": 1,
+            "transfer": 2
+          },
+          "links": [
+            {
+              "task": "main",
+              "rows": [
+                1
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                2
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                3
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                4
+              ]
+            },
+            {
+              "task": "main",
+              "rows": [
+                5
+              ]
+            }
+          ]
+        }
+      },
+      "baseline": {
+        "assessmentFingerprints": {
+          "T22V3::ARC502::S01-M@1": "7235ac585d7fc94bff1b315bde9fd791059fd18b438851ec29e5454a3907b1f3",
+          "T22V3::ARC502::S01-T@1": "5a4e9bebf9ea290bf83991150efcecee647bb602defd3fe91859ddba47b31047",
+          "T22V3::ARC502::S02-M@1": "7f24c41519952cac18ff81c3363b437c240228475f362d3320b381b0103bc625",
+          "T22V3::ARC502::S02-T@1": "77431739f4756539b4661e88867da11a74c8fadb6441a622f0c60f9f72c36b45",
+          "T22V3::ARC502::S03-M@1": "657b65d099acfeec9853976ad8c936129ed40c4063a5c49ffecd725de73f5471",
+          "T22V3::ARC502::S03-T@1": "1cdafa67f342880205d60c651ace7282383a09e1cad141ac2234f0ca9e2ed57e",
+          "T22V3::ARC502::S04-M@1": "79ca324f9ea3022022c5e6639a13272e409ad72c4b497120a439b8aa27a38e3c",
+          "T22V3::ARC502::S04-T@1": "52d87687626bdfbcb1568dafde711cf5418e7ac55b6d937bb897bad439d178ae",
+          "T22V3::ARC502::S05-M@1": "9ef67ffe4e61e2872f9f7b5b8c86d1672252cc781e32ce15a324b73a18c09662",
+          "T22V3::ARC502::S05-T@1": "cee2bb8a13424118b668e869b636c64011b2df68a2e72e82176eafcb396f5188",
+          "T22V3::ARC502::S06-M@1": "99d769f34b50367507e952c48bcaab47bc8f386c55d131b2c5de6db1ae940be9",
+          "T22V3::ARC502::S06-T@1": "d17858fc597f748f08ee8888c6f7c9eea5ed95c257038dc8e48c2662d30d7877",
+          "T22V3::ARC502::S07-M@1": "4356625d8197c0db44ee9d2d7ffe13b1e310e897119ef44d70de62c1ced337ea",
+          "T22V3::ARC502::S07-T@1": "aeca00948489c9474373162293a56e988e2a610e61a2c40fdcbee78da894b006",
+          "T22V3::ARC502::S08-M@1": "017f01d73e3ca4cbc0a17cb6738f52cb6b40c56aada1a91d9df01ca0e063900a",
+          "T22V3::ARC502::S08-T@1": "eafc4ace75768cf48126523d6cced8097e03ae04b3596f12c32a8cb52aaad4f4",
+          "T22V3::ARC502::S09-M@1": "90b544a525e391cdd9c03ed201eecfd132be4d404fd808abb6d424cfa471cfd9",
+          "T22V3::ARC502::S09-T@1": "21bb1891fdb5eb5115dfb7aac961361724215a8bc38e617bdefea73748567cd0",
+          "T22V3::ARC502::S10-M@1": "f8a522145a0dfc40c9709f99a3cd284a2c135d981081a61611d2e36af1589b0f",
+          "T22V3::ARC502::S10-T@1": "92110b8936a868390cb86268440a8f783210db0f14d909cec14d4326ff4493d2",
+          "T22V3::ARC502::S11-M@1": "cd8c0be95264e9cb35ba690dd9558c4bcd876a5ee760a63ff0071e1129e82ac0",
+          "T22V3::ARC502::S11-T@1": "1d49e956f0824b127001b3e716a6d24972b4a2e54bed799c4f303520428eb482",
+          "T22V3::ARC502::S12-M@1": "44ca7d80804d92f94c419f606647e39737df4b08c725f558bbe834aef44e4b36",
+          "T22V3::ARC502::S12-T@1": "c00bf0d3b2d9d4f9de2287d53104f609eb4677946e31e21ae3e1af238dfdeedf",
+          "T22V3::ARC502::S13-M@1": "19a667fac453b1f87aa549f24f3493036a01712a7992bad8d0d191222eb723ee",
+          "T22V3::ARC502::S13-T@1": "906edbbc0687abcd15c1e21186ceeaf34d484d8a058b7daf22dad0a87ecd2af5",
+          "T22V3::ARC502::S14-M@1": "db104073c4499e451480f24502f090ed6ee420f533f0972570de9e4848e68280",
+          "T22V3::ARC502::S14-T@1": "f8d33a657420d6ca6e3b657b1cbea7ccf5703c28ccecfc39a0bbcc9a6bb652cc",
+          "T22V3::ARC502::S15-M@1": "b7cf0977d7c91cdc43b66c8039b9fbbed0be04b7c5ccec01bdd9d945beaff035",
+          "T22V3::ARC502::S15-T@1": "2b1fc8163bec652c652bb32e35c3992f61fa66013babdc37461aa471f43b68b8",
+          "T22V3::ARC502::S16-M@1": "efd7b392de8baa99a6f92023ef8c50f18f8d592dffc2a5224a404da7db708f86",
+          "T22V3::ARC502::S16-T@1": "7f3cca6adc14c86d6cde4e0da91159c822b5803fffb82124103f6cf51d89c375",
+          "T22V3::ARC502::S17-M@1": "71ec5377b844ba3b045f99b3ecc83a887ce33b27e15fbcdfd7b61400f39773fb",
+          "T22V3::ARC502::S17-T@1": "a3ce058ad12f2a74985803d8bee575e4aa67fdbfca33c36b0e8b537b501d04b4",
+          "T22V3::ARC502::S18-M@1": "40983a5bf0f976f8efe6c318ea294d38314b57f3dab62638ac1826277bf0a04e",
+          "T22V3::ARC502::S18-T@1": "36595ce967c128281701582e66797abaa96279f94c5432c42962cc39bb9cf308",
+          "T22V3::ARC502::S19-M@1": "5ee13cd12d8852b4b9cf360cd4e9fae77f5dfe44ced23c12429906e2a52c7f0f",
+          "T22V3::ARC502::S19-T@1": "92077369ab49041b3a3e8adec519bd0efea279eb962dd10a10644c8857b8751e",
+          "T22V3::ARC502::S20-M@1": "66511e4a73a0e97fcfa1742338434e8cebece584b78f640ed7ef8722862d796d",
+          "T22V3::ARC502::S20-T@1": "8e80c858f1aade192f9375a411a1f7aa48144a0176e79151c6a5b36f138c172a",
+          "T22V3::ARC502::S21-M@1": "5044b17d649f44ce39f9377f090dc8b3d979c84548bd2e90a9c1c1124629c727",
+          "T22V3::ARC502::S21-T@1": "ecb72f93d8c896ecee1bf47da83b635042e929bf45b844d79bbdc7ff5d3cbecb",
+          "T22V3::ARC502::S22-M@1": "ae4b3eceb06ced02c88385e4cd352f30a0a4930229f9f1ee1dfe1335f8ba8474",
+          "T22V3::ARC502::S22-T@1": "7ec421f781ab15d3253aede5b8e80592e1b6f26e17f7c145e35d88f772cc9697",
+          "T22V3::ARC502::S23-M@1": "60d50952373e68c49a9f85d7a2091f9be2f0ba5018d9fbffe1305124698db561",
+          "T22V3::ARC502::S23-T@1": "d5c5c03360ab6d69f8850435646be96e37b3c9a63249d5142a1a47213e0ac072",
+          "T22V3::ARC502::S24-M@1": "732c274d6be8d928383cb671f6d20b68e40d297bc6823c49ee8e8f2fc793e0fc",
+          "T22V3::ARC502::S24-T@1": "dc3865dbbd6d45d6633945cdcaf8f5751a4068faa3e46c6b9ed69ba4ed6acef3"
+        },
+        "contractHashes": {
+          "T22V3::ARC502::S01@1": "1b9cac8c072642c77da8b22f5f962c079f74cc4ca89393049c9fb7fd87379700",
+          "T22V3::ARC502::S02@1": "74c2f5501c21a696bab672624811428345cd777b852a6bba2ccc98531bdb32c8",
+          "T22V3::ARC502::S03@1": "7420e44e34e880243853cf9276e246763a25149fce4c89d96592a0487b751afa",
+          "T22V3::ARC502::S04@1": "a277cb27d602aaf9a1e473bbc29612353e29ed9d8be7a817007257e2f0909885",
+          "T22V3::ARC502::S05@1": "d81d202bdc8972e56602d94c431394077b1039a50e1aaecd76fa2ac6210e2c71",
+          "T22V3::ARC502::S06@1": "625b0571aa4a3bd4f4a613d295506e46637ab89903f76bc53c544da456dcc412",
+          "T22V3::ARC502::S07@1": "cbdcbcb8d80d97deeab871da2824f0ef43a7fe7877f447e3145644b9f44680da",
+          "T22V3::ARC502::S08@1": "5b8bbee0da4721f9e57d3d9428f11ad50c5bfbdfb09ebf40da103db418891b2b",
+          "T22V3::ARC502::S09@1": "07c82d7b8a588d376ce44ab693cac5f4d96f689fe3cb50b701a5ba8a1b1f51bd",
+          "T22V3::ARC502::S10@1": "17a3a14add05c18a4e6b0404e8c01dff58c42aa55aa039c32e58b96e8c2b6bf3",
+          "T22V3::ARC502::S11@1": "26b5d5c561b08817bfa74e6bdb314b62d9c327cbad565c2ddf88ec85cfec2dc9",
+          "T22V3::ARC502::S12@1": "158acd982e83023def49ccc950ec9d35903d5a09b8a686273703b41d156b5ef4",
+          "T22V3::ARC502::S13@1": "e1d95dafea249a6d7186eaff4d73b481a94b8b5f20d3d8e651e708c821a08976",
+          "T22V3::ARC502::S14@1": "351d92b9dfa4829e08ef1c7c6d7066d82dccb2cf329052320a2120019f9ebbc4",
+          "T22V3::ARC502::S15@1": "40f9ad152ab2ab625a4ffe97af9dd239fabfe84ef82e44c1fe886d68d2e12732",
+          "T22V3::ARC502::S16@1": "6170cc57816ce40ac8bfa941c39b4d23d588adcc2995a5d56c99e2ed7fbfae6b",
+          "T22V3::ARC502::S17@1": "b046697114e21aafd638d5f7d8dc1b46cbbba225eb24177233fa9c340635303d",
+          "T22V3::ARC502::S18@1": "0f04a850647cf5c5e22d4296309bab021ae2bd3ca69ac7262ed83351131ae600",
+          "T22V3::ARC502::S19@1": "65f0da794d3a984e64a17022a7c9b80f549dc1810fbe286b07403871e99f6ec7",
+          "T22V3::ARC502::S20@1": "476f9bade3c49902c4b9012fff7b6ea78792dd965bb9cf6a8ae48aafaca60edd",
+          "T22V3::ARC502::S21@1": "1bd6eda139189ae697e6d025dae5775acec5579b4067bd57e7e6f4def6282fa6",
+          "T22V3::ARC502::S22@1": "3d7284ed1e795ddff1cd610bb0c066891d2f0170709f1be8832c828725a8e11c",
+          "T22V3::ARC502::S23@1": "541d56022d72622fca52d568314742d9ed6a07a65207e61c480967b53278576f",
+          "T22V3::ARC502::S24@1": "dd896f63349a8470ae5b31c465e0a7a79f131656a793966b773d4f84b2d0c99d"
+        }
+      }
+    }
+  }
+}

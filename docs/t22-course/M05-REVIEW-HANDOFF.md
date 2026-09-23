@@ -1,151 +1,46 @@
-# M05 review handoff — Trading Games & Decisions Under Uncertainty
+# M05 repair review handoff — Trading Games & Decisions Under Uncertainty
 
-Date: 2026-09-18  
-Branch: `codex/t22-pedagogical-rebuild`  
-Module: **M05 · T22E-TRD01 — Trading Games & Decisions Under Uncertainty**  
-M05 internal content/integration checkpoint: `4b5aadb607b3a7f06b7444f4f3b3dc0ba9322399`  
-Status: **INTERNAL ACCEPTED — REVIEW HANDOFF CREATED; M06 MAY OPEN ONLY AFTER THIS SEPARATE CHECKPOINT**
+Date: 2026-09-23
+Branch: `codex/t22-pedagogical-rebuild`
+Stable module: `T22E-TRD01`
+Status: **BOUNDED REPAIRS IMPLEMENTED; VALIDATION IN PROGRESS; M07 CLOSED**
 
-## Authority and ancestry
+## Authority and recovery
 
-M04 is independently accepted in `M04-ASTRA-FOLLOWUP.md`; its verified remote run was `35368721291`.
+Recovered remote head: `bd0b54f71524b831ec264d9fcae1afb3d2dfd7dc`, unchanged since the independent batch review. Direct parent: `9efe72ee1c87579b4ba5ab491f31f259a976752e`. Commit ancestry, all repository file hashes and both module boundaries were checked. No `AGENTS.md` exists in this tree.
 
-M05 began from that accepted state and used `docs/t22-course/M05-BOUNDARY.md` as the frozen boundary.
+Historical M05 content checkpoint: `4b5aadb607b3a7f06b7444f4f3b3dc0ba9322399`. Its internal acceptance label was superseded by `M05-M06-ASTRA-REVIEW.md`. This handoff does not resurrect that acceptance or claim a new independent review.
 
-Direct macro prerequisite: **ARC048 only**.
+Read `M05-M06-RESOLUTION.md` for current implementation SHA, full Actions result and recovery instructions. Read `M05-M06-SEMANTIC-AUDIT.md` for the 48-session audit and all 240 claim links.
 
-## What M05 owns
+## Preserved structure
 
-M05 now owns, at finite elementary level:
+24 sessions; 48 fixed tasks; 120/120 ownership claims linked to actual public requests and observing rubric criteria. Every evaluator totals10. IDs, module ordering, direct prerequisite `ARC048`, useful mathematical work and shared store `chrono_t22_elite_course_evidence_v1` are retained. M01–M04 remain accepted. This is a bounded repair of the existing module, not a regenerated module.
 
-- payoff tables: probability, gross payoff, net payoff, terminal wealth;
-- finite expected net payoff;
-- EV-fair entry fee / zero-EV fair price;
-- break-even probability and payoff thresholds;
-- probability of gain/loss/zero versus EV;
-- skew: EV versus most-likely payoff;
-- descriptive comparison metrics without hidden preference claims;
-- repeated-play expected total through linearity;
-- bankroll accounting and wealth paths;
-- running peaks and drawdown;
-- finite-horizon ruin by explicit enumeration;
-- stake fraction and hard one-play-loss feasibility constraints;
-- additive versus multiplicative bankroll arithmetic;
-- recovery percentage after drawdown;
-- preference as extra structure;
-- expected utility with supplied finite utility tables;
-- certainty equivalent and finite risk-premium calculation;
-- statewise dominance;
-- maximin as an explicitly named conservative criterion;
-- finite 2×2 adversarial best responses;
-- mixed-strategy expected payoff / indifference algebra without a general minimax theorem;
-- rapid drills and integrated criterion-labelled decision audit.
+Instruction version: `m05-instruction-astra-r1`. Authoring version: `m05-authoring-astra-r1`. Course metadata: `T22E-course-0.6.1-m05-m06-repair`.
 
-## Explicit non-ownership
+## Assessment versions and history
 
-M05 intentionally does **not** teach:
+Changed fixed contracts are obligationVersion2:
 
-- Bayes, base rates, posterior probability, likelihood ratios or sequential belief updating — M06;
-- prices, returns, long/short P&L, bid/ask, order types/fills — M07;
-- variance/covariance/formal random-variable distributions — M26;
-- Kelly criterion, log-optimality or general optimization;
-- DP/MDPs or infinite-horizon ruin;
-- formal minimax/equilibrium existence theorems;
-- no-arbitrage/replication/derivatives pricing.
+`S02-T@1`, `S03-T@1`, `S04-M@1`, `S04-T@1`, `S06-T@1`, `S07-T@1`, `S08-T@1`, `S09-M@1`, `S09-T@1`, `S10-T@1`, `S12-T@1`, `S13-M@1`, `S13-T@1`, `S14-M@1`, `S14-T@1`, `S15-T@1`, `S17-T@1`, `S18-T@1`, `S19-M@1`, `S19-T@1`, `S20-M@1`, `S20-T@1`, `S21-M@1`, `S21-T@1`, `S22-M@1`, `S22-T@1`
 
-## Package state
+Other fixed contracts remain version1. Changed ownership-contract sessions: `S20@1`. These contract hashes change as well. Historical attempts remain visible/exportable, with stale fingerprints/contracts excluded from current mastery evidence. No assessment equivalence silently recertifies old work.
 
-- Sessions: **24**
-- Fixed assessments: **48** (Main + Transfer)
-- Required ownership claims: **120**
-- Claim observability: **120/120 exact Main public-task → exact rubric criterion**
-- Evaluator totals: **48/48 = 10 points**
-- Semantic instruction-separation records: **24/24**
-- Instruction version: `m05-instruction-v1`
-- Authoring version: `m05-authoring-v1.0-internal-accepted`
-- Course metadata: `T22E-course-0.5.0-m05`
-- Shared evidence key unchanged: `chrono_t22_elite_course_evidence_v1`
+The authoring pack contains source-session → target-task historical answer links, including cross-session links where applicable. Legacy actual answer exposure is timestamp-aware; earlier attempts are preserved. New clean lessons do not permanently expose answers. Offered unsolved guided exercises are recorded in a separate ledger and do not fabricate reveal timestamps. Lesson assistance within a current attempt is still retained.
 
-## Teaching safeguards carried forward
+The shared merge operation migrates each imported/input exposure record before combining its version summary, preventing a clean newer lesson label from erasing an older answer exposure.
 
-Every M05 lesson contains novice explanation, a worked example and guided check before the fixed tasks.
+## Validation and limits
 
-The course repeatedly distinguishes:
+Required gate is the complete `.github/workflows/t22-elite-checks.yml` run, including Chromium. Structural and pinned semantic checks alone are not pedagogical acceptance. New checks include all48 Transfer numeric references, first-hit enumeration, changed-task fingerprints, all historical source links, mutation rejection of positional mappings and browser import/export/reload regressions. Separate existing scripts cover Main mathematics.
 
-- expected value from a guaranteed/typical result;
-- expected value from probability of loss;
-- descriptive metrics from preferences;
-- hard feasibility constraints from optimization;
-- supplied utility from money and from a universal preference law;
-- maximin from an all-purpose rationality rule;
-- finite 2×2 indifference algebra from a general equilibrium/minimax theorem.
+At this documentation checkpoint, local non-browser validation and the pushed Actions result are still being collected. Local Chromium is not installed; no local browser PASS is claimed. Final verified run information will be recorded in the resolution and recovery log.
 
-Worked/guided data are surface- and number-distinct from fixed Main/Transfer tasks.
+Limits: pinned semantic snapshots prevent drift but cannot decide semantic truth. External SPIRE/offline lesson access not present in the evidence store cannot be reconstructed. Existing user work is not automatically recertified. A separate independent review is still distinct from this principal-builder verification.
 
-## Assessment / provenance safeguards carried forward
+## Stop boundary
 
-- Every ownership claim is publicly requested and scored.
-- No hidden answer-equivalence was intentionally introduced.
-- `obligationVersion=1` is used for all new M05 assessments.
-- Assessment fingerprints continue to hash prompt + obligation version + full evaluator marking contract.
-- Lesson use records assistance provenance.
-- Answer-bearing packet export marks both fixed tasks reference-exposed.
-- Unsaved Main/Transfer working and assistance provenance are tested across module switches.
-- Review events attach to original attempts.
-- M01–M05 evidence remains in one store and export/import path.
-- No historical answer-exposure migration is required because M05 launches with separated instruction.
+**STOP before M07. STOP HERE. Do not author M07.**
 
-## Persistent validation
-
-New gates:
-
-1. `scripts/test-t22-elite-m05.mjs`
-   - 24/48/120 structure;
-   - 120 exact claim/request/rubric mappings;
-   - 10-point evaluators;
-   - prerequisite and semantic-separation ledgers;
-   - decision-boundary leakage guards.
-
-2. `docs/t22-course/audit/m05-independent-math.mjs`
-   - independently re-derives payoff accounting, EV/fair fee, break-even, loss metrics, repeated expectation, drawdown/ruin, stake bounds, multiplicative recovery, utility/CE, dominance/maximin, adversarial indifference and synthesis arithmetic.
-
-3. Shared browser regression now includes M05:
-   - module load / 24-session scoping;
-   - save/reveal/review under stable M05 IDs;
-   - M05→M01→M05 unsaved draft + assistance provenance;
-   - packet exposure of both S01 fixed tasks;
-   - M01–M05 export/import coexistence.
-
-4. CI workflow now includes M05 syntax/static/math gates plus the existing real Chromium workflow.
-
-Connector-side deterministic validation at checkpoint `4b5aadb...` found:
-- no structural/claim/rubric/separation failures;
-- selected independent calculations all passed;
-- M05 semantic status = accepted;
-- roadmap status = authored;
-- M06 and M07 remained planned.
-
-The GitHub connector exposed here does not list push-triggered workflow runs, so this handoff does not invent a CI run ID. Reviewers should inspect the Actions run for the exact handoff head when available.
-
-## Reviewer attack targets
-
-1. Is EV-fair pricing consistently described as zero-EV arithmetic rather than market value or preference?
-2. Does any positive-EV example accidentally imply unlimited/optimal stake size?
-3. Are drawdown and initial-bankroll loss kept distinct?
-4. Does finite ruin stay finite-horizon and avoid importing DP/Markov/infinite-horizon results?
-5. Is multiplicative bankroll arithmetic taught without prematurely defining market returns?
-6. Are utility/CE examples mathematically correct while clearly model/preference-specific?
-7. Is statewise dominance used only when states are common/comparable and more payoff is preferred?
-8. Are maximin and adversarial best-response criteria explicitly labelled rather than universalized?
-9. Does S22 stop at direct 2×2 indifference rather than smuggling a minimax/equilibrium theorem?
-10. Are all 120 ownership mappings genuinely semantic, not merely positional?
-11. Does shared evidence provenance still behave correctly with a fifth authoring pack?
-12. Is the M06 boundary still clean enough that Bayes has real work to do?
-
-## Next boundary
-
-After this M05 checkpoint is verified, open **M06 · ARC502 — Bayes, Base Rates & Sequential Updating**.
-
-Complete and validate M06 separately, create its own handoff, then **STOP before M07**.
-
-No merge to `main`, deployment, T25 modification or legacy-T22 progress migration is authorized.
+No merge to main, deployment, T25 modification, legacy T22 migration or larger batch is part of this repair. After an accepted repair review, M07 alone is the proposed next trial; it requires a subsequent instruction.

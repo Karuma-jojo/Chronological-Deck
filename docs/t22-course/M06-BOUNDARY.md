@@ -5,6 +5,10 @@ Branch: `codex/t22-pedagogical-rebuild`
 Stable module ID: `ARC502`  
 Status: **INTERNAL ACCEPTED — REVIEW HANDOFF CREATED; M07 CLOSED**
 
+## Repair status — 2026-09-23 (supersedes historical internal acceptance)
+
+The boundary and route below are preserved. M05/M06 require the bounded batch repair review; see `M05-M06-RESOLUTION.md`. Earlier internal completion labels are historical, not independent acceptance. M07 remains closed.
+
 ## Entry authority
 
 M04 · `ARC048` is the direct macro prerequisite and is independently accepted.

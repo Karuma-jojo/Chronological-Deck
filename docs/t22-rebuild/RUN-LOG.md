@@ -1,12 +1,22 @@
 # T22 rebuild recovery state
 
-Date: 2026-09-18
-State: **M05 + M06 INDEPENDENT REVIEW: REPAIRS REQUIRED; M07 CLOSED**
+Date: 2026-09-23
+State: **M05 + M06 BOUNDED REPAIRS IMPLEMENTED; VALIDATION IN PROGRESS; M07 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
+
+## Current repair recovery — 2026-09-23 (authority over historical entries below)
+
+Recovered and hash-verified remote head `bd0b54f71524b831ec264d9fcae1afb3d2dfd7dc`; no subsequent repairs existed. Parent/ancestry checked, including intervening M01 packet work. Principal builder completed the bounded M05/M06 content and scoring audit:48 lessons,96 task/evaluator pairs,240 claim links. See `docs/t22-course/M05-M06-RESOLUTION.md` and `M05-M06-SEMANTIC-AUDIT.md`.
+
+Current instruction versions: `m05-instruction-astra-r1`, `m06-instruction-astra-r1`. Stable IDs/evidence store retained. Only changed task/evaluator contracts versioned2; ownership-contract changes produce stale earlier evidence rather than silently recertifying it. Historical solved exposure is timestamp-migrated, including cross-session links; unsolved guided exercises do not invent reveals. Evidence merge inputs are migrated before their lesson-version summaries combine.
+
+Local and remote validation still in progress. No full-suite success is yet claimed. Next: execute every required gate, push/read back the implementation head, inspect its complete Actions job including browser execution, then close the resolution with the actual SHA/run URL. Stop before M07; do not merge/deploy or touch T25/legacy progress. M01–M04 remain accepted. User proceeds with M02, without restarting reported M01 completion or claiming external recertification of reconstructed RAW evidence.
+
+All dated completion/next-action entries below are historical unless explicitly reaffirmed above.
 
 ## Current independent review — 2026-09-18
 
@@ -362,3 +372,7 @@ Historical M04/M05 handoff gates were made forward-compatible with later global 
 ## M01 S02 engine packet export
 
 Exported `docs/t22-course/packets/T22-Elite-M01-S02-Compiled-Engine-Prompt.md` from frozen source `182ff837e140f69b9f7736f9b1164678e6c76836`. Verified M01 contains 17 sessions across its four canonical packs. S02 uses the repaired lesson and obligation-version-2 Transfer; runtime contract hash and assessment fingerprints were checked. Includes unchanged runtime compilerPacket() output with WALL attachment instructions and sealed evaluator supplement. No learner clearance is inferred from export. This documentation-only export does not alter the active authoring/review boundary or course/runtime content.
+
+## Local verification before implementation push
+
+All46 non-browser commands in the updated full workflow passed on2026-09-23 (syntax plus structural, mathematical, semantic, evidence-provenance and handoff checks). `git diff --check` passed. Local browser launch was attempted and failed solely because Chromium is not installed. Remote full-suite browser validation remains required. The stale M03 progression guard was advanced without changing accepted module content.

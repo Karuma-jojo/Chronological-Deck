@@ -1,7 +1,9 @@
+import {checkModule} from '../docs/t22-course/audit/m05-m06-semantic-checks.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 const a=JSON.parse(fs.readFileSync('course/t22/authoring/m06.json','utf8'));
+checkModule(a);
 const by=n=>a.sessions.find(s=>s.order===n);
 assert.equal(a.module.id,'ARC502');
 assert.deepEqual(a.boundary.prerequisiteModules,['ARC048']);
@@ -19,7 +21,7 @@ for(const s of a.sessions){
  const h=crypto.createHash('sha256').update(JSON.stringify(stable({title:s.title,focus:s.focus,purpose:s.purpose,claims:s.requiredOwnership,lesson:s.lesson}))).digest('hex');assert(!hashes.has(h));hashes.add(h);
  for(const kind of ['main','transfer']){
   const id=s[kind],ev=a.evaluators[id];
-  assert.equal(a.problems[id].obligationVersion,1);
+  assert([1,2].includes(a.problems[id].obligationVersion));
   assert.equal(ev.rubric.length,5);
   assert.equal(ev.rubric.reduce((z,r)=>z+r.points,0),10);
   for(const f of a.instructionSeparation[s.id][kind]){
@@ -27,13 +29,6 @@ for(const s of a.sessions){
    assert(!s.lesson.includes(f),`S${s.order} ${kind} lesson leaks fixed-task fragment`);
   }
  }
- a.claimEvidence[s.id].forEach((e,i)=>{
-  assert.equal(e.claim,s.requiredOwnership[i]);
-  assert.equal(e.task,'main');
-  assert.equal(e.publicRequest,a.problems[s.main].prompt);
-  assert.deepEqual(e.rubricEvidence,[a.evaluators[s.main].rubric[i].criterion]);
-  assert.deepEqual(a.coverage[s.id][i],['main']);
- });
  assert(a.prerequisiteAudit['S'+String(s.order).padStart(2,'0')]?.length);
 }
 assert(by(1).lesson.includes('denominator population'));
@@ -54,4 +49,4 @@ assert(by(24).lesson.includes('complete Bayesian audit'));
 for(const bad of ['expected utility','bankroll','bid/ask','log return','maximum likelihood estimation','MCMC']){
  assert(!a.sessions.some(s=>s.lesson.toLowerCase().includes(bad.toLowerCase())),`M06 lesson boundary leak: ${bad}`);
 }
-console.log('PASS M06 structural/pedagogy: 24 sessions, 48 tasks, 120 exact claim→Main/rubric links, denominator/completeness/dependence guards and separated Bayesian instruction.');
+console.log('PASS M06 structural/pedagogy: 24 sessions, 48 tasks, 120 reviewed semantic claim→task/rubric links, denominator/completeness/dependence guards and separated Bayesian instruction.');

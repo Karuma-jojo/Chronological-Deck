@@ -35,6 +35,10 @@ jobs:
           node --check scripts/test-t22-elite-m04.mjs
           node --check scripts/test-t22-elite-m05.mjs
           node --check scripts/test-t22-elite-m06.mjs
+          node --check scripts/test-t22-elite-m05-m06-repairs.mjs
+          node --check scripts/test-t22-elite-repair-browser.mjs
+          node --check docs/t22-course/audit/m05-m06-semantic-checks.mjs
+          node --check docs/t22-course/audit/m05-m06-transfer-math.mjs
           node --check scripts/test-t22-semantic-gates.mjs
           node --check scripts/test-t22-elite-course-browser.mjs
           node --check docs/t22-rebuild/audit/check-current.mjs
@@ -56,6 +60,8 @@ jobs:
           node scripts/test-t22-elite-m04.mjs
           node scripts/test-t22-elite-m05.mjs
           node scripts/test-t22-elite-m06.mjs
+          node scripts/test-t22-elite-m05-m06-repairs.mjs
+          node docs/t22-course/audit/m05-m06-transfer-math.mjs
           node scripts/test-t22-semantic-gates.mjs
           node docs/t22-rebuild/audit/check-current.mjs
           node docs/t22-course/audit/m02-review-checks.mjs

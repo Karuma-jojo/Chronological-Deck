@@ -91,6 +91,10 @@ export function validateEvidence(value,course){
 
 export function mergeEvidence(a,b,course){
  a=validateEvidence(a,course); b=validateEvidence(b,course);
+ // Preserve legacy answer-bearing exposures before merging lesson-version summaries.
+ // A newer clean lesson version must not erase an older imported solved-example exposure.
+ migrateHistoricalLessonAnswerExposure(a,course);
+ migrateHistoricalLessonAnswerExposure(b,course);
  const attempts=new Map(a.attempts.map(x=>[x.id,x]));
  for(const x of b.attempts){if(attempts.has(x.id)&&JSON.stringify(attempts.get(x.id))!==JSON.stringify(x)) throw Error('Conflicting attempt ID; neither copy was overwritten'); attempts.set(x.id,x);}
  const artifacts=new Map(a.artifacts.map(x=>[x.id,x]));
