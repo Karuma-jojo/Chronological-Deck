@@ -1,17 +1,71 @@
 import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,taskText,sceneText,publicOpening,compilerPacket,reviewQueue} from './core.js';
-import ledger from '../../course/smmc/ledger.mjs';
-import {readWorkspaceNav,rememberT25Location,t25Href,smmcHref,restoreViewport} from '../workspace-nav.js';
+import SMMC_CONNECTIONS_BY_T25 from '../../course/smmc/connection-index-v1.mjs';
+import {readWorkspaceNav,rememberT25Location,t25Href,smmcHref,restoreViewport,hasStoredWorkspaceNav,reconcileWorkspaceNavCloud,enableWorkspaceNavCloud} from '../workspace-nav.js';
 import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
+import {workspaceCloudState,reconcileWorkspaceScope,scheduleWorkspaceScopeSync} from '../workspace-cloud.js';
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
 const uuid=()=>crypto.randomUUID();
-let course,state,session,problemId,lastSaved=null,keys=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main';
+let course,state,session,problemId,lastSaved=null,keys=null,notesPromise=null,fullCoursePromise=null,visit=0,noteSeen=false,referenceBefore=false,storageOK=true,currentTaskKind='main',cloudReady=false,cloudApplying=false,cloudReconciling=false;
 const put=(id,text)=>$(id).textContent=text;
+function cloudBadge(kind='local',text){
+ const el=$('workspaceCloud');if(!el)return;
+ el.className='workspace-cloud '+(kind==='local'?'':kind);
+ el.textContent=text||(kind==='synced'?'Synced ☁':kind==='syncing'?'Saving…':kind==='error'?'Cloud issue':'Local');
+}
+function renderCloudBadge(){
+ const cloud=workspaceCloudState();
+ cloudBadge(cloud.signedIn?'syncing':'local',cloud.signedIn?'Checking ☁':'Local');
+}
+function applyT25CloudResult(result){
+ if(result.status==='error'){cloudBadge('error','Saved locally');return;}
+ if(result.status==='local-only'){cloudBadge('local','Local');return;}
+ if(result.payload){
+   cloudApplying=true;
+   state=result.payload;
+   if(storageOK)try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{storageOK=false;}
+   renderHistory();renderQueue();setPresentation();
+   cloudApplying=false;
+ }
+ cloudBadge('synced','Synced ☁');
+}
 async function json(url){const r=await fetch(url);if(!r.ok)throw Error(`Could not load ${url} (${r.status})`);return r.json();}
+async function runtimeCourse(){try{return await json('course/generated/runtime.json');}catch{return json('course/generated/course.json');}}
+async function fullCourse(){return fullCoursePromise??=json('course/generated/course.json');}
+async function noteBank(){
+ if(notesPromise)return notesPromise;
+ notesPromise=json('course/generated/notes.json').catch(async()=>{
+   const full=await fullCourse();
+   return {
+     sessions:Object.fromEntries(full.sessions.map(s=>[s.order,s.lesson])),
+     bridges:Object.fromEntries(full.bridges.map(b=>[b.id,b.lesson])),
+   };
+ });
+ return notesPromise;
+}
 function persist(message){
  if(storageOK){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{storageOK=false;}}
  if(message)tell(message+(storageOK?'':' — held in memory only; export now to keep it.'));
+ if(cloudReady&&!cloudApplying){
+   if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
+   scheduleWorkspaceScopeSync(
+     't25_course',
+     ()=>state,
+     (local,remote)=>remote?mergeEvidence(local,remote,course):local,
+     applyT25CloudResult
+   );
+ }
  return storageOK;
+}
+async function reconcileT25Cloud(){
+ if(cloudReconciling)return;
+ if(!workspaceCloudState().signedIn){cloudReady=true;cloudBadge('local','Local');return;}
+ cloudReconciling=true;cloudBadge('syncing','Syncing…');
+ try{
+   const result=await reconcileWorkspaceScope('t25_course',state,(local,remote)=>remote?mergeEvidence(local,remote,course):local);
+   applyT25CloudResult(result);
+ }catch(error){cloudBadge('error','Saved locally');}
+ finally{cloudReady=true;cloudReconciling=false;}
 }
 function options(select,items){select.replaceChildren(...items.map(([value,label])=>{const o=document.createElement('option');o.value=value;o.textContent=label;return o;}));}
 function button(label,fn){const b=document.createElement('button');b.textContent=label;b.addEventListener('click',fn);return b;}
@@ -34,15 +88,17 @@ function renderWorkspaceNav(){
 function renderSmmcConnections(){
  if(!session)return;
  const target=session.card.targetCode||String(session.card.syllabusCode||'').split('.')[0];
- const rows=ledger.filter(p=>p.t25Targets.includes(target));
+ const rows=SMMC_CONNECTIONS_BY_T25[target]||[];
  put('smmcConnectionNote',rows.length
   ? `${rows.length} historical SMMC problem${rows.length===1?'':'s'} map to target ${target}. Open one and you can return to this exact T25 session.`
   : `No audited historical SMMC problem is mapped directly to target ${target} yet.`);
  const box=$('smmcConnections');box.className='connection-list';
- box.replaceChildren(...rows.slice(0,12).map(p=>{
-  const a=document.createElement('a');a.className='connection-link';a.href=smmcHref({tab:'map',problemId:p.id,focus:'histTitle'});
-  const strong=document.createElement('strong');strong.textContent=`${p.year} ${p.session}${p.problem}`;
-  const small=document.createElement('small');small.textContent=p.eastRelevant?'East A/B · historical map':'C supplementary · historical map';
+ box.replaceChildren(...rows.slice(0,12).map(([id,east])=>{
+  const m=id.match(/^SMMC-(\d{4})-([ABC])(\d)$/);
+  const label=m?`${m[1]} ${m[2]}${m[3]}`:id;
+  const a=document.createElement('a');a.className='connection-link';a.href=smmcHref({tab:'map',problemId:id,focus:'histTitle'});
+  const strong=document.createElement('strong');strong.textContent=label;
+  const small=document.createElement('small');small.textContent=east?'East A/B · historical map':'C supplementary · historical map';
   a.append(strong,small);return a;
  }));
 }
@@ -98,9 +154,19 @@ async function reveal(){
 async function copy(text){try{await navigator.clipboard.writeText(text);tell('Copied.');}catch{const area=document.createElement('textarea');area.value=text;area.readOnly=true;area.setAttribute('aria-label','Copy text manually');$('status').replaceChildren('Clipboard unavailable. Copy the text below:',area);area.select();}}
 function download(name,data){const url=URL.createObjectURL(new Blob([data],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 async function init(){
- course=await json('course/generated/course.json');state=emptyEvidence();
+ const initialParams=new URLSearchParams(location.search);
+ const explicitWorkspace=initialParams.has('session')||initialParams.has('presentation')||initialParams.has('task');
+ let navReconciled=false,navReconcilePromise=null;
+ if(!explicitWorkspace&&!hasStoredWorkspaceNav()&&workspaceCloudState().signedIn){
+   navReconcilePromise=reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;});
+   await Promise.race([
+     navReconcilePromise,
+     new Promise(resolve=>setTimeout(resolve,700))
+   ]);
+ }
+ course=await runtimeCourse();state=emptyEvidence();
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);}catch{storageOK=false;tell('Existing study storage could not be read. It has not been overwritten. New work is held in memory; export it before leaving.');}
- const params=new URLSearchParams(location.search),remembered=readWorkspaceNav();
+ const params=initialParams,remembered=readWorkspaceNav();
  const requestedPresentation=params.get('presentation');
  $('presentation').value=requestedPresentation==='anime'||requestedPresentation==='plain'?requestedPresentation:remembered.t25.presentation;
  const requestedSession=Number(params.get('session'));
@@ -110,11 +176,13 @@ async function init(){
  $('answer').addEventListener('input',()=>{if(problemId)writeWorkspaceDraft('t25',problemId,$('answer').value);});
  $('previous').onclick=()=>selectSession(session.order-1);$('next').onclick=()=>selectSession(session.order+1);
  $('mainTask').onclick=()=>selectSession(session.order);$('transferTask').onclick=()=>selectSession(session.order,'transfer');$('presentation').onchange=setPresentation;
- $('note').onclick=()=>{
-  const p=course.problems[problemId],b=course.bridges.find(x=>x.tasks.includes(problemId));
-  const note=p.order?course.sessions[p.order-1].lesson:b?.lesson;
-  if(!note){tell('No learning note is attached to this synthesis or objective task.');return;}
-  put('learning','LEARNING NOTE — ASSISTANCE, OUTSIDE WALL\n\n'+note);$('learning').hidden=false;noteSeen=true;$('assistance').value='guided';expose(state,problemId,undefined,'lessonSeenAt');persist('Learning note opened; assistance recorded for this attempt.');
+ $('note').onclick=async()=>{
+  try{
+   const p=course.problems[problemId],b=course.bridges.find(x=>x.tasks.includes(problemId)),notes=await noteBank();
+   const note=p.order?notes.sessions[p.order]:b?notes.bridges[b.id]:null;
+   if(!note){tell('No learning note is attached to this synthesis or objective task.');return;}
+   put('learning','LEARNING NOTE — ASSISTANCE, OUTSIDE WALL\n\n'+note);$('learning').hidden=false;noteSeen=true;$('assistance').value='guided';expose(state,problemId,undefined,'lessonSeenAt');persist('Learning note opened; assistance recorded for this attempt.');
+  }catch(e){tell('Could not load learning note: '+e.message);}
  };
  $('save').onclick=()=>{
   const answer=$('answer').value.trim(),minutes=Number($('minutes').value);
@@ -132,8 +200,12 @@ async function init(){
  };
  $('copyOpening').onclick=()=>{const p=course.problems[problemId];copy(publicOpening(course,course.sessions[p.order-1],$('presentation').value==='anime',problemId));};
  $('copyPacket').onclick=async()=>{
-  const s=course.sessions[course.problems[problemId].order-1],anime=$('presentation').value==='anime';
-  try{const refs=await evaluator();await copy(compilerPacket(course,s,refs,anime));expose(state,s.main,undefined,'packetExportedAt');persist();}catch(e){tell(e.message);}
+  const anime=$('presentation').value==='anime';
+  try{
+    const [full,refs]=await Promise.all([fullCourse(),evaluator()]);
+    const s=full.sessions[full.problems[problemId].order-1];
+    await copy(compilerPacket(full,s,refs,anime));expose(state,s.main,undefined,'packetExportedAt');persist();
+  }catch(e){tell(e.message);}
  };
  $('export').onclick=()=>download('t25-study-record.json',JSON.stringify(state,null,2));
  $('import').onchange=async e=>{
@@ -149,6 +221,12 @@ async function init(){
  $('bridges').replaceChildren(...course.bridges.flatMap(b=>[...b.tasks.map((id,i)=>button(`${b.title} · ${i+1}`,()=>{showProblem(id,'bridge');tell(`Prerequisite bridge. Open the learning note if needed; this grants no atomic clearance.`);}))]));
  $('saveChoice').onclick=()=>{const old=state.story[session.phase];state.story[session.phase]={choice:Number($('storyChoice').value),completed:old?.completed||false};persist('Story choice saved.');setPresentation();};
  $('finishStory').onclick=()=>{state.story[session.phase]={choice:Number($('storyChoice').value),completed:true};persist('Your report of SPIRE phase certification was recorded for story continuity only.');setPresentation();};
+ if(!navReconciled)void (navReconcilePromise||reconcileWorkspaceNavCloud()).finally(enableWorkspaceNavCloud);
+ else enableWorkspaceNavCloud();
+ renderCloudBadge();
+ void reconcileT25Cloud();
+ document.addEventListener('chrono:cloud-context-changed',()=>{cloudReady=false;void reconcileT25Cloud();});
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&cloudReady&&workspaceCloudState().signedIn)void reconcileT25Cloud();});
  window.addEventListener('pagehide',()=>{
    if(problemId)writeWorkspaceDraft('t25',problemId,$('answer').value);
    rememberT25Location({session:session.order,presentation:$('presentation').value,task:currentTaskKind,scrollY:window.scrollY});

@@ -32,7 +32,9 @@ try{
   browser=await chromium.launch({headless:true,executablePath:process.env.REVIEW_CHROMIUM_PATH||undefined,args:['--no-sandbox','--disable-dev-shm-usage']});
   const context=await browser.newContext({viewport:{width:1280,height:900}});
   const page=await context.newPage();
+  const requests=[];
   page.on('pageerror',e=>errors.push(e.message));
+  page.on('request',r=>requests.push(r.url()));
 
   const home=await context.newPage();
   await home.goto(base+'/index.html');
@@ -50,10 +52,13 @@ try{
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat span').allTextContents(),['GREEN','AMBER','RED','GREEN','AMBER','RED']);
   await page.click('#tabStudy');
 
+  assert(!requests.some(x=>x.endsWith('/course/smmc/authoring/evaluator-v1.mjs')),'SMMC evaluator bank fetched before explicit reveal');
   await page.fill('#answer','Smoke-test reasoning.');
   await page.click('#saveAttempt');
   assert(!(await page.locator('#revealRef').isDisabled()));
   await page.click('#revealRef');
+  await page.waitForSelector('#reference:not([hidden])');
+  assert(requests.some(x=>x.endsWith('/course/smmc/authoring/evaluator-v1.mjs')),'SMMC evaluator bank was not lazy-loaded on reveal');
   assert(await page.locator('#reference').isVisible());
 
   const neutral=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_neutral_study_v1')));

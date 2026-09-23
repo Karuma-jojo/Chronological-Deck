@@ -19,7 +19,20 @@ jobs:
       - run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
       - name: Validate SMMC authoring contracts
         run: node scripts/validate-smmc-authoring-v1.mjs
+      - name: Validate compact SMMC connection index
+        run: node scripts/validate-smmc-connection-index.mjs
+      - name: Build lean T25 learner payload
+        run: |
+          node scripts/build-t25-course.mjs
+          node scripts/validate-t25-runtime-payload.mjs
+
+      - name: Validate workspace cloud conflict handling
+        run: node scripts/test-workspace-cloud.mjs
+
       - name: Validate SMMC browser workflow
         run: node scripts/test-smmc-course-browser.mjs
       - name: Validate T25 Aster SMMC workspace navigation
         run: node scripts/test-math-workspace-browser.mjs
+
+      - name: Validate cross-device T25 SMMC restore
+        run: node scripts/test-cross-device-workspace-browser.mjs

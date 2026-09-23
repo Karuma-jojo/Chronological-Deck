@@ -1,16 +1,17 @@
 import ledger from '../../course/smmc/ledger.mjs';
 import { SMMC_UNITS_V1 } from '../../course/smmc/authoring/units-v1.mjs';
 import { SMMC_PUBLIC_PROBLEMS_V1 } from '../../course/smmc/authoring/public-problems-v1.mjs';
-import { SMMC_EVALUATOR_V1 } from '../../course/smmc/authoring/evaluator-v1.mjs';
 import {
-  emptySmmcState, validateSmmcState, markExposure, exposureClass,
+  emptySmmcState, validateSmmcState, mergeSmmcState, markExposure, exposureClass,
   selfReportUnitComplete, certifiedUnitIds,
 } from '../../course/smmc/runtime/exposure.mjs';
+import { emptySmmcStudy, validateSmmcStudy, mergeSmmcStudy } from '../../course/smmc/runtime/study.mjs';
 import { unlockStatus } from '../../course/smmc/runtime/unlock.mjs';
 import { officialPaperUrl } from '../../course/smmc/sources-v1.mjs';
 import { routeStepsForT25Targets } from '../../course/smmc/t25-crosswalk.mjs';
-import {readWorkspaceNav,rememberSmmcLocation,t25Href,smmcHref,restoreViewport} from '../workspace-nav.js';
+import {readWorkspaceNav,rememberSmmcLocation,t25Href,smmcHref,restoreViewport,hasStoredWorkspaceNav,reconcileWorkspaceNavCloud,enableWorkspaceNavCloud} from '../workspace-nav.js';
 import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
+import {workspaceCloudState,reconcileWorkspaceScope,scheduleWorkspaceScopeSync} from '../workspace-cloud.js';
 
 const $=id=>document.getElementById(id);
 const HIST_KEY='chrono_smmc_historical_evidence_v1';
@@ -18,9 +19,43 @@ const STUDY_KEY='chrono_smmc_neutral_study_v1';
 const uuid=()=>crypto.randomUUID();
 const tell=x=>$('status').textContent=x;
 const put=(id,text)=>$(id).textContent=text;
+function cloudBadge(kind='local',text){
+  const el=$('workspaceCloud');if(!el)return;
+  el.className='workspace-cloud '+(kind==='local'?'':kind);
+  el.textContent=text||(kind==='synced'?'Synced ☁':kind==='syncing'?'Saving…':kind==='error'?'Cloud issue':'Local');
+}
+function renderCloudBadge(){
+  const cloud=workspaceCloudState();
+  cloudBadge(cloud.signedIn?'syncing':'local',cloud.signedIn?'Checking ☁':'Local');
+}
+function refreshSmmcViews(){
+  renderUnit(currentUnit?.id||SMMC_UNITS_V1[0].id,currentTaskId);
+  if(currentProblem)renderHistorical(currentProblem.id);
+  renderHistory();
+}
+function applySmmcCloudResult(kind,result){
+  if(result.status==='error'){cloudBadge('error','Saved locally');return;}
+  if(result.status==='local-only'){cloudBadge('local','Local');return;}
+  if(result.payload){
+    cloudApplying=true;
+    if(kind==='historical')histState=result.payload;
+    else studyState=result.payload;
+    if(storageOK){
+      try{
+        localStorage.setItem(HIST_KEY,JSON.stringify(histState));
+        localStorage.setItem(STUDY_KEY,JSON.stringify(studyState));
+      }catch{storageOK=false;}
+    }
+    refreshSmmcViews();
+    cloudApplying=false;
+  }
+  cloudBadge('synced','Synced ☁');
+}
 let histState=emptySmmcState();
-let studyState={version:1,attempts:[]};
-let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study';
+let studyState=emptySmmcStudy();
+let evaluatorPromise=null;
+const evaluatorBank=()=>evaluatorPromise??=import('../../course/smmc/authoring/evaluator-v1.mjs').then(m=>m.SMMC_EVALUATOR_V1);
+let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study',cloudReady=false,cloudApplying=false,cloudReconciling=false;
 let researchVisible=false,paperVisible=false;
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
 const moduleIds=[...new Set(SMMC_UNITS_V1.map(x=>x.moduleId))];
@@ -30,20 +65,49 @@ function persist(){
   try{
     localStorage.setItem(HIST_KEY,JSON.stringify(histState));
     localStorage.setItem(STUDY_KEY,JSON.stringify(studyState));
-    return true;
-  }catch{storageOK=false;tell('Browser storage is unavailable. Export before leaving if you want to keep this session.');return false;}
-}
-function validateStudy(x){
-  if(!x||typeof x!=='object'||x.version!==1||!Array.isArray(x.attempts)||x.attempts.length>10000)throw Error('Unsupported neutral study record');
-  const known=new Set(Object.keys(SMMC_PUBLIC_PROBLEMS_V1)),seen=new Set(),out={version:1,attempts:[]};
-  for(const a of x.attempts){
-    if(!a||typeof a!=='object'||typeof a.id!=='string'||seen.has(a.id)||!known.has(a.taskId)||
-      typeof a.at!=='string'||!Number.isFinite(Date.parse(a.at))||typeof a.answer!=='string'||a.answer.length>100000||
-      !['independent','neutral-tool','hint','guided','revealed'].includes(a.assistance)||
-      !Number.isFinite(a.minutes)||a.minutes<0||a.minutes>100000||typeof a.referenceSeenBefore!=='boolean')throw Error('Invalid neutral attempt');
-    seen.add(a.id);out.attempts.push({...a});
+  }catch{
+    storageOK=false;
+    tell('Browser storage is unavailable. Export before leaving if you want to keep this session.');
+    return false;
   }
-  return out;
+  if(cloudReady&&!cloudApplying){
+    if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
+    scheduleWorkspaceScopeSync(
+      'smmc_historical',
+      ()=>histState,
+      (local,remote)=>mergeSmmcState(local,remote,ledger,moduleIds,allUnitIds),
+      result=>applySmmcCloudResult('historical',result)
+    );
+    scheduleWorkspaceScopeSync(
+      'smmc_study',
+      ()=>studyState,
+      (local,remote)=>mergeSmmcStudy(local,remote,Object.keys(SMMC_PUBLIC_PROBLEMS_V1)),
+      result=>applySmmcCloudResult('study',result)
+    );
+  }
+  return true;
+}
+async function reconcileSmmcCloud(){
+  if(cloudReconciling)return;
+  if(!workspaceCloudState().signedIn){cloudReady=true;cloudBadge('local','Local');return;}
+  cloudReconciling=true;cloudBadge('syncing','Syncing…');
+  try{
+    const [historical,study]=await Promise.all([
+      reconcileWorkspaceScope(
+        'smmc_historical',
+        histState,
+        (local,remote)=>mergeSmmcState(local,remote,ledger,moduleIds,allUnitIds)
+      ),
+      reconcileWorkspaceScope(
+        'smmc_study',
+        studyState,
+        (local,remote)=>mergeSmmcStudy(local,remote,Object.keys(SMMC_PUBLIC_PROBLEMS_V1))
+      ),
+    ]);
+    applySmmcCloudResult('historical',historical);
+    applySmmcCloudResult('study',study);
+  }catch(error){cloudBadge('error','Saved locally');}
+  finally{cloudReady=true;cloudReconciling=false;}
 }
 function download(name,obj){
   const url=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));
@@ -233,11 +297,21 @@ function renderResearch(show){
   ].join('\n\n'));
 }
 async function init(){
+  const initialParams=new URLSearchParams(location.search);
+  const explicitWorkspace=initialParams.has('tab')||initialParams.has('unit')||initialParams.has('task')||initialParams.has('problem');
+  let navReconciled=false,navReconcilePromise=null;
+  if(!explicitWorkspace&&!hasStoredWorkspaceNav()&&workspaceCloudState().signedIn){
+    navReconcilePromise=reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;});
+    await Promise.race([
+      navReconcilePromise,
+      new Promise(resolve=>setTimeout(resolve,700))
+    ]);
+  }
   try{
     const h=localStorage.getItem(HIST_KEY);if(h)histState=validateSmmcState(JSON.parse(h),ledger,moduleIds,allUnitIds);
-    const s=localStorage.getItem(STUDY_KEY);if(s)studyState=validateStudy(JSON.parse(s));
+    const s=localStorage.getItem(STUDY_KEY);if(s)studyState=validateSmmcStudy(JSON.parse(s),Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
   }catch(e){storageOK=false;tell('Existing SMMC browser record could not be read and has not been overwritten. Export from this session if needed.');}
-  const params=new URLSearchParams(location.search),remembered=readWorkspaceNav();
+  const params=initialParams,remembered=readWorkspaceNav();
   const requestedTab=params.get('tab')==='map'?'map':params.get('tab')==='study'?'study':remembered.smmc.tab;
   const requestedUnit=params.get('unit')||remembered.smmc.unitId;
   const unit=SMMC_UNITS_V1.find(x=>x.id===requestedUnit)||SMMC_UNITS_V1[0];
@@ -257,12 +331,15 @@ async function init(){
     studyState.attempts.push({id:uuid(),taskId:currentTaskId,at:new Date().toISOString(),answer,assistance:$('assistance').value,minutes,referenceSeenBefore:hadReference});
     clearWorkspaceDraft('smmc',currentTaskId);$('revealRef').disabled=false;persist();renderHistory();tell('Neutral training attempt saved. Historical PYQ exposure unchanged.');
   };
-  $('revealRef').onclick=()=>{
-    const r=SMMC_EVALUATOR_V1[currentTaskId];put('referenceText',r.reference+'\n\n'+r.rubric.map(x=>'• '+x).join('\n'));$('reference').hidden=false;
-    const latest=[...studyState.attempts].reverse().find(a=>a.taskId===currentTaskId);if(latest)latest.referenceOpenedAt=latest.referenceOpenedAt||new Date().toISOString();
-    persist();tell('Evaluator reference opened for this neutral task.');
+  $('revealRef').onclick=async()=>{
+    try{
+      const bank=await evaluatorBank(),r=bank[currentTaskId];
+      put('referenceText',r.reference+'\n\n'+r.rubric.map(x=>'• '+x).join('\n'));$('reference').hidden=false;
+      const latest=[...studyState.attempts].reverse().find(a=>a.taskId===currentTaskId);if(latest)latest.referenceOpenedAt=latest.referenceOpenedAt||new Date().toISOString();
+      persist();tell('Evaluator reference opened for this neutral task.');
+    }catch(err){tell('Could not load evaluator reference: '+err.message);}
   };
-  $('selfReport').onclick=()=>{selfReportUnitComplete(histState,currentUnit.id);persist();renderUnit(currentUnit.id);tell('Unit self-report saved. This does not certify or unlock historical problems.');};
+  $('selfReport').onclick=()=>{selfReportUnitComplete(histState,currentUnit.id);persist();renderUnit(currentUnit.id,currentTaskId);tell('Unit self-report saved. This does not certify or unlock historical problems.');};
   $('tabStudy').onclick=()=>switchTab('study');$('tabMap').onclick=()=>switchTab('map');
   $('problemSearch').oninput=renderProblemList;$('problemSelect').onchange=()=>renderHistorical($('problemSelect').value);
   $('applyTargets').onclick=()=>{renderHistorical(currentProblem.id);tell('T25 target preview updated locally. No T25 clearance record was changed.');};
@@ -284,10 +361,16 @@ async function init(){
   $('import').onchange=async e=>{
     const file=e.target.files[0];if(!file)return;try{
       if(file.size>10000000)throw Error('Record is too large');const incoming=JSON.parse(await file.text());
-      histState=validateSmmcState(incoming.historical,ledger,moduleIds,allUnitIds);studyState=validateStudy(incoming.neutralStudy);
+      histState=validateSmmcState(incoming.historical,ledger,moduleIds,allUnitIds);studyState=validateSmmcStudy(incoming.neutralStudy,Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
       persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();tell('SMMC record imported.');
     }catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}
   };
+  if(!navReconciled)void (navReconcilePromise||reconcileWorkspaceNavCloud()).finally(enableWorkspaceNavCloud);
+  else enableWorkspaceNavCloud();
+  renderCloudBadge();
+  void reconcileSmmcCloud();
+  document.addEventListener('chrono:cloud-context-changed',()=>{cloudReady=false;void reconcileSmmcCloud();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&cloudReady&&workspaceCloudState().signedIn)void reconcileSmmcCloud();});
   window.addEventListener('pagehide',()=>{
     if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);
     saveViewport();
