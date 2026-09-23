@@ -1,5 +1,5 @@
 import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,taskText,sceneText,publicOpening,compilerPacket,reviewQueue} from './core.js';
-import ledger from '../../course/smmc/ledger.mjs';
+import SMMC_CONNECTIONS_BY_T25 from '../../course/smmc/connection-index-v1.mjs';
 import {readWorkspaceNav,rememberT25Location,t25Href,smmcHref,restoreViewport} from '../workspace-nav.js';
 import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
 const $=id=>document.getElementById(id);
@@ -34,15 +34,17 @@ function renderWorkspaceNav(){
 function renderSmmcConnections(){
  if(!session)return;
  const target=session.card.targetCode||String(session.card.syllabusCode||'').split('.')[0];
- const rows=ledger.filter(p=>p.t25Targets.includes(target));
+ const rows=SMMC_CONNECTIONS_BY_T25[target]||[];
  put('smmcConnectionNote',rows.length
   ? `${rows.length} historical SMMC problem${rows.length===1?'':'s'} map to target ${target}. Open one and you can return to this exact T25 session.`
   : `No audited historical SMMC problem is mapped directly to target ${target} yet.`);
  const box=$('smmcConnections');box.className='connection-list';
- box.replaceChildren(...rows.slice(0,12).map(p=>{
-  const a=document.createElement('a');a.className='connection-link';a.href=smmcHref({tab:'map',problemId:p.id,focus:'histTitle'});
-  const strong=document.createElement('strong');strong.textContent=`${p.year} ${p.session}${p.problem}`;
-  const small=document.createElement('small');small.textContent=p.eastRelevant?'East A/B · historical map':'C supplementary · historical map';
+ box.replaceChildren(...rows.slice(0,12).map(([id,east])=>{
+  const m=id.match(/^SMMC-(\d{4})-([ABC])(\d)$/);
+  const label=m?`${m[1]} ${m[2]}${m[3]}`:id;
+  const a=document.createElement('a');a.className='connection-link';a.href=smmcHref({tab:'map',problemId:id,focus:'histTitle'});
+  const strong=document.createElement('strong');strong.textContent=label;
+  const small=document.createElement('small');small.textContent=east?'East A/B · historical map':'C supplementary · historical map';
   a.append(strong,small);return a;
  }));
 }
