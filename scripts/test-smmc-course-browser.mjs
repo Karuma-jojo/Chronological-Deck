@@ -34,6 +34,12 @@ try{
   const page=await context.newPage();
   page.on('pageerror',e=>errors.push(e.message));
 
+  const home=await context.newPage();
+  await home.goto(base+'/index.html');
+  await home.waitForSelector('#openSMMC');
+  assert.equal(await home.locator('#openSMMC').getAttribute('href'),'smmc-course.html');
+  await home.close();
+
   await page.goto(base+'/smmc-course.html');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
 
