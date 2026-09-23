@@ -26,6 +26,6 @@ assert(!meta.moduleSources.some(x=>x.order>=8));
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(browser.includes("T22E-MKT01")&&browser.includes("seven-module export/import"));
 assert(!fs.existsSync('course/t22/authoring/m08.json'),'M08 must remain closed');
-for(const token of ['24 sessions','48 fixed assessments','120/120','CERBERUS','M08 CLOSED','Astra'])assert(hand.includes(token),token);
-for(const token of ['C-01','C-02','C-03','C-04','Capability discrimination','Prompt ↔ rubric fairness'])assert(audit.includes(token),token);
+for(const token of ['24 sessions','48 fixed assessments','120/120','CERBERUS','FULL SUITE VERIFIED','84baddc69643f4654eb87bf05ed907febf37b077','35927759177','107406819179','M08 CLOSED','Astra'])assert(hand.includes(token),token);
+for(const token of ['C-01','C-02','C-03','C-04','Capability discrimination','Prompt ↔ rubric fairness','84baddc69643f4654eb87bf05ed907febf37b077','35927759177','seven-module workflow'])assert(audit.includes(token),token);
 console.log('PASS M07 handoff: 24/48/120 CERBERUS candidate, M02 log edge, seven-module runtime integration, shared evidence key and hard M08 stop.');
