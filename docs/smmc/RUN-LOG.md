@@ -136,3 +136,18 @@ Added:
 - The six primary domains remain sufficient. No seventh primary domain was added.
 
 The overlap labels continue to mean prerequisite coverage/fairness, not predicted difficulty or expected score.
+
+
+## 2019 verification checkpoint
+
+Remote-source validation after Batch 3 passed:
+
+- 24/24 records parse under the controlled schema;
+- unique IDs;
+- exactly four A and four B problems for each of 2017, 2018 and 2019;
+- every primary domain, overlap label, assessment role, secondary tag and method tag is schema-controlled;
+- all T25 route references lie in 1–162;
+- 2017 B4, 2018 B4 and 2019 B4 remain explicitly marked `open-problem`;
+- combined overlap counts are GREEN 4, AMBER 9, RED 11.
+
+A fresh comparison with `main` shows the companion branch ahead with zero divergence behind and only additive SMMC paths. No pre-existing T25/Aster/compiler/runtime file is modified. No CI run is claimed for this documentation/data-only checkpoint.
