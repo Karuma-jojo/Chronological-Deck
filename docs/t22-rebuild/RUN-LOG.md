@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-23
-State: **M05 + M06 BOUNDED REPAIRS IMPLEMENTED; VALIDATION IN PROGRESS; M07 CLOSED**
+State: **M05 + M06 REPAIRS VERIFIED; FULL ACTIONS SUCCESS; STOP BEFORE M07**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -14,7 +14,7 @@ Recovered and hash-verified remote head `bd0b54f71524b831ec264d9fcae1afb3d2dfd7d
 
 Current instruction versions: `m05-instruction-astra-r1`, `m06-instruction-astra-r1`. Stable IDs/evidence store retained. Only changed task/evaluator contracts versioned2; ownership-contract changes produce stale earlier evidence rather than silently recertifying it. Historical solved exposure is timestamp-migrated, including cross-session links; unsolved guided exercises do not invent reveals. Evidence merge inputs are migrated before their lesson-version summaries combine.
 
-Local and remote validation still in progress. No full-suite success is yet claimed. Next: execute every required gate, push/read back the implementation head, inspect its complete Actions job including browser execution, then close the resolution with the actual SHA/run URL. Stop before M07; do not merge/deploy or touch T25/legacy progress. M01–M04 remain accepted. User proceeds with M02, without restarting reported M01 completion or claiming external recertification of reconstructed RAW evidence.
+Implementation pushed and read back: `efea44476e30a0daf45675e15889788e082900a2` (parent `bd0b54f71524b831ec264d9fcae1afb3d2dfd7dc`). Full [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076) succeeded on that exact head. All steps and job107374356454 logs inspected, including actual Chromium and both browser PASS messages. All46 non-browser commands also passed locally. Final documentation-only checkpoint records these verified results. Next useful step: bounded independent review of this repair; do not repeat implemented repairs or start M07 automatically. Stop before M07; do not merge/deploy or touch T25/legacy progress. M01–M04 remain accepted. User proceeds with M02, without restarting reported M01 completion or claiming external recertification of reconstructed RAW evidence.
 
 All dated completion/next-action entries below are historical unless explicitly reaffirmed above.
 
@@ -375,4 +375,4 @@ Exported `docs/t22-course/packets/T22-Elite-M01-S02-Compiled-Engine-Prompt.md` f
 
 ## Local verification before implementation push
 
-All46 non-browser commands in the updated full workflow passed on2026-09-23 (syntax plus structural, mathematical, semantic, evidence-provenance and handoff checks). `git diff --check` passed. Local browser launch was attempted and failed solely because Chromium is not installed. Remote full-suite browser validation remains required. The stale M03 progression guard was advanced without changing accepted module content.
+All46 non-browser commands in the updated full workflow passed on2026-09-23 (syntax plus structural, mathematical, semantic, evidence-provenance and handoff checks). `git diff --check` passed. Local browser launch was attempted and failed solely because Chromium is not installed. Remote full-suite browser validation subsequently succeeded in run35917978076. The stale M03 progression guard was advanced without changing accepted module content.

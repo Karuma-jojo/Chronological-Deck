@@ -3,7 +3,7 @@
 Date: 2026-09-23
 Branch: `codex/t22-pedagogical-rebuild`
 Stable module: `T22E-TRD01`
-Status: **BOUNDED REPAIRS IMPLEMENTED; VALIDATION IN PROGRESS; M07 CLOSED**
+Status: **BOUNDED REPAIRS VERIFIED BY PRINCIPAL BUILDER; INDEPENDENT REVIEW STILL DISTINCT; M07 CLOSED**
 
 ## Authority and recovery
 
@@ -35,7 +35,7 @@ The shared merge operation migrates each imported/input exposure record before c
 
 Required gate is the complete `.github/workflows/t22-elite-checks.yml` run, including Chromium. Structural and pinned semantic checks alone are not pedagogical acceptance. New checks include all48 Transfer numeric references, first-hit enumeration, changed-task fingerprints, all historical source links, mutation rejection of positional mappings and browser import/export/reload regressions. Separate existing scripts cover Main mathematics.
 
-At this documentation checkpoint, local non-browser validation and the pushed Actions result are still being collected. Local Chromium is not installed; no local browser PASS is claimed. Final verified run information will be recorded in the resolution and recovery log.
+Implementation checkpoint: `efea44476e30a0daf45675e15889788e082900a2`. Complete [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076) finished **success** on this exact pushed head. Job107374356454 was inspected: syntax, structural/pedagogy/semantic/evidence regressions, dependency installation, Chromium installation and Browser evidence workflow all succeeded. Logs contain both the new repair-browser PASS and the existing six-module browser PASS. All46 non-browser workflow commands also passed locally. Local Chromium was unavailable, so browser evidence is the actual remote execution, not a claimed local run.
 
 Limits: pinned semantic snapshots prevent drift but cannot decide semantic truth. External SPIRE/offline lesson access not present in the evidence store cannot be reconstructed. Existing user work is not automatically recertified. A separate independent review is still distinct from this principal-builder verification.
 
