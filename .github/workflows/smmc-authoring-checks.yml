@@ -33,3 +33,6 @@ jobs:
         run: node scripts/test-smmc-course-browser.mjs
       - name: Validate T25 Aster SMMC workspace navigation
         run: node scripts/test-math-workspace-browser.mjs
+
+      - name: Validate cross-device T25 SMMC restore
+        run: node scripts/test-cross-device-workspace-browser.mjs
