@@ -26,7 +26,7 @@ for(const s of a.sessions){
 }
 assert.equal(road.modules.find(x=>x.id==='ARC502').availability,'authored');
 assert.equal(sem.entries.find(x=>x.id==='ARC502').semanticStatus,'accepted');
-assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'planned');
+assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'validation');
 assert(meta.moduleSources.some(x=>x.id==='ARC502'&&x.source==='course/t22/authoring/m06.json'));
 assert(meta.version.startsWith('T22E-course-0.7.'),'course metadata must include the authorized M07 candidate');
 assert.equal(meta.moduleSources.filter(x=>x.order<=6).length,6);
