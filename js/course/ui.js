@@ -1,4 +1,6 @@
 import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,taskText,sceneText,publicOpening,compilerPacket,reviewQueue} from './core.js';
+import ledger from '../../course/smmc/ledger.mjs';
+import {readWorkspaceNav,rememberT25Location,t25Href,smmcHref} from '../workspace-nav.js';
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
 const uuid=()=>crypto.randomUUID();
@@ -17,6 +19,32 @@ function sessionsList(){
  const q=$('search').value.toLowerCase().trim();const list=course.sessions.filter(s=>`${s.order} ${s.card.syllabusCode} ${s.card.title}`.toLowerCase().includes(q));
  options($('session'),list.map(s=>[s.order,`${String(s.order).padStart(3,'0')} · ${s.card.syllabusCode} · ${s.card.title}`]));
  if(list.some(s=>s.order===session?.order))$('session').value=session.order;
+}
+function renderWorkspaceNav(){
+ const order=session?.order||readWorkspaceNav().t25.session;
+ const anime=$('presentation').value==='anime';
+ $('workspaceT25').href=t25Href({session:order,presentation:'plain'});
+ $('workspaceAster').href=t25Href({session:order,presentation:'anime'});
+ $('workspaceSMMC').href=smmcHref();
+ $('resumeSMMC').href=smmcHref();
+ $('workspaceT25').classList.toggle('active',!anime);
+ $('workspaceAster').classList.toggle('active',anime);
+ put('workspacePosition',`Session ${String(order).padStart(3,'0')} · ${anime?'Aster':'Plain'} · position remembered`);
+}
+function renderSmmcConnections(){
+ if(!session)return;
+ const target=session.card.targetCode||String(session.card.syllabusCode||'').split('.')[0];
+ const rows=ledger.filter(p=>p.t25Targets.includes(target));
+ put('smmcConnectionNote',rows.length
+  ? `${rows.length} historical SMMC problem${rows.length===1?'':'s'} map to target ${target}. Open one and you can return to this exact T25 session.`
+  : `No audited historical SMMC problem is mapped directly to target ${target} yet.`);
+ const box=$('smmcConnections');box.className='connection-list';
+ box.replaceChildren(...rows.slice(0,12).map(p=>{
+  const a=document.createElement('a');a.className='connection-link';a.href=smmcHref({tab:'map',problemId:p.id});
+  const strong=document.createElement('strong');strong.textContent=`${p.year} ${p.session}${p.problem}`;
+  const small=document.createElement('small');small.textContent=p.eastRelevant?'East A/B · historical map':'C supplementary · historical map';
+  a.append(strong,small);return a;
+ }));
 }
 function renderQueue(){
  $('queue').replaceChildren(...reviewQueue(course,state).slice(0,12).map(r=>button(`${String(r.order).padStart(3,'0')} · ${r.reason}${r.due?' · '+new Date(r.due).toISOString().slice(0,10):''}`,()=>selectSession(r.order))));
@@ -43,6 +71,9 @@ function showProblem(id,context='session'){
 }
 function setPresentation(){
  const anime=$('presentation').value==='anime',p=course.problems[problemId];const ep=course.campaign.find(x=>x.phase===session.phase);
+ rememberT25Location(session.order,anime?'anime':'plain');
+ window.history.replaceState(null,'',t25Href({session:session.order,presentation:anime?'anime':'plain'}));
+ renderWorkspaceNav();
  put('scene',sceneText(ep));$('scene').hidden=!anime||!p?.order||$('contract').hidden;$('story').hidden=!anime||!p?.order||$('contract').hidden;
  options($('storyChoice'),ep.choice.map((v,i)=>[i,v]));$('storyChoice').value=state.story[ep.phase]?.choice??0;
  put('closure',state.story[ep.phase]?.completed?ep.closure+' '+ep.choiceOutcomes[state.story[ep.phase].choice]:'The episode remains open. Pauses and incorrect attempts carry no story penalty.');
@@ -53,7 +84,7 @@ function selectSession(order,kind='main'){
  put('sessionMeta',`Phase ${session.phase} · ${session.card.id}`);put('title',session.card.title);
  put('contractText',[session.card.centralCapability,'PREREQUISITES',...session.card.entryPrerequisites,'REQUIRED OWNERSHIP',...session.card.requiredOwnership,'EXIT',session.card.exitCondition,'OUT OF SCOPE',...session.card.outOfScope,session.evidenceWarning].join('\n\n'));
  $('previous').disabled=session.order===1;$('next').disabled=session.order===162;
- showProblem(session[kind]);setPresentation();window.history.replaceState(null,'',`?session=${session.order}`);
+ showProblem(session[kind]);setPresentation();renderSmmcConnections();
 }
 async function evaluator(){if(!keys)keys=await json('course/generated/evaluator.json');return keys;}
 async function reveal(){
@@ -68,7 +99,11 @@ function download(name,data){const url=URL.createObjectURL(new Blob([data],{type
 async function init(){
  course=await json('course/generated/course.json');state=emptyEvidence();
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);}catch{storageOK=false;tell('Existing study storage could not be read. It has not been overwritten. New work is held in memory; export it before leaving.');}
- sessionsList();selectSession(Math.min(162,Math.max(1,Number(new URLSearchParams(location.search).get('session'))||1)));
+ const params=new URLSearchParams(location.search),remembered=readWorkspaceNav();
+ const requestedPresentation=params.get('presentation');
+ $('presentation').value=requestedPresentation==='anime'||requestedPresentation==='plain'?requestedPresentation:remembered.t25.presentation;
+ const requestedSession=Number(params.get('session'));
+ sessionsList();selectSession(Math.min(162,Math.max(1,Number.isInteger(requestedSession)&&requestedSession?requestedSession:remembered.t25.session)));
  $('search').addEventListener('input',sessionsList);$('session').addEventListener('change',()=>selectSession($('session').value));
  $('previous').onclick=()=>selectSession(session.order-1);$('next').onclick=()=>selectSession(session.order+1);
  $('mainTask').onclick=()=>selectSession(session.order);$('transferTask').onclick=()=>selectSession(session.order,'transfer');$('presentation').onchange=setPresentation;
