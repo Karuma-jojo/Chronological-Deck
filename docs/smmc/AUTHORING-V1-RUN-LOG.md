@@ -264,3 +264,11 @@ The new browser smoke test checks:
 
 GitHub Pages target path after merge:
 `https://karuma-jojo.github.io/Chronological-Deck/smmc-course.html`.
+
+
+## Home-page access link
+
+The main `index.html` now includes a direct link:
+`SMMC · competition companion` -> `smmc-course.html`.
+
+The SMMC browser smoke test verifies this navigation contract in addition to the study/historical-map behavior.
