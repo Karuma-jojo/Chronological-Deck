@@ -29,9 +29,15 @@ for(const session of sessions){
 }
 
 if(unresolved.length) throw new Error(`Unresolved learner-facing prerequisites: ${JSON.stringify(unresolved)}`);
-const observedAssumed=new Set(sessions.flatMap(s=>s.card.entryPrerequisites).filter(t=>prerequisiteParts(t,index,Infinity).assumed));
+const observedAssumed=new Set(),observedIntentional=new Set();
+for(const session of sessions){
+  for(const text of session.card.entryPrerequisites){
+    const result=prerequisiteParts(text,index,session.order);
+    if(result.assumed) observedAssumed.add(text);
+    if(result.note) observedIntentional.add(text);
+  }
+}
 for(const text of ASSUMED_FOUNDATION_PREREQUISITES) assert(observedAssumed.has(text),`Stale assumed-foundation classification: ${text}`);
-const observedIntentional=new Set(sessions.flatMap(s=>s.card.entryPrerequisites).filter(t=>prerequisiteParts(t,index,Infinity).note));
 for(const [text] of INTENTIONAL_NONLINKED_PREREQUISITES) assert(observedIntentional.has(text),`Stale intentional non-link classification: ${text}`);
 
 console.log(JSON.stringify({sessions:sessions.length,mentions,linkedMentions:linked,assumedMentions:assumed,intentionalNonlinks:intentional,renderedLinks:links},null,2));
