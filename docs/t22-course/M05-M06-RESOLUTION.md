@@ -2,7 +2,7 @@
 
 Date: 2026-09-23. Branch: `codex/t22-pedagogical-rebuild`.
 
-**All findings repaired and verified by the principal builder. Full pushed implementation Actions run succeeded. Separate independent acceptance remains a distinct next review. M07 remains closed.**
+**All findings repaired, independently followed up, and accepted. Full pushed implementation Actions run succeeded. M05 and M06 are frozen; M07 remains closed.**
 
 ## Recovered state and ancestry
 
@@ -69,7 +69,7 @@ The user's supplied SPIRE RAW/POLISHED account reports M01's17 sessions complete
 
 ## Recovery / stop
 
-Implementation and full verification are complete at `efea44476e30a0daf45675e15889788e082900a2`. Final documentation-only update records this result. On resume, inspect the actual branch head/ancestry and this resolution; do not redo accepted repairs. The next useful step is bounded independent review of this checkpoint, with M07 alone only after subsequent authorization. Stop before M07. No merge, deployment, T25 edits or legacy progress migration.
+Implementation and full verification are complete at `efea44476e30a0daf45675e15889788e082900a2`. Final documentation-only update records this result. On resume, inspect the actual branch head/ancestry and this resolution; do not redo accepted repairs. The bounded independent follow-up is complete and accepted in `M05-M06-ASTRA-FOLLOWUP.md`. M07 alone is the next authorized *shape* of work, but only after explicit user authorization. Stop before M07. No merge, deployment, T25 edits or legacy progress migration.
 
 ## Local verification before implementation push
 
