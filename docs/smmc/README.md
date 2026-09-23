@@ -24,15 +24,19 @@ This six-domain layer is intentionally coarse. It answers *where the problem pri
 
 ## Secondary content tags
 
-The ledger preserves compressed structure with secondary tags such as:
+The ledger preserves compressed structure with secondary tags. The current controlled vocabulary lives in `course/smmc/schema.mjs`.
 
-`POLY LA CX FF FE INEQ CONVEX GRAPH GAME TILING REC CONST SEQ ASYM INT ODE FUNC MOD DIO VAL PRIME EUCLID COORD VECTOR-GEO CONVEX-GEO LATTICE POLYHEDRAL COND EXPECT INDICATOR RANDOM-WALK STOPPING RANDOM-PROCESS`.
+Important examples include:
+
+`POLY LA CX FF FE INEQ CONVEX GRAPH GAME TILING REC GF CONST SEQ ASYM INT ODE FUNC MOD DIO VAL PRIME EUCLID COORD VECTOR-GEO CONVEX-GEO LATTICE POLYHEDRAL COND EXPECT INDICATOR RANDOM-WALK STOPPING RANDOM-PROCESS`.
+
+The 2018 audit added `GF` for generating functions. That is intentionally a secondary tag rather than a seventh primary domain.
 
 ## Method layer
 
-Methods are independent of domain. Current method vocabulary includes:
+Methods are independent of domain. The controlled vocabulary is also in `schema.mjs`.
 
-`DIRECT CONTRADICTION CONTRAPOSITIVE INDUCTION STRONG-INDUCTION MINIMAL-COUNTEREXAMPLE DESCENT EXISTENCE COUNTEREXAMPLE INVARIANT MONOVARIANT PARITY COLORING SYMMETRY EXTREMAL PIGEONHOLE DOUBLE-COUNTING AVERAGING CASE-DECOMPOSITION SUBSTITUTION NORMALIZATION FACTORIZATION AUXILIARY-OBJECT COORDINATES GRAPH-REFORMULATION RECURRENCE-REFORMULATION CROSS-DOMAIN BOUNDING MONOTONICITY CONVEXITY SMOOTHING SMALL-CASES EDGE-CASES CONJECTURE EQUALITY-CASE LEMMA-EXTRACTION`.
+It includes proof architectures, structural methods, transformations, analytic methods and exploration tools such as induction, minimal counterexample, invariants, parity, symmetry, extremal reasoning, double counting, normalization, graph reformulation, recurrence reformulation, bounding, monotonicity, construction, parameterization and generating functions.
 
 ## T25 overlap
 
@@ -61,6 +65,14 @@ The existing T25 Aster design is the narrative model: fiction is optional, publi
 
 No structural metaphor, character reaction, story consequence, hidden answer count or narrative hint may reveal a method during WALL. Pauses and incorrect attempts never cause story penalties.
 
+The SMMC story layer should reuse Aster's separation of:
+1. public story state;
+2. frozen mathematical task;
+3. private evaluator/reference material;
+4. academic evidence and clearance.
+
+It should not mechanically reuse the seven T25 episode boundaries.
+
 ## Current build status
 
-Batch 1 establishes the taxonomy and audits the eight 2017 problems. See `RUN-LOG.md` and `ledger-2017.mjs`.
+Batches 1–2 establish the taxonomy/schema and audit all 16 East-relevant problems from 2017–2018. See `RUN-LOG.md`, `ledger-2017.mjs`, `ledger-2018.mjs` and `ledger.mjs`.
