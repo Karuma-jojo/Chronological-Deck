@@ -82,3 +82,21 @@ A future SMMC Aster arc may present competition/expedition stakes, but it may no
 2. Re-check GREEN/AMBER/RED decisions against exact current T25 contracts as each year is frozen.
 3. Begin extracting repeated RED/AMBER bridge needs into candidate S-BRIDGE units only after recurrence across multiple years.
 4. Keep whole later East papers reserved for sealed assessment; do not wire SMMC into the T25 UI yet.
+
+
+## Verification checkpoint
+
+Remote-source structural validation passed after the 2017/2018 schema stabilization:
+
+- 16/16 problem records parsed successfully;
+- unique problem IDs;
+- exactly 8 A/B problems per year;
+- all 2017–2018 A/B rows marked East-relevant;
+- all primary domains, overlap labels, assessment roles, secondary tags and method tags belong to the controlled schema;
+- all T25 session references are integer route positions in 1–162;
+- both historical B4 rows remain explicitly marked `open-problem`;
+- overlap counts: GREEN 3, AMBER 6, RED 7.
+
+A branch comparison against `main` after the checkpoint showed the branch ahead only by additive SMMC work, with no changed/deleted pre-existing files. The diff consists of seven new paths under `course/smmc/`, `docs/smmc/` and `scripts/validate-smmc-ledger.mjs`.
+
+The local container could not resolve github.com, so validation was executed directly against the remote file contents fetched through the authenticated GitHub connector rather than a local clone. No CI run is claimed.
