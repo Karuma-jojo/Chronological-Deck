@@ -29,3 +29,14 @@ label{display:block;margin:13px 0 5px;font-size:.92rem}label.button{margin:0}.sm
 #history article{border-bottom:1px solid var(--line);padding:10px 0;white-space:pre-wrap;overflow-wrap:anywhere}
 footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:.82rem}[hidden]{display:none!important}
 @media(max-width:800px){.layout{grid-template-columns:1fr;padding:14px}.tabs{padding:0 14px}aside{position:static;max-height:none}.fields{grid-template-columns:1fr}header{padding:22px 14px}.map-head{display:block}.badge{margin-top:8px}}
+
+.overlap-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.overlap-group{border:1px solid var(--line);border-radius:9px;padding:12px;background:var(--panel2)}
+.overlap-group h3{font-size:.9rem;margin:0 0 8px;color:var(--muted)}
+.overlap-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.overlap-stat{border:1px solid var(--line);border-radius:8px;padding:9px;text-align:center}
+.overlap-stat strong{display:block;font-size:1.25rem}
+.overlap-stat.green{border-color:var(--green);color:var(--green)}
+.overlap-stat.amber{border-color:var(--amber);color:var(--amber)}
+.overlap-stat.red{border-color:var(--red);color:var(--red)}
+@media(max-width:650px){.overlap-summary{grid-template-columns:1fr}}
