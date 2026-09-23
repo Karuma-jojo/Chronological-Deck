@@ -208,3 +208,73 @@ A remote-source validation against the live canonical T25 manifest passed:
 - every `t25Targets` entry resolves to one of the 80 canonical T25 targets;
 - all four historical B4 items remain explicitly `open-problem`;
 - overlap totals: GREEN 8, AMBER 12, RED 12.
+
+
+## Batch 5 — 2021 audit
+
+Source basis: official `smmc-2021-solutions.pdf` from the Simon Marais project.
+
+Added:
+- `course/smmc/ledger-2021.mjs`;
+- 2021 aggregation in `ledger.mjs`;
+- `GCD` and `FLOOR` secondary tags;
+- validator coverage through 2021.
+
+### 2021 first-pass result
+
+- GREEN: 3
+- AMBER: 4
+- RED: 1
+- East-relevant: 8/8
+- Open-problem item: B4.
+
+### Combined 2017–2021 result
+
+- Problems: 40
+- GREEN: 11
+- AMBER: 16
+- RED: 13
+
+### 2021 findings
+
+- A1 is a clean algebra/discriminant transfer and GREEN.
+- A2 reinforces the need for contest number theory beyond the existing basic `BR-N`.
+- A3 reinforces graph-reformulation as a recurring bridge: determinant machinery is T25-owned, while 2-regular graph/cycle decomposition is not.
+- A4 is RED: part (a) is ordinary monotone convergence, but the full range proof uses nested compact sets and one-sided regularity of parameter-dependent limits beyond T25.
+- B1 and B2 are strong direct-transfer examples: their main difficulty is creative counting/construction, not missing content.
+- B3 needs only a bounded real-analysis bridge around Riemann-integrable boundedness/regularity.
+- B4 remains an open problem overall, but its five-point prime-degree part is elementary enough to classify AMBER.
+
+### Five-year bridge synthesis
+
+Added `docs/smmc/BRIDGE-CANDIDATES-2017-2021.md`.
+
+High-confidence provisional bridge families:
+- contest number theory beyond `BR-N`;
+- graph language and structural reductions;
+- infinite series/asymptotic constructions.
+
+Medium candidates:
+- elementary real-analysis compactness/regularity;
+- generating functions + elementary ODE.
+
+High-confidence method families:
+- bounding/comparison;
+- construction/encoding/bijection;
+- auxiliary objects + cross-domain translation;
+- stronger induction/invariant design;
+- lemma extraction/case architecture.
+
+These are not yet authored learning objects. 2022–2025 remains the freeze gate.
+
+### Verification
+
+Remote validation against the live T25 80-target manifest passed:
+
+- 40/40 rows;
+- unique IDs;
+- four A and four B problems for each 2017–2021 year;
+- all schema tags/methods valid;
+- all stable `t25Targets` resolve to canonical T25 targets;
+- all five historical B4s remain explicitly `open-problem`;
+- totals: GREEN 11, AMBER 16, RED 13.
