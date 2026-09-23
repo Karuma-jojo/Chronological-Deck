@@ -61,8 +61,8 @@ for (const [problemId, required] of Object.entries(SMMC_REQUIREMENTS_V1)) {
   const problem = ledger.find(x => x.id === problemId);
   expect(problem.overlap !== "green", `GREEN problem ${problemId} should not require SMMC bridge completion`);
   expect(Array.isArray(required) && required.length > 0, `Empty requirement row for ${problemId}`);
-  for (const moduleId of required) {
-    expect(moduleIds.has(moduleId), `Unknown module ${moduleId} required by ${problemId}`);
+  for (const unitId of required) {
+    expect(unitIds.has(unitId), `Unknown authored unit ${unitId} required by ${problemId}`);
   }
 }
 
@@ -73,7 +73,7 @@ markExposure(state, "SMMC-2022-A1", "statementSeenAt", "2026-09-23T12:00:00.000Z
 expect(exposureClass(state, "SMMC-2022-A1").class === "transfer", "Statement-only exposure should remain transfer-eligible.");
 markExposure(state, "SMMC-2022-A1", "materialHintSeenAt", "2026-09-23T12:05:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "development", "Material hint must contaminate unseen transfer.");
-validateSmmcState(state, ledger, [...moduleIds]);
+validateSmmcState(state, ledger, [...moduleIds], [...unitIds]);
 
 // Unlock semantics.
 const green = ledger.find(x => x.id === "SMMC-2022-A1");
