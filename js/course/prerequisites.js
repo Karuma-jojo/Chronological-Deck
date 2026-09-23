@@ -32,6 +32,10 @@ export const ASSUMED_FOUNDATION_PREREQUISITES = Object.freeze([
 ]);
 
 const ASSUMED = new Set(ASSUMED_FOUNDATION_PREREQUISITES);
+export const INTENTIONAL_NONLINKED_PREREQUISITES = Object.freeze([
+  ["No new T25 v4 session is required; prior F1 evidence may be used diagnostically", "prior evidence only"],
+]);
+const INTENTIONAL_NONLINKED = new Map(INTENTIONAL_NONLINKED_PREREQUISITES);
 const CURATED_ALIASES = new Map([
   ["finite-population total versus mean distinction", "S1.1"],
 ]);
@@ -64,7 +68,7 @@ export function prerequisiteParts(text, index, currentOrder = Infinity) {
   const alias = CURATED_ALIASES.get(text);
   if (alias) {
     const order = resolveToken(alias, index);
-    if (order && order < currentOrder) return {parts:[{text, order}], linked:true, assumed:false};
+    if (order && order < currentOrder) return {parts:[{text, order}], linked:true, assumed:false, note:null};
   }
 
   const parts = [];
@@ -84,5 +88,5 @@ export function prerequisiteParts(text, index, currentOrder = Infinity) {
   }
   if (cursor < text.length) parts.push({text:text.slice(cursor), order:null});
   if (!parts.length) parts.push({text, order:null});
-  return {parts, linked, assumed:!linked && ASSUMED.has(text)};
+  return {parts, linked, assumed:!linked && ASSUMED.has(text), note:linked?null:INTENTIONAL_NONLINKED.get(text)??null};
 }
