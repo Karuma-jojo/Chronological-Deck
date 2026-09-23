@@ -33,3 +33,10 @@
 .workspace-cloud.syncing{color:var(--warm);border-color:var(--warm)}
 .workspace-cloud.synced{color:var(--accent);border-color:var(--accent)}
 .workspace-cloud.error{color:#f07f84;border-color:#f07f84}
+
+.contract-heading{margin:18px 0 6px;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.contract-line{margin:7px 0}
+.contract-prerequisite{margin:7px 0;padding-left:12px;border-left:2px solid var(--line)}
+.prerequisite-link{font-weight:700}
+.prerequisite-assumed{display:inline-block;margin-left:5px;padding:1px 6px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.72rem;line-height:1.5;white-space:nowrap}
+.contract-note{margin:8px 0;color:var(--muted);font-size:.82rem}
