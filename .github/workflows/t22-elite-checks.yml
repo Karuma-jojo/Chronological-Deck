@@ -11,7 +11,7 @@ on:
       - 'scripts/test-t22-elite-*.mjs'
       - 'scripts/test-t22-semantic-gates.mjs'
       - 'docs/t22-rebuild/**'
-      - 'docs/t22-course/audit/**'
+      - 'docs/t22-course/**'
       - '.github/workflows/t22-elite-checks.yml'
   workflow_dispatch:
 
@@ -35,6 +35,7 @@ jobs:
           node --check scripts/test-t22-elite-m04.mjs
           node --check scripts/test-t22-elite-m05.mjs
           node --check scripts/test-t22-elite-m06.mjs
+          node --check scripts/test-t22-elite-m07.mjs
           node --check scripts/test-t22-elite-m05-m06-repairs.mjs
           node --check scripts/test-t22-elite-repair-browser.mjs
           node --check docs/t22-course/audit/m05-m06-semantic-checks.mjs
@@ -51,6 +52,8 @@ jobs:
           node --check docs/t22-course/audit/m05-handoff-checks.mjs
           node --check docs/t22-course/audit/m06-independent-math.mjs
           node --check docs/t22-course/audit/m06-handoff-checks.mjs
+          node --check docs/t22-course/audit/m07-independent-math.mjs
+          node --check docs/t22-course/audit/m07-handoff-checks.mjs
           node --check docs/t22-course/audit/m03-repair-checks.mjs
       - name: Structural, pedagogy, semantic and evidence regressions
         run: |
@@ -60,6 +63,7 @@ jobs:
           node scripts/test-t22-elite-m04.mjs
           node scripts/test-t22-elite-m05.mjs
           node scripts/test-t22-elite-m06.mjs
+          node scripts/test-t22-elite-m07.mjs
           node scripts/test-t22-elite-m05-m06-repairs.mjs
           node docs/t22-course/audit/m05-m06-transfer-math.mjs
           node scripts/test-t22-semantic-gates.mjs
@@ -73,6 +77,8 @@ jobs:
           node docs/t22-course/audit/m05-handoff-checks.mjs
           node docs/t22-course/audit/m06-independent-math.mjs
           node docs/t22-course/audit/m06-handoff-checks.mjs
+          node docs/t22-course/audit/m07-independent-math.mjs
+          node docs/t22-course/audit/m07-handoff-checks.mjs
           node docs/t22-course/audit/m03-repair-checks.mjs
       - name: Install browser-test dependency
         run: npm ci --prefix scripts/review-tests
