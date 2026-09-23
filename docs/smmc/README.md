@@ -75,7 +75,7 @@ It should not mechanically reuse the seven T25 episode boundaries.
 
 ## Current build status
 
-Batches 1–5 establish the taxonomy/schema and audit all 40 East-relevant problems from 2017–2021. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
+Batches 1–6 audit 52 official problems through 2022: 48 East-core A/B problems and 4 C-session supplementary problems. See `RUN-LOG.md`, the year ledgers and `ledger.mjs`.
 
 
 The 2019 audit added `SERIES` as a secondary content tag and `EXCHANGE-ARGUMENT` as a reusable method. Neither requires a new top-level domain.
@@ -97,3 +97,16 @@ After completing 2017–2021, repeated non-T25 gaps are recorded provisionally i
 No candidate is yet canonical curriculum. The 2022–2025 audit is an explicit authoring gate.
 
 The 2021 audit added `GCD` and `FLOOR` as secondary content tags. The six primary domains remain unchanged.
+
+
+## A/B/C era handling
+
+Beginning in 2022, the official corpus contains A, B and C sessions.
+
+For the East preparation track:
+- A and B are `eastRelevant: true`;
+- C is retained in the canonical official corpus but marked `eastRelevant: false` as supplementary material.
+
+The validator enforces this distinction so official-corpus counts and East-core counts cannot silently mix.
+
+The 2022 audit added `CEIL` as a secondary tag. No new primary domain was required.
