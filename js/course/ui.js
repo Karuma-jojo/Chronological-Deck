@@ -83,8 +83,8 @@ function renderPrerequisite(text){
   a.title=`Open prerequisite session ${String(part.order).padStart(3,'0')} · ${destination.card.syllabusCode}`;
   line.append(a);
  }
- if(resolved.assumed){
-  const badge=document.createElement('span');badge.className='prerequisite-assumed';badge.textContent='assumed foundation';badge.title='No dedicated earlier T25 prerequisite session is registered for this basic input.';
+ if(resolved.assumed||resolved.note){
+  const badge=document.createElement('span');badge.className='prerequisite-assumed';badge.textContent=resolved.assumed?'assumed foundation':resolved.note;badge.title=resolved.assumed?'No dedicated earlier T25 prerequisite session is registered for this basic input.':'This prerequisite is intentionally non-navigational.';
   line.append(' ',badge);
  }
  return line;
