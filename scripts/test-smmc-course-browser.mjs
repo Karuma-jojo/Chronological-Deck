@@ -70,6 +70,8 @@ try{
   await page.selectOption('#problemSelect','SMMC-2021-A3');
   assert(await page.locator('#researchInfo').isHidden());
   assert(!(await page.locator('#unlockBadge').textContent()).includes('AMBER'));
+  assert((await page.locator('#openOfficialPaper').getAttribute('href')).endsWith('/smmc-2021-paper-a.pdf#page=2'));
+  assert((await page.locator('#paperGuide').textContent()).includes('Read A3 on page 2'));
 
   await page.fill('#t25Input','F4,M2,M3,P2');
   await page.click('#applyTargets');
@@ -80,15 +82,26 @@ try{
   assert.equal((await page.locator('#researchColor').textContent()).trim(),'AMBER');
 
   const hist2=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
-  assert(hist2.exposures['SMMC-2021-A3'].domainMetadataSeenAt);
+  assert.equal(hist2.exposures['SMMC-2021-A3'],undefined);
   assert.equal(hist2.exposures['SMMC-2022-C2'],undefined);
+
+  await page.click('#revealResearch');
+  assert(await page.locator('#researchInfo').isHidden());
+
+  await page.click('#togglePaper');
+  assert(await page.locator('#officialPaperFrame').isVisible());
+  assert((await page.locator('#officialPaperFrame').getAttribute('src')).endsWith('/smmc-2021-paper-a.pdf#page=2'));
+  const histAfterPaper=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert.equal(histAfterPaper.exposures['SMMC-2021-A3'],undefined);
+  await page.click('#togglePaper');
+  assert(await page.locator('#officialPaperFrame').isHidden());
 
   await page.selectOption('#problemSelect','SMMC-2022-C2');
   assert(await page.locator('#researchInfo').isHidden());
   assert((await page.locator('#histExposure').textContent()).includes('sealed'));
 
   assert.deepEqual(errors,[]);
-  console.log('PASS: SMMC page loads 8 units/16 tasks/88 historical rows; neutral attempts stay separate; self-report does not certify; research labels reveal explicitly and contaminate only the selected problem.');
+  console.log('PASS: SMMC page loads 8 units/16 tasks/88 historical rows; official problem papers are linked; neutral attempts stay separate; self-report does not certify; research metadata and paper viewing are reversible and do not write contamination state.');
 } finally {
   if(browser)await browser.close();
   server.close();

@@ -272,3 +272,28 @@ The main `index.html` now includes a direct link:
 `SMMC · competition companion` -> `smmc-course.html`.
 
 The SMMC browser smoke test verifies this navigation contract in addition to the study/historical-map behavior.
+
+
+## Access-fix checkpoint — reversible metadata + official problem papers
+
+User-facing correction:
+- GREEN/AMBER/RED research metadata is now a reversible show/hide control;
+- showing metadata does not write exposure state;
+- legacy `domainMetadataSeenAt` values remain import-compatible but no longer affect `exposureClass`;
+- only actual solution/evaluator/material-hint evidence can demote a problem to development through the existing contamination path.
+
+Historical-question access:
+- added `course/smmc/sources-v1.mjs` with official organiser-hosted problem-paper URLs for every 2017–2025 A/B/C session represented in the 88-problem ledger;
+- every selected historical problem now exposes an official-paper control;
+- the paper opens at PDF page 2, where that session's four problems are printed;
+- the interface states the selected identifier (for example A3) so the learner can read the exact official problem;
+- an in-page PDF preview and an external-paper link are both available;
+- opening/closing the official paper does not automatically mutate the historical exposure record;
+- the ledger synopsis is explicitly labeled as a summary, not the full statement.
+
+Regression coverage:
+- all 88 ledger rows must resolve to an official Simon Marais problem-paper URL ending in `#page=2`;
+- planning metadata must not contaminate exposure;
+- statement-only evidence remains transfer-eligible under the evidence model;
+- material hints remain contaminating;
+- browser smoke test checks the 2021 A3 official paper URL, reversible metadata visibility, reversible paper preview, and absence of automatic exposure writes.

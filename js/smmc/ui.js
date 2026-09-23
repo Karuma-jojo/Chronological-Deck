@@ -7,6 +7,7 @@ import {
   selfReportUnitComplete, certifiedUnitIds,
 } from '../../course/smmc/runtime/exposure.mjs';
 import { unlockStatus } from '../../course/smmc/runtime/unlock.mjs';
+import { officialPaperUrl } from '../../course/smmc/sources-v1.mjs';
 
 const $=id=>document.getElementById(id);
 const HIST_KEY='chrono_smmc_historical_evidence_v1';
@@ -17,6 +18,7 @@ const put=(id,text)=>$(id).textContent=text;
 let histState=emptySmmcState();
 let studyState={version:1,attempts:[]};
 let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true;
+let researchVisible=false,paperVisible=false;
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
 const moduleIds=[...new Set(SMMC_UNITS_V1.map(x=>x.moduleId))];
 
@@ -116,10 +118,24 @@ function statusText(status){return ({
   'locked-smmc-bridge':'SMMC unit needed','locked-specialist':'Specialist unit needed','requirement-map-pending':'Authoring pending'
 })[status]||status;}
 function renderHistorical(id){
+  const changed=!currentProblem||currentProblem.id!==id;
   currentProblem=ledger.find(p=>p.id===id);if(!currentProblem)return;
+  if(changed){researchVisible=false;paperVisible=false;}
   $('problemSelect').value=id;put('histTitle',problemLabel(currentProblem));
-  const exposure=exposureClass(histState,id);put('histExposure','Exposure: '+exposure.class+'. '+exposure.reason+'.');
+  const exposure=exposureClass(histState,id);put('histExposure','Exposure record: '+exposure.class+'. '+exposure.reason+'. Metadata viewing is not counted as contamination.');
   put('histSynopsis',currentProblem.synopsis);
+
+  const paper=officialPaperUrl(currentProblem);
+  $('openOfficialPaper').href=paper||'#';
+  $('openOfficialPaper').hidden=!paper;
+  $('togglePaper').disabled=!paper;
+  $('togglePaper').textContent=paperVisible?'Hide official paper':'Show official paper here';
+  put('paperGuide',paper
+    ? `Read ${currentProblem.session}${currentProblem.problem} on page 2 of the official ${currentProblem.year} session ${currentProblem.session} paper.`
+    : 'No official paper URL is mapped yet for this record.');
+  const frame=$('officialPaperFrame');
+  frame.hidden=!paperVisible;
+  if(paperVisible&&paper&&frame.src!==paper)frame.src=paper;
   const unlock=unlockStatus(currentProblem,{clearedT25Targets:clearedTargets(),certifiedUnits:certifiedUnitIds(histState)});
   const b=$('unlockBadge');b.className='badge '+statusClass(unlock.status);b.textContent=statusText(unlock.status);
   const parts=['Status: '+statusText(unlock.status)+'.'];
@@ -128,10 +144,12 @@ function renderHistorical(id){
   if(unlock.status==='requirement-map-pending')parts.push('This non-GREEN problem stays locked until its exact authored-unit requirements are mapped.');
   if(currentProblem.overlap==='green'&&unlock.status==='ready-transfer')parts.push('No extra SMMC content unit is required after the mapped T25 prerequisites.');
   put('unlockText',parts.join('\n\n'));
-  renderResearch(Boolean(histState.exposures[id]?.domainMetadataSeenAt));
+  renderResearch(researchVisible);
 }
 function renderResearch(show){
-  $('researchInfo').hidden=!show;$('revealResearch').disabled=show;if(!show)return;
+  $('researchInfo').hidden=!show;
+  $('revealResearch').textContent=show?'Hide GREEN / AMBER / RED research metadata':'Show GREEN / AMBER / RED research metadata';
+  if(!show)return;
   const p=currentProblem,row=$('researchColor');row.replaceChildren();
   const dot=document.createElement('span');dot.className='dot '+p.overlap;
   const label=document.createElement('span');label.textContent=p.overlap.toUpperCase();row.append(dot,label);
@@ -172,7 +190,20 @@ async function init(){
   $('tabStudy').onclick=()=>switchTab('study');$('tabMap').onclick=()=>switchTab('map');
   $('problemSearch').oninput=renderProblemList;$('problemSelect').onchange=()=>renderHistorical($('problemSelect').value);
   $('applyTargets').onclick=()=>{renderHistorical(currentProblem.id);tell('T25 target preview updated locally. No T25 clearance record was changed.');};
-  $('revealResearch').onclick=()=>{markExposure(histState,currentProblem.id,'domainMetadataSeenAt');persist();renderHistorical(currentProblem.id);tell('Research metadata revealed and exposure recorded. This problem is no longer pristine unseen-transfer evidence in this browser record.');};
+  $('togglePaper').onclick=()=>{
+    const paper=officialPaperUrl(currentProblem);
+    if(!paper)return;
+    paperVisible=!paperVisible;
+    renderHistorical(currentProblem.id);
+    tell(paperVisible?'Official SMMC session paper opened. No exposure status was changed.':'Official paper hidden. No exposure status was changed.');
+  };
+  $('revealResearch').onclick=()=>{
+    researchVisible=!researchVisible;
+    renderResearch(researchVisible);
+    tell(researchVisible
+      ? 'Research metadata shown for planning only. Nothing was written to your exposure record.'
+      : 'Research metadata hidden. Nothing was written to your exposure record.');
+  };
   $('export').onclick=()=>download('smmc-study-record.json',{historical:histState,neutralStudy:studyState});
   $('import').onchange=async e=>{
     const file=e.target.files[0];if(!file)return;try{

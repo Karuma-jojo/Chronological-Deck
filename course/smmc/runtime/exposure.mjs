@@ -167,7 +167,6 @@ export function exposureClass(state, problemId) {
     e.solutionSeenAt ? "solution-seen" :
     e.evaluatorSeenAt ? "evaluator-seen" :
     e.materialHintSeenAt ? "material-hint-seen" :
-    e.domainMetadataSeenAt ? "domain-metadata-seen" :
     null;
   if (contaminationReason) {
     return {
