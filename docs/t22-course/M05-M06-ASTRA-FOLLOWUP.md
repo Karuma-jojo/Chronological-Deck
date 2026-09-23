@@ -104,6 +104,32 @@ This acceptance does **not**:
 
 M05 and M06 may now be treated as the accepted six-module course frontier. Per the original autonomy recommendation, **M07 alone** should be the next authoring trial when authorized; do not jump directly to unattended multi-module batches.
 
+## Accepted-state regression run
+
+After the acceptance metadata and executable handoff assertions were updated, the complete T22 Elite workflow ran again on exact accepted-state head `88cd79d8fe18e15eebefe2e78d99696bab04ac44`.
+
+- Run: `35922158715`
+- Job: `107388490827`
+- Status: `completed`
+- Conclusion: `success`
+- Syntax checks: PASS
+- Structural/pedagogy/semantic/evidence regressions: PASS
+- M05 structural/pedagogy: PASS
+- M06 structural/pedagogy: PASS
+- M05 historical/version/provenance repair regression: PASS
+- M06 historical/version/provenance repair regression: PASS
+- all 48 Transfer numeric references + first-passage enumeration: PASS
+- M05 independent math: PASS
+- M06 independent math: PASS
+- M05 handoff: PASS
+- M06 handoff: PASS
+- real Chromium repair browser: PASS
+- real six-module browser workflow: PASS
+
+The browser log explicitly confirms M01+M02+M03+M04+M05+M06 scoping, draft/assistance provenance, shared evidence preservation, save/reveal/review, historical lesson migration, six-module export/import, packet exposure through M06, corrupt-storage preservation and mobile-width behavior.
+
+This follow-up record is a documentation-only closeout after that green accepted-state run.
+
 ## Final state
 
 **M05: accepted/frozen.**  
