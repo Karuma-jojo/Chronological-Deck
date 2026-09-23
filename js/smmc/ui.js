@@ -9,7 +9,7 @@ import { emptySmmcStudy, validateSmmcStudy, mergeSmmcStudy } from '../../course/
 import { unlockStatus } from '../../course/smmc/runtime/unlock.mjs';
 import { officialPaperUrl } from '../../course/smmc/sources-v1.mjs';
 import { routeStepsForT25Targets } from '../../course/smmc/t25-crosswalk.mjs';
-import {readWorkspaceNav,rememberSmmcLocation,t25Href,smmcHref,restoreViewport} from '../workspace-nav.js';
+import {readWorkspaceNav,rememberSmmcLocation,t25Href,smmcHref,restoreViewport,hasStoredWorkspaceNav,reconcileWorkspaceNavCloud,enableWorkspaceNavCloud} from '../workspace-nav.js';
 import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
 import {workspaceCloudState,reconcileWorkspaceScope,scheduleWorkspaceScopeSync} from '../workspace-cloud.js';
 
@@ -296,11 +296,20 @@ function renderResearch(show){
   ].join('\n\n'));
 }
 async function init(){
+  const initialParams=new URLSearchParams(location.search);
+  const explicitWorkspace=initialParams.has('tab')||initialParams.has('unit')||initialParams.has('task')||initialParams.has('problem');
+  let navReconciled=false;
+  if(!explicitWorkspace&&!hasStoredWorkspaceNav()&&workspaceCloudState().signedIn){
+    await Promise.race([
+      reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;}),
+      new Promise(resolve=>setTimeout(resolve,700))
+    ]);
+  }
   try{
     const h=localStorage.getItem(HIST_KEY);if(h)histState=validateSmmcState(JSON.parse(h),ledger,moduleIds,allUnitIds);
     const s=localStorage.getItem(STUDY_KEY);if(s)studyState=validateSmmcStudy(JSON.parse(s),Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
   }catch(e){storageOK=false;tell('Existing SMMC browser record could not be read and has not been overwritten. Export from this session if needed.');}
-  const params=new URLSearchParams(location.search),remembered=readWorkspaceNav();
+  const params=initialParams,remembered=readWorkspaceNav();
   const requestedTab=params.get('tab')==='map'?'map':params.get('tab')==='study'?'study':remembered.smmc.tab;
   const requestedUnit=params.get('unit')||remembered.smmc.unitId;
   const unit=SMMC_UNITS_V1.find(x=>x.id===requestedUnit)||SMMC_UNITS_V1[0];
@@ -354,6 +363,8 @@ async function init(){
       persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();tell('SMMC record imported.');
     }catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}
   };
+  if(!navReconciled)void reconcileWorkspaceNavCloud().finally(enableWorkspaceNavCloud);
+  else enableWorkspaceNavCloud();
   renderCloudBadge();
   void reconcileSmmcCloud();
   document.addEventListener('chrono:cloud-context-changed',()=>{cloudReady=false;void reconcileSmmcCloud();});
