@@ -1,6 +1,6 @@
 import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,taskText,sceneText,publicOpening,compilerPacket,reviewQueue} from './core.js';
 import SMMC_CONNECTIONS_BY_T25 from '../../course/smmc/connection-index-v1.mjs';
-import {readWorkspaceNav,rememberT25Location,t25Href,smmcHref,restoreViewport} from '../workspace-nav.js';
+import {readWorkspaceNav,rememberT25Location,t25Href,smmcHref,restoreViewport,hasStoredWorkspaceNav,reconcileWorkspaceNavCloud,enableWorkspaceNavCloud} from '../workspace-nav.js';
 import {readWorkspaceDraft,writeWorkspaceDraft,clearWorkspaceDraft} from '../workspace-drafts.js';
 import {workspaceCloudState,reconcileWorkspaceScope,scheduleWorkspaceScopeSync} from '../workspace-cloud.js';
 const $=id=>document.getElementById(id);
@@ -153,9 +153,18 @@ async function reveal(){
 async function copy(text){try{await navigator.clipboard.writeText(text);tell('Copied.');}catch{const area=document.createElement('textarea');area.value=text;area.readOnly=true;area.setAttribute('aria-label','Copy text manually');$('status').replaceChildren('Clipboard unavailable. Copy the text below:',area);area.select();}}
 function download(name,data){const url=URL.createObjectURL(new Blob([data],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 async function init(){
+ const initialParams=new URLSearchParams(location.search);
+ const explicitWorkspace=initialParams.has('session')||initialParams.has('presentation')||initialParams.has('task');
+ let navReconciled=false;
+ if(!explicitWorkspace&&!hasStoredWorkspaceNav()&&workspaceCloudState().signedIn){
+   await Promise.race([
+     reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;}),
+     new Promise(resolve=>setTimeout(resolve,700))
+   ]);
+ }
  course=await runtimeCourse();state=emptyEvidence();
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);}catch{storageOK=false;tell('Existing study storage could not be read. It has not been overwritten. New work is held in memory; export it before leaving.');}
- const params=new URLSearchParams(location.search),remembered=readWorkspaceNav();
+ const params=initialParams,remembered=readWorkspaceNav();
  const requestedPresentation=params.get('presentation');
  $('presentation').value=requestedPresentation==='anime'||requestedPresentation==='plain'?requestedPresentation:remembered.t25.presentation;
  const requestedSession=Number(params.get('session'));
@@ -210,6 +219,8 @@ async function init(){
  $('bridges').replaceChildren(...course.bridges.flatMap(b=>[...b.tasks.map((id,i)=>button(`${b.title} · ${i+1}`,()=>{showProblem(id,'bridge');tell(`Prerequisite bridge. Open the learning note if needed; this grants no atomic clearance.`);}))]));
  $('saveChoice').onclick=()=>{const old=state.story[session.phase];state.story[session.phase]={choice:Number($('storyChoice').value),completed:old?.completed||false};persist('Story choice saved.');setPresentation();};
  $('finishStory').onclick=()=>{state.story[session.phase]={choice:Number($('storyChoice').value),completed:true};persist('Your report of SPIRE phase certification was recorded for story continuity only.');setPresentation();};
+ if(!navReconciled)void reconcileWorkspaceNavCloud().finally(enableWorkspaceNavCloud);
+ else enableWorkspaceNavCloud();
  renderCloudBadge();
  void reconcileT25Cloud();
  document.addEventListener('chrono:cloud-context-changed',()=>{cloudReady=false;void reconcileT25Cloud();});
