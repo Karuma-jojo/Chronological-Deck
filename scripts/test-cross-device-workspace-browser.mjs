@@ -26,7 +26,12 @@ const base='http://127.0.0.1:'+server.address().port;
 const rows=new Map();
 let clock=0;
 const iso=()=>new Date(Date.UTC(2026,8,24,0,0,clock++)).toISOString();
-const cors={'access-control-allow-origin':'*','content-type':'application/json'};
+const cors={
+  'access-control-allow-origin':'*',
+  'access-control-allow-headers':'authorization, apikey, content-type, accept',
+  'access-control-allow-methods':'GET, POST, PATCH, OPTIONS',
+  'content-type':'application/json'
+};
 
 function scopeFrom(url){
   return (url.searchParams.get('scope')||'').replace(/^eq\./,'');
@@ -35,6 +40,9 @@ async function cloudRoute(route){
   const request=route.request(),url=new URL(request.url()),method=request.method().toUpperCase();
   if(!url.pathname.endsWith('/rest/v1/chrono_workspace_state')){
     await route.fulfill({status:404,headers:cors,body:JSON.stringify({message:'unexpected endpoint'})});return;
+  }
+  if(method==='OPTIONS'){
+    await route.fulfill({status:204,headers:cors,body:''});return;
   }
   const scope=scopeFrom(url);
   if(method==='GET'){
