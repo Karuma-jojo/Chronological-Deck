@@ -61,9 +61,10 @@
       "title": "Markets 0 — Prices, Returns & Trading Mechanics",
       "prerequisites": [
         "T22E-FND01",
+        "T22E-FND02",
         "T22E-TRD01"
       ],
-      "availability": "planned"
+      "availability": "validation"
     },
     {
       "order": 8,
