@@ -17,8 +17,8 @@ function expect(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-expect(SMMC_LEDGER_YEARS.join(",") === "2017,2018", "Unexpected audited-year manifest.");
-expect(ledger.length === 16, `Expected 16 audited SMMC problems, found ${ledger.length}`);
+expect(SMMC_LEDGER_YEARS.join(",") === "2017,2018,2019", "Unexpected audited-year manifest.");
+expect(ledger.length === 24, `Expected 24 audited SMMC problems, found ${ledger.length}`);
 expect(new Set(ledger.map(x => x.id)).size === ledger.length, "Duplicate SMMC IDs.");
 
 for (const year of SMMC_LEDGER_YEARS) {
@@ -46,7 +46,7 @@ for (const row of ledger) {
   expect(typeof row.auditNote === "string" && row.auditNote.length > 30, `Weak audit note for ${row.id}`);
 }
 
-for (const id of ["SMMC-2017-B4", "SMMC-2018-B4"]) {
+for (const id of ["SMMC-2017-B4", "SMMC-2018-B4", "SMMC-2019-B4"]) {
   expect(ledger.find(x => x.id === id)?.assessmentRole === "open-problem",
     `${id} must remain explicitly marked as an open-problem item.`);
 }
