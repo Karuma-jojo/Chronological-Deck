@@ -18,8 +18,8 @@ function expect(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-expect(SMMC_LEDGER_YEARS.join(",") === "2017,2018,2019,2020,2021,2022,2023", "Unexpected audited-year manifest.");
-expect(ledger.length === 64, `Expected 64 audited SMMC problems, found ${ledger.length}`);
+expect(SMMC_LEDGER_YEARS.join(",") === "2017,2018,2019,2020,2021,2022,2023,2024,2025", "Unexpected audited-year manifest.");
+expect(ledger.length === 88, `Expected 88 audited SMMC problems, found ${ledger.length}`);
 expect(new Set(ledger.map(x => x.id)).size === ledger.length, "Duplicate SMMC IDs.");
 
 for (const year of SMMC_LEDGER_YEARS) {
@@ -63,7 +63,7 @@ for (const row of ledger) {
 
 for (const id of [
   "SMMC-2017-B4", "SMMC-2018-B4", "SMMC-2019-B4",
-  "SMMC-2020-B4", "SMMC-2021-B4", "SMMC-2022-B4", "SMMC-2023-B4",
+  "SMMC-2020-B4", "SMMC-2021-B4", "SMMC-2022-B4", "SMMC-2023-B4", "SMMC-2024-B4", "SMMC-2025-B4",
 ]) {
   expect(ledger.find(x => x.id === id)?.assessmentRole === "open-problem",
     `${id} must remain explicitly marked as an open-problem item.`);
@@ -72,6 +72,8 @@ for (const id of [
 const counts = Object.fromEntries([...overlaps].map(k => [k, ledger.filter(x => x.overlap === k).length]));
 const east = ledger.filter(x => x.eastRelevant);
 const supplemental = ledger.filter(x => !x.eastRelevant);
+expect(east.length === 72, `Expected 72 East-core problems, found ${east.length}`);
+expect(supplemental.length === 16, `Expected 16 supplementary C problems, found ${supplemental.length}`);
 const eastCounts = Object.fromEntries([...overlaps].map(k => [k, east.filter(x => x.overlap === k).length]));
 
 console.log(
