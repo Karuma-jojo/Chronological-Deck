@@ -27,8 +27,8 @@ const moduleIds = new Set([
 const unitIds = new Set(SMMC_UNITS_V1.map(x => x.id));
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
-expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 4, "Expected four first-batch public problems.");
-expect(Object.keys(SMMC_EVALUATOR_V1).length === 4, "Expected four first-batch evaluator references.");
+expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 8, "Expected eight authored public problems.");
+expect(Object.keys(SMMC_EVALUATOR_V1).length === 8, "Expected eight authored evaluator references.");
 
 for (const unit of SMMC_UNITS_V1) {
   expect(moduleIds.has(unit.moduleId), `Unknown module for ${unit.id}`);
