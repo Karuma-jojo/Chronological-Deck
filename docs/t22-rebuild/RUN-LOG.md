@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-23
-State: **M05 + M06 REPAIRS VERIFIED; FULL ACTIONS SUCCESS; STOP BEFORE M07**
+State: **M05 + M06 REPAIRS INDEPENDENTLY ACCEPTED/FROZEN; STOP BEFORE M07**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -14,7 +14,7 @@ Recovered and hash-verified remote head `bd0b54f71524b831ec264d9fcae1afb3d2dfd7d
 
 Current instruction versions: `m05-instruction-astra-r1`, `m06-instruction-astra-r1`. Stable IDs/evidence store retained. Only changed task/evaluator contracts versioned2; ownership-contract changes produce stale earlier evidence rather than silently recertifying it. Historical solved exposure is timestamp-migrated, including cross-session links; unsolved guided exercises do not invent reveals. Evidence merge inputs are migrated before their lesson-version summaries combine.
 
-Implementation pushed and read back: `efea44476e30a0daf45675e15889788e082900a2` (parent `bd0b54f71524b831ec264d9fcae1afb3d2dfd7dc`). Full [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076) succeeded on that exact head. All steps and job107374356454 logs inspected, including actual Chromium and both browser PASS messages. All46 non-browser commands also passed locally. Final documentation-only checkpoint records these verified results. Next useful step: bounded independent review of this repair; do not repeat implemented repairs or start M07 automatically. Stop before M07; do not merge/deploy or touch T25/legacy progress. M01–M04 remain accepted. User proceeds with M02, without restarting reported M01 completion or claiming external recertification of reconstructed RAW evidence.
+Implementation pushed and read back: `efea44476e30a0daf45675e15889788e082900a2` (parent `bd0b54f71524b831ec264d9fcae1afb3d2dfd7dc`). Full [Actions run35917978076](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35917978076) succeeded on that exact head. All steps and job107374356454 logs inspected, including actual Chromium and both browser PASS messages. All46 non-browser commands also passed locally. The subsequent bounded independent follow-up accepted/froze M05 and M06; see `docs/t22-course/M05-M06-ASTRA-FOLLOWUP.md`. Do not repeat implemented repairs or start M07 automatically. Stop before M07; do not merge/deploy or touch T25/legacy progress. M01–M06 are the accepted course frontier. User proceeds with M02, without restarting reported M01 completion or claiming external recertification of reconstructed RAW evidence.
 
 All dated completion/next-action entries below are historical unless explicitly reaffirmed above.
 
@@ -23,7 +23,7 @@ All dated completion/next-action entries below are historical unless explicitly 
 Review source: `docs/t22-course/M05-M06-ASTRA-REVIEW.md`.
 Reviewed branch head: `9efe72ee1c87579b4ba5ab491f31f259a976752e`.
 
-M05 and M06 are **not yet independently accepted/frozen**. This status supersedes their earlier internal acceptance/handoff claims below. Preserve the existing authored work and repair the bounded findings; do not restart.
+Historical review state at 2026-09-18: M05 and M06 were **not yet independently accepted/frozen**. This paragraph is superseded by the current accepted/frozen state above and `M05-M06-ASTRA-FOLLOWUP.md`. Preserve the existing authored work and repair the bounded findings; do not restart.
 
 Required fixes: actual failing M05 CI gate; exact assessment-answer/practice overlap in both modules; positional claim/rubric mappings; unrequested rubric obligations; M05 S12 first-passage transfer; historical exposure and obligation-version handling where affected.
 
