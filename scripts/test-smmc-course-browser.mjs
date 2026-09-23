@@ -39,7 +39,8 @@ try{
   assert.equal(await page.locator('#unitSelect option').count(),8);
   assert((await page.locator('#status').textContent()).includes('16 neutral tasks'));
   await page.click('#tabMap');
-  assert.equal((await page.locator('#overlapSummary').textContent()).replace(/\s+/g,' ').trim(),'All 88 39 GREEN 27 AMBER 22 RED East A+B 30 GREEN 24 AMBER 18 RED');
+  assert.deepEqual(await page.locator('#overlapSummary .overlap-stat strong').allTextContents(),['39','27','22','30','24','18']);
+  assert.deepEqual(await page.locator('#overlapSummary .overlap-stat span').allTextContents(),['GREEN','AMBER','RED','GREEN','AMBER','RED']);
   await page.click('#tabStudy');
 
   await page.fill('#answer','Smoke-test reasoning.');
