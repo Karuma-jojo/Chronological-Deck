@@ -156,10 +156,11 @@ function download(name,data){const url=URL.createObjectURL(new Blob([data],{type
 async function init(){
  const initialParams=new URLSearchParams(location.search);
  const explicitWorkspace=initialParams.has('session')||initialParams.has('presentation')||initialParams.has('task');
- let navReconciled=false;
+ let navReconciled=false,navReconcilePromise=null;
  if(!explicitWorkspace&&!hasStoredWorkspaceNav()&&workspaceCloudState().signedIn){
+   navReconcilePromise=reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;});
    await Promise.race([
-     reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;}),
+     navReconcilePromise,
      new Promise(resolve=>setTimeout(resolve,700))
    ]);
  }
@@ -220,7 +221,7 @@ async function init(){
  $('bridges').replaceChildren(...course.bridges.flatMap(b=>[...b.tasks.map((id,i)=>button(`${b.title} · ${i+1}`,()=>{showProblem(id,'bridge');tell(`Prerequisite bridge. Open the learning note if needed; this grants no atomic clearance.`);}))]));
  $('saveChoice').onclick=()=>{const old=state.story[session.phase];state.story[session.phase]={choice:Number($('storyChoice').value),completed:old?.completed||false};persist('Story choice saved.');setPresentation();};
  $('finishStory').onclick=()=>{state.story[session.phase]={choice:Number($('storyChoice').value),completed:true};persist('Your report of SPIRE phase certification was recorded for story continuity only.');setPresentation();};
- if(!navReconciled)void reconcileWorkspaceNavCloud().finally(enableWorkspaceNavCloud);
+ if(!navReconciled)void (navReconcilePromise||reconcileWorkspaceNavCloud()).finally(enableWorkspaceNavCloud);
  else enableWorkspaceNavCloud();
  renderCloudBadge();
  void reconcileT25Cloud();
