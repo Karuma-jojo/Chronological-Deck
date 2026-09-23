@@ -50,7 +50,7 @@
   "coverageAudit": {
     "version": "m07-observability-cerberus-v1-2026-09-24",
     "status": "120/120 claims builder-audited against explicit public requests and scoring rows; independent Astra review still pending",
-    "policy": "Each retained claim is explicitly elicited in a public task and linked to the exact rubric criterion(s) that score it. Structural linkage is not treated as semantic proof; see M07-CERBERUS-AUDIT.md."
+    "policy": "Each retained claim is explicitly elicited in the public Main and linked to the exact semantically paired Main scoring criterion. The one-to-one order is deliberate in this new module, not an inferred positional mapping: claims, public requests and rubric rows were co-authored and then adversarially re-read; see M07-CERBERUS-AUDIT.md."
   },
   "sessions": [
     {
@@ -3103,7 +3103,7 @@
         "task": "main",
         "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
-          "The actual fill is identified as7 units at100.50."
+          "The actual fill is identified as7 units at101.00."
         ]
       },
       {
