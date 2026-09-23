@@ -119,31 +119,34 @@ function writeWorkspaceNav(value){
 }
 
 export function rememberT25Location(patch={}){
-  const state=readWorkspaceNav(),session=Number(patch.session??state.t25.session);
-  state.t25={
-    session:Number.isInteger(session)?Math.min(162,Math.max(1,session)):state.t25.session,
-    presentation:patch.presentation==="anime"?"anime":patch.presentation==="plain"?"plain":state.t25.presentation,
-    task:patch.task==="transfer"?"transfer":patch.task==="main"?"main":state.t25.task,
-    scrollY:patch.scrollY===undefined?state.t25.scrollY:nonnegative(patch.scrollY),
-    updatedAt:now(),
+  const state=readWorkspaceNav(),old=state.t25,session=Number(patch.session??old.session);
+  const next={
+    session:Number.isInteger(session)?Math.min(162,Math.max(1,session)):old.session,
+    presentation:patch.presentation==="anime"?"anime":patch.presentation==="plain"?"plain":old.presentation,
+    task:patch.task==="transfer"?"transfer":patch.task==="main"?"main":old.task,
+    scrollY:patch.scrollY===undefined?old.scrollY:nonnegative(patch.scrollY),
   };
+  const changed=next.session!==old.session||next.presentation!==old.presentation||next.task!==old.task||next.scrollY!==old.scrollY;
+  state.t25={...next,updatedAt:changed?now():old.updatedAt};
   return writeWorkspaceNav(state);
 }
 
 export function rememberSmmcLocation(patch={}){
-  const state=readWorkspaceNav(),tab=patch.tab?(patch.tab==="map"?"map":"study"):state.smmc.tab;
-  state.smmc={
-    ...state.smmc,
+  const state=readWorkspaceNav(),old=state.smmc,tab=patch.tab?(patch.tab==="map"?"map":"study"):old.tab;
+  const next={
+    ...old,
     tab,
     ...(patch.unitId!==undefined?{unitId:patch.unitId||null}:{}),
     ...(patch.taskId!==undefined?{taskId:patch.taskId||null}:{}),
     ...(patch.problemId!==undefined?{problemId:patch.problemId||null}:{}),
     scroll:{
-      ...state.smmc.scroll,
+      ...old.scroll,
       ...(patch.scrollY!==undefined?{[tab]:nonnegative(patch.scrollY)}:{}),
     },
-    updatedAt:now(),
   };
+  const changed=next.tab!==old.tab||next.unitId!==old.unitId||next.taskId!==old.taskId||next.problemId!==old.problemId||
+    next.scroll.study!==old.scroll.study||next.scroll.map!==old.scroll.map;
+  state.smmc={...next,updatedAt:changed?now():old.updatedAt};
   return writeWorkspaceNav(state);
 }
 
