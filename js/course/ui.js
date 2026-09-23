@@ -29,7 +29,7 @@ function renderWorkspaceNav(){
  $('resumeSMMC').href=smmcHref();
  $('workspaceT25').classList.toggle('active',!anime);
  $('workspaceAster').classList.toggle('active',anime);
- put('workspacePosition',`Session ${String(order).padStart(3,'0')} · ${anime?'Aster':'Plain'} · position remembered`);
+ put('workspacePosition',`Session ${String(order).padStart(3,'0')} · ${currentTaskKind==='transfer'?'transfer':'main'} · ${anime?'Aster':'Plain'}`);
 }
 function renderSmmcConnections(){
  if(!session)return;
