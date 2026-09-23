@@ -108,6 +108,59 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must obtain C(n+k-1,k-1).",
       "Must explain the role of allowing zero entries."
     ]
+  },
+  "S-NEUTRAL-AN1-01": {
+    reference: [
+      "Group the terms after the first as (1/2), then (1/3+1/4), then (1/5+...+1/8), and so on.",
+      "In the block with indices 2^k+1 through 2^(k+1), there are 2^k terms and each is at least 1/2^(k+1).",
+      "Therefore every such block has sum at least 1/2.",
+      "After m blocks the partial sum is at least 1+m/2, which is unbounded.",
+      "Hence the harmonic series diverges."
+    ].join(" "),
+    rubric: [
+      "Must identify a family of disjoint blocks.",
+      "Must give a uniform positive lower bound per block.",
+      "Must conclude unbounded partial sums."
+    ]
+  },
+  "S-NEUTRAL-AN1-02": {
+    reference: [
+      "For n≥1, √n≤n, so n+√n≤2n.",
+      "All quantities are positive, so 1/(n+√n)≥1/(2n).",
+      "The comparison series Σ 1/(2n) is one half of the harmonic series and diverges.",
+      "Therefore Σ 1/(n+√n) diverges by comparison."
+    ].join(" "),
+    rubric: [
+      "Must use the correct comparison direction for proving divergence.",
+      "Must justify n+√n≤2n or an equivalent eventual inequality.",
+      "Must identify a divergent benchmark."
+    ]
+  },
+  "S-NEUTRAL-X1-01": {
+    reference: [
+      "Introduce d=a-b. Then (a+b)^2-(a-b)^2=4ab.",
+      "Since a+b=s, we get 4ab=s^2-d^2≤s^2.",
+      "Therefore ab≤s^2/4.",
+      "Equality holds exactly when d=0, i.e. a=b=s/2."
+    ].join(" "),
+    rubric: [
+      "Must introduce an auxiliary imbalance quantity or an equivalent transformed object.",
+      "Must explain why its nonnegativity gives the bound.",
+      "Must identify the equality condition."
+    ]
+  },
+  "S-NEUTRAL-X1-02": {
+    reference: [
+      "Expand the left side: Σ_{i<j}(xi^2+xj^2-2xixj).",
+      "Each xi^2 appears in exactly n-1 pairs, so the square terms contribute (n-1)Σxi^2.",
+      "Also (Σxi)^2=Σxi^2+2Σ_{i<j}xixj=0, hence 2Σ_{i<j}xixj=-Σxi^2.",
+      "Substituting gives (n-1)Σxi^2+Σxi^2=nΣxi^2."
+    ].join(" "),
+    rubric: [
+      "Must organize the pairwise cross terms through an aggregate identity such as (Σxi)^2.",
+      "Must use the zero-sum condition explicitly.",
+      "Must obtain the exact coefficient n."
+    ]
   }
 });
 
