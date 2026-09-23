@@ -136,6 +136,51 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "proves the transformed statement cleanly",
       "translates the conclusion back to the original variables"
     ]
+  },
+  {
+    id: "S-BRIDGE-N1-U02",
+    moduleId: "S-BRIDGE-N1",
+    kind: "bridge",
+    orderWithinModule: 2,
+    title: "Chinese remainders and coprime residue counting",
+    t25Targets: ["F4", "P2"],
+    prerequisiteUnits: ["S-BRIDGE-N1-U01"],
+    learningNote: [
+      "For pairwise coprime moduli, a compatible choice of one residue modulo each modulus determines exactly one residue class modulo their product.",
+      "Constructively, solve two congruences by substituting one into the other and using a modular inverse.",
+      "For a square-free modulus m=p1...pr, a residue is coprime to m exactly when it is nonzero modulo every prime pi.",
+      "CRT therefore gives φ(m)=Π(pi-1) for square-free m.",
+      "State uniqueness modulo the full product, not just one numerical solution."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-N1-03",
+    transferTaskId: "S-NEUTRAL-N1-04",
+    completionEvidence: [
+      "combines pairwise-coprime congruences correctly",
+      "states uniqueness modulo the product",
+      "counts coprime residue classes using prime-modulus choices"
+    ]
+  },
+  {
+    id: "S-METHOD-I1-U01",
+    moduleId: "S-METHOD-I1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Strengthen the induction claim until the step closes",
+    t25Targets: ["F4", "A5"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "If an induction step needs information not contained in P(n), the right repair is often to strengthen the statement rather than force the algebra.",
+      "Carry a block of neighbouring states, an invariant, or several claims simultaneously.",
+      "Choose base cases large enough to initialize every component of the stronger statement.",
+      "Then make the induction step reproduce the same package of information at the next index."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-I1-01",
+    transferTaskId: "S-NEUTRAL-I1-02",
+    completionEvidence: [
+      "states a strengthened induction hypothesis explicitly",
+      "chooses enough base cases for the strengthened statement",
+      "shows the stronger statement reproduces itself under the recurrence or shift"
+    ]
   }
 ]);
 
