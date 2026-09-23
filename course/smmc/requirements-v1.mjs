@@ -14,4 +14,8 @@ export const SMMC_REQUIREMENTS_V1 = Object.freeze({
   // 2022 C2 needs positive-series comparison, a divergent subseries benchmark,
   // and harmonic-series divergence; AN1-U01 covers exactly that gap.
   "SMMC-2022-C2": ["S-BRIDGE-AN1-U01"],
+
+  // 2023 C1 needs CRT plus square-free totient/coprime residue counting.
+  // N1-U01 supplies congruence/inverse foundations; N1-U02 supplies CRT and φ.
+  "SMMC-2023-C1": ["S-BRIDGE-N1-U01", "S-BRIDGE-N1-U02"],
 });
