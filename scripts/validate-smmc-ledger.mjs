@@ -1,4 +1,5 @@
 import ledger, { SMMC_LEDGER_YEARS } from "../course/smmc/ledger.mjs";
+import { validateT25Targets, routeOrdersForT25Targets } from "../course/smmc/t25-crosswalk.mjs";
 import {
   SMMC_PRIMARY_DOMAINS,
   SMMC_OVERLAP,
@@ -38,8 +39,10 @@ for (const row of ledger) {
   expect(row.secondaryTags.every(x => secondary.has(x)), `Unknown secondary tag for ${row.id}`);
   expect(Array.isArray(row.methodTags) && row.methodTags.length > 0, `Missing methods for ${row.id}`);
   expect(row.methodTags.every(x => methods.has(x)), `Unknown method tag for ${row.id}`);
-  expect(Array.isArray(row.t25Sessions), `Missing T25 mapping for ${row.id}`);
-  expect(row.t25Sessions.every(x => Number.isInteger(x) && x >= 1 && x <= 162), `Bad T25 session mapping for ${row.id}`);
+  expect(Array.isArray(row.t25Targets) && row.t25Targets.length > 0, `Missing stable T25 target mapping for ${row.id}`);
+  expect(validateT25Targets(row.t25Targets), `Unknown T25 target mapping for ${row.id}`);
+  const liveOrders = routeOrdersForT25Targets(row.t25Targets);
+  expect(liveOrders.length > 0 && liveOrders.every(x => Number.isInteger(x) && x >= 1 && x <= 162), `Live T25 route resolution failed for ${row.id}`);
   expect(Array.isArray(row.t25Bridges), `Missing T25 bridge mapping for ${row.id}`);
   expect(Array.isArray(row.bridgeNeeds), `Missing bridge-needs list for ${row.id}`);
   expect(typeof row.synopsis === "string" && row.synopsis.length > 30, `Weak synopsis for ${row.id}`);
