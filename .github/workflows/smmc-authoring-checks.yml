@@ -26,6 +26,9 @@ jobs:
           node scripts/build-t25-course.mjs
           node scripts/validate-t25-runtime-payload.mjs
 
+      - name: Validate workspace cloud conflict handling
+        run: node scripts/test-workspace-cloud.mjs
+
       - name: Validate SMMC browser workflow
         run: node scripts/test-smmc-course-browser.mjs
       - name: Validate T25 Aster SMMC workspace navigation
