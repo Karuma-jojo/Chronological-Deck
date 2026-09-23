@@ -21,6 +21,11 @@ jobs:
         run: node scripts/validate-smmc-authoring-v1.mjs
       - name: Validate compact SMMC connection index
         run: node scripts/validate-smmc-connection-index.mjs
+      - name: Build lean T25 learner payload
+        run: |
+          node scripts/build-t25-course.mjs
+          node scripts/validate-t25-runtime-payload.mjs
+
       - name: Validate SMMC browser workflow
         run: node scripts/test-smmc-course-browser.mjs
       - name: Validate T25 Aster SMMC workspace navigation
