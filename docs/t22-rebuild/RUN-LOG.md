@@ -1,14 +1,22 @@
 # T22 rebuild recovery state
 
-Date: 2026-09-23
-State: **M05 + M06 REPAIRS INDEPENDENTLY ACCEPTED/FROZEN; STOP BEFORE M07**
+Date: 2026-09-24
+State: **M01–M06 ACCEPTED/FROZEN; M07 CERBERUS CANDIDATE FULLY GREEN; ASTRA REVIEW PENDING; M08 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
 
-## Current repair recovery — 2026-09-23 (authority over historical entries below)
+## Current M07 recovery — 2026-09-24 (authority over historical entries below)
+
+User explicitly authorized M07 alone. M07 `T22E-MKT01` now contains 24 sessions, 48 fixed Main/Transfer assessments and 120 required-ownership claims. Its boundary explicitly depends on M01 + M02 + M05; the M02 edge repairs the known log-return prerequisite. Deep market-data, microstructure, asset-pricing, portfolio and execution theory remain deferred to M45–M56 owners.
+
+CERBERUS builder audit found and repaired prerequisite drift, hidden Transfer scoring obligations, an avoidable S02 quote/fill ambiguity, stale semantic ledgers after those repairs, and obsolete historical progression guards. M08 remains absent.
+
+Verified implementation head `84baddc69643f4654eb87bf05ed907febf37b077`; complete T22 Elite Actions run `35927759177`, job `107406819179`, succeeded with syntax, structural/pedagogy/semantic/evidence gates, M07 independent math, handoff checks, Chromium and seven-module browser evidence. M07 remains a candidate pending bounded independent Astra review; do not label it frozen yet. No merge/deploy/T25/legacy-progress changes.
+
+## Historical M05/M06 repair recovery — 2026-09-23
 
 Recovered and hash-verified remote head `bd0b54f71524b831ec264d9fcae1afb3d2dfd7dc`; no subsequent repairs existed. Parent/ancestry checked, including intervening M01 packet work. Principal builder completed the bounded M05/M06 content and scoring audit:48 lessons,96 task/evaluator pairs,240 claim links. See `docs/t22-course/M05-M06-RESOLUTION.md` and `M05-M06-SEMANTIC-AUDIT.md`.
 
