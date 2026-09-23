@@ -339,7 +339,7 @@ async function init(){
       persist();tell('Evaluator reference opened for this neutral task.');
     }catch(err){tell('Could not load evaluator reference: '+err.message);}
   };
-  $('selfReport').onclick=()=>{selfReportUnitComplete(histState,currentUnit.id);persist();renderUnit(currentUnit.id);tell('Unit self-report saved. This does not certify or unlock historical problems.');};
+  $('selfReport').onclick=()=>{selfReportUnitComplete(histState,currentUnit.id);persist();renderUnit(currentUnit.id,currentTaskId);tell('Unit self-report saved. This does not certify or unlock historical problems.');};
   $('tabStudy').onclick=()=>switchTab('study');$('tabMap').onclick=()=>switchTab('map');
   $('problemSearch').oninput=renderProblemList;$('problemSelect').onchange=()=>renderHistorical($('problemSelect').value);
   $('applyTargets').onclick=()=>{renderHistorical(currentProblem.id);tell('T25 target preview updated locally. No T25 clearance record was changed.');};
