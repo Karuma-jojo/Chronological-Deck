@@ -14,6 +14,7 @@ import {
   validateSmmcState,
 } from "../course/smmc/runtime/exposure.mjs";
 import { unlockStatus } from "../course/smmc/runtime/unlock.mjs";
+import { officialPaperUrl } from "../course/smmc/sources-v1.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -25,6 +26,12 @@ const moduleIds = new Set([
   ...SMMC_METHOD_MODULES.map(x => x.id),
 ]);
 const unitIds = new Set(SMMC_UNITS_V1.map(x => x.id));
+
+for (const problem of ledger) {
+  const paper = officialPaperUrl(problem);
+  expect(typeof paper === "string" && paper.startsWith("https://www.simonmarais.org/"), `Missing official paper URL for ${problem.id}`);
+  expect(paper.endsWith("#page=2"), `Official paper should open on problem page for ${problem.id}`);
+}
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
 expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 16, "Expected sixteen authored public problems.");
@@ -69,7 +76,9 @@ for (const [problemId, required] of Object.entries(SMMC_REQUIREMENTS_V1)) {
 // Exposure semantics.
 const state = emptySmmcState();
 expect(exposureClass(state, "SMMC-2022-A1").class === "sealed", "Fresh problem must be sealed.");
-markExposure(state, "SMMC-2022-A1", "statementSeenAt", "2026-09-23T12:00:00.000Z");
+markExposure(state, "SMMC-2022-A1", "domainMetadataSeenAt", "2026-09-23T12:00:00.000Z");
+expect(exposureClass(state, "SMMC-2022-A1").class === "sealed", "Planning metadata must not contaminate exposure status.");
+markExposure(state, "SMMC-2022-A1", "statementSeenAt", "2026-09-23T12:01:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "transfer", "Statement-only exposure should remain transfer-eligible.");
 markExposure(state, "SMMC-2022-A1", "materialHintSeenAt", "2026-09-23T12:05:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "development", "Material hint must contaminate unseen transfer.");
