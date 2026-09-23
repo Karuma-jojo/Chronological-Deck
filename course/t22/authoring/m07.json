@@ -61,7 +61,7 @@
       "focus": "Separate the price paid now from later cash flows/payoffs and compute quantity×price cash amounts.",
       "purpose": "Prevent the foundational error that a quoted price is itself a future payoff or profit.",
       "centralCapability": "A price is an exchange amount per unit at a time; later cash flows and terminal sale proceeds are separate ledger events.",
-      "principalObstacle": "Prevent the foundational error that a quoted price is itself a future payoff or profit.",
+      "principalObstacle": "Price, cash flow and profit are all money-valued, so beginners often collapse distinct ledger events into one number.",
       "entryPrerequisites": [
         "M01 percentages/arithmetic",
         "M05-S01 payoff/accounting distinction"
@@ -102,7 +102,7 @@
       "focus": "Build the market vocabulary needed to read a basic trading record without conflating instructions, displayed prices and executed quantity.",
       "purpose": "Later research data are meaningless if order intent, quote state, execution and inventory are treated as the same event.",
       "centralCapability": "Distinguish order, quote, trade/fill and position, and update signed inventory from an executed quantity.",
-      "principalObstacle": "Later research data are meaningless if order intent, quote state, execution and inventory are treated as the same event.",
+      "principalObstacle": "Submitted quantity, displayed quote, executed fill and resulting inventory can coexist in one record but describe different states.",
       "entryPrerequisites": [
         "M07-S01 price/quantity cash language",
         "M01 signed arithmetic"
@@ -143,7 +143,7 @@
       "focus": "Compute and interpret one-period simple return with denominator discipline.",
       "purpose": "Return normalizes a price change by the starting price; raw price change and percentage return are different quantities.",
       "centralCapability": "Use R=(P1−P0)/P0 for positive starting price and interpret sign/units correctly.",
-      "principalObstacle": "Return normalizes a price change by the starting price; raw price change and percentage return are different quantities.",
+      "principalObstacle": "Learners often report the currency price change as if it were already a percentage return or divide by the ending price.",
       "entryPrerequisites": [
         "M01 percentages and signed arithmetic",
         "M07-S01 price language"
@@ -184,7 +184,7 @@
       "focus": "Connect simple return to multiplicative growth via G=1+R=P1/P0.",
       "purpose": "Compounding later requires a factor representation rather than repeatedly adding percentages.",
       "centralCapability": "Translate among price ratio, simple return, gross-return factor and a proportional wealth update.",
-      "principalObstacle": "Compounding later requires a factor representation rather than repeatedly adding percentages.",
+      "principalObstacle": "Gross factor, simple return and P&L are often mixed even though one is a ratio, one a relative change and one a currency amount.",
       "entryPrerequisites": [
         "M07-S03 simple return",
         "M01 ratios"
@@ -225,7 +225,7 @@
       "focus": "Chain simple returns multiplicatively and distinguish compounded return from the arithmetic sum.",
       "purpose": "Adding period returns creates systematic errors whenever more than one nonzero return occurs.",
       "centralCapability": "Compute total simple return from a product of gross-return factors and expose the add-returns shortcut as invalid.",
-      "principalObstacle": "Adding period returns creates systematic errors whenever more than one nonzero return occurs.",
+      "principalObstacle": "Adding period percentages feels natural but ignores that each later return acts on a changed base.",
       "entryPrerequisites": [
         "M07-S04 gross-return factors",
         "M01 percentage multiplication"
@@ -266,7 +266,7 @@
       "focus": "Define log return from a positive price ratio and derive its additive time aggregation.",
       "purpose": "Log-return additivity is useful later, but must be derived from logarithm laws rather than memorized as a slogan.",
       "centralCapability": "Use g=ln(P1/P0) and prove that consecutive log returns sum to ln(Pn/P0).",
-      "principalObstacle": "Log-return additivity is useful later, but must be derived from logarithm laws rather than memorized as a slogan.",
+      "principalObstacle": "Log-return additivity is memorized without deriving the cancellation of intermediate price ratios.",
       "entryPrerequisites": [
         "M02 logarithms and log laws",
         "M07-S04 gross-return factor"
@@ -307,7 +307,7 @@
       "focus": "Convert between return conventions while preserving the domain imposed by positive prices.",
       "purpose": "Treating log and simple returns as numerically identical or allowing impossible simple returns below −100% corrupts later analysis.",
       "centralCapability": "Use g=ln(1+R) and R=e^g−1 with R>−1 when prices are strictly positive.",
-      "principalObstacle": "Treating log and simple returns as numerically identical or allowing impossible simple returns below −100% corrupts later analysis.",
+      "principalObstacle": "Simple and log returns are often treated as interchangeable numbers, and the −100% boundary is mishandled.",
       "entryPrerequisites": [
         "M07-S03 simple return",
         "M07-S06 log return",
@@ -349,7 +349,7 @@
       "focus": "Include an explicitly supplied per-unit cash distribution in a holding-period return without importing asset-pricing theory.",
       "purpose": "Ignoring cash distributions can make a losing price path look like a losing investment when total return is positive, or vice versa.",
       "centralCapability": "Compute price return and total simple return separately from P0,P1 and a stated cash distribution D.",
-      "principalObstacle": "Ignoring cash distributions can make a losing price path look like a losing investment when total return is positive, or vice versa.",
+      "principalObstacle": "Price return is often reported as total return even when an explicit distribution changes the holding-period cash flow.",
       "entryPrerequisites": [
         "M07-S03 simple return",
         "M07-S01 cash-flow separation"
@@ -390,7 +390,7 @@
       "focus": "Compute mark-to-market price P&L for a long position and keep units/signs explicit.",
       "purpose": "Return, per-unit price move and currency P&L are related but not interchangeable.",
       "centralCapability": "For q>0 under a price-only convention, compute P&L=q(P1−P0) and interpret its sign.",
-      "principalObstacle": "Return, per-unit price move and currency P&L are related but not interchangeable.",
+      "principalObstacle": "Position quantity, underlying return and currency P&L are often conflated for a long position.",
       "entryPrerequisites": [
         "M07-S03 simple return",
         "M07-S02 signed position"
@@ -431,7 +431,7 @@
       "focus": "Compute simplified short price P&L without treating a price decline as a loss to the short.",
       "purpose": "Sign errors on shorts propagate into every later trading and backtest ledger.",
       "centralCapability": "Under an explicit simplified convention, short q units at P0 and cover at P1 has price P&L=q(P0−P1).",
-      "principalObstacle": "Sign errors on shorts propagate into every later trading and backtest ledger.",
+      "principalObstacle": "Shorts reverse the price-P&L sign; learners often carry the long formula over without the signed-position logic.",
       "entryPrerequisites": [
         "M07-S09 long P&L",
         "M01 signed arithmetic"
@@ -472,7 +472,7 @@
       "focus": "Separate underlying return from position size and express the market-value scale of an exposure.",
       "purpose": "A 5% asset return does not tell you currency P&L until quantity/notional is known.",
       "centralCapability": "Use signed quantity q, signed market-value exposure qP, absolute notional |q|P and P&L=qΔP.",
-      "principalObstacle": "A 5% asset return does not tell you currency P&L until quantity/notional is known.",
+      "principalObstacle": "Notional/exposure scale and underlying percentage return answer different questions but are frequently mixed.",
       "entryPrerequisites": [
         "M07-S09 long P&L",
         "M07-S10 short P&L"
@@ -513,7 +513,7 @@
       "focus": "Separate closed-position P&L from mark-to-market P&L on inventory that remains open.",
       "purpose": "Mixing realized and unrealized components leads to double counting and broken trading ledgers.",
       "centralCapability": "Under a stated average-cost convention, compute realized P&L on units sold and unrealized P&L on remaining units.",
-      "principalObstacle": "Mixing realized and unrealized components leads to double counting and broken trading ledgers.",
+      "principalObstacle": "Closing some units while marking others can double-count P&L unless the accounting convention and remaining inventory are explicit.",
       "entryPrerequisites": [
         "M07-S09 long P&L",
         "M07-S11 quantity/P&L"
@@ -554,7 +554,7 @@
       "focus": "Read a two-sided quote and compute its basic derived quantities.",
       "purpose": "Later order and execution reasoning fails immediately if bid/ask sides are reversed.",
       "centralCapability": "Given bid b and ask a with a≥b, compute midquote and quoted spread and interpret the two sides.",
-      "principalObstacle": "Later order and execution reasoning fails immediately if bid/ask sides are reversed.",
+      "principalObstacle": "Bid and ask are easily reversed, while the midquote is incorrectly treated as a guaranteed executable price.",
       "entryPrerequisites": [
         "M07-S02 quote vocabulary",
         "M01 averages/subtraction"
@@ -595,7 +595,7 @@
       "focus": "Apply bid/ask sides to an immediate buy and sell and quantify the mechanical spread loss under a frozen quote.",
       "purpose": "Using mid for both entry and exit fabricates P&L that an immediate crossing trade could not realize.",
       "centralCapability": "Immediate buy crosses to ask; immediate sell crosses to bid; under a frozen quote the buy-then-sell price loss is quantity×spread.",
-      "principalObstacle": "Using mid for both entry and exit fabricates P&L that an immediate crossing trade could not realize.",
+      "principalObstacle": "Using the midpoint for both legs erases the mechanical spread that an immediate crossing round trip actually pays.",
       "entryPrerequisites": [
         "M07-S13 bid/ask/spread",
         "M07-S09 P&L"
@@ -636,7 +636,7 @@
       "focus": "Understand what a market order specifies and what it does not guarantee.",
       "purpose": "Treating the displayed quote as a guaranteed market-order fill creates false execution assumptions.",
       "centralCapability": "A market order prioritizes execution subject to available market conditions; its final execution price may differ from the quote observed before submission.",
-      "principalObstacle": "Treating the displayed quote as a guaranteed market-order fill creates false execution assumptions.",
+      "principalObstacle": "A pre-trade quote is mistaken for a market-order price guarantee, and a fill difference is over-interpreted causally.",
       "entryPrerequisites": [
         "M07-S14 executable sides",
         "M07-S02 order/fill distinction"
@@ -677,7 +677,7 @@
       "focus": "Apply buy/sell limit price constraints without turning eligibility into a fill guarantee.",
       "purpose": "A limit order protects a price bound but introduces non-execution/partial-execution risk.",
       "centralCapability": "Buy limit executes only at prices ≤L; sell limit only at prices ≥L; satisfying the price condition does not guarantee a fill.",
-      "principalObstacle": "A limit order protects a price bound but introduces non-execution/partial-execution risk.",
+      "principalObstacle": "A limit price bound is confused with a promise that eligible liquidity will actually fill the order.",
       "entryPrerequisites": [
         "M07-S15 market orders",
         "M07-S13 bid/ask"
@@ -718,7 +718,7 @@
       "focus": "Track order state and inventory through partial fills and cancellation.",
       "purpose": "Cancelling an order cannot retroactively erase fills that already changed inventory.",
       "centralCapability": "Maintain ordered quantity, cumulative fills, remaining working quantity and final position through lifecycle events.",
-      "principalObstacle": "Cancelling an order cannot retroactively erase fills that already changed inventory.",
+      "principalObstacle": "Order cancellation is incorrectly treated as erasing fills that already changed inventory.",
       "entryPrerequisites": [
         "M07-S02 order/fill/position",
         "M07-S16 limit-order fill uncertainty"
@@ -759,7 +759,7 @@
       "focus": "Aggregate multiple execution prices without using an unweighted average when quantities differ.",
       "purpose": "Average fill price is quantity-weighted; ignoring fill sizes produces wrong cash and P&L.",
       "centralCapability": "Compute total executed quantity, total trade value and quantity-weighted average execution price.",
-      "principalObstacle": "Average fill price is quantity-weighted; ignoring fill sizes produces wrong cash and P&L.",
+      "principalObstacle": "An unweighted average of fill prices ignores that different fills may contain different quantities.",
       "entryPrerequisites": [
         "M07-S17 partial fills",
         "M01 weighted averages/arithmetic"
@@ -800,7 +800,7 @@
       "focus": "Update average entry cost when adding inventory and realize P&L on a partial close under an explicit convention.",
       "purpose": "Using the latest fill price as the cost of all inventory creates false realized P&L.",
       "centralCapability": "Under average-cost accounting, recompute weighted entry cost on adds and keep it for remaining inventory after a partial close.",
-      "principalObstacle": "Using the latest fill price as the cost of all inventory creates false realized P&L.",
+      "principalObstacle": "Average entry cost is incorrectly replaced by the latest fill, corrupting realized P&L on a partial close.",
       "entryPrerequisites": [
         "M07-S18 weighted average execution",
         "M07-S12 realized/unrealized accounting"
@@ -841,7 +841,7 @@
       "focus": "Subtract supplied explicit trading fees from gross price P&L without inventing unprovided costs.",
       "purpose": "Ignoring explicit fees overstates P&L; inventing unspecified impact/borrow costs is equally wrong.",
       "centralCapability": "Compute gross price P&L and net P&L after explicitly supplied transaction fees.",
-      "principalObstacle": "Ignoring explicit fees overstates P&L; inventing unspecified impact/borrow costs is equally wrong.",
+      "principalObstacle": "Explicit commission is either omitted or mixed with costs that the task never supplied.",
       "entryPrerequisites": [
         "M07-S09/S10 price P&L",
         "M01 arithmetic"
@@ -882,7 +882,7 @@
       "focus": "Combine frozen-quote spread arithmetic with separately supplied explicit fees.",
       "purpose": "Later backtests must not confuse spread cost with commission or silently count one twice.",
       "centralCapability": "For a frozen quote immediate buy-then-sell, separate price loss from spread and explicit fees, then compute net P&L.",
-      "principalObstacle": "Later backtests must not confuse spread cost with commission or silently count one twice.",
+      "principalObstacle": "Spread and explicit fees are distinct cost components and can be double-counted or silently merged.",
       "entryPrerequisites": [
         "M07-S14 spread cost",
         "M07-S20 explicit fees"
@@ -923,7 +923,7 @@
       "focus": "Interpret a buy or sell relative to current inventory rather than assuming buy always opens a long and sell always opens a short.",
       "purpose": "Trade direction and resulting position direction are not synonyms.",
       "centralCapability": "Update signed inventory through trades that add, reduce, close or cross through zero.",
-      "principalObstacle": "Trade direction and resulting position direction are not synonyms.",
+      "principalObstacle": "Buy/sell direction is mistaken for resulting position direction even when the trade reduces or reverses existing inventory.",
       "entryPrerequisites": [
         "M07-S02 signed position",
         "M01 signed arithmetic"
@@ -964,7 +964,7 @@
       "focus": "Reconcile cash and inventory after a simple long trade and verify mark-to-market equity without hiding fees.",
       "purpose": "A coherent ledger is the bridge between isolated formulas and later backtest accounting.",
       "centralCapability": "Update cash and position from a trade, mark open inventory, and reconcile equity/P&L under a stated simple convention.",
-      "principalObstacle": "A coherent ledger is the bridge between isolated formulas and later backtest accounting.",
+      "principalObstacle": "Cash and inventory are updated separately, so sign or fee errors can hide unless marked equity reconciles to P&L.",
       "entryPrerequisites": [
         "M07-S01 trade cash amount",
         "M07-S20 fees",
@@ -1006,7 +1006,7 @@
       "focus": "Combine quote reading, a non-marketable limit order, partial fills, weighted average execution, marking, and an immediate exit ledger.",
       "purpose": "The module destination is not isolated formula recall but a coherent audit trail from order instruction to P&L.",
       "centralCapability": "Build a small end-to-end market ledger while respecting price constraints, fill uncertainty, bid/ask sides, fees and average execution.",
-      "principalObstacle": "The module destination is not isolated formula recall but a coherent audit trail from order instruction to P&L.",
+      "principalObstacle": "An integrated record invites shortcutting: quote, order constraint, actual fills, inventory, mark and exit must remain separate layers.",
       "entryPrerequisites": [
         "M07-S13 through S23",
         "M01/M02 arithmetic and logs as needed"
@@ -1059,7 +1059,7 @@
       "id": "T22V3::T22E-MKT01::S02-M@1",
       "order": 2,
       "kind": "main",
-      "prompt": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 100.50 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
+      "prompt": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S02-T@1": {
@@ -1080,7 +1080,7 @@
       "id": "T22V3::T22E-MKT01::S03-T@1",
       "order": 3,
       "kind": "transfer",
-      "prompt": "A price falls from64 to60. Compute the absolute change and simple return in decimal and percent, and identify the denominator.",
+      "prompt": "A price falls from64 to60. Compute the absolute change and simple return in decimal and percent, and identify the denominator. Distinguish the currency price change from the dimensionless return.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S04-M@1": {
@@ -1094,7 +1094,7 @@
       "id": "T22V3::T22E-MKT01::S04-T@1",
       "order": 4,
       "kind": "transfer",
-      "prompt": "A price changes from50 to47.50. Find G and R and update a proportional amount of600.",
+      "prompt": "A price changes from50 to47.50. Find G and R and update a proportional amount of600. State what the gross factor represents.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S05-M@1": {
@@ -1122,7 +1122,7 @@
       "id": "T22V3::T22E-MKT01::S06-T@1",
       "order": 6,
       "kind": "transfer",
-      "prompt": "Prices move50→55→66. Compute the two exact log returns and their total as a single logarithm.",
+      "prompt": "Prices move50→55→66. Compute the two exact log returns and their total as a single logarithm. Also show the endpoint price ratio represented by the total.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S07-M@1": {
@@ -1136,7 +1136,7 @@
       "id": "T22V3::T22E-MKT01::S07-T@1",
       "order": 7,
       "kind": "transfer",
-      "prompt": "Convert simple return −10% to an exact log return, and convert log return ln1.30 to a simple return. State the positive-price domain condition.",
+      "prompt": "Convert simple return −10% to an exact log return, and convert log return ln1.30 to a simple return. State the positive-price domain condition. State explicitly that simple and log returns are different conventions rather than generally equal numbers.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S08-M@1": {
@@ -1164,7 +1164,7 @@
       "id": "T22V3::T22E-MKT01::S09-T@1",
       "order": 9,
       "kind": "transfer",
-      "prompt": "You are long12 units while price moves50→47. Compute price-only P&L and underlying price return.",
+      "prompt": "You are long12 units while price moves50→47. Compute price-only P&L and underlying price return. Distinguish the currency P&L from the percentage return.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S10-M@1": {
@@ -1178,7 +1178,7 @@
       "id": "T22V3::T22E-MKT01::S10-T@1",
       "order": 10,
       "kind": "transfer",
-      "prompt": "You short15 units at80 and cover at86. Compute price-only P&L and explain the sign.",
+      "prompt": "You short15 units at80 and cover at86. Compute price-only P&L and explain the sign. State that no borrow, fee or distribution mechanics are supplied in this simplified task.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S11-M@1": {
@@ -1220,7 +1220,7 @@
       "id": "T22V3::T22E-MKT01::S13-T@1",
       "order": 13,
       "kind": "transfer",
-      "prompt": "A quote is102.40 bid /102.80 ask. Compute spread and mid and state what each displayed side represents.",
+      "prompt": "A quote is102.40 bid /102.80 ask. Compute spread and mid and state what each displayed side represents. State whether the mid is automatically executable.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S14-M@1": {
@@ -1276,7 +1276,7 @@
       "id": "T22V3::T22E-MKT01::S17-T@1",
       "order": 17,
       "kind": "transfer",
-      "prompt": "Start long10 and submit a sell order for50. It fills20, then15, then the remaining15 are cancelled. Track cumulative fills, remaining quantity and final signed position.",
+      "prompt": "Start long10 and submit a sell order for50. It fills20, then15, then the remaining15 are cancelled. Track cumulative fills, remaining quantity and final signed position. Explain why only fills, not the original submitted quantity, determine the position change.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S18-M@1": {
@@ -1290,7 +1290,7 @@
       "id": "T22V3::T22E-MKT01::S18-T@1",
       "order": 18,
       "kind": "transfer",
-      "prompt": "Fills are40 units at25.10 and60 at24.90. Compute total value and weighted average execution price.",
+      "prompt": "Fills are40 units at25.10 and60 at24.90. Compute total value and weighted average execution price. Show the quantity weighting rather than using an unweighted price mean.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S19-M@1": {
@@ -1304,7 +1304,7 @@
       "id": "T22V3::T22E-MKT01::S19-T@1",
       "order": 19,
       "kind": "transfer",
-      "prompt": "Buy8 at50 and12 at48, then sell5 at47 under average-cost accounting. Compute average entry, realized P&L and remaining inventory.",
+      "prompt": "Buy8 at50 and12 at48, then sell5 at47 under average-cost accounting. Compute average entry, realized P&L and remaining inventory. State the average cost carried by the remaining inventory under this convention.",
       "obligationVersion": 1
     },
     "T22V3::T22E-MKT01::S20-M@1": {
@@ -1374,7 +1374,7 @@
       "id": "T22V3::T22E-MKT01::S24-T@1",
       "order": 24,
       "kind": "transfer",
-      "prompt": "Quote is39.90 bid /40.30 ask. Buy limit40.10 for20 is not immediately marketable. Later fills5@40.00 and15@40.10 with entry fee1. A later quote is40.50 bid /40.70 ask; immediately sell all20 with exit fee1. Compute average entry and final net cash P&L, and state why the initial quote alone did not guarantee any fill.",
+      "prompt": "Quote is39.90 bid /40.30 ask. You submit a buy limit40.10 for20 units. Determine whether it is immediately marketable. Later fills are5@40.00 and15@40.10 with entry fee1. A later quote is40.50 bid /40.70 ask; immediately sell all20 with exit fee1. Compute weighted average entry, entry cash outflow including fee, exit proceeds after fee and final net cash P&L. Explain why the initial quote alone did not guarantee any fill.",
       "obligationVersion": 1
     }
   },
@@ -1432,7 +1432,7 @@
       "marking": "Score only what the public Transfer asks. Accept equivalent valid arithmetic and explanations. Do not require hidden conclusions or later-module theory."
     },
     "T22V3::T22E-MKT01::S02-M@1": {
-      "reference": "Order quantity=12. Quote=99 bid/101 ask. Fill=7 at100.50. Unfilled remainder=5. Position changes from−2 to−2+7=+5. Submission alone does not transfer inventory; only executed quantity changes position.",
+      "reference": "Order quantity=12. Quote=99 bid/101 ask. Fill=7 at101.00. Unfilled remainder=5. Position changes from−2 to−2+7=+5. Submission alone does not transfer inventory; only executed quantity changes position.",
       "rubric": [
         {
           "points": 2,
@@ -1444,7 +1444,7 @@
         },
         {
           "points": 2,
-          "criterion": "The actual fill is identified as7 units at100.50."
+          "criterion": "The actual fill is identified as7 units at101.00."
         },
         {
           "points": 2,
@@ -2134,7 +2134,7 @@
       "marking": "Score only what the public Main asks. Accept equivalent mathematically valid routes and exact/decimal forms. Preserve stated market/accounting assumptions; do not award invented microstructure, valuation or execution claims."
     },
     "T22V3::T22E-MKT01::S15-T@1": {
-      "reference": "Actual proceeds=8×49.80=398.40. Fill is.20 below observed bid, total buyer-neutral arithmetic difference1.60 against the seller's reference. Market order did not guarantee50.00.",
+      "reference": "Actual proceeds=8×49.80=398.40. Fill is.20 below the observed bid, so the seller receives1.60 less than the observed-bid reference for8 units. The market order did not guarantee50.00.",
       "rubric": [
         {
           "points": 2,
@@ -4488,7 +4488,7 @@
         "Initial quote is74.80 bid /75.20 ask. You submit a buy limit75.00 for5"
       ],
       "transfer": [
-        "Quote is39.90 bid /40.30 ask. Buy limit40.10 for20 is not immediately "
+        "Quote is39.90 bid /40.30 ask. You submit a buy limit40.10 for20 units."
       ]
     }
   },
