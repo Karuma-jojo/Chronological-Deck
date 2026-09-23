@@ -102,25 +102,41 @@
       <div id="overlapSummary" class="overlap-summary" aria-label="Historical overlap totals"></div>
       <p class="small">Aggregate totals are safe planning metadata. Individual problem colors remain hidden until you explicitly reveal them.</p>
       <p id="histExposure" class="small"></p>
-      <p id="histSynopsis" class="text"></p>
+
+      <section class="paper-panel">
+        <h3>Official problem paper</h3>
+        <p class="small">The ledger summary below is not the full question. Use the official session paper to read the actual problem. Opening or closing the paper does not change your exposure status.</p>
+        <div class="actions">
+          <button id="togglePaper">Show official paper here</button>
+          <a id="openOfficialPaper" class="button" href="#" target="_blank" rel="noopener noreferrer">Open official paper ↗</a>
+        </div>
+        <p id="paperGuide" class="small"></p>
+        <iframe id="officialPaperFrame" class="paper-frame" title="Official Simon Marais problem paper" hidden></iframe>
+      </section>
+
+      <section class="note">
+        <h3>Ledger summary · not the full problem statement</h3>
+        <p id="histSynopsis" class="text"></p>
+      </section>
+
       <section id="safeInfo">
         <h3>Unseen-safe information</h3>
         <div id="unlockText" class="text"></div>
       </section>
       <section id="researchInfo" hidden>
-        <h3>Research metadata · no longer pristine</h3>
+        <h3>Research metadata</h3>
         <div id="researchColor" class="color-row"></div>
         <div id="researchDetails" class="text"></div>
       </section>
       <div class="actions">
-        <button id="revealResearch">Reveal GREEN / AMBER / RED research label</button>
+        <button id="revealResearch">Show GREEN / AMBER / RED research metadata</button>
       </div>
-      <p class="warning">Revealing research metadata is treated as contamination for pristine unseen-transfer purposes. It is useful for planning, but don't reveal it for a paper you want to preserve as a mock.</p>
+      <p class="warning">Planning warning only: domain/color/method metadata can make a problem easier by suggesting what to try. You may show or hide it freely; this page does not permanently mark the problem as contaminated just because you looked.</p>
     </section>
   </main>
 </div>
 
-<footer>SMMC companion evidence is separate from T25 academic clearance. Historical problem metadata stays private until explicitly revealed.</footer>
+<footer>SMMC companion evidence is separate from T25 academic clearance. Metadata visibility is reversible; solutions/material hints remain a separate evidence concern.</footer>
 <script type="module" src="js/smmc/ui.js"></script>
 </body>
 </html>
