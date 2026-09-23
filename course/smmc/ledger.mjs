@@ -3,8 +3,9 @@ import y2018 from "./ledger-2018.mjs";
 import y2019 from "./ledger-2019.mjs";
 import y2020 from "./ledger-2020.mjs";
 import y2021 from "./ledger-2021.mjs";
+import y2022 from "./ledger-2022.mjs";
 
-export const SMMC_LEDGER_YEARS = [2017, 2018, 2019, 2020, 2021];
-export const SMMC_PROBLEMS = [...y2017, ...y2018, ...y2019, ...y2020, ...y2021];
+export const SMMC_LEDGER_YEARS = [2017, 2018, 2019, 2020, 2021, 2022];
+export const SMMC_PROBLEMS = [...y2017, ...y2018, ...y2019, ...y2020, ...y2021, ...y2022];
 
 export default SMMC_PROBLEMS;
