@@ -364,3 +364,54 @@ URLs also carry the visible position:
 - `smmc-course.html?tab=map&problem=...`.
 
 Added `scripts/test-math-workspace-browser.mjs` and included it in the SMMC CI gate.
+
+
+## Workspace flow v2 — exact resume instead of page restart
+
+The first shared-navigation release remembered the selected T25 session and SMMC unit/problem, but cross-page navigation still felt like a reload because scroll position and T25 main-vs-transfer task were not preserved.
+
+Flow v2 adds:
+
+- workspace navigation state v2 with migration from v1;
+- exact T25 main/transfer task memory;
+- exact plain/Aster presentation memory;
+- per-page/per-SMMC-tab scroll restoration;
+- explicit deep-link focus for mathematical cross-links;
+- sticky T25/Aster/SMMC workspace dock;
+- same-tab unsaved working preservation using sessionStorage;
+- T25 and SMMC drafts remain separate from assessment/evidence storage;
+- direct bare-page reopen resumes the last remembered workspace location.
+
+### Intentional behavior
+
+Generic workspace switching is a resume action:
+- T25 -> SMMC -> T25 restores the previous T25 session/task/scroll;
+- SMMC -> T25 -> SMMC restores the previous SMMC tab/unit/task/problem/scroll.
+
+Mathematical connection links are deep links:
+- T25 -> a mapped SMMC problem focuses the selected historical problem;
+- SMMC -> a mapped T25 session focuses the T25 task area;
+- these intentional deep links override old scroll only for that navigation.
+
+Aster remains presentation state over the same T25 task. Switching Plain <-> Aster therefore preserves both session and main/transfer task.
+
+### Draft boundary
+
+Unsaved textarea working is kept in sessionStorage only:
+- it survives same-tab page switches and reloads;
+- it is not academic evidence;
+- it is not exported as a study record;
+- it is scoped separately for T25 and SMMC tasks.
+
+The browser regression `scripts/test-math-workspace-browser.mjs` now checks:
+- exact T25 transfer-task resume;
+- T25 unsaved draft survival;
+- T25 scroll restoration;
+- mapped T25 -> SMMC deep link;
+- Plain -> Aster same-session/same-task preservation;
+- exact SMMC historical-problem resume;
+- exact SMMC unit/transfer-task resume;
+- SMMC unsaved draft survival;
+- SMMC scroll restoration;
+- sticky workspace dock;
+- SMMC -> T25 deep links focus the task area.
