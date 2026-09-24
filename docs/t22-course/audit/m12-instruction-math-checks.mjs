@@ -56,7 +56,9 @@ has(9,"f/g=1+(5/2)h→1","f/g=1/2","n+1~n","n+sqrt(n)~n","1/sqrt(n)→0");
 
 // S10 — series as partial-sum limits, both geometric examples.
 near(1/(1-1/3),1.5); near(2/(1-1/5),2.5);
-has(10,"S_N=sum_{n=0}^N a_n","sequence S_N converges to S","→3/2","=5/2","1,0,1,0");
+const altPartial=[0,1,2,3].map(N=>Array.from({length:N+1},(_,k)=>(-1)**k).reduce((z,v)=>z+v,0));
+assert.deepEqual(altPartial,[1,0,1,0]);
+has(10,"S_N=sum_{n=0}^N a_n","sequence S_N converges to S","→3/2","=5/2","for r=-1 they oscillate");
 
 // S11 — centered geometric power series.
 assert.equal(-2,-2); assert.deepEqual([-6,2],[-6,2]); assert.deepEqual([3,7],[3,7]);
