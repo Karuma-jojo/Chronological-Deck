@@ -56,7 +56,7 @@
       "mode": "new",
       "semanticStatus": "boundary-accepted-content-candidate",
       "bridges": [],
-      "note": "M07 boundary locked and CERBERUS-hardened candidate authored: price/cash-flow/payoff separation; simple/gross/log/total returns; long/short P&L; signed exposure; average-cost realized/unrealized accounting; bid/ask/spread; basic market/limit order and fill mechanics; partial-fill weighting; fees and auditable trade ledgers. M02 logarithm edge is explicit. Deep microstructure M47, asset pricing M54, execution/TCA M56, portfolio theory M55 and data engineering M45-M46 remain deferred. Independent Astra review pending."
+      "note": "M07 Astra-repair candidate: 24 sessions / 48 fixed tasks / 120 claims. Independent review findings M07-01..05 are implemented: solved/practice overlap separated with historical provenance migration, all120 semantic claim links re-audited under mutation-sensitive contract, prompt/rubric/fill-size ambiguities repaired, short/cover and mark JIT bridges added, and S19/S21/S24 Transfers strengthened. Full repair-head validation and bounded independent follow-up remain required. M08 closed."
     },
     {
       "order": 8,
