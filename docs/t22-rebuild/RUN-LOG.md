@@ -1,9 +1,12 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-24
-State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENT-AUDIT REPAIRED, FULL REPAIR-HEAD VALIDATION + BOUNDED FOLLOW-UP PENDING; M09 CLOSED**
+State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENT-AUDIT REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M09 CLOSED**
 Branch: `codex/t22-m08-independent-repair`
 Repository: `Karuma-jojo/Chronological-Deck`
+Validated M08 repair head: `772e5dc12bcd44340bbf1d96a093d1b802c10699`
+T22 Elite run/job: `35961691590` / `107511449788` — SUCCESS
+Broader main-targeted PR matrix on that head: **37/37 SUCCESS**
 
 ## Current M08 independent repair — authority for M08
 
