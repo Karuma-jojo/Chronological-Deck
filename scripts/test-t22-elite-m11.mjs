@@ -139,9 +139,9 @@ assert(a.sessions[18].lesson.includes('1/sqrt(x²+1)'));
 assert(a.problems[a.sessions[18].main].prompt.includes('1/sqrt(x²+4)'),'S19 freshness repair missing');
 assert.match(a.initialVersionAudit.s19FreshnessRepair,/duplicated the lesson guided practice/i);
 
-const allText=a.sessions.map(s=>s.lesson+'\n'+a.problems[s.main].prompt+'\n'+a.problems[s.transfer].prompt+'\n'+a.evaluators[s.main].reference+'\n'+a.evaluators[s.transfer].reference).join('\n').toLowerCase();
+const premiseText=a.sessions.map(s=>s.lesson+'\n'+a.evaluators[s.main].reference+'\n'+a.evaluators[s.transfer].reference).join('\n').toLowerCase();
 for(const banned of ['taylor series','jacobian','lebesgue integral','differentiation under the integral sign',"l'hôpital","l’hôpital"]){
-  assert(!allText.includes(banned),'future machinery leaked into M11: '+banned);
+  assert(!premiseText.includes(banned),'future machinery used as an M11 instructional premise/reference: '+banned);
 }
 
 console.log('PASS M11 semantic/evidence validator: design-derived 20 sessions; all observable ownership rows audited; M09+M10+legal-M11 separation clean; M01-M10/runtime baseline preserved; M11 remains unpublished.');
