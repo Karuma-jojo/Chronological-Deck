@@ -1,13 +1,13 @@
 {
-  "version": "m10-arc053-authoring-v1-builder-candidate",
-  "instructionVersion": "m10-arc053-instruction-v1",
+  "version": "m10-arc053-authoring-v2-semantic-evidence-repair",
+  "instructionVersion": "m10-arc053-instruction-v2",
   "module": {
     "order": 10,
     "id": "ARC053",
     "title": "Derivatives & Local Linearity",
-    "status": "authored-builder-candidate-unpublished",
+    "status": "authored-semantic-repair-builder-candidate-unpublished",
     "destination": "Construct the one-variable derivative from M09 limits; interpret it as tangent/rate and first-order local linearity; derive and audit the core algebraic, trigonometric, inverse/implicit, exponential and logarithmic differentiation machinery without importing M11/M12/later applications.",
-    "gate": "Builder authoring is not publication, independent acceptance or learner mastery. Fixed Main and changed-surface Transfer evidence remain required; M10 is intentionally not registered into the shared nine-module runtime while the user’s no-touch-M01–M09 constraint is in force.",
+    "gate": "Builder verification and this semantic/evidence repair are not independent pedagogical acceptance or learner mastery. Only literally observable ownership claims are retained. M10 remains intentionally unregistered in the shared nine-module runtime while M01–M09 are preserved.",
     "nextBoundary": "M11 owns integration and accumulation. M12 owns higher-order/Taylor/asymptotic structure. Full MVT/optimization/multivariable/numerical differentiation remain outside M10."
   },
   "boundary": {
@@ -44,8 +44,9 @@
   "coverageAudit": {
     "sessionCount": 24,
     "fixedTaskCount": 48,
-    "ownershipClaimCount": 72,
-    "policy": "Every requiredOwnership claim has explicit public-task and rubric evidence; session count is an output of the pre-authoring design gate."
+    "originalOwnershipClaimCount": 72,
+    "ownershipClaimCount": 69,
+    "policy": "All 72 original ownership claims were re-audited against the actual public requests and rubric rows. The repaired contract retains only directly observable capabilities: three unsupported claims were removed, several were narrowed, five fixed tasks were materially repaired, and mappings were rebuilt without positional assumptions."
   },
   "sessions": [
     {
@@ -62,7 +63,7 @@
         "M09-S15 function limits and punctured neighborhoods"
       ],
       "requiredOwnership": [
-        "Distinguish average rate from instantaneous rate.",
+        "Compute and distinguish a finite average rate and its limiting instantaneous rate.",
         "Build a shrinking-interval rate and take its limit.",
         "Explain why h=0 is not substituted into the secant quotient."
       ],
@@ -100,8 +101,8 @@
         "M09-S15–S20 function-limit algebra"
       ],
       "requiredOwnership": [
-        "State and use the derivative definition at a point.",
-        "Show the x→a and h→0 forms represent the same limit.",
+        "Use the derivative definition at a point in both x→a and h→0 forms.",
+        "Explain why the x→a and h→0 derivative forms are equivalent.",
         "Keep the actual point value f(a) inside the derivative calculation."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
@@ -139,8 +140,8 @@
       ],
       "requiredOwnership": [
         "Construct the tangent line from f(a) and f'(a).",
-        "Interpret a derivative as an instantaneous rate with correct units.",
-        "Separate instantaneous rate from average level or average rate."
+        "Interpret a derivative as an instantaneous/local rate with correct units.",
+        "Separate a local derivative rate from an average level or average rate."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -178,7 +179,7 @@
       "requiredOwnership": [
         "Compare one-sided derivative limits at an interior point.",
         "Classify representative finite-derivative failure modes.",
-        "Distinguish an infinite/vertical tangent behavior from a finite derivative."
+        "Distinguish unbounded/vertical-tangent behavior from a finite derivative."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -254,7 +255,6 @@
       ],
       "requiredOwnership": [
         "Prove differentiability at a point implies continuity there.",
-        "Use discontinuity as a valid screen against differentiability.",
         "Give and justify a continuous but non-differentiable counterexample."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
@@ -291,7 +291,7 @@
         "M09 limit algebra"
       ],
       "requiredOwnership": [
-        "Derive the remainder form f(a+h)=f(a)+mh+r(h).",
+        "Put a concrete function into local-linear remainder form and identify its first-order coefficient.",
         "Use r(h)/h→0 as the first-order accuracy criterion.",
         "Recover the derivative coefficient from a local-linear expansion."
       ],
@@ -311,7 +311,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "Let m=f'(a) and define r(h)=f(a+h)-f(a)-mh. For h≠0, r(h)/h=[f(a+h)-f(a)]/h-m, which tends to 0. Conversely, if such an expansion holds with r(h)/h→0, then the difference quotient tends to m. Thus differentiability is exactly first-order local linearity in one variable.\nWorked example: f(x)=x² at a=1 gives f(1+h)=1+2h+h². Here m=2 and r(h)=h², so r(h)/h=h→0. The important claim is not merely r(h)→0; the error is negligible compared with h.\nGuided practice: at a=0, x³=0+0·h+h³. The scaled remainder h²→0, so the local-linear coefficient is 0 even though the function is nonlinear globally.",
+      "lesson": "Let m=f'(a) and define r(h)=f(a+h)-f(a)-mh. For h≠0, r(h)/h=[f(a+h)-f(a)]/h-m, which tends to 0. Conversely, if such an expansion holds with r(h)/h→0, then the difference quotient tends to m. Thus differentiability is exactly first-order local linearity in one variable.\nWorked example: f(x)=x² at a=1 gives f(1+h)=1+2h+h². Here m=2 and r(h)=h², so r(h)/h=h→0. The important claim is not merely r(h)→0; the error is negligible compared with h.\nGuided practice: at a=0, x³=0+0·h+h³. The scaled remainder h²→0, so the local-linear coefficient is 0 even though the function is nonlinear globally.\nNotation used later in M10: r(h)=o(h) as h→0 means exactly r(h)/h→0. In this module, little-o is only shorthand for that concrete remainder test; systematic asymptotic notation belongs to M12.",
       "main": "T22V3::ARC053::S07-M@1",
       "transfer": "T22V3::ARC053::S07-T@1"
     },
@@ -330,7 +330,7 @@
       ],
       "requiredOwnership": [
         "Construct the first-order approximation L(x)=f(a)+f'(a)(x-a).",
-        "Compare exact and first-order values in a case where both are available.",
+        "Compare exact and first-order values when both are available.",
         "State what r(h)/h→0 does and does not certify for a particular finite h."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
@@ -367,9 +367,9 @@
         "M09-S07 finite linear-combination limit laws"
       ],
       "requiredOwnership": [
-        "Derive derivative linearity from difference quotients.",
-        "Apply linearity to given differentiable functions.",
-        "Distinguish derivative linearity from unrelated algebraic rules such as products."
+        "Reconstruct derivative linearity from difference quotients and limit linearity.",
+        "Apply derivative linearity to given differentiable functions.",
+        "Use derivative linearity rather than function-value cancellation."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -406,9 +406,8 @@
         "M01 binomial/factorization algebra"
       ],
       "requiredOwnership": [
-        "Derive the positive-integer power rule from a difference quotient.",
-        "Explain structurally why the coefficient n appears.",
-        "Use the proved rule only within its established exponent scope."
+        "Reconstruct a positive-integer power derivative from first principles without assuming the power rule.",
+        "Explain structurally why the integer coefficient appears."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -483,7 +482,7 @@
         "M10-S09"
       ],
       "requiredOwnership": [
-        "Derive the product rule from exact increments/difference quotients.",
+        "Reconstruct the product rule from an exact increment expansion.",
         "Account for the cross-increment term at the correct order.",
         "Apply product differentiation without replacing it by f'g'."
       ],
@@ -503,7 +502,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "For differentiable f and g, subtract f(a)g(a) from f(a+h)g(a+h). One useful exact split is f(a+h)[g(a+h)-g(a)]+g(a)[f(a+h)-f(a)]. Divide by h and take limits. Differentiability gives continuity, so f(a+h)→f(a), yielding (fg)'(a)=f(a)g'(a)+g(a)f'(a).\nIn local-linear form, Δf=f'h+o(h) and Δg=g'h+o(h). The product increment has fΔg+gΔf+ΔfΔg; the last term is o(h), so it does not survive at first order.\nWorked example: for f=x² and g=x+1, (fg)'=2x(x+1)+x². Guided practice: compare this with the wrong expression (2x)(1) and identify the missing first-order contribution.",
+      "lesson": "For differentiable f and g, subtract f(a)g(a) from f(a+h)g(a+h). One useful exact split is f(a+h)[g(a+h)-g(a)]+g(a)[f(a+h)-f(a)]. Divide by h and take limits. Differentiability gives continuity, so f(a+h)→f(a), yielding (fg)'(a)=f(a)g'(a)+g(a)f'(a).\nUsing the S07 shorthand, Δf=f'h+o(h) and Δg=g'h+o(h), meaning each omitted remainder divided by h tends to 0. The product increment has fΔg+gΔf+ΔfΔg; the last term is o(h), so it does not survive at first order.\nWorked example: for f=x² and g=x+1, (fg)'=2x(x+1)+x². Guided practice: compare this with the wrong expression (2x)(1) and identify the missing first-order contribution.",
       "main": "T22V3::ARC053::S12-M@1",
       "transfer": "T22V3::ARC053::S12-T@1"
     },
@@ -522,9 +521,8 @@
         "M09-S08 quotient safety"
       ],
       "requiredOwnership": [
-        "Derive/use the reciprocal and quotient rules with denominator conditions.",
-        "Preserve the original domain after algebraic simplification.",
-        "Extend the power rule to negative integer exponents on their legal domain."
+        "Use the quotient rule with its nonzero-denominator condition.",
+        "Preserve the original function domain after algebraic simplification."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -561,9 +559,9 @@
         "M02 composition"
       ],
       "requiredOwnership": [
-        "Derive the one-variable chain rule from local first-order models.",
+        "Compose local first-order models to recover the chain-rule coefficient on a changed surface.",
         "Track the outer derivative at the inner function value.",
-        "Avoid a proof that requires dividing by a possibly zero inner increment."
+        "Explain why the local-model chain argument does not require a nonzero inner increment at every nearby point."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -581,7 +579,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "Let g(a+h)=g(a)+g'(a)h+r_g(h) with r_g(h)=o(h). If f is differentiable at g(a), then for k→0, f(g(a)+k)=f(g(a))+f'(g(a))k+r_f(k), with r_f(k)=o(k). Here k=g(a+h)-g(a)=O(h), so composing gives f(g(a+h))=f(g(a))+f'(g(a))g'(a)h+o(h). Therefore (f∘g)'(a)=f'(g(a))g'(a).\nThis proof never divides by g(a+h)-g(a), so it remains valid even if that inner increment is zero for some nearby h.\nWorked example: H(x)=(3x²+1)^4 has derivative 4(3x²+1)^3·6x. Guided practice: mark the inner evaluation point before differentiating (x³-2x)^5.",
+      "lesson": "Let g(a+h)=g(a)+g'(a)h+r_g(h), where r_g(h)=o(h), meaning r_g(h)/h→0. Put k(h)=g(a+h)-g(a). Then k(h)/h=g'(a)+r_g(h)/h→g'(a), so k(h)/h is bounded for all sufficiently small nonzero h and k(h)→0. If f is differentiable at b=g(a), write f(b+k)=f(b)+f'(b)k+r_f(k), where r_f(k)=o(k) means r_f(k)/k→0 as k→0.\nSubstitute k=k(h). The outer remainder divided by h is zero whenever k(h)=0; when k(h)≠0 it factors as [r_f(k(h))/k(h)]·[k(h)/h], which tends to 0 because the first factor tends to 0 and the second is bounded. Therefore f(g(a+h))=f(g(a))+f'(g(a))g'(a)h+o(h), so (f∘g)'(a)=f'(g(a))g'(a). This proof never assumes g(a+h)-g(a) is nonzero for every nearby h.\nWorked example: H(x)=(3x²+1)^4 has derivative 4(3x²+1)^3·6x. Guided practice: mark the inner evaluation point before differentiating (x³-2x)^5.",
       "main": "T22V3::ARC053::S14-M@1",
       "transfer": "T22V3::ARC053::S14-T@1"
     },
@@ -600,8 +598,8 @@
       ],
       "requiredOwnership": [
         "Differentiate a multi-layer scalar composition with every local factor present.",
-        "Audit the original domain before simplifying a nested derivative.",
-        "Diagnose a missing-factor or wrong-evaluation chain-rule error."
+        "Audit the original domain before evaluating a nested derivative.",
+        "Diagnose a missing chain factor and an illegal derivative evaluation."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -638,7 +636,7 @@
         "M10-S09"
       ],
       "requiredOwnership": [
-        "Derive a sine-or-cosine derivative from an angle-addition identity and M09 normalized trigonometric limits.",
+        "Reconstruct the cosine derivative proof from an angle-addition identity and M09 normalized trigonometric limits.",
         "Use the established sine/cosine derivatives inside a fresh linear combination.",
         "Explain why the normalized derivative derivation is radian-dependent."
       ],
@@ -677,8 +675,8 @@
         "M02 trigonometric domains"
       ],
       "requiredOwnership": [
-        "Derive at least one non-sine/cosine trig derivative from existing rules.",
-        "Apply trig derivative rules through a composition.",
+        "Use the established tan/sec/cot/csc derivative rules with correct signs.",
+        "Apply a non-sine/cosine trigonometric derivative through a composition.",
         "State the domain restrictions inherited from sine/cosine denominators."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
@@ -716,9 +714,9 @@
         "M02 inverse functions"
       ],
       "requiredOwnership": [
-        "State and prove the scoped inverse-derivative relation used here.",
+        "Apply the scoped inverse-derivative relation with its hypotheses visible.",
         "Evaluate an inverse derivative at the corresponding inverse point.",
-        "Respect branch choice and nonzero forward derivative."
+        "Respect branch choice and a nonzero forward derivative."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -755,8 +753,8 @@
         "M02 relations/functions"
       ],
       "requiredOwnership": [
-        "Apply the chain rule to an implicitly defined relation along a differentiable branch.",
-        "Solve for dy/dx only when the coefficient permits it.",
+        "Apply product/chain rules to an implicitly defined relation along an assumed differentiable branch.",
+        "Solve for dy/dx only when its coefficient is nonzero.",
         "Distinguish a computed local slope condition from proof that a differentiable branch exists."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
@@ -794,8 +792,8 @@
         "M09 limit laws"
       ],
       "requiredOwnership": [
-        "State the local normalization used for e^x.",
-        "Derive (e^x)'=e^x from that normalized zero-point limit.",
+        "State the adopted zero-point normalization for e^x.",
+        "Reconstruct (e^x)'=e^x from the normalization and the exponential law.",
         "Differentiate an exponential composition and interpret proportional rate."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
@@ -834,8 +832,8 @@
         "M02 logarithms"
       ],
       "requiredOwnership": [
-        "Derive (ln x)'=1/x on x>0 and extend to log_b.",
         "Derive (b^x)'=b^x ln b for b>0.",
+        "Derive (log_b x)' and recover (ln x)' with the required base/domain conditions.",
         "Use logarithmic differentiation with an explicit positive-domain condition."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
@@ -872,9 +870,9 @@
         "M10-S13–S21"
       ],
       "requiredOwnership": [
-        "Translate a derivative into a first-order output change with units.",
+        "Translate a derivative into a first-order output change and interpret it locally.",
         "Compute and interpret local elasticity when input/output values are nonzero.",
-        "Keep local sensitivity distinct from optimization or global monotonicity claims."
+        "Keep local sensitivity distinct from optimization or exact global claims."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -911,7 +909,7 @@
       "requiredOwnership": [
         "Diagnose derivative claims against the original domain and definition.",
         "Recognize differentiability at a point without assuming f' is continuous there.",
-        "Separate a correct formula on its domain from an illegal endpoint/restored-point claim."
+        "Separate a correct derivative formula on its domain from an illegal restored-point claim."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -946,8 +944,8 @@
         "M10-S01–S23"
       ],
       "requiredOwnership": [
-        "Choose between definition, algebraic rule and local-linear reasoning based on the structure.",
-        "Carry domain/hypothesis information through a multi-step derivative argument.",
+        "Integrate algebraic simplification, derivative rules and local-linear reasoning in one argument.",
+        "Carry domain and theorem hypotheses through a multi-step derivative argument.",
         "End with a justified first-order model while rejecting conclusions owned by later modules."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
@@ -1130,8 +1128,8 @@
       "id": "T22V3::ARC053::S12-M@1",
       "order": 12,
       "kind": "main",
-      "prompt": "Let P(x)=(x²+1)(x³-2). Use the product rule to find P'(1). Show the four quantities f(1),f'(1),g(1),g'(1) before combining them.",
-      "obligationVersion": 1
+      "prompt": "At a point a, let Δf=f(a+h)-f(a) and Δg=g(a+h)-g(a). Starting from [f(a)+Δf][g(a)+Δg]-f(a)g(a), divide by h and reconstruct the product rule, including why ΔfΔg/h→0 for differentiable f and g. Then apply the rule to P(x)=(x²+1)(x³-2) and find P'(1).",
+      "obligationVersion": 2
     },
     "T22V3::ARC053::S12-T@1": {
       "id": "T22V3::ARC053::S12-T@1",
@@ -1165,8 +1163,8 @@
       "id": "T22V3::ARC053::S14-T@1",
       "order": 14,
       "kind": "transfer",
-      "prompt": "Suppose p(a+h)=2+4h+o(h) and q(2+k)=9-3k+o(k). Without converting this into memorized prime notation first, compose the local models and determine the first-order coefficient of q(p(a+h)).",
-      "obligationVersion": 1
+      "prompt": "Suppose p(a+h)=2+4h+r_p(h) with r_p(h)/h→0, and q(2+k)=9-3k+r_q(k) with r_q(k)/k→0. Let k(h)=p(a+h)-2. Compose the two local models and determine the first-order coefficient of q(p(a+h)). Then explain why this argument does not require k(h)≠0 for every small nonzero h: show that k(h)/h stays bounded and state how values with k(h)=0 are handled.",
+      "obligationVersion": 2
     },
     "T22V3::ARC053::S15-M@1": {
       "id": "T22V3::ARC053::S15-M@1",
@@ -1179,8 +1177,8 @@
       "id": "T22V3::ARC053::S15-T@1",
       "order": 15,
       "kind": "transfer",
-      "prompt": "Differentiate G(x)=1/(x²-1)² on its original domain. Then audit the claim 'the derivative formula can be evaluated at x=1 after simplification because it is only a formula.'",
-      "obligationVersion": 1
+      "prompt": "On its original domain let G(x)=1/(x²-1)². Student A writes G'(x)=-2(x²-1)^(-3). Student B obtains the correct simplified derivative but says it can be evaluated at x=1 because a derivative is 'only a formula.' Diagnose both claims, give the correct derivative, and state the original domain.",
+      "obligationVersion": 2
     },
     "T22V3::ARC053::S16-M@1": {
       "id": "T22V3::ARC053::S16-M@1",
@@ -1242,8 +1240,8 @@
       "id": "T22V3::ARC053::S20-M@1",
       "order": 20,
       "kind": "main",
-      "prompt": "For F(x)=e^(2x²-x), find F'(1) and show the outer evaluation and inner derivative separately.",
-      "obligationVersion": 1
+      "prompt": "State the adopted zero-point normalization for the natural exponential. Then use it together with e^(x+h)=e^x e^h to reconstruct why (e^x)'=e^x. Finally, for F(x)=e^(2x²-x), find F'(1), showing the inner value and inner derivative.",
+      "obligationVersion": 2
     },
     "T22V3::ARC053::S20-T@1": {
       "id": "T22V3::ARC053::S20-T@1",
@@ -1256,8 +1254,8 @@
       "id": "T22V3::ARC053::S21-M@1",
       "order": 21,
       "kind": "main",
-      "prompt": "Fix b>0, b≠1. Starting from the identity b^{log_b x}=x for x>0 and the already established derivative of b^u, derive (log_b x)' without using the quotient ln x/ln b as your proof route. Then use your result and the chain rule to find the derivative at x=1 of G(x)=log_b(x²+1).",
-      "obligationVersion": 1
+      "prompt": "Fix b>0 with b≠1. (i) Starting from b^x=e^(x ln b), derive (b^x)'=b^x ln b. (ii) Starting from b^(log_b x)=x for x>0, derive (log_b x)'=1/(x ln b), and explain how the case b=e recovers (ln x)'=1/x. (iii) Use the logarithm derivative and the chain rule to find G'(1) for G(x)=log_b(x²+1).",
+      "obligationVersion": 2
     },
     "T22V3::ARC053::S21-T@1": {
       "id": "T22V3::ARC053::S21-T@1",
@@ -1707,19 +1705,23 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S12-M@1": {
-      "reference": "f(1)=2, f'(1)=2, g(1)=-1, g'(1)=3. Thus P'(1)=f'g+fg'=2(-1)+2(3)=4.",
+      "reference": "The exact increment is f(a)Δg+g(a)Δf+ΔfΔg. After division by h, the first two terms tend to f(a)g'(a)+g(a)f'(a). For the cross term, Δf/h→f'(a) while Δg→0 because differentiability implies continuity, so (ΔfΔg)/h=(Δf/h)Δg→0. Hence (fg)'(a)=f(a)g'(a)+g(a)f'(a). For P, f(1)=2, f'(1)=2, g(1)=-1 and g'(1)=3, so P'(1)=2(-1)+2(3)=4.",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "Correctly computes the two factor values and derivatives at 1."
+          "points": 2,
+          "criterion": "Expands the exact product increment into f(a)Δg+g(a)Δf+ΔfΔg and divides by h correctly."
         },
         {
           "points": 3,
-          "criterion": "Uses f'g+fg', not f'g'."
+          "criterion": "Justifies ΔfΔg/h→0 from a derivative-quotient limit together with continuity of the other increment."
         },
         {
-          "points": 4,
-          "criterion": "Obtains P'(1)=4."
+          "points": 2,
+          "criterion": "Concludes the product rule with both first-order terms present."
+        },
+        {
+          "points": 3,
+          "criterion": "Applies the reconstructed rule to obtain P'(1)=4."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -1797,19 +1799,23 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S14-T@1": {
-      "reference": "Here k=p(a+h)-2=4h+o(h). Then q(p(a+h))=9-3(4h+o(h))+o(k)=9-12h+o(h). The first-order coefficient, hence the derivative of q∘p at a, is -12.",
+      "reference": "Here k(h)=4h+r_p(h), so k(h)/h=4+r_p(h)/h→4; in particular k(h)/h is bounded and k(h)→0. Substitution gives q(p(a+h))=9-3[4h+r_p(h)]+r_q(k(h))=9-12h-3r_p(h)+r_q(k(h)). After subtracting 9-12h and dividing by h, the first remainder tends to 0. If k(h)≠0, r_q(k(h))/h=[r_q(k(h))/k(h)]·[k(h)/h]→0; if k(h)=0, the outer remainder is r_q(0)=0. Thus the first-order coefficient is -12, without assuming the inner increment is always nonzero.",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "Substitutes the inner local change into the outer local model."
+          "points": 2,
+          "criterion": "Defines k(h)=4h+r_p(h) and substitutes that inner change into the outer local model."
         },
         {
           "points": 3,
-          "criterion": "Controls the composed remainder at o(h) level."
+          "criterion": "Shows k(h)/h→4, hence the inner change divided by h is locally bounded."
         },
         {
-          "points": 4,
-          "criterion": "Finds the first-order coefficient -12."
+          "points": 3,
+          "criterion": "Controls r_q(k(h))/h and explicitly handles the case k(h)=0 rather than dividing by it unconditionally."
+        },
+        {
+          "points": 2,
+          "criterion": "Obtains the composed first-order coefficient -12."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -1833,19 +1839,23 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S15-T@1": {
-      "reference": "Write G=(x²-1)^{-2}. Then G'=-2(x²-1)^{-3}(2x)=-4x/(x²-1)^3 for x≠±1. The original function is undefined at ±1, so no derivative value exists there; a symbolic derivative cannot restore excluded inputs.",
+      "reference": "Student A omitted the inner derivative 2x. Writing G=(x²-1)^(-2), the chain rule gives G'=-2(x²-1)^(-3)(2x)=-4x/(x²-1)^3. The original domain is x≠±1. Student B's evaluation claim is false: the original function is undefined at x=1, so no derivative value exists there; simplification of a derivative formula cannot restore an excluded input.",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "Obtains -4x/(x²-1)^3 with the chain factor 2x."
+          "points": 2,
+          "criterion": "Identifies Student A's missing chain factor 2x."
         },
         {
           "points": 3,
+          "criterion": "Derives the correct derivative -4x/(x²-1)^3."
+        },
+        {
+          "points": 2,
           "criterion": "States the original domain x≠±1."
         },
         {
-          "points": 4,
-          "criterion": "Rejects evaluation at x=1 because derivative values require the original function to be defined locally there."
+          "points": 3,
+          "criterion": "Rejects Student B's evaluation at x=1 because the original function is undefined there."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -1995,19 +2005,23 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S20-M@1": {
-      "reference": "The inner function g=2x²-x has g(1)=1 and g'(1)=3. Thus F'(1)=e^1·3=3e.",
+      "reference": "The adopted normalization is lim(h→0)(e^h-1)/h=1. Then [e^(x+h)-e^x]/h=e^x[(e^h-1)/h]→e^x, so (e^x)'=e^x. For g(x)=2x²-x, g(1)=1 and g'(1)=3. The chain rule gives F'(1)=e^{g(1)}g'(1)=3e.",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "Computes the inner value g(1)=1."
+          "points": 2,
+          "criterion": "States the adopted normalization lim(h→0)(e^h-1)/h=1."
         },
         {
           "points": 3,
-          "criterion": "Computes the inner derivative g'(1)=3 and uses the chain rule."
+          "criterion": "Factors the exponential difference quotient and derives (e^x)'=e^x from the normalization."
         },
         {
-          "points": 4,
-          "criterion": "Obtains F'(1)=3e."
+          "points": 2,
+          "criterion": "Computes g(1)=1 and g'(1)=3 for the inner function."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the chain rule to obtain F'(1)=3e."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -2031,19 +2045,23 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S21-M@1": {
-      "reference": "Differentiate b^{log_b x}=x: b^{log_b x} ln b·(log_b x)'=1. Since b^{log_b x}=x, (log_b x)'=1/(x ln b). For G, G'(x)=2x/[(x²+1)ln b], so G'(1)=1/ln b.",
+      "reference": "From b^x=e^(x ln b), the chain rule gives (b^x)'=e^(x ln b)ln b=b^x ln b. Differentiate b^(log_b x)=x: b^(log_b x)ln b·(log_b x)'=1, so x ln b·(log_b x)'=1 and (log_b x)'=1/(x ln b) for x>0, b>0, b≠1. With b=e and ln e=1 this becomes (ln x)'=1/x. Finally G'(x)=2x/[(x²+1)ln b], hence G'(1)=1/ln b.",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "Derives (log_b x)'=1/(x ln b) from the inverse identity, with b>0,b≠1 and x>0."
+          "points": 2,
+          "criterion": "Derives (b^x)'=b^x ln b from b^x=e^(x ln b)."
         },
         {
           "points": 3,
-          "criterion": "Applies the chain rule to G(x)=log_b(x²+1)."
+          "criterion": "Derives (log_b x)'=1/(x ln b) from the inverse identity with b>0,b≠1 and x>0."
         },
         {
-          "points": 4,
-          "criterion": "Obtains G'(1)=1/ln b with the base condition retained."
+          "points": 2,
+          "criterion": "Recovers (ln x)'=1/x as the b=e case."
+        },
+        {
+          "points": 3,
+          "criterion": "Applies the chain rule to obtain G'(1)=1/ln b."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -2185,7 +2203,7 @@
         "transfer"
       ],
       [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::ARC053::S02@1": [
@@ -2193,8 +2211,7 @@
         "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -2217,7 +2234,6 @@
         "main"
       ],
       [
-        "main",
         "transfer"
       ],
       [
@@ -2241,10 +2257,6 @@
         "main"
       ],
       [
-        "main",
-        "transfer"
-      ],
-      [
         "transfer"
       ]
     ],
@@ -2265,10 +2277,10 @@
         "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
+        "main",
         "transfer"
       ]
     ],
@@ -2289,10 +2301,6 @@
         "main"
       ],
       [
-        "main",
-        "transfer"
-      ],
-      [
         "transfer"
       ]
     ],
@@ -2301,8 +2309,7 @@
         "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -2317,6 +2324,7 @@
         "transfer"
       ],
       [
+        "main",
         "transfer"
       ]
     ],
@@ -2327,18 +2335,14 @@
       [
         "main",
         "transfer"
-      ],
-      [
-        "transfer"
       ]
     ],
     "T22V3::ARC053::S14@1": [
       [
-        "main"
+        "transfer"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -2365,18 +2369,20 @@
         "transfer"
       ],
       [
+        "main",
         "transfer"
       ]
     ],
     "T22V3::ARC053::S17@1": [
       [
-        "main"
-      ],
-      [
         "main",
         "transfer"
       ],
       [
+        "main"
+      ],
+      [
+        "main",
         "transfer"
       ]
     ],
@@ -2389,18 +2395,21 @@
         "transfer"
       ],
       [
+        "main",
         "transfer"
       ]
     ],
     "T22V3::ARC053::S19@1": [
       [
-        "main"
+        "main",
+        "transfer"
       ],
       [
         "main",
         "transfer"
       ],
       [
+        "main",
         "transfer"
       ]
     ],
@@ -2409,10 +2418,10 @@
         "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
+        "main",
         "transfer"
       ]
     ],
@@ -2421,8 +2430,7 @@
         "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -2433,10 +2441,10 @@
         "main"
       ],
       [
-        "main",
         "transfer"
       ],
       [
+        "main",
         "transfer"
       ]
     ],
@@ -2445,11 +2453,10 @@
         "main"
       ],
       [
-        "main",
         "transfer"
       ],
       [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::ARC053::S24@1": [
@@ -2461,6 +2468,7 @@
         "transfer"
       ],
       [
+        "main",
         "transfer"
       ]
     ]
@@ -2468,11 +2476,12 @@
   "claimEvidence": {
     "T22V3::ARC053::S01@1": [
       {
-        "claim": "Distinguish average rate from instantaneous rate.",
+        "claim": "Compute and distinguish a finite average rate and its limiting instantaneous rate.",
         "task": "main",
         "publicRequest": "For s(t)=t²+2t, form the average rate from t=4 to t=4+h for h≠0, simplify it, and use an M09 limit to determine the instantaneous rate at t=4. Explain why your argument does not substitute h=0 into the original quotient.",
         "rubricEvidence": [
-          "Forms and simplifies the nonzero-interval quotient to 10+h."
+          "Forms and simplifies the nonzero-interval quotient to 10+h.",
+          "Uses the h→0 limit to obtain 10."
         ]
       },
       {
@@ -2480,35 +2489,37 @@
         "task": "main+transfer",
         "publicRequest": "For s(t)=t²+2t, form the average rate from t=4 to t=4+h for h≠0, simplify it, and use an M09 limit to determine the instantaneous rate at t=4. Explain why your argument does not substitute h=0 into the original quotient. | A temperature profile is T(x)=(x-1)²+5. From x=2 to x=2+h, construct the finite average change per unit distance, find its limiting local rate at x=2, and state what finite measurements alone would and would not prove.",
         "rubricEvidence": [
+          "Forms and simplifies the nonzero-interval quotient to 10+h.",
           "Uses the h→0 limit to obtain 10.",
+          "Constructs the correct finite rate and obtains 2+h.",
           "Takes the limit and supplies units/interpretation."
         ]
       },
       {
         "claim": "Explain why h=0 is not substituted into the secant quotient.",
-        "task": "transfer",
-        "publicRequest": "A temperature profile is T(x)=(x-1)²+5. From x=2 to x=2+h, construct the finite average change per unit distance, find its limiting local rate at x=2, and state what finite measurements alone would and would not prove.",
+        "task": "main",
+        "publicRequest": "For s(t)=t²+2t, form the average rate from t=4 to t=4+h for h≠0, simplify it, and use an M09 limit to determine the instantaneous rate at t=4. Explain why your argument does not substitute h=0 into the original quotient.",
         "rubricEvidence": [
-          "Distinguishes finite numerical evidence from the limit argument."
+          "Explicitly separates taking a limit from substituting h=0 into the original quotient."
         ]
       }
     ],
     "T22V3::ARC053::S02@1": [
       {
-        "claim": "State and use the derivative definition at a point.",
+        "claim": "Use the derivative definition at a point in both x→a and h→0 forms.",
         "task": "main",
         "publicRequest": "For f(x)=x²-3x at a=5, compute f'(5) once using the x→5 difference quotient and once using the h→0 form. Show the algebra that makes the two answers agree.",
         "rubricEvidence": [
-          "Uses f(5)=10 and correctly simplifies the x→5 quotient."
+          "Uses f(5)=10 and correctly simplifies the x→5 quotient.",
+          "Correctly constructs and simplifies the h→0 quotient."
         ]
       },
       {
-        "claim": "Show the x→a and h→0 forms represent the same limit.",
-        "task": "main+transfer",
-        "publicRequest": "For f(x)=x²-3x at a=5, compute f'(5) once using the x→5 difference quotient and once using the h→0 form. Show the algebra that makes the two answers agree. | Define two functions that both equal x+2 when x≠2. Let g(2)=4 and k(2)=5. Determine whether g'(2) and k'(2) exist as finite derivatives. Explain why the nearby formulas being identical does not force the same answer.",
+        "claim": "Explain why the x→a and h→0 derivative forms are equivalent.",
+        "task": "main",
+        "publicRequest": "For f(x)=x²-3x at a=5, compute f'(5) once using the x→5 difference quotient and once using the h→0 form. Show the algebra that makes the two answers agree.",
         "rubricEvidence": [
-          "Correctly constructs and simplifies the h→0 quotient.",
-          "Shows k'(2) has no finite derivative."
+          "Obtains 7 in both forms and explains their equivalence."
         ]
       },
       {
@@ -2526,23 +2537,24 @@
         "task": "main",
         "publicRequest": "A particle has position s(t)=t³-2t metres. Compute s'(2) from the derivative definition or already established algebra, write the tangent line to the position graph at t=2, and interpret the derivative with units.",
         "rubricEvidence": [
-          "Obtains s'(2)=10 from valid derivative reasoning."
+          "Writes y=4+10(t-2)."
         ]
       },
       {
-        "claim": "Interpret a derivative as an instantaneous rate with correct units.",
+        "claim": "Interpret a derivative as an instantaneous/local rate with correct units.",
         "task": "main+transfer",
         "publicRequest": "A particle has position s(t)=t³-2t metres. Compute s'(2) from the derivative definition or already established algebra, write the tangent line to the position graph at t=2, and interpret the derivative with units. | A cost model is C(q)=0.5q²+10q+40 dollars. Find the local cost rate at q=20, give its units, and explain why it is not the same quantity as average cost C(20)/20.",
         "rubricEvidence": [
-          "Writes y=4+10(t-2).",
-          "Computes or correctly characterizes average cost as a different quantity."
+          "Interprets 10 with metres-per-second units and as an instantaneous rate.",
+          "Finds the local rate 30 dollars per unit."
         ]
       },
       {
-        "claim": "Separate instantaneous rate from average level or average rate.",
+        "claim": "Separate a local derivative rate from an average level or average rate.",
         "task": "transfer",
         "publicRequest": "A cost model is C(q)=0.5q²+10q+40 dollars. Find the local cost rate at q=20, give its units, and explain why it is not the same quantity as average cost C(20)/20.",
         "rubricEvidence": [
+          "Computes or correctly characterizes average cost as a different quantity.",
           "Explains local marginal change versus average level."
         ]
       }
@@ -2553,23 +2565,27 @@
         "task": "main",
         "publicRequest": "Let f(x)=x² for x≤1 and f(x)=2x-1 for x>1. Decide whether f'(1) exists. Compute both one-sided difference-quotient limits rather than relying on a graph.",
         "rubricEvidence": [
-          "Constructs the left derivative and gets 2."
+          "Constructs the left derivative and gets 2.",
+          "Constructs the right derivative and gets 2.",
+          "Concludes finite differentiability because the one-sided limits agree."
         ]
       },
       {
         "claim": "Classify representative finite-derivative failure modes.",
-        "task": "main+transfer",
-        "publicRequest": "Let f(x)=x² for x≤1 and f(x)=2x-1 for x>1. Decide whether f'(1) exists. Compute both one-sided difference-quotient limits rather than relying on a graph. | At x=3 compare f(x)=|x-3| and g(x)=(x-3)^(1/3). For each, analyze the derivative quotient and classify the failure. Explain why neither has a finite derivative at 3 even though the failures are different.",
-        "rubricEvidence": [
-          "Constructs the right derivative and gets 2.",
-          "Diagnoses unbounded quotient behavior for the cube-root shift."
-        ]
-      },
-      {
-        "claim": "Distinguish an infinite/vertical tangent behavior from a finite derivative.",
         "task": "transfer",
         "publicRequest": "At x=3 compare f(x)=|x-3| and g(x)=(x-3)^(1/3). For each, analyze the derivative quotient and classify the failure. Explain why neither has a finite derivative at 3 even though the failures are different.",
         "rubricEvidence": [
+          "Diagnoses the corner of |x-3| from unequal one-sided slopes.",
+          "Diagnoses unbounded quotient behavior for the cube-root shift.",
+          "States why both fail the finite-derivative definition without conflating the failure modes."
+        ]
+      },
+      {
+        "claim": "Distinguish unbounded/vertical-tangent behavior from a finite derivative.",
+        "task": "transfer",
+        "publicRequest": "At x=3 compare f(x)=|x-3| and g(x)=(x-3)^(1/3). For each, analyze the derivative quotient and classify the failure. Explain why neither has a finite derivative at 3 even though the failures are different.",
+        "rubricEvidence": [
+          "Diagnoses unbounded quotient behavior for the cube-root shift.",
           "States why both fail the finite-derivative definition without conflating the failure modes."
         ]
       }
@@ -2580,7 +2596,8 @@
         "task": "main",
         "publicRequest": "Starting from the difference-quotient definition, derive the derivative function of f(x)=x³-2x. State the domain of f and the domain of f'.",
         "rubricEvidence": [
-          "Expands and simplifies the pointwise difference quotient correctly."
+          "Expands and simplifies the pointwise difference quotient correctly.",
+          "Takes the limit to obtain f'(x)=3x²-2."
         ]
       },
       {
@@ -2588,8 +2605,9 @@
         "task": "main+transfer",
         "publicRequest": "Starting from the difference-quotient definition, derive the derivative function of f(x)=x³-2x. State the domain of f and the domain of f'. | For g(x)=|x-2|, determine g'(x) on every region where it exists and state dom(g'). Compare it with dom(g).",
         "rubricEvidence": [
-          "Takes the limit to obtain f'(x)=3x²-2.",
-          "Shows the derivative fails at 2."
+          "States dom(f)=R and dom(f')=R as separate claims.",
+          "Shows the derivative fails at 2.",
+          "Correctly distinguishes dom(g)=R from dom(g')=R\\{2}."
         ]
       },
       {
@@ -2607,16 +2625,9 @@
         "task": "main",
         "publicRequest": "Assume f'(a)=L exists as a finite number. Give a direct epsilon-delta proof that f is continuous at a by first using the derivative limit to bound the nearby difference quotient by some finite constant. Your proof must produce a delta for an arbitrary output tolerance ε>0.",
         "rubricEvidence": [
-          "Uses convergence of the derivative quotient to obtain a finite local bound such as |Q(h)|≤|L|+1."
-        ]
-      },
-      {
-        "claim": "Use discontinuity as a valid screen against differentiability.",
-        "task": "main+transfer",
-        "publicRequest": "Assume f'(a)=L exists as a finite number. Give a direct epsilon-delta proof that f is continuous at a by first using the derivative limit to bound the nearby difference quotient by some finite constant. Your proof must produce a delta for an arbitrary output tolerance ε>0. | Show that g(x)=|x|^(2/3) is continuous at 0 but has no finite derivative there. Use the difference quotient to identify the failure rather than citing a graph.",
-        "rubricEvidence": [
+          "Uses convergence of the derivative quotient to obtain a finite local bound such as |Q(h)|≤|L|+1.",
           "Chooses a delta depending on ε and the quotient bound, while retaining the neighborhood where that bound is valid.",
-          "Analyzes the signed derivative quotient and its unbounded one-sided behavior."
+          "Shows |f(a+h)-f(a)|<ε for all sufficiently small h and concludes continuity with correct quantifier direction."
         ]
       },
       {
@@ -2624,17 +2635,20 @@
         "task": "transfer",
         "publicRequest": "Show that g(x)=|x|^(2/3) is continuous at 0 but has no finite derivative there. Use the difference quotient to identify the failure rather than citing a graph.",
         "rubricEvidence": [
+          "Establishes continuity at 0.",
+          "Analyzes the signed derivative quotient and its unbounded one-sided behavior.",
           "Uses the example to refute the converse continuity⇒differentiability."
         ]
       }
     ],
     "T22V3::ARC053::S07@1": [
       {
-        "claim": "Derive the remainder form f(a+h)=f(a)+mh+r(h).",
+        "claim": "Put a concrete function into local-linear remainder form and identify its first-order coefficient.",
         "task": "main",
         "publicRequest": "For f(x)=x²+3x at a=2, write f(2+h) in the form f(2)+mh+r(h). Identify m and r(h), verify r(h)/h→0, and state f'(2).",
         "rubricEvidence": [
-          "Produces the exact expansion 10+7h+h²."
+          "Produces the exact expansion 10+7h+h².",
+          "Identifies m=7 and verifies r(h)/h→0."
         ]
       },
       {
@@ -2651,6 +2665,8 @@
         "task": "transfer",
         "publicRequest": "Near 0 a function is given exactly by F(h)=5+2h+h|h|. Show directly that it is differentiable at 0 by putting it into local-linear remainder form. What is F'(0)?",
         "rubricEvidence": [
+          "Identifies the first-order candidate 2.",
+          "Uses r(h)=h|h| and shows r(h)/h=|h|→0.",
           "Concludes differentiability and derivative 2 from the remainder criterion."
         ]
       }
@@ -2665,26 +2681,27 @@
         ]
       },
       {
-        "claim": "Compare exact and first-order values in a case where both are available.",
-        "task": "main+transfer",
-        "publicRequest": "Use the local linearization of f(x)=x³ at a=2 to estimate f(2.02). Then compute the exact value, the signed error exact-minus-linear, and identify the exact polynomial remainder in terms of h. Explain which part of the error knowledge is specific to this polynomial rather than guaranteed by differentiability alone. | A model satisfies F(100+h)=250+1.8h+r(h), with r(h)/h→0. Give the first-order estimate for F(99.6), interpret the coefficient 1.8, and state whether the given information alone certifies the estimate to the nearest 0.01.",
+        "claim": "Compare exact and first-order values when both are available.",
+        "task": "main",
+        "publicRequest": "Use the local linearization of f(x)=x³ at a=2 to estimate f(2.02). Then compute the exact value, the signed error exact-minus-linear, and identify the exact polynomial remainder in terms of h. Explain which part of the error knowledge is specific to this polynomial rather than guaranteed by differentiability alone.",
         "rubricEvidence": [
-          "Computes exact 8.242408 and signed error 0.002408, with remainder 6h²+h³.",
-          "Interprets 1.8 as a local sensitivity with units."
+          "Builds the correct local line and obtains 8.24.",
+          "Computes exact 8.242408 and signed error 0.002408, with remainder 6h²+h³."
         ]
       },
       {
         "claim": "State what r(h)/h→0 does and does not certify for a particular finite h.",
-        "task": "transfer",
-        "publicRequest": "A model satisfies F(100+h)=250+1.8h+r(h), with r(h)/h→0. Give the first-order estimate for F(99.6), interpret the coefficient 1.8, and state whether the given information alone certifies the estimate to the nearest 0.01.",
+        "task": "main+transfer",
+        "publicRequest": "Use the local linearization of f(x)=x³ at a=2 to estimate f(2.02). Then compute the exact value, the signed error exact-minus-linear, and identify the exact polynomial remainder in terms of h. Explain which part of the error knowledge is specific to this polynomial rather than guaranteed by differentiability alone. | A model satisfies F(100+h)=250+1.8h+r(h), with r(h)/h→0. Give the first-order estimate for F(99.6), interpret the coefficient 1.8, and state whether the given information alone certifies the estimate to the nearest 0.01.",
         "rubricEvidence": [
+          "Separates the explicit cubic remainder from the generic o(h) guarantee.",
           "Correctly refuses an unsupported finite decimal-error guarantee."
         ]
       }
     ],
     "T22V3::ARC053::S09@1": [
       {
-        "claim": "Derive derivative linearity from difference quotients.",
+        "claim": "Reconstruct derivative linearity from difference quotients and limit linearity.",
         "task": "main",
         "publicRequest": "Suppose u and v are differentiable at x=2 with u'(2)=5 and v'(2)=-1. Derive the linear-combination rule briefly from difference quotients, then compute the derivative at 2 of W(x)=3u(x)-4v(x)+7.",
         "rubricEvidence": [
@@ -2692,16 +2709,18 @@
         ]
       },
       {
-        "claim": "Apply linearity to given differentiable functions.",
+        "claim": "Apply derivative linearity to given differentiable functions.",
         "task": "main+transfer",
         "publicRequest": "Suppose u and v are differentiable at x=2 with u'(2)=5 and v'(2)=-1. Derive the linear-combination rule briefly from difference quotients, then compute the derivative at 2 of W(x)=3u(x)-4v(x)+7. | At a point a, f'(a)=4 and g'(a)=6. Choose nonzero constants α and β so H=αf+βg has H'(a)=0, and justify the condition rather than guessing.",
         "rubricEvidence": [
-          "Handles the constant term as derivative zero.",
-          "Provides a valid nontrivial pair such as (3,-2)."
+          "Computes W'(2)=19.",
+          "Sets up the derivative condition 4α+6β=0.",
+          "Provides a valid nontrivial pair such as (3,-2).",
+          "Uses derivative linearity, not function-value cancellation, to justify the choice."
         ]
       },
       {
-        "claim": "Distinguish derivative linearity from unrelated algebraic rules such as products.",
+        "claim": "Use derivative linearity rather than function-value cancellation.",
         "task": "transfer",
         "publicRequest": "At a point a, f'(a)=4 and g'(a)=6. Choose nonzero constants α and β so H=αf+βg has H'(a)=0, and justify the condition rather than guessing.",
         "rubricEvidence": [
@@ -2711,27 +2730,21 @@
     ],
     "T22V3::ARC053::S10@1": [
       {
-        "claim": "Derive the positive-integer power rule from a difference quotient.",
+        "claim": "Reconstruct a positive-integer power derivative from first principles without assuming the power rule.",
         "task": "main",
         "publicRequest": "Derive the derivative of x^5 at an arbitrary real x from the difference quotient. Your work must expose the terms after dividing by h; then evaluate the derivative at x=2.",
         "rubricEvidence": [
-          "Expands/divides the difference quotient correctly."
+          "Expands/divides the difference quotient correctly.",
+          "Takes the limit to obtain 5x^4 without quoting the rule as a premise."
         ]
       },
       {
-        "claim": "Explain structurally why the coefficient n appears.",
-        "task": "main+transfer",
-        "publicRequest": "Derive the derivative of x^5 at an arbitrary real x from the difference quotient. Your work must expose the terms after dividing by h; then evaluate the derivative at x=2. | Without citing the already-stated general power rule as your only justification, use the factorization u^6-v^6=(u-v)(u^5+u^4v+...+v^5) to compute the derivative of f(x)=x^6 at x=-1. Explain the appearance of six equal limiting contributions.",
-        "rubricEvidence": [
-          "Takes the limit to obtain 5x^4 without quoting the rule as a premise.",
-          "Identifies six contributions each tending to -1."
-        ]
-      },
-      {
-        "claim": "Use the proved rule only within its established exponent scope.",
+        "claim": "Explain structurally why the integer coefficient appears.",
         "task": "transfer",
         "publicRequest": "Without citing the already-stated general power rule as your only justification, use the factorization u^6-v^6=(u-v)(u^5+u^4v+...+v^5) to compute the derivative of f(x)=x^6 at x=-1. Explain the appearance of six equal limiting contributions.",
         "rubricEvidence": [
+          "Uses the sixth-power factorization to cancel the nonzero increment.",
+          "Identifies six contributions each tending to -1.",
           "Concludes f'(-1)=-6 and connects the coefficient to the structure."
         ]
       }
@@ -2742,16 +2755,16 @@
         "task": "main",
         "publicRequest": "Differentiate p(x)=4x^5-3x²+2x-9 using only rules already established, and evaluate p'(1).",
         "rubricEvidence": [
-          "Obtains p'(x)=20x^4-6x+2."
+          "Obtains p'(x)=20x^4-6x+2.",
+          "Attributes the calculation to derivative linearity plus the positive-integer power rule."
         ]
       },
       {
         "claim": "Evaluate a polynomial derivative at a point.",
-        "task": "main+transfer",
-        "publicRequest": "Differentiate p(x)=4x^5-3x²+2x-9 using only rules already established, and evaluate p'(1). | Let q(x)=a x³+b x+1. Find a and b if q'(1)=7 and q'(2)=19. Show the derivative constraints you solve.",
+        "task": "main",
+        "publicRequest": "Differentiate p(x)=4x^5-3x²+2x-9 using only rules already established, and evaluate p'(1).",
         "rubricEvidence": [
-          "Evaluates p'(1)=16.",
-          "Translates the two derivative conditions into the correct linear equations."
+          "Evaluates p'(1)=16."
         ]
       },
       {
@@ -2759,88 +2772,95 @@
         "task": "transfer",
         "publicRequest": "Let q(x)=a x³+b x+1. Find a and b if q'(1)=7 and q'(2)=19. Show the derivative constraints you solve.",
         "rubricEvidence": [
+          "Forms q'(x)=3ax²+b.",
+          "Translates the two derivative conditions into the correct linear equations.",
           "Solves a=4/3 and b=3."
         ]
       }
     ],
     "T22V3::ARC053::S12@1": [
       {
-        "claim": "Derive the product rule from exact increments/difference quotients.",
+        "claim": "Reconstruct the product rule from an exact increment expansion.",
         "task": "main",
-        "publicRequest": "Let P(x)=(x²+1)(x³-2). Use the product rule to find P'(1). Show the four quantities f(1),f'(1),g(1),g'(1) before combining them.",
+        "publicRequest": "At a point a, let Δf=f(a+h)-f(a) and Δg=g(a+h)-g(a). Starting from [f(a)+Δf][g(a)+Δg]-f(a)g(a), divide by h and reconstruct the product rule, including why ΔfΔg/h→0 for differentiable f and g. Then apply the rule to P(x)=(x²+1)(x³-2) and find P'(1).",
         "rubricEvidence": [
-          "Correctly computes the two factor values and derivatives at 1."
+          "Expands the exact product increment into f(a)Δg+g(a)Δf+ΔfΔg and divides by h correctly.",
+          "Justifies ΔfΔg/h→0 from a derivative-quotient limit together with continuity of the other increment.",
+          "Concludes the product rule with both first-order terms present."
         ]
       },
       {
         "claim": "Account for the cross-increment term at the correct order.",
         "task": "main+transfer",
-        "publicRequest": "Let P(x)=(x²+1)(x³-2). Use the product rule to find P'(1). Show the four quantities f(1),f'(1),g(1),g'(1) before combining them. | Near a point, f(a+h)=2+3h+o(h) and g(a+h)=-1+5h+o(h). Multiply the local models to first order and determine (fg)'(a). Explain why the product of the two first-order increments does not alter the derivative.",
+        "publicRequest": "At a point a, let Δf=f(a+h)-f(a) and Δg=g(a+h)-g(a). Starting from [f(a)+Δf][g(a)+Δg]-f(a)g(a), divide by h and reconstruct the product rule, including why ΔfΔg/h→0 for differentiable f and g. Then apply the rule to P(x)=(x²+1)(x³-2) and find P'(1). | Near a point, f(a+h)=2+3h+o(h) and g(a+h)=-1+5h+o(h). Multiply the local models to first order and determine (fg)'(a). Explain why the product of the two first-order increments does not alter the derivative.",
         "rubricEvidence": [
-          "Uses f'g+fg', not f'g'.",
+          "Justifies ΔfΔg/h→0 from a derivative-quotient limit together with continuity of the other increment.",
           "Treats h²/cross-remainder terms as negligible relative to h."
         ]
       },
       {
         "claim": "Apply product differentiation without replacing it by f'g'.",
-        "task": "transfer",
-        "publicRequest": "Near a point, f(a+h)=2+3h+o(h) and g(a+h)=-1+5h+o(h). Multiply the local models to first order and determine (fg)'(a). Explain why the product of the two first-order increments does not alter the derivative.",
+        "task": "main+transfer",
+        "publicRequest": "At a point a, let Δf=f(a+h)-f(a) and Δg=g(a+h)-g(a). Starting from [f(a)+Δf][g(a)+Δg]-f(a)g(a), divide by h and reconstruct the product rule, including why ΔfΔg/h→0 for differentiable f and g. Then apply the rule to P(x)=(x²+1)(x³-2) and find P'(1). | Near a point, f(a+h)=2+3h+o(h) and g(a+h)=-1+5h+o(h). Multiply the local models to first order and determine (fg)'(a). Explain why the product of the two first-order increments does not alter the derivative.",
         "rubricEvidence": [
+          "Concludes the product rule with both first-order terms present.",
+          "Applies the reconstructed rule to obtain P'(1)=4.",
+          "Multiplies the local models and identifies the coefficient 7.",
           "Concludes the product derivative from the first-order coefficient."
         ]
       }
     ],
     "T22V3::ARC053::S13@1": [
       {
-        "claim": "Derive/use the reciprocal and quotient rules with denominator conditions.",
+        "claim": "Use the quotient rule with its nonzero-denominator condition.",
         "task": "main",
         "publicRequest": "For R(x)=(x²+3)/(2x-1), compute R'(2) and state the domain on which the quotient-rule derivative is justified.",
         "rubricEvidence": [
-          "Uses the quotient rule with the correct factor placement."
+          "Uses the quotient rule with the correct factor placement.",
+          "States the original denominator restriction x≠1/2."
         ]
       },
       {
-        "claim": "Preserve the original domain after algebraic simplification.",
+        "claim": "Preserve the original function domain after algebraic simplification.",
         "task": "main+transfer",
         "publicRequest": "For R(x)=(x²+3)/(2x-1), compute R'(2) and state the domain on which the quotient-rule derivative is justified. | Let F(x)=(x²-1)/(x-1) with original domain x≠1. Simplify F on its domain and find F'(x) there. Does F'(1) exist for this original function? Then state what changes if a new function is defined by filling F(1)=2.",
         "rubricEvidence": [
-          "Obtains R'(2)=-2/9.",
-          "Rejects an original derivative value at x=1 because the function is undefined."
-        ]
-      },
-      {
-        "claim": "Extend the power rule to negative integer exponents on their legal domain.",
-        "task": "transfer",
-        "publicRequest": "Let F(x)=(x²-1)/(x-1) with original domain x≠1. Simplify F on its domain and find F'(x) there. Does F'(1) exist for this original function? Then state what changes if a new function is defined by filling F(1)=2.",
-        "rubricEvidence": [
+          "States the original denominator restriction x≠1/2.",
+          "Simplifies only on the legal domain and obtains derivative 1 there.",
+          "Rejects an original derivative value at x=1 because the function is undefined.",
           "Correctly distinguishes the separately defined continuous extension and its derivative."
         ]
       }
     ],
     "T22V3::ARC053::S14@1": [
       {
-        "claim": "Derive the one-variable chain rule from local first-order models.",
-        "task": "main",
-        "publicRequest": "Let H(x)=(2x²-3x+4)^3. Use the chain rule with explicit inner and outer functions, and find H'(1).",
+        "claim": "Compose local first-order models to recover the chain-rule coefficient on a changed surface.",
+        "task": "transfer",
+        "publicRequest": "Suppose p(a+h)=2+4h+r_p(h) with r_p(h)/h→0, and q(2+k)=9-3k+r_q(k) with r_q(k)/k→0. Let k(h)=p(a+h)-2. Compose the two local models and determine the first-order coefficient of q(p(a+h)). Then explain why this argument does not require k(h)≠0 for every small nonzero h: show that k(h)/h stays bounded and state how values with k(h)=0 are handled.",
         "rubricEvidence": [
-          "Identifies the composition and correct evaluation point."
+          "Defines k(h)=4h+r_p(h) and substitutes that inner change into the outer local model.",
+          "Shows k(h)/h→4, hence the inner change divided by h is locally bounded.",
+          "Controls r_q(k(h))/h and explicitly handles the case k(h)=0 rather than dividing by it unconditionally.",
+          "Obtains the composed first-order coefficient -12."
         ]
       },
       {
         "claim": "Track the outer derivative at the inner function value.",
-        "task": "main+transfer",
-        "publicRequest": "Let H(x)=(2x²-3x+4)^3. Use the chain rule with explicit inner and outer functions, and find H'(1). | Suppose p(a+h)=2+4h+o(h) and q(2+k)=9-3k+o(k). Without converting this into memorized prime notation first, compose the local models and determine the first-order coefficient of q(p(a+h)).",
+        "task": "main",
+        "publicRequest": "Let H(x)=(2x²-3x+4)^3. Use the chain rule with explicit inner and outer functions, and find H'(1).",
         "rubricEvidence": [
+          "Identifies the composition and correct evaluation point.",
           "Computes the inner derivative at 1 and outer derivative at 3.",
-          "Controls the composed remainder at o(h) level."
+          "Obtains H'(1)=27 by multiplying local scale factors."
         ]
       },
       {
-        "claim": "Avoid a proof that requires dividing by a possibly zero inner increment.",
+        "claim": "Explain why the local-model chain argument does not require a nonzero inner increment at every nearby point.",
         "task": "transfer",
-        "publicRequest": "Suppose p(a+h)=2+4h+o(h) and q(2+k)=9-3k+o(k). Without converting this into memorized prime notation first, compose the local models and determine the first-order coefficient of q(p(a+h)).",
+        "publicRequest": "Suppose p(a+h)=2+4h+r_p(h) with r_p(h)/h→0, and q(2+k)=9-3k+r_q(k) with r_q(k)/k→0. Let k(h)=p(a+h)-2. Compose the two local models and determine the first-order coefficient of q(p(a+h)). Then explain why this argument does not require k(h)≠0 for every small nonzero h: show that k(h)/h stays bounded and state how values with k(h)=0 are handled.",
         "rubricEvidence": [
-          "Finds the first-order coefficient -12."
+          "Shows k(h)/h→4, hence the inner change divided by h is locally bounded.",
+          "Controls r_q(k(h))/h and explicitly handles the case k(h)=0 rather than dividing by it unconditionally."
         ]
       }
     ],
@@ -2850,30 +2870,34 @@
         "task": "main",
         "publicRequest": "For F(x)=[1+(x-1)²]³, compute F'(2) by naming intermediate quantities and their evaluation points. State the original real domain and explain why there is no hidden denominator restriction.",
         "rubricEvidence": [
-          "Tracks the nested variables and evaluation points correctly."
+          "Tracks the nested variables and evaluation points correctly.",
+          "Multiplies every chain factor and obtains F'(2)=24."
         ]
       },
       {
-        "claim": "Audit the original domain before simplifying a nested derivative.",
+        "claim": "Audit the original domain before evaluating a nested derivative.",
         "task": "main+transfer",
-        "publicRequest": "For F(x)=[1+(x-1)²]³, compute F'(2) by naming intermediate quantities and their evaluation points. State the original real domain and explain why there is no hidden denominator restriction. | Differentiate G(x)=1/(x²-1)² on its original domain. Then audit the claim 'the derivative formula can be evaluated at x=1 after simplification because it is only a formula.'",
+        "publicRequest": "For F(x)=[1+(x-1)²]³, compute F'(2) by naming intermediate quantities and their evaluation points. State the original real domain and explain why there is no hidden denominator restriction. | On its original domain let G(x)=1/(x²-1)². Student A writes G'(x)=-2(x²-1)^(-3). Student B obtains the correct simplified derivative but says it can be evaluated at x=1 because a derivative is 'only a formula.' Diagnose both claims, give the correct derivative, and state the original domain.",
         "rubricEvidence": [
-          "Multiplies every chain factor and obtains F'(2)=24.",
-          "States the original domain x≠±1."
+          "States the original domain R and correctly finds no denominator restriction.",
+          "States the original domain x≠±1.",
+          "Rejects Student B's evaluation at x=1 because the original function is undefined there."
         ]
       },
       {
-        "claim": "Diagnose a missing-factor or wrong-evaluation chain-rule error.",
+        "claim": "Diagnose a missing chain factor and an illegal derivative evaluation.",
         "task": "transfer",
-        "publicRequest": "Differentiate G(x)=1/(x²-1)² on its original domain. Then audit the claim 'the derivative formula can be evaluated at x=1 after simplification because it is only a formula.'",
+        "publicRequest": "On its original domain let G(x)=1/(x²-1)². Student A writes G'(x)=-2(x²-1)^(-3). Student B obtains the correct simplified derivative but says it can be evaluated at x=1 because a derivative is 'only a formula.' Diagnose both claims, give the correct derivative, and state the original domain.",
         "rubricEvidence": [
-          "Rejects evaluation at x=1 because derivative values require the original function to be defined locally there."
+          "Identifies Student A's missing chain factor 2x.",
+          "Derives the correct derivative -4x/(x²-1)^3.",
+          "Rejects Student B's evaluation at x=1 because the original function is undefined there."
         ]
       }
     ],
     "T22V3::ARC053::S16@1": [
       {
-        "claim": "Derive a sine-or-cosine derivative from an angle-addition identity and M09 normalized trigonometric limits.",
+        "claim": "Reconstruct the cosine derivative proof from an angle-addition identity and M09 normalized trigonometric limits.",
         "task": "main",
         "publicRequest": "Starting from cos(x+h)=cos x cos h-sin x sin h, complete the derivative proof for cos x using M09's two normalized trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x. Finally state why this derivation is normalized for radians rather than degree measure.",
         "rubricEvidence": [
@@ -2886,21 +2910,32 @@
         "publicRequest": "Starting from cos(x+h)=cos x cos h-sin x sin h, complete the derivative proof for cos x using M09's two normalized trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x. Finally state why this derivation is normalized for radians rather than degree measure. | For H(x)=2sin x-3cos x, derive H'(0) from the established sine/cosine derivatives, then explain how the result would be rescaled if the input variable represented degrees rather than radians.",
         "rubricEvidence": [
           "Uses both established trig derivatives to obtain -1 at x=π/2.",
+          "Differentiates the fresh linear combination correctly.",
           "Evaluates the radian-input derivative at 0 as 2."
         ]
       },
       {
         "claim": "Explain why the normalized derivative derivation is radian-dependent.",
-        "task": "transfer",
-        "publicRequest": "For H(x)=2sin x-3cos x, derive H'(0) from the established sine/cosine derivatives, then explain how the result would be rescaled if the input variable represented degrees rather than radians.",
+        "task": "main+transfer",
+        "publicRequest": "Starting from cos(x+h)=cos x cos h-sin x sin h, complete the derivative proof for cos x using M09's two normalized trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x. Finally state why this derivation is normalized for radians rather than degree measure. | For H(x)=2sin x-3cos x, derive H'(0) from the established sine/cosine derivatives, then explain how the result would be rescaled if the input variable represented degrees rather than radians.",
         "rubricEvidence": [
+          "Identifies the radian normalization as essential rather than treating angle units as irrelevant.",
           "Accounts for the π/180 conversion factor for a degree-valued input."
         ]
       }
     ],
     "T22V3::ARC053::S17@1": [
       {
-        "claim": "Derive at least one non-sine/cosine trig derivative from existing rules.",
+        "claim": "Use the established tan/sec/cot/csc derivative rules with correct signs.",
+        "task": "main+transfer",
+        "publicRequest": "Differentiate F(x)=tan(3x)+2sec x, state the domain conditions for the original expression, and evaluate F'(0). | Differentiate G(x)=cot x-csc x on its original domain and evaluate G'(π/2). Show how the quotient/reciprocal structure fixes the signs.",
+        "rubricEvidence": [
+          "Keeps the chain factor 3 in the tangent term and differentiates sec correctly.",
+          "Obtains -csc²x+csc x cot x with correct signs."
+        ]
+      },
+      {
+        "claim": "Apply a non-sine/cosine trigonometric derivative through a composition.",
         "task": "main",
         "publicRequest": "Differentiate F(x)=tan(3x)+2sec x, state the domain conditions for the original expression, and evaluate F'(0).",
         "rubricEvidence": [
@@ -2908,30 +2943,23 @@
         ]
       },
       {
-        "claim": "Apply trig derivative rules through a composition.",
+        "claim": "State the domain restrictions inherited from sine/cosine denominators.",
         "task": "main+transfer",
         "publicRequest": "Differentiate F(x)=tan(3x)+2sec x, state the domain conditions for the original expression, and evaluate F'(0). | Differentiate G(x)=cot x-csc x on its original domain and evaluate G'(π/2). Show how the quotient/reciprocal structure fixes the signs.",
         "rubricEvidence": [
           "States both cosine-based domain restrictions.",
           "States sin x≠0 as the original-domain condition."
         ]
-      },
-      {
-        "claim": "State the domain restrictions inherited from sine/cosine denominators.",
-        "task": "transfer",
-        "publicRequest": "Differentiate G(x)=cot x-csc x on its original domain and evaluate G'(π/2). Show how the quotient/reciprocal structure fixes the signs.",
-        "rubricEvidence": [
-          "Evaluates G'(π/2)=-1."
-        ]
       }
     ],
     "T22V3::ARC053::S18@1": [
       {
-        "claim": "State and prove the scoped inverse-derivative relation used here.",
+        "claim": "Apply the scoped inverse-derivative relation with its hypotheses visible.",
         "task": "main",
         "publicRequest": "A differentiable one-to-one function f has f(1)=2 and f'(1)=4. Its inverse g is continuous near 2. Use the inverse-derivative argument to find g'(2), naming the nonzero quantity that makes the reciprocal limit legal.",
         "rubricEvidence": [
-          "Matches the inverse point g(2)=1 correctly."
+          "Identifies f'(1)=4≠0 as the reciprocal-limit condition.",
+          "Concludes g'(2)=1/4 from the inverse quotient, not from an unqualified slogan."
         ]
       },
       {
@@ -2939,30 +2967,35 @@
         "task": "main+transfer",
         "publicRequest": "A differentiable one-to-one function f has f(1)=2 and f'(1)=4. Its inverse g is continuous near 2. Use the inverse-derivative argument to find g'(2), naming the nonzero quantity that makes the reciprocal limit legal. | Consider f(x)=x² on the branch x≤0 and its inverse g(y)=-sqrt(y) for y≥0. Find g'(9) from the forward derivative at the correct branch point, and contrast the sign with the positive-root branch.",
         "rubricEvidence": [
-          "Identifies f'(1)=4≠0 as the reciprocal-limit condition.",
+          "Matches the inverse point g(2)=1 correctly.",
+          "Concludes g'(2)=1/4 from the inverse quotient, not from an unqualified slogan.",
+          "Uses the correct inverse point -3 for the chosen branch.",
           "Computes the reciprocal derivative -1/6."
         ]
       },
       {
-        "claim": "Respect branch choice and nonzero forward derivative.",
-        "task": "transfer",
-        "publicRequest": "Consider f(x)=x² on the branch x≤0 and its inverse g(y)=-sqrt(y) for y≥0. Find g'(9) from the forward derivative at the correct branch point, and contrast the sign with the positive-root branch.",
+        "claim": "Respect branch choice and a nonzero forward derivative.",
+        "task": "main+transfer",
+        "publicRequest": "A differentiable one-to-one function f has f(1)=2 and f'(1)=4. Its inverse g is continuous near 2. Use the inverse-derivative argument to find g'(2), naming the nonzero quantity that makes the reciprocal limit legal. | Consider f(x)=x² on the branch x≤0 and its inverse g(y)=-sqrt(y) for y≥0. Find g'(9) from the forward derivative at the correct branch point, and contrast the sign with the positive-root branch.",
         "rubricEvidence": [
+          "Identifies f'(1)=4≠0 as the reciprocal-limit condition.",
+          "Uses the correct inverse point -3 for the chosen branch.",
           "Explains why the other branch has the opposite sign rather than treating x² as globally invertible."
         ]
       }
     ],
     "T22V3::ARC053::S19@1": [
       {
-        "claim": "Apply the chain rule to an implicitly defined relation along a differentiable branch.",
-        "task": "main",
-        "publicRequest": "Assume a differentiable local branch y(x) satisfies x³+xy+y²=7 near the point (1,2). Derive y' and evaluate it at (1,2). State the coefficient that must be nonzero when you solve for y', and explain what the calculation does not prove.",
+        "claim": "Apply product/chain rules to an implicitly defined relation along an assumed differentiable branch.",
+        "task": "main+transfer",
+        "publicRequest": "Assume a differentiable local branch y(x) satisfies x³+xy+y²=7 near the point (1,2). Derive y' and evaluate it at (1,2). State the coefficient that must be nonzero when you solve for y', and explain what the calculation does not prove. | Along a differentiable local branch satisfying xy+y³=3 at the point (2,1), find y'. State explicitly what coefficient must be nonzero for your solved expression and what your calculation does not prove.",
         "rubricEvidence": [
-          "Uses product and chain rules to obtain the correct differentiated relation."
+          "Uses product and chain rules to obtain the correct differentiated relation.",
+          "Uses the chain rule on y³ and the product rule on xy."
         ]
       },
       {
-        "claim": "Solve for dy/dx only when the coefficient permits it.",
+        "claim": "Solve for dy/dx only when its coefficient is nonzero.",
         "task": "main+transfer",
         "publicRequest": "Assume a differentiable local branch y(x) satisfies x³+xy+y²=7 near the point (1,2). Derive y' and evaluate it at (1,2). State the coefficient that must be nonzero when you solve for y', and explain what the calculation does not prove. | Along a differentiable local branch satisfying xy+y³=3 at the point (2,1), find y'. State explicitly what coefficient must be nonzero for your solved expression and what your calculation does not prove.",
         "rubricEvidence": [
@@ -2972,56 +3005,61 @@
       },
       {
         "claim": "Distinguish a computed local slope condition from proof that a differentiable branch exists.",
-        "task": "transfer",
-        "publicRequest": "Along a differentiable local branch satisfying xy+y³=3 at the point (2,1), find y'. State explicitly what coefficient must be nonzero for your solved expression and what your calculation does not prove.",
+        "task": "main+transfer",
+        "publicRequest": "Assume a differentiable local branch y(x) satisfies x³+xy+y²=7 near the point (1,2). Derive y' and evaluate it at (1,2). State the coefficient that must be nonzero when you solve for y', and explain what the calculation does not prove. | Along a differentiable local branch satisfying xy+y³=3 at the point (2,1), find y'. State explicitly what coefficient must be nonzero for your solved expression and what your calculation does not prove.",
         "rubricEvidence": [
+          "Separates the conditional slope calculation from a branch-existence/global-function theorem.",
           "Separates conditional slope calculation from a branch-existence theorem."
         ]
       }
     ],
     "T22V3::ARC053::S20@1": [
       {
-        "claim": "State the local normalization used for e^x.",
+        "claim": "State the adopted zero-point normalization for e^x.",
         "task": "main",
-        "publicRequest": "For F(x)=e^(2x²-x), find F'(1) and show the outer evaluation and inner derivative separately.",
+        "publicRequest": "State the adopted zero-point normalization for the natural exponential. Then use it together with e^(x+h)=e^x e^h to reconstruct why (e^x)'=e^x. Finally, for F(x)=e^(2x²-x), find F'(1), showing the inner value and inner derivative.",
         "rubricEvidence": [
-          "Computes the inner value g(1)=1."
+          "States the adopted normalization lim(h→0)(e^h-1)/h=1."
         ]
       },
       {
-        "claim": "Derive (e^x)'=e^x from that normalized zero-point limit.",
-        "task": "main+transfer",
-        "publicRequest": "For F(x)=e^(2x²-x), find F'(1) and show the outer evaluation and inner derivative separately. | A(t)=500e^(-0.04t). Find A'(t), evaluate A'(0), and compute A'(t)/A(t). Interpret the last quantity and give its units.",
+        "claim": "Reconstruct (e^x)'=e^x from the normalization and the exponential law.",
+        "task": "main",
+        "publicRequest": "State the adopted zero-point normalization for the natural exponential. Then use it together with e^(x+h)=e^x e^h to reconstruct why (e^x)'=e^x. Finally, for F(x)=e^(2x²-x), find F'(1), showing the inner value and inner derivative.",
         "rubricEvidence": [
-          "Computes the inner derivative g'(1)=3 and uses the chain rule.",
-          "Evaluates A'(0)=-20 with rate units."
+          "States the adopted normalization lim(h→0)(e^h-1)/h=1.",
+          "Factors the exponential difference quotient and derives (e^x)'=e^x from the normalization."
         ]
       },
       {
         "claim": "Differentiate an exponential composition and interpret proportional rate.",
-        "task": "transfer",
-        "publicRequest": "A(t)=500e^(-0.04t). Find A'(t), evaluate A'(0), and compute A'(t)/A(t). Interpret the last quantity and give its units.",
+        "task": "main+transfer",
+        "publicRequest": "State the adopted zero-point normalization for the natural exponential. Then use it together with e^(x+h)=e^x e^h to reconstruct why (e^x)'=e^x. Finally, for F(x)=e^(2x²-x), find F'(1), showing the inner value and inner derivative. | A(t)=500e^(-0.04t). Find A'(t), evaluate A'(0), and compute A'(t)/A(t). Interpret the last quantity and give its units.",
         "rubricEvidence": [
+          "Computes g(1)=1 and g'(1)=3 for the inner function.",
+          "Uses the chain rule to obtain F'(1)=3e.",
+          "Differentiates to A'=-20e^(-0.04t).",
+          "Evaluates A'(0)=-20 with rate units.",
           "Finds and interprets A'/A=-0.04 per time-unit."
         ]
       }
     ],
     "T22V3::ARC053::S21@1": [
       {
-        "claim": "Derive (ln x)'=1/x on x>0 and extend to log_b.",
+        "claim": "Derive (b^x)'=b^x ln b for b>0.",
         "task": "main",
-        "publicRequest": "Fix b>0, b≠1. Starting from the identity b^{log_b x}=x for x>0 and the already established derivative of b^u, derive (log_b x)' without using the quotient ln x/ln b as your proof route. Then use your result and the chain rule to find the derivative at x=1 of G(x)=log_b(x²+1).",
+        "publicRequest": "Fix b>0 with b≠1. (i) Starting from b^x=e^(x ln b), derive (b^x)'=b^x ln b. (ii) Starting from b^(log_b x)=x for x>0, derive (log_b x)'=1/(x ln b), and explain how the case b=e recovers (ln x)'=1/x. (iii) Use the logarithm derivative and the chain rule to find G'(1) for G(x)=log_b(x²+1).",
         "rubricEvidence": [
-          "Derives (log_b x)'=1/(x ln b) from the inverse identity, with b>0,b≠1 and x>0."
+          "Derives (b^x)'=b^x ln b from b^x=e^(x ln b)."
         ]
       },
       {
-        "claim": "Derive (b^x)'=b^x ln b for b>0.",
-        "task": "main+transfer",
-        "publicRequest": "Fix b>0, b≠1. Starting from the identity b^{log_b x}=x for x>0 and the already established derivative of b^u, derive (log_b x)' without using the quotient ln x/ln b as your proof route. Then use your result and the chain rule to find the derivative at x=1 of G(x)=log_b(x²+1). | For x>-1 define y=(x+1)^x, which is positive. Use logarithmic differentiation to find y'(1).",
+        "claim": "Derive (log_b x)' and recover (ln x)' with the required base/domain conditions.",
+        "task": "main",
+        "publicRequest": "Fix b>0 with b≠1. (i) Starting from b^x=e^(x ln b), derive (b^x)'=b^x ln b. (ii) Starting from b^(log_b x)=x for x>0, derive (log_b x)'=1/(x ln b), and explain how the case b=e recovers (ln x)'=1/x. (iii) Use the logarithm derivative and the chain rule to find G'(1) for G(x)=log_b(x²+1).",
         "rubricEvidence": [
-          "Applies the chain rule to G(x)=log_b(x²+1).",
-          "Differentiates the logarithmic identity with the product and chain factors."
+          "Derives (log_b x)'=1/(x ln b) from the inverse identity with b>0,b≠1 and x>0.",
+          "Recovers (ln x)'=1/x as the b=e case."
         ]
       },
       {
@@ -3029,33 +3067,36 @@
         "task": "transfer",
         "publicRequest": "For x>-1 define y=(x+1)^x, which is positive. Use logarithmic differentiation to find y'(1).",
         "rubricEvidence": [
+          "Uses positivity and writes ln y=x ln(x+1).",
+          "Differentiates the logarithmic identity with the product and chain factors.",
           "Evaluates y'(1)=2ln2+1."
         ]
       }
     ],
     "T22V3::ARC053::S22@1": [
       {
-        "claim": "Translate a derivative into a first-order output change with units.",
+        "claim": "Translate a derivative into a first-order output change and interpret it locally.",
         "task": "main",
         "publicRequest": "Revenue is R(p)=p(100-2p). At p=20, compute R, R', the first-order change predicted by Δp=0.5, and the local elasticity E=pR'/R. Interpret the derivative without making an optimization claim.",
         "rubricEvidence": [
-          "Computes R(20)=1200 and R'(20)=20."
+          "Uses ΔR≈10 for Δp=0.5 with correct local interpretation."
         ]
       },
       {
         "claim": "Compute and interpret local elasticity when input/output values are nonzero.",
-        "task": "main+transfer",
-        "publicRequest": "Revenue is R(p)=p(100-2p). At p=20, compute R, R', the first-order change predicted by Δp=0.5, and the local elasticity E=pR'/R. Interpret the derivative without making an optimization claim. | For Q(x)=(x²+1)/(x+2), compute Q(1), Q'(1), and the elasticity xQ'/Q at x=1. Translate the elasticity into a first-order percentage statement.",
-        "rubricEvidence": [
-          "Uses ΔR≈10 for Δp=0.5 with correct local interpretation.",
-          "Computes elasticity 2/3."
-        ]
-      },
-      {
-        "claim": "Keep local sensitivity distinct from optimization or global monotonicity claims.",
         "task": "transfer",
         "publicRequest": "For Q(x)=(x²+1)/(x+2), compute Q(1), Q'(1), and the elasticity xQ'/Q at x=1. Translate the elasticity into a first-order percentage statement.",
         "rubricEvidence": [
+          "Computes elasticity 2/3.",
+          "States the percentage interpretation as local/first-order rather than exact global behavior."
+        ]
+      },
+      {
+        "claim": "Keep local sensitivity distinct from optimization or exact global claims.",
+        "task": "main+transfer",
+        "publicRequest": "Revenue is R(p)=p(100-2p). At p=20, compute R, R', the first-order change predicted by Δp=0.5, and the local elasticity E=pR'/R. Interpret the derivative without making an optimization claim. | For Q(x)=(x²+1)/(x+2), compute Q(1), Q'(1), and the elasticity xQ'/Q at x=1. Translate the elasticity into a first-order percentage statement.",
+        "rubricEvidence": [
+          "Computes elasticity 1/3 and explicitly avoids an optimization conclusion.",
           "States the percentage interpretation as local/first-order rather than exact global behavior."
         ]
       }
@@ -3066,50 +3107,56 @@
         "task": "main",
         "publicRequest": "Audit these three claims against the original real functions and domains. (A) d/dx |x|³=3x² for every real x. (B) d/dx ln((x+1)²)=2/(x+1) for every point in its real domain. (C) For F(x)=(x²-x)/x with its original domain, F'(0)=1 because F simplifies to x-1. Mark each claim true/false and justify.",
         "rubricEvidence": [
-          "Correctly rejects A by auditing the absolute-value branches, including the derivative at 0."
+          "Correctly rejects A by auditing the absolute-value branches, including the derivative at 0.",
+          "Rejects C at x=0 because simplification cannot restore the original function's excluded input."
         ]
       },
       {
         "claim": "Recognize differentiability at a point without assuming f' is continuous there.",
-        "task": "main+transfer",
-        "publicRequest": "Audit these three claims against the original real functions and domains. (A) d/dx |x|³=3x² for every real x. (B) d/dx ln((x+1)²)=2/(x+1) for every point in its real domain. (C) For F(x)=(x²-x)/x with its original domain, F'(0)=1 because F simplifies to x-1. Mark each claim true/false and justify. | Define g(0)=0 and g(x)=x² sin(1/x) for x≠0. Determine g'(0) directly from the definition. For x≠0 derive g'(x). Does g'(x) tend to g'(0) as x→0? Explain what this shows about differentiability versus continuity of the derivative function.",
-        "rubricEvidence": [
-          "Accepts B exactly on x≠-1 and justifies the chain rule/domain.",
-          "Differentiates correctly for x≠0 with the chain factor producing -cos(1/x)."
-        ]
-      },
-      {
-        "claim": "Separate a correct formula on its domain from an illegal endpoint/restored-point claim.",
         "task": "transfer",
         "publicRequest": "Define g(0)=0 and g(x)=x² sin(1/x) for x≠0. Determine g'(0) directly from the definition. For x≠0 derive g'(x). Does g'(x) tend to g'(0) as x→0? Explain what this shows about differentiability versus continuity of the derivative function.",
         "rubricEvidence": [
+          "Uses squeeze on h sin(1/h) to obtain g'(0)=0.",
           "Correctly concludes differentiability of g at 0 does not imply continuity of g' there."
+        ]
+      },
+      {
+        "claim": "Separate a correct derivative formula on its domain from an illegal restored-point claim.",
+        "task": "main",
+        "publicRequest": "Audit these three claims against the original real functions and domains. (A) d/dx |x|³=3x² for every real x. (B) d/dx ln((x+1)²)=2/(x+1) for every point in its real domain. (C) For F(x)=(x²-x)/x with its original domain, F'(0)=1 because F simplifies to x-1. Mark each claim true/false and justify.",
+        "rubricEvidence": [
+          "Accepts B exactly on x≠-1 and justifies the chain rule/domain.",
+          "Rejects C at x=0 because simplification cannot restore the original function's excluded input."
         ]
       }
     ],
     "T22V3::ARC053::S24@1": [
       {
-        "claim": "Choose between definition, algebraic rule and local-linear reasoning based on the structure.",
+        "claim": "Integrate algebraic simplification, derivative rules and local-linear reasoning in one argument.",
         "task": "main",
         "publicRequest": "Define u(x)=(x³-1)/(x-1) for x≠1 and u(1)=3, and let F(x)=ln(u(x)). (i) Establish u'(1) for the actually filled function. (ii) Find F'(1). (iii) Write the first-order local model for F(1+h). (iv) Explain why changing only u(1) to 4 while keeping every nearby value unchanged would destroy differentiability of both u at 1 and ln∘u at 1.",
         "rubricEvidence": [
-          "Uses the explicit fill to establish u'(1)=3 for the actual function."
+          "Uses the explicit fill to establish u'(1)=3 for the actual function.",
+          "Obtains F'(1)=1 and writes F(1+h)=ln3+h+o(h)."
         ]
       },
       {
-        "claim": "Carry domain/hypothesis information through a multi-step derivative argument.",
+        "claim": "Carry domain and theorem hypotheses through a multi-step derivative argument.",
         "task": "main+transfer",
         "publicRequest": "Define u(x)=(x³-1)/(x-1) for x≠1 and u(1)=3, and let F(x)=ln(u(x)). (i) Establish u'(1) for the actually filled function. (ii) Find F'(1). (iii) Write the first-order local model for F(1+h). (iv) Explain why changing only u(1) to 4 while keeping every nearby value unchanged would destroy differentiability of both u at 1 and ln∘u at 1. | A one-to-one differentiable function f satisfies f(2)=5 and f'(2)=3, and its inverse g is continuous near 5. Define Z(y)=ln(g(y)+1). (i) Find g'(5). (ii) Find Z'(5). (iii) Write the first-order local model for Z(5+k). (iv) name the hypotheses used and one conclusion this local model does not supply.",
         "rubricEvidence": [
-          "Obtains F'(1)=1 and writes F(1+h)=ln3+h+o(h).",
-          "Propagates through ln to obtain Z'(5)=1/9 and the correct local model."
+          "Uses differentiability⇒continuity to diagnose both altered point-value failures.",
+          "Uses the inverse-point data to obtain g'(5)=1/3.",
+          "States the needed hypotheses and refuses an unsupported global/higher-order conclusion."
         ]
       },
       {
         "claim": "End with a justified first-order model while rejecting conclusions owned by later modules.",
-        "task": "transfer",
-        "publicRequest": "A one-to-one differentiable function f satisfies f(2)=5 and f'(2)=3, and its inverse g is continuous near 5. Define Z(y)=ln(g(y)+1). (i) Find g'(5). (ii) Find Z'(5). (iii) Write the first-order local model for Z(5+k). (iv) name the hypotheses used and one conclusion this local model does not supply.",
+        "task": "main+transfer",
+        "publicRequest": "Define u(x)=(x³-1)/(x-1) for x≠1 and u(1)=3, and let F(x)=ln(u(x)). (i) Establish u'(1) for the actually filled function. (ii) Find F'(1). (iii) Write the first-order local model for F(1+h). (iv) Explain why changing only u(1) to 4 while keeping every nearby value unchanged would destroy differentiability of both u at 1 and ln∘u at 1. | A one-to-one differentiable function f satisfies f(2)=5 and f'(2)=3, and its inverse g is continuous near 5. Define Z(y)=ln(g(y)+1). (i) Find g'(5). (ii) Find Z'(5). (iii) Write the first-order local model for Z(5+k). (iv) name the hypotheses used and one conclusion this local model does not supply.",
         "rubricEvidence": [
+          "Obtains F'(1)=1 and writes F(1+h)=ln3+h+o(h).",
+          "Propagates through ln to obtain Z'(5)=1/9 and the correct local model.",
           "States the needed hypotheses and refuses an unsupported global/higher-order conclusion."
         ]
       }
@@ -3314,269 +3361,280 @@
         ],
         "status": "prerequisites introduced before use; future material not used as a premise"
       }
+    },
+    "notationRepair": {
+      "firstLittleOIntroduction": "M10-S07",
+      "definition": "r(h)=o(h) as h→0 means exactly r(h)/h→0.",
+      "bigOPolicy": "Formal O(h) notation is not used in M10 after this repair. S14 uses the concrete fact that k(h)/h tends to a finite limit and is therefore locally bounded.",
+      "downstreamBoundary": "Systematic asymptotic notation remains owned by M12."
     }
   },
   "semanticSeparationAudit": {
-    "version": "m10-global-separation-v1",
-    "policy": "Every fixed assessment was compared against every M10 lesson/worked example/guided practice available before it. Exact stored references are absent from instruction; changed-surface Transfer changes structure, representation, domain/branch conditions, inverse direction or interpretation. This is a builder audit, not independent pedagogical acceptance.",
+    "version": "m10-semantic-separation-v2-reviewed",
+    "policy": "All 48 fixed tasks were re-audited semantically against all legally available M09 instruction and every preceding/current M10 lesson, worked example and guided practice. Retrieval and proof reconstruction are not called fresh independent proof evidence.",
+    "m09Boundary": "M09 supplies limits, continuity, domains and the normalized radian trigonometric limits, but no derivative rules or M10 fixed-task answers. S16 intentionally retrieves M09 trig limits; prerequisite use is not answer contamination.",
     "sessions": {
       "T22V3::ARC053::S01@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "Closely related shrinking-secant calculations are already worked/guided; Main is retrieval/application, not fresh proof evidence."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Temperature context adds units and finite-evidence interpretation."
         }
       },
       "T22V3::ARC053::S02@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "proof reconstruction",
+          "reason": "Both derivative forms and their equivalence are explicitly taught; Main reconstructs that machinery."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes only the point value while preserving nearby values, forcing definition-level reasoning."
         }
       },
       "T22V3::ARC053::S03@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "Tangent-line/rate construction has already been modeled; Main retrieves it on a new polynomial."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to marginal cost versus average cost."
         }
       },
       "T22V3::ARC053::S04@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "One-sided differentiability diagnostics are taught and guided immediately before Main."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer contrasts two different failure modes on shifted functions."
         }
       },
       "T22V3::ARC053::S05@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "fresh Main evidence",
+          "reason": "Main derives an entire cubic derivative function from the definition rather than replaying the quadratic worked surface."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer forces a piecewise derivative-domain audit."
         }
       },
       "T22V3::ARC053::S06@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "fresh Main evidence",
+          "reason": "Main uses a direct epsilon-delta quotient-bound proof not supplied as the worked proof route."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer supplies an exact continuous/non-differentiable counterexample with unbounded one-sided quotient behavior."
         }
       },
       "T22V3::ARC053::S07@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "Main follows the just-taught local-linearity remainder template on a new polynomial."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer reverses direction: a supplied remainder form must establish differentiability."
         }
       },
       "T22V3::ARC053::S08@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "fresh Main evidence",
+          "reason": "Main combines local approximation with exact cubic remainder/error accounting not supplied by the lesson."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes an exact formula and forces the learner to respect the limits of asymptotic information."
         }
       },
       "T22V3::ARC053::S09@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "proof reconstruction",
+          "reason": "The lesson derives linearity; Main explicitly reconstructs that proof and is not labeled fresh."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer is an inverse coefficient-constraint problem."
         }
       },
       "T22V3::ARC053::S10@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "proof reconstruction",
+          "reason": "The general positive-integer argument is taught; Main reconstructs it for x^5."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer uses a different factorization proof surface and explains the coefficient structurally."
         }
       },
       "T22V3::ARC053::S11@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "Main is direct rule retrieval/application."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer inverts derivative constraints to solve for unknown polynomial coefficients."
         }
       },
       "T22V3::ARC053::S12@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "proof reconstruction",
+          "reason": "The product rule is taught; repaired Main reconstructs it from a different exact-increment expansion and is classified honestly as reconstruction."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer uses local models and cross-order reasoning rather than a standard product-rule calculation."
         }
       },
       "T22V3::ARC053::S13@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "Main applies the established quotient rule."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer audits a cancelled hole and a separately filled extension."
         }
       },
       "T22V3::ARC053::S14@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "Main is ordinary chain-rule application."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Repaired Transfer composes local models and directly tests zero-inner-increment proof safety."
         }
       },
       "T22V3::ARC053::S15@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "Main is nested-chain retrieval/application."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Repaired Transfer audits both a missing chain factor and illegal domain restoration."
         }
       },
       "T22V3::ARC053::S16@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "proof reconstruction",
+          "reason": "Guided practice supplies the cosine identity and relevant M09 limits, so Main is explicitly proof reconstruction, not fresh independent proof evidence."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes angle units and requires degree/radian scaling."
         }
       },
       "T22V3::ARC053::S17@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "Main applies established tan/sec formulas."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to cot/csc and requires sign/domain structure."
         }
       },
       "T22V3::ARC053::S18@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "retrieval",
+          "reason": "The inverse theorem proof is in the lesson; Main applies the scoped relation with hypotheses visible."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes inverse branch and sign."
         }
       },
       "T22V3::ARC053::S19@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "fresh Main evidence",
+          "reason": "Main uses a mixed product/polynomial implicit relation absent from the worked circle."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer uses a different implicit relation while preserving branch/coefficient auditing."
         }
       },
       "T22V3::ARC053::S20@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "proof reconstruction",
+          "reason": "Repaired Main explicitly retrieves the normalization and reconstructs the taught exponential derivative proof; it is not labeled fresh."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer shifts to proportional-rate interpretation with units."
         }
       },
       "T22V3::ARC053::S21@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "proof reconstruction",
+          "reason": "Repaired Main reconstructs arbitrary-base exponential/logarithm formulas already taught; it is not labeled fresh."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer uses logarithmic differentiation on a variable power with positivity visible."
         }
       },
       "T22V3::ARC053::S22@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "fresh Main evidence",
+          "reason": "Main integrates derivative, first-order change and elasticity in a new revenue model."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to a rational-function elasticity and percentage interpretation."
         }
       },
       "T22V3::ARC053::S23@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "fresh Main evidence",
+          "reason": "Main is a multi-claim forensic audit not replayed by the worked examples."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer uses a differentiable function whose derivative is discontinuous, requiring definition, chain rule and limiting diagnosis."
         }
       },
       "T22V3::ARC053::S24@1": {
         "main": {
-          "workedGuidedSurface": "Instruction uses distinct functions/numbers or a different proof surface; no stored Main reference or answer skeleton appears verbatim.",
-          "assessmentDistance": "Main requires the central capability on a fresh instance and explicit reasoning/hypotheses."
+          "classification": "fresh Main evidence",
+          "reason": "Main synthesizes filled-domain algebra, log differentiation and local linearity on a new construction."
         },
         "transfer": {
-          "workedGuidedSurface": "Transfer changes representation, branch/domain condition, inverse problem, local model or interpretation rather than only constants.",
-          "assessmentDistance": "Transfer requires method selection/adaptation and is not solvable by copying the worked-example calculation."
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer synthesizes inverse derivative, logarithm and first-order modeling with explicit hypothesis limits."
         }
       }
     }
   },
   "historicalLessonAnswerOverlap": {
-    "version": "m10-initial",
-    "sessions": {}
+    "version": "m10-v2-unregistered",
+    "sessions": {},
+    "note": "M10 has never been registered in the shared learner runtime, so no runtime learner evidence exists to migrate."
   },
   "historicalGuidedPracticeOverlap": {
-    "version": "m10-initial",
-    "sessions": {}
+    "version": "m10-v2-unregistered",
+    "sessions": {},
+    "note": "No M10 runtime exposure exists because M10 remains unregistered."
   },
   "initialVersionAudit": {
     "designGate": "docs/t22-course/M10-DESIGN-GATE.md",
     "legacyArc053Use": "Historical six-atomic ARC053 material was inspected only as scope inventory. New sessions/tasks were authored for the M65 route; no historical fixed answer was imported.",
     "globalContaminationReview": "Builder adversarial pass repaired S05 near-isomorphism, S06 theorem-proof rehearsal, S08 number-swapped local approximation, S15 nested-surface rehearsal, S16 trig-proof leakage, S19 implicit-surface similarity, S21 formula-derivation rehearsal, S23 exact worked-audit leakage and S24 synthesis rehearsal. Fixed tasks were then rechecked against all preceding/current instruction.",
-    "boundaryReview": "MVT, integration, Taylor, optimization, multivariable calculus, l’Hopital and numerical differentiation are not used as premises."
+    "boundaryReview": "MVT, integration, Taylor, optimization, multivariable calculus, l’Hopital and numerical differentiation are not used as premises.",
+    "semanticRepair": "All 72 original ownership claims were re-audited. Five public tasks were materially changed and have obligationVersion=2: S12 Main, S14 Transfer, S15 Transfer, S20 Main, S21 Main. All other fixed task IDs and obligationVersion=1 are preserved.",
+    "asymptoticNotationRepair": "S07 now defines little-o explicitly as the concrete ratio limit. S14 no longer uses big-O; its bounded inner-change argument is written out."
   },
-  "authoringPolicy": "Original lessons and fixed assessments. Equivalent exact forms and mathematically valid alternate proofs earn full credit. A symbolic derivative without requested domain/hypothesis justification is incomplete. Local linearity claims are asymptotic unless an explicit finite error bound is separately proved.",
+  "authoringPolicy": "Original lessons and fixed assessments. Equivalent exact forms and mathematically valid alternate proofs earn full credit. Ownership is granted only for actions literally observable in cited public requests and rubric rows. Retrieval and proof reconstruction are labeled honestly and are not promoted to fresh proof evidence. A symbolic derivative without requested domain/hypothesis justification is incomplete. Little-o in M10 is shorthand only for the S07 ratio test; systematic asymptotics remain M12.",
   "sourceLedger": {
     "checked": "2026-09-24",
     "policy": "MIT/OpenStax/Lebl checked for sequence, definitions, theorem hypotheses and coverage; IES/WWC used as lesson-design constraint. Source material establishes mathematics or pedagogy evidence, not T22 acceptance. All lesson prose and fixed assessments are original.",
