@@ -13,6 +13,18 @@ on:
       - 'docs/t22-rebuild/**'
       - 'docs/t22-course/**'
       - '.github/workflows/t22-elite-checks.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'course/t22/**'
+      - 'js/t22-course/**'
+      - 't22-course.html'
+      - 'css/t22-course.css'
+      - 'scripts/test-t22-elite-*.mjs'
+      - 'scripts/test-t22-semantic-gates.mjs'
+      - 'docs/t22-rebuild/**'
+      - 'docs/t22-course/**'
+      - '.github/workflows/t22-elite-checks.yml'
   workflow_dispatch:
 
 jobs:
