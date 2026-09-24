@@ -64,7 +64,7 @@
       "mode": "new",
       "semanticStatus": "boundary-accepted-content-candidate",
       "bridges": [],
-      "note": "M08 independent-audit repaired candidate: canonical prerequisites remain M01+M03+M04. Hostile review found fixed-assessment contamination, a stray M02 attribution, hidden standard-library import prerequisites, higher-order-function instruction gap and several claim→evidence observability defects. Repairs version 23 changed public obligations to v2, teach imports/function objects/strict zip/traceback reading at first use, convert S14–S16 into executable exact-oracle tasks, add explicit lesson-model/Main-model separation guards, and rebuild the 120-link semantic contract plus Python oracle. Bounded independent follow-up is still required; M09 remains closed."
+      "note": "M08 independent-audit + bounded-follow-up repaired candidate: canonical prerequisites remain M01+M03+M04. Initial hostile review repaired assessment contamination, stray M02 attribution, hidden imports, function-object instruction and programming observability. Follow-up then fixed S12 from-import/call inconsistency, hidden list-comprehension syntax in S22, untaught conditional/list-comprehension syntax in S07/S14 lessons, and lambda leakage in the S17 reference. 24 public obligations are now changed relative to v1 (23 at v2, S22-M at v3). Exact-head validation is pending; M09 remains closed."
     },
     {
       "order": 9,
