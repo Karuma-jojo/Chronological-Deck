@@ -102,7 +102,7 @@ const s15Estimate=50+2*0.1-0.3*0.1**2;
 const s15Linear=2*0.1, s15Quadratic=-0.3*0.1**2;
 near(s15Estimate,50.197); near(s15Linear,0.2); near(s15Quadratic,-0.003);
 has(15,"50+2h-0.3h^2",`linear contribution is +${s15Linear}`,
-  `quadratic correction ${s15Quadratic}`,"4-(x+2)+3(x+2)^2");
+  `quadratic correction ${s15Quadratic.toFixed(3)}`,"4-(x+2)+3(x+2)^2");
 assert.match(lesson(15),/Without a bound on C''' over the interval/i);
 
 // S16 — instructional convergence-region failure and recentering.
