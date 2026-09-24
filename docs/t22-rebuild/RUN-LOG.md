@@ -1,3 +1,15 @@
+# Current M07 v1.1 retrospective repair — 2026-09-24
+
+User explicitly authorized repair of M07 after identifying that the original module was not constructed with the later stepwise methodology. Recovered branch head before retrofit: `546103699478051ba58b82475a11156e3bed3ae9`; full T22 workflow `36017308549` was green there. Retrospective design gate committed at `239d1e24bb6d793b1116cda29deb15ae77b451f8`.
+
+The v1.1 design reconstruction preserves the sound post-Astra market-mechanics spine but does not privilege the historical 24-session count. Boundary/source/support/pedagogy/dependency/distinction/misconception/representation/downstream/sizing passes independently conclude **KEEP 24**.
+
+Implementation scope is bounded: all 48 fixed tasks and lessons stay unchanged; S02 C1–C3 and S20 C4 ownership wording is narrowed; source/support/pedagogy ledgers and honest evidence-distance labels are added; semantic/canonical/serialization guards are strengthened. No obligationVersion changes. M08–M11 and main are untouched.
+
+**Current next gate: exact-head full T22 Elite CI including real Chromium, then a separate bounded M07 confirmation. Do not call M07 independently frozen from this self-repair.**
+
+---
+
 # Current M09 build — 2026-09-24
 
 User accepted M01–M08 as the baseline and explicitly authorized M09 start-to-finish plus push to main. Historical stop/no-main statements below are retained as history and superseded for this M09 assignment only. M10 remains closed. No T25/SMMC/legacy progress changes.

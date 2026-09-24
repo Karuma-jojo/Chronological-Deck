@@ -3,7 +3,30 @@
 Date: 2026-09-24  
 Branch: `codex/t22-pedagogical-rebuild`  
 Stable module: `T22E-MKT01`  
-Status: **ASTRA REPAIRS IMPLEMENTED + FULL REPAIR-HEAD GREEN; INDEPENDENT FOLLOW-UP REQUIRED; M08 CLOSED**
+Current canonical version: `m07-authoring-v1.1-r2`  
+Instruction version: `m07-instruction-astra-r1`  
+Status: **V1.1 RETROSPECTIVE REPAIR IMPLEMENTED; EXACT-HEAD VERIFICATION PENDING; SEPARATE INDEPENDENT CONFIRMATION STILL REQUIRED**
+
+## Current v1.1 authority
+
+Read `M07-DESIGN-GATE.md` and the current v1.1 section of `M07-RESOLUTION.md` before the historical Astra material below.
+
+The retrofit reconstructs the pre-authoring methodology that the original M07 bulk build lacked. The reconstructed dependency/distinction/misconception and sizing audit independently retains **24 sessions**, **48 fixed tasks** and **120 ownership claims**.
+
+No fixed assessment changes in this retrofit. S02 and S20 ownership wording is narrowed to literal public observability; stable IDs, existing obligation versions, historical exposure migration and the shared evidence key remain intact. Learner-facing lessons are unchanged.
+
+New permanent controls:
+- source-role dossier + support-fact/convention ledger;
+- MAA/IES and domain-specific pedagogy-evidence ledger with populations/limitations;
+- honest evidence-distance labels;
+- serialization/canonical-state regressions;
+- regression pins for the two new ownership defect classes.
+
+M07 is not called independently accepted by its repairer. After exact-head full CI and real Chromium pass, the only remaining action should be a separate bounded confirmation of the retrofit findings, not another full rebuild.
+
+## Historical Astra repair provenance
+
+The sections below preserve the earlier independent review/repair history and exact historical receipts. They remain valid provenance where not superseded by the v1.1 authority above.
 
 ## Astra repair disposition — 2026-09-24 (current authority)
 

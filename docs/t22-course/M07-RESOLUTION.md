@@ -1,5 +1,28 @@
 # M07 RESOLUTION — Astra findings M07-01 through M07-05
 
+## Retrospective v1.1 protocol repair — 2026-09-24
+
+This is the current M07 repair authority. It supplements rather than erases the historical Astra repair below.
+
+A fresh retrospective design pass rebuilt the missing pre-authoring layer in `M07-DESIGN-GATE.md`: boundary contract, source-role dossier, support-fact/convention ledger, concept dependency graph, conceptual distinctions, misconception/failure map, pedagogy-evidence ledger, representation progression, downstream obligations, narrative spine, pedagogical atoms and split/merge audit.
+
+**Architecture result: KEEP 24 sessions.** The count is now justified by 24 distinct learner-state transitions rather than inherited from the 2026-09-23 bulk authoring commit. All 48 fixed tasks and stable IDs are preserved.
+
+A literal reread of all 120 ownership claims found two remaining wording defects:
+- S02 C1–C3 said “Define” although the public task observes identification/distinction; all three are narrowed to the literal observable action.
+- S20 C4 claimed a general fee-vs-percentage unit distinction although the public task observes supplied fees as currency costs in the net-P&L calculation; the claim is narrowed accordingly.
+
+No fixed prompt, evaluator, reference or rubric is changed. Therefore this v1.1 retrofit changes **zero assessment obligations** and bumps **no obligationVersion**. Learner-facing lessons are unchanged, so `m07-instruction-astra-r1` is retained. Only S02 and S20 capability contracts change.
+
+Permanent additions:
+- canonical source-role stack including repository authority, MIT/OpenStax comparators, SEC/FINRA market-mechanics authorities, MAA/IES pedagogy baselines and domain-specific financial/percentage-education studies;
+- visible support-fact/convention ledger for return domains, signed P&L, mark, average-cost accounting, bid/ask, frozen-quote arithmetic, market/limit order semantics, partial fills, weighted execution and marked equity;
+- evidence-distance calibration: Main = 22 retrieval, 1 proof reconstruction (S06), 1 fresh Main (S24); Transfer slots = 15 retrieval and 9 changed-surface Transfer;
+- executable guards for source roles, support facts, pedagogy populations/limitations, canonical status, literal ownership wording, evidence classes, escaped-newline serialization and stale placeholders.
+
+Historical Astra content/provenance repairs remain active. This repair does **not** self-certify independent acceptance. After exact-head full CI/Chromium verification, M07 remains a v1.1-retrofitted candidate for a separate bounded confirmation.
+
+
 Date: 2026-09-24  
 Module: `T22E-MKT01` — Markets 0: Prices, Returns & Trading Mechanics  
 Independent review: `M07-ASTRA-REVIEW.md`  
