@@ -2,7 +2,7 @@
   "version": "m11-preserved-baseline-after-m07-v1.1-2026-09-24",
   "baseCommit": "2805a56d8d0376c72243fdaecfe0d0dedf8bad2e",
   "baseTree": "a540c16fd5bae45cf193d2fbec76cc1eeb376029",
-  "purpose": "Executable guard for M11-era preservation, rebased only for the later explicitly authorized M07 v1.1 retrofit. M07 changed surfaces are pinned at the retrofit commit; every unrelated M01-M10 canonical/audit/test and shared runtime/browser surface remains pinned.",
+  "purpose": "Executable guard for M11-era preservation, rebased for the explicitly authorized M07 v1.1 retrofit and for the M12-era validator-only repair that scopes M10 semantic-ledger preservation to M01–M10 rows instead of freezing downstream rows. M07/M10 validation-infrastructure surfaces are pinned at those authorized repairs; M01–M11 mathematical content and unrelated runtime/audit surfaces remain pinned.",
   "fileCount": 100,
   "files": {
     "course/t22/authoring/m01-repairs-1.1.json": "d9d6433dd5acc926defee5458c75a73342bc5c4e",
@@ -86,7 +86,7 @@
     "docs/t22-course/audit/m09-validation-receipt.json": "b161b49568ad2d6c65d44c4d309920d1f5afd16d",
     "docs/t22-course/audit/m10-math-checks.mjs": "0c74b0943d204741019bbd4b2bf2b51d1c2c5c1e",
     "docs/t22-course/audit/m10-ownership-audit.json": "c62b8adec413da5667129bd29f4311adc34d19d7",
-    "docs/t22-course/audit/m10-preserved-baseline.json": "a546d08e67c7e5f0764552f99b9bb8fb4e72ce60",
+    "docs/t22-course/audit/m10-preserved-baseline.json": "f3c3728666d87e02546eeb8726ecce81dbd9422a",
     "docs/t22-course/audit/m10-semantic-contract.json": "7dc3965cc3531e6566ea688a359791f0b53cc451",
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
@@ -102,9 +102,10 @@
     "scripts/test-t22-elite-m08.mjs": "4b2eeeba3c908e2d03085cba6ba2dae712ada96b",
     "scripts/test-t22-elite-m09-browser.mjs": "52928df06f8874c7a05ae2de8bc8c63e10fc7521",
     "scripts/test-t22-elite-m09.mjs": "2911ffe422a5a19a78d2ce852dcd709e81a50cfd",
-    "scripts/test-t22-elite-m10.mjs": "24bd7b51b30cb845a672ddba06379d5af6584616",
+    "scripts/test-t22-elite-m10.mjs": "4215f3a34215a7196d22233ace940d3d7be99b3d",
     "t22-course.html": "f9c38ecd7d329dd62c8125729b26cc9ae65d2432",
-    "docs/t22-course/M07-DESIGN-GATE.md": "d52884808a04620976fc18b76eeaa4c8228cefab"
+    "docs/t22-course/M07-DESIGN-GATE.md": "d52884808a04620976fc18b76eeaa4c8228cefab",
+    "docs/t22-course/audit/m10-protected-semantic-rows.json": "1cb34d7eb93115fdb9a70b0227f344789992a29e"
   },
   "authorizedM07Retrofit": {
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
@@ -117,5 +118,13 @@
       "job": 107728006706,
       "conclusion": "SUCCESS"
     }
+  },
+  "authorizedM12ValidatorRepair": {
+    "reason": "M12 legitimately updates only its own shared semantic-ledger row. The old M10 full-file ledger hash blocked all downstream boundary audits, so M10 preservation was narrowed to exact M01–M10 row equality without changing M10 mathematics.",
+    "files": [
+      "docs/t22-course/audit/m10-preserved-baseline.json",
+      "scripts/test-t22-elite-m10.mjs",
+      "docs/t22-course/audit/m10-protected-semantic-rows.json"
+    ]
   }
 }
