@@ -22,6 +22,33 @@ Permanent additions:
 
 Historical Astra content/provenance repairs remain active. This repair does **not** self-certify independent acceptance. After exact-head full CI/Chromium verification, M07 remains a v1.1-retrofitted candidate for a separate bounded confirmation.
 
+### v1.1 exact-head verification receipt
+
+Verified repair head: `0c66088d7a1cc65614aae1b4ac7e18671d806f17`  
+Full T22 Elite workflow: `36027608844`  
+Job: `107728006706`  
+Conclusion: **SUCCESS**
+
+Inspected logs establish:
+- syntax checks: PASS;
+- M07 structural/pedagogy and independent market mathematics: PASS;
+- M07 v1.1 source-role/support-fact/pedagogy/ownership/evidence-distance guards: PASS;
+- historical Astra/provenance regressions: PASS;
+- M09, M10 and M11 preservation/semantic/mathematics gates after the authorized M07 rebase: PASS;
+- Chromium installation: PASS;
+- real learner-browser workflow: PASS, including M07 draft/assistance provenance, save/reveal/review, export/import, packet exposure, corrupt-storage preservation and mobile width;
+- M09 and M11 browser-boundary regressions: PASS.
+
+Three intermediate red runs were intentionally not papered over:
+1. M09 correctly rejected the changed historical M07 baseline until the authorized retrofit was explicitly rebased.
+2. M11 correctly rejected the changed M09/M10 baseline ledgers until that rebase propagated through its preservation guard.
+3. One handoff check then failed only because it searched case-sensitively for a lowercase status token while the handoff used uppercase; the guard was corrected without changing course content.
+
+No valid content check was weakened to obtain green status.
+
+**Current disposition:** M07 is a **v1.1-retrofitted, builder-verified candidate awaiting separate bounded independent confirmation**. The repairer does not declare independent acceptance/freeze.
+
+
 
 Date: 2026-09-24  
 Module: `T22E-MKT01` — Markets 0: Prices, Returns & Trading Mechanics  

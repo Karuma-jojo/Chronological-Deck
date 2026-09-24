@@ -43,8 +43,8 @@
     "docs/t22-course/M07-ASTRA-REVIEW.md": "f6e4b9474fcc87ce2714e34aa61900aa2167df60",
     "docs/t22-course/M07-BOUNDARY.md": "6c26bcbe7d8189bffdbe9aad59bdfba5222a859e",
     "docs/t22-course/M07-CERBERUS-AUDIT.md": "4f0c48ffea73570efa2512dee15708591f3a0fd9",
-    "docs/t22-course/M07-RESOLUTION.md": "ef319a659bad1e59392117f3c913a19989299ebb",
-    "docs/t22-course/M07-REVIEW-HANDOFF.md": "19083279734d6d049e6c8fd58727aaefe4e93523",
+    "docs/t22-course/M07-RESOLUTION.md": "ace708ff3b1c4275e5b5bc4d6fd190e8a43a1cd6",
+    "docs/t22-course/M07-REVIEW-HANDOFF.md": "0e9b67084f688a2d46fb27ccab26755210e7d00e",
     "docs/t22-course/M08-BOUNDARY.md": "954ba6d8cfa88f3d4d8f93dfd8efc003ba8ed101",
     "docs/t22-course/M08-CERBERUS-AUDIT.md": "f0bc32215f7f1f799ec8b99ccf0d7bf907e87755",
     "docs/t22-course/M08-INDEPENDENT-FOLLOWUP.md": "a58c8c663774eb8ec97610c58bfcc6d8390a11c2",
@@ -110,6 +110,12 @@
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
     "reason": "Later user-authorized M07-only v1.1 retrofit. Rebase only the explicitly changed M07 canonical/audit/test surfaces and add its new design gate; all unrelated M01-M10/runtime blobs stay pinned.",
     "baselineLedgerPropagation": "M09 and M10 preservation ledgers were themselves updated only to pin the authorized new M07 hash; their new blob IDs are therefore pinned here too.",
-    "handoffGuardRepair": "Case-sensitive status-token false positive repaired; no course content changed."
+    "handoffGuardRepair": "Case-sensitive status-token false positive repaired; no course content changed.",
+    "verificationReceipt": {
+      "repairHead": "0c66088d7a1cc65614aae1b4ac7e18671d806f17",
+      "workflowRun": 36027608844,
+      "job": 107728006706,
+      "conclusion": "SUCCESS"
+    }
   }
 }

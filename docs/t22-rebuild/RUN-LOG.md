@@ -6,7 +6,9 @@ The v1.1 design reconstruction preserves the sound post-Astra market-mechanics s
 
 Implementation scope is bounded: all 48 fixed tasks and lessons stay unchanged; S02 C1–C3 and S20 C4 ownership wording is narrowed; source/support/pedagogy ledgers and honest evidence-distance labels are added; semantic/canonical/serialization guards are strengthened. No obligationVersion changes. M08–M11 and main are untouched.
 
-**Current next gate: exact-head full T22 Elite CI including real Chromium, then a separate bounded M07 confirmation. Do not call M07 independently frozen from this self-repair.**
+Exact-head verification is now complete at `0c66088d7a1cc65614aae1b4ac7e18671d806f17`: T22 Elite run `36027608844`, job `107728006706`, **SUCCESS**. Logs inspected: M07 independent mathematics and v1.1 protocol guards PASS; M09–M11 preservation gates PASS after explicit authorized rebase; Chromium and real browser evidence workflows PASS.
+
+**Current next gate: separate bounded M07 independent confirmation only. Do not call M07 independently frozen from this self-repair.**
 
 ---
 

@@ -5,7 +5,7 @@ Branch: `codex/t22-pedagogical-rebuild`
 Stable module: `T22E-MKT01`  
 Current canonical version: `m07-authoring-v1.1-r2`  
 Instruction version: `m07-instruction-astra-r1`  
-Status: **V1.1 RETROSPECTIVE REPAIR IMPLEMENTED; EXACT-HEAD VERIFICATION PENDING; SEPARATE INDEPENDENT CONFIRMATION STILL REQUIRED**
+Status: **V1.1 RETROFIT BUILDER-VERIFIED; SEPARATE INDEPENDENT CONFIRMATION REQUIRED**
 
 ## Current v1.1 authority
 
@@ -22,7 +22,17 @@ New permanent controls:
 - serialization/canonical-state regressions;
 - regression pins for the two new ownership defect classes.
 
-M07 is not called independently accepted by its repairer. After exact-head full CI and real Chromium pass, the only remaining action should be a separate bounded confirmation of the retrofit findings, not another full rebuild.
+M07 is not called independently accepted by its repairer.
+
+Exact-head verification is complete:
+- repair head: `0c66088d7a1cc65614aae1b4ac7e18671d806f17`;
+- full T22 Elite run: `36027608844`;
+- job: `107728006706`;
+- conclusion: **SUCCESS**;
+- structural/semantic/provenance/mathematics guards: PASS;
+- Chromium installation and real learner-browser workflows: PASS.
+
+The only remaining M07 action is a **separate bounded independent confirmation** of the v1.1 retrofit findings and current 24-session route, not another wholesale rebuild.
 
 ## Historical Astra repair provenance
 
