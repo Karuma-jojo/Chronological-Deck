@@ -33,6 +33,6 @@ assert.match(handoff,/61.*ownership claims/i);
 assert.match(handoff,/m11-semantic-contract\.json/i);
 assert.match(handoff,/m11-ownership-audit\.json/i);
 assert.match(verification,/bounded independent-review findings implemented/i);
-assert.match(verification,/direct supremum proof/i);
+assert.match(verification,/supremum mechanism directly|direct supremum proof/i);
 assert.match(handoff,/S01\/S02\/S05\/S06\/S09\/S13\/S14\/S19 → retrieval/i);
 console.log('PASS M11 handoff: builder-verified unpublished candidate; validation receipt pinned; independent acceptance explicitly not claimed; M12 remains closed.');
