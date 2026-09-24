@@ -4,7 +4,7 @@ Date: 2026-09-24
 Repository: `Karuma-jojo/Chronological-Deck`  
 Branch: `codex/t22-pedagogical-rebuild`  
 Module: M08 · `T22E-CODE01` — Quant Programming & Simulation Foundations  
-Current status: **independent-review repaired; session sizing rebalanced to 25; verification pending**  
+Current status: **independent-review repaired; 25-session sizing route fully green; bounded follow-up pending**  
 Stop boundary: **M09 remains closed**
 
 ## Why this handoff changed
@@ -26,32 +26,33 @@ The important lesson is procedural: a lexical lesson/task separation check was n
 
 ## Repaired session route
 
-A sizing-only follow-up now uses **25 sessions**. The former S02 was the sole clear overload and is split into exact quotient/remainder (S02) and floating-point tolerance (S03). No other merge or split was justified.
-
 1. Names, values & assignment as state change
-2. Integer division, remainders & floating-point comparison — now teaches `import math`, explicit tolerance policy and near-zero `abs_tol`
-3. Boolean conditions & boundary-safe branching — now distinguishes exact classification from computed-float near-zero policy
-4. For loops, range & accumulator invariants
-5. While loops, state updates & termination
-6. Functions as explicit quantitative mappings — prerequisite corrected to M03-S20
-7. Decompose a checker into single-purpose functions — now teaches function objects/callable parameters explicitly
-8. Lists & tuples as finite ordered records — Main requires an actual unpacking loop
-9. Sets & dictionaries for membership and counts — Main requires dictionary updates from observations
-10. Mutation, aliasing & defensive copying
-11. Pairing data safely with zip and enumerate — now uses `strict=True` when equal lengths are required
-12. Exact Cartesian enumeration as a mathematical oracle — explicit `itertools.product` import
-13. Exact rational probabilities with Fraction — fresh Main and explicit Fraction import
-14. Conditional probability by filtering the universe — executable filtering required
-15. Independence checks by exact enumeration — fresh two-die executable Main
-16. Exact expectation from enumerated payoffs — executable payoff mapping required
-17. Assertions, invariants & known-case tests
-18. Exceptions, tracebacks & smallest failing cases — actual traceback reading required
-19. Explicit pseudorandom generators & reproducibility — fresh Main and explicit Random import
-20. Implement one finite random trial from a stated model
-21. Repeated simulation & empirical frequency — fresh prescribed run: seed31415, N1200, p=.4 → 492 hits / .41
-22. Checkpoint and restore random-generator state — fresh three-draw suffix replay
-23. Adversarial simulator audit against an exact oracle — fresh sum9 diagnostic, exact intended probability1/9
-24. M08 synthesis — now requires explicit Model/Event/Payoff before code
+2. Integer division, quotient/remainder & exact reconstruction
+3. Floating-point representation & tolerance-aware comparison
+4. Boolean conditions & boundary-safe branching
+5. For loops, range & accumulator invariants
+6. While loops, state updates & termination
+7. Functions as explicit quantitative mappings
+8. Decompose a checker into single-purpose functions
+9. Lists & tuples as finite ordered records
+10. Sets & dictionaries for membership and counts
+11. Mutation, aliasing & defensive copying
+12. Pairing data safely with zip and enumerate
+13. Exact Cartesian enumeration as a mathematical oracle
+14. Exact rational probabilities with Fraction
+15. Conditional probability by filtering the universe
+16. Independence checks by exact enumeration
+17. Exact expectation from enumerated payoffs
+18. Assertions, invariants & known-case tests
+19. Exceptions, tracebacks & smallest failing cases
+20. Explicit pseudorandom generators & reproducibility
+21. Implement one finite random trial from a stated model
+22. Repeated simulation & empirical frequency
+23. Checkpoint and restore random-generator state
+24. Adversarial simulator audit against an exact oracle
+25. M08 synthesis — exact oracle, reproducible simulation & audit
+
+Sizing authority: `M08-SESSION-SIZING-AUDIT.md`. Existing stable IDs are preserved; only visible order after old S02 shifts by one.
 
 ## Assessment/provenance handling
 
@@ -93,6 +94,10 @@ Current Python documentation supports:
 ## Verified post-repair checkpoint
 
 The repaired tree passed the complete T22 Elite workflow on commit `42c112a45ea177f8dad5ea3c6c16ab9d041db0f1`, Actions run `35965698526`. Syntax, structural/pedagogy/semantic/evidence checks, the rebuilt Python 3.12 oracle, Chromium installation and the eight-module browser evidence workflow all succeeded. A later documentation-only supersession note does not change the repaired curriculum semantics.
+
+## Verified 25-session sizing checkpoint
+
+The exact 25-session route passed the complete T22 Elite workflow at commit `44b78d327c78fcc7ddf02fe56d1b293901637ee9`, Actions run `35967257130`, job `107528549359`. Syntax, structural/pedagogy/semantic/evidence checks, Python oracles, Chromium installation and the eight-module browser workflow all succeeded.
 
 ## Required bounded follow-up
 
