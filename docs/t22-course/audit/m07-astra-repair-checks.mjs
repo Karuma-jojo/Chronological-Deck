@@ -55,7 +55,7 @@ checkSemantic(a);
 }
 
 // Current instruction must be clean of the reviewed solved/practice instances.
-assert(!by(7).lesson.includes('ln.8'),'S07 current instruction must not solve S07-M inverse conversion');
+assert(!by(7).lesson.includes('R=−.20')&&!by(7).lesson.includes('g=ln.8.'),'S07 current instruction must not solve the legacy S07-M inverse-conversion pair');
 assert(!by(16).lesson.includes('50.8/ask51.1')&&!by(16).lesson.includes('50.80'),'S16 current instruction must not rehearse S16-T data');
 assert(!by(17).lesson.includes('buy order100')&&!by(17).lesson.includes('fill30, then20'),'S17 current instruction must not solve S17-M');
 assert(!by(3).lesson.includes('80→92'),'S03 current practice must not overlap S04-M data');
