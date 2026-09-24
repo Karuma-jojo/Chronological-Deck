@@ -3,17 +3,23 @@
 Date: 2026-09-24  
 Branch: `codex/t22-pedagogical-rebuild`  
 Stable module: `T22E-MKT01`  
-Status: **INDEPENDENT REVIEW: REPAIRS REQUIRED; BASELINE FULL SUITE VERIFIED; M08 CLOSED**
+Status: **ASTRA REPAIRS IMPLEMENTED; FULL REPAIR-HEAD VALIDATION PENDING; INDEPENDENT FOLLOW-UP REQUIRED; M08 CLOSED**
 
-## Independent disposition — 2026-09-24 (current authority)
+## Astra repair disposition — 2026-09-24 (current authority)
 
-Read `M07-ASTRA-REVIEW.md`. The independent pass reviewed actual branch head `1e5e94842803c2221a34256daf04c40ee18b640b`, including later builder/handoff commits. Full [Actions run35928115540](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35928115540), job107407975009, succeeded on that head; real Chromium results and logs were inspected.
+Read `M07-ASTRA-REVIEW.md` and `M07-RESOLUTION.md`.
 
-M07 is **not accepted/frozen**. M07-01 through M07-05 require bounded repairs: solved/practice overlap (S07/S16/S17 and cross-session S03→S04); incorrect claim-to-rubric links; unrequested scoring and S15 fill-size ambiguity; short/cover and mark definitions; selected weak Transfers (S19/S21/S24). Historical solved exposure and changed obligations must be handled with instruction/assessment versioning. Correct mathematics and existing architecture are retained. All48 numeric cases were independently recomputed, with the S15-T full-fill assumption explicitly flagged.
+M07-01 through M07-05 are now **implemented but not independently accepted/frozen**. The repair preserves the 24-session architecture and correct mathematics while:
+- separating legacy S07/S16/S17 solved lesson exposure and S03→S04 guided-practice overlap;
+- re-auditing all120 ownership links under `audit/m07-semantic-contract.json` with mutation-sensitive checks;
+- fixing S07/S17/S24 public-request fairness and S15 full-fill ambiguity;
+- adding novice short/cover and mark/unrealized bridges;
+- strengthening S19/S21/S24 Transfers and adding an exact-close S22 Transfer case;
+- bumping only the 10 changed fixed assessment contracts and five changed ownership contracts.
 
-`audit/m07-review-baseline.json` pins the prior contracts/fingerprints. `audit/m07-review-checks.mjs` reproduces the current findings; its PASS is not acceptance and it is not a publication gate. Next: repair M07 only, write a resolution, verify actual full repair-head CI, then stop for independent follow-up. M01–M06 remain accepted. M08 remains closed.
+Authoring/instruction versions are now `m07-authoring-astra-r1` / `m07-instruction-astra-r1`. Stable IDs and `chrono_t22_elite_course_evidence_v1` remain unchanged. Historical solved exposure is timestamp-migrated and old stale evidence is retained rather than recertified.
 
-The remaining sections preserve the builder's historical handoff and verification claims; the review above supersedes the earlier “review next” status and unqualified semantic/separation claims.
+**Full repair-head Actions validation is pending.** After an exact-head green run including Chromium, update this handoff with the SHA/run/job and stop for bounded Astra follow-up. M01–M06 remain accepted. **M08 CLOSED.**
 
 ## Scope
 
