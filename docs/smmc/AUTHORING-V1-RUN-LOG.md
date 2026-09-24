@@ -519,3 +519,24 @@ The dedicated scaffold validator checks:
 The SMMC workflow now runs this validator on `main`, pull requests, and `codex/smmc-final-engine-v1` pushes.
 
 No canonical T25 card, target, clearance, Aster campaign or historical SMMC statement was changed by this scaffold.
+
+
+### Checkpoint H validation receipt
+
+Validated scaffold head: `1a854b822d0dd1df56cabd6d827c88ef341f7c42`  
+SMMC authoring checks run: `35976910332`  
+Job: `107559446709`  
+Result: **SUCCESS**
+
+Inspected successful steps include:
+
+- existing SMMC authoring contracts;
+- final-engine scaffold validator;
+- compact SMMC connection index;
+- lean T25 learner payload;
+- workspace cloud conflict handling;
+- SMMC browser workflow;
+- exact T25/Aster/SMMC navigation restore;
+- same-account cross-device T25/SMMC restore.
+
+The scaffold validator reports: 18 canonical modules planned, 9 currently authored units recognized, all 42 East non-GREEN problems represented in the requirement backlog, 18 East paper-vault objects, and fail-closed certification/T25/S-XFER/S-PAPER contracts.
