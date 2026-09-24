@@ -1,0 +1,19 @@
+{
+  "baseCommit": "093dfd374d7f8e88dbe9807603880a5f583c8ebf",
+  "purpose": "M10 build preservation baseline. These accepted M01-M09 authoring/runtime files must retain their Git blob IDs during the M10-only build.",
+  "files": {
+    "course/t22/generated/course-meta.json": "b477d42e502a0fadc5f64719a95988278e22bf78",
+    "course/t22/generated/roadmap.json": "68665c633c93830fa19e9e5510136795d2b13a02",
+    "docs/t22-rebuild/SEMANTIC-PREREQUISITES.json": "7a1887dc0ff060152eeea3a8916b84ac63c844ea",
+    "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01",
+    "course/t22/authoring/m01-repairs-1.1.json": "d9d6433dd5acc926defee5458c75a73342bc5c4e",
+    "course/t22/authoring/m02.json": "6906fd9b3f30be6d9197cd7d182f1879f58c0114",
+    "course/t22/authoring/m03.json": "23c2453d7b223a0fcff182eedc2b021a1864e736",
+    "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
+    "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
+    "course/t22/authoring/m06.json": "da9360afd3adb81f75fa987c0ffac3015a8d19cf",
+    "course/t22/authoring/m07.json": "aefc64ed29f3aa1bc3de8f3e6c5279bcef4f85e4",
+    "course/t22/authoring/m08.json": "1d8bd28f49b1e73513de7a337450a2504d68d2ec",
+    "course/t22/authoring/m09.json": "7656609fb4ee448e03ef697e4cf29b733d965103"
+  }
+}
