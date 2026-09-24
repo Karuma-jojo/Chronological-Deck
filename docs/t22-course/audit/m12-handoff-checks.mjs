@@ -31,7 +31,7 @@ assert.match(handoff,/changed-surface Transfer: \*\*19\*\*/i);
 assert.match(handoff,/Hairer's \*A theory of regularity structures\*/i);
 assert.match(handoff,/advanced \*\*non-import boundary\*\*/i);
 assert.match(handoff,/S10 defines series through partial sums.*S11 adds only the bounded power-series bridge/is);
-assert.match(handoff,/S17 smooth-versus-analytic/i);
+assert.match(handoff,/S17 flat-function explanation/i);
 assert.match(handoff,/Independent adversarial audit and bounded repair/i);
 assert.match(handoff,/seven ownership rows narrowed/i);
 assert.match(handoff,/19\/19 lessons/i);
