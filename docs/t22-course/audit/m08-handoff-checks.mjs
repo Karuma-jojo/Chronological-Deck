@@ -44,7 +44,7 @@ for(const token of [
   'obligationVersion',
   'assessmentIndependenceAudit',
   'seed31415',
-  '492 hits',
+  '492 / .41',
   '1/9',
   '5/36',
   '-11/18',
