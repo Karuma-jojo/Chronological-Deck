@@ -29,7 +29,7 @@ const allowedClass=new Set(['retrieval','proof reconstruction','fresh Main evide
 assert.equal(a.module.order,11);
 assert.equal(a.module.id,'ARC510');
 assert.equal(a.module.title,'Integration & Accumulation');
-assert.match(a.module.status,/unpublished/);
+assert.match(a.module.status,/publication-candidate-independent-review-repaired/);
 assert.equal(a.sessions.length,20,'session count is design-gate-derived, not inherited');
 assert.equal(Object.keys(a.problems).length,40);
 assert.equal(Object.keys(a.evaluators).length,40);
@@ -41,11 +41,12 @@ assert(!a.boundary.owns.join(' ').toLowerCase().includes('pilot scope'),'stale p
 assert.match(a.module.gate,/all 20 design-derived sessions/i);
 assert(!/s01 is the required pilot/i.test(a.module.gate),'stale pilot module gate');
 
-assert.equal(meta.moduleSources.length,9,'M11 must not rewrite accepted learner registry');
-assert.equal(meta.moduleSources.at(-1).source,'course/t22/authoring/m09.json');
-assert(!meta.moduleSources.some(x=>x.order>=10),'M10/M11 remain deliberately unregistered');
+assert.equal(meta.moduleSources.length,12,'publication through M12 must register twelve modules');
+assert(meta.moduleSources.some(x=>x.order===11&&x.id==='ARC510'&&x.source==='course/t22/authoring/m11-arc510.json'));
+assert.equal(meta.moduleSources.filter(x=>x.order<=11).length,11);
 
-for(const [path,sha] of Object.entries(baseline.files))assert.equal(gitBlobSha(path),sha,path+' changed during M11-only work');
+const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/generated/course-meta.json','scripts/test-t22-elite-m09.mjs','scripts/test-t22-elite-m10.mjs','docs/t22-course/audit/m06-handoff-checks.mjs','docs/t22-course/audit/m07-handoff-checks.mjs','docs/t22-course/audit/m08-handoff-checks.mjs']);
+for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized through-M12 publication surfaces');
 
 for(const heading of ['Boundary contract','Source dossier','Concept dependency graph','Conceptual-distinction map','Failure-mode map','Narrative spine','Candidate session boundaries']){
   assert.match(gate,new RegExp(heading,'i'));
@@ -70,7 +71,7 @@ assert.equal(ownership.assessmentRepairs[0].session,19);
 
 assert.equal(contract.sessions.length,a.sessions.length);
 assert.deepEqual(new Set(contract.evidenceClasses),allowedClass);
-assert.equal(contract.unpublished,true);
+assert.equal(contract.unpublished,false);
 
 const priorBase=m09.sessions.map(s=>s.lesson).join('\n')+'\n'+m10.sessions.map(s=>s.lesson).join('\n');
 const ids=new Set(),problemIds=new Set();
@@ -110,7 +111,7 @@ for(let i=0;i<a.sessions.length;i++){
     const p=a.problems[id],e=a.evaluators[id];
     assert(p&&e,s.id+' missing '+kind);
     assert.equal(p.order,order);assert.equal(p.kind,kind);
-    assert.equal(p.obligationVersion,1,'M11 is unpublished; pre-publication repairs retain v1');
+    assert.equal(p.obligationVersion,1,'M11 initial published obligations retain v1 because publication itself does not change public task wording');
     assert(p.prompt.length>=80,id+' prompt too thin');
     assert(e.reference.length>=60,id+' reference too thin');
     assert(e.rubric.length>=1,id+' rubric missing rows');
@@ -163,4 +164,4 @@ for(const banned of ['taylor series','jacobian','lebesgue integral','differentia
   assert(!premiseText.includes(banned),'future machinery used as an M11 instructional premise/reference: '+banned);
 }
 
-console.log('PASS M11 semantic/evidence validator: design-derived 20 sessions; all observable ownership rows audited; M09+M10+legal-M11 separation clean; M01-M10/runtime baseline preserved; M11 remains unpublished.');
+console.log('PASS M11 semantic/evidence validator: design-derived 20 sessions; all observable ownership rows audited; M09+M10+legal-M11 separation clean; protected content preserved; M11 registered for publication through M12.');
