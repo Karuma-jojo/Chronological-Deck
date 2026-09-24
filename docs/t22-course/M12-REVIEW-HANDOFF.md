@@ -19,7 +19,7 @@ Successful full implementation-head workflow:
 
 The documentation/handoff commits after the implementation checkpoint are not to be confused with that run. The exact final documentation/checker head must also pass the same full workflow before this handoff is reported as final.
 
-**Current status: builder-validated candidate; unpublished; awaiting separate independent pedagogical review/acceptance.**
+**Current status: builder-validated, independently adversarially audited, bounded repairs applied; unpublished; awaiting focused independent confirmation of the changed surfaces.**
 
 M13 has not been opened.
 
@@ -200,6 +200,19 @@ High-risk checks include:
 
 A reusable regression issue was also fixed: the M10 validator had frozen the entire future-extensible semantic-prerequisite ledger. It now protects exact M01–M10 rows instead, allowing later authorized modules to update only their own rows without weakening earlier content preservation.
 
+## Independent adversarial audit and bounded repair
+
+A separate audit of live head `004015564a149a88b16b3495dd6be8d8e688f000` did **not** recommend a rebuild. It found five bounded defect classes, recorded in `M12-RESOLUTION.md`.
+
+Repairs now applied:
+- S01 worked-example order-0 value corrected to `q(1)=0`;
+- seven ownership rows narrowed to literal public observability rather than enlarging tasks;
+- S17 flat-function explanation now includes the derivative-at-zero difference-quotient induction step;
+- a second independent-math gate now checks learner-facing worked/guided mathematics across **19/19 lessons**, not only the 38 fixed assessment references;
+- all **19 sessions** and **38 fixed tasks** remain unchanged in architecture/obligation surface.
+
+This repair does **not** convert builder validation into independent acceptance. The next review is intentionally focused on S01, the seven narrowed ownership rows, S17, and the new instructional-math checker.
+
 ## Files for independent review
 
 Primary:
@@ -210,25 +223,23 @@ Primary:
 Evidence:
 - `docs/t22-course/audit/m12-semantic-contract.json`
 - `docs/t22-course/audit/m12-math-checks.mjs`
+- `docs/t22-course/audit/m12-instruction-math-checks.mjs`
+- `docs/t22-course/M12-RESOLUTION.md`
 - `scripts/test-t22-elite-m12.mjs`
 - `scripts/test-t22-elite-m12-browser.mjs`
 - `docs/t22-course/audit/m12-pilot-s06.json`
 - `docs/t22-course/M12-PILOT-REVIEW.md`
 
-## Independent review targets
+## Focused independent confirmation target
 
-A separate reviewer should attack, rather than merely confirm:
+Do **not** reopen the whole module merely because an independent audit found bounded defects. Recheck only:
 
-1. whether S10–S11 are exactly enough series machinery for M12 and do not conceal a further prerequisite;
-2. whether S05's bounded MVT bridge is pedagogically sufficient before S06;
-3. every one of the 58 claim→task→rubric mappings for literal observability;
-4. the distinction between finite Taylor error, deterministic `O/o/~`, infinite-series convergence and equality to the target;
-5. S15 generation without a Taylor cue;
-6. S16 center/convergence-region reasoning;
-7. S17 smooth-versus-analytic treatment and whether the supplied flat-function lemma is at the right level;
-8. transfer distance across all 19 Transfer tasks;
-9. downstream boundary discipline: no M13+, numerical, optimization, probability/statistics, complex-analysis or regularity-structure leakage;
-10. whether any major Taylor/asymptotic/error capability is missing from the intended T22 boundary.
+1. S01 worked-example arithmetic;
+2. S01-C2, S02-C2, S04-C2, S07-C3, S10-C1, S12-C2 and S17-C1 for literal claim→public-task→rubric observability;
+3. S17's derivative-at-zero induction step for mathematical sufficiency and learner-level clarity;
+4. `m12-instruction-math-checks.mjs` to ensure it independently covers the learner-facing worked/guided defect class rather than merely pinning A01.
+
+If those changed surfaces are clean and the complete inherited suite remains green, preserve the 19-session architecture and close the bounded repair.
 
 ## Stop boundary
 
