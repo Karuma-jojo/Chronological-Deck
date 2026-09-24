@@ -22,12 +22,13 @@ try{
   const context=await browser.newContext({viewport:{width:390,height:844}});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 
-  // Learner registry must still stop at M09.
+  // Learner registry is intentionally published through M12.
   await page.goto(base+'/t22-course.html?module=12&session=19');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
-  assert.equal(await page.locator('#module option').count(),9,'M12 must remain unpublished/unregistered');
-  assert.notEqual(await page.locator('#module').inputValue(),'SIDE267');
-  assert(!(await page.locator('#module').allTextContents()).join(' ').includes('Taylor Approximation, Asymptotics & Error'));
+  assert.equal(await page.locator('#module option').count(),12,'publication route must expose twelve modules');
+  assert.equal(await page.locator('#module').inputValue(),'SIDE267');
+  assert((await page.locator('#module').allTextContents()).join(' ').includes('Taylor Approximation, Asymptotics & Error'));
+  assert.equal(await page.locator('#session option').count(),19);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
 
   const candidate=await page.evaluate(async()=>{
@@ -60,7 +61,7 @@ try{
     };
   });
   assert.equal(candidate.ok,true);assert.equal(candidate.status,200);
-  assert.equal(candidate.id,'SIDE267');assert.equal(candidate.order,12);assert.match(candidate.moduleStatus,/unpublished/);
+  assert.equal(candidate.id,'SIDE267');assert.equal(candidate.order,12);assert.match(candidate.moduleStatus,/publication-candidate-independent-audit-repaired/);
   assert.equal(candidate.sessions,19);assert.equal(candidate.problems,38);assert.equal(candidate.evaluators,38);
   assert.equal(candidate.hashes,true);assert.equal(candidate.fingerprints,38);
   assert.equal(candidate.badEscaped,0);assert.equal(candidate.badReplacement,0);assert.equal(candidate.lessonNewlines,true);
@@ -71,7 +72,7 @@ try{
   assert.deepEqual(errors,[]);
   await context.close();
 
-  console.log('PASS M12 browser boundary/render probe: learner UI remains nine-module/unpublished; Chromium fetches/parses all 19 sessions, computes runtime hashes/fingerprints and renders changed text surfaces without escaped-newline or replacement-character corruption.');
+  console.log('PASS M12 browser publication/render probe: learner UI exposes SIDE267 in the twelve-module route; Chromium parses all 19 sessions, computes runtime hashes/fingerprints and renders changed text surfaces without escaped-newline or replacement-character corruption.');
 }finally{
   if(browser)await browser.close();
   await new Promise(r=>server.close(r));
