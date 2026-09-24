@@ -1,11 +1,11 @@
 {
-  "version": "m11-arc510-pilot-v1",
+  "version": "m11-arc510-s01-s04-v1",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "pilot-in-progress-unpublished",
+    "status": "authoring-in-progress-s01-s04-verified",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -35,8 +35,8 @@
   "coverageAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pedagogicalAtoms": 20,
-    "authoredSessions": 1,
-    "ownershipClaimCount": 3,
+    "authoredSessions": 4,
+    "ownershipClaimCount": 12,
     "note": "No target count exists. This count is the S01 pilot output only."
   },
   "sessions": [
@@ -77,6 +77,117 @@
       "lesson": "Orient. A local rate or density tells you an amount per unit of input. A total over a finite piece must therefore combine two things: the local quantity and how much input-range that quantity acts over.\\nDefine. For a finite list of pieces, write width_i for the size of piece i and q_i for its signed local quantity per input-unit. The contribution of that piece is q_i·width_i. The finite accumulated total is the sum of those contributions. If q_i is measured in units/hour and width_i in hours, their product is in units.\\nConnect. M10 interpreted a derivative as a local rate with output-units per input-unit. Here we do not yet take a continuum limit; we only ask how already-specified local rates contribute over finite pieces.\\nExplain. Unequal widths matter. Adding rates alone has the units of a rate, not a total. Taking an unweighted average of rates treats all pieces as equally wide even when they are not. Signs also matter: a negative local rate contributes negative change.\\nWorked example: an inventory changes at +8 units/hour for 0.5 h, -2 units/hour for 1.5 h, and +5 units/hour for 1 h. The contributions are +4 units, -3 units and +5 units, so the net change is +6 units. The widths total 3 h, and the width-weighted average rate is 6/3=2 units/hour. The ordinary average (8-2+5)/3=11/3 units/hour is a different quantity and does not reconstruct the net change.\\nGuided practice: a process adds material at 3 g/min for 2 min and then removes material at 1 g/min for 4 min. Write the two signed contributions before adding them. Check: +6 g and -4 g, giving +2 g net. Explain why the signs belong to the local rates while the interval widths stay positive.",
       "main": "T22V3::ARC510::S01-M@1",
       "transfer": "T22V3::ARC510::S01-T@1"
+    },
+    {
+      "order": 2,
+      "id": "T22V3::ARC510::S02@1",
+      "moduleId": "ARC510",
+      "title": "Partitions, tags and mesh",
+      "focus": "Formalize finite accumulation with partitions, tagged sample points, nonuniform widths and a refinement measure that cannot be fooled by interval count.",
+      "purpose": "Give the learner precise finite-sum objects before any limiting definition.",
+      "centralCapability": "Construct and audit a tagged finite sum on a nonuniform partition, including the mesh.",
+      "principalObstacle": "The number of pieces can grow while one interval remains wide, so n→∞ alone does not describe genuine refinement for arbitrary partitions.",
+      "entryPrerequisites": [
+        "M11-S01 finite local contributions",
+        "M02 interval notation",
+        "M03/M09 quantifier discipline"
+      ],
+      "requiredOwnership": [
+        "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+        "Compute a tagged finite sum and its mesh on a nonuniform partition.",
+        "Explain why increasing the number of arbitrary subintervals does not by itself force refinement."
+      ],
+      "applicationScope": "Finite tagged sums only; no definite-integral limit yet.",
+      "transferScope": "Changed from sum computation to a pathological partition sequence where interval count grows but mesh does not shrink.",
+      "inScope": [
+        "partition endpoints",
+        "positive subinterval widths",
+        "tags",
+        "sigma notation",
+        "mesh"
+      ],
+      "outOfScope": [
+        "Riemann integrability",
+        "FTC",
+        "numerical quadrature algorithms"
+      ],
+      "exitCondition": "Main constructs the finite object correctly; Transfer rejects n→∞ as a sufficient refinement criterion.",
+      "lesson": "Orient. S01 used named pieces. To discuss every possible refinement later, we need a precise description of the pieces and sample locations.\nDefine. A partition of [a,b] is an ordered list P={x_0,...,x_n} with a=x_0<x_1<...<x_n=b. Subinterval i is [x_{i-1},x_i] and has positive width Δx_i=x_i-x_{i-1}. A tag t_i is any chosen point in that subinterval. The tagged finite sum is Σ_{i=1}^n f(t_i)Δx_i. The mesh ||P|| is max_i Δx_i, the width of the widest subinterval.\nConnect. This is S01's local-quantity×width sum with the interval bookkeeping made explicit. Sigma notation compresses the sum; it does not change its meaning.\nExplain. For arbitrary partitions, n is not a reliable measure of fineness. On [0,1], keep [0,1/2] intact and split only [1/2,1] into more and more pieces. The number of pieces grows without bound, but ||P|| remains 1/2.\nWorked example: on [0,4], take P={0,1,2.5,4}; widths are 1,1.5,1.5, so ||P||=1.5. Choose tags 0.5,2,3.7 and suppose f at those tags is 2,-1,3. The tagged sum is 2(1)+(-1)(1.5)+3(1.5)=5.\nGuided practice: for P={-2,-1,1,3} on [-2,3], list the widths before choosing any tags. Check: 1,2,2, hence ||P||=2. Explain why a tag for the middle subinterval must lie in [-1,1].",
+      "main": "T22V3::ARC510::S02-M@1",
+      "transfer": "T22V3::ARC510::S02-T@1"
+    },
+    {
+      "order": 3,
+      "id": "T22V3::ARC510::S03@1",
+      "moduleId": "ARC510",
+      "title": "The definite integral is a common refinement limit",
+      "focus": "Define the proper Riemann integral using arbitrarily fine tagged partitions and separate discovery of a candidate from proof of a common limit.",
+      "purpose": "Turn S02 finite objects into the continuum accumulation object without relying on FTC.",
+      "centralCapability": "State and use the tagged-partition definition of the definite integral.",
+      "principalObstacle": "A learner may mistake convergence along one convenient regular grid for the stronger requirement that every sufficiently fine admissible tagged partition produces nearly the same total.",
+      "entryPrerequisites": [
+        "M11-S02 partitions/tags/mesh",
+        "M09 function-limit and epsilon discipline"
+      ],
+      "requiredOwnership": [
+        "State the operational tagged-partition criterion for a proper Riemann integral.",
+        "Use that criterion to reconstruct a constant-function integral directly from sums.",
+        "Convert a uniform mesh-dependent error bound into an epsilon-delta integrability proof."
+      ],
+      "applicationScope": "Bounded real functions on finite closed intervals; proper Riemann integral only.",
+      "transferScope": "Changed from exact constant sums to a supplied all-partitions error certificate that must be converted into an epsilon argument.",
+      "inScope": [
+        "integrand",
+        "variable of integration",
+        "proper definite integral",
+        "epsilon/mesh criterion"
+      ],
+      "outOfScope": [
+        "FTC evaluation",
+        "general integrability criteria",
+        "improper integrals"
+      ],
+      "exitCondition": "The learner treats the integral as a common tagged-sum limit and can certify one from an explicit bound.",
+      "lesson": "Orient. A finite tagged sum depends on a partition and tags. A continuum total should not depend on which sufficiently fine partition happened to be chosen.\nDefine. For a bounded real function f on [a,b], say that f is Riemann integrable with integral I if for every ε>0 there is δ>0 such that every tagged partition with ||P||<δ satisfies |Σ f(t_i)Δx_i-I|<ε. We then write ∫_a^b f(x) dx=I. Here f is the integrand; x is a dummy variable of integration. The bounds a,b name the interval, not M09 limit values.\nConnect. This is M09's accuracy-contract idea applied to the finite sums from S02. The mesh is the input control; the sum's distance from I is the output error.\nExplain. One regular left-endpoint sequence can suggest I, but the definition asks for all sufficiently fine allowed tags/partitions. Discovery and proof are different jobs.\nWorked example: if f(x)=2 on [-1,3], every tagged sum is Σ2Δx_i=2ΣΔx_i=2(4)=8, regardless of partition or tags. Therefore for any ε we may choose any δ>0: every sum equals 8 exactly, so ∫_{-1}^3 2 dx=8.\nGuided practice: repeat the same argument for the constant function c on [a,b]. Check that ΣcΔx_i=c(b-a), because the subinterval widths telescope to b-a. Do not invoke an antiderivative.",
+      "main": "T22V3::ARC510::S03-M@1",
+      "transfer": "T22V3::ARC510::S03-T@1"
+    },
+    {
+      "order": 4,
+      "id": "T22V3::ARC510::S04@1",
+      "moduleId": "ARC510",
+      "title": "Integrability diagnostics: point changes and tag dependence",
+      "focus": "Use the definition to show why finite point changes can be harmless while persistent tag dependence can destroy Riemann integrability.",
+      "purpose": "Break the false equivalence between 'discontinuous' and 'nonintegrable' and force partition-independent reasoning.",
+      "centralCapability": "Diagnose elementary Riemann integrability or nonintegrability from uniform sum bounds and tag-choice counterexamples.",
+      "principalObstacle": "Learners may treat continuity as necessary, or may accept one convergent sampling sequence despite other tags producing incompatible totals.",
+      "entryPrerequisites": [
+        "M11-S03 Riemann definition",
+        "M09 counterexample discipline",
+        "continuous⇒Riemann-integrable theorem stated here as source-supported support"
+      ],
+      "requiredOwnership": [
+        "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+        "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
+        "Explain why discontinuity alone does not decide Riemann integrability."
+      ],
+      "applicationScope": "Elementary bounded examples only; no general discontinuity-set criterion.",
+      "transferScope": "Changed from finite exceptional points to a dense two-valued function with a supplied density fact.",
+      "inScope": [
+        "continuous⇒integrable as stated support theorem",
+        "finite point perturbation bound",
+        "tag-choice nonintegrability"
+      ],
+      "outOfScope": [
+        "Lebesgue criterion",
+        "measure zero",
+        "uniform continuity proof",
+        "measure theory"
+      ],
+      "exitCondition": "The learner can produce both a discontinuous-but-integrable witness and a discontinuous-nonintegrable witness using the Riemann definition.",
+      "lesson": "Orient. OpenStax's standard sufficient theorem says every continuous real function on a closed interval is Riemann integrable. It is sufficient, not necessary, and M11 does not import its full compactness/uniform-continuity proof.\nDefine. A finite point change means two bounded functions differ only at finitely many input points. A tagged sum can notice such a point only through the one subinterval whose tag hits it.\nConnect. If f and g differ only at one point c and |f(c)-g(c)|≤D, then on a partition of mesh m their tagged sums differ by at most Dm: all other tagged contributions match. As m→0 this discrepancy vanishes. Finitely many point changes give a finite sum of such bounds.\nExplain. By contrast, if every subinterval permits two tag types that force different heights, arbitrarily fine partitions can still support incompatible sums. Then no common value can satisfy the S03 definition.\nWorked example: let f(x)=2 on [-1,1] and let g equal 2 except g(0)=100. Any tagged sums differ only if the tag in the subinterval containing 0 is chosen as 0, and then the difference is at most 98||P||. Since f has integral 4, g also has integral 4.\nGuided practice: if two bounded functions differ only at c with value gap at most 7, what mesh condition makes their tagged sums differ by less than ε? Check: ||P||<ε/7. This controls sum discrepancy; it does not claim the functions are continuous.",
+      "main": "T22V3::ARC510::S04-M@1",
+      "transfer": "T22V3::ARC510::S04-T@1"
     }
   ],
   "problems": {
@@ -92,6 +203,48 @@
       "order": 1,
       "kind": "transfer",
       "prompt": "A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S02-M@1": {
+      "id": "T22V3::ARC510::S02-M@1",
+      "order": 2,
+      "kind": "main",
+      "prompt": "On [1,6], let P={1,2,4.5,6}. Use tags t_1=1.4, t_2=3, t_3=5.2, and suppose f(t_1)=4, f(t_2)=-2, f(t_3)=1. List the three subinterval widths, verify that each tag is legal, compute Σ f(t_i)Δx_i, and state ||P||.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S02-T@1": {
+      "id": "T22V3::ARC510::S02-T@1",
+      "order": 2,
+      "kind": "transfer",
+      "prompt": "For each n≥1, partition [0,1] by keeping [0,1/3] as one subinterval and dividing [1/3,1] into n equal subintervals. The number of subintervals tends to infinity. Determine the mesh ||P_n|| and explain why this sequence does not make the whole interval arbitrarily fine. State what refinement condition would repair the problem.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S03-M@1": {
+      "id": "T22V3::ARC510::S03-M@1",
+      "order": 3,
+      "kind": "main",
+      "prompt": "Using the tagged-partition definition rather than FTC or an antiderivative, prove that the constant function f(x)=-3 on [2,5] has definite integral -9. Your argument must apply to every tagged partition, not only equal-width partitions.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S03-T@1": {
+      "id": "T22V3::ARC510::S03-T@1",
+      "order": 3,
+      "kind": "transfer",
+      "prompt": "Suppose a bounded function g on [0,2] has the following proved property: for every tagged partition P, |S(g;P,t)-7|≤5||P||. Use only this certificate and the Riemann-integral definition to prove ∫_0^2 g(x)dx=7. Give an explicit δ in terms of ε.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S04-M@1": {
+      "id": "T22V3::ARC510::S04-M@1",
+      "order": 4,
+      "kind": "main",
+      "prompt": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S04-T@1": {
+      "id": "T22V3::ARC510::S04-T@1",
+      "order": 4,
+      "kind": "transfer",
+      "prompt": "On [0,1], define h(x)=1 when x is rational and h(x)=0 when x is irrational. You may use the supplied fact that every nonempty interval contains both rational and irrational numbers. For an arbitrary partition, construct two legal tag choices whose Riemann sums disagree by 1, and use them to show h is not Riemann integrable. Finally, explain what the Main/Transfer pair shows about the claim 'every discontinuous function is nonintegrable.'",
       "obligationVersion": 1
     }
   },
@@ -135,6 +288,126 @@
         }
       ],
       "marking": "Score the observable requests only. Accept any algebraically equivalent weighted sum. Do not require a particular phrase such as 'Riemann sum'; integral notation has not been introduced."
+    },
+    "T22V3::ARC510::S02-M@1": {
+      "reference": "The widths are 2-1=1, 4.5-2=2.5, and 6-4.5=1.5. The tags 1.4∈[1,2], 3∈[2,4.5], and 5.2∈[4.5,6] are legal. The tagged sum is 4(1)+(-2)(2.5)+1(1.5)=4-5+1.5=0.5. The mesh is max(1,2.5,1.5)=2.5.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Lists the nonuniform widths as 1, 2.5 and 1.5."
+        },
+        {
+          "points": 2,
+          "criterion": "Checks each supplied tag against its corresponding subinterval."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the tagged sum as 0.5 using f(t_i)Δx_i."
+        },
+        {
+          "points": 2,
+          "criterion": "States the mesh as 2.5, the largest subinterval width."
+        }
+      ],
+      "marking": "Equivalent sigma/table notation is accepted. Do not award the mesh criterion for merely reporting the number of intervals."
+    },
+    "T22V3::ARC510::S02-T@1": {
+      "reference": "The first subinterval always has width 1/3. Each of the n other widths is (2/3)/n=2/(3n), so ||P_n||=max(1/3,2/(3n)). For n≥2 this equals 1/3 and therefore does not tend to 0. More and more intervals are being created only on the right portion. A genuine arbitrary-partition refinement condition requires ||P||→0, meaning every subinterval width becomes small.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes ||P_n||=max(1/3,2/(3n)) and notes it stays 1/3 for n≥2."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that the persistent [0,1/3] interval prevents whole-domain refinement despite the growing interval count."
+        },
+        {
+          "points": 3,
+          "criterion": "Identifies mesh tending to zero as the needed refinement condition."
+        }
+      ],
+      "marking": "A correct equivalent description of maximum width is accepted. Do not require epsilon notation."
+    },
+    "T22V3::ARC510::S03-M@1": {
+      "reference": "For any tagged partition P of [2,5], Σ f(t_i)Δx_i=Σ(-3)Δx_i=-3ΣΔx_i=-3(5-2)=-9. Thus the sum is exactly -9 for every partition and tag choice. Given any ε>0, choose any δ>0; if ||P||<δ then |S(f;P,t)-(-9)|=0<ε. Hence ∫_2^5 -3 dx=-9.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Shows for an arbitrary tagged partition that Σ(-3)Δx_i=-3(5-2)=-9."
+        },
+        {
+          "points": 3,
+          "criterion": "Makes the argument independent of equal widths or a special tag choice."
+        },
+        {
+          "points": 3,
+          "criterion": "Closes the epsilon/mesh definition by observing the error is 0 for every sufficiently fine partition."
+        }
+      ],
+      "marking": "This is proof reconstruction because the lesson proves the general constant case. Accept any correct definition-level argument; do not require a specific δ beyond positivity."
+    },
+    "T22V3::ARC510::S03-T@1": {
+      "reference": "Given ε>0, choose δ=ε/5 (or any smaller positive value). If ||P||<δ, the supplied bound gives |S(g;P,t)-7|≤5||P||<5δ=ε. Since the estimate holds for every tag choice and tagged partition, the common Riemann-sum limit is 7, so ∫_0^2 g(x)dx=7.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Chooses δ=ε/5 or another valid positive bound ensuring 5||P||<ε."
+        },
+        {
+          "points": 4,
+          "criterion": "Applies the supplied estimate to every tagged partition with mesh below δ."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes the proper Riemann integral equals 7 from the definition."
+        }
+      ],
+      "marking": "Accept δ≤ε/5 with a strict-mesh condition. No formula for g or antiderivative is needed or permitted."
+    },
+    "T22V3::ARC510::S04-M@1": {
+      "reference": "Let f(x)=5. Its integral is 15. The functions f and g differ only at x=1, with value gap 25. For any tagged partition, the sums are identical unless the tag in the subinterval containing 1 is exactly 1; even then |S(g)-S(f)|≤25||P||. Given ε>0 choose mesh <ε/25. Since S(f)=15 exactly, every such S(g) lies within ε of 15. Therefore g is Riemann integrable with integral 15. It is discontinuous at x=1.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Bounds the effect of the exceptional point by 25||P|| (or an equivalent mesh bound)."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the bound to prove the common tagged-sum limit is 15."
+        },
+        {
+          "points": 2,
+          "criterion": "States the integral as 15."
+        },
+        {
+          "points": 1,
+          "criterion": "Identifies the discontinuity at x=1."
+        }
+      ],
+      "marking": "Accept any equivalent one-point perturbation estimate. Do not require measure-zero language."
+    },
+    "T22V3::ARC510::S04-T@1": {
+      "reference": "For any partition, choose every tag rational. Then every sampled value is 1 and the sum is ΣΔx_i=1. Choose every tag irrational. Then every sampled value is 0 and the sum is 0. The same arbitrarily fine partition therefore admits sums separated by 1, so they cannot all approach one common I; h is not Riemann integrable. Main gives a discontinuous but integrable function, while h is discontinuous everywhere and nonintegrable, so discontinuity by itself does not decide integrability.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Uses rational tags to produce a tagged sum of 1 on an arbitrary partition."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses irrational tags to produce a tagged sum of 0 on the same arbitrary partition."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes nonintegrability from persistent incompatible tagged sums at arbitrarily small mesh."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses Main and Transfer to reject 'discontinuous implies nonintegrable' as a general rule."
+        }
+      ],
+      "marking": "The density fact is granted, not assessed. Do not require terminology from measure theory."
     }
   },
   "coverage": {
@@ -145,6 +418,41 @@
       ],
       [
         "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S02@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S03@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S04@1": [
+      [
+        "main"
+      ],
+      [
         "transfer"
       ],
       [
@@ -188,6 +496,112 @@
         "escapeAttempt": "A learner using the ordinary mean of rates or sum of densities receives no diagnostic credit because the unequal widths make that method disagree.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::ARC510::S02@1": [
+      {
+        "claim": "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+        "task": "main",
+        "publicRequest": "On [1,6], let P={1,2,4.5,6}. Use tags t_1=1.4, t_2=3, t_3=5.2, and suppose f(t_1)=4, f(t_2)=-2, f(t_3)=1. List the three subinterval widths, verify that each tag is legal, compute Σ f(t_i)Δx_i, and state ||P||.",
+        "rubricEvidence": [
+          "Lists the nonuniform widths as 1, 2.5 and 1.5.",
+          "Checks each supplied tag against its corresponding subinterval."
+        ],
+        "escapeAttempt": "Equal-width or misplaced-tag work cannot earn both rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Compute a tagged finite sum and its mesh on a nonuniform partition.",
+        "task": "main",
+        "publicRequest": "On [1,6], let P={1,2,4.5,6}. Use tags t_1=1.4, t_2=3, t_3=5.2, and suppose f(t_1)=4, f(t_2)=-2, f(t_3)=1. List the three subinterval widths, verify that each tag is legal, compute Σ f(t_i)Δx_i, and state ||P||.",
+        "rubricEvidence": [
+          "Computes the tagged sum as 0.5 using f(t_i)Δx_i.",
+          "States the mesh as 2.5, the largest subinterval width."
+        ],
+        "escapeAttempt": "Reporting n=3 or summing f-values alone misses the requested objects.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain why increasing the number of arbitrary subintervals does not by itself force refinement.",
+        "task": "transfer",
+        "publicRequest": "For each n≥1, partition [0,1] by keeping [0,1/3] as one subinterval and dividing [1/3,1] into n equal subintervals. The number of subintervals tends to infinity. Determine the mesh ||P_n|| and explain why this sequence does not make the whole interval arbitrarily fine. State what refinement condition would repair the problem.",
+        "rubricEvidence": [
+          "Explains that the persistent [0,1/3] interval prevents whole-domain refinement despite the growing interval count.",
+          "Identifies mesh tending to zero as the needed refinement condition."
+        ],
+        "escapeAttempt": "Counting subintervals alone cannot earn either reasoning row.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S03@1": [
+      {
+        "claim": "State the operational tagged-partition criterion for a proper Riemann integral.",
+        "task": "main+transfer",
+        "publicRequest": "Using the tagged-partition definition rather than FTC or an antiderivative, prove that the constant function f(x)=-3 on [2,5] has definite integral -9. Your argument must apply to every tagged partition, not only equal-width partitions. | Suppose a bounded function g on [0,2] has the following proved property: for every tagged partition P, |S(g;P,t)-7|≤5||P||. Use only this certificate and the Riemann-integral definition to prove ∫_0^2 g(x)dx=7. Give an explicit δ in terms of ε.",
+        "rubricEvidence": [
+          "Closes the epsilon/mesh definition by observing the error is 0 for every sufficiently fine partition.",
+          "Applies the supplied estimate to every tagged partition with mesh below δ."
+        ],
+        "escapeAttempt": "A special-grid or endpoint-antiderivative answer cannot earn the definition-level rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use that criterion to reconstruct a constant-function integral directly from sums.",
+        "task": "main",
+        "publicRequest": "Using the tagged-partition definition rather than FTC or an antiderivative, prove that the constant function f(x)=-3 on [2,5] has definite integral -9. Your argument must apply to every tagged partition, not only equal-width partitions.",
+        "rubricEvidence": [
+          "Shows for an arbitrary tagged partition that Σ(-3)Δx_i=-3(5-2)=-9.",
+          "Makes the argument independent of equal widths or a special tag choice."
+        ],
+        "escapeAttempt": "The right number from FTC does not demonstrate the requested common-sum argument.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Convert a uniform mesh-dependent error bound into an epsilon-delta integrability proof.",
+        "task": "transfer",
+        "publicRequest": "Suppose a bounded function g on [0,2] has the following proved property: for every tagged partition P, |S(g;P,t)-7|≤5||P||. Use only this certificate and the Riemann-integral definition to prove ∫_0^2 g(x)dx=7. Give an explicit δ in terms of ε.",
+        "rubricEvidence": [
+          "Chooses δ=ε/5 or another valid positive bound ensuring 5||P||<ε.",
+          "Concludes the proper Riemann integral equals 7 from the definition."
+        ],
+        "escapeAttempt": "Guessing 7 from the certificate without choosing mesh control does not earn the proof.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S04@1": [
+      {
+        "claim": "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+        "task": "main",
+        "publicRequest": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere.",
+        "rubricEvidence": [
+          "Bounds the effect of the exceptional point by 25||P|| (or an equivalent mesh bound).",
+          "Uses the bound to prove the common tagged-sum limit is 15."
+        ],
+        "escapeAttempt": "A continuity-only verdict cannot earn the mesh-bound proof.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
+        "task": "transfer",
+        "publicRequest": "On [0,1], define h(x)=1 when x is rational and h(x)=0 when x is irrational. You may use the supplied fact that every nonempty interval contains both rational and irrational numbers. For an arbitrary partition, construct two legal tag choices whose Riemann sums disagree by 1, and use them to show h is not Riemann integrable. Finally, explain what the Main/Transfer pair shows about the claim 'every discontinuous function is nonintegrable.'",
+        "rubricEvidence": [
+          "Uses rational tags to produce a tagged sum of 1 on an arbitrary partition.",
+          "Uses irrational tags to produce a tagged sum of 0 on the same arbitrary partition.",
+          "Concludes nonintegrability from persistent incompatible tagged sums at arbitrarily small mesh."
+        ],
+        "escapeAttempt": "One preferred tag sequence cannot earn the incompatible-tag criteria.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain why discontinuity alone does not decide Riemann integrability.",
+        "task": "main+transfer",
+        "publicRequest": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere. | On [0,1], define h(x)=1 when x is rational and h(x)=0 when x is irrational. You may use the supplied fact that every nonempty interval contains both rational and irrational numbers. For an arbitrary partition, construct two legal tag choices whose Riemann sums disagree by 1, and use them to show h is not Riemann integrable. Finally, explain what the Main/Transfer pair shows about the claim 'every discontinuous function is nonintegrable.'",
+        "rubricEvidence": [
+          "Identifies the discontinuity at x=1.",
+          "Uses Main and Transfer to reject 'discontinuous implies nonintegrable' as a general rule."
+        ],
+        "escapeAttempt": "The learner must explicitly use the pair to separate continuity from integrability.",
+        "disposition": "adequate"
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -206,6 +620,20 @@
         "arithmetic/units already in M01",
         "functions/intervals from M02",
         "rate units from M10-S03"
+      ],
+      "T22V3::ARC510::S02@1": [
+        "M11-S01 finite local contributions",
+        "M02 interval notation",
+        "M03/M09 quantifier discipline"
+      ],
+      "T22V3::ARC510::S03@1": [
+        "M11-S02 partitions/tags/mesh",
+        "M09 function-limit and epsilon discipline"
+      ],
+      "T22V3::ARC510::S04@1": [
+        "M11-S03 Riemann definition",
+        "M09 counterexample discipline",
+        "continuous⇒Riemann-integrable theorem stated here as source-supported support"
       ]
     }
   },
@@ -223,6 +651,36 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer changes from a signed time-rate process to spatial linear density, changes units and removes the time/rate language; the learner must reconstruct density×length and diagnose both structure and dimensions."
         }
+      },
+      "T22V3::ARC510::S02@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main uses a new nonuniform partition and supplied tagged values; the lesson's worked partition/data are different and do not reveal the requested finite sum or mesh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes function values entirely and changes the demand from computing a tagged sum to diagnosing a refinement sequence whose interval count grows while a wide piece persists."
+        }
+      },
+      "T22V3::ARC510::S03@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson already proves the constant-function case in general; Main deliberately asks the learner to reconstruct that proof on a new interval/value, so it is not fresh independent proof evidence."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer supplies a uniform partition-error inequality instead of a concrete function formula; the learner must translate an external certificate into the epsilon/mesh definition."
+        }
+      },
+      "T22V3::ARC510::S04@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson proves a one-point perturbation mechanism on different data; Main reconstructs that proof with a new exceptional point/value and additionally identifies discontinuity."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes from a finite exceptional point to persistent dense tag-choice ambiguity and asks for an explicit two-tag nonintegrability counterexample plus a conceptual comparison."
+        }
       }
     },
     "wrongSolverTests": {
@@ -235,6 +693,36 @@
         "wrongApproach": "Add the three density numbers and label the result mass.",
         "result": "Produces 8 with density arithmetic, omits lengths and has the wrong dimensions; loses structural and unit criteria.",
         "validAlternative": "Any regrouping of 1.6+1.5+1.1 or an equivalent dot-product notation is accepted."
+      },
+      "T22V3::ARC510::S02-M@1": {
+        "wrongApproach": "Treat the three widths as equal or use n=3 as the mesh.",
+        "result": "Produces the wrong sum and/or mesh and loses the corresponding construction criteria.",
+        "validAlternative": "Any equivalent table or expanded-sum computation with widths 1,2.5,1.5 is accepted."
+      },
+      "T22V3::ARC510::S02-T@1": {
+        "wrongApproach": "Conclude the partitions refine because n+1→∞.",
+        "result": "Fails to inspect the widest interval and loses all mesh/refinement reasoning credit.",
+        "validAlternative": "Compute the maximum width directly or argue from the persistent [0,1/3] interval."
+      },
+      "T22V3::ARC510::S03-M@1": {
+        "wrongApproach": "Use F(x)=-3x and endpoint subtraction.",
+        "result": "Gets -9 but bypasses the requested Riemann-definition proof and cannot earn the definition/reconstruction rows.",
+        "validAlternative": "Any arbitrary-partition telescoping-width argument with zero error passes."
+      },
+      "T22V3::ARC510::S03-T@1": {
+        "wrongApproach": "Set δ=ε without accounting for factor 5 or argue from one partition.",
+        "result": "Does not ensure the demanded error for every fine partition and loses the proof rows.",
+        "validAlternative": "Any δ with 0<δ≤ε/5 is acceptable."
+      },
+      "T22V3::ARC510::S04-M@1": {
+        "wrongApproach": "Declare g nonintegrable merely because it is discontinuous at x=1.",
+        "result": "Contradicts the tagged-sum bound and loses all integrability evidence.",
+        "validAlternative": "Compare directly with constant 5 sums or bound the exceptional contribution from scratch."
+      },
+      "T22V3::ARC510::S04-T@1": {
+        "wrongApproach": "Show one rational-tag sequence converges to 1 and call that the integral.",
+        "result": "Ignores legal irrational tags that give 0 on the same fine partitions, so it cannot earn nonintegrability credit.",
+        "validAlternative": "Any construction of two legal tag families staying a fixed positive distance apart passes."
       }
     }
   },
@@ -242,6 +730,18 @@
     "version": "m11-pilot-v1",
     "sessions": {
       "T22V3::ARC510::S01@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S02@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S03@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S04@1": {
         "main": "none",
         "transfer": "none"
       }
@@ -252,6 +752,18 @@
     "version": "m11-pilot-v1",
     "sessions": {
       "T22V3::ARC510::S01@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S02@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S03@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S04@1": {
         "main": "distinct",
         "transfer": "distinct"
       }
