@@ -5,10 +5,10 @@
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "builder-verified-independent-review-repairs-unpublished",
+    "status": "publication-candidate-independent-review-repaired",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
-    "gate": "All 20 design-derived sessions and the bounded independent-review repairs have passed the full structural, semantic/evidence, independent-math and browser suite at implementation checkpoint 645c3d4c96ccdf1b2ad6120f63940d388077e7e9. M11 remains unpublished pending final independent confirmation; M12 remains closed.",
-    "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
+    "gate": "M11's 20 design-derived sessions and bounded independent-review repairs have passed the full structural, semantic/evidence, independent-math and browser suite. It is registered in the shared route for publication through M12; this does not claim learner mastery.",
+    "nextBoundary": "M12 owns Taylor approximation, deterministic asymptotic notation and Taylor-series representation. M11 remains an integration/accumulation module and does not import M12 machinery backward."
   },
   "boundary": {
     "prerequisiteModules": [
