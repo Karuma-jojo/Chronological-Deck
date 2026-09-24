@@ -1,3 +1,5 @@
+> **SUPERSEDED FOR ACCEPTANCE PURPOSES:** This file records the original builder self-audit. The independent review later found material defects that this audit missed. Current authority is `M08-INDEPENDENT-REVIEW.md`, `M08-RESOLUTION.md`, and the current `M08-REVIEW-HANDOFF.md`. Preserve this file as evidence of what the earlier checker failed to catch.
+
 # M08 Builder Adversarial Audit
 
 Date: 2026-09-24
@@ -85,4 +87,4 @@ Forbidden downstream material is not owned here: NumPy, pandas, vectorization, p
 
 ## Builder disposition
 
-**Builder-validated candidate awaiting independent review.**
+**Historical builder disposition only: builder-validated candidate awaiting independent review.** Independent review subsequently opened M08-R01 through M08-R08 and supersedes this disposition.

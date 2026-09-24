@@ -1,14 +1,28 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-24
-State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M08 BUILDER-VALIDATED + FULLY GREEN, INDEPENDENT REVIEW PENDING; M09 CLOSED**
+State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENT-REVIEW REPAIRED + 25-SESSION SIZING FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M09 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
 
-## Current M08 builder recovery — 2026-09-24 (authority for M08)
+## Current M08 session-sizing authority — 2026-09-24
+
+Sizing-only audit decided **25 sessions; add one, merge none**. Former S02 was split into exact quotient/remainder and floating-point tolerance; all existing stable IDs from old S03 onward are preserved. Current M08 structure is 25 sessions / 50 fixed tasks / 125 ownership claims.
+
+Exact green sizing checkpoint: `44b78d327c78fcc7ddf02fe56d1b293901637ee9`; T22 Elite Actions run `35967257130`, job `107528549359`, **SUCCESS**, including Chromium/eight-module browser evidence.
+
+**Current status: fully green, bounded follow-up pending. M09 remains closed.** See `docs/t22-course/M08-SESSION-SIZING-AUDIT.md` and current `M08-REVIEW-HANDOFF.md`.
+
+## Historical M08 independent-review repair — 2026-09-24 (authority for M08)
+
+Independent review opened M08-R01 through M08-R08: contaminated fixed Mains, lexical-only separation, S06 prerequisite contradiction, non-observable programming claims, missing import/callable/traceback bridges, math-only drift in S14-S16, weak float-tolerance policy and missing strict zip. All are repaired; changed fixed tasks are obligationVersion2 and the 120 claim links/semantic contract were regenerated. Fresh Python oracles cover the repaired surfaces. Full T22 Elite Actions run `35965698526` on `42c112a45ea177f8dad5ea3c6c16ab9d041db0f1` succeeded through structural/semantic/evidence checks, Python 3.12 and real Chromium eight-module browser evidence.
+
+**Current status: repaired + fully green, bounded follow-up pending. M09 remains closed.** Current authorities: `M08-INDEPENDENT-REVIEW.md`, `M08-RESOLUTION.md`, `M08-REVIEW-HANDOFF.md`.
+
+## Historical M08 builder recovery — 2026-09-24 (authority for M08)
 
 User explicitly authorized M08 BUILD and requested extensive source search for mathematically/coding-correct session questions. Canonical boundary recovery established M08 · `T22E-CODE01` depends on M01 + M03 + M04; M07 is not a prerequisite. M08 owns core Python execution/control flow, functions/decomposition, core containers/state, exact finite enumeration, exact rational oracles, basic error/invariant discipline, explicit pseudorandom-generator state and small reproducible simulations. NumPy/pandas/scientific-computing engineering remains M21; formal Monte Carlo diagnostics remains M30.
 
