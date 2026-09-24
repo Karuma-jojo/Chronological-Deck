@@ -35,7 +35,7 @@ try{
   });
   assert.equal(candidate.ok,true);assert.equal(candidate.status,200);
   const a=candidate.json;
-  assert.equal(a.module.id,'ARC510');assert.equal(a.module.order,11);assert.match(a.module.status,/publication-candidate-independent-review-repaired/);
+  assert.equal(a.module.id,'ARC510');assert.equal(a.module.order,11);assert.match(a.module.status,/published-independent-review-repaired/);
   assert.equal(a.sessions.length,20);assert.equal(Object.keys(a.problems).length,40);assert.equal(Object.keys(a.evaluators).length,40);
   for(let i=0;i<a.sessions.length;i++){
     const s=a.sessions[i],ss=String(i+1).padStart(2,'0');
