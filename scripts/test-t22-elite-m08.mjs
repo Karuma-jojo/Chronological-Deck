@@ -24,7 +24,7 @@ for(const s of a.sessions){
  assert.equal(s.requiredOwnership.length,5);
  assert(s.lesson.includes('Worked example:')&&s.lesson.includes('Guided check:'),s.id);
  assert.equal(a.claimEvidence[s.id].length,5);
- assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'independent-repair-semantic-separated-pending-final-followup');
+ assert(['independent-repair-semantic-separated-pending-final-followup','session-sizing-split-semantic-separated-pending-final-followup'].includes(a.semanticSeparationAudit.sessions[s.id].status));
  const h=crypto.createHash('sha256').update(JSON.stringify(stable({title:s.title,focus:s.focus,purpose:s.purpose,claims:s.requiredOwnership,lesson:s.lesson}))).digest('hex');
  assert(!hashes.has(h));hashes.add(h);
  for(const kind of ['main','transfer']){
@@ -101,7 +101,7 @@ assert(a.problems[by(24).main].prompt.includes('a+b==9'));
 assert(by(25).lesson.includes('model → exact oracle'));
 
 // Independent assessment-contamination guards.
-assert.equal(a.assessmentIndependenceAudit.version,'m08-independent-repair-r2-2026-09-24');
+assert.equal(a.assessmentIndependenceAudit.version,'m08-session-sizing-r3-25-sessions-2026-09-24');
 for(const [ord,guard] of Object.entries(a.assessmentIndependenceAudit.sessions)){
  const ss=by(Number(ord)), prompt=a.problems[ss.main].prompt;
  for(const bad of guard.forbidInMain) assert(!prompt.includes(bad),`S${ord} Main regressed to worked-example surface: ${bad}`);
