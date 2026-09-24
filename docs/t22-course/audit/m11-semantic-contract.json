@@ -1,0 +1,1783 @@
+{
+  "version": "m11-semantic-contract-v1-2026-09-24",
+  "module": {
+    "id": "ARC510",
+    "order": 11,
+    "title": "Integration & Accumulation"
+  },
+  "sessionCount": 20,
+  "ownershipClaimCount": 61,
+  "evidenceClasses": [
+    "retrieval",
+    "proof reconstruction",
+    "fresh Main evidence",
+    "changed-surface Transfer"
+  ],
+  "policy": "Ownership requires literal public/scored observability. Taught proofs assessed later are proof reconstruction. Fixed prompts/references were screened against all M09+M10 and legally available M11 instruction; repaired contract has zero exact or 12-token normalized overlaps.",
+  "unpublished": true,
+  "changedObligations": [],
+  "sessions": [
+    {
+      "id": "T22V3::ARC510::S01@1",
+      "order": 1,
+      "title": "Finite accumulation is local quantity times width",
+      "requiredOwnership": [
+        "Construct a finite signed accumulation as a sum of local quantity times interval width.",
+        "Track units from local quantity times width to the accumulated total.",
+        "Reject an unweighted sum or unweighted-rate average when interval widths are unequal."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Construct a finite signed accumulation as a sum of local quantity times interval width.",
+          "task": "main+transfer",
+          "publicRequest": "A battery system is observed over three consecutive intervals. Its signed net charging rate is +12 W for 0.25 h, -4 W for 0.75 h, and +6 W for 0.50 h. Construct the finite accumulation sum for the net energy change, compute that change, and state its units. Then explain why simply averaging the three rate values and multiplying by the total elapsed time is not a valid calculation for these unequal interval widths. | A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+          "rubricEvidence": [
+            "Builds the signed rate-times-duration sum with all three unequal interval widths.",
+            "Constructs density-times-length contributions for all three sections."
+          ],
+          "escapeAttempt": "A solver who adds 12-4+6 or 2+5+1 never forms local contributions and loses these criteria.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Track units from local quantity times width to the accumulated total.",
+          "task": "main+transfer",
+          "publicRequest": "A battery system is observed over three consecutive intervals. Its signed net charging rate is +12 W for 0.25 h, -4 W for 0.75 h, and +6 W for 0.50 h. Construct the finite accumulation sum for the net energy change, compute that change, and state its units. Then explain why simply averaging the three rate values and multiplying by the total elapsed time is not a valid calculation for these unequal interval widths. | A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+          "rubricEvidence": [
+            "Computes the net change as +3 Wh and gives an energy unit.",
+            "Identifies that adding densities retains kg/m rather than producing kg."
+          ],
+          "escapeAttempt": "A unitless or rate-unit answer can compute nearby arithmetic but cannot earn the unit evidence.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Reject an unweighted sum or unweighted-rate average when interval widths are unequal.",
+          "task": "main+transfer",
+          "publicRequest": "A battery system is observed over three consecutive intervals. Its signed net charging rate is +12 W for 0.25 h, -4 W for 0.75 h, and +6 W for 0.50 h. Construct the finite accumulation sum for the net energy change, compute that change, and state its units. Then explain why simply averaging the three rate values and multiplying by the total elapsed time is not a valid calculation for these unequal interval widths. | A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+          "rubricEvidence": [
+            "Explains that an unweighted rate average ignores unequal exposure durations rather than merely stating that it is wrong.",
+            "Identifies omission of section lengths as the structural error in the reported sum."
+          ],
+          "escapeAttempt": "A learner using the ordinary mean of rates or sum of densities receives no diagnostic credit because the unequal widths make that method disagree.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S01-M@1",
+        "prompt": "A battery system is observed over three consecutive intervals. Its signed net charging rate is +12 W for 0.25 h, -4 W for 0.75 h, and +6 W for 0.50 h. Construct the finite accumulation sum for the net energy change, compute that change, and state its units. Then explain why simply averaging the three rate values and multiplying by the total elapsed time is not a valid calculation for these unequal interval widths.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Builds the signed rate-times-duration sum with all three unequal interval widths."
+          },
+          {
+            "points": 3,
+            "criterion": "Computes the net change as +3 Wh and gives an energy unit."
+          },
+          {
+            "points": 3,
+            "criterion": "Explains that an unweighted rate average ignores unequal exposure durations rather than merely stating that it is wrong."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S01-T@1",
+        "prompt": "A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Constructs density-times-length contributions for all three sections."
+          },
+          {
+            "points": 3,
+            "criterion": "Computes the modeled total mass as 4.2 kg."
+          },
+          {
+            "points": 2,
+            "criterion": "Identifies omission of section lengths as the structural error in the reported sum."
+          },
+          {
+            "points": 2,
+            "criterion": "Identifies that adding densities retains kg/m rather than producing kg."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S02@1",
+      "order": 2,
+      "title": "Partitions, tags and mesh",
+      "requiredOwnership": [
+        "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+        "Compute a tagged finite sum and its mesh on a nonuniform partition.",
+        "Explain why increasing the number of arbitrary subintervals does not by itself force refinement."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+          "task": "main",
+          "publicRequest": "On [1,6], let P={1,2,4.5,6}. Use tags t_1=1.4, t_2=3, t_3=5.2, and suppose f(t_1)=4, f(t_2)=-2, f(t_3)=1. List the three subinterval widths, verify that each tag is legal, compute Σ f(t_i)Δx_i, and state ||P||.",
+          "rubricEvidence": [
+            "Lists the nonuniform widths as 1, 2.5 and 1.5.",
+            "Checks each supplied tag against its corresponding subinterval."
+          ],
+          "escapeAttempt": "Equal-width or misplaced-tag work cannot earn both rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Compute a tagged finite sum and its mesh on a nonuniform partition.",
+          "task": "main",
+          "publicRequest": "On [1,6], let P={1,2,4.5,6}. Use tags t_1=1.4, t_2=3, t_3=5.2, and suppose f(t_1)=4, f(t_2)=-2, f(t_3)=1. List the three subinterval widths, verify that each tag is legal, compute Σ f(t_i)Δx_i, and state ||P||.",
+          "rubricEvidence": [
+            "Computes the tagged sum as 0.5 using f(t_i)Δx_i.",
+            "States the mesh as 2.5, the largest subinterval width."
+          ],
+          "escapeAttempt": "Reporting n=3 or summing f-values alone misses the requested objects.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Explain why increasing the number of arbitrary subintervals does not by itself force refinement.",
+          "task": "transfer",
+          "publicRequest": "For each n≥1, partition [0,1] by keeping [0,1/3] as one subinterval and dividing [1/3,1] into n equal subintervals. The number of subintervals tends to infinity. Determine the mesh ||P_n|| and explain why this sequence does not make the whole interval arbitrarily fine. State what refinement condition would repair the problem.",
+          "rubricEvidence": [
+            "Explains that the persistent [0,1/3] interval prevents whole-domain refinement despite the growing interval count.",
+            "Identifies mesh tending to zero as the needed refinement condition."
+          ],
+          "escapeAttempt": "Counting subintervals alone cannot earn either reasoning row.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S02-M@1",
+        "prompt": "On [1,6], let P={1,2,4.5,6}. Use tags t_1=1.4, t_2=3, t_3=5.2, and suppose f(t_1)=4, f(t_2)=-2, f(t_3)=1. List the three subinterval widths, verify that each tag is legal, compute Σ f(t_i)Δx_i, and state ||P||.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Lists the nonuniform widths as 1, 2.5 and 1.5."
+          },
+          {
+            "points": 2,
+            "criterion": "Checks each supplied tag against its corresponding subinterval."
+          },
+          {
+            "points": 3,
+            "criterion": "Computes the tagged sum as 0.5 using f(t_i)Δx_i."
+          },
+          {
+            "points": 2,
+            "criterion": "States the mesh as 2.5, the largest subinterval width."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S02-T@1",
+        "prompt": "For each n≥1, partition [0,1] by keeping [0,1/3] as one subinterval and dividing [1/3,1] into n equal subintervals. The number of subintervals tends to infinity. Determine the mesh ||P_n|| and explain why this sequence does not make the whole interval arbitrarily fine. State what refinement condition would repair the problem.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Computes ||P_n||=max(1/3,2/(3n)) and notes it stays 1/3 for n≥2."
+          },
+          {
+            "points": 3,
+            "criterion": "Explains that the persistent [0,1/3] interval prevents whole-domain refinement despite the growing interval count."
+          },
+          {
+            "points": 3,
+            "criterion": "Identifies mesh tending to zero as the needed refinement condition."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S03@1",
+      "order": 3,
+      "title": "The definite integral is a common refinement limit",
+      "requiredOwnership": [
+        "State the operational tagged-partition criterion for a proper Riemann integral.",
+        "Use that criterion to reconstruct a constant-function integral directly from sums.",
+        "Convert a uniform mesh-dependent error bound into an epsilon-delta integrability proof."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "State the operational tagged-partition criterion for a proper Riemann integral.",
+          "task": "main+transfer",
+          "publicRequest": "Using the tagged-partition definition rather than FTC or an antiderivative, prove that the constant function f(x)=-3 on [2,5] has definite integral -9. Your argument must apply to every tagged partition, not only equal-width partitions. | Suppose a bounded function g on [0,2] has the following proved property: for every tagged partition P, |S(g;P,t)-7|≤5||P||. Use only this certificate and the Riemann-integral definition to prove ∫_0^2 g(x)dx=7. Give an explicit δ in terms of ε.",
+          "rubricEvidence": [
+            "Closes the epsilon/mesh definition by observing the error is 0 for every sufficiently fine partition.",
+            "Applies the supplied estimate to every tagged partition with mesh below δ."
+          ],
+          "escapeAttempt": "A special-grid or endpoint-antiderivative answer cannot earn the definition-level rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Use that criterion to reconstruct a constant-function integral directly from sums.",
+          "task": "main",
+          "publicRequest": "Using the tagged-partition definition rather than FTC or an antiderivative, prove that the constant function f(x)=-3 on [2,5] has definite integral -9. Your argument must apply to every tagged partition, not only equal-width partitions.",
+          "rubricEvidence": [
+            "Shows for an arbitrary tagged partition that Σ(-3)Δx_i=-3(5-2)=-9.",
+            "Makes the argument independent of equal widths or a special tag choice."
+          ],
+          "escapeAttempt": "The right number from FTC does not demonstrate the requested common-sum argument.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Convert a uniform mesh-dependent error bound into an epsilon-delta integrability proof.",
+          "task": "transfer",
+          "publicRequest": "Suppose a bounded function g on [0,2] has the following proved property: for every tagged partition P, |S(g;P,t)-7|≤5||P||. Use only this certificate and the Riemann-integral definition to prove ∫_0^2 g(x)dx=7. Give an explicit δ in terms of ε.",
+          "rubricEvidence": [
+            "Chooses δ=ε/5 or another valid positive bound ensuring 5||P||<ε.",
+            "Concludes the proper Riemann integral equals 7 from the definition."
+          ],
+          "escapeAttempt": "Guessing 7 from the certificate without choosing mesh control does not earn the proof.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S03-M@1",
+        "prompt": "Using the tagged-partition definition rather than FTC or an antiderivative, prove that the constant function f(x)=-3 on [2,5] has definite integral -9. Your argument must apply to every tagged partition, not only equal-width partitions.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Shows for an arbitrary tagged partition that Σ(-3)Δx_i=-3(5-2)=-9."
+          },
+          {
+            "points": 3,
+            "criterion": "Makes the argument independent of equal widths or a special tag choice."
+          },
+          {
+            "points": 3,
+            "criterion": "Closes the epsilon/mesh definition by observing the error is 0 for every sufficiently fine partition."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S03-T@1",
+        "prompt": "Suppose a bounded function g on [0,2] has the following proved property: for every tagged partition P, |S(g;P,t)-7|≤5||P||. Use only this certificate and the Riemann-integral definition to prove ∫_0^2 g(x)dx=7. Give an explicit δ in terms of ε.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Chooses δ=ε/5 or another valid positive bound ensuring 5||P||<ε."
+          },
+          {
+            "points": 4,
+            "criterion": "Applies the supplied estimate to every tagged partition with mesh below δ."
+          },
+          {
+            "points": 2,
+            "criterion": "Concludes the proper Riemann integral equals 7 from the definition."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S04@1",
+      "order": 4,
+      "title": "Integrability diagnostics: point changes and tag dependence",
+      "requiredOwnership": [
+        "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+        "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
+        "Explain why discontinuity alone does not decide Riemann integrability."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+          "task": "main",
+          "publicRequest": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere.",
+          "rubricEvidence": [
+            "Bounds the effect of the exceptional point by 50||P|| or another valid bound that handles the possible two adjacent tagged subintervals.",
+            "Uses the bound to prove the common tagged-sum limit is 15."
+          ],
+          "escapeAttempt": "A continuity-only verdict cannot earn the mesh-bound proof.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
+          "task": "transfer",
+          "publicRequest": "On [0,1], define h(x)=1 when x is rational and h(x)=0 when x is irrational. You may use the supplied fact that every nonempty interval contains both rational and irrational numbers. For an arbitrary partition, construct two legal tag choices whose Riemann sums disagree by 1, and use them to show h is not Riemann integrable. Finally, explain what the Main/Transfer pair shows about the claim 'every discontinuous function is nonintegrable.'",
+          "rubricEvidence": [
+            "Uses rational tags to produce a tagged sum of 1 on an arbitrary partition.",
+            "Uses irrational tags to produce a tagged sum of 0 on the same arbitrary partition.",
+            "Concludes nonintegrability from persistent incompatible tagged sums at arbitrarily small mesh."
+          ],
+          "escapeAttempt": "One preferred tag sequence cannot earn the incompatible-tag criteria.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Explain why discontinuity alone does not decide Riemann integrability.",
+          "task": "main+transfer",
+          "publicRequest": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere. | On [0,1], define h(x)=1 when x is rational and h(x)=0 when x is irrational. You may use the supplied fact that every nonempty interval contains both rational and irrational numbers. For an arbitrary partition, construct two legal tag choices whose Riemann sums disagree by 1, and use them to show h is not Riemann integrable. Finally, explain what the Main/Transfer pair shows about the claim 'every discontinuous function is nonintegrable.'",
+          "rubricEvidence": [
+            "Identifies the discontinuity at x=1.",
+            "Uses Main and Transfer to reject 'discontinuous implies nonintegrable' as a general rule."
+          ],
+          "escapeAttempt": "The learner must explicitly use the pair to separate continuity from integrability.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S04-M@1",
+        "prompt": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Bounds the effect of the exceptional point by 50||P|| or another valid bound that handles the possible two adjacent tagged subintervals."
+          },
+          {
+            "points": 3,
+            "criterion": "Uses the bound to prove the common tagged-sum limit is 15."
+          },
+          {
+            "points": 2,
+            "criterion": "States the integral as 15."
+          },
+          {
+            "points": 1,
+            "criterion": "Identifies the discontinuity at x=1."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S04-T@1",
+        "prompt": "On [0,1], define h(x)=1 when x is rational and h(x)=0 when x is irrational. You may use the supplied fact that every nonempty interval contains both rational and irrational numbers. For an arbitrary partition, construct two legal tag choices whose Riemann sums disagree by 1, and use them to show h is not Riemann integrable. Finally, explain what the Main/Transfer pair shows about the claim 'every discontinuous function is nonintegrable.'",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Uses rational tags to produce a tagged sum of 1 on an arbitrary partition."
+          },
+          {
+            "points": 3,
+            "criterion": "Uses irrational tags to produce a tagged sum of 0 on the same arbitrary partition."
+          },
+          {
+            "points": 2,
+            "criterion": "Concludes nonintegrability from persistent incompatible tagged sums at arbitrarily small mesh."
+          },
+          {
+            "points": 2,
+            "criterion": "Uses Main and Transfer to reject 'discontinuous implies nonintegrable' as a general rule."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S05@1",
+      "order": 5,
+      "title": "Linearity, interval additivity and orientation",
+      "requiredOwnership": [
+        "Use linearity of the definite integral for finite linear combinations.",
+        "Use additivity across adjacent intervals to reconstruct a total.",
+        "Apply the reversed-bound convention with the correct sign."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Use linearity of the definite integral for finite linear combinations.",
+          "task": "main+transfer",
+          "publicRequest": "Suppose f and g are integrable and you are given ∫_1^4 f(x)dx=5, ∫_4^7 f(x)dx=-2, and ∫_1^7 g(x)dx=3. Compute (i) ∫_1^7 f, (ii) ∫_7^1 f, and (iii) ∫_1^7 [2f(x)-3g(x)]dx. Name the structural law used at each step. | A signed flow model has accumulated +6 L from hour 0 to hour 2 and -4 L from hour 2 to hour 5 for component A. Component B accumulates +3 L from hour 0 to hour 5. Without inventing pointwise rate formulas, determine (i) A's accumulation from 0 to 5, (ii) A's accumulation from 5 back to 0 under the oriented convention, and (iii) the 0-to-5 accumulation of the combined rate 2A-B.",
+          "rubricEvidence": [
+            "Uses linearity to obtain ∫_1^7(2f-3g)=-3.",
+            "Uses linearity on the supplied accumulations to obtain +1 L for 2A-B."
+          ],
+          "escapeAttempt": "Nonlinear or invented-rate arithmetic cannot earn these rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Use additivity across adjacent intervals to reconstruct a total.",
+          "task": "main+transfer",
+          "publicRequest": "Suppose f and g are integrable and you are given ∫_1^4 f(x)dx=5, ∫_4^7 f(x)dx=-2, and ∫_1^7 g(x)dx=3. Compute (i) ∫_1^7 f, (ii) ∫_7^1 f, and (iii) ∫_1^7 [2f(x)-3g(x)]dx. Name the structural law used at each step. | A signed flow model has accumulated +6 L from hour 0 to hour 2 and -4 L from hour 2 to hour 5 for component A. Component B accumulates +3 L from hour 0 to hour 5. Without inventing pointwise rate formulas, determine (i) A's accumulation from 0 to 5, (ii) A's accumulation from 5 back to 0 under the oriented convention, and (iii) the 0-to-5 accumulation of the combined rate 2A-B.",
+          "rubricEvidence": [
+            "Uses adjacent-interval additivity to obtain ∫_1^7 f=3.",
+            "Combines the adjacent A intervals to obtain +2 L."
+          ],
+          "escapeAttempt": "Ignoring the split interval cannot produce the requested total under the cited rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Apply the reversed-bound convention with the correct sign.",
+          "task": "main+transfer",
+          "publicRequest": "Suppose f and g are integrable and you are given ∫_1^4 f(x)dx=5, ∫_4^7 f(x)dx=-2, and ∫_1^7 g(x)dx=3. Compute (i) ∫_1^7 f, (ii) ∫_7^1 f, and (iii) ∫_1^7 [2f(x)-3g(x)]dx. Name the structural law used at each step. | A signed flow model has accumulated +6 L from hour 0 to hour 2 and -4 L from hour 2 to hour 5 for component A. Component B accumulates +3 L from hour 0 to hour 5. Without inventing pointwise rate formulas, determine (i) A's accumulation from 0 to 5, (ii) A's accumulation from 5 back to 0 under the oriented convention, and (iii) the 0-to-5 accumulation of the combined rate 2A-B.",
+          "rubricEvidence": [
+            "Uses reversed-bound orientation to obtain ∫_7^1 f=-3.",
+            "Reverses orientation to obtain -2 L from hour 5 to hour 0."
+          ],
+          "escapeAttempt": "A same-sign reversal loses the direct orientation criteria.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S05-M@1",
+        "prompt": "Suppose f and g are integrable and you are given ∫_1^4 f(x)dx=5, ∫_4^7 f(x)dx=-2, and ∫_1^7 g(x)dx=3. Compute (i) ∫_1^7 f, (ii) ∫_7^1 f, and (iii) ∫_1^7 [2f(x)-3g(x)]dx. Name the structural law used at each step.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Uses adjacent-interval additivity to obtain ∫_1^7 f=3."
+          },
+          {
+            "points": 2,
+            "criterion": "Uses reversed-bound orientation to obtain ∫_7^1 f=-3."
+          },
+          {
+            "points": 4,
+            "criterion": "Uses linearity to obtain ∫_1^7(2f-3g)=-3."
+          },
+          {
+            "points": 1,
+            "criterion": "Correctly associates additivity, orientation and linearity with the three steps."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S05-T@1",
+        "prompt": "A signed flow model has accumulated +6 L from hour 0 to hour 2 and -4 L from hour 2 to hour 5 for component A. Component B accumulates +3 L from hour 0 to hour 5. Without inventing pointwise rate formulas, determine (i) A's accumulation from 0 to 5, (ii) A's accumulation from 5 back to 0 under the oriented convention, and (iii) the 0-to-5 accumulation of the combined rate 2A-B.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Combines the adjacent A intervals to obtain +2 L."
+          },
+          {
+            "points": 3,
+            "criterion": "Reverses orientation to obtain -2 L from hour 5 to hour 0."
+          },
+          {
+            "points": 4,
+            "criterion": "Uses linearity on the supplied accumulations to obtain +1 L for 2A-B."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S06@1",
+      "order": 6,
+      "title": "Order, magnitude, cancellation and average value",
+      "requiredOwnership": [
+        "Use pointwise bounds to bound a definite integral on a finite interval.",
+        "Distinguish signed accumulation ∫f from total magnitude ∫|f| and apply |∫f|≤∫|f|.",
+        "Compute the average value (1/(b-a))∫_a^b f for b>a."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Use pointwise bounds to bound a definite integral on a finite interval.",
+          "task": "transfer",
+          "publicRequest": "Let q be integrable on [2,6] and suppose -1≤q(x)≤3 for every x. Also suppose ∫_2^6 |q(x)|dx=5. Give the sharp bounds that follow immediately for ∫_2^6 q(x)dx from (a) the pointwise bounds and (b) the absolute-value inequality. Combine the information to state the tightest interval you can certify for the signed integral.",
+          "rubricEvidence": [
+            "Uses the pointwise bounds to obtain -4≤∫q≤12.",
+            "Intersects the two bounds to certify -4≤∫q≤5 without claiming a specific value."
+          ],
+          "escapeAttempt": "A guessed value or reversed inequality cannot earn these rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Distinguish signed accumulation ∫f from total magnitude ∫|f| and apply |∫f|≤∫|f|.",
+          "task": "main+transfer",
+          "publicRequest": "A signed velocity model is v(t)=4 km/h on 0≤t≤1.5 and v(t)=-2 km/h on 1.5<t≤3.5. Compute (i) ∫_0^3.5 v(t)dt, (ii) ∫_0^3.5 |v(t)|dt, and (iii) the average value of v over [0,3.5]. Explain in one sentence why the first two totals differ. | Let q be integrable on [2,6] and suppose -1≤q(x)≤3 for every x. Also suppose ∫_2^6 |q(x)|dx=5. Give the sharp bounds that follow immediately for ∫_2^6 q(x)dx from (a) the pointwise bounds and (b) the absolute-value inequality. Combine the information to state the tightest interval you can certify for the signed integral.",
+          "rubricEvidence": [
+            "Computes the signed integral as 2 km with the negative segment subtracting.",
+            "Computes the absolute-value integral as 10 km.",
+            "Uses |∫q|≤∫|q|=5 to obtain -5≤∫q≤5."
+          ],
+          "escapeAttempt": "Equating signed and absolute accumulation fails both the explicit calculation and inequality observer.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Compute the average value (1/(b-a))∫_a^b f for b>a.",
+          "task": "main",
+          "publicRequest": "A signed velocity model is v(t)=4 km/h on 0≤t≤1.5 and v(t)=-2 km/h on 1.5<t≤3.5. Compute (i) ∫_0^3.5 v(t)dt, (ii) ∫_0^3.5 |v(t)|dt, and (iii) the average value of v over [0,3.5]. Explain in one sentence why the first two totals differ.",
+          "rubricEvidence": [
+            "Computes the average value as 4/7 km/h."
+          ],
+          "escapeAttempt": "Reporting the total 2 km as an average has wrong units and loses the row.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S06-M@1",
+        "prompt": "A signed velocity model is v(t)=4 km/h on 0≤t≤1.5 and v(t)=-2 km/h on 1.5<t≤3.5. Compute (i) ∫_0^3.5 v(t)dt, (ii) ∫_0^3.5 |v(t)|dt, and (iii) the average value of v over [0,3.5]. Explain in one sentence why the first two totals differ.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Computes the signed integral as 2 km with the negative segment subtracting."
+          },
+          {
+            "points": 3,
+            "criterion": "Computes the absolute-value integral as 10 km."
+          },
+          {
+            "points": 2,
+            "criterion": "Computes the average value as 4/7 km/h."
+          },
+          {
+            "points": 2,
+            "criterion": "Explains cancellation versus magnitude as the reason the two totals differ."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S06-T@1",
+        "prompt": "Let q be integrable on [2,6] and suppose -1≤q(x)≤3 for every x. Also suppose ∫_2^6 |q(x)|dx=5. Give the sharp bounds that follow immediately for ∫_2^6 q(x)dx from (a) the pointwise bounds and (b) the absolute-value inequality. Combine the information to state the tightest interval you can certify for the signed integral.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Uses the pointwise bounds to obtain -4≤∫q≤12."
+          },
+          {
+            "points": 3,
+            "criterion": "Uses |∫q|≤∫|q|=5 to obtain -5≤∫q≤5."
+          },
+          {
+            "points": 3,
+            "criterion": "Intersects the two bounds to certify -4≤∫q≤5 without claiming a specific value."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S07@1",
+      "order": 7,
+      "title": "Accumulation functions are continuous before they are differentiable",
+      "requiredOwnership": [
+        "Derive a bound |A(y)-A(x)|≤M|y-x| from |f|≤M for an accumulation function.",
+        "Use the bound to prove continuity of an accumulation function without assuming f is continuous.",
+        "Distinguish continuity of accumulated total from differentiability at a jump of the integrand."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Derive a bound |A(y)-A(x)|≤M|y-x| from |f|≤M for an accumulation function.",
+          "task": "main",
+          "publicRequest": "Let g be Riemann integrable on [0,5] with |g(t)|≤7, and define G(x)=∫_2^x g(t)dt. Prove that |G(y)-G(x)|≤7|y-x| for all x,y∈[0,5], and use the bound to prove G is continuous. Do not assume g itself is continuous.",
+          "rubricEvidence": [
+            "Uses interval additivity/orientation to rewrite G(y)-G(x) as accumulation over the interval between x and y.",
+            "Applies |g|≤7 to obtain |G(y)-G(x)|≤7|y-x|."
+          ],
+          "escapeAttempt": "Invoking FTC without the bound does not observe this capability.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Use the bound to prove continuity of an accumulation function without assuming f is continuous.",
+          "task": "main+transfer",
+          "publicRequest": "Let g be Riemann integrable on [0,5] with |g(t)|≤7, and define G(x)=∫_2^x g(t)dt. Prove that |G(y)-G(x)|≤7|y-x| for all x,y∈[0,5], and use the bound to prove G is continuous. Do not assume g itself is continuous. | A signed rate is h(t)=2 for 0≤t<1 and h(t)=-1 for 1≤t≤3. Define H(x)=∫_0^x h(t)dt. Find H(x) on 0≤x≤1 and on 1≤x≤3. Is H continuous at x=1? Is H differentiable there? Justify the differentiability answer from one-sided slopes rather than from a cancellation slogan.",
+          "rubricEvidence": [
+            "Chooses a valid δ such as ε/7 and concludes continuity without assuming g is continuous.",
+            "Shows both pieces meet at H(1)=2 and concludes continuity."
+          ],
+          "escapeAttempt": "Assuming integrand continuity is unnecessary and cannot substitute for the requested evidence.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Distinguish continuity of accumulated total from differentiability at a jump of the integrand.",
+          "task": "transfer",
+          "publicRequest": "A signed rate is h(t)=2 for 0≤t<1 and h(t)=-1 for 1≤t≤3. Define H(x)=∫_0^x h(t)dt. Find H(x) on 0≤x≤1 and on 1≤x≤3. Is H continuous at x=1? Is H differentiable there? Justify the differentiability answer from one-sided slopes rather than from a cancellation slogan.",
+          "rubricEvidence": [
+            "Compares the one-sided slopes 2 and -1 and concludes H is not differentiable at x=1."
+          ],
+          "escapeAttempt": "Continuity alone cannot earn the differentiability diagnosis.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S07-M@1",
+        "prompt": "Let g be Riemann integrable on [0,5] with |g(t)|≤7, and define G(x)=∫_2^x g(t)dt. Prove that |G(y)-G(x)|≤7|y-x| for all x,y∈[0,5], and use the bound to prove G is continuous. Do not assume g itself is continuous.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Uses interval additivity/orientation to rewrite G(y)-G(x) as accumulation over the interval between x and y."
+          },
+          {
+            "points": 3,
+            "criterion": "Applies |g|≤7 to obtain |G(y)-G(x)|≤7|y-x|."
+          },
+          {
+            "points": 3,
+            "criterion": "Chooses a valid δ such as ε/7 and concludes continuity without assuming g is continuous."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S07-T@1",
+        "prompt": "A signed rate is h(t)=2 for 0≤t<1 and h(t)=-1 for 1≤t≤3. Define H(x)=∫_0^x h(t)dt. Find H(x) on 0≤x≤1 and on 1≤x≤3. Is H continuous at x=1? Is H differentiable there? Justify the differentiability answer from one-sided slopes rather than from a cancellation slogan.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Obtains H(x)=2x for x≤1 and H(x)=3-x for x≥1."
+          },
+          {
+            "points": 2,
+            "criterion": "Shows both pieces meet at H(1)=2 and concludes continuity."
+          },
+          {
+            "points": 4,
+            "criterion": "Compares the one-sided slopes 2 and -1 and concludes H is not differentiable at x=1."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S08@1",
+      "order": 8,
+      "title": "FTC local recovery from a shrinking average",
+      "requiredOwnership": [
+        "Reconstruct the short-interval-average proof of A'(c)=f(c) under the stated continuity/integrability hypotheses.",
+        "Recover a local rate and its units from the derivative of a cumulative quantity.",
+        "Refuse FTC derivative recovery at a jump when the one-sided accumulated slopes disagree."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Reconstruct the short-interval-average proof of A'(c)=f(c) under the stated continuity/integrability hypotheses.",
+          "task": "main",
+          "publicRequest": "Let f be Riemann integrable on [-1,4], continuous at c=2, and satisfy f(2)=-3. Define A(x)=∫_{-1}^x f(t)dt. Reconstruct the local proof that A'(2)=-3: write the difference quotient as a short-interval average and use continuity at 2 to control its error.",
+          "rubricEvidence": [
+            "Rewrites the accumulation difference quotient as (1/h)∫_2^{2+h} f(t)dt.",
+            "Subtracts f(2) and uses continuity to bound the short-interval average error.",
+            "Concludes the derivative exists and equals A'(2)=f(2)=-3."
+          ],
+          "escapeAttempt": "A cancellation slogan cannot earn the reconstruction rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Recover a local rate and its units from the derivative of a cumulative quantity.",
+          "task": "transfer",
+          "publicRequest": "A cumulative dose is C(t)=∫_0^t r(s)ds, where r is measured in mg/min. First suppose r is continuous at t=5 and r(5)=2.4 mg/min. Find C'(5) and its units. Now instead suppose r is bounded and integrable but has left-hand values tending to 2 mg/min and right-hand values tending to 4 mg/min at t=5. State what remains true about C at t=5 and whether C'(5) exists, with a reason.",
+          "rubricEvidence": [
+            "Uses continuity at 5 to obtain C'(5)=2.4 mg/min with correct units."
+          ],
+          "escapeAttempt": "A unitless 2.4 does not fully answer the rate-recovery request.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Refuse FTC derivative recovery at a jump when the one-sided accumulated slopes disagree.",
+          "task": "transfer",
+          "publicRequest": "A cumulative dose is C(t)=∫_0^t r(s)ds, where r is measured in mg/min. First suppose r is continuous at t=5 and r(5)=2.4 mg/min. Find C'(5) and its units. Now instead suppose r is bounded and integrable but has left-hand values tending to 2 mg/min and right-hand values tending to 4 mg/min at t=5. State what remains true about C at t=5 and whether C'(5) exists, with a reason.",
+          "rubricEvidence": [
+            "States that the bounded-integrand accumulation C remains continuous at the jump.",
+            "Uses the unequal left/right local average limits 2 and 4 to conclude C'(5) does not exist."
+          ],
+          "escapeAttempt": "Merely citing a failed hypothesis without the requested local reason cannot earn full credit.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S08-M@1",
+        "prompt": "Let f be Riemann integrable on [-1,4], continuous at c=2, and satisfy f(2)=-3. Define A(x)=∫_{-1}^x f(t)dt. Reconstruct the local proof that A'(2)=-3: write the difference quotient as a short-interval average and use continuity at 2 to control its error.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Rewrites the accumulation difference quotient as (1/h)∫_2^{2+h} f(t)dt."
+          },
+          {
+            "points": 4,
+            "criterion": "Subtracts f(2) and uses continuity to bound the short-interval average error."
+          },
+          {
+            "points": 3,
+            "criterion": "Concludes the derivative exists and equals A'(2)=f(2)=-3."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S08-T@1",
+        "prompt": "A cumulative dose is C(t)=∫_0^t r(s)ds, where r is measured in mg/min. First suppose r is continuous at t=5 and r(5)=2.4 mg/min. Find C'(5) and its units. Now instead suppose r is bounded and integrable but has left-hand values tending to 2 mg/min and right-hand values tending to 4 mg/min at t=5. State what remains true about C at t=5 and whether C'(5) exists, with a reason.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Uses continuity at 5 to obtain C'(5)=2.4 mg/min with correct units."
+          },
+          {
+            "points": 3,
+            "criterion": "States that the bounded-integrand accumulation C remains continuous at the jump."
+          },
+          {
+            "points": 4,
+            "criterion": "Uses the unequal left/right local average limits 2 and 4 to conclude C'(5) does not exist."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S09@1",
+      "order": 9,
+      "title": "Moving endpoints without differentiating the integrand",
+      "requiredOwnership": [
+        "Differentiate a variable upper endpoint by composing an accumulation function with the endpoint map.",
+        "Differentiate an integral with two moving endpoints using orientation and two chain-rule contributions.",
+        "Distinguish moving-bound differentiation from differentiation under the integral sign."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Differentiate a variable upper endpoint by composing an accumulation function with the endpoint map.",
+          "task": "main",
+          "publicRequest": "Define F(x)=∫_0^{3x-1} e^{t²}dt. Without trying to find an elementary antiderivative of e^{t²}, find F'(x) and evaluate F'(1). State the continuity/domain fact that makes the endpoint rule legal.",
+          "rubricEvidence": [
+            "Applies FTC plus the endpoint chain factor to obtain F'(x)=3e^{(3x-1)²}.",
+            "States that e^{t²} is continuous on the endpoint range, so the FTC accumulation derivative is available."
+          ],
+          "escapeAttempt": "Omitting the factor 3 or searching for an antiderivative does not earn the endpoint-composition evidence.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Differentiate an integral with two moving endpoints using orientation and two chain-rule contributions.",
+          "task": "transfer",
+          "publicRequest": "Let J(x)=∫_{x²}^{2x+1} ln(1+t²)dt. Find J'(x), keeping the upper- and lower-endpoint contributions separate. Then explain why differentiating ln(1+t²) with respect to x is not part of this calculation.",
+          "rubricEvidence": [
+            "Obtains the upper contribution 2ln(1+(2x+1)²) and lower contribution -2x ln(1+x^4) with correct signs and chain factors."
+          ],
+          "escapeAttempt": "A one-endpoint-only derivative cannot earn this row.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Distinguish moving-bound differentiation from differentiation under the integral sign.",
+          "task": "transfer",
+          "publicRequest": "Let J(x)=∫_{x²}^{2x+1} ln(1+t²)dt. Find J'(x), keeping the upper- and lower-endpoint contributions separate. Then explain why differentiating ln(1+t²) with respect to x is not part of this calculation.",
+          "rubricEvidence": [
+            "Explains that t is a dummy variable and the integrand itself has no x-dependence to differentiate."
+          ],
+          "escapeAttempt": "Related correct endpoint arithmetic does not by itself show the requested distinction.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S09-M@1",
+        "prompt": "Define F(x)=∫_0^{3x-1} e^{t²}dt. Without trying to find an elementary antiderivative of e^{t²}, find F'(x) and evaluate F'(1). State the continuity/domain fact that makes the endpoint rule legal.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Applies FTC plus the endpoint chain factor to obtain F'(x)=3e^{(3x-1)²}."
+          },
+          {
+            "points": 2,
+            "criterion": "Evaluates F'(1)=3e^4."
+          },
+          {
+            "points": 4,
+            "criterion": "States that e^{t²} is continuous on the endpoint range, so the FTC accumulation derivative is available."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S09-T@1",
+        "prompt": "Let J(x)=∫_{x²}^{2x+1} ln(1+t²)dt. Find J'(x), keeping the upper- and lower-endpoint contributions separate. Then explain why differentiating ln(1+t²) with respect to x is not part of this calculation.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 5,
+            "criterion": "Obtains the upper contribution 2ln(1+(2x+1)²) and lower contribution -2x ln(1+x^4) with correct signs and chain factors."
+          },
+          {
+            "points": 2,
+            "criterion": "States the continuity/domain condition for ln(1+t²) on the endpoint range."
+          },
+          {
+            "points": 3,
+            "criterion": "Explains that t is a dummy variable and the integrand itself has no x-dependence to differentiate."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S10@1",
+      "order": 10,
+      "title": "Antiderivative uniqueness needs an interval theorem",
+      "requiredOwnership": [
+        "Use the Mean Value Theorem to prove that a function continuous on an interval and differentiable on its interior with zero derivative there is constant.",
+        "Use the derivative-zero result to justify that two antiderivatives of the same function differ by a constant on an interval.",
+        "Preserve the interval/domain hypothesis by diagnosing a disconnected-domain counterexample."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Use the Mean Value Theorem to prove that a function continuous on an interval and differentiable on its interior with zero derivative there is constant.",
+          "task": "main",
+          "publicRequest": "Let I be an interval. Let F and G be continuous on I and differentiable at every interior point of I, with F'(x)=G'(x) at every interior point. Using the Mean Value Theorem as stated in the lesson, prove that F-G is constant on I. Then explain how this proves that two antiderivatives of one function on an interval differ by an additive constant.",
+          "rubricEvidence": [
+            "Defines H=F-G and establishes that H is continuous on I with H'=0 at every interior point.",
+            "Applies MVT on an arbitrary [u,v]⊂I using continuity on [u,v] and differentiability on (u,v) to obtain H(v)=H(u)."
+          ],
+          "escapeAttempt": "The +C slogan cannot earn the MVT proof rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Use the derivative-zero result to justify that two antiderivatives of the same function differ by a constant on an interval.",
+          "task": "main",
+          "publicRequest": "Let I be an interval. Let F and G be continuous on I and differentiable at every interior point of I, with F'(x)=G'(x) at every interior point. Using the Mean Value Theorem as stated in the lesson, prove that F-G is constant on I. Then explain how this proves that two antiderivatives of one function on an interval differ by an additive constant.",
+          "rubricEvidence": [
+            "Concludes H is constant and connects this directly to the additive-constant antiderivative family."
+          ],
+          "escapeAttempt": "Related derivative-zero arithmetic alone does not satisfy the explicit antiderivative-family request.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Preserve the interval/domain hypothesis by diagnosing a disconnected-domain counterexample.",
+          "task": "transfer",
+          "publicRequest": "Define H on D=(-∞,0)∪(0,∞) by H(x)=0 for x<0 and H(x)=1 for x>0. Show that H'(x)=0 at every point of D, yet H is not one constant on all of D. Identify exactly which hypothesis from the S10 derivative-zero theorem fails, and state the correct componentwise conclusion.",
+          "rubricEvidence": [
+            "Identifies failure of the interval/segment hypothesis needed for MVT across the gap.",
+            "States the correct componentwise constant conclusion."
+          ],
+          "escapeAttempt": "Showing H'=0 without diagnosing the domain does not earn theorem-boundary credit.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S10-M@1",
+        "prompt": "Let I be an interval. Let F and G be continuous on I and differentiable at every interior point of I, with F'(x)=G'(x) at every interior point. Using the Mean Value Theorem as stated in the lesson, prove that F-G is constant on I. Then explain how this proves that two antiderivatives of one function on an interval differ by an additive constant.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Defines H=F-G and establishes that H is continuous on I with H'=0 at every interior point."
+          },
+          {
+            "points": 4,
+            "criterion": "Applies MVT on an arbitrary [u,v]⊂I using continuity on [u,v] and differentiability on (u,v) to obtain H(v)=H(u)."
+          },
+          {
+            "points": 3,
+            "criterion": "Concludes H is constant and connects this directly to the additive-constant antiderivative family."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S10-T@1",
+        "prompt": "Define H on D=(-∞,0)∪(0,∞) by H(x)=0 for x<0 and H(x)=1 for x>0. Show that H'(x)=0 at every point of D, yet H is not one constant on all of D. Identify exactly which hypothesis from the S10 derivative-zero theorem fails, and state the correct componentwise conclusion.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Shows H'=0 at every point of the stated domain."
+          },
+          {
+            "points": 2,
+            "criterion": "Shows H is not a single global constant because the two components have values 0 and 1."
+          },
+          {
+            "points": 3,
+            "criterion": "Identifies failure of the interval/segment hypothesis needed for MVT across the gap."
+          },
+          {
+            "points": 2,
+            "criterion": "States the correct componentwise constant conclusion."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S11@1",
+      "order": 11,
+      "title": "FTC endpoint evaluation and net change",
+      "requiredOwnership": [
+        "Reconstruct FTC endpoint evaluation from the accumulation function and antiderivative uniqueness.",
+        "Evaluate a proper definite integral with a verified antiderivative without adding an arbitrary constant to the final number.",
+        "Use the integral of a rate as net change between endpoint states."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Reconstruct FTC endpoint evaluation from the accumulation function and antiderivative uniqueness.",
+          "task": "main",
+          "publicRequest": "Assume f is continuous on [a,b]. Let F be continuous on [a,b] with F'(x)=f(x) for a<x<b, and define A(x)=∫_a^x f(t)dt. Using S08 and S10, reconstruct why ∫_a^b f(x)dx=F(b)-F(a). Then apply the theorem to evaluate ∫_{-1}^{2}(4x³-2x)dx with a verified antiderivative.",
+          "rubricEvidence": [
+            "Uses A'=f and F'=f to make F-A derivative zero, then invokes the interval constant result.",
+            "Uses A(a)=0 to derive A(b)=F(b)-F(a), hence the endpoint-evaluation theorem."
+          ],
+          "escapeAttempt": "Endpoint substitution with no theorem argument cannot earn these rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Evaluate a proper definite integral with a verified antiderivative without adding an arbitrary constant to the final number.",
+          "task": "main",
+          "publicRequest": "Assume f is continuous on [a,b]. Let F be continuous on [a,b] with F'(x)=f(x) for a<x<b, and define A(x)=∫_a^x f(t)dt. Using S08 and S10, reconstruct why ∫_a^b f(x)dx=F(b)-F(a). Then apply the theorem to evaluate ∫_{-1}^{2}(4x³-2x)dx with a verified antiderivative.",
+          "rubricEvidence": [
+            "Verifies x^4-x² differentiates to 4x³-2x.",
+            "Evaluates the definite integral as 12 with no spurious +C in the final number."
+          ],
+          "escapeAttempt": "An unverified candidate or +C-valued result does not meet the public request.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Use the integral of a rate as net change between endpoint states.",
+          "task": "transfer",
+          "publicRequest": "A storage level Q(t) has rate Q'(t)=4t-10 liters/hour for 0≤t≤3, and Q(0)=50 liters. Use net-change integration to find Q(3). Also state why adding the positive and negative rate portions separately would give the same net result if done correctly.",
+          "rubricEvidence": [
+            "Computes the signed rate integral over [0,3] as -12 liters.",
+            "Adds net change to Q(0)=50 to obtain Q(3)=38 liters."
+          ],
+          "escapeAttempt": "Absolute accumulation cannot earn net-change credit.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S11-M@1",
+        "prompt": "Assume f is continuous on [a,b]. Let F be continuous on [a,b] with F'(x)=f(x) for a<x<b, and define A(x)=∫_a^x f(t)dt. Using S08 and S10, reconstruct why ∫_a^b f(x)dx=F(b)-F(a). Then apply the theorem to evaluate ∫_{-1}^{2}(4x³-2x)dx with a verified antiderivative.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Uses A'=f and F'=f to make F-A derivative zero, then invokes the interval constant result."
+          },
+          {
+            "points": 2,
+            "criterion": "Uses A(a)=0 to derive A(b)=F(b)-F(a), hence the endpoint-evaluation theorem."
+          },
+          {
+            "points": 2,
+            "criterion": "Verifies x^4-x² differentiates to 4x³-2x."
+          },
+          {
+            "points": 2,
+            "criterion": "Evaluates the definite integral as 12 with no spurious +C in the final number."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S11-T@1",
+        "prompt": "A storage level Q(t) has rate Q'(t)=4t-10 liters/hour for 0≤t≤3, and Q(0)=50 liters. Use net-change integration to find Q(3). Also state why adding the positive and negative rate portions separately would give the same net result if done correctly.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Computes the signed rate integral over [0,3] as -12 liters."
+          },
+          {
+            "points": 3,
+            "criterion": "Adds net change to Q(0)=50 to obtain Q(3)=38 liters."
+          },
+          {
+            "points": 3,
+            "criterion": "Explains that splitting at the rate sign change preserves the result by interval additivity and signed accumulation."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S12@1",
+      "order": 12,
+      "title": "A small antiderivative repertoire, verified by differentiation",
+      "requiredOwnership": [
+        "Construct an elementary antiderivative on a stated interval from the established repertoire.",
+        "Verify a proposed antiderivative by differentiating it back to the integrand.",
+        "Preserve interval/domain restrictions, especially for 1/x and negative powers."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Construct an elementary antiderivative on a stated interval from the established repertoire.",
+          "task": "main+transfer",
+          "publicRequest": "On the interval x>0, find an antiderivative family for f(x)=3x²-4e^x+2cos x+5/x. Differentiate your result to verify it, and state why the interval condition matters for the logarithmic term. | On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
+          "rubricEvidence": [
+            "Constructs x³-4e^x+2sin x+5ln x+C or an equivalent antiderivative on x>0.",
+            "Constructs -1/x²+(3/ln2)2^x+C or an equivalent antiderivative on x<0."
+          ],
+          "escapeAttempt": "A partial formula cannot earn the complete construction rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Verify a proposed antiderivative by differentiating it back to the integrand.",
+          "task": "main+transfer",
+          "publicRequest": "On the interval x>0, find an antiderivative family for f(x)=3x²-4e^x+2cos x+5/x. Differentiate your result to verify it, and state why the interval condition matters for the logarithmic term. | On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
+          "rubricEvidence": [
+            "Differentiates the proposed antiderivative back to the full integrand.",
+            "Verifies both derivative terms, including the ln2 factor for 2^x."
+          ],
+          "escapeAttempt": "Pattern recognition without backward differentiation does not satisfy the requested verification.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Preserve interval/domain restrictions, especially for 1/x and negative powers.",
+          "task": "main+transfer",
+          "publicRequest": "On the interval x>0, find an antiderivative family for f(x)=3x²-4e^x+2cos x+5/x. Differentiate your result to verify it, and state why the interval condition matters for the logarithmic term. | On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
+          "rubricEvidence": [
+            "Explains the logarithmic/domain restriction and does not claim an antiderivative interval crossing x=0.",
+            "Preserves the exclusion of x=0 and explains why the antiderivative claim is intervalwise."
+          ],
+          "escapeAttempt": "Correct local algebra does not imply a legal cross-zero domain.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S12-M@1",
+        "prompt": "On the interval x>0, find an antiderivative family for f(x)=3x²-4e^x+2cos x+5/x. Differentiate your result to verify it, and state why the interval condition matters for the logarithmic term.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Constructs x³-4e^x+2sin x+5ln x+C or an equivalent antiderivative on x>0."
+          },
+          {
+            "points": 3,
+            "criterion": "Differentiates the proposed antiderivative back to the full integrand."
+          },
+          {
+            "points": 3,
+            "criterion": "Explains the logarithmic/domain restriction and does not claim an antiderivative interval crossing x=0."
+          }
+        ],
+        "classification": "retrieval"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S12-T@1",
+        "prompt": "On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Constructs -1/x²+(3/ln2)2^x+C or an equivalent antiderivative on x<0."
+          },
+          {
+            "points": 3,
+            "criterion": "Verifies both derivative terms, including the ln2 factor for 2^x."
+          },
+          {
+            "points": 3,
+            "criterion": "Preserves the exclusion of x=0 and explains why the antiderivative claim is intervalwise."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S13@1",
+      "order": 13,
+      "title": "Substitution is the chain rule run backward",
+      "requiredOwnership": [
+        "Recognize a reverse-chain integrand f(g(x))g'(x) and choose the inner transformation.",
+        "Carry the derivative scale factor correctly through an indefinite substitution.",
+        "Verify a substitution result by differentiating it in the original variable."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Recognize a reverse-chain integrand f(g(x))g'(x) and choose the inner transformation.",
+          "task": "main",
+          "publicRequest": "Evaluate ∫6x(3x²+2)^4 dx by substitution. Identify u and du, account for the derivative factor explicitly, and verify your final antiderivative by differentiating it.",
+          "rubricEvidence": [
+            "Chooses u=3x²+2 and du=6x dx, matching the inner derivative factor."
+          ],
+          "escapeAttempt": "Naming an unrelated u cannot earn this row.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Carry the derivative scale factor correctly through an indefinite substitution.",
+          "task": "main+transfer",
+          "publicRequest": "Evaluate ∫6x(3x²+2)^4 dx by substitution. Identify u and du, account for the derivative factor explicitly, and verify your final antiderivative by differentiating it. | A proposed solution claims ∫x(x²+1)^3 dx=(x²+1)^4/4+C. Diagnose the exact error by differentiating the proposed answer, then give a corrected antiderivative and verify it.",
+          "rubricEvidence": [
+            "Obtains (3x²+2)^5/5+C.",
+            "Corrects the missing scale and obtains (x²+1)^4/8+C."
+          ],
+          "escapeAttempt": "Missing scale factors produce the wrong coefficients.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Verify a substitution result by differentiating it in the original variable.",
+          "task": "main+transfer",
+          "publicRequest": "Evaluate ∫6x(3x²+2)^4 dx by substitution. Identify u and du, account for the derivative factor explicitly, and verify your final antiderivative by differentiating it. | A proposed solution claims ∫x(x²+1)^3 dx=(x²+1)^4/4+C. Diagnose the exact error by differentiating the proposed answer, then give a corrected antiderivative and verify it.",
+          "rubricEvidence": [
+            "Differentiates the result back to 6x(3x²+2)^4.",
+            "Verifies the corrected antiderivative by differentiation."
+          ],
+          "escapeAttempt": "Correct-looking formulas without the requested check do not observe verification.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S13-M@1",
+        "prompt": "Evaluate ∫6x(3x²+2)^4 dx by substitution. Identify u and du, account for the derivative factor explicitly, and verify your final antiderivative by differentiating it.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Chooses u=3x²+2 and du=6x dx, matching the inner derivative factor."
+          },
+          {
+            "points": 4,
+            "criterion": "Obtains (3x²+2)^5/5+C."
+          },
+          {
+            "points": 3,
+            "criterion": "Differentiates the result back to 6x(3x²+2)^4."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S13-T@1",
+        "prompt": "A proposed solution claims ∫x(x²+1)^3 dx=(x²+1)^4/4+C. Diagnose the exact error by differentiating the proposed answer, then give a corrected antiderivative and verify it.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Differentiates the proposed answer and identifies the factor-of-2 mismatch."
+          },
+          {
+            "points": 4,
+            "criterion": "Corrects the missing scale and obtains (x²+1)^4/8+C."
+          },
+          {
+            "points": 3,
+            "criterion": "Verifies the corrected antiderivative by differentiation."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S14@1",
+      "order": 14,
+      "title": "Definite substitution transforms bounds and orientation",
+      "requiredOwnership": [
+        "Transform definite-integration bounds consistently under u=g(x).",
+        "Preserve orientation when the transformed endpoint order reverses.",
+        "Check the continuity/domain conditions needed by the transformed integrand."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Transform definite-integration bounds consistently under u=g(x).",
+          "task": "main+transfer",
+          "publicRequest": "Evaluate ∫_1^2 [3x²/(x³+1)]dx by a definite substitution. Transform the bounds before integrating and state the domain/continuity fact that makes the logarithm step legal. | Evaluate ∫_0^1 -2x(3-x²)^2 dx using u=3-x². A proposed solution changes the bounds to 2 and 3 in increasing order but keeps no minus sign, obtaining +19/3. Identify the orientation error and give the correct value.",
+          "rubricEvidence": [
+            "Uses u=x³+1 and transforms x=1,2 into u=2,9.",
+            "Transforms the bounds as 3→2 under u=3-x²."
+          ],
+          "escapeAttempt": "Mixed-variable bounds cannot earn these rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Preserve orientation when the transformed endpoint order reverses.",
+          "task": "transfer",
+          "publicRequest": "Evaluate ∫_0^1 -2x(3-x²)^2 dx using u=3-x². A proposed solution changes the bounds to 2 and 3 in increasing order but keeps no minus sign, obtaining +19/3. Identify the orientation error and give the correct value.",
+          "rubricEvidence": [
+            "Explains that reordering reversed u-bounds requires a minus sign.",
+            "Computes the correct value -19/3."
+          ],
+          "escapeAttempt": "The wrong +19/3 answer is the direct escape attack and loses both rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Check the continuity/domain conditions needed by the transformed integrand.",
+          "task": "main",
+          "publicRequest": "Evaluate ∫_1^2 [3x²/(x³+1)]dx by a definite substitution. Transform the bounds before integrating and state the domain/continuity fact that makes the logarithm step legal.",
+          "rubricEvidence": [
+            "States that the transformed interval stays in u>0, where 1/u is continuous and ln u is valid."
+          ],
+          "escapeAttempt": "A numerical/log answer alone does not observe the requested domain check.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S14-M@1",
+        "prompt": "Evaluate ∫_1^2 [3x²/(x³+1)]dx by a definite substitution. Transform the bounds before integrating and state the domain/continuity fact that makes the logarithm step legal.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Uses u=x³+1 and transforms x=1,2 into u=2,9."
+          },
+          {
+            "points": 4,
+            "criterion": "Evaluates ∫_2^9 du/u as ln(9/2)."
+          },
+          {
+            "points": 3,
+            "criterion": "States that the transformed interval stays in u>0, where 1/u is continuous and ln u is valid."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S14-T@1",
+        "prompt": "Evaluate ∫_0^1 -2x(3-x²)^2 dx using u=3-x². A proposed solution changes the bounds to 2 and 3 in increasing order but keeps no minus sign, obtaining +19/3. Identify the orientation error and give the correct value.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Transforms the bounds as 3→2 under u=3-x²."
+          },
+          {
+            "points": 3,
+            "criterion": "Explains that reordering reversed u-bounds requires a minus sign."
+          },
+          {
+            "points": 2,
+            "criterion": "Computes the correct value -19/3."
+          },
+          {
+            "points": 2,
+            "criterion": "Uses the nonpositive original integrand as a sign sanity check."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S15@1",
+      "order": 15,
+      "title": "Integration by parts is the product rule accumulated",
+      "requiredOwnership": [
+        "Reconstruct the integration-by-parts identity from the product rule and FTC.",
+        "Choose a workable differentiated/integrated factor split within the available antiderivative repertoire.",
+        "Carry definite boundary terms with correct signs."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Reconstruct the integration-by-parts identity from the product rule and FTC.",
+          "task": "main",
+          "publicRequest": "Starting from the product rule (uv)'=u'v+uv', reconstruct the definite integration-by-parts identity. Then use it to evaluate ∫_0^1 x e^{2x}dx, showing your choices of u and dv and all boundary terms.",
+          "rubricEvidence": [
+            "Reconstructs the definite integration-by-parts identity from the product rule with the minus sign and boundary term."
+          ],
+          "escapeAttempt": "A memorized unmotivated formula may get later arithmetic but not this reconstruction row.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Choose a workable differentiated/integrated factor split within the available antiderivative repertoire.",
+          "task": "main",
+          "publicRequest": "Starting from the product rule (uv)'=u'v+uv', reconstruct the definite integration-by-parts identity. Then use it to evaluate ∫_0^1 x e^{2x}dx, showing your choices of u and dv and all boundary terms.",
+          "rubricEvidence": [
+            "Chooses u=x and v=e^{2x}/2 (or an equivalent productive split) correctly."
+          ],
+          "escapeAttempt": "A split requiring an unavailable v cannot earn the workable-choice row.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Carry definite boundary terms with correct signs.",
+          "task": "main+transfer",
+          "publicRequest": "Starting from the product rule (uv)'=u'v+uv', reconstruct the definite integration-by-parts identity. Then use it to evaluate ∫_0^1 x e^{2x}dx, showing your choices of u and dv and all boundary terms. | A student evaluates ∫_0^π x cos x dx and writes '[x sin x]_0^π + ∫_0^π sin x dx =2.' Audit the work: identify the sign error in the integration-by-parts identity, compute the correct value, and give one quick plausibility check from the sign of x cos x over the interval.",
+          "rubricEvidence": [
+            "Carries [xe^{2x}/2]_0^1 and the remaining integral with correct signs.",
+            "Computes the correct definite value -2 including the zero boundary term."
+          ],
+          "escapeAttempt": "Dropping/mis-signing the boundary/product structure fails these direct observers.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S15-M@1",
+        "prompt": "Starting from the product rule (uv)'=u'v+uv', reconstruct the definite integration-by-parts identity. Then use it to evaluate ∫_0^1 x e^{2x}dx, showing your choices of u and dv and all boundary terms.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Reconstructs the definite integration-by-parts identity from the product rule with the minus sign and boundary term."
+          },
+          {
+            "points": 2,
+            "criterion": "Chooses u=x and v=e^{2x}/2 (or an equivalent productive split) correctly."
+          },
+          {
+            "points": 3,
+            "criterion": "Carries [xe^{2x}/2]_0^1 and the remaining integral with correct signs."
+          },
+          {
+            "points": 2,
+            "criterion": "Simplifies the exact value to (e²+1)/4 or an equivalent expression."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S15-T@1",
+        "prompt": "A student evaluates ∫_0^π x cos x dx and writes '[x sin x]_0^π + ∫_0^π sin x dx =2.' Audit the work: identify the sign error in the integration-by-parts identity, compute the correct value, and give one quick plausibility check from the sign of x cos x over the interval.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Identifies the incorrect plus sign and restores the minus sign from integration by parts."
+          },
+          {
+            "points": 4,
+            "criterion": "Computes the correct definite value -2 including the zero boundary term."
+          },
+          {
+            "points": 3,
+            "criterion": "Gives a valid sign/magnitude plausibility check using the changing sign of x cos x and larger x on the negative side."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S16@1",
+      "order": 16,
+      "title": "Method forensics: transform only when structure matches",
+      "requiredOwnership": [
+        "Choose direct evaluation, substitution or integration by parts from the integrand's derivative structure.",
+        "Recognize when none of the current exact elementary tools has been justified instead of fabricating an antiderivative.",
+        "Verify a selected antiderivative by differentiating it back to the integrand."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Choose direct evaluation, substitution or integration by parts from the integrand's derivative structure.",
+          "task": "main+transfer",
+          "publicRequest": "For each definite integral, choose the most direct method from {direct FTC, substitution, integration by parts, none of the current exact elementary tools}. Evaluate the first three exactly and justify the fourth classification: (A) ∫_0^1 4x(2x²+1)^2 dx; (B) ∫_0^1 x cos x dx; (C) ∫_0^1(5x^4-2)dx; (D) ∫_0^1 e^{x²}dx. | For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
+          "rubricEvidence": [
+            "Classifies A as substitution and obtains 26/3 with transformed bounds.",
+            "Classifies B as integration by parts and obtains sin1+cos1-1.",
+            "Classifies C as direct FTC and obtains -1.",
+            "Recognizes the reverse-chain structure u=x², du=2x dx and obtains e^{x²}+C."
+          ],
+          "escapeAttempt": "One-method-for-all solvers fail multiple direct classification rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Recognize when none of the current exact elementary tools has been justified instead of fabricating an antiderivative.",
+          "task": "main+transfer",
+          "publicRequest": "For each definite integral, choose the most direct method from {direct FTC, substitution, integration by parts, none of the current exact elementary tools}. Evaluate the first three exactly and justify the fourth classification: (A) ∫_0^1 4x(2x²+1)^2 dx; (B) ∫_0^1 x cos x dx; (C) ∫_0^1(5x^4-2)dx; (D) ∫_0^1 e^{x²}dx. | For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
+          "rubricEvidence": [
+            "Classifies D as outside the current exact elementary toolkit while distinguishing that from nonexistence of the proper integral.",
+            "Identifies that the proposed parts split requires the unavailable exact antiderivative of e^{x²}."
+          ],
+          "escapeAttempt": "Calling the integral nonexistent or inventing an unsupported v cannot earn these rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Verify a selected antiderivative by differentiating it back to the integrand.",
+          "task": "transfer",
+          "publicRequest": "For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
+          "rubricEvidence": [
+            "Verifies the result by differentiation."
+          ],
+          "escapeAttempt": "Correct method naming without the requested backward check does not observe verification.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S16-M@1",
+        "prompt": "For each definite integral, choose the most direct method from {direct FTC, substitution, integration by parts, none of the current exact elementary tools}. Evaluate the first three exactly and justify the fourth classification: (A) ∫_0^1 4x(2x²+1)^2 dx; (B) ∫_0^1 x cos x dx; (C) ∫_0^1(5x^4-2)dx; (D) ∫_0^1 e^{x²}dx.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Classifies A as substitution and obtains 26/3 with transformed bounds."
+          },
+          {
+            "points": 3,
+            "criterion": "Classifies B as integration by parts and obtains sin1+cos1-1."
+          },
+          {
+            "points": 2,
+            "criterion": "Classifies C as direct FTC and obtains -1."
+          },
+          {
+            "points": 2,
+            "criterion": "Classifies D as outside the current exact elementary toolkit while distinguishing that from nonexistence of the proper integral."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S16-T@1",
+        "prompt": "For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Identifies that the proposed parts split requires the unavailable exact antiderivative of e^{x²}."
+          },
+          {
+            "points": 4,
+            "criterion": "Recognizes the reverse-chain structure u=x², du=2x dx and obtains e^{x²}+C."
+          },
+          {
+            "points": 3,
+            "criterion": "Verifies the result by differentiation."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S17@1",
+      "order": 17,
+      "title": "Infinite intervals are limits, not endpoints",
+      "requiredOwnership": [
+        "Rewrite an infinite-upper-bound integral as a limit of proper finite-bound integrals before evaluating it.",
+        "Derive the threshold ∫_1^∞ x^{-p}dx converges exactly when p>1.",
+        "Distinguish convergence to a finite value from divergence and reject literal substitution of infinity."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Rewrite an infinite-upper-bound integral as a limit of proper finite-bound integrals before evaluating it.",
+          "task": "main+transfer",
+          "publicRequest": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation. | A nonnegative long-tail weight is w(t)=(1+t)^(-3/2) for t≥0. Determine whether its total ∫_0^∞ w(t)dt is finite and compute it by an explicit improper-limit argument. Then consider z(t)=(1+t)^(-3/4): state whether its total is finite and justify the contrast using the p-tail threshold.",
+          "rubricEvidence": [
+            "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number.",
+            "Writes and evaluates the finite truncation for w, obtaining the limit 2."
+          ],
+          "escapeAttempt": "Literal infinity arithmetic cannot earn these definition rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Derive the threshold ∫_1^∞ x^{-p}dx converges exactly when p>1.",
+          "task": "main+transfer",
+          "publicRequest": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation. | A nonnegative long-tail weight is w(t)=(1+t)^(-3/2) for t≥0. Determine whether its total ∫_0^∞ w(t)dt is finite and compute it by an explicit improper-limit argument. Then consider z(t)=(1+t)^(-3/4): state whether its total is finite and justify the contrast using the p-tail threshold.",
+          "rubricEvidence": [
+            "Handles p≠1 correctly and obtains finite limit 1/(p-1) exactly when p>1.",
+            "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1.",
+            "Recognizes z as a shifted p-tail with p=3/4 and concludes divergence."
+          ],
+          "escapeAttempt": "Checking only one exponent does not establish or use the threshold.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Distinguish convergence to a finite value from divergence and reject literal substitution of infinity.",
+          "task": "main",
+          "publicRequest": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation.",
+          "rubricEvidence": [
+            "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1."
+          ],
+          "escapeAttempt": "The finite-value formula for p>1 cannot be extended through p=1.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S17-M@1",
+        "prompt": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number."
+          },
+          {
+            "points": 4,
+            "criterion": "Handles p≠1 correctly and obtains finite limit 1/(p-1) exactly when p>1."
+          },
+          {
+            "points": 3,
+            "criterion": "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S17-T@1",
+        "prompt": "A nonnegative long-tail weight is w(t)=(1+t)^(-3/2) for t≥0. Determine whether its total ∫_0^∞ w(t)dt is finite and compute it by an explicit improper-limit argument. Then consider z(t)=(1+t)^(-3/4): state whether its total is finite and justify the contrast using the p-tail threshold.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Writes and evaluates the finite truncation for w, obtaining the limit 2."
+          },
+          {
+            "points": 3,
+            "criterion": "Recognizes z as a shifted p-tail with p=3/4 and concludes divergence."
+          },
+          {
+            "points": 3,
+            "criterion": "Explicitly links the contrast to the p>1 threshold rather than to finite-sample appearance."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S18@1",
+      "order": 18,
+      "title": "Singular endpoints and interior breaks require separate limits",
+      "requiredOwnership": [
+        "Rewrite an endpoint-singular integral as a one-sided limit and derive ∫_0^1 x^{-p}dx converges exactly when p<1.",
+        "Split an interior singularity into two one-sided improper integrals and require both to converge.",
+        "Reject direct endpoint evaluation across an undefined singular point."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Rewrite an endpoint-singular integral as a one-sided limit and derive ∫_0^1 x^{-p}dx converges exactly when p<1.",
+          "task": "main",
+          "publicRequest": "For real p, determine exactly when ∫_0^1 x^{-p}dx converges by writing the ε→0+ truncation. Treat p=1 separately and give the finite value when it converges.",
+          "rubricEvidence": [
+            "Introduces the one-sided truncation ∫_ε^1 and sends ε→0+.",
+            "Analyzes p≠1 correctly and obtains 1/(1-p) exactly for p<1.",
+            "Handles p=1 separately with -ln ε→∞ and states the full p<1 threshold."
+          ],
+          "escapeAttempt": "Tail-rule analogy without the ε-limit does not earn endpoint proof evidence.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Split an interior singularity into two one-sided improper integrals and require both to converge.",
+          "task": "transfer",
+          "publicRequest": "A student evaluates ∫_0^2 1/(x-1)^2 dx by using the antiderivative -1/(x-1) at x=0 and x=2 and reports the finite answer -2. Diagnose the error. Write the required improper split at x=1 and determine whether the integral converges.",
+          "rubricEvidence": [
+            "Writes the integral as two separate one-sided improper limits at x=1.",
+            "Shows at least one side diverges to +∞ and correctly concludes the whole improper integral diverges."
+          ],
+          "escapeAttempt": "A single cross-singularity endpoint bracket cannot earn these rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Reject direct endpoint evaluation across an undefined singular point.",
+          "task": "transfer",
+          "publicRequest": "A student evaluates ∫_0^2 1/(x-1)^2 dx by using the antiderivative -1/(x-1) at x=0 and x=2 and reports the finite answer -2. Diagnose the error. Write the required improper split at x=1 and determine whether the integral converges.",
+          "rubricEvidence": [
+            "Identifies x=1 as an interior singularity that invalidates direct endpoint evaluation across [0,2]."
+          ],
+          "escapeAttempt": "A numeric correction without identifying the illegal crossing does not observe this claim.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S18-M@1",
+        "prompt": "For real p, determine exactly when ∫_0^1 x^{-p}dx converges by writing the ε→0+ truncation. Treat p=1 separately and give the finite value when it converges.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Introduces the one-sided truncation ∫_ε^1 and sends ε→0+."
+          },
+          {
+            "points": 4,
+            "criterion": "Analyzes p≠1 correctly and obtains 1/(1-p) exactly for p<1."
+          },
+          {
+            "points": 3,
+            "criterion": "Handles p=1 separately with -ln ε→∞ and states the full p<1 threshold."
+          }
+        ],
+        "classification": "proof reconstruction"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S18-T@1",
+        "prompt": "A student evaluates ∫_0^2 1/(x-1)^2 dx by using the antiderivative -1/(x-1) at x=0 and x=2 and reports the finite answer -2. Diagnose the error. Write the required improper split at x=1 and determine whether the integral converges.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Identifies x=1 as an interior singularity that invalidates direct endpoint evaluation across [0,2]."
+          },
+          {
+            "points": 3,
+            "criterion": "Writes the integral as two separate one-sided improper limits at x=1."
+          },
+          {
+            "points": 4,
+            "criterion": "Shows at least one side diverges to +∞ and correctly concludes the whole improper integral diverges."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S19@1",
+      "order": 19,
+      "title": "Comparison and cancellation forensics",
+      "requiredOwnership": [
+        "Use the nonnegative improper comparison theorem in the correct convergence/divergence direction.",
+        "Require both one-sided tails to converge for an ordinary integral over (-∞,∞).",
+        "Distinguish a symmetric cancellation limit from ordinary improper convergence."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Use the nonnegative improper comparison theorem in the correct convergence/divergence direction.",
+          "task": "main",
+          "publicRequest": "Use comparison, not exact antiderivatives, to decide both integrals. (A) ∫_1^∞ 1/(x²+x)dx. (B) ∫_1^∞ 1/sqrt(x²+4) dx. For each, write a valid inequality and explain which known p-tail controls the conclusion.",
+          "rubricEvidence": [
+            "Uses 0≤1/(x²+x)≤1/x² and the convergent p=2 tail to conclude A converges.",
+            "Uses 1/sqrt(x²+4)≥1/(sqrt(5)x) and the divergent p=1 tail to conclude B diverges.",
+            "Explains the comparison directions correctly rather than treating any inequality as interchangeable."
+          ],
+          "escapeAttempt": "Wrong-direction inequalities are the explicit attack and fail these rows.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Require both one-sided tails to converge for an ordinary integral over (-∞,∞).",
+          "task": "transfer",
+          "publicRequest": "Consider f(x)=x/(1+x²) on the whole real line. Show that every symmetric truncation satisfies ∫_{-R}^{R} f(x)dx=0, but determine whether the ordinary improper integral ∫_{-∞}^{∞} f(x)dx converges. Your answer must inspect the two one-sided improper integrals separately.",
+          "rubricEvidence": [
+            "Computes the right one-sided truncation and shows it tends to +∞.",
+            "Computes the left one-sided truncation and shows it tends to -∞."
+          ],
+          "escapeAttempt": "Symmetric truncation alone cannot earn the separate-tail observers.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Distinguish a symmetric cancellation limit from ordinary improper convergence.",
+          "task": "transfer",
+          "publicRequest": "Consider f(x)=x/(1+x²) on the whole real line. Show that every symmetric truncation satisfies ∫_{-R}^{R} f(x)dx=0, but determine whether the ordinary improper integral ∫_{-∞}^{∞} f(x)dx converges. Your answer must inspect the two one-sided improper integrals separately.",
+          "rubricEvidence": [
+            "Shows or justifies that the proper symmetric truncations equal 0.",
+            "Concludes ordinary improper divergence and distinguishes it from the symmetric cancellation limit."
+          ],
+          "escapeAttempt": "Reporting zero without the ordinary-convergence distinction loses the criterion.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S19-M@1",
+        "prompt": "Use comparison, not exact antiderivatives, to decide both integrals. (A) ∫_1^∞ 1/(x²+x)dx. (B) ∫_1^∞ 1/sqrt(x²+4) dx. For each, write a valid inequality and explain which known p-tail controls the conclusion.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 4,
+            "criterion": "Uses 0≤1/(x²+x)≤1/x² and the convergent p=2 tail to conclude A converges."
+          },
+          {
+            "points": 4,
+            "criterion": "Uses 1/sqrt(x²+4)≥1/(sqrt(5)x) and the divergent p=1 tail to conclude B diverges."
+          },
+          {
+            "points": 2,
+            "criterion": "Explains the comparison directions correctly rather than treating any inequality as interchangeable."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S19-T@1",
+        "prompt": "Consider f(x)=x/(1+x²) on the whole real line. Show that every symmetric truncation satisfies ∫_{-R}^{R} f(x)dx=0, but determine whether the ordinary improper integral ∫_{-∞}^{∞} f(x)dx converges. Your answer must inspect the two one-sided improper integrals separately.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Shows or justifies that the proper symmetric truncations equal 0."
+          },
+          {
+            "points": 3,
+            "criterion": "Computes the right one-sided truncation and shows it tends to +∞."
+          },
+          {
+            "points": 3,
+            "criterion": "Computes the left one-sided truncation and shows it tends to -∞."
+          },
+          {
+            "points": 2,
+            "criterion": "Concludes ordinary improper divergence and distinguishes it from the symmetric cancellation limit."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    },
+    {
+      "id": "T22V3::ARC510::S20@1",
+      "order": 20,
+      "title": "Synthesis: from local quantity to justified accumulated total",
+      "requiredOwnership": [
+        "Connect a tagged local-quantity×width sum to the continuum accumulated total and preserve units.",
+        "Choose and justify a legal exact method for a proper accumulated total, then connect the result back to the state variable.",
+        "Use FTC locally with its continuity hypothesis while distinguishing local rate from interval net change.",
+        "Audit an infinite-domain accumulated total for existence before solving for its scale parameter."
+      ],
+      "claimEvidence": [
+        {
+          "claim": "Connect a tagged local-quantity×width sum to the continuum accumulated total and preserve units.",
+          "task": "main",
+          "publicRequest": "A process starts with Q(0)=10 units and has continuous signed rate r(t)=2t e^(t²) units/hour for 0≤t≤1. Define Q(x)=10+∫_0^x r(t)dt. (i) Explain what a tagged finite sum Σ r(t_i)Δt_i represents and give its units. (ii) Compute Q(1) exactly, choosing and justifying the integration method. (iii) Find Q'(1) from the accumulation theorem and state the hypothesis that makes this legal. (iv) Explain why Q'(1) and Q(1)-Q(0) answer different questions.",
+          "rubricEvidence": [
+            "Explains the tagged sum as rate-times-width contributions and gives accumulated-quantity units."
+          ],
+          "escapeAttempt": "Jumping directly to an antiderivative does not observe the requested finite-contribution meaning or units.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Choose and justify a legal exact method for a proper accumulated total, then connect the result back to the state variable.",
+          "task": "main",
+          "publicRequest": "A process starts with Q(0)=10 units and has continuous signed rate r(t)=2t e^(t²) units/hour for 0≤t≤1. Define Q(x)=10+∫_0^x r(t)dt. (i) Explain what a tagged finite sum Σ r(t_i)Δt_i represents and give its units. (ii) Compute Q(1) exactly, choosing and justifying the integration method. (iii) Find Q'(1) from the accumulation theorem and state the hypothesis that makes this legal. (iv) Explain why Q'(1) and Q(1)-Q(0) answer different questions.",
+          "rubricEvidence": [
+            "Recognizes reverse-chain structure, uses u=t² (or equivalent), and obtains Q(1)=9+e."
+          ],
+          "escapeAttempt": "Computing only the integral e-1 without returning to the state Q(1) leaves the public obligation incomplete.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Use FTC locally with its continuity hypothesis while distinguishing local rate from interval net change.",
+          "task": "main",
+          "publicRequest": "A process starts with Q(0)=10 units and has continuous signed rate r(t)=2t e^(t²) units/hour for 0≤t≤1. Define Q(x)=10+∫_0^x r(t)dt. (i) Explain what a tagged finite sum Σ r(t_i)Δt_i represents and give its units. (ii) Compute Q(1) exactly, choosing and justifying the integration method. (iii) Find Q'(1) from the accumulation theorem and state the hypothesis that makes this legal. (iv) Explain why Q'(1) and Q(1)-Q(0) answer different questions.",
+          "rubricEvidence": [
+            "Uses continuity of r to obtain Q'(1)=2e with rate units.",
+            "Distinguishes interval net change e-1 from local rate 2e by meaning and units."
+          ],
+          "escapeAttempt": "Related correct integration cannot earn local FTC/hypothesis distinction automatically.",
+          "disposition": "adequate"
+        },
+        {
+          "claim": "Audit an infinite-domain accumulated total for existence before solving for its scale parameter.",
+          "task": "transfer",
+          "publicRequest": "For x≥0 define a nonnegative continuous weight w_p(x)=C(1+x)^(-p), where C>0 and p is real. The intended accumulated total over [0,∞) is 6 units. Using an explicit improper-integral argument, determine exactly for which p such a finite positive C can exist, and give C in terms of p. Then specialize to p=2. Do not use probability language, L'Hôpital's rule or M12 asymptotics.",
+          "rubricEvidence": [
+            "Writes the infinite-domain total as an explicit finite-T limit and reduces it to the shifted p-tail.",
+            "Identifies p>1 as exactly the finite-total region and rejects p≤1 before solving for C.",
+            "Uses the finite base total 1/(p-1) to obtain C=6(p-1)."
+          ],
+          "escapeAttempt": "Solving algebraically for C before checking convergence fails the existence-first requirement.",
+          "disposition": "adequate"
+        }
+      ],
+      "main": {
+        "id": "T22V3::ARC510::S20-M@1",
+        "prompt": "A process starts with Q(0)=10 units and has continuous signed rate r(t)=2t e^(t²) units/hour for 0≤t≤1. Define Q(x)=10+∫_0^x r(t)dt. (i) Explain what a tagged finite sum Σ r(t_i)Δt_i represents and give its units. (ii) Compute Q(1) exactly, choosing and justifying the integration method. (iii) Find Q'(1) from the accumulation theorem and state the hypothesis that makes this legal. (iv) Explain why Q'(1) and Q(1)-Q(0) answer different questions.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Explains the tagged sum as rate-times-width contributions and gives accumulated-quantity units."
+          },
+          {
+            "points": 3,
+            "criterion": "Recognizes reverse-chain structure, uses u=t² (or equivalent), and obtains Q(1)=9+e."
+          },
+          {
+            "points": 3,
+            "criterion": "Uses continuity of r to obtain Q'(1)=2e with rate units."
+          },
+          {
+            "points": 2,
+            "criterion": "Distinguishes interval net change e-1 from local rate 2e by meaning and units."
+          }
+        ],
+        "classification": "fresh Main evidence"
+      },
+      "transfer": {
+        "id": "T22V3::ARC510::S20-T@1",
+        "prompt": "For x≥0 define a nonnegative continuous weight w_p(x)=C(1+x)^(-p), where C>0 and p is real. The intended accumulated total over [0,∞) is 6 units. Using an explicit improper-integral argument, determine exactly for which p such a finite positive C can exist, and give C in terms of p. Then specialize to p=2. Do not use probability language, L'Hôpital's rule or M12 asymptotics.",
+        "obligationVersion": 1,
+        "rubric": [
+          {
+            "points": 3,
+            "criterion": "Writes the infinite-domain total as an explicit finite-T limit and reduces it to the shifted p-tail."
+          },
+          {
+            "points": 3,
+            "criterion": "Identifies p>1 as exactly the finite-total region and rejects p≤1 before solving for C."
+          },
+          {
+            "points": 3,
+            "criterion": "Uses the finite base total 1/(p-1) to obtain C=6(p-1)."
+          },
+          {
+            "points": 1,
+            "criterion": "Specializes correctly to C=6 when p=2."
+          }
+        ],
+        "classification": "changed-surface Transfer"
+      }
+    }
+  ]
+}
