@@ -87,7 +87,7 @@ r=Random(17); first=[r.random() for _ in range(2)]; st=r.getstate()
 suffix=[r.random() for _ in range(3)]; r.setstate(st); replay=[r.random() for _ in range(3)]
 out["s22"]=[suffix==replay,first==suffix]
 
-# S23 repaired diagnostic event
+# S23 bounded-followup reference witness: one valid learner-chosen diagnostic event is sum9
 bugpairs=[(d,d) for d in range(1,7)]
 out["s23"]=[len(bugpairs),sum(a+b==9 for a,b in bugpairs),str(Fraction(4,36))]
 

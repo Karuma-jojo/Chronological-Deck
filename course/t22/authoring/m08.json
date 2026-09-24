@@ -1,5 +1,5 @@
 {
-  "version": "m08-authoring-v3-25-session-sizing",
+  "version": "m08-authoring-v4-bounded-followup-repair",
   "instructionVersion": "m08-instruction-v3-25-session-sizing",
   "module": {
     "order": 8,
@@ -37,9 +37,9 @@
     ]
   },
   "coverageAudit": {
-    "version": "m08-observability-session-sizing-r3-2026-09-24",
-    "status": "125/125 ownership claims after splitting exact integer division from floating-point tolerance; stable existing session IDs preserved; full 25-session workflow green; bounded independent follow-up remains.",
-    "policy": "Each link was authored from the observable capability, then adversarially checked against a named misconception. Structural membership is not treated as semantic proof; docs/t22-course/audit/m08-semantic-contract.json pins the builder-reviewed links and mutation guards."
+    "version": "m08-observability-bounded-followup-r4-2026-09-24",
+    "status": "125/125 ownership links independently re-audited in the bounded follow-up; concrete observability/separation defects repaired; full validation and one final follow-up remain before freeze.",
+    "policy": "Every retained ownership claim must be earned by an actual public obligation and scored evidence. Bounded follow-up repairs narrow overclaims, correct wrong mappings, and strengthen three fixed Mains where the claimed action was not independently observable. Structural membership is not semantic proof."
   },
   "sourceLedger": {
     "checked": "2026-09-24",
@@ -186,7 +186,7 @@
         "Use `%` to obtain the remainder.",
         "Verify dividend=divisor×quotient+remainder exactly.",
         "Choose quotient/remainder for full-groups-plus-leftovers questions.",
-        "Keep exact integer identities conceptually separate from later approximate numerical comparison."
+        "Explain why an exact quotient/remainder reconstruction and an ordinary `/` ratio answer different questions."
       ],
       "applicationScope": "Small, auditable Python programs that operationalize already-taught arithmetic, finite counting and finite probability while keeping model assumptions explicit.",
       "transferScope": "A changed code trace, bug, boundary or representation requiring reconstruction of the programming principle rather than a number swap.",
@@ -229,7 +229,7 @@
         "Import and use `math.isclose` explicitly.",
         "Recognize common decimal fractions are usually approximated as binary floats.",
         "Explain why direct float equality can fail after arithmetic.",
-        "Choose and state relative/absolute tolerances for an approximate comparison.",
+        "State explicit relative and absolute tolerances and explain their roles in an approximate comparison.",
         "Use positive `abs_tol` when an appropriate near-zero comparison requires an absolute scale."
       ],
       "applicationScope": "Small, auditable Python programs that operationalize already-taught arithmetic, finite counting and finite probability while keeping model assumptions explicit.",
@@ -490,8 +490,8 @@
       "requiredOwnership": [
         "Read ordered sequence elements.",
         "Iterate a list of tuple records.",
-        "Use tuples for fixed records.",
-        "Use lists for a collection that may grow.",
+        "Justify tuples for fixed records.",
+        "Justify lists for a collection that may grow or change.",
         "Predict tuple-item assignment failure."
       ],
       "applicationScope": "Small, auditable Python programs that operationalize already-taught arithmetic, finite counting and finite probability while keeping model assumptions explicit.",
@@ -578,7 +578,7 @@
       "requiredOwnership": [
         "Explain `b=a` aliases one list.",
         "Predict in-place mutation through aliases.",
-        "Use `.copy()` for an independent flat-list copy.",
+        "Explain `.copy()` as creating an independent shallow list copy.",
         "Distinguish shared aliasing from an independent copied container.",
         "Detect repeated inner references from nested list multiplication."
       ],
@@ -933,7 +933,7 @@
       "requiredOwnership": [
         "Identify exception type in a tiny failure.",
         "Locate the violated precondition.",
-        "Use a minimal failing input.",
+        "Identify a minimal failing input and failing operation from traceback context.",
         "Repair the root condition rather than suppressing the exception.",
         "Explain why broad exception suppression can hide defects."
       ],
@@ -1197,7 +1197,7 @@
         "Write model/event/payoff rule before coding.",
         "Compute exact probability and expectation oracle by enumeration.",
         "Implement simulation with explicit RNG and recorded seed/N.",
-        "Check invariants and compare estimate to exact target without calling agreement proof.",
+        "State meaningful invariants and explain why simulation/oracle agreement is evidence rather than proof.",
         "Diagnose multiple independent model/code mismatches."
       ],
       "applicationScope": "Small, auditable Python programs that operationalize already-taught arithmetic, finite counting and finite probability while keeping model assumptions explicit.",
@@ -1383,8 +1383,8 @@
       "id": "T22V3::T22E-CODE01::S12-M@1",
       "order": 13,
       "kind": "main",
-      "prompt": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
-      "obligationVersion": 1
+      "prompt": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space. The event is 'the two dice sum to 8': write the Boolean predicate yourself. Give the total count, verify it independently as 6×6 using the product rule, list the event outcomes, compute the exact probability, and explain why this is enumeration rather than simulation.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S12-T@1": {
       "id": "T22V3::T22E-CODE01::S12-T@1",
@@ -1523,8 +1523,8 @@
       "id": "T22V3::T22E-CODE01::S22-M@1",
       "order": 23,
       "kind": "main",
-      "prompt": "Without numeric float values, trace `r=Random(17); first=[r.random() for _ in range(2)]; state=r.getstate(); suffix=[r.random() for _ in range(3)]; r.setstate(state); replay=[r.random() for _ in range(3)]`. State the guaranteed equality, what the snapshot represents, and whether any equality between `first` and `suffix` follows.",
-      "obligationVersion": 2
+      "prompt": "Starting with `r=Random(17)`, write code that takes two `random()` draws into `first`, captures the current generator state with `getstate()`, takes a three-draw `suffix`, restores the saved state with `setstate(...)`, and then takes a three-draw `replay`. Without needing numeric float values, state the guaranteed equality, explain what the saved snapshot represents and what it records about execution position beyond merely knowing the original seed, and state whether any equality between `first` and `suffix` follows.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-CODE01::S22-T@1": {
       "id": "T22V3::T22E-CODE01::S22-T@1",
@@ -1537,8 +1537,8 @@
       "id": "T22V3::T22E-CODE01::S23-M@1",
       "order": 24,
       "kind": "main",
-      "prompt": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==9`. Compare intended versus reachable supports, derive buggy and exact probabilities for sum9, identify the dependence defect, and repair it while keeping the RNG explicit.",
-      "obligationVersion": 2
+      "prompt": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return (a,b)`. Compare the intended support with the simulator's reachable support, then choose a diagnostic event different from the lesson's sum-7 example on which the two models disagree. Derive the buggy and intended exact probabilities for your chosen event, identify the dependence defect, and repair the simulator while keeping the RNG explicit.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-CODE01::S23-T@1": {
       "id": "T22V3::T22E-CODE01::S23-T@1",
@@ -2150,15 +2150,15 @@
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     },
     "T22V3::T22E-CODE01::S12-M@1": {
-      "reference": "36 outcomes; hits (2,6),(3,5),(4,4),(5,3),(6,2); probability5/36. Every modeled outcome is traversed deterministically; no pseudorandom draw is used.",
+      "reference": "One valid implementation uses the predicate `die1+die2==8`. The Cartesian product has 6×6=36 ordered outcomes. Hits are (2,6),(3,5),(4,4),(5,3),(6,2), so the exact probability is5/36. Every modeled outcome is traversed deterministically; no pseudorandom draw is used.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "A complete 6×6 enumeration is supplied."
+          "criterion": "A complete 6×6 enumeration and a correct sum-to-8 Boolean predicate are supplied."
         },
         {
           "points": 2,
-          "criterion": "Total36 is correct."
+          "criterion": "Total36 is correct and explicitly cross-checked as6×6 by the product rule."
         },
         {
           "points": 2,
@@ -2670,19 +2670,19 @@
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     },
     "T22V3::T22E-CODE01::S22-M@1": {
-      "reference": "`suffix==replay` is guaranteed because state is restored to the point immediately before suffix was generated. The snapshot encodes the generator's current internal state after the first two draws. No equality between first and suffix follows.",
+      "reference": "One valid construction is `first=[r.random() for _ in range(2)]; state=r.getstate(); suffix=[r.random() for _ in range(3)]; r.setstate(state); replay=[r.random() for _ in range(3)]`. Then `suffix==replay` is guaranteed because the generator is restored to the point immediately after the first two draws. The snapshot is a mid-run internal state, not merely the original seed/restart point. No equality between first and suffix follows.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "The snapshot point after two draws is located."
+          "criterion": "`getstate()` is actually used after exactly two initial draws."
         },
         {
           "points": 2,
-          "criterion": "The three-draw suffix is tracked after the snapshot."
+          "criterion": "A three-draw suffix is generated after the saved snapshot."
         },
         {
           "points": 2,
-          "criterion": "Restoration is tracked before replay."
+          "criterion": "`setstate(saved_state)` is actually used before generating replay."
         },
         {
           "points": 2,
@@ -2690,7 +2690,7 @@
         },
         {
           "points": 2,
-          "criterion": "No unsupported first-versus-suffix equality is claimed."
+          "criterion": "The mid-run snapshot is distinguished from the original seed/restart state, with no unsupported first-versus-suffix equality."
         }
       ],
       "marking": "Score only the public Main task. Accept equivalent correct Python or precise pseudocode where behavior is unambiguous. Do not infer mastery from an unexplained output; code must implement the stated model."
@@ -2722,30 +2722,30 @@
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     },
     "T22V3::T22E-CODE01::S23-M@1": {
-      "reference": "The bug reaches only six diagonal pairs, so sum9 is impossible because 2a is even: buggy probability0. The intended36-pair support has four sum-9 pairs (3,6),(4,5),(5,4),(6,3), so exact probability4/36=1/9. Repair with an independent second `b=rng.randrange(1,7)` draw from the passed rng.",
+      "reference": "The intended model has36 ordered pairs; the bug reaches only the six diagonal pairs because `b=a`. One valid fresh diagnostic is sum9: the buggy probability is0 because2a is even, while the intended model has (3,6),(4,5),(5,4),(6,3), giving4/36=1/9. Other diagnostic events different from the lesson's sum-7 example are valid when their buggy and intended probabilities are correctly derived and differ. Repair with a separate `b=rng.randrange(1,7)` draw from the passed RNG.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Intended36-pair support is stated."
+          "criterion": "The intended36-pair support is stated."
         },
         {
           "points": 2,
-          "criterion": "Bug six-diagonal-pair support is identified."
+          "criterion": "The six-diagonal-pair reachable support and reused-draw dependence defect are identified."
         },
         {
           "points": 2,
-          "criterion": "Bug probability0 is derived from the diagnostic event."
+          "criterion": "A valid diagnostic event different from the lesson's sum-7 example is chosen and its buggy probability is derived correctly."
         },
         {
           "points": 2,
-          "criterion": "Exact probability1/9 is derived from four intended hits."
+          "criterion": "The intended exact probability for that chosen event is derived correctly and shown to disagree with the buggy model."
         },
         {
           "points": 2,
-          "criterion": "A second RNG draw repairs the dependence defect."
+          "criterion": "A separate second RNG draw repairs the dependence defect while retaining explicit RNG state."
         }
       ],
-      "marking": "Score only the public Main task. Accept equivalent correct Python or precise pseudocode where behavior is unambiguous. Do not infer mastery from an unexplained output; code must implement the stated model."
+      "marking": "Score only the public Main task. Accept equivalent correct Python or precise pseudocode where behavior is unambiguous. Do not infer mastery from an unexplained output; code must implement the stated model. Accept any learner-chosen diagnostic event different from the lesson's sum-7 worked example if both model probabilities are correctly derived and demonstrably differ."
     },
     "T22V3::T22E-CODE01::S23-T@1": {
       "reference": "Actual support1..5; six is unreachable. Use `randrange(1,7)`. More N only samples the wrong five-sided support more thoroughly.",
@@ -3006,7 +3006,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "main"
@@ -3074,7 +3074,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "main"
@@ -3392,10 +3392,11 @@
         ]
       },
       {
-        "claim": "Keep exact integer identities conceptually separate from later approximate numerical comparison.",
+        "claim": "Explain why an exact quotient/remainder reconstruction and an ordinary `/` ratio answer different questions.",
         "task": "main",
         "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; state which result answers 'complete groups', verify `29 == 6*(n//6) + n%6`, and explain why the ratio is not a count of complete groups.",
         "rubricEvidence": [
+          "29=6×4+5 is verified exactly.",
           "Ratio versus full-groups-plus-leftovers meaning is explained."
         ]
       }
@@ -3656,17 +3657,15 @@
         ]
       },
       {
-        "claim": "Use tuples for fixed records.",
-        "task": "transfer",
-        "publicRequest": "Audit `point=(2,5); point[0]=3`. State what happens and give two repairs: create a new tuple, and use a mutable structure when field mutation is intended.",
+        "claim": "Justify tuples for fixed records.",
+        "task": "main",
+        "publicRequest": "Given `records=[('W',3),('L',-2),('W',4)]`, write a short loop that unpacks each tuple, collects or reports the payoffs in order, and accumulates their sum. Give the resulting payoffs/sum, then explain why each record can reasonably be a tuple while the outer collection can be a list.",
         "rubricEvidence": [
-          "Tuple immutability is identified.",
-          "TypeError is predicted.",
-          "A valid new-tuple repair is supplied."
+          "Tuple choice is justified."
         ]
       },
       {
-        "claim": "Use lists for a collection that may grow.",
+        "claim": "Justify lists for a collection that may grow or change.",
         "task": "main",
         "publicRequest": "Given `records=[('W',3),('L',-2),('W',4)]`, write a short loop that unpacks each tuple, collects or reports the payoffs in order, and accumulates their sum. Give the resulting payoffs/sum, then explain why each record can reasonably be a tuple while the outer collection can be a list.",
         "rubricEvidence": [
@@ -3752,7 +3751,7 @@
         ]
       },
       {
-        "claim": "Use `.copy()` for an independent flat-list copy.",
+        "claim": "Explain `.copy()` as creating an independent shallow list copy.",
         "task": "main",
         "publicRequest": "Trace `a=[2,4]; b=a; b.append(6); c=a.copy(); c.append(8)`. Give final a,b,c and identify aliases.",
         "rubricEvidence": [
@@ -3832,33 +3831,31 @@
       {
         "claim": "Generate a finite Cartesian product with nested loops or product.",
         "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space. The event is 'the two dice sum to 8': write the Boolean predicate yourself. Give the total count, verify it independently as 6×6 using the product rule, list the event outcomes, compute the exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
-          "A complete 6×6 enumeration is supplied."
+          "A complete 6×6 enumeration and a correct sum-to-8 Boolean predicate are supplied."
         ]
       },
       {
         "claim": "Verify total count using the product rule.",
         "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space. The event is 'the two dice sum to 8': write the Boolean predicate yourself. Give the total count, verify it independently as 6×6 using the product rule, list the event outcomes, compute the exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
-          "Total36 is correct."
+          "Total36 is correct and explicitly cross-checked as6×6 by the product rule."
         ]
       },
       {
         "claim": "Translate a verbal event into the exact Boolean predicate.",
-        "task": "transfer",
-        "publicRequest": "Spinner A is equally likely on `[1,2,4]`, B independently on `[0,3]`. Intended event is `a+b>=4`, but code uses `>4`. Enumerate six outcomes, compute correct and buggy probabilities, and identify equality-boundary outcomes causing the difference.",
+        "task": "main",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space. The event is 'the two dice sum to 8': write the Boolean predicate yourself. Give the total count, verify it independently as 6×6 using the product rule, list the event outcomes, compute the exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
-          "Correct hit count4 is obtained.",
-          "Correct probability2/3 is obtained.",
-          "Both equality-boundary outcomes are named."
+          "A complete 6×6 enumeration and a correct sum-to-8 Boolean predicate are supplied."
         ]
       },
       {
         "claim": "Count hits over the full equally likely space.",
         "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space. The event is 'the two dice sum to 8': write the Boolean predicate yourself. Give the total count, verify it independently as 6×6 using the product rule, list the event outcomes, compute the exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
           "Exactly five sum-8 pairs are identified.",
           "Probability5/36 is correct."
@@ -3867,7 +3864,7 @@
       {
         "claim": "Distinguish deterministic enumeration from simulation.",
         "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space. The event is 'the two dice sum to 8': write the Boolean predicate yourself. Give the total count, verify it independently as 6×6 using the product rule, list the event outcomes, compute the exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
           "Enumeration is explicitly distinguished from simulation."
         ]
@@ -4090,7 +4087,7 @@
         "task": "main",
         "publicRequest": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove. Also name one boundary input that distinguishes the predicates `x>=5` and `x>5`, and state the expected result under `x>=5`.",
         "rubricEvidence": [
-          "The limitation of the general invariant is explained."
+          "The limitation of finite passing tests as proof of unseen behavior is explained."
         ]
       },
       {
@@ -4125,7 +4122,7 @@
         ]
       },
       {
-        "claim": "Use a minimal failing input.",
+        "claim": "Identify a minimal failing input and failing operation from traceback context.",
         "task": "main",
         "publicRequest": "Read this failure:\n`Traceback (most recent call last):\\n  File \"sim.py\", line 6, in <module>\\n    print(probability(0,0))\\n  File \"sim.py\", line 3, in probability\\n    return hits/total\\nZeroDivisionError: division by zero`\nState the exception type, failing source operation, smallest failing input, and violated precondition; then repair the function so empty trial count is rejected explicitly rather than fabricated as probability0.",
         "rubricEvidence": [
@@ -4275,6 +4272,7 @@
         "task": "main",
         "publicRequest": "Using one `rng=Random(31415)`, N=1200 and `bernoulli(rng,0.4)`, write aggregation code that actually increments hits from repeated calls, run/trace the prescribed computation, and report the resulting hit count and frequency. Record seed/N and compare the empirical result with exact/model p=0.4 without calling the estimate exact.",
         "rubricEvidence": [
+          "The prescribed run result492/1200=0.41 is reported.",
           "Seed31415 and N1200 are recorded as metadata."
         ]
       },
@@ -4291,31 +4289,31 @@
       {
         "claim": "Capture current state with getstate.",
         "task": "main",
-        "publicRequest": "Without numeric float values, trace `r=Random(17); first=[r.random() for _ in range(2)]; state=r.getstate(); suffix=[r.random() for _ in range(3)]; r.setstate(state); replay=[r.random() for _ in range(3)]`. State the guaranteed equality, what the snapshot represents, and whether any equality between `first` and `suffix` follows.",
+        "publicRequest": "Starting with `r=Random(17)`, write code that takes two `random()` draws into `first`, captures the current generator state with `getstate()`, takes a three-draw `suffix`, restores the saved state with `setstate(...)`, and then takes a three-draw `replay`. Without needing numeric float values, state the guaranteed equality, explain what the saved snapshot represents and what it records about execution position beyond merely knowing the original seed, and state whether any equality between `first` and `suffix` follows.",
         "rubricEvidence": [
-          "The snapshot point after two draws is located."
+          "`getstate()` is actually used after exactly two initial draws."
         ]
       },
       {
         "claim": "Advance after the snapshot.",
         "task": "main",
-        "publicRequest": "Without numeric float values, trace `r=Random(17); first=[r.random() for _ in range(2)]; state=r.getstate(); suffix=[r.random() for _ in range(3)]; r.setstate(state); replay=[r.random() for _ in range(3)]`. State the guaranteed equality, what the snapshot represents, and whether any equality between `first` and `suffix` follows.",
+        "publicRequest": "Starting with `r=Random(17)`, write code that takes two `random()` draws into `first`, captures the current generator state with `getstate()`, takes a three-draw `suffix`, restores the saved state with `setstate(...)`, and then takes a three-draw `replay`. Without needing numeric float values, state the guaranteed equality, explain what the saved snapshot represents and what it records about execution position beyond merely knowing the original seed, and state whether any equality between `first` and `suffix` follows.",
         "rubricEvidence": [
-          "The three-draw suffix is tracked after the snapshot."
+          "A three-draw suffix is generated after the saved snapshot."
         ]
       },
       {
         "claim": "Restore with setstate.",
         "task": "main",
-        "publicRequest": "Without numeric float values, trace `r=Random(17); first=[r.random() for _ in range(2)]; state=r.getstate(); suffix=[r.random() for _ in range(3)]; r.setstate(state); replay=[r.random() for _ in range(3)]`. State the guaranteed equality, what the snapshot represents, and whether any equality between `first` and `suffix` follows.",
+        "publicRequest": "Starting with `r=Random(17)`, write code that takes two `random()` draws into `first`, captures the current generator state with `getstate()`, takes a three-draw `suffix`, restores the saved state with `setstate(...)`, and then takes a three-draw `replay`. Without needing numeric float values, state the guaranteed equality, explain what the saved snapshot represents and what it records about execution position beyond merely knowing the original seed, and state whether any equality between `first` and `suffix` follows.",
         "rubricEvidence": [
-          "Restoration is tracked before replay."
+          "`setstate(saved_state)` is actually used before generating replay."
         ]
       },
       {
         "claim": "Predict replay of the first draw after the saved state.",
         "task": "main",
-        "publicRequest": "Without numeric float values, trace `r=Random(17); first=[r.random() for _ in range(2)]; state=r.getstate(); suffix=[r.random() for _ in range(3)]; r.setstate(state); replay=[r.random() for _ in range(3)]`. State the guaranteed equality, what the snapshot represents, and whether any equality between `first` and `suffix` follows.",
+        "publicRequest": "Starting with `r=Random(17)`, write code that takes two `random()` draws into `first`, captures the current generator state with `getstate()`, takes a three-draw `suffix`, restores the saved state with `setstate(...)`, and then takes a three-draw `replay`. Without needing numeric float values, state the guaranteed equality, explain what the saved snapshot represents and what it records about execution position beyond merely knowing the original seed, and state whether any equality between `first` and `suffix` follows.",
         "rubricEvidence": [
           "`suffix==replay` is stated and justified."
         ]
@@ -4323,9 +4321,9 @@
       {
         "claim": "Explain why a mid-run state snapshot carries execution-position information beyond the original seed.",
         "task": "main",
-        "publicRequest": "Without numeric float values, trace `r=Random(17); first=[r.random() for _ in range(2)]; state=r.getstate(); suffix=[r.random() for _ in range(3)]; r.setstate(state); replay=[r.random() for _ in range(3)]`. State the guaranteed equality, what the snapshot represents, and whether any equality between `first` and `suffix` follows.",
+        "publicRequest": "Starting with `r=Random(17)`, write code that takes two `random()` draws into `first`, captures the current generator state with `getstate()`, takes a three-draw `suffix`, restores the saved state with `setstate(...)`, and then takes a three-draw `replay`. Without needing numeric float values, state the guaranteed equality, explain what the saved snapshot represents and what it records about execution position beyond merely knowing the original seed, and state whether any equality between `first` and `suffix` follows.",
         "rubricEvidence": [
-          "No unsupported first-versus-suffix equality is claimed."
+          "The mid-run snapshot is distinguished from the original seed/restart state, with no unsupported first-versus-suffix equality."
         ]
       }
     ],
@@ -4333,44 +4331,44 @@
       {
         "claim": "State the intended joint model before reading output.",
         "task": "main",
-        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==9`. Compare intended versus reachable supports, derive buggy and exact probabilities for sum9, identify the dependence defect, and repair it while keeping the RNG explicit.",
+        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return (a,b)`. Compare the intended support with the simulator's reachable support, then choose a diagnostic event different from the lesson's sum-7 example on which the two models disagree. Derive the buggy and intended exact probabilities for your chosen event, identify the dependence defect, and repair the simulator while keeping the RNG explicit.",
         "rubricEvidence": [
-          "Intended36-pair support is stated."
+          "The intended36-pair support is stated."
         ]
       },
       {
         "claim": "Compare reachable simulator support with exact sample space.",
         "task": "main",
-        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==9`. Compare intended versus reachable supports, derive buggy and exact probabilities for sum9, identify the dependence defect, and repair it while keeping the RNG explicit.",
+        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return (a,b)`. Compare the intended support with the simulator's reachable support, then choose a diagnostic event different from the lesson's sum-7 example on which the two models disagree. Derive the buggy and intended exact probabilities for your chosen event, identify the dependence defect, and repair the simulator while keeping the RNG explicit.",
         "rubricEvidence": [
-          "Intended36-pair support is stated.",
-          "Bug six-diagonal-pair support is identified."
+          "The intended36-pair support is stated.",
+          "The six-diagonal-pair reachable support and reused-draw dependence defect are identified."
         ]
       },
       {
         "claim": "Detect reuse of one draw where two are required.",
         "task": "main",
-        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==9`. Compare intended versus reachable supports, derive buggy and exact probabilities for sum9, identify the dependence defect, and repair it while keeping the RNG explicit.",
+        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return (a,b)`. Compare the intended support with the simulator's reachable support, then choose a diagnostic event different from the lesson's sum-7 example on which the two models disagree. Derive the buggy and intended exact probabilities for your chosen event, identify the dependence defect, and repair the simulator while keeping the RNG explicit.",
         "rubricEvidence": [
-          "Bug six-diagonal-pair support is identified.",
-          "A second RNG draw repairs the dependence defect."
+          "The six-diagonal-pair reachable support and reused-draw dependence defect are identified.",
+          "A separate second RNG draw repairs the dependence defect while retaining explicit RNG state."
         ]
       },
       {
         "claim": "Choose a diagnostic event on which models disagree.",
         "task": "main",
-        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==9`. Compare intended versus reachable supports, derive buggy and exact probabilities for sum9, identify the dependence defect, and repair it while keeping the RNG explicit.",
+        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return (a,b)`. Compare the intended support with the simulator's reachable support, then choose a diagnostic event different from the lesson's sum-7 example on which the two models disagree. Derive the buggy and intended exact probabilities for your chosen event, identify the dependence defect, and repair the simulator while keeping the RNG explicit.",
         "rubricEvidence": [
-          "Bug probability0 is derived from the diagnostic event.",
-          "Exact probability1/9 is derived from four intended hits."
+          "A valid diagnostic event different from the lesson's sum-7 example is chosen and its buggy probability is derived correctly.",
+          "The intended exact probability for that chosen event is derived correctly and shown to disagree with the buggy model."
         ]
       },
       {
         "claim": "Repair while retaining explicit RNG state.",
         "task": "main",
-        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==9`. Compare intended versus reachable supports, derive buggy and exact probabilities for sum9, identify the dependence defect, and repair it while keeping the RNG explicit.",
+        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return (a,b)`. Compare the intended support with the simulator's reachable support, then choose a diagnostic event different from the lesson's sum-7 example on which the two models disagree. Derive the buggy and intended exact probabilities for your chosen event, identify the dependence defect, and repair the simulator while keeping the RNG explicit.",
         "rubricEvidence": [
-          "A second RNG draw repairs the dependence defect."
+          "A separate second RNG draw repairs the dependence defect while retaining explicit RNG state."
         ]
       }
     ],
@@ -4401,7 +4399,7 @@
         ]
       },
       {
-        "claim": "Check invariants and compare estimate to exact target without calling agreement proof.",
+        "claim": "State meaningful invariants and explain why simulation/oracle agreement is evidence rather than proof.",
         "task": "main",
         "publicRequest": "Build an auditable experiment for two independent fair six-sided dice paying +8 when sum==8 and -2 otherwise. **Before any code**, write three explicit lines: Model, Event, Payoff. Then enumerate all36 pairs and derive exact P(sum=8) and exact expected payoff; give Python/pseudocode for `trial(rng)` with two separate die draws and repetition with a stated seed and N; give at least two invariants; explain what simulation/oracle agreement does and does not establish.",
         "rubricEvidence": [
@@ -4449,10 +4447,11 @@
         ]
       },
       {
-        "claim": "Choose and state relative/absolute tolerances for an approximate comparison.",
+        "claim": "State explicit relative and absolute tolerances and explain their roles in an approximate comparison.",
         "task": "main",
         "publicRequest": "After `import math`, compare `0.2+0.2+0.2` with `0.6`: state ordinary direct-equality behavior, write an explicit `math.isclose` call, and explain the roles of `rel_tol` and `abs_tol` without calling the result exact equality.",
         "rubricEvidence": [
+          "An explicit valid `math.isclose` call is supplied.",
           "Relative tolerance is explained as magnitude-scaled.",
           "Absolute tolerance is explained without calling closeness exact equality."
         ]
@@ -5064,7 +5063,7 @@
     },
     "T22V3::T22E-CODE01::S23@1": {
       "main": [
-        "return a+b==9"
+        "choose a diagnostic event different from the lesson's sum-7 example"
       ],
       "transfer": [
         "rng.randrange(1,6)"
@@ -5091,204 +5090,204 @@
     "version": "m08-separation-builder-r1-2026-09-24",
     "sessions": {
       "T22V3::T22E-CODE01::S01@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S02@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S03@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S04@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S05@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S06@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S07@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S08@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S09@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S10@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S11@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S12@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S13@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S14@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S15@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S16@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S17@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S18@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S19@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S20@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S21@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S22@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S23@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S24@1": {
-        "status": "independent-repair-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       },
       "T22V3::T22E-CODE01::S02F@1": {
-        "status": "session-sizing-split-semantic-separated-pending-final-followup",
+        "status": "bounded-followup-repaired-pending-full-validation",
         "mainPurpose": "Elicit fresh floating-point representation and tolerance-policy reasoning.",
         "transferPurpose": "Require near-zero tolerance diagnosis on a changed numerical surface.",
         "wrongSolver": "Exact-equality ritual or unexplained default tolerance cannot earn the linked evidence.",
         "validAlternative": "Equivalent justified tolerances are acceptable when scale reasoning is explicit.",
-        "claimReview": "Sizing split isolates approximate-numerics ownership from exact quotient/remainder ownership."
+        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
       }
     }
   },
@@ -5356,9 +5355,17 @@
     "sessions": {}
   },
   "assessmentIndependenceAudit": {
-    "version": "m08-session-sizing-r3-25-sessions-2026-09-24",
-    "policy": "Sizing audit split exact quotient/remainder from approximate floating-point comparison. Existing stable session IDs are preserved; visible order shifts only. Guards remain regression witnesses, not substitutes for human semantic review.",
+    "version": "m08-bounded-followup-r4-2026-09-24",
+    "policy": "Bounded independent follow-up rechecked lesson/Main mathematical meaning, not only literal overlap. The guards below are regression witnesses after human semantic review; they do not replace that review.",
     "sessions": {
+      "13": {
+        "lessonSurface": "two fair four-sided dice / sum5 -> four hits / 1/4",
+        "mainSurface": "two fair six-sided dice / learner writes sum8 predicate / 36=6×6 / 5/36",
+        "forbidInMain": [
+          "two fair four-sided dice",
+          "sum5"
+        ]
+      },
       "14": {
         "lessonSurface": "1/2,1/3,1/6 -> 2/3",
         "mainSurface": "3/8,1/4,3/8 -> 3/4",
@@ -5394,17 +5401,18 @@
       },
       "23": {
         "lessonSurface": "Random(11), one draw then state",
-        "mainSurface": "Random(17), two draws then 3-draw suffix",
+        "mainSurface": "Random(17), learner constructs two-draw prefix then three-draw saved-state replay",
         "forbidInMain": [
           "Random(11)"
         ]
       },
       "24": {
-        "lessonSurface": "reused draw, sum7 -> 0 versus 1/6",
-        "mainSurface": "reused draw, sum9 -> 0 versus 1/9",
+        "lessonSurface": "reused draw on two d6, supplied sum7 diagnostic -> 0 versus 1/6",
+        "mainSurface": "reused draw on two d6, learner must choose a different diagnostic event and derive both model probabilities",
         "forbidInMain": [
           "a+b==7",
-          "probability1/6"
+          "probability1/6",
+          "a+b==9"
         ]
       },
       "02": {

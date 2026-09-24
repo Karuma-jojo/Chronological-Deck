@@ -6,7 +6,7 @@ const a=read('course/t22/authoring/m08.json');
 const semantic=read('docs/t22-course/audit/m08-semantic-contract.json');
 const deps=read('docs/t22-rebuild/m65.dependencies.json');
 const by=n=>a.sessions.find(s=>s.order===n);
-assert.equal(a.version,'m08-authoring-v3-25-session-sizing');
+assert.equal(a.version,'m08-authoring-v4-bounded-followup-repair');
 assert.equal(a.instructionVersion,'m08-instruction-v3-25-session-sizing');
 assert.equal(a.module.id,'T22E-CODE01');
 assert.equal(a.module.status,'session-sizing-rebalanced-25-fully-green-awaiting-bounded-followup');
@@ -24,7 +24,7 @@ for(const s of a.sessions){
  assert.equal(s.requiredOwnership.length,5);
  assert(s.lesson.includes('Worked example:')&&s.lesson.includes('Guided check:'),s.id);
  assert.equal(a.claimEvidence[s.id].length,5);
- assert(['independent-repair-semantic-separated-pending-final-followup','session-sizing-split-semantic-separated-pending-final-followup'].includes(a.semanticSeparationAudit.sessions[s.id].status));
+ assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'bounded-followup-repaired-pending-full-validation');
  const h=crypto.createHash('sha256').update(JSON.stringify(stable({title:s.title,focus:s.focus,purpose:s.purpose,claims:s.requiredOwnership,lesson:s.lesson}))).digest('hex');
  assert(!hashes.has(h));hashes.add(h);
  for(const kind of ['main','transfer']){
@@ -97,18 +97,21 @@ assert(by(22).lesson.includes('estimate0.322'));
 assert(a.problems[by(22).main].prompt.includes('Random(31415)')&&a.problems[by(22).main].prompt.includes('N=1200'));
 assert(by(23).lesson.includes('getstate()')&&by(23).lesson.includes('setstate()'));
 assert(by(24).lesson.includes('six diagonal pairs'));
-assert(a.problems[by(24).main].prompt.includes('a+b==9'));
+assert(a.problems[by(13).main].prompt.includes('write the Boolean predicate yourself')&&a.problems[by(13).main].prompt.includes('6×6 using the product rule'));
+assert(a.problems[by(23).main].prompt.includes('captures the current generator state with `getstate()`')&&a.problems[by(23).main].prompt.includes('restores the saved state with `setstate(...)`'));
+assert(a.problems[by(24).main].prompt.includes('choose a diagnostic event different')&&!a.problems[by(24).main].prompt.includes('a+b==9'));
 assert(by(25).lesson.includes('model → exact oracle'));
 
 // Independent assessment-contamination guards.
-assert.equal(a.assessmentIndependenceAudit.version,'m08-session-sizing-r3-25-sessions-2026-09-24');
+assert.equal(a.assessmentIndependenceAudit.version,'m08-bounded-followup-r4-2026-09-24');
 for(const [ord,guard] of Object.entries(a.assessmentIndependenceAudit.sessions)){
  const ss=by(Number(ord)), prompt=a.problems[ss.main].prompt;
  for(const bad of guard.forbidInMain) assert(!prompt.includes(bad),`S${ord} Main regressed to worked-example surface: ${bad}`);
  assert.notEqual(guard.lessonSurface,guard.mainSurface,`S${ord} lesson/Main surfaces must differ`);
 }
-const repairedMains=[8,9,10,12,14,15,16,17,19,20,22,23,24,25];
-for(const n of repairedMains) assert.equal(a.problems[by(n).main].obligationVersion,2,`S${n} repaired Main must stale old evidence`);
+const repairedMainsV2=[8,9,10,12,13,14,15,16,17,19,20,22,25];
+for(const n of repairedMainsV2) assert.equal(a.problems[by(n).main].obligationVersion,2,`S${n} repaired Main must stale old evidence`);
+for(const n of [23,24]) assert.equal(a.problems[by(n).main].obligationVersion,3,`S${n} bounded-followup Main must stale superseded evidence`);
 assert.equal(a.problems[by(2).main].obligationVersion,3);
 assert.equal(a.problems[by(2).transfer].obligationVersion,3);
 for(const n of [10,12,14]) assert.equal(a.problems[by(n).transfer].obligationVersion,2,`S${n} repaired Transfer must stale old evidence`);
@@ -120,6 +123,13 @@ assert(a.problems[by(15).main].prompt.includes('filters B='));
 assert(a.problems[by(17).main].prompt.includes('map each to a payoff'));
 assert(a.problems[by(19).main].prompt.includes('Traceback'));
 assert(a.problems[by(25).main].prompt.includes('Before any code'));
+assert(by(2).requiredOwnership[4].includes('exact quotient/remainder reconstruction'));
+assert(by(3).requiredOwnership[3].includes('State explicit relative and absolute tolerances'));
+assert.equal(by(9).requiredOwnership[2],'Justify tuples for fixed records.');
+assert.equal(a.claimEvidence[by(9).id][2].task,'main');
+assert.deepEqual(a.claimEvidence[by(18).id][3].rubricEvidence,[a.evaluators[by(18).main].rubric[4].criterion]);
+assert.deepEqual(a.claimEvidence[by(22).id][3].rubricEvidence,[a.evaluators[by(22).main].rubric[2].criterion,a.evaluators[by(22).main].rubric[3].criterion]);
+assert(by(25).requiredOwnership[3].includes('evidence rather than proof'));
 
 assert.equal(by(2).id,'T22V3::T22E-CODE01::S02@1');
 assert.equal(by(3).id,'T22V3::T22E-CODE01::S02F@1');

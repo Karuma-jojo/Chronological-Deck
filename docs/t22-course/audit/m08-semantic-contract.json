@@ -1,8 +1,8 @@
 {
-  "version": "m08-semantic-contract-session-sizing-r3-25-sessions-2026-09-24",
+  "version": "m08-semantic-contract-bounded-followup-r4-2026-09-24",
   "module": "T22E-CODE01",
-  "reviewProvenance": "Independent-review repairs retained; later sizing-only audit split former mixed S02 into exact integer S02 and new floating-point S03 while preserving all pre-existing stable session IDs.",
-  "policy": "This file pins the reviewed claim→public-task→rubric-row judgments. The automated guard detects later drift/mutation; it does not create the original semantic judgment.",
+  "reviewProvenance": "bounded independent follow-up semantic re-audit with authorized M08-only repairs; final acceptance pending full CI",
+  "policy": "This file pins the bounded-follow-up claim→public-task→rubric judgments. Guards detect later drift; the judgments themselves were rechecked semantically, including escape attempts and direction-of-task.",
   "sessions": {
     "10": {
       "sessionId": "T22V3::T22E-CODE01::S09@1",
@@ -102,15 +102,15 @@
         },
         {
           "claimIndex": 3,
-          "claim": "Use `.copy()` for an independent flat-list copy.",
+          "claim": "Explain `.copy()` as creating an independent shallow list copy.",
           "task": "main",
           "rows": [
             3,
             5
           ],
           "rationale": "The public main requires the observable behavior scored by: c is correct. / copy versus alias is explained.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 4,
@@ -217,9 +217,9 @@
           "rows": [
             1
           ],
-          "rationale": "The public main requires the observable behavior scored by: A complete 6×6 enumeration is supplied.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A complete 6×6 enumeration and a correct sum-to-8 Boolean predicate are supplied.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 2,
@@ -228,22 +228,20 @@
           "rows": [
             2
           ],
-          "rationale": "The public main requires the observable behavior scored by: Total36 is correct.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Total36 is correct and explicitly cross-checked as6×6 by the product rule.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 3,
           "claim": "Translate a verbal event into the exact Boolean predicate.",
-          "task": "transfer",
+          "task": "main",
           "rows": [
-            2,
-            3,
-            5
+            1
           ],
-          "rationale": "The public transfer requires the observable behavior scored by: Correct hit count4 is obtained. / Correct probability2/3 is obtained. / Both equality-boundary outcomes are named.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A complete 6×6 enumeration and a correct sum-to-8 Boolean predicate are supplied.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 4,
@@ -254,8 +252,8 @@
             4
           ],
           "rationale": "The public main requires the observable behavior scored by: Exactly five sum-8 pairs are identified. / Probability5/36 is correct.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 5,
@@ -265,8 +263,8 @@
             5
           ],
           "rationale": "The public main requires the observable behavior scored by: Enumeration is explicitly distinguished from simulation.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         }
       ]
     },
@@ -575,11 +573,11 @@
           "claim": "Explain finite passing tests do not prove all behavior.",
           "task": "main",
           "rows": [
-            4
+            5
           ],
-          "rationale": "The public main requires the observable behavior scored by: The limitation of the general invariant is explained.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The limitation of finite passing tests as proof of unseen behavior is explained.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 5,
@@ -627,14 +625,14 @@
         },
         {
           "claimIndex": 3,
-          "claim": "Use a minimal failing input.",
+          "claim": "Identify a minimal failing input and failing operation from traceback context.",
           "task": "main",
           "rows": [
             2
           ],
           "rationale": "The public main requires the observable behavior scored by: The `hits/total` source line and `(0,0)` failing call are localized.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 4,
@@ -836,11 +834,12 @@
           "claim": "Record seed,N and output as reproducibility metadata.",
           "task": "main",
           "rows": [
+            3,
             4
           ],
-          "rationale": "The public main requires the observable behavior scored by: Seed31415 and N1200 are recorded as metadata.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The prescribed run result492/1200=0.41 is reported. / Seed31415 and N1200 are recorded as metadata.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 5,
@@ -866,9 +865,9 @@
           "rows": [
             1
           ],
-          "rationale": "The public main requires the observable behavior scored by: The snapshot point after two draws is located.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: `getstate()` is actually used after exactly two initial draws.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 2,
@@ -877,9 +876,9 @@
           "rows": [
             2
           ],
-          "rationale": "The public main requires the observable behavior scored by: The three-draw suffix is tracked after the snapshot.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A three-draw suffix is generated after the saved snapshot.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 3,
@@ -888,9 +887,9 @@
           "rows": [
             3
           ],
-          "rationale": "The public main requires the observable behavior scored by: Restoration is tracked before replay.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: `setstate(saved_state)` is actually used before generating replay.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 4,
@@ -900,8 +899,8 @@
             4
           ],
           "rationale": "The public main requires the observable behavior scored by: `suffix==replay` is stated and justified.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 5,
@@ -910,9 +909,9 @@
           "rows": [
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: No unsupported first-versus-suffix equality is claimed.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The mid-run snapshot is distinguished from the original seed/restart state, with no unsupported first-versus-suffix equality.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         }
       ]
     },
@@ -927,9 +926,9 @@
           "rows": [
             1
           ],
-          "rationale": "The public main requires the observable behavior scored by: Intended36-pair support is stated.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The intended36-pair support is stated.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 2,
@@ -939,9 +938,9 @@
             1,
             2
           ],
-          "rationale": "The public main requires the observable behavior scored by: Intended36-pair support is stated. / Bug six-diagonal-pair support is identified.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The intended36-pair support is stated. / The six-diagonal-pair reachable support and reused-draw dependence defect are identified.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 3,
@@ -951,9 +950,9 @@
             2,
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: Bug six-diagonal-pair support is identified. / A second RNG draw repairs the dependence defect.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The six-diagonal-pair reachable support and reused-draw dependence defect are identified. / A separate second RNG draw repairs the dependence defect while retaining explicit RNG state.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 4,
@@ -963,9 +962,9 @@
             3,
             4
           ],
-          "rationale": "The public main requires the observable behavior scored by: Bug probability0 is derived from the diagnostic event. / Exact probability1/9 is derived from four intended hits.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A valid diagnostic event different from the lesson's sum-7 example is chosen and its buggy probability is derived correctly. / The intended exact probability for that chosen event is derived correctly and shown to disagree with the buggy model.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 5,
@@ -974,9 +973,9 @@
           "rows": [
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: A second RNG draw repairs the dependence defect.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A separate second RNG draw repairs the dependence defect while retaining explicit RNG state.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         }
       ]
     },
@@ -1020,15 +1019,15 @@
         },
         {
           "claimIndex": 4,
-          "claim": "Check invariants and compare estimate to exact target without calling agreement proof.",
+          "claim": "State meaningful invariants and explain why simulation/oracle agreement is evidence rather than proof.",
           "task": "main",
           "rows": [
             4,
             5
           ],
           "rationale": "The public main requires the observable behavior scored by: Simulation uses explicit seeded RNG, two draws/trial, stated N and meaningful invariants. / Agreement is correctly limited as evidence rather than proof.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 5,
@@ -1168,14 +1167,15 @@
         },
         {
           "claimIndex": 5,
-          "claim": "Keep exact integer identities conceptually separate from later approximate numerical comparison.",
+          "claim": "Explain why an exact quotient/remainder reconstruction and an ordinary `/` ratio answer different questions.",
           "task": "main",
           "rows": [
+            3,
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: Ratio versus full-groups-plus-leftovers meaning is explained.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: 29=6×4+5 is verified exactly. / Ratio versus full-groups-plus-leftovers meaning is explained.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         }
       ]
     },
@@ -1219,15 +1219,16 @@
         },
         {
           "claimIndex": 4,
-          "claim": "Choose and state relative/absolute tolerances for an approximate comparison.",
+          "claim": "State explicit relative and absolute tolerances and explain their roles in an approximate comparison.",
           "task": "main",
           "rows": [
+            3,
             4,
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: Relative tolerance is explained as magnitude-scaled. / Absolute tolerance is explained without calling closeness exact equality.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: An explicit valid `math.isclose` call is supplied. / Relative tolerance is explained as magnitude-scaled. / Absolute tolerance is explained without calling closeness exact equality.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 5,
@@ -1604,27 +1605,25 @@
         },
         {
           "claimIndex": 3,
-          "claim": "Use tuples for fixed records.",
-          "task": "transfer",
+          "claim": "Justify tuples for fixed records.",
+          "task": "main",
           "rows": [
-            1,
-            2,
-            3
+            4
           ],
-          "rationale": "The public transfer requires the observable behavior scored by: Tuple immutability is identified. / TypeError is predicted. / A valid new-tuple repair is supplied.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Tuple choice is justified.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 4,
-          "claim": "Use lists for a collection that may grow.",
+          "claim": "Justify lists for a collection that may grow or change.",
           "task": "main",
           "rows": [
             5
           ],
           "rationale": "The public main requires the observable behavior scored by: List choice is justified.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "bounded-followup-repaired-pending-full-validation"
         },
         {
           "claimIndex": 5,
