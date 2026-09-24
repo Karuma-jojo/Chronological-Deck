@@ -24,9 +24,10 @@ try{
 
   await page.goto(base+'/t22-course.html?module=11&session=20');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
-  assert.equal(await page.locator('#module option').count(),9,'M11 must remain unpublished/unregistered');
-  assert.notEqual(await page.locator('#module').inputValue(),'ARC510');
-  assert(!(await page.locator('#module').allTextContents()).join(' ').includes('Integration & Accumulation'));
+  assert.equal(await page.locator('#module option').count(),12,'publication route must expose twelve modules');
+  assert.equal(await page.locator('#module').inputValue(),'ARC510');
+  assert((await page.locator('#module').allTextContents()).join(' ').includes('Integration & Accumulation'));
+  assert.equal(await page.locator('#session option').count(),20);
 
   const candidate=await page.evaluate(async()=>{
     const r=await fetch('/course/t22/authoring/m11-arc510.json',{cache:'no-store'});
@@ -34,7 +35,7 @@ try{
   });
   assert.equal(candidate.ok,true);assert.equal(candidate.status,200);
   const a=candidate.json;
-  assert.equal(a.module.id,'ARC510');assert.equal(a.module.order,11);assert.match(a.module.status,/unpublished/);
+  assert.equal(a.module.id,'ARC510');assert.equal(a.module.order,11);assert.match(a.module.status,/publication-candidate-independent-review-repaired/);
   assert.equal(a.sessions.length,20);assert.equal(Object.keys(a.problems).length,40);assert.equal(Object.keys(a.evaluators).length,40);
   for(let i=0;i<a.sessions.length;i++){
     const s=a.sessions[i],ss=String(i+1).padStart(2,'0');
@@ -48,7 +49,7 @@ try{
   assert.deepEqual(errors,[]);
   await context.close();
 
-  console.log('PASS M11 browser boundary: actual learner UI remains nine-module/unpublished; browser fetch/parses complete 20-session M11 candidate with repaired Unicode task surfaces intact.');
+  console.log('PASS M11 browser publication: learner UI exposes ARC510 in the twelve-module route; all 20 sessions parse/render with repaired Unicode task surfaces intact.');
 }finally{
   if(browser)await browser.close();
   await new Promise(r=>server.close(r));
