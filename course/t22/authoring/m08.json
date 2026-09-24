@@ -2900,7 +2900,7 @@
         "transfer"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -3067,7 +3067,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -3141,7 +3141,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-CODE01::S23@1": [
@@ -3158,7 +3158,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-CODE01::S24@1": [
@@ -4386,8 +4386,8 @@
     ],
     "S06": [
       {
-        "item": "M02 functions-as-mappings",
-        "source": "M02 functions-as-mappings",
+        "item": "M03-S20 functions as mappings",
+        "source": "M03-S20 functions as mappings",
         "decision": "reuse-or-teach-before-use"
       },
       {
