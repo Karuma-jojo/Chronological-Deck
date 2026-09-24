@@ -9,7 +9,7 @@ const resolution=fs.readFileSync('docs/t22-course/M12-RESOLUTION.md','utf8');
 const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 
 assert.equal(a.module.id,'SIDE267');
-assert.equal(a.module.status,'publication-candidate-independent-audit-repaired');
+assert.equal(a.module.status,'published-independent-audit-repaired');
 assert.equal(a.sessions.length,19);
 assert.equal(Object.keys(a.problems).length,38);
 assert.equal(Object.values(a.claimEvidence).flat().length,58);
@@ -69,4 +69,4 @@ for(const cmd of [
  'node scripts/test-t22-elite-m12-browser.mjs'
 ])assert(workflow.includes(cmd),'workflow missing '+cmd);
 
-console.log('PASS M12 handoff: bounded audit/focused confirmation documented; 19/38 architecture preserved; M12 registered for twelve-module publication while M13 remains closed and no learner-mastery overclaim is made.');
+console.log('PASS M12 handoff: bounded audit/focused confirmation documented; 19/38 architecture preserved; M12 published in the twelve-module route while M13 remains closed and no learner-mastery overclaim is made.');
