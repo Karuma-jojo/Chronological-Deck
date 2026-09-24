@@ -1,5 +1,5 @@
 {
-  "version": "T22E-course-0.7.1-m07-astra-r1",
+  "version": "T22E-course-0.8.0-m08-candidate",
   "routeVersion": "M65-semantic-r2-2026-09-18",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
@@ -98,6 +98,12 @@
       "id": "T22E-MKT01",
       "sourceType": "authoring-pack",
       "source": "course/t22/authoring/m07.json"
+    },
+    {
+      "order": 8,
+      "id": "T22E-CODE01",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m08.json"
     }
   ]
 }
