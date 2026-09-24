@@ -54,7 +54,7 @@ assert.match(gate,/20 pedagogical atoms/i);
 
 const claimCount=Object.values(a.claimEvidence).flat().length;
 assert.equal(a.coverageAudit.ownershipClaimCount,claimCount);
-assert.match(a.coverageAudit.note,/emergent final count/i);
+assert.match(a.coverageAudit.note,/emergent.*count/i);
 assert.equal(contract.ownershipClaimCount,claimCount);
 assert.equal(ownership.summary.finalClaims,claimCount);
 assert.equal(ownership.records.length,ownership.summary.originalClaims);

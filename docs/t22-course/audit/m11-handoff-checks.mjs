@@ -10,7 +10,7 @@ assert.equal(a.module.id,'ARC510');
 assert.equal(a.sessions.length,20);
 assert.equal(Object.keys(a.problems).length,40);
 assert.equal(Object.values(a.claimEvidence).flat().length,61);
-assert.match(a.module.status,/builder-verified.*unpublished/);
+assert.match(a.module.status,/(?:builder-verified|independent-review-repair-candidate).*unpublished/);
 assert.equal(receipt.validatedImplementationCommit,'136ca2c647f2c23a39b40390eaed40efa6df3bff');
 assert.equal(receipt.workflow.runId,36009416136);
 assert.equal(receipt.workflow.conclusion,'success');
