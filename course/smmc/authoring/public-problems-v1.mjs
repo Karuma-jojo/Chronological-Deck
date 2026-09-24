@@ -114,13 +114,13 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     id: "S-NEUTRAL-C1-01",
     unitId: "S-METHOD-C1-U01",
     role: "main",
-    prompt: "Let x and y be real numbers. Using exactly the two cases x≥y and x<y, prove both identities max(x,y)=(x+y+|x-y|)/2 and min(x,y)=(x+y-|x-y|)/2. First isolate the behavior of |x-y| as a reusable lemma, use it for both identities, and state explicitly why the two cases are exhaustive, nonoverlapping, and include the boundary x=y."
+    prompt: "Let x and y be real numbers. Prove both identities max(x,y)=(x+y+|x-y|)/2 and min(x,y)=(x+y-|x-y|)/2. Design a two-case proof by comparing x and y: state an exhaustive nonoverlapping partition, assign the equality boundary explicitly, isolate the resulting behavior of |x-y| as a reusable lemma, and use that lemma for both identities."
   },
   "S-NEUTRAL-C1-02": {
     id: "S-NEUTRAL-C1-02",
     unitId: "S-METHOD-C1-U01",
     role: "transfer",
-    prompt: "Classify exactly all real pairs (x,y) for which |x+y|=|x|+|y|. Your final answer must be an if-and-only-if condition. Use the exhaustive nonoverlapping split xy≥0 versus xy<0, handle zero within that architecture, extract a reusable lemma showing that opposite nonzero signs force strict inequality, and prove both directions of the classification."
+    prompt: "Classify exactly all real pairs (x,y) for which |x+y|=|x|+|y|. Your final answer must be an if-and-only-if condition. Design an exhaustive nonoverlapping sign-based case architecture that handles zero without duplication, extract a reusable lemma for the genuinely opposite-sign case, and prove both directions of the classification."
   }
 });
 
