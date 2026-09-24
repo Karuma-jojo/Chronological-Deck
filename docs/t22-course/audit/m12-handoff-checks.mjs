@@ -18,7 +18,7 @@ assert(!a.boundary.prerequisiteModules.includes('ARC510'));
 assert.equal(contract.ownershipClaimCount,58);
 assert.equal(contract.unpublished,false);
 
-assert.match(handoff,/builder-validated, independently adversarially audited, bounded repairs applied and focused-confirmed; registered in the authorized twelve-module publication route/i);
+assert.match(handoff,/builder-validated, independently adversarially audited, bounded repairs applied and focused-confirmed; canonical status is published in the authorized twelve-module route/i);
 assert.match(handoff,/3a79fd433626f5e133e759c14c114b23c580391b/);
 assert.match(handoff,/36037157131/);
 assert.match(handoff,/19 design-derived sessions/i);
