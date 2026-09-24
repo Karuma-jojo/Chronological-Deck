@@ -3,7 +3,7 @@
   "reviewedAt": "2026-09-24",
   "moduleId": "SIDE267",
   "moduleVersion": "m12-side267-builder-candidate-v1.1-audit-repair",
-  "unpublished": true,
+  "unpublished": false,
   "ownershipClaimCount": 58,
   "evidenceClasses": [
     "retrieval",
