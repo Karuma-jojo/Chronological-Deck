@@ -5,9 +5,9 @@
     "order": 10,
     "id": "ARC053",
     "title": "Derivatives & Local Linearity",
-    "status": "publication-candidate-semantic-repair-verified",
+    "status": "published-semantic-repair-verified",
     "destination": "Construct the one-variable derivative from M09 limits; interpret it as tangent/rate and first-order local linearity; derive and audit the core algebraic, trigonometric, inverse/implicit, exponential and logarithmic differentiation machinery without importing M11/M12/later applications.",
-    "gate": "M10 has completed builder verification plus the later semantic/evidence repair and is now registered in the shared route for publication through M12. This publication status does not claim learner mastery or an external independent certification. Earlier M01–M09 evidence identities remain unchanged.",
+    "gate": "M10 completed builder verification plus the later semantic/evidence repair and is published in the shared learner route through M12. Publication does not claim learner mastery or external independent certification. Earlier M01–M09 evidence identities remain unchanged.",
     "nextBoundary": "M11 owns integration and accumulation. M12 owns higher-order/Taylor/asymptotic structure. Full optimization, multivariable and numerical differentiation remain outside M10."
   },
   "boundary": {
@@ -3626,12 +3626,12 @@
   "historicalLessonAnswerOverlap": {
     "version": "m10-v2-unregistered",
     "sessions": {},
-    "note": "M10 has never been registered in the shared learner runtime, so no runtime learner evidence exists to migrate."
+    "note": "Before first publication, M10 had never been registered in the shared learner runtime, so there was no prior M10 runtime evidence to migrate."
   },
   "historicalGuidedPracticeOverlap": {
     "version": "m10-v2-unregistered",
     "sessions": {},
-    "note": "No M10 runtime exposure exists because M10 remains unregistered."
+    "note": "At the pre-publication repair checkpoint there was no M10 runtime exposure because M10 was still unregistered."
   },
   "initialVersionAudit": {
     "designGate": "docs/t22-course/M10-DESIGN-GATE.md",
