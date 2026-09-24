@@ -1,11 +1,11 @@
 {
-  "version": "m08-authoring-v1-candidate",
-  "instructionVersion": "m08-instruction-v1-candidate",
+  "version": "m08-authoring-v3-25-session-sizing",
+  "instructionVersion": "m08-instruction-v3-25-session-sizing",
   "module": {
     "order": 8,
     "id": "T22E-CODE01",
     "title": "Quant Programming & Simulation Foundations",
-    "status": "independent-review-repaired-fully-green-awaiting-bounded-followup",
+    "status": "session-sizing-rebalanced-25-fully-authored-awaiting-verification",
     "destination": "Use core Python as an auditable mathematical instrument: trace state, branch and loop correctly, decompose functions, choose core containers, enumerate small finite models exactly, preserve rational/float distinctions, manage explicit pseudorandom-generator state, and build reproducible small simulations that are checked against mathematics rather than substituted for it.",
     "gate": "Page completion is not clearance. Every owned coding capability must be publicly elicited and scored; exact finite mathematics remains the oracle when feasible; simulation must expose model, RNG state/seed and N; independent review is still required.",
     "nextBoundary": "M09 returns to mathematical analysis. M21 later owns NumPy/pandas/vectorization/plotting, testing/research-engineering discipline and scientific-computing craft; M30 later owns Monte Carlo diagnostics and convergence/error methodology."
@@ -37,8 +37,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m08-observability-independent-repair-r2-2026-09-24",
-    "status": "120/120 links re-audited after independent review; contaminated Mains repaired, programming actions made observable, imports/callables/strict zip/traceback gaps repaired; post-repair full workflow green; bounded independent follow-up remains",
+    "version": "m08-observability-session-sizing-r3-2026-09-24",
+    "status": "125/125 ownership claims after splitting exact integer division from floating-point tolerance; stable existing session IDs preserved; full verification required.",
     "policy": "Each link was authored from the observable capability, then adversarially checked against a named misconception. Structural membership is not treated as semantic proof; docs/t22-course/audit/m08-semantic-contract.json pins the builder-reviewed links and mutation guards."
   },
   "sourceLedger": {
@@ -172,22 +172,21 @@
       "order": 2,
       "id": "T22V3::T22E-CODE01::S02@1",
       "moduleId": "T22E-CODE01",
-      "title": "Integer division, remainders & floating-point comparison",
-      "focus": "Use /, // and % deliberately and separate exact integer invariants from approximate binary floats.",
-      "purpose": "Precision assumptions can corrupt probability checks and quantitative invariants.",
-      "centralCapability": "Choose division operations correctly and compare inexact floats with an explicit approximate method.",
-      "principalObstacle": "A learner may expect every decimal literal to be exact or use == as a universal numerical test.",
+      "title": "Integer division, quotient/remainder & exact reconstruction",
+      "focus": "Use /, // and % deliberately for nonnegative counts and preserve the exact quotient–remainder identity.",
+      "purpose": "Before approximate numerics, a quantitative programmer must distinguish a numerical ratio from full-group and leftover counts.",
+      "centralCapability": "Choose /, // and % correctly and verify an exact integer reconstruction invariant.",
+      "principalObstacle": "A learner may report a fractional number of complete groups or forget that quotient/remainder encode a different question from ordinary division.",
       "entryPrerequisites": [
         "M01 division/remainders",
-        "JIT Python numeric operators",
-        "Python floating-point representation"
+        "JIT Python numeric operators"
       ],
       "requiredOwnership": [
         "Distinguish `/` from `//` for nonnegative count examples.",
-        "Use `%` and verify dividend=divisor×quotient+remainder.",
-        "Recognize common decimal fractions are usually approximated as binary floats.",
-        "Use `math.isclose` for an explicitly approximate comparison.",
-        "Keep exact count identities separate from approximate float checks."
+        "Use `%` to obtain the remainder.",
+        "Verify dividend=divisor×quotient+remainder exactly.",
+        "Choose quotient/remainder for full-groups-plus-leftovers questions.",
+        "Keep exact integer identities conceptually separate from later approximate numerical comparison."
       ],
       "applicationScope": "Small, auditable Python programs that operationalize already-taught arithmetic, finite counting and finite probability while keeping model assumptions explicit.",
       "transferScope": "A changed code trace, bug, boundary or representation requiring reconstruction of the programming principle rather than a number swap.",
@@ -207,13 +206,57 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S02 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "For nonnegative counts, `23//4` is5 and `23%4` is3, while `23/4` is5.75. Python floats approximate most decimal fractions in binary. Import a library before using its qualified name: `import math` makes `math.isclose` available. Approximate comparison is a policy, not magic equality: choose tolerances to match the scale; when comparing a computed value with zero, a positive `abs_tol` is usually needed. Worked example: q=5,r=3 reconstruct 23 exactly, while `math.isclose(0.1+0.1+0.1,0.3,rel_tol=1e-9,abs_tol=0.0)` is True even though direct equality is False. Guided check: divide31 by7 with `//` and `%`, then say which part is exact and which comparison policy is approximate.",
+      "exitCondition": "Independently solve and explain M08-S02 on fresh code/model data, preserving the exact quotient/remainder convention.",
+      "lesson": "For nonnegative counts, `/` answers a numerical ratio while `//` and `%` answer full groups and leftovers. Worked example: `23//4` is5 and `23%4` is3, while `23/4` is5.75; the exact invariant is `23 == 4*5 + 3`. Guided check: For31 items packed7 per box, how many complete boxes and leftovers, and what exact identity reconstructs31?",
       "main": "T22V3::T22E-CODE01::S02-M@1",
       "transfer": "T22V3::T22E-CODE01::S02-T@1"
     },
     {
       "order": 3,
+      "id": "T22V3::T22E-CODE01::S02F@1",
+      "moduleId": "T22E-CODE01",
+      "title": "Floating-point representation & tolerance-aware comparison",
+      "focus": "Separate binary floating-point approximation from exact arithmetic and choose an explicit closeness policy.",
+      "purpose": "Quantitative checks can fail when decimal-looking floats are treated as exact; approximate comparison must expose its tolerance contract.",
+      "centralCapability": "Explain binary-float approximation and use `math.isclose` with explicit relative/absolute tolerances.",
+      "principalObstacle": "A learner may use `==` universally or call `isclose` without understanding that tolerances encode a scale-dependent contract.",
+      "entryPrerequisites": [
+        "M01 decimal arithmetic",
+        "M08-S02 exact integer arithmetic contrast",
+        "JIT Python import syntax"
+      ],
+      "requiredOwnership": [
+        "Import and use `math.isclose` explicitly.",
+        "Recognize common decimal fractions are usually approximated as binary floats.",
+        "Explain why direct float equality can fail after arithmetic.",
+        "Choose and state relative/absolute tolerances for an approximate comparison.",
+        "Use positive `abs_tol` when an appropriate near-zero comparison requires an absolute scale."
+      ],
+      "applicationScope": "Small, auditable Python programs that operationalize already-taught arithmetic, finite counting and finite probability while keeping model assumptions explicit.",
+      "transferScope": "A changed code trace, bug, boundary or representation requiring reconstruction of the programming principle rather than a number swap.",
+      "inScope": [
+        "Python primitives, expressions and assignment",
+        "conditionals, finite loops and functions",
+        "core containers and mutation/aliasing",
+        "exact finite enumeration and rational checks",
+        "explicit pseudorandom-generator state",
+        "small reproducible simulations checked against exact mathematics"
+      ],
+      "outOfScope": [
+        "NumPy/pandas/vectorization/plotting and scientific-computing engineering (M21)",
+        "quant algorithms and performance engineering (M22-M24)",
+        "Monte Carlo convergence/error diagnostics and formal simulation methodology (M30)",
+        "statistical inference/LLN/CLT (M27-M31)",
+        "market-data/backtesting/temporal research design (M43-M46)",
+        "cryptographic randomness"
+      ],
+      "exitCondition": "Independently solve and explain M08-S03 on fresh float-comparison data, stating the tolerance policy rather than treating closeness as exact equality.",
+      "lesson": "Most decimal fractions are not represented exactly as binary floats. Import the comparison tool explicitly with `import math`. Worked example: direct `0.1+0.1+0.1 == 0.3` is False, while `math.isclose(0.1+0.1+0.1,0.3,rel_tol=1e-9,abs_tol=0.0)` is True. Near zero, a positive `abs_tol` may be needed because relative tolerance alone scales with the compared magnitudes. Guided check: Why should a tolerance be justified from the problem's numerical scale rather than copied mechanically?",
+      "main": "T22V3::T22E-CODE01::S02F-M@1",
+      "transfer": "T22V3::T22E-CODE01::S02F-T@1"
+    },
+    {
+      "order": 4,
       "id": "T22V3::T22E-CODE01::S03@1",
       "moduleId": "T22E-CODE01",
       "title": "Boolean conditions & boundary-safe branching",
@@ -251,13 +294,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S03 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S04 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Python checks `if`, then `elif` clauses in order, and executes the first matching branch. Worked example: `if x<0: negative; elif x==0: zero; else: positive` has disjoint cases. `if x>=0` followed by `elif x==0` makes the zero branch unreachable. Here equality to literal zero is a classification rule for supplied values; for a computed floating residual, first define an appropriate tolerance policy rather than blindly using `==0.0`. Guided check: Label -2,0,5 with the correct classifier.",
       "main": "T22V3::T22E-CODE01::S03-M@1",
       "transfer": "T22V3::T22E-CODE01::S03-T@1"
     },
     {
-      "order": 4,
+      "order": 5,
       "id": "T22V3::T22E-CODE01::S04@1",
       "moduleId": "T22E-CODE01",
       "title": "For loops, range & accumulator invariants",
@@ -295,13 +338,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S04 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S05 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "`range(start,stop)` includes start and excludes stop. An accumulator should have a meaning after every iteration. Worked example: `total=0; for k in range(1,5): total+=k` visits1,2,3,4 and leaves10; after each step total is the sum visited so far. Guided check: Which range visits2 through6 exactly?",
       "main": "T22V3::T22E-CODE01::S04-M@1",
       "transfer": "T22V3::T22E-CODE01::S04-T@1"
     },
     {
-      "order": 5,
+      "order": 6,
       "id": "T22V3::T22E-CODE01::S05@1",
       "moduleId": "T22E-CODE01",
       "title": "While loops, state updates & termination",
@@ -339,13 +382,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S05 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S06 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "A while loop repeats while its condition is True. The body should make progress toward a stopping condition. Worked example: `x=2; steps=0; while x<11: x+=3; steps+=1` gives post-update5,8,11 and stops after3. Guided check: Starting1 and adding4 while x<10, trace post-update values.",
       "main": "T22V3::T22E-CODE01::S05-M@1",
       "transfer": "T22V3::T22E-CODE01::S05-T@1"
     },
     {
-      "order": 6,
+      "order": 7,
       "id": "T22V3::T22E-CODE01::S06@1",
       "moduleId": "T22E-CODE01",
       "title": "Functions as explicit quantitative mappings",
@@ -383,13 +426,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S06 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S07 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "A function is a reusable mapping from explicit inputs to an output. `return` is its result contract. Worked example: `def gap(a,b): return b-a` returns5 on(4,9) and-3 on(10,7). If a baseline matters, pass it rather than silently reading a global. Guided check: Refactor `base=10; def change(x): return x-base` to expose both inputs.",
       "main": "T22V3::T22E-CODE01::S06-M@1",
       "transfer": "T22V3::T22E-CODE01::S06-T@1"
     },
     {
-      "order": 7,
+      "order": 8,
       "id": "T22V3::T22E-CODE01::S07@1",
       "moduleId": "T22E-CODE01",
       "title": "Decompose a checker into single-purpose functions",
@@ -398,7 +441,7 @@
       "centralCapability": "Split a small quantitative computation into composable inspectable helpers.",
       "principalObstacle": "Duplicated predicates can drift apart.",
       "entryPrerequisites": [
-        "M08-S06 functions",
+        "M08-S07 functions",
         "M03 falsification habits"
       ],
       "requiredOwnership": [
@@ -426,13 +469,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S07 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S08 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Functions are values that can be passed as arguments. A helper can therefore receive the event rule instead of hard-coding or duplicating it. Worked example: `def is_win(x): return x>=4`; `def count_event(xs,predicate):` initializes a counter, loops through `xs`, calls `predicate(x)`, and increments on True. Calling `count_event([1,4,5],is_win)` returns2. Notice `is_win` is passed without parentheses; `is_win(x)` is called inside the counter. Guided check: Which input distinguishes `>=4` from `>4`, and what is the difference between passing `is_win` and calling `is_win(5)`?",
       "main": "T22V3::T22E-CODE01::S07-M@1",
       "transfer": "T22V3::T22E-CODE01::S07-T@1"
     },
     {
-      "order": 8,
+      "order": 9,
       "id": "T22V3::T22E-CODE01::S08@1",
       "moduleId": "T22E-CODE01",
       "title": "Lists & tuples as finite ordered records",
@@ -469,13 +512,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S08 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S09 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Lists and tuples are ordered; lists are mutable while tuples are immutable. Worked example: `rows=[('A',3),('B',-1)]`; iterating `for label,payoff in rows` exposes fields, and the list may append another record. Trying `rows[0][1]=9` attempts tuple mutation and fails. Guided check: Which structure suits one fixed `(die1,die2)` pair and which suits a growing collection of pairs?",
       "main": "T22V3::T22E-CODE01::S08-M@1",
       "transfer": "T22V3::T22E-CODE01::S08-T@1"
     },
     {
-      "order": 9,
+      "order": 10,
       "id": "T22V3::T22E-CODE01::S09@1",
       "moduleId": "T22E-CODE01",
       "title": "Sets & dictionaries for membership and counts",
@@ -485,7 +528,7 @@
       "principalObstacle": "Set length may be mistaken for number of trials.",
       "entryPrerequisites": [
         "M03 sets",
-        "M08-S08 sequences",
+        "M08-S09 sequences",
         "Python data structures"
       ],
       "requiredOwnership": [
@@ -513,13 +556,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S09 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S10 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "A set answers uniqueness/membership, not multiplicity. A dictionary can store counts. Worked example: `['H','T','H']` has unique set {H,T} of size2 but three observations; counts are H:2,T:1. Guided check: For `[2,2,5,2]`, what information is lost by converting to a set?",
       "main": "T22V3::T22E-CODE01::S09-M@1",
       "transfer": "T22V3::T22E-CODE01::S09-T@1"
     },
     {
-      "order": 10,
+      "order": 11,
       "id": "T22V3::T22E-CODE01::S10@1",
       "moduleId": "T22E-CODE01",
       "title": "Mutation, aliasing & defensive copying",
@@ -529,7 +572,7 @@
       "principalObstacle": "List assignment is often mistaken for copying.",
       "entryPrerequisites": [
         "M08-S01 binding",
-        "M08-S08 mutable lists",
+        "M08-S09 mutable lists",
         "Python FAQ aliasing"
       ],
       "requiredOwnership": [
@@ -557,13 +600,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S10 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S11 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "`b=a` does not copy a list; both names can reference the same mutable object. Worked example: `a=[1,2]; b=a; b.append(3)` makes both show [1,2,3]; `c=a.copy(); c.append(4)` leaves a unchanged. Guided check: After `b=a; b=[9]`, was a mutated or was b rebound?",
       "main": "T22V3::T22E-CODE01::S10-M@1",
       "transfer": "T22V3::T22E-CODE01::S10-T@1"
     },
     {
-      "order": 11,
+      "order": 12,
       "id": "T22V3::T22E-CODE01::S11@1",
       "moduleId": "T22E-CODE01",
       "title": "Pairing data safely with zip and enumerate",
@@ -572,8 +615,8 @@
       "centralCapability": "Use paired iteration deliberately and guard against truncation.",
       "principalObstacle": "Default zip stops at the shortest iterable.",
       "entryPrerequisites": [
-        "M08-S04 loops",
-        "M08-S08 sequences",
+        "M08-S05 loops",
+        "M08-S09 sequences",
         "Python looping techniques"
       ],
       "requiredOwnership": [
@@ -601,13 +644,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S11 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S12 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "`zip(values,weights)` supplies aligned pairs, but default zip stops at the shorter input. When equal lengths are a required invariant, modern Python provides `zip(values,weights,strict=True)`, which raises `ValueError` instead of silently truncating. `enumerate(...)` adds positions. Keep weighted_sum and weight_sum meanings explicit. Worked example: values[4,7], weights[2,1] give weighted sum15 and total weight3. Guided check: What should happen if a required pair is missing?",
       "main": "T22V3::T22E-CODE01::S11-M@1",
       "transfer": "T22V3::T22E-CODE01::S11-T@1"
     },
     {
-      "order": 12,
+      "order": 13,
       "id": "T22V3::T22E-CODE01::S12@1",
       "moduleId": "T22E-CODE01",
       "title": "Exact Cartesian enumeration as a mathematical oracle",
@@ -619,7 +662,7 @@
         "M03-S19 Cartesian products",
         "M03-S23 product counting",
         "M04-S03 equally likely counting probability",
-        "M08-S04 loops",
+        "M08-S05 loops",
         "Python itertools.product"
       ],
       "requiredOwnership": [
@@ -647,13 +690,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S12 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S13 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "For small finite models, enumerate first. Import the tool explicitly: `from itertools import product`. `product(A,B)` is a Cartesian product like nested loops. Worked example: two fair four-sided dice have16 ordered outcomes; sum5 has (1,4),(2,3),(3,2),(4,1), so exact probability1/4. No RNG is involved. Guided check: For two fair three-sided dice, list outcomes summing to4 and compare the count with3×3.",
       "main": "T22V3::T22E-CODE01::S12-M@1",
       "transfer": "T22V3::T22E-CODE01::S12-T@1"
     },
     {
-      "order": 13,
+      "order": 14,
       "id": "T22V3::T22E-CODE01::S13@1",
       "moduleId": "T22E-CODE01",
       "title": "Exact rational probabilities with Fraction",
@@ -663,8 +706,8 @@
       "principalObstacle": "Fraction(0.1) captures the exact binary float, not automatically1/10.",
       "entryPrerequisites": [
         "M04 finite probability",
-        "M08-S02 float distinction",
-        "M08-S12 enumeration",
+        "M08-S03 float distinction",
+        "M08-S13 enumeration",
         "Python fractions.Fraction"
       ],
       "requiredOwnership": [
@@ -692,13 +735,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S13 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S14 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Import exact rational arithmetic explicitly with `from fractions import Fraction`. `Fraction(n,d)` is exact for integer n,d. Passing a float preserves that float's exact binary value. Worked example: Fractions1/2,1/3,1/6 sum exactly to1 and first+third=2/3. Guided check: Which better encodes an intended exact tenth, `Fraction(1,10)` or `Fraction(0.1)`?",
       "main": "T22V3::T22E-CODE01::S13-M@1",
       "transfer": "T22V3::T22E-CODE01::S13-T@1"
     },
     {
-      "order": 14,
+      "order": 15,
       "id": "T22V3::T22E-CODE01::S14@1",
       "moduleId": "T22E-CODE01",
       "title": "Conditional probability by filtering the universe",
@@ -708,8 +751,8 @@
       "principalObstacle": "The denominator of P(A|B) is B, not Ω.",
       "entryPrerequisites": [
         "M04-S07 conditional probability",
-        "M08-S12 enumeration",
-        "M08-S13 Fraction"
+        "M08-S13 enumeration",
+        "M08-S14 Fraction"
       ],
       "requiredOwnership": [
         "Encode conditioning event B.",
@@ -736,13 +779,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S14 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S15 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Conditioning changes the universe. Filter B first, then count A within B. Worked example: on a fair die condition on even B={2,4,6}; for A={x>3}, A∩B={4,6}, so P(A|B)=2/3, not2/6. Guided check: Condition a fair die on x>=3 and find the new denominator.",
       "main": "T22V3::T22E-CODE01::S14-M@1",
       "transfer": "T22V3::T22E-CODE01::S14-T@1"
     },
     {
-      "order": 15,
+      "order": 16,
       "id": "T22V3::T22E-CODE01::S15@1",
       "moduleId": "T22E-CODE01",
       "title": "Independence checks by exact enumeration",
@@ -752,8 +795,8 @@
       "principalObstacle": "Different-looking events are not automatically independent.",
       "entryPrerequisites": [
         "M04-S11 independence",
-        "M08-S12 enumeration",
-        "M08-S13 Fraction"
+        "M08-S13 enumeration",
+        "M08-S14 Fraction"
       ],
       "requiredOwnership": [
         "Compute exact P(A),P(B),P(A∩B).",
@@ -780,13 +823,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S15 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S16 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "For a finite exact model, test independence from exact probabilities. Worked example: on two fair coin tosses, A=first H and B=second H each have1/2 and intersection1/4, matching the product. Guided check: On one fair die test A=even and B={1,2,3}.",
       "main": "T22V3::T22E-CODE01::S15-M@1",
       "transfer": "T22V3::T22E-CODE01::S15-T@1"
     },
     {
-      "order": 16,
+      "order": 17,
       "id": "T22V3::T22E-CODE01::S16@1",
       "moduleId": "T22E-CODE01",
       "title": "Exact expectation from enumerated payoffs",
@@ -796,8 +839,8 @@
       "principalObstacle": "Distinct payoff values are not automatically equally likely.",
       "entryPrerequisites": [
         "M04-S19 expectation",
-        "M08-S12 enumeration",
-        "M08-S13 Fraction"
+        "M08-S13 enumeration",
+        "M08-S14 Fraction"
       ],
       "requiredOwnership": [
         "Define payoff on every atomic outcome.",
@@ -824,13 +867,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S16 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S17 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Expectation weights by probability, not by the number of distinct values. Worked example: on a fair four-sided die, payoff+3 only on4 and -1 otherwise gives (-1-1-1+3)/4=0, same as (1/4)3+(3/4)(-1). Guided check: Why is (-1+3)/2 wrong?",
       "main": "T22V3::T22E-CODE01::S16-M@1",
       "transfer": "T22V3::T22E-CODE01::S16-T@1"
     },
     {
-      "order": 17,
+      "order": 18,
       "id": "T22V3::T22E-CODE01::S17@1",
       "moduleId": "T22E-CODE01",
       "title": "Assertions, invariants & known-case tests",
@@ -840,7 +883,7 @@
       "principalObstacle": "A passing assertion can be weak, and assertions may be disabled with optimization.",
       "entryPrerequisites": [
         "M03 counterexamples",
-        "M08-S07 decomposition",
+        "M08-S08 decomposition",
         "Python assert semantics"
       ],
       "requiredOwnership": [
@@ -868,13 +911,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S17 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S18 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Assertions are development-time claims. Good tests target invariants and known cases; Python can omit assert under `-O`. Worked example: after counting hits, `assert 0<=hits<=len(xs)` checks an invariant; on `[1,2,3,4]`, even-count2 is a known oracle. Guided check: Which input distinguishes x>=5 from x>5?",
       "main": "T22V3::T22E-CODE01::S17-M@1",
       "transfer": "T22V3::T22E-CODE01::S17-T@1"
     },
     {
-      "order": 18,
+      "order": 19,
       "id": "T22V3::T22E-CODE01::S18@1",
       "moduleId": "T22E-CODE01",
       "title": "Exceptions, tracebacks & smallest failing cases",
@@ -883,9 +926,9 @@
       "centralCapability": "Interpret basic exceptions and repair the violated boundary/precondition.",
       "principalObstacle": "Broad catch-and-continue can hide wrong quantitative behavior.",
       "entryPrerequisites": [
-        "M08-S04 range",
-        "M08-S06 functions",
-        "M08-S17 checks"
+        "M08-S05 range",
+        "M08-S07 functions",
+        "M08-S18 checks"
       ],
       "requiredOwnership": [
         "Identify exception type in a tiny failure.",
@@ -912,13 +955,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S18 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S19 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Exceptions are evidence. A traceback shows the call path and ends with the exception type/message; the relevant source line tells you which operation failed. Reduce the case before changing code. Worked example: `def ratio(a,b): return a/b`; calling ratio(1,0) ends in `ZeroDivisionError: division by zero` at the division line, exposing the nonzero-denominator precondition. Returning0 would change the mathematics. Guided check: In a traceback ending at `xs[i]` with `IndexError`, what two pieces of information should you extract before repairing anything?",
       "main": "T22V3::T22E-CODE01::S18-M@1",
       "transfer": "T22V3::T22E-CODE01::S18-T@1"
     },
     {
-      "order": 19,
+      "order": 20,
       "id": "T22V3::T22E-CODE01::S19@1",
       "moduleId": "T22E-CODE01",
       "title": "Explicit pseudorandom generators & reproducibility",
@@ -927,8 +970,8 @@
       "centralCapability": "Create explicit Random instances, reason about state, and avoid accidental reseeding.",
       "principalObstacle": "Reseeding inside a trial helper can repeat the same first draw.",
       "entryPrerequisites": [
-        "M08-S06 explicit inputs",
-        "M08-S10 state",
+        "M08-S07 explicit inputs",
+        "M08-S11 state",
         "Python random.Random"
       ],
       "requiredOwnership": [
@@ -956,13 +999,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S19 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S20 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Import the constructor explicitly with `from random import Random`. A PRNG has internal state. `rng=Random(seed)` makes that state explicit and passable. Two generators with same seed and same sequence of `random()` calls reproduce the same outputs; consuming an extra draw advances one. Worked example: two `Random(23)` objects each make three `random()` calls and produce equal lists. Guided check: What happens to alignment if one consumes an extra value?",
       "main": "T22V3::T22E-CODE01::S19-M@1",
       "transfer": "T22V3::T22E-CODE01::S19-T@1"
     },
     {
-      "order": 20,
+      "order": 21,
       "id": "T22V3::T22E-CODE01::S20@1",
       "moduleId": "T22E-CODE01",
       "title": "Implement one finite random trial from a stated model",
@@ -972,8 +1015,8 @@
       "principalObstacle": "Using >p simulates the complement probability.",
       "entryPrerequisites": [
         "M04 probability models",
-        "M08-S03 Booleans",
-        "M08-S19 RNG"
+        "M08-S04 Booleans",
+        "M08-S20 RNG"
       ],
       "requiredOwnership": [
         "Pass p and RNG explicitly.",
@@ -1000,13 +1043,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S20 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S21 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "`rng.random()` gives a pseudorandom float in [0,1); `rng.random()<p` models a Bernoulli event with probability p. Repetition belongs outside the one-trial helper. Worked example: `def hit(rng,p): return rng.random()<p` with p=.25. Guided check: What probability does `rng.random()>0.25` model?",
       "main": "T22V3::T22E-CODE01::S20-M@1",
       "transfer": "T22V3::T22E-CODE01::S20-T@1"
     },
     {
-      "order": 21,
+      "order": 22,
       "id": "T22V3::T22E-CODE01::S21@1",
       "moduleId": "T22E-CODE01",
       "title": "Repeated simulation & empirical frequency",
@@ -1015,9 +1058,9 @@
       "centralCapability": "Aggregate seeded trials and report target versus estimate separately.",
       "principalObstacle": "A fixed seed can reproduce sampling error without making it exact.",
       "entryPrerequisites": [
-        "M08-S20 one trial",
+        "M08-S21 one trial",
         "M04 probability",
-        "M08-S12 exact oracle"
+        "M08-S13 exact oracle"
       ],
       "requiredOwnership": [
         "Record explicit N.",
@@ -1044,13 +1087,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S21 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S22 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Repeated simulation produces data. Record seed and N, count hits, and compute hits/N. Reproducibility does not remove finite sampling error. Worked example: with Random(2026), N=1000 and Bernoulli p=1/3 using successive `random()` calls, one documented run has322 hits, estimate0.322; exact target remains1/3. Guided check: If the same run repeats0.322, what was reproduced—the probability or the computation?",
       "main": "T22V3::T22E-CODE01::S21-M@1",
       "transfer": "T22V3::T22E-CODE01::S21-T@1"
     },
     {
-      "order": 22,
+      "order": 23,
       "id": "T22V3::T22E-CODE01::S22@1",
       "moduleId": "T22E-CODE01",
       "title": "Checkpoint and restore random-generator state",
@@ -1059,7 +1102,7 @@
       "centralCapability": "Use getstate/setstate to replay a suffix and reason about state ownership.",
       "principalObstacle": "Remembering only the seed does not identify an arbitrary unknown mid-run point.",
       "entryPrerequisites": [
-        "M08-S19 PRNG state",
+        "M08-S20 PRNG state",
         "Python random getstate/setstate"
       ],
       "requiredOwnership": [
@@ -1087,13 +1130,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S22 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S23 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "`getstate()` captures current PRNG state and `setstate()` restores it. Worked example: `r=Random(11); first=r.random(); s=r.getstate(); second=r.random(); r.setstate(s); replay=r.random()` gives second==replay. Guided check: Why is a saved state at draw10 useful if the number of earlier draws is otherwise unknown?",
       "main": "T22V3::T22E-CODE01::S22-M@1",
       "transfer": "T22V3::T22E-CODE01::S22-T@1"
     },
     {
-      "order": 23,
+      "order": 24,
       "id": "T22V3::T22E-CODE01::S23@1",
       "moduleId": "T22E-CODE01",
       "title": "Adversarial simulator audit against an exact oracle",
@@ -1102,9 +1145,9 @@
       "centralCapability": "Compare simulator support/dependence against the intended model and repair the mismatch.",
       "principalObstacle": "Reusing one random draw for two supposedly independent variables creates perfect dependence.",
       "entryPrerequisites": [
-        "M08-S12 exact enumeration",
-        "M08-S15 independence",
-        "M08-S20 simulation"
+        "M08-S13 exact enumeration",
+        "M08-S16 independence",
+        "M08-S21 simulation"
       ],
       "requiredOwnership": [
         "State the intended joint model before reading output.",
@@ -1131,13 +1174,13 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S23 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S24 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "Audit model semantics before sample size. If two fair dice should be independent, `a=draw(); b=a` has only six diagonal pairs instead of36. Worked example: event a+b=7 has exact probability1/6 under independent dice but is impossible under b=a because2a is even. Guided check: What support-level test catches this without a million trials?",
       "main": "T22V3::T22E-CODE01::S23-M@1",
       "transfer": "T22V3::T22E-CODE01::S23-T@1"
     },
     {
-      "order": 24,
+      "order": 25,
       "id": "T22V3::T22E-CODE01::S24@1",
       "moduleId": "T22E-CODE01",
       "title": "M08 synthesis — exact oracle, reproducible simulation & audit",
@@ -1175,7 +1218,7 @@
         "market-data/backtesting/temporal research design (M43-M46)",
         "cryptographic randomness"
       ],
-      "exitCondition": "Independently solve and explain M08-S24 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
+      "exitCondition": "Independently solve and explain M08-S25 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
       "lesson": "A complete experiment has layers: model → exact oracle when feasible → one-trial sampler → repetition → reproducibility metadata → adversarial checks. Worked example: for two fair three-sided dice, enumerate all9 ordered pairs for an exact event/payoff oracle before simulating with a passed Random object. Guided check: Before any simulated output, list what exact enumeration can certify.",
       "main": "T22V3::T22E-CODE01::S24-M@1",
       "transfer": "T22V3::T22E-CODE01::S24-T@1"
@@ -1200,322 +1243,336 @@
       "id": "T22V3::T22E-CODE01::S02-M@1",
       "order": 2,
       "kind": "main",
-      "prompt": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
-      "obligationVersion": 2
+      "prompt": "For n=29, compute `n//6`, `n%6`, and `n/6`; state which result answers 'complete groups', verify `29 == 6*(n//6) + n%6`, and explain why the ratio is not a count of complete groups.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-CODE01::S02-T@1": {
       "id": "T22V3::T22E-CODE01::S02-T@1",
       "order": 2,
       "kind": "transfer",
-      "prompt": "A computed residual is expected to be numerically zero, but the code uses `residual == 0.0`. Explain why that can be fragile for floating-point arithmetic, show a `math.isclose` check with a justified positive `abs_tol`, and state one M08 situation where exact `==` remains appropriate.",
-      "obligationVersion": 2
+      "prompt": "An inventory script with n=53 and carton size8 reports `full=n/8`, so it claims6.625 complete cartons. Diagnose the modeling error, give the correct expressions and values for complete cartons and leftovers, and verify the reconstruction identity.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-CODE01::S03-M@1": {
       "id": "T22V3::T22E-CODE01::S03-M@1",
-      "order": 3,
+      "order": 4,
       "kind": "main",
       "prompt": "Write or describe a classifier for returns `[-0.02,0.00,0.03]` that labels each `loss`, `flat`, or `gain`. State the labels in order and the exact comparison owning zero.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S03-T@1": {
       "id": "T22V3::T22E-CODE01::S03-T@1",
-      "order": 3,
+      "order": 4,
       "kind": "transfer",
       "prompt": "Audit `if x>=0: label='nonnegative'; elif x==0: label='zero'; else: label='negative'`. For x=0 what label occurs, why is `zero` unreachable, and how do you rewrite for negative/zero/positive?",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S04-M@1": {
       "id": "T22V3::T22E-CODE01::S04-M@1",
-      "order": 4,
+      "order": 5,
       "kind": "main",
       "prompt": "Trace `total=0; for k in range(1,6): total += k*k`. List k values, final total, and an accumulator invariant.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S04-T@1": {
       "id": "T22V3::T22E-CODE01::S04-T@1",
-      "order": 4,
+      "order": 5,
       "kind": "transfer",
       "prompt": "A learner intends 1²+2²+3²+4²+5² but writes `range(1,5)`. Identify the missing contribution, buggy total, and smallest endpoint repair.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S05-M@1": {
       "id": "T22V3::T22E-CODE01::S05-M@1",
-      "order": 5,
+      "order": 6,
       "kind": "main",
       "prompt": "Trace `bank=10; rounds=0; while bank<20: bank+=3; rounds+=1`. Give bank after each iteration, final bank/rounds, and why termination is guaranteed.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S05-T@1": {
       "id": "T22V3::T22E-CODE01::S05-T@1",
-      "order": 5,
+      "order": 6,
       "kind": "transfer",
       "prompt": "Audit `x=0; while x != 10: x += 3`. Does it terminate? Give a trace showing why, then repair for 'add3 until x reaches or exceeds10'.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S06-M@1": {
       "id": "T22V3::T22E-CODE01::S06-M@1",
-      "order": 6,
+      "order": 7,
       "kind": "main",
       "prompt": "Define `relative_change(start,end)` returning `(end-start)/start` for nonzero start. Use it on (80,92) and (50,45). Identify parameters and first-call arguments.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S06-T@1": {
       "id": "T22V3::T22E-CODE01::S06-T@1",
-      "order": 6,
+      "order": 7,
       "kind": "transfer",
       "prompt": "Audit `base=100; def change(end): return (end-base)/base`. Why is this hidden-state dependent? Refactor so callers can use bases100 and80 without rebinding a global.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S07-M@1": {
       "id": "T22V3::T22E-CODE01::S07-M@1",
-      "order": 7,
+      "order": 8,
       "kind": "main",
       "prompt": "Write `is_high(x)` for x>=5 and an explicit-loop `count_event(xs,predicate)` that accepts a function value, calls it on each element, and returns the count. Show `count_event([1,2,3,4,5,6],is_high)`, explain why `is_high` is passed without parentheses, and give one boundary test.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S07-T@1": {
       "id": "T22V3::T22E-CODE01::S07-T@1",
-      "order": 7,
+      "order": 8,
       "kind": "transfer",
       "prompt": "A script repeats `x>=5` in three loops and one copy uses `x>5`. Diagnose the defect, refactor one source of truth, and show how a test at the boundary exposes the bug.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S08-M@1": {
       "id": "T22V3::T22E-CODE01::S08-M@1",
-      "order": 8,
+      "order": 9,
       "kind": "main",
       "prompt": "Given `records=[('W',3),('L',-2),('W',4)]`, write a short loop that unpacks each tuple, collects or reports the payoffs in order, and accumulates their sum. Give the resulting payoffs/sum, then explain why each record can reasonably be a tuple while the outer collection can be a list.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S08-T@1": {
       "id": "T22V3::T22E-CODE01::S08-T@1",
-      "order": 8,
+      "order": 9,
       "kind": "transfer",
       "prompt": "Audit `point=(2,5); point[0]=3`. State what happens and give two repairs: create a new tuple, and use a mutable structure when field mutation is intended.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S09-M@1": {
       "id": "T22V3::T22E-CODE01::S09-M@1",
-      "order": 9,
+      "order": 10,
       "kind": "main",
       "prompt": "For `observations=['G','R','G','B','G','R']`, write Python or precise pseudocode that (1) builds the unique-value set and (2) updates a dictionary count one observation at a time. Give the final set, distinct count, observation count, and frequency dictionary; explain which count is the empirical-frequency denominator.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S09-T@1": {
       "id": "T22V3::T22E-CODE01::S09-T@1",
-      "order": 9,
+      "order": 10,
       "kind": "transfer",
       "prompt": "For `['A','B','A','C','A']`, a program computes A-hits divided by `len(set(observations))`. Compute the erroneous estimate, diagnose the lost multiplicity, and repair the denominator and estimate.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S10-M@1": {
       "id": "T22V3::T22E-CODE01::S10-M@1",
-      "order": 10,
+      "order": 11,
       "kind": "main",
       "prompt": "Trace `a=[2,4]; b=a; b.append(6); c=a.copy(); c.append(8)`. Give final a,b,c and identify aliases.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S10-T@1": {
       "id": "T22V3::T22E-CODE01::S10-T@1",
-      "order": 10,
+      "order": 11,
       "kind": "transfer",
       "prompt": "Audit `rows=[[0,0]]*3; rows[0][0]=1`. Predict rows, explain why all rows change, and give a construction with independent inner lists.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S11-M@1": {
       "id": "T22V3::T22E-CODE01::S11-M@1",
-      "order": 11,
+      "order": 12,
       "kind": "main",
       "prompt": "For `values=[7,11,5]`, `weights=[1,4,2]`, write a loop using `enumerate(zip(values,weights,strict=True))`. Give the `(index,value,weight)` triples, weighted sum, total weight, and weighted average.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S11-T@1": {
       "id": "T22V3::T22E-CODE01::S11-T@1",
-      "order": 11,
+      "order": 12,
       "kind": "transfer",
       "prompt": "Audit values `[10,12,9]`, weights `[2,1]`. State what plain `zip` silently does and the truncated weighted sum, then state what `zip(...,strict=True)` does and why that behavior is preferable when equal lengths are required.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S12-M@1": {
       "id": "T22V3::T22E-CODE01::S12-M@1",
-      "order": 12,
+      "order": 13,
       "kind": "main",
       "prompt": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S12-T@1": {
       "id": "T22V3::T22E-CODE01::S12-T@1",
-      "order": 12,
+      "order": 13,
       "kind": "transfer",
       "prompt": "Spinner A is equally likely on `[1,2,4]`, B independently on `[0,3]`. Intended event is `a+b>=4`, but code uses `>4`. Enumerate six outcomes, compute correct and buggy probabilities, and identify equality-boundary outcomes causing the difference.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S13-M@1": {
       "id": "T22V3::T22E-CODE01::S13-M@1",
-      "order": 13,
+      "order": 14,
       "kind": "main",
       "prompt": "Write the import and represent A=3/8, B=1/4, C=3/8 with `Fraction`. Verify the total is exactly1 and compute event {A,C} exactly.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S13-T@1": {
       "id": "T22V3::T22E-CODE01::S13-T@1",
-      "order": 13,
+      "order": 14,
       "kind": "transfer",
       "prompt": "A learner writes `Fraction(0.2)` intending exact1/5. Explain why that need not equal `Fraction(1,5)` and give two constructors that encode the intended exact fifth.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S14-M@1": {
       "id": "T22V3::T22E-CODE01::S14-M@1",
-      "order": 14,
+      "order": 15,
       "kind": "main",
       "prompt": "Using `product(range(1,7),repeat=2)`, write Python or precise pseudocode that constructs the 36-pair universe, filters B=`sum>=10`, then filters A∩B where at least one die is6. Give both filtered sets/counts and compute exact `Fraction(len(A_and_B),len(B))`.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S14-T@1": {
       "id": "T22V3::T22E-CODE01::S14-T@1",
-      "order": 14,
+      "order": 15,
       "kind": "transfer",
       "prompt": "A program counts the same five intersection outcomes but reports5/36. What quantity is5/36 and how do you repair the conditional calculation?",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S15-M@1": {
       "id": "T22V3::T22E-CODE01::S15-M@1",
-      "order": 15,
+      "order": 16,
       "kind": "main",
       "prompt": "Enumerate two fair six-sided dice with `product`. Let A=`first die is even` and B=`sum is odd`. Write predicates, count A, B and A∩B, compute exact Fractions and P(A)P(B), then conclude independence or dependence.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S15-T@1": {
       "id": "T22V3::T22E-CODE01::S15-T@1",
-      "order": 15,
+      "order": 16,
       "kind": "transfer",
       "prompt": "On one fair six-sided die someone calls A=even and B=at least4 independent because they are 'different properties'. Compute exact probabilities and product to accept/refute.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S16-M@1": {
       "id": "T22V3::T22E-CODE01::S16-M@1",
-      "order": 16,
+      "order": 17,
       "kind": "main",
       "prompt": "Write Python or precise pseudocode for a fair six-sided die paying +5 on6 and -1 otherwise: enumerate all six atomic outcomes, map each to a payoff, preserve all six entries, and compute the exact expectation with `Fraction`. Cross-check by grouping.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S16-T@1": {
       "id": "T22V3::T22E-CODE01::S16-T@1",
-      "order": 16,
+      "order": 17,
       "kind": "transfer",
       "prompt": "A learner averages the two distinct values and gets2. Explain why invalid, identify omitted weights, and correct the expectation.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S17-M@1": {
       "id": "T22V3::T22E-CODE01::S17-M@1",
-      "order": 17,
+      "order": 18,
       "kind": "main",
       "prompt": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove. Also name one boundary input that distinguishes the predicates `x>=5` and `x>5`, and state the expected result under `x>=5`.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S17-T@1": {
       "id": "T22V3::T22E-CODE01::S17-T@1",
-      "order": 17,
+      "order": 18,
       "kind": "transfer",
       "prompt": "A function relies only on `assert n>0` before using user-supplied n as a denominator. Why is that unsafe as the contract check, and what explicit runtime validation should replace it?",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S18-M@1": {
       "id": "T22V3::T22E-CODE01::S18-M@1",
-      "order": 18,
+      "order": 19,
       "kind": "main",
       "prompt": "Read this failure:\n`Traceback (most recent call last):\\n  File \"sim.py\", line 6, in <module>\\n    print(probability(0,0))\\n  File \"sim.py\", line 3, in probability\\n    return hits/total\\nZeroDivisionError: division by zero`\nState the exception type, failing source operation, smallest failing input, and violated precondition; then repair the function so empty trial count is rejected explicitly rather than fabricated as probability0.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S18-T@1": {
       "id": "T22V3::T22E-CODE01::S18-T@1",
-      "order": 18,
+      "order": 19,
       "kind": "transfer",
       "prompt": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception, explain the off-by-one cause, and give two repairs. Finally, explain why wrapping the loop in `try: ... except Exception: pass` would be an unacceptable repair for an auditable quantitative program.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S19-M@1": {
       "id": "T22V3::T22E-CODE01::S19-M@1",
-      "order": 19,
+      "order": 20,
       "kind": "main",
       "prompt": "Write the import, create `r1=Random(41)` and `r2=Random(41)`, take four `random()` draws from each and check equality. Then consume two additional draws from r1 only. Explain precisely which fact the common seed establishes and why the current states are now different.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S19-T@1": {
       "id": "T22V3::T22E-CODE01::S19-T@1",
-      "order": 19,
+      "order": 20,
       "kind": "transfer",
       "prompt": "Audit `def trial(): r=Random(99); return r.random()<0.5` called100 times. Why can every call repeat the same Boolean? Refactor so seeding happens once and calls consume one evolving generator.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S20-M@1": {
       "id": "T22V3::T22E-CODE01::S20-M@1",
-      "order": 20,
+      "order": 21,
       "kind": "main",
       "prompt": "Define `bernoulli(rng,p)` for one trial. State allowed p range and explain why p=0.3 with `<p` is the intended30% event rather than70%. Keep repetition out.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S20-T@1": {
       "id": "T22V3::T22E-CODE01::S20-T@1",
-      "order": 20,
+      "order": 21,
       "kind": "transfer",
       "prompt": "A p=0.2 simulator uses `rng.random()>0.2`. What probability is actually modeled, what is the smallest repair, and why cannot larger N fix this?",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S21-M@1": {
       "id": "T22V3::T22E-CODE01::S21-M@1",
-      "order": 21,
+      "order": 22,
       "kind": "main",
       "prompt": "Using one `rng=Random(31415)`, N=1200 and `bernoulli(rng,0.4)`, write aggregation code that actually increments hits from repeated calls, run/trace the prescribed computation, and report the resulting hit count and frequency. Record seed/N and compare the empirical result with exact/model p=0.4 without calling the estimate exact.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S21-T@1": {
       "id": "T22V3::T22E-CODE01::S21-T@1",
-      "order": 21,
+      "order": 22,
       "kind": "transfer",
       "prompt": "A learner says 'seeded run gave0.55 for p=0.5, so true probability is0.55; seed makes it exact.' Identify both conceptual errors and explain what a seed actually guarantees.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S22-M@1": {
       "id": "T22V3::T22E-CODE01::S22-M@1",
-      "order": 22,
+      "order": 23,
       "kind": "main",
       "prompt": "Without numeric float values, trace `r=Random(17); first=[r.random() for _ in range(2)]; state=r.getstate(); suffix=[r.random() for _ in range(3)]; r.setstate(state); replay=[r.random() for _ in range(3)]`. State the guaranteed equality, what the snapshot represents, and whether any equality between `first` and `suffix` follows.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S22-T@1": {
       "id": "T22V3::T22E-CODE01::S22-T@1",
-      "order": 22,
+      "order": 23,
       "kind": "transfer",
       "prompt": "Two simulations share an initial seed but one made an unknown extra number of draws before a bug. Why may reseeding fail to recreate that exact mid-run point, and how would a saved state be used?",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S23-M@1": {
       "id": "T22V3::T22E-CODE01::S23-M@1",
-      "order": 23,
+      "order": 24,
       "kind": "main",
       "prompt": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==9`. Compare intended versus reachable supports, derive buggy and exact probabilities for sum9, identify the dependence defect, and repair it while keeping the RNG explicit.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S23-T@1": {
       "id": "T22V3::T22E-CODE01::S23-T@1",
-      "order": 23,
+      "order": 24,
       "kind": "transfer",
       "prompt": "A second simulator uses `rng.randrange(1,6)` for each die believing6 is included. Identify actual one-die support, missing intended outcome, and why more trials cannot fix the model.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S24-M@1": {
       "id": "T22V3::T22E-CODE01::S24-M@1",
-      "order": 24,
+      "order": 25,
       "kind": "main",
       "prompt": "Build an auditable experiment for two independent fair six-sided dice paying +8 when sum==8 and -2 otherwise. **Before any code**, write three explicit lines: Model, Event, Payoff. Then enumerate all36 pairs and derive exact P(sum=8) and exact expected payoff; give Python/pseudocode for `trial(rng)` with two separate die draws and repetition with a stated seed and N; give at least two invariants; explain what simulation/oracle agreement does and does not establish.",
       "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S24-T@1": {
       "id": "T22V3::T22E-CODE01::S24-T@1",
-      "order": 24,
+      "order": 25,
       "kind": "transfer",
       "prompt": "Audit `rng=Random(7); wins=0; for _ in range(N): a=rng.randrange(1,6); b=a; if a+b>=8: wins+=1; estimate=wins/N` for the same game. Identify at least three independent defects and repair each before discussing N.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-CODE01::S02F-M@1": {
+      "id": "T22V3::T22E-CODE01::S02F-M@1",
+      "order": 3,
+      "kind": "main",
+      "prompt": "After `import math`, compare `0.2+0.2+0.2` with `0.6`: state ordinary direct-equality behavior, write an explicit `math.isclose` call, and explain the roles of `rel_tol` and `abs_tol` without calling the result exact equality.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-CODE01::S02F-T@1": {
+      "id": "T22V3::T22E-CODE01::S02F-T@1",
+      "order": 3,
+      "kind": "transfer",
+      "prompt": "A computed residual is expected to be numerically zero, but the code uses `residual == 0.0`. Explain why that can be fragile, show a `math.isclose` check with a justified positive `abs_tol`, and state one M08 situation where exact `==` remains appropriate.",
       "obligationVersion": 1
     }
   },
@@ -1573,7 +1630,7 @@
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     },
     "T22V3::T22E-CODE01::S02-M@1": {
-      "reference": "`29//6=4`, `29%6=5`, `29/6≈4.833333333333333`, and 29=6×4+5. Use `import math`; direct `0.2+0.2+0.2 == 0.6` is False in ordinary Python, while an explicit call such as `math.isclose(0.2+0.2+0.2,0.6,rel_tol=1e-9,abs_tol=0.0)` is True. `abs_tol` supplies an absolute floor and is especially relevant when comparing with zero.",
+      "reference": "`29//6=4`, `29%6=5`, and `29/6≈4.833333333333333`. Four is the number of complete groups, five is leftover, and29=6×4+5 exactly. The ordinary ratio answers a different numerical question.",
       "rubric": [
         {
           "points": 2,
@@ -1581,7 +1638,7 @@
         },
         {
           "points": 2,
-          "criterion": "/ is distinguished from integer quotient/remainder."
+          "criterion": "/ is distinguished as the numerical ratio29/6."
         },
         {
           "points": 2,
@@ -1589,37 +1646,37 @@
         },
         {
           "points": 2,
-          "criterion": "`import math` and an explicit `math.isclose` comparison are supplied."
+          "criterion": "Complete-group count4 is identified."
         },
         {
           "points": 2,
-          "criterion": "Relative versus absolute tolerance is explained without calling closeness exact equality."
+          "criterion": "Ratio versus full-groups-plus-leftovers meaning is explained."
         }
       ],
       "marking": "Score only the public Main task. Accept equivalent correct Python or precise pseudocode where behavior is unambiguous. Do not infer mastery from an unexplained output; code must implement the stated model."
     },
     "T22V3::T22E-CODE01::S02-T@1": {
-      "reference": "Computed floats can retain tiny roundoff, so exact equality to zero can fail. Use e.g. `math.isclose(residual,0.0,rel_tol=0.0,abs_tol=1e-12)` when 1e-12 is justified by the problem's scale. Exact equality remains appropriate for exact integer counts or exact Fraction values.",
+      "reference": "Ordinary `/` gives a ratio, not a complete-carton count. Use `full=53//8=6` and `left=53%8=5`; 53=8×6+5.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "The computed-float zero-comparison defect is identified."
+          "criterion": "Using `/` for complete-carton count is diagnosed."
         },
         {
           "points": 2,
-          "criterion": "A positive justified `abs_tol` is used."
+          "criterion": "Complete cartons6 are correct."
         },
         {
           "points": 2,
-          "criterion": "The role of tolerance is tied to scale rather than ritual."
+          "criterion": "Leftovers5 are correct."
         },
         {
           "points": 2,
-          "criterion": "A legitimate exact-equality case is stated."
+          "criterion": "`//` and `%` repairs are supplied."
         },
         {
           "points": 2,
-          "criterion": "Exact and approximate checks remain conceptually distinct."
+          "criterion": "53=8×6+5 is verified exactly."
         }
       ],
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
@@ -2767,6 +2824,58 @@
         }
       ],
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
+    },
+    "T22V3::T22E-CODE01::S02F-M@1": {
+      "reference": "In ordinary Python, `0.2+0.2+0.2 == 0.6` is False because the binary approximations differ. A valid check is e.g. `math.isclose(0.2+0.2+0.2,0.6,rel_tol=1e-9,abs_tol=0.0)`. `rel_tol` scales with magnitude; `abs_tol` supplies an absolute floor. Closeness is an approximate policy, not exact identity.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "`import math` / qualified `math.isclose` use is correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Direct equality is correctly identified as False with representation reason."
+        },
+        {
+          "points": 2,
+          "criterion": "An explicit valid `math.isclose` call is supplied."
+        },
+        {
+          "points": 2,
+          "criterion": "Relative tolerance is explained as magnitude-scaled."
+        },
+        {
+          "points": 2,
+          "criterion": "Absolute tolerance is explained without calling closeness exact equality."
+        }
+      ],
+      "marking": "Score only the public Main task. Accept equivalent correct Python or precise pseudocode where behavior is unambiguous. Do not infer mastery from an unexplained output; code must implement the stated model."
+    },
+    "T22V3::T22E-CODE01::S02F-T@1": {
+      "reference": "Computed floats can retain tiny roundoff, so exact equality to zero can fail. Use e.g. `math.isclose(residual,0.0,rel_tol=0.0,abs_tol=1e-12)` when 1e-12 is justified by the problem scale. Exact equality remains appropriate for exact integer counts or exact Fraction values.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "The computed-float zero-comparison defect is identified."
+        },
+        {
+          "points": 2,
+          "criterion": "A positive justified `abs_tol` is used."
+        },
+        {
+          "points": 2,
+          "criterion": "The role of tolerance is tied to scale rather than ritual."
+        },
+        {
+          "points": 2,
+          "criterion": "A legitimate exact-equality case is stated."
+        },
+        {
+          "points": 2,
+          "criterion": "Exact and approximate checks remain conceptually distinct."
+        }
+      ],
+      "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     }
   },
   "coverage": {
@@ -2798,10 +2907,10 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-CODE01::S03@1": [
@@ -3177,6 +3286,23 @@
       [
         "transfer"
       ]
+    ],
+    "T22V3::T22E-CODE01::S02F@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
     ]
   },
   "claimEvidence": {
@@ -3233,50 +3359,44 @@
       {
         "claim": "Distinguish `/` from `//` for nonnegative count examples.",
         "task": "main",
-        "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
+        "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; state which result answers 'complete groups', verify `29 == 6*(n//6) + n%6`, and explain why the ratio is not a count of complete groups.",
         "rubricEvidence": [
           "// result4 and % result5 are correct.",
-          "/ is distinguished from integer quotient/remainder.",
+          "/ is distinguished as the numerical ratio29/6."
+        ]
+      },
+      {
+        "claim": "Use `%` to obtain the remainder.",
+        "task": "main",
+        "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; state which result answers 'complete groups', verify `29 == 6*(n//6) + n%6`, and explain why the ratio is not a count of complete groups.",
+        "rubricEvidence": [
+          "// result4 and % result5 are correct."
+        ]
+      },
+      {
+        "claim": "Verify dividend=divisor×quotient+remainder exactly.",
+        "task": "main",
+        "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; state which result answers 'complete groups', verify `29 == 6*(n//6) + n%6`, and explain why the ratio is not a count of complete groups.",
+        "rubricEvidence": [
           "29=6×4+5 is verified exactly."
         ]
       },
       {
-        "claim": "Use `%` and verify dividend=divisor×quotient+remainder.",
-        "task": "main",
-        "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
-        "rubricEvidence": [
-          "// result4 and % result5 are correct.",
-          "29=6×4+5 is verified exactly."
-        ]
-      },
-      {
-        "claim": "Recognize common decimal fractions are usually approximated as binary floats.",
-        "task": "main",
-        "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
-        "rubricEvidence": [
-          "`import math` and an explicit `math.isclose` comparison are supplied.",
-          "Relative versus absolute tolerance is explained without calling closeness exact equality."
-        ]
-      },
-      {
-        "claim": "Use `math.isclose` for an explicitly approximate comparison.",
-        "task": "main",
-        "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
-        "rubricEvidence": [
-          "`import math` and an explicit `math.isclose` comparison are supplied.",
-          "Relative versus absolute tolerance is explained without calling closeness exact equality."
-        ]
-      },
-      {
-        "claim": "Keep exact count identities separate from approximate float checks.",
+        "claim": "Choose quotient/remainder for full-groups-plus-leftovers questions.",
         "task": "transfer",
-        "publicRequest": "A computed residual is expected to be numerically zero, but the code uses `residual == 0.0`. Explain why that can be fragile for floating-point arithmetic, show a `math.isclose` check with a justified positive `abs_tol`, and state one M08 situation where exact `==` remains appropriate.",
+        "publicRequest": "An inventory script with n=53 and carton size8 reports `full=n/8`, so it claims6.625 complete cartons. Diagnose the modeling error, give the correct expressions and values for complete cartons and leftovers, and verify the reconstruction identity.",
         "rubricEvidence": [
-          "The computed-float zero-comparison defect is identified.",
-          "A positive justified `abs_tol` is used.",
-          "The role of tolerance is tied to scale rather than ritual.",
-          "A legitimate exact-equality case is stated.",
-          "Exact and approximate checks remain conceptually distinct."
+          "Complete cartons6 are correct.",
+          "Leftovers5 are correct.",
+          "`//` and `%` repairs are supplied."
+        ]
+      },
+      {
+        "claim": "Keep exact integer identities conceptually separate from later approximate numerical comparison.",
+        "task": "main",
+        "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; state which result answers 'complete groups', verify `29 == 6*(n//6) + n%6`, and explain why the ratio is not a count of complete groups.",
+        "rubricEvidence": [
+          "Ratio versus full-groups-plus-leftovers meaning is explained."
         ]
       }
     ],
@@ -4301,6 +4421,51 @@
           "Repaired target is tied to exact5/36."
         ]
       }
+    ],
+    "T22V3::T22E-CODE01::S02F@1": [
+      {
+        "claim": "Import and use `math.isclose` explicitly.",
+        "task": "main",
+        "publicRequest": "After `import math`, compare `0.2+0.2+0.2` with `0.6`: state ordinary direct-equality behavior, write an explicit `math.isclose` call, and explain the roles of `rel_tol` and `abs_tol` without calling the result exact equality.",
+        "rubricEvidence": [
+          "`import math` / qualified `math.isclose` use is correct.",
+          "An explicit valid `math.isclose` call is supplied."
+        ]
+      },
+      {
+        "claim": "Recognize common decimal fractions are usually approximated as binary floats.",
+        "task": "main",
+        "publicRequest": "After `import math`, compare `0.2+0.2+0.2` with `0.6`: state ordinary direct-equality behavior, write an explicit `math.isclose` call, and explain the roles of `rel_tol` and `abs_tol` without calling the result exact equality.",
+        "rubricEvidence": [
+          "Direct equality is correctly identified as False with representation reason."
+        ]
+      },
+      {
+        "claim": "Explain why direct float equality can fail after arithmetic.",
+        "task": "main",
+        "publicRequest": "After `import math`, compare `0.2+0.2+0.2` with `0.6`: state ordinary direct-equality behavior, write an explicit `math.isclose` call, and explain the roles of `rel_tol` and `abs_tol` without calling the result exact equality.",
+        "rubricEvidence": [
+          "Direct equality is correctly identified as False with representation reason."
+        ]
+      },
+      {
+        "claim": "Choose and state relative/absolute tolerances for an approximate comparison.",
+        "task": "main",
+        "publicRequest": "After `import math`, compare `0.2+0.2+0.2` with `0.6`: state ordinary direct-equality behavior, write an explicit `math.isclose` call, and explain the roles of `rel_tol` and `abs_tol` without calling the result exact equality.",
+        "rubricEvidence": [
+          "Relative tolerance is explained as magnitude-scaled.",
+          "Absolute tolerance is explained without calling closeness exact equality."
+        ]
+      },
+      {
+        "claim": "Use positive `abs_tol` when an appropriate near-zero comparison requires an absolute scale.",
+        "task": "transfer",
+        "publicRequest": "A computed residual is expected to be numerically zero, but the code uses `residual == 0.0`. Explain why that can be fragile, show a `math.isclose` check with a justified positive `abs_tol`, and state one M08 situation where exact `==` remains appropriate.",
+        "rubricEvidence": [
+          "A positive justified `abs_tol` is used.",
+          "The role of tolerance is tied to scale rather than ritual."
+        ]
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -4326,14 +4491,26 @@
         "item": "JIT Python numeric operators",
         "source": "M08 lesson JIT / official Python source ledger",
         "decision": "reuse-or-teach-before-use"
-      },
-      {
-        "item": "Python floating-point representation",
-        "source": "M08 lesson JIT / official Python source ledger",
-        "decision": "reuse-or-teach-before-use"
       }
     ],
     "S03": [
+      {
+        "item": "M01 decimal arithmetic",
+        "source": "M01 decimal arithmetic",
+        "decision": "reuse-or-teach-before-use"
+      },
+      {
+        "item": "M08-S02 exact integer arithmetic contrast",
+        "source": "M08-S02 exact integer arithmetic contrast",
+        "decision": "reuse-or-teach-before-use"
+      },
+      {
+        "item": "JIT Python import syntax",
+        "source": "M08 lesson JIT / PY-MOD source ledger",
+        "decision": "reuse-or-teach-before-use"
+      }
+    ],
+    "S04": [
       {
         "item": "M01 inequalities/signs",
         "source": "M01 inequalities/signs",
@@ -4350,7 +4527,7 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S04": [
+    "S05": [
       {
         "item": "M01 finite sums",
         "source": "M01 finite sums",
@@ -4367,7 +4544,7 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S05": [
+    "S06": [
       {
         "item": "M01 inequalities",
         "source": "M01 inequalities",
@@ -4384,7 +4561,7 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S06": [
+    "S07": [
       {
         "item": "M03-S20 functions as mappings",
         "source": "M03-S20 functions as mappings",
@@ -4401,10 +4578,10 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S07": [
+    "S08": [
       {
-        "item": "M08-S06 functions",
-        "source": "M08-S06 functions",
+        "item": "M08-S07 functions",
+        "source": "M08-S07 functions",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4413,7 +4590,7 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S08": [
+    "S09": [
       {
         "item": "M03 ordered pairs",
         "source": "M03 ordered pairs",
@@ -4425,15 +4602,15 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S09": [
+    "S10": [
       {
         "item": "M03 sets",
         "source": "M03 sets",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S08 sequences",
-        "source": "M08-S08 sequences",
+        "item": "M08-S09 sequences",
+        "source": "M08-S09 sequences",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4442,15 +4619,15 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S10": [
+    "S11": [
       {
         "item": "M08-S01 binding",
         "source": "M08-S01 binding",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S08 mutable lists",
-        "source": "M08-S08 mutable lists",
+        "item": "M08-S09 mutable lists",
+        "source": "M08-S09 mutable lists",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4459,15 +4636,15 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S11": [
+    "S12": [
       {
-        "item": "M08-S04 loops",
-        "source": "M08-S04 loops",
+        "item": "M08-S05 loops",
+        "source": "M08-S05 loops",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S08 sequences",
-        "source": "M08-S08 sequences",
+        "item": "M08-S09 sequences",
+        "source": "M08-S09 sequences",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4476,7 +4653,7 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S12": [
+    "S13": [
       {
         "item": "M03-S19 Cartesian products",
         "source": "M03-S19 Cartesian products",
@@ -4493,8 +4670,8 @@
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S04 loops",
-        "source": "M08-S04 loops",
+        "item": "M08-S05 loops",
+        "source": "M08-S05 loops",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4503,20 +4680,20 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S13": [
+    "S14": [
       {
         "item": "M04 finite probability",
         "source": "M04 finite probability",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S02 float distinction",
-        "source": "M08-S02 float distinction",
+        "item": "M08-S03 float distinction",
+        "source": "M08-S03 float distinction",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S12 enumeration",
-        "source": "M08-S12 enumeration",
+        "item": "M08-S13 enumeration",
+        "source": "M08-S13 enumeration",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4525,66 +4702,66 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S14": [
+    "S15": [
       {
         "item": "M04-S07 conditional probability",
         "source": "M04-S07 conditional probability",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S12 enumeration",
-        "source": "M08-S12 enumeration",
+        "item": "M08-S13 enumeration",
+        "source": "M08-S13 enumeration",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S13 Fraction",
-        "source": "M08-S13 Fraction",
+        "item": "M08-S14 Fraction",
+        "source": "M08-S14 Fraction",
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S15": [
+    "S16": [
       {
         "item": "M04-S11 independence",
         "source": "M04-S11 independence",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S12 enumeration",
-        "source": "M08-S12 enumeration",
+        "item": "M08-S13 enumeration",
+        "source": "M08-S13 enumeration",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S13 Fraction",
-        "source": "M08-S13 Fraction",
+        "item": "M08-S14 Fraction",
+        "source": "M08-S14 Fraction",
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S16": [
+    "S17": [
       {
         "item": "M04-S19 expectation",
         "source": "M04-S19 expectation",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S12 enumeration",
-        "source": "M08-S12 enumeration",
+        "item": "M08-S13 enumeration",
+        "source": "M08-S13 enumeration",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S13 Fraction",
-        "source": "M08-S13 Fraction",
+        "item": "M08-S14 Fraction",
+        "source": "M08-S14 Fraction",
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S17": [
+    "S18": [
       {
         "item": "M03 counterexamples",
         "source": "M03 counterexamples",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S07 decomposition",
-        "source": "M08-S07 decomposition",
+        "item": "M08-S08 decomposition",
+        "source": "M08-S08 decomposition",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4593,32 +4770,32 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S18": [
+    "S19": [
       {
-        "item": "M08-S04 range",
-        "source": "M08-S04 range",
+        "item": "M08-S05 range",
+        "source": "M08-S05 range",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S06 functions",
-        "source": "M08-S06 functions",
+        "item": "M08-S07 functions",
+        "source": "M08-S07 functions",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S17 checks",
-        "source": "M08-S17 checks",
+        "item": "M08-S18 checks",
+        "source": "M08-S18 checks",
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S19": [
+    "S20": [
       {
-        "item": "M08-S06 explicit inputs",
-        "source": "M08-S06 explicit inputs",
+        "item": "M08-S07 explicit inputs",
+        "source": "M08-S07 explicit inputs",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S10 state",
-        "source": "M08-S10 state",
+        "item": "M08-S11 state",
+        "source": "M08-S11 state",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4627,27 +4804,27 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S20": [
+    "S21": [
       {
         "item": "M04 probability models",
         "source": "M04 probability models",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S03 Booleans",
-        "source": "M08-S03 Booleans",
+        "item": "M08-S04 Booleans",
+        "source": "M08-S04 Booleans",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S19 RNG",
-        "source": "M08-S19 RNG",
+        "item": "M08-S20 RNG",
+        "source": "M08-S20 RNG",
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S21": [
+    "S22": [
       {
-        "item": "M08-S20 one trial",
-        "source": "M08-S20 one trial",
+        "item": "M08-S21 one trial",
+        "source": "M08-S21 one trial",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4656,15 +4833,15 @@
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S12 exact oracle",
-        "source": "M08-S12 exact oracle",
+        "item": "M08-S13 exact oracle",
+        "source": "M08-S13 exact oracle",
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S22": [
+    "S23": [
       {
-        "item": "M08-S19 PRNG state",
-        "source": "M08-S19 PRNG state",
+        "item": "M08-S20 PRNG state",
+        "source": "M08-S20 PRNG state",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4673,24 +4850,24 @@
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S23": [
+    "S24": [
       {
-        "item": "M08-S12 exact enumeration",
-        "source": "M08-S12 exact enumeration",
+        "item": "M08-S13 exact enumeration",
+        "source": "M08-S13 exact enumeration",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S15 independence",
-        "source": "M08-S15 independence",
+        "item": "M08-S16 independence",
+        "source": "M08-S16 independence",
         "decision": "reuse-or-teach-before-use"
       },
       {
-        "item": "M08-S20 simulation",
-        "source": "M08-S20 simulation",
+        "item": "M08-S21 simulation",
+        "source": "M08-S21 simulation",
         "decision": "reuse-or-teach-before-use"
       }
     ],
-    "S24": [
+    "S25": [
       {
         "item": "M08-S01→S23",
         "source": "M08-S01→S23",
@@ -4719,10 +4896,10 @@
     },
     "T22V3::T22E-CODE01::S02@1": {
       "main": [
-        "For n=29, compute"
+        "For n=29, compute `n//6`"
       ],
       "transfer": [
-        "A computed residual is expected"
+        "inventory script with n=53"
       ]
     },
     "T22V3::T22E-CODE01::S03@1": {
@@ -4899,6 +5076,14 @@
       ],
       "transfer": [
         "Audit `rng=Random(7); wins=0; for _ in range("
+      ]
+    },
+    "T22V3::T22E-CODE01::S02F@1": {
+      "main": [
+        "compare `0.2+0.2+0.2`"
+      ],
+      "transfer": [
+        "residual == 0.0"
       ]
     }
   },
@@ -5096,6 +5281,14 @@
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
         "claimReview": "Independent review rechecked public observability; repaired sessions require executable or explicitly requested evidence. Final bounded follow-up remains required after CI."
+      },
+      "T22V3::T22E-CODE01::S02F@1": {
+        "status": "session-sizing-split-semantic-separated-pending-final-followup",
+        "mainPurpose": "Elicit fresh floating-point representation and tolerance-policy reasoning.",
+        "transferPurpose": "Require near-zero tolerance diagnosis on a changed numerical surface.",
+        "wrongSolver": "Exact-equality ritual or unexplained default tolerance cannot earn the linked evidence.",
+        "validAlternative": "Equivalent justified tolerances are acceptable when scale reasoning is explicit.",
+        "claimReview": "Sizing split isolates approximate-numerics ownership from exact quotient/remainder ownership."
       }
     }
   },
@@ -5163,10 +5356,10 @@
     "sessions": {}
   },
   "assessmentIndependenceAudit": {
-    "version": "m08-independent-repair-r2-2026-09-24",
-    "policy": "A Main must require a fresh surface or a materially new executable action. Worked-example answers may not be reused as fixed Main answers. Guards below are regression witnesses, not substitutes for human semantic review.",
+    "version": "m08-session-sizing-r3-25-sessions-2026-09-24",
+    "policy": "Sizing audit split exact quotient/remainder from approximate floating-point comparison. Existing stable session IDs are preserved; visible order shifts only. Guards remain regression witnesses, not substitutes for human semantic review.",
     "sessions": {
-      "13": {
+      "14": {
         "lessonSurface": "1/2,1/3,1/6 -> 2/3",
         "mainSurface": "3/8,1/4,3/8 -> 3/4",
         "forbidInMain": [
@@ -5175,7 +5368,7 @@
           "C=1/6"
         ]
       },
-      "15": {
+      "16": {
         "lessonSurface": "two fair coin tosses / first H / second H",
         "mainSurface": "two d6 / first even / sum odd",
         "forbidInMain": [
@@ -5183,14 +5376,14 @@
           "second H"
         ]
       },
-      "19": {
+      "20": {
         "lessonSurface": "Random(23), three draws",
         "mainSurface": "Random(41), four draws plus two extra",
         "forbidInMain": [
           "Random(23)"
         ]
       },
-      "21": {
+      "22": {
         "lessonSurface": "seed2026,N1000,p=1/3 -> 322,0.322",
         "mainSurface": "seed31415,N1200,p=0.4 -> 492,0.41",
         "forbidInMain": [
@@ -5199,14 +5392,14 @@
           "0.322"
         ]
       },
-      "22": {
+      "23": {
         "lessonSurface": "Random(11), one draw then state",
         "mainSurface": "Random(17), two draws then 3-draw suffix",
         "forbidInMain": [
           "Random(11)"
         ]
       },
-      "23": {
+      "24": {
         "lessonSurface": "reused draw, sum7 -> 0 versus 1/6",
         "mainSurface": "reused draw, sum9 -> 0 versus 1/9",
         "forbidInMain": [
@@ -5215,11 +5408,20 @@
         ]
       },
       "02": {
-        "lessonSurface": "23//4 and 0.1+0.1+0.1 versus 0.3",
-        "mainSurface": "29//6 and 0.2+0.2+0.2 versus 0.6",
+        "lessonSurface": "23 items / 4 -> 5 complete,3 leftover",
+        "mainSurface": "29 / 6 -> 4 complete,5 leftover",
         "forbidInMain": [
-          "17//5",
-          "0.1+0.1+0.1"
+          "23//4",
+          "23%4",
+          "23/4"
+        ]
+      },
+      "03": {
+        "lessonSurface": "0.1+0.1+0.1 versus0.3",
+        "mainSurface": "0.2+0.2+0.2 versus0.6",
+        "forbidInMain": [
+          "0.1+0.1+0.1",
+          "0.3"
         ]
       }
     }
