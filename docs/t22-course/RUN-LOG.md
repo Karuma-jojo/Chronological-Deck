@@ -1,3 +1,7 @@
+# Pre-publication ancestry sync — 2026-09-24
+
+Current `main` merge commit `4e8755b0d0060390b18ccba846d0d7f5e6750328` was merged into the T22 branch via PR #168 with zero changed files, making the branch 0 commits behind main. This checkpoint exists solely to force the complete T22 Elite validation on the ancestry-clean 25-session M08 tree before publication back to main.
+
 # M08 session-sizing rebalance — 2026-09-24
 
 Sizing-only decision: **25 sessions; add one, merge none**. Former S02 was the only clear overload, combining exact quotient/remainder count semantics with binary floating-point/tolerance policy. It is now S02 exact integer division plus new visible S03 floating-point comparison. All pre-existing stable session IDs are preserved; old S03–S24 shift only in displayed order.
