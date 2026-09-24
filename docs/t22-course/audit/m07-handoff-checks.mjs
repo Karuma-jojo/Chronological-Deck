@@ -12,7 +12,7 @@ const browser=fs.readFileSync('scripts/test-t22-elite-course-browser.mjs','utf8'
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 
 assert.equal(a.module.id,'T22E-MKT01');
-assert.equal(a.module.status,'authored-cerberus-candidate-awaiting-independent-review');
+assert.equal(a.module.status,'authored-astra-repaired-awaiting-independent-followup');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
@@ -26,6 +26,9 @@ assert(!meta.moduleSources.some(x=>x.order>=8));
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(browser.includes("T22E-MKT01")&&browser.includes("seven-module export/import"));
 assert(!fs.existsSync('course/t22/authoring/m08.json'),'M08 must remain closed');
-for(const token of ['24 sessions','48 fixed assessments','120/120','CERBERUS','FULL SUITE VERIFIED','84baddc69643f4654eb87bf05ed907febf37b077','35927759177','107406819179','M08 CLOSED','Astra'])assert(hand.includes(token),token);
-for(const token of ['C-01','C-02','C-03','C-04','Capability discrimination','Prompt ↔ rubric fairness','84baddc69643f4654eb87bf05ed907febf37b077','35927759177','seven-module workflow'])assert(audit.includes(token),token);
-console.log('PASS M07 handoff: 24/48/120 CERBERUS candidate, M02 log edge, seven-module runtime integration, shared evidence key and hard M08 stop.');
+for(const token of ['M07-RESOLUTION.md','m07-authoring-astra-r1','m07-instruction-astra-r1','all120','10 changed fixed assessment','five changed ownership','M08 CLOSED','Astra'])assert(hand.includes(token),token);
+for(const token of ['C-01','C-02','C-03','C-04','Capability discrimination','Prompt ↔ rubric fairness'])assert(audit.includes(token),token);
+assert(fs.existsSync('docs/t22-course/M07-RESOLUTION.md'));
+assert(fs.existsSync('docs/t22-course/audit/m07-semantic-contract.json'));
+assert(fs.existsSync('docs/t22-course/audit/m07-astra-repair-checks.mjs'));
+console.log('PASS M07 handoff: 24/48/120 Astra-repair candidate, reviewed semantic contract, shared evidence key, seven-module runtime integration and hard M08 stop.');
