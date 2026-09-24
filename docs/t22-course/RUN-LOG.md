@@ -1,3 +1,7 @@
+# Main-sync integration checkpoint — 2026-09-24
+
+Before publication, current `main` at `cd91d131856a34b6ce99247b05060b86e0e6f535` was merged into the T22 branch via PR #165. The only file changed on both histories since their common ancestor was `index.html`; it was deliberately reconciled by preserving current main's SMMC/cloud-sync UI and adding only the T22 Elite entry link. After the merge, the T22 branch is 0 commits behind main. This log commit exists to trigger the complete T22 Elite validation on the combined tree before any PR back to main.
+
 # Current M08 builder candidate — 2026-09-24
 
 M08 · `T22E-CODE01` — Quant Programming & Simulation Foundations — is built as a **builder-validated candidate awaiting independent review**. It contains 24 sessions, 48 fixed Main/Transfer assessments and 120 builder-reviewed ownership links. The first complete green implementation head is `c261410fb40809dc44cddb9dccf50e612ae0f1be`, T22 Elite Actions run `35956181744`, job `107494885143`: syntax, structural/pedagogy/semantic/evidence checks, executable Python 3.12 oracles, Chromium and the eight-module browser workflow all passed. M08 depends canonically on M01 + M03 + M04; M07 is not a prerequisite and retains its separate bounded follow-up status. Read `M08-BOUNDARY.md`, `M08-CERBERUS-AUDIT.md`, and `M08-REVIEW-HANDOFF.md`. **Next action: independent M08 review only. M09 remains closed.** No merge/deploy/T25/legacy-progress changes.
