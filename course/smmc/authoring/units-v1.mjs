@@ -229,6 +229,30 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "closes every case and reassembles the requested global statement",
       "separates necessary and sufficient directions when giving a classification"
     ]
+  },
+  {
+    id: "S-METHOD-E1-U01",
+    moduleId: "S-METHOD-E1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Choose an extremal object or minimal counterexample",
+    t25Targets: ["A3", "F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "An extremal proof chooses an allowed object that maximizes or minimizes a clearly named quantity, then uses extremality to forbid improvable local structure.",
+      "The comparison move must preserve every constraint; compute the change in the objective instead of saying only that the new object is 'better'.",
+      "A minimal-counterexample proof is the same architecture with a smallest bad input: reduce it to strictly smaller valid inputs, apply minimality there, and reconstruct the forbidden conclusion.",
+      "Always justify that an extremal or least object exists, and make the strict improvement or strict descent explicit.",
+      "Once extremality forces the local structure, finish the original existence, classification, or sharpness claim rather than stopping at the contradiction."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-E1-01",
+    transferTaskId: "S-NEUTRAL-E1-02",
+    completionEvidence: [
+      "names the extremal object and objective and justifies existence",
+      "uses a constraint-preserving local modification with a computed strict improvement",
+      "derives forced structure from extremality and converts it into the requested optimum",
+      "uses strict descent correctly in a minimal-counterexample argument"
+    ]
   }
 ]);
 

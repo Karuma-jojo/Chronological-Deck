@@ -583,3 +583,37 @@ Expected authored bank after this checkpoint:
 - 10 units;
 - 20 learner-facing neutral tasks;
 - 20 separate evaluator references.
+
+
+### Checkpoint J validation receipt
+
+C1 repaired head: `7ce762d7db2359642594b57b1a228c992c0baac6`.  
+SMMC authoring checks run: `35985729271`, job `107587818157`: **SUCCESS**.
+
+The first draft was intentionally not accepted: both assessments had supplied the very case partitions C1 claimed the learner should choose. The repaired Main now requires a learner-chosen order partition, and Transfer a learner-designed sign partition; evaluator rubrics accept mathematically equivalent complete partitions. Full ledger/curriculum/reconciliation, authoring, scaffold, T25 payload, SMMC browser, workspace-navigation and cross-device checks passed.
+
+## Checkpoint K — extremal and minimal-counterexample reasoning
+
+Added:
+
+### S-METHOD-E1-U01 — Choose an extremal object or minimal counterexample
+
+Corpus basis:
+- EXTREMAL appears on 6 historical rows;
+- MINIMAL-COUNTEREXAMPLE appears on 2;
+- the method is retained as a compact reusable unit, not a subject bridge.
+
+The unit separates two related architectures:
+- extremal/local-improvement: choose an optimizer, preserve constraints, calculate a strict improvement, infer forced structure;
+- minimal-counterexample descent: choose the least bad input, reduce to strictly smaller valid inputs, and reconstruct a contradiction.
+
+Neutral assessments:
+- maximize ab over nonnegative integer pairs with fixed sum using a one-unit compression move;
+- prove prime-factor existence by a genuine minimal-counterexample descent.
+
+No historical requirement row is added: E1 is method training and does not by itself supply missing mathematical content for a particular AMBER/RED problem.
+
+Expected bank:
+- 11 authored units;
+- 22 neutral public tasks;
+- 22 separate evaluator references.

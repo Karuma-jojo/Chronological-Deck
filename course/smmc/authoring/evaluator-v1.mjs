@@ -273,6 +273,38 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must prove a strict opposite-sign lemma rather than merely assert triangle-inequality equality conditions.",
       "Must prove both sufficiency and necessity and close the iff."
     ]
+  },
+  "S-NEUTRAL-E1-01": {
+    reference: [
+      "There are only n+1 feasible pairs (a,n-a), so a maximizing pair exists.",
+      "Choose a maximizing pair and relabel if necessary so a≤b.",
+      "If b-a≥2, the feasible pair (a+1,b-1) has the same sum n and nonnegative coordinates.",
+      "Its product changes by (a+1)(b-1)-ab=b-a-1>0, contradicting maximality.",
+      "Therefore every maximizing pair has |a-b|≤1. If n is even the only maximizing pair is (n/2,n/2); if n is odd the maximizing ordered pairs are ((n-1)/2,(n+1)/2) and its reversal.",
+      "The maximum is floor(n²/4): n²/4 for even n and (n²-1)/4 for odd n."
+    ].join(" "),
+    rubric: [
+      "Must justify existence of a maximizing feasible pair.",
+      "Must give a constraint-preserving local move and compute its product change exactly.",
+      "Must derive |a-b|≤1 from strict improvement, not merely guess balanced pairs.",
+      "Must state the exact maximum and all maximizing ordered pairs, including the odd-n reversal."
+    ]
+  },
+  "S-NEUTRAL-E1-02": {
+    reference: [
+      "Assume for contradiction that some integer n≥2 is not a product of primes, and let n be the least such integer; the least exists by well-ordering.",
+      "The integer n is not prime, because a prime is already a product consisting of that one prime.",
+      "Hence n is composite, so n=ab for integers a,b with 1<a<n and 1<b<n.",
+      "By minimality of n, both a and b are products of primes.",
+      "Concatenating those prime factorizations expresses n=ab as a product of primes, contradicting the choice of n.",
+      "Therefore no counterexample exists."
+    ].join(" "),
+    rubric: [
+      "Must justify the existence of a least counterexample if any counterexample exists.",
+      "Must explain why the least counterexample is composite and produce factors strictly between 1 and n.",
+      "Must invoke minimality only for those strictly smaller factors.",
+      "Must reconstruct a prime product for n and explicitly close the contradiction."
+    ]
   }
 });
 

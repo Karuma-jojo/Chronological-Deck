@@ -121,6 +121,18 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-METHOD-C1-U01",
     role: "transfer",
     prompt: "Classify exactly all real pairs (x,y) for which |x+y|=|x|+|y|. Your final answer must be an if-and-only-if condition. Design an exhaustive nonoverlapping sign-based case architecture that handles zero without duplication, extract a reusable lemma for the genuinely opposite-sign case, and prove both directions of the classification."
+  },
+  "S-NEUTRAL-E1-01": {
+    id: "S-NEUTRAL-E1-01",
+    unitId: "S-METHOD-E1-U01",
+    role: "main",
+    prompt: "Fix an integer n≥1. Among all pairs of nonnegative integers (a,b) with a+b=n, determine the maximum possible value of ab and characterize every maximizing pair. Use an extremal/local-improvement proof: choose a maximizing pair, justify that one exists, and derive its forced structure by showing that an allowed one-unit transfer would strictly improve any pair whose coordinates are too far apart."
+  },
+  "S-NEUTRAL-E1-02": {
+    id: "S-NEUTRAL-E1-02",
+    unitId: "S-METHOD-E1-U01",
+    role: "transfer",
+    prompt: "Prove that every integer n≥2 can be written as a product of one or more primes. Use a minimal-counterexample argument rather than induction: if a counterexample exists, choose the least one, explain why it cannot itself be prime, reduce the composite case to strictly smaller integers, and close the contradiction without assuming the desired result for numbers that are not smaller."
   }
 });
 
