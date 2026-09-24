@@ -21,17 +21,20 @@ near(10*101.40,1014); near(10*(101.40-101),4);
 assert(20.20>20.10); assert(20.08<=20.10);
 assert.deepEqual([30,50,50],[30,30+20,100-(30+20)]);
 near((30*10+20*10.2+50*10.1)/100,10.09);
-near((10*20+20*23)/30,22); near(12*(25-22),36);
+near((10*20+20*23)/30,22); near(12*(25-22),36); near((6*52+14*48)/20,49.2); near(5*(47-49.2),-11);
 near(25*(42-40)-4,46);
-near(25*(49.80-50.20)-3,-13);
-assert.deepEqual([-12+5,-12+5+10],[-7,3]);
+near(25*(49.80-50.20)-3,-13); near(30*(64.90-65.10)-2.5,-8.5);
+assert.deepEqual([-12+5,-12+5+10],[-7,3]); assert.deepEqual([9-4,9-4-5,9-4-5-3],[5,0,-3]);
 near(5000-20*30-2,4398); near(4398+20*31,5018); near(20*(31-30)-2,18);
 near((30*74.90+20*75)/50,74.94); near(50*(75.50-74.94),28); near((50*75.40-2)-(30*74.90+20*75+2),19);
-near((5*40+15*40.10)/20,40.075); near((20*40.50-1)-(5*40+15*40.10+1),6.5);
+near((5*39.70+15*39.75)/20,39.7375); near((20*40.10-1)-(5*39.70+15*39.75+1),5.25);
 
 // Shortcut attacks.
 assert.notEqual(.25+(-.20),1.25*.8-1,'Adding simple returns must fail in the M07-S05 discriminator');
 assert(75.20<75.50,'Frozen quote must force immediate buy ask > sell bid');
 assert(20.20>20.10,'Buy limit20.10 must not cross ask20.20');
 assert.notEqual((10+10.2+10.1)/3,(30*10+20*10.2+50*10.1)/100,'Unweighted fill-price mean must fail');
+assert.notEqual(49,(6*52+14*48)/20,'S19 transfer must expose incorrect reported average');
+assert.notEqual(-6,30*(64.90-65.10)-2.5,'S21 transfer must expose fee omission');
+assert.notEqual(39.725,(5*39.70+15*39.75)/20,'S24 transfer must expose incorrect weighted average');
 console.log('PASS M07 independent math: returns/logs, long-short signs, bid-ask execution, limit constraint, partial-fill weighting, average-cost accounting, fees, ledger reconciliation and integrated audit independently recomputed.');
