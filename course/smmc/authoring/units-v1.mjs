@@ -181,6 +181,30 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "chooses enough base cases for the strengthened statement",
       "shows the stronger statement reproduces itself under the recurrence or shift"
     ]
+  },
+  {
+    id: "S-METHOD-W1-U01",
+    moduleId: "S-METHOD-W1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Turn scratch reasoning into a marker-ready proof",
+    t25Targets: ["F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "A contest proof must expose the logical chain that scratchwork often leaves implicit.",
+      "Begin by stating the assumptions and the exact claim, then make each implication auditable: name the quantity being used, justify divisions or cancellations, and close every case you open.",
+      "A useful proof paragraph usually has a local claim, the reason it follows, and the consequence needed next.",
+      "Do not replace proof with examples or phrases such as 'clearly' when the omitted step carries real content.",
+      "For partial credit, isolate a correct lemma or reduction and state precisely what remains unproved rather than overclaiming a complete solution."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-W1-01",
+    transferTaskId: "S-NEUTRAL-W1-02",
+    completionEvidence: [
+      "states assumptions and target explicitly",
+      "makes every nontrivial implication and case closure visible",
+      "justifies algebraic operations that require nonzero or sign conditions",
+      "ends with the requested conclusion rather than stopping at an equivalent intermediate statement"
+    ]
   }
 ]);
 

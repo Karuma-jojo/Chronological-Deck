@@ -97,6 +97,18 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-METHOD-I1-U01",
     role: "transfer",
     prompt: "Prove that every integer n≥12 can be written as n=4a+5b with nonnegative integers a,b. Use an induction architecture that makes clear why several consecutive base cases are needed and why adding 4 closes the induction."
+  },
+  "S-NEUTRAL-W1-01": {
+    id: "S-NEUTRAL-W1-01",
+    unitId: "S-METHOD-W1-U01",
+    role: "main",
+    prompt: "Write a marker-ready proof of the following statement: if n is an integer and n² is even, then n is even. You may use parity facts, but you must state the proof strategy, make the key implication explicit, and finish by connecting it back to the original claim. A list of examples is not a proof."
+  },
+  "S-NEUTRAL-W1-02": {
+    id: "S-NEUTRAL-W1-02",
+    unitId: "S-METHOD-W1-U01",
+    role: "transfer",
+    prompt: "Let a,b,c be real numbers with a+b+c=0. Prove that a³+b³+c³=3abc. Present the argument as a complete contest proof: state where the assumption is used, justify any factorization or substitution, and close the proof with the exact required identity."
   }
 });
 

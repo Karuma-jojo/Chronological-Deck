@@ -217,6 +217,32 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must explain why a step of +4 covers all later integers from that base window.",
       "Must keep coefficients nonnegative."
     ]
+  },
+  "S-NEUTRAL-W1-01": {
+    reference: [
+      "We prove the contrapositive. Suppose n is odd.",
+      "Then n=2k+1 for some integer k, so n²=(2k+1)²=4k²+4k+1=2(2k²+2k)+1, which is odd.",
+      "Thus whenever n is odd, n² is odd.",
+      "Therefore, by contraposition, if n² is even then n is even, as required."
+    ].join(" "),
+    rubric: [
+      "Must give a logically valid direct, contradiction, or contrapositive proof; examples alone do not count.",
+      "If using contraposition, must explicitly connect 'odd n implies odd n²' back to the original implication.",
+      "Must keep the integer witness k and parity conclusion explicit enough for the implication to be checkable."
+    ]
+  },
+  "S-NEUTRAL-W1-02": {
+    reference: [
+      "Use the identity a³+b³+c³-3abc=(a+b+c)(a²+b²+c²-ab-bc-ca).",
+      "The assumption a+b+c=0 makes the first factor zero.",
+      "Hence a³+b³+c³-3abc=0.",
+      "Rearranging gives a³+b³+c³=3abc, exactly the desired conclusion."
+    ].join(" "),
+    rubric: [
+      "Must explicitly use a+b+c=0 rather than merely quote the final identity.",
+      "Must justify the factorization, either by expansion or by a previously established algebraic identity.",
+      "Must finish with the requested equality and not stop at an unexplained zero product."
+    ]
   }
 });
 

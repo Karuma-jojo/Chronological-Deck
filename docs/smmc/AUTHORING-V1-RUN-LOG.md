@@ -415,3 +415,33 @@ The browser regression `scripts/test-math-workspace-browser.mjs` now checks:
 - SMMC scroll restoration;
 - sticky workspace dock;
 - SMMC -> T25 deep links focus the task area.
+
+
+## Checkpoint G — contest proof-writing unit
+
+Continuation branch: `codex/smmc-final-engine-v1`, cut from current `main` at `2f8bd161fc9b9a0163713ed0c7f4341879b47419`.
+
+Added:
+
+### S-METHOD-W1-U01 — Turn scratch reasoning into a marker-ready proof
+
+Focus:
+- explicit assumptions and target;
+- auditable implication chains;
+- justified cancellation/factorization/substitution;
+- complete case closure;
+- explicit final conclusion;
+- honest partial-credit boundaries rather than overclaiming.
+
+Two original neutral tasks were added:
+- a parity implication designed to train proof strategy and logical closure;
+- a zero-sum cubic identity designed to train assumption use, factorization and exact conclusion.
+
+The historical requirement map is intentionally unchanged. W1 is a universal writing method, but this checkpoint does **not** make it a blanket prerequisite that would lock all 88 historical problems.
+
+The authored bank is now expected to contain:
+- 9 units;
+- 18 learner-facing neutral tasks;
+- 18 separate evaluator references.
+
+No historical SMMC statement is quoted or consumed by these tasks.
