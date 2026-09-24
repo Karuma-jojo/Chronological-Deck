@@ -1,3 +1,7 @@
+# Current M08 bounded follow-up repair — FINAL VALIDATION PENDING — 2026-09-24
+
+The first independent-repair head `772e5dc12bcd44340bbf1d96a093d1b802c10699` was fully green, but a subsequent novice-path follow-up found M08-F01→F04: S12 from-import/call mismatch, hidden list-comprehension syntax in S22 Main, untaught conditional/list-comprehension syntax in S07/S14 lessons, and lambda leakage in the S17 revealed reference. These are repaired on `codex/t22-m08-independent-repair`. M08 remains 24 sessions / 48 tasks / 120 claims. **24 public obligations differ from v1: 23 are v2 and S22-M is v3.** The earlier 772e... run is historical evidence only; the current exact head must pass the complete T22 Elite Chromium/browser suite and broader PR matrix before this state can be called fully validated. M09 remains closed.
+
 # Current M08 independent repair — FULLY GREEN — 2026-09-24
 
 Independent repair content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed T22 Elite run `35961691590` / job `107511449788`, including syntax, structural/pedagogy/semantic/evidence gates, rebuilt Python oracles, Chromium and the real eight-module browser/evidence workflow. The complete main-targeted PR matrix on that head finished **37/37 SUCCESS, 0 failures**. M08 remains 24 sessions / 48 fixed tasks / 120 claims with 23 changed public obligations at version2. **Status: fully validated repaired candidate awaiting bounded independent follow-up; not frozen. M09 remains closed.** See `M08-INDEPENDENT-REVIEW.md`, `M08-RESOLUTION.md`, and `M08-REVIEW-HANDOFF.md`.
