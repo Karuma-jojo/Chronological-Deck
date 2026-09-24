@@ -17,7 +17,7 @@ Status: **PASS_WITH_EVIDENCE — authoring pattern may be propagated; findings b
 - The worked example ((ln t), center 1, (x=1.2), degree 1) is fully solved to the theorem-level remainder statement but deliberately stops before S07's numerical bounding task.
 - Guided practice uses a distinct exponential instance and does not reveal either fixed assessment.
 
-**Adversarial theorem-type check:** no sequence theorem is transferred to a real-variable object; no M11 integration result is required.
+**Adversarial theorem-type check:** no sequence theorem is transferred to a real-variable object; no M11 integration result is required. A later separation attack found that the original degree-2 worked proof was too close to the fixed Main. The lesson was repaired to teach the repeated-Rolle architecture on degree 1 while Main reconstructs degree 2, then Gates 4–8 were reopened and rechecked.
 
 **Receipt:** PASS_WITH_EVIDENCE.
 
@@ -25,7 +25,7 @@ Status: **PASS_WITH_EVIDENCE — authoring pattern may be propagated; findings b
 
 ### Main
 
-The Main asks for a degree-2 proof under supplied legal hypotheses. Because the proof architecture is taught in the lesson, its honest evidence class is **proof reconstruction**, not fresh proof invention.
+The Main asks for a degree-2 proof under supplied legal hypotheses. The lesson now teaches the same theorem architecture on the distinct degree-1 case, so the honest evidence class remains **proof reconstruction**, but the exact fixed proof is no longer worked in instruction.
 
 Wrong solver attacked: quote the final formula with (f'''(a)) merely because the polynomial coefficients are evaluated at (a). This cannot earn the proof/intermediate-point rows.
 
@@ -86,7 +86,7 @@ Fixed instances:
 - Main: symbolic degree-2 proof;
 - Transfer: (|t|^3) across ([-1/2,1/2]).
 
-There is no solved fixed-task answer in the lesson. Main is intentionally proof reconstruction of the general architecture and labeled accordingly. Transfer's decisive object/hypothesis failure is not rehearsed.
+There is no solved fixed-task answer in the lesson. The previous degree-2 proof overlap was removed; Main is intentionally proof reconstruction from the degree-1 architecture and labeled accordingly. Transfer's decisive object/hypothesis failure is not rehearsed.
 
 **Receipt:** PASS_WITH_EVIDENCE.
 
