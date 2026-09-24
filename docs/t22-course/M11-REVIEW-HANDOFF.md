@@ -12,7 +12,7 @@ The independent reviewer recommended **bounded repair, not rebuild**. Those find
 Repair implementation checkpoint: `645c3d4c96ccdf1b2ad6120f63940d388077e7e9`  
 Full successful workflow: `36015062169` · job `107685344598`
 
-**Current status: builder-verified after independent-review repairs; now registered as M11 in the authorized publication route through M12. Historical unpublished-review receipts remain provenance, not the current runtime state.**
+**Current status: builder-verified after independent-review repairs and published as M11 in the authorized shared route through M12. Historical unpublished-review receipts remain provenance, not the current runtime state.**
 
 This handoff does **not** mean independent pedagogical acceptance.
 
