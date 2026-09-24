@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
+import {emptyEvidence,prepareContractHashes,prepareAssessmentFingerprints,evidenceIsCurrent,validateEvidence} from '../js/t22-course/core.js';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const a=read('course/t22/authoring/m08.json');
 const semantic=read('docs/t22-course/audit/m08-semantic-contract.json');
@@ -136,5 +137,26 @@ assert.equal(by(3).id,'T22V3::T22E-CODE01::S02F@1');
 assert.equal(by(4).id,'T22V3::T22E-CODE01::S03@1');
 assert(by(2).title.includes('quotient/remainder'));
 assert(by(3).title.includes('Floating-point'));
+// Bounded-followup provenance: assessment-version bumps must stale old fingerprints without deleting attempts.
+const current=structuredClone(a);
+for(const s of current.sessions) s.instructionVersion=current.instructionVersion;
+await prepareContractHashes(current);
+await prepareAssessmentFingerprints(current,current.evaluators);
+const prior=structuredClone(current);
+const versionCases=[[13,1],[23,2],[24,2]];
+for(const [n,v] of versionCases){ const s=prior.sessions.find(x=>x.order===n); prior.problems[s.main].obligationVersion=v; }
+await prepareContractHashes(prior);
+await prepareAssessmentFingerprints(prior,prior.evaluators);
+for(const [n] of versionCases){
+ const s=current.sessions.find(x=>x.order===n),pid=s.main;
+ assert.notEqual(current.assessmentFingerprints[pid],prior.assessmentFingerprints[pid],`S${n} version bump must change fingerprint`);
+ const oldAttempt={id:`prior-${pid}`,problemId:pid,at:'2026-09-24T06:00:00.000Z',answer:'historical saved work',assistance:'independent',minutes:5,result:'secure',error:'',referenceSeenBefore:false,noteSeenDuringAttempt:false,contractHash:s.contractHash,assessmentFingerprint:prior.assessmentFingerprints[pid]};
+ assert.equal(evidenceIsCurrent(oldAttempt,current),false,`S${n} old assessment evidence must be stale`);
+ const retained=validateEvidence({...emptyEvidence(),attempts:[oldAttempt]},current);
+ assert.equal(retained.attempts.length,1,`S${n} stale attempt must be preserved`);
+}
+// The sizing split introduced exactly one new session ID; all old S03-S24 IDs remain stable despite visible +1 numbering.
+assert.equal(current.sessions[2].id,'T22V3::T22E-CODE01::S02F@1');
+for(let n=4;n<=25;n++) assert.equal(current.sessions[n-1].id,`T22V3::T22E-CODE01::S${String(n-1).padStart(2,'0')}@1`);
 assert(!fs.existsSync('course/t22/authoring/m09.json'),'M09 must remain closed');
-console.log('PASS M08 session-sizing structural/pedagogy: 25 sessions, 50 tasks, 125 semantic links; exact quotient/remainder split from floating-point tolerance while stable existing session IDs are preserved; hard M09 stop.');
+console.log('PASS M08 bounded follow-up: 25 sessions, 50 tasks, 125 semantic links; repaired observability/separation, stale-fingerprint preservation, S02F stable-ID migration and hard M09 stop.');

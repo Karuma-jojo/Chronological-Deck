@@ -28,3 +28,15 @@ The repair preserves all existing stable IDs. S13-M becomes obligationVersion2; 
 **REPAIRED; FULL VALIDATION + ONE FINAL FOLLOW-UP REQUIRED BEFORE FREEZE.**
 
 This file is not itself an acceptance certificate. The actual pushed repair head and its full CI/browser result must be inspected before M08 can be frozen.
+
+
+## Repair checkpoint verification
+
+Repair checkpoint: `621721bfd2793076eff68e57dd44ebae7f45b086`  
+Actions run: `35970357893`  
+Job: `107538366053`  
+Result: **SUCCESS**
+
+The actual job steps were inspected: syntax checks, structural/pedagogy/semantic/evidence regressions, Python executable oracles, Chromium installation and the real browser evidence workflow all completed successfully.
+
+The final follow-up identified one **verification gap, not a curriculum defect**: M08 did not yet have a module-specific executable witness that the new S13/S23/S24 `obligationVersion` bumps change assessment fingerprints, make older attempts stale, and still preserve those attempts. A bounded regression test is therefore added before freeze. It also proves that the sizing split's new `S02F@1` ID did not renumber the pre-existing stable S03–S24 IDs.
