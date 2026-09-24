@@ -5,7 +5,7 @@
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "authored-semantic-audit-repaired-unpublished",
+    "status": "builder-candidate-unpublished",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
