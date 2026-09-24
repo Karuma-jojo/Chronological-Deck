@@ -5,7 +5,7 @@ Module: `T22E-MKT01` — Markets 0: Prices, Returns & Trading Mechanics
 Independent review: `M07-ASTRA-REVIEW.md`  
 Reviewed baseline: `1e5e94842803c2221a34256daf04c40ee18b640b`  
 Review commit: `5fcdd778270106206a7ee862b324a89b8ea92b9f`  
-Repair status: **implemented; full repair-head validation pending; bounded independent follow-up still required**  
+Repair status: **implemented and full repair-head validated; bounded independent follow-up still required**  
 Boundary: **M08 CLOSED**
 
 ## Preservation
@@ -114,8 +114,20 @@ Baseline fingerprints and contract hashes remain pinned in `audit/m07-review-bas
 - `audit/m07-astra-repair-checks.mjs` — semantic mutation tests, current/legacy instruction separation, version/fingerprint checks, solved-vs-guided exposure migration, both merge orders, terminology bridges and M08 stop.
 - existing structural and independent-math gates updated for the repaired contracts/Transfers.
 
+## Exact-head repair verification
+
+Verified repair implementation head: `a0f76357f5e36de6e77799e2a30707c950ce1060`.
+
+Complete T22 Elite Actions run `35952806534`, job `107484744356`, concluded **SUCCESS** on that exact SHA. Inspected logs confirm:
+
+- PASS M07 Astra-repair structural/pedagogy — 24 sessions, 48 fixed tasks, 120 explicit claim→public-request→rubric links;
+- PASS M07 independent math — return/log, long/short, bid/ask, limit, weighted-fill, average-cost, fee and ledger arithmetic;
+- PASS M07 handoff — reviewed semantic contract, shared evidence key, seven-module runtime and M08 stop;
+- PASS M07 Astra repair — semantic mutation contract, clean instruction, 10 versioned assessments, 5 ownership-contract changes, 3 solved-exposure links, guided-only S03→S04 overlap, novice bridges and stronger Transfers;
+- real Chromium PASS through M07, including draft/assistance provenance, save/reveal/review, seven-module export/import, packet exposure, corrupt-storage preservation and mobile width.
+
+The earlier red runs were test-harness false positives caused by brittle substring wording guards (`ln.8` matching `ln.85`, and “reported” versus “reports”). Those guards were narrowed to the actual semantic conditions; no course content was weakened to make CI green.
+
 ## Required closure
 
-Run the complete T22 Elite workflow on the coherent repair head, including real Chromium. Inspect exact SHA, job steps and logs. Record the successful repair checkpoint in this resolution/handoff/log, then stop for bounded independent Astra follow-up.
-
-M07 must not be labelled accepted/frozen before that follow-up. M08 remains closed.
+**STOP for bounded independent Astra follow-up of M07-01 through M07-05.** M07 is repaired and fully builder-verified but must not be labelled accepted/frozen until that follow-up. M08 remains closed.
