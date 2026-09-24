@@ -3,7 +3,9 @@
 Date: 2026-09-24  
 Branch: `codex/t22-pedagogical-rebuild`  
 Module: `T22E-MKT01`  
-Status: **builder-adversarially audited candidate; external independent review still pending**
+Status: **historical builder audit; superseded by independent M07-ASTRA-REVIEW.md where findings conflict**
+
+Independent follow-up on `1e5e94842803c2221a34256daf04c40ee18b640b` found bounded repairs required despite a genuinely successful full Actions run. The zero-known-leakage, zero-hidden-obligation and all120-semantic-observer assertions below are retained as historical builder claims, not current acceptance evidence. See `M07-ASTRA-REVIEW.md` for exact counterexamples, version/provenance requirements and the repair boundary. M08 remains closed.
 
 This record applies the reusable CERBERUS adversary distilled from Astra's M01–M06 findings. It is deliberately not labelled independent acceptance: the same builder that authored M07 performed this audit.
 

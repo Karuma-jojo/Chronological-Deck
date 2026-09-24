@@ -1,14 +1,26 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-24
-State: **M01–M06 ACCEPTED/FROZEN; M07 CERBERUS CANDIDATE FULLY GREEN; ASTRA REVIEW PENDING; M08 CLOSED**
+State: **M01–M06 ACCEPTED/FROZEN; M07 INDEPENDENT REVIEW REQUIRES BOUNDED REPAIRS; BASELINE FULL CI GREEN; M08 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
 
-## Current M07 recovery — 2026-09-24 (authority over historical entries below)
+## Current M07 independent review — 2026-09-24 (authority over historical entries below)
+
+User requested continuing and inspecting existing M07. Recovered actual head `1e5e94842803c2221a34256daf04c40ee18b640b`, inspected ancestry through later M05/M06 acceptance and M07 work, and hash-verified the repository snapshot. No accepted module was regenerated. Read `docs/t22-course/M07-ASTRA-REVIEW.md` for the complete disposition.
+
+**M07 is not accepted/frozen.** M07-01: solved overlap S07→S07-M, S16→S16-T, S17→S17-M; unsolved practice overlap S03→S04-M. M07-02: multiple incorrect claim/rubric observers within the120 positional Main links. M07-03: hidden Main scoring in S07/S17/S24 and S15-T's unspecified fill quantity. M07-04: short/cover and mark terminology need novice bridges. M07-05: S19/S21/S24 Transfers need bounded changed-surface reconstruction. Preserve correct math and useful architecture.
+
+Actual full [Actions run35928115540](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35928115540), job107407975009, succeeded at the reviewed head. Completed steps and decoded logs inspected, including checkout SHA, Chromium and seven-module browser PASS. All52 workflow syntax/non-browser commands passed locally. Additional independent review checks recomputed all48 Main/Transfer numeric cases (S15-T conditional on all8 filling) and reproduced the semantic/exposure defects. Green implementation tests do not resolve these findings.
+
+Current instruction is `m07-instruction-v1-cerberus`, all assessment obligations version1, historical overlap maps empty. The review's `audit/m07-review-baseline.json` preserves24 contract hashes and48 assessment fingerprints for later repair comparison. Repair must separate lesson data, version changed instruction/assessment contracts, preserve prior attempts, migrate old solved-source exposures with timestamps and both import orders, and distinguish unsolved practice. No learner evidence or runtime content was changed by this review checkpoint.
+
+Next work is M07 repair only, followed by `M07-RESOLUTION.md`, actual full repair-head Actions verification and bounded independent follow-up. M08 remains absent/closed. M01–M06 acceptance, M02 learner continuation, T25 and legacy T22 progress remain unchanged. No merge or deployment.
+
+## Historical M07 builder recovery — 2026-09-24
 
 User explicitly authorized M07 alone. M07 `T22E-MKT01` now contains 24 sessions, 48 fixed Main/Transfer assessments and 120 required-ownership claims. Its boundary explicitly depends on M01 + M02 + M05; the M02 edge repairs the known log-return prerequisite. Deep market-data, microstructure, asset-pricing, portfolio and execution theory remain deferred to M45–M56 owners.
 
