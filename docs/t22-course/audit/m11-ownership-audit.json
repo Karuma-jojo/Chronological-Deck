@@ -5,7 +5,7 @@
     "order": 11,
     "title": "Integration & Accumulation"
   },
-  "reviewedAuthoringHead": "015d1ef9d9f749f3ebb819507df3b684967dd5d1",
+  "reviewedAuthoringHead": "645c3d4c96ccdf1b2ad6120f63940d388077e7e9",
   "originalAuthoringCheckpoint": "209ee2b3ba296d468f59d0cf6463a86b78d3f5fe",
   "summary": {
     "originalClaims": 61,
@@ -893,5 +893,6 @@
       "type": "evidence-remap",
       "reason": "Mapped explicitly to the finite-truncation rubric row that observes rejection of literal infinity substitution."
     }
-  ]
+  ],
+  "validatedRepairRun": 36015062169
 }

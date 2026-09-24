@@ -1,23 +1,23 @@
 {
-  "version": "m11-validation-receipt-v1-2026-09-24",
+  "version": "m11-validation-receipt-v2-independent-review-repairs-2026-09-24",
   "module": {
     "id": "ARC510",
     "order": 11,
     "title": "Integration & Accumulation"
   },
-  "validatedImplementationCommit": "136ca2c647f2c23a39b40390eaed40efa6df3bff",
+  "validatedImplementationCommit": "645c3d4c96ccdf1b2ad6120f63940d388077e7e9",
   "workflow": {
-    "runId": 36009416136,
-    "jobId": 107665945138,
+    "runId": 36015062169,
+    "jobId": 107685344598,
     "name": "T22 Elite checks",
     "conclusion": "success",
-    "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36009416136"
+    "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36015062169"
   },
   "checks": {
     "syntax": "success",
     "structuralPedagogySemanticEvidence": "success",
-    "m11SemanticValidator": "success",
-    "m11IndependentMath": "success",
+    "repairedM11SemanticValidator": "success",
+    "repairedM11IndependentMath": "success",
     "inheritedM01ToM10": "success",
     "chromiumInstall": "success",
     "existingCourseBrowser": "success",
@@ -27,9 +27,28 @@
     "sessions": 20,
     "fixedTasks": 40,
     "ownershipClaims": 61,
+    "narrowedClaimsAfterIndependentReview": 3,
+    "totalNarrowedClaimsAcrossAudits": 7,
+    "mainClassificationCalibrationsToRetrieval": 8,
+    "sourceLedgerEntries": 16,
     "protectedPreM11Blobs": 99,
-    "legalInstructionOverlapFindingsAfterRepair": 0,
-    "obligationVersions": "all v1 because M11 is unpublished/unregistered"
+    "fixedTaskChangesInIndependentRepair": 0,
+    "obligationVersions": "all v1 because M11 remains unpublished/unregistered"
+  },
+  "repairedFindings": {
+    "s19ComparisonProof": "replaced invalid use of the M09 sequence monotone-convergence theorem by a direct supremum argument over real truncation values",
+    "canonicalBoundary": "replaced pilot-only boundary.owns with completed M11 ownership and replaced stale pilot module.gate",
+    "ownership": [
+      "S02-C1 narrowed to supplied-partition/tag use/verification",
+      "S03-C1 narrowed from state to apply the tagged-partition criterion",
+      "S04-C1 narrowed from finitely-many to single-point assessed ownership"
+    ],
+    "s17Evidence": "remapped infinity-substitution claim to the explicit finite-truncation rubric row",
+    "evidenceClasses": "S01,S02,S05,S06,S09,S13,S14,S19 Main recalibrated to retrieval",
+    "supportFacts": "surfaced |f|-integrability in S06 and closed-subinterval restriction integrability in S07",
+    "areaContrast": "surfaced nonnegative geometric area vs signed/net area vs total geometric area in S06",
+    "serialization": "S01 literal escaped-newline strings replaced by real line breaks with regression guard",
+    "provenance": "added Lebl §5.2 integral-properties support and MAA Instructional Practices Guide baseline"
   },
   "browser": {
     "learnerRegistryModules": 9,
@@ -39,5 +58,5 @@
     "mobileWidthCheck": true,
     "pageErrors": 0
   },
-  "caveat": "This is builder verification of repository state and mathematics/evidence contracts. It is not independent pedagogical acceptance, learner-pilot evidence or mastery certification."
+  "caveat": "This verifies implementation of the independent review findings. It does not itself constitute the final independent pedagogical acceptance/freeze decision."
 }

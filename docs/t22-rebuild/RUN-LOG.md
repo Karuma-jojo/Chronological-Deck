@@ -460,3 +460,16 @@ Validated implementation: `136ca2c647f2c23a39b40390eaed40efa6df3bff`. Full T22 E
 Review packet: `docs/t22-course/M11-REVIEW-HANDOFF.md`. Verification detail: `docs/t22-course/M11-VERIFICATION.md`.
 
 **M11 is builder-verified and unpublished, not independently pedagogically accepted. STOP before M12.**
+
+
+## M11 bounded independent-review repairs — current authority
+
+The independent review of builder-verified M11 recommended a bounded repair with no rebuild and no session-count change. The repair implementation is `645c3d4c96ccdf1b2ad6120f63940d388077e7e9`.
+
+Closed findings include: S19's real-truncation comparison proof now uses M09's supremum mechanism instead of its sequence-only theorem; stale pilot `boundary.owns` / `module.gate` metadata are replaced; S02-C1, S03-C1 and S04-C1 are narrowed to literal fixed-task observability; S17-C3 is remapped to the finite-truncation rubric observer; S01/S02/S05/S06/S09/S13/S14/S19 Main evidence is recalibrated to retrieval; S06/S07 surface Riemann closure facts; S06 explicitly situates geometric area; S01 literal newline serialization is repaired; Lebl §5.2 and MAA IPG are added to provenance.
+
+Full run `36015062169`, job `107685344598`: **SUCCESS**, including inherited M01–M10 regressions, repaired M11 semantic/evidence checks, independent mathematics, Chromium and both browser workflows. M11 remains unregistered/unpublished.
+
+Final-confirmation handoff: `docs/t22-course/M11-REVIEW-HANDOFF.md`.
+
+**STOP for bounded final M11 confirmation. M12 remains closed.**

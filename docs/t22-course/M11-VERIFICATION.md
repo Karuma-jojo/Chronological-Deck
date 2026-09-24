@@ -1,110 +1,67 @@
-# T22 Elite — M11 Verification
+# T22 Elite — M11 Verification After Independent-Review Repairs
 
 Date: 2026-09-24  
 Module: **M11 · ARC510 · Integration & Accumulation**  
-Validated implementation: `136ca2c647f2c23a39b40390eaed40efa6df3bff`  
-Workflow: `36009416136` · job `107665945138` · **SUCCESS**
+Validated repair implementation: `645c3d4c96ccdf1b2ad6120f63940d388077e7e9`  
+Workflow: `36015062169` · job `107685344598` · **SUCCESS**
 
-## Scope and stop boundary
+## Result
 
-M11 only. M01–M10 canonical/runtime/audit surfaces were preserved by a 99-blob pre-M11 baseline guard. M12 was not opened and no M12+ theorem is used as a solution premise. M11 remains deliberately unpublished/unregistered because M10 is also still outside the accepted nine-module learner runtime.
+The bounded independent-review findings were implemented without rebuilding M11.
 
-## Design-gate result
+The **20-session architecture, 40 fixed assessments and mathematical route are preserved**. No fixed Main/Transfer prompt or rubric changed in this repair, so all unpublished obligations remain version 1.
 
-The pre-authoring gate is in `M11-DESIGN-GATE.md` and passed before lesson authoring:
+## Repairs verified
 
-1. Boundary Contract
-2. Source Dossier
-3. Concept Dependency Graph
-4. Conceptual-Distinction Map
-5. Misconception / Failure-Mode Map
-6. Narrative Spine
-7. Candidate Session Boundaries with split/merge justification
+1. **S19 comparison rigor — repaired.** The lesson no longer invokes M09's monotone bounded **sequence** theorem for the real-variable truncation function (F(T)). It now uses the underlying M09 supremum mechanism directly: define (M=\sup\{F(T):T\ge a\}), choose (T_0) from the supremum property, and squeeze all later real truncations into ((M-\varepsilon,M]).
 
-The graph produced **20 pedagogical atoms**. The legacy 8-arc compression and copying M10's 24-session count were both explicitly rejected.
+2. **Canonical boundary/state — repaired.** `boundary.owns` now describes completed M11 rather than the S01 pilot, and `module.gate` records the completed/verified repair state.
 
-## Canonical build
+3. **Literal ownership semantics — repaired.**
+   - S02-C1 now owns using a supplied partition, computing widths and verifying supplied tags.
+   - S03-C1 now owns applying the tagged-partition criterion, not independently stating the full definition.
+   - S04-C1 now owns the assessed single-point perturbation case; the finite-many extension remains instruction only.
+   - S17-C3 now cites the exact finite-truncation rubric row that observes rejection of literal infinity substitution.
 
-- Authoring: `course/t22/authoring/m11-arc510.json`
-- Sessions: **20**
-- Fixed Main/Transfer tasks: **40**
-- Final ownership claims: **61**, emergent after audit; no quota
-- Obligation versions: all **1**, because the module has never been registered/exposed
-- Source ledger: 14 sources across MIT/OpenStax/Lebl, IES/WWC and calculus-education research
+4. **Evidence-distance calibration — repaired.** Main evidence for S01, S02, S05, S06, S09, S13, S14 and S19 is now `retrieval`, because the fixed tasks apply already taught procedures/decisions on new surfaces. Freshness is no longer being used as a proxy for task quality.
 
-## Important repair history
+5. **Riemann support facts — surfaced before use.** S06 states that Riemann integrability of (f) implies integrability of (|f|). S07 states that restriction to a closed subinterval remains Riemann integrable.
 
-### S04 endpoint-tag repair
+6. **Area distinction — surfaced.** S06 now says explicitly: for (f\ge0), the integral can represent ordinary geometric area; for sign-changing (f), (\int f) is signed/net area while (\int |f|) gives total geometric area. Area remains an interpretation, not M11's definition.
 
-The initial one-point perturbation bound used `D||P||`. With closed tagged subintervals, an exceptional point that is a partition endpoint can be selected in both adjacent intervals. The safe bound is therefore `2D||P||`. Lesson, Main reference, rubric and claim evidence were repaired before continuing.
+7. **S01 serialization — repaired.** Five literal `\\n` sequences were replaced with actual line breaks. The validator now rejects visible escaped-newline lesson serialization.
 
-### 61-claim semantic audit
+8. **Pedagogy/provenance — strengthened.** The ledger now includes Lebl §5.2 for the Riemann closure facts and the MAA Instructional Practices Guide as the permanent undergraduate-mathematics classroom/assessment/design baseline. The integration-specific Jones/Wagner/Bajracharya sources retain their more targeted role.
 
-Every claim was checked against the literal public request and cited scoring rows.
+## Audit accounting
 
-- retained: 56
-- narrowed: 4
-- theorem-hypothesis repair: 1
-- removed: 0
-- fixed-task freshness repairs: 1
+- sessions: **20**
+- fixed tasks: **40**
+- ownership claims: **61**
+- additional ownership claims narrowed in this independent pass: **3**
+- total narrowed across both semantic passes: **7**
+- Main classifications recalibrated to retrieval in this pass: **8**
+- source-ledger entries: **16**
+- fixed assessment changes in this pass: **0**
+- protected pre-M11 blobs: **99 unchanged**
 
-The narrowed claims are S05-C3, S06-C3, S12-C1 and S16-C3. S10/S11 received endpoint-safe MVT hypotheses: continuity on the interval plus differentiability on its interior.
+## Validation evidence
 
-### S19 freshness repair
+Run `36015062169` passed:
 
-The original divergent comparison in S19 Main duplicated the lesson guided practice. It was replaced by `1/sqrt(x²+4)`, compared below by `1/(sqrt(5)x)`. A complete M09+M10+legal-M11 normalized overlap scan then returned **0 exact or 12-token prompt/reference overlaps**.
+- syntax;
+- inherited M01–M10 structural/math/semantic regressions;
+- repaired M11 semantic/evidence validator;
+- repaired M11 independent mathematics;
+- compatibility handoff check;
+- Chromium installation;
+- existing learner-course browser suite;
+- M11 unpublished-boundary browser test.
 
-## Mathematical verification
+The learner UI still exposes nine modules; ARC510 remains unpublished/unregistered, but the browser fetches and parses the full 20-session candidate without page errors.
 
-`docs/t22-course/audit/m11-math-checks.mjs` independently reconstructs all 40 fixed references across:
+## Status
 
-- finite signed accumulation and dimensions;
-- partitions/tags/mesh and the Riemann definition;
-- finite-point perturbations and nonintegrability witnesses;
-- integral linearity/order/orientation;
-- accumulation continuity and FTC local recovery;
-- bounded MVT support for antiderivative uniqueness;
-- FTC endpoint evaluation and net change;
-- elementary antiderivative/domain checks;
-- substitution and transformed bounds;
-- integration by parts and boundary signs;
-- method selection;
-- infinite-tail and singular p-integral thresholds;
-- comparison and symmetric-cancellation failure;
-- final local-rate/continuum/improper synthesis.
+**PASS — bounded independent-review findings implemented and builder-verified.**
 
-Stored evaluator solutions do not use Taylor, Jacobians, Lebesgue integration, differentiation under the integral sign or L'Hôpital as premises.
-
-## Browser / integration verification
-
-The workflow installed Playwright Chromium and ran:
-
-- the existing course browser suite; and
-- `scripts/test-t22-elite-m11-browser.mjs`.
-
-Observed result:
-
-- accepted learner UI still exposes exactly nine modules;
-- ARC510 is not registered or selectable;
-- the browser can fetch and parse the full 20-session candidate authoring file;
-- repaired Unicode task surfaces are intact;
-- mobile-width invariant passes;
-- no page errors were observed.
-
-## Source verification boundary
-
-The mathematical route was triangulated against OpenStax definitions/theorem hypotheses and MIT/Lebl sequencing/rigor. Pedagogical choices additionally use IES/WWC and the cited calculus-education studies. Sources ground content and design decisions; they do **not** independently validate T22 pedagogy.
-
-## Final builder status
-
-**PASS — builder-verified M11 review candidate, unpublished.**
-
-This means the repository contract, mathematics, semantics, provenance, preservation and browser boundary have been checked by the builder workflow.
-
-It does **not** mean:
-- independent pedagogical acceptance;
-- learner-pilot validation;
-- mastery certification;
-- permission to open M12.
-
-**Stop here for bounded independent review of M11.**
+This is not the final independent pedagogical acceptance/freeze decision. The appropriate next action is one bounded confirmation that these repairs close the reported findings. **M12 remains closed.**

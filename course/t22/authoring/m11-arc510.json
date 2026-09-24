@@ -5,9 +5,9 @@
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "independent-review-repair-candidate-unpublished",
+    "status": "builder-verified-independent-review-repairs-unpublished",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
-    "gate": "All 20 design-derived sessions are authored and the bounded independent-review repairs are applied. Freeze requires the full structural/semantic/math/browser suite to pass; M11 remains unpublished and M12 remains closed.",
+    "gate": "All 20 design-derived sessions and the bounded independent-review repairs have passed the full structural, semantic/evidence, independent-math and browser suite at implementation checkpoint 645c3d4c96ccdf1b2ad6120f63940d388077e7e9. M11 remains unpublished pending final independent confirmation; M12 remains closed.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
   },
   "boundary": {
@@ -3514,7 +3514,8 @@
     "s19FreshnessRepair": "S19 Main-B was changed from 1/sqrt(x²+1), which duplicated the lesson guided practice, to 1/sqrt(x²+4) with comparison 1/(sqrt(5)x). M11 is unpublished, so obligationVersion remains 1.",
     "provenanceRepair": "Expanded canonical sourceLedger from the S01 pilot subset to the complete design-gate dossier before final executable verification.",
     "builderValidation": "Full T22 Elite CI run 36009416136 succeeded at implementation commit 136ca2c647f2c23a39b40390eaed40efa6df3bff: syntax, semantic/evidence regressions, M11 independent math, inherited M01-M10 regressions, Chromium and both browser workflows all passed.",
-    "independentReviewRepair": "Bounded independent review preserved all 20 sessions and all 40 fixed tasks; repaired S19 comparison rigor via M09's supremum mechanism, replaced stale canonical gate/ownership boundary, narrowed S02-C1/S03-C1/S04-C1, remapped S17-C3 evidence, recalibrated eight procedural Main classifications to retrieval, surfaced |f|-integrability/subinterval-restriction support facts, added the S06 area-vs-signed-area contrast, repaired S01 literal newline serialization, and added Lebl properties + MAA IPG provenance."
+    "independentReviewRepair": "Bounded independent review preserved all 20 sessions and all 40 fixed tasks; repaired S19 comparison rigor via M09's supremum mechanism, replaced stale canonical gate/ownership boundary, narrowed S02-C1/S03-C1/S04-C1, remapped S17-C3 evidence, recalibrated eight procedural Main classifications to retrieval, surfaced |f|-integrability/subinterval-restriction support facts, added the S06 area-vs-signed-area contrast, repaired S01 literal newline serialization, and added Lebl properties + MAA IPG provenance.",
+    "independentRepairValidation": "Bounded repair implementation 645c3d4c96ccdf1b2ad6120f63940d388077e7e9 passed T22 Elite workflow 36015062169 / job 107685344598: M01-M10 regressions, repaired M11 semantic/evidence validator, independent mathematics, handoff compatibility, Chromium and both browser workflows all succeeded."
   },
   "authoringPolicy": "Original lessons and tasks. Ownership follows literal public/scored actions, never a fixed count. Evidence classes are retrieval, proof reconstruction, fresh Main evidence or changed-surface Transfer. Proofs taught before assessment are reconstruction evidence, not fresh proof evidence. Equivalent valid routes earn full credit. Define notation before use, preserve domains/hypotheses/exceptions, and never use M12+ machinery as a premise.",
   "sourceLedger": {
