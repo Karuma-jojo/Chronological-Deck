@@ -1,8 +1,8 @@
 {
-  "version": "m08-semantic-contract-session-sizing-r3-25-sessions-2026-09-24",
+  "version": "m08-semantic-contract-independent-accepted-r5-2026-09-24",
   "module": "T22E-CODE01",
-  "reviewProvenance": "Independent-review repairs retained; later sizing-only audit split former mixed S02 into exact integer S02 and new floating-point S03 while preserving all pre-existing stable session IDs.",
-  "policy": "This file pins the reviewed claim→public-task→rubric-row judgments. The automated guard detects later drift/mutation; it does not create the original semantic judgment.",
+  "reviewProvenance": "Independent severe review + bounded post-sizing follow-up; repairs validated at f048a93b8cf0fff8bcd915437b8ba2ec8bacefd5, Actions 35970605448 / job 107539182656; accepted/frozen.",
+  "policy": "Accepted M08 semantic contract. Every link was rechecked against the public request and exact scoring evidence after the bounded repairs; regression guards preserve these reviewed judgments but do not replace human semantic review.",
   "sessions": {
     "10": {
       "sessionId": "T22V3::T22E-CODE01::S09@1",
@@ -18,7 +18,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A set is actually constructed/used for uniqueness. / Distinct count3 and observation count6 are correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -31,7 +31,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Erroneous denominator3 is identified. / Erroneous estimate1.0 is computed. / Multiplicity loss is diagnosed.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -43,7 +43,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A dictionary is explicitly initialized and updated from observations. / Final counts G3,R2,B1 are correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -55,7 +55,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A dictionary is explicitly initialized and updated from observations. / Final counts G3,R2,B1 are correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -67,7 +67,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Denominator5 is supplied. / Correct estimate0.6 is computed.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -86,7 +86,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: a is correct. / b is correct. / a/b aliasing is identified.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -98,19 +98,19 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: a is correct. / b is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
-          "claim": "Use `.copy()` for an independent flat-list copy.",
+          "claim": "Explain `.copy()` as creating an independent shallow list copy.",
           "task": "main",
           "rows": [
             3,
             5
           ],
           "rationale": "The public main requires the observable behavior scored by: c is correct. / copy versus alias is explained.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -122,7 +122,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: a/b aliasing is identified. / copy versus alias is explained.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -136,7 +136,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Result is predicted correctly. / Shared inner references are the cause. / A comprehension repair is given. / The repair creates distinct mutable rows.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -154,7 +154,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: `zip(...,strict=True)` is used for aligned pairing. / Index triples are correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -165,7 +165,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Weighted sum61 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -176,7 +176,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Weight total7 and average61/7 are correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -188,7 +188,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: `zip(...,strict=True)` is used for aligned pairing. / Index triples are correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -202,7 +202,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Unpaired9 is identified. / Plain-zip truncation is identified. / `strict=True` and its `ValueError` are stated. / Fail-fast alignment is justified.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -217,9 +217,9 @@
           "rows": [
             1
           ],
-          "rationale": "The public main requires the observable behavior scored by: A complete 6×6 enumeration is supplied.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A complete 6×6 enumeration and a correct sum-to-8 Boolean predicate are supplied.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -228,22 +228,20 @@
           "rows": [
             2
           ],
-          "rationale": "The public main requires the observable behavior scored by: Total36 is correct.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Total36 is correct and explicitly cross-checked as6×6 by the product rule.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
           "claim": "Translate a verbal event into the exact Boolean predicate.",
-          "task": "transfer",
+          "task": "main",
           "rows": [
-            2,
-            3,
-            5
+            1
           ],
-          "rationale": "The public transfer requires the observable behavior scored by: Correct hit count4 is obtained. / Correct probability2/3 is obtained. / Both equality-boundary outcomes are named.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A complete 6×6 enumeration and a correct sum-to-8 Boolean predicate are supplied.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -254,8 +252,8 @@
             4
           ],
           "rationale": "The public main requires the observable behavior scored by: Exactly five sum-8 pairs are identified. / Probability5/36 is correct.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -265,8 +263,8 @@
             5
           ],
           "rationale": "The public main requires the observable behavior scored by: Enumeration is explicitly distinguished from simulation.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -283,7 +281,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A,B,C are encoded exactly as3/8,1/4,3/8.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -294,7 +292,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Normalization to1 is verified.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -306,7 +304,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Event A+C is computed exactly. / Final3/4 remains rational rather than float-rounded.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -318,7 +316,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Binary-float origin is identified. / Fraction preserving the supplied float is explained.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -331,7 +329,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Fraction(1,5) is supplied. / A string/exact alternative is supplied. / No automatic recovery of decimal intent is claimed.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -348,7 +346,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: B is actually filtered and count6 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -359,7 +357,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: B is actually filtered and count6 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -370,7 +368,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A∩B is filtered from B and count5 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -382,7 +380,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Conditional denominator is the filtered |B|=6. / Exact result Fraction(5,6) is obtained.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -397,7 +395,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Denominator36 error is identified. / 5/36 is interpreted as joint probability. / Conditional denominator6 is supplied. / 5/6 is computed. / Conditioning as restriction is explained.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -415,7 +413,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: P(A)=1/2 is derived by enumeration. / P(B)=1/2 and P(A∩B)=1/4 are derived.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -426,7 +424,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Exact product1/4 is compared with the intersection.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -439,7 +437,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: P(A)=1/2 is derived by enumeration. / P(B)=1/2 and P(A∩B)=1/4 are derived. / Exact product1/4 is compared with the intersection.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -452,7 +450,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Intersection probability1/3 is correct. / Product1/4 is compared. / The claim is refuted mathematically.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -463,7 +461,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: The claim is refuted mathematically.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -480,7 +478,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: All six atomic outcomes are explicitly mapped to payoffs.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -491,7 +489,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Multiplicity five-to-one is preserved in code/data.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -502,7 +500,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Atomwise exact expectation0 is computed.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -514,7 +512,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Grouped expectation0 is computed. / The two computations are cross-checked.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -529,7 +527,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Distinct-value averaging is diagnosed. / Weights5/6 and1/6 are identified. / Multiplicity is preserved. / Expectation0 is correct. / Value-set versus distribution is distinguished.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -546,7 +544,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A valid 0<=hits<=len(xs) style invariant is supplied.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -557,7 +555,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: The known even-count oracle3 is correct and stated as a concrete test.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -568,18 +566,18 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Boundary input x=5 (or an equivalent discriminating boundary) is used to distinguish >= from >.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
           "claim": "Explain finite passing tests do not prove all behavior.",
           "task": "main",
           "rows": [
-            4
+            5
           ],
-          "rationale": "The public main requires the observable behavior scored by: The limitation of the general invariant is explained.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The limitation of finite passing tests as proof of unseen behavior is explained.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -594,7 +592,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Optimization behavior is identified. / Debugging versus essential validation is distinguished. / An explicit n<=0 check is supplied. / A suitable exception is raised. / The contract remains active under -O.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -611,7 +609,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: ZeroDivisionError is read from the traceback.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -623,18 +621,18 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: The `hits/total` source line and `(0,0)` failing call are localized. / The total>0 precondition is stated.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
-          "claim": "Use a minimal failing input.",
+          "claim": "Identify a minimal failing input and failing operation from traceback context.",
           "task": "main",
           "rows": [
             2
           ],
           "rationale": "The public main requires the observable behavior scored by: The `hits/total` source line and `(0,0)` failing call are localized.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -645,7 +643,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Both a correct-range repair and a direct-iteration/enumerate repair are supplied.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -656,7 +654,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: A blanket catch-and-ignore is rejected because it hides the defect rather than repairing it.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -673,7 +671,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: The Random import and two separate same-seed generators are explicit.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -685,7 +683,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Two extra r1 draws are tracked as two state advances. / Initial seed is distinguished from current state.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -697,7 +695,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: The same four-call path is used and equal outputs are predicted/checked. / Reproducibility is tied to matching generator/call conditions.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -710,7 +708,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Seeding once outside is proposed. / RNG is passed explicitly. / Successive calls consume evolving state.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -723,7 +721,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Repeated same-seed construction is identified. / Repeated first-draw behavior is explained. / Seeding once outside is proposed.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -741,7 +739,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: rng and p are explicit. / `<p` is used.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -754,7 +752,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: `<p` is used. / 0<=p<=1 is stated/enforced. / 0.3 is interpreted correctly.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -767,7 +765,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Actual0.8 is identified. / Complement error is explained. / `<0.2` repair is supplied.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -778,7 +776,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: One-trial responsibility is preserved.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -789,7 +787,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: 0<=p<=1 is stated/enforced.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -807,7 +805,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: One evolving rng and an explicit N=1200 loop are shown. / Seed31415 and N1200 are recorded as metadata.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -818,7 +816,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Hits are actually accumulated from Bernoulli calls.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -829,18 +827,19 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: The prescribed run result492/1200=0.41 is reported.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
           "claim": "Record seed,N and output as reproducibility metadata.",
           "task": "main",
           "rows": [
+            3,
             4
           ],
-          "rationale": "The public main requires the observable behavior scored by: Seed31415 and N1200 are recorded as metadata.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The prescribed run result492/1200=0.41 is reported. / Seed31415 and N1200 are recorded as metadata.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -851,7 +850,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: 0.41 is distinguished from exact/model probability0.4.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -866,9 +865,9 @@
           "rows": [
             1
           ],
-          "rationale": "The public main requires the observable behavior scored by: The snapshot point after two draws is located.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: `getstate()` is actually used after exactly two initial draws.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -877,9 +876,9 @@
           "rows": [
             2
           ],
-          "rationale": "The public main requires the observable behavior scored by: The three-draw suffix is tracked after the snapshot.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A three-draw suffix is generated after the saved snapshot.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -888,9 +887,9 @@
           "rows": [
             3
           ],
-          "rationale": "The public main requires the observable behavior scored by: Restoration is tracked before replay.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: `setstate(saved_state)` is actually used before generating replay.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -900,8 +899,8 @@
             4
           ],
           "rationale": "The public main requires the observable behavior scored by: `suffix==replay` is stated and justified.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -910,9 +909,9 @@
           "rows": [
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: No unsupported first-versus-suffix equality is claimed.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The mid-run snapshot is distinguished from the original seed/restart state, with no unsupported first-versus-suffix equality.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -927,9 +926,9 @@
           "rows": [
             1
           ],
-          "rationale": "The public main requires the observable behavior scored by: Intended36-pair support is stated.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The intended36-pair support is stated.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -939,9 +938,9 @@
             1,
             2
           ],
-          "rationale": "The public main requires the observable behavior scored by: Intended36-pair support is stated. / Bug six-diagonal-pair support is identified.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The intended36-pair support is stated. / The six-diagonal-pair reachable support and reused-draw dependence defect are identified.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -951,9 +950,9 @@
             2,
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: Bug six-diagonal-pair support is identified. / A second RNG draw repairs the dependence defect.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The six-diagonal-pair reachable support and reused-draw dependence defect are identified. / A separate second RNG draw repairs the dependence defect while retaining explicit RNG state.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -963,9 +962,9 @@
             3,
             4
           ],
-          "rationale": "The public main requires the observable behavior scored by: Bug probability0 is derived from the diagnostic event. / Exact probability1/9 is derived from four intended hits.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A valid diagnostic event different from the lesson's sum-7 example is chosen and its buggy probability is derived correctly. / The intended exact probability for that chosen event is derived correctly and shown to disagree with the buggy model.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -974,9 +973,9 @@
           "rows": [
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: A second RNG draw repairs the dependence defect.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A separate second RNG draw repairs the dependence defect while retaining explicit RNG state.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -993,7 +992,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Model, Event and Payoff are explicitly stated before code.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1005,7 +1004,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Exact probability5/36 is derived by full enumeration. / Exact expectation-11/18 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1016,19 +1015,19 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Simulation uses explicit seeded RNG, two draws/trial, stated N and meaningful invariants.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
-          "claim": "Check invariants and compare estimate to exact target without calling agreement proof.",
+          "claim": "State meaningful invariants and explain why simulation/oracle agreement is evidence rather than proof.",
           "task": "main",
           "rows": [
             4,
             5
           ],
           "rationale": "The public main requires the observable behavior scored by: Simulation uses explicit seeded RNG, two draws/trial, stated N and meaningful invariants. / Agreement is correctly limited as evidence rather than proof.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1043,7 +1042,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: The missing-face defect is found/repaired. / The reused-draw defect is found/repaired. / The >= versus == event defect is found/repaired. / Sample size is rejected as a model repair. / Repaired target is tied to exact5/36.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1062,7 +1061,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: All assignment steps are traced in order. / The subtraction state cash=113 is correct. / Final cash=128 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1074,7 +1073,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Right-hand evaluation then rebinding is explained. / Assignment is not treated as a permanent algebraic equality.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1087,7 +1086,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: All assignment steps are traced in order. / The subtraction state cash=113 is correct. / Final cash=128 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -1099,7 +1098,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: y=4 is identified. / Earlier binding versus later rebinding is explained.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1111,7 +1110,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: All assignment steps are traced in order. / Final cash=128 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1129,7 +1128,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: // result4 and % result5 are correct. / / is distinguished as the numerical ratio29/6.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1140,7 +1139,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: // result4 and % result5 are correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1151,7 +1150,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: 29=6×4+5 is verified exactly.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -1164,18 +1163,19 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Complete cartons6 are correct. / Leftovers5 are correct. / `//` and `%` repairs are supplied.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
-          "claim": "Keep exact integer identities conceptually separate from later approximate numerical comparison.",
+          "claim": "Explain why an exact quotient/remainder reconstruction and an ordinary `/` ratio answer different questions.",
           "task": "main",
           "rows": [
+            3,
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: Ratio versus full-groups-plus-leftovers meaning is explained.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: 29=6×4+5 is verified exactly. / Ratio versus full-groups-plus-leftovers meaning is explained.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1193,7 +1193,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: `import math` / qualified `math.isclose` use is correct. / An explicit valid `math.isclose` call is supplied.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1204,7 +1204,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Direct equality is correctly identified as False with representation reason.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1215,19 +1215,20 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Direct equality is correctly identified as False with representation reason.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
-          "claim": "Choose and state relative/absolute tolerances for an approximate comparison.",
+          "claim": "State explicit relative and absolute tolerances and explain their roles in an approximate comparison.",
           "task": "main",
           "rows": [
+            3,
             4,
             5
           ],
-          "rationale": "The public main requires the observable behavior scored by: Relative tolerance is explained as magnitude-scaled. / Absolute tolerance is explained without calling closeness exact equality.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: An explicit valid `math.isclose` call is supplied. / Relative tolerance is explained as magnitude-scaled. / Absolute tolerance is explained without calling closeness exact equality.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1239,7 +1240,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: A positive justified `abs_tol` is used. / The role of tolerance is tied to scale rather than ritual.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1256,7 +1257,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A coherent three-way branch is supplied.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1270,7 +1271,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: -0.02→loss. / 0→flat. / 0.03→gain. / Zero is explicitly and uniquely handled.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1282,7 +1283,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Actual label nonnegative is identified. / First-match behavior is explained.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -1294,7 +1295,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: First-match behavior is explained. / The zero branch is diagnosed as unreachable.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1306,7 +1307,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: A disjoint rewrite is supplied. / All three sign cases are covered.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1323,7 +1324,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Half-open endpoint behavior is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1335,7 +1336,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Visited values1..5 are correct. / Final total55 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1347,7 +1348,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A meaningful accumulator invariant is stated. / Trace and invariant agree.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -1359,7 +1360,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: range(1,6) is supplied. / The cause is tied to excluded stop.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1372,7 +1373,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Missing k=5 is identified. / Missing25 is computed. / The cause is tied to excluded stop.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1390,7 +1391,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: All post-update values are correct. / Condition-before-iteration behavior is respected.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1403,7 +1404,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: All post-update values are correct. / Final bank22 is correct. / rounds=4 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1414,7 +1415,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A valid progress/termination argument is given.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -1427,7 +1428,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Nontermination is identified. / A trace demonstrates skipping10. / Equality stopping is diagnosed.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1439,7 +1440,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: `while x<10` is supplied. / Stopping value12 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1456,7 +1457,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Parameters and arguments are distinguished.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1468,7 +1469,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A correct two-parameter function is given. / It returns rather than only prints.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1480,7 +1481,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: First result0.15 is correct. / Second result-0.10 is correct.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -1492,7 +1493,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: The global dependency is identified. / Its context sensitivity is explained.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1505,7 +1506,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: A two-parameter refactor is supplied. / Different callers can pass100 and80 explicitly. / The formula is preserved.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1522,7 +1523,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: One helper owns only the event rule.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1533,7 +1534,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: The counter accepts a callable parameter and explicitly invokes it.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
@@ -1545,7 +1546,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: Composition returns hit count2. / Passing a function value is distinguished from calling it.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
@@ -1556,7 +1557,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A discriminating boundary test is supplied.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1569,7 +1570,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Duplicated logic is identified as root cause. / A shared helper is proposed. / The test distinguishes > from >=.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     },
@@ -1587,7 +1588,7 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A loop explicitly iterates and unpacks the tuple records. / Payoffs3,-2,4 are produced in order.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 2,
@@ -1600,31 +1601,29 @@
           ],
           "rationale": "The public main requires the observable behavior scored by: A loop explicitly iterates and unpacks the tuple records. / Payoffs3,-2,4 are produced in order. / Sum5 is accumulated correctly.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 3,
-          "claim": "Use tuples for fixed records.",
-          "task": "transfer",
+          "claim": "Justify tuples for fixed records.",
+          "task": "main",
           "rows": [
-            1,
-            2,
-            3
+            4
           ],
-          "rationale": "The public transfer requires the observable behavior scored by: Tuple immutability is identified. / TypeError is predicted. / A valid new-tuple repair is supplied.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Tuple choice is justified.",
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 4,
-          "claim": "Use lists for a collection that may grow.",
+          "claim": "Justify lists for a collection that may grow or change.",
           "task": "main",
           "rows": [
             5
           ],
           "rationale": "The public main requires the observable behavior scored by: List choice is justified.",
-          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "escapeAttempt": "A response must earn the cited rows while performing or explaining the claimed capability; a nearby numerical consequence, supplied code action, or copied worked-example decision is insufficient.",
+          "disposition": "accepted-bounded-followup"
         },
         {
           "claimIndex": 5,
@@ -1636,7 +1635,7 @@
           ],
           "rationale": "The public transfer requires the observable behavior scored by: Tuple immutability is identified. / TypeError is predicted.",
           "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
-          "disposition": "session-sizing-reviewed-awaiting-followup"
+          "disposition": "accepted-bounded-followup"
         }
       ]
     }

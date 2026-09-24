@@ -15,6 +15,8 @@ assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
+assert.deepEqual(a.crossModulePrerequisiteCleanup.changedContractSessionIds,[by(13).id,by(18).id]);
+assert.deepEqual(a.crossModulePrerequisiteCleanup.fixedAssessmentChanges,[]);
 
 const seen=new Set();
 for(let n=1;n<=24;n++){
@@ -60,6 +62,8 @@ assert(a.evaluators[by(10).main].reference.includes('+120'));
 assert(a.evaluators[by(11).transfer].reference.includes('P&L=(−25)(−2)=+50'));
 
 assert(by(13).lesson.includes('mid is a reference'));
+assert(by(13).entryPrerequisites.some(x=>x.includes('JIT midquote average')));
+assert(!by(13).entryPrerequisites.some(x=>x.includes('M01 averages/subtraction')));
 assert(a.problems[by(14).main].prompt.includes('immediate buy')&&a.problems[by(14).main].prompt.includes('immediate sell'));
 assert(a.evaluators[by(14).main].reference.includes('buy uses ask75.50')&&a.evaluators[by(14).main].reference.includes('sell uses bid75.20'));
 
@@ -71,6 +75,8 @@ assert(a.problems[by(16).main].prompt.includes('price eligibility from fill cert
 assert(by(17).lesson.includes('cancelling the remainder does not undo them'));
 assert(a.evaluators[by(17).main].reference.includes('final position remains+50'));
 assert(by(18).lesson.includes('Quantity-weighted average execution price'));
+assert(by(18).entryPrerequisites.some(x=>x.includes('JIT quantity-weighted average formula')));
+assert(!by(18).entryPrerequisites.some(x=>x.includes('M01 weighted averages/arithmetic')));
 assert(a.evaluators[by(18).main].reference.includes('10.09'));
 
 assert(by(19).lesson.includes('average-cost convention'));

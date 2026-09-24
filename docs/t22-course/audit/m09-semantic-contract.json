@@ -1,0 +1,988 @@
+{
+  "version": "m09-builder-semantic-v1",
+  "limitation": "These hashes and semantic links preserve a builder-reviewed contract; they do not independently establish pedagogical truth.",
+  "sessions": {
+    "T22V3::SIDE263::S01@1": {
+      "links": [
+        {
+          "claim": "Certify an eventual inequality and its least cutoff.",
+          "task": "main",
+          "publicRequest": "For a_n=7/n, classify a_n<1/2 as always, eventually but not always, or not eventually. Give the least valid cutoff N for n≥N, and justify both the all-future guarantee and minimality. For b_n=1 at multiples of 3 and 0 otherwise, is b_n=1 eventually or only infinitely often? Justify.",
+          "rubricEvidence": [
+            "Classifies a and gives N=15 with inequality and boundary n=14."
+          ]
+        },
+        {
+          "claim": "Distinguish infinitely often from eventually.",
+          "task": "main",
+          "publicRequest": "For a_n=7/n, classify a_n<1/2 as always, eventually but not always, or not eventually. Give the least valid cutoff N for n≥N, and justify both the all-future guarantee and minimality. For b_n=1 at multiples of 3 and 0 otherwise, is b_n=1 eventually or only infinitely often? Justify.",
+          "rubricEvidence": [
+            "Establishes arbitrarily late successes for b.",
+            "Establishes arbitrarily late failures, so b is not eventually 1."
+          ]
+        },
+        {
+          "claim": "Refute a tail inference from finite observations.",
+          "task": "transfer",
+          "publicRequest": "A device reports a_n=1/n for its first 40 readings. Give two infinite extensions matching every observed reading, one eventually below 0.01 and one not eventually below 0.01. Explain what this proves about certification from these readings alone.",
+          "rubricEvidence": [
+            "Constructs a matching extension eventually below 0.01.",
+            "Constructs a matching extension not eventually below 0.01.",
+            "Explains why identical finite data cannot determine the eventual claim."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver counting many successes cannot establish Main b: arbitrarily late failures must be addressed.",
+      "lessonSha256": "af050c1e1e90094adda3671ce0aef71bba2812fcf48e79edef1a39230c14d5ce",
+      "assessmentSha256": {
+        "main": "41a27e990466c392ab18fc89fab80fa32920bce28be42fd942adda7031e300a7",
+        "transfer": "1a4f7b93cf7a0e3816d1a049d175a264ea7637fee6501be5ab3b2bfc2b325550"
+      }
+    },
+    "T22V3::SIDE263::S02@1": {
+      "links": [
+        {
+          "claim": "Construct a valid convergence certificate.",
+          "task": "main",
+          "publicRequest": "Prove from the epsilon-N definition that a_n=5-3/(2n+1) tends to 5. Give one N(ε) for every ε>0 and verify the bound for all n≥N. State which quantities N may depend on.",
+          "rubricEvidence": [
+            "Expresses error and gives a valid integer N for every ε>0.",
+            "Verifies all n≥N using inequalities."
+          ]
+        },
+        {
+          "claim": "Respect the order of choices.",
+          "task": "main",
+          "publicRequest": "Prove from the epsilon-N definition that a_n=5-3/(2n+1) tends to 5. Give one N(ε) for every ε>0 and verify the bound for all n≥N. State which quantities N may depend on.",
+          "rubricEvidence": [
+            "States the correct dependence and quantifier order."
+          ]
+        },
+        {
+          "claim": "Diagnose a vacuous quantified proof.",
+          "task": "transfer",
+          "publicRequest": "A proof claims convergence of any sequence to 0: “given ε and n, choose N=n+1; then n≥N is false, so the implication is true.” Diagnose the quantifier error and refute the claimed conclusion for the constant sequence a_n=2 using a fixed ε.",
+          "rubricEvidence": [
+            "Identifies the illicit N dependence on n.",
+            "Chooses a fixed positive ε that exposes a_n=2.",
+            "Provides a failing n for every N, not just one sample."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver who memorizes the definition but changes N with n fails Transfer.",
+      "lessonSha256": "097eb6eda21dbd8cebc517a9afa167ed118e9a7a02f96aaedbbd82338588e0ca",
+      "assessmentSha256": {
+        "main": "2dc162a339283510d78d25c76499bb0993303d1544e4e9eaa58262f70510fe9b",
+        "transfer": "73f8d18311982967f2e00cb35c6e6f922fbb0f64d94515855377ca4885532209"
+      }
+    },
+    "T22V3::SIDE263::S03@1": {
+      "links": [
+        {
+          "claim": "Distinguish strict and non-strict cutoffs.",
+          "task": "main",
+          "publicRequest": "An approximation has exact absolute error 9/(n+2) centimetres, n≥1. Find the least N guaranteeing error<0.03 centimetres for all n≥N. Show the inequality and why the previous index fails. What is the least N if the requirement is ≤0.03 instead?",
+          "rubricEvidence": [
+            "Derives strict cutoff299 and proves the full tail.",
+            "Uses n=298 to prove strict minimality.",
+            "Derives non-strict cutoff298 and justifies its boundary."
+          ]
+        },
+        {
+          "claim": "Certify a worst-case bound rather than assume equality.",
+          "task": "transfer",
+          "publicRequest": "A supplier guarantees only |e_n|≤6/n, not equality. You require |e_n|<0.04. Find the least cutoff guaranteed uniformly over all sequences obeying this bound, prove it, and explain why this need not be the least cutoff for a particular device.",
+          "rubricEvidence": [
+            "Gives uniform cutoff151 with the strict inequality chain.",
+            "Uses an allowed extremal error sequence to prove uniform minimality."
+          ]
+        },
+        {
+          "claim": "Separate a uniform guarantee from individual performance.",
+          "task": "transfer",
+          "publicRequest": "A supplier guarantees only |e_n|≤6/n, not equality. You require |e_n|<0.04. Find the least cutoff guaranteed uniformly over all sequences obeying this bound, prove it, and explain why this need not be the least cutoff for a particular device.",
+          "rubricEvidence": [
+            "Explains device-specific improvement with a valid example."
+          ]
+        }
+      ],
+      "wrongSolver": "Ceiling-only rounding fails the exact-integer boundary; treating a bound as actual error fails Transfer.",
+      "lessonSha256": "bcb8c9d31d98ee280acba9317471b5b9f181b9097413d2c1ff3a0743378725ea",
+      "assessmentSha256": {
+        "main": "886c7142c8ae6348edb481b07016f6338365a94bd7eb4bed462dab9545a6e0c9",
+        "transfer": "982317c63d63f802d5e96c5369b6ae6eb7b77343198eaecae580696817f80199"
+      }
+    },
+    "T22V3::SIDE263::S04@1": {
+      "links": [
+        {
+          "claim": "Refute a specific limit with correct quantifiers.",
+          "task": "main",
+          "publicRequest": "Let a_n=4 when n is divisible by5 and a_n=1 otherwise. Refute a_n→1 with a fixed ε₀ and a rule producing a bad n for every N. Then prove this sequence has no finite limit, addressing an arbitrary proposed L.",
+          "rubricEvidence": [
+            "Refutes L=1 with fixed tolerance and arbitrarily late witnesses."
+          ]
+        },
+        {
+          "claim": "Rule out every finite candidate.",
+          "task": "main",
+          "publicRequest": "Let a_n=4 when n is divisible by5 and a_n=1 otherwise. Refute a_n→1 with a fixed ε₀ and a rule producing a bad n for every N. Then prove this sequence has no finite limit, addressing an arbitrary proposed L.",
+          "rubricEvidence": [
+            "Addresses arbitrary L using separated recurring values.",
+            "Completes the all-N witness argument for whichever value stays away."
+          ]
+        },
+        {
+          "claim": "Detect sparse but persistent errors.",
+          "task": "transfer",
+          "publicRequest": "A sequence satisfies a_n=8/n except that a_(2^k)=3 for every integer k≥0. An analyst discards the exceptional indices as rare and claims a_n→0. Give a quantified rebuttal, and explain why changing finitely many terms would be different.",
+          "rubricEvidence": [
+            "Supplies fixed positive tolerance and bad powers for every N.",
+            "Explains finite-change versus arbitrarily late exceptions."
+          ]
+        }
+      ],
+      "wrongSolver": "Frequency-based intuition cannot satisfy the all-N witness requirement.",
+      "lessonSha256": "675ee73f666e82d3451c6d821034a7f88272ba8779fb3d7a3b00eedf4d7d9485",
+      "assessmentSha256": {
+        "main": "5116750937d328acb330bd8e281813baa3bc76b9be52db75141e493e9c33d288",
+        "transfer": "89bf8ad17657ea7037217db7165f2d2b86905f39aa5e924e7f46d492b5276575"
+      }
+    },
+    "T22V3::SIDE263::S05@1": {
+      "links": [
+        {
+          "claim": "Synchronize eventual guarantees.",
+          "task": "main",
+          "publicRequest": "Reconstruct a proof that a real sequence cannot converge to two distinct values P and Q. Use tolerance |P-Q|/4, explicitly synchronize the cutoffs, and display the contradiction.",
+          "rubricEvidence": [
+            "Synchronizes both guarantees at a common index."
+          ]
+        },
+        {
+          "claim": "Prove uniqueness by a distance contradiction.",
+          "task": "main",
+          "publicRequest": "Reconstruct a proof that a real sequence cannot converge to two distinct values P and Q. Use tolerance |P-Q|/4, explicitly synchronize the cutoffs, and display the contradiction.",
+          "rubricEvidence": [
+            "Chooses positive d/4 under the distinctness assumption.",
+            "Uses the triangle inequality to obtain the contradiction."
+          ]
+        },
+        {
+          "claim": "Combine unequal error budgets correctly.",
+          "task": "transfer",
+          "publicRequest": "Two independently derived tail guarantees for the same sequence say |a_n-A|<r for n≥N₁ and |a_n-B|<s for n≥N₂, where r,s>0. Derive a necessary bound on |A-B|. Decide whether A=0, B=1, r=0.3, s=0.7 can both hold on their tails, and justify the endpoint case.",
+          "rubricEvidence": [
+            "Derives the strict distance bound at a common index.",
+            "Rejects the equality case using strictness."
+          ]
+        }
+      ],
+      "wrongSolver": "Separate successful indices do not suffice: the proofs must use a shared tail.",
+      "lessonSha256": "8aaec9c652af4b80cadc4f231d949d5c00fff911fee34855bbded166502a41ec",
+      "assessmentSha256": {
+        "main": "66f081f3af7de19202fed617db34fa7e59692fd70ef90741feb437111acec3cf",
+        "transfer": "8a31e9ac8758445c48481dc16267c0dedf439a476d6250da5277e40ceb130174"
+      }
+    },
+    "T22V3::SIDE263::S06@1": {
+      "links": [
+        {
+          "claim": "Extend a tail bound to a global bound.",
+          "task": "main",
+          "publicRequest": "Suppose a_n→L and a cutoff N gives |a_n-L|<1 for all n≥N. Construct a bound valid for every n, including the case N=1, and prove it. Explain why citing only |L|+1 can be insufficient.",
+          "rubricEvidence": [
+            "Constructs a global finite bound including N=1.",
+            "Proves both prefix and tail cases.",
+            "Explains why the tail bound alone may miss early terms."
+          ]
+        },
+        {
+          "claim": "Reject boundedness as a sufficient convergence test.",
+          "task": "transfer",
+          "publicRequest": "A quality rule accepts a sequence whenever all its terms lie in [2,6], and concludes it converges. Construct a counterexample satisfying that rule and prove nonconvergence. Then give a convergent sequence whose first term lies outside [2,6] but whose remaining terms lie inside it.",
+          "rubricEvidence": [
+            "Constructs a bounded counterexample and proves nonconvergence."
+          ]
+        },
+        {
+          "claim": "Recognize harmless finite prefixes.",
+          "task": "transfer",
+          "publicRequest": "A quality rule accepts a sequence whenever all its terms lie in [2,6], and concludes it converges. Construct a counterexample satisfying that rule and prove nonconvergence. Then give a convergent sequence whose first term lies outside [2,6] but whose remaining terms lie inside it.",
+          "rubricEvidence": [
+            "Constructs and justifies a convergent sequence with an exceptional first term."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver who checks only the tail cannot justify the global Main bound.",
+      "lessonSha256": "b564cd8851defa1cd2c6fe6c8a8ae1f04c16844ed3e211fbca9ac931b3122d13",
+      "assessmentSha256": {
+        "main": "cd23fa91f4ab4a7bc63b5d3c1add8eca68950e3a7d2d84329cc53fb9c48480b0",
+        "transfer": "f108292792789d13fef48038e35838b12da200c111829140553c1ec4563ec095"
+      }
+    },
+    "T22V3::SIDE263::S07@1": {
+      "links": [
+        {
+          "claim": "Propagate errors through a linear combination.",
+          "task": "main",
+          "publicRequest": "You know |u_n-4|≤2/n and |v_n+2|≤5/n for all n≥1. Find the limit of w_n=3u_n+2v_n, derive an explicit error bound, and give a sufficient N(ε). Explain why both bounds may be used at the same n.",
+          "rubricEvidence": [
+            "Finds limit8 and derives error≤16/n.",
+            "Gives and verifies a sufficient integer cutoff."
+          ]
+        },
+        {
+          "claim": "Use simultaneous tail bounds.",
+          "task": "main",
+          "publicRequest": "You know |u_n-4|≤2/n and |v_n+2|≤5/n for all n≥1. Find the limit of w_n=3u_n+2v_n, derive an explicit error bound, and give a sufficient N(ε). Explain why both bounds may be used at the same n.",
+          "rubricEvidence": [
+            "Explains simultaneous use of the hypotheses."
+          ]
+        },
+        {
+          "claim": "Distinguish strict termwise order from weak limit order.",
+          "task": "transfer",
+          "publicRequest": "A learner infers A<B from a_n<b_n for every n and limits a_n→A, b_n→B. Refute the strict conclusion with explicit sequences, state the valid weaker conclusion, and prove that conclusion by assuming A>B and using a common tail.",
+          "rubricEvidence": [
+            "Gives valid sequences refuting the strict conclusion.",
+            "States A≤B and proves it using a shared tail and gap."
+          ]
+        }
+      ],
+      "wrongSolver": "A symbolic substitution-only solver cannot earn Main error-certificate or Transfer proof credit.",
+      "lessonSha256": "f0b625103bacedbdf038e2a9c2cc25c8bb14d2730b3c2a22fbe9fb78dfc5d837",
+      "assessmentSha256": {
+        "main": "ddd6a531d7efa47b76274ed80e2b8615463e2f2e2eca100daa6099452892e8cf",
+        "transfer": "a70ab7356c8fd78db7cf520a7f7d2d19e969654f2fcb5793cdfd4e54825088aa"
+      }
+    },
+    "T22V3::SIDE263::S08@1": {
+      "links": [
+        {
+          "claim": "Certify a quotient and its error.",
+          "task": "main",
+          "publicRequest": "For r_n=(6+2/n)/(3-1/n), justify that the denominator is nonzero for all n≥1. Find the limit, derive the exact expression for |r_n-2|, and use it to give a sufficient N(ε).",
+          "rubricEvidence": [
+            "Justifies denominator safety and limit2.",
+            "Derives exact error4/(3n-1).",
+            "Provides a valid cutoff with an all-tail inequality."
+          ]
+        },
+        {
+          "claim": "Diagnose the indeterminacy of 0/0 data.",
+          "task": "transfer",
+          "publicRequest": "A rule claims u_n/v_n→0 whenever u_n→0 and v_n→0 with v_n≠0. Construct two pairs satisfying the hypotheses whose quotients have different finite limits. Explain the missing quotient-law hypothesis and show why a nonzero limiting denominator would give an eventual positive lower bound on |v_n|.",
+          "rubricEvidence": [
+            "Constructs two valid pairs with different finite quotient limits."
+          ]
+        },
+        {
+          "claim": "Justify the nonzero denominator condition.",
+          "task": "transfer",
+          "publicRequest": "A rule claims u_n/v_n→0 whenever u_n→0 and v_n→0 with v_n≠0. Construct two pairs satisfying the hypotheses whose quotients have different finite limits. Explain the missing quotient-law hypothesis and show why a nonzero limiting denominator would give an eventual positive lower bound on |v_n|.",
+          "rubricEvidence": [
+            "Identifies B≠0 and derives the eventual lower bound."
+          ]
+        }
+      ],
+      "wrongSolver": "Treating 0/0 as0 cannot survive the required conflicting examples.",
+      "lessonSha256": "cfcd5eec9894d25eb31847e605d6094a3342b98965e9a6ece3cef5337a16d114",
+      "assessmentSha256": {
+        "main": "e663c948e5fc36e6c866b7afb7426852f837b7944fb18ed3894898934065b0cd",
+        "transfer": "2217835202c1c841d3b4823512d554c61ad9b388574887b5094ef1e44567197a"
+      }
+    },
+    "T22V3::SIDE263::S09@1": {
+      "links": [
+        {
+          "claim": "Construct a vanishing error envelope.",
+          "task": "main",
+          "publicRequest": "For a_n=7+(-1)^n(2n+1)/(n²+1), prove a_n→7 using an explicit vanishing error bound. Give a sufficient N(ε), and explain why alternating signs do not defeat your proof.",
+          "rubricEvidence": [
+            "Derives a valid vanishing bound such as3/n.",
+            "Gives a sufficient cutoff and proves the limit."
+          ]
+        },
+        {
+          "claim": "Separate sign oscillation from persistent error.",
+          "task": "main",
+          "publicRequest": "For a_n=7+(-1)^n(2n+1)/(n²+1), prove a_n→7 using an explicit vanishing error bound. Give a sufficient N(ε), and explain why alternating signs do not defeat your proof.",
+          "rubricEvidence": [
+            "Explains why the envelope controls alternating signs."
+          ]
+        },
+        {
+          "claim": "Distinguish bounded observations from a shrinking guarantee.",
+          "task": "transfer",
+          "publicRequest": "An unknown sequence satisfies -2≤b_n≤2 and has infinitely many terms equal to0. Must it converge to0? Give one sequence satisfying both facts that does converge and another that does not; justify each. State a stronger envelope condition that would certify convergence to0.",
+          "rubricEvidence": [
+            "Gives and justifies convergent and nonconvergent examples satisfying both facts.",
+            "States a vanishing envelope that really certifies limit0."
+          ]
+        }
+      ],
+      "wrongSolver": "“It oscillates” alone gives the wrong Main conclusion; mere boundedness fails Transfer.",
+      "lessonSha256": "38d5f651386802fe4b68f441bc3ab57e86097d26b4a28398d6621c8c5e55b889",
+      "assessmentSha256": {
+        "main": "ddc11ab988c680acd8e0e26fba82c2e657a3c1a95cd048d900accf9b794afd07",
+        "transfer": "b42e8367a5f0648729e22f1d65de93aae0686aeef63fb2c05f8276068a7e7ba8"
+      }
+    },
+    "T22V3::SIDE263::S10@1": {
+      "links": [
+        {
+          "claim": "Reconstruct elementary geometric decay.",
+          "task": "main",
+          "publicRequest": "Prove (-2/5)^n→0 by deriving a Bernoulli-based upper bound on its absolute value, including the induction step underlying that bound. Give a sufficient cutoff for every ε>0.",
+          "rubricEvidence": [
+            "Derives Bernoulli inequality with a valid induction step.",
+            "Uses c=3/2 to bound the absolute geometric term.",
+            "Gives and verifies a sufficient cutoff."
+          ]
+        },
+        {
+          "claim": "Handle exceptional geometric bases.",
+          "task": "transfer",
+          "publicRequest": "For q∈{0,1,-1,6/5,-6/5}, classify q^n as convergent to a finite value or not. For each nonconvergent case give a reason controlling arbitrarily late indices, and distinguish positive growth from alternating growth.",
+          "rubricEvidence": [
+            "Correctly classifies the two finite limits and alternating±1."
+          ]
+        },
+        {
+          "claim": "Distinguish growing magnitude from positive growth.",
+          "task": "transfer",
+          "publicRequest": "For q∈{0,1,-1,6/5,-6/5}, classify q^n as convergent to a finite value or not. For each nonconvergent case give a reason controlling arbitrarily late indices, and distinguish positive growth from alternating growth.",
+          "rubricEvidence": [
+            "Justifies positive growth by a tail bound and distinguishes alternating growth."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver applying |q|<1 to all bases fails the explicit exceptional cases.",
+      "lessonSha256": "75e4840643e0197d14713061001e8a033dd85a5f313572e8a215fa29e824626f",
+      "assessmentSha256": {
+        "main": "0fa00fa7251de8a737054ad7626dc1e2d0435bd8d6defbd0d4a3540a9eb493f4",
+        "transfer": "21f42eefefa733fba12cccb6fa3b6fdc0a733ab820b1d995bfc9820dd9c540d2"
+      }
+    },
+    "T22V3::SIDE263::S11@1": {
+      "links": [
+        {
+          "claim": "Use incompatible subsequence limits to diagnose divergence.",
+          "task": "main",
+          "publicRequest": "Let a_n=(-1)^n+2/n. Find and justify the limits of a_(2k) and a_(2k-1), then decide whether a_n converges. Cite the subsequence principle and why the selected indices qualify.",
+          "rubricEvidence": [
+            "Computes and justifies both subsequence limits.",
+            "Verifies the increasing index selections.",
+            "Uses incompatible limits to refute convergence of the whole sequence."
+          ]
+        },
+        {
+          "claim": "Reassemble two convergent parity tails.",
+          "task": "transfer",
+          "publicRequest": "Suppose the even terms of b_n tend toL and the odd terms also tend toL. Prove b_n→L by combining the two cutoffs. Explain why knowing only the even-term limit would not suffice, with a counterexample.",
+          "rubricEvidence": [
+            "Constructs an original-index cutoff that covers both parities and proves convergence."
+          ]
+        },
+        {
+          "claim": "Recognize the weakness of a single subsequence.",
+          "task": "transfer",
+          "publicRequest": "Suppose the even terms of b_n tend toL and the odd terms also tend toL. Prove b_n→L by combining the two cutoffs. Explain why knowing only the even-term limit would not suffice, with a counterexample.",
+          "rubricEvidence": [
+            "Gives a counterexample when only even terms are controlled."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver who finds one subsequence cannot earn the whole-sequence conclusion.",
+      "lessonSha256": "6d712b68945a1f59612d9d56a4492f764ccfc0b172cebeb528f8653bf3a9c6fe",
+      "assessmentSha256": {
+        "main": "66786fb4780b741c62094dc309cd68905f8d40f6d1316236b80c073fa4c5498e",
+        "transfer": "2b0e3f599cbd2aa732bfc68cc0a974f49ade97ca937abd50e356ee5898313ea3"
+      }
+    },
+    "T22V3::SIDE263::S12@1": {
+      "links": [
+        {
+          "claim": "Separate existence from identifying a limit.",
+          "task": "main",
+          "publicRequest": "For a_n=3n/(n+2), show directly that a_(n+1)-a_n>0 and a_n<3 for all n≥1. Use the monotone convergence theorem, then identify the limit by algebra. Explain why the alternative upper bound10 is not the limit.",
+          "rubricEvidence": [
+            "Proves monotonicity and a valid upper bound.",
+            "Uses the theorem for existence and algebra to identify3.",
+            "Explains why10 is not determined as the limit."
+          ]
+        },
+        {
+          "claim": "Use the correct one-sided boundedness hypothesis.",
+          "task": "transfer",
+          "publicRequest": "A decreasing sequence satisfies a_n≥-7 for all n. State what convergence is guaranteed and whether the limit must be-7. Give two decreasing sequences obeying the bound with different limits. Then explain the supremum proof for increasing bounded sequences: why must a term exceed L-ε?",
+          "rubricEvidence": [
+            "States the finite-limit guarantee and gives two valid examples with different limits."
+          ]
+        },
+        {
+          "claim": "Explain the completeness step in the monotone theorem.",
+          "task": "transfer",
+          "publicRequest": "A decreasing sequence satisfies a_n≥-7 for all n. State what convergence is guaranteed and whether the limit must be-7. Give two decreasing sequences obeying the bound with different limits. Then explain the supremum proof for increasing bounded sequences: why must a term exceed L-ε?",
+          "rubricEvidence": [
+            "Explains the least-upper-bound step without assuming a maximum term exists."
+          ]
+        }
+      ],
+      "wrongSolver": "“Bounded by10 so limit10” fails Main; assuming the supremum is attained fails Transfer proof.",
+      "lessonSha256": "395c5ce8c4360d6b7d3dfb6b8248a7948e959afdab1e14d393eaa53ca5c15385",
+      "assessmentSha256": {
+        "main": "2c9eb321ea1a65ab87b278659f09c0465b146d666fb9ab8ec35fb791bc37f381",
+        "transfer": "493a52c796d4293e5f9e066669bf3a738ab0b5b5fa8f091df154d0d705dea29a"
+      }
+    },
+    "T22V3::SIDE263::S13@1": {
+      "links": [
+        {
+          "claim": "Control a recurrence with an invariant and monotonicity.",
+          "task": "main",
+          "publicRequest": "Let x_1=0 and x_(n+1)=(2x_n+9)/5. Prove by induction that 0≤x_n≤3, prove it is nondecreasing, and conclude convergence before finding its limit. Justify the limit passage in the recurrence.",
+          "rubricEvidence": [
+            "Proves the invariant with base and inductive step.",
+            "Proves monotonicity and invokes bounded convergence."
+          ]
+        },
+        {
+          "claim": "Identify a limit only after proving existence.",
+          "task": "main",
+          "publicRequest": "Let x_1=0 and x_(n+1)=(2x_n+9)/5. Prove by induction that 0≤x_n≤3, prove it is nondecreasing, and conclude convergence before finding its limit. Justify the limit passage in the recurrence.",
+          "rubricEvidence": [
+            "Justifies limit passage and solves L=3 after existence."
+          ]
+        },
+        {
+          "claim": "Diagnose a fixed-point fallacy.",
+          "task": "transfer",
+          "publicRequest": "A report studies y_1=1, y_(n+1)=3-y_n and claims “L=3-L, so the sequence converges to3/2.” Diagnose the logical gap, give the actual trajectory and prove its behavior. Identify a starting value for which the claimed limit does hold.",
+          "rubricEvidence": [
+            "Identifies the conditional fixed-point argument and proves the given trajectory diverges.",
+            "Supplies the fixed starting value and verifies its constant trajectory."
+          ]
+        }
+      ],
+      "wrongSolver": "A candidate-only solver cannot earn the invariant or existence points.",
+      "lessonSha256": "a36a3cefdc803efc46e5e5f1f10fb44fa712a0383931a8269d7e099ade535c6a",
+      "assessmentSha256": {
+        "main": "968ca53885c7d87b4cb1b6573ec6f9caa7c1f15f0e157d47620a665b24fee100",
+        "transfer": "2c8cfebb149d830e44879f36364c55ecacb0aef0ee52430ebed97f9bfce130d3"
+      }
+    },
+    "T22V3::SIDE263::S14@1": {
+      "links": [
+        {
+          "claim": "Prove a signed infinite limit by thresholds.",
+          "task": "main",
+          "publicRequest": "Prove a_n=(n²+1)/(n+1)→+∞ by deriving a lower bound simple enough to give N(M). Use a strict threshold and verify the entire tail.",
+          "rubricEvidence": [
+            "Derives a useful lower bound valid for all n≥1.",
+            "Gives a valid strict cutoff and all-tail threshold proof."
+          ]
+        },
+        {
+          "claim": "Distinguish unboundedness from persistent growth.",
+          "task": "transfer",
+          "publicRequest": "Let b_n=n for n divisible by4 and b_n=0 otherwise. Is it bounded? Does it tend to+∞, to-∞, or to any finite L? Justify all conclusions with arbitrarily late indices or subsequences.",
+          "rubricEvidence": [
+            "Proves unboundedness and rejects+∞ using recurring zeros."
+          ]
+        },
+        {
+          "claim": "Classify divergence beyond a finite-limit guess.",
+          "task": "transfer",
+          "publicRequest": "Let b_n=n for n divisible by4 and b_n=0 otherwise. Is it bounded? Does it tend to+∞, to-∞, or to any finite L? Justify all conclusions with arbitrarily late indices or subsequences.",
+          "rubricEvidence": [
+            "Rejects-∞ and every finite limit with valid arguments."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver seeing large sampled terms wrongly labels Transfer+∞.",
+      "lessonSha256": "0a7745fbf4d7753f0bb7a02ce0565982fe1858b620f5a23b57b7d073dd7b6680",
+      "assessmentSha256": {
+        "main": "3c94b1ba80b841035d5b82f9fafc78feaa9e54e3d72d67b0f2b128d03b65d31f",
+        "transfer": "5a5ea3e1b834677699c64e9cff28dd7de05dfed3d85f3ed579e552a5a110e08f"
+      }
+    },
+    "T22V3::SIDE263::S15@1": {
+      "links": [
+        {
+          "claim": "Separate a function value from its limit.",
+          "task": "main",
+          "publicRequest": "Define f(x)=2x-1 for x≠3 and f(3)=20. Find lim_(x→3)f(x) and f(3), explain their difference, and give a δ>0 ensuring |f(x)-5|<0.1 whenever 0<|x-3|<δ.",
+          "rubricEvidence": [
+            "Distinguishes limit5 from point value20.",
+            "Explains why the changed point value does not affect the limit."
+          ]
+        },
+        {
+          "claim": "Translate output tolerance into a neighborhood.",
+          "task": "main",
+          "publicRequest": "Define f(x)=2x-1 for x≠3 and f(3)=20. Find lim_(x→3)f(x) and f(3), explain their difference, and give a δ>0 ensuring |f(x)-5|<0.1 whenever 0<|x-3|<δ.",
+          "rubricEvidence": [
+            "Gives δ=0.05 or a smaller positive value with its error bound."
+          ]
+        },
+        {
+          "claim": "Avoid vacuous limits at isolated domain points.",
+          "task": "transfer",
+          "publicRequest": "An analyst defines h only on {0}∪[2,3] and claims “lim_(x→0)h(x) can be any number, since a tiny punctured neighborhood contains no domain inputs.” Explain why this is not a genuine approaching-input limit under our convention. Contrast with k(x)=7 for 0<|x|<1, undefined at0: does k have a limit there, and why?",
+          "rubricEvidence": [
+            "Identifies the missing accumulation-point condition for h.",
+            "Justifies the limit7 for k without requiring k(0)."
+          ]
+        }
+      ],
+      "wrongSolver": "Point-substitution yields20 on Main; vacuous-implication reasoning fails Transfer.",
+      "lessonSha256": "bb85d8898ac1b439047661c19af94b965990526e9ef361b80ce241e9f92a2285",
+      "assessmentSha256": {
+        "main": "aa8c78d133e56730a95d17f3032ddee4a37c466f1f68c4d68a40168b9ce2f997",
+        "transfer": "829195417f58863791acb0afe821984178ae0b8da27b39c102148b1cac7de94c"
+      }
+    },
+    "T22V3::SIDE263::S16@1": {
+      "links": [
+        {
+          "claim": "Construct a quantified affine limit proof.",
+          "task": "main",
+          "publicRequest": "Prove from the epsilon-delta definition that lim_(x→-2)(-5x+4)=14. State δ(ε), verify the implication for every allowed x, and say which quantities δ may depend on.",
+          "rubricEvidence": [
+            "Gives a positive δ for every ε>0.",
+            "Verifies the exact error implication.",
+            "States permitted dependence and the order of choices."
+          ]
+        },
+        {
+          "claim": "Interpret delta as an input error budget.",
+          "task": "transfer",
+          "publicRequest": "A sensor uses y=mx+b. For each m∈{-4,0,4}, give a valid input tolerance δ(ε) ensuring |y-(ma+b)|<ε when |x-a|<δ. Explain the zero-slope case and why the sign of m does not change the error amplification.",
+          "rubricEvidence": [
+            "Handles both nonzero slopes with absolute error amplification."
+          ]
+        },
+        {
+          "claim": "Handle a degenerate slope explicitly.",
+          "task": "transfer",
+          "publicRequest": "A sensor uses y=mx+b. For each m∈{-4,0,4}, give a valid input tolerance δ(ε) ensuring |y-(ma+b)|<ε when |x-a|<δ. Explain the zero-slope case and why the sign of m does not change the error amplification.",
+          "rubricEvidence": [
+            "Handles zero slope without division by zero and explains it."
+          ]
+        }
+      ],
+      "wrongSolver": "Formula memorization δ=ε/m fails negative and zero slopes.",
+      "lessonSha256": "1622cee1721f0a053c2c812c34d8d1cf521eeec5f4b32d0bb063393bb4f86f57",
+      "assessmentSha256": {
+        "main": "991e15ba53b66c37c8c4c5978749ce77a30da8f02ceb8379528e83c3bc55c843",
+        "transfer": "520dba8418d52beed5eb6bedf9a149ab7a73eb332fd88840640a1184d1046f20"
+      }
+    },
+    "T22V3::SIDE263::S17@1": {
+      "links": [
+        {
+          "claim": "Control a nonlinear error using a local upper bound.",
+          "task": "main",
+          "publicRequest": "Prove lim_(x→3)x²=9 directly. Use an explicit preliminary neighborhood, bound the remaining factor, choose δ(ε) independent of x, and verify the full implication.",
+          "rubricEvidence": [
+            "Supplies a valid preliminary neighborhood and factor bound.",
+            "Chooses a positive δ independent of x.",
+            "Verifies the factored output-error inequality."
+          ]
+        },
+        {
+          "claim": "Repair a delta with illegal variable dependence.",
+          "task": "transfer",
+          "publicRequest": "Repair the proposed proof of lim_(x→2)1/x=1/2: “take δ=2ε|x|.” Explain its defect, then produce a valid δ using a local lower bound on |x|. State why the domain is safe.",
+          "rubricEvidence": [
+            "Identifies variable dependence and establishes a positive denominator bound."
+          ]
+        },
+        {
+          "claim": "Control a reciprocal with a local lower bound.",
+          "task": "transfer",
+          "publicRequest": "Repair the proposed proof of lim_(x→2)1/x=1/2: “take δ=2ε|x|.” Explain its defect, then produce a valid δ using a local lower bound on |x|. State why the domain is safe.",
+          "rubricEvidence": [
+            "Gives a valid δ and verifies error and domain."
+          ]
+        }
+      ],
+      "wrongSolver": "A learner merely solving error<ε forδ(x) fails the independence requirement.",
+      "lessonSha256": "169aceaa5d7fc6f6faf9be155266745ebfcd579143f7078c199cf8240b57b510",
+      "assessmentSha256": {
+        "main": "8ae35d29847f6e45c4887d23b1fbe856a51d8ddbc4130d3dce85c55ee077c2f3",
+        "transfer": "60150f11b7783389c99a0fddae60fdf11157d8de8c5f6a445f4346b302e84310"
+      }
+    },
+    "T22V3::SIDE263::S18@1": {
+      "links": [
+        {
+          "claim": "Match one-sided limits to determine a parameter.",
+          "task": "main",
+          "publicRequest": "Let f(x)=ax+2 for x<2, and f(x)=x²-1 for x>2. Find all a for which lim_(x→2)f(x) exists, and its value. Does setting f(2)=100 change that answer? Justify using the two sides.",
+          "rubricEvidence": [
+            "Computes both one-sided limits.",
+            "Solves a=1/2 and states the common limit3."
+          ]
+        },
+        {
+          "claim": "Separate a join limit from its assigned point value.",
+          "task": "main",
+          "publicRequest": "Let f(x)=ax+2 for x<2, and f(x)=x²-1 for x>2. Find all a for which lim_(x→2)f(x) exists, and its value. Does setting f(2)=100 change that answer? Justify using the two sides.",
+          "rubricEvidence": [
+            "Explains the irrelevance of f(2) to the limit."
+          ]
+        },
+        {
+          "claim": "Use absolute-value branches in a limit.",
+          "task": "transfer",
+          "publicRequest": "For g(x)=|x-4|/(x-4), defined for x≠4, determine both one-sided limits and the two-sided conclusion. Explain why cancelling the absolute-value bars as if |x-4|=x-4 everywhere gives a wrong conclusion.",
+          "rubricEvidence": [
+            "Derives both sign-dependent side limits.",
+            "Rejects the two-sided limit and diagnoses the invalid cancellation."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver dropping absolutevalue signs misclassifies Transfer.",
+      "lessonSha256": "5963d461aeb3309192cc0533ba3115a89a60089b2356ff00374435fc9c696191",
+      "assessmentSha256": {
+        "main": "43287d2d6c6212d09d85de6ea8eea8d80b43352b2477bbdfaf6b90c152ee175e",
+        "transfer": "4ec136f655c35fa8d03a9504fe9ccbdb53ca986a062f5c76da365096f206207b"
+      }
+    },
+    "T22V3::SIDE263::S19@1": {
+      "links": [
+        {
+          "claim": "Use factored punctured equality without changing the domain.",
+          "task": "main",
+          "publicRequest": "Find lim_(x→5)(x²-3x-10)/(x-5). Show valid factorization and cancellation, state where the two formulas agree, and distinguish the limit from the original expression’s value at5.",
+          "rubricEvidence": [
+            "Factors and cancels only on x≠5.",
+            "Finds limit7 from punctured equality.",
+            "Distinguishes the original undefined value from the extension."
+          ]
+        },
+        {
+          "claim": "Reject cancellation across addition.",
+          "task": "transfer",
+          "publicRequest": "A student writes (x²+9)/(x+3)=x+3 by “cancelling x and3”, then claims a finite limit at-3. Refute the algebra with one legal input, and determine the actual left and right behavior near-3 with a sign/size argument.",
+          "rubricEvidence": [
+            "Uses a valid distinguishing input to refute the identity."
+          ]
+        },
+        {
+          "claim": "Diagnose a genuine pole by sign and size.",
+          "task": "transfer",
+          "publicRequest": "A student writes (x²+9)/(x+3)=x+3 by “cancelling x and3”, then claims a finite limit at-3. Refute the algebra with one legal input, and determine the actual left and right behavior near-3 with a sign/size argument.",
+          "rubricEvidence": [
+            "Derives opposite unbounded one-sided behavior from sign and a positive numerator bound."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver treating all0denominator cases asremovable cannot earn Transfer sign/sizepoints.",
+      "lessonSha256": "5f40f391028d21218b1a5473a6e4fea7b60cc25d9cd7eec7b3030a6f8ffbf055",
+      "assessmentSha256": {
+        "main": "dcff9aae5bdecce5d5a8fedb293d871a14b28b09fba77134d7b26c5a02889b6e",
+        "transfer": "36d1b877b81aba273b82be0ebf451c1ba6d2661dd8720cd0ac94c5e7c1d9281e"
+      }
+    },
+    "T22V3::SIDE263::S20@1": {
+      "links": [
+        {
+          "claim": "Rationalize with valid local domain control.",
+          "task": "main",
+          "publicRequest": "Evaluate lim_(x→7)(√(2x+2)-4)/(x-7). Show the conjugate transformation, specify a neighborhood where all expressions are legal except the excluded point, and state why direct0/0 substitution is not an answer.",
+          "rubricEvidence": [
+            "Performs the conjugate identity and obtains limit1/4.",
+            "Gives a legal neighborhood and retains x≠7."
+          ]
+        },
+        {
+          "claim": "Interpret indeterminate separate limits.",
+          "task": "main",
+          "publicRequest": "Evaluate lim_(x→7)(√(2x+2)-4)/(x-7). Show the conjugate transformation, specify a neighborhood where all expressions are legal except the excluded point, and state why direct0/0 substitution is not an answer.",
+          "rubricEvidence": [
+            "Explains why0/0 itself supplies no quotient value."
+          ]
+        },
+        {
+          "claim": "Turn a radical limit into a directional error guarantee.",
+          "task": "transfer",
+          "publicRequest": "For h>0 let R(h)=(√(1+h)-1)/h. Without decimal approximations, decide whether R(h) is above or below1/2, derive an exact formula for |R(h)-1/2|, and find a sufficient positive δ ensuring this error<ε for0<h<δ.",
+          "rubricEvidence": [
+            "Determines the direction of error from the conjugate form.",
+            "Derives exact error h/[2(√(1+h)+1)²].",
+            "Produces and verifies a sufficient δ such as8ε."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver giving just the limiting value loses the actual error and legal-domain obligations.",
+      "lessonSha256": "e52fb2e00208aeecdff403f50ab167c1cd6e2163fc6d345854a1b3b2c553c030",
+      "assessmentSha256": {
+        "main": "7e73cc99c1058184528b182ce7d32a8d1766e0d4376acfd353907301f62d96c6",
+        "transfer": "d75343a59d150161bd36f856055f171631886c0962b5bd3e9e96b264aae4e404"
+      }
+    },
+    "T22V3::SIDE263::S21@1": {
+      "links": [
+        {
+          "claim": "Combine normalized trigonometric limits with domain control.",
+          "task": "main",
+          "publicRequest": "In radians, find lim_(x→0) sin(5x)/sin(2x). Rewrite using the proved sin t/t limit, justify that the denominator is nonzero on some punctured neighborhood, and explain why a degree-based version of sin t/t would not have limit1.",
+          "rubricEvidence": [
+            "Rewrites normalized factors and obtains5/2.",
+            "Justifies a punctured neighborhood with nonzero denominator."
+          ]
+        },
+        {
+          "claim": "Respect radian scaling.",
+          "task": "main",
+          "publicRequest": "In radians, find lim_(x→0) sin(5x)/sin(2x). Rewrite using the proved sin t/t limit, justify that the denominator is nonzero on some punctured neighborhood, and explain why a degree-based version of sin t/t would not have limit1.",
+          "rubricEvidence": [
+            "Explains the radian conversion factorπ/180 for degrees."
+          ]
+        },
+        {
+          "claim": "Use geometric squeeze without circular reasoning.",
+          "task": "transfer",
+          "publicRequest": "Without derivatives or assuming cosine continuity, prove (1-cos h)/h→0 as h→0 using unit-circle algebra and the geometric inequality. Then decide whether sin(1/h) itself has a limit at0 by constructing two sequences of nonzero inputs approaching0 with different outputs.",
+          "rubricEvidence": [
+            "Proves the vanishing bound using geometry and the identity without circular continuity."
+          ]
+        },
+        {
+          "claim": "Refute a function limit along approaching sequences.",
+          "task": "transfer",
+          "publicRequest": "Without derivatives or assuming cosine continuity, prove (1-cos h)/h→0 as h→0 using unit-circle algebra and the geometric inequality. Then decide whether sin(1/h) itself has a limit at0 by constructing two sequences of nonzero inputs approaching0 with different outputs.",
+          "rubricEvidence": [
+            "Constructs two approaching input sequences with distinct outputs and explains why they refute a limit."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver citing cosine continuity without foundation misses Transfer bound requirement; assumingboundedoscillationconvergesfails itssecondpart.",
+      "lessonSha256": "2a2d48696bcdfdb54521cb60d784ccae697334b59b7c0bc69989f2119bd873ba",
+      "assessmentSha256": {
+        "main": "81b6b838ea444b6345ad3a9dd603c232f6e7a42356d147ce83c5975f0d2a7f04",
+        "transfer": "e328ff8101ef4292c302f4be07f53c0d32d8d3f128c851d255891b0c6738d8ea"
+      }
+    },
+    "T22V3::SIDE263::S22@1": {
+      "links": [
+        {
+          "claim": "Certify finite end limits with one error bound.",
+          "task": "main",
+          "publicRequest": "Find the limits of f(x)=(3x²-2x+1)/(x²+4) as x→+∞ and x→-∞. Derive a bound on |f(x)-3| for |x|≥1 and give a sufficient R(ε) that works for both tails.",
+          "rubricEvidence": [
+            "Finds both end limits3.",
+            "Derives a valid common-tail error bound.",
+            "Gives a sufficient threshold with strict output control."
+          ]
+        },
+        {
+          "claim": "Retain principal-root sign on negative inputs.",
+          "task": "transfer",
+          "publicRequest": "Evaluate √(9x²+x)/x at both infinite ends. Explain the domain on those tails and diagnose the result of factoring x rather than |x| from the square root.",
+          "rubricEvidence": [
+            "Checks tail domains and derives the absolute-value factorization.",
+            "Obtains limits3 and-3 and diagnoses the sign error."
+          ]
+        }
+      ],
+      "wrongSolver": "Formal leading-term cancellation without absolutevalue fails negative-tailTransfer.",
+      "lessonSha256": "b683242762e96ffd2494e05eefa5d257e6f207e83d1bfddd6731c2bad62d2214",
+      "assessmentSha256": {
+        "main": "80caa51d96a531235672a0e4786e1b454dc068d62219ea4e58d39e2501f226f8",
+        "transfer": "34af09b84c6e5f2d15b46e79487a8837f83cb7500b8668f8663083b96179aff3"
+      }
+    },
+    "T22V3::SIDE263::S23@1": {
+      "links": [
+        {
+          "claim": "Prove a local infinite limit with quantifiers.",
+          "task": "main",
+          "publicRequest": "Prove f(x)=5/(x+2)² tends to+∞ as x→-2 using an explicit δ(M). Does defining f(-2)=0 change the infinite-limit statement? Explain.",
+          "rubricEvidence": [
+            "Chooses a positive δ and proves the strict threshold implication."
+          ]
+        },
+        {
+          "claim": "Ignore isolated point changes in punctured behavior.",
+          "task": "main",
+          "publicRequest": "Prove f(x)=5/(x+2)² tends to+∞ as x→-2 using an explicit δ(M). Does defining f(-2)=0 change the infinite-limit statement? Explain.",
+          "rubricEvidence": [
+            "Explains why the assigned point value is irrelevant."
+          ]
+        },
+        {
+          "claim": "Audit the signs and guarantees of a vertical asymptote.",
+          "task": "transfer",
+          "publicRequest": "A graphing program labels x=1 a “+∞ limit” for g(x)=(x+1)/(x-1). Determine both one-sided behaviors and whether that two-sided label is valid. Give a neighborhood argument ensuring a positive numerator and an explicit sufficient δ(M) on each side.",
+          "rubricEvidence": [
+            "Determines left-∞ and right+∞ and rejects the two-sided label.",
+            "Uses a positive numerator bound and sufficient deltas to justify both behaviors."
+          ]
+        }
+      ],
+      "wrongSolver": "A graph-only orunsignedmagnitudeanswer fails side-specificthresholds.",
+      "lessonSha256": "72137988e2a2c81356493c9cd6ec019a64c4f81491c2ad0583559ae166f90c7e",
+      "assessmentSha256": {
+        "main": "8dee0c7f9292b16b69a8ae3fc87d2ba6b96ae906e1ab17fa352d9971a6c8b731",
+        "transfer": "29a63c0f929491b5430f4e065b5aa31c4bcca5038b947cb4a208ef7cd42e1154"
+      }
+    },
+    "T22V3::SIDE263::S24@1": {
+      "links": [
+        {
+          "claim": "Construct a unique continuous extension through a hole.",
+          "task": "main",
+          "publicRequest": "Define f(x)=(x²-4)/(x-2) for x≠2 and f(2)=c. Find exactly which c makes f continuous at2, justify the extension, and state whether f is continuous at every real input for that c.",
+          "rubricEvidence": [
+            "Derives the finite limit4 and the unique matching c.",
+            "Justifies continuity of the resulting function at every real input."
+          ]
+        },
+        {
+          "claim": "Apply continuity relative to endpoint domains.",
+          "task": "transfer",
+          "publicRequest": "Let g be defined on[0,2] by g(0)=0, g(x)=x for0<x<1, and g(x)=x+1 for1≤x≤2. Decide continuity at0,1,2 using the appropriate limits. Can changing only g(1) make the function continuous throughout[0,2]? Explain.",
+          "rubricEvidence": [
+            "Correctly checks both endpoints with relative one-sided continuity."
+          ]
+        },
+        {
+          "claim": "Distinguish removable holes from jumps.",
+          "task": "transfer",
+          "publicRequest": "Let g be defined on[0,2] by g(0)=0, g(x)=x for0<x<1, and g(x)=x+1 for1≤x≤2. Decide continuity at0,1,2 using the appropriate limits. Can changing only g(1) make the function continuous throughout[0,2]? Explain.",
+          "rubricEvidence": [
+            "Diagnoses the jump at1 and proves a single-value repair cannot fix it."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver demandingtwo-sidedendpointinputs wronglyfails0/2; a point-onlyrepair fails thejump.",
+      "lessonSha256": "f1bcfcf1d1cf22ea447382ada7b658ee582483355e7de71b376b503c048d5b6b",
+      "assessmentSha256": {
+        "main": "627fee95e8c2ff8ac6c717a1e4a4d5de4bd6732dbc7ed24c02cd52654062756b",
+        "transfer": "bc0e3a24e2a3aa7a4f68ff9d25950b928bc751339baf0c3b9b59b53759857c03"
+      }
+    },
+    "T22V3::SIDE263::S25@1": {
+      "links": [
+        {
+          "claim": "Separate IVT existence from uniqueness.",
+          "task": "main",
+          "publicRequest": "For f(x)=x³-2 on[1,2], justify existence and uniqueness of a root without derivatives. Carry out two bisection halvings, report the resulting bracket and its midpoint, and certify a midpoint absolute-error bound.",
+          "rubricEvidence": [
+            "Justifies existence with continuity/signs and uniqueness with a valid algebraic argument."
+          ]
+        },
+        {
+          "claim": "Maintain a sign bracket and certify midpoint error.",
+          "task": "main",
+          "publicRequest": "For f(x)=x³-2 on[1,2], justify existence and uniqueness of a root without derivatives. Carry out two bisection halvings, report the resulting bracket and its midpoint, and certify a midpoint absolute-error bound.",
+          "rubricEvidence": [
+            "Correctly performs two sign tests and reports bracket[5/4,3/2].",
+            "Gives midpoint11/8 and certified error≤1/8."
+          ]
+        },
+        {
+          "claim": "Reject bisection across a domain gap.",
+          "task": "transfer",
+          "publicRequest": "A team applies bisection to h(x)=1/x on[-1,1] because its endpoint signs differ. Explain why no root is guaranteed and what goes wrong at the first midpoint. Separately, a valid continuous-root bracket starts with width10: find the least number k of halvings guaranteeing midpoint error≤0.01 using the width bound, and justify minimality.",
+          "rubricEvidence": [
+            "Identifies the continuity/domain failure and illegal first midpoint."
+          ]
+        },
+        {
+          "claim": "Choose a least iteration count for a guarantee.",
+          "task": "transfer",
+          "publicRequest": "A team applies bisection to h(x)=1/x on[-1,1] because its endpoint signs differ. Explain why no root is guaranteed and what goes wrong at the first midpoint. Separately, a valid continuous-root bracket starts with width10: find the least number k of halvings guaranteeing midpoint error≤0.01 using the width bound, and justify minimality.",
+          "rubricEvidence": [
+            "Derives least k=9 from the midpoint bound and adjacent powers."
+          ]
+        }
+      ],
+      "wrongSolver": "Sign-onlyreasoning fails discontinuousTransfer; reportingbracketwidthaserrorfails Mainandcount.",
+      "lessonSha256": "31b7c3b4d1661884b370ac90fca9eba62763c1e03336be35d4a1aafa0d872153",
+      "assessmentSha256": {
+        "main": "324d76e2ddb8a3b7199dae58e3f26948457b44bd3e21f39a51d9a3cd923347da",
+        "transfer": "b33debe58a8a0d936b27df65ae1780036a8e89b202c26d229bfc122b357e8b40"
+      }
+    },
+    "T22V3::SIDE263::S26@1": {
+      "links": [
+        {
+          "claim": "Apply EVT and locate extrema by algebra.",
+          "task": "main",
+          "publicRequest": "For f(x)=7-(x+1)² on[-3,2], verify the EVT hypotheses and find the attained maximum and minimum with their inputs using algebra, not derivatives. Then decide which extrema remain attained if the domain is changed to(-3,2), explaining any missing extremum.",
+          "rubricEvidence": [
+            "Checks EVT hypotheses.",
+            "Derives both closed-interval extrema and attaining inputs."
+          ]
+        },
+        {
+          "claim": "Distinguish attainment from a limiting bound.",
+          "task": "main",
+          "publicRequest": "For f(x)=7-(x+1)² on[-3,2], verify the EVT hypotheses and find the attained maximum and minimum with their inputs using algebra, not derivatives. Then decide which extrema remain attained if the domain is changed to(-3,2), explaining any missing extremum.",
+          "rubricEvidence": [
+            "Correctly diagnoses the open-interval maximum and unattained infimum."
+          ]
+        },
+        {
+          "claim": "Avoid converses not supplied by an existence theorem.",
+          "task": "transfer",
+          "publicRequest": "Refute each statement with a function and its domain, justifying the extrema behavior: (i) every bounded continuous function attains a maximum; (ii) a function on an open interval cannot attain both a maximum and a minimum. Explain what EVT actually permits you to conclude when a hypothesis fails.",
+          "rubricEvidence": [
+            "Gives a valid bounded continuous nonattainment example.",
+            "Gives a valid open-interval attainment example.",
+            "Explains the one-way nature of the theorem."
+          ]
+        }
+      ],
+      "wrongSolver": "“Open means noextrema” failsbothMainmaximumandTransferconstantcase.",
+      "lessonSha256": "ac64b5c422b86371b292336b1591fe2c3b88b5e64b6e11b128c21a723fcaa64d",
+      "assessmentSha256": {
+        "main": "415bd980d96454adcb5ff2e8cda8009930e18eebb08d4efc547afeb0b4405acb",
+        "transfer": "5351f566c596ed671701821c580b1a15c0b33357e0b8aa2db302a32055ee470c"
+      }
+    },
+    "T22V3::SIDE263::S27@1": {
+      "links": [
+        {
+          "claim": "Connect a continuous extension to an indexed approximation.",
+          "task": "main",
+          "publicRequest": "A calibration family is F(h)=(√(16+h)-4)/h for h≠0 with h≥-16. Find its continuous extension at0. For the readings a_n=F(1/n), prove convergence, determine whether they approach the limit from above or below, and derive an explicit all-n error bound yielding a sufficient N(ε). State the domains used.",
+          "rubricEvidence": [
+            "Finds and justifies the continuous extension1/8 with legal domains."
+          ]
+        },
+        {
+          "claim": "Certify direction and accuracy rather than only a limit.",
+          "task": "main",
+          "publicRequest": "A calibration family is F(h)=(√(16+h)-4)/h for h≠0 with h≥-16. Find its continuous extension at0. For the readings a_n=F(1/n), prove convergence, determine whether they approach the limit from above or below, and derive an explicit all-n error bound yielding a sufficient N(ε). State the domains used.",
+          "rubricEvidence": [
+            "Establishes the sequence approaches from below and derives a valid error bound.",
+            "Gives an all-tail cutoff and a convergence argument."
+          ]
+        },
+        {
+          "claim": "Distinguish sampled evidence from continuity and uniqueness.",
+          "task": "transfer",
+          "publicRequest": "A function H onR satisfies H(0)=0 and H(1/n)=1/n for every integer n≥1. A report concludes H is continuous at0 and that x=0 is its only zero near0. Construct one H consistent with the data for which both conclusions hold, and another for which both fail. Justify all four conclusions. Explain what kind of all-input information is missing from the report.",
+          "rubricEvidence": [
+            "Constructs a consistent function with continuity and a unique local zero, justifying both.",
+            "Constructs a consistent function failing continuity and local uniqueness, justifying both.",
+            "Explains the missing all-input and uniqueness information."
+          ]
+        }
+      ],
+      "wrongSolver": "A solver checkingthe1/npathonlycannot distinguishTransferextensions. Mainforcesactualerrorbound, notcandidate-onlysubstitution.",
+      "lessonSha256": "7fc975508f81216d54c6782a69d9231934695ffac2229fb985ef220da90fb46a",
+      "assessmentSha256": {
+        "main": "a131c1598d322cc0d47c0dab2f14b22421001e492e6c24b1b3f0abed4adeab72",
+        "transfer": "4792f123d85eaca517b34ebf62e1689907ba040be684628fd9bc725e186df45f"
+      }
+    }
+  }
+}

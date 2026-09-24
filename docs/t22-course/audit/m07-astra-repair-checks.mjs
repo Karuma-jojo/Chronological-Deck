@@ -104,8 +104,9 @@ for(const ss of a.sessions)for(const kind of ['main','transfer']){
  const round=validateEvidence({...emptyEvidence(),attempts:[prior]},a);
  assert.equal(round.attempts.length,1,'Old evidence must be retained even when stale');
 }
+const cleanupContracts=new Set(a.crossModulePrerequisiteCleanup?.changedContractSessionIds||[]);
 for(const ss of a.sessions){
- const shouldChange=a.repairVersionAudit.changedContractSessionIds.includes(ss.id);
+ const shouldChange=a.repairVersionAudit.changedContractSessionIds.includes(ss.id)||cleanupContracts.has(ss.id);
  assert.equal(ss.contractHash!==baseline.contractHashes[ss.id],shouldChange,`contract hash ${ss.id}`);
 }
 

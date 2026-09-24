@@ -664,7 +664,7 @@
       "entryPrerequisites": [
         "M04-S09",
         "M04-S07",
-        "M03-S17 partitions/disjoint unions"
+        "M03-S17 set operations; JIT disjoint/exhaustive partition definition in this lesson"
       ],
       "requiredOwnership": [
         "Identify a finite partition.",
@@ -4145,8 +4145,8 @@
         "source": "M04-S07"
       },
       {
-        "item": "disjoint partition logic",
-        "source": "M03-S17/S22"
+        "item": "disjoint/exhaustive partition logic",
+        "source": "M03-S17 set operations + JIT partition definition in M04-S18"
       }
     ],
     "S19": [
@@ -4578,5 +4578,14 @@
       }
     }
   },
-  "authoringPolicy": "Original T22 Elite M04 material, repaired under M04 Astra findings. Every session teaches before testing with surface-distinct examples; claim observability is manually task/rubric pinned rather than positionally inferred. Conditional denominators, independence assumptions and expectation interpretation are explicit. M05/M06/M26 boundaries remain closed."
+  "authoringPolicy": "Original T22 Elite M04 material, repaired under M04 Astra findings. Every session teaches before testing with surface-distinct examples; claim observability is manually task/rubric pinned rather than positionally inferred. Conditional denominators, independence assumptions and expectation interpretation are explicit. M05/M06/M26 boundaries remain closed.",
+  "crossModulePrerequisiteCleanup": {
+    "version": "m01-m08-prerequisite-cleanup-2026-09-24",
+    "scope": "Cross-module prerequisite/JIT micro-repairs only; no fixed assessment prompt, rubric, obligationVersion or stable task/session ID changed.",
+    "changedContractSessionIds": [
+      "T22V3::ARC048::S18@1"
+    ],
+    "lessonOnlySessionIds": [],
+    "fixedAssessmentChanges": []
+  }
 }

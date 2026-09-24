@@ -557,7 +557,7 @@
       "principalObstacle": "Bid and ask are easily reversed, while the midquote is incorrectly treated as a guaranteed executable price.",
       "entryPrerequisites": [
         "M07-S02 quote vocabulary",
-        "M01 averages/subtraction"
+        "M01 subtraction/arithmetic; JIT midquote average in this lesson"
       ],
       "requiredOwnership": [
         "Identify bid as the displayed buy-side price and ask as the displayed sell-side price from the market's perspective.",
@@ -762,7 +762,7 @@
       "principalObstacle": "An unweighted average of fill prices ignores that different fills may contain different quantities.",
       "entryPrerequisites": [
         "M07-S17 partial fills",
-        "M01 weighted averages/arithmetic"
+        "M01 multiplication/division arithmetic; JIT quantity-weighted average formula in this lesson"
       ],
       "requiredOwnership": [
         "Compute total filled quantity from multiple fills.",
@@ -4192,8 +4192,8 @@
         "source": "M07-S02"
       },
       {
-        "item": "M01 averages/subtraction",
-        "source": "M01"
+        "item": "M01 subtraction/arithmetic + JIT midquote average",
+        "source": "M01 arithmetic; midpoint average formula taught in M07-S13"
       }
     ],
     "S14": [
@@ -4242,8 +4242,8 @@
         "source": "M07-S17"
       },
       {
-        "item": "M01 weighted averages/arithmetic",
-        "source": "M01"
+        "item": "M01 multiplication/division arithmetic + JIT quantity-weighted average",
+        "source": "M01 arithmetic; weighted-average formula taught in M07-S18"
       }
     ],
     "S19": [
@@ -4656,5 +4656,15 @@
       "T22V3::T22E-MKT01::S10@1"
     ],
     "policy": "Stable IDs and chrono_t22_elite_course_evidence_v1 are retained. Materially changed prompt/evaluator contracts are obligationVersion2 and old attempts become stale under fingerprints. Narrowed ownership contracts generate new session contract hashes. Historical solved lesson exposure is timestamp-migrated; unsolved S03→S04 practice overlap is not promoted to a reveal. No old evidence is silently recertified."
+  },
+  "crossModulePrerequisiteCleanup": {
+    "version": "m01-m08-prerequisite-cleanup-2026-09-24",
+    "scope": "Cross-module prerequisite/JIT micro-repairs only; no fixed assessment prompt, rubric, obligationVersion or stable task/session ID changed.",
+    "changedContractSessionIds": [
+      "T22V3::T22E-MKT01::S13@1",
+      "T22V3::T22E-MKT01::S18@1"
+    ],
+    "lessonOnlySessionIds": [],
+    "fixedAssessmentChanges": []
   }
 }

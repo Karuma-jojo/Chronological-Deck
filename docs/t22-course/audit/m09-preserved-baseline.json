@@ -1,0 +1,21 @@
+{
+  "remoteBase": "de020e0e7a3a37d62b0d7570512be46755b70ec2",
+  "files": {
+    "course/t22/generated/m01-001-005.json": "eb268e5da9399ef35e026404ee1fb33fa7799057214f033eff2f65a3fd71621b",
+    "course/t22/generated/m01-016-017.json": "7368a1496f8f2add7d3103fb9973384203757d700995b5d6adeeec0f17d6be5f",
+    "course/t22/generated/eval-m01-016-017.json": "76b3c4cf45859a6c4478551f96e2a18f13fdb217e1e42011eadb412143760fc2",
+    "course/t22/generated/eval-m01-011-015.json": "9fa488cf2a60fb741c8cb650fb9952ce91e8ab4270e723c8ade127e0a3eb90a4",
+    "course/t22/generated/m01-006-010.json": "cf44123afbbb3b66234613a05fc29fbf5ae71e582d44b5f2829b3857f7b662b8",
+    "course/t22/generated/eval-m01-006-010.json": "c19d6f95688f9e60f312a6dd60f313b2066bf6477226de6f120b09717ba069ca",
+    "course/t22/generated/m01-011-015.json": "e067e5ba31b1846b5fc40154323ee5f29648f688ece9a4d7ce5940910ae9734f",
+    "course/t22/generated/eval-m01-001-005.json": "b3f93989368259f3898728399e153f8ec3570021f8ef743ffa6c64b31f581575",
+    "course/t22/authoring/m06.json": "65badb40514aa55c483175c673facfaa21fedce04057b9a8dbe7295008ba93cc",
+    "course/t22/authoring/m05.json": "117751c09d0b0d32528674740cb79227fa4b5db57df530f58095c86dc0e6f513",
+    "course/t22/authoring/m03.json": "a3af5537582fd8a2ca3973267aa0cfec4c768613bf79f43e6ca1fb76431ca283",
+    "course/t22/authoring/m07.json": "38a4b2c91753c7ac6451adad34a5d1797f7f1eb6811c8332ab0d049fdcdd397c",
+    "course/t22/authoring/m04.json": "56c0352b072761323b51e0857fefa46cb703468229fdb4cabb09e401556527e2",
+    "course/t22/authoring/m02.json": "5bfcceb15f158333e4d5f56c4ebb8f90ee1253e7917bf78da628c5c773be533b",
+    "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
+    "course/t22/authoring/m01-repairs-1.1.json": "150ef06bdc71198164713d361f2b04f73c866c5d48916e97ce1df962b153ec54"
+  }
+}

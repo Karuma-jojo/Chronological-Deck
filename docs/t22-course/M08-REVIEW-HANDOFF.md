@@ -1,10 +1,10 @@
-# M08 Review Handoff — Independent Repair Candidate
+# M08 Review Handoff — Independently Accepted / Frozen
 
 Date: 2026-09-24  
 Repository: `Karuma-jojo/Chronological-Deck`  
 Branch: `codex/t22-pedagogical-rebuild`  
 Module: M08 · `T22E-CODE01` — Quant Programming & Simulation Foundations  
-Current status: **independent-review repaired; 25-session sizing route fully green; bounded follow-up pending**  
+Current status: **INDEPENDENTLY ACCEPTED / FROZEN after bounded follow-up**  
 Stop boundary: **M09 remains closed**
 
 ## Why this handoff changed
@@ -128,3 +128,21 @@ M09 remains closed.
 ## Session-sizing addendum
 
 `M08-SESSION-SIZING-AUDIT.md` is the authority for the **25 sessions; add one, merge none** decision. Existing stable IDs from old S03 onward were intentionally retained; visible order alone shifts by one, avoiding unnecessary evidence-identity churn. The new floating-point session uses stable ID `T22V3::T22E-CODE01::S02F@1`.
+
+
+## Final bounded follow-up acceptance — 2026-09-24
+
+The post-sizing follow-up found concrete defects rather than rubber-stamping the published candidate. Those bounded repairs are recorded in `M08-INDEPENDENT-FOLLOWUP.md` and `M08-RESOLUTION.md`.
+
+Validated repair head: `f048a93b8cf0fff8bcd915437b8ba2ec8bacefd5`  
+T22 Elite Actions run: `35970605448`  
+Job: `107539182656`  
+Result: **SUCCESS**
+
+The inspected run completed syntax, structural/pedagogy/semantic/evidence regressions, M08 executable Python oracles, the M08-specific stale-fingerprint/stable-ID provenance regression, Chromium installation and the real eight-module browser evidence workflow.
+
+Final disposition: **M08 INDEPENDENTLY ACCEPTED / FROZEN.**  
+M09 remains **CLOSED**.  
+No accepted M01–M06 content, M07 state, T25, SMMC or legacy evidence namespace was changed by this follow-up.
+
+The accepted/frozen state is on `codex/t22-pedagogical-rebuild`. The previously published `main` baseline `2f8bd161fc9b9a0163713ed0c7f4341879b47419` does not yet contain these bounded follow-up repairs; publication is a separate action.
