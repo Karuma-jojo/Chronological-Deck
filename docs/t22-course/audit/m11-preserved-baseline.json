@@ -81,12 +81,12 @@
     "docs/t22-course/audit/m08-independent-oracles.mjs": "4cfabd884f15c9a8519e22ed1421e017c1bef04a",
     "docs/t22-course/audit/m08-semantic-contract.json": "94377eeeeff71e41f3680b9e2efc9dc505728dcc",
     "docs/t22-course/audit/m09-math-checks.mjs": "0884736209393d72c5cc05cc5cc1ceac4eb94b89",
-    "docs/t22-course/audit/m09-preserved-baseline.json": "73ab77fcfe6721b8a4711d6cac178b40723a5fef",
+    "docs/t22-course/audit/m09-preserved-baseline.json": "27327e6613e0c715dede06385041ad6e9ac0f30b",
     "docs/t22-course/audit/m09-semantic-contract.json": "60d7282b1e8335f90a79d713fe4e8ca8ad7527f6",
     "docs/t22-course/audit/m09-validation-receipt.json": "b161b49568ad2d6c65d44c4d309920d1f5afd16d",
     "docs/t22-course/audit/m10-math-checks.mjs": "0c74b0943d204741019bbd4b2bf2b51d1c2c5c1e",
     "docs/t22-course/audit/m10-ownership-audit.json": "c62b8adec413da5667129bd29f4311adc34d19d7",
-    "docs/t22-course/audit/m10-preserved-baseline.json": "93310ecaff50c16f98153bc649f1bc755489d45c",
+    "docs/t22-course/audit/m10-preserved-baseline.json": "a546d08e67c7e5f0764552f99b9bb8fb4e72ce60",
     "docs/t22-course/audit/m10-semantic-contract.json": "7dc3965cc3531e6566ea688a359791f0b53cc451",
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
@@ -108,6 +108,7 @@
   },
   "authorizedM07Retrofit": {
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
-    "reason": "Later user-authorized M07-only v1.1 retrofit. Rebase only the explicitly changed M07 canonical/audit/test surfaces and add its new design gate; all unrelated M01-M10/runtime blobs stay pinned."
+    "reason": "Later user-authorized M07-only v1.1 retrofit. Rebase only the explicitly changed M07 canonical/audit/test surfaces and add its new design gate; all unrelated M01-M10/runtime blobs stay pinned.",
+    "baselineLedgerPropagation": "M09 and M10 preservation ledgers were themselves updated only to pin the authorized new M07 hash; their new blob IDs are therefore pinned here too."
   }
 }
