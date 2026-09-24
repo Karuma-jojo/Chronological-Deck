@@ -242,12 +242,28 @@ Bounded repair:
 
 This is a reusable downstream-safe preservation rule rather than weakening the M10 guard.
 
+## Independent adversarial audit repair
+
+A later independent adversarial audit of live head `004015564a149a88b16b3495dd6be8d8e688f000` found bounded defects that the first green builder suite missed.
+
+Repairs:
+- **M12-A01:** corrected S01 worked-example values from `1,1,8,24,24` to `0,1,8,24,24`;
+- **M12-A02/A05:** narrowed seven ownership rows to what their public tasks literally observe; no fixed assessment was enlarged;
+- **M12-A03:** added `m12-instruction-math-checks.mjs`, an executable 19/19 lesson-level mathematics/hypothesis audit;
+- **M12-A04:** made the S17 flat-function induction explicit at the derivative-at-zero difference quotient.
+
+This exposed an important checker distinction: `m12-math-checks.mjs` certifies the **38 assessment references**; it does not by itself certify every mathematical statement shown in instruction. The new instructional checker closes that defect class and is mandatory in the full T22 workflow.
+
+The 19-session architecture, all 38 fixed tasks, formal prerequisites and future boundary remain unchanged.
+
+See `docs/t22-course/M12-RESOLUTION.md` for the exact dispositions.
+
 ## Remaining status
 
 Mathematics/structure/semantic/browser verification is clean at the implementation checkpoint.
 
 Still required before independent acceptance:
-- final canonical-state/handoff commit and green exact-head workflow;
-- separate independent pedagogical review if the acceptance process requires it.
+- green exact-head workflow with the expanded instructional-math checker;
+- focused independent confirmation of S01, the seven narrowed ownership rows, S17, and the new checker.
 
 M13 remains closed.
