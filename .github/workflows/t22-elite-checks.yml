@@ -40,8 +40,10 @@ jobs:
           node --check scripts/test-t22-elite-m06.mjs
           node --check scripts/test-t22-elite-m07.mjs
           node --check scripts/test-t22-elite-m09.mjs
+          node --check scripts/test-t22-elite-m10.mjs
           node --check scripts/test-t22-elite-m09-browser.mjs
           node --check docs/t22-course/audit/m09-math-checks.mjs
+          node --check docs/t22-course/audit/m10-math-checks.mjs
           node --check scripts/test-t22-elite-m08.mjs
           node --check scripts/test-t22-elite-m05-m06-repairs.mjs
           node --check scripts/test-t22-elite-repair-browser.mjs
@@ -75,7 +77,9 @@ jobs:
           node scripts/test-t22-elite-m06.mjs
           node scripts/test-t22-elite-m07.mjs
           node scripts/test-t22-elite-m09.mjs
+          node scripts/test-t22-elite-m10.mjs
           node docs/t22-course/audit/m09-math-checks.mjs
+          node docs/t22-course/audit/m10-math-checks.mjs
           node scripts/test-t22-elite-m08.mjs
           node scripts/test-t22-elite-m05-m06-repairs.mjs
           node docs/t22-course/audit/m05-m06-transfer-math.mjs
