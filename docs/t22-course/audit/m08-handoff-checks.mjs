@@ -16,7 +16,7 @@ const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 
 assert.equal(a.module.id,'T22E-CODE01');
-assert.equal(a.module.status,'session-sizing-rebalanced-25-fully-authored-awaiting-verification');
+assert.equal(a.module.status,'session-sizing-rebalanced-25-fully-green-awaiting-bounded-followup');
 assert.equal(a.sessions.length,25);
 assert.equal(Object.keys(a.problems).length,50);
 assert.equal(Object.keys(a.evaluators).length,50);
