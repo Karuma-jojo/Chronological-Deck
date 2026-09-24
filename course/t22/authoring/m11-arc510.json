@@ -7,7 +7,7 @@
     "title": "Integration & Accumulation",
     "status": "publication-candidate-independent-review-repaired",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
-    "gate": "M11's 20 design-derived sessions and bounded independent-review repairs have passed the full structural, semantic/evidence, independent-math and browser suite. It is registered in the shared route for publication through M12; this does not claim learner mastery.",
+    "gate": "All 20 design-derived sessions and the bounded independent-review repairs have passed the full structural, semantic/evidence, independent-math and browser suite. M11 is registered in the shared route for publication through M12; this does not claim learner mastery.",
     "nextBoundary": "M12 owns Taylor approximation, deterministic asymptotic notation and Taylor-series representation. M11 remains an integration/accumulation module and does not import M12 machinery backward."
   },
   "boundary": {
