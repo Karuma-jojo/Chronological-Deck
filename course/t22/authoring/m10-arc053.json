@@ -5,10 +5,10 @@
     "order": 10,
     "id": "ARC053",
     "title": "Derivatives & Local Linearity",
-    "status": "authored-semantic-repair-builder-candidate-unpublished",
+    "status": "publication-candidate-semantic-repair-verified",
     "destination": "Construct the one-variable derivative from M09 limits; interpret it as tangent/rate and first-order local linearity; derive and audit the core algebraic, trigonometric, inverse/implicit, exponential and logarithmic differentiation machinery without importing M11/M12/later applications.",
-    "gate": "Builder verification and this semantic/evidence repair are not independent pedagogical acceptance or learner mastery. Only literally observable ownership claims are retained. M10 remains intentionally unregistered in the shared nine-module runtime while M01–M09 are preserved.",
-    "nextBoundary": "M11 owns integration and accumulation. M12 owns higher-order/Taylor/asymptotic structure. Full MVT/optimization/multivariable/numerical differentiation remain outside M10."
+    "gate": "M10 has completed builder verification plus the later semantic/evidence repair and is now registered in the shared route for publication through M12. This publication status does not claim learner mastery or an external independent certification. Earlier M01–M09 evidence identities remain unchanged.",
+    "nextBoundary": "M11 owns integration and accumulation. M12 owns higher-order/Taylor/asymptotic structure. Full optimization, multivariable and numerical differentiation remain outside M10."
   },
   "boundary": {
     "prerequisiteModules": [
