@@ -1046,7 +1046,7 @@
       "id": "T22V3::ARC053::S06-M@1",
       "order": 6,
       "kind": "main",
-      "prompt": "Assume f'(a)=L exists as a finite number. Let (x_n) be any sequence with x_n→a and x_n≠a. Show from the derivative information that f(x_n)→f(a) by factoring f(x_n)-f(a). Explain why this sequential conclusion establishes continuity at a using M09's limit machinery.",
+      "prompt": "Assume f'(a)=L exists as a finite number. Give a direct epsilon-delta proof that f is continuous at a by first using the derivative limit to bound the nearby difference quotient by some finite constant. Your proof must produce a delta for an arbitrary output tolerance ε>0.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S06-T@1": {
@@ -1491,19 +1491,19 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S06-M@1": {
-      "reference": "For every n, f(x_n)-f(a)=(x_n-a)·[(f(x_n)-f(a))/(x_n-a)]. Since x_n→a, the first factor tends to 0. Because the derivative limit is L, the quotient along every such approaching sequence tends to L. The product therefore tends to 0, so f(x_n)→f(a). This holds for every sequence approaching a (with occurrences of a themselves harmless), which is the sequential form of continuity at a.",
+      "reference": "Let Q(h)=[f(a+h)-f(a)]/h for h≠0. Since Q(h)→L, choose δ0>0 so that 0<|h|<δ0 implies |Q(h)-L|<1; then |Q(h)|≤|L|+1=:M. If M=0 the increment is already zero nearby; otherwise, for ε>0 choose δ=min(δ0,ε/M). When |h|<δ, |f(a+h)-f(a)|=|h||Q(h)|≤M|h|<ε. Thus f(a+h)→f(a), proving continuity at a.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Uses the exact factorization of the function increment along x_n."
+          "criterion": "Uses convergence of the derivative quotient to obtain a finite local bound such as |Q(h)|≤|L|+1."
         },
         {
           "points": 3,
-          "criterion": "Combines x_n-a→0 with the derivative quotient tending to finite L."
+          "criterion": "Chooses a delta depending on ε and the quotient bound, while retaining the neighborhood where that bound is valid."
         },
         {
           "points": 4,
-          "criterion": "Concludes f(x_n)→f(a) for arbitrary approaches and connects this to continuity rather than merely checking examples."
+          "criterion": "Shows |f(a+h)-f(a)|<ε for all sufficiently small h and concludes continuity with correct quantifier direction."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -2605,17 +2605,17 @@
       {
         "claim": "Prove differentiability at a point implies continuity there.",
         "task": "main",
-        "publicRequest": "Assume f'(a)=L exists as a finite number. Let (x_n) be any sequence with x_n→a and x_n≠a. Show from the derivative information that f(x_n)→f(a) by factoring f(x_n)-f(a). Explain why this sequential conclusion establishes continuity at a using M09's limit machinery.",
+        "publicRequest": "Assume f'(a)=L exists as a finite number. Give a direct epsilon-delta proof that f is continuous at a by first using the derivative limit to bound the nearby difference quotient by some finite constant. Your proof must produce a delta for an arbitrary output tolerance ε>0.",
         "rubricEvidence": [
-          "Uses the exact factorization of the function increment along x_n."
+          "Uses convergence of the derivative quotient to obtain a finite local bound such as |Q(h)|≤|L|+1."
         ]
       },
       {
         "claim": "Use discontinuity as a valid screen against differentiability.",
         "task": "main+transfer",
-        "publicRequest": "Assume f'(a)=L exists as a finite number. Let (x_n) be any sequence with x_n→a and x_n≠a. Show from the derivative information that f(x_n)→f(a) by factoring f(x_n)-f(a). Explain why this sequential conclusion establishes continuity at a using M09's limit machinery. | Show that g(x)=|x|^(2/3) is continuous at 0 but has no finite derivative there. Use the difference quotient to identify the failure rather than citing a graph.",
+        "publicRequest": "Assume f'(a)=L exists as a finite number. Give a direct epsilon-delta proof that f is continuous at a by first using the derivative limit to bound the nearby difference quotient by some finite constant. Your proof must produce a delta for an arbitrary output tolerance ε>0. | Show that g(x)=|x|^(2/3) is continuous at 0 but has no finite derivative there. Use the difference quotient to identify the failure rather than citing a graph.",
         "rubricEvidence": [
-          "Combines x_n-a→0 with the derivative quotient tending to finite L.",
+          "Chooses a delta depending on ε and the quotient bound, while retaining the neighborhood where that bound is valid.",
           "Analyzes the signed derivative quotient and its unbounded one-sided behavior."
         ]
       },
