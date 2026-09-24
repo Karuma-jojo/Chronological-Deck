@@ -1,11 +1,11 @@
 {
-  "version": "m11-arc510-semantic-repair-v2",
+  "version": "m11-arc510-semantic-repair-v3",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "authored-semantic-audit-in-progress-unpublished",
+    "status": "authored-semantic-audit-repaired-unpublished",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -1044,7 +1044,7 @@
       "id": "T22V3::ARC510::S19-M@1",
       "order": 19,
       "kind": "main",
-      "prompt": "Use comparison, not exact antiderivatives, to decide both integrals. (A) ∫_1^∞ 1/(x²+x)dx. (B) ∫_1^∞ 1/sqrt(x²+1) dx. For each, write a valid inequality and explain which known p-tail controls the conclusion.",
+      "prompt": "Use comparison, not exact antiderivatives, to decide both integrals. (A) ∫_1^∞ 1/(x²+x)dx. (B) ∫_1^∞ 1/sqrt(x²+4) dx. For each, write a valid inequality and explain which known p-tail controls the conclusion.",
       "obligationVersion": 1
     },
     "T22V3::ARC510::S19-T@1": {
@@ -1401,7 +1401,7 @@
       "marking": "No elementary antiderivative exists in the M11 repertoire and none is needed. Equivalent composition notation is accepted."
     },
     "T22V3::ARC510::S09-T@1": {
-      "reference": "With f(t)=ln(1+t²), u(x)=x² and v(x)=2x+1, J'(x)=f(v(x))v'(x)-f(u(x))u'(x)=2ln(1+(2x+1)²)-2x ln(1+x^4). The integrand is continuous for all real t. The symbol t is a dummy variable and the integrand has no x-parameter; the x-dependence is only in the bounds.",
+      "reference": "For the upper limit 2x+1, the endpoint contribution is 2·ln(1+(2x+1)^2). For the lower limit x², orientation contributes -2x·ln(1+x^4). Hence J'(x)=2ln(1+(2x+1)^2)-2xln(1+x^4). The logarithm is legal because 1+t²>0 for every real t. The symbol t is only the integration variable; the integrand contains no independent x-parameter.",
       "rubric": [
         {
           "points": 5,
@@ -1419,7 +1419,7 @@
       "marking": "Accept algebraically equivalent expressions. Do not require the name 'Leibniz rule'; the parameterized-integrand theorem is explicitly out of scope."
     },
     "T22V3::ARC510::S10-M@1": {
-      "reference": "Set H=F-G. Then H is continuous on I, differentiable at every interior point, and H'=F'-G'=0 there. For any u<v in I, the closed segment [u,v] lies in I; H is continuous on [u,v] and differentiable on (u,v), so MVT supplies c∈(u,v) with H(v)-H(u)=H'(c)(v-u)=0. Thus H(v)=H(u) for arbitrary u,v and H is constant on I. Therefore two antiderivatives of the same f on one interval differ by a constant.",
+      "reference": "Let K=F-G. Then K is continuous on I and K' vanishes at every interior point. Choose any u<v in I. The MVT on [u,v] gives a point ξ between them with K(v)-K(u)=(v-u)K'(ξ)=0. Thus K has the same value at every pair of points of I and is constant. Applied to two antiderivatives of the same f, this says their difference is one additive constant on that interval.",
       "rubric": [
         {
           "points": 3,
@@ -1727,7 +1727,7 @@
       "marking": "No probability interpretation is required or allowed. Equivalent shifted-variable reasoning passes."
     },
     "T22V3::ARC510::S18-M@1": {
-      "reference": "For p≠1, ∫_ε^1x^{-p}dx=(1-ε^{1-p})/(1-p). If p<1, 1-p>0 and ε^{1-p}→0, giving 1/(1-p). If p>1, ε^{1-p}→∞ and the positive integral diverges. For p=1, ∫_ε^1dx/x=-ln ε→∞. Thus the endpoint integral converges exactly for p<1, with value 1/(1-p).",
+      "reference": "Use ε>0 and integrate only on [ε,1]. When p≠1, set q=1-p; the truncated value is (1-ε^q)/q. If p<1 then q>0, so ε^q→0 and the limit is 1/q=1/(1-p). If p>1 then q<0 and ε^q grows without bound, so the positive integral diverges. At p=1 the truncation is -ln ε, which also tends to +∞. Therefore the integral is finite exactly for p<1, with value 1/(1-p).",
       "rubric": [
         {
           "points": 3,
@@ -1763,7 +1763,7 @@
       "marking": "Showing both sides diverge is welcome; one divergent side is enough for the final conclusion once the split is stated."
     },
     "T22V3::ARC510::S19-M@1": {
-      "reference": "A: for x≥1, 0≤1/(x²+x)≤1/x². Since the p=2 tail converges, comparison gives convergence. B: for x≥1, sqrt(x²+1)≤sqrt(2)x, so 1/sqrt(x²+1)≥1/(sqrt(2)x). Since the p=1 tail diverges and the target integrand is larger, B diverges.",
+      "reference": "For A and x≥1, 0≤1/(x²+x)≤1/x², so the convergent p=2 tail gives convergence. For B and x≥1, x²+4≤5x², hence sqrt(x²+4)≤sqrt(5)x and therefore 1/sqrt(x²+4)≥1/(sqrt(5)x). The comparison tail is a positive constant multiple of 1/x, which diverges, so B diverges.",
       "rubric": [
         {
           "points": 4,
@@ -1771,7 +1771,7 @@
         },
         {
           "points": 4,
-          "criterion": "Uses 1/sqrt(x²+1)≥1/(sqrt(2)x) and the divergent p=1 tail to conclude B diverges."
+          "criterion": "Uses 1/sqrt(x²+4)≥1/(sqrt(5)x) and the divergent p=1 tail to conclude B diverges."
         },
         {
           "points": 2,
@@ -2723,10 +2723,10 @@
       {
         "claim": "Use the nonnegative improper comparison theorem in the correct convergence/divergence direction.",
         "task": "main",
-        "publicRequest": "Use comparison, not exact antiderivatives, to decide both integrals. (A) ∫_1^∞ 1/(x²+x)dx. (B) ∫_1^∞ 1/sqrt(x²+1) dx. For each, write a valid inequality and explain which known p-tail controls the conclusion.",
+        "publicRequest": "Use comparison, not exact antiderivatives, to decide both integrals. (A) ∫_1^∞ 1/(x²+x)dx. (B) ∫_1^∞ 1/sqrt(x²+4) dx. For each, write a valid inequality and explain which known p-tail controls the conclusion.",
         "rubricEvidence": [
           "Uses 0≤1/(x²+x)≤1/x² and the convergent p=2 tail to conclude A converges.",
-          "Uses 1/sqrt(x²+1)≥1/(sqrt(2)x) and the divergent p=1 tail to conclude B diverges.",
+          "Uses 1/sqrt(x²+4)≥1/(sqrt(5)x) and the divergent p=1 tail to conclude B diverges.",
           "Explains the comparison directions correctly rather than treating any inequality as interchangeable."
         ],
         "escapeAttempt": "Wrong-direction inequalities are the explicit attack and fail these rows.",
@@ -3102,7 +3102,7 @@
       "T22V3::ARC510::S19@1": {
         "main": {
           "classification": "fresh Main evidence",
-          "reason": "Main gives two new comparison problems in opposite logical directions, directly testing inequality selection rather than repeating the lesson examples."
+          "reason": "Main gives two new comparison problems in opposite logical directions; the divergent case now uses 1/sqrt(x²+4), distinct from the lesson's guided example, so method selection is directly tested rather than replayed."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3304,7 +3304,7 @@
       "T22V3::ARC510::S19-M@1": {
         "wrongApproach": "For A infer convergence from being larger than a convergent function, or for B infer divergence from being smaller than a divergent one.",
         "result": "Uses invalid comparison directions and loses the direct criteria.",
-        "validAlternative": "Any valid upper convergent comparison for A and lower divergent comparison for B passes."
+        "validAlternative": "Any valid upper convergent comparison for A and any valid lower divergent comparison for the repaired B integrand 1/sqrt(x²+4) passes."
       },
       "T22V3::ARC510::S19-T@1": {
         "wrongApproach": "Report 0 as the improper integral solely from ∫_{-R}^R=0.",
@@ -3500,7 +3500,8 @@
     "pilot": "S01 only; obligationVersion 1 for both unpublished tasks.",
     "s04EndpointRepair": "S04 pre-publication repair: one exceptional point may be selected as a tag in two adjacent closed subintervals, so the safe bound was corrected from D||P|| to 2D||P||. ObligationVersion remains 1 because M11 is unpublished/unregistered.",
     "fullAuthoring": "20 design-derived sessions authored; global semantic/evidence and mathematical audits still required before handoff.",
-    "semanticRepair": "Global 61-claim audit narrowed S05-C3, S06-C3, S12-C1 and S16-C3 to directly observed capabilities; S10/S11 MVT hypotheses were made endpoint-safe. No claim was retained merely because related mathematics appears."
+    "semanticRepair": "Global 61-claim audit narrowed S05-C3, S06-C3, S12-C1 and S16-C3 to directly observed capabilities; S10/S11 MVT hypotheses were made endpoint-safe. No claim was retained merely because related mathematics appears.",
+    "s19FreshnessRepair": "S19 Main-B was changed from 1/sqrt(x²+1), which duplicated the lesson guided practice, to 1/sqrt(x²+4) with comparison 1/(sqrt(5)x). M11 is unpublished, so obligationVersion remains 1."
   },
   "authoringPolicy": "Original lessons and tasks. Ownership follows literal public/scored actions, never a fixed count. Evidence classes are retrieval, proof reconstruction, fresh Main evidence or changed-surface Transfer. Proofs taught before assessment are reconstruction evidence, not fresh proof evidence. Equivalent valid routes earn full credit. Define notation before use, preserve domains/hypotheses/exceptions, and never use M12+ machinery as a premise.",
   "sourceLedger": {
