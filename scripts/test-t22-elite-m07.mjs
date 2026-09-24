@@ -15,6 +15,8 @@ assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
+assert.deepEqual(a.crossModulePrerequisiteCleanup.changedContractSessionIds,[by(13).id,by(18).id]);
+assert.deepEqual(a.crossModulePrerequisiteCleanup.fixedAssessmentChanges,[]);
 
 const seen=new Set();
 for(let n=1;n<=24;n++){

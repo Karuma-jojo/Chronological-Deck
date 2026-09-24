@@ -4578,5 +4578,14 @@
       }
     }
   },
-  "authoringPolicy": "Original T22 Elite M04 material, repaired under M04 Astra findings. Every session teaches before testing with surface-distinct examples; claim observability is manually task/rubric pinned rather than positionally inferred. Conditional denominators, independence assumptions and expectation interpretation are explicit. M05/M06/M26 boundaries remain closed."
+  "authoringPolicy": "Original T22 Elite M04 material, repaired under M04 Astra findings. Every session teaches before testing with surface-distinct examples; claim observability is manually task/rubric pinned rather than positionally inferred. Conditional denominators, independence assumptions and expectation interpretation are explicit. M05/M06/M26 boundaries remain closed.",
+  "crossModulePrerequisiteCleanup": {
+    "version": "m01-m08-prerequisite-cleanup-2026-09-24",
+    "scope": "Cross-module prerequisite/JIT micro-repairs only; no fixed assessment prompt, rubric, obligationVersion or stable task/session ID changed.",
+    "changedContractSessionIds": [
+      "T22V3::ARC048::S18@1"
+    ],
+    "lessonOnlySessionIds": [],
+    "fixedAssessmentChanges": []
+  }
 }

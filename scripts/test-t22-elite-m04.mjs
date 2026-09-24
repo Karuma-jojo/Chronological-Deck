@@ -41,6 +41,8 @@ assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
+assert.deepEqual(a.crossModulePrerequisiteCleanup.changedContractSessionIds,[by(18).id]);
+assert.deepEqual(a.crossModulePrerequisiteCleanup.fixedAssessmentChanges,[]);
 
 const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 const hashes=new Set();

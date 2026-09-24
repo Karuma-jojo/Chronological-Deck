@@ -5433,5 +5433,19 @@
         ]
       }
     }
+  },
+  "crossModulePrerequisiteCleanup": {
+    "version": "m01-m08-prerequisite-cleanup-2026-09-24",
+    "scope": "Cross-module prerequisite/JIT micro-repairs only; no fixed assessment prompt, rubric, obligationVersion or stable task/session ID changed.",
+    "changedContractSessionIds": [
+      "T22V3::T22E-CODE01::S02@1",
+      "T22V3::T22E-CODE01::S04@1"
+    ],
+    "lessonOnlySessionIds": [
+      "T22V3::T22E-CODE01::S09@1",
+      "T22V3::T22E-CODE01::S11@1",
+      "T22V3::T22E-CODE01::S18@1"
+    ],
+    "fixedAssessmentChanges": []
   }
 }

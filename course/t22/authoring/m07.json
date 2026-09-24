@@ -4656,5 +4656,15 @@
       "T22V3::T22E-MKT01::S10@1"
     ],
     "policy": "Stable IDs and chrono_t22_elite_course_evidence_v1 are retained. Materially changed prompt/evaluator contracts are obligationVersion2 and old attempts become stale under fingerprints. Narrowed ownership contracts generate new session contract hashes. Historical solved lesson exposure is timestamp-migrated; unsolved S03→S04 practice overlap is not promoted to a reveal. No old evidence is silently recertified."
+  },
+  "crossModulePrerequisiteCleanup": {
+    "version": "m01-m08-prerequisite-cleanup-2026-09-24",
+    "scope": "Cross-module prerequisite/JIT micro-repairs only; no fixed assessment prompt, rubric, obligationVersion or stable task/session ID changed.",
+    "changedContractSessionIds": [
+      "T22V3::T22E-MKT01::S13@1",
+      "T22V3::T22E-MKT01::S18@1"
+    ],
+    "lessonOnlySessionIds": [],
+    "fixedAssessmentChanges": []
   }
 }
