@@ -1,5 +1,5 @@
 {
-  "version": "m11-arc510-s01-s04-v1",
+  "version": "m11-arc510-s04-endpoint-repair-v1",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
@@ -185,7 +185,7 @@
         "measure theory"
       ],
       "exitCondition": "The learner can produce both a discontinuous-but-integrable witness and a discontinuous-nonintegrable witness using the Riemann definition.",
-      "lesson": "Orient. OpenStax's standard sufficient theorem says every continuous real function on a closed interval is Riemann integrable. It is sufficient, not necessary, and M11 does not import its full compactness/uniform-continuity proof.\nDefine. A finite point change means two bounded functions differ only at finitely many input points. A tagged sum can notice such a point only through the one subinterval whose tag hits it.\nConnect. If f and g differ only at one point c and |f(c)-g(c)|≤D, then on a partition of mesh m their tagged sums differ by at most Dm: all other tagged contributions match. As m→0 this discrepancy vanishes. Finitely many point changes give a finite sum of such bounds.\nExplain. By contrast, if every subinterval permits two tag types that force different heights, arbitrarily fine partitions can still support incompatible sums. Then no common value can satisfy the S03 definition.\nWorked example: let f(x)=2 on [-1,1] and let g equal 2 except g(0)=100. Any tagged sums differ only if the tag in the subinterval containing 0 is chosen as 0, and then the difference is at most 98||P||. Since f has integral 4, g also has integral 4.\nGuided practice: if two bounded functions differ only at c with value gap at most 7, what mesh condition makes their tagged sums differ by less than ε? Check: ||P||<ε/7. This controls sum discrepancy; it does not claim the functions are continuous.",
+      "lesson": "Orient. OpenStax's standard sufficient theorem says every continuous real function on a closed interval is Riemann integrable. It is sufficient, not necessary, and M11 does not import its full compactness/uniform-continuity proof.\nDefine. A finite point change means two bounded functions differ only at finitely many input points. A tagged sum can notice such a point only through the one subinterval whose tag hits it.\nConnect. If f and g differ only at one point c and |f(c)-g(c)|≤D, then on a partition of mesh m the exceptional point can be used as a tag in at most the two adjacent subintervals, so the tagged sums differ by at most 2Dm. All other tagged contributions match. As m→0 this discrepancy vanishes. Finitely many point changes give a finite sum of such bounds.\nExplain. By contrast, if every subinterval permits two tag types that force different heights, arbitrarily fine partitions can still support incompatible sums. Then no common value can satisfy the S03 definition.\nWorked example: let f(x)=2 on [-1,1] and let g equal 2 except g(0)=100. Any tagged sums differ only if the tag in the subinterval containing 0 is chosen as 0, and then the difference is at most 196||P||. Since f has integral 4, g also has integral 4.\nGuided practice: if two bounded functions differ only at c with value gap at most 7, what mesh condition certainly makes their tagged sums differ by less than ε? Check: ||P||<ε/14. This controls sum discrepancy; it does not claim the functions are continuous.",
       "main": "T22V3::ARC510::S04-M@1",
       "transfer": "T22V3::ARC510::S04-T@1"
     }
@@ -366,11 +366,11 @@
       "marking": "Accept δ≤ε/5 with a strict-mesh condition. No formula for g or antiderivative is needed or permitted."
     },
     "T22V3::ARC510::S04-M@1": {
-      "reference": "Let f(x)=5. Its integral is 15. The functions f and g differ only at x=1, with value gap 25. For any tagged partition, the sums are identical unless the tag in the subinterval containing 1 is exactly 1; even then |S(g)-S(f)|≤25||P||. Given ε>0 choose mesh <ε/25. Since S(f)=15 exactly, every such S(g) lies within ε of 15. Therefore g is Riemann integrable with integral 15. It is discontinuous at x=1.",
+      "reference": "Let f(x)=5. Its integral is 15. The functions f and g differ only at x=1, with value gap 25. A tag equal to 1 can occur in at most the two subintervals adjacent to that point, so for mesh m=||P||, |S(g)-S(f)|≤25(Δx_left+Δx_right)≤50m (with only one contribution if 1 is not a partition endpoint). Given ε>0 choose m<ε/50. Since S(f)=15 exactly, every such S(g) lies within ε of 15. Therefore g is Riemann integrable with integral 15. It is discontinuous at x=1.",
       "rubric": [
         {
           "points": 4,
-          "criterion": "Bounds the effect of the exceptional point by 25||P|| (or an equivalent mesh bound)."
+          "criterion": "Bounds the effect of the exceptional point by 50||P|| or another valid bound that handles the possible two adjacent tagged subintervals."
         },
         {
           "points": 3,
@@ -385,7 +385,7 @@
           "criterion": "Identifies the discontinuity at x=1."
         }
       ],
-      "marking": "Accept any equivalent one-point perturbation estimate. Do not require measure-zero language."
+      "marking": "Accept any valid bound that handles the possibility that x=1 is a partition endpoint and is chosen as a tag on both adjacent subintervals. Do not require measure-zero language."
     },
     "T22V3::ARC510::S04-T@1": {
       "reference": "For any partition, choose every tag rational. Then every sampled value is 1 and the sum is ΣΔx_i=1. Choose every tag irrational. Then every sampled value is 0 and the sum is 0. The same arbitrarily fine partition therefore admits sums separated by 1, so they cannot all approach one common I; h is not Riemann integrable. Main gives a discontinuous but integrable function, while h is discontinuous everywhere and nonintegrable, so discontinuity by itself does not decide integrability.",
@@ -573,7 +573,7 @@
         "task": "main",
         "publicRequest": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere.",
         "rubricEvidence": [
-          "Bounds the effect of the exceptional point by 25||P|| (or an equivalent mesh bound).",
+          "Bounds the effect of the exceptional point by 50||P|| or another valid bound that handles the possible two adjacent tagged subintervals.",
           "Uses the bound to prove the common tagged-sum limit is 15."
         ],
         "escapeAttempt": "A continuity-only verdict cannot earn the mesh-bound proof.",
@@ -717,7 +717,7 @@
       "T22V3::ARC510::S04-M@1": {
         "wrongApproach": "Declare g nonintegrable merely because it is discontinuous at x=1.",
         "result": "Contradicts the tagged-sum bound and loses all integrability evidence.",
-        "validAlternative": "Compare directly with constant 5 sums or bound the exceptional contribution from scratch."
+        "validAlternative": "Compare directly with constant-5 sums using any correct endpoint-aware bound, e.g. 50||P||; a half-open tagging convention is acceptable only if explicitly defined consistently."
       },
       "T22V3::ARC510::S04-T@1": {
         "wrongApproach": "Show one rational-tag sequence converges to 1 and call that the integral.",
@@ -772,7 +772,8 @@
   },
   "initialVersionAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
-    "pilot": "S01 only; obligationVersion 1 for both unpublished tasks."
+    "pilot": "S01 only; obligationVersion 1 for both unpublished tasks.",
+    "s04EndpointRepair": "S04 pre-publication repair: one exceptional point may be selected as a tag in two adjacent closed subintervals, so the safe bound was corrected from D||P|| to 2D||P||. ObligationVersion remains 1 because M11 is unpublished/unregistered."
   },
   "authoringPolicy": "Original lessons and tasks. Ownership follows literal public/scored actions, never a fixed count. Evidence classes are retrieval, proof reconstruction, fresh Main evidence or changed-surface Transfer. Proofs taught before assessment are reconstruction evidence, not fresh proof evidence. Equivalent valid routes earn full credit. Define notation before use, preserve domains/hypotheses/exceptions, and never use M12+ machinery as a premise.",
   "sourceLedger": {
