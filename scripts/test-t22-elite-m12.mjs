@@ -170,7 +170,7 @@ for(let i=0;i<a.sessions.length;i++){
 assert.match(a.sessions[1].lesson,/factorial|k!/i,'S02 factorial derivation missing');
 assert.match(a.sessions[2].lesson,/Maclaurin.*special center|Maclaurin.*a=0/i,'arbitrary-center protection missing');
 assert.match(a.sessions[4].lesson,/Rolle/i);assert.match(a.sessions[4].lesson,/Mean Value|MVT/i);
-assert.match(a.sessions[5].lesson,/Lagrange/i);assert.match(a.sessions[5].lesson,/intermediate c|unknown intermediate/i);
+assert.match(a.sessions[5].lesson,/Lagrange/i);assert.match(a.sessions[5].lesson,/point c is supplied|c strictly between|unknown intermediate/i);
 assert.match(a.sessions[7].lesson,/O\(h\^k\)|O and o|little-o/i);
 assert.match(a.sessions[8].lesson,/ratio.*1|f\/g.*1|asymptotic/i);
 assert.match(a.sessions[9].lesson,/partial sums/i);
