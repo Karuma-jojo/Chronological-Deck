@@ -93,7 +93,7 @@ const bx=x=>b**x;
 near(diff(bx,0.7),b**0.7*Math.log(b),2e-9);
 const logb=x=>Math.log(x)/Math.log(b);
 near(diff(logb,2),1/(2*Math.log(b)),2e-9);
-has(21,'main',"(b^x)'=e^(x ln b)ln b=b^x ln b","(log_b x)'=1/(x ln b)","(ln x)'=1/x","G'(1)=1/ln b");
+has(21,'main',"(b^x)'=e^(x ln b)ln b=b^x ln b","b^(log_b x)=x","(log_b x)'=1/(x ln b)","(ln x)'=1/x","G'(1)=1/ln b");
 has(21,'transfer','2ln2+1');
 
 // S22–S24: local sensitivity, forensic legality and synthesis.
