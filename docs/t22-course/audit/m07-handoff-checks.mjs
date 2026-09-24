@@ -25,7 +25,7 @@ assert(meta.moduleSources.some(x=>x.order===7&&x.id==='T22E-MKT01'&&x.source==='
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'));
 assert.equal(meta.moduleSources.length,12,'later-authorized publication through M12 is allowed');
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
-assert(browser.includes("T22E-MKT01")&&browser.includes("T22E-CODE01")&&browser.includes("eight-module export/import"));
+assert(browser.includes("T22E-MKT01")&&browser.includes("T22E-CODE01")&&browser.includes("twelve-module export/import"));
 assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized; historical M07 handoff stop text remains provenance');
 for(const token of ['M07-RESOLUTION.md','M07-DESIGN-GATE.md','m07-authoring-v1.1-r2','m07-instruction-astra-r1','120','24 sessions','48 fixed','v1.1','INDEPENDENT CONFIRMATION'])assert(hand.includes(token),token);
 for(const token of ['C-01','C-02','C-03','C-04','Capability discrimination','Prompt ↔ rubric fairness'])assert(audit.includes(token),token);
