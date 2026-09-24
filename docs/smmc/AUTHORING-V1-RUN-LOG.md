@@ -653,3 +653,34 @@ Expected bank:
 - 12 authored units;
 - 24 neutral public tasks;
 - 24 separate evaluator references.
+
+
+### Checkpoint L validation receipt
+
+S1 head: `23c2b6b53b21786e9f2c508ecbbf5fd5b831bc44`.  
+SMMC authoring checks run: `35986226414`, job `107589412914`: **SUCCESS**.
+
+All ledger/curriculum/domain-freeze, 12-unit authoring, scaffold, T25 payload, SMMC browser, workspace-navigation and cross-device checks passed.
+
+## Checkpoint M — AN2 compactness/integrability bridge
+
+Added:
+
+### S-BRIDGE-AN2-U01 — Extrema, compactness and integrability consequences
+
+Boundary discipline:
+- this is a bounded contest-analysis bridge, not a full real-analysis course;
+- it teaches supremum as a proof tool, shrinking nested closed intervals, compact-interval extrema, and exact Riemann-integrability consequences;
+- it explicitly avoids the false inference that Riemann integrability implies continuity or attained extrema;
+- under the ordinary compact-interval Riemann/Darboux convention used in this project, boundedness is treated as part of/required by integrability rather than smuggled in later.
+
+Neutral assessments:
+- prove the shrinking nested-interval theorem using a supremum and length→0 uniqueness;
+- audit boundedness/continuity/supremum-attainment for a Riemann-integrable function, with a finite-point modification counterexample and an integral bound.
+
+No historical requirement row is added yet. AN2-U01 alone does not cover the full regularity/one-sided/floor-recurrence machinery behind the relevant historical AMBER/RED problems, so those problems remain fail-closed.
+
+Expected bank:
+- 13 authored units;
+- 26 neutral public tasks;
+- 26 separate evaluator references.

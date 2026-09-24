@@ -145,6 +145,18 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-METHOD-S1-U01",
     role: "transfer",
     prompt: "There are n≥1 switches, initially all off. A legal move chooses two distinct switches and toggles both. Classify exactly which integers k with 0≤k≤n can occur as the number of switches that are on after some finite sequence of moves. Prove an invariant obstruction from the effect of one move, and give a construction for every k that your classification says is reachable."
+  },
+  "S-NEUTRAL-AN2-01": {
+    id: "S-NEUTRAL-AN2-01",
+    unitId: "S-BRIDGE-AN2-U01",
+    role: "main",
+    prompt: "Let I_n=[a_n,b_n] be nonempty closed intervals with I_{n+1}⊆I_n for every n and b_n-a_n→0. Prove that there is exactly one real number belonging to every I_n. Your proof must construct the point using a supremum (or an equivalent completeness argument), show it lies in every interval, and use the shrinking lengths for uniqueness."
+  },
+  "S-NEUTRAL-AN2-02": {
+    id: "S-NEUTRAL-AN2-02",
+    unitId: "S-BRIDGE-AN2-U01",
+    role: "transfer",
+    prompt: "Let f:[0,1]→R be Riemann integrable in the ordinary bounded compact-interval sense. Audit the following claims: (i) f is bounded; (ii) f must be continuous; (iii) f must attain its supremum. State which are guaranteed and justify your answer. For any false claims, use the explicit function h(x)=x for 0≤x<1 and h(1)=0 as a counterexample, using the fact that changing a Riemann-integrable function at finitely many points preserves integrability and its integral. Finally, if |f(x)|≤M for all x, prove |∫_0^1 f(x)dx|≤M."
   }
 });
 

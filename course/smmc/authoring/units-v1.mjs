@@ -277,6 +277,30 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "identifies and proves a parity invariant from the legal move",
       "pairs an invariant obstruction with a construction when an exact reachability classification is requested"
     ]
+  },
+  {
+    id: "S-BRIDGE-AN2-U01",
+    moduleId: "S-BRIDGE-AN2",
+    kind: "bridge",
+    orderWithinModule: 1,
+    title: "Extrema, compactness and integrability consequences",
+    t25Targets: ["A5", "C1", "C6", "F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "For a nonempty set of real numbers bounded above, s=sup A means s is an upper bound and every number below s fails to be an upper bound; equivalently, for every ε>0 some a∈A satisfies s-ε<a≤s.",
+      "Nested nonempty closed intervals behave like a compact existence machine: if I_{n+1}⊆I_n and their lengths tend to zero, the lower endpoints have a supremum lying in every interval, and shrinking length makes that common point unique.",
+      "For a continuous function on a closed bounded interval, the extreme value theorem guarantees attained maxima and minima; the closed/compact hypothesis matters and should not be silently dropped.",
+      "Under the ordinary compact-interval Riemann/Darboux convention used here, Riemann-integrable functions are bounded. Integrability alone does not imply continuity or attainment of a supremum.",
+      "Changing an otherwise Riemann-integrable function at finitely many points preserves Riemann integrability and the integral; this is useful for building counterexamples without changing the area."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-AN2-01",
+    transferTaskId: "S-NEUTRAL-AN2-02",
+    completionEvidence: [
+      "uses a supremum with both upper-bound and approximation logic rather than treating it automatically as a maximum",
+      "proves existence and uniqueness for shrinking nested closed intervals",
+      "distinguishes compact-interval continuity consequences from weaker Riemann-integrability consequences",
+      "uses boundedness to control a definite integral without inventing continuity"
+    ]
   }
 ]);
 

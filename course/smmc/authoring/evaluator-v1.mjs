@@ -335,6 +335,37 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must construct a legal move sequence for every admissible even k, including k=0.",
       "Must state the final classification with the bound 0≤k≤n rather than merely saying 'even'."
     ]
+  },
+  "S-NEUTRAL-AN2-01": {
+    reference: [
+      "Nestedness implies a_n is nondecreasing and b_n is nonincreasing. The set A={a_n:n≥1} is nonempty and bounded above by b_1, so let s=sup A.",
+      "Fix m. Since s is an upper bound of A, a_m≤s. Also every lower endpoint a_n≤b_m: for n≥m this follows from I_n⊆I_m, while for n<m we have a_n≤a_m≤b_m. Thus b_m is an upper bound of A, so s≤b_m.",
+      "Hence a_m≤s≤b_m for every m, so s belongs to every I_m.",
+      "If x and y both belong to every I_m, then |x-y|≤b_m-a_m for every m.",
+      "Because b_m-a_m→0, a positive distance |x-y| would eventually exceed the interval length. Therefore |x-y|=0 and x=y.",
+      "Thus the common point exists and is unique."
+    ].join(" "),
+    rubric: [
+      "Must justify that the lower endpoints have a finite supremum; merely naming sup without nonempty/bounded checks is incomplete.",
+      "Must prove the supremum lies between a_m and b_m for every fixed m, not only asymptotically.",
+      "Must use b_m-a_m→0 to prove uniqueness.",
+      "Must conclude both existence and uniqueness of a point in the full intersection."
+    ]
+  },
+  "S-NEUTRAL-AN2-02": {
+    reference: [
+      "Claim (i) is guaranteed: under the ordinary Riemann/Darboux compact-interval convention, Riemann integrability includes (equivalently requires) boundedness.",
+      "Claims (ii) and (iii) are false. Let h(x)=x for 0≤x<1 and h(1)=0. It differs from the continuous function g(x)=x at one point, so by the permitted finite-modification fact h is Riemann integrable and has the same integral as g.",
+      "The function h is not continuous at x=1 because the left-hand limit is 1 while h(1)=0.",
+      "Its supremum is 1, since values h(x) approach 1 from below, but no x∈[0,1] has h(x)=1; hence the supremum need not be attained.",
+      "If |f(x)|≤M on [0,1], then -M≤f(x)≤M. Monotonicity of the definite integral gives -M≤∫_0^1 f≤M, so |∫_0^1 f|≤M."
+    ].join(" "),
+    rubric: [
+      "Must identify boundedness as guaranteed under the stated Riemann convention and must not infer continuity.",
+      "Must use h to refute both continuity and supremum attainment, including why sup h=1 is not attained.",
+      "Must invoke the supplied finite-point-modification fact to justify h remains Riemann integrable.",
+      "Must derive the integral bound from -M≤f≤M and integral monotonicity, not from an unsupported mean-value claim."
+    ]
   }
 });
 
