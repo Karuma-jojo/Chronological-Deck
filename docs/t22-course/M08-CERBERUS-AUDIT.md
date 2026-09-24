@@ -1,3 +1,5 @@
+> **Historical builder audit.** This document records the pre-independent-review builder pass. It is superseded for current M08 status by `M08-INDEPENDENT-REVIEW.md` and `M08-RESOLUTION.md`; do not use its earlier separation/acceptance conclusions as current evidence.
+
 # M08 Builder Adversarial Audit
 
 Date: 2026-09-24
