@@ -15,7 +15,7 @@ const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 
 assert.equal(a.module.id,'T22E-CODE01');
-assert.equal(a.module.status,'builder-validated-candidate-awaiting-independent-review');
+assert.equal(a.module.status,'independent-review-repaired-awaiting-post-repair-verification');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
@@ -37,24 +37,26 @@ assert(workflow.includes("node scripts/test-t22-elite-m08.mjs"));
 assert(workflow.includes("node docs/t22-course/audit/m08-independent-oracles.mjs"));
 
 for(const token of [
-  'c261410fb40809dc44cddb9dccf50e612ae0f1be',
-  '35956181744',
-  '107494885143',
-  '24 sessions',
-  '48 fixed assessments',
-  '120 ownership claims',
-  'M08-B01',
-  'M08-B02',
-  'M08-B03',
-  'M08-B04',
-  '322 hits',
+  'M08-R01 BLOCKER',
+  'M08-R08 MEDIUM',
+  '24-session spine',
+  'obligationVersion',
+  'assessmentIndependenceAudit',
+  'seed31415',
+  '492 hits',
+  '1/9',
   '5/36',
   '-11/18',
-  'builder-validated candidate awaiting independent review',
+  'bounded independent follow-up',
   'M09 remains closed'
 ]) assert(hand.includes(token),token);
 
 for(const token of ['M01', 'M03', 'M04', 'M21', 'M30', 'S12', 'Hard stop']) assert(boundary.includes(token),token);
-for(const token of ['S17 observability gap','S18 assessment gap','Wrong-solver','Remaining limitations','Builder-validated candidate awaiting independent review']) assert(audit.includes(token),token);
+assert(fs.existsSync('docs/t22-course/M08-INDEPENDENT-REVIEW.md'));
+assert(fs.existsSync('docs/t22-course/M08-RESOLUTION.md'));
+const review=fs.readFileSync('docs/t22-course/M08-INDEPENDENT-REVIEW.md','utf8');
+const resolution=fs.readFileSync('docs/t22-course/M08-RESOLUTION.md','utf8');
+for(const token of ['M08-R01','M08-R08','REPAIRS REQUIRED']) assert(review.includes(token),token);
+for(const token of ['R01 — fresh assessment surfaces','R08 — strict zip','M09 remains closed']) assert(resolution.includes(token),token);
 
-console.log('PASS M08 handoff: 24/48/120 builder candidate, official-source ledger, executable Python oracles, eight-module browser evidence, implementation run 35956181744 and hard M09 stop.');
+console.log('PASS M08 handoff: independent-review repair state, 24/48/120 structure, fresh assessment surfaces, repaired semantic contract/oracles, bounded follow-up and hard M09 stop.');
