@@ -1,3 +1,7 @@
+# Current M08 independent repair — 2026-09-24
+
+Independent hostile review of published M08 baseline `4e8755b0d0060390b18ccba846d0d7f5e6750328` found material fixed-assessment contamination and observability defects despite the earlier green builder suite. Repair branch: `codex/t22-m08-independent-repair`. Findings are in `M08-INDEPENDENT-REVIEW.md`; repairs are in `M08-RESOLUTION.md`. M08 remains 24 sessions / 48 fixed tasks / 120 claims, but 23 changed public obligations are now version2. Canonical prerequisites remain M01+M03+M04; S06's stray M02 attribution is repaired. Imports, callable-function semantics, strict zip, traceback reading, executable S14–S16 oracles and stronger lesson/Main semantic-separation guards are now explicit. **Status: repaired candidate awaiting full repair-head validation and bounded independent follow-up. M09 remains closed.**
+
 # Main-sync integration checkpoint — 2026-09-24
 
 Before publication, current `main` at `cd91d131856a34b6ce99247b05060b86e0e6f535` was merged into the T22 branch via PR #165. The only file changed on both histories since their common ancestor was `index.html`; it was deliberately reconciled by preserving current main's SMMC/cloud-sync UI and adding only the T22 Elite entry link. After the merge, the T22 branch is 0 commits behind main. This log commit exists to trigger the complete T22 Elite validation on the combined tree before any PR back to main.
