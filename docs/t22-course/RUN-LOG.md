@@ -1,3 +1,19 @@
+# Current M08 F05 follow-up repair — FINAL VALIDATION PENDING — 2026-09-24
+
+The post-green novice/syntax sweep found M08-F05: several code-looking snippets used invalid semicolon-compressed compound statements such as `...; for ...`, `...; while ...`, or `...; def ...`. All learner-facing instances were rewritten as valid multiline Python. Public contract provenance is now **29 changed from v1: 27×v2, S18-T×v3, S22-M×v4**. Earlier green heads remain historical only. Current exact-head T22 Elite Chromium/browser and broader PR validation is required before closure. M09 remains closed.
+
+# Current M08 bounded follow-up repair — FINAL VALIDATION PENDING — 2026-09-24
+
+The first independent-repair head `772e5dc12bcd44340bbf1d96a093d1b802c10699` was fully green, but a subsequent novice-path follow-up found M08-F01→F04: S12 from-import/call mismatch, hidden list-comprehension syntax in S22 Main, untaught conditional/list-comprehension syntax in S07/S14 lessons, and lambda leakage in the S17 revealed reference. These are repaired on `codex/t22-m08-independent-repair`. M08 remains 24 sessions / 48 tasks / 120 claims. **24 public obligations differ from v1: 23 are v2 and S22-M is v3.** The earlier 772e... run is historical evidence only; the current exact head must pass the complete T22 Elite Chromium/browser suite and broader PR matrix before this state can be called fully validated. M09 remains closed.
+
+# Current M08 independent repair — FULLY GREEN — 2026-09-24
+
+Independent repair content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed T22 Elite run `35961691590` / job `107511449788`, including syntax, structural/pedagogy/semantic/evidence gates, rebuilt Python oracles, Chromium and the real eight-module browser/evidence workflow. The complete main-targeted PR matrix on that head finished **37/37 SUCCESS, 0 failures**. M08 remains 24 sessions / 48 fixed tasks / 120 claims with 23 changed public obligations at version2. **Status: fully validated repaired candidate awaiting bounded independent follow-up; not frozen. M09 remains closed.** See `M08-INDEPENDENT-REVIEW.md`, `M08-RESOLUTION.md`, and `M08-REVIEW-HANDOFF.md`.
+
+# Current M08 independent repair — 2026-09-24
+
+Independent hostile review of published M08 baseline `4e8755b0d0060390b18ccba846d0d7f5e6750328` found material fixed-assessment contamination and observability defects despite the earlier green builder suite. Repair branch: `codex/t22-m08-independent-repair`. Findings are in `M08-INDEPENDENT-REVIEW.md`; repairs are in `M08-RESOLUTION.md`. M08 remains 24 sessions / 48 fixed tasks / 120 claims, but 23 changed public obligations are now version2. Canonical prerequisites remain M01+M03+M04; S06's stray M02 attribution is repaired. Imports, callable-function semantics, strict zip, traceback reading, executable S14–S16 oracles and stronger lesson/Main semantic-separation guards are now explicit. **Status: repaired candidate awaiting full repair-head validation and bounded independent follow-up. M09 remains closed.**
+
 # Main-sync integration checkpoint — 2026-09-24
 
 Before publication, current `main` at `cd91d131856a34b6ce99247b05060b86e0e6f535` was merged into the T22 branch via PR #165. The only file changed on both histories since their common ancestor was `index.html`; it was deliberately reconciled by preserving current main's SMMC/cloud-sync UI and adding only the T22 Elite entry link. After the merge, the T22 branch is 0 commits behind main. This log commit exists to trigger the complete T22 Elite validation on the combined tree before any PR back to main.

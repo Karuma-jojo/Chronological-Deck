@@ -1,216 +1,139 @@
-# M08 Review Handoff — Quant Programming & Simulation Foundations
+# M08 Review Handoff — Independent Repair Candidate
 
 Date: 2026-09-24
 Repository: `Karuma-jojo/Chronological-Deck`
-Branch: `codex/t22-pedagogical-rebuild`
+Repair branch: `codex/t22-m08-independent-repair`
 Module: M08 · `T22E-CODE01`
-Builder status: **builder-validated candidate awaiting independent review**
-Stop boundary: **M09 CLOSED**
+Current status: **independent-audit + bounded-follow-up repaired candidate awaiting final exact-head validation**
+Stop boundary: **M09 remains closed**
 
-## Recovery anchor
+## Baseline and reason for reopening
 
-The first complete green M08 implementation checkpoint is:
+Published baseline reviewed: `4e8755b0d0060390b18ccba846d0d7f5e6750328`.
 
-- implementation SHA: `c261410fb40809dc44cddb9dccf50e612ae0f1be`
-- T22 Elite Actions run: `35956181744`
-- job: `107494885143`
-- result: **SUCCESS**
-- run URL: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35956181744
+The prior builder suite was green, but independent hostile content review found material semantic defects. This is exactly why the module is reopened rather than frozen. The authoritative finding set is `M08-INDEPENDENT-REVIEW.md`; the bounded implementation response is `M08-RESOLUTION.md`.
 
-The job was inspected, not inferred from workflow existence. Syntax, structural/pedagogy/semantic/evidence regressions, Python 3.12 executable oracles, Chromium installation and the real eight-module browser evidence workflow all completed successfully.
+Material findings are identified as **M08-R01 through M08-R10**:
 
-## Recovered boundary and prerequisite decision
+- fixed Main contamination by solved lesson instances;
+- lexical separation falsely standing in for semantic separation;
+- a stray S06 M02 prerequisite attribution;
+- hidden standard-library import/name-binding prerequisites;
+- un-taught function-object/callable passing in S07;
+- programming ownership inferred from numeric results instead of observed actions;
+- S14–S16 drifting toward M04 replay;
+- incomplete float-comparison policy;
+- missing `zip(..., strict=True)`;
+- traceback competence advertised without reading a real traceback.
 
-Canonical dependency graph: M08 depends on:
+## Boundary after repair
+
+Canonical prerequisites remain exactly:
 
 - M01 · `T22E-FND01`
 - M03 · `T22E-DISC01`
 - M04 · `ARC048`
 
-M07 is not a prerequisite. M01–M06 remain accepted/frozen. M07 remains an independently reviewed/repaired candidate with its separate bounded follow-up status; this M08 build does not silently accept or modify M07 teaching content.
+M07 is not an M08 prerequisite. S06 now correctly reuses M03-S20 functions-as-mappings rather than naming M02.
 
-M08 owns core Python execution semantics, finite control flow, functions/decomposition, core containers and state, exact finite enumeration, exact rational checking, elementary debugging/invariants, explicit pseudorandom-generator state, and small reproducible simulations checked against exact mathematics.
+Downstream ownership remains unchanged: M21 scientific-computing/research engineering, M22–M24 deeper algorithms/performance, M27–M31 later statistics, M30 formal Monte Carlo diagnostics, M43–M46 market-data/backtest/temporal engineering.
 
-Deferred owners are preserved:
+## Repaired authored state
 
-- M21: NumPy/pandas/vectorization/plotting and broader research-computing engineering;
-- M22–M24: deeper algorithms/performance;
-- M27–M31: inference, LLN/CLT and later statistics;
-- M30: formal Monte Carlo convergence/error diagnostics;
-- M43–M46: market-data/backtesting/temporal research engineering.
+- 24 sessions retained after an explicit session-count reconsideration.
+- 48 fixed assessments and 48 evaluator references.
+- 120 ownership claims and 120 repaired semantic claim→task→rubric links.
+- 29 changed public obligations are stale relative to v1: 27 carry `obligationVersion=2`, S18-T carries `obligationVersion=3`, and S22-M carries `obligationVersion=4`, and unchanged obligations remain version1.
+- `assessmentSeparationAudit` now records explicit lesson-model/Main-model identities for all24 sessions plus curated forbidden lesson fragments.
+- Historical contamination is preserved in `historicalLessonAnswerOverlap`; it is not erased.
+- M08 authoring version: `m08-authoring-v2-independent-repair` with repair provenance `m08-independent-repair-r3-2026-09-24`.
+- M08 instruction version: `m08-instruction-v2-independent-repair`.
+- Semantic contract: `m08-semantic-contract-independent-r2-2026-09-24`.
+- Stable evidence storage key remains `chrono_t22_elite_course_evidence_v1`.
 
-## Built state
+## Capability repairs
 
-- 24 sessions.
-- 48 fixed assessments: one Main + one Transfer per session.
-- 48 evaluator references.
-- 240 rubric rows; every assessment totals 10 points.
-- 120 ownership claims.
-- 120/120 builder-reviewed claim → public task → exact rubric-evidence links.
-- 24/24 semantic instruction/task separation records.
-- all fixed tasks begin at `obligationVersion=1`; M08 was unpublished before this build.
-- stable shared evidence key retained: `chrono_t22_elite_course_evidence_v1`.
-- runtime metadata exposes M08 as `validation`, not independently accepted/frozen.
+### Fresh fixed assessments
 
-Primary authoring source: `course/t22/authoring/m08.json`.
+S02, S13, S15, S21 and S22 now use fresh Main instances. S19 and S23 preserve their public obligations but use different lesson examples. The exact 322/0.322 S21 result is no longer exposed by instruction.
 
-## Session route
+### Python prerequisites taught at first use
 
-1. Names, values & assignment as state change
-2. Integer division, remainders & floating-point comparison
-3. Boolean conditions & boundary-safe branching
-4. For loops, range & accumulator invariants
-5. While loops, state updates & termination
-6. Functions as explicit quantitative mappings
-7. Decompose a checker into single-purpose functions
-8. Lists & tuples as finite ordered records
-9. Sets & dictionaries for membership and counts
-10. Mutation, aliasing & defensive copying
-11. Pairing data safely with zip and enumerate
-12. Exact Cartesian enumeration as a mathematical oracle
-13. Exact rational probabilities with Fraction
-14. Conditional probability by filtering the universe
-15. Independence checks by exact enumeration
-16. Exact expectation from enumerated payoffs
-17. Assertions, invariants & known-case tests
-18. Exceptions, tracebacks & smallest failing cases
-19. Explicit pseudorandom generators & reproducibility
-20. Implement one finite random trial from a stated model
-21. Repeated simulation & empirical frequency
-22. Checkpoint and restore random-generator state
-23. Adversarial simulator audit against an exact oracle
-24. M08 synthesis — exact oracle, reproducible simulation & audit
+- S02: `import math` and explicit `rel_tol`/`abs_tol`, including near-zero absolute tolerance.
+- S12: `from itertools import product`.
+- S13: `from fractions import Fraction`.
+- S19: `from random import Random`.
 
-The representative pilot was S12. Its Main exactly enumerates two fair six-sided dice and derives P(sum=8)=5/36. Its Transfer changes the surface and attacks a strict-versus-nonstrict event bug, producing 2/3 under the intended predicate versus 1/3 under the buggy predicate.
+### Programming actions made observable
 
-## Research provenance
+- S07 must pass and call a function object through `predicate(x)`.
+- S08 must actually iterate/destructure records and grow the outer list.
+- S09 must update keyed counts one observation at a time.
+- S11 must actually use `enumerate(zip(..., strict=True))`.
+- S18 must read a concrete traceback and localize the innermost failing line.
+- S21 must independently run/construct the aggregation and produce the fixed documented output.
+- S24 must state model/event/payoff before code.
 
-Primary technical claims were checked against official Python documentation on 2026-09-24 and recorded in the authoring pack source ledger:
+### M04 mathematics converted into code oracles
 
-- control flow / `range` / functions;
-- lists, tuples, sets, dictionaries and looping;
-- binary floating point and `math.isclose`;
-- `fractions.Fraction`;
-- `itertools.product`;
-- `random.Random`, seeding, `getstate`/`setstate`, reproducibility limits;
-- `assert` semantics and optimization;
-- aliasing/mutable-object behavior.
+S14 filters a conditioned universe in code; S15 enumerates exact independence through code; S16 encodes a payoff function and cross-checks atomwise/grouped exact expectation.
 
-The builder deliberately avoids a stronger reproducibility claim than Python documents: the recorded deterministic oracle pins the `random()` call path used by S21, while helper algorithms such as `randrange` are not presented as an eternal cross-version fixed-output contract.
+## Primary-source recheck
 
-## Adversarial findings repaired during build
+Current Python documentation was rechecked for:
 
-### M08-B01 — scoring asked for an unrequested S17 boundary discriminator
+- import/name-binding semantics;
+- `math.isclose` relative/absolute tolerance and comparison near zero;
+- `zip(..., strict=True)` equal-length validation;
+- traceback format/exception localization;
+- Random reproducibility/state scope.
 
-S17 ownership required a comparison-boundary test, but the first Main draft did not publicly ask for one.
+The existing Fraction/product/assert/aliasing sources remain authoritative. Source IDs are pinned in the authoring ledger.
 
-Repair: Main now explicitly asks for a boundary input distinguishing `x>=5` from `x>5`; the evaluator gives that request its own row.
 
-Replay result: a learner who supplies only a generic invariant cannot earn the boundary-discrimination credit.
+## Bounded follow-up after the first green repair head
 
-### M08-B02 — S18 taught broad exception suppression risk without observing it
+A fresh novice-path pass after the initial 37/37 green repair head found four more defects and repaired them:
 
-The lesson correctly warned against hiding exceptions, but the first Transfer did not ask the learner to apply that judgment.
+- M08-F01 — S12 from-import/call mismatch;
+- M08-F02 — hidden list-comprehension syntax in S22 Main;
+- M08-F03 — untaught conditional-expression/list-comprehension syntax in S07/S14 lessons;
+- M08-F04 — untaught `lambda` in S17 revealed reference.
+- M08-F05 — invalid semicolon-compressed compound statements in several code-looking lesson/task/reference snippets; all repaired to valid multiline Python.
 
-Repair: Transfer now asks why `try/except Exception: pass` is an unacceptable repair; its rubric scores the explanation.
+No additional session was needed; each fix belongs inside an existing owner. S12-M is v2; S18-T is v3 after a second repair; S22-M is v4 after repeated prompt-level syntax repairs.
 
-Replay result: merely naming `IndexError` cannot earn the suppression-diagnosis credit.
+## Verification architecture after repair
 
-### M08-B03 — S10 ownership was broader than its public evidence
+`scripts/test-t22-elite-m08.mjs` now checks:
 
-The first ownership wording mixed rebinding/mutation distinctions with alias-versus-copy behavior.
+- repaired status/version and canonical prerequisites;
+- no stray M02 session prerequisite;
+- 24/48/120 structure;
+- v1/v2 obligation-version correctness;
+- exact semantic-contract mappings;
+- explicit lesson-model/Main-model distinction for every session;
+- curated answer-exposure guards;
+- mutation canaries for semantic mappings and assessment leakage;
+- source pins and hard M09 stop.
 
-Repair: ownership narrowed to the observable capability: distinguish shared aliasing from an independent copied container.
+`docs/t22-course/audit/m08-independent-oracles.mjs` was rebuilt around repaired tasks: tolerance behavior, callable predicates, container iteration/counting, strict zip failure, exact finite filters/independence/expectation, traceback/runtime validation, documented `Random(2026)` 322-hit path, three-value state replay and final synthesis.
 
-### M08-B04 — four separation witnesses were too generic
+## Validation state
 
-The first automated separation witnesses in S04, S13, S19 and S20 selected generic code tokens also present in instruction. CI correctly rejected S04.
+The earlier content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed T22 Elite run `35961691590` / job `107511449788` and a 37/37 broader PR matrix. The bounded follow-up then changed learner-facing content, so that evidence is **historical and superseded for final-head authority**. The current F05 follow-up-repair head must pass the same dedicated Chromium/browser suite and broader PR matrix before this handoff can return to fully validated status.
 
-Repair: all four were replaced with task-instance-specific fragments. A complete rescan found zero witness fragments in their lessons, and the repaired implementation head passed the full workflow.
+## Bounded follow-up targets
 
-## High-risk misconception discriminators
+The follow-up reviewer should attack, not merely rerun:
 
-Review these especially rather than sampling easy arithmetic:
+1. whether any fixed Main is still mathematically/programmatically solved by its lesson or an earlier session;
+2. whether the new 120 evidence mappings really observe the claimed programming action;
+3. whether imports/callables/strict zip/traceback instruction are sufficient for a novice;
+4. whether S14–S16 now earn their place as programming sessions rather than M04 repetition;
+5. whether S02's tolerance language avoids both blind equality and blind `isclose`;
+6. whether S19–S24 remain within Python's documented reproducibility scope;
+7. actual browser/evidence-version behavior for v2 obligations;
+8. whether 24 sessions remains the natural granularity after all repairs.
 
-- S03: an earlier `x>=0` makes a later `x==0` branch unreachable.
-- S04: half-open `range` creates an off-by-one omission.
-- S05: equality-only stopping can be nonterminating when the update jumps over the target.
-- S09: set conversion destroys multiplicity and can create an impossible frequency 1.5.
-- S10: `[[0,0]]*3` repeats references to one inner mutable list.
-- S11: default `zip` silently truncates a misaligned pair of sequences.
-- S12: `>` versus `>=` changes the exact finite event.
-- S13: `Fraction(0.1)` preserves the supplied binary float rather than recovering decimal intent.
-- S14: dividing conditional hits by the original 36 outcomes computes a joint probability, not the conditional.
-- S15: “different properties” is not evidence of independence.
-- S16: averaging distinct payoff values discards probability multiplicity.
-- S17: `assert` is not the sole required runtime validation mechanism.
-- S19: reseeding inside every trial restarts the generator.
-- S20: `U>p` simulates the complement; larger N cannot repair the model.
-- S22: a mid-run state snapshot replays the suffix; the original seed alone is not the same recovery point.
-- S23: reusing one die draw collapses an intended 36-pair independent support to six diagonal pairs.
-- S24: missing face 6, reused draw and `>=8` versus `==8` are three independent semantic defects that must be repaired before discussing sample size.
-
-## Verification evidence
-
-Persistent gates added:
-
-- `scripts/test-t22-elite-m08.mjs`
-  - 24/48/120 structure;
-  - rubric totals;
-  - prerequisite/boundary pins;
-  - source-ledger pins;
-  - instruction/task separation;
-  - exact semantic-contract matching;
-  - mutation tests proving wrong-but-existing semantic evidence is rejected;
-  - hard M09 stop.
-
-- `docs/t22-course/audit/m08-independent-oracles.mjs`
-  - launches Python 3.12 in CI;
-  - re-executes representative programming semantics and mathematical oracles;
-  - confirms exact product/Fraction/conditioning/independence/expectation calculations;
-  - confirms S21's documented `Random(2026)` / 1000 successive-`random()` run gives 322 hits;
-  - confirms `getstate`/`setstate` suffix replay;
-  - confirms synthesis P(sum=8)=5/36 and EV=-11/18.
-
-- `scripts/test-t22-elite-course-browser.mjs`
-  - eight-module module/session loading;
-  - M08 save → reveal → review;
-  - shared evidence preservation;
-  - eight-module export/import;
-  - answer-bearing packet exposure through M08;
-  - corrupt-storage preservation;
-  - mobile-width regression.
-
-Implementation-head log excerpts include:
-
-- `PASS M08 structural/pedagogy: 24 sessions, 48 tasks, 120 reviewed semantic links...`
-- `PASS M08 independent executable oracles...`
-- `PASS browser: M01+...+M08 ... eight-module export/import; packet exposure through M08...`
-
-## Independent review targets
-
-Do not merely rerun structural checks. Independently attack at least:
-
-1. whether S01–S11 teach enough Python for a novice to solve S12 without hidden syntax knowledge;
-2. whether exact enumeration before simulation creates the intended mathematical anchor without overloading the learner;
-3. every S12–S16 exact probability/expectation reference from public givens;
-4. all S19–S24 RNG claims against current Python documentation and the exact wording of the public tasks;
-5. whether the 120 semantic links truly observe their ownership claims rather than only sharing vocabulary;
-6. whether any Main/Transfer is answer-exposed by its lesson or an earlier session in mathematical substance;
-7. whether S21's fixed 322-hit reproducibility example is appropriately scoped to the documented `random()` path rather than overclaimed;
-8. whether M08 accidentally imports M21/M30 machinery;
-9. real browser evidence/provenance behavior on the actual branch head.
-
-## Remaining limitations
-
-- Builder self-review is not independent acceptance.
-- No real learner trial is claimed.
-- Correctness of representative executable oracles does not prove every possible learner implementation.
-- The fixed rubric cannot enumerate every valid equivalent Python formulation; marking explicitly accepts equivalent correct Python or precise pseudocode where behavior is unambiguous.
-- Long-term retention is not established by this build.
-
-## Review status / next action
-
-**M08 is a builder-validated candidate awaiting independent review.**
-
-M09 remains closed. Do not author M09, merge, deploy, modify T25 or migrate legacy progress under this handoff.
+No M09 authoring is authorized by this handoff.

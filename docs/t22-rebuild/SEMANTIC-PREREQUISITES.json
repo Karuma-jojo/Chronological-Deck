@@ -64,7 +64,7 @@
       "mode": "new",
       "semanticStatus": "boundary-accepted-content-candidate",
       "bridges": [],
-      "note": "M08 builder candidate: 24 sessions / 48 fixed tasks / 120 claim links. Boundary follows canonical prerequisites M01+M03+M04 and keeps NumPy/pandas/scientific-computing engineering in M21 and Monte Carlo diagnostics in M30. Official Python documentation was checked for control flow, containers, floating point, Fraction, itertools.product, Random state/reproducibility, assert semantics and aliasing. Builder semantic mappings and executable Python oracles are present; independent review/acceptance remains required."
+      "note": "M08 independent-audit + bounded-follow-up repaired candidate: canonical prerequisites remain M01+M03+M04. Initial hostile review repaired assessment contamination, stray M02 attribution, hidden imports, function-object instruction and programming observability. Follow-up F01–F04 fixed the S12 from-import/call inconsistency, hidden list-comprehension syntax in S22, untaught conditional/list-comprehension syntax in S07/S14 lessons, and lambda leakage in S17 reference. F05 then found invalid semicolon-compressed compound statements in multiple code-looking snippets; all learner-facing cases were rewritten as valid multiline Python. 29 public obligations now differ from v1: 27 at v2, S18-T at v3, S22-M at v4. Final exact-head validation is pending; M09 remains closed."
     },
     {
       "order": 9,

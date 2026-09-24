@@ -1,12 +1,23 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-24
-State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M08 BUILDER-VALIDATED + FULLY GREEN, INDEPENDENT REVIEW PENDING; M09 CLOSED**
-Branch: `codex/t22-pedagogical-rebuild`
+State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENT-AUDIT + F01–F05 FOLLOW-UP REPAIRED, FINAL EXACT-HEAD VALIDATION PENDING; M09 CLOSED**
+Branch: `codex/t22-m08-independent-repair`
 Repository: `Karuma-jojo/Chronological-Deck`
-Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
-Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
-Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
+Historical first-green repair: `772e5dc12bcd44340bbf1d96a093d1b802c10699` / T22 Elite `35961691590` / job `107511449788` / broader 37/37 — superseded by later follow-up repairs.
+Current obligation provenance: **29 changed from v1 = 27×v2 + S18-T×v3 + S22-M×v4**.
+Latest follow-up: **M08-F05** repaired invalid semicolon-compressed compound statements into valid multiline Python.
+Next action: validate this exact follow-up head through T22 Elite Chromium/browser checks and the full main-targeted PR matrix.
+
+
+## Current M08 independent repair — authority for M08
+
+Published baseline `4e8755b0d0060390b18ccba846d0d7f5e6750328` passed prior automation but an independent hostile content audit found real semantic failures: fixed Main contamination in S02/S13/S15/S19/S21/S22/S23; lexical-only separation checks; S06 prerequisite inconsistency; hidden standard-library imports; an un-taught function-object jump; weak programming observability; M04-like S14–S16 tasks; insufficient float-tolerance policy; missing strict zip; and no actual traceback reading. See `docs/t22-course/M08-INDEPENDENT-REVIEW.md`.
+
+The bounded repair preserves 24 sessions; after follow-up, 29 public obligations differ from v1 (27 at v2, S18-T at v3, S22-M at v4), rebuilding all affected references/rubrics/120 semantic links, adding explicit lesson-model/Main-model separation metadata and mutation canaries, teaching imports/function objects/strict zip/traceback use at first need, and rebuilding the executable Python oracle. See `M08-RESOLUTION.md`.
+
+**Next action: final exact-head Actions + real browser validation after bounded follow-up. M08 is not frozen. M09 remains closed.**
+
 
 ## Current M08 builder recovery — 2026-09-24 (authority for M08)
 
