@@ -29,7 +29,7 @@ const allowedClass=new Set(['retrieval','proof reconstruction','fresh Main evide
 assert.equal(a.module.order,11);
 assert.equal(a.module.id,'ARC510');
 assert.equal(a.module.title,'Integration & Accumulation');
-assert.match(a.module.status,/publication-candidate-independent-review-repaired/);
+assert.match(a.module.status,/published-independent-review-repaired/);
 assert.equal(a.sessions.length,20,'session count is design-gate-derived, not inherited');
 assert.equal(Object.keys(a.problems).length,40);
 assert.equal(Object.keys(a.evaluators).length,40);
@@ -164,4 +164,4 @@ for(const banned of ['taylor series','jacobian','lebesgue integral','differentia
   assert(!premiseText.includes(banned),'future machinery used as an M11 instructional premise/reference: '+banned);
 }
 
-console.log('PASS M11 semantic/evidence validator: design-derived 20 sessions; all observable ownership rows audited; M09+M10+legal-M11 separation clean; protected content preserved; M11 registered for publication through M12.');
+console.log('PASS M11 semantic/evidence validator: design-derived 20 sessions; all observable ownership rows audited; M09+M10+legal-M11 separation clean; protected content preserved; M11 published in the shared route through M12.');
