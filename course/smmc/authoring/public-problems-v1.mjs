@@ -133,6 +133,18 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-METHOD-E1-U01",
     role: "transfer",
     prompt: "Prove that every integer n≥2 can be written as a product of one or more primes. Use a minimal-counterexample argument rather than induction: if a counterexample exists, choose the least one, explain why it cannot itself be prime, reduce the composite case to strictly smaller integers, and close the contradiction without assuming the desired result for numbers that are not smaller."
+  },
+  "S-NEUTRAL-S1-01": {
+    id: "S-NEUTRAL-S1-01",
+    unitId: "S-METHOD-S1-U01",
+    role: "main",
+    prompt: "For positive real x,y define R=((x-y)/(x+y))². Determine the exact set of possible values of R. Your proof must justify a scale normalization, justify any without-loss-of-generality reduction using the symmetry x↔y, prove the resulting bound, and prove attainability of every value you claim rather than giving only necessary conditions."
+  },
+  "S-NEUTRAL-S1-02": {
+    id: "S-NEUTRAL-S1-02",
+    unitId: "S-METHOD-S1-U01",
+    role: "transfer",
+    prompt: "There are n≥1 switches, initially all off. A legal move chooses two distinct switches and toggles both. Classify exactly which integers k with 0≤k≤n can occur as the number of switches that are on after some finite sequence of moves. Prove an invariant obstruction from the effect of one move, and give a construction for every k that your classification says is reachable."
   }
 });
 

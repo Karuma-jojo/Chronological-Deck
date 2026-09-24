@@ -253,6 +253,30 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "derives forced structure from extremality and converts it into the requested optimum",
       "uses strict descent correctly in a minimal-counterexample argument"
     ]
+  },
+  {
+    id: "S-METHOD-S1-U01",
+    moduleId: "S-METHOD-S1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Exploit symmetry, parity and normalization",
+    t25Targets: ["A3", "F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "A symmetry reduction is valid only after naming a transformation that preserves the assumptions and the quantity or claim being studied; that is what makes a without-loss-of-generality step reversible.",
+      "Normalization removes irrelevant scale or location only when the problem is invariant under that change, and the inverse map back to the original variables must remain available.",
+      "Parity is an invariant modulo two: before claiming it is preserved, calculate exactly how one legal move changes the tracked quantity.",
+      "Symmetry identifies equivalent cases, normalization removes a redundant degree of freedom, and parity rules out unreachable states; do not use these labels as substitutes for the preserving calculation.",
+      "After reducing the problem, prove both directions needed for an exact classification: every original object maps into the reduced model, and every claimed reduced possibility can be realized."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-S1-01",
+    transferTaskId: "S-NEUTRAL-S1-02",
+    completionEvidence: [
+      "justifies a normalization by an invariant transformation and keeps the reverse interpretation",
+      "uses symmetry only after proving omitted cases are equivalent",
+      "identifies and proves a parity invariant from the legal move",
+      "pairs an invariant obstruction with a construction when an exact reachability classification is requested"
+    ]
   }
 ]);
 

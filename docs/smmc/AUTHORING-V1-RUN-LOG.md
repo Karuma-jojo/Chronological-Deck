@@ -617,3 +617,39 @@ Expected bank:
 - 11 authored units;
 - 22 neutral public tasks;
 - 22 separate evaluator references.
+
+
+### Checkpoint K validation receipt
+
+E1 head: `0052e78239dc30cd67466f6e71f0e28289fe21f5`.  
+SMMC authoring checks run: `35985991948`, job `107588662007`: **SUCCESS**.
+
+The complete ledger/curriculum/domain-freeze gates, 11-unit authoring bank, engine scaffold, T25 payload, SMMC browser workflow, workspace navigation and same-account cross-device restore all passed.
+
+## Checkpoint L — symmetry, parity and normalization
+
+Added:
+
+### S-METHOD-S1-U01 — Exploit symmetry, parity and normalization
+
+Corpus basis:
+- SYMMETRY appears on 13 historical rows;
+- PARITY on 8;
+- NORMALIZATION on 12;
+- the frozen curriculum records a combined signal of 33 method tags, allowing overlap.
+
+The lesson distinguishes three proof operations rather than treating them as slogans:
+- symmetry: prove the transformation preserves the problem before using WLOG;
+- normalization: prove scale/location invariance and keep the inverse interpretation;
+- parity: compute the effect of one legal move before declaring an invariant.
+
+Neutral assessments:
+- exact range of a symmetric scale-invariant two-variable ratio, requiring reversible normalization, justified swap symmetry and attainability;
+- exact reachable on-counts in a two-toggle switch system, requiring parity obstruction plus construction.
+
+No historical SMMC problem is quoted, paraphrased or newly unlocked. This remains method training.
+
+Expected bank:
+- 12 authored units;
+- 24 neutral public tasks;
+- 24 separate evaluator references.

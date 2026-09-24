@@ -305,6 +305,36 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must invoke minimality only for those strictly smaller factors.",
       "Must reconstruct a prime product for n and explicitly close the contradiction."
     ]
+  },
+  "S-NEUTRAL-S1-01": {
+    reference: [
+      "The quantity R is unchanged when (x,y) is replaced by (λx,λy) for any λ>0, so normalize with λ=1/(x+y): put u=x/(x+y), v=y/(x+y). Then u,v>0 and u+v=1, and the normalization is reversible by multiplying by any positive scale.",
+      "Swapping x and y preserves the domain and R, so it is legitimate to assume u≤v without loss of generality; the omitted case is recovered by the swap.",
+      "Now 0<u≤1/2 and v=1-u, hence R=(u-v)²=(1-2u)². Thus 0≤1-2u<1, so 0≤R<1.",
+      "Conversely, let q∈[0,1) and put r=√q∈[0,1). Choose u=(1-r)/2 and v=(1+r)/2. Then u,v>0, u+v=1, and ((u-v)/(u+v))²=r²=q.",
+      "Therefore the exact range is [0,1)."
+    ].join(" "),
+    rubric: [
+      "Must prove scale invariance before normalizing x+y to 1 and retain a reverse interpretation to positive x,y.",
+      "Must justify the x↔y WLOG step by symmetry rather than simply assuming an order.",
+      "Must prove the strict upper bound R<1 and include R=0 correctly.",
+      "Must prove every q in [0,1) is attained by an explicit positive pair; a bound alone is not a range classification."
+    ]
+  },
+  "S-NEUTRAL-S1-02": {
+    reference: [
+      "Let k be the number of switches on. A move toggling two distinct switches changes k by +2 if both were off, by -2 if both were on, and by 0 if exactly one was on.",
+      "Therefore k mod 2 is invariant. Since initially k=0, every reachable state has even k.",
+      "Conversely, let k be any even integer with 0≤k≤n. Select k switches, partition them into k/2 disjoint pairs, and toggle each selected pair once.",
+      "Each selected switch is toggled exactly once and every unselected switch zero times, so exactly those k switches finish on. For k=0 use no moves.",
+      "Hence the reachable counts are exactly the even integers k between 0 and n."
+    ].join(" "),
+    rubric: [
+      "Must compute all three possible changes in the on-count under one legal move and deduce parity invariance.",
+      "Must use the initial even parity to rule out every odd k.",
+      "Must construct a legal move sequence for every admissible even k, including k=0.",
+      "Must state the final classification with the bound 0≤k≤n rather than merely saying 'even'."
+    ]
   }
 });
 
