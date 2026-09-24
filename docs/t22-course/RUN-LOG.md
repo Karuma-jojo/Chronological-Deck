@@ -1,3 +1,9 @@
+# M08 session-sizing rebalance — 2026-09-24
+
+Sizing-only decision: **25 sessions; add one, merge none**. Former S02 was the only clear overload, combining exact quotient/remainder count semantics with binary floating-point/tolerance policy. It is now S02 exact integer division plus new visible S03 floating-point comparison. All pre-existing stable session IDs are preserved; old S03–S24 shift only in displayed order.
+
+Current structure: **25 sessions / 50 fixed tasks / 125 ownership claims**. Full T22 Elite validation passed at commit `44b78d327c78fcc7ddf02fe56d1b293901637ee9`, Actions run `35967257130`, job `107528549359`, including Chromium and the eight-module browser workflow. See `M08-SESSION-SIZING-AUDIT.md` and `M08-REVIEW-HANDOFF.md`. Current status: **fully green; bounded follow-up pending**. M09 remains closed.
+
 # M08 independent-review repair — 2026-09-24
 
 Severe independent review found eight material findings (M08-R01 through M08-R08), including worked-example/Main contamination, lexical-only separation checks, S06 prerequisite inconsistency, weak programming observability and missing Python novice bridges. Repairs are recorded in `M08-INDEPENDENT-REVIEW.md` and `M08-RESOLUTION.md`. Fresh assessment surfaces, obligationVersion2 changes, imports/callable passing/strict zip/traceback reading, executable S14-S16 tasks, regenerated 120-link semantic contract and fresh Python oracles are now in place. Full repaired-tree validation passed at commit `42c112a45ea177f8dad5ea3c6c16ab9d041db0f1`, Actions run `35965698526`, including Chromium/eight-module browser evidence. Current status: **independent-review repaired and fully green; bounded follow-up pending**. M09 remains closed.
