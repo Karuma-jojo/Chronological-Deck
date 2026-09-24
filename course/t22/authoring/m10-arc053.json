@@ -1671,7 +1671,7 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S11-M@1": {
-      "reference": "p'(x)=20x^4-6x+2, so p'(1)=20-6+2=16.",
+      "reference": "Derivative linearity and the proved positive-integer power rule give p'(x)=20x^4-6x+2; the constant -9 contributes 0. Therefore p'(1)=20-6+2=16.",
       "rubric": [
         {
           "points": 3,
