@@ -1,11 +1,11 @@
 {
-  "version": "m11-arc510-s01-s12-v1",
+  "version": "m11-arc510-s01-s16-v1",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "authoring-in-progress-s01-s12-verified",
+    "status": "authoring-in-progress-s01-s16-verified",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -35,8 +35,8 @@
   "coverageAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pedagogicalAtoms": 20,
-    "authoredSessions": 12,
-    "ownershipClaimCount": 36,
+    "authoredSessions": 16,
+    "ownershipClaimCount": 48,
     "note": "No target count exists. This count is the S01 pilot output only."
   },
   "sessions": [
@@ -485,6 +485,153 @@
       "lesson": "Orient. FTC makes antiderivatives computationally useful, but M11 needs only a small repertoire that can be checked from M10.\nDefine. An indefinite-integral expression ∫f(x)dx=F(x)+C abbreviates the antiderivative family on a stated interval; it is not a definite integral. Constants combine by linearity.\nConnect. Reverse verified M10 derivatives: d(x^{n+1}/(n+1))/dx=x^n for integer n≠-1 on its legal domain; d(e^x)/dx=e^x; d(b^x/ln b)/dx=b^x for b>0,b≠1; d(sin x)/dx=cos x; d(-cos x)/dx=sin x. Since d(ln x)/dx=1/x for x>0 and d(ln(-x))/dx=1/x for x<0, an intervalwise shorthand is ln|x|+C for 1/x on intervals not crossing 0.\nExplain. The safest check is differentiation. A formula that differentiates correctly where the original integrand is undefined still cannot create a legal antiderivative across the excluded point.\nWorked example: on x>0, an antiderivative of 2x+3e^x-4/x is x²+3e^x-4ln x+C. Differentiation returns 2x+3e^x-4/x.\nGuided practice: verify that -3cos x+2sin x differentiates to 3sin x+2cos x. Then state that adding any constant changes no derivative.",
       "main": "T22V3::ARC510::S12-M@1",
       "transfer": "T22V3::ARC510::S12-T@1"
+    },
+    {
+      "order": 13,
+      "id": "T22V3::ARC510::S13@1",
+      "moduleId": "ARC510",
+      "title": "Substitution is the chain rule run backward",
+      "focus": "Derive the one-variable substitution pattern from a verified composition derivative rather than from symbolic du cancellation.",
+      "purpose": "Make the transformation structurally accountable before definite bounds are introduced.",
+      "centralCapability": "Recognize and execute reverse-chain antiderivatives, including the derivative scale factor, and verify the result.",
+      "principalObstacle": "A learner may replace an inner expression by u while forgetting that the differential scale must also match the inner derivative.",
+      "entryPrerequisites": [
+        "M10-S14 chain rule",
+        "M11-S11 FTC/antiderivatives",
+        "M11-S12 basic antiderivative repertoire"
+      ],
+      "requiredOwnership": [
+        "Recognize a reverse-chain integrand f(g(x))g'(x) and choose the inner transformation.",
+        "Carry the derivative scale factor correctly through an indefinite substitution.",
+        "Verify a substitution result by differentiating it in the original variable."
+      ],
+      "applicationScope": "One-variable proper/indefinite transformations whose needed outer antiderivative is in the established repertoire.",
+      "transferScope": "Changed to an error-diagnosis task where a missing scale factor produces a plausible but wrong antiderivative.",
+      "inScope": [
+        "u=g(x)",
+        "du abbreviation",
+        "reverse chain rule",
+        "verification"
+      ],
+      "outOfScope": [
+        "definite transformed bounds until S14",
+        "multivariable Jacobians",
+        "probability transformations",
+        "trig-substitution catalogue"
+      ],
+      "exitCondition": "A learner cannot earn substitution ownership merely by naming u; the scale factor and backward derivative check must be correct.",
+      "lesson": "Orient. M10 says d/dx F(g(x))=F'(g(x))g'(x). Integration can reverse exactly that structure.\nDefine. If F'=f, then F(g(x)) is an antiderivative of f(g(x))g'(x). Writing u=g(x) and du=g'(x)dx abbreviates this chain-rule relationship; du is not a freely cancellable symbol.\nConnect. The job is to identify the inner expression g(x), locate its derivative factor, and account for any constant mismatch before using the outer antiderivative.\nExplain. If the integrand contains only half of g'(x), the answer needs the corresponding half factor. After substitution, differentiate the proposed result back in x; this catches missing scales.\nWorked example: ∫2x(x²+1)^3 dx. Let u=x²+1, du=2x dx. Then ∫u³du=u⁴/4+C=(x²+1)^4/4+C. Differentiation returns 2x(x²+1)^3.\nGuided practice: for ∫3x² e^{x³}dx, choose u=x³. Check that du=3x²dx and the antiderivative is e^{x³}+C.",
+      "main": "T22V3::ARC510::S13-M@1",
+      "transfer": "T22V3::ARC510::S13-T@1"
+    },
+    {
+      "order": 14,
+      "id": "T22V3::ARC510::S14@1",
+      "moduleId": "ARC510",
+      "title": "Definite substitution transforms bounds and orientation",
+      "focus": "Apply substitution directly to definite integrals with transformed endpoint values, sign/orientation and domain hypotheses intact.",
+      "purpose": "Prevent mixed-variable bounds and sign errors while clarifying that this one-dimensional chain-rule identity does not require an inverse-Jacobian story.",
+      "centralCapability": "Execute and audit definite one-variable substitution with transformed bounds.",
+      "principalObstacle": "Learners often change the integrand to u but retain x-bounds, or reorder transformed bounds without changing sign.",
+      "entryPrerequisites": [
+        "M11-S13 reverse chain rule",
+        "M11-S05 orientation",
+        "M11-S11 endpoint evaluation"
+      ],
+      "requiredOwnership": [
+        "Transform definite-integration bounds consistently under u=g(x).",
+        "Preserve orientation when the transformed endpoint order reverses.",
+        "Check the continuity/domain conditions needed by the transformed integrand."
+      ],
+      "applicationScope": "One-variable proper substitutions justified by chain rule/FTC.",
+      "transferScope": "Changed to a decreasing transformation whose new bounds reverse, with an explicit wrong-sign diagnosis.",
+      "inScope": [
+        "transformed bounds",
+        "orientation",
+        "domain",
+        "no mixed variables"
+      ],
+      "outOfScope": [
+        "multivariable change of variables",
+        "Jacobian determinants",
+        "random-variable density transformations"
+      ],
+      "exitCondition": "No solution mixes u-integrands with x-bounds or silently flips reversed transformed limits.",
+      "lesson": "Orient. For definite integrals, substitution changes not only the expression but also the endpoint values.\nDefine. If u=g(x), then x=a maps to u=g(a) and x=b maps to u=g(b). Under the established chain/FTC hypotheses, ∫_a^b f(g(x))g'(x)dx=∫_{g(a)}^{g(b)}f(u)du.\nConnect. The formula follows by taking an antiderivative F of f: both sides equal F(g(b))-F(g(a)). In this form no global inverse of g is needed. Domain and continuity of the actual expressions still matter.\nExplain. If g(b)<g(a), the u-bounds are reversed and the integral can be negative. You may reorder them only by introducing a minus sign. Never keep x-bounds after changing the integration variable to u.\nWorked example: ∫_0^1 2x e^{x²}dx. With u=x², the bounds 0→1 stay 0→1, giving ∫_0^1 e^u du=e-1.\nGuided practice: ∫_0^1 -2x(3-x²)dx. Let u=3-x², so bounds 3→2. Check: ∫_3^2 u du=(4-9)/2=-5/2, matching the negative integrand.",
+      "main": "T22V3::ARC510::S14-M@1",
+      "transfer": "T22V3::ARC510::S14-T@1"
+    },
+    {
+      "order": 15,
+      "id": "T22V3::ARC510::S15@1",
+      "moduleId": "ARC510",
+      "title": "Integration by parts is the product rule accumulated",
+      "focus": "Derive integration by parts from M10's product rule and FTC, then preserve definite boundary terms.",
+      "purpose": "Teach reverse-product structure rather than a mnemonic formula detached from its origin.",
+      "centralCapability": "Reconstruct and apply integration by parts with a productive factor split and correct boundary terms.",
+      "principalObstacle": "Learners may multiply antiderivatives, drop boundary terms, or choose a split whose 'v' is not available.",
+      "entryPrerequisites": [
+        "M10-S12 product rule",
+        "M11-S11 FTC endpoint evaluation",
+        "M11-S12 antiderivative repertoire"
+      ],
+      "requiredOwnership": [
+        "Reconstruct the integration-by-parts identity from the product rule and FTC.",
+        "Choose a workable differentiated/integrated factor split within the available antiderivative repertoire.",
+        "Carry definite boundary terms with correct signs."
+      ],
+      "applicationScope": "One-variable proper integrals with verified factor derivatives/antiderivatives.",
+      "transferScope": "Changed to auditing a completed definite calculation that drops or mis-signs the boundary/product contribution.",
+      "inScope": [
+        "∫u dv=uv-∫v du",
+        "definite boundary term",
+        "factor split"
+      ],
+      "outOfScope": [
+        "tabular integration catalogue",
+        "Fourier/Laplace transforms",
+        "stochastic integration"
+      ],
+      "exitCondition": "The learner can derive the identity and a wrong product/boundary solver loses targeted credit.",
+      "lesson": "Orient. There is no rule ∫uv=(∫u)(∫v). The useful product structure comes from accumulating the derivative product rule.\nDefine. M10 gives (uv)'=u'v+uv'. Integrate and use FTC: ∫u v' dx=uv-∫u'v dx. With du=u'dx and dv=v'dx, this is written ∫u dv=uv-∫v du. On [a,b], ∫_a^b u v' dx=[uv]_a^b-∫_a^b u'v dx.\nConnect. Choose the factor to differentiate so it becomes simpler, and choose dv only when its antiderivative v is actually available. The identity trades one integral for another; it does not guarantee improvement.\nExplain. In a definite integral, [uv]_a^b is part of the theorem. Dropping it changes the quantity.\nWorked example: ∫_0^1 x e^x dx=[xe^x]_0^1-∫_0^1 e^x dx=e-(e-1)=1.\nGuided practice: for ∫x cos x dx, take u=x and dv=cos x dx. Check: x sin x+cos x+C. Differentiate it to verify.",
+      "main": "T22V3::ARC510::S15-M@1",
+      "transfer": "T22V3::ARC510::S15-T@1"
+    },
+    {
+      "order": 16,
+      "id": "T22V3::ARC510::S16@1",
+      "moduleId": "ARC510",
+      "title": "Method forensics: transform only when structure matches",
+      "focus": "Choose among direct FTC, substitution, integration by parts or no current elementary exact method, and verify the choice.",
+      "purpose": "Prevent the technique catalogue from becoming a guessing game and teach that legal transformations must actually simplify the task.",
+      "centralCapability": "Diagnose integral structure and choose a justified method from the M11 toolkit without inventing unsupported machinery.",
+      "principalObstacle": "Mnemonic-driven learners may force substitution or parts onto every integral and confuse 'a technique exists' with 'this technique improves the problem.'",
+      "entryPrerequisites": [
+        "M11-S12 direct antiderivatives",
+        "M11-S13-S14 substitution",
+        "M11-S15 integration by parts"
+      ],
+      "requiredOwnership": [
+        "Choose direct evaluation, substitution or integration by parts from the integrand's derivative structure.",
+        "Recognize when none of the current exact elementary tools has been justified instead of fabricating an antiderivative.",
+        "Use differentiation/sign/bounds to verify or reject a chosen method/result."
+      ],
+      "applicationScope": "Only the established M11 repertoire; no claim that an integral has no antiderivative in any broader mathematical sense.",
+      "transferScope": "Changed to auditing a proposed method whose required intermediate antiderivative is unavailable and a second method that reduces the structure immediately.",
+      "inScope": [
+        "method selection",
+        "verification",
+        "declining unsupported exact evaluation"
+      ],
+      "outOfScope": [
+        "special functions",
+        "numerical quadrature",
+        "advanced integration tricks"
+      ],
+      "exitCondition": "The learner can say 'not with the current exact toolkit' precisely and can defend method choice structurally.",
+      "lesson": "Orient. Substitution and parts are identities, not rituals. Ask what derivative structure is present and whether the transformation makes the remaining integral simpler.\nDefine. Direct: the integrand is already in S12's derivative-pair repertoire. Substitution: an inner expression and its derivative scale are present. Parts: a product can trade a derivative from one factor to another and v is available. None-current: no taught exact route is justified.\nConnect. Verification is part of selection: differentiate an indefinite result, or check sign/bounds for a definite one.\nExplain. 'None-current' does not mean the definite integral does not exist. It means M11 has not established an elementary exact antiderivative/technique for it. Numerical quadrature and special functions are outside this module.\nWorked example: ∫2x cos(x²)dx suggests substitution; ∫x e^x dx suggests parts; ∫(3x²-4)dx is direct; ∫e^{x²}dx has no exact method in the current repertoire.\nGuided practice: classify ∫x/(x²+5)dx (substitution), ∫x sin x dx (parts), and ∫e^{-x²}dx (none-current exact toolkit). Do not approximate the last one.",
+      "main": "T22V3::ARC510::S16-M@1",
+      "transfer": "T22V3::ARC510::S16-T@1"
     }
   ],
   "problems": {
@@ -654,6 +801,62 @@
       "order": 12,
       "kind": "transfer",
       "prompt": "On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S13-M@1": {
+      "id": "T22V3::ARC510::S13-M@1",
+      "order": 13,
+      "kind": "main",
+      "prompt": "Evaluate ∫6x(3x²+2)^4 dx by substitution. Identify u and du, account for the derivative factor explicitly, and verify your final antiderivative by differentiating it.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S13-T@1": {
+      "id": "T22V3::ARC510::S13-T@1",
+      "order": 13,
+      "kind": "transfer",
+      "prompt": "A proposed solution claims ∫x(x²+1)^3 dx=(x²+1)^4/4+C. Diagnose the exact error by differentiating the proposed answer, then give a corrected antiderivative and verify it.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S14-M@1": {
+      "id": "T22V3::ARC510::S14-M@1",
+      "order": 14,
+      "kind": "main",
+      "prompt": "Evaluate ∫_1^2 [3x²/(x³+1)]dx by a definite substitution. Transform the bounds before integrating and state the domain/continuity fact that makes the logarithm step legal.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S14-T@1": {
+      "id": "T22V3::ARC510::S14-T@1",
+      "order": 14,
+      "kind": "transfer",
+      "prompt": "Evaluate ∫_0^1 -2x(3-x²)^2 dx using u=3-x². A proposed solution changes the bounds to 2 and 3 in increasing order but keeps no minus sign, obtaining +19/3. Identify the orientation error and give the correct value.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S15-M@1": {
+      "id": "T22V3::ARC510::S15-M@1",
+      "order": 15,
+      "kind": "main",
+      "prompt": "Starting from the product rule (uv)'=u'v+uv', reconstruct the definite integration-by-parts identity. Then use it to evaluate ∫_0^1 x e^{2x}dx, showing your choices of u and dv and all boundary terms.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S15-T@1": {
+      "id": "T22V3::ARC510::S15-T@1",
+      "order": 15,
+      "kind": "transfer",
+      "prompt": "A student evaluates ∫_0^π x cos x dx and writes '[x sin x]_0^π + ∫_0^π sin x dx =2.' Audit the work: identify the sign error in the integration-by-parts identity, compute the correct value, and give one quick plausibility check from the sign of x cos x over the interval.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S16-M@1": {
+      "id": "T22V3::ARC510::S16-M@1",
+      "order": 16,
+      "kind": "main",
+      "prompt": "For each definite integral, choose the most direct method from {direct FTC, substitution, integration by parts, none of the current exact elementary tools}. Evaluate the first three exactly and justify the fourth classification: (A) ∫_0^1 4x(2x²+1)^2 dx; (B) ∫_0^1 x cos x dx; (C) ∫_0^1(5x^4-2)dx; (D) ∫_0^1 e^{x²}dx.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S16-T@1": {
+      "id": "T22V3::ARC510::S16-T@1",
+      "order": 16,
+      "kind": "transfer",
+      "prompt": "For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
       "obligationVersion": 1
     }
   },
@@ -1121,6 +1324,162 @@
         }
       ],
       "marking": "Accept equivalent power notation. Do not require ln|x| because this integrand has x^-3, not 1/x."
+    },
+    "T22V3::ARC510::S13-M@1": {
+      "reference": "Choose u=3x²+2, so du=6x dx. The integral becomes ∫u^4du=u^5/5+C, hence (3x²+2)^5/5+C. Differentiating gives (1/5)·5(3x²+2)^4·6x=6x(3x²+2)^4.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Chooses u=3x²+2 and du=6x dx, matching the inner derivative factor."
+        },
+        {
+          "points": 4,
+          "criterion": "Obtains (3x²+2)^5/5+C."
+        },
+        {
+          "points": 3,
+          "criterion": "Differentiates the result back to 6x(3x²+2)^4."
+        }
+      ],
+      "marking": "Equivalent reverse-chain reasoning without explicit du notation is accepted if the scale factor is clear."
+    },
+    "T22V3::ARC510::S13-T@1": {
+      "reference": "Differentiating the proposed answer gives (1/4)·4(x²+1)^3·2x=2x(x²+1)^3, twice the required integrand. With u=x²+1, du=2x dx, the original integral is (1/2)∫u³du=u⁴/8+C=(x²+1)^4/8+C. Differentiation returns x(x²+1)^3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Differentiates the proposed answer and identifies the factor-of-2 mismatch."
+        },
+        {
+          "points": 4,
+          "criterion": "Corrects the missing scale and obtains (x²+1)^4/8+C."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies the corrected antiderivative by differentiation."
+        }
+      ],
+      "marking": "Do not award full diagnostic credit for only saying 'missing a 1/2'; the task asks for the derivative witness."
+    },
+    "T22V3::ARC510::S14-M@1": {
+      "reference": "Let u=x³+1, du=3x²dx. At x=1, u=2; at x=2, u=9. Thus the integral is ∫_2^9 du/u=ln9-ln2=ln(9/2). The transformed interval is positive, so 1/u is continuous there and ln u is a valid antiderivative.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Uses u=x³+1 and transforms x=1,2 into u=2,9."
+        },
+        {
+          "points": 4,
+          "criterion": "Evaluates ∫_2^9 du/u as ln(9/2)."
+        },
+        {
+          "points": 3,
+          "criterion": "States that the transformed interval stays in u>0, where 1/u is continuous and ln u is valid."
+        }
+      ],
+      "marking": "ln9-ln2 is fully equivalent to ln(9/2). No x-bounds may remain on a u-integral."
+    },
+    "T22V3::ARC510::S14-T@1": {
+      "reference": "With u=3-x² and du=-2x dx, x=0 maps to u=3 and x=1 maps to u=2. The integral is ∫_3^2 u²du=[u³/3]_3^2=(8-27)/3=-19/3. Reordering to 2→3 requires an extra minus sign. The original integrand is nonpositive on [0,1], which also rules out +19/3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Transforms the bounds as 3→2 under u=3-x²."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that reordering reversed u-bounds requires a minus sign."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the correct value -19/3."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses the nonpositive original integrand as a sign sanity check."
+        }
+      ],
+      "marking": "Either keep bounds 3→2 or reverse with a minus sign. The sign sanity check is explicitly requested by the task's diagnosis context."
+    },
+    "T22V3::ARC510::S15-M@1": {
+      "reference": "Integrating the product rule gives ∫_0^1 u v'=[uv]_0^1-∫_0^1 u'v. Choose u=x, dv=e^{2x}dx, so du=dx and v=e^{2x}/2. Then ∫_0^1 xe^{2x}dx=[xe^{2x}/2]_0^1-(1/2)∫_0^1 e^{2x}dx=e²/2-(e²-1)/4=(e²+1)/4.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Reconstructs the definite integration-by-parts identity from the product rule with the minus sign and boundary term."
+        },
+        {
+          "points": 2,
+          "criterion": "Chooses u=x and v=e^{2x}/2 (or an equivalent productive split) correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Carries [xe^{2x}/2]_0^1 and the remaining integral with correct signs."
+        },
+        {
+          "points": 2,
+          "criterion": "Simplifies the exact value to (e²+1)/4 or an equivalent expression."
+        }
+      ],
+      "marking": "This theorem component is proof reconstruction. Equivalent productive notation is accepted."
+    },
+    "T22V3::ARC510::S15-T@1": {
+      "reference": "With u=x and dv=cos x dx, v=sin x and du=dx. The identity is [x sin x]_0^π-∫_0^π sin x dx, not plus. The boundary term is 0 and ∫_0^π sin x dx=2, so the correct value is -2. A plausibility check is that x cos x is positive only on [0,π/2) but negative on (π/2,π], with larger x weighting the negative side; a negative total is plausible.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Identifies the incorrect plus sign and restores the minus sign from integration by parts."
+        },
+        {
+          "points": 4,
+          "criterion": "Computes the correct definite value -2 including the zero boundary term."
+        },
+        {
+          "points": 3,
+          "criterion": "Gives a valid sign/magnitude plausibility check using the changing sign of x cos x and larger x on the negative side."
+        }
+      ],
+      "marking": "The plausibility check need not prove the value; it must be mathematically consistent with a negative result."
+    },
+    "T22V3::ARC510::S16-M@1": {
+      "reference": "A: substitution u=2x²+1, du=4x dx, bounds 1→3, gives ∫_1^3u²du=26/3. B: parts gives [x sin x]_0^1-∫_0^1 sin x dx=sin1+cos1-1. C: direct FTC with antiderivative x^5-2x gives -1. D: e^{x²} is continuous so the proper integral exists, but no exact elementary antiderivative/method for it has been established in the current M11 toolkit; leave it unevaluated exactly.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Classifies A as substitution and obtains 26/3 with transformed bounds."
+        },
+        {
+          "points": 3,
+          "criterion": "Classifies B as integration by parts and obtains sin1+cos1-1."
+        },
+        {
+          "points": 2,
+          "criterion": "Classifies C as direct FTC and obtains -1."
+        },
+        {
+          "points": 2,
+          "criterion": "Classifies D as outside the current exact elementary toolkit while distinguishing that from nonexistence of the proper integral."
+        }
+      ],
+      "marking": "Equivalent exact expressions are accepted. D must not be called divergent or impossible; only the current exact technique claim is authorized."
+    },
+    "T22V3::ARC510::S16-T@1": {
+      "reference": "The proposed parts split requires v=∫e^{x²}dx, which is not in the established exact repertoire, so it does not simplify or even complete the method. The integrand has reverse-chain form with u=x² and du=2x dx, giving ∫e^u du=e^u+C=e^{x²}+C. Differentiating e^{x²} gives 2x e^{x²}.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Identifies that the proposed parts split requires the unavailable exact antiderivative of e^{x²}."
+        },
+        {
+          "points": 4,
+          "criterion": "Recognizes the reverse-chain structure u=x², du=2x dx and obtains e^{x²}+C."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies the result by differentiation."
+        }
+      ],
+      "marking": "Do not mark integration by parts 'illegal in general'; the flaw is that this chosen split is not executable/productive within the authorized repertoire."
     }
   },
   "coverage": {
@@ -1256,6 +1615,57 @@
       ]
     ],
     "T22V3::ARC510::S12@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S13@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S14@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::ARC510::S15@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S16@1": [
       [
         "main",
         "transfer"
@@ -1687,6 +2097,143 @@
         "escapeAttempt": "Correct local algebra does not imply a legal cross-zero domain.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::ARC510::S13@1": [
+      {
+        "claim": "Recognize a reverse-chain integrand f(g(x))g'(x) and choose the inner transformation.",
+        "task": "main",
+        "publicRequest": "Evaluate ∫6x(3x²+2)^4 dx by substitution. Identify u and du, account for the derivative factor explicitly, and verify your final antiderivative by differentiating it.",
+        "rubricEvidence": [
+          "Chooses u=3x²+2 and du=6x dx, matching the inner derivative factor."
+        ],
+        "escapeAttempt": "Naming an unrelated u cannot earn this row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Carry the derivative scale factor correctly through an indefinite substitution.",
+        "task": "main+transfer",
+        "publicRequest": "Evaluate ∫6x(3x²+2)^4 dx by substitution. Identify u and du, account for the derivative factor explicitly, and verify your final antiderivative by differentiating it. | A proposed solution claims ∫x(x²+1)^3 dx=(x²+1)^4/4+C. Diagnose the exact error by differentiating the proposed answer, then give a corrected antiderivative and verify it.",
+        "rubricEvidence": [
+          "Obtains (3x²+2)^5/5+C.",
+          "Corrects the missing scale and obtains (x²+1)^4/8+C."
+        ],
+        "escapeAttempt": "Missing scale factors produce the wrong coefficients.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Verify a substitution result by differentiating it in the original variable.",
+        "task": "main+transfer",
+        "publicRequest": "Evaluate ∫6x(3x²+2)^4 dx by substitution. Identify u and du, account for the derivative factor explicitly, and verify your final antiderivative by differentiating it. | A proposed solution claims ∫x(x²+1)^3 dx=(x²+1)^4/4+C. Diagnose the exact error by differentiating the proposed answer, then give a corrected antiderivative and verify it.",
+        "rubricEvidence": [
+          "Differentiates the result back to 6x(3x²+2)^4.",
+          "Verifies the corrected antiderivative by differentiation."
+        ],
+        "escapeAttempt": "Correct-looking formulas without the requested check do not observe verification.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S14@1": [
+      {
+        "claim": "Transform definite-integration bounds consistently under u=g(x).",
+        "task": "main+transfer",
+        "publicRequest": "Evaluate ∫_1^2 [3x²/(x³+1)]dx by a definite substitution. Transform the bounds before integrating and state the domain/continuity fact that makes the logarithm step legal. | Evaluate ∫_0^1 -2x(3-x²)^2 dx using u=3-x². A proposed solution changes the bounds to 2 and 3 in increasing order but keeps no minus sign, obtaining +19/3. Identify the orientation error and give the correct value.",
+        "rubricEvidence": [
+          "Uses u=x³+1 and transforms x=1,2 into u=2,9.",
+          "Transforms the bounds as 3→2 under u=3-x²."
+        ],
+        "escapeAttempt": "Mixed-variable bounds cannot earn these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Preserve orientation when the transformed endpoint order reverses.",
+        "task": "transfer",
+        "publicRequest": "Evaluate ∫_0^1 -2x(3-x²)^2 dx using u=3-x². A proposed solution changes the bounds to 2 and 3 in increasing order but keeps no minus sign, obtaining +19/3. Identify the orientation error and give the correct value.",
+        "rubricEvidence": [
+          "Explains that reordering reversed u-bounds requires a minus sign.",
+          "Computes the correct value -19/3."
+        ],
+        "escapeAttempt": "The wrong +19/3 answer is the direct escape attack and loses both rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Check the continuity/domain conditions needed by the transformed integrand.",
+        "task": "main",
+        "publicRequest": "Evaluate ∫_1^2 [3x²/(x³+1)]dx by a definite substitution. Transform the bounds before integrating and state the domain/continuity fact that makes the logarithm step legal.",
+        "rubricEvidence": [
+          "States that the transformed interval stays in u>0, where 1/u is continuous and ln u is valid."
+        ],
+        "escapeAttempt": "A numerical/log answer alone does not observe the requested domain check.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S15@1": [
+      {
+        "claim": "Reconstruct the integration-by-parts identity from the product rule and FTC.",
+        "task": "main",
+        "publicRequest": "Starting from the product rule (uv)'=u'v+uv', reconstruct the definite integration-by-parts identity. Then use it to evaluate ∫_0^1 x e^{2x}dx, showing your choices of u and dv and all boundary terms.",
+        "rubricEvidence": [
+          "Reconstructs the definite integration-by-parts identity from the product rule with the minus sign and boundary term."
+        ],
+        "escapeAttempt": "A memorized unmotivated formula may get later arithmetic but not this reconstruction row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Choose a workable differentiated/integrated factor split within the available antiderivative repertoire.",
+        "task": "main",
+        "publicRequest": "Starting from the product rule (uv)'=u'v+uv', reconstruct the definite integration-by-parts identity. Then use it to evaluate ∫_0^1 x e^{2x}dx, showing your choices of u and dv and all boundary terms.",
+        "rubricEvidence": [
+          "Chooses u=x and v=e^{2x}/2 (or an equivalent productive split) correctly."
+        ],
+        "escapeAttempt": "A split requiring an unavailable v cannot earn the workable-choice row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Carry definite boundary terms with correct signs.",
+        "task": "main+transfer",
+        "publicRequest": "Starting from the product rule (uv)'=u'v+uv', reconstruct the definite integration-by-parts identity. Then use it to evaluate ∫_0^1 x e^{2x}dx, showing your choices of u and dv and all boundary terms. | A student evaluates ∫_0^π x cos x dx and writes '[x sin x]_0^π + ∫_0^π sin x dx =2.' Audit the work: identify the sign error in the integration-by-parts identity, compute the correct value, and give one quick plausibility check from the sign of x cos x over the interval.",
+        "rubricEvidence": [
+          "Carries [xe^{2x}/2]_0^1 and the remaining integral with correct signs.",
+          "Computes the correct definite value -2 including the zero boundary term."
+        ],
+        "escapeAttempt": "Dropping/mis-signing the boundary/product structure fails these direct observers.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S16@1": [
+      {
+        "claim": "Choose direct evaluation, substitution or integration by parts from the integrand's derivative structure.",
+        "task": "main+transfer",
+        "publicRequest": "For each definite integral, choose the most direct method from {direct FTC, substitution, integration by parts, none of the current exact elementary tools}. Evaluate the first three exactly and justify the fourth classification: (A) ∫_0^1 4x(2x²+1)^2 dx; (B) ∫_0^1 x cos x dx; (C) ∫_0^1(5x^4-2)dx; (D) ∫_0^1 e^{x²}dx. | For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
+        "rubricEvidence": [
+          "Classifies A as substitution and obtains 26/3 with transformed bounds.",
+          "Classifies B as integration by parts and obtains sin1+cos1-1.",
+          "Classifies C as direct FTC and obtains -1.",
+          "Recognizes the reverse-chain structure u=x², du=2x dx and obtains e^{x²}+C."
+        ],
+        "escapeAttempt": "One-method-for-all solvers fail multiple direct classification rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Recognize when none of the current exact elementary tools has been justified instead of fabricating an antiderivative.",
+        "task": "main+transfer",
+        "publicRequest": "For each definite integral, choose the most direct method from {direct FTC, substitution, integration by parts, none of the current exact elementary tools}. Evaluate the first three exactly and justify the fourth classification: (A) ∫_0^1 4x(2x²+1)^2 dx; (B) ∫_0^1 x cos x dx; (C) ∫_0^1(5x^4-2)dx; (D) ∫_0^1 e^{x²}dx. | For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
+        "rubricEvidence": [
+          "Classifies D as outside the current exact elementary toolkit while distinguishing that from nonexistence of the proper integral.",
+          "Identifies that the proposed parts split requires the unavailable exact antiderivative of e^{x²}."
+        ],
+        "escapeAttempt": "Calling the integral nonexistent or inventing an unsupported v cannot earn these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use differentiation/sign/bounds to verify or reject a chosen method/result.",
+        "task": "transfer",
+        "publicRequest": "For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
+        "rubricEvidence": [
+          "Verifies the result by differentiation."
+        ],
+        "escapeAttempt": "Correct method naming without the requested backward check does not observe verification.",
+        "disposition": "adequate"
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -1758,6 +2305,26 @@
         "M11-S10 antiderivative definition",
         "+C uniqueness on intervals",
         "M10 polynomial/product/quotient/trig/exp/log derivatives"
+      ],
+      "T22V3::ARC510::S13@1": [
+        "M10-S14 chain rule",
+        "M11-S11 FTC/antiderivatives",
+        "M11-S12 basic antiderivative repertoire"
+      ],
+      "T22V3::ARC510::S14@1": [
+        "M11-S13 reverse chain rule",
+        "M11-S05 orientation",
+        "M11-S11 endpoint evaluation"
+      ],
+      "T22V3::ARC510::S15@1": [
+        "M10-S12 product rule",
+        "M11-S11 FTC endpoint evaluation",
+        "M11-S12 antiderivative repertoire"
+      ],
+      "T22V3::ARC510::S16@1": [
+        "M11-S12 direct antiderivatives",
+        "M11-S13-S14 substitution",
+        "M11-S15 integration by parts"
       ]
     }
   },
@@ -1885,6 +2452,46 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer changes to a negative interval, negative power and non-e base exponential, forcing derivative verification and domain-component reasoning rather than direct reuse of Main's terms."
         }
+      },
+      "T22V3::ARC510::S13@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main uses a fresh inner polynomial/power and requires the learner to construct and verify the scale-adjusted reverse chain on new data."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer supplies a plausible completed solution rather than an unevaluated integral, so the learner must audit it by differentiation and repair the scale error."
+        }
+      },
+      "T22V3::ARC510::S14@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main uses a rational/log structure with fresh bounds and requires transformed-domain justification; no answer-bearing prior example matches it."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer uses a decreasing inner map and a supplied wrong solution, forcing orientation diagnosis plus a sign sanity check rather than routine substitution."
+        }
+      },
+      "T22V3::ARC510::S15@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson derives integration by parts from the product rule; Main explicitly reconstructs the same identity before applying it to fresh data."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer supplies a flawed completed calculation and requires sign diagnosis plus a qualitative plausibility check, not another routine application."
+        }
+      },
+      "T22V3::ARC510::S16@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main presents four unseen structures together and requires discriminating method choice, including an explicit refusal to overclaim an exact method for e^{x²}."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer starts from a proposed method rather than an integral-only prompt and asks whether its intermediate obligation is available before reconstructing a simpler reverse-chain solution."
+        }
       }
     },
     "wrongSolverTests": {
@@ -2007,6 +2614,46 @@
         "wrongApproach": "Integrate 2^x as 2^x or treat -1/x² as valid through x=0.",
         "result": "Misses the ln2 scale or original-domain exclusion.",
         "validAlternative": "Any derivative-verified equivalent on x<0 passes."
+      },
+      "T22V3::ARC510::S13-M@1": {
+        "wrongApproach": "Let u=3x²+2 but write du=x dx or ignore the 6 factor.",
+        "result": "Produces a scaled wrong answer that fails the explicit differentiation check.",
+        "validAlternative": "Directly recognize the derivative of (3x²+2)^5 and solve for the constant factor."
+      },
+      "T22V3::ARC510::S13-T@1": {
+        "wrongApproach": "Accept the proposed answer because the inner expression and exponent look right.",
+        "result": "Differentiation exposes a factor two error and the solver loses diagnosis/verification credit.",
+        "validAlternative": "Differentiate first, or perform the substitution with the 1/2 factor."
+      },
+      "T22V3::ARC510::S14-M@1": {
+        "wrongApproach": "Use u=x³+1 but retain bounds 1 and 2.",
+        "result": "Mixes x-values with a u-integrand and fails transformed-bound evidence.",
+        "validAlternative": "Evaluate an x-antiderivative ln(x³+1) directly only if the chain factor is justified; it yields the same endpoint value."
+      },
+      "T22V3::ARC510::S14-T@1": {
+        "wrongApproach": "Sort transformed bounds into increasing order without sign change.",
+        "result": "Gives +19/3 despite a nonpositive integrand and loses orientation credit.",
+        "validAlternative": "Keep 3→2 or use -∫_2^3."
+      },
+      "T22V3::ARC510::S15-M@1": {
+        "wrongApproach": "Use ∫uv=(∫u)(∫v) or omit [uv].",
+        "result": "Fails the theorem reconstruction and boundary-term criteria.",
+        "validAlternative": "Any algebraically equivalent product-rule derivation with a productive factor split passes."
+      },
+      "T22V3::ARC510::S15-T@1": {
+        "wrongApproach": "Accept the plus sign because the numeric result 2 resembles ∫sin.",
+        "result": "Produces the wrong sign and fails both audit and plausibility evidence.",
+        "validAlternative": "Re-derive the identity or differentiate the indefinite parts result."
+      },
+      "T22V3::ARC510::S16-M@1": {
+        "wrongApproach": "Use substitution for every item or declare D divergent because no elementary method was taught.",
+        "result": "Fails method discrimination and conflates evaluation method with existence.",
+        "validAlternative": "Any justified equivalent choice/result within the taught toolkit passes."
+      },
+      "T22V3::ARC510::S16-T@1": {
+        "wrongApproach": "Say parts is always invalid here without explaining the missing v, or leave e^{x²} unevaluated despite the 2x factor.",
+        "result": "Misses both the method-audit and reverse-chain evidence.",
+        "validAlternative": "Recognize the derivative of x² directly without formal u notation."
       }
     }
   },
@@ -2058,6 +2705,22 @@
         "transfer": "none"
       },
       "T22V3::ARC510::S12@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S13@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S14@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S15@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S16@1": {
         "main": "none",
         "transfer": "none"
       }
@@ -2112,6 +2775,22 @@
         "transfer": "distinct"
       },
       "T22V3::ARC510::S12@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S13@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S14@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S15@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S16@1": {
         "main": "distinct",
         "transfer": "distinct"
       }
