@@ -148,5 +148,5 @@ for(const [sourceId,targets] of Object.entries(a.historicalGuidedPracticeOverlap
  for(const pid of targets)assert.equal(state.exposures[pid]?.referenceSeenAt,undefined,'Unsolved guided practice must not fabricate reference exposure');
 }
 
-assert(!fs.existsSync('course/t22/authoring/m08.json'),'M08 must remain closed');
-console.log('PASS M07 Astra repair: semantic mutation contract, clean instruction, 10 versioned assessments, 5 ownership-contract changes, 3 solved-exposure links, guided-only S03→S04 overlap, novice bridges, stronger Transfers and hard M08 stop.');
+assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized after the recorded M07 repair checkpoint');
+console.log('PASS M07 Astra repair: semantic mutation contract, clean instruction, 10 versioned assessments, 5 ownership-contract changes, 3 solved-exposure links, guided-only S03→S04 overlap, novice bridges, stronger Transfers; historical M08 stop is superseded only by explicit later authorization.');
