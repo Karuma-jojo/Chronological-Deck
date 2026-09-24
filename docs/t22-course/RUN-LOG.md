@@ -1,3 +1,7 @@
+# Current M08 F05 follow-up repair — FINAL VALIDATION PENDING — 2026-09-24
+
+The post-green novice/syntax sweep found M08-F05: several code-looking snippets used invalid semicolon-compressed compound statements such as `...; for ...`, `...; while ...`, or `...; def ...`. All learner-facing instances were rewritten as valid multiline Python. Public contract provenance is now **29 changed from v1: 27×v2, S18-T×v3, S22-M×v4**. Earlier green heads remain historical only. Current exact-head T22 Elite Chromium/browser and broader PR validation is required before closure. M09 remains closed.
+
 # Current M08 bounded follow-up repair — FINAL VALIDATION PENDING — 2026-09-24
 
 The first independent-repair head `772e5dc12bcd44340bbf1d96a093d1b802c10699` was fully green, but a subsequent novice-path follow-up found M08-F01→F04: S12 from-import/call mismatch, hidden list-comprehension syntax in S22 Main, untaught conditional/list-comprehension syntax in S07/S14 lessons, and lambda leakage in the S17 revealed reference. These are repaired on `codex/t22-m08-independent-repair`. M08 remains 24 sessions / 48 tasks / 120 claims. **24 public obligations differ from v1: 23 are v2 and S22-M is v3.** The earlier 772e... run is historical evidence only; the current exact head must pass the complete T22 Elite Chromium/browser suite and broader PR matrix before this state can be called fully validated. M09 remains closed.
