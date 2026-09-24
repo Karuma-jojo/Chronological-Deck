@@ -5,9 +5,9 @@
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "publication-candidate-independent-review-repaired",
+    "status": "published-independent-review-repaired",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
-    "gate": "All 20 design-derived sessions and the bounded independent-review repairs have passed the full structural, semantic/evidence, independent-math and browser suite. M11 is registered in the shared route for publication through M12; this does not claim learner mastery.",
+    "gate": "All 20 design-derived sessions and the bounded independent-review repairs passed the full structural, semantic/evidence, independent-math and browser suite. M11 is published in the shared learner route through M12; this does not claim learner mastery.",
     "nextBoundary": "M12 owns Taylor approximation, deterministic asymptotic notation and Taylor-series representation. M11 remains an integration/accumulation module and does not import M12 machinery backward."
   },
   "boundary": {
@@ -3417,7 +3417,7 @@
         "transfer": "none"
       }
     },
-    "note": "M11 is not registered in the learner runtime; no M11 learner evidence exists."
+    "note": "At the pre-publication checkpoint M11 was not registered in the learner runtime, so no prior M11 learner evidence existed."
   },
   "historicalGuidedPracticeOverlap": {
     "version": "m11-pilot-v1",
@@ -3508,7 +3508,7 @@
   "initialVersionAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pilot": "S01 only; obligationVersion 1 for both unpublished tasks.",
-    "s04EndpointRepair": "S04 pre-publication repair: one exceptional point may be selected as a tag in two adjacent closed subintervals, so the safe bound was corrected from D||P|| to 2D||P||. ObligationVersion remains 1 because M11 is unpublished/unregistered.",
+    "s04EndpointRepair": "S04 pre-publication repair: one exceptional point may be selected as a tag in two adjacent closed subintervals, so the safe bound was corrected from D||P|| to 2D||P||. ObligationVersion remained 1 through the pre-publication repair because the fixed obligation had not yet been published; first publication preserves that v1 wording.",
     "fullAuthoring": "20 design-derived sessions authored; global semantic/evidence and mathematical audits still required before handoff.",
     "semanticRepair": "Global 61-claim audit narrowed S05-C3, S06-C3, S12-C1 and S16-C3 to directly observed capabilities; S10/S11 MVT hypotheses were made endpoint-safe. No claim was retained merely because related mathematics appears.",
     "s19FreshnessRepair": "S19 Main-B was changed from 1/sqrt(x²+1), which duplicated the lesson guided practice, to 1/sqrt(x²+4) with comparison 1/(sqrt(5)x). M11 is unpublished, so obligationVersion remains 1.",
