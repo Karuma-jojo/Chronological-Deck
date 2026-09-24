@@ -35,7 +35,9 @@ function checkAssessmentSeparation(pack){
     assert.notEqual(rec.lessonModelKey,rec.mainModelKey, s.id+' lesson/Main semantic instance keys collide');
     assert(rec.noveltyReason.includes(rec.lessonModelKey) && rec.noveltyReason.includes(rec.mainModelKey));
     for(const frag of rec.forbiddenLessonFragments){
-      assert(!s.lesson.includes(frag), s.id+' repaired Main answer/instance leaked into lesson: '+frag);
+      for(const prior of pack.sessions.filter(x=>x.order<=s.order)){
+        assert(!prior.lesson.includes(frag), s.id+' repaired Main answer/instance leaked into S'+String(prior.order).padStart(2,'0')+' lesson: '+frag);
+      }
     }
   }
 }
