@@ -1,13 +1,13 @@
 {
-  "version": "m08-authoring-v4-bounded-followup-repair",
+  "version": "m08-authoring-v5-independent-accepted",
   "instructionVersion": "m08-instruction-v3-25-session-sizing",
   "module": {
     "order": 8,
     "id": "T22E-CODE01",
     "title": "Quant Programming & Simulation Foundations",
-    "status": "session-sizing-rebalanced-25-fully-green-awaiting-bounded-followup",
+    "status": "independently-accepted-frozen",
     "destination": "Use core Python as an auditable mathematical instrument: trace state, branch and loop correctly, decompose functions, choose core containers, enumerate small finite models exactly, preserve rational/float distinctions, manage explicit pseudorandom-generator state, and build reproducible small simulations that are checked against mathematics rather than substituted for it.",
-    "gate": "Page completion is not clearance. Every owned coding capability must be publicly elicited and scored; exact finite mathematics remains the oracle when feasible; simulation must expose model, RNG state/seed and N; independent review is still required.",
+    "gate": "M08 is independently accepted after severe review, bounded repair, full structural/semantic/oracle/browser validation and final follow-up. Preserve this frozen contract unless new concrete evidence warrants reopening it.",
     "nextBoundary": "M09 returns to mathematical analysis. M21 later owns NumPy/pandas/vectorization/plotting, testing/research-engineering discipline and scientific-computing craft; M30 later owns Monte Carlo diagnostics and convergence/error methodology."
   },
   "boundary": {
@@ -37,9 +37,9 @@
     ]
   },
   "coverageAudit": {
-    "version": "m08-observability-bounded-followup-r4-2026-09-24",
-    "status": "125/125 ownership links independently re-audited in the bounded follow-up; concrete observability/separation defects repaired; full validation and one final follow-up remain before freeze.",
-    "policy": "Every retained ownership claim must be earned by an actual public obligation and scored evidence. Bounded follow-up repairs narrow overclaims, correct wrong mappings, and strengthen three fixed Mains where the claimed action was not independently observable. Structural membership is not semantic proof."
+    "version": "m08-observability-independent-accepted-r5-2026-09-24",
+    "status": "125/125 ownership links independently re-audited; bounded defects repaired; full CI/browser and provenance regression passed; M08 accepted/frozen.",
+    "policy": "Every retained ownership claim is tied to an actual public obligation and scored evidence. The final bounded follow-up tested semantic direction, assessment independence, changed-task staleness and stable-ID preservation; future changes must reopen the affected gates."
   },
   "sourceLedger": {
     "checked": "2026-09-24",
@@ -5090,204 +5090,204 @@
     "version": "m08-separation-builder-r1-2026-09-24",
     "sessions": {
       "T22V3::T22E-CODE01::S01@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S02@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S03@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S04@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S05@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S06@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S07@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S08@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S09@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S10@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S11@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S12@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S13@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S14@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S15@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S16@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S17@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S18@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S19@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S20@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S21@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S22@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S23@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S24@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
         "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       },
       "T22V3::T22E-CODE01::S02F@1": {
-        "status": "bounded-followup-repaired-pending-full-validation",
+        "status": "bounded-followup-accepted-frozen",
         "mainPurpose": "Elicit fresh floating-point representation and tolerance-policy reasoning.",
         "transferPurpose": "Require near-zero tolerance diagnosis on a changed numerical surface.",
         "wrongSolver": "Exact-equality ritual or unexplained default tolerance cannot earn the linked evidence.",
         "validAlternative": "Equivalent justified tolerances are acceptable when scale reasoning is explicit.",
-        "claimReview": "Bounded independent follow-up reviewed all lesson/task/evaluator and ownership surfaces; concrete defects were repaired. Full CI/browser validation and one final follow-up remain before freeze."
+        "claimReview": "Final bounded follow-up found no remaining material defect after the scoped repairs. Full CI, executable oracles, stale-evidence regression and Chromium browser workflow passed before freeze."
       }
     }
   },

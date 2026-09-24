@@ -7,10 +7,10 @@ const a=read('course/t22/authoring/m08.json');
 const semantic=read('docs/t22-course/audit/m08-semantic-contract.json');
 const deps=read('docs/t22-rebuild/m65.dependencies.json');
 const by=n=>a.sessions.find(s=>s.order===n);
-assert.equal(a.version,'m08-authoring-v4-bounded-followup-repair');
+assert.equal(a.version,'m08-authoring-v5-independent-accepted');
 assert.equal(a.instructionVersion,'m08-instruction-v3-25-session-sizing');
 assert.equal(a.module.id,'T22E-CODE01');
-assert.equal(a.module.status,'session-sizing-rebalanced-25-fully-green-awaiting-bounded-followup');
+assert.equal(a.module.status,'independently-accepted-frozen');
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01','T22E-DISC01','ARC048']);
 assert.deepEqual(deps.modules.find(x=>x.id==='T22E-CODE01').prerequisites,a.boundary.prerequisiteModules);
 assert.equal(a.sessions.length,25);
@@ -25,7 +25,7 @@ for(const s of a.sessions){
  assert.equal(s.requiredOwnership.length,5);
  assert(s.lesson.includes('Worked example:')&&s.lesson.includes('Guided check:'),s.id);
  assert.equal(a.claimEvidence[s.id].length,5);
- assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'bounded-followup-repaired-pending-full-validation');
+ assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'bounded-followup-accepted-frozen');
  const h=crypto.createHash('sha256').update(JSON.stringify(stable({title:s.title,focus:s.focus,purpose:s.purpose,claims:s.requiredOwnership,lesson:s.lesson}))).digest('hex');
  assert(!hashes.has(h));hashes.add(h);
  for(const kind of ['main','transfer']){
@@ -159,4 +159,4 @@ for(const [n] of versionCases){
 assert.equal(current.sessions[2].id,'T22V3::T22E-CODE01::S02F@1');
 for(let n=4;n<=25;n++) assert.equal(current.sessions[n-1].id,`T22V3::T22E-CODE01::S${String(n-1).padStart(2,'0')}@1`);
 assert(!fs.existsSync('course/t22/authoring/m09.json'),'M09 must remain closed');
-console.log('PASS M08 bounded follow-up: 25 sessions, 50 tasks, 125 semantic links; repaired observability/separation, stale-fingerprint preservation, S02F stable-ID migration and hard M09 stop.');
+console.log('PASS M08 accepted/frozen: 25 sessions, 50 tasks, 125 semantic links; repaired observability/separation, stale-fingerprint preservation, S02F stable-ID migration and hard M09 stop.');
