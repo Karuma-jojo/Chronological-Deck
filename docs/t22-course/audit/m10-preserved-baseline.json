@@ -1,10 +1,9 @@
 {
   "baseCommit": "093dfd374d7f8e88dbe9807603880a5f583c8ebf",
-  "purpose": "M10 preservation baseline, rebased only for the later user-authorized M07 v1.1 retrofit. All other accepted M01-M09 authoring/runtime blobs remain pinned.",
+  "purpose": "M10 preservation baseline, rebased only for the later user-authorized M07 v1.1 retrofit. Accepted M01-M09 authoring/runtime blobs remain pinned. The shared semantic ledger is protected separately at row granularity by m10-protected-semantic-rows.json so later authorized module boundary audits can update only their own downstream rows without weakening M10 preservation.",
   "files": {
     "course/t22/generated/course-meta.json": "b477d42e502a0fadc5f64719a95988278e22bf78",
     "course/t22/generated/roadmap.json": "68665c633c93830fa19e9e5510136795d2b13a02",
-    "docs/t22-rebuild/SEMANTIC-PREREQUISITES.json": "7a1887dc0ff060152eeea3a8916b84ac63c844ea",
     "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01",
     "course/t22/authoring/m01-repairs-1.1.json": "d9d6433dd5acc926defee5458c75a73342bc5c4e",
     "course/t22/authoring/m02.json": "6906fd9b3f30be6d9197cd7d182f1879f58c0114",
@@ -19,5 +18,6 @@
   "authorizedM07Retrofit": {
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
     "reason": "Explicit retrospective repair of M07 only; rebase the M07 authoring blob while preserving every other M01-M09/runtime blob."
-  }
+  },
+  "semanticLedgerGuard": "docs/t22-course/audit/m10-protected-semantic-rows.json"
 }
