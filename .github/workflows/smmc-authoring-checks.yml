@@ -2,7 +2,7 @@ name: SMMC authoring checks
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, codex/smmc-final-engine-v1]
 permissions:
   contents: read
 jobs:
@@ -19,6 +19,8 @@ jobs:
       - run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
       - name: Validate SMMC authoring contracts
         run: node scripts/validate-smmc-authoring-v1.mjs
+      - name: Validate SMMC final-engine scaffold
+        run: node scripts/validate-smmc-engine-scaffold.mjs
       - name: Validate compact SMMC connection index
         run: node scripts/validate-smmc-connection-index.mjs
       - name: Build lean T25 learner payload
