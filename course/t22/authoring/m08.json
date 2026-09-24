@@ -4727,7 +4727,7 @@
         "total=0; for k in range(1,6): total += k*k"
       ],
       "transfer": [
-        "range(1,5)"
+        "1²+2²+3²+4²+5²"
       ]
     },
     "T22V3::T22E-CODE01::S05@1": {
@@ -4799,7 +4799,7 @@
         "Represent A=1/2,B=1/3,C=1/6 with Fraction. Ve"
       ],
       "transfer": [
-        "Fraction(0.1)"
+        "intending exact1/10 and is surprised"
       ]
     },
     "T22V3::T22E-CODE01::S14@1": {
@@ -4844,7 +4844,7 @@
     },
     "T22V3::T22E-CODE01::S19@1": {
       "main": [
-        "random()"
+        "Consume one extra draw from r1 only"
       ],
       "transfer": [
         "def trial(): r=Random(99); return r.random()<0.5"
@@ -4855,7 +4855,7 @@
         "bernoulli(rng,p)"
       ],
       "transfer": [
-        "rng.random()>0.2"
+        "why cannot larger N fix this"
       ]
     },
     "T22V3::T22E-CODE01::S21@1": {
