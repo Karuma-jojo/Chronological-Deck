@@ -49,7 +49,7 @@ has(8,'transfer',"C'(5)=r(5)=2.4 mg/min",'left short-interval averages tend to 2
 
 // S09 moving endpoints.
 near(3*Math.exp(4),3*Math.E**4,1e-10);
-has(9,'main',"F'(x)=3e^((3x-1)²)".replace('^(', '^{').replace(')²','²}'));
+has(9,'main',"F'(x)=3e^{(3x-1)²}");
 assert(ref(9,'main').includes("F'(1)=3e^4"));
 has(9,'transfer','2ln(1+(2x+1)^2)-2xln(1+x^4)','dummy variable');
 
