@@ -229,7 +229,7 @@ No remaining legal-instruction overlap triggered the fixed-task separator at the
 
 ### Canonical state
 
-At the implementation checkpoint the canonical artifact correctly says M12 is unpublished and M13 remains closed. A final canonical-state update/handoff will replace remaining builder-in-progress gate wording with the completed builder-validated state; that documentation commit must receive its own full workflow before final handoff.
+At the earlier implementation checkpoint M12 was correctly unpublished. After the independent audit, bounded repair and focused confirmation, publication was explicitly authorized. The current publication candidate registers the route through M12 while keeping M13 closed; the exact publication head must receive the complete workflow before main merge.
 
 ## Regression guard discovered during M12
 
@@ -266,4 +266,4 @@ Still required before independent acceptance:
 - green exact-head workflow with the expanded instructional-math checker;
 - focused independent confirmation of S01, the seven narrowed ownership rows, S17, and the new checker.
 
-M13 remains closed.
+M12 publication is authorized; M13 remains closed.
