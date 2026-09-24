@@ -1,0 +1,296 @@
+{
+  "version": "m11-arc510-pilot-v1",
+  "instructionVersion": "m11-arc510-instruction-v1",
+  "module": {
+    "order": 11,
+    "id": "ARC510",
+    "title": "Integration & Accumulation",
+    "status": "pilot-in-progress-unpublished",
+    "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
+    "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
+    "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
+  },
+  "boundary": {
+    "prerequisiteModules": [
+      "SIDE263",
+      "ARC053"
+    ],
+    "owns": [
+      "finite accumulation from local quantity times width (pilot scope only)"
+    ],
+    "excludes": [
+      "M12 Taylor polynomials/series, higher-order asymptotics and remainder theorems",
+      "Lebesgue integration and measure theory",
+      "multivariable integration and Jacobians",
+      "probability-density/expectation theory",
+      "differential-equation solution families",
+      "numerical quadrature/stability",
+      "differentiation under the integral sign",
+      "L'Hopital's rule",
+      "optimization and a broad MVT applications unit",
+      "advanced integration-trick catalogues"
+    ],
+    "decisiveProhibition": "Build M11 from M09 limits and M10 one-variable differential structure; never use M12+ machinery, measure theory, multivariable integration, numerical quadrature, L'Hopital, probability-density semantics or advanced integration tricks as a premise."
+  },
+  "coverageAudit": {
+    "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
+    "pedagogicalAtoms": 20,
+    "authoredSessions": 1,
+    "ownershipClaimCount": 3,
+    "note": "No target count exists. This count is the S01 pilot output only."
+  },
+  "sessions": [
+    {
+      "order": 1,
+      "id": "T22V3::ARC510::S01@1",
+      "moduleId": "ARC510",
+      "title": "Finite accumulation is local quantity times width",
+      "focus": "Construct a signed finite total from varying local rates/intensities before any integral notation exists.",
+      "purpose": "Make accumulation a modelling operation rather than an antiderivative symbol: partitioned contribution = local quantity × interval width, then sum.",
+      "centralCapability": "Construct and audit a finite signed accumulation sum with nonuniform widths, correct units and weighting.",
+      "principalObstacle": "Learners often add or average sampled rates while ignoring unequal exposure widths, which produces dimensionally or numerically wrong totals.",
+      "entryPrerequisites": [
+        "M01 arithmetic and units",
+        "M02 functions/intervals",
+        "M10-S03 local-rate interpretation and units"
+      ],
+      "requiredOwnership": [
+        "Construct a finite signed accumulation as a sum of local quantity times interval width.",
+        "Track units from local quantity times width to the accumulated total.",
+        "Reject an unweighted sum or unweighted-rate average when interval widths are unequal."
+      ],
+      "applicationScope": "Finite piecewise-constant one-variable accumulation only; no Riemann-limit or integral notation yet.",
+      "transferScope": "Changed physical surface and representation requiring reconstruction of the same local-quantity × width architecture.",
+      "inScope": [
+        "nonuniform widths",
+        "signed contributions",
+        "units",
+        "weighted finite total"
+      ],
+      "outOfScope": [
+        "Riemann sums as limiting objects",
+        "definite integral notation",
+        "FTC",
+        "antiderivatives"
+      ],
+      "exitCondition": "Solve both fixed tasks by constructing the weighted contributions, with no answer exposure; an unweighted solver must lose the relevant credit.",
+      "lesson": "Orient. A local rate or density tells you an amount per unit of input. A total over a finite piece must therefore combine two things: the local quantity and how much input-range that quantity acts over.\\nDefine. For a finite list of pieces, write width_i for the size of piece i and q_i for its signed local quantity per input-unit. The contribution of that piece is q_i·width_i. The finite accumulated total is the sum of those contributions. If q_i is measured in units/hour and width_i in hours, their product is in units.\\nConnect. M10 interpreted a derivative as a local rate with output-units per input-unit. Here we do not yet take a continuum limit; we only ask how already-specified local rates contribute over finite pieces.\\nExplain. Unequal widths matter. Adding rates alone has the units of a rate, not a total. Taking an unweighted average of rates treats all pieces as equally wide even when they are not. Signs also matter: a negative local rate contributes negative change.\\nWorked example: an inventory changes at +8 units/hour for 0.5 h, -2 units/hour for 1.5 h, and +5 units/hour for 1 h. The contributions are +4 units, -3 units and +5 units, so the net change is +6 units. The widths total 3 h, and the width-weighted average rate is 6/3=2 units/hour. The ordinary average (8-2+5)/3=11/3 units/hour is a different quantity and does not reconstruct the net change.\\nGuided practice: a process adds material at 3 g/min for 2 min and then removes material at 1 g/min for 4 min. Write the two signed contributions before adding them. Check: +6 g and -4 g, giving +2 g net. Explain why the signs belong to the local rates while the interval widths stay positive.",
+      "main": "T22V3::ARC510::S01-M@1",
+      "transfer": "T22V3::ARC510::S01-T@1"
+    }
+  ],
+  "problems": {
+    "T22V3::ARC510::S01-M@1": {
+      "id": "T22V3::ARC510::S01-M@1",
+      "order": 1,
+      "kind": "main",
+      "prompt": "A battery system is observed over three consecutive intervals. Its signed net charging rate is +12 W for 0.25 h, -4 W for 0.75 h, and +6 W for 0.50 h. Construct the finite accumulation sum for the net energy change, compute that change, and state its units. Then explain why simply averaging the three rate values and multiplying by the total elapsed time is not a valid calculation for these unequal interval widths.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S01-T@1": {
+      "id": "T22V3::ARC510::S01-T@1",
+      "order": 1,
+      "kind": "transfer",
+      "prompt": "A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+      "obligationVersion": 1
+    }
+  },
+  "evaluators": {
+    "T22V3::ARC510::S01-M@1": {
+      "reference": "The signed contributions are (12 W)(0.25 h)=3 Wh, (-4 W)(0.75 h)=-3 Wh, and (6 W)(0.50 h)=3 Wh. The finite accumulation sum is 3-3+3=3 Wh, so the net energy change is +3 Wh. An unweighted mean of the three rates ignores that the rates act for different durations; multiplying that mean by 1.50 h therefore assigns the wrong exposure to the observations.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Builds the signed rate-times-duration sum with all three unequal interval widths."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the net change as +3 Wh and gives an energy unit."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that an unweighted rate average ignores unequal exposure durations rather than merely stating that it is wrong."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept equivalent weighted-sum notation and equivalent energy units. A correct numerical total with no defensible rate×duration construction cannot earn the construction criterion."
+    },
+    "T22V3::ARC510::S01-T@1": {
+      "reference": "The modeled mass is (2 kg/m)(0.8 m)+(5 kg/m)(0.3 m)+(1 kg/m)(1.1 m)=1.6+1.5+1.1=4.2 kg. Adding the density values ignores the unequal section lengths and does not form local mass contributions. It also leaves density units kg/m rather than mass units kg, so calling 2+5+1 '8 kg' is dimensionally wrong.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Constructs density-times-length contributions for all three sections."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the modeled total mass as 4.2 kg."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies omission of section lengths as the structural error in the reported sum."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies that adding densities retains kg/m rather than producing kg."
+        }
+      ],
+      "marking": "Score the observable requests only. Accept any algebraically equivalent weighted sum. Do not require a particular phrase such as 'Riemann sum'; integral notation has not been introduced."
+    }
+  },
+  "coverage": {
+    "T22V3::ARC510::S01@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ]
+  },
+  "claimEvidence": {
+    "T22V3::ARC510::S01@1": [
+      {
+        "claim": "Construct a finite signed accumulation as a sum of local quantity times interval width.",
+        "task": "main+transfer",
+        "publicRequest": "A battery system is observed over three consecutive intervals. Its signed net charging rate is +12 W for 0.25 h, -4 W for 0.75 h, and +6 W for 0.50 h. Construct the finite accumulation sum for the net energy change, compute that change, and state its units. Then explain why simply averaging the three rate values and multiplying by the total elapsed time is not a valid calculation for these unequal interval widths. | A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+        "rubricEvidence": [
+          "Builds the signed rate-times-duration sum with all three unequal interval widths.",
+          "Constructs density-times-length contributions for all three sections."
+        ],
+        "escapeAttempt": "A solver who adds 12-4+6 or 2+5+1 never forms local contributions and loses these criteria.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Track units from local quantity times width to the accumulated total.",
+        "task": "main+transfer",
+        "publicRequest": "A battery system is observed over three consecutive intervals. Its signed net charging rate is +12 W for 0.25 h, -4 W for 0.75 h, and +6 W for 0.50 h. Construct the finite accumulation sum for the net energy change, compute that change, and state its units. Then explain why simply averaging the three rate values and multiplying by the total elapsed time is not a valid calculation for these unequal interval widths. | A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+        "rubricEvidence": [
+          "Computes the net change as +3 Wh and gives an energy unit.",
+          "Identifies that adding densities retains kg/m rather than producing kg."
+        ],
+        "escapeAttempt": "A unitless or rate-unit answer can compute nearby arithmetic but cannot earn the unit evidence.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Reject an unweighted sum or unweighted-rate average when interval widths are unequal.",
+        "task": "main+transfer",
+        "publicRequest": "A battery system is observed over three consecutive intervals. Its signed net charging rate is +12 W for 0.25 h, -4 W for 0.75 h, and +6 W for 0.50 h. Construct the finite accumulation sum for the net energy change, compute that change, and state its units. Then explain why simply averaging the three rate values and multiplying by the total elapsed time is not a valid calculation for these unequal interval widths. | A cable has three sections of lengths 0.8 m, 0.3 m, and 1.1 m. A piecewise-constant linear mass density model assigns 2 kg/m, 5 kg/m, and 1 kg/m to those sections respectively. Build the finite sum that represents the cable's modeled mass and compute it. A report instead adds 2+5+1 and calls the result '8 kg'; identify both the structural error and the unit error.",
+        "rubricEvidence": [
+          "Explains that an unweighted rate average ignores unequal exposure durations rather than merely stating that it is wrong.",
+          "Identifies omission of section lengths as the structural error in the reported sum."
+        ],
+        "escapeAttempt": "A learner using the ordinary mean of rates or sum of densities receives no diagnostic credit because the unequal widths make that method disagree.",
+        "disposition": "adequate"
+      }
+    ]
+  },
+  "prerequisiteAudit": {
+    "authority": "docs/t22-rebuild/m65.dependencies.json",
+    "canonical": [
+      "SIDE263",
+      "ARC053"
+    ],
+    "m09Reused": [],
+    "m10Reused": [
+      "M10-S03 local-rate interpretation and units"
+    ],
+    "localBridge": "none in S01",
+    "sessions": {
+      "T22V3::ARC510::S01@1": [
+        "arithmetic/units already in M01",
+        "functions/intervals from M02",
+        "rate units from M10-S03"
+      ]
+    }
+  },
+  "semanticSeparationAudit": {
+    "version": "m11-pilot-s01-v1",
+    "policy": "Compare fixed tasks against all M09/M10 instruction and current/earlier M11 instruction; string checks are only filters. Classify evidence honestly.",
+    "priorInstructionScreen": "S01 task instances and numerical data are distinct from M09/M10 instructional examples. M09/M10 teach limits/derivatives but do not solve either finite accumulation instance.",
+    "sessions": {
+      "T22V3::ARC510::S01@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "The lesson teaches the finite contribution mechanism on inventory data, while Main uses a fresh battery schedule with unequal durations and requires the learner to reconstruct the weighted signed total and diagnose unweighted averaging."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes from a signed time-rate process to spatial linear density, changes units and removes the time/rate language; the learner must reconstruct density×length and diagnose both structure and dimensions."
+        }
+      }
+    },
+    "wrongSolverTests": {
+      "T22V3::ARC510::S01-M@1": {
+        "wrongApproach": "Use the unweighted mean (12-4+6)/3 and multiply by total time.",
+        "result": "Produces 7 Wh rather than 3 Wh and cannot earn the construction/diagnosis criteria.",
+        "validAlternative": "Compute a duration-weighted mean rate 3 Wh/1.5 h=2 W and multiply by 1.5 h; this is algebraically equivalent and must pass."
+      },
+      "T22V3::ARC510::S01-T@1": {
+        "wrongApproach": "Add the three density numbers and label the result mass.",
+        "result": "Produces 8 with density arithmetic, omits lengths and has the wrong dimensions; loses structural and unit criteria.",
+        "validAlternative": "Any regrouping of 1.6+1.5+1.1 or an equivalent dot-product notation is accepted."
+      }
+    }
+  },
+  "historicalLessonAnswerOverlap": {
+    "version": "m11-pilot-v1",
+    "sessions": {
+      "T22V3::ARC510::S01@1": {
+        "main": "none",
+        "transfer": "none"
+      }
+    },
+    "note": "M11 is not registered in the learner runtime; no M11 learner evidence exists."
+  },
+  "historicalGuidedPracticeOverlap": {
+    "version": "m11-pilot-v1",
+    "sessions": {
+      "T22V3::ARC510::S01@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      }
+    },
+    "note": "Guided inventory/material examples use different surfaces and numbers from both fixed tasks."
+  },
+  "initialVersionAudit": {
+    "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
+    "pilot": "S01 only; obligationVersion 1 for both unpublished tasks."
+  },
+  "authoringPolicy": "Original lessons and tasks. Ownership follows literal public/scored actions, never a fixed count. Evidence classes are retrieval, proof reconstruction, fresh Main evidence or changed-surface Transfer. Proofs taught before assessment are reconstruction evidence, not fresh proof evidence. Equivalent valid routes earn full credit. Define notation before use, preserve domains/hypotheses/exceptions, and never use M12+ machinery as a premise.",
+  "sourceLedger": {
+    "checked": "2026-09-24",
+    "policy": "Sources support definitions, theorem hypotheses, sequencing and pedagogy. They do not establish T22 acceptance. Fixed tasks are original.",
+    "sources": [
+      {
+        "id": "MIT-1801-RS",
+        "source": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-3-the-definite-integral-and-its-applications/part-a-definition-of-the-definite-integral-and-first-fundamental-theorem/session-46-riemann-sums/",
+        "section": "Session 46",
+        "supports": "finite sums as route into definite integration"
+      },
+      {
+        "id": "OS-52",
+        "source": "https://openstax.org/books/calculus-volume-1/pages/5-2-the-definite-integral",
+        "section": "§5.2",
+        "supports": "Riemann-sum/definite-integral notation, net signed accumulation and mesh caveat"
+      },
+      {
+        "id": "PED-JONES",
+        "source": "https://eric.ed.gov/?id=EJ1061209",
+        "section": "abstract/results",
+        "supports": "pedagogical reason to preserve multiplicative Riemann-sum meaning in contextual integrals"
+      },
+      {
+        "id": "PED-SIGN",
+        "source": "https://eric.ed.gov/?id=EJ1377710",
+        "section": "abstract/results",
+        "supports": "pedagogical reason to teach signed contributions and orientation explicitly"
+      }
+    ]
+  }
+}
