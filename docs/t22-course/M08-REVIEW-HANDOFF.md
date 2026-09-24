@@ -4,7 +4,7 @@ Date: 2026-09-24
 Repository: `Karuma-jojo/Chronological-Deck`
 Repair branch: `codex/t22-m08-independent-repair`
 Module: M08 · `T22E-CODE01`
-Current status: **independent-audit repaired + fully validated candidate awaiting bounded independent follow-up**
+Current status: **independent-audit + bounded-follow-up repaired candidate awaiting final exact-head validation**
 Stop boundary: **M09 remains closed**
 
 ## Baseline and reason for reopening
@@ -43,10 +43,10 @@ Downstream ownership remains unchanged: M21 scientific-computing/research engine
 - 24 sessions retained after an explicit session-count reconsideration.
 - 48 fixed assessments and 48 evaluator references.
 - 120 ownership claims and 120 repaired semantic claim→task→rubric links.
-- 23 changed public obligations carry `obligationVersion=2`; unchanged obligations remain version1.
+- 24 changed public obligations are stale relative to v1: 23 carry `obligationVersion=2`, S22-M carries `obligationVersion=3`, and unchanged obligations remain version1.
 - `assessmentSeparationAudit` now records explicit lesson-model/Main-model identities for all24 sessions plus curated forbidden lesson fragments.
 - Historical contamination is preserved in `historicalLessonAnswerOverlap`; it is not erased.
-- M08 authoring version: `m08-authoring-v2-independent-repair`.
+- M08 authoring version: `m08-authoring-v2-independent-repair` with repair provenance `m08-independent-repair-r3-2026-09-24`.
 - M08 instruction version: `m08-instruction-v2-independent-repair`.
 - Semantic contract: `m08-semantic-contract-independent-r2-2026-09-24`.
 - Stable evidence storage key remains `chrono_t22_elite_course_evidence_v1`.
@@ -90,6 +90,18 @@ Current Python documentation was rechecked for:
 
 The existing Fraction/product/assert/aliasing sources remain authoritative. Source IDs are pinned in the authoring ledger.
 
+
+## Bounded follow-up after the first green repair head
+
+A fresh novice-path pass after the initial 37/37 green repair head found four more defects and repaired them:
+
+- M08-F01 — S12 from-import/call mismatch;
+- M08-F02 — hidden list-comprehension syntax in S22 Main;
+- M08-F03 — untaught conditional-expression/list-comprehension syntax in S07/S14 lessons;
+- M08-F04 — untaught `lambda` in S17 revealed reference.
+
+No additional session was needed; each fix belongs inside an existing owner. S12-M is now v2 and S22-M v3.
+
 ## Verification architecture after repair
 
 `scripts/test-t22-elite-m08.mjs` now checks:
@@ -108,20 +120,7 @@ The existing Fraction/product/assert/aliasing sources remain authoritative. Sour
 
 ## Validation state
 
-Validated repair head: `772e5dc12bcd44340bbf1d96a093d1b802c10699`.
-
-- T22 Elite Actions run: `35961691590`
-- validate job: `107511449788`
-- result: **SUCCESS**
-- dedicated suite: syntax; structural/pedagogy/semantic/evidence; rebuilt Python oracle; Chromium; real eight-module browser/evidence workflow
-- broader PR matrix on the same head: **37/37 workflows succeeded, 0 failures**, including frontend integrity, SMMC, T25 review/browser and legacy T22 rich-module checks
-
-Inspected PASS evidence includes:
-- `PASS M08 independent repair: 24 sessions, 48 tasks, 120 semantic links, v2 obligation staleness, fresh lesson/Main instances, executable programming ownership, primary-source pins and hard M09 stop.`
-- `PASS M08 independent executable oracles: repaired Python tasks cover imports/tolerances, callable predicates, container mutation/counting, strict zip, exact finite oracles, traceback/validation, explicit RNG state, reproducible simulation and synthesis arithmetic.`
-- `PASS browser: ... M08 save-reveal-review ... eight-module export/import ... packet exposure through M08 ...`
-
-Implementation validation is therefore complete for this repair head. This is still **not** a claim of independent pedagogical freeze; the bounded follow-up below remains the next authority.
+The earlier content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed T22 Elite run `35961691590` / job `107511449788` and a 37/37 broader PR matrix. The bounded follow-up then changed learner-facing content, so that evidence is **historical and superseded for final-head authority**. The current follow-up-repair head must pass the same dedicated Chromium/browser suite and broader PR matrix before this handoff can return to fully validated status.
 
 ## Bounded follow-up targets
 
