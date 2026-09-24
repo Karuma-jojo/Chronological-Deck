@@ -23,7 +23,7 @@ assert.deepEqual(road.modules.find(x=>x.id==='T22E-MKT01').prerequisites,['T22E-
 assert.equal(sem.entries.find(x=>x.id==='T22E-MKT01').semanticStatus,'boundary-accepted-content-candidate');
 assert(meta.moduleSources.some(x=>x.order===7&&x.id==='T22E-MKT01'&&x.source==='course/t22/authoring/m07.json'));
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'));
-assert(!meta.moduleSources.some(x=>x.order>=10));
+assert.equal(meta.moduleSources.length,12,'later-authorized publication through M12 is allowed');
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(browser.includes("T22E-MKT01")&&browser.includes("T22E-CODE01")&&browser.includes("eight-module export/import"));
 assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized; historical M07 handoff stop text remains provenance');
