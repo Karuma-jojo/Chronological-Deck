@@ -1,11 +1,11 @@
 {
-  "version": "m11-arc510-s01-s19-v1",
+  "version": "m11-arc510-complete-authoring-v1",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "authoring-in-progress-s01-s19-verified",
+    "status": "authored-awaiting-global-audit-unpublished",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -35,8 +35,8 @@
   "coverageAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pedagogicalAtoms": 20,
-    "authoredSessions": 19,
-    "ownershipClaimCount": 57,
+    "authoredSessions": 20,
+    "ownershipClaimCount": 61,
     "note": "No target count exists. This count is the S01 pilot output only."
   },
   "sessions": [
@@ -743,6 +743,48 @@
       "lesson": "Orient. Exact antiderivatives are not always needed: inequalities can transfer convergence information, but only in safe directions.\nDefine. For x≥a, if 0≤f(x)≤g(x) and ∫_a^∞g converges, then ∫_a^∞f converges. If ∫_a^∞f diverges to +∞, then the larger nonnegative g also diverges.\nConnect. For each finite T, order gives 0≤F(T)=∫_a^T f≤G(T)=∫_a^T g. If G(T) is bounded above and F(T) is nondecreasing, M09's monotone-bounded convergence gives a finite limit. The divergence direction follows from G(T)≥F(T).\nExplain. For ∫_{-∞}^{∞}f, choose any finite split point c and require both ∫_{-∞}^c f and ∫_c^∞ f to converge finitely. A symmetric limit lim_{R→∞}∫_{-R}^R f may exist by cancellation even when those one-sided requirements fail; that is not ordinary improper convergence.\nWorked example: for x≥1, 0≤1/(x²+1)≤1/x², and the p=2 tail converges, so ∫_1^∞1/(x²+1)dx converges without needing its exact value.\nGuided practice: for x≥1, sqrt(x²+1)≤sqrt(2)x, so 1/sqrt(x²+1)≥1/(sqrt(2)x). Since the harmonic tail diverges, the larger integrand's tail diverges too.",
       "main": "T22V3::ARC510::S19-M@1",
       "transfer": "T22V3::ARC510::S19-T@1"
+    },
+    {
+      "order": 20,
+      "id": "T22V3::ARC510::S20@1",
+      "moduleId": "ARC510",
+      "title": "Synthesis: from local quantity to justified accumulated total",
+      "focus": "Choose and connect the full M11 machinery: finite local contributions, proper integration, FTC recovery, structural transformation and improper-existence auditing.",
+      "purpose": "Make the learner organize M11 as one accumulation system rather than a list of integral formulas.",
+      "centralCapability": "Build, evaluate and audit one-variable accumulated quantities while distinguishing local rate, finite total and existence claims.",
+      "principalObstacle": "A learner may know every individual formula yet still conflate local rate with total change, choose a technique without structural justification, or normalize an improper total before proving it is finite.",
+      "entryPrerequisites": [
+        "M11-S01-S19 synthesis",
+        "M09 limit discipline",
+        "M10 local-rate/chain structure"
+      ],
+      "requiredOwnership": [
+        "Connect a tagged local-quantity×width sum to the continuum accumulated total and preserve units.",
+        "Choose and justify a legal exact method for a proper accumulated total, then connect the result back to the state variable.",
+        "Use FTC locally with its continuity hypothesis while distinguishing local rate from interval net change.",
+        "Audit an infinite-domain accumulated total for existence before solving for its scale parameter."
+      ],
+      "applicationScope": "One-variable proper and elementary improper accumulation using only the established M11 toolkit.",
+      "transferScope": "Changed from a finite-time signed-rate state model to a scaled infinite-domain weight whose finite total exists only on a parameter region.",
+      "inScope": [
+        "finite-sum meaning",
+        "proper integral",
+        "substitution",
+        "FTC",
+        "improper p-tail existence",
+        "scale normalization as plain accumulation"
+      ],
+      "outOfScope": [
+        "probability density semantics",
+        "M12 asymptotics",
+        "L'Hôpital",
+        "numerical quadrature",
+        "measure theory"
+      ],
+      "exitCondition": "The learner selects the needed layer—finite sum, proper integral, FTC or improper existence—before calculation and states the relevant hypotheses.",
+      "lesson": "Orient. M11 began with local quantity×width and ends by asking which mathematical layer a total actually needs: a finite sum, a proper continuum limit, an FTC local-recovery claim, a structural transformation or an improper-existence audit.\nDefine. A local rate has output-units per input-unit. A finite contribution has output-units after multiplication by width. A proper definite integral is the partition-independent continuum total on a finite interval. An improper integral is an additional limit claim and must exist before it can be used as a finite total.\nConnect. FTC links local and cumulative descriptions in both directions under its hypotheses: an accumulation derivative recovers a continuous integrand locally, while a verified antiderivative evaluates a proper accumulated total globally. Substitution and integration by parts are derived transformations, not definitions of integration.\nExplain. Method choice follows structure. Reverse chain suggests substitution; reverse product suggests parts; direct derivative pairs need neither. Infinite or singular domains first require an existence limit. A local derivative value and an interval integral usually have different units and answer different questions.\nWorked example: let A(x)=5+∫_0^x 3t² dt for 0≤x≤2. A finite tagged sum Σ3t_i²Δt approximates accumulated change in the units of A. FTC evaluation gives A(2)=5+[t³]_0^2=13. Local recovery gives A'(2)=12 in A-units per input-unit. The numbers 8 and 12 are not competing answers: one is interval net change, the other a local rate.\nGuided practice: before evaluating ∫_0^∞ C(1+x)^(-2)dx, state the improper-limit question. Check: the shifted p=2 tail has finite base total 1, so a required finite total K would use C=K. This is plain accumulation arithmetic; no probability interpretation is being introduced.",
+      "main": "T22V3::ARC510::S20-M@1",
+      "transfer": "T22V3::ARC510::S20-T@1"
     }
   ],
   "problems": {
@@ -1010,6 +1052,20 @@
       "order": 19,
       "kind": "transfer",
       "prompt": "Consider f(x)=x/(1+x²) on the whole real line. Show that every symmetric truncation satisfies ∫_{-R}^{R} f(x)dx=0, but determine whether the ordinary improper integral ∫_{-∞}^{∞} f(x)dx converges. Your answer must inspect the two one-sided improper integrals separately.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S20-M@1": {
+      "id": "T22V3::ARC510::S20-M@1",
+      "order": 20,
+      "kind": "main",
+      "prompt": "A process starts with Q(0)=10 units and has continuous signed rate r(t)=2t e^(t²) units/hour for 0≤t≤1. Define Q(x)=10+∫_0^x r(t)dt. (i) Explain what a tagged finite sum Σ r(t_i)Δt_i represents and give its units. (ii) Compute Q(1) exactly, choosing and justifying the integration method. (iii) Find Q'(1) from the accumulation theorem and state the hypothesis that makes this legal. (iv) Explain why Q'(1) and Q(1)-Q(0) answer different questions.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S20-T@1": {
+      "id": "T22V3::ARC510::S20-T@1",
+      "order": 20,
+      "kind": "transfer",
+      "prompt": "For x≥0 define a nonnegative continuous weight w_p(x)=C(1+x)^(-p), where C>0 and p is real. The intended accumulated total over [0,∞) is 6 units. Using an explicit improper-integral argument, determine exactly for which p such a finite positive C can exist, and give C in terms of p. Then specialize to p=2. Do not use probability language, L'Hôpital's rule or M12 asymptotics.",
       "obligationVersion": 1
     }
   },
@@ -1745,6 +1801,50 @@
         }
       ],
       "marking": "The phrase 'principal value' is optional. The mathematical distinction and separate-side check are required."
+    },
+    "T22V3::ARC510::S20-M@1": {
+      "reference": "A tagged sum Σ r(t_i)Δt_i adds local rate×time contributions, so each term and the sum have units of the accumulated quantity (units). The integrand 2t e^{t²} has reverse-chain form: with u=t², du=2t dt, ∫_0^1 2t e^{t²}dt=∫_0^1 e^u du=e-1. Hence Q(1)=10+e-1=9+e. Since r is continuous on [0,1], the accumulation theorem gives Q'(1)=r(1)=2e units/hour. Q(1)-Q(0)=e-1 units is net change over the whole interval, whereas Q'(1)=2e units/hour is the instantaneous local rate at t=1.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Explains the tagged sum as rate-times-width contributions and gives accumulated-quantity units."
+        },
+        {
+          "points": 3,
+          "criterion": "Recognizes reverse-chain structure, uses u=t² (or equivalent), and obtains Q(1)=9+e."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses continuity of r to obtain Q'(1)=2e with rate units."
+        },
+        {
+          "points": 2,
+          "criterion": "Distinguishes interval net change e-1 from local rate 2e by meaning and units."
+        }
+      ],
+      "marking": "Accept any equivalent exact computation. A correct e-1 integral without adding the initial state does not fully answer Q(1)."
+    },
+    "T22V3::ARC510::S20-T@1": {
+      "reference": "Write the total as lim_{T→∞} C∫_0^T(1+x)^(-p)dx. With u=1+x this is C∫_1^{1+T}u^{-p}du. By the established p-tail result, the base improper integral is finite exactly when p>1, and then ∫_0^∞(1+x)^(-p)dx=1/(p-1). Therefore a finite positive scale achieving total 6 exists exactly for p>1, with C=6(p-1). For p=2, C=6. For p≤1 the base total diverges, so no finite positive C can turn it into total 6.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Writes the infinite-domain total as an explicit finite-T limit and reduces it to the shifted p-tail."
+        },
+        {
+          "points": 3,
+          "criterion": "Identifies p>1 as exactly the finite-total region and rejects p≤1 before solving for C."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the finite base total 1/(p-1) to obtain C=6(p-1)."
+        },
+        {
+          "points": 1,
+          "criterion": "Specializes correctly to C=6 when p=2."
+        }
+      ],
+      "marking": "This is accumulation/scale arithmetic only. Do not require or credit probability-density terminology."
     }
   },
   "coverage": {
@@ -1974,6 +2074,20 @@
       ],
       [
         "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S20@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
       ],
       [
         "transfer"
@@ -2640,6 +2754,51 @@
         "escapeAttempt": "Reporting zero without the ordinary-convergence distinction loses the criterion.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::ARC510::S20@1": [
+      {
+        "claim": "Connect a tagged local-quantity×width sum to the continuum accumulated total and preserve units.",
+        "task": "main",
+        "publicRequest": "A process starts with Q(0)=10 units and has continuous signed rate r(t)=2t e^(t²) units/hour for 0≤t≤1. Define Q(x)=10+∫_0^x r(t)dt. (i) Explain what a tagged finite sum Σ r(t_i)Δt_i represents and give its units. (ii) Compute Q(1) exactly, choosing and justifying the integration method. (iii) Find Q'(1) from the accumulation theorem and state the hypothesis that makes this legal. (iv) Explain why Q'(1) and Q(1)-Q(0) answer different questions.",
+        "rubricEvidence": [
+          "Explains the tagged sum as rate-times-width contributions and gives accumulated-quantity units."
+        ],
+        "escapeAttempt": "Jumping directly to an antiderivative does not observe the requested finite-contribution meaning or units.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Choose and justify a legal exact method for a proper accumulated total, then connect the result back to the state variable.",
+        "task": "main",
+        "publicRequest": "A process starts with Q(0)=10 units and has continuous signed rate r(t)=2t e^(t²) units/hour for 0≤t≤1. Define Q(x)=10+∫_0^x r(t)dt. (i) Explain what a tagged finite sum Σ r(t_i)Δt_i represents and give its units. (ii) Compute Q(1) exactly, choosing and justifying the integration method. (iii) Find Q'(1) from the accumulation theorem and state the hypothesis that makes this legal. (iv) Explain why Q'(1) and Q(1)-Q(0) answer different questions.",
+        "rubricEvidence": [
+          "Recognizes reverse-chain structure, uses u=t² (or equivalent), and obtains Q(1)=9+e."
+        ],
+        "escapeAttempt": "Computing only the integral e-1 without returning to the state Q(1) leaves the public obligation incomplete.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use FTC locally with its continuity hypothesis while distinguishing local rate from interval net change.",
+        "task": "main",
+        "publicRequest": "A process starts with Q(0)=10 units and has continuous signed rate r(t)=2t e^(t²) units/hour for 0≤t≤1. Define Q(x)=10+∫_0^x r(t)dt. (i) Explain what a tagged finite sum Σ r(t_i)Δt_i represents and give its units. (ii) Compute Q(1) exactly, choosing and justifying the integration method. (iii) Find Q'(1) from the accumulation theorem and state the hypothesis that makes this legal. (iv) Explain why Q'(1) and Q(1)-Q(0) answer different questions.",
+        "rubricEvidence": [
+          "Uses continuity of r to obtain Q'(1)=2e with rate units.",
+          "Distinguishes interval net change e-1 from local rate 2e by meaning and units."
+        ],
+        "escapeAttempt": "Related correct integration cannot earn local FTC/hypothesis distinction automatically.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Audit an infinite-domain accumulated total for existence before solving for its scale parameter.",
+        "task": "transfer",
+        "publicRequest": "For x≥0 define a nonnegative continuous weight w_p(x)=C(1+x)^(-p), where C>0 and p is real. The intended accumulated total over [0,∞) is 6 units. Using an explicit improper-integral argument, determine exactly for which p such a finite positive C can exist, and give C in terms of p. Then specialize to p=2. Do not use probability language, L'Hôpital's rule or M12 asymptotics.",
+        "rubricEvidence": [
+          "Writes the infinite-domain total as an explicit finite-T limit and reduces it to the shifted p-tail.",
+          "Identifies p>1 as exactly the finite-total region and rejects p≤1 before solving for C.",
+          "Uses the finite base total 1/(p-1) to obtain C=6(p-1)."
+        ],
+        "escapeAttempt": "Solving algebraically for C before checking convergence fails the existence-first requirement.",
+        "disposition": "adequate"
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -2747,6 +2906,11 @@
         "M11-S17-S18 improper definitions",
         "M11-S06 order",
         "M09-S12 monotone bounded convergence"
+      ],
+      "T22V3::ARC510::S20@1": [
+        "M11-S01-S19 synthesis",
+        "M09 limit discipline",
+        "M10 local-rate/chain structure"
       ]
     }
   },
@@ -2944,6 +3108,16 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer changes from nonnegative comparison to a signed odd integrand with symmetric cancellation, forcing the separate-tail definition and a distinction not visible in the Main computations."
         }
+      },
+      "T22V3::ARC510::S20@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main combines a fresh continuous signed-rate state model with finite-sum meaning, reverse-chain exact accumulation, FTC local recovery and an explicit local-versus-global distinction; no earlier fixed task combines those obligations."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer moves to an infinite-domain scaled weight with an unknown exponent/scale and requires an existence-first improper audit before parameter solving, substantially changing surface and decision structure."
+        }
       }
     },
     "wrongSolverTests": {
@@ -3136,6 +3310,16 @@
         "wrongApproach": "Report 0 as the improper integral solely from ∫_{-R}^R=0.",
         "result": "Ignores the required separate one-sided limits, both of which diverge.",
         "validAlternative": "Split at any finite c; the one-sided divergence conclusion is unchanged."
+      },
+      "T22V3::ARC510::S20-M@1": {
+        "wrongApproach": "Compute ∫r=e-1 and report it as Q(1), or report Q'(1)=e-1.",
+        "result": "Conflates state, net change and local rate; misses the initial condition and/or FTC local meaning.",
+        "validAlternative": "Any valid reverse-chain derivation plus Q(0)+net-change and direct FTC local evaluation passes."
+      },
+      "T22V3::ARC510::S20-T@1": {
+        "wrongApproach": "Set C=6(p-1) for every p without first checking whether the base improper total is finite.",
+        "result": "Produces meaningless finite scales for p≤1, where the accumulated total diverges.",
+        "validAlternative": "Derive the shifted p-tail explicitly or invoke the already proved p-tail theorem after writing the improper truncation."
       }
     }
   },
@@ -3215,6 +3399,10 @@
         "transfer": "none"
       },
       "T22V3::ARC510::S19@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S20@1": {
         "main": "none",
         "transfer": "none"
       }
@@ -3299,6 +3487,10 @@
       "T22V3::ARC510::S19@1": {
         "main": "distinct",
         "transfer": "distinct"
+      },
+      "T22V3::ARC510::S20@1": {
+        "main": "distinct",
+        "transfer": "distinct"
       }
     },
     "note": "Guided inventory/material examples use different surfaces and numbers from both fixed tasks."
@@ -3306,7 +3498,8 @@
   "initialVersionAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pilot": "S01 only; obligationVersion 1 for both unpublished tasks.",
-    "s04EndpointRepair": "S04 pre-publication repair: one exceptional point may be selected as a tag in two adjacent closed subintervals, so the safe bound was corrected from D||P|| to 2D||P||. ObligationVersion remains 1 because M11 is unpublished/unregistered."
+    "s04EndpointRepair": "S04 pre-publication repair: one exceptional point may be selected as a tag in two adjacent closed subintervals, so the safe bound was corrected from D||P|| to 2D||P||. ObligationVersion remains 1 because M11 is unpublished/unregistered.",
+    "fullAuthoring": "20 design-derived sessions authored; global semantic/evidence and mathematical audits still required before handoff."
   },
   "authoringPolicy": "Original lessons and tasks. Ownership follows literal public/scored actions, never a fixed count. Evidence classes are retrieval, proof reconstruction, fresh Main evidence or changed-surface Transfer. Proofs taught before assessment are reconstruction evidence, not fresh proof evidence. Equivalent valid routes earn full credit. Define notation before use, preserve domains/hypotheses/exceptions, and never use M12+ machinery as a premise.",
   "sourceLedger": {
