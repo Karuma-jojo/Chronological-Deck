@@ -4,11 +4,11 @@ import assert from 'node:assert/strict';
 const a=JSON.parse(fs.readFileSync('course/t22/authoring/m07.json','utf8'));
 const by=n=>a.sessions.find(s=>s.order===n);
 
-assert.equal(a.version,'m07-authoring-v1-cerberus');
-assert.equal(a.instructionVersion,'m07-instruction-v1-cerberus');
+assert.equal(a.version,'m07-authoring-astra-r1');
+assert.equal(a.instructionVersion,'m07-instruction-astra-r1');
 assert.equal(a.module.id,'T22E-MKT01');
 assert.equal(a.module.order,7);
-assert.equal(a.module.status,'authored-cerberus-candidate-awaiting-independent-review');
+assert.equal(a.module.status,'authored-astra-repaired-awaiting-independent-followup');
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01','T22E-FND02','T22E-TRD01']);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
@@ -22,10 +22,12 @@ for(let n=1;n<=24;n++){
  assert.equal(s.requiredOwnership.length,5);
  assert(s.lesson.includes('Worked example:')&&s.lesson.includes('Guided check:'));
  assert.equal(a.claimEvidence[s.id].length,5);
- assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'builder-reviewed-separated');
+ assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'astra-r1-builder-repaired');
  for(const kind of ['main','transfer']){
   const id=s[kind],p=a.problems[id],ev=a.evaluators[id];
-  assert(p&&ev); assert.equal(p.order,n); assert.equal(p.kind,kind); assert.equal(p.obligationVersion,1);
+  assert(p&&ev); assert.equal(p.order,n); assert.equal(p.kind,kind);
+  const changed=a.repairVersionAudit.changedAssessmentIds.includes(id);
+  assert.equal(p.obligationVersion,changed?2:1);
   assert.equal(ev.rubric.length,5); assert.equal(ev.rubric.reduce((z,r)=>z+r.points,0),10);
   assert(!seen.has(id)); seen.add(id);
   for(const frag of a.instructionSeparation[s.id][kind]){
@@ -53,7 +55,7 @@ assert(a.problems[by(6).main].prompt.includes('show the intermediate price cance
 assert(by(7).lesson.includes('R>−1'));
 assert(a.problems[by(7).main].prompt.includes('domain restriction'));
 
-assert(by(10).lesson.includes('signed position is−q'));
+assert(by(10).lesson.includes('to cover means buying those units back')); assert(by(10).lesson.includes('signed position is−q'));
 assert(a.evaluators[by(10).main].reference.includes('+120'));
 assert(a.evaluators[by(11).transfer].reference.includes('P&L=(−25)(−2)=+50'));
 
@@ -75,14 +77,14 @@ assert(by(19).lesson.includes('average-cost convention'));
 assert(a.evaluators[by(19).main].reference.includes('average cost=22'));
 assert(by(20).lesson.includes('Only include costs stated by the model'));
 assert(by(21).lesson.includes('Spread and explicit commission are distinct'));
-assert(a.evaluators[by(21).main].reference.includes('Net=−13'));
+assert(a.evaluators[by(21).main].reference.includes('Net=−13')); assert(a.evaluators[by(21).transfer].reference.includes('Net P&L=−8.50'));
 
 assert(by(22).lesson.includes('Buy increases signed position; sell decreases it'));
-assert(a.evaluators[by(22).main].reference.includes('opens long3'));
+assert(a.evaluators[by(22).main].reference.includes('opens long3')); assert(a.evaluators[by(22).transfer].reference.includes('exactly closing the long'));
 assert(by(23).lesson.includes('cash+qM'));
 assert(a.evaluators[by(23).main].reference.includes('Equity=4398+620=5018'));
 assert(a.evaluators[by(24).main].reference.includes('average=3747/50=74.94'));
-assert(a.evaluators[by(24).main].reference.includes('Net cash P&L=3768−3749=19'));
+assert(a.evaluators[by(24).main].reference.includes('Net cash P&L=3768−3749=19')); assert(a.evaluators[by(24).transfer].reference.includes('Final net cash P&L=801−795.75=5.25'));
 
 // Hard downstream boundaries: M07 may name deferred topics but must not teach their signature machinery.
 for(const forbidden of ['law of one price','risk-neutral probability','state price','Black-Scholes','efficient frontier','covariance matrix','price-time priority','microprice','implementation shortfall','TWAP','VWAP']){
@@ -90,4 +92,4 @@ for(const forbidden of ['law of one price','risk-neutral probability','state pri
 }
 assert(!fs.existsSync('course/t22/authoring/m08.json'),'M08 must remain closed');
 
-console.log('PASS M07 CERBERUS structural/pedagogy: 24 sessions, 48 fixed tasks, 120 explicit claim→public-request→rubric links, separated instruction, high-risk discrimination guards and hard downstream boundaries.');
+console.log('PASS M07 Astra-repair structural/pedagogy: 24 sessions, 48 fixed tasks, 120 explicit claim→public-request→rubric links, separated instruction, high-risk discrimination guards and hard downstream boundaries.');
