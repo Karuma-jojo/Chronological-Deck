@@ -138,6 +138,22 @@ The full ledger currently validates at:
 - GREEN 39 / AMBER 27 / RED 22 overall;
 - East GREEN 30 / AMBER 24 / RED 18.
 
-The six-domain top-level taxonomy remains canonical. Per-problem primary labels on several hybrids remain under explicit reconciliation because the independently authored ledger does not yet reproduce the newer SMMC-2027 aggregate domain table. See `docs/smmc/DOMAIN-RECONCILIATION-2017-2025.md`.
+The six-domain top-level taxonomy and per-problem primary labels are now reconciled and frozen. Final all-corpus counts are S1 22 / S2 17 / S3 14 / S4 12 / S5 14 / S6 9; East-core counts are 17 / 16 / 12 / 10 / 11 / 6 respectively. See `docs/smmc/DOMAIN-RECONCILIATION-2017-2025.md` for the written tie-break, eight documented hybrid-label changes and future-change rule.
 
-Do not allocate study hours from the provisional independent primary-domain counts until that reconciliation closes. Bridge, method, prerequisite and overlap metadata are already safe to use.
+Primary-domain frequency may now be read directly from the canonical ledger. Secondary tags, methods, bridge needs and T25 overlap remain the richer training-design metadata.
+
+
+## Final-engine completion scaffold
+
+The completion spine is documented in `docs/smmc/FINAL-ENGINE-SCAFFOLD.md` and encoded in `course/smmc/engine-roadmap-v1.mjs`.
+
+It preserves the frozen research architecture while making the unfinished work explicit:
+
+- finish fundamental/core neutral authoring;
+- map every East AMBER/RED problem to exact authored units;
+- connect canonical T25 readiness and explicit SMMC certification;
+- implement S-XFER attempts with durable 0-7 review;
+- protect the finite official corpus with a whole-paper vault;
+- implement S-PAPER only after preservation rules are enforceable.
+
+The proposed contest-algebra `S-BRIDGE-ALG1` remains a candidate pending an exact-gap pass; it is not part of the canonical 18-module architecture yet.

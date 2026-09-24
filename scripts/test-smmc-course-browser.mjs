@@ -45,8 +45,8 @@ try{
   await page.goto(base+'/smmc-course.html');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
 
-  assert.equal(await page.locator('#unitSelect option').count(),8);
-  assert((await page.locator('#status').textContent()).includes('16 neutral tasks'));
+  assert.equal(await page.locator('#unitSelect option').count(),14);
+  assert((await page.locator('#status').textContent()).includes('28 neutral tasks'));
   await page.click('#tabMap');
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat strong').allTextContents(),['39','27','22','30','24','18']);
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat span').allTextContents(),['GREEN','AMBER','RED','GREEN','AMBER','RED']);
@@ -106,7 +106,7 @@ try{
   assert((await page.locator('#histExposure').textContent()).includes('sealed'));
 
   assert.deepEqual(errors,[]);
-  console.log('PASS: SMMC page loads 8 units/16 tasks/88 historical rows; official problem papers are linked; neutral attempts stay separate; self-report does not certify; research metadata and paper viewing are reversible and do not write contamination state.');
+  console.log('PASS: SMMC page loads 9 units/18 tasks/88 historical rows; official problem papers are linked; neutral attempts stay separate; self-report does not certify; research metadata and paper viewing are reversible and do not write contamination state.');
 } finally {
   if(browser)await browser.close();
   server.close();

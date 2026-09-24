@@ -415,3 +415,321 @@ The browser regression `scripts/test-math-workspace-browser.mjs` now checks:
 - SMMC scroll restoration;
 - sticky workspace dock;
 - SMMC -> T25 deep links focus the task area.
+
+
+## Checkpoint G — contest proof-writing unit
+
+Continuation branch: `codex/smmc-final-engine-v1`, cut from current `main` at `2f8bd161fc9b9a0163713ed0c7f4341879b47419`.
+
+Added:
+
+### S-METHOD-W1-U01 — Turn scratch reasoning into a marker-ready proof
+
+Focus:
+- explicit assumptions and target;
+- auditable implication chains;
+- justified cancellation/factorization/substitution;
+- complete case closure;
+- explicit final conclusion;
+- honest partial-credit boundaries rather than overclaiming.
+
+Two original neutral tasks were added:
+- a parity implication designed to train proof strategy and logical closure;
+- a zero-sum cubic identity designed to train assumption use, factorization and exact conclusion.
+
+The historical requirement map is intentionally unchanged. W1 is a universal writing method, but this checkpoint does **not** make it a blanket prerequisite that would lock all 88 historical problems.
+
+The authored bank is now expected to contain:
+- 9 units;
+- 18 learner-facing neutral tasks;
+- 18 separate evaluator references.
+
+No historical SMMC statement is quoted or consumed by these tasks.
+
+
+## Checkpoint H — final-engine broad scaffold
+
+Continuation branch: `codex/smmc-final-engine-v1`.
+
+This checkpoint does not rebuild the companion and does not claim the missing learning/practice engine is complete. It creates executable contracts for the remaining work.
+
+Added:
+
+- `course/smmc/engine-roadmap-v1.mjs`;
+- `course/smmc/runtime/final-engine-v1.mjs`;
+- `course/smmc/paper-vault-v1.mjs`;
+- `scripts/validate-smmc-engine-scaffold.mjs`;
+- `docs/smmc/FINAL-ENGINE-SCAFFOLD.md`.
+
+### Build spine
+
+The scaffold now makes seven stages explicit:
+
+1. primary-domain reconciliation;
+2. core bridge/method authoring;
+3. exact East AMBER/RED requirement mapping;
+4. canonical T25 readiness + genuine unit certification;
+5. protected historical S-XFER attempts and 0-7 review;
+6. whole-paper vault + S-PAPER;
+7. rare RED/open-problem specialists.
+
+All 18 canonical modules have explicit unit-level build slots. Existing authored unit IDs are detected from the real authoring bank; planned IDs do not become learner-facing merely because they exist in the roadmap.
+
+`S-BRIDGE-ALG1` is recorded only as `candidate-not-canonical`. Its addition requires a later exact-gap decision.
+
+### Evidence scaffold
+
+The new contracts preserve these boundaries:
+
+- self-report never certifies;
+- two saved neutral tasks do not auto-certify;
+- canonical T25 evidence is the intended normal readiness source;
+- manual T25 target input is future debug/admin fallback;
+- historical S-XFER uses a 0-7 review scale;
+- first-unseen evidence must remain distinct from later reattempts.
+
+No historical-attempt UI or automatic grading is claimed yet.
+
+### Paper-vault scaffold
+
+The 2017-2025 ledger is grouped into:
+
+- 18 East A/B papers;
+- 4 supplementary C papers;
+- 4 problems per session paper.
+
+A whole organiser PDF is now explicitly modeled as a whole-paper statement reveal. The safe runtime primitive marks all four sibling statements seen together; the current UI has not yet been rewired to invoke it.
+
+The future single-problem route must genuinely isolate one problem before it may preserve sibling questions as pristine.
+
+### Validation
+
+The dedicated scaffold validator checks:
+
+- all 18 canonical modules are represented exactly once;
+- existing authored units cannot be falsely marked planned or vice versa;
+- W1 proof writing is recognized as authored;
+- candidate ALG1 remains outside the canonical module set;
+- the complete East non-GREEN requirement backlog is represented;
+- the paper vault contains exactly 18 East A/B papers covering 72 unique East problems;
+- self-report cannot satisfy certification;
+- 0-7 S-XFER scoring boundaries;
+- whole-paper reveal consumes pristine status for all four statements.
+
+The SMMC workflow now runs this validator on `main`, pull requests, and `codex/smmc-final-engine-v1` pushes.
+
+No canonical T25 card, target, clearance, Aster campaign or historical SMMC statement was changed by this scaffold.
+
+
+### Checkpoint H validation receipt
+
+Validated scaffold head: `1a854b822d0dd1df56cabd6d827c88ef341f7c42`  
+SMMC authoring checks run: `35976910332`  
+Job: `107559446709`  
+Result: **SUCCESS**
+
+Inspected successful steps include:
+
+- existing SMMC authoring contracts;
+- final-engine scaffold validator;
+- compact SMMC connection index;
+- lean T25 learner payload;
+- workspace cloud conflict handling;
+- SMMC browser workflow;
+- exact T25/Aster/SMMC navigation restore;
+- same-account cross-device T25/SMMC restore.
+
+The scaffold validator reports: 18 canonical modules planned, 9 currently authored units recognized, all 42 East non-GREEN problems represented in the requirement backlog, 18 East paper-vault objects, and fail-closed certification/T25/S-XFER/S-PAPER contracts.
+
+
+## Checkpoint I — primary-domain research freeze
+
+Before further mass authoring, the open 2017–2025 hybrid-label reconciliation was completed under the repository's written ownership tie-break.
+
+Eight `primaryDomain` fields changed and no other historical-problem contract field changed. Final all-corpus and East-only counts now exactly match the independently recorded benchmark.
+
+Roadmap phase `research-freeze` is now `complete`; `SMMC_ENGINE_FEATURES.domainReconciliation` is `frozen`.
+
+CI now runs the complete ledger validator, frozen curriculum validator, dedicated domain-reconciliation validator and the existing authoring/runtime/browser/workspace checks.
+
+This closes the research-classification gate. Core bridge/method authoring is the active content-build phase; historical unlock mappings remain fail-closed until exact authored units exist.
+
+
+## Checkpoint J — case architecture + lemma extraction
+
+Added:
+
+### S-METHOD-C1-U01 — Build exhaustive cases and extract reusable lemmas
+
+Corpus motivation:
+- CASE-DECOMPOSITION is tagged on 34 problems across the full corpus;
+- LEMMA-EXTRACTION is tagged on 12;
+- the frozen curriculum therefore treats their combined signal as a high-frequency reusable method rather than a subject-specific bridge.
+
+The unit trains:
+- choosing an exhaustive, nonoverlapping outer partition;
+- assigning equality/boundary cases explicitly;
+- extracting one reusable subclaim instead of repeating local reasoning;
+- closing every case and reassembling the global result;
+- separating necessity from sufficiency in classifications.
+
+Two original neutral tasks were added:
+- max/min identities from a learner-chosen order partition and reusable absolute-value lemma;
+- classification of equality in |x+y|≤|x|+|y| from a learner-designed sign partition.
+
+The tasks use no historical SMMC statement, identifier or solution route. The exact historical requirement map remains unchanged: C1 is a broadly useful method unit, not a blanket prerequisite that should newly lock the corpus.
+
+Expected authored bank after this checkpoint:
+- 10 units;
+- 20 learner-facing neutral tasks;
+- 20 separate evaluator references.
+
+
+### Checkpoint J validation receipt
+
+C1 repaired head: `7ce762d7db2359642594b57b1a228c992c0baac6`.  
+SMMC authoring checks run: `35985729271`, job `107587818157`: **SUCCESS**.
+
+The first draft was intentionally not accepted: both assessments had supplied the very case partitions C1 claimed the learner should choose. The repaired Main now requires a learner-chosen order partition, and Transfer a learner-designed sign partition; evaluator rubrics accept mathematically equivalent complete partitions. Full ledger/curriculum/reconciliation, authoring, scaffold, T25 payload, SMMC browser, workspace-navigation and cross-device checks passed.
+
+## Checkpoint K — extremal and minimal-counterexample reasoning
+
+Added:
+
+### S-METHOD-E1-U01 — Choose an extremal object or minimal counterexample
+
+Corpus basis:
+- EXTREMAL appears on 6 historical rows;
+- MINIMAL-COUNTEREXAMPLE appears on 2;
+- the method is retained as a compact reusable unit, not a subject bridge.
+
+The unit separates two related architectures:
+- extremal/local-improvement: choose an optimizer, preserve constraints, calculate a strict improvement, infer forced structure;
+- minimal-counterexample descent: choose the least bad input, reduce to strictly smaller valid inputs, and reconstruct a contradiction.
+
+Neutral assessments:
+- maximize ab over nonnegative integer pairs with fixed sum using a one-unit compression move;
+- prove prime-factor existence by a genuine minimal-counterexample descent.
+
+No historical requirement row is added: E1 is method training and does not by itself supply missing mathematical content for a particular AMBER/RED problem.
+
+Expected bank:
+- 11 authored units;
+- 22 neutral public tasks;
+- 22 separate evaluator references.
+
+
+### Checkpoint K validation receipt
+
+E1 head: `0052e78239dc30cd67466f6e71f0e28289fe21f5`.  
+SMMC authoring checks run: `35985991948`, job `107588662007`: **SUCCESS**.
+
+The complete ledger/curriculum/domain-freeze gates, 11-unit authoring bank, engine scaffold, T25 payload, SMMC browser workflow, workspace navigation and same-account cross-device restore all passed.
+
+## Checkpoint L — symmetry, parity and normalization
+
+Added:
+
+### S-METHOD-S1-U01 — Exploit symmetry, parity and normalization
+
+Corpus basis:
+- SYMMETRY appears on 13 historical rows;
+- PARITY on 8;
+- NORMALIZATION on 12;
+- the frozen curriculum records a combined signal of 33 method tags, allowing overlap.
+
+The lesson distinguishes three proof operations rather than treating them as slogans:
+- symmetry: prove the transformation preserves the problem before using WLOG;
+- normalization: prove scale/location invariance and keep the inverse interpretation;
+- parity: compute the effect of one legal move before declaring an invariant.
+
+Neutral assessments:
+- exact range of a symmetric scale-invariant two-variable ratio, requiring reversible normalization, justified swap symmetry and attainability;
+- exact reachable on-counts in a two-toggle switch system, requiring parity obstruction plus construction.
+
+No historical SMMC problem is quoted, paraphrased or newly unlocked. This remains method training.
+
+Expected bank:
+- 12 authored units;
+- 24 neutral public tasks;
+- 24 separate evaluator references.
+
+
+### Checkpoint L validation receipt
+
+S1 head: `23c2b6b53b21786e9f2c508ecbbf5fd5b831bc44`.  
+SMMC authoring checks run: `35986226414`, job `107589412914`: **SUCCESS**.
+
+All ledger/curriculum/domain-freeze, 12-unit authoring, scaffold, T25 payload, SMMC browser, workspace-navigation and cross-device checks passed.
+
+## Checkpoint M — AN2 compactness/integrability bridge
+
+Added:
+
+### S-BRIDGE-AN2-U01 — Extrema, compactness and integrability consequences
+
+Boundary discipline:
+- this is a bounded contest-analysis bridge, not a full real-analysis course;
+- it teaches supremum as a proof tool, shrinking nested closed intervals, compact-interval extrema, and exact Riemann-integrability consequences;
+- it explicitly avoids the false inference that Riemann integrability implies continuity or attained extrema;
+- under the ordinary compact-interval Riemann/Darboux convention used in this project, boundedness is treated as part of/required by integrability rather than smuggled in later.
+
+Neutral assessments:
+- prove the shrinking nested-interval theorem using a supremum and length→0 uniqueness;
+- audit boundedness/continuity/supremum-attainment for a Riemann-integrable function, with a finite-point modification counterexample and an integral bound.
+
+No historical requirement row is added yet. AN2-U01 alone does not cover the full regularity/one-sided/floor-recurrence machinery behind the relevant historical AMBER/RED problems, so those problems remain fail-closed.
+
+Expected bank:
+- 13 authored units;
+- 26 neutral public tasks;
+- 26 separate evaluator references.
+
+
+### Checkpoint M validation receipt
+
+AN2-U01 head: `e20a11b3867dfefd1b11e28bf4d462853b729004`.  
+SMMC authoring checks run: `35986582040`, job `107590567785`: **SUCCESS**.
+
+The theorem-level bridge passed complete ledger/curriculum/domain reconciliation, 13-unit authoring, final-engine scaffold, T25 payload, browser, workspace and cross-device checks.
+
+## Checkpoint N — AN2 convex-envelope bridge
+
+Added:
+
+### S-BRIDGE-AN2-U02 — Convex envelopes and contest optimization
+
+The unit is intentionally one-dimensional and finite:
+- convexity through chord inequalities;
+- maxima of finitely many affine functions;
+- active-piece analysis for upper envelopes;
+- supporting-chord domination;
+- construction + maximality proof for a greatest convex minorant under finite pointwise caps.
+
+Neutral assessments:
+- analyze and optimize the upper envelope max{-x,x-2,2x-5}, including a pairwise crossing that is not active;
+- construct the greatest convex function below three pointwise caps on [0,2] and prove pointwise maximality.
+
+No historical requirement mapping is added at this checkpoint. Although this unit targets the convex-structure gap behind 2023 A2/2025 C4, sufficiency for any exact historical unlock is reserved for a separate problem-by-problem mapping audit.
+
+Expected bank:
+- 14 authored units;
+- 28 neutral public tasks;
+- 28 separate evaluator references.
+
+
+### Checkpoint N validation receipt
+
+AN2-U02 head: `b20b5f75059f8205484c5535a0efdffa5fdea2a4`.  
+SMMC authoring checks run: `35986844747`, job `107591410214`: **SUCCESS**.
+
+The complete ledger, frozen curriculum, primary-domain reconciliation, 14-unit/28-task authoring bank, final-engine scaffold, connection index, T25 runtime payload, cloud conflict handling, SMMC browser workflow, T25/Aster/SMMC navigation and same-account cross-device restore all passed.
+
+Phase-2 checkpoint status:
+- fundamental reusable methods B1, C1, K1, X1, I1, E1, S1 and W1 are authored;
+- O1 remains intentionally later for open-problem/research work;
+- AN2 now has both planned core units authored;
+- no new historical problem was consumed;
+- no new historical requirement row was opened without a separate exact-sufficiency audit.
+
+Next bounded content block: S-BRIDGE-GF1, followed by S-BRIDGE-GEO1 and the planned N1/GR1/AN1 deepening units.

@@ -181,6 +181,150 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "chooses enough base cases for the strengthened statement",
       "shows the stronger statement reproduces itself under the recurrence or shift"
     ]
+  },
+  {
+    id: "S-METHOD-W1-U01",
+    moduleId: "S-METHOD-W1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Turn scratch reasoning into a marker-ready proof",
+    t25Targets: ["F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "A contest proof must expose the logical chain that scratchwork often leaves implicit.",
+      "Begin by stating the assumptions and the exact claim, then make each implication auditable: name the quantity being used, justify divisions or cancellations, and close every case you open.",
+      "A useful proof paragraph usually has a local claim, the reason it follows, and the consequence needed next.",
+      "Do not replace proof with examples or phrases such as 'clearly' when the omitted step carries real content.",
+      "For partial credit, isolate a correct lemma or reduction and state precisely what remains unproved rather than overclaiming a complete solution."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-W1-01",
+    transferTaskId: "S-NEUTRAL-W1-02",
+    completionEvidence: [
+      "states assumptions and target explicitly",
+      "makes every nontrivial implication and case closure visible",
+      "justifies algebraic operations that require nonzero or sign conditions",
+      "ends with the requested conclusion rather than stopping at an equivalent intermediate statement"
+    ]
+  },
+  {
+    id: "S-METHOD-C1-U01",
+    moduleId: "S-METHOD-C1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Build exhaustive cases and extract reusable lemmas",
+    t25Targets: ["A3", "F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "Before computing, choose a case variable whose possible states cover every allowed input.",
+      "State cases so exactly one applies; assign equality and other boundary values explicitly instead of leaving them between cases.",
+      "If the same reasoning would be repeated, isolate it as a lemma, prove it once, and cite it where needed.",
+      "Prove the structural classification before doing case-specific algebra, then reassemble the cases into the exact requested conclusion.",
+      "When a problem asks for a classification, existence, uniqueness or sharpness are separate obligations: do not let solving one case stand in for closing the whole proof."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-C1-01",
+    transferTaskId: "S-NEUTRAL-C1-02",
+    completionEvidence: [
+      "chooses an exhaustive nonoverlapping case partition with boundaries assigned",
+      "extracts and proves a reusable subclaim instead of duplicating reasoning",
+      "closes every case and reassembles the requested global statement",
+      "separates necessary and sufficient directions when giving a classification"
+    ]
+  },
+  {
+    id: "S-METHOD-E1-U01",
+    moduleId: "S-METHOD-E1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Choose an extremal object or minimal counterexample",
+    t25Targets: ["A3", "F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "An extremal proof chooses an allowed object that maximizes or minimizes a clearly named quantity, then uses extremality to forbid improvable local structure.",
+      "The comparison move must preserve every constraint; compute the change in the objective instead of saying only that the new object is 'better'.",
+      "A minimal-counterexample proof is the same architecture with a smallest bad input: reduce it to strictly smaller valid inputs, apply minimality there, and reconstruct the forbidden conclusion.",
+      "Always justify that an extremal or least object exists, and make the strict improvement or strict descent explicit.",
+      "Once extremality forces the local structure, finish the original existence, classification, or sharpness claim rather than stopping at the contradiction."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-E1-01",
+    transferTaskId: "S-NEUTRAL-E1-02",
+    completionEvidence: [
+      "names the extremal object and objective and justifies existence",
+      "uses a constraint-preserving local modification with a computed strict improvement",
+      "derives forced structure from extremality and converts it into the requested optimum",
+      "uses strict descent correctly in a minimal-counterexample argument"
+    ]
+  },
+  {
+    id: "S-METHOD-S1-U01",
+    moduleId: "S-METHOD-S1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Exploit symmetry, parity and normalization",
+    t25Targets: ["A3", "F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "A symmetry reduction is valid only after naming a transformation that preserves the assumptions and the quantity or claim being studied; that is what makes a without-loss-of-generality step reversible.",
+      "Normalization removes irrelevant scale or location only when the problem is invariant under that change, and the inverse map back to the original variables must remain available.",
+      "Parity is an invariant modulo two: before claiming it is preserved, calculate exactly how one legal move changes the tracked quantity.",
+      "Symmetry identifies equivalent cases, normalization removes a redundant degree of freedom, and parity rules out unreachable states; do not use these labels as substitutes for the preserving calculation.",
+      "After reducing the problem, prove both directions needed for an exact classification: every original object maps into the reduced model, and every claimed reduced possibility can be realized."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-S1-01",
+    transferTaskId: "S-NEUTRAL-S1-02",
+    completionEvidence: [
+      "justifies a normalization by an invariant transformation and keeps the reverse interpretation",
+      "uses symmetry only after proving omitted cases are equivalent",
+      "identifies and proves a parity invariant from the legal move",
+      "pairs an invariant obstruction with a construction when an exact reachability classification is requested"
+    ]
+  },
+  {
+    id: "S-BRIDGE-AN2-U01",
+    moduleId: "S-BRIDGE-AN2",
+    kind: "bridge",
+    orderWithinModule: 1,
+    title: "Extrema, compactness and integrability consequences",
+    t25Targets: ["A5", "C1", "C6", "F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "For a nonempty set of real numbers bounded above, s=sup A means s is an upper bound and every number below s fails to be an upper bound; equivalently, for every ε>0 some a∈A satisfies s-ε<a≤s.",
+      "Nested nonempty closed intervals behave like a compact existence machine: if I_{n+1}⊆I_n and their lengths tend to zero, the lower endpoints have a supremum lying in every interval, and shrinking length makes that common point unique.",
+      "For a continuous function on a closed bounded interval, the extreme value theorem guarantees attained maxima and minima; the closed/compact hypothesis matters and should not be silently dropped.",
+      "Under the ordinary compact-interval Riemann/Darboux convention used here, Riemann-integrable functions are bounded. Integrability alone does not imply continuity or attainment of a supremum.",
+      "Changing an otherwise Riemann-integrable function at finitely many points preserves Riemann integrability and the integral; this is useful for building counterexamples without changing the area."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-AN2-01",
+    transferTaskId: "S-NEUTRAL-AN2-02",
+    completionEvidence: [
+      "uses a supremum with both upper-bound and approximation logic rather than treating it automatically as a maximum",
+      "proves existence and uniqueness for shrinking nested closed intervals",
+      "distinguishes compact-interval continuity consequences from weaker Riemann-integrability consequences",
+      "uses boundedness to control a definite integral without inventing continuity"
+    ]
+  },
+  {
+    id: "S-BRIDGE-AN2-U02",
+    moduleId: "S-BRIDGE-AN2",
+    kind: "bridge",
+    orderWithinModule: 2,
+    title: "Convex envelopes and contest optimization",
+    t25Targets: ["A3", "C5", "F5"],
+    prerequisiteUnits: ["S-BRIDGE-AN2-U01"],
+    learningNote: [
+      "A function f on an interval is convex when f((1-t)x+ty)≤(1-t)f(x)+t f(y) for 0≤t≤1; geometrically, its graph lies below every chord joining two graph points.",
+      "Affine functions satisfy the convexity inequality with equality, and the pointwise maximum of finitely many affine functions is convex because each affine value is bounded by the corresponding convex combination of the two endpoint maxima.",
+      "An upper envelope of affine functions is piecewise affine; determine which line is active by comparing intersections rather than assuming every pairwise crossing appears on the envelope.",
+      "A convex-envelope construction is a two-part proof: build a convex candidate satisfying the required pointwise bounds, then prove every competing convex function lies below it using chord inequalities.",
+      "For optimization, monotone slopes of a piecewise-affine convex envelope locate minima at slope-sign changes; state the active pieces and boundary points explicitly."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-AN2-03",
+    transferTaskId: "S-NEUTRAL-AN2-04",
+    completionEvidence: [
+      "proves a finite maximum of affine functions is convex rather than relying on a graph",
+      "identifies active envelope pieces by valid comparisons",
+      "uses the chord inequality to dominate every admissible convex competitor",
+      "separates construction of an envelope candidate from proof of its maximality"
+    ]
   }
 ]);
 

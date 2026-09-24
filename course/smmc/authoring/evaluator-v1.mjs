@@ -217,6 +217,185 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must explain why a step of +4 covers all later integers from that base window.",
       "Must keep coefficients nonnegative."
     ]
+  },
+  "S-NEUTRAL-W1-01": {
+    reference: [
+      "We prove the contrapositive. Suppose n is odd.",
+      "Then n=2k+1 for some integer k, so n²=(2k+1)²=4k²+4k+1=2(2k²+2k)+1, which is odd.",
+      "Thus whenever n is odd, n² is odd.",
+      "Therefore, by contraposition, if n² is even then n is even, as required."
+    ].join(" "),
+    rubric: [
+      "Must give a logically valid direct, contradiction, or contrapositive proof; examples alone do not count.",
+      "If using contraposition, must explicitly connect 'odd n implies odd n²' back to the original implication.",
+      "Must keep the integer witness k and parity conclusion explicit enough for the implication to be checkable."
+    ]
+  },
+  "S-NEUTRAL-W1-02": {
+    reference: [
+      "Use the identity a³+b³+c³-3abc=(a+b+c)(a²+b²+c²-ab-bc-ca).",
+      "The assumption a+b+c=0 makes the first factor zero.",
+      "Hence a³+b³+c³-3abc=0.",
+      "Rearranging gives a³+b³+c³=3abc, exactly the desired conclusion."
+    ].join(" "),
+    rubric: [
+      "Must explicitly use a+b+c=0 rather than merely quote the final identity.",
+      "Must justify the factorization, either by expansion or by a previously established algebraic identity.",
+      "Must finish with the requested equality and not stop at an unexplained zero product."
+    ]
+  },
+  "S-NEUTRAL-C1-01": {
+    reference: [
+      "Lemma: if x≥y then x-y≥0, so |x-y|=x-y; if x<y then x-y<0, so |x-y|=y-x.",
+      "The cases x≥y and x<y are exhaustive and disjoint, and x=y belongs to the first case.",
+      "If x≥y, substituting |x-y|=x-y gives (x+y+x-y)/2=x=max(x,y) and (x+y-x+y)/2=y=min(x,y).",
+      "If x<y, substituting |x-y|=y-x gives (x+y+y-x)/2=y=max(x,y) and (x+y-y+x)/2=x=min(x,y).",
+      "Since both formulas hold in every case, the two identities hold for all real x,y."
+    ].join(" "),
+    rubric: [
+      "Must choose a valid exhaustive nonoverlapping order partition and assign x=y explicitly; x≥y/x<y or the equivalent reversed convention is acceptable.",
+      "Must prove the absolute-value lemma once and reuse it rather than silently assuming both formulas.",
+      "Must verify both max and min identities in both cases.",
+      "Must reassemble the cases into a global conclusion for all real x,y."
+    ]
+  },
+  "S-NEUTRAL-C1-02": {
+    reference: [
+      "Claim: |x+y|=|x|+|y| if and only if xy≥0.",
+      "First suppose xy≥0. Then x and y have the same weak sign: either both are nonnegative or both are nonpositive, with zero included. In the nonnegative case |x+y|=x+y=|x|+|y|; in the nonpositive case |x+y|=-(x+y)=(-x)+(-y)=|x|+|y|.",
+      "For the opposite-sign case, prove the lemma: if a,b>0 then |a-b|<a+b. If a≥b, then |a-b|=a-b<a+b because b>0; the case b>a is symmetric.",
+      "Now if xy<0, x and y are nonzero with opposite signs. Put a=|x| and b=|y|. Then |x+y|=|a-b|<a+b=|x|+|y|, so equality is impossible.",
+      "Therefore equality implies xy is not negative, hence xy≥0; together with the first direction this proves the classification."
+    ].join(" "),
+    rubric: [
+      "Must state the final classification as the iff condition xy≥0.",
+      "Must choose an exhaustive nonoverlapping sign architecture and account for zero exactly; xy≥0/xy<0 or an equivalent fully closed partition is acceptable.",
+      "Must prove a strict opposite-sign lemma rather than merely assert triangle-inequality equality conditions.",
+      "Must prove both sufficiency and necessity and close the iff."
+    ]
+  },
+  "S-NEUTRAL-E1-01": {
+    reference: [
+      "There are only n+1 feasible pairs (a,n-a), so a maximizing pair exists.",
+      "Choose a maximizing pair and relabel if necessary so a≤b.",
+      "If b-a≥2, the feasible pair (a+1,b-1) has the same sum n and nonnegative coordinates.",
+      "Its product changes by (a+1)(b-1)-ab=b-a-1>0, contradicting maximality.",
+      "Therefore every maximizing pair has |a-b|≤1. If n is even the only maximizing pair is (n/2,n/2); if n is odd the maximizing ordered pairs are ((n-1)/2,(n+1)/2) and its reversal.",
+      "The maximum is floor(n²/4): n²/4 for even n and (n²-1)/4 for odd n."
+    ].join(" "),
+    rubric: [
+      "Must justify existence of a maximizing feasible pair.",
+      "Must give a constraint-preserving local move and compute its product change exactly.",
+      "Must derive |a-b|≤1 from strict improvement, not merely guess balanced pairs.",
+      "Must state the exact maximum and all maximizing ordered pairs, including the odd-n reversal."
+    ]
+  },
+  "S-NEUTRAL-E1-02": {
+    reference: [
+      "Assume for contradiction that some integer n≥2 is not a product of primes, and let n be the least such integer; the least exists by well-ordering.",
+      "The integer n is not prime, because a prime is already a product consisting of that one prime.",
+      "Hence n is composite, so n=ab for integers a,b with 1<a<n and 1<b<n.",
+      "By minimality of n, both a and b are products of primes.",
+      "Concatenating those prime factorizations expresses n=ab as a product of primes, contradicting the choice of n.",
+      "Therefore no counterexample exists."
+    ].join(" "),
+    rubric: [
+      "Must justify the existence of a least counterexample if any counterexample exists.",
+      "Must explain why the least counterexample is composite and produce factors strictly between 1 and n.",
+      "Must invoke minimality only for those strictly smaller factors.",
+      "Must reconstruct a prime product for n and explicitly close the contradiction."
+    ]
+  },
+  "S-NEUTRAL-S1-01": {
+    reference: [
+      "The quantity R is unchanged when (x,y) is replaced by (λx,λy) for any λ>0, so normalize with λ=1/(x+y): put u=x/(x+y), v=y/(x+y). Then u,v>0 and u+v=1, and the normalization is reversible by multiplying by any positive scale.",
+      "Swapping x and y preserves the domain and R, so it is legitimate to assume u≤v without loss of generality; the omitted case is recovered by the swap.",
+      "Now 0<u≤1/2 and v=1-u, hence R=(u-v)²=(1-2u)². Thus 0≤1-2u<1, so 0≤R<1.",
+      "Conversely, let q∈[0,1) and put r=√q∈[0,1). Choose u=(1-r)/2 and v=(1+r)/2. Then u,v>0, u+v=1, and ((u-v)/(u+v))²=r²=q.",
+      "Therefore the exact range is [0,1)."
+    ].join(" "),
+    rubric: [
+      "Must prove scale invariance before normalizing x+y to 1 and retain a reverse interpretation to positive x,y.",
+      "Must justify the x↔y WLOG step by symmetry rather than simply assuming an order.",
+      "Must prove the strict upper bound R<1 and include R=0 correctly.",
+      "Must prove every q in [0,1) is attained by an explicit positive pair; a bound alone is not a range classification."
+    ]
+  },
+  "S-NEUTRAL-S1-02": {
+    reference: [
+      "Let k be the number of switches on. A move toggling two distinct switches changes k by +2 if both were off, by -2 if both were on, and by 0 if exactly one was on.",
+      "Therefore k mod 2 is invariant. Since initially k=0, every reachable state has even k.",
+      "Conversely, let k be any even integer with 0≤k≤n. Select k switches, partition them into k/2 disjoint pairs, and toggle each selected pair once.",
+      "Each selected switch is toggled exactly once and every unselected switch zero times, so exactly those k switches finish on. For k=0 use no moves.",
+      "Hence the reachable counts are exactly the even integers k between 0 and n."
+    ].join(" "),
+    rubric: [
+      "Must compute all three possible changes in the on-count under one legal move and deduce parity invariance.",
+      "Must use the initial even parity to rule out every odd k.",
+      "Must construct a legal move sequence for every admissible even k, including k=0.",
+      "Must state the final classification with the bound 0≤k≤n rather than merely saying 'even'."
+    ]
+  },
+  "S-NEUTRAL-AN2-01": {
+    reference: [
+      "Nestedness implies a_n is nondecreasing and b_n is nonincreasing. The set A={a_n:n≥1} is nonempty and bounded above by b_1, so let s=sup A.",
+      "Fix m. Since s is an upper bound of A, a_m≤s. Also every lower endpoint a_n≤b_m: for n≥m this follows from I_n⊆I_m, while for n<m we have a_n≤a_m≤b_m. Thus b_m is an upper bound of A, so s≤b_m.",
+      "Hence a_m≤s≤b_m for every m, so s belongs to every I_m.",
+      "If x and y both belong to every I_m, then |x-y|≤b_m-a_m for every m.",
+      "Because b_m-a_m→0, a positive distance |x-y| would eventually exceed the interval length. Therefore |x-y|=0 and x=y.",
+      "Thus the common point exists and is unique."
+    ].join(" "),
+    rubric: [
+      "Must justify that the lower endpoints have a finite supremum; merely naming sup without nonempty/bounded checks is incomplete.",
+      "Must prove the supremum lies between a_m and b_m for every fixed m, not only asymptotically.",
+      "Must use b_m-a_m→0 to prove uniqueness.",
+      "Must conclude both existence and uniqueness of a point in the full intersection."
+    ]
+  },
+  "S-NEUTRAL-AN2-02": {
+    reference: [
+      "Claim (i) is guaranteed: under the ordinary Riemann/Darboux compact-interval convention, Riemann integrability includes (equivalently requires) boundedness.",
+      "Claims (ii) and (iii) are false. Let h(x)=x for 0≤x<1 and h(1)=0. It differs from the continuous function g(x)=x at one point, so by the permitted finite-modification fact h is Riemann integrable and has the same integral as g.",
+      "The function h is not continuous at x=1 because the left-hand limit is 1 while h(1)=0.",
+      "Its supremum is 1, since values h(x) approach 1 from below, but no x∈[0,1] has h(x)=1; hence the supremum need not be attained.",
+      "If |f(x)|≤M on [0,1], then -M≤f(x)≤M. Monotonicity of the definite integral gives -M≤∫_0^1 f≤M, so |∫_0^1 f|≤M."
+    ].join(" "),
+    rubric: [
+      "Must identify boundedness as guaranteed under the stated Riemann convention and must not infer continuity.",
+      "Must use h to refute both continuity and supremum attainment, including why sup h=1 is not attained.",
+      "Must invoke the supplied finite-point-modification fact to justify h remains Riemann integrable.",
+      "Must derive the integral bound from -M≤f≤M and integral monotonicity, not from an unsupported mean-value claim."
+    ]
+  },
+  "S-NEUTRAL-AN2-03": {
+    reference: [
+      "General lemma: if L_i are affine and F=max_i L_i, then for 0≤t≤1, each L_i((1-t)x+ty)=(1-t)L_i(x)+tL_i(y)≤(1-t)F(x)+tF(y); taking the maximum over i proves convexity of F.",
+      "Compare the three lines. The crossings are -x=x-2 at x=1, -x=2x-5 at x=5/3, and x-2=2x-5 at x=3.",
+      "The crossing x=5/3 is hidden below x-2 and is not an envelope switch. Direct comparison gives F(x)=-x for x≤1, F(x)=x-2 for 1≤x≤3, and F(x)=2x-5 for x≥3.",
+      "On x≤1 the active piece -x decreases as x increases; on [1,3] the active piece x-2 increases; the final piece also increases.",
+      "Therefore the global minimum is F(1)=-1, attained only at x=1."
+    ].join(" "),
+    rubric: [
+      "Must prove convexity, either directly or through a correctly proved max-of-affine lemma.",
+      "Must identify the hidden -x/2x-5 crossing as nonactive and give the correct active intervals and switch points 1 and 3.",
+      "Must justify the global minimum from the active pieces rather than from an unverified sketch.",
+      "Must state both the minimum value -1 and the unique minimizer x=1."
+    ]
+  },
+  "S-NEUTRAL-AN2-04": {
+    reference: [
+      "The candidate is E(x)=-x for 0≤x≤1 and E(x)=x-2 for 1≤x≤2, equivalently E(x)=|x-1|-1.",
+      "It satisfies E(0)=0, E(1)=-1, E(2)=0. Its slopes are -1 then +1, hence nondecreasing; equivalently |x-1| is convex, so E is convex.",
+      "Let g be any admissible convex function. For x∈[0,1], write x=(1-x)·0+x·1. Convexity gives g(x)≤(1-x)g(0)+xg(1)≤-x=E(x).",
+      "For x∈[1,2], write x=(2-x)·1+(x-1)·2. Convexity gives g(x)≤(2-x)g(1)+(x-1)g(2)≤x-2=E(x).",
+      "Thus every admissible convex g lies pointwise below E, while E itself is admissible, so E is the pointwise greatest possible function."
+    ].join(" "),
+    rubric: [
+      "Must construct the correct piecewise-affine candidate and verify all three pointwise constraints.",
+      "Must prove the candidate is convex; a picture alone is insufficient.",
+      "Must use convexity/chord bounds separately on [0,1] and [1,2] to dominate an arbitrary admissible g.",
+      "Must conclude pointwise maximality of E, not merely that E is one admissible example."
+    ]
   }
 });
 

@@ -97,6 +97,78 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-METHOD-I1-U01",
     role: "transfer",
     prompt: "Prove that every integer n≥12 can be written as n=4a+5b with nonnegative integers a,b. Use an induction architecture that makes clear why several consecutive base cases are needed and why adding 4 closes the induction."
+  },
+  "S-NEUTRAL-W1-01": {
+    id: "S-NEUTRAL-W1-01",
+    unitId: "S-METHOD-W1-U01",
+    role: "main",
+    prompt: "Write a marker-ready proof of the following statement: if n is an integer and n² is even, then n is even. You may use parity facts, but you must state the proof strategy, make the key implication explicit, and finish by connecting it back to the original claim. A list of examples is not a proof."
+  },
+  "S-NEUTRAL-W1-02": {
+    id: "S-NEUTRAL-W1-02",
+    unitId: "S-METHOD-W1-U01",
+    role: "transfer",
+    prompt: "Let a,b,c be real numbers with a+b+c=0. Prove that a³+b³+c³=3abc. Present the argument as a complete contest proof: state where the assumption is used, justify any factorization or substitution, and close the proof with the exact required identity."
+  },
+  "S-NEUTRAL-C1-01": {
+    id: "S-NEUTRAL-C1-01",
+    unitId: "S-METHOD-C1-U01",
+    role: "main",
+    prompt: "Let x and y be real numbers. Prove both identities max(x,y)=(x+y+|x-y|)/2 and min(x,y)=(x+y-|x-y|)/2. Design a two-case proof by comparing x and y: state an exhaustive nonoverlapping partition, assign the equality boundary explicitly, isolate the resulting behavior of |x-y| as a reusable lemma, and use that lemma for both identities."
+  },
+  "S-NEUTRAL-C1-02": {
+    id: "S-NEUTRAL-C1-02",
+    unitId: "S-METHOD-C1-U01",
+    role: "transfer",
+    prompt: "Classify exactly all real pairs (x,y) for which |x+y|=|x|+|y|. Your final answer must be an if-and-only-if condition. Design an exhaustive nonoverlapping sign-based case architecture that handles zero without duplication, extract a reusable lemma for the genuinely opposite-sign case, and prove both directions of the classification."
+  },
+  "S-NEUTRAL-E1-01": {
+    id: "S-NEUTRAL-E1-01",
+    unitId: "S-METHOD-E1-U01",
+    role: "main",
+    prompt: "Fix an integer n≥1. Among all pairs of nonnegative integers (a,b) with a+b=n, determine the maximum possible value of ab and characterize every maximizing pair. Use an extremal/local-improvement proof: choose a maximizing pair, justify that one exists, and derive its forced structure by showing that an allowed one-unit transfer would strictly improve any pair whose coordinates are too far apart."
+  },
+  "S-NEUTRAL-E1-02": {
+    id: "S-NEUTRAL-E1-02",
+    unitId: "S-METHOD-E1-U01",
+    role: "transfer",
+    prompt: "Prove that every integer n≥2 can be written as a product of one or more primes. Use a minimal-counterexample argument rather than induction: if a counterexample exists, choose the least one, explain why it cannot itself be prime, reduce the composite case to strictly smaller integers, and close the contradiction without assuming the desired result for numbers that are not smaller."
+  },
+  "S-NEUTRAL-S1-01": {
+    id: "S-NEUTRAL-S1-01",
+    unitId: "S-METHOD-S1-U01",
+    role: "main",
+    prompt: "For positive real x,y define R=((x-y)/(x+y))². Determine the exact set of possible values of R. Your proof must justify a scale normalization, justify any without-loss-of-generality reduction using the symmetry x↔y, prove the resulting bound, and prove attainability of every value you claim rather than giving only necessary conditions."
+  },
+  "S-NEUTRAL-S1-02": {
+    id: "S-NEUTRAL-S1-02",
+    unitId: "S-METHOD-S1-U01",
+    role: "transfer",
+    prompt: "There are n≥1 switches, initially all off. A legal move chooses two distinct switches and toggles both. Classify exactly which integers k with 0≤k≤n can occur as the number of switches that are on after some finite sequence of moves. Prove an invariant obstruction from the effect of one move, and give a construction for every k that your classification says is reachable."
+  },
+  "S-NEUTRAL-AN2-01": {
+    id: "S-NEUTRAL-AN2-01",
+    unitId: "S-BRIDGE-AN2-U01",
+    role: "main",
+    prompt: "Let I_n=[a_n,b_n] be nonempty closed intervals with I_{n+1}⊆I_n for every n and b_n-a_n→0. Prove that there is exactly one real number belonging to every I_n. Your proof must construct the point using a supremum (or an equivalent completeness argument), show it lies in every interval, and use the shrinking lengths for uniqueness."
+  },
+  "S-NEUTRAL-AN2-02": {
+    id: "S-NEUTRAL-AN2-02",
+    unitId: "S-BRIDGE-AN2-U01",
+    role: "transfer",
+    prompt: "Let f:[0,1]→R be Riemann integrable in the ordinary bounded compact-interval sense. Audit the following claims: (i) f is bounded; (ii) f must be continuous; (iii) f must attain its supremum. State which are guaranteed and justify your answer. For any false claims, use the explicit function h(x)=x for 0≤x<1 and h(1)=0 as a counterexample, using the fact that changing a Riemann-integrable function at finitely many points preserves integrability and its integral. Finally, if |f(x)|≤M for all x, prove |∫_0^1 f(x)dx|≤M."
+  },
+  "S-NEUTRAL-AN2-03": {
+    id: "S-NEUTRAL-AN2-03",
+    unitId: "S-BRIDGE-AN2-U02",
+    role: "main",
+    prompt: "Let F(x)=max{-x, x-2, 2x-5} for real x. Prove from the convexity definition (or the general max-of-affine lemma, if you prove it) that F is convex. Determine exactly which affine function is active on each interval, including all switch points, and then find the global minimum value of F and every point where it is attained. Do not infer the envelope only from the three pairwise intersections."
+  },
+  "S-NEUTRAL-AN2-04": {
+    id: "S-NEUTRAL-AN2-04",
+    unitId: "S-BRIDGE-AN2-U02",
+    role: "transfer",
+    prompt: "Among all convex functions g:[0,2]→R satisfying g(0)≤0, g(1)≤-1, and g(2)≤0, find the pointwise greatest possible function E: that is, construct a convex E satisfying the three bounds and prove that every admissible convex g obeys g(x)≤E(x) for every x∈[0,2]. Your proof must use the chord inequality on [0,1] and [1,2], and must verify convexity of the candidate rather than merely drawing it."
   }
 });
 

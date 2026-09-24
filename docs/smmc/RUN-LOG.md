@@ -524,3 +524,16 @@ Passed:
 - Aster optional/anti-leak contract remains present.
 
 No canonical T25/Aster/compiler/runtime file was modified by this companion build.
+
+
+## Primary-domain reconciliation closure — 2026-09-24
+
+The hybrid-label reconciliation is closed under the written ownership tie-break.
+
+Eight `primaryDomain` fields changed: SMMC-2017-A3 S1→S4; SMMC-2020-B2 S3→S2; SMMC-2020-B3 S3→S5; SMMC-2023-A2 S3→S2; SMMC-2023-C3 S3→S1; SMMC-2024-A3 S3→S4; SMMC-2024-C3 S3→S4; SMMC-2025-C1 S2→S5.
+
+The official Simon Marais solution material for the affected years was reread alongside the existing year audits. Borderline Analysis rows were also checked and retained when analysis genuinely owns the problem.
+
+No label was selected merely to hit aggregate counts. After the problem-level decisions, totals exactly reproduce the independent benchmark: all 88 = 22/17/14/12/14/9 and East 72 = 17/16/12/10/11/6 for S1..S6.
+
+Stable IDs, synopses, secondary/method tags, T25 target links, GREEN/AMBER/RED overlap, bridge needs and assessment roles were unchanged. The research layer is now frozen and guarded by `scripts/validate-smmc-domain-reconciliation.mjs`.
