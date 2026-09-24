@@ -1,5 +1,5 @@
 {
-  "version": "m11-arc510-semantic-repair-v3",
+  "version": "m11-arc510-semantic-repair-v4",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
@@ -3501,36 +3501,97 @@
     "s04EndpointRepair": "S04 pre-publication repair: one exceptional point may be selected as a tag in two adjacent closed subintervals, so the safe bound was corrected from D||P|| to 2D||P||. ObligationVersion remains 1 because M11 is unpublished/unregistered.",
     "fullAuthoring": "20 design-derived sessions authored; global semantic/evidence and mathematical audits still required before handoff.",
     "semanticRepair": "Global 61-claim audit narrowed S05-C3, S06-C3, S12-C1 and S16-C3 to directly observed capabilities; S10/S11 MVT hypotheses were made endpoint-safe. No claim was retained merely because related mathematics appears.",
-    "s19FreshnessRepair": "S19 Main-B was changed from 1/sqrt(x²+1), which duplicated the lesson guided practice, to 1/sqrt(x²+4) with comparison 1/(sqrt(5)x). M11 is unpublished, so obligationVersion remains 1."
+    "s19FreshnessRepair": "S19 Main-B was changed from 1/sqrt(x²+1), which duplicated the lesson guided practice, to 1/sqrt(x²+4) with comparison 1/(sqrt(5)x). M11 is unpublished, so obligationVersion remains 1.",
+    "provenanceRepair": "Expanded canonical sourceLedger from the S01 pilot subset to the complete design-gate dossier before final executable verification."
   },
   "authoringPolicy": "Original lessons and tasks. Ownership follows literal public/scored actions, never a fixed count. Evidence classes are retrieval, proof reconstruction, fresh Main evidence or changed-surface Transfer. Proofs taught before assessment are reconstruction evidence, not fresh proof evidence. Equivalent valid routes earn full credit. Define notation before use, preserve domains/hypotheses/exceptions, and never use M12+ machinery as a premise.",
   "sourceLedger": {
     "checked": "2026-09-24",
-    "policy": "Sources support definitions, theorem hypotheses, sequencing and pedagogy. They do not establish T22 acceptance. Fixed tasks are original.",
+    "policy": "MIT/OpenStax/Lebl ground sequence, definitions, theorem hypotheses and proof boundaries. IES/WWC and the cited calculus-education studies constrain lesson design and known misconception handling. None is treated as T22 acceptance evidence. All fixed tasks and lesson prose are original.",
     "sources": [
       {
         "id": "MIT-1801-RS",
         "source": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-3-the-definite-integral-and-its-applications/part-a-definition-of-the-definite-integral-and-first-fundamental-theorem/session-46-riemann-sums/",
-        "section": "Session 46",
-        "supports": "finite sums as route into definite integration"
+        "section": "Session 46 Riemann Sums",
+        "supports": "finite accumulation and Riemann-sum route into definite integration"
+      },
+      {
+        "id": "MIT-1801-IMP",
+        "source": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/resources/improper-integrals/",
+        "section": "Improper Integrals",
+        "supports": "infinite-bound integrals as limits; neighboring L'Hôpital material is not imported"
       },
       {
         "id": "OS-52",
         "source": "https://openstax.org/books/calculus-volume-1/pages/5-2-the-definite-integral",
         "section": "§5.2",
-        "supports": "Riemann-sum/definite-integral notation, net signed accumulation and mesh caveat"
+        "supports": "tagged sums, nonuniform partitions/mesh, definite-integral properties and continuous⇒integrable support"
+      },
+      {
+        "id": "OS-53",
+        "source": "https://openstax.org/books/calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus",
+        "section": "§5.3",
+        "supports": "FTC local recovery and endpoint-evaluation statements/hypotheses"
+      },
+      {
+        "id": "OS-44",
+        "source": "https://openstax.org/books/calculus-volume-1/pages/4-4-the-mean-value-theorem",
+        "section": "§4.4",
+        "supports": "bounded MVT bridge and derivative-zero⇒constant consequence"
+      },
+      {
+        "id": "OS-55",
+        "source": "https://openstax.org/books/calculus-volume-1/pages/5-5-substitution",
+        "section": "§5.5",
+        "supports": "one-variable substitution structure and transformed bounds"
+      },
+      {
+        "id": "OS2-31",
+        "source": "https://openstax.org/books/calculus-volume-2/pages/3-1-integration-by-parts",
+        "section": "§3.1",
+        "supports": "integration by parts as product-rule reversal with boundary terms"
+      },
+      {
+        "id": "OS2-37",
+        "source": "https://openstax.org/books/calculus-volume-2/pages/3-7-improper-integrals",
+        "section": "§3.7",
+        "supports": "improper definitions and comparison; examples needing L'Hôpital are excluded"
+      },
+      {
+        "id": "LEBL-RIEMANN",
+        "source": "https://www.jirka.org/ra/html/int_chapter.html",
+        "section": "Basic Analysis integration chapter §§5.1–5.3",
+        "supports": "Riemann/FTC rigor and hypothesis audit without importing a full analysis course"
+      },
+      {
+        "id": "LEBL-MVT",
+        "source": "https://www.jirka.org/ra/html/sec_mvt.html",
+        "section": "§4.2",
+        "supports": "Fermat/Rolle/MVT proof discipline and derivative-zero interval consequence"
+      },
+      {
+        "id": "IES-WWC",
+        "source": "https://ies.ed.gov/ncee/wwc/PracticeGuide/1",
+        "section": "Organizing Instruction and Study",
+        "supports": "worked-example/problem alternation, representation connections, retrieval and explanatory prompts"
       },
       {
         "id": "PED-JONES",
         "source": "https://eric.ed.gov/?id=EJ1061209",
-        "section": "abstract/results",
-        "supports": "pedagogical reason to preserve multiplicative Riemann-sum meaning in contextual integrals"
+        "section": "Jones 2015",
+        "supports": "pedagogical reason to preserve multiplicative Riemann-sum meaning rather than area/antiderivative-only conceptions"
+      },
+      {
+        "id": "PED-WAGNER",
+        "source": "https://eric.ed.gov/?id=EJ1189820",
+        "section": "Wagner 2018",
+        "supports": "documented student obstacles in Riemann-sum interpretation and need for explicit accumulation sense-making"
       },
       {
         "id": "PED-SIGN",
         "source": "https://eric.ed.gov/?id=EJ1377710",
-        "section": "abstract/results",
-        "supports": "pedagogical reason to teach signed contributions and orientation explicitly"
+        "section": "Bajracharya, Sealey & Thompson 2023",
+        "supports": "signed integral/orientation misconceptions and physical-quantity interpretation"
       }
     ]
   }
