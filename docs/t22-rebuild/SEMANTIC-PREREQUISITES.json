@@ -1,5 +1,5 @@
 {
-  "version": "semantic-ledger-r2-m12-boundary-2026-09-24",
+  "version": "semantic-ledger-r3-through-m12-published-2026-09-25",
   "policy": "Every macro module must have a ledger row. Before its learner-facing authoring is published, semanticStatus must be accepted and every actual prerequisite in the authored content must trace to an earlier accepted module or a bounded bridge owned by this module. Topological position alone is not evidence of semantic ancestry.",
   "entries": [
     {
@@ -87,21 +87,21 @@
       "order": 10,
       "id": "ARC053",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
+      "semanticStatus": "accepted",
       "bridges": []
     },
     {
       "order": 11,
       "id": "ARC510",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
+      "semanticStatus": "accepted",
       "bridges": []
     },
     {
       "order": 12,
       "id": "SIDE267",
       "mode": "reused",
-      "semanticStatus": "boundary-accepted-content-candidate",
+      "semanticStatus": "accepted",
       "bridges": [
         {
           "id": "M12-B01",
