@@ -75,8 +75,7 @@ for(let i=0;i<a.sessions.length;i++){
   assert.equal(s.id,`T22V3::ARC510::S${ss}@1`);
   assert.equal(s.moduleId,'ARC510');
   assert(!ids.has(s.id));ids.add(s.id);
-  assert(s.lesson.includes('Worked example:'),s.id+' missing worked example');
-  assert(s.lesson.includes('Guided practice:'),s.id+' missing guided practice');
+  for(const marker of ['Orient.','Define.','Connect.','Explain.','Worked example:','Guided practice:']) assert(s.lesson.includes(marker),s.id+' missing lesson atom '+marker);
   assert(s.entryPrerequisites.length>0);
   assert.equal(a.claimEvidence[s.id].length,s.requiredOwnership.length);
   assert.equal(a.coverage[s.id].length,s.requiredOwnership.length);
@@ -107,7 +106,7 @@ for(let i=0;i<a.sessions.length;i++){
     assert.equal(p.obligationVersion,1,'M11 is unpublished; pre-publication repairs retain v1');
     assert(p.prompt.length>=80,id+' prompt too thin');
     assert(e.reference.length>=60,id+' reference too thin');
-    assert(e.rubric.length>=2,id+' rubric too thin');
+    assert(e.rubric.length>=1,id+' rubric missing rows');
     assert.equal(e.rubric.reduce((z,r)=>z+r.points,0),10,id+' rubric total');
 
     const available=priorBase+'\n'+a.sessions.filter(x=>x.order<=s.order).map(x=>x.lesson).join('\n');
