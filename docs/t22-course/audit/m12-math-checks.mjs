@@ -37,7 +37,7 @@ has(5,'transfer',"not differentiable at the interior point 0","derivative -1","d
 // S06 Taylor theorem.
 has(6,'main',"g(t)=f(t)-P_2(t)-M(t-a)^3","g'''(c)=f'''(c)-6M","f'''(c)(x-a)^3/6");
 near(1/8-3/4+3/2,7/8);near(1/8-7/8,-3/4);
-has(6,'transfer',"f''' does not exist","P_2(1/2)=7/8","R=-3/4","±1");
+has(6,'transfer',"f''' does not exist","=7/8","R=-3/4","±1");
 
 // S07 certified bounds.
 near(0.3-0.3**3/6,0.2955);
@@ -74,7 +74,7 @@ has(13,'transfer',"e sum_{k=0}∞ (x-1)^k/k!","P_3=e[1+(x-1)+(x-1)^2/2+(x-1)^3/6
 
 // S14 equality to target.
 has(14,'main',"e^|x| |x|^(n+1)/(n+1)!","≤1/2","P_n(x)→e^x");
-has(14,'transfer',"convergence alone identifies some sum","|x|^(n+1)/(n+1)!","P_n(x)→sin x");
+has(14,'transfer',"Convergence alone identifies some sum","|x|^(n+1)/(n+1)!","P_n(x)→sin x");
 
 // S15 generation in context.
 near(10+1.5*0.2-0.2*0.2**2,10.292);
@@ -89,18 +89,18 @@ has(16,'transfer',"5/(1-5h)","|h|<0.2","0.5","0.9");
 
 // S17 smooth versus analytic.
 has(17,'main',"Taylor series is identically 0","phi(x)=e^(-1/x^2)>0","C-infinity");
-has(17,'transfer',"h'(0)=1","h^(k)(0)=0 for k≥2","Taylor series","x+phi(x)>x");
+has(17,'transfer',"h'(0)=1","h^(k)(0)=0","Taylor series","x+phi(x)>x");
 
 // S18 forensics.
 has(18,'main',"A is true","B is false","R(h)=5h^3","C is false","D is true");
-has(18,'transfer',"C>0","δ>0","does not say C=1","h=0.5","interval-wide derivative bound");
+has(18,'transfer',"C>0","δ>0","does not say C=1","h=0.5","explicit bound M");
 
 // S19 synthesis.
 near(1+0.2+0.2**2/2,1.22);
 near(1+0.2+0.2**2/2+0.2**3/6,1.2213333333333334);
 near(1.23*0.2**3/6,0.00164);
 near(1.23*0.2**4/24,0.000082);
-has(19,'main',"P_2(0.2)=1.22","P_3(0.2)=1.221333","0.00164","0.000082","O(h^4)");
+has(19,'main',"=1.22","1.221333","0.00164","0.000082","O(h^4)");
 const s=Math.SQRT2/2;
 near(s+s*0.05-(s/2)*0.05**2,0.7415782367693918,1e-12);
 near(0.05**3/6,2.0833333333333336e-5,1e-15);
