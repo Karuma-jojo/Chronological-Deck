@@ -31,9 +31,9 @@ assert(meta.moduleSources.some(x=>x.id==='ARC502'&&x.source==='course/t22/author
 assert(meta.version.startsWith('T22E-course-0.7.'),'course metadata must include the authorized M07 candidate');
 assert.equal(meta.moduleSources.filter(x=>x.order<=6).length,6);
 assert(meta.moduleSources.some(x=>x.id==='T22E-MKT01'&&x.source==='course/t22/authoring/m07.json'));
-assert(!meta.moduleSources.some(x=>x.order>=8),'M08 must remain unloaded');
+assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'),'Later-authorized M08 candidate must remain registered');\nassert(!meta.moduleSources.some(x=>x.order>=9),'M09 must remain unloaded');
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(fs.existsSync('course/t22/authoring/m07.json'),'M07 is now explicitly authorized');
-assert(!fs.existsSync('course/t22/authoring/m08.json'),'M08 must remain closed');
+assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized after this historical M06 checkpoint');
 for(const token of ['66deecfa1f21b7730e702c4c0587a1f021212319','24','48','120/120','m06-instruction-astra-r1','chrono_t22_elite_course_evidence_v1','STOP HERE. Do not author M07.'])assert(hand.includes(token),token);
-console.log('PASS: M06 handoff matches 24/48/120 repaired Bayesian state, shared evidence key, six-module accepted frontier, later-authorized M07 candidate and hard M08 stop.');
+console.log('PASS: M06 handoff matches 24/48/120 repaired Bayesian state, shared evidence key, six-module accepted frontier, later-authorized M07 and M08 candidates while the M06 acceptance state remains pinned.');
