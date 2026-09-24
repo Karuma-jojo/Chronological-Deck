@@ -50,6 +50,7 @@ assert.match(gate,/20 pedagogical atoms/i);
 
 const claimCount=Object.values(a.claimEvidence).flat().length;
 assert.equal(a.coverageAudit.ownershipClaimCount,claimCount);
+assert.match(a.coverageAudit.note,/emergent final count/i);
 assert.equal(contract.ownershipClaimCount,claimCount);
 assert.equal(ownership.summary.finalClaims,claimCount);
 assert.equal(ownership.records.length,ownership.summary.originalClaims);
@@ -137,6 +138,8 @@ assert.match(a.problems[a.sessions[9].main].prompt,/continuous on I/);
 assert(a.sessions[18].lesson.includes('1/sqrt(x²+1)'));
 assert(a.problems[a.sessions[18].main].prompt.includes('1/sqrt(x²+4)'),'S19 freshness repair missing');
 assert.match(a.initialVersionAudit.s19FreshnessRepair,/duplicated the lesson guided practice/i);
+const requiredSources=['MIT-1801-RS','MIT-1801-IMP','OS-52','OS-53','OS-44','OS-55','OS2-31','OS2-37','LEBL-RIEMANN','LEBL-MVT','IES-WWC','PED-JONES','PED-WAGNER','PED-SIGN'];
+for(const id of requiredSources)assert(a.sourceLedger.sources.some(s=>s.id===id),'missing M11 source '+id);
 
 const premiseText=a.sessions.map(s=>s.lesson+'\n'+a.evaluators[s.main].reference+'\n'+a.evaluators[s.transfer].reference).join('\n').toLowerCase();
 for(const banned of ['taylor series','jacobian','lebesgue integral','differentiation under the integral sign',"l'hôpital","l’hôpital"]){
