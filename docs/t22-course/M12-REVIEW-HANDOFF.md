@@ -19,7 +19,7 @@ Successful full implementation-head workflow:
 
 The documentation/handoff commits after the implementation checkpoint are not to be confused with that run. The exact final documentation/checker head must also pass the same full workflow before this handoff is reported as final.
 
-**Current status: builder-validated, independently adversarially audited, bounded repairs applied and focused-confirmed; registered in the authorized twelve-module publication route; awaiting exact-head publication CI and main merge.**
+**Current status: builder-validated, independently adversarially audited, bounded repairs applied and focused-confirmed; canonical status is published in the authorized twelve-module route; awaiting exact-head publication CI and merge to main.**
 
 M13 has not been opened.
 
@@ -189,7 +189,7 @@ High-risk checks include:
 
 ## Canonical-state / rendering / preservation
 
-- canonical status is **publication-candidate-independent-audit-repaired**;
+- canonical status is **published-independent-audit-repaired**;
 - canonical boundary describes the completed M12, not the build process;
 - M13 remains closed;
 - M12 is not added to the learner registry;
