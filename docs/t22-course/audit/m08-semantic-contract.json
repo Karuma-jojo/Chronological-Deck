@@ -1,10 +1,77 @@
 {
-  "version": "m08-semantic-contract-independent-repair-r2-2026-09-24",
+  "version": "m08-semantic-contract-session-sizing-r3-25-sessions-2026-09-24",
   "module": "T22E-CODE01",
-  "reviewProvenance": "Independent adversarial review repaired assessment contamination, prerequisite attribution and missing programming-observability gaps on 2026-09-24; contract regenerated from public tasks/rubrics and remains subject to bounded follow-up.",
+  "reviewProvenance": "Independent-review repairs retained; later sizing-only audit split former mixed S02 into exact integer S02 and new floating-point S03 while preserving all pre-existing stable session IDs.",
   "policy": "This file pins the reviewed claim→public-task→rubric-row judgments. The automated guard detects later drift/mutation; it does not create the original semantic judgment.",
   "sessions": {
     "10": {
+      "sessionId": "T22V3::T22E-CODE01::S09@1",
+      "title": "Sets & dictionaries for membership and counts",
+      "links": [
+        {
+          "claimIndex": 1,
+          "claim": "Use a set for unique membership.",
+          "task": "main",
+          "rows": [
+            1,
+            2
+          ],
+          "rationale": "The public main requires the observable behavior scored by: A set is actually constructed/used for uniqueness. / Distinct count3 and observation count6 are correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        },
+        {
+          "claimIndex": 2,
+          "claim": "Recognize duplicates disappear in sets.",
+          "task": "transfer",
+          "rows": [
+            1,
+            2,
+            3
+          ],
+          "rationale": "The public transfer requires the observable behavior scored by: Erroneous denominator3 is identified. / Erroneous estimate1.0 is computed. / Multiplicity loss is diagnosed.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        },
+        {
+          "claimIndex": 3,
+          "claim": "Map labels to counts with a dictionary.",
+          "task": "main",
+          "rows": [
+            3,
+            4
+          ],
+          "rationale": "The public main requires the observable behavior scored by: A dictionary is explicitly initialized and updated from observations. / Final counts G3,R2,B1 are correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        },
+        {
+          "claimIndex": 4,
+          "claim": "Update keyed counts from observations.",
+          "task": "main",
+          "rows": [
+            3,
+            4
+          ],
+          "rationale": "The public main requires the observable behavior scored by: A dictionary is explicitly initialized and updated from observations. / Final counts G3,R2,B1 are correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        },
+        {
+          "claimIndex": 5,
+          "claim": "Distinguish distinct-value count from observation count.",
+          "task": "transfer",
+          "rows": [
+            4,
+            5
+          ],
+          "rationale": "The public transfer requires the observable behavior scored by: Denominator5 is supplied. / Correct estimate0.6 is computed.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        }
+      ]
+    },
+    "11": {
       "sessionId": "T22V3::T22E-CODE01::S10@1",
       "title": "Mutation, aliasing & defensive copying",
       "links": [
@@ -17,9 +84,9 @@
             2,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: a is correct. / b is correct. / a/b aliasing is identified. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — List assignment is often mistaken for copying. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: a is correct. / b is correct. / a/b aliasing is identified.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -29,9 +96,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: a is correct. / b is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — List assignment is often mistaken for copying. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: a is correct. / b is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -41,9 +108,9 @@
             3,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: c is correct. / copy versus alias is explained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — List assignment is often mistaken for copying. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: c is correct. / copy versus alias is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -53,9 +120,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: a/b aliasing is identified. / copy versus alias is explained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — List assignment is often mistaken for copying. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: a/b aliasing is identified. / copy versus alias is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -67,13 +134,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Result is predicted correctly. / Shared inner references are the cause. / A comprehension repair is given. / The repair creates distinct mutable rows. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — List assignment is often mistaken for copying. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Result is predicted correctly. / Shared inner references are the cause. / A comprehension repair is given. / The repair creates distinct mutable rows.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "11": {
+    "12": {
       "sessionId": "T22V3::T22E-CODE01::S11@1",
       "title": "Pairing data safely with zip and enumerate",
       "links": [
@@ -85,9 +152,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: `zip(...,strict=True)` is used for aligned pairing. / Index triples are correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Default zip stops at the shortest iterable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: `zip(...,strict=True)` is used for aligned pairing. / Index triples are correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -96,9 +163,9 @@
           "rows": [
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Weighted sum61 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Default zip stops at the shortest iterable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Weighted sum61 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -107,9 +174,9 @@
           "rows": [
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Weight total7 and average61/7 are correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Default zip stops at the shortest iterable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Weight total7 and average61/7 are correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -119,9 +186,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: `zip(...,strict=True)` is used for aligned pairing. / Index triples are correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Default zip stops at the shortest iterable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: `zip(...,strict=True)` is used for aligned pairing. / Index triples are correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -133,13 +200,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Unpaired9 is identified. / Plain-zip truncation is identified. / `strict=True` and its `ValueError` are stated. / Fail-fast alignment is justified. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Default zip stops at the shortest iterable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Unpaired9 is identified. / Plain-zip truncation is identified. / `strict=True` and its `ValueError` are stated. / Fail-fast alignment is justified.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "12": {
+    "13": {
       "sessionId": "T22V3::T22E-CODE01::S12@1",
       "title": "Exact Cartesian enumeration as a mathematical oracle",
       "links": [
@@ -150,9 +217,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A complete 6×6 enumeration is supplied. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may simulate an enumerable space or use the wrong strictness at a boundary. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A complete 6×6 enumeration is supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -161,9 +228,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Total36 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may simulate an enumerable space or use the wrong strictness at a boundary. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Total36 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -174,9 +241,9 @@
             3,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Correct hit count4 is obtained. / Correct probability2/3 is obtained. / Both equality-boundary outcomes are named. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may simulate an enumerable space or use the wrong strictness at a boundary. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Correct hit count4 is obtained. / Correct probability2/3 is obtained. / Both equality-boundary outcomes are named.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -186,9 +253,9 @@
             3,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Exactly five sum-8 pairs are identified. / Probability5/36 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may simulate an enumerable space or use the wrong strictness at a boundary. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Exactly five sum-8 pairs are identified. / Probability5/36 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -197,13 +264,13 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Enumeration is explicitly distinguished from simulation. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may simulate an enumerable space or use the wrong strictness at a boundary. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Enumeration is explicitly distinguished from simulation.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "13": {
+    "14": {
       "sessionId": "T22V3::T22E-CODE01::S13@1",
       "title": "Exact rational probabilities with Fraction",
       "links": [
@@ -214,9 +281,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A,B,C are encoded exactly as3/8,1/4,3/8. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Fraction(0.1) captures the exact binary float, not automatically1/10. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A,B,C are encoded exactly as3/8,1/4,3/8.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -225,9 +292,9 @@
           "rows": [
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Normalization to1 is verified. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Fraction(0.1) captures the exact binary float, not automatically1/10. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Normalization to1 is verified.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -237,9 +304,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Event A+C is computed exactly. / Final3/4 remains rational rather than float-rounded. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Fraction(0.1) captures the exact binary float, not automatically1/10. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Event A+C is computed exactly. / Final3/4 remains rational rather than float-rounded.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -249,9 +316,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Binary-float origin is identified. / Fraction preserving the supplied float is explained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Fraction(0.1) captures the exact binary float, not automatically1/10. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Binary-float origin is identified. / Fraction preserving the supplied float is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -262,13 +329,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Fraction(1,5) is supplied. / A string/exact alternative is supplied. / No automatic recovery of decimal intent is claimed. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Fraction(0.1) captures the exact binary float, not automatically1/10. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Fraction(1,5) is supplied. / A string/exact alternative is supplied. / No automatic recovery of decimal intent is claimed.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "14": {
+    "15": {
       "sessionId": "T22V3::T22E-CODE01::S14@1",
       "title": "Conditional probability by filtering the universe",
       "links": [
@@ -279,9 +346,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: B is actually filtered and count6 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — The denominator of P(A|B) is B, not Ω. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: B is actually filtered and count6 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -290,9 +357,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: B is actually filtered and count6 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — The denominator of P(A|B) is B, not Ω. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: B is actually filtered and count6 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -301,9 +368,9 @@
           "rows": [
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A∩B is filtered from B and count5 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — The denominator of P(A|B) is B, not Ω. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A∩B is filtered from B and count5 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -313,9 +380,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Conditional denominator is the filtered |B|=6. / Exact result Fraction(5,6) is obtained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — The denominator of P(A|B) is B, not Ω. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Conditional denominator is the filtered |B|=6. / Exact result Fraction(5,6) is obtained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -328,13 +395,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Denominator36 error is identified. / 5/36 is interpreted as joint probability. / Conditional denominator6 is supplied. / 5/6 is computed. / Conditioning as restriction is explained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — The denominator of P(A|B) is B, not Ω. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Denominator36 error is identified. / 5/36 is interpreted as joint probability. / Conditional denominator6 is supplied. / 5/6 is computed. / Conditioning as restriction is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "15": {
+    "16": {
       "sessionId": "T22V3::T22E-CODE01::S15@1",
       "title": "Independence checks by exact enumeration",
       "links": [
@@ -346,9 +413,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: P(A)=1/2 is derived by enumeration. / P(B)=1/2 and P(A∩B)=1/4 are derived. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Different-looking events are not automatically independent. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: P(A)=1/2 is derived by enumeration. / P(B)=1/2 and P(A∩B)=1/4 are derived.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -357,9 +424,9 @@
           "rows": [
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Exact product1/4 is compared with the intersection. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Different-looking events are not automatically independent. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Exact product1/4 is compared with the intersection.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -370,9 +437,9 @@
             3,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: P(A)=1/2 is derived by enumeration. / P(B)=1/2 and P(A∩B)=1/4 are derived. / Exact product1/4 is compared with the intersection. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Different-looking events are not automatically independent. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: P(A)=1/2 is derived by enumeration. / P(B)=1/2 and P(A∩B)=1/4 are derived. / Exact product1/4 is compared with the intersection.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -383,9 +450,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Intersection probability1/3 is correct. / Product1/4 is compared. / The claim is refuted mathematically. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Different-looking events are not automatically independent. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Intersection probability1/3 is correct. / Product1/4 is compared. / The claim is refuted mathematically.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -394,13 +461,13 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: The claim is refuted mathematically. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Different-looking events are not automatically independent. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: The claim is refuted mathematically.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "16": {
+    "17": {
       "sessionId": "T22V3::T22E-CODE01::S16@1",
       "title": "Exact expectation from enumerated payoffs",
       "links": [
@@ -411,9 +478,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: All six atomic outcomes are explicitly mapped to payoffs. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Distinct payoff values are not automatically equally likely. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: All six atomic outcomes are explicitly mapped to payoffs.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -422,9 +489,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Multiplicity five-to-one is preserved in code/data. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Distinct payoff values are not automatically equally likely. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Multiplicity five-to-one is preserved in code/data.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -433,9 +500,9 @@
           "rows": [
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Atomwise exact expectation0 is computed. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Distinct payoff values are not automatically equally likely. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Atomwise exact expectation0 is computed.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -445,9 +512,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Grouped expectation0 is computed. / The two computations are cross-checked. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Distinct payoff values are not automatically equally likely. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Grouped expectation0 is computed. / The two computations are cross-checked.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -460,13 +527,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Distinct-value averaging is diagnosed. / Weights5/6 and1/6 are identified. / Multiplicity is preserved. / Expectation0 is correct. / Value-set versus distribution is distinguished. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Distinct payoff values are not automatically equally likely. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Distinct-value averaging is diagnosed. / Weights5/6 and1/6 are identified. / Multiplicity is preserved. / Expectation0 is correct. / Value-set versus distribution is distinguished.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "17": {
+    "18": {
       "sessionId": "T22V3::T22E-CODE01::S17@1",
       "title": "Assertions, invariants & known-case tests",
       "links": [
@@ -477,9 +544,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A valid 0<=hits<=len(xs) style invariant is supplied. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A passing assertion can be weak, and assertions may be disabled with optimization. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A valid 0<=hits<=len(xs) style invariant is supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -488,9 +555,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The known even-count oracle3 is correct and stated as a concrete test. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A passing assertion can be weak, and assertions may be disabled with optimization. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The known even-count oracle3 is correct and stated as a concrete test.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -499,9 +566,9 @@
           "rows": [
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Boundary input x=5 (or an equivalent discriminating boundary) is used to distinguish >= from >. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A passing assertion can be weak, and assertions may be disabled with optimization. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Boundary input x=5 (or an equivalent discriminating boundary) is used to distinguish >= from >.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -510,9 +577,9 @@
           "rows": [
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The limitation of the general invariant is explained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A passing assertion can be weak, and assertions may be disabled with optimization. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The limitation of the general invariant is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -525,13 +592,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Optimization behavior is identified. / Debugging versus essential validation is distinguished. / An explicit n<=0 check is supplied. / A suitable exception is raised. / The contract remains active under -O. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A passing assertion can be weak, and assertions may be disabled with optimization. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Optimization behavior is identified. / Debugging versus essential validation is distinguished. / An explicit n<=0 check is supplied. / A suitable exception is raised. / The contract remains active under -O.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "18": {
+    "19": {
       "sessionId": "T22V3::T22E-CODE01::S18@1",
       "title": "Exceptions, tracebacks & smallest failing cases",
       "links": [
@@ -542,9 +609,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: ZeroDivisionError is read from the traceback. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Broad catch-and-continue can hide wrong quantitative behavior. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: ZeroDivisionError is read from the traceback.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -554,9 +621,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The `hits/total` source line and `(0,0)` failing call are localized. / The total>0 precondition is stated. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Broad catch-and-continue can hide wrong quantitative behavior. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The `hits/total` source line and `(0,0)` failing call are localized. / The total>0 precondition is stated.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -565,9 +632,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The `hits/total` source line and `(0,0)` failing call are localized. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Broad catch-and-continue can hide wrong quantitative behavior. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The `hits/total` source line and `(0,0)` failing call are localized.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -576,9 +643,9 @@
           "rows": [
             4
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Both a correct-range repair and a direct-iteration/enumerate repair are supplied. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Broad catch-and-continue can hide wrong quantitative behavior. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Both a correct-range repair and a direct-iteration/enumerate repair are supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -587,13 +654,13 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: A blanket catch-and-ignore is rejected because it hides the defect rather than repairing it. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Broad catch-and-continue can hide wrong quantitative behavior. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: A blanket catch-and-ignore is rejected because it hides the defect rather than repairing it.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "19": {
+    "20": {
       "sessionId": "T22V3::T22E-CODE01::S19@1",
       "title": "Explicit pseudorandom generators & reproducibility",
       "links": [
@@ -604,9 +671,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The Random import and two separate same-seed generators are explicit. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reseeding inside a trial helper can repeat the same first draw. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The Random import and two separate same-seed generators are explicit.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -616,9 +683,9 @@
             3,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Two extra r1 draws are tracked as two state advances. / Initial seed is distinguished from current state. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reseeding inside a trial helper can repeat the same first draw. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Two extra r1 draws are tracked as two state advances. / Initial seed is distinguished from current state.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -628,9 +695,9 @@
             2,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The same four-call path is used and equal outputs are predicted/checked. / Reproducibility is tied to matching generator/call conditions. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reseeding inside a trial helper can repeat the same first draw. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The same four-call path is used and equal outputs are predicted/checked. / Reproducibility is tied to matching generator/call conditions.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -641,9 +708,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Seeding once outside is proposed. / RNG is passed explicitly. / Successive calls consume evolving state. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reseeding inside a trial helper can repeat the same first draw. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Seeding once outside is proposed. / RNG is passed explicitly. / Successive calls consume evolving state.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -654,13 +721,13 @@
             2,
             3
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Repeated same-seed construction is identified. / Repeated first-draw behavior is explained. / Seeding once outside is proposed. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reseeding inside a trial helper can repeat the same first draw. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Repeated same-seed construction is identified. / Repeated first-draw behavior is explained. / Seeding once outside is proposed.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "20": {
+    "21": {
       "sessionId": "T22V3::T22E-CODE01::S20@1",
       "title": "Implement one finite random trial from a stated model",
       "links": [
@@ -672,9 +739,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: rng and p are explicit. / `<p` is used. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Using >p simulates the complement probability. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: rng and p are explicit. / `<p` is used.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -685,9 +752,9 @@
             3,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: `<p` is used. / 0<=p<=1 is stated/enforced. / 0.3 is interpreted correctly. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Using >p simulates the complement probability. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: `<p` is used. / 0<=p<=1 is stated/enforced. / 0.3 is interpreted correctly.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -698,9 +765,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Actual0.8 is identified. / Complement error is explained. / `<0.2` repair is supplied. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Using >p simulates the complement probability. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Actual0.8 is identified. / Complement error is explained. / `<0.2` repair is supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -709,9 +776,9 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: One-trial responsibility is preserved. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Using >p simulates the complement probability. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: One-trial responsibility is preserved.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -720,13 +787,13 @@
           "rows": [
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: 0<=p<=1 is stated/enforced. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Using >p simulates the complement probability. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: 0<=p<=1 is stated/enforced.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "21": {
+    "22": {
       "sessionId": "T22V3::T22E-CODE01::S21@1",
       "title": "Repeated simulation & empirical frequency",
       "links": [
@@ -738,9 +805,9 @@
             1,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: One evolving rng and an explicit N=1200 loop are shown. / Seed31415 and N1200 are recorded as metadata. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A fixed seed can reproduce sampling error without making it exact. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: One evolving rng and an explicit N=1200 loop are shown. / Seed31415 and N1200 are recorded as metadata.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -749,9 +816,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Hits are actually accumulated from Bernoulli calls. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A fixed seed can reproduce sampling error without making it exact. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Hits are actually accumulated from Bernoulli calls.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -760,9 +827,9 @@
           "rows": [
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The prescribed run result492/1200=0.41 is reported. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A fixed seed can reproduce sampling error without making it exact. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The prescribed run result492/1200=0.41 is reported.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -771,9 +838,9 @@
           "rows": [
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Seed31415 and N1200 are recorded as metadata. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A fixed seed can reproduce sampling error without making it exact. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Seed31415 and N1200 are recorded as metadata.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -782,13 +849,13 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: 0.41 is distinguished from exact/model probability0.4. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A fixed seed can reproduce sampling error without making it exact. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: 0.41 is distinguished from exact/model probability0.4.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "22": {
+    "23": {
       "sessionId": "T22V3::T22E-CODE01::S22@1",
       "title": "Checkpoint and restore random-generator state",
       "links": [
@@ -799,9 +866,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The snapshot point after two draws is located. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Remembering only the seed does not identify an arbitrary unknown mid-run point. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The snapshot point after two draws is located.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -810,9 +877,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The three-draw suffix is tracked after the snapshot. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Remembering only the seed does not identify an arbitrary unknown mid-run point. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The three-draw suffix is tracked after the snapshot.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -821,9 +888,9 @@
           "rows": [
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Restoration is tracked before replay. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Remembering only the seed does not identify an arbitrary unknown mid-run point. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Restoration is tracked before replay.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -832,9 +899,9 @@
           "rows": [
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: `suffix==replay` is stated and justified. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Remembering only the seed does not identify an arbitrary unknown mid-run point. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: `suffix==replay` is stated and justified.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -843,13 +910,13 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: No unsupported first-versus-suffix equality is claimed. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Remembering only the seed does not identify an arbitrary unknown mid-run point. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: No unsupported first-versus-suffix equality is claimed.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "23": {
+    "24": {
       "sessionId": "T22V3::T22E-CODE01::S23@1",
       "title": "Adversarial simulator audit against an exact oracle",
       "links": [
@@ -860,9 +927,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Intended36-pair support is stated. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reusing one random draw for two supposedly independent variables creates perfect dependence. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Intended36-pair support is stated.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -872,9 +939,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Intended36-pair support is stated. / Bug six-diagonal-pair support is identified. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reusing one random draw for two supposedly independent variables creates perfect dependence. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Intended36-pair support is stated. / Bug six-diagonal-pair support is identified.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -884,9 +951,9 @@
             2,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Bug six-diagonal-pair support is identified. / A second RNG draw repairs the dependence defect. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reusing one random draw for two supposedly independent variables creates perfect dependence. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Bug six-diagonal-pair support is identified. / A second RNG draw repairs the dependence defect.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -896,9 +963,9 @@
             3,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Bug probability0 is derived from the diagnostic event. / Exact probability1/9 is derived from four intended hits. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reusing one random draw for two supposedly independent variables creates perfect dependence. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Bug probability0 is derived from the diagnostic event. / Exact probability1/9 is derived from four intended hits.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -907,13 +974,13 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A second RNG draw repairs the dependence defect. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Reusing one random draw for two supposedly independent variables creates perfect dependence. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A second RNG draw repairs the dependence defect.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "24": {
+    "25": {
       "sessionId": "T22V3::T22E-CODE01::S24@1",
       "title": "M08 synthesis — exact oracle, reproducible simulation & audit",
       "links": [
@@ -924,9 +991,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Model, Event and Payoff are explicitly stated before code. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A plausible simulated number can hide wrong event/support/state/payoff logic. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Model, Event and Payoff are explicitly stated before code.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -936,9 +1003,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Exact probability5/36 is derived by full enumeration. / Exact expectation-11/18 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A plausible simulated number can hide wrong event/support/state/payoff logic. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Exact probability5/36 is derived by full enumeration. / Exact expectation-11/18 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -947,9 +1014,9 @@
           "rows": [
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Simulation uses explicit seeded RNG, two draws/trial, stated N and meaningful invariants. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A plausible simulated number can hide wrong event/support/state/payoff logic. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Simulation uses explicit seeded RNG, two draws/trial, stated N and meaningful invariants.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -959,9 +1026,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Simulation uses explicit seeded RNG, two draws/trial, stated N and meaningful invariants. / Agreement is correctly limited as evidence rather than proof. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A plausible simulated number can hide wrong event/support/state/payoff logic. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Simulation uses explicit seeded RNG, two draws/trial, stated N and meaningful invariants. / Agreement is correctly limited as evidence rather than proof.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -974,9 +1041,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: The missing-face defect is found/repaired. / The reused-draw defect is found/repaired. / The >= versus == event defect is found/repaired. / Sample size is rejected as a model repair. / Repaired target is tied to exact5/36. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A plausible simulated number can hide wrong event/support/state/payoff logic. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: The missing-face defect is found/repaired. / The reused-draw defect is found/repaired. / The >= versus == event defect is found/repaired. / Sample size is rejected as a model repair. / Repaired target is tied to exact5/36.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
@@ -993,9 +1060,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: All assignment steps are traced in order. / The subtraction state cash=113 is correct. / Final cash=128 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may read x=x+1 as an impossible equation or assume another name follows later rebinding. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: All assignment steps are traced in order. / The subtraction state cash=113 is correct. / Final cash=128 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -1005,9 +1072,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Right-hand evaluation then rebinding is explained. / Assignment is not treated as a permanent algebraic equality. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may read x=x+1 as an impossible equation or assume another name follows later rebinding. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Right-hand evaluation then rebinding is explained. / Assignment is not treated as a permanent algebraic equality.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -1018,9 +1085,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: All assignment steps are traced in order. / The subtraction state cash=113 is correct. / Final cash=128 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may read x=x+1 as an impossible equation or assume another name follows later rebinding. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: All assignment steps are traced in order. / The subtraction state cash=113 is correct. / Final cash=128 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -1030,9 +1097,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: y=4 is identified. / Earlier binding versus later rebinding is explained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may read x=x+1 as an impossible equation or assume another name follows later rebinding. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: y=4 is identified. / Earlier binding versus later rebinding is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -1042,15 +1109,15 @@
             1,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: All assignment steps are traced in order. / Final cash=128 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may read x=x+1 as an impossible equation or assume another name follows later rebinding. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: All assignment steps are traced in order. / Final cash=128 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
     "02": {
       "sessionId": "T22V3::T22E-CODE01::S02@1",
-      "title": "Integer division, remainders & floating-point comparison",
+      "title": "Integer division, quotient/remainder & exact reconstruction",
       "links": [
         {
           "claimIndex": 1,
@@ -1058,67 +1125,125 @@
           "task": "main",
           "rows": [
             1,
-            2,
-            3
+            2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: // result4 and % result5 are correct. / / is distinguished from integer quotient/remainder. / 29=6×4+5 is verified exactly. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may expect every decimal literal to be exact or use == as a universal numerical test. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: // result4 and % result5 are correct. / / is distinguished as the numerical ratio29/6.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
-          "claim": "Use `%` and verify dividend=divisor×quotient+remainder.",
+          "claim": "Use `%` to obtain the remainder.",
           "task": "main",
           "rows": [
-            1,
-            3
+            1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: // result4 and % result5 are correct. / 29=6×4+5 is verified exactly. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may expect every decimal literal to be exact or use == as a universal numerical test. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: // result4 and % result5 are correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
-          "claim": "Recognize common decimal fractions are usually approximated as binary floats.",
+          "claim": "Verify dividend=divisor×quotient+remainder exactly.",
           "task": "main",
           "rows": [
-            4,
-            5
+            3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: `import math` and an explicit `math.isclose` comparison are supplied. / Relative versus absolute tolerance is explained without calling closeness exact equality. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may expect every decimal literal to be exact or use == as a universal numerical test. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: 29=6×4+5 is verified exactly.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
-          "claim": "Use `math.isclose` for an explicitly approximate comparison.",
-          "task": "main",
+          "claim": "Choose quotient/remainder for full-groups-plus-leftovers questions.",
+          "task": "transfer",
           "rows": [
-            4,
-            5
+            2,
+            3,
+            4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: `import math` and an explicit `math.isclose` comparison are supplied. / Relative versus absolute tolerance is explained without calling closeness exact equality. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may expect every decimal literal to be exact or use == as a universal numerical test. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Complete cartons6 are correct. / Leftovers5 are correct. / `//` and `%` repairs are supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
-          "claim": "Keep exact count identities separate from approximate float checks.",
-          "task": "transfer",
+          "claim": "Keep exact integer identities conceptually separate from later approximate numerical comparison.",
+          "task": "main",
           "rows": [
-            1,
-            2,
-            3,
-            4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: The computed-float zero-comparison defect is identified. / A positive justified `abs_tol` is used. / The role of tolerance is tied to scale rather than ritual. / A legitimate exact-equality case is stated. / Exact and approximate checks remain conceptually distinct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A learner may expect every decimal literal to be exact or use == as a universal numerical test. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Ratio versus full-groups-plus-leftovers meaning is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
     "03": {
+      "sessionId": "T22V3::T22E-CODE01::S02F@1",
+      "title": "Floating-point representation & tolerance-aware comparison",
+      "links": [
+        {
+          "claimIndex": 1,
+          "claim": "Import and use `math.isclose` explicitly.",
+          "task": "main",
+          "rows": [
+            1,
+            3
+          ],
+          "rationale": "The public main requires the observable behavior scored by: `import math` / qualified `math.isclose` use is correct. / An explicit valid `math.isclose` call is supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        },
+        {
+          "claimIndex": 2,
+          "claim": "Recognize common decimal fractions are usually approximated as binary floats.",
+          "task": "main",
+          "rows": [
+            2
+          ],
+          "rationale": "The public main requires the observable behavior scored by: Direct equality is correctly identified as False with representation reason.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        },
+        {
+          "claimIndex": 3,
+          "claim": "Explain why direct float equality can fail after arithmetic.",
+          "task": "main",
+          "rows": [
+            2
+          ],
+          "rationale": "The public main requires the observable behavior scored by: Direct equality is correctly identified as False with representation reason.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        },
+        {
+          "claimIndex": 4,
+          "claim": "Choose and state relative/absolute tolerances for an approximate comparison.",
+          "task": "main",
+          "rows": [
+            4,
+            5
+          ],
+          "rationale": "The public main requires the observable behavior scored by: Relative tolerance is explained as magnitude-scaled. / Absolute tolerance is explained without calling closeness exact equality.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        },
+        {
+          "claimIndex": 5,
+          "claim": "Use positive `abs_tol` when an appropriate near-zero comparison requires an absolute scale.",
+          "task": "transfer",
+          "rows": [
+            2,
+            3
+          ],
+          "rationale": "The public transfer requires the observable behavior scored by: A positive justified `abs_tol` is used. / The role of tolerance is tied to scale rather than ritual.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
+        }
+      ]
+    },
+    "04": {
       "sessionId": "T22V3::T22E-CODE01::S03@1",
       "title": "Boolean conditions & boundary-safe branching",
       "links": [
@@ -1129,9 +1254,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A coherent three-way branch is supplied. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — An earlier broad condition can make a later boundary branch unreachable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A coherent three-way branch is supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -1143,9 +1268,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: -0.02→loss. / 0→flat. / 0.03→gain. / Zero is explicitly and uniquely handled. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — An earlier broad condition can make a later boundary branch unreachable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: -0.02→loss. / 0→flat. / 0.03→gain. / Zero is explicitly and uniquely handled.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -1155,9 +1280,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Actual label nonnegative is identified. / First-match behavior is explained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — An earlier broad condition can make a later boundary branch unreachable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Actual label nonnegative is identified. / First-match behavior is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -1167,9 +1292,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: First-match behavior is explained. / The zero branch is diagnosed as unreachable. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — An earlier broad condition can make a later boundary branch unreachable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: First-match behavior is explained. / The zero branch is diagnosed as unreachable.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -1179,13 +1304,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: A disjoint rewrite is supplied. / All three sign cases are covered. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — An earlier broad condition can make a later boundary branch unreachable. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: A disjoint rewrite is supplied. / All three sign cases are covered.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "04": {
+    "05": {
       "sessionId": "T22V3::T22E-CODE01::S04@1",
       "title": "For loops, range & accumulator invariants",
       "links": [
@@ -1196,9 +1321,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Half-open endpoint behavior is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Learners often assume the stop endpoint is included. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Half-open endpoint behavior is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -1208,9 +1333,9 @@
             1,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Visited values1..5 are correct. / Final total55 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Learners often assume the stop endpoint is included. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Visited values1..5 are correct. / Final total55 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -1220,9 +1345,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A meaningful accumulator invariant is stated. / Trace and invariant agree. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Learners often assume the stop endpoint is included. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A meaningful accumulator invariant is stated. / Trace and invariant agree.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -1232,9 +1357,9 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: range(1,6) is supplied. / The cause is tied to excluded stop. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Learners often assume the stop endpoint is included. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: range(1,6) is supplied. / The cause is tied to excluded stop.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -1245,13 +1370,13 @@
             2,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Missing k=5 is identified. / Missing25 is computed. / The cause is tied to excluded stop. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Learners often assume the stop endpoint is included. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Missing k=5 is identified. / Missing25 is computed. / The cause is tied to excluded stop.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "05": {
+    "06": {
       "sessionId": "T22V3::T22E-CODE01::S05@1",
       "title": "While loops, state updates & termination",
       "links": [
@@ -1263,9 +1388,9 @@
             1,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: All post-update values are correct. / Condition-before-iteration behavior is respected. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Equality-only stopping can jump past an unreachable target. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: All post-update values are correct. / Condition-before-iteration behavior is respected.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -1276,9 +1401,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: All post-update values are correct. / Final bank22 is correct. / rounds=4 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Equality-only stopping can jump past an unreachable target. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: All post-update values are correct. / Final bank22 is correct. / rounds=4 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -1287,9 +1412,9 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A valid progress/termination argument is given. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Equality-only stopping can jump past an unreachable target. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A valid progress/termination argument is given.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -1300,9 +1425,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Nontermination is identified. / A trace demonstrates skipping10. / Equality stopping is diagnosed. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Equality-only stopping can jump past an unreachable target. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Nontermination is identified. / A trace demonstrates skipping10. / Equality stopping is diagnosed.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -1312,13 +1437,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: `while x<10` is supplied. / Stopping value12 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Equality-only stopping can jump past an unreachable target. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: `while x<10` is supplied. / Stopping value12 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "06": {
+    "07": {
       "sessionId": "T22V3::T22E-CODE01::S06@1",
       "title": "Functions as explicit quantitative mappings",
       "links": [
@@ -1329,9 +1454,9 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Parameters and arguments are distinguished. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A function may accidentally read a mutable global baseline. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Parameters and arguments are distinguished.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -1341,9 +1466,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A correct two-parameter function is given. / It returns rather than only prints. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A function may accidentally read a mutable global baseline. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A correct two-parameter function is given. / It returns rather than only prints.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -1353,9 +1478,9 @@
             3,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: First result0.15 is correct. / Second result-0.10 is correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A function may accidentally read a mutable global baseline. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: First result0.15 is correct. / Second result-0.10 is correct.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -1365,9 +1490,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: The global dependency is identified. / Its context sensitivity is explained. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A function may accidentally read a mutable global baseline. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: The global dependency is identified. / Its context sensitivity is explained.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -1378,13 +1503,13 @@
             4,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: A two-parameter refactor is supplied. / Different callers can pass100 and80 explicitly. / The formula is preserved. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — A function may accidentally read a mutable global baseline. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: A two-parameter refactor is supplied. / Different callers can pass100 and80 explicitly. / The formula is preserved.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "07": {
+    "08": {
       "sessionId": "T22V3::T22E-CODE01::S07@1",
       "title": "Decompose a checker into single-purpose functions",
       "links": [
@@ -1395,9 +1520,9 @@
           "rows": [
             1
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: One helper owns only the event rule. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Duplicated predicates can drift apart. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: One helper owns only the event rule.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -1406,9 +1531,9 @@
           "rows": [
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: The counter accepts a callable parameter and explicitly invokes it. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Duplicated predicates can drift apart. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: The counter accepts a callable parameter and explicitly invokes it.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -1418,9 +1543,9 @@
             3,
             4
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: Composition returns hit count2. / Passing a function value is distinguished from calling it. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Duplicated predicates can drift apart. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: Composition returns hit count2. / Passing a function value is distinguished from calling it.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -1429,9 +1554,9 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A discriminating boundary test is supplied. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Duplicated predicates can drift apart. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A discriminating boundary test is supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -1442,13 +1567,13 @@
             2,
             5
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Duplicated logic is identified as root cause. / A shared helper is proposed. / The test distinguishes > from >=. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Duplicated predicates can drift apart. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Duplicated logic is identified as root cause. / A shared helper is proposed. / The test distinguishes > from >=.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     },
-    "08": {
+    "09": {
       "sessionId": "T22V3::T22E-CODE01::S08@1",
       "title": "Lists & tuples as finite ordered records",
       "links": [
@@ -1460,9 +1585,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A loop explicitly iterates and unpacks the tuple records. / Payoffs3,-2,4 are produced in order. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Tuple/list syntax may be treated as cosmetic until mutation fails. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A loop explicitly iterates and unpacks the tuple records. / Payoffs3,-2,4 are produced in order.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 2,
@@ -1473,9 +1598,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A loop explicitly iterates and unpacks the tuple records. / Payoffs3,-2,4 are produced in order. / Sum5 is accumulated correctly. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Tuple/list syntax may be treated as cosmetic until mutation fails. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: A loop explicitly iterates and unpacks the tuple records. / Payoffs3,-2,4 are produced in order. / Sum5 is accumulated correctly.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 3,
@@ -1486,9 +1611,9 @@
             2,
             3
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Tuple immutability is identified. / TypeError is predicted. / A valid new-tuple repair is supplied. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Tuple/list syntax may be treated as cosmetic until mutation fails. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Tuple immutability is identified. / TypeError is predicted. / A valid new-tuple repair is supplied.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 4,
@@ -1497,9 +1622,9 @@
           "rows": [
             5
           ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: List choice is justified. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Tuple/list syntax may be treated as cosmetic until mutation fails. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public main requires the observable behavior scored by: List choice is justified.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         },
         {
           "claimIndex": 5,
@@ -1509,76 +1634,9 @@
             1,
             2
           ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Tuple immutability is identified. / TypeError is predicted. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Tuple/list syntax may be treated as cosmetic until mutation fails. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
-        }
-      ]
-    },
-    "09": {
-      "sessionId": "T22V3::T22E-CODE01::S09@1",
-      "title": "Sets & dictionaries for membership and counts",
-      "links": [
-        {
-          "claimIndex": 1,
-          "claim": "Use a set for unique membership.",
-          "task": "main",
-          "rows": [
-            1,
-            2
-          ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A set is actually constructed/used for uniqueness. / Distinct count3 and observation count6 are correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Set length may be mistaken for number of trials. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
-        },
-        {
-          "claimIndex": 2,
-          "claim": "Recognize duplicates disappear in sets.",
-          "task": "transfer",
-          "rows": [
-            1,
-            2,
-            3
-          ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Erroneous denominator3 is identified. / Erroneous estimate1.0 is computed. / Multiplicity loss is diagnosed. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Set length may be mistaken for number of trials. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
-        },
-        {
-          "claimIndex": 3,
-          "claim": "Map labels to counts with a dictionary.",
-          "task": "main",
-          "rows": [
-            3,
-            4
-          ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A dictionary is explicitly initialized and updated from observations. / Final counts G3,R2,B1 are correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Set length may be mistaken for number of trials. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
-        },
-        {
-          "claimIndex": 4,
-          "claim": "Update keyed counts from observations.",
-          "task": "main",
-          "rows": [
-            3,
-            4
-          ],
-          "rationale": "The repaired public main explicitly requires behavior scored by: A dictionary is explicitly initialized and updated from observations. / Final counts G3,R2,B1 are correct. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Set length may be mistaken for number of trials. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
-        },
-        {
-          "claimIndex": 5,
-          "claim": "Distinguish distinct-value count from observation count.",
-          "task": "transfer",
-          "rows": [
-            4,
-            5
-          ],
-          "rationale": "The repaired public transfer explicitly requires behavior scored by: Denominator5 is supplied. / Correct estimate0.6 is computed. The linked evidence therefore demands the observable capability rather than mere mention or a pre-supplied answer.",
-          "escapeAttempt": "Replay the session obstacle — Set length may be mistaken for number of trials. — and also test whether a learner could receive the linked credit by copying the worked example or giving only a numerical consequence. Independent repair says no; bounded follow-up remains required.",
-          "disposition": "independent-repair-awaiting-followup"
+          "rationale": "The public transfer requires the observable behavior scored by: Tuple immutability is identified. / TypeError is predicted.",
+          "escapeAttempt": "Check whether the learner can earn these rows by copying instruction or stating only a consequence; the owned action/concept itself must be demonstrated.",
+          "disposition": "session-sizing-reviewed-awaiting-followup"
         }
       ]
     }
