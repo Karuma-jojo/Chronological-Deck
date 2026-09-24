@@ -25,11 +25,22 @@ M08 remains at **24 sessions** after repair, not because 24 is a target. The mis
 ## Verification architecture after repair
 
 - 24 sessions / 48 fixed tasks / 120 ownership claims remain.
-- 23 changed public obligations are versioned to 2.
+- 24 changed public obligations are versioned to 2.
 - Semantic contract was rebuilt from the repaired public tasks/rubric rows.
 - Executable Python oracle now exercises the repaired tasks, including explicit tolerances, callable predicates, dict accumulation, strict zip, traceback/runtime validation and multi-value RNG-state replay.
 - M09 remains closed.
 
 ## Repair-head validation
 
-Repair content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed dedicated T22 Elite run `35961691590` / job `107511449788`, including the rebuilt semantic/evidence suite, executable Python oracle, Chromium and real eight-module browser workflow. The full main-targeted PR matrix on that same head finished **37/37 green with zero failures**. This closes implementation validation, not independent pedagogical freeze.
+The earlier repair content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed the complete dedicated and repository-wide suites, but the bounded follow-up above intentionally reopened the content. That green head is now historical evidence rather than current validation authority. Final follow-up repair-head validation is pending.
+
+## Bounded follow-up findings
+
+After the first fully green repair head, a fresh novice-path pass found four additional hidden-syntax/import-contract defects:
+
+- **M08-F01:** S12 taught `from itertools import product` but Main still named `itertools.product`; from-import binds `product`, not `itertools`. Main now uses the taught binding and is obligationVersion2.
+- **M08-F02:** S22 Main quietly used list comprehensions never taught in M08. It now uses previously taught loops plus list append and is obligationVersion3.
+- **M08-F03:** S07 lesson used a conditional expression and S14 lesson a list comprehension without teaching either syntax. Both were rewritten using already-owned `if`/loop/list operations.
+- **M08-F04:** S17 reference used `lambda` even though named functions were already taught. The reference now uses a named `is_even` helper.
+
+These findings did not justify extra sessions: they were local syntax-contract defects inside existing capability owners.
