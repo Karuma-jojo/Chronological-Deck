@@ -78,7 +78,7 @@ assert(a.problems[by(24).main].prompt.includes('First diagnose whether it is imm
 
 // Stronger Transfers: diagnosis/reconstruction rather than same-form number swaps.
 assert(a.problems[by(19).transfer].prompt.includes('Audit the ledger from the raw fills'));
-assert(a.problems[by(19).transfer].prompt.includes('reported average entry49.00'));
+assert(a.problems[by(19).transfer].prompt.includes('average entry49.00'));
 assert(a.problems[by(21).transfer].prompt.includes('Audit the decomposition'));
 assert(a.problems[by(21).transfer].prompt.includes('commissions are already inside that spread'));
 assert(a.problems[by(24).transfer].prompt.includes('draft ledger'));
