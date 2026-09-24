@@ -3235,8 +3235,9 @@
         "task": "main",
         "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
         "rubricEvidence": [
-          "// result3 and % result2 are correct.",
-          "/ result3.4 is distinguished."
+          "// result4 and % result5 are correct.",
+          "/ is distinguished from integer quotient/remainder.",
+          "29=6×4+5 is verified exactly."
         ]
       },
       {
@@ -3244,8 +3245,8 @@
         "task": "main",
         "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
         "rubricEvidence": [
-          "// result3 and % result2 are correct.",
-          "17=5×3+2 is verified."
+          "// result4 and % result5 are correct.",
+          "29=6×4+5 is verified exactly."
         ]
       },
       {
@@ -3253,7 +3254,8 @@
         "task": "main",
         "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
         "rubricEvidence": [
-          "Direct float equality is correctly False with representation reason."
+          "`import math` and an explicit `math.isclose` comparison are supplied.",
+          "Relative versus absolute tolerance is explained without calling closeness exact equality."
         ]
       },
       {
@@ -3261,7 +3263,8 @@
         "task": "main",
         "publicRequest": "For n=29, compute `n//6`, `n%6`, and `n/6`; verify the exact reconstruction identity. Then write the import and an explicit `math.isclose` comparison for `0.2+0.2+0.2` versus `0.6`, stating why direct float equality is not the right general check and what `abs_tol` is for near-zero comparisons.",
         "rubricEvidence": [
-          "A valid math.isclose check is shown without calling it exact equality."
+          "`import math` and an explicit `math.isclose` comparison are supplied.",
+          "Relative versus absolute tolerance is explained without calling closeness exact equality."
         ]
       },
       {
@@ -3269,6 +3272,9 @@
         "task": "transfer",
         "publicRequest": "A computed residual is expected to be numerically zero, but the code uses `residual == 0.0`. Explain why that can be fragile for floating-point arithmetic, show a `math.isclose` check with a justified positive `abs_tol`, and state one M08 situation where exact `==` remains appropriate.",
         "rubricEvidence": [
+          "The computed-float zero-comparison defect is identified.",
+          "A positive justified `abs_tol` is used.",
+          "The role of tolerance is tied to scale rather than ritual.",
           "A legitimate exact-equality case is stated.",
           "Exact and approximate checks remain conceptually distinct."
         ]
@@ -3753,8 +3759,7 @@
         "task": "main",
         "publicRequest": "Write the import and represent A=3/8, B=1/4, C=3/8 with `Fraction`. Verify the total is exactly1 and compute event {A,C} exactly.",
         "rubricEvidence": [
-          "A is exact1/2.",
-          "B and C are exact1/3,1/6."
+          "A,B,C are encoded exactly as3/8,1/4,3/8."
         ]
       },
       {
@@ -3770,8 +3775,8 @@
         "task": "main",
         "publicRequest": "Write the import and represent A=3/8, B=1/4, C=3/8 with `Fraction`. Verify the total is exactly1 and compute event {A,C} exactly.",
         "rubricEvidence": [
-          "Event sum is correct.",
-          "Final2/3 is kept exact."
+          "Event A+C is computed exactly.",
+          "Final3/4 remains rational rather than float-rounded."
         ]
       },
       {
@@ -3788,7 +3793,7 @@
         "task": "transfer",
         "publicRequest": "A learner writes `Fraction(0.2)` intending exact1/5. Explain why that need not equal `Fraction(1,5)` and give two constructors that encode the intended exact fifth.",
         "rubricEvidence": [
-          "Fraction(1,10) is supplied.",
+          "Fraction(1,5) is supplied.",
           "A string/exact alternative is supplied.",
           "No automatic recovery of decimal intent is claimed."
         ]
