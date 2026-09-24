@@ -356,7 +356,7 @@ No major representation is introduced only once for decoration.
 
 The unresolved question after M12 is not “what other series tricks exist?” It is how local approximation changes in many dimensions and how vector/matrix structure organizes those derivatives; that remains later.
 
-## 10. Candidate Pedagogical Atoms and Session Architecture
+## 10. Candidate Pedagogical Atoms and Candidate Session Architecture
 
 The dependency/failure maps yield **19 candidate learner-state transitions**.
 
