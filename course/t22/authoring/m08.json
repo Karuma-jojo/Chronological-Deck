@@ -655,7 +655,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S12 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "For small finite models, enumerate first. `itertools.product(A,B)` is a Cartesian product like nested loops. Worked example: two fair four-sided dice have16 ordered outcomes; sum5 has (1,4),(2,3),(3,2),(4,1), so exact probability1/4. No RNG is involved. Guided check: For two fair three-sided dice, list outcomes summing to4 and compare the count with3×3.",
+      "lesson": "For small finite models, enumerate first. To use the standard-library helper directly, write `from itertools import product`; this binds the name `product`, and `product(A,B)` enumerates the Cartesian product like nested loops. Worked example: two fair four-sided dice have16 ordered outcomes; sum5 has (1,4),(2,3),(3,2),(4,1), so exact probability1/4. No RNG is involved. Guided check: For two fair three-sided dice, list outcomes summing to4 and compare the count with3×3.",
       "main": "T22V3::T22E-CODE01::S12-M@1",
       "transfer": "T22V3::T22E-CODE01::S12-T@1"
     },
