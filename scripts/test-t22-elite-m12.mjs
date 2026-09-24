@@ -68,7 +68,7 @@ for(const g of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8'])assert.match(pilot
 
 // Semantic ledger bridges are visible.
 const led=ledger.entries.find(x=>x.id==='SIDE267');
-assert.equal(led.semanticStatus,'boundary-accepted-content-candidate');
+assert.equal(led.semanticStatus,'accepted');
 assert(led.bridges.some(b=>b.id==='M12-B01'&&/partial-sum/i.test(b.content)),'series bridge missing');
 assert(led.bridges.some(b=>b.id==='M12-B02'&&/Rolle|MVT/i.test(b.content)),'MVT support bridge missing');
 
