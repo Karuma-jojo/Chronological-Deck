@@ -15,7 +15,7 @@ const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 
 assert.equal(a.module.id,'T22E-CODE01');
-assert.equal(a.module.status,'independent-review-repaired-awaiting-post-repair-verification');
+assert.equal(a.module.status,'independent-review-repaired-fully-green-awaiting-bounded-followup');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);

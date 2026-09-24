@@ -5,7 +5,7 @@
     "order": 8,
     "id": "T22E-CODE01",
     "title": "Quant Programming & Simulation Foundations",
-    "status": "independent-review-repaired-awaiting-post-repair-verification",
+    "status": "independent-review-repaired-fully-green-awaiting-bounded-followup",
     "destination": "Use core Python as an auditable mathematical instrument: trace state, branch and loop correctly, decompose functions, choose core containers, enumerate small finite models exactly, preserve rational/float distinctions, manage explicit pseudorandom-generator state, and build reproducible small simulations that are checked against mathematics rather than substituted for it.",
     "gate": "Page completion is not clearance. Every owned coding capability must be publicly elicited and scored; exact finite mathematics remains the oracle when feasible; simulation must expose model, RNG state/seed and N; independent review is still required.",
     "nextBoundary": "M09 returns to mathematical analysis. M21 later owns NumPy/pandas/vectorization/plotting, testing/research-engineering discipline and scientific-computing craft; M30 later owns Monte Carlo diagnostics and convergence/error methodology."
@@ -38,7 +38,7 @@
   },
   "coverageAudit": {
     "version": "m08-observability-independent-repair-r2-2026-09-24",
-    "status": "120/120 links re-audited after independent review; contaminated Mains repaired, programming actions made observable, imports/callables/strict zip/traceback gaps repaired; requires post-repair CI and bounded independent follow-up",
+    "status": "120/120 links re-audited after independent review; contaminated Mains repaired, programming actions made observable, imports/callables/strict zip/traceback gaps repaired; post-repair full workflow green; bounded independent follow-up remains",
     "policy": "Each link was authored from the observable capability, then adversarially checked against a named misconception. Structural membership is not treated as semantic proof; docs/t22-course/audit/m08-semantic-contract.json pins the builder-reviewed links and mutation guards."
   },
   "sourceLedger": {

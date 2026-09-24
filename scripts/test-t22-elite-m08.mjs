@@ -9,7 +9,7 @@ const by=n=>a.sessions.find(s=>s.order===n);
 assert.equal(a.version,'m08-authoring-v1-candidate');
 assert.equal(a.instructionVersion,'m08-instruction-v1-candidate');
 assert.equal(a.module.id,'T22E-CODE01');
-assert.equal(a.module.status,'independent-review-repaired-awaiting-post-repair-verification');
+assert.equal(a.module.status,'independent-review-repaired-fully-green-awaiting-bounded-followup');
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01','T22E-DISC01','ARC048']);
 assert.deepEqual(deps.modules.find(x=>x.id==='T22E-CODE01').prerequisites,a.boundary.prerequisiteModules);
 assert.equal(a.sessions.length,24);

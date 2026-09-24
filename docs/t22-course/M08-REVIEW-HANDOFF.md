@@ -4,7 +4,7 @@ Date: 2026-09-24
 Repository: `Karuma-jojo/Chronological-Deck`  
 Branch: `codex/t22-pedagogical-rebuild`  
 Module: M08 · `T22E-CODE01` — Quant Programming & Simulation Foundations  
-Current status: **independent-review repaired; post-repair verification / bounded follow-up pending**  
+Current status: **independent-review repaired and fully green; bounded follow-up pending**  
 Stop boundary: **M09 remains closed**
 
 ## Why this handoff changed
@@ -89,6 +89,10 @@ Current Python documentation supports:
 - fresh state suffix replay;
 - reused-draw sum9 bug versus exact1/9;
 - synthesis P(sum8)=5/36 and EV=-11/18.
+
+## Verified post-repair checkpoint
+
+The repaired tree passed the complete T22 Elite workflow on commit `42c112a45ea177f8dad5ea3c6c16ab9d041db0f1`, Actions run `35965698526`. Syntax, structural/pedagogy/semantic/evidence checks, the rebuilt Python 3.12 oracle, Chromium installation and the eight-module browser evidence workflow all succeeded. A later documentation-only supersession note does not change the repaired curriculum semantics.
 
 ## Required bounded follow-up
 

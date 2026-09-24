@@ -1,3 +1,7 @@
+# M08 independent-review repair — 2026-09-24
+
+Severe independent review found eight material findings (M08-R01 through M08-R08), including worked-example/Main contamination, lexical-only separation checks, S06 prerequisite inconsistency, weak programming observability and missing Python novice bridges. Repairs are recorded in `M08-INDEPENDENT-REVIEW.md` and `M08-RESOLUTION.md`. Fresh assessment surfaces, obligationVersion2 changes, imports/callable passing/strict zip/traceback reading, executable S14-S16 tasks, regenerated 120-link semantic contract and fresh Python oracles are now in place. Full repaired-tree validation passed at commit `42c112a45ea177f8dad5ea3c6c16ab9d041db0f1`, Actions run `35965698526`, including Chromium/eight-module browser evidence. Current status: **independent-review repaired and fully green; bounded follow-up pending**. M09 remains closed.
+
 # Main-sync integration checkpoint — 2026-09-24
 
 Before publication, current `main` at `cd91d131856a34b6ce99247b05060b86e0e6f535` was merged into the T22 branch via PR #165. The only file changed on both histories since their common ancestor was `index.html`; it was deliberately reconciled by preserving current main's SMMC/cloud-sync UI and adding only the T22 Elite entry link. After the merge, the T22 branch is 0 commits behind main. This log commit exists to trigger the complete T22 Elite validation on the combined tree before any PR back to main.
