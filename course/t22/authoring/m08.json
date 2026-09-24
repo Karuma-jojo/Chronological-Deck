@@ -38,7 +38,7 @@
   },
   "coverageAudit": {
     "version": "m08-observability-builder-r1-2026-09-24",
-    "status": "120/120 claims explicitly linked to public requests and rubric evidence; awaiting independent semantic review",
+    "status": "120/120 claims manually re-linked after public-task observability review; S17/S18 public obligations repaired before closure; awaiting independent semantic review",
     "policy": "Each link was authored from the observable capability, then adversarially checked against a named misconception. Structural membership is not treated as semantic proof; docs/t22-course/audit/m08-semantic-contract.json pins the builder-reviewed links and mutation guards."
   },
   "sourceLedger": {
@@ -504,7 +504,7 @@
       "title": "Mutation, aliasing & defensive copying",
       "focus": "Trace shared mutable objects and distinguish rebinding from in-place mutation.",
       "purpose": "Hidden shared state can make simulations change outside the apparent source line.",
-      "centralCapability": "Predict alias-visible mutations and create an independent shallow copy when appropriate.",
+      "centralCapability": "Predict alias-visible mutations, distinguish aliases from independent copies, and repair repeated-reference container bugs.",
       "principalObstacle": "List assignment is often mistaken for copying.",
       "entryPrerequisites": [
         "M08-S01 binding",
@@ -515,7 +515,7 @@
         "Explain `b=a` aliases one list.",
         "Predict in-place mutation through aliases.",
         "Use `.copy()` for an independent flat-list copy.",
-        "Distinguish rebinding from mutation.",
+        "Distinguish shared aliasing from an independent copied container.",
         "Detect repeated inner references from nested list multiplication."
       ],
       "applicationScope": "Small, auditable Python programs that operationalize already-taught arithmetic, finite counting and finite probability while keeping model assumptions explicit.",
@@ -825,7 +825,7 @@
       "requiredOwnership": [
         "Write a general result invariant.",
         "Write a tiny independently known test.",
-        "Choose a boundary case discriminating a likely bug.",
+        "Choose a boundary case that discriminates a plausible comparison bug.",
         "Explain finite passing tests do not prove all behavior.",
         "Avoid assert as sole essential runtime validation."
       ],
@@ -1389,7 +1389,7 @@
       "id": "T22V3::T22E-CODE01::S17-M@1",
       "order": 17,
       "kind": "main",
-      "prompt": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove.",
+      "prompt": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove. Also name one boundary input that distinguishes the predicates `x>=5` and `x>5`, and state the expected result under `x>=5`.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S17-T@1": {
@@ -1410,7 +1410,7 @@
       "id": "T22V3::T22E-CODE01::S18-T@1",
       "order": 18,
       "kind": "transfer",
-      "prompt": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception, explain the off-by-one cause, and give two repairs.",
+      "prompt": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception, explain the off-by-one cause, and give two repairs. Finally, explain why wrapping the loop in `try: ... except Exception: pass` would be an unacceptable repair for an auditable quantitative program.",
       "obligationVersion": 1
     },
     "T22V3::T22E-CODE01::S19-M@1": {
@@ -2332,27 +2332,27 @@
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     },
     "T22V3::T22E-CODE01::S17-M@1": {
-      "reference": "Use e.g. `assert 0<=hits<=len(xs)` and `assert count_event([...],lambda x:x%2==0)==3`. The invariant misses many semantic bugs; one test does not prove all inputs.",
+      "reference": "Use e.g. `assert 0<=hits<=len(xs)` and `assert count_event([...],lambda x:x%2==0)==3`. The invariant misses many semantic bugs; one test does not prove all inputs. A discriminating boundary is x=5: `x>=5` is True while `x>5` is False.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "A valid hit-count invariant is supplied."
+          "criterion": "A valid 0<=hits<=len(xs) style invariant is supplied."
         },
         {
           "points": 2,
-          "criterion": "Known even-count3 is correct."
+          "criterion": "The known even-count oracle3 is correct and stated as a concrete test."
         },
         {
           "points": 2,
-          "criterion": "The known-case test is executable/precise."
+          "criterion": "Boundary input x=5 (or an equivalent discriminating boundary) is used to distinguish >= from >."
         },
         {
           "points": 2,
-          "criterion": "Invariant limitation is explained."
+          "criterion": "The limitation of the general invariant is explained."
         },
         {
           "points": 2,
-          "criterion": "Finite-test limitation is explained."
+          "criterion": "The limitation of finite passing tests as proof of unseen behavior is explained."
         }
       ],
       "marking": "Score only the public Main task. Accept equivalent correct Python or precise pseudocode where behavior is unambiguous. Do not infer mastery from an unexplained output; code must implement the stated model."
@@ -2410,27 +2410,27 @@
       "marking": "Score only the public Main task. Accept equivalent correct Python or precise pseudocode where behavior is unambiguous. Do not infer mastery from an unexplained output; code must implement the stated model."
     },
     "T22V3::T22E-CODE01::S18-T@1": {
-      "reference": "len=3, so i=3 is invalid and raises IndexError. Use `range(len(xs))` or direct iteration/enumerate.",
+      "reference": "len=3, so i=3 is invalid and raises IndexError. Use `range(len(xs))` or direct iteration/enumerate. A blanket catch-and-ignore would hide the IndexError and silently truncate behavior instead of repairing the endpoint.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Invalid index3 is identified."
+          "criterion": "Invalid index3 and IndexError are correctly identified."
         },
         {
           "points": 2,
-          "criterion": "IndexError is named."
+          "criterion": "The +1 half-open-range endpoint error is explained."
         },
         {
           "points": 2,
-          "criterion": "The +1 endpoint error is explained."
+          "criterion": "The smallest failing step is localized to the attempted xs[3] access."
         },
         {
           "points": 2,
-          "criterion": "Correct range is supplied."
+          "criterion": "Both a correct-range repair and a direct-iteration/enumerate repair are supplied."
         },
         {
           "points": 2,
-          "criterion": "Direct iteration/enumerate is supplied."
+          "criterion": "A blanket catch-and-ignore is rejected because it hides the defect rather than repairing it."
         }
       ],
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
@@ -2763,7 +2763,7 @@
         "transfer"
       ],
       [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-CODE01::S02@1": [
@@ -2777,7 +2777,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -2791,7 +2791,7 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
         "transfer"
@@ -2862,7 +2862,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -2876,7 +2876,7 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
         "transfer"
@@ -2890,13 +2890,13 @@
         "main"
       ],
       [
-        "main"
-      ],
-      [
-        "main"
-      ],
-      [
         "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
       ],
       [
         "transfer"
@@ -2913,7 +2913,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -2930,7 +2930,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -2944,13 +2944,13 @@
         "main"
       ],
       [
+        "transfer"
+      ],
+      [
         "main"
       ],
       [
-        "transfer"
-      ],
-      [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-CODE01::S13@1": [
@@ -2981,7 +2981,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -3015,7 +3015,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -3032,7 +3032,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -3046,7 +3046,7 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
         "transfer"
@@ -3080,13 +3080,13 @@
         "main"
       ],
       [
+        "transfer"
+      ],
+      [
         "main"
       ],
       [
-        "transfer"
-      ],
-      [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-CODE01::S21@1": [
@@ -3100,10 +3100,10 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-CODE01::S22@1": [
@@ -3117,7 +3117,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -3134,7 +3134,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -3151,7 +3151,7 @@
         "main"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "transfer"
@@ -3165,7 +3165,9 @@
         "task": "main",
         "publicRequest": "Trace without running: `cash=120; fee=7; cash=cash-fee; cash=cash+15`. Give the bindings after every assignment, the final cash, and explain why `cash=cash-fee` is valid Python assignment rather than a false algebra equation.",
         "rubricEvidence": [
-          "All assignment steps are traced in order."
+          "All assignment steps are traced in order.",
+          "The subtraction state cash=113 is correct.",
+          "Final cash=128 is correct."
         ]
       },
       {
@@ -3173,7 +3175,8 @@
         "task": "main",
         "publicRequest": "Trace without running: `cash=120; fee=7; cash=cash-fee; cash=cash+15`. Give the bindings after every assignment, the final cash, and explain why `cash=cash-fee` is valid Python assignment rather than a false algebra equation.",
         "rubricEvidence": [
-          "The subtraction state cash=113 is correct."
+          "Right-hand evaluation then rebinding is explained.",
+          "Assignment is not treated as a permanent algebraic equality."
         ]
       },
       {
@@ -3181,6 +3184,8 @@
         "task": "main",
         "publicRequest": "Trace without running: `cash=120; fee=7; cash=cash-fee; cash=cash+15`. Give the bindings after every assignment, the final cash, and explain why `cash=cash-fee` is valid Python assignment rather than a false algebra equation.",
         "rubricEvidence": [
+          "All assignment steps are traced in order.",
+          "The subtraction state cash=113 is correct.",
           "Final cash=128 is correct."
         ]
       },
@@ -3189,17 +3194,17 @@
         "task": "transfer",
         "publicRequest": "After `x=4; y=x; x=x+3`, a learner says both x and y must equal7 because 'y equals x'. Give the actual final values, diagnose the reasoning error, and add one assignment that deliberately makes y take x's new value.",
         "rubricEvidence": [
-          "x=7 is identified.",
-          "y=4 is identified."
+          "y=4 is identified.",
+          "Earlier binding versus later rebinding is explained."
         ]
       },
       {
         "claim": "Report final state consistently with the execution trace.",
-        "task": "transfer",
-        "publicRequest": "After `x=4; y=x; x=x+3`, a learner says both x and y must equal7 because 'y equals x'. Give the actual final values, diagnose the reasoning error, and add one assignment that deliberately makes y take x's new value.",
+        "task": "main",
+        "publicRequest": "Trace without running: `cash=120; fee=7; cash=cash-fee; cash=cash+15`. Give the bindings after every assignment, the final cash, and explain why `cash=cash-fee` is valid Python assignment rather than a false algebra equation.",
         "rubricEvidence": [
-          "A valid later `y=x` is supplied.",
-          "Execution order, not algebraic substitution, drives the explanation."
+          "All assignment steps are traced in order.",
+          "Final cash=128 is correct."
         ]
       }
     ],
@@ -3209,7 +3214,8 @@
         "task": "main",
         "publicRequest": "For n=17, compute `n//5`, `n%5`, and `n/5`; verify the exact reconstruction identity. Separately state the truth value of `0.1+0.1+0.1 == 0.3` in ordinary Python and show an appropriate `math.isclose` comparison.",
         "rubricEvidence": [
-          "// result3 and % result2 are correct."
+          "// result3 and % result2 are correct.",
+          "/ result3.4 is distinguished."
         ]
       },
       {
@@ -3217,7 +3223,8 @@
         "task": "main",
         "publicRequest": "For n=17, compute `n//5`, `n%5`, and `n/5`; verify the exact reconstruction identity. Separately state the truth value of `0.1+0.1+0.1 == 0.3` in ordinary Python and show an appropriate `math.isclose` comparison.",
         "rubricEvidence": [
-          "/ result3.4 is distinguished."
+          "// result3 and % result2 are correct.",
+          "17=5×3+2 is verified."
         ]
       },
       {
@@ -3225,16 +3232,15 @@
         "task": "main",
         "publicRequest": "For n=17, compute `n//5`, `n%5`, and `n/5`; verify the exact reconstruction identity. Separately state the truth value of `0.1+0.1+0.1 == 0.3` in ordinary Python and show an appropriate `math.isclose` comparison.",
         "rubricEvidence": [
-          "17=5×3+2 is verified."
+          "Direct float equality is correctly False with representation reason."
         ]
       },
       {
         "claim": "Use `math.isclose` for an explicitly approximate comparison.",
-        "task": "transfer",
-        "publicRequest": "A checker rejects a valid calculation because it uses `if estimate == 0.3` after `estimate=0.1+0.1+0.1`. Diagnose the defect, replace only the comparison, and state one M08 case where exact `==` remains appropriate.",
+        "task": "main",
+        "publicRequest": "For n=17, compute `n//5`, `n%5`, and `n/5`; verify the exact reconstruction identity. Separately state the truth value of `0.1+0.1+0.1 == 0.3` in ordinary Python and show an appropriate `math.isclose` comparison.",
         "rubricEvidence": [
-          "The exact-float-comparison defect is identified.",
-          "A valid approximate comparison is supplied."
+          "A valid math.isclose check is shown without calling it exact equality."
         ]
       },
       {
@@ -3261,15 +3267,19 @@
         "task": "main",
         "publicRequest": "Write or describe a classifier for returns `[-0.02,0.00,0.03]` that labels each `loss`, `flat`, or `gain`. State the labels in order and the exact comparison owning zero.",
         "rubricEvidence": [
-          "-0.02→loss."
+          "-0.02→loss.",
+          "0→flat.",
+          "0.03→gain.",
+          "Zero is explicitly and uniquely handled."
         ]
       },
       {
         "claim": "Use first-match if/elif/else semantics correctly.",
-        "task": "main",
-        "publicRequest": "Write or describe a classifier for returns `[-0.02,0.00,0.03]` that labels each `loss`, `flat`, or `gain`. State the labels in order and the exact comparison owning zero.",
+        "task": "transfer",
+        "publicRequest": "Audit `if x>=0: label='nonnegative'; elif x==0: label='zero'; else: label='negative'`. For x=0 what label occurs, why is `zero` unreachable, and how do you rewrite for negative/zero/positive?",
         "rubricEvidence": [
-          "0→flat."
+          "Actual label nonnegative is identified.",
+          "First-match behavior is explained."
         ]
       },
       {
@@ -3277,8 +3287,8 @@
         "task": "transfer",
         "publicRequest": "Audit `if x>=0: label='nonnegative'; elif x==0: label='zero'; else: label='negative'`. For x=0 what label occurs, why is `zero` unreachable, and how do you rewrite for negative/zero/positive?",
         "rubricEvidence": [
-          "Actual label nonnegative is identified.",
-          "First-match behavior is explained."
+          "First-match behavior is explained.",
+          "The zero branch is diagnosed as unreachable."
         ]
       },
       {
@@ -3297,7 +3307,7 @@
         "task": "main",
         "publicRequest": "Trace `total=0; for k in range(1,6): total += k*k`. List k values, final total, and an accumulator invariant.",
         "rubricEvidence": [
-          "Visited values1..5 are correct."
+          "Half-open endpoint behavior is correct."
         ]
       },
       {
@@ -3305,7 +3315,8 @@
         "task": "main",
         "publicRequest": "Trace `total=0; for k in range(1,6): total += k*k`. List k values, final total, and an accumulator invariant.",
         "rubricEvidence": [
-          "Half-open endpoint behavior is correct."
+          "Visited values1..5 are correct.",
+          "Final total55 is correct."
         ]
       },
       {
@@ -3313,7 +3324,8 @@
         "task": "main",
         "publicRequest": "Trace `total=0; for k in range(1,6): total += k*k`. List k values, final total, and an accumulator invariant.",
         "rubricEvidence": [
-          "Final total55 is correct."
+          "A meaningful accumulator invariant is stated.",
+          "Trace and invariant agree."
         ]
       },
       {
@@ -3321,8 +3333,8 @@
         "task": "transfer",
         "publicRequest": "A learner intends 1²+2²+3²+4²+5² but writes `range(1,5)`. Identify the missing contribution, buggy total, and smallest endpoint repair.",
         "rubricEvidence": [
-          "Missing k=5 is identified.",
-          "Missing25 is computed."
+          "range(1,6) is supplied.",
+          "The cause is tied to excluded stop."
         ]
       },
       {
@@ -3330,7 +3342,8 @@
         "task": "transfer",
         "publicRequest": "A learner intends 1²+2²+3²+4²+5² but writes `range(1,5)`. Identify the missing contribution, buggy total, and smallest endpoint repair.",
         "rubricEvidence": [
-          "range(1,6) is supplied.",
+          "Missing k=5 is identified.",
+          "Missing25 is computed.",
           "The cause is tied to excluded stop."
         ]
       }
@@ -3341,7 +3354,8 @@
         "task": "main",
         "publicRequest": "Trace `bank=10; rounds=0; while bank<20: bank+=3; rounds+=1`. Give bank after each iteration, final bank/rounds, and why termination is guaranteed.",
         "rubricEvidence": [
-          "All post-update values are correct."
+          "All post-update values are correct.",
+          "Condition-before-iteration behavior is respected."
         ]
       },
       {
@@ -3349,7 +3363,9 @@
         "task": "main",
         "publicRequest": "Trace `bank=10; rounds=0; while bank<20: bank+=3; rounds+=1`. Give bank after each iteration, final bank/rounds, and why termination is guaranteed.",
         "rubricEvidence": [
-          "Final bank22 is correct."
+          "All post-update values are correct.",
+          "Final bank22 is correct.",
+          "rounds=4 is correct."
         ]
       },
       {
@@ -3357,7 +3373,7 @@
         "task": "main",
         "publicRequest": "Trace `bank=10; rounds=0; while bank<20: bank+=3; rounds+=1`. Give bank after each iteration, final bank/rounds, and why termination is guaranteed.",
         "rubricEvidence": [
-          "rounds=4 is correct."
+          "A valid progress/termination argument is given."
         ]
       },
       {
@@ -3366,7 +3382,8 @@
         "publicRequest": "Audit `x=0; while x != 10: x += 3`. Does it terminate? Give a trace showing why, then repair for 'add3 until x reaches or exceeds10'.",
         "rubricEvidence": [
           "Nontermination is identified.",
-          "A trace demonstrates skipping10."
+          "A trace demonstrates skipping10.",
+          "Equality stopping is diagnosed."
         ]
       },
       {
@@ -3385,7 +3402,7 @@
         "task": "main",
         "publicRequest": "Define `relative_change(start,end)` returning `(end-start)/start` for nonzero start. Use it on (80,92) and (50,45). Identify parameters and first-call arguments.",
         "rubricEvidence": [
-          "A correct two-parameter function is given."
+          "Parameters and arguments are distinguished."
         ]
       },
       {
@@ -3393,6 +3410,7 @@
         "task": "main",
         "publicRequest": "Define `relative_change(start,end)` returning `(end-start)/start` for nonzero start. Use it on (80,92) and (50,45). Identify parameters and first-call arguments.",
         "rubricEvidence": [
+          "A correct two-parameter function is given.",
           "It returns rather than only prints."
         ]
       },
@@ -3401,7 +3419,8 @@
         "task": "main",
         "publicRequest": "Define `relative_change(start,end)` returning `(end-start)/start` for nonzero start. Use it on (80,92) and (50,45). Identify parameters and first-call arguments.",
         "rubricEvidence": [
-          "First result0.15 is correct."
+          "First result0.15 is correct.",
+          "Second result-0.10 is correct."
         ]
       },
       {
@@ -3418,6 +3437,7 @@
         "task": "transfer",
         "publicRequest": "Audit `base=100; def change(end): return (end-base)/base`. Why is this hidden-state dependent? Refactor so callers can use bases100 and80 without rebinding a global.",
         "rubricEvidence": [
+          "A two-parameter refactor is supplied.",
           "Different callers can pass100 and80 explicitly.",
           "The formula is preserved."
         ]
@@ -3445,16 +3465,16 @@
         "task": "main",
         "publicRequest": "Design `is_high(x)` for x>=5 and `count_event(xs,predicate)` for a finite list. Show the call on `[1,2,3,4,5,6]`, the hit count, and one boundary test for `is_high`.",
         "rubricEvidence": [
-          "Composition is shown."
+          "Composition is shown.",
+          "Hit count2 is correct."
         ]
       },
       {
         "claim": "Test a helper on a known boundary.",
-        "task": "transfer",
-        "publicRequest": "A script repeats `x>=5` in three loops and one copy uses `x>5`. Diagnose the defect, refactor one source of truth, and show how a test at the boundary exposes the bug.",
+        "task": "main",
+        "publicRequest": "Design `is_high(x)` for x>=5 and `count_event(xs,predicate)` for a finite list. Show the call on `[1,2,3,4,5,6]`, the hit count, and one boundary test for `is_high`.",
         "rubricEvidence": [
-          "Duplicated logic is identified as root cause.",
-          "A shared helper is proposed."
+          "A discriminating boundary test is supplied."
         ]
       },
       {
@@ -3462,7 +3482,8 @@
         "task": "transfer",
         "publicRequest": "A script repeats `x>=5` in three loops and one copy uses `x>5`. Diagnose the defect, refactor one source of truth, and show how a test at the boundary exposes the bug.",
         "rubricEvidence": [
-          "x=5 is used as discriminator.",
+          "Duplicated logic is identified as root cause.",
+          "A shared helper is proposed.",
           "The test distinguishes > from >=."
         ]
       }
@@ -3473,7 +3494,8 @@
         "task": "main",
         "publicRequest": "Given `records=[('W',3),('L',-2),('W',4)]`, give payoffs in order and their sum. Explain why each record can reasonably be a tuple while the outer collection can be a list.",
         "rubricEvidence": [
-          "Record order is preserved."
+          "Record order is preserved.",
+          "Payoffs3,-2,4 are correct."
         ]
       },
       {
@@ -3481,15 +3503,19 @@
         "task": "main",
         "publicRequest": "Given `records=[('W',3),('L',-2),('W',4)]`, give payoffs in order and their sum. Explain why each record can reasonably be a tuple while the outer collection can be a list.",
         "rubricEvidence": [
-          "Payoffs3,-2,4 are correct."
+          "Record order is preserved.",
+          "Payoffs3,-2,4 are correct.",
+          "Sum5 is correct."
         ]
       },
       {
         "claim": "Use tuples for fixed records.",
-        "task": "main",
-        "publicRequest": "Given `records=[('W',3),('L',-2),('W',4)]`, give payoffs in order and their sum. Explain why each record can reasonably be a tuple while the outer collection can be a list.",
+        "task": "transfer",
+        "publicRequest": "Audit `point=(2,5); point[0]=3`. State what happens and give two repairs: create a new tuple, and use a mutable structure when field mutation is intended.",
         "rubricEvidence": [
-          "Sum5 is correct."
+          "Tuple immutability is identified.",
+          "TypeError is predicted.",
+          "A valid new-tuple repair is supplied."
         ]
       },
       {
@@ -3497,8 +3523,8 @@
         "task": "transfer",
         "publicRequest": "Audit `point=(2,5); point[0]=3`. State what happens and give two repairs: create a new tuple, and use a mutable structure when field mutation is intended.",
         "rubricEvidence": [
-          "Tuple immutability is identified.",
-          "TypeError is predicted."
+          "A list alternative is supplied.",
+          "Choice is tied to intended mutation."
         ]
       },
       {
@@ -3506,8 +3532,8 @@
         "task": "transfer",
         "publicRequest": "Audit `point=(2,5); point[0]=3`. State what happens and give two repairs: create a new tuple, and use a mutable structure when field mutation is intended.",
         "rubricEvidence": [
-          "A list alternative is supplied.",
-          "Choice is tied to intended mutation."
+          "Tuple immutability is identified.",
+          "TypeError is predicted."
         ]
       }
     ],
@@ -3517,15 +3543,18 @@
         "task": "main",
         "publicRequest": "For `['H','T','H','H','T']`, state the unique set and its size, total observation count, and frequency dictionary. Explain why set size cannot be the empirical-frequency denominator.",
         "rubricEvidence": [
-          "Unique labels are correct."
+          "Unique labels are correct.",
+          "Distinct count2 is correct."
         ]
       },
       {
         "claim": "Recognize duplicates disappear in sets.",
-        "task": "main",
-        "publicRequest": "For `['H','T','H','H','T']`, state the unique set and its size, total observation count, and frequency dictionary. Explain why set size cannot be the empirical-frequency denominator.",
+        "task": "transfer",
+        "publicRequest": "A program computes hits/`len(set(observations))` for H on that same list. Compute the erroneous estimate, diagnose the mistake, and repair it.",
         "rubricEvidence": [
-          "Distinct count2 is correct."
+          "Erroneous denominator2 is identified.",
+          "Erroneous estimate1.5 is computed.",
+          "Multiplicity loss is diagnosed."
         ]
       },
       {
@@ -3533,16 +3562,15 @@
         "task": "main",
         "publicRequest": "For `['H','T','H','H','T']`, state the unique set and its size, total observation count, and frequency dictionary. Explain why set size cannot be the empirical-frequency denominator.",
         "rubricEvidence": [
-          "Observation count5 is correct."
+          "Counts H3,T2 are correct."
         ]
       },
       {
         "claim": "Update keyed counts from observations.",
-        "task": "transfer",
-        "publicRequest": "A program computes hits/`len(set(observations))` for H on that same list. Compute the erroneous estimate, diagnose the mistake, and repair it.",
+        "task": "main",
+        "publicRequest": "For `['H','T','H','H','T']`, state the unique set and its size, total observation count, and frequency dictionary. Explain why set size cannot be the empirical-frequency denominator.",
         "rubricEvidence": [
-          "Erroneous denominator2 is identified.",
-          "Erroneous estimate1.5 is computed."
+          "Counts H3,T2 are correct."
         ]
       },
       {
@@ -3561,7 +3589,9 @@
         "task": "main",
         "publicRequest": "Trace `a=[2,4]; b=a; b.append(6); c=a.copy(); c.append(8)`. Give final a,b,c and identify aliases.",
         "rubricEvidence": [
-          "a is correct."
+          "a is correct.",
+          "b is correct.",
+          "a/b aliasing is identified."
         ]
       },
       {
@@ -3569,6 +3599,7 @@
         "task": "main",
         "publicRequest": "Trace `a=[2,4]; b=a; b.append(6); c=a.copy(); c.append(8)`. Give final a,b,c and identify aliases.",
         "rubricEvidence": [
+          "a is correct.",
           "b is correct."
         ]
       },
@@ -3577,16 +3608,17 @@
         "task": "main",
         "publicRequest": "Trace `a=[2,4]; b=a; b.append(6); c=a.copy(); c.append(8)`. Give final a,b,c and identify aliases.",
         "rubricEvidence": [
-          "c is correct."
+          "c is correct.",
+          "copy versus alias is explained."
         ]
       },
       {
-        "claim": "Distinguish rebinding from mutation.",
-        "task": "transfer",
-        "publicRequest": "Audit `rows=[[0,0]]*3; rows[0][0]=1`. Predict rows, explain why all rows change, and give a construction with independent inner lists.",
+        "claim": "Distinguish shared aliasing from an independent copied container.",
+        "task": "main",
+        "publicRequest": "Trace `a=[2,4]; b=a; b.append(6); c=a.copy(); c.append(8)`. Give final a,b,c and identify aliases.",
         "rubricEvidence": [
-          "Result is predicted correctly.",
-          "Shared inner references are the cause."
+          "a/b aliasing is identified.",
+          "copy versus alias is explained."
         ]
       },
       {
@@ -3594,6 +3626,8 @@
         "task": "transfer",
         "publicRequest": "Audit `rows=[[0,0]]*3; rows[0][0]=1`. Predict rows, explain why all rows change, and give a construction with independent inner lists.",
         "rubricEvidence": [
+          "Result is predicted correctly.",
+          "Shared inner references are the cause.",
           "A comprehension repair is given.",
           "The repair creates distinct mutable rows."
         ]
@@ -3621,16 +3655,16 @@
         "task": "main",
         "publicRequest": "For `values=[10,12,9]`, `weights=[2,1,3]`, compute weighted sum, total weight, weighted average, and the `(index,value,weight)` triples from enumerate(zip(...)).",
         "rubricEvidence": [
-          "Weight total6 is correct."
+          "Weight total6 is correct.",
+          "Average59/6 is correct."
         ]
       },
       {
         "claim": "Use enumerate when position matters.",
-        "task": "transfer",
-        "publicRequest": "Audit values `[10,12,9]`, weights `[2,1]` processed by plain zip. Which datum is ignored, what weighted sum results, and what precondition check prevents accepting this alignment?",
+        "task": "main",
+        "publicRequest": "For `values=[10,12,9]`, `weights=[2,1,3]`, compute weighted sum, total weight, weighted average, and the `(index,value,weight)` triples from enumerate(zip(...)).",
         "rubricEvidence": [
-          "Unpaired9 is identified.",
-          "Zip truncation is identified."
+          "Index triples are correct."
         ]
       },
       {
@@ -3638,6 +3672,8 @@
         "task": "transfer",
         "publicRequest": "Audit values `[10,12,9]`, weights `[2,1]` processed by plain zip. Which datum is ignored, what weighted sum results, and what precondition check prevents accepting this alignment?",
         "rubricEvidence": [
+          "Unpaired9 is identified.",
+          "Zip truncation is identified.",
           "An equal-length check is supplied.",
           "Silent truncation is rejected as valid alignment."
         ]
@@ -3662,28 +3698,29 @@
       },
       {
         "claim": "Translate a verbal event into the exact Boolean predicate.",
-        "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "task": "transfer",
+        "publicRequest": "Spinner A is equally likely on `[1,2,4]`, B independently on `[0,3]`. Intended event is `a+b>=4`, but code uses `>4`. Enumerate six outcomes, compute correct and buggy probabilities, and identify equality-boundary outcomes causing the difference.",
         "rubricEvidence": [
-          "Exactly five sum-8 pairs are identified."
+          "Correct hit count4 is obtained.",
+          "Correct probability2/3 is obtained.",
+          "Both equality-boundary outcomes are named."
         ]
       },
       {
         "claim": "Count hits over the full equally likely space.",
-        "task": "transfer",
-        "publicRequest": "Spinner A is equally likely on `[1,2,4]`, B independently on `[0,3]`. Intended event is `a+b>=4`, but code uses `>4`. Enumerate six outcomes, compute correct and buggy probabilities, and identify equality-boundary outcomes causing the difference.",
+        "task": "main",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
-          "All six outcomes are accounted for.",
-          "Correct hit count4 is obtained."
+          "Exactly five sum-8 pairs are identified.",
+          "Probability5/36 is correct."
         ]
       },
       {
         "claim": "Distinguish deterministic enumeration from simulation.",
-        "task": "transfer",
-        "publicRequest": "Spinner A is equally likely on `[1,2,4]`, B independently on `[0,3]`. Intended event is `a+b>=4`, but code uses `>4`. Enumerate six outcomes, compute correct and buggy probabilities, and identify equality-boundary outcomes causing the difference.",
+        "task": "main",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
-          "Buggy probability1/3 is obtained.",
-          "Both equality-boundary outcomes are named."
+          "Enumeration is explicitly distinguished from simulation."
         ]
       }
     ],
@@ -3693,7 +3730,8 @@
         "task": "main",
         "publicRequest": "Represent A=1/2,B=1/3,C=1/6 with Fraction. Verify total exactly1 and compute event {A,C} exactly.",
         "rubricEvidence": [
-          "A is exact1/2."
+          "A is exact1/2.",
+          "B and C are exact1/3,1/6."
         ]
       },
       {
@@ -3701,7 +3739,7 @@
         "task": "main",
         "publicRequest": "Represent A=1/2,B=1/3,C=1/6 with Fraction. Verify total exactly1 and compute event {A,C} exactly.",
         "rubricEvidence": [
-          "B and C are exact1/3,1/6."
+          "Normalization to1 is verified."
         ]
       },
       {
@@ -3709,7 +3747,8 @@
         "task": "main",
         "publicRequest": "Represent A=1/2,B=1/3,C=1/6 with Fraction. Verify total exactly1 and compute event {A,C} exactly.",
         "rubricEvidence": [
-          "Normalization to1 is verified."
+          "Event sum is correct.",
+          "Final2/3 is kept exact."
         ]
       },
       {
@@ -3726,6 +3765,7 @@
         "task": "transfer",
         "publicRequest": "A learner writes `Fraction(0.1)` intending exact1/10 and is surprised. Explain why and give two constructors that encode the intended exact tenth.",
         "rubricEvidence": [
+          "Fraction(1,10) is supplied.",
           "A string/exact alternative is supplied.",
           "No automatic recovery of decimal intent is claimed."
         ]
@@ -3745,7 +3785,8 @@
         "task": "main",
         "publicRequest": "Enumerate two fair six-sided dice. B is sum>=10; A is at least one6. Give B outcomes/count, A∩B outcomes/count, and exact P(A|B), including the denominator used.",
         "rubricEvidence": [
-          "B count6 is verified."
+          "B count6 is verified.",
+          "Denominator6 is explicit."
         ]
       },
       {
@@ -3758,11 +3799,11 @@
       },
       {
         "claim": "Use |B| as denominator in the equally likely conditioned model.",
-        "task": "transfer",
-        "publicRequest": "A program counts the same five intersection outcomes but reports5/36. What quantity is5/36 and how do you repair the conditional calculation?",
+        "task": "main",
+        "publicRequest": "Enumerate two fair six-sided dice. B is sum>=10; A is at least one6. Give B outcomes/count, A∩B outcomes/count, and exact P(A|B), including the denominator used.",
         "rubricEvidence": [
-          "Denominator36 error is identified.",
-          "5/36 is interpreted as joint probability."
+          "Denominator6 is explicit.",
+          "P(A|B)=5/6 is correct."
         ]
       },
       {
@@ -3770,6 +3811,9 @@
         "task": "transfer",
         "publicRequest": "A program counts the same five intersection outcomes but reports5/36. What quantity is5/36 and how do you repair the conditional calculation?",
         "rubricEvidence": [
+          "Denominator36 error is identified.",
+          "5/36 is interpreted as joint probability.",
+          "Conditional denominator6 is supplied.",
           "5/6 is computed.",
           "Conditioning as restriction is explained."
         ]
@@ -3781,7 +3825,8 @@
         "task": "main",
         "publicRequest": "Using four equally likely outcomes of two fair coin tosses, A=first H and B=second H. Count A,B,intersection; compute exact probabilities and product; conclude independence or dependence.",
         "rubricEvidence": [
-          "The four-outcome space is used."
+          "P(A)=1/2.",
+          "P(B)=1/2 and intersection=1/4."
         ]
       },
       {
@@ -3789,7 +3834,8 @@
         "task": "main",
         "publicRequest": "Using four equally likely outcomes of two fair coin tosses, A=first H and B=second H. Count A,B,intersection; compute exact probabilities and product; conclude independence or dependence.",
         "rubricEvidence": [
-          "P(A)=1/2."
+          "Product1/4 is exact.",
+          "Independence follows from equality."
         ]
       },
       {
@@ -3797,7 +3843,9 @@
         "task": "main",
         "publicRequest": "Using four equally likely outcomes of two fair coin tosses, A=first H and B=second H. Count A,B,intersection; compute exact probabilities and product; conclude independence or dependence.",
         "rubricEvidence": [
-          "P(B)=1/2 and intersection=1/4."
+          "P(A)=1/2.",
+          "P(B)=1/2 and intersection=1/4.",
+          "Product1/4 is exact."
         ]
       },
       {
@@ -3805,8 +3853,9 @@
         "task": "transfer",
         "publicRequest": "On one fair six-sided die someone calls A=even and B=at least4 independent because they are 'different properties'. Compute exact probabilities and product to accept/refute.",
         "rubricEvidence": [
-          "P(A)=1/2.",
-          "P(B)=1/2."
+          "Intersection probability1/3 is correct.",
+          "Product1/4 is compared.",
+          "The claim is refuted mathematically."
         ]
       },
       {
@@ -3814,7 +3863,6 @@
         "task": "transfer",
         "publicRequest": "On one fair six-sided die someone calls A=even and B=at least4 independent because they are 'different properties'. Compute exact probabilities and product to accept/refute.",
         "rubricEvidence": [
-          "Product1/4 is compared.",
           "The claim is refuted mathematically."
         ]
       }
@@ -3833,7 +3881,8 @@
         "task": "main",
         "publicRequest": "A fair six-sided die pays +5 on6 and -1 otherwise. Give all six payoffs and compute exact expectation atom-by-atom and by grouping.",
         "rubricEvidence": [
-          "Multiplicity five-to-one is preserved."
+          "Multiplicity five-to-one is preserved.",
+          "Atomwise expectation0 is correct."
         ]
       },
       {
@@ -3841,16 +3890,16 @@
         "task": "main",
         "publicRequest": "A fair six-sided die pays +5 on6 and -1 otherwise. Give all six payoffs and compute exact expectation atom-by-atom and by grouping.",
         "rubricEvidence": [
-          "Atomwise expectation0 is correct."
+          "Atomwise expectation0 is correct.",
+          "Grouped expectation0 is correct."
         ]
       },
       {
         "claim": "Cross-check grouped and atomwise calculations.",
-        "task": "transfer",
-        "publicRequest": "A learner averages the two distinct values and gets2. Explain why invalid, identify omitted weights, and correct the expectation.",
+        "task": "main",
+        "publicRequest": "A fair six-sided die pays +5 on6 and -1 otherwise. Give all six payoffs and compute exact expectation atom-by-atom and by grouping.",
         "rubricEvidence": [
-          "Distinct-value averaging is diagnosed.",
-          "Weights5/6 and1/6 are identified."
+          "The two routes are cross-checked."
         ]
       },
       {
@@ -3858,7 +3907,9 @@
         "task": "transfer",
         "publicRequest": "A learner averages the two distinct values and gets2. Explain why invalid, identify omitted weights, and correct the expectation.",
         "rubricEvidence": [
-          "Expectation0 is correct.",
+          "Distinct-value averaging is diagnosed.",
+          "Weights5/6 and1/6 are identified.",
+          "Multiplicity is preserved.",
           "Value-set versus distribution is distinguished."
         ]
       }
@@ -3867,34 +3918,33 @@
       {
         "claim": "Write a general result invariant.",
         "task": "main",
-        "publicRequest": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove.",
+        "publicRequest": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove. Also name one boundary input that distinguishes the predicates `x>=5` and `x>5`, and state the expected result under `x>=5`.",
         "rubricEvidence": [
-          "A valid hit-count invariant is supplied."
+          "A valid 0<=hits<=len(xs) style invariant is supplied."
         ]
       },
       {
         "claim": "Write a tiny independently known test.",
         "task": "main",
-        "publicRequest": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove.",
+        "publicRequest": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove. Also name one boundary input that distinguishes the predicates `x>=5` and `x>5`, and state the expected result under `x>=5`.",
         "rubricEvidence": [
-          "Known even-count3 is correct."
+          "The known even-count oracle3 is correct and stated as a concrete test."
         ]
       },
       {
-        "claim": "Choose a boundary case discriminating a likely bug.",
+        "claim": "Choose a boundary case that discriminates a plausible comparison bug.",
         "task": "main",
-        "publicRequest": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove.",
+        "publicRequest": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove. Also name one boundary input that distinguishes the predicates `x>=5` and `x>5`, and state the expected result under `x>=5`.",
         "rubricEvidence": [
-          "The known-case test is executable/precise."
+          "Boundary input x=5 (or an equivalent discriminating boundary) is used to distinguish >= from >."
         ]
       },
       {
         "claim": "Explain finite passing tests do not prove all behavior.",
-        "task": "transfer",
-        "publicRequest": "A function relies only on `assert n>0` before using user-supplied n as a denominator. Why is that unsafe as the contract check, and what explicit runtime validation should replace it?",
+        "task": "main",
+        "publicRequest": "For `count_event(xs,predicate)`, give one general hit-count invariant and one known test on `[1,2,3,4,5,6]` with even predicate. State expected result and what each check cannot prove. Also name one boundary input that distinguishes the predicates `x>=5` and `x>5`, and state the expected result under `x>=5`.",
         "rubricEvidence": [
-          "Optimization behavior is identified.",
-          "Debugging versus essential validation is distinguished."
+          "The limitation of the general invariant is explained."
         ]
       },
       {
@@ -3902,6 +3952,9 @@
         "task": "transfer",
         "publicRequest": "A function relies only on `assert n>0` before using user-supplied n as a denominator. Why is that unsafe as the contract check, and what explicit runtime validation should replace it?",
         "rubricEvidence": [
+          "Optimization behavior is identified.",
+          "Debugging versus essential validation is distinguished.",
+          "An explicit n<=0 check is supplied.",
           "A suitable exception is raised.",
           "The contract remains active under -O."
         ]
@@ -3921,33 +3974,34 @@
         "task": "main",
         "publicRequest": "`def probability(hits,total): return hits/total` is called with (0,0). Identify the exception and violated precondition, then repair so empty trial count is rejected rather than turned into a fabricated probability.",
         "rubricEvidence": [
-          "total>0 precondition is stated."
+          "total>0 precondition is stated.",
+          "An explicit check is supplied."
         ]
       },
       {
         "claim": "Use a minimal failing input.",
-        "task": "main",
-        "publicRequest": "`def probability(hits,total): return hits/total` is called with (0,0). Identify the exception and violated precondition, then repair so empty trial count is rejected rather than turned into a fabricated probability.",
+        "task": "transfer",
+        "publicRequest": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception, explain the off-by-one cause, and give two repairs. Finally, explain why wrapping the loop in `try: ... except Exception: pass` would be an unacceptable repair for an auditable quantitative program.",
         "rubricEvidence": [
-          "An explicit check is supplied."
+          "Invalid index3 and IndexError are correctly identified.",
+          "The +1 half-open-range endpoint error is explained.",
+          "The smallest failing step is localized to the attempted xs[3] access."
         ]
       },
       {
         "claim": "Repair the root condition rather than suppressing the exception.",
         "task": "transfer",
-        "publicRequest": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception, explain the off-by-one cause, and give two repairs.",
+        "publicRequest": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception, explain the off-by-one cause, and give two repairs. Finally, explain why wrapping the loop in `try: ... except Exception: pass` would be an unacceptable repair for an auditable quantitative program.",
         "rubricEvidence": [
-          "Invalid index3 is identified.",
-          "IndexError is named."
+          "Both a correct-range repair and a direct-iteration/enumerate repair are supplied."
         ]
       },
       {
         "claim": "Explain why broad exception suppression can hide defects.",
         "task": "transfer",
-        "publicRequest": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception, explain the off-by-one cause, and give two repairs.",
+        "publicRequest": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception, explain the off-by-one cause, and give two repairs. Finally, explain why wrapping the loop in `try: ... except Exception: pass` would be an unacceptable repair for an auditable quantitative program.",
         "rubricEvidence": [
-          "Correct range is supplied.",
-          "Direct iteration/enumerate is supplied."
+          "A blanket catch-and-ignore is rejected because it hides the defect rather than repairing it."
         ]
       }
     ],
@@ -3965,7 +4019,7 @@
         "task": "main",
         "publicRequest": "Create r1=Random(23), r2=Random(23), take three `random()` draws from each and verify the lists match. Consume one extra draw from r1 only; explain why current states now differ despite the same original seed.",
         "rubricEvidence": [
-          "Same three-call pattern is used."
+          "Initial seed is distinguished from current state."
         ]
       },
       {
@@ -3973,6 +4027,7 @@
         "task": "main",
         "publicRequest": "Create r1=Random(23), r2=Random(23), take three `random()` draws from each and verify the lists match. Consume one extra draw from r1 only; explain why current states now differ despite the same original seed.",
         "rubricEvidence": [
+          "Same three-call pattern is used.",
           "Equal lists are correctly predicted/checked."
         ]
       },
@@ -3981,8 +4036,8 @@
         "task": "transfer",
         "publicRequest": "Audit `def trial(): r=Random(99); return r.random()<0.5` called100 times. Why can every call repeat the same Boolean? Refactor so seeding happens once and calls consume one evolving generator.",
         "rubricEvidence": [
-          "Repeated same-seed construction is identified.",
-          "Repeated first-draw behavior is explained."
+          "Seeding once outside is proposed.",
+          "RNG is passed explicitly."
         ]
       },
       {
@@ -3990,7 +4045,8 @@
         "task": "transfer",
         "publicRequest": "Audit `def trial(): r=Random(99); return r.random()<0.5` called100 times. Why can every call repeat the same Boolean? Refactor so seeding happens once and calls consume one evolving generator.",
         "rubricEvidence": [
-          "RNG is passed explicitly.",
+          "Repeated same-seed construction is identified.",
+          "Repeated first-draw behavior is explained.",
           "Successive calls consume evolving state."
         ]
       }
@@ -4001,7 +4057,8 @@
         "task": "main",
         "publicRequest": "Define `bernoulli(rng,p)` for one trial. State allowed p range and explain why p=0.3 with `<p` is the intended30% event rather than70%. Keep repetition out.",
         "rubricEvidence": [
-          "rng and p are explicit."
+          "rng and p are explicit.",
+          "`<p` is used."
         ]
       },
       {
@@ -4009,33 +4066,35 @@
         "task": "main",
         "publicRequest": "Define `bernoulli(rng,p)` for one trial. State allowed p range and explain why p=0.3 with `<p` is the intended30% event rather than70%. Keep repetition out.",
         "rubricEvidence": [
-          "`<p` is used."
+          "`<p` is used.",
+          "0<=p<=1 is stated/enforced.",
+          "0.3 is interpreted correctly."
         ]
       },
       {
         "claim": "Recognize complement comparison changes the model.",
-        "task": "main",
-        "publicRequest": "Define `bernoulli(rng,p)` for one trial. State allowed p range and explain why p=0.3 with `<p` is the intended30% event rather than70%. Keep repetition out.",
-        "rubricEvidence": [
-          "0<=p<=1 is stated/enforced."
-        ]
-      },
-      {
-        "claim": "Keep one trial separate from repetition.",
         "task": "transfer",
         "publicRequest": "A p=0.2 simulator uses `rng.random()>0.2`. What probability is actually modeled, what is the smallest repair, and why cannot larger N fix this?",
         "rubricEvidence": [
           "Actual0.8 is identified.",
-          "Complement error is explained."
+          "Complement error is explained.",
+          "`<0.2` repair is supplied."
+        ]
+      },
+      {
+        "claim": "Keep one trial separate from repetition.",
+        "task": "main",
+        "publicRequest": "Define `bernoulli(rng,p)` for one trial. State allowed p range and explain why p=0.3 with `<p` is the intended30% event rather than70%. Keep repetition out.",
+        "rubricEvidence": [
+          "One-trial responsibility is preserved."
         ]
       },
       {
         "claim": "State/enforce 0<=p<=1.",
-        "task": "transfer",
-        "publicRequest": "A p=0.2 simulator uses `rng.random()>0.2`. What probability is actually modeled, what is the smallest repair, and why cannot larger N fix this?",
+        "task": "main",
+        "publicRequest": "Define `bernoulli(rng,p)` for one trial. State allowed p range and explain why p=0.3 with `<p` is the intended30% event rather than70%. Keep repetition out.",
         "rubricEvidence": [
-          "Model error is distinguished from noise.",
-          "Increasing N is rejected as a repair."
+          "0<=p<=1 is stated/enforced."
         ]
       }
     ],
@@ -4045,7 +4104,8 @@
         "task": "main",
         "publicRequest": "Using rng=Random(2026), N=1000 and `bernoulli(rng,1/3)`, write aggregation code, state documented hit count322 and frequency0.322, compare with exact1/3, and record seed/N.",
         "rubricEvidence": [
-          "One rng is reused across1000 trials."
+          "One rng is reused across1000 trials.",
+          "322/1000=0.322 is reported."
         ]
       },
       {
@@ -4053,6 +4113,7 @@
         "task": "main",
         "publicRequest": "Using rng=Random(2026), N=1000 and `bernoulli(rng,1/3)`, write aggregation code, state documented hit count322 and frequency0.322, compare with exact1/3, and record seed/N.",
         "rubricEvidence": [
+          "One rng is reused across1000 trials.",
           "322/1000=0.322 is reported."
         ]
       },
@@ -4061,25 +4122,24 @@
         "task": "main",
         "publicRequest": "Using rng=Random(2026), N=1000 and `bernoulli(rng,1/3)`, write aggregation code, state documented hit count322 and frequency0.322, compare with exact1/3, and record seed/N.",
         "rubricEvidence": [
-          "Exact1/3 is separate."
+          "322/1000=0.322 is reported."
         ]
       },
       {
         "claim": "Record seed,N and output as reproducibility metadata.",
-        "task": "transfer",
-        "publicRequest": "A learner says 'seeded run gave0.55 for p=0.5, so true probability is0.55; seed makes it exact.' Identify both conceptual errors and explain what a seed actually guarantees.",
+        "task": "main",
+        "publicRequest": "Using rng=Random(2026), N=1000 and `bernoulli(rng,1/3)`, write aggregation code, state documented hit count322 and frequency0.322, compare with exact1/3, and record seed/N.",
         "rubricEvidence": [
-          "Estimate-versus-probability error is identified.",
-          "Reproducible-versus-exact error is identified."
+          "Seed and N are recorded."
         ]
       },
       {
         "claim": "Distinguish empirical estimate from exact/model probability.",
-        "task": "transfer",
-        "publicRequest": "A learner says 'seeded run gave0.55 for p=0.5, so true probability is0.55; seed makes it exact.' Identify both conceptual errors and explain what a seed actually guarantees.",
+        "task": "main",
+        "publicRequest": "Using rng=Random(2026), N=1000 and `bernoulli(rng,1/3)`, write aggregation code, state documented hit count322 and frequency0.322, compare with exact1/3, and record seed/N.",
         "rubricEvidence": [
-          "Sampling variation remains acknowledged.",
-          "Exact enumeration is correctly contrasted."
+          "Exact1/3 is separate.",
+          "Difference is described as sampling variation."
         ]
       }
     ],
@@ -4105,16 +4165,17 @@
         "task": "main",
         "publicRequest": "Trace `r=Random(11); a=r.random(); state=r.getstate(); b=r.random(); r.setstate(state); c=r.random()` without needing numeric floats. Which equality is guaranteed and why?",
         "rubricEvidence": [
-          "Restore before c is tracked."
+          "Restore before c is tracked.",
+          "b==c is stated."
         ]
       },
       {
         "claim": "Predict replay of the first draw after the saved state.",
-        "task": "transfer",
-        "publicRequest": "Two simulations share an initial seed but one made an unknown extra number of draws before a bug. Why may reseeding fail to recreate that exact mid-run point, and how would a saved state be used?",
+        "task": "main",
+        "publicRequest": "Trace `r=Random(11); a=r.random(); state=r.getstate(); b=r.random(); r.setstate(state); c=r.random()` without needing numeric floats. Which equality is guaranteed and why?",
         "rubricEvidence": [
-          "Initial seed and mid-run state are distinguished.",
-          "Unknown draw consumption is identified."
+          "b==c is stated.",
+          "Reason uses state replay, not coincidence."
         ]
       },
       {
@@ -4122,6 +4183,9 @@
         "task": "transfer",
         "publicRequest": "Two simulations share an initial seed but one made an unknown extra number of draws before a bug. Why may reseeding fail to recreate that exact mid-run point, and how would a saved state be used?",
         "rubricEvidence": [
+          "Initial seed and mid-run state are distinguished.",
+          "Unknown draw consumption is identified.",
+          "Reseeding is described as restart.",
           "A saved snapshot is proposed.",
           "setstate suffix replay is correct."
         ]
@@ -4141,6 +4205,7 @@
         "task": "main",
         "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==7`. Compare supports, buggy versus exact probability of sum7, root cause, and repair.",
         "rubricEvidence": [
+          "Intended36-pair support is stated.",
           "Bug six-pair support is identified."
         ]
       },
@@ -4149,16 +4214,18 @@
         "task": "main",
         "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==7`. Compare supports, buggy versus exact probability of sum7, root cause, and repair.",
         "rubricEvidence": [
-          "Bug probability0 is derived."
+          "Bug six-pair support is identified.",
+          "Bug probability0 is derived.",
+          "A second RNG draw repairs b."
         ]
       },
       {
         "claim": "Choose a diagnostic event on which models disagree.",
-        "task": "transfer",
-        "publicRequest": "A second simulator uses `rng.randrange(1,6)` for each die believing6 is included. Identify actual one-die support, missing intended outcome, and why more trials cannot fix the model.",
+        "task": "main",
+        "publicRequest": "Intended model: two independent fair six-sided dice. Audit `def trial(rng): a=rng.randrange(1,7); b=a; return a+b==7`. Compare supports, buggy versus exact probability of sum7, root cause, and repair.",
         "rubricEvidence": [
-          "Actual support1..5 is identified.",
-          "Missing6 is identified."
+          "Bug probability0 is derived.",
+          "Exact probability1/6 is derived."
         ]
       },
       {
@@ -4166,6 +4233,9 @@
         "task": "transfer",
         "publicRequest": "A second simulator uses `rng.randrange(1,6)` for each die believing6 is included. Identify actual one-die support, missing intended outcome, and why more trials cannot fix the model.",
         "rubricEvidence": [
+          "Actual support1..5 is identified.",
+          "Missing6 is identified.",
+          "Half-open endpoint cause is explained.",
           "Model error is distinguished from noise.",
           "randrange(1,7) is supplied."
         ]
@@ -4177,7 +4247,8 @@
         "task": "main",
         "publicRequest": "Build an auditable experiment for two independent fair six-sided dice paying +8 when sum==8 and -2 otherwise. Enumerate all36 pairs and derive exact P(sum=8); derive exact expected payoff; give Python/pseudocode for `trial(rng)` with two separate die draws and repetition with a stated seed and N; give at least two invariants; explain what simulation/oracle agreement does and does not establish.",
         "rubricEvidence": [
-          "Exact probability5/36 is derived."
+          "Exact probability5/36 is derived.",
+          "Exact expectation-11/18 is correct."
         ]
       },
       {
@@ -4185,6 +4256,7 @@
         "task": "main",
         "publicRequest": "Build an auditable experiment for two independent fair six-sided dice paying +8 when sum==8 and -2 otherwise. Enumerate all36 pairs and derive exact P(sum=8); derive exact expected payoff; give Python/pseudocode for `trial(rng)` with two separate die draws and repetition with a stated seed and N; give at least two invariants; explain what simulation/oracle agreement does and does not establish.",
         "rubricEvidence": [
+          "Exact probability5/36 is derived.",
           "Exact expectation-11/18 is correct."
         ]
       },
@@ -4193,16 +4265,17 @@
         "task": "main",
         "publicRequest": "Build an auditable experiment for two independent fair six-sided dice paying +8 when sum==8 and -2 otherwise. Enumerate all36 pairs and derive exact P(sum=8); derive exact expected payoff; give Python/pseudocode for `trial(rng)` with two separate die draws and repetition with a stated seed and N; give at least two invariants; explain what simulation/oracle agreement does and does not establish.",
         "rubricEvidence": [
-          "Simulation uses explicit seeded RNG, two draws/trial, stated N."
+          "Simulation uses explicit seeded RNG, two draws/trial, stated N.",
+          "At least two meaningful invariants are supplied."
         ]
       },
       {
         "claim": "Check invariants and compare estimate to exact target without calling agreement proof.",
-        "task": "transfer",
-        "publicRequest": "Audit `rng=Random(7); wins=0; for _ in range(N): a=rng.randrange(1,6); b=a; if a+b>=8: wins+=1; estimate=wins/N` for the same game. Identify at least three independent defects and repair each before discussing N.",
+        "task": "main",
+        "publicRequest": "Build an auditable experiment for two independent fair six-sided dice paying +8 when sum==8 and -2 otherwise. Enumerate all36 pairs and derive exact P(sum=8); derive exact expected payoff; give Python/pseudocode for `trial(rng)` with two separate die draws and repetition with a stated seed and N; give at least two invariants; explain what simulation/oracle agreement does and does not establish.",
         "rubricEvidence": [
-          "The missing-face defect is found/repaired.",
-          "The reused-draw defect is found/repaired."
+          "At least two meaningful invariants are supplied.",
+          "Agreement is correctly limited as evidence rather than proof."
         ]
       },
       {
@@ -4210,6 +4283,9 @@
         "task": "transfer",
         "publicRequest": "Audit `rng=Random(7); wins=0; for _ in range(N): a=rng.randrange(1,6); b=a; if a+b>=8: wins+=1; estimate=wins/N` for the same game. Identify at least three independent defects and repair each before discussing N.",
         "rubricEvidence": [
+          "The missing-face defect is found/repaired.",
+          "The reused-draw defect is found/repaired.",
+          "The >= versus == event defect is found/repaired.",
           "Sample size is rejected as a model repair.",
           "Repaired target is tied to exact5/36."
         ]
@@ -4819,172 +4895,196 @@
     "version": "m08-separation-builder-r1-2026-09-24",
     "sessions": {
       "T22V3::T22E-CODE01::S01@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S02@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S03@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S04@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S05@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S06@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S07@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S08@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S09@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S10@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S11@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S12@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S13@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S14@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S15@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S16@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S17@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S18@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S19@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S20@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S21@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S22@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S23@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       },
       "T22V3::T22E-CODE01::S24@1": {
-        "status": "builder-reviewed-separated",
+        "status": "builder-semantic-reviewed-separated",
         "mainPurpose": "Elicit the session's constructive/core capability on fixed data.",
         "transferPurpose": "Require diagnosis/reconstruction on a changed code or model surface.",
         "wrongSolver": "A plausible misconception named in principalObstacle was replayed against the task/rubric; relevant credit requires discriminating evidence.",
-        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable."
+        "validAlternative": "Equivalent Python/pseudocode and mathematically equivalent exact forms remain acceptable.",
+        "claimReview": "Each ownership claim was re-linked after public-task review; mappings use the criteria that actually force the capability, not a claim-index/rubric-index convention."
       }
     }
   },
