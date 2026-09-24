@@ -1491,7 +1491,7 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S06-M@1": {
-      "reference": "Let Q(h)=[f(a+h)-f(a)]/h for h≠0. Since Q(h)→L, choose δ0>0 so that 0<|h|<δ0 implies |Q(h)-L|<1; then |Q(h)|≤|L|+1=:M. If M=0 the increment is already zero nearby; otherwise, for ε>0 choose δ=min(δ0,ε/M). When |h|<δ, |f(a+h)-f(a)|=|h||Q(h)|≤M|h|<ε. Thus f(a+h)→f(a), proving continuity at a.",
+      "reference": "Let Q(h)=[f(a+h)-f(a)]/h for h≠0. Since Q(h)→L, choose δ0>0 so that 0<|h|<δ0 implies |Q(h)-L|<1; then |Q(h)|≤|L|+1=:M, and M>0. For ε>0 choose δ=min(δ0,ε/M). When 0<|h|<δ, |f(a+h)-f(a)|=|h||Q(h)|≤M|h|<ε; at h=0 the increment is exactly 0. Thus f(a+h)→f(a), proving continuity at a.",
       "rubric": [
         {
           "points": 3,
