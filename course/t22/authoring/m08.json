@@ -4734,8 +4734,8 @@
         "0.2+0.4 == 0.6"
       ],
       "transfer": [
-        "residual `1e-12`",
-        "abs_tol=1e-10"
+        "residual == 0.0",
+        "positive `abs_tol`"
       ]
     },
     "T22V3::T22E-CODE01::S03@1": {
@@ -4773,7 +4773,7 @@
     "T22V3::T22E-CODE01::S07@1": {
       "main": [
         "[4,10,13,2]",
-        "predicate(x)"
+        "boundary test at x=10"
       ],
       "transfer": [
         "x>=10",
@@ -4792,7 +4792,7 @@
     "T22V3::T22E-CODE01::S09@1": {
       "main": [
         "observations=['G','R','G','B','G','R']",
-        "counts.get(label,0)+1"
+        "final dictionary"
       ],
       "transfer": [
         "G-hits",
@@ -4809,7 +4809,8 @@
     },
     "T22V3::T22E-CODE01::S11@1": {
       "main": [
-        "enumerate(zip(values,weights,strict=True))"
+        "values=[10,12,9]",
+        "recording `(index,value,weight)` triples"
       ],
       "transfer": [
         "values=[10,12,9]",
@@ -4832,7 +4833,7 @@
       ],
       "transfer": [
         "Fraction(0.3)",
-        "Fraction(3,10)"
+        "exact three tenths"
       ]
     },
     "T22V3::T22E-CODE01::S14@1": {
@@ -4877,7 +4878,7 @@
       ],
       "transfer": [
         "range(len(xs)+1)",
-        "xs[3]"
+        "smallest offending expression"
       ]
     },
     "T22V3::T22E-CODE01::S19@1": {
