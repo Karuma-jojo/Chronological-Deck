@@ -1,12 +1,18 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-24
-State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M08 BUILDER-VALIDATED + FULLY GREEN, INDEPENDENT REVIEW PENDING; M09 CLOSED**
-Branch: `codex/t22-pedagogical-rebuild`
+State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENT-AUDIT REPAIRED, FULL REPAIR-HEAD VALIDATION + BOUNDED FOLLOW-UP PENDING; M09 CLOSED**
+Branch: `codex/t22-m08-independent-repair`
 Repository: `Karuma-jojo/Chronological-Deck`
-Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
-Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
-Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
+
+## Current M08 independent repair — authority for M08
+
+Published baseline `4e8755b0d0060390b18ccba846d0d7f5e6750328` passed prior automation but an independent hostile content audit found real semantic failures: fixed Main contamination in S02/S13/S15/S19/S21/S22/S23; lexical-only separation checks; S06 prerequisite inconsistency; hidden standard-library imports; an un-taught function-object jump; weak programming observability; M04-like S14–S16 tasks; insufficient float-tolerance policy; missing strict zip; and no actual traceback reading. See `docs/t22-course/M08-INDEPENDENT-REVIEW.md`.
+
+The bounded repair preserves 24 sessions while versioning 23 changed public obligations to2, rebuilding all affected references/rubrics/120 semantic links, adding explicit lesson-model/Main-model separation metadata and mutation canaries, teaching imports/function objects/strict zip/traceback use at first need, and rebuilding the executable Python oracle. See `M08-RESOLUTION.md`.
+
+**Next action: full repair-head Actions + real browser validation, then bounded independent follow-up. M08 is not frozen. M09 remains closed.**
+
 
 ## Current M08 builder recovery — 2026-09-24 (authority for M08)
 
