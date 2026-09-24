@@ -4,7 +4,7 @@ Date: 2026-09-24
 Repository: `Karuma-jojo/Chronological-Deck`  
 Branch: `codex/t22-pedagogical-rebuild`  
 Module: M08 · `T22E-CODE01` — Quant Programming & Simulation Foundations  
-Current status: **independent-review repaired and fully green; bounded follow-up pending**  
+Current status: **independent-review repaired; session sizing rebalanced to 25; verification pending**  
 Stop boundary: **M09 remains closed**
 
 ## Why this handoff changed
@@ -26,7 +26,7 @@ The important lesson is procedural: a lexical lesson/task separation check was n
 
 ## Repaired session route
 
-The 24-session spine remains because the missing foundations fit naturally inside existing ownership boundaries; the number 24 is not treated as a target.
+A sizing-only follow-up now uses **25 sessions**. The former S02 was the sole clear overload and is split into exact quotient/remainder (S02) and floating-point tolerance (S03). No other merge or split was justified.
 
 1. Names, values & assignment as state change
 2. Integer division, remainders & floating-point comparison — now teaches `import math`, explicit tolerance policy and near-zero `abs_tol`
@@ -118,3 +118,8 @@ M08 must not be called accepted/frozen until:
 - a bounded independent follow-up finds no remaining material defect.
 
 M09 remains closed.
+
+
+## Session-sizing addendum
+
+`M08-SESSION-SIZING-AUDIT.md` is the authority for the **25 sessions; add one, merge none** decision. Existing stable IDs from old S03 onward were intentionally retained; visible order alone shifts by one, avoiding unnecessary evidence-identity churn. The new floating-point session uses stable ID `T22V3::T22E-CODE01::S02F@1`.
