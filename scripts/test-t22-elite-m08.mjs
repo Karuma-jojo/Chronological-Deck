@@ -123,7 +123,7 @@ for(const forbidden of ['numpy','pandas','bootstrap','confidence interval','cent
 assert(by(2).lesson.includes('import math')&&by(2).lesson.includes('abs_tol'));
 assert(by(7).lesson.includes('function object')&&by(7).lesson.includes('predicate(x)'));
 assert(!by(7).lesson.includes(' if predicate(x) else'),'S07 must not introduce untaught conditional-expression syntax');
-assert(by(9).lesson.includes('counts.get(label,0)+1'));
+assert(by(9).lesson.includes('counts.get(label,0)')&&by(9).lesson.includes('counts[label]'));
 assert(by(11).lesson.includes('strict=True'));
 assert(by(12).lesson.includes('from itertools import product')&&by(12).lesson.includes('No RNG is involved'));
 assert(a.problems[by(12).main].prompt.includes('from itertools import product'));
