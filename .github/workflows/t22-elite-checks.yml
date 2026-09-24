@@ -60,6 +60,7 @@ jobs:
           node --check docs/t22-course/audit/m07-handoff-checks.mjs
           node --check docs/t22-course/audit/m07-astra-repair-checks.mjs
           node --check docs/t22-course/audit/m08-independent-oracles.mjs
+          node --check docs/t22-course/audit/m08-handoff-checks.mjs
           node --check docs/t22-course/audit/m03-repair-checks.mjs
       - name: Structural, pedagogy, semantic and evidence regressions
         run: |
@@ -88,6 +89,7 @@ jobs:
           node docs/t22-course/audit/m07-handoff-checks.mjs
           node docs/t22-course/audit/m07-astra-repair-checks.mjs
           node docs/t22-course/audit/m08-independent-oracles.mjs
+          node docs/t22-course/audit/m08-handoff-checks.mjs
           node docs/t22-course/audit/m03-repair-checks.mjs
       - name: Install browser-test dependency
         run: npm ci --prefix scripts/review-tests
