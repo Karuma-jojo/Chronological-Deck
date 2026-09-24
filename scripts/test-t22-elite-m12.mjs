@@ -30,7 +30,7 @@ const allowedClass=new Set(['retrieval','proof reconstruction','fresh Main evide
 assert.equal(a.module.order,12);
 assert.equal(a.module.id,'SIDE267');
 assert.equal(a.module.title,'Taylor Approximation, Asymptotics & Error');
-assert.match(a.module.status,/publication-candidate-independent-audit-repaired/);
+assert.match(a.module.status,/published-independent-audit-repaired/);
 assert.equal(a.sessions.length,19,'M12 session count must remain design-derived');
 assert.equal(Object.keys(a.problems).length,38);
 assert.equal(Object.keys(a.evaluators).length,38);
@@ -40,7 +40,7 @@ assert(!a.boundary.prerequisiteModules.includes('ARC510'),'M11 is chronologicall
 assert.match(a.boundary.decisiveProhibition,/one-variable|deterministic/i);
 assert.match(a.boundary.decisiveProhibition,/multivariable|probability|numerical/i);
 assert.match(a.module.gate,/19 design-derived sessions/i);
-assert.match(a.module.gate,/registered in the shared route for publication/i);
+assert.match(a.module.gate,/published in the shared twelve-module learner route/i);
 assert.match(a.module.nextBoundary,/M13/i);
 
 // Shared learner registry is intentionally published through M12.
@@ -223,4 +223,4 @@ assert.equal(a.sessions[16].requiredOwnership[0],"Use the neighborhood equality 
 assert.match(a.sessions[16].lesson,/difference quotient/i,'S17 derivative-at-zero induction step missing');
 assert.match(a.sessions[16].lesson,/phi\^\(n\+1\)\(0\)=0/,'S17 induction conclusion missing');
 
-console.log('PASS M12 semantic/evidence validator: 19 design-derived sessions, 38 tasks, 58 literal ownership links; series/MVT bridges explicit; source roles complete; prior content preserved; M12 registered in the twelve-module publication route.');
+console.log('PASS M12 semantic/evidence validator: 19 design-derived sessions, 38 tasks, 58 literal ownership links; series/MVT bridges explicit; source roles complete; prior content preserved; M12 published in the twelve-module learner route.');
