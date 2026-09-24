@@ -65,15 +65,20 @@ Primary URLs are stored directly in `course/t22/authoring/m08.json::sourceLedger
 
 ## Progression decision
 
-M08 uses 24 sessions in four layers:
+M08 uses **25 sessions** in four layers. A later sizing-only audit split the former mixed S02 into exact quotient/remainder and floating-point tolerance because they are distinct novice mental models:
 
-1. execution semantics and control flow (S01–S07);
-2. containers, alignment and mutable state (S08–S11);
-3. exact finite coding oracles (S12–S18);
-4. explicit pseudorandom state, simulation and adversarial synthesis (S19–S24).
+1. execution semantics and control flow (S01–S08), with S02 exact integer division and S03 floating-point comparison separated;
+2. containers, alignment and mutable state (S09–S12);
+3. exact finite coding oracles (S13–S19);
+4. explicit pseudorandom state, simulation and adversarial synthesis (S20–S25).
 
-The representative vertical-slice pilot was S12, **Exact Cartesian enumeration as a mathematical oracle**. It was completed through teaching, Main, Transfer, independent exact solution, semantic claim links and answer-separation review before the remaining exact/simulation pattern was finalized. Its Transfer changes the event boundary from `>=` to the buggy `>`, forcing diagnosis rather than a number swap.
+The representative vertical-slice pilot remains the same stable-ID Cartesian-enumeration session, now displayed as S13 after the sizing split, **Exact Cartesian enumeration as a mathematical oracle**. It was completed through teaching, Main, Transfer, independent exact solution, semantic claim links and answer-separation review before the remaining exact/simulation pattern was finalized. Its Transfer changes the event boundary from `>=` to the buggy `>`, forcing diagnosis rather than a number swap.
 
 ## Hard stop
 
 M09 is not authored by this build.
+
+
+## Session-sizing decision
+
+See `M08-SESSION-SIZING-AUDIT.md`. Final sizing decision: **25 sessions; add one, merge none.** Existing stable session IDs are preserved; only displayed order after S02 shifts by one.
