@@ -64,4 +64,4 @@ The learner UI still exposes nine modules; ARC510 remains unpublished/unregister
 
 **PASS — bounded independent-review findings implemented and builder-verified.**
 
-This is not the final independent pedagogical acceptance/freeze decision. The appropriate next action is one bounded confirmation that these repairs close the reported findings. **M12 remains closed.**
+This does **not** mean independent pedagogical acceptance or a freeze decision. The appropriate next action is one bounded confirmation that these repairs close the reported findings. **M12 remains closed.**

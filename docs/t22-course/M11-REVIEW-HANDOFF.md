@@ -14,6 +14,8 @@ Full successful workflow: `36015062169` · job `107685344598`
 
 **Current status: builder-verified after independent-review repairs; unpublished; awaiting final bounded confirmation.**
 
+This handoff does **not** mean independent pedagogical acceptance.
+
 M12 has not been opened.
 
 ## Architecture preserved
