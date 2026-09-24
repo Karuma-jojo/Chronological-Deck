@@ -67,12 +67,12 @@ has(9,"f/g=1+(5/2)h→1","f/g=1/2","n+1~n","n+sqrt(n)~n","1/sqrt(n)→0");
 
 // S10 — series as partial-sum limits, both geometric examples.
 const s10WorkedSum=1/(1-1/3), s10GuidedSum=2/(1-1/5);
-assert.equal(s10WorkedSum,1.5); assert.equal(s10GuidedSum,2.5);
+near(s10WorkedSum,1.5,1e-12); near(s10GuidedSum,2.5,1e-12);
 const altPartial=[0,1,2,3].map(N=>Array.from({length:N+1},(_,k)=>(-1)**k).reduce((z,v)=>z+v,0));
 assert.deepEqual(altPartial,[1,0,1,0]);
 has(10,"S_N=sum_{n=0}^N a_n","sequence S_N converges to S",
-  `→${s10WorkedSum===1.5?'3/2':String(s10WorkedSum)}`,
-  `=${s10GuidedSum===2.5?'5/2':String(s10GuidedSum)}`,"for r=-1 they oscillate");
+  `→${Math.abs(s10WorkedSum-1.5)<1e-12?'3/2':String(s10WorkedSum)}`,
+  `=${Math.abs(s10GuidedSum-2.5)<1e-12?'5/2':String(s10GuidedSum)}`,"for r=-1 they oscillate");
 
 // S11 — centered geometric power series.
 const s11WorkedCenter=-2, s11WorkedInterval=[s11WorkedCenter-4,s11WorkedCenter+4];
