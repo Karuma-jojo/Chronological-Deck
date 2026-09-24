@@ -27,9 +27,12 @@ assert.deepEqual(deps.modules.find(x=>x.id==='T22E-CODE01').prerequisites,a.boun
 assert.equal(road.modules.find(x=>x.id==='T22E-CODE01').availability,'authored');
 assert.equal(sem.entries.find(x=>x.id==='T22E-CODE01').semanticStatus,'accepted');
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'));
-assert(!meta.moduleSources.some(x=>x.order>=10));
+assert.equal(meta.moduleSources.length,12,'later-authorized publication through M12 is allowed');
 assert(fs.existsSync('course/t22/authoring/m09.json'),'M09 is now explicitly authorized');
-assert(!fs.existsSync('course/t22/authoring/m10.json'),'M10 must remain closed');
+assert(!fs.existsSync('course/t22/authoring/m10.json'),'historical obsolete M10 path remains absent; canonical M10 is m10-arc053.json');
+assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));
+assert(fs.existsSync('course/t22/authoring/m11-arc510.json'));
+assert(fs.existsSync('course/t22/authoring/m12-side267.json'));
 assert.equal(Object.keys(contract.sessions).length,25);
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(browser.includes("T22E-CODE01"));
