@@ -62,8 +62,9 @@
       "order": 8,
       "id": "T22E-CODE01",
       "mode": "new",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "boundary-accepted-content-candidate",
+      "bridges": [],
+      "note": "M08 builder candidate: 24 sessions / 48 fixed tasks / 120 claim links. Boundary follows canonical prerequisites M01+M03+M04 and keeps NumPy/pandas/scientific-computing engineering in M21 and Monte Carlo diagnostics in M30. Official Python documentation was checked for control flow, containers, floating point, Fraction, itertools.product, Random state/reproducibility, assert semantics and aliasing. Builder semantic mappings and executable Python oracles are present; independent review/acceptance remains required."
     },
     {
       "order": 9,
