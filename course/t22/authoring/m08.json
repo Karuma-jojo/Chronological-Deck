@@ -4762,7 +4762,7 @@
       ],
       "transfer": [
         "while x != 10",
-        "x += 3"
+        "reaches or exceeds10"
       ]
     },
     "T22V3::T22E-CODE01::S06@1": {
