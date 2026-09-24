@@ -1,0 +1,109 @@
+{
+  "version": "T22E-course-0.8.0-m08-candidate",
+  "routeVersion": "M65-semantic-r2-2026-09-18",
+  "evidenceSchema": "t22e-course-evidence-v1",
+  "reviewDays": [
+    2,
+    7,
+    21,
+    60
+  ],
+  "reviewPolicy": "Product-default spacing intervals for practice scheduling only; not validated retention estimates.",
+  "assessmentEquivalences": {},
+  "repairPack": "course/t22/authoring/m01-repairs-1.1.json",
+  "dependencyAuthority": "docs/t22-rebuild/m65.dependencies.json",
+  "semanticLedger": "docs/t22-rebuild/SEMANTIC-PREREQUISITES.json",
+  "module": {
+    "order": 1,
+    "id": "T22E-FND01",
+    "title": "Quantitative Foundations I — Numeracy & Algebra",
+    "status": "authored-v1.2-a07-accepted",
+    "destination": "From a Class-10-ish starting point, become reliable with exact numerical reasoning, ratios/percentages/units, estimation, symbolic algebra, equations, inequalities, absolute value and elementary quadratics—without hidden calculator dependence.",
+    "gate": "M01 is not cleared by page completion. Clearance requires independent evidence across the session ownership claims plus delayed transfer/synthesis evidence. The dedicated course page records study evidence; it does not silently rewrite legacy T22 progress.",
+    "nextBoundary": "M02 owns functions, domains/ranges, graphs, coordinate geometry, parameters, transformations, exponentials/logarithms, sequences, sigma notation and essential trigonometry. M01 must not pre-teach those as the main capability."
+  },
+  "assessmentWarning": "This is original practice material, not an official firm interview bank. References are checking aids, not proof certificates. Independent transfer and delayed review matter more than first-pass correctness.",
+  "packs": [
+    "course/t22/generated/m01-001-005.json",
+    "course/t22/generated/m01-006-010.json",
+    "course/t22/generated/m01-011-015.json",
+    "course/t22/generated/m01-016-017.json"
+  ],
+  "evaluatorPacks": [
+    "course/t22/generated/eval-m01-001-005.json",
+    "course/t22/generated/eval-m01-006-010.json",
+    "course/t22/generated/eval-m01-011-015.json",
+    "course/t22/generated/eval-m01-016-017.json"
+  ],
+  "moduleSources": [
+    {
+      "order": 1,
+      "id": "T22E-FND01",
+      "sourceType": "legacy-packs",
+      "module": {
+        "order": 1,
+        "id": "T22E-FND01",
+        "title": "Quantitative Foundations I — Numeracy & Algebra",
+        "status": "authored-v1.2-a07-accepted",
+        "destination": "From a Class-10-ish starting point, become reliable with exact numerical reasoning, ratios/percentages/units, estimation, symbolic algebra, equations, inequalities, absolute value and elementary quadratics—without hidden calculator dependence.",
+        "gate": "M01 is not cleared by page completion. Clearance requires independent evidence across the session ownership claims plus delayed transfer/synthesis evidence. The dedicated course page records study evidence; it does not silently rewrite legacy T22 progress.",
+        "nextBoundary": "M02 owns functions, domains/ranges, graphs, coordinate geometry, parameters, transformations, exponentials/logarithms, sequences, sigma notation and essential trigonometry. M01 must not pre-teach those as the main capability."
+      },
+      "packs": [
+        "course/t22/generated/m01-001-005.json",
+        "course/t22/generated/m01-006-010.json",
+        "course/t22/generated/m01-011-015.json",
+        "course/t22/generated/m01-016-017.json"
+      ],
+      "evaluatorPacks": [
+        "course/t22/generated/eval-m01-001-005.json",
+        "course/t22/generated/eval-m01-006-010.json",
+        "course/t22/generated/eval-m01-011-015.json",
+        "course/t22/generated/eval-m01-016-017.json"
+      ],
+      "repairPack": "course/t22/authoring/m01-repairs-1.1.json"
+    },
+    {
+      "order": 2,
+      "id": "T22E-FND02",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m02.json"
+    },
+    {
+      "order": 3,
+      "id": "T22E-DISC01",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m03.json"
+    },
+    {
+      "order": 4,
+      "id": "ARC048",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m04.json"
+    },
+    {
+      "order": 5,
+      "id": "T22E-TRD01",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m05.json"
+    },
+    {
+      "order": 6,
+      "id": "ARC502",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m06.json"
+    },
+    {
+      "order": 7,
+      "id": "T22E-MKT01",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m07.json"
+    },
+    {
+      "order": 8,
+      "id": "T22E-CODE01",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m08.json"
+    }
+  ]
+}

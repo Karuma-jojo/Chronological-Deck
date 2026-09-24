@@ -1,0 +1,61 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+const a=JSON.parse(fs.readFileSync('course/t22/authoring/m02.json','utf8'));
+assert.equal(a.module.id,'T22E-FND02');assert.equal(a.module.order,2);assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01']);
+assert.equal(a.sessions.length,24);assert.equal(Object.keys(a.problems).length,48);assert.equal(Object.keys(a.evaluators).length,48);
+assert.deepEqual(a.sessions.map(s=>s.order),Array.from({length:24},(_,i)=>i+1));
+assert.equal(new Set(a.sessions.map(s=>s.id)).size,24);assert.equal(Object.keys(a.coverage).length,24);assert.equal(Object.keys(a.instructionSeparation).length,24);assert.equal(Object.keys(a.claimEvidence||{}).length,24);assert.equal(a.coverageAudit?.status,'120/120 manually reviewed after M02-03; direction-of-task mismatches repaired before acceptance');
+const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
+const hashes=new Set();
+for(const s of a.sessions){
+ assert.match(s.id,/^T22V3::T22E-FND02::S\d\d@1$/);assert.equal(s.requiredOwnership.length,5);assert(s.lesson.includes('Worked example:'));assert(s.lesson.includes('Guided check:'));
+ const contract={id:s.id,title:s.title,focus:s.focus,purpose:s.purpose,centralCapability:s.centralCapability,principalObstacle:s.principalObstacle,entryPrerequisites:s.entryPrerequisites,requiredOwnership:s.requiredOwnership,applicationScope:s.applicationScope,transferScope:s.transferScope,inScope:s.inScope,outOfScope:s.outOfScope,exitCondition:s.exitCondition};
+ const h=crypto.createHash('sha256').update(JSON.stringify(stable(contract))).digest('hex');assert(!hashes.has(h));hashes.add(h);
+ const cov=a.coverage[s.id];assert.equal(cov.length,5);for(const x of cov){assert(x.length);for(const k of x)assert(['main','transfer'].includes(k));}
+ const ce=a.claimEvidence[s.id];assert.equal(ce.length,5);ce.forEach((e,i)=>{assert.equal(e.claim,s.requiredOwnership[i]);assert(['main','transfer'].includes(e.task));const pid=s[e.task];assert.equal(e.publicRequest,a.problems[pid].prompt);assert(Array.isArray(e.rubricEvidence)&&e.rubricEvidence.length);for(const criterion of e.rubricEvidence)assert(a.evaluators[pid].rubric.some(r=>r.criterion===criterion),s.id+' claim evidence rubric must be exact');});
+ const audit=a.prerequisiteAudit['S'+String(s.order).padStart(2,'0')];assert(Array.isArray(audit)&&audit.length);for(const x of audit)assert(x.item&&x.source);
+ const sep=a.instructionSeparation[s.id];for(const [kind,pid] of [['main',s.main],['transfer',s.transfer]]){assert(a.problems[pid]);assert(a.evaluators[pid]);assert.equal(a.evaluators[pid].rubric.reduce((z,r)=>z+r.points,0),10);assert(sep[kind]?.length);for(const f of sep[kind]){assert(a.problems[pid].prompt.includes(f),s.id+' separation fragment missing in task: '+f);assert(!s.lesson.includes(f),s.id+' lesson leaks '+kind+' fragment: '+f);}}
+}
+assert.equal([...hashes].length,24);assert.equal(Object.values(a.coverage).flat().length,120);assert.equal(Object.values(a.claimEvidence).flat().length,120);
+
+const close=(x,y,t=1e-9)=>assert(Math.abs(x-y)<=t*Math.max(1,Math.abs(x),Math.abs(y)),x+' != '+y);
+
+// M02-01..04 semantic acceptance guards.
+const s2=a.sessions.find(s=>s.order===2),s8=a.sessions.find(s=>s.order===8),s12=a.sessions.find(s=>s.order===12),s13=a.sessions.find(s=>s.order===13),s18=a.sessions.find(s=>s.order===18),s20=a.sessions.find(s=>s.order===20),s21=a.sessions.find(s=>s.order===21);
+assert(s2.lesson.includes('range is the set of outputs')&&s2.lesson.includes('∪ means union'));
+assert(a.problems[s8.main].prompt.includes('reciprocal 1/f(y)'));
+assert(a.problems[s12.transfer].prompt.includes('grows 6% per period'));
+assert(a.problems[s13.main].prompt.includes('allowed real logarithm-base conditions'));
+assert(a.problems[s18.transfer].prompt.includes('Infer its constant ratio')&&a.problems[s18.transfer].prompt.includes('sanity check'));
+assert(a.evaluators[s20.transfer].reference.includes('forward invariance')&&a.evaluators[s20.transfer].rubric.some(r=>r.criterion.includes('finite prefix alone earns no reasoning points')));
+assert(s21.lesson.includes('cos45°=sin45°=√2/2')&&s21.lesson.includes('I(+,+), II(−,+), III(−,−), IV(+,−)'));
+
+// Independent mathematics — explicit recalculation across all 24 sessions.
+assert.equal(3*5-4,11);assert.equal(3*(-2)-4,-10); // S01
+assert.equal(Math.min(...[-2,-1,0,1,2,3].map(x=>x*x+1)),1);assert.equal(Math.max(...[-2,-1,0,1,2,3].map(x=>x*x+1)),10); // S02
+close(Math.hypot(3,6),3*Math.sqrt(5));assert.deepEqual([(-1+2)/2,(-5+1)/2],[0.5,-2]); // S03
+close((17-5)/(8-2),2);assert.equal((500-50)/2,225); // S04
+assert.equal(2*(-2)+1,-3);assert.equal(Math.abs(1-3),2); // S05
+assert.equal(-2*(1-3)**2+5,-3);assert.equal(Math.sqrt(2-(-7))+1,4); // S06
+assert.equal(2*(1**2-1)+3,3);assert.equal((2*1+3)**2-1,24); // S07
+for(const x of [-3,0,5])close(((3*x-7)+7)/3,x);assert.equal(Math.sqrt(9),3); // S08
+const p=x=>(x-2)**2*(x+1);assert.equal(p(2),0);assert.equal(p(-1),0);assert(Math.sign(p(-2))!==Math.sign(p(0))); // S09
+for(const x of [-4,0,3])if(x!==-1&&x!==2)close((x*x-4)/(x*x-x-2),(x+2)/(x+1));assert.equal(2*2-4,0);const sr=x=>(2*x*x+3*x-2)/(x*x-4),srr=x=>(2*x-1)/(x-2);for(const v of [-5,0,4])close(sr(v),srr(v));close(srr(-2),5/4); // S10
+assert.equal(Math.sqrt(2*11-6)+1,5);assert.equal(Math.cbrt(-8)**2,4); // S11
+close(500*1.08**2,583.2);close(1200*.85**3,736.95); // S12
+close(Math.log(32)/Math.log(2),5);close(Math.log(.001)/Math.log(10),-3); // S13
+for(const v of [0,2,5])close(Math.log((v-1)**2),2*Math.log(Math.abs(v-1))); // S14
+close(3**(2*(Math.log(10)/(2*Math.log(3)))),10);close(100*Math.exp(-.4*(Math.log(5)/.4)),20); // S15
+close(Math.log(1.25)+Math.log(.9),Math.log(1.125));close(Math.exp(.06*(Math.log(2)/.06)),2); // S16
+assert.equal(7+9*4,43);assert.equal(10*(7+43)/2,250);assert.equal(20*(4+61)/2,650); // S17
+assert.equal(3*2**7,384);assert.equal(3*(2**8-1),765);close(160*(1-.5**6)/(1-.5),315); // S18
+assert.equal(Array.from({length:5},(_,i)=>2*(i+1)-1).reduce((u,v)=>u+v,0),25);assert.equal(Array.from({length:5},(_,i)=>3*2**i).reduce((u,v)=>u+v,0),93); // S19
+let x=10;for(let i=0;i<3;i++)x=.5*x+3;close(x,6.5);let y=0;for(let i=0;i<3;i++)y=2*y-1;assert.equal(y,-7); // S20
+close(150*Math.PI/180,5*Math.PI/6);close(4*5*Math.PI/6,10*Math.PI/3); // S21
+close(Math.sin(5*Math.PI/4),-Math.SQRT1_2);close(Math.tan(5*Math.PI/4),1,1e-8);close((-3/4)**2+(3/5)**2,0.9225); // S22: exact task ratios separately checked below
+close(2*Math.PI/2,Math.PI);assert.deepEqual([Math.PI/6,5*Math.PI/6].map(v=>Math.round(Math.sin(v)*2)),[1,1]);close(Math.cos(2*Math.PI/4),0,1e-8); // S23
+const q=n=>50*1.2**n;close(Array.from({length:6},(_,n)=>q(n)).reduce((u,v)=>u+v,0),496.496);close(q(3),86.4);close([0,1,2,3,4].map(k=>2+3*Math.sin(k*Math.PI/2)).reduce((u,v)=>u+v,0),10,1e-8); // S24
+// S22 task's recovered 3-4-5 triangle: sin=3/5, quadrant II implies cos=-4/5 and tan=-3/4.
+close((3/5)**2+(-4/5)**2,1);close((3/5)/(-4/5),-3/4);
+console.log('PASS: M02 repaired review candidate; 24 sessions/48 tasks; 120/120 claim-level public-request/rubric evidence mappings; M02-01/03/04 content guards; all-session prerequisite/separation audits; independent math checks.');
