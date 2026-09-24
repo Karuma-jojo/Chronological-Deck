@@ -27,8 +27,9 @@ assert.deepEqual(deps.modules.find(x=>x.id==='T22E-CODE01').prerequisites,a.boun
 assert.equal(road.modules.find(x=>x.id==='T22E-CODE01').availability,'authored');
 assert.equal(sem.entries.find(x=>x.id==='T22E-CODE01').semanticStatus,'accepted');
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'));
-assert(!meta.moduleSources.some(x=>x.order>=9));
-assert(!fs.existsSync('course/t22/authoring/m09.json'),'M09 must remain closed');
+assert(!meta.moduleSources.some(x=>x.order>=10));
+assert(fs.existsSync('course/t22/authoring/m09.json'),'M09 is now explicitly authorized');
+assert(!fs.existsSync('course/t22/authoring/m10.json'),'M10 must remain closed');
 assert.equal(Object.keys(contract.sessions).length,25);
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(browser.includes("T22E-CODE01"));
@@ -66,4 +67,4 @@ const resolution=fs.readFileSync('docs/t22-course/M08-RESOLUTION.md','utf8');
 for(const token of ['M08-R01','M08-R08','REPAIRS REQUIRED']) assert(review.includes(token),token);
 for(const token of ['R01 — fresh assessment surfaces','R08 — strict zip','M09 remains closed']) assert(resolution.includes(token),token);
 
-console.log('PASS M08 handoff: independently accepted/frozen 25-session M08; 50 tasks/125 claims; bounded follow-up/provenance evidence retained; hard M09 stop.');
+console.log('PASS M08 handoff: independently accepted/frozen 25-session M08; 50 tasks/125 claims; bounded follow-up/provenance evidence retained; later-authorized M09 and hard M10 stop.');

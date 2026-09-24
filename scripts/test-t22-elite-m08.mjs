@@ -166,5 +166,6 @@ for(const [n] of versionCases){
 // The sizing split introduced exactly one new session ID; all old S03-S24 IDs remain stable despite visible +1 numbering.
 assert.equal(current.sessions[2].id,'T22V3::T22E-CODE01::S02F@1');
 for(let n=4;n<=25;n++) assert.equal(current.sessions[n-1].id,`T22V3::T22E-CODE01::S${String(n-1).padStart(2,'0')}@1`);
-assert(!fs.existsSync('course/t22/authoring/m09.json'),'M09 must remain closed');
-console.log('PASS M08 accepted/frozen: 25 sessions, 50 tasks, 125 semantic links; repaired observability/separation, stale-fingerprint preservation, S02F stable-ID migration and hard M09 stop.');
+assert(fs.existsSync('course/t22/authoring/m09.json'),'M09 is now explicitly authorized');
+assert(!fs.existsSync('course/t22/authoring/m10.json'),'M10 must remain closed');
+console.log('PASS M08 accepted/frozen: 25 sessions, 50 tasks, 125 semantic links; repaired observability/separation, stale-fingerprint preservation, S02F stable-ID migration and later-authorized M09 and hard M10 stop.');

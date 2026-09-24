@@ -1,3 +1,15 @@
+# Current M09 build — 2026-09-24
+
+User accepted M01–M08 as the baseline and explicitly authorized M09 start-to-finish plus push to main. Historical stop/no-main statements below are retained as history and superseded for this M09 assignment only. M10 remains closed. No T25/SMMC/legacy progress changes.
+
+Recovered main `2f8bd161fc9b9a0163713ed0c7f4341879b47419`; working branch `de020e0e7a3a37d62b0d7570512be46755b70ec2` (six ahead, zero behind). The full working-branch snapshot was Git-blob-hash verified before work. All six follow-up commits, including M08 acceptance and prerequisite cleanup, are preserved.
+
+M09 now contains 27 sessions, 54 fixed tasks/references and 82 semantic ownership links. See `docs/t22-course/M09-BOUNDARY.md`, `M09-VERIFICATION.md` and `M09-REVIEW-HANDOFF.md`. All 64 local non-browser workflow commands passed, including inherited module, semantic, provenance and mathematical checks. Initial local browser launch was blocked by missing Chromium; this is not a browser pass. Full remote Actions, browser and main publication receipts remain to be recorded after actual verification. Builder review does not claim independent acceptance.
+
+Next: run full inherited suite, push a coherent implementation checkpoint, inspect full Actions including Chromium, then publish to main while preserving any intervening changes. Stop after verified M09.
+
+---
+
 # T22 rebuild recovery state
 
 Date: 2026-09-24

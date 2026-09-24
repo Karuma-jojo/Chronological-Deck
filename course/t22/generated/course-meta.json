@@ -1,5 +1,5 @@
 {
-  "version": "T22E-course-0.8.1-m08-accepted",
+  "version": "T22E-course-0.9.0-m09-builder-verified",
   "routeVersion": "M65-semantic-r2-2026-09-18",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
@@ -104,6 +104,12 @@
       "id": "T22E-CODE01",
       "sourceType": "authoring-pack",
       "source": "course/t22/authoring/m08.json"
+    },
+    {
+      "order": 9,
+      "id": "SIDE263",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m09.json"
     }
   ]
 }

@@ -70,16 +70,18 @@
       "order": 9,
       "id": "SIDE263",
       "mode": "adapted",
-      "semanticStatus": "planned-with-known-bridge",
+      "semanticStatus": "accepted",
       "bridges": [
         {
           "id": "M09-B01",
           "owner": "SIDE263",
           "title": "Limit foundations without derivatives",
           "before": "first derivative-dependent legacy material",
-          "content": "Teach sequence/function limit language, epsilon-style intuition appropriate to route level, algebraic limit laws and squeeze/monotone arguments without assuming ARC053. Legacy entry text that names ARC053 is not reusable."
+          "content": "Teach sequence/function limit language, epsilon-style intuition appropriate to route level, algebraic limit laws and squeeze/monotone arguments without assuming ARC053. Legacy entry text that names ARC053 is not reusable.",
+          "implementedBy": "M09-S01–S27; docs/t22-course/M09-BOUNDARY.md"
         }
-      ]
+      ],
+      "acceptanceScope": "Builder boundary/prerequisite acceptance for publication; not an independent content review or learner certification."
     },
     {
       "order": 10,
