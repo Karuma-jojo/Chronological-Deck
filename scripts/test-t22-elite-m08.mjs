@@ -138,13 +138,21 @@ assert(!by(19).lesson.includes('Random(23)'));
 assert(by(21).lesson.includes('Random(17)')&&!by(21).lesson.includes('322')&&!by(21).lesson.includes('0.322'));
 assert(by(22).lesson.includes('Random(5)')&&!by(22).lesson.includes('Random(31)'));
 assert(!a.problems[by(22).main].prompt.includes('[r.random() for'),'S22 Main must use previously taught loops/list append, not hidden list comprehensions');
-assert.equal(a.problems[by(22).main].obligationVersion,3);
+assert.equal(a.problems[by(18).transfer].obligationVersion,3);
+assert.equal(a.problems[by(22).main].obligationVersion,4);
 assert(by(23).lesson.includes('two independent fair bits')&&!by(23).lesson.includes('six diagonal pairs'));
 assert(!by(14).lesson.includes('[x for'),'S14 lesson must not introduce an untaught list comprehension');
-assert.equal(a.repairVersionAudit.changedPublicTasks.length,24);
-assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===2).length,23);
+assert.equal(a.repairVersionAudit.changedPublicTasks.length,29);
+assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===2).length,27);
 assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===3).length,1);
+assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===4).length,1);
+for(const s of a.sessions){
+  for(const t of [s.lesson,a.problems[s.main].prompt,a.problems[s.transfer].prompt,a.evaluators[s.main].reference,a.evaluators[s.transfer].reference]){
+    assert(!/;\s*(for|while|def|try|with)\b/.test(t),s.id+' contains invalid semicolon-before-compound Python');
+  }
+}
+assert(a.followupAudit.findings['M08-F05']);
 assert(by(24).lesson.includes('model → exact oracle'));
 assert(!fs.existsSync('course/t22/authoring/m09.json'),'M09 must remain closed');
 
-console.log('PASS M08 independent repair: 24 sessions, 48 tasks, 120 semantic links, exact v1/v2/v3 obligation provenance, fresh lesson/Main instances, no hidden novice syntax, executable programming ownership, primary-source pins and hard M09 stop.');
+console.log('PASS M08 independent repair: 24 sessions, 48 tasks, 120 semantic links, exact v1/v2/v3/v4 obligation provenance, fresh lesson/Main instances, no hidden novice syntax or invalid compressed compound statements, executable programming ownership, primary-source pins and hard M09 stop.');
