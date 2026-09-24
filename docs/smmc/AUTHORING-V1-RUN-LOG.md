@@ -574,8 +574,8 @@ The unit trains:
 - separating necessity from sufficiency in classifications.
 
 Two original neutral tasks were added:
-- max/min identities from a two-case absolute-value lemma;
-- classification of equality in |x+y|≤|x|+|y| via the split xy≥0 versus xy<0.
+- max/min identities from a learner-chosen order partition and reusable absolute-value lemma;
+- classification of equality in |x+y|≤|x|+|y| from a learner-designed sign partition.
 
 The tasks use no historical SMMC statement, identifier or solution route. The exact historical requirement map remains unchanged: C1 is a broadly useful method unit, not a blanket prerequisite that should newly lock the corpus.
 
