@@ -1,12 +1,24 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-24
-State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED + FULLY GREEN; BOUNDED FOLLOW-UP PENDING; M08 CLOSED**
+State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M08 BUILDER-VALIDATED + FULLY GREEN, INDEPENDENT REVIEW PENDING; M09 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
 Historical Stage-A architecture checkpoint: `c7c66737b84b7951973c31d40c6895a3bdb9d94b`
 Historical Stage-A handoff head: `f3632cd8a326c6acc3658d2c8eba234d5a2db363`
+
+## Current M08 builder recovery — 2026-09-24 (authority for M08)
+
+User explicitly authorized M08 BUILD and requested extensive source search for mathematically/coding-correct session questions. Canonical boundary recovery established M08 · `T22E-CODE01` depends on M01 + M03 + M04; M07 is not a prerequisite. M08 owns core Python execution/control flow, functions/decomposition, core containers/state, exact finite enumeration, exact rational oracles, basic error/invariant discipline, explicit pseudorandom-generator state and small reproducible simulations. NumPy/pandas/scientific-computing engineering remains M21; formal Monte Carlo diagnostics remains M30.
+
+M08 contains 24 sessions, 48 fixed Main/Transfer assessments, 48 evaluator references and 120 builder-reviewed ownership links. Official Python documentation was checked for control flow/range, core containers, floating-point comparison, `Fraction`, `itertools.product`, `Random` state/reproducibility, `assert` semantics and aliasing. Builder adversarial review repaired S17/S18 observability gaps, narrowed one S10 ownership claim, and replaced four over-generic separation witnesses before closure.
+
+First complete green implementation head: `c261410fb40809dc44cddb9dccf50e612ae0f1be`. Full T22 Elite Actions run `35956181744`, job `107494885143`, **SUCCESS**. Inspected logs show M08 structural/pedagogy PASS, independent executable Python-oracle PASS, all inherited semantic/evidence gates PASS, Chromium installed successfully, and real browser PASS through M08 with eight-module export/import and answer-packet exposure.
+
+Review authorities: `docs/t22-course/M08-BOUNDARY.md`, `M08-CERBERUS-AUDIT.md`, `M08-REVIEW-HANDOFF.md`, `audit/m08-semantic-contract.json`, `audit/m08-independent-oracles.mjs`.
+
+**Next action: independent review of M08 only. M08 is not independently accepted/frozen. M09 remains closed.** Preserve M07's separate pending follow-up; no merge/deploy/T25/legacy-progress changes.
 
 ## Current M07 Astra-repair recovery — 2026-09-24 (authority over historical entries below)
 
