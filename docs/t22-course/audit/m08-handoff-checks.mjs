@@ -54,12 +54,13 @@ for(const token of [
 ]) assert(resolution.includes(token),token);
 
 for(const token of [
-  'independent-audit repaired candidate','23 changed public obligations',
+  'independent-audit repaired + fully validated candidate','23 changed public obligations',
   'm08-authoring-v2-independent-repair','m08-semantic-contract-independent-r2-2026-09-24',
-  'validation pending','M09 remains closed'
+  '772e5dc12bcd44340bbf1d96a093d1b802c10699','35961691590','107511449788',
+  '37/37 workflows succeeded','M09 remains closed'
 ]) assert(hand.includes(token),token);
 
 for(const token of ['M01','M03','M04','M21','M30','PY-MATH','PY-IMPORT','PY-ZIP','PY-TRACE','Hard stop']) assert(boundary.includes(token),token);
 assert(builderAudit.startsWith('> **Historical builder audit.**'));
 
-console.log('PASS M08 repair handoff: 24/48/120 independent-audit repaired candidate, 23 v2 obligations, semantic contamination guards, rebuilt Python oracles, eight-module browser integration and hard M09 stop.');
+console.log('PASS M08 repair handoff: 24/48/120 independent-audit repaired and fully validated candidate, 23 v2 obligations, semantic contamination guards, rebuilt Python oracles, exact green repair-head evidence, eight-module browser integration and hard M09 stop.');
