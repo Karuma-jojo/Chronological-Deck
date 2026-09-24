@@ -21,13 +21,13 @@ has(2,'transfer','||P_n||=max(1/3,2/(3n))','does not tend to 0');
 
 // S03 Riemann definition.
 near(-3*(5-2),-9);
-has(3,'main','=-9','error is 0');
+has(3,'main','=-9','|S(f;P,t)-(-9)|=0<ε');
 has(3,'transfer','δ=ε/5','common Riemann-sum limit is 7');
 
 // S04 point perturbation and tag dependence.
 assert.equal(25*2,50);
 has(4,'main','≤50m','ε/50','integral 15');
-has(4,'transfer','tags rational','tags irrational','not Riemann integrable');
+has(4,'transfer','tag rational','tag irrational','not Riemann integrable');
 
 // S05 structure.
 assert.equal(5-2,3);assert.equal(2*3-3*3,-3);
@@ -51,7 +51,7 @@ has(8,'transfer',"C'(5)=r(5)=2.4 mg/min",'left short-interval averages tend to 2
 near(3*Math.exp(4),3*Math.E**4,1e-10);
 has(9,'main',"F'(x)=3e^{(3x-1)²}");
 assert(ref(9,'main').includes("F'(1)=3e^4"));
-has(9,'transfer','2ln(1+(2x+1)^2)-2xln(1+x^4)','dummy variable');
+has(9,'transfer','2ln(1+(2x+1)^2)-2xln(1+x^4)','integration variable');
 
 // S10 MVT support bridge.
 has(10,'main','K=F-G','K\' vanishes','MVT on [u,v]','one additive constant');
@@ -84,7 +84,7 @@ has(15,'transfer','correct value is -2');
 // S16 method forensics.
 near((27-1)/3,26/3);
 near(Math.sin(1)+Math.cos(1)-1,Math.sin(1)+Math.cos(1)-1);
-has(16,'main','26/3','sin1+cos1-1','=-1','leave it unevaluated exactly');
+has(16,'main','26/3','sin1+cos1-1','gives -1','leave it unevaluated exactly');
 has(16,'transfer','u=x²','e^{x²}+C');
 
 // S17 infinity p-tail.
