@@ -51,3 +51,8 @@ S11 now uses `zip(..., strict=True)` when equal-length alignment is required and
 - Independent Python oracle rebuilt on fresh surfaces.
 - Complete T22 Elite CI + Chromium must pass before status can advance.
 - M09 remains closed.
+
+
+## Session-sizing follow-up
+
+A sizing-only pass found one remaining structural load issue: former S02 mixed exact quotient/remainder arithmetic with binary floating-point comparison/tolerance policy. It is split into S02 exact integer division and new visible S03 floating-point comparison. No other session is merged or split. Existing stable IDs are preserved; the new floating session uses `T22V3::T22E-CODE01::S02F@1`.
