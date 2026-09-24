@@ -1,3 +1,7 @@
+# Current M07 Astra repair — 2026-09-24
+
+M07 · `T22E-MKT01` has completed the bounded M07-01 through M07-05 repair. Authoring/instruction versions are `m07-authoring-astra-r1` / `m07-instruction-astra-r1`. Exact repair head `a0f76357f5e36de6e77799e2a30707c950ce1060` passed complete T22 Elite Actions run `35952806534` (job `107484744356`), including the mutation-sensitive 120-claim semantic contract, version/provenance migration checks and real Chromium seven-module workflow. M07 is **repaired and builder-verified, not independently accepted/frozen**. Next action: bounded Astra follow-up only. M01–M06 remain accepted; M08 remains closed. Read `M07-ASTRA-REVIEW.md`, `M07-RESOLUTION.md`, and `M07-REVIEW-HANDOFF.md`.
+
 # Current M07 candidate — 2026-09-24
 
 M01–M06 remain accepted/frozen. M07 · `T22E-MKT01` is a 24-session / 48-assessment / 120-claim CERBERUS-hardened candidate, fully verified on implementation head `84baddc69643f4654eb87bf05ed907febf37b077` by T22 Elite Actions run `35927759177` (job `107406819179`), including real Chromium and the seven-module evidence workflow. M07 is **not independently accepted/frozen yet**; next action is bounded Astra review. M08 remains closed. See `M07-BOUNDARY.md`, `M07-CERBERUS-AUDIT.md`, and `M07-REVIEW-HANDOFF.md`.
