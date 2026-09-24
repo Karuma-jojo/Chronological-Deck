@@ -1,9 +1,9 @@
 {
-  "version": "m11-preserved-baseline-2026-09-24",
+  "version": "m11-preserved-baseline-after-m07-v1.1-2026-09-24",
   "baseCommit": "2805a56d8d0376c72243fdaecfe0d0dedf8bad2e",
   "baseTree": "a540c16fd5bae45cf193d2fbec76cc1eeb376029",
-  "purpose": "Executable guard that M11-only work does not modify M01-M10 canonical/audit/test surfaces or the accepted shared learner runtime/browser surfaces.",
-  "fileCount": 99,
+  "purpose": "Executable guard for M11-era preservation, rebased only for the later explicitly authorized M07 v1.1 retrofit. M07 changed surfaces are pinned at the retrofit commit; every unrelated M01-M10 canonical/audit/test and shared runtime/browser surface remains pinned.",
+  "fileCount": 100,
   "files": {
     "course/t22/authoring/m01-repairs-1.1.json": "d9d6433dd5acc926defee5458c75a73342bc5c4e",
     "course/t22/authoring/m02.json": "6906fd9b3f30be6d9197cd7d182f1879f58c0114",
@@ -11,7 +11,7 @@
     "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
     "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
     "course/t22/authoring/m06.json": "da9360afd3adb81f75fa987c0ffac3015a8d19cf",
-    "course/t22/authoring/m07.json": "aefc64ed29f3aa1bc3de8f3e6c5279bcef4f85e4",
+    "course/t22/authoring/m07.json": "6af63290de8cc44615871aeb456ce2946b26e08b",
     "course/t22/authoring/m08.json": "1d8bd28f49b1e73513de7a337450a2504d68d2ec",
     "course/t22/authoring/m09.json": "7656609fb4ee448e03ef697e4cf29b733d965103",
     "course/t22/authoring/m10-arc053.json": "b5998f843fb07f59bad42ae715b475c51b1e51fe",
@@ -43,8 +43,8 @@
     "docs/t22-course/M07-ASTRA-REVIEW.md": "f6e4b9474fcc87ce2714e34aa61900aa2167df60",
     "docs/t22-course/M07-BOUNDARY.md": "6c26bcbe7d8189bffdbe9aad59bdfba5222a859e",
     "docs/t22-course/M07-CERBERUS-AUDIT.md": "4f0c48ffea73570efa2512dee15708591f3a0fd9",
-    "docs/t22-course/M07-RESOLUTION.md": "a6588c44e46e214752df28d948340433f032c340",
-    "docs/t22-course/M07-REVIEW-HANDOFF.md": "e47d99a83171ed05e81436f94bc99450fd29c5b8",
+    "docs/t22-course/M07-RESOLUTION.md": "ef319a659bad1e59392117f3c913a19989299ebb",
+    "docs/t22-course/M07-REVIEW-HANDOFF.md": "19083279734d6d049e6c8fd58727aaefe4e93523",
     "docs/t22-course/M08-BOUNDARY.md": "954ba6d8cfa88f3d4d8f93dfd8efc003ba8ed101",
     "docs/t22-course/M08-CERBERUS-AUDIT.md": "f0bc32215f7f1f799ec8b99ccf0d7bf907e87755",
     "docs/t22-course/M08-INDEPENDENT-FOLLOWUP.md": "a58c8c663774eb8ec97610c58bfcc6d8390a11c2",
@@ -71,12 +71,12 @@
     "docs/t22-course/audit/m05-m06-transfer-math.mjs": "62809fdc7063d39d938da0c84b518bfb2574749b",
     "docs/t22-course/audit/m06-handoff-checks.mjs": "cfb63c4176642e12f5d06334d7eb5565ecc6dfc5",
     "docs/t22-course/audit/m06-independent-math.mjs": "003c39b0eb709d47720dbccc30e34d7fdcf4b1fb",
-    "docs/t22-course/audit/m07-astra-repair-checks.mjs": "b8630cfe52c6083ba885bd39aaac32ff9d0ecd42",
-    "docs/t22-course/audit/m07-handoff-checks.mjs": "86e2866cd056d584f53de800dbd1b75b721054fc",
+    "docs/t22-course/audit/m07-astra-repair-checks.mjs": "8a4230b01e0a08f936e2f0283389fb4998a445fb",
+    "docs/t22-course/audit/m07-handoff-checks.mjs": "61a811989673d4f7b0569efcc9cfa73ca7cb9b32",
     "docs/t22-course/audit/m07-independent-math.mjs": "2e4f99ca131e2b3eaa4734748f5153215f2fca8b",
     "docs/t22-course/audit/m07-review-baseline.json": "431f20694344b80fc792dc723d8840f04a461a8d",
     "docs/t22-course/audit/m07-review-checks.mjs": "e12e2ee4ed1ad1fd700ae4a25cacec17d6e7de80",
-    "docs/t22-course/audit/m07-semantic-contract.json": "f116634b78959e940ebd936799753fe0dbe19ad5",
+    "docs/t22-course/audit/m07-semantic-contract.json": "8bf730426560222d52636812f1970d75fc1e3353",
     "docs/t22-course/audit/m08-handoff-checks.mjs": "f0acc9ce38d501243e00110dc5d3cc1bb53436a5",
     "docs/t22-course/audit/m08-independent-oracles.mjs": "4cfabd884f15c9a8519e22ed1421e017c1bef04a",
     "docs/t22-course/audit/m08-semantic-contract.json": "94377eeeeff71e41f3680b9e2efc9dc505728dcc",
@@ -98,11 +98,16 @@
     "scripts/test-t22-elite-m05-m06-repairs.mjs": "09698eba2aa23c76f5f8bc6d3640bf1e8c277bad",
     "scripts/test-t22-elite-m05.mjs": "b2f5562467b484a96408cb461344176f95a39c33",
     "scripts/test-t22-elite-m06.mjs": "55fc41a5d93cf28d22842630751d5e528f29c854",
-    "scripts/test-t22-elite-m07.mjs": "f54a7d62bfcc12316ae11a49784fb3c8ef67f284",
+    "scripts/test-t22-elite-m07.mjs": "265e77d163b7c5d4b44e498a900232abeb721d55",
     "scripts/test-t22-elite-m08.mjs": "4b2eeeba3c908e2d03085cba6ba2dae712ada96b",
     "scripts/test-t22-elite-m09-browser.mjs": "52928df06f8874c7a05ae2de8bc8c63e10fc7521",
     "scripts/test-t22-elite-m09.mjs": "2911ffe422a5a19a78d2ce852dcd709e81a50cfd",
     "scripts/test-t22-elite-m10.mjs": "24bd7b51b30cb845a672ddba06379d5af6584616",
-    "t22-course.html": "f9c38ecd7d329dd62c8125729b26cc9ae65d2432"
+    "t22-course.html": "f9c38ecd7d329dd62c8125729b26cc9ae65d2432",
+    "docs/t22-course/M07-DESIGN-GATE.md": "d52884808a04620976fc18b76eeaa4c8228cefab"
+  },
+  "authorizedM07Retrofit": {
+    "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
+    "reason": "Later user-authorized M07-only v1.1 retrofit. Rebase only the explicitly changed M07 canonical/audit/test surfaces and add its new design gate; all unrelated M01-M10/runtime blobs stay pinned."
   }
 }
