@@ -22,7 +22,8 @@ for(const doc of [handoff,verification]){
   assert(doc.includes('36009416136'));
   assert.match(doc,/builder-verified/i);
   assert.match(doc,/unpublished/i);
-  assert.match(doc,/not independent pedagogical acceptance|does not mean:\n- independent pedagogical acceptance/i);
+  assert(doc.includes('independent pedagogical acceptance'),'handoff/verification must explicitly name independent pedagogical acceptance');
+  assert(/not independent pedagogical acceptance|does \*\*not\*\* mean/i.test(doc),'handoff/verification must explicitly refuse independent acceptance');
   assert.match(doc,/M12/);
 }
 assert.match(handoff,/STOP after this handoff/i);
