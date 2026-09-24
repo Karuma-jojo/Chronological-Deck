@@ -24,6 +24,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Syntax checks
         run: |
           node --check js/t22-course/core.js
@@ -36,6 +39,7 @@ jobs:
           node --check scripts/test-t22-elite-m05.mjs
           node --check scripts/test-t22-elite-m06.mjs
           node --check scripts/test-t22-elite-m07.mjs
+          node --check scripts/test-t22-elite-m08.mjs
           node --check scripts/test-t22-elite-m05-m06-repairs.mjs
           node --check scripts/test-t22-elite-repair-browser.mjs
           node --check docs/t22-course/audit/m05-m06-semantic-checks.mjs
@@ -55,6 +59,7 @@ jobs:
           node --check docs/t22-course/audit/m07-independent-math.mjs
           node --check docs/t22-course/audit/m07-handoff-checks.mjs
           node --check docs/t22-course/audit/m07-astra-repair-checks.mjs
+          node --check docs/t22-course/audit/m08-independent-oracles.mjs
           node --check docs/t22-course/audit/m03-repair-checks.mjs
       - name: Structural, pedagogy, semantic and evidence regressions
         run: |
@@ -65,6 +70,7 @@ jobs:
           node scripts/test-t22-elite-m05.mjs
           node scripts/test-t22-elite-m06.mjs
           node scripts/test-t22-elite-m07.mjs
+          node scripts/test-t22-elite-m08.mjs
           node scripts/test-t22-elite-m05-m06-repairs.mjs
           node docs/t22-course/audit/m05-m06-transfer-math.mjs
           node scripts/test-t22-semantic-gates.mjs
@@ -81,6 +87,7 @@ jobs:
           node docs/t22-course/audit/m07-independent-math.mjs
           node docs/t22-course/audit/m07-handoff-checks.mjs
           node docs/t22-course/audit/m07-astra-repair-checks.mjs
+          node docs/t22-course/audit/m08-independent-oracles.mjs
           node docs/t22-course/audit/m03-repair-checks.mjs
       - name: Install browser-test dependency
         run: npm ci --prefix scripts/review-tests
