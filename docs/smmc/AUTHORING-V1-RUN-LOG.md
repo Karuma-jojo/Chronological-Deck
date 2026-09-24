@@ -716,3 +716,20 @@ Expected bank:
 - 14 authored units;
 - 28 neutral public tasks;
 - 28 separate evaluator references.
+
+
+### Checkpoint N validation receipt
+
+AN2-U02 head: `b20b5f75059f8205484c5535a0efdffa5fdea2a4`.  
+SMMC authoring checks run: `35986844747`, job `107591410214`: **SUCCESS**.
+
+The complete ledger, frozen curriculum, primary-domain reconciliation, 14-unit/28-task authoring bank, final-engine scaffold, connection index, T25 runtime payload, cloud conflict handling, SMMC browser workflow, T25/Aster/SMMC navigation and same-account cross-device restore all passed.
+
+Phase-2 checkpoint status:
+- fundamental reusable methods B1, C1, K1, X1, I1, E1, S1 and W1 are authored;
+- O1 remains intentionally later for open-problem/research work;
+- AN2 now has both planned core units authored;
+- no new historical problem was consumed;
+- no new historical requirement row was opened without a separate exact-sufficiency audit.
+
+Next bounded content block: S-BRIDGE-GF1, followed by S-BRIDGE-GEO1 and the planned N1/GR1/AN1 deepening units.
