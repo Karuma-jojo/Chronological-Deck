@@ -1,0 +1,2851 @@
+{
+  "version": "m12-side267-builder-candidate-v1",
+  "instructionVersion": "m12-side267-instruction-v1",
+  "module": {
+    "order": 12,
+    "id": "SIDE267",
+    "title": "Taylor Approximation, Asymptotics & Error",
+    "status": "builder-candidate-unpublished",
+    "destination": "Construct and interpret arbitrary-center Taylor polynomials; certify finite approximation error; use deterministic O/o/~ notation precisely; build the minimum series/power-series bridge needed to distinguish Taylor candidates, convergence and representation; diagnose center, convergence-region and smooth-nonanalytic failures.",
+    "gate": "19 design-derived sessions authored after a v1.1 source/boundary gate and an S06 vertical-slice pilot. Builder verification and independent review are still required before acceptance/publication.",
+    "nextBoundary": "M13 owns vectors, span, basis and dot products. M12 does not open M13 or import multivariable Taylor/linear-algebra machinery."
+  },
+  "boundary": {
+    "prerequisiteModules": [
+      "SIDE263",
+      "ARC053"
+    ],
+    "owns": [
+      "higher derivatives as successive one-variable local information",
+      "unique finite Taylor polynomials about arbitrary centers by derivative matching",
+      "bounded Rolle/MVT support used only for Taylor error",
+      "one-variable Taylor theorem with Lagrange remainder and certified finite error bounds",
+      "deterministic local big-O, little-o and asymptotic-equivalence notation",
+      "bounded infinite-series bridge through partial sums and geometric series",
+      "geometric power-series center/convergence-region reasoning",
+      "Taylor-series candidates, canonical exp/sin/cos constructions and remainder-to-zero representation proofs",
+      "center/region failure diagnostics and smooth-versus-analytic counterexample",
+      "generation/forensics/synthesis of one-variable local approximations"
+    ],
+    "excludes": [
+      "multivariable Taylor, gradients, Jacobians, Hessians or matrix calculus",
+      "optimization/Newton/quasi-Newton algorithms",
+      "floating-point roundoff, conditioning or numerical stability",
+      "full infinite-series convergence-test catalogue, uniform convergence or general termwise operations",
+      "complex analysis, analytic continuation or singularity-based radius theory",
+      "general Poincare/divergent asymptotic-series theory, Euler-Maclaurin or Stirling theory",
+      "probabilistic asymptotics, LLN/CLT, Delta method or asymptotic inference",
+      "regularity structures, distributions, singular SPDEs or generalized anisotropic Taylor formulas",
+      "M13 vector/linear-algebra content"
+    ],
+    "decisiveProhibition": "Keep M12 one-variable, deterministic and approximation/error centered. Build only the minimum series bridge required for honest Taylor representation; do not use later multivariable, numerical, optimization, probability/statistics, complex-analysis or regularity-structure machinery."
+  },
+  "coverageAudit": {
+    "designGate": "docs/t22-course/M12-DESIGN-GATE.md",
+    "pilot": "docs/t22-course/audit/m12-pilot-s06.json",
+    "pilotReview": "docs/t22-course/M12-PILOT-REVIEW.md",
+    "pedagogicalAtoms": 19,
+    "authoredSessions": 19,
+    "ownershipClaimCount": 58,
+    "note": "Counts are emergent from mathematical/pedagogical need, not quotas."
+  },
+  "sourceLedger": {
+    "checked": "2026-09-24",
+    "policy": "Repository contracts own M12 scope. MIT/OpenStax compare conventional route/coverage; Lebl and Spivak audit theorem structure and proof boundaries; DLMF owns asymptotic notation definitions; MAA/IES constrain general pedagogy; Smith et al. supplies Taylor-specific learner-difficulty evidence; Soosloff et al. is a supplementary teaching reflection; Hairer is deliberately used only as an advanced non-import boundary comparator. All lesson prose and fixed tasks are original.",
+    "sources": [
+      {
+        "id": "REPO-M12",
+        "source": "M65 skeleton + m65.dependencies.json + SEMANTIC-PREREQUISITES.json + M09/M10/M11 canonical authoring + legacy SIDE267",
+        "type": "repository contract",
+        "epistemicRole": "curriculum authority",
+        "sections": "M12 order/prerequisites/ownership boundaries and predecessor exits",
+        "supports": "formal prerequisites SIDE263+ARC053, canonical title and forbidden future machinery",
+        "limitations": "Internal design authority, not external empirical validation.",
+        "notImported": "Legacy five-arc session sizing or old numbering."
+      },
+      {
+        "id": "MIT-1801-TAY",
+        "source": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-5-exploring-the-infinite/part-b-taylor-series/",
+        "type": "course",
+        "epistemicRole": "canonical university route comparator",
+        "sections": "Sessions 94–101",
+        "supports": "infinite series→power series→Taylor sequence and problem-resource structure",
+        "limitations": "MIT surrounding calculus route owns more series material than T22 M09.",
+        "notImported": "Full series-comparison/test unit, L'Hopital or entire MIT syllabus."
+      },
+      {
+        "id": "OS2-52",
+        "source": "https://openstax.org/books/calculus-volume-2/pages/5-2-infinite-series",
+        "type": "textbook",
+        "epistemicRole": "broad coverage/notation comparator",
+        "sections": "§5.2",
+        "supports": "series as limit of partial sums and geometric bridge",
+        "limitations": "Broader series chapter than needed.",
+        "notImported": "General telescoping/convergence-test catalogue beyond bounded examples."
+      },
+      {
+        "id": "OS2-61",
+        "source": "https://openstax.org/books/calculus-volume-2/pages/6-1-power-series-and-functions",
+        "type": "textbook",
+        "epistemicRole": "power-series coverage comparator",
+        "sections": "§6.1",
+        "supports": "centered power series, partial sums and convergence-region language",
+        "limitations": "General radius/test development is broader than M12.",
+        "notImported": "Ratio/root-test curriculum and full endpoint taxonomy."
+      },
+      {
+        "id": "OS2-63",
+        "source": "https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series",
+        "type": "textbook",
+        "epistemicRole": "Taylor theorem/coverage comparator",
+        "sections": "§6.3",
+        "supports": "Taylor polynomial, Lagrange remainder bound and remainder→0 equality criterion",
+        "limitations": "Introductory theorem hypotheses cross-checked against Lebl.",
+        "notImported": "Exercises/wording; Maclaurin is not made the default center."
+      },
+      {
+        "id": "LEBL-TAYLOR",
+        "source": "https://www.jirka.org/ra/html/sec_taylor.html",
+        "type": "rigorous reference",
+        "epistemicRole": "theorem/hypothesis authority",
+        "sections": "§4.3, especially Def.4.3.1 and Thm.4.3.2",
+        "supports": "higher derivative notation, exact Lagrange remainder hypotheses, repeated-MVT proof and smooth/analytic distinction",
+        "limitations": "Full Basic Analysis prerequisites exceed M12.",
+        "notImported": "Full power-series analysis, multivariable or later analysis chapters."
+      },
+      {
+        "id": "SPIVAK-20",
+        "source": "Michael Spivak, Calculus, 4th ed., Ch.20 Approximation by Polynomial Functions; user-supplied PDF pp.438–450 (book pp.419–431)",
+        "type": "user-supplied proof-oriented textbook",
+        "epistemicRole": "deep-reading comparator",
+        "sections": "Ch.20 theorem/corollary/remainder examples and problem progression",
+        "supports": "derivative-matching uniqueness, finite remainder before infinite transition, center/error/failure examples and deep exercise progression",
+        "limitations": "Not the T22 curriculum owner; proof level selectively adapted.",
+        "notImported": "Copied prose/exercises, unrelated later chapters."
+      },
+      {
+        "id": "DLMF-21",
+        "source": "https://dlmf.nist.gov/2.1",
+        "type": "rigorous reference",
+        "epistemicRole": "asymptotic notation authority",
+        "sections": "§2.1(i)",
+        "supports": "definitions f~g iff f/g→1, f=o(g) iff ratio→0, f=O(g) iff ratio bounded",
+        "limitations": "DLMF asymptotic theory is much broader.",
+        "notImported": "General asymptotic-expansion calculus, uniform/generalized expansions."
+      },
+      {
+        "id": "MAA-IPG",
+        "source": "https://maa.org/resource/instructional-practices-guide/",
+        "type": "pedagogy guide",
+        "epistemicRole": "undergraduate-mathematics pedagogy baseline",
+        "sections": "classroom, assessment and design practices",
+        "supports": "representation connections, engagement and aligned assessment",
+        "populationContext": "undergraduate mathematics guide informed by empirical research",
+        "limitations": "Does not empirically validate this T22 module.",
+        "notImported": "No guide recommendation is treated as a mastery guarantee."
+      },
+      {
+        "id": "IES-WWC",
+        "source": "https://ies.ed.gov/ncee/wwc/PracticeGuide/1",
+        "type": "pedagogy guide",
+        "epistemicRole": "general learning-evidence baseline",
+        "sections": "Organizing Instruction and Study",
+        "supports": "worked-example/problem alternation, representation integration, spacing/retrieval and explanatory prompts",
+        "populationContext": "evidence across varied educational populations and recommendations with differing ratings",
+        "limitations": "Not direct evidence for an adult quant learner.",
+        "notImported": "No K–8 or other-population finding is presented as direct T22 outcome evidence."
+      },
+      {
+        "id": "PED-SMITH",
+        "source": "Smith, Thompson & Mountcastle (2013), Student understanding of Taylor series expansions in statistical mechanics; user-supplied PDF",
+        "type": "empirical discipline-based education research",
+        "epistemicRole": "domain-specific Taylor learner-difficulty evidence",
+        "sections": "pp.1–12, especially graph/center pretest, generation difficulties, truncation interviews and conclusions",
+        "supports": "arbitrary-center emphasis, graph↔coefficient mapping, generation vs recognition and truncation/error decisions",
+        "populationContext": "upper-division statistical mechanics across four years; mostly senior physics majors plus some graduate students, small classes",
+        "limitations": "Narrow physics population; qualitative/small-sample findings not generalized as prevalence.",
+        "notImported": "Boltzmann-factor physics content or causal effectiveness claims."
+      },
+      {
+        "id": "PED-VISUAL",
+        "source": "https://doi.org/10.1080/10511970.2023.2193967",
+        "type": "math-education teaching reflection",
+        "epistemicRole": "supplementary visual/conceptual design comparator",
+        "sections": "abstract/described activity sequence",
+        "supports": "visual polynomial reasoning and explicit prior-learning links before formula-first presentation",
+        "populationContext": "teaching reflection in calculus context",
+        "limitations": "Not a controlled empirical study.",
+        "notImported": "Specific activities/wording or claims of causal superiority."
+      },
+      {
+        "id": "HAIRER-ADV",
+        "source": "Martin Hairer, A theory of regularity structures, arXiv:1303.5113v4; user-supplied PDF, abstract + Appendix A pp.172–174",
+        "type": "advanced research paper",
+        "epistemicRole": "advanced boundary/non-import comparator",
+        "sections": "abstract and Appendix A A generalised Taylor formula",
+        "supports": "shows Taylor-like local models generalize to distributions/inhomogeneous scalings far beyond M12",
+        "limitations": "Research-level singular-SPDE theory is radically outside learner prerequisites.",
+        "notImported": "regularity structures, distributions, singular kernels, SPDEs, renormalization, generalized anisotropic Taylor formula."
+      }
+    ]
+  },
+  "sessions": [
+    {
+      "order": 1,
+      "id": "T22V3::SIDE267::S01@1",
+      "moduleId": "SIDE267",
+      "title": "Higher derivatives are successive local information",
+      "focus": "Extend M10's first derivative into higher derivatives without yet introducing Taylor polynomials.",
+      "purpose": "Give higher-order local data a meaning and notation before factorial coefficients appear.",
+      "centralCapability": "Compute and audit repeated derivatives, their values and their domains for elementary one-variable functions.",
+      "principalObstacle": "Repeated differentiation is often treated as symbol pushing; signs, domains and the meaning of each derivative can drift unnoticed.",
+      "entryPrerequisites": [
+        "M10 derivative as a function",
+        "M10 polynomial/trigonometric/exponential/logarithmic derivative rules",
+        "M02/M03 factorial familiarity from finite counting"
+      ],
+      "requiredOwnership": [
+        "Compute successive higher derivatives of an elementary one-variable function and evaluate them at a point.",
+        "Use f^(n) notation and distinguish derivative order from exponentiation.",
+        "Audit signs and domains under repeated differentiation rather than silently enlarging the original function domain."
+      ],
+      "applicationScope": "Elementary one-variable functions already differentiable by M10 rules; no Taylor formula yet.",
+      "transferScope": "Changed from polynomial calculation to diagnosis of a repeated-derivative/domain report for log.",
+      "inScope": [
+        "f'' and f^(n)",
+        "repeated differentiation",
+        "derivative cycles",
+        "domain inheritance",
+        "factorial preview"
+      ],
+      "outOfScope": [
+        "Taylor polynomials",
+        "remainder theorem",
+        "infinite series"
+      ],
+      "exitCondition": "Compute higher derivatives correctly and reject a repeated-derivative report that has both a sign and domain error.",
+      "lesson": "Orient. M10 used one derivative to describe first-order local change. If the derivative itself changes, its derivative records that change; differentiating again records the next layer. Taylor approximation will use this whole stack, so signs and domains must remain trustworthy.\n\nDefine. Set f^(0)=f, f^(1)=f', f^(2)=f'', and in general f^(n)=(f^(n-1))' wherever that derivative exists. The superscript in parentheses is an order label, not a power: f^(3) is not f cubed. Factorials k!=k(k-1)...1 will later appear because differentiating (x-a)^k exactly k times produces k!.\n\nConnect. M10 already made f' a new function with its own domain. The same rule repeats: a formula for f^(n) is only legal where every differentiation step and the original function are legal.\n\nExplain. Polynomial derivatives eventually vanish. Sine and cosine cycle. e^x repeats itself. Logarithms keep the original x>0 domain even though rational-looking derivative formulas such as 1/x are algebraically defined elsewhere.\n\nWorked example. For q(x)=x^4-2x^2+x, q'=4x^3-4x+1, q''=12x^2-4, q'''=24x and q^(4)=24. At x=1 the successive values are 1,1,8,24,24 for orders 0 through 4. The second derivative is information about how the first derivative changes; it is not a second power of q.\n\nGuided practice. Differentiate sin x four times. Check: cos x, -sin x, -cos x, sin x. The cycle returns after four derivatives.\n\nDistinction check. A derivative formula can look algebraically meaningful outside the original domain without becoming a derivative there."
+    },
+    {
+      "order": 2,
+      "id": "T22V3::SIDE267::S02@1",
+      "moduleId": "SIDE267",
+      "title": "The unique polynomial that matches derivative data",
+      "focus": "Derive Taylor coefficients about an arbitrary center from derivative-matching conditions.",
+      "purpose": "Make the Taylor polynomial a forced local object rather than a memorized formula.",
+      "centralCapability": "Construct and justify the unique degree-at-most-n centered polynomial whose derivatives through order n match supplied local derivative data.",
+      "principalObstacle": "Learners may memorize coefficients without understanding why k! appears or may confuse a polynomial coefficient with the corresponding derivative value.",
+      "entryPrerequisites": [
+        "M12-S01 higher derivatives",
+        "finite polynomial algebra",
+        "M02 function evaluation"
+      ],
+      "requiredOwnership": [
+        "Construct a centered Taylor polynomial from derivative data at an arbitrary nonzero center.",
+        "Derive the coefficient factor 1/k! from differentiating (x-a)^k exactly k times.",
+        "Explain uniqueness among degree-at-most-n polynomials with the same derivative data."
+      ],
+      "applicationScope": "Finite one-variable polynomials about arbitrary real centers.",
+      "transferScope": "Changed from constructing a polynomial to recovering derivative data from centered coefficients and defending uniqueness.",
+      "inScope": [
+        "centered powers",
+        "factorial coefficient",
+        "derivative matching",
+        "finite uniqueness"
+      ],
+      "outOfScope": [
+        "Taylor remainder theorem",
+        "infinite Taylor series"
+      ],
+      "exitCondition": "Build the polynomial from data and reverse the map from coefficients back to derivatives without the coefficient/derivative confusion.",
+      "lesson": "Orient. Suppose we know the value, slope, curvature and further derivatives of a function at one point. Which polynomial stores exactly that local data?\n\nDefine. Write h=x-a and consider Q(x)=c_0+c_1h+c_2h^2+...+c_nh^n. At x=a, h=0. Q(a)=c_0. Differentiating once and evaluating at a leaves c_1. Differentiating k times makes the h^k term contribute k! c_k while higher powers still contain a factor h and vanish at a.\n\nExplain. To force Q^(k)(a)=f^(k)(a), we must choose c_k=f^(k)(a)/k!. Therefore P_n(x)=sum_{k=0}^n f^(k)(a)(x-a)^k/k!. The factorial is not decoration; it cancels the k! generated by k differentiations.\n\nUniqueness. If two degree-at-most-n polynomials have the same derivatives through order n at a, their difference D has D(a)=D'(a)=...=D^(n)(a)=0. In centered powers each derivative condition kills one coefficient, so all coefficients of D are zero. The two polynomials are identical.\n\nWorked example. At a=3 suppose f(3)=2, f'(3)=4 and f''(3)=-6. The matching quadratic is 2+4(x-3)-3(x-3)^2. Its second derivative is -6, not -3: -3 is the quadratic coefficient.\n\nGuided practice. At a=-2, data f=1, f'=0, f''=8 give P_2(x)=1+4(x+2)^2.\n\nDistinction check. The term (x-a)^k vanishes at the center for k>0, but its kth derivative does not; this is precisely why higher derivative data can live in the polynomial."
+    },
+    {
+      "order": 3,
+      "id": "T22V3::SIDE267::S03@1",
+      "moduleId": "SIDE267",
+      "title": "Center, graph and coefficient meaning",
+      "focus": "Connect centered polynomial coefficients to value, slope and curvature and make arbitrary-center reasoning habitual.",
+      "purpose": "Prevent Maclaurin-only pattern matching and turn algebraic coefficients into local geometric information.",
+      "centralCapability": "Translate among graph/local derivative information and centered Taylor coefficients, including recentering a polynomial.",
+      "principalObstacle": "At x=a every positive-power term evaluates to zero, tempting the false conclusion that its coefficient or corresponding derivative is zero.",
+      "entryPrerequisites": [
+        "M12-S02 centered derivative matching",
+        "M10 tangent/slope meaning"
+      ],
+      "requiredOwnership": [
+        "Translate value, slope and second-derivative information at a nonzero center into a quadratic local polynomial.",
+        "Distinguish the coefficient of (x-a)^2 from the second derivative value.",
+        "Recenter an exact polynomial about a new center without treating center 0 as privileged."
+      ],
+      "applicationScope": "Quadratic local representation and exact recentering of low-degree polynomials.",
+      "transferScope": "Changed from graphical derivative information to exact recentering of a supplied polynomial.",
+      "inScope": [
+        "graph value/slope/concavity",
+        "nonzero centers",
+        "coefficient-vs-derivative",
+        "recentered polynomial"
+      ],
+      "outOfScope": [
+        "error theorem",
+        "series convergence"
+      ],
+      "exitCondition": "Build a quadratic from graph-derived data and exactly recenter a polynomial around a different point.",
+      "lesson": "Orient. A Taylor polynomial is centered information. Changing the center changes its coefficients even when the underlying function is the same.\n\nConnect representations. For P_2(x)=f(a)+f'(a)(x-a)+f''(a)(x-a)^2/2, the constant term is the graph height at a, the linear coefficient is the tangent slope, and twice the quadratic coefficient is the second derivative. Positive second derivative means local upward curvature; negative means downward curvature.\n\nWhy the center matters. At x=a the factors (x-a) and (x-a)^2 are zero, so P_2(a)=f(a). That does not make f'(a) or f''(a) zero. Those derivatives are recovered by differentiating before evaluating.\n\nWorked example. A graph at a=2 has value -1, slope 3 and second derivative 4. Its matching quadratic is -1+3(x-2)+2(x-2)^2. The quadratic coefficient is 2 while the second derivative is 4.\n\nRecenter exact polynomials. If p(x)=x^2, then about a=3 write x=3+h: p=9+6h+h^2. This is not an approximation; because p has degree 2, the degree-2 Taylor polynomial equals p exactly everywhere.\n\nGuided practice. At a=-1, height 5, horizontal tangent and second derivative -2 give 5-(x+1)^2.\n\nDistinction check. Maclaurin means only the special center a=0. It is not another theorem and is not the definition of Taylor approximation."
+    },
+    {
+      "order": 4,
+      "id": "T22V3::SIDE267::S04@1",
+      "moduleId": "SIDE267",
+      "title": "Derivative matching is local, not a global error guarantee",
+      "focus": "Introduce the residual and fixed-degree local order question before Taylor's theorem.",
+      "purpose": "Create the need for an error theorem without pretending derivative matching itself supplies one.",
+      "centralCapability": "Compute and interpret residuals in explicit examples, separating fixed-degree x→a behavior from global closeness.",
+      "principalObstacle": "A polynomial can share several derivatives at a center yet be very inaccurate farther away; a local condition is easily overgeneralized.",
+      "entryPrerequisites": [
+        "M12-S02 derivative matching",
+        "M09 function limits"
+      ],
+      "requiredOwnership": [
+        "Compute an explicit residual f-P_n and analyze a scaled residual limit in a case where the algebra is known exactly.",
+        "Distinguish fixed-degree local behavior as x approaches the center from an n→infinity series question.",
+        "Refute a global-accuracy claim using a concrete far-from-center error despite correct derivative matching."
+      ],
+      "applicationScope": "Explicit finite functions where residual algebra is directly available; no general Taylor error theorem yet.",
+      "transferScope": "Changed from symbolic residual analysis to numerical local-versus-far comparison refuting a global claim.",
+      "inScope": [
+        "residual",
+        "scaled residual",
+        "order of contact intuition",
+        "local vs global"
+      ],
+      "outOfScope": [
+        "Lagrange remainder theorem",
+        "infinite Taylor series"
+      ],
+      "exitCondition": "Use exact residual data to explain why local derivative matching needs a separate theorem before finite error can be certified.",
+      "lesson": "Orient. S02 told us which polynomial matches derivatives. It did not say how close that polynomial is anywhere except in the derivative data at the center.\n\nDefine. For a chosen finite polynomial P_n, call R_n(x)=f(x)-P_n(x) the residual or actual approximation error. At this stage R_n is just a difference; no general bound has been proved.\n\nFixed degree, moving x. If an explicit example gives R_2(a+h)=5h^3, then R_2/h^2=5h→0 as h→0. That says the error is negligible compared with h^2 near the center. It says nothing by itself about h=2.\n\nDifferent question. Keeping x fixed and letting n grow asks whether a sequence of polynomials converges. That is an infinite-series question and arrives later. Do not merge it with x→a at fixed n.\n\nWorked example. Let f(a+h)=4-h+2h^2-3h^3 and P_2=4-h+2h^2. Then R_2=-3h^3 and R_2/h^2=-3h→0. At h=1, however, the actual error is -3, which may be large for the application.\n\nGuided practice. If R_1(h)=8h^2, then R_1/h=8h→0 near 0; at h=0.5 the error is 2. Local scaling and finite numerical size are different claims.\n\nDistinction check. The general theorem that will control R_n has not been earned yet."
+    },
+    {
+      "order": 5,
+      "id": "T22V3::SIDE267::S05@1",
+      "moduleId": "SIDE267",
+      "title": "Rolle and MVT: the bounded support bridge for Taylor error",
+      "focus": "Supply only the interval theorem machinery needed to prove the Taylor remainder.",
+      "purpose": "Close a formal prerequisite gap without turning M12 into a general Mean Value Theorem applications unit.",
+      "centralCapability": "Prove/use the compact Rolle→MVT bridge with hypotheses visible and reject illegal applications.",
+      "principalObstacle": "A familiar theorem is often invoked from endpoint data alone while continuity or interior differentiability is missing.",
+      "entryPrerequisites": [
+        "M09-S26 Extreme Value Theorem",
+        "M10 derivative definition and local extrema intuition"
+      ],
+      "requiredOwnership": [
+        "Derive the one-variable Mean Value Theorem from Rolle's theorem using the secant-line subtraction.",
+        "State/check continuity on the closed interval and differentiability on the open interval before invoking Rolle/MVT.",
+        "Reject a Rolle/MVT conclusion when an interior nondifferentiable point destroys the theorem hypothesis."
+      ],
+      "applicationScope": "Bounded real intervals only; support for Taylor proof.",
+      "transferScope": "Changed from theorem reconstruction to a nondifferentiable absolute-value counterexample.",
+      "inScope": [
+        "Fermat support lemma",
+        "Rolle theorem",
+        "MVT",
+        "interval hypotheses"
+      ],
+      "outOfScope": [
+        "optimization",
+        "curve sketching",
+        "global error estimates other than later Taylor use"
+      ],
+      "exitCondition": "Can reconstruct MVT and identify an exact hypothesis failure in a tempting counterexample.",
+      "lesson": "Orient. Taylor's remainder proof needs a way to turn endpoint equalities into a derivative equality somewhere in between. M10 did not own a broad MVT unit, so we make the needed bridge explicit.\n\nFermat support. If a differentiable function has a local maximum or minimum at an interior point c, then its derivative at c is 0. The derivative quotient from the right and left cannot both have the same nonzero sign at an extremum.\n\nRolle. If g is continuous on [a,b], differentiable on (a,b), and g(a)=g(b), the EVT gives a maximum and minimum. If g is constant, every interior derivative is 0. Otherwise one extremum occurs inside, and Fermat gives g'(c)=0.\n\nMVT. For f continuous on [a,b] and differentiable on (a,b), subtract the secant line L(t)=f(a)+m(t-a), where m=[f(b)-f(a)]/(b-a). Then h=f-L has equal endpoint values, so Rolle gives h'(c)=0 and therefore f'(c)=m.\n\nWorked example. For f(t)=t^2 on [1,3], the secant slope is (9-1)/2=4. MVT predicts c in (1,3) with 2c=4, so c=2.\n\nGuided practice. For f(t)=1/t on [1,2], identify the hypotheses and the secant slope -1/2; solving -1/c^2=-1/2 gives c=sqrt(2), which lies inside.\n\nDistinction check. A conclusion that happens to be true does not legalize a theorem invocation whose hypotheses are absent."
+    },
+    {
+      "order": 6,
+      "id": "T22V3::SIDE267::S06@1",
+      "moduleId": "SIDE267",
+      "title": "Taylor's theorem: derivative matching plus a legal remainder",
+      "focus": "Turn a derivative-matching polynomial into a theorem-level local approximation with the Lagrange remainder and all interval/derivative hypotheses visible.",
+      "purpose": "Prevent Taylor polynomials from becoming unexplained formulas by showing exactly what theorem connects them to the target function and where the unknown remainder point comes from.",
+      "centralCapability": "Reconstruct and audit the one-variable Lagrange-remainder theorem on a bounded interval, including its hypotheses and the role of the intermediate point.",
+      "principalObstacle": "The coefficient derivatives are evaluated at the center, which tempts a learner to put the remainder derivative there too.",
+      "entryPrerequisites": [
+        "M12-S02 derivative-matching polynomial",
+        "M12-S04 residual",
+        "M12-S05 Rolle/MVT support"
+      ],
+      "requiredOwnership": [
+        "Reconstruct a valid degree-2 Lagrange-remainder proof from derivative matching and Rolle/MVT.",
+        "Distinguish the Taylor center from the unknown intermediate remainder point and locate that point between center and evaluation point.",
+        "Audit a proposed Taylor-theorem use for the required higher-derivative hypothesis on the whole intervening open interval."
+      ],
+      "applicationScope": "One-variable finite-order Taylor theorem; representative n=2 proof.",
+      "transferScope": "Hypothesis forensics on a piecewise-smooth function crossing an interior point where the next derivative fails.",
+      "inScope": [
+        "Taylor theorem",
+        "Lagrange remainder",
+        "repeated Rolle",
+        "hypotheses",
+        "intermediate c"
+      ],
+      "outOfScope": [
+        "numerical tolerance selection",
+        "O/o notation",
+        "infinite series"
+      ],
+      "exitCondition": "Prove the n=2 remainder and reject an illegal application despite a valid Taylor polynomial at the center.",
+      "lesson": "Orient. A polynomial can match f, f' and f'' at a center and still separate from f away from that center. We need a theorem that turns derivative matching into a statement about the residual.\n\nDefine. For center a, let P_n be the degree-n Taylor polynomial and R_n(x)=f(x)-P_n(x). If f has n continuous derivatives on the closed interval joining a and x and f^(n+1) exists at every interior point, then for some c strictly between a and x,\nR_n(x)=f^(n+1)(c)(x-a)^(n+1)/(n+1)!.\nThe point c is supplied by the theorem; it is not automatically a or x.\n\nProof architecture for n=2. Choose M so f(x)-P_2(x)=M(x-a)^3 and set g(t)=f(t)-P_2(t)-M(t-a)^3. Then g(x)=0 and derivative matching gives g(a)=g'(a)=g''(a)=0. Apply Rolle successively to obtain c between a and x with g'''(c)=0. Since g'''=f'''-6M, M=f'''(c)/6.\n\nWorked example. For f(t)=ln t, center 1 and x=1.2, P_1(t)=t-1. The theorem gives ln(1.2)-0.2=f''(c)(0.2)^2/2=-0.02/c^2 for some c∈(1,1.2). We have not yet replaced c by a bound; that is S07.\n\nGuided practice. For e^t about 0 to first degree at x=0.3, write e^0.3-1.3=e^c(0.3)^2/2 for some c∈(0,0.3).\n\nDistinction check. The coefficients use derivatives at a; the remainder uses a derivative at an unknown intermediate c. Existence of P_n at a is not enough if the next derivative fails inside the interval."
+    },
+    {
+      "order": 7,
+      "id": "T22V3::SIDE267::S07@1",
+      "moduleId": "SIDE267",
+      "title": "From remainder formula to certified tolerance",
+      "focus": "Turn the unknown Lagrange point into a defensible error bound and use that bound to choose approximation order or center.",
+      "purpose": "Make truncation an accountable tolerance decision rather than “drop small terms.”",
+      "centralCapability": "Bound the relevant next derivative on the whole interval and convert Taylor's remainder into a certified numerical error inequality.",
+      "principalObstacle": "Using the derivative value at the center or endpoint as though it were automatically the maximum can understate error.",
+      "entryPrerequisites": [
+        "M12-S06 Taylor theorem",
+        "M09-S26 EVT/bounds",
+        "elementary derivative monotonicity where used"
+      ],
+      "requiredOwnership": [
+        "Find or justify a uniform bound M for the relevant next derivative on the entire interval between center and target.",
+        "Compute a certified Lagrange error bound and distinguish it from the actual error.",
+        "Choose among candidate degrees using a stated tolerance rather than visual stability or the first omitted term."
+      ],
+      "applicationScope": "Elementary exp/log/trig examples with simple derivative bounds.",
+      "transferScope": "Changed from degree selection for sin to interval-bound construction for log.",
+      "inScope": [
+        "M bound",
+        "Lagrange inequality",
+        "tolerance",
+        "degree choice",
+        "actual error vs upper bound"
+      ],
+      "outOfScope": [
+        "floating-point roundoff",
+        "alternating-series error theorem"
+      ],
+      "exitCondition": "Can reject an endpoint-only derivative bound and produce a legal interval-wide certificate.",
+      "lesson": "Orient. S06 says the remainder uses f^(n+1)(c), but c is unknown. To make the theorem operational we bound that derivative everywhere c could be.\n\nIf |f^(n+1)(t)|≤M for every t between a and x, then |R_n(x)|≤M|x-a|^(n+1)/(n+1)!. M must cover the whole intervening interval. A value at one endpoint is a bound only if you justify why no larger magnitude occurs elsewhere.\n\nWorked example. Approximate e^0.25 by P_2=1+0.25+0.25^2/2. On [0,0.25], e^t≤e^0.25<1.3, so |R_2|<1.3(0.25)^3/6≈0.00339. This is an upper bound; it is not an assertion that the actual error equals 0.00339.\n\nDegree choice. A tolerance is a public inequality to satisfy. Test candidate degrees by their proved bounds; do not stop because successive decimal answers look similar.\n\nGuided practice. For cos(0.2), the degree-2 Maclaurin polynomial has fourth? Careful: the Lagrange remainder for degree 2 uses the third derivative sin, so the simple M=1 bound is |R_2|≤0.2^3/6. State the theorem you are actually using rather than jumping to the next nonzero series term.\n\nDistinction check. “First omitted nonzero term” can be a useful heuristic in special series, but Lagrange certification comes from a theorem and an interval-wide derivative bound."
+    },
+    {
+      "order": 8,
+      "id": "T22V3::SIDE267::S08@1",
+      "moduleId": "SIDE267",
+      "title": "Big-O and little-o are precise error statements",
+      "focus": "Compress local error information into bounded-ratio and vanishing-ratio notation without turning the symbols into vague approximation signs.",
+      "purpose": "Give the canonical module title's 'asymptotics' component a precise deterministic foundation tied to M09 limits and M12 remainder bounds.",
+      "centralCapability": "Prove and distinguish local O and o statements from inequalities/limits.",
+      "principalObstacle": "O and o are often read as interchangeable versions of 'small,' hiding constants, neighborhoods and limit strength.",
+      "entryPrerequisites": [
+        "M09 limits/boundedness",
+        "M12-S07 error bounds"
+      ],
+      "requiredOwnership": [
+        "Prove an O statement by exhibiting bounded ratio or an explicit constant/neighborhood.",
+        "Prove an o statement by a ratio limit and distinguish it from O of the same scale.",
+        "Translate a Taylor-style bound of order h^(n+1) into both O(h^(n+1)) and the weaker-scale o(h^n) consequence."
+      ],
+      "applicationScope": "Deterministic one-variable limits, chiefly h→0.",
+      "transferScope": "Changed from explicit polynomial residual to reasoning from an inequality certificate and constructing a counterexample to an overstrong o claim.",
+      "inScope": [
+        "O",
+        "o",
+        "constants/neighborhoods",
+        "ratio limits",
+        "Taylor remainder order"
+      ],
+      "outOfScope": [
+        "full asymptotic series",
+        "probabilistic O_p/o_p",
+        "algorithm complexity"
+      ],
+      "exitCondition": "Can prove true O/o statements and reject an unjustified little-o upgrade.",
+      "lesson": "Orient. Repeating “there exists a constant and a small enough neighborhood” is cumbersome. Order notation compresses that logic, but only if its definition remains visible.\n\nAs h→0, r(h)=O(h^k) means |r(h)/h^k| stays bounded on some punctured neighborhood; equivalently there are C,δ>0 with |r(h)|≤C|h|^k whenever 0<|h|<δ. By contrast r(h)=o(h^k) means r(h)/h^k→0.\n\nExample. r(h)=3h^2+h^3 has r/h^2=3+h, bounded but not tending to 0. So r=O(h^2) but not o(h^2). Yet r/h=3h+h^2→0, so r=o(h).\n\nTaylor link. If S07 gives |R_n(a+h)|≤C|h|^(n+1) locally, then R_n=O(h^(n+1)). Dividing by |h|^n leaves at most C|h|→0, hence R_n=o(h^n). The second statement is weaker in scale, not a synonym.\n\nWorked example. If |E(h)|≤7|h|^3 for |h|<0.1, then E=O(h^3) and E=o(h^2). We cannot conclude E=o(h^3); E=7h^3 satisfies the same bound but has ratio 7.\n\nGuided practice. h^4 is o(h^3) and O(h^4); h^3 is O(h^3) but not o(h^3).\n\nDistinction check. Neither O nor o is an informal equals sign. Always say what variable approaches what limit."
+    },
+    {
+      "order": 9,
+      "id": "T22V3::SIDE267::S09@1",
+      "moduleId": "SIDE267",
+      "title": "Asymptotic equivalence and leading scale",
+      "focus": "Define f~g by a ratio-one limit and separate relative equivalence from absolute closeness.",
+      "purpose": "Complete the bounded deterministic asymptotic vocabulary needed later without importing probabilistic or full asymptotic-series machinery.",
+      "centralCapability": "Prove and interpret asymptotic equivalence at finite or infinite limiting points.",
+      "principalObstacle": "Learners often replace ratio-one equivalence by the weaker/different condition f-g→0.",
+      "entryPrerequisites": [
+        "M09 quotient limits",
+        "M12-S08 o notation"
+      ],
+      "requiredOwnership": [
+        "Prove f~g from the ratio limit or from f=g+o(g) where g is eventually nonzero.",
+        "Distinguish asymptotic equivalence from the condition f-g→0 using counterexamples.",
+        "Apply the same definition to deterministic sequences as n→infinity and interpret relative rather than absolute error."
+      ],
+      "applicationScope": "Simple deterministic functions/sequences; no probability.",
+      "transferScope": "Change limiting variable from h→0 to n→∞ and make the absolute difference diverge while relative error vanishes.",
+      "inScope": [
+        "~",
+        "relative error",
+        "leading scale",
+        "finite/infinite limit points"
+      ],
+      "outOfScope": [
+        "Poincare expansions",
+        "O_p/o_p",
+        "algorithmic complexity"
+      ],
+      "exitCondition": "Can defend ratio-one equivalence even when absolute difference grows, and reject difference-zero as a definition.",
+      "lesson": "Define. As x→c, f(x)~g(x) means f(x)/g(x)→1 wherever g is nonzero sufficiently near the limit point. Equivalently, f=g+o(g) when that statement is well-defined.\n\nRelative, not absolute. If f=2h+5h^2 and g=2h, then f/g=1+(5/2)h→1. The second term is negligible relative to the first.\n\nA trap. f-g→0 does not imply f~g. For f(h)=h and g(h)=2h, the difference -h→0 while f/g=1/2. Conversely, f~g does not require the absolute difference to vanish at infinity.\n\nWorked example. As n→∞, n+1~n because (n+1)/n→1 even though the difference stays 1.\n\nGuided practice. n+sqrt(n)~n because the relative correction is 1/sqrt(n)→0; its absolute correction grows without bound.\n\nTaylor connection. A local relation f(a+h)=A h^k+o(h^k), A≠0, implies f(a+h)~A h^k. This identifies the leading scale, not a finite numerical tolerance.\n\nDistinction check. The informal symbol ≈ has no fixed limit-theorem meaning here; ~ does."
+    },
+    {
+      "order": 10,
+      "id": "T22V3::SIDE267::S10@1",
+      "moduleId": "SIDE267",
+      "title": "Infinite series are limits of finite partial sums",
+      "focus": "Close the hidden prerequisite gap between M09 sequence limits and Taylor series.",
+      "purpose": "Make infinity a limit operation rather than an algebraic ellipsis.",
+      "centralCapability": "Define and analyze an infinite series through its partial-sum sequence, deriving the geometric-series result from M09.",
+      "principalObstacle": "Writing infinitely many terms can tempt algebraic manipulations that are valid only after convergence is established.",
+      "entryPrerequisites": [
+        "M09 sequence convergence",
+        "M09-S10 geometric sequence decay",
+        "finite geometric-sum algebra"
+      ],
+      "requiredOwnership": [
+        "Define convergence of an infinite series via the sequence of finite partial sums.",
+        "Derive the geometric-series sum for |r|<1 from the finite sum formula and q^N→0.",
+        "Reject algebra on a divergent series by inspecting its partial sums."
+      ],
+      "applicationScope": "Geometric and simple partial-sum examples only.",
+      "transferScope": "Changed from convergent geometric derivation to auditing a famous divergent alternating manipulation.",
+      "inScope": [
+        "partial sums",
+        "series convergence",
+        "geometric series",
+        "divergence"
+      ],
+      "outOfScope": [
+        "general convergence-test catalogue",
+        "rearrangements",
+        "Cesaro summation"
+      ],
+      "exitCondition": "Never assigns an ordinary sum to a series before its partial sums converge.",
+      "lesson": "Orient. The symbol ... is not a permission to perform infinitely many arithmetic operations at once. M09 already knows how sequences converge, so we define an infinite sum through a sequence of finite sums.\n\nFor numbers a_0,a_1,... define S_N=sum_{n=0}^N a_n. The infinite series sum a_n converges to S exactly when the sequence S_N converges to S.\n\nGeometric bridge. For r≠1,\n1+r+...+r^N=(1-r^(N+1))/(1-r).\nIf |r|<1, M09 gives r^(N+1)→0, so the series sums to 1/(1-r). If |r|>1 or r=1, the partial sums do not converge; for r=-1 they oscillate.\n\nWorked example. sum_{n=0}∞ (1/3)^n has S_N=[1-(1/3)^(N+1)]/(1-1/3)→3/2.\n\nGuided practice. sum 2(1/5)^n converges to 2/(1-1/5)=5/2.\n\nDistinction check. Manipulations such as S=1-1+1-... and S=1-S presuppose an ordinary convergent sum. The partial sums decide whether that premise exists."
+    },
+    {
+      "order": 11,
+      "id": "T22V3::SIDE267::S11@1",
+      "moduleId": "SIDE267",
+      "title": "Power series have a center and a convergence region",
+      "focus": "Introduce power series as x-dependent series and use geometric examples to make center and region concrete.",
+      "purpose": "Supply only the power-series language Taylor series needs, without opening a general series-test course.",
+      "centralCapability": "Analyze geometric power series about arbitrary centers, including convergence region, sum and partial-sum meaning.",
+      "principalObstacle": "The summation index or standard powers x^n can distract from the actual center encoded by (x-a)^n.",
+      "entryPrerequisites": [
+        "M12-S10 series/geometry",
+        "M02 functions and intervals"
+      ],
+      "requiredOwnership": [
+        "Identify the center of a power series and express its geometric ratio in terms of x-a.",
+        "Determine a directly justified convergence region and sum for a geometric power series.",
+        "Diagnose a false center claim and endpoint divergence without invoking unowned general convergence tests."
+      ],
+      "applicationScope": "Geometric power series where convergence follows directly from |r|<1.",
+      "transferScope": "Changed to center diagnosis and endpoint behavior for a differently shifted series.",
+      "inScope": [
+        "power series",
+        "center",
+        "convergence set",
+        "partial sums",
+        "geometric representation"
+      ],
+      "outOfScope": [
+        "ratio/root tests",
+        "general radius theorem proof",
+        "termwise differentiation/integration"
+      ],
+      "exitCondition": "Reads center from the powers and proves the region from the geometric ratio.",
+      "lesson": "Define. A power series about a is sum_{n=0}∞ c_n(x-a)^n. For each fixed x it becomes an ordinary numerical series; convergence is therefore a question about its partial sums at that x.\n\nGeometric anchor. sum ((x-a)/R)^n is geometric with ratio r=(x-a)/R. It converges exactly when |x-a|<|R| and then sums to 1/[1-(x-a)/R].\n\nCenter. The point a is where every positive-power term vanishes. It need not be 0. The lower summation index n=0 says where indexing starts, not where the series is centered.\n\nWorked example. sum ((x+2)/4)^n is centered at -2 and converges when |x+2|<4, i.e. -6<x<2. Its sum there is 1/[1-(x+2)/4].\n\nRepresentation. Partial-sum graphs are finite polynomials. At points where the series converges they may approach a limiting function; outside the convergence region higher partial sums can move farther away.\n\nGuided practice. sum ((x-5)/2)^n is centered at 5 and converges for 3<x<7.\n\nBoundary. We are not proving the full theorem that arbitrary power series have a radius of convergence, nor learning a battery of tests."
+    },
+    {
+      "order": 12,
+      "id": "T22V3::SIDE267::S12@1",
+      "moduleId": "SIDE267",
+      "title": "A Taylor series is a candidate, not a promise",
+      "focus": "Continue the finite derivative-matching pattern indefinitely while keeping partial sums, series convergence and target equality distinct.",
+      "purpose": "Prevent coefficient generation from being mistaken for a representation theorem.",
+      "centralCapability": "Construct a Taylor-series candidate and state exactly what remains unproved before identifying it with the function.",
+      "principalObstacle": "The familiar equals sign f(x)=sum... is often written before convergence or equality has been established.",
+      "entryPrerequisites": [
+        "M12-S02 finite Taylor polynomial",
+        "M12-S10 series",
+        "M12-S11 power series"
+      ],
+      "requiredOwnership": [
+        "Construct the Taylor-series candidate about an arbitrary center from all derivative data.",
+        "Identify the nth Taylor polynomial as the nth finite partial sum of that candidate.",
+        "Refuse to infer unobserved higher coefficients or equality with the target from finitely many Taylor polynomials."
+      ],
+      "applicationScope": "Formal candidate construction; equality postponed to S14.",
+      "transferScope": "Changed from complete derivative pattern to finite observed partial polynomials where extrapolating an infinite pattern is underdetermined.",
+      "inScope": [
+        "Taylor-series candidate",
+        "partial sums",
+        "finite-vs-infinite distinction",
+        "representation claim"
+      ],
+      "outOfScope": [
+        "automatic equality",
+        "analytic continuation"
+      ],
+      "exitCondition": "Uses 'candidate' language until convergence-to-function is justified.",
+      "lesson": "Orient. S02 built P_n for any finite n. If derivatives of every order exist, we can write the infinite coefficient pattern\nsum_{k=0}∞ f^(k)(a)(x-a)^k/k!.\nThis is the Taylor-series candidate about a.\n\nFinite versus infinite. Its nth partial sum is exactly P_n. That identity is algebraic. It does not prove the sequence P_n(x) converges as n→∞, and even convergence to some number would not yet prove the limit is f(x).\n\nThree questions must remain separate:\n1. Do all required derivatives at a exist?\n2. Does the resulting numerical series converge at the chosen x?\n3. If it converges, is its sum f(x)?\n\nWorked example. If f^(k)(1)=2 for every k, the candidate is 2 sum (x-1)^k/k!. Writing this candidate is legal from the data; claiming it equals f needs additional information.\n\nFinite-pattern warning. Seeing P_0,P_1,P_2,P_3 does not determine P_4 or later coefficients unless a rule for higher derivatives is supplied. M02 already taught that finite prefixes do not prove all-future behavior.\n\nGuided practice. If all derivatives at a are zero, the Taylor-series candidate is the zero series. Whether the function itself is zero nearby is a different question reserved for S17."
+    },
+    {
+      "order": 13,
+      "id": "T22V3::SIDE267::S13@1",
+      "moduleId": "SIDE267",
+      "title": "Canonical elementary candidates by derivative pattern",
+      "focus": "Generate exp/sin/cos Taylor candidates and transform them through simple scaling or recentering.",
+      "purpose": "Build reusable canonical expansions from derivative structure instead of memorized lists.",
+      "centralCapability": "Generate representative Taylor polynomials/series candidates from derivative cycles at the correct center.",
+      "principalObstacle": "Memorized Maclaurin formulas are easily mis-scaled or reused at the wrong center.",
+      "entryPrerequisites": [
+        "M12-S12 candidate series",
+        "M10 exp/trig derivatives"
+      ],
+      "requiredOwnership": [
+        "Generate the exponential, sine or cosine Taylor coefficients from their derivative patterns rather than quote an unexplained formula.",
+        "Handle affine input scaling correctly in a canonical Maclaurin candidate.",
+        "Construct a canonical candidate about a nonzero center."
+      ],
+      "applicationScope": "e^x, sin, cos and affine versions; equality proof remains S14.",
+      "transferScope": "Changed from scaled Maclaurin cosine to exponential recentered at 1.",
+      "inScope": [
+        "derivative cycles",
+        "Maclaurin special case",
+        "scaling",
+        "recentering"
+      ],
+      "outOfScope": [
+        "termwise series operations as a theorem",
+        "complex exponentials"
+      ],
+      "exitCondition": "Can reconstruct canonical candidates when coefficients are not handed over.",
+      "lesson": "For e^x, every derivative is e^x, so at a=0 every derivative value is 1 and the candidate is sum x^k/k!. For sin x, derivatives cycle sin,cos,-sin,-cos; at 0 only odd terms remain with alternating signs. Cos has the even alternating pattern.\n\nGenerate, do not chant. For cos(3x), repeated chain-rule scaling gives factors 3^k; equivalently substitute the centered variable into the derivative pattern only after checking the scaling. This yields 1-(3x)^2/2!+(3x)^4/4!-....\n\nNonzero center. For e^x about a, every derivative at a is e^a, so the candidate is e^a sum (x-a)^k/k!. This is a centered construction, not a translated slogan.\n\nWorked example. sin(2x) has P_5=2x-(2x)^3/3!+(2x)^5/5!.\n\nGuided practice. cos x about a=pi has derivative data -1,0,1,0,-1,... and begins -1+(x-pi)^2/2!-(x-pi)^4/4!+....\n\nBoundary. We are still constructing candidates. S14 earns equality with the target."
+    },
+    {
+      "order": 14,
+      "id": "T22V3::SIDE267::S14@1",
+      "moduleId": "SIDE267",
+      "title": "When the Taylor series actually equals the function",
+      "focus": "Use remainder-to-zero as the decisive bridge from finite Taylor polynomials to a valid infinite representation.",
+      "purpose": "Separate convergence of a numerical series from proof that its sum is the original function.",
+      "centralCapability": "Prove selected canonical Taylor representations by driving the finite Taylor remainder to zero.",
+      "principalObstacle": "A convergent derivative-generated series can be mistaken for the target function without controlling f-P_n.",
+      "entryPrerequisites": [
+        "M12-S06–S07 remainder theorem/bounds",
+        "M12-S10 series",
+        "M12-S13 canonical candidates"
+      ],
+      "requiredOwnership": [
+        "Use the identity f=P_n+R_n and a proved R_n(x)→0 to justify equality between a Taylor series and f at a fixed x.",
+        "Prove the factorial tail |x|^n/n! tends to zero for fixed x using an eventual geometric bound.",
+        "Reject the inference 'the Taylor series converges, therefore it equals f' and repair it with a remainder argument."
+      ],
+      "applicationScope": "e^x, sin x, cos x for fixed real x.",
+      "transferScope": "Changed from direct e^x representation proof to logic audit and repair for sine.",
+      "inScope": [
+        "remainder→0",
+        "factorial domination",
+        "canonical equality",
+        "convergence vs representation"
+      ],
+      "outOfScope": [
+        "uniform convergence",
+        "termwise operations",
+        "complex analytic theory"
+      ],
+      "exitCondition": "Never turns a convergent candidate into f without a target-equality argument.",
+      "lesson": "The finite identity is always f(x)=P_n(x)+R_n(x) whenever P_n and R_n are defined. Therefore if, for a fixed x, R_n(x)→0 as n→∞, the partial sums P_n(x) converge to f(x). This is the bridge.\n\nFactorial tail. For fixed A=|x|, let u_n=A^n/n!. Once n+1≥2A, u_{n+1}/u_n=A/(n+1)≤1/2. The tail is then dominated by a decaying geometric sequence, so u_n→0.\n\nFor e^x about 0, Taylor's theorem gives |R_n(x)|≤e^|x| |x|^(n+1)/(n+1)! for fixed x. The constant e^|x| does not affect the limit; factorial tail wins, so R_n→0 and the candidate equals e^x for every real x.\n\nFor sin/cos, every derivative has magnitude at most 1, so the same style of bound is even simpler.\n\nWorked example. For cos x, |R_n(x)|≤|x|^(n+1)/(n+1)! for any fixed x when using the degree-n polynomial. Hence the full cosine candidate represents cos x on all real inputs.\n\nGuided practice. Explain why 'the coefficients look right' is insufficient until the remainder bridge is supplied.\n\nDistinction check. Series convergence answers “does P_n(x) approach some value?” Remainder decay answers “is that value f(x)?”"
+    },
+    {
+      "order": 15,
+      "id": "T22V3::SIDE267::S15@1",
+      "moduleId": "SIDE267",
+      "title": "Generate the local model when nobody says 'use Taylor'",
+      "focus": "Transfer from formulas to graph, derivative-table and contextual local information.",
+      "purpose": "Directly address the documented gap between recognizing/applying a supplied expansion and generating one in a novel context.",
+      "centralCapability": "Choose the centered variable and construct a finite local polynomial from contextual or graphical derivative data without a Taylor template.",
+      "principalObstacle": "Topic cues can carry procedural performance; removing the cue exposes whether the learner recognizes what local data mean.",
+      "entryPrerequisites": [
+        "M12-S02–S03 derivative matching/representations",
+        "M12-S07 error-information requirements"
+      ],
+      "requiredOwnership": [
+        "Generate a quadratic local model from contextual derivative data without a supplied Taylor formula.",
+        "Interpret the linear and quadratic contributions in terms of local change/curvature rather than coefficient recital.",
+        "State what additional next-derivative information is needed before a certified finite error bound is available."
+      ],
+      "applicationScope": "Low-order one-variable contextual models.",
+      "transferScope": "Changed from numeric context table to graphical local features at a negative center.",
+      "inScope": [
+        "generation",
+        "center choice",
+        "interpretation",
+        "error-information audit"
+      ],
+      "outOfScope": [
+        "domain-specific probabilistic models",
+        "optimization"
+      ],
+      "exitCondition": "Recognizes and constructs the local polynomial when the word Taylor is absent.",
+      "lesson": "Research evidence on advanced students shows an important split: many can interpret a supplied Taylor expression yet struggle to generate the right expansion in a new physical setting. This session removes the chapter cue.\n\nStrategy. Identify the center a from the operating point. Introduce h=x-a. Translate local data: value→constant term, first derivative→linear coefficient, second derivative/2→quadratic coefficient. Only then calculate.\n\nWorked context. A calibration response C(p) at p=10 has C=50, C'=2 units/parameter and C''=-0.6 units/parameter^2. The matching quadratic is 50+2h-0.3h^2. At h=0.1 the linear contribution is +0.2 and quadratic correction -0.003.\n\nWhat it does not know. Without a bound on C''' over the interval, this quadratic does not come with a certified Lagrange error. Local model construction and error certification are separate capabilities.\n\nGraph representation. Height, tangent slope and concavity at a center encode the same derivative data. A graph can suggest signs and relative shape but does not invent numerical derivative magnitudes that are not supplied.\n\nGuided practice. Given value 4, slope -1 and second derivative 6 at a=-2, build 4-(x+2)+3(x+2)^2.\n\nDistinction check. “Use Taylor” is not a capability. Recognizing local derivative data and creating the representation is."
+    },
+    {
+      "order": 16,
+      "id": "T22V3::SIDE267::S16@1",
+      "moduleId": "SIDE267",
+      "title": "Higher degree is not globally safer: center and convergence region",
+      "focus": "Use a geometric-function example to show Taylor partial sums can worsen outside their convergence region and that recentering can matter more than adding terms.",
+      "purpose": "Destroy the global-monotone-improvement misconception and make center choice operational.",
+      "centralCapability": "Diagnose a failed far-field Taylor expansion and construct a better legal recentering when the function permits it.",
+      "principalObstacle": "Success near a center encourages the false rule that more terms improve approximation everywhere.",
+      "entryPrerequisites": [
+        "M12-S11 geometric power series",
+        "M12-S12 Taylor partial sums",
+        "M12-S13 recentering"
+      ],
+      "requiredOwnership": [
+        "Demonstrate with exact partial sums that increasing Taylor degree can worsen approximation outside a convergence region.",
+        "Explain the failure through the geometric ratio/center rather than blaming arithmetic.",
+        "Recenter a geometric-function expansion and compare relative ratios at a target point."
+      ],
+      "applicationScope": "Rational geometric function 1/(1-x), no singularity-crossing.",
+      "transferScope": "Changed from failure diagnosis at x=-2 to constructing a new center near x=0.9 and comparing convergence ratios.",
+      "inScope": [
+        "convergence region",
+        "far-field failure",
+        "recenter",
+        "degree vs center"
+      ],
+      "outOfScope": [
+        "complex singularity theory",
+        "analytic continuation"
+      ],
+      "exitCondition": "Knows when adding terms is structurally wrong and can change center instead.",
+      "lesson": "For f(x)=1/(1-x), the Maclaurin Taylor partial sums are P_n=1+x+...+x^n because the function is the geometric sum only for |x|<1.\n\nInside |x|<1, the omitted geometric tail shrinks. Outside, powers x^n need not shrink at all. More terms can therefore make the finite polynomial farther from f.\n\nWorked example. At x=-1.5, f=0.4 while P_1=-0.5, P_2=1.75, P_3=-1.625; the sequence is not settling because the geometric ratio has magnitude 1.5.\n\nCenter choice. Around a=0.5, write h=x-0.5:\n1/(1-x)=1/(0.5-h)=2/(1-2h)=2 sum (2h)^n for |h|<0.5.\nThe same function gets a new local representation and new convergence region.\n\nGuided practice. Compare target x=0.75: ratio from center 0 is 0.75; from center 0.5 it is 0.5, so the recentered geometric tail contracts faster.\n\nDistinction check. Degree and center are different design choices."
+    },
+    {
+      "order": 17,
+      "id": "T22V3::SIDE267::S17@1",
+      "moduleId": "SIDE267",
+      "title": "Smooth does not mean analytic",
+      "focus": "Use a flat smooth function to separate existence of all derivatives from equality with the Taylor series.",
+      "purpose": "Close the most dangerous logical gap in the legacy Taylor route.",
+      "centralCapability": "Analyze a smooth nonanalytic counterexample and distinguish a convergent Taylor series from a series representing the function.",
+      "principalObstacle": "If every derivative at a point exists, it feels as though those infinitely many data must determine the nearby function.",
+      "entryPrerequisites": [
+        "M12-S12–S14 candidate/equality distinction",
+        "canonical exponential series"
+      ],
+      "requiredOwnership": [
+        "Define operationally what it means for a function to be represented by its Taylor series near a center.",
+        "Use a flat-function example with all derivatives zero at the center to show smoothness does not imply analyticity.",
+        "Distinguish a Taylor series that diverges from one that converges perfectly but to the wrong function."
+      ],
+      "applicationScope": "Standard one-variable flat-function counterexample at 0.",
+      "transferScope": "Changed to adding a linear analytic term to the flat function, producing a nonzero but still incorrect Taylor representation.",
+      "inScope": [
+        "C-infinity",
+        "analytic at a",
+        "flat function",
+        "converges-to-wrong-function"
+      ],
+      "outOfScope": [
+        "Borel theorem",
+        "analytic continuation",
+        "complex analysis"
+      ],
+      "exitCondition": "Can name exactly which implication fails in smooth⇒analytic reasoning.",
+      "lesson": "Operational definition. A function is analytic at a when, on some neighborhood of a, its Taylor-series partial sums converge to the function itself. Having derivatives of every order is necessary for writing the Taylor candidate, but not sufficient for representation.\n\nFlat example. Define phi(0)=0 and phi(x)=exp(-1/x^2) for x≠0. A standard induction shows each derivative for x≠0 is a polynomial in 1/x times exp(-1/x^2). As x→0, set y=1/|x|→∞. Exponential decay exp(-y^2) beats every fixed power y^m; using the already-established exponential series, e^(y^2) is eventually at least a sufficiently high polynomial power. Thus every derivative extends to 0 with value 0. So phi is C-infinity and phi^(k)(0)=0 for every k.\n\nIts Taylor-series candidate at 0 is therefore 0+0x+0x^2+...=0. That series converges—to 0. But phi(x)>0 for every x≠0, however close to 0. The failure is not series divergence; it is convergence to the wrong function.\n\nWorked contrast. e^x is smooth and, by S14 remainder decay, analytic everywhere. The extra property is representation, not merely derivative existence.\n\nGuided practice. Adding a flat function to a polynomial preserves the polynomial's Taylor coefficients at 0 while changing the nearby function away from 0.\n\nDistinction check. Infinite derivative data at one point need not determine a general smooth function."
+    },
+    {
+      "order": 18,
+      "id": "T22V3::SIDE267::S18@1",
+      "moduleId": "SIDE267",
+      "title": "Approximation forensics: choose the strength of claim",
+      "focus": "Audit mixed claims about O/o notation, error bounds, Taylor-series convergence and representation.",
+      "purpose": "Make theorem legality and claim strength an explicit capability before final synthesis.",
+      "centralCapability": "Classify approximation statements by what evidence actually supports them and repair overclaims.",
+      "principalObstacle": "Correct-looking formulas can hide an unjustified upgrade from bound to equality, O to o, or convergence to representation.",
+      "entryPrerequisites": [
+        "M12-S06–S17"
+      ],
+      "requiredOwnership": [
+        "Distinguish consequences that follow from an explicit remainder bound from stronger little-o claims that need extra evidence.",
+        "Separate Taylor-series convergence from equality to the target via the remainder criterion.",
+        "Audit an O statement for its hidden constant/neighborhood before using it as a finite numerical error certificate."
+      ],
+      "applicationScope": "One-variable deterministic approximation claims.",
+      "transferScope": "Changed from logical truth-table audit to a numerical misuse of a local O statement.",
+      "inScope": [
+        "claim strength",
+        "theorem hypotheses",
+        "O/o",
+        "series equality",
+        "finite certificate"
+      ],
+      "outOfScope": [
+        "new approximation techniques"
+      ],
+      "exitCondition": "Chooses only conclusions actually licensed by the supplied evidence.",
+      "lesson": "Forensics asks: what is the public evidence, and what claim strength does it license?\n\nIf |R(h)|≤5|h|^3 near 0, then R=O(h^3) and R=o(h^2). It does not imply R=o(h^3); R=5h^3 is a counterexample.\n\nIf a Taylor series converges at x, that alone does not identify its sum with f(x). The finite identity f=P_n+R_n plus R_n→0 does.\n\nIf f(a+h)=P(h)+O(h^2), the O symbol hides some constant C and some sufficiently small neighborhood. It does not by itself say C=1, and it does not say a specific h such as 0.5 lies inside that neighborhood.\n\nWorked audit. A report changes O(h^3) to “error exactly h^3.” Reject: O is a bound class, not an equality or coefficient.\n\nGuided practice. A report changes R_n→0 at one fixed x to uniform accuracy on an interval. Reject: pointwise remainder decay at one x does not establish a uniform statement.\n\nBoundary. This session adds no theorem. It disciplines use of existing ones."
+    },
+    {
+      "order": 19,
+      "id": "T22V3::SIDE267::S19@1",
+      "moduleId": "SIDE267",
+      "title": "Synthesis: build, certify, state only what is true",
+      "focus": "Coordinate center, degree, finite error, asymptotic notation and infinite representation without being told which chapter tool to use.",
+      "purpose": "Make M12 exit competence an organized argument rather than isolated formula recall.",
+      "centralCapability": "Choose and defend a finite Taylor model, certify its error, express its local order honestly and separate any infinite-series representation claim.",
+      "principalObstacle": "A synthesis problem exposes whether the learner can choose the right strength of claim without a procedural label.",
+      "entryPrerequisites": [
+        "M12-S01–S18"
+      ],
+      "requiredOwnership": [
+        "Choose between candidate Taylor degrees by a certified tolerance and compute the selected approximation.",
+        "Translate the selected finite error structure into an honest local O statement with the limiting variable stated.",
+        "Justify an infinite Taylor representation only through the established remainder-to-zero criterion.",
+        "Transfer the same workflow to a nonzero center with a different function and error order."
+      ],
+      "applicationScope": "Elementary exp/trig synthesis with explicit derivative bounds.",
+      "transferScope": "Nonzero-center sine local model with a changed tolerance and no need for a full infinite representation.",
+      "inScope": [
+        "degree choice",
+        "center choice",
+        "Lagrange bound",
+        "O statement",
+        "series representation",
+        "synthesis"
+      ],
+      "outOfScope": [
+        "multivariable Taylor",
+        "optimization",
+        "floating-point error",
+        "probabilistic asymptotics"
+      ],
+      "exitCondition": "Produces a complete bounded argument whose every claim has the right theorem and scope.",
+      "lesson": "Synthesis workflow:\n1. Identify the operating center and displacement.\n2. Generate the finite derivative-matching polynomial.\n3. State the theorem hypotheses required for the remainder.\n4. Find an interval-wide derivative bound and test the public tolerance.\n5. Compress the local residual with O/o notation only after the bound is known.\n6. If an infinite Taylor representation is claimed, separately prove remainder→0 as degree grows.\n7. Stop before future machinery.\n\nWorked synthesis. For e^h near 0, compare degrees 1 and 2 under a supplied bound for e^t on the target interval. Choose the first degree whose Lagrange bound meets the tolerance; do not choose by decimal resemblance.\n\nGuided synthesis. For sin(a+h) at a=pi/6, derive the quadratic from value/slope/curvature and use |third derivative|≤1 to obtain a cubic-order error certificate.\n\nFinal distinction. A finite model can be excellent without the infinite Taylor series being needed; an infinite representation can be mathematically true without being the best finite approximation for a far-away target."
+    }
+  ],
+  "problems": {
+    "T22V3::SIDE267::S01-M@1": {
+      "id": "T22V3::SIDE267::S01-M@1",
+      "order": 1,
+      "kind": "main",
+      "prompt": "For f(x)=x^5-3x^3+2, compute f', f'', and f'''. Evaluate f'(1), f''(1), and f'''(1). State explicitly what f''' means; do not treat the parenthesized 3 as an exponent.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S01-T@1": {
+      "id": "T22V3::SIDE267::S01-T@1",
+      "order": 1,
+      "kind": "transfer",
+      "prompt": "A report about g(x)=ln x says g'(x)=1/x, g''(x)=-1/x^2, g'''(x)=-2/x^3, and then declares these derivative formulas valid for every x≠0. Audit the report: correct the third derivative and state the legal real domain of g and of these derivatives.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S02-M@1": {
+      "id": "T22V3::SIDE267::S02-M@1",
+      "order": 2,
+      "kind": "main",
+      "prompt": "At the center a=2 a smooth function has f(2)=5, f'(2)=-1, f''(2)=6, and f'''(2)=-12. Construct the unique degree-at-most-3 polynomial whose derivatives through order 3 match these data. Differentiate your polynomial enough to verify all four matching conditions.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S02-T@1": {
+      "id": "T22V3::SIDE267::S02-T@1",
+      "order": 2,
+      "kind": "transfer",
+      "prompt": "Consider q(x)=4+3(x+1)-2(x+1)^2+5(x+1)^3. Recover q(-1), q'(-1), q''(-1), and q'''(-1) from the centered coefficients. Explain why the quadratic coefficient -2 is not the value q''(-1). Could a different degree-at-most-3 polynomial have all four of the same derivative values at -1? Justify.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S03-M@1": {
+      "id": "T22V3::SIDE267::S03-M@1",
+      "order": 3,
+      "kind": "main",
+      "prompt": "At x=1 a graph of f passes through y=2, has a horizontal tangent, and has second derivative f''(1)=-6. Construct the quadratic Taylor polynomial about a=1. State the quadratic coefficient and the second-derivative value separately, and explain their relationship.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S03-T@1": {
+      "id": "T22V3::SIDE267::S03-T@1",
+      "order": 3,
+      "kind": "transfer",
+      "prompt": "Recenter the exact polynomial p(x)=x^2-4x+7 about a=3 in powers of (x-3), using value/derivative data at 3. Verify that your centered expression expands back to p(x). Explain why this is exact rather than merely local.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S04-M@1": {
+      "id": "T22V3::SIDE267::S04-M@1",
+      "order": 4,
+      "kind": "main",
+      "prompt": "Write h=x-2. Suppose f(x)=7-h+4h^2+9h^3 and P_2(x)=7-h+4h^2. Compute R_2=f-P_2. Evaluate lim_{h→0} R_2/h^2. Then compute the actual error at h=1 and explain why the limit statement is local rather than a global accuracy guarantee.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S04-T@1": {
+      "id": "T22V3::SIDE267::S04-T@1",
+      "order": 4,
+      "kind": "transfer",
+      "prompt": "Let g(1+h)=1+h+100h^3, and let L(1+h)=1+h be the degree-1 polynomial matching g's value and slope at h=0. A report says, “Because value and slope match, L is accurate everywhere.” Compute the error at h=0.01 and at h=0.5, analyze (g-L)/h as h→0, and use these facts to audit the report.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S05-M@1": {
+      "id": "T22V3::SIDE267::S05-M@1",
+      "order": 5,
+      "kind": "main",
+      "prompt": "Let f be continuous on [a,b] and differentiable on (a,b), with a<b. Prove the Mean Value Theorem by subtracting the secant line and applying Rolle's theorem: show there is c∈(a,b) with f'(c)=[f(b)-f(a)]/(b-a). State where each hypothesis is used.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S05-T@1": {
+      "id": "T22V3::SIDE267::S05-T@1",
+      "order": 5,
+      "kind": "transfer",
+      "prompt": "A student applies Rolle's theorem to f(x)=|x| on [-1,1] because f(-1)=f(1)=1 and concludes that some c∈(-1,1) has f'(c)=0. Audit the invocation by checking every Rolle hypothesis and the actual derivative behavior on (-1,0), at 0, and on (0,1).",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S06-M@1": {
+      "id": "T22V3::SIDE267::S06-M@1",
+      "order": 6,
+      "kind": "main",
+      "prompt": "Let a<x. Suppose f,f',f'' are continuous on [a,x] and f''' exists at every point of (a,x). Let P_2(t)=f(a)+f'(a)(t-a)+f''(a)(t-a)^2/2. Prove that there is some c∈(a,x) such that f(x)-P_2(x)=f'''(c)(x-a)^3/6. You may use the Rolle/MVT bridge already established in this module. Your proof must make clear why c lies between a and x and must not assume c=a.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S06-T@1": {
+      "id": "T22V3::SIDE267::S06-T@1",
+      "order": 6,
+      "kind": "transfer",
+      "prompt": "Let f(t)=|t|^3, take center a=-1/2 and evaluation point x=1/2, and consider the degree-2 Taylor polynomial at a. A proposed solution says: “The degree-2 Taylor polynomial exists at a, so Taylor's theorem guarantees c∈(-1/2,1/2) with f(x)-P_2(x)=f'''(c)(x-a)^3/6.” Audit this claim. Compute the needed derivatives on t<0 and t>0, identify the theorem hypothesis that fails, and use the actual remainder together with the possible values of f''' where it exists to show concretely that this invocation cannot be correct.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S07-M@1": {
+      "id": "T22V3::SIDE267::S07-M@1",
+      "order": 7,
+      "kind": "main",
+      "prompt": "Approximate sin(0.3) about 0. Compare the degree-1 Taylor polynomial P_1(x)=x with the degree-3 polynomial P_3(x)=x-x^3/6. Using the Lagrange remainder with the defensible bound M=1 for all relevant sine/cosine derivatives, compute an error bound for each at x=0.3. Which of these two degrees can certify absolute error below 0.0004? Give the corresponding approximation.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S07-T@1": {
+      "id": "T22V3::SIDE267::S07-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "Use the degree-2 Taylor polynomial of ln x about a=1 to approximate ln(1.1). Build the polynomial, find a valid bound M for |f'''(t)| on [1,1.1], and give a certified Lagrange error bound. A proposed solution uses |f'''(1.1)| as M without justification; explain why that is not automatically a valid interval bound.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S08-M@1": {
+      "id": "T22V3::SIDE267::S08-M@1",
+      "order": 8,
+      "kind": "main",
+      "prompt": "As h→0 let r(h)=7h^3+h^4. Prove that r(h)=O(h^3) and r(h)=o(h^2). Decide, with a ratio limit, whether r(h)=o(h^3).",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S08-T@1": {
+      "id": "T22V3::SIDE267::S08-T@1",
+      "order": 8,
+      "kind": "transfer",
+      "prompt": "An unknown error E satisfies |E(h)|≤4|h|^4 whenever |h|<0.2. What O and o conclusions can you justify from this certificate as h→0? In particular, justify E=O(h^4) and E=o(h^3), and determine whether the certificate alone forces E=o(h^4). If not, give a concrete E satisfying the certificate that disproves that stronger conclusion.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S09-M@1": {
+      "id": "T22V3::SIDE267::S09-M@1",
+      "order": 9,
+      "kind": "main",
+      "prompt": "As h→0 let f(h)=2h+5h^2 and g(h)=2h. Prove f~g. Then consider p(h)=h and q(h)=2h: show p-q→0 but p is not asymptotic to q. Explain why this disproves the rule “difference tending to zero means asymptotic equivalence.”",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S09-T@1": {
+      "id": "T22V3::SIDE267::S09-T@1",
+      "order": 9,
+      "kind": "transfer",
+      "prompt": "For sequences a_n=n+sqrt(n) and b_n=n, determine whether a_n~b_n as n→∞. Also determine the behavior of a_n-b_n. Explain how both results can be true at once in terms of relative versus absolute error.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S10-M@1": {
+      "id": "T22V3::SIDE267::S10-M@1",
+      "order": 10,
+      "kind": "main",
+      "prompt": "Starting from the finite geometric-sum formula, analyze the infinite series sum_{n=0}^∞ 3(1/4)^n through its partial sums S_N. Derive a formula for S_N and take the limit to obtain the sum.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S10-T@1": {
+      "id": "T22V3::SIDE267::S10-T@1",
+      "order": 10,
+      "kind": "transfer",
+      "prompt": "A calculation writes S=1-1+1-1+... and then S=1-S, concluding S=1/2. Under the ordinary definition of series convergence used here, audit this argument by writing the partial-sum sequence and deciding whether the series has a sum. Identify the invalid premise in the algebraic manipulation.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S11-M@1": {
+      "id": "T22V3::SIDE267::S11-M@1",
+      "order": 11,
+      "kind": "main",
+      "prompt": "Analyze the power series sum_{n=0}^∞ ((x-2)/3)^n. Identify its center, derive exactly where it converges using the geometric-series criterion, determine its sum there, and check what happens at both boundary points.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S11-T@1": {
+      "id": "T22V3::SIDE267::S11-T@1",
+      "order": 11,
+      "kind": "transfer",
+      "prompt": "A student sees sum_{n=0}^∞ ((x+1)/2)^n and calls it a Maclaurin series because the index starts at n=0. Audit that claim. Identify the actual center, give the convergence interval from the geometric ratio, and decide convergence at x=1 and x=-3.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S12-M@1": {
+      "id": "T22V3::SIDE267::S12-M@1",
+      "order": 12,
+      "kind": "main",
+      "prompt": "A function has derivatives of every order at a=2 and satisfies f^(k)(2)=(-1)^k k! for every k≥0. Write P_3(x), write the full Taylor-series candidate, and state separately what must still be established before you may claim the series represents f(x) at a particular x≠2.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S12-T@1": {
+      "id": "T22V3::SIDE267::S12-T@1",
+      "order": 12,
+      "kind": "transfer",
+      "prompt": "Centered at a=-1, someone provides only these finite Taylor polynomials: P_0=2, P_1=2+3h, P_2=2+3h-h^2, P_3=2+3h-h^2+4h^3, where h=x+1. Recover f(-1), f'(-1), f''(-1), and f'''(-1). Then explain why these four partial polynomials do not determine the next coefficient, the full Taylor-series candidate, or equality with f.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S13-M@1": {
+      "id": "T22V3::SIDE267::S13-M@1",
+      "order": 13,
+      "kind": "main",
+      "prompt": "Generate the Maclaurin Taylor-series candidate for cos(2x) from its derivative pattern/scaling, and write its degree-4 Taylor polynomial explicitly. Your polynomial must show the numerical coefficients after simplifying factorials and powers of 2.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S13-T@1": {
+      "id": "T22V3::SIDE267::S13-T@1",
+      "order": 13,
+      "kind": "transfer",
+      "prompt": "Construct the Taylor-series candidate for e^x about the nonzero center a=1 directly from the derivative values at 1, and write P_3(x). Explain why the common factor e appears in every coefficient.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S14-M@1": {
+      "id": "T22V3::SIDE267::S14-M@1",
+      "order": 14,
+      "kind": "main",
+      "prompt": "Prove for a fixed real x that the Maclaurin Taylor series sum_{k=0}^∞ x^k/k! represents e^x. Use the Lagrange remainder to bound |R_n(x)| by e^|x| |x|^(n+1)/(n+1)!, and prove the factorial term tends to zero by showing its successive ratio is eventually at most 1/2.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S14-T@1": {
+      "id": "T22V3::SIDE267::S14-T@1",
+      "order": 14,
+      "kind": "transfer",
+      "prompt": "A student says, “The sine Taylor series converges, so its sum must be sin x.” Explain the logical gap. Then repair the argument for a fixed real x by using a Lagrange remainder bound and the same factorial-tail idea to prove the Taylor partial sums actually converge to sin x.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S15-M@1": {
+      "id": "T22V3::SIDE267::S15-M@1",
+      "order": 15,
+      "kind": "main",
+      "prompt": "A response y(p) is being operated near p=4. Measurements/analysis give y(4)=10, y'(4)=1.5, and y''(4)=-0.4. Without using a pre-supplied expansion formula, build the unique quadratic local model in Δp=p-4 and estimate y(4.2). Interpret the linear and quadratic contributions separately. Finally state what additional information would be needed to certify a Lagrange error bound for this estimate.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S15-T@1": {
+      "id": "T22V3::SIDE267::S15-T@1",
+      "order": 15,
+      "kind": "transfer",
+      "prompt": "At the marked center x=-1, a graph/data annotation says f(-1)=3, tangent slope f'(-1)=-2, and second derivative f''(-1)=8 (upward curvature). Build the quadratic local polynomial about -1, identify which term encodes slope and which encodes curvature, and explain why these local graph data alone do not justify a global-accuracy claim.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S16-M@1": {
+      "id": "T22V3::SIDE267::S16-M@1",
+      "order": 16,
+      "kind": "main",
+      "prompt": "For f(x)=1/(1-x), the Maclaurin Taylor partial sums are P_n(x)=sum_{k=0}^n x^k. At x=-2 compute f(-2) and P_1(-2), P_2(-2), P_3(-2), P_4(-2). Compute the absolute errors and explain, using the geometric ratio, why increasing degree makes this approximation worse rather than better.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S16-T@1": {
+      "id": "T22V3::SIDE267::S16-T@1",
+      "order": 16,
+      "kind": "transfer",
+      "prompt": "For the same f(x)=1/(1-x), target x=0.9. Derive a geometric power-series representation centered at a=0.8 by writing h=x-0.8. Give its convergence condition in h and compare the geometric ratio magnitude at x=0.9 with the original Maclaurin ratio. Explain why recentering can improve finite partial-sum accuracy here.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S17-M@1": {
+      "id": "T22V3::SIDE267::S17-M@1",
+      "order": 17,
+      "kind": "main",
+      "prompt": "Let phi(0)=0 and phi(x)=e^(-1/x^2) for x≠0. You may use the established lemma from the lesson that phi is C-infinity and phi^(k)(0)=0 for every k. Write its Taylor series at 0, state what that series converges to, and explain why it does not represent phi on any neighborhood of 0. Identify precisely why this disproves “infinitely differentiable implies analytic.”",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S17-T@1": {
+      "id": "T22V3::SIDE267::S17-T@1",
+      "order": 17,
+      "kind": "transfer",
+      "prompt": "Define h(x)=x+phi(x), with the same flat function phi. Determine every derivative value of h at 0 needed to identify its full Taylor-series candidate. What does that series sum to? Compare it with h(x) for x≠0 and decide whether h is analytic at 0. Explain how this example differs from a Taylor series that simply diverges.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S18-M@1": {
+      "id": "T22V3::SIDE267::S18-M@1",
+      "order": 18,
+      "kind": "main",
+      "prompt": "Audit the following four statements and justify each verdict. (A) If |R(h)|≤5|h|^3 for all sufficiently small h, then R=O(h^3). (B) The same bound forces R=o(h^3). (C) If a Taylor series converges at x, it must converge to f(x). (D) If the Taylor partial sums P_n(x) satisfy f(x)=P_n(x)+R_n(x) and R_n(x)→0, then P_n(x)→f(x). For every false statement, give either a counterexample or the missing condition.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S18-T@1": {
+      "id": "T22V3::SIDE267::S18-T@1",
+      "order": 18,
+      "kind": "transfer",
+      "prompt": "Near h=0 a derivation establishes sqrt(1+h)=1+h/2+O(h^2). A report then plugs in h=0.5 and announces, “The error is at most 0.25 because O(h^2) means the constant is 1.” Audit this numerical claim. Explain exactly what an O(h^2) statement does and does not provide, and state what additional theorem data would be needed for a certified bound at h=0.5.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S19-M@1": {
+      "id": "T22V3::SIDE267::S19-M@1",
+      "order": 19,
+      "kind": "main",
+      "prompt": "A calculator needs e^0.2 approximated from derivative data at center 0. It may use degree 2 or degree 3. You may use the verified interval bound e^t≤1.23 for 0≤t≤0.2. (i) Build P_2(0.2) and P_3(0.2). (ii) Use Lagrange remainder bounds to decide which of these degrees can certify absolute error below 10^-4. (iii) State the corresponding local degree-3 error as an O statement as h→0. (iv) Explain why, for e^x, continuing the Taylor polynomials to all orders represents e^x for every fixed real x, naming the decisive remainder criterion rather than merely citing coefficient pattern.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE267::S19-T@1": {
+      "id": "T22V3::SIDE267::S19-T@1",
+      "order": 19,
+      "kind": "transfer",
+      "prompt": "Work instead at the nonzero center a=pi/4. Build the quadratic Taylor polynomial for sin(a+h) in powers of h. At h=0.05, use |f'''|≤1 to certify the Lagrange error and show it is below 2.1×10^-5. State the resulting local O(h^3) approximation. Explain why this finite certified claim does not require you to prove or use the full infinite sine series.",
+      "obligationVersion": 1
+    }
+  },
+  "evaluators": {
+    "T22V3::SIDE267::S01-M@1": {
+      "reference": "f'(x)=5x^4-9x^2, f''(x)=20x^3-18x, and f'''(x)=60x^2-18. Thus f'(1)=-4, f''(1)=2, and f'''(1)=42. f''' is the derivative of f'', equivalently the third successive derivative of f; it is not f raised to a power.",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Computes f', f'', and f''' correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Evaluates the three requested derivative values as -4, 2, and 42."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly explains f''' as third derivative / derivative of f'' rather than an exponent."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S01-T@1": {
+      "reference": "For x>0, g'=1/x, g''=-1/x^2, and g'''=2/x^3, so the report has the sign of the third derivative wrong. The real logarithm g(x)=ln x is defined only for x>0. Its derivatives here therefore also have domain x>0; the algebraic expressions 1/x, -1/x^2 and 2/x^3 being defined for negative x does not extend the derivative of ln x there.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Corrects g''' to 2/x^3 with valid repeated differentiation."
+        },
+        {
+          "points": 3,
+          "criterion": "States the real domain of ln x as x>0."
+        },
+        {
+          "points": 3,
+          "criterion": "Keeps the derivative domains at x>0 and explains why the rational formulas do not restore x<0."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S02-M@1": {
+      "reference": "With h=x-2, P_3=5-h+(6/2)h^2+(-12/6)h^3=5-(x-2)+3(x-2)^2-2(x-2)^3. Its derivatives are P_3'=-1+6h-6h^2, P_3''=6-12h, P_3'''=-12, giving 5,-1,6,-12 at h=0 as required. Uniqueness follows from the centered coefficient argument.",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Constructs P_3=5-(x-2)+3(x-2)^2-2(x-2)^3 with correct factorial scaling."
+        },
+        {
+          "points": 4,
+          "criterion": "Differentiates and verifies all four matching values at x=2."
+        },
+        {
+          "points": 1,
+          "criterion": "Uses the nonzero center correctly throughout."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S02-T@1": {
+      "reference": "At h=x+1=0, q(-1)=4. Since q'=3-4h+15h^2, q'(-1)=3. Since q''=-4+30h, q''(-1)=-4. q'''=30. The coefficient -2 produces second derivative 2!(-2)=-4. No different degree-at-most-3 polynomial can share all four values: subtracting two candidates gives a degree-at-most-3 polynomial whose derivatives of orders 0,1,2,3 all vanish at -1, forcing all four centered coefficients to be zero.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Recovers derivative data 4, 3, -4, 30 correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains the 2! factor connecting quadratic coefficient -2 to q''(-1)=-4."
+        },
+        {
+          "points": 3,
+          "criterion": "Gives a valid uniqueness argument for degree at most 3."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S03-M@1": {
+      "reference": "f(1)=2, f'(1)=0 and f''(1)=-6, so P_2(x)=2+0(x-1)+(-6/2)(x-1)^2=2-3(x-1)^2. The quadratic coefficient is -3; the second derivative is -6 because differentiating (x-1)^2 twice contributes 2!=- equivalently 2(-3)=-6.",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Constructs P_2(x)=2-3(x-1)^2 from the graph-derived local data."
+        },
+        {
+          "points": 3,
+          "criterion": "States coefficient -3 and second derivative -6 separately."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains the factor of 2 connecting them."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S03-T@1": {
+      "reference": "p(3)=9-12+7=4, p'(x)=2x-4 so p'(3)=2, and p''=2. Therefore p(x)=4+2(x-3)+(2/2)(x-3)^2=4+2(x-3)+(x-3)^2. Expanding gives x^2-4x+7. Since p itself has degree 2, matching through degree 2 recovers the entire polynomial; there is no omitted higher-degree remainder.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes p(3)=4, p'(3)=2, p''(3)=2 and builds 4+2(x-3)+(x-3)^2."
+        },
+        {
+          "points": 3,
+          "criterion": "Expands the centered form back to x^2-4x+7 correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains exactness from the polynomial's degree / absence of higher terms rather than claiming all Taylor approximations are exact."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S04-M@1": {
+      "reference": "R_2=9h^3. Therefore R_2/h^2=9h→0. At h=1 the actual error is 9. The limit only describes how the residual compares with h^2 as h approaches 0 (x approaches the center 2) for this fixed degree; it does not bound the error at arbitrary distances.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes R_2=9h^3."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes lim R_2/h^2=0 with valid reasoning."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the h=1 error as 9."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains the fixed-degree local nature of the limit rather than inferring global closeness."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S04-T@1": {
+      "reference": "g-L=100h^3. At h=0.01 the error is 100(10^-6)=0.0001. At h=0.5 it is 100(0.125)=12.5. Also (g-L)/h=100h^2→0, so L is first-order accurate locally in the ratio sense inherited from M10, yet can be very poor farther from the center. Matching value and slope does not certify global accuracy.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes the two errors as 0.0001 and 12.5."
+        },
+        {
+          "points": 3,
+          "criterion": "Shows (g-L)/h=100h^2→0."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the contrast to reject the global-accuracy claim while preserving the valid local statement."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S05-M@1": {
+      "reference": "Let m=[f(b)-f(a)]/(b-a) and L(t)=f(a)+m(t-a). Define h=f-L. Continuity of f on [a,b] makes h continuous there; differentiability of f on (a,b) makes h differentiable there. By construction h(a)=0 and h(b)=f(b)-f(a)-m(b-a)=0. Rolle gives c∈(a,b) with h'(c)=0. Since h'=f'-m, f'(c)=m=[f(b)-f(a)]/(b-a).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Defines the secant slope/line and an appropriate difference function."
+        },
+        {
+          "points": 3,
+          "criterion": "Checks continuity/differentiability and equal endpoints so Rolle is legal."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives f'(c)=[f(b)-f(a)]/(b-a) for an interior c."
+        },
+        {
+          "points": 1,
+          "criterion": "States how the closed-interval continuity and open-interval differentiability hypotheses enter the proof."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S05-T@1": {
+      "reference": "|x| is continuous on [-1,1] and has equal endpoint values. It is differentiable on (-1,0) with derivative -1 and on (0,1) with derivative +1, but it is not differentiable at the interior point 0. Therefore Rolle's differentiability hypothesis on all of (-1,1) fails. There is in fact no differentiable point c with f'(c)=0, so the proposed conclusion is false as well as the invocation illegal.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Correctly confirms continuity and equal endpoint values."
+        },
+        {
+          "points": 4,
+          "criterion": "Identifies nondifferentiability at the interior point 0 and states the failed Rolle hypothesis."
+        },
+        {
+          "points": 3,
+          "criterion": "Gives actual derivative values -1 and +1 on the two sides and notes no legal c has derivative 0."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S06-M@1": {
+      "reference": "Set M=[f(x)-P_2(x)]/(x-a)^3 and g(t)=f(t)-P_2(t)-M(t-a)^3. Then g(x)=0 and derivative matching gives g(a)=g'(a)=g''(a)=0. Applying Rolle successively to g, g' and g'' yields c∈(a,x) with g'''(c)=0. Since g'''(c)=f'''(c)-6M, M=f'''(c)/6, hence f(x)-P_2(x)=f'''(c)(x-a)^3/6.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Constructs a valid auxiliary/repeated-Rolle or equivalent proof setup."
+        },
+        {
+          "points": 3,
+          "criterion": "Legally obtains an interior c using the supplied interval hypotheses."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the third-derivative factor 3!=6 correctly."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes the remainder formula while keeping c between a and x rather than replacing it by a."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S06-T@1": {
+      "reference": "For t>0, f=t^3 so f'=3t^2, f''=6t, f'''=6. For t<0, f=-t^3 so f'=-3t^2, f''=-6t, f'''=-6. The second derivative extends continuously with f''(0)=0, but f''' does not exist at the interior point 0, so the theorem's next-derivative hypothesis fails. At a=-1/2, f=1/8, f'=-3/4, f''=3. With x-a=1, P_2(1/2)=1/8-3/4+3/2=7/8, while f(1/2)=1/8, so R=-3/4. Wherever f''' exists, f'''(c)/6 is ±1, never -3/4. Thus the proposed theorem invocation cannot be correct.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes the piecewise derivatives and shows f''' fails to exist at 0."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies the interval-wide next-derivative hypothesis as the failed theorem condition."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes P_2(1/2)=7/8 and actual remainder -3/4."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows the Lagrange expression would be ±1 where f''' exists and cannot equal -3/4."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S07-M@1": {
+      "reference": "P_1(0.3)=0.3 and |R_1|≤1(0.3)^2/2=0.045. P_3(0.3)=0.3-0.027/6=0.2955 and |R_3|≤1(0.3)^4/24=0.0081/24=0.0003375. Therefore among the two choices degree 3 certifies error <0.0004; degree 1 does not.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes the degree-1 bound 0.045."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes P_3(0.3)=0.2955 and the degree-3 bound 0.0003375."
+        },
+        {
+          "points": 2,
+          "criterion": "Selects degree 3 as the one that certifies the stated tolerance."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses bound language rather than claiming either bound is the exact error."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S07-T@1": {
+      "reference": "For h=x-1, P_2= h-h^2/2, so at x=1.1 it is 0.1-0.005=0.095. f'''(t)=2/t^3. On [1,1.1] this positive quantity is decreasing, so |f'''(t)|≤2; take M=2. Then |R_2|≤2(0.1)^3/6=1/3000≈0.0003333. The endpoint value at 1.1 is smaller than values near 1, so using it as an upper bound without a monotonicity/maximum argument is invalid.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Builds P_2=h-h^2/2 and computes 0.095."
+        },
+        {
+          "points": 3,
+          "criterion": "Finds f'''=2/x^3 and justifies the interval-wide bound M=2."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the certified error bound 1/3000≈0.0003333."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why |f'''(1.1)| alone is not automatically a maximum bound on [1,1.1]."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S08-M@1": {
+      "reference": "r/h^3=7+h, which is bounded near 0, so r=O(h^3). Also r/h^2=7h+h^2→0, so r=o(h^2). But r/h^3→7 rather than 0, so r is not o(h^3).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Uses a bounded ratio or explicit local constant to establish O(h^3)."
+        },
+        {
+          "points": 3,
+          "criterion": "Shows r/h^2→0 and concludes o(h^2)."
+        },
+        {
+          "points": 4,
+          "criterion": "Computes r/h^3→7 and correctly rejects o(h^3)."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S08-T@1": {
+      "reference": "The certificate itself gives E=O(h^4), with C=4 and δ=0.2. For h≠0, |E/h^3|≤4|h|→0, so E=o(h^3). It does not force E=o(h^4): the concrete function E(h)=4h^4 satisfies the certificate but E/h^4=4, not 0.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Establishes O(h^4) with the supplied constant/neighborhood."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the inequality to prove E/h^3→0 and hence o(h^3)."
+        },
+        {
+          "points": 4,
+          "criterion": "Rejects forced o(h^4) and supplies a valid counterexample such as E=4h^4."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S09-M@1": {
+      "reference": "f/g=(2h+5h^2)/(2h)=1+(5/2)h→1, so f~g. But (p-q)=-h→0 while p/q=1/2 for h≠0, so p is not asymptotic to q. Therefore difference→0 is not the definition or a sufficient condition for ratio-one equivalence.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes f/g and proves the limit is 1."
+        },
+        {
+          "points": 3,
+          "criterion": "Shows p-q→0 but p/q→1/2."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why the counterexample separates absolute difference from relative equivalence."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S09-T@1": {
+      "reference": "a_n/b_n=1+1/sqrt(n)→1, so a_n~b_n. Yet a_n-b_n=sqrt(n)→∞. Relative error (a_n-b_n)/b_n=1/sqrt(n)→0 even while the absolute difference grows.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Shows a_n/b_n→1 and concludes a_n~b_n."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows a_n-b_n=sqrt(n)→∞."
+        },
+        {
+          "points": 4,
+          "criterion": "Explains the coexistence using relative error tending to zero."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S10-M@1": {
+      "reference": "S_N=3[1-(1/4)^(N+1)]/(1-1/4)=4[1-(1/4)^(N+1)]. Since (1/4)^(N+1)→0, S_N→4. Therefore the ordinary series sum is 4.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Derives the correct finite partial-sum formula."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses geometric-sequence convergence to take the limit."
+        },
+        {
+          "points": 3,
+          "criterion": "Concludes the infinite series converges to 4 through the partial-sum definition."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S10-T@1": {
+      "reference": "The partial sums are 1,0,1,0,..., so they do not converge. Hence the series has no ordinary sum under this definition. The equations involving S assume a convergent sum exists and can be algebraically shifted/subtracted; that premise is false here.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Writes/identifies the oscillating partial sums 1,0,1,0,..."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly concludes the series diverges in the ordinary sense."
+        },
+        {
+          "points": 3,
+          "criterion": "Identifies that the algebra presupposes a convergent ordinary sum S."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S11-M@1": {
+      "reference": "The ratio is r=(x-2)/3, so the center is a=2. Convergence requires |x-2|<3, giving -1<x<5. In that interval the sum is 1/[1-(x-2)/3]=3/(5-x). At x=5, r=1 and partial sums grow; at x=-1, r=-1 and partial sums oscillate. Both endpoints diverge.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Identifies center a=2."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives convergence interval (-1,5) from |(x-2)/3|<1."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the sum 3/(5-x) on that interval."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly diagnoses divergence at both endpoints."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S11-T@1": {
+      "reference": "The powers are (x-(-1))^n, so the center is -1; n=0 is merely the starting index. The geometric ratio is (x+1)/2, so convergence requires |x+1|<2, i.e. -3<x<1. At x=1 the ratio is 1 and the series diverges; at x=-3 the ratio is -1 and the partial sums oscillate, so it diverges there too.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Rejects the Maclaurin claim and identifies center -1 for the correct reason."
+        },
+        {
+          "points": 4,
+          "criterion": "Derives the open convergence interval (-3,1)."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly diagnoses both boundary points as divergent, with ratio/partial-sum reasoning."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S12-M@1": {
+      "reference": "Let h=x-2. Coefficient k is f^(k)(2)/k!=(-1)^k, so P_3=1-h+h^2-h^3. The Taylor-series candidate is sum_{k=0}∞ (-1)^k (x-2)^k. Before saying it represents f at x, one must establish that the series/partial sums converge there and that their limit equals f(x), equivalently that the finite Taylor remainder tends to zero there.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Constructs P_3=1-(x-2)+(x-2)^2-(x-2)^3."
+        },
+        {
+          "points": 3,
+          "criterion": "Writes the full candidate sum (-1)^k(x-2)^k."
+        },
+        {
+          "points": 4,
+          "criterion": "Separates candidate construction from both convergence and equality-to-f requirements."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S12-T@1": {
+      "reference": "From centered coefficients: f(-1)=2, f'(-1)=3, f''(-1)=2!(-1)=-2, and f'''(-1)=3!(4)=24. No information about f^(4)(-1) is supplied, so the h^4 coefficient is undetermined; finitely many partial polynomials cannot establish an all-future coefficient rule. They also cannot establish convergence of an infinite candidate or equality of any such limit with f.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Recovers derivative data 2,3,-2,24 with factorial scaling."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why the next and later coefficients are not determined by the finite prefix."
+        },
+        {
+          "points": 3,
+          "criterion": "Separates finite data from infinite-series convergence/equality claims."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S13-M@1": {
+      "reference": "The candidate is sum_{k=0}∞ (-1)^k (2x)^(2k)/(2k)!. Through degree 4, P_4=1-(2x)^2/2!+(2x)^4/4!=1-2x^2+(2/3)x^4.",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Generates the correct cosine(2x) candidate with alternating even powers and scaling."
+        },
+        {
+          "points": 4,
+          "criterion": "Computes P_4=1-2x^2+(2/3)x^4."
+        },
+        {
+          "points": 1,
+          "criterion": "Connects the powers of 2 to repeated differentiation/inner scaling rather than unexplained memorization."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S13-T@1": {
+      "reference": "Every derivative of e^x is e^x, so f^(k)(1)=e for all k. Therefore the candidate is e sum_{k=0}∞ (x-1)^k/k!, and P_3=e[1+(x-1)+(x-1)^2/2+(x-1)^3/6]. The common e is exactly the derivative value at the center divided by k! after factoring e out.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Uses f^(k)(1)=e for all k to construct the centered candidate."
+        },
+        {
+          "points": 4,
+          "criterion": "Writes the correct P_3 with center x-1 and factorial scaling."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains the common factor e from derivative values at a=1."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S14-M@1": {
+      "reference": "For fixed x, Taylor's theorem about 0 gives e^x=P_n(x)+R_n(x) and |R_n(x)|≤e^|x| |x|^(n+1)/(n+1)!. Let u_n=|x|^(n+1)/(n+1)!. The ratio u_{n+1}/u_n=|x|/(n+2), which is ≤1/2 for all sufficiently large n. Hence u_n is eventually bounded by a geometric tail and tends to 0. Thus R_n(x)→0, so P_n(x)→e^x; the limiting series is e^x.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Sets up the correct Lagrange remainder bound for fixed real x."
+        },
+        {
+          "points": 3,
+          "criterion": "Proves the factorial term tends to zero using an eventual ratio ≤1/2 or equivalent rigorous argument."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses f=P_n+R_n to conclude the Taylor partial sums converge to e^x, not merely that the series converges."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S14-T@1": {
+      "reference": "Convergence alone identifies some sum, not necessarily the target function. For sin, Taylor's theorem gives sin x=P_n(x)+R_n(x) with |R_n(x)|≤|x|^(n+1)/(n+1)! because every derivative of sin has magnitude ≤1. The factorial-tail argument makes this bound tend to 0 for fixed x. Therefore R_n(x)→0 and P_n(x)→sin x. That extra remainder-to-zero step closes the logical gap.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "States the convergence-versus-equality logical gap clearly."
+        },
+        {
+          "points": 3,
+          "criterion": "Provides a valid sine remainder bound using derivative magnitude ≤1."
+        },
+        {
+          "points": 2,
+          "criterion": "Justifies factorial-tail decay."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes equality with sin via R_n→0."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S15-M@1": {
+      "reference": "Let h=p-4. The unique quadratic is Q=10+1.5h+(-0.4/2)h^2=10+1.5h-0.2h^2. At h=0.2, Q=10+0.3-0.008=10.292. The linear contribution is +0.3 and the quadratic curvature correction is -0.008. To certify a degree-2 Lagrange error one needs control of |y'''(t)| on the entire interval between 4 and 4.2 (for example an explicit valid bound M there), plus the theorem's derivative hypotheses.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Builds Q=10+1.5(p-4)-0.2(p-4)^2 without a supplied Taylor template."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes Q(4.2)=10.292."
+        },
+        {
+          "points": 2,
+          "criterion": "Separately interprets +0.3 linear and -0.008 quadratic contributions."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies interval-wide third-derivative control/hypotheses as needed for certified error."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S15-T@1": {
+      "reference": "With h=x+1, P_2=3-2h+(8/2)h^2=3-2(x+1)+4(x+1)^2. The -2(x+1) term encodes the tangent slope; 4(x+1)^2 has coefficient f''/2 and encodes the supplied upward curvature. Matching these data is local. Without an error theorem/derivative bound or other global information, the graph annotation does not certify accuracy far from -1.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Constructs P_2=3-2(x+1)+4(x+1)^2."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly identifies slope and curvature roles, including the factor 1/2."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects a global-accuracy inference and states why local derivative data are insufficient."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S16-M@1": {
+      "reference": "f(-2)=1/3. P_1=1-2=-1, P_2=3, P_3=-5, P_4=11. Absolute errors are |-1-1/3|=4/3, |3-1/3|=8/3, |-5-1/3|=16/3, and |11-1/3|=32/3. The geometric ratio is x=-2 with magnitude 2>1, so the terms do not decay and the partial sums diverge; each extra term doubles the scale of the tail rather than improving the approximation.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes f(-2), P_1 through P_4 correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes absolute errors 4/3, 8/3, 16/3, 32/3."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains worsening from geometric ratio magnitude 2>1 / outside convergence region."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S16-T@1": {
+      "reference": "With h=x-0.8, 1-x=0.2-h=0.2(1-5h), so f=5/(1-5h)=5 sum_{n=0}∞(5h)^n when |5h|<1, i.e. |h|<0.2. At x=0.9, h=0.1 so the recentered ratio has magnitude 0.5. The Maclaurin geometric ratio is 0.9. Both are within their convergence regions, but powers of 0.5 shrink much faster than powers of 0.9, so comparable finite partial sums around 0.8 have a smaller geometric tail.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Derives f=5/(1-5h)=5 sum(5h)^n."
+        },
+        {
+          "points": 2,
+          "criterion": "States convergence condition |h|<0.2."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes ratio magnitudes 0.5 versus 0.9 at the target."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why the smaller ratio improves finite geometric-tail contraction."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S17-M@1": {
+      "reference": "All derivative values of phi at 0 are zero, so every Taylor coefficient is zero and the Taylor series is identically 0. It converges to 0 for every x. But phi(x)=e^(-1/x^2)>0 whenever x≠0, including arbitrarily close points, so the Taylor series does not equal phi on any neighborhood of 0. Thus C-infinity smoothness supplies all coefficients but does not guarantee analytic representation.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Writes the Taylor series as the identically zero series."
+        },
+        {
+          "points": 2,
+          "criterion": "States that this series converges to 0."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses phi(x)>0 for x≠0 to show the series fails to represent phi in every neighborhood."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly identifies smoothness versus analyticity as the failed implication."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S17-T@1": {
+      "reference": "h(0)=0. Since phi'(0)=0, h'(0)=1. For every k≥2, the kth derivative of x is 0 and phi^(k)(0)=0, so h^(k)(0)=0. The Taylor series is therefore x. It converges everywhere to x, but h(x)=x+phi(x)>x for every x≠0. Hence h is not analytic at 0. Again the failure is not divergence: the Taylor series converges, but to a function different from h.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Finds h(0)=0, h'(0)=1 and h^(k)(0)=0 for k≥2."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies the Taylor series and its sum as x."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses phi(x)>0 off 0 to show h differs from that sum arbitrarily close to 0."
+        },
+        {
+          "points": 2,
+          "criterion": "Explicitly distinguishes convergence-to-wrong-function from divergence."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S18-M@1": {
+      "reference": "A is true by the O definition with C=5 on the stated neighborhood. B is false: R(h)=5h^3 satisfies the bound but R/h^3=5, not 0. C is false: convergence determines a sum but not necessarily f; the flat-function example supplies a concrete counterexample. D is true because P_n=f-R_n and R_n→0. A correct repair of C is to establish R_n(x)→0 (or another valid equality-to-target argument).",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Correctly classifies A as true with an O-definition justification."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects B and gives a valid counterexample such as 5h^3."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects C and identifies missing equality-to-f/remainder evidence."
+        },
+        {
+          "points": 2,
+          "criterion": "Accepts D and justifies it from P_n=f-R_n."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S18-T@1": {
+      "reference": "O(h^2) means there exist some C>0 and some δ>0 such that the residual magnitude is ≤C|h|^2 whenever 0<|h|<δ. It does not say C=1 and does not say h=0.5 lies inside the valid neighborhood. Therefore the 0.25 numerical certificate does not follow. To certify at 0.5 one could, for example, invoke Taylor's theorem with its hypotheses and establish an explicit bound M for the relevant next derivative on the whole interval from h=0 to h=0.5, then compute the resulting Lagrange bound.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "States the constant-and-neighborhood meaning of O(h^2) correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains both errors: C need not be 1 and h=0.5 need not lie in the asymptotic neighborhood."
+        },
+        {
+          "points": 3,
+          "criterion": "Identifies explicit Taylor-theorem hypotheses plus an interval-wide derivative bound as a valid route to a finite certificate."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S19-M@1": {
+      "reference": "P_2(0.2)=1+0.2+0.2^2/2=1.22. P_3 adds 0.2^3/6=0.001333..., giving 1.221333.... With M=1.23, |R_2|≤1.23(0.2)^3/6=0.00164, which does not certify 10^-4. |R_3|≤1.23(0.2)^4/24=0.000082, which does. Thus degree 3 is the first of the two options that certifies the tolerance. Locally e^h=1+h+h^2/2+h^3/6+O(h^4) as h→0, with the O statement justified by local boundedness of the fourth derivative. For the infinite representation, S14 proves for each fixed real x that |R_n(x)|≤e^|x||x|^(n+1)/(n+1)!→0, hence P_n(x)→e^x.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Computes P_2(0.2)=1.22 and P_3(0.2)=1.221333... correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the two Lagrange bounds and selects degree 3 based on the 10^-4 tolerance."
+        },
+        {
+          "points": 2,
+          "criterion": "States a justified local degree-3 relation with O(h^4), not O(h^3)."
+        },
+        {
+          "points": 3,
+          "criterion": "Justifies the all-real exponential representation through fixed-x remainder decay/factorial tail rather than coefficient pattern alone."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    },
+    "T22V3::SIDE267::S19-T@1": {
+      "reference": "Let s=sqrt(2)/2. At a=pi/4, sin a=s, cos a=s, and -sin a=-s. Thus P_2(a+h)=s+s h-(s/2)h^2 = sqrt(2)/2 + (sqrt(2)/2)h-(sqrt(2)/4)h^2. Since the third derivative of sin is -cos and has magnitude ≤1, |R_2|≤|h|^3/6. At h=0.05 this is 0.000125/6≈2.0833×10^-5<2.1×10^-5. Hence sin(pi/4+h)=sqrt(2)/2+(sqrt(2)/2)h-(sqrt(2)/4)h^2+O(h^3) as h→0. This finite theorem and bound require no passage n→∞, so no infinite sine-series representation is needed.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Constructs the correct nonzero-center quadratic polynomial."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the certified bound |h|^3/6 and verifies the stated tolerance at h=0.05."
+        },
+        {
+          "points": 2,
+          "criterion": "States the correct O(h^3) local approximation."
+        },
+        {
+          "points": 1,
+          "criterion": "Explains why finite Taylor certification does not require an infinite-series proof."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent notation, reasoning and exact forms unless the public task requires a particular representation. Do not award a claimed capability merely for a correct final number."
+    }
+  },
+  "coverage": {
+    "T22V3::SIDE267::S01@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S02@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S03@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S04@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S05@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S06@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S07@1": [
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::SIDE267::S08@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S09@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S10@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S11@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S12@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S13@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S14@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S15@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::SIDE267::S16@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S17@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S18@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE267::S19@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ]
+  },
+  "claimEvidence": {
+    "T22V3::SIDE267::S01@1": [
+      {
+        "claim": "Compute successive higher derivatives of an elementary one-variable function and evaluate them at a point.",
+        "task": "main",
+        "publicRequest": "compute f', f'', f''' and their values at 1",
+        "scoringEvidence": "Main rows 1–2",
+        "why": "the learner literally differentiates three times and evaluates",
+        "escapeAttempt": "a list of values without derivative functions loses construction credit",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use f^(n) notation and distinguish derivative order from exponentiation.",
+        "task": "main",
+        "publicRequest": "state explicitly what f''' means",
+        "scoringEvidence": "Main row 3",
+        "why": "the learner explains the notation",
+        "escapeAttempt": "correct arithmetic alone cannot earn this row",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Audit signs and domains under repeated differentiation rather than silently enlarging the original function domain.",
+        "task": "transfer",
+        "publicRequest": "correct the third derivative and state legal real domain",
+        "scoringEvidence": "Transfer rows 1–3",
+        "why": "the learner must catch both sign and domain errors",
+        "escapeAttempt": "correcting only the sign cannot earn domain rows",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S02@1": [
+      {
+        "claim": "Construct a centered Taylor polynomial from derivative data at an arbitrary nonzero center.",
+        "task": "main",
+        "publicRequest": "construct the unique degree-at-most-3 matching polynomial at a=2",
+        "scoringEvidence": "Main rows 1 and 3",
+        "why": "the learner must build centered coefficients at a nonzero center",
+        "escapeAttempt": "a Maclaurin polynomial or uncentered guess loses construction credit",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Derive/use the coefficient factor 1/k! from repeated differentiation of centered powers.",
+        "task": "main+transfer",
+        "publicRequest": "use derivative data in Main and explain why coefficient -2 is not q''(-1) in Transfer",
+        "scoringEvidence": "Main row 1; Transfer row 2",
+        "why": "factorial scaling is explicitly observable in both directions",
+        "escapeAttempt": "matching only numerical values without the factorial relation cannot earn Transfer row 2",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain uniqueness among degree-at-most-n polynomials with the same derivative data.",
+        "task": "transfer",
+        "publicRequest": "could a different polynomial have all four values? justify",
+        "scoringEvidence": "Transfer row 3",
+        "why": "learner must supply uniqueness reasoning",
+        "escapeAttempt": "answering 'no' without a reason loses the row",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S03@1": [
+      {
+        "claim": "Translate value, slope and second-derivative information at a nonzero center into a quadratic local polynomial.",
+        "task": "main",
+        "publicRequest": "graph gives value, horizontal tangent and f'' at x=1; construct polynomial",
+        "scoringEvidence": "Main row 1",
+        "why": "the learner converts representation into coefficients",
+        "escapeAttempt": "a formula at center 0 does not answer the request",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish the coefficient of (x-a)^2 from the second derivative value.",
+        "task": "main",
+        "publicRequest": "state coefficient and second derivative separately and explain relationship",
+        "scoringEvidence": "Main rows 2–3",
+        "why": "the distinction is explicitly requested",
+        "escapeAttempt": "correct polynomial alone cannot earn relationship points",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Recenter an exact polynomial about a new center without treating center 0 as privileged.",
+        "task": "transfer",
+        "publicRequest": "recenter p about a=3 and verify",
+        "scoringEvidence": "Transfer rows 1–3",
+        "why": "the learner reconstructs a nonzero-centered representation",
+        "escapeAttempt": "leaving p in standard powers cannot earn recentering credit",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S04@1": [
+      {
+        "claim": "Compute an explicit residual f-P_n and analyze a scaled residual limit in a case where the algebra is known exactly.",
+        "task": "main",
+        "publicRequest": "compute R_2 and lim R_2/h^2",
+        "scoringEvidence": "Main rows 1–2",
+        "why": "the learner literally constructs and scales the residual",
+        "escapeAttempt": "only reporting h=1 error cannot earn the limit rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish fixed-degree local behavior as x approaches the center from a global or n→infinity claim.",
+        "task": "main",
+        "publicRequest": "explain why the limit is local rather than global",
+        "scoringEvidence": "Main rows 3–4",
+        "why": "public task asks the distinction",
+        "escapeAttempt": "limit calculation alone does not earn the explanation row",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Refute a global-accuracy claim using a concrete far-from-center error despite correct derivative matching.",
+        "task": "transfer",
+        "publicRequest": "compute near/far errors and audit report",
+        "scoringEvidence": "Transfer rows 1–3",
+        "why": "learner preserves local truth while falsifying global claim",
+        "escapeAttempt": "calling the report false without numerical witness loses rows",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S05@1": [
+      {
+        "claim": "Derive the one-variable Mean Value Theorem from Rolle's theorem using secant-line subtraction.",
+        "task": "main",
+        "publicRequest": "prove MVT by subtracting secant line and applying Rolle",
+        "scoringEvidence": "Main rows 1–3",
+        "why": "the learner performs the derivation",
+        "escapeAttempt": "quoting MVT cannot earn proof rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "State/check continuity on the closed interval and differentiability on the open interval before invoking Rolle/MVT.",
+        "task": "main+transfer",
+        "publicRequest": "state where hypotheses are used; check every Rolle hypothesis",
+        "scoringEvidence": "Main rows 2 and 4; Transfer rows 1–2",
+        "why": "hypothesis legality is explicit",
+        "escapeAttempt": "endpoint equality alone cannot earn legality credit",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Reject a Rolle/MVT conclusion when an interior nondifferentiable point destroys the theorem hypothesis.",
+        "task": "transfer",
+        "publicRequest": "audit |x| invocation and derivative behavior",
+        "scoringEvidence": "Transfer rows 2–3",
+        "why": "the learner locates the exact failed point and consequence",
+        "escapeAttempt": "saying 'not smooth' without locating x=0 loses credit",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S06@1": [
+      {
+        "claim": "Reconstruct a valid degree-2 Lagrange-remainder proof from derivative matching and Rolle/MVT.",
+        "task": "main",
+        "publicRequest": "prove the n=2 remainder theorem",
+        "scoringEvidence": "Main rows 1–4",
+        "why": "the learner performs proof reconstruction",
+        "escapeAttempt": "quoting the formula cannot earn proof rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish the Taylor center from the unknown intermediate remainder point and locate that point between center and evaluation point.",
+        "task": "main",
+        "publicRequest": "make clear why c lies between a and x and do not assume c=a",
+        "scoringEvidence": "Main rows 2 and 4",
+        "why": "the distinction is public and scored",
+        "escapeAttempt": "setting c=a loses the rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Audit a proposed Taylor-theorem use for the required higher-derivative hypothesis on the whole intervening open interval.",
+        "task": "transfer",
+        "publicRequest": "compute derivatives, identify failed hypothesis, show contradiction",
+        "scoringEvidence": "Transfer rows 1–4",
+        "why": "the learner locates and witnesses the failed hypothesis",
+        "escapeAttempt": "saying only 'not smooth' cannot earn the hypothesis row",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S07@1": [
+      {
+        "claim": "Find or justify a uniform bound M for the relevant next derivative on the entire interval between center and target.",
+        "task": "transfer",
+        "publicRequest": "find a valid bound on [1,1.1] and audit endpoint-only M",
+        "scoringEvidence": "Transfer rows 2 and 4",
+        "why": "learner must establish interval-wide control",
+        "escapeAttempt": "substituting f'''(1.1) loses these rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Compute a certified Lagrange error bound and distinguish it from the actual error.",
+        "task": "main+transfer",
+        "publicRequest": "compute error bounds / certified bound",
+        "scoringEvidence": "Main rows 1–2 and 4; Transfer row 3",
+        "why": "both tasks require inequality certificates",
+        "escapeAttempt": "giving approximations without bounds cannot earn the rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Choose among candidate degrees using a stated tolerance.",
+        "task": "main",
+        "publicRequest": "which degree certifies error below 0.0004",
+        "scoringEvidence": "Main row 3",
+        "why": "degree selection is explicitly tied to bound",
+        "escapeAttempt": "choosing degree 3 without the preceding certificates cannot earn full credit",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S08@1": [
+      {
+        "claim": "Prove an O statement by exhibiting bounded ratio or an explicit constant/neighborhood.",
+        "task": "main+transfer",
+        "publicRequest": "prove O conclusions",
+        "scoringEvidence": "Main row 1; Transfer row 1",
+        "why": "the learner shows boundedness/certificate",
+        "escapeAttempt": "symbol assertion without bound loses rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Prove an o statement by a ratio limit and distinguish it from O of the same scale.",
+        "task": "main+transfer",
+        "publicRequest": "prove o and decide stronger o claims",
+        "scoringEvidence": "Main rows 2–3; Transfer rows 2–3",
+        "why": "ratio limits and counterexample expose strength difference",
+        "escapeAttempt": "calling both 'small' earns no reasoning credit",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Translate a bound one power smaller into the weaker-scale o consequence.",
+        "task": "transfer",
+        "publicRequest": "justify E=o(h^3) from |E|≤4|h|^4",
+        "scoringEvidence": "Transfer row 2",
+        "why": "learner performs the scale reduction explicitly",
+        "escapeAttempt": "O(h^4) alone without ratio argument cannot earn row 2",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S09@1": [
+      {
+        "claim": "Prove f~g from a ratio-one limit.",
+        "task": "main",
+        "publicRequest": "prove f~g",
+        "scoringEvidence": "Main row 1",
+        "why": "the ratio definition is directly observed",
+        "escapeAttempt": "saying same leading term without limit loses row",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish asymptotic equivalence from f-g→0 using a counterexample.",
+        "task": "main",
+        "publicRequest": "show p-q→0 but p not~q and explain",
+        "scoringEvidence": "Main rows 2–3",
+        "why": "the learner explicitly destroys the false rule",
+        "escapeAttempt": "one calculation without interpretation loses row 3",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Apply the same definition to deterministic sequences as n→∞ and interpret relative rather than absolute error.",
+        "task": "transfer",
+        "publicRequest": "analyze a_n,b_n and difference",
+        "scoringEvidence": "Transfer rows 1–3",
+        "why": "limit surface changes and relative/absolute contrast is scored",
+        "escapeAttempt": "only noting difference grows cannot answer equivalence",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S10@1": [
+      {
+        "claim": "Define convergence of an infinite series via the sequence of finite partial sums.",
+        "task": "main+transfer",
+        "publicRequest": "analyze through partial sums / write partial-sum sequence",
+        "scoringEvidence": "Main rows 1–3; Transfer rows 1–2",
+        "why": "series status is decided from partial sums",
+        "escapeAttempt": "quoting a remembered sum without partial sums loses construction rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Derive the geometric-series sum for |r|<1 from finite sums and q^N→0.",
+        "task": "main",
+        "publicRequest": "starting from finite geometric-sum formula derive S_N and limit",
+        "scoringEvidence": "Main rows 1–3",
+        "why": "derivation is explicitly required",
+        "escapeAttempt": "answer 4 alone cannot earn derivation rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Reject algebra on a divergent series by inspecting partial sums.",
+        "task": "transfer",
+        "publicRequest": "audit S=1-S argument",
+        "scoringEvidence": "Transfer rows 1–3",
+        "why": "learner identifies invalid convergence premise",
+        "escapeAttempt": "saying 'diverges' without locating partial-sum failure loses rows",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S11@1": [
+      {
+        "claim": "Identify the center of a power series and express its geometric ratio in terms of x-a.",
+        "task": "main+transfer",
+        "publicRequest": "identify center and derive from geometric ratio",
+        "scoringEvidence": "Main rows 1–2; Transfer rows 1–2",
+        "why": "center is explicitly observed at nonzero values",
+        "escapeAttempt": "index-based center claim loses credit",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Determine a directly justified convergence region and sum for a geometric power series.",
+        "task": "main",
+        "publicRequest": "derive where converges and determine sum",
+        "scoringEvidence": "Main rows 2–3",
+        "why": "learner uses only owned geometric machinery",
+        "escapeAttempt": "stating interval without ratio reasoning loses row 2",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Diagnose a false center claim and endpoint divergence without unowned general tests.",
+        "task": "transfer",
+        "publicRequest": "audit Maclaurin claim and boundary values",
+        "scoringEvidence": "Transfer rows 1 and 3",
+        "why": "the learner explains both misconception and endpoints",
+        "escapeAttempt": "memorized radius language alone cannot earn center diagnosis",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S12@1": [
+      {
+        "claim": "Construct the Taylor-series candidate about an arbitrary center from all derivative data.",
+        "task": "main",
+        "publicRequest": "write full Taylor-series candidate at a=2",
+        "scoringEvidence": "Main rows 1–2",
+        "why": "all-future derivative rule is supplied and learner constructs candidate",
+        "escapeAttempt": "only P3 cannot earn infinite-candidate row",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Identify the nth Taylor polynomial as a finite partial sum and keep it distinct from the infinite candidate.",
+        "task": "main+transfer",
+        "publicRequest": "write P3 and candidate separately; analyze finite P0-P3 data",
+        "scoringEvidence": "Main rows 1–3; Transfer rows 2–3",
+        "why": "tasks force finite/infinite separation",
+        "escapeAttempt": "writing equality f=sum without proof loses distinction row",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Refuse to infer unobserved higher coefficients or equality with the target from finitely many Taylor polynomials.",
+        "task": "transfer",
+        "publicRequest": "explain why four partial polynomials do not determine next coefficient/full series/equality",
+        "scoringEvidence": "Transfer rows 2–3",
+        "why": "finite-prefix overgeneralization is directly attacked",
+        "escapeAttempt": "guessing a coefficient pattern earns no credit",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S13@1": [
+      {
+        "claim": "Generate exponential/sine/cosine Taylor coefficients from derivative patterns rather than quote an unexplained formula.",
+        "task": "main+transfer",
+        "publicRequest": "generate candidate from derivative pattern/values",
+        "scoringEvidence": "Main rows 1 and 3; Transfer rows 1 and 3",
+        "why": "derivative origin is explicitly required",
+        "escapeAttempt": "correct formula with no scaling/derivative explanation loses explanatory rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Handle affine input scaling correctly in a canonical Maclaurin candidate.",
+        "task": "main",
+        "publicRequest": "cos(2x) candidate and simplified P4",
+        "scoringEvidence": "Main rows 1–3",
+        "why": "factor 2 propagation is observable",
+        "escapeAttempt": "cos x coefficients without 2 powers fail rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Construct a canonical candidate about a nonzero center.",
+        "task": "transfer",
+        "publicRequest": "e^x about a=1",
+        "scoringEvidence": "Transfer rows 1–3",
+        "why": "learner uses x-1 and e-valued derivatives",
+        "escapeAttempt": "Maclaurin series centered 0 fails",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S14@1": [
+      {
+        "claim": "Use f=P_n+R_n and R_n(x)→0 to justify equality between a Taylor series and f.",
+        "task": "main+transfer",
+        "publicRequest": "prove representation / repair argument via remainder",
+        "scoringEvidence": "Main rows 1 and 3; Transfer rows 2–4",
+        "why": "target equality is tied to remainder decay",
+        "escapeAttempt": "series convergence alone cannot earn final equality rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Prove |x|^n/n!→0 for fixed x using an eventual geometric bound.",
+        "task": "main+transfer",
+        "publicRequest": "prove factorial term tends to zero",
+        "scoringEvidence": "Main row 2; Transfer row 3",
+        "why": "the decay mechanism is explicitly requested",
+        "escapeAttempt": "asserting 'factorial grows faster' without proof loses row",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Reject the inference 'Taylor series converges, therefore it equals f' and repair it.",
+        "task": "transfer",
+        "publicRequest": "explain logical gap then repair for sine",
+        "scoringEvidence": "Transfer rows 1–4",
+        "why": "learner must state and close gap",
+        "escapeAttempt": "correct sine formula alone does not answer the audit",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S15@1": [
+      {
+        "claim": "Generate a quadratic local model from contextual derivative data without a supplied Taylor formula.",
+        "task": "main",
+        "publicRequest": "build unique quadratic in Δp without pre-supplied expansion formula",
+        "scoringEvidence": "Main rows 1–2",
+        "why": "the learner must create centered representation from data",
+        "escapeAttempt": "a generic formula with no instantiated model cannot earn construction",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Interpret the linear and quadratic contributions in terms of local change/curvature.",
+        "task": "main+transfer",
+        "publicRequest": "interpret contributions / identify slope and curvature terms",
+        "scoringEvidence": "Main row 3; Transfer row 2",
+        "why": "representation meaning is public",
+        "escapeAttempt": "numeric polynomial alone cannot earn interpretation",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "State what additional next-derivative information is needed before a certified finite error bound is available.",
+        "task": "main",
+        "publicRequest": "state additional information for Lagrange bound",
+        "scoringEvidence": "Main row 4",
+        "why": "learner names interval-wide third derivative control",
+        "escapeAttempt": "saying 'more data' is insufficient",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S16@1": [
+      {
+        "claim": "Demonstrate with exact partial sums that increasing Taylor degree can worsen approximation outside a convergence region.",
+        "task": "main",
+        "publicRequest": "compute P1-P4/errors at x=-2",
+        "scoringEvidence": "Main rows 1–2",
+        "why": "worsening is numerically observed",
+        "escapeAttempt": "assertion without errors loses rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain the failure through the geometric ratio/center rather than arithmetic.",
+        "task": "main",
+        "publicRequest": "explain using geometric ratio",
+        "scoringEvidence": "Main row 3",
+        "why": "structural reason is public",
+        "escapeAttempt": "saying 'far away' without ratio/convergence loses row",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Recenter a geometric-function expansion and compare relative ratios at a target point.",
+        "task": "transfer",
+        "publicRequest": "derive center 0.8 representation and compare ratios",
+        "scoringEvidence": "Transfer rows 1–4",
+        "why": "learner chooses new center representation and assesses contraction",
+        "escapeAttempt": "Maclaurin-only solution cannot earn recentering rows",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S17@1": [
+      {
+        "claim": "Define operationally what it means for a function to be represented by its Taylor series near a center.",
+        "task": "main",
+        "publicRequest": "explain why series does not represent phi on any neighborhood and identify analytic implication",
+        "scoringEvidence": "Main rows 2–4",
+        "why": "representation is tested as equality on a neighborhood",
+        "escapeAttempt": "saying 'not analytic' without equality reasoning loses rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use a flat-function example with all derivatives zero at the center to show smoothness does not imply analyticity.",
+        "task": "main",
+        "publicRequest": "use supplied flat lemma to write series and disprove implication",
+        "scoringEvidence": "Main rows 1–4",
+        "why": "counterexample mechanism is fully observable",
+        "escapeAttempt": "series=0 alone does not show failure until compared with phi",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish a Taylor series that diverges from one that converges but to the wrong function.",
+        "task": "transfer",
+        "publicRequest": "explain how h example differs from divergence",
+        "scoringEvidence": "Transfer rows 2–4",
+        "why": "the series x converges but mismatch remains",
+        "escapeAttempt": "calling it divergent is explicitly wrong",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S18@1": [
+      {
+        "claim": "Distinguish consequences of an explicit remainder bound from stronger little-o claims.",
+        "task": "main",
+        "publicRequest": "audit A/B and give counterexample",
+        "scoringEvidence": "Main rows 1–2",
+        "why": "O vs o strength is directly observed",
+        "escapeAttempt": "truth labels without evidence lose rows",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Separate Taylor-series convergence from equality to the target via the remainder criterion.",
+        "task": "main",
+        "publicRequest": "audit C/D",
+        "scoringEvidence": "Main rows 3–4",
+        "why": "learner explicitly compares convergence and representation",
+        "escapeAttempt": "saying both true due Taylor formula fails",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Audit an O statement for hidden constant/neighborhood before using it as a finite numerical error certificate.",
+        "task": "transfer",
+        "publicRequest": "audit h=0.5 error claim",
+        "scoringEvidence": "Transfer rows 1–3",
+        "why": "learner states hidden data and repair",
+        "escapeAttempt": "computing 0.25 alone earns no credit",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE267::S19@1": [
+      {
+        "claim": "Choose between candidate Taylor degrees by a certified tolerance and compute the selected approximation.",
+        "task": "main",
+        "publicRequest": "build P2/P3 and decide via Lagrange bounds",
+        "scoringEvidence": "Main rows 1–2",
+        "why": "selection is evidence-driven",
+        "escapeAttempt": "choosing degree3 without bounds cannot earn row 2",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Translate the selected finite error structure into an honest local O statement with the limiting variable stated.",
+        "task": "main+transfer",
+        "publicRequest": "state corresponding local O statement",
+        "scoringEvidence": "Main row 3; Transfer row 3",
+        "why": "different degree/order statements are observed",
+        "escapeAttempt": "using O(h^3) for degree3 exponential is explicitly wrong",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Justify an infinite Taylor representation only through the established remainder-to-zero criterion.",
+        "task": "main",
+        "publicRequest": "explain why all orders represent e^x naming decisive remainder criterion",
+        "scoringEvidence": "Main row 4",
+        "why": "learner must invoke fixed-x remainder decay",
+        "escapeAttempt": "coefficient pattern alone cannot earn row",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Transfer the workflow to a nonzero center with a different function and error order.",
+        "task": "transfer",
+        "publicRequest": "sin at pi/4, quadratic, error, O statement",
+        "scoringEvidence": "Transfer rows 1–4",
+        "why": "surface and center change while reasoning is reconstructed",
+        "escapeAttempt": "Maclaurin sine formula does not answer nonzero-center task",
+        "disposition": "adequate"
+      }
+    ]
+  },
+  "prerequisiteAudit": {
+    "formalPrerequisites": [
+      "SIDE263",
+      "ARC053"
+    ],
+    "localBridges": [
+      {
+        "id": "M12-B01",
+        "sessions": [
+          "S10",
+          "S11"
+        ],
+        "purpose": "series/power-series bridge because M09 excludes infinite series"
+      },
+      {
+        "id": "M12-B02",
+        "sessions": [
+          "S05"
+        ],
+        "purpose": "Fermat/Rolle/MVT support because M10 lacks broad MVT and M11 is not formal prerequisite"
+      }
+    ],
+    "m11Relationship": "Chronologically available but not required by formal dependency; no M11 integration capability is consumed.",
+    "futureLeakageCheck": "No M13+, multivariable, optimization, numerical, probabilistic or generalized-regularity machinery is used."
+  },
+  "instructionSeparation": {
+    "policy": "Worked/guided examples must use different functions/data/claims from fixed tasks. Proof-reconstruction Main items are labeled honestly rather than called fresh.",
+    "fixedTaskCount": 38,
+    "answerExposure": "No lesson contains a fixed task's decisive numerical answer or the complete fixed instance."
+  },
+  "semanticSeparationAudit": {
+    "policy": "Every session was designed with instruction/worked/guided instances distinct from fixed Main/Transfer instances. Main evidence classes are honest about retrieval/proof reconstruction; Transfer requires changed direction, representation, hypothesis or failure surface.",
+    "sessions": {
+      "T22V3::SIDE267::S01@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S02@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S03@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S04@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S05@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S06@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S07@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S08@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S09@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S10@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S11@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S12@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S13@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S14@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S15@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S16@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S17@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S18@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      },
+      "T22V3::SIDE267::S19@1": {
+        "main": "see claimEvidence/evidence-distance ledger in M12-DESIGN-GATE and canonical task pair",
+        "transfer": "fixed instance differs from worked/guided examples; no solved fixed answer appears in lesson"
+      }
+    }
+  },
+  "evidenceDistance": {
+    "T22V3::SIDE267::S01@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S02@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S03@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S04@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S05@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S06@1": {
+      "main": "proof reconstruction",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S07@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S08@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S09@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S10@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S11@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S12@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S13@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S14@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S15@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S16@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S17@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S18@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    },
+    "T22V3::SIDE267::S19@1": {
+      "main": "see design/claim ledger",
+      "transfer": "changed-surface Transfer"
+    }
+  },
+  "initialVersionAudit": {
+    "note": "M12 has no prior learner-facing fixed assessment contract in the T22 Elite runtime. All 38 fixed obligations begin at version 1. Legacy rich SIDE267 arcs are historical scope material, not old learner evidence.",
+    "obligationVersion": 1
+  },
+  "historicalLessonAnswerOverlap": [],
+  "historicalGuidedPracticeOverlap": [],
+  "authoringPolicy": {
+    "mode": "BUILD",
+    "method": "T22 Module Builder and Adversarial Checker v1.1",
+    "sessionProgression": "Each session follows orient→define/connect→explain/derive→worked example→guided practice→distinction, then independent Main/Transfer evidence.",
+    "fairness": "Rubrics score only public requests and accept valid equivalent methods.",
+    "independence": "No claim of independent review; this is builder-authored/self-checked pending separate audit."
+  }
+}
