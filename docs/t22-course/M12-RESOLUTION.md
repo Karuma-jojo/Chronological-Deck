@@ -44,7 +44,7 @@ Seven rows were narrowed; task surfaces were preserved.
 | --- | --- | --- |
 | S01-C2 | Use (f^{(n)}) notation and distinguish derivative order from exponentiation. | Explain that (f''') denotes the third successive derivative rather than exponentiation. |
 | S02-C2 | Derive the coefficient factor (1/k!) from differentiating ((x-a)^k) exactly (k) times. | Use and explain factorial scaling in centered Taylor coefficients, including why a quadratic coefficient is (f''(a)/2!). |
-| S04-C2 | Distinguish fixed-degree local behavior as (x	o a) from an (n	oinfty) series question. | Explain why a fixed-degree scaled-residual limit near the center does not imply global accuracy. |
+| S04-C2 | Distinguish fixed-degree local behavior as `x -> a` from an `n -> infinity` series question. | Explain why a fixed-degree scaled-residual limit near the center does not imply global accuracy. |
 | S07-C3 | Choose among candidate degrees using tolerance rather than visual stability/first omitted term. | Choose among supplied Taylor degrees using a stated certified error tolerance. |
 | S10-C1 | Define convergence of an infinite series via finite partial sums. | Use the partial-sum criterion to determine ordinary series convergence or divergence. |
 | S12-C2 | Identify the nth Taylor polynomial as the nth finite partial sum of the candidate. | Distinguish a finite Taylor polynomial from the full Taylor-series candidate and from convergence/equality claims. |
@@ -97,18 +97,15 @@ Permanent methodological lesson:
 
 **Finding:** the conclusion was mathematically correct, but the lesson compressed the induction from off-zero derivative formulas to existence of all derivatives at zero.
 
-**Repair:** S17 now explicitly supplies the missing derivative-at-zero step. For the standard form
-[
-phi^{(n)}(x)=P_n(1/x)e^{-1/x^2}qquad(x
-e0),
-]
-the lesson first uses exponential domination to extend (phi^{(n)}) continuously by zero, then computes
-[
-rac{phi^{(n)}(h)-phi^{(n)}(0)}{h}
-=
-rac{P_n(1/h)e^{-1/h^2}}{h}	o0,
-]
-so (phi^{(n+1)}(0)=0). Differentiating off zero preserves the polynomial-times-exponential form, closing the induction.
+**Repair:** S17 now explicitly supplies the missing derivative-at-zero step. For x != 0, the standard induction gives
+
+`phi^(n)(x) = P_n(1/x) exp(-1/x^2)`
+
+for a polynomial `P_n`. Exponential decay dominates every fixed power, so this expression extends continuously to 0 with value 0. To prove the next derivative actually exists at 0, the lesson now checks the derivative-definition quotient
+
+`[phi^(n)(h) - phi^(n)(0)] / h = P_n(1/h) exp(-1/h^2) / h -> 0`.
+
+Hence `phi^(n+1)(0)=0`. Differentiating off zero preserves the polynomial-times-exponential form, closing the induction.
 
 This keeps the standard flat-function counterexample while making the support argument pedagogically honest.
 
