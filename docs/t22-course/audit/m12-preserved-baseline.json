@@ -1,0 +1,24 @@
+{
+  "capturedAt": "2026-09-24",
+  "capturedBeforeM12ValidationHead": "c5d53396aada365a16cdac6c6b5b9208591ad628",
+  "purpose": "Protect M01-M11 canonical authoring, learner registry/roadmap/dependency authority and shared T22 runtime from accidental mutation during M12-only work. SEMANTIC-PREREQUISITES.json is intentionally excluded because M12's own ledger row was authorized to change.",
+  "files": {
+    "course/t22/authoring/m01-repairs-1.1.json": "d9d6433dd5acc926defee5458c75a73342bc5c4e",
+    "course/t22/authoring/m02.json": "6906fd9b3f30be6d9197cd7d182f1879f58c0114",
+    "course/t22/authoring/m03.json": "23c2453d7b223a0fcff182eedc2b021a1864e736",
+    "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
+    "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
+    "course/t22/authoring/m06.json": "da9360afd3adb81f75fa987c0ffac3015a8d19cf",
+    "course/t22/authoring/m07.json": "6af63290de8cc44615871aeb456ce2946b26e08b",
+    "course/t22/authoring/m08.json": "1d8bd28f49b1e73513de7a337450a2504d68d2ec",
+    "course/t22/authoring/m09.json": "7656609fb4ee448e03ef697e4cf29b733d965103",
+    "course/t22/authoring/m10-arc053.json": "b5998f843fb07f59bad42ae715b475c51b1e51fe",
+    "course/t22/authoring/m11-arc510.json": "7c11adeb736f3699b8a7f59c07f49856d1467074",
+    "course/t22/generated/course-meta.json": "b477d42e502a0fadc5f64719a95988278e22bf78",
+    "course/t22/generated/roadmap.json": "68665c633c93830fa19e9e5510136795d2b13a02",
+    "docs/t22-rebuild/m65.dependencies.json": "fb45a5ab97932f5220bffb9989347c23574383b9",
+    "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
+    "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
+    "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01"
+  }
+}
