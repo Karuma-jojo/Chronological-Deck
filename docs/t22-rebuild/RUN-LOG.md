@@ -1,20 +1,23 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-24
-State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENT-AUDIT REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M09 CLOSED**
+State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENT-AUDIT + BOUNDED-FOLLOW-UP REPAIRED, FINAL EXACT-HEAD VALIDATION PENDING; M09 CLOSED**
 Branch: `codex/t22-m08-independent-repair`
 Repository: `Karuma-jojo/Chronological-Deck`
-Validated M08 repair head: `772e5dc12bcd44340bbf1d96a093d1b802c10699`
-T22 Elite run/job: `35961691590` / `107511449788` — SUCCESS
-Broader main-targeted PR matrix on that head: **37/37 SUCCESS**
+Historical first-green M08 repair head: `772e5dc12bcd44340bbf1d96a093d1b802c10699` / run `35961691590` / job `107511449788`
+Historical broader matrix on that head: **37/37 SUCCESS**
+Follow-up status: M08-F01→F04 repaired after that run; therefore the historical green head is superseded for current validation authority.
+Current obligation provenance: **24 changed from v1 = 23×v2 + S22-M×v3**.
+Next action: validate the current exact follow-up-repair head through T22 Elite Chromium/browser checks and the full main-targeted PR matrix.
+
 
 ## Current M08 independent repair — authority for M08
 
 Published baseline `4e8755b0d0060390b18ccba846d0d7f5e6750328` passed prior automation but an independent hostile content audit found real semantic failures: fixed Main contamination in S02/S13/S15/S19/S21/S22/S23; lexical-only separation checks; S06 prerequisite inconsistency; hidden standard-library imports; an un-taught function-object jump; weak programming observability; M04-like S14–S16 tasks; insufficient float-tolerance policy; missing strict zip; and no actual traceback reading. See `docs/t22-course/M08-INDEPENDENT-REVIEW.md`.
 
-The bounded repair preserves 24 sessions while versioning 23 changed public obligations to2, rebuilding all affected references/rubrics/120 semantic links, adding explicit lesson-model/Main-model separation metadata and mutation canaries, teaching imports/function objects/strict zip/traceback use at first need, and rebuilding the executable Python oracle. See `M08-RESOLUTION.md`.
+The bounded repair preserves 24 sessions; after follow-up, 24 public obligations differ from v1 (23 at v2 and S22-M at v3), rebuilding all affected references/rubrics/120 semantic links, adding explicit lesson-model/Main-model separation metadata and mutation canaries, teaching imports/function objects/strict zip/traceback use at first need, and rebuilding the executable Python oracle. See `M08-RESOLUTION.md`.
 
-**Next action: full repair-head Actions + real browser validation, then bounded independent follow-up. M08 is not frozen. M09 remains closed.**
+**Next action: final exact-head Actions + real browser validation after bounded follow-up. M08 is not frozen. M09 remains closed.**
 
 
 ## Current M08 builder recovery — 2026-09-24 (authority for M08)
