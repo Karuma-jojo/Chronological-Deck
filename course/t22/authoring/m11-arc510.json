@@ -1,11 +1,11 @@
 {
-  "version": "m11-arc510-s01-s09-v1",
+  "version": "m11-arc510-s01-s12-v1",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "authoring-in-progress-s01-s09-verified",
+    "status": "authoring-in-progress-s01-s12-verified",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -35,8 +35,8 @@
   "coverageAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pedagogicalAtoms": 20,
-    "authoredSessions": 9,
-    "ownershipClaimCount": 27,
+    "authoredSessions": 12,
+    "ownershipClaimCount": 36,
     "note": "No target count exists. This count is the S01 pilot output only."
   },
   "sessions": [
@@ -372,6 +372,119 @@
       "lesson": "Orient. If A(y)=∫_a^y f(t)dt and f is continuous where needed, S08 gives A'(y)=f(y). Now let the endpoint itself depend on x.\nDefine. H(x)=∫_a^{g(x)}f(t)dt is A(g(x)), so M10's chain rule gives H'(x)=f(g(x))g'(x). For a lower endpoint, ∫_{g(x)}^a f=-A(g(x)), producing a minus sign.\nConnect. Therefore J(x)=∫_{u(x)}^{v(x)}f(t)dt can be written A(v(x))-A(u(x)), so J'(x)=f(v(x))v'(x)-f(u(x))u'(x), provided the endpoint images stay where FTC applies.\nExplain. The t in f(t) is a dummy integration variable. Nothing here differentiates an integrand that itself depends on x. That more general theorem is outside M11.\nWorked example: H(x)=∫_1^{x²+1} cos t dt. Since cos is continuous, H'(x)=cos(x²+1)·2x. No antiderivative is required.\nGuided practice: K(x)=∫_{x³}^2 e^t dt. Check K'(x)=-e^{x³}·3x². Identify the minus sign as lower-endpoint orientation, not as a derivative of e^t.",
       "main": "T22V3::ARC510::S09-M@1",
       "transfer": "T22V3::ARC510::S09-T@1"
+    },
+    {
+      "order": 10,
+      "id": "T22V3::ARC510::S10@1",
+      "moduleId": "ARC510",
+      "title": "Antiderivative uniqueness needs an interval theorem",
+      "focus": "Make the derivative-zero support theorem visible before using '+C' or FTC endpoint evaluation.",
+      "purpose": "Establish only the MVT consequence needed to prove that antiderivatives of the same function differ by a constant on an interval.",
+      "centralCapability": "Use the derivative-zero consequence of the Mean Value Theorem with its interval hypotheses to justify antiderivative uniqueness.",
+      "principalObstacle": "The slogan 'same derivative means differ by C' feels algebraic, so the connected-interval and differentiability hypotheses are easily forgotten.",
+      "entryPrerequisites": [
+        "M09-S26 Extreme Value Theorem",
+        "M10 derivative definition/differentiability⇒continuity",
+        "M03 proof/counterexample discipline"
+      ],
+      "requiredOwnership": [
+        "Use the Mean Value Theorem to prove that a differentiable function with zero derivative on an interval is constant.",
+        "Use the derivative-zero result to justify that two antiderivatives of the same function differ by a constant on an interval.",
+        "Preserve the interval/domain hypothesis by diagnosing a disconnected-domain counterexample."
+      ],
+      "applicationScope": "Real differentiable functions on intervals; the MVT appears only as a bounded support bridge.",
+      "transferScope": "Changed from an interval theorem to a disconnected-domain counterexample where derivative zero holds componentwise but no single global constant exists.",
+      "inScope": [
+        "Fermat/Rolle/MVT proof route as support",
+        "derivative-zero constant consequence",
+        "antiderivative uniqueness"
+      ],
+      "outOfScope": [
+        "optimization",
+        "monotonicity applications",
+        "global error estimates",
+        "curve sketching",
+        "M12 approximation"
+      ],
+      "exitCondition": "The learner can justify +C on an interval and can state why the conclusion is componentwise on disconnected domains.",
+      "lesson": "Orient. To turn an antiderivative into a family F+C, we need a theorem: derivative zero on an interval forces no net change.\nDefine. An antiderivative of f on an interval I is a differentiable F with F'(x)=f(x) for every x in I. The Mean Value Theorem says: if H is continuous on [u,v] and differentiable on (u,v), then some c∈(u,v) satisfies H(v)-H(u)=H'(c)(v-u).\nConnect. The support chain is bounded: M10's derivative definition proves Fermat's interior-extremum lemma; M09's EVT plus Fermat gives Rolle's theorem; applying Rolle to H minus its secant line gives MVT. M11 will use only the next consequence.\nExplain. If H'=0 on an interval, take any u<v in it. MVT gives H(v)-H(u)=H'(c)(v-u)=0, so H(v)=H(u); H is constant. If F'=G'=f, then (F-G)'=0, hence F-G=C on that interval.\nWorked example: F(x)=x²+3 and G(x)=x²-7 both differentiate to 2x on R. Their difference is 10, illustrating the theorem; the constant conclusion is not obtained by comparing one sample point alone but by the derivative-zero argument on the interval.\nGuided practice: suppose U' and V' both equal q on an interval I and U(2)-V(2)=5. What is U(x)-V(x) for every x∈I? Check: 5, because the difference has derivative zero.",
+      "main": "T22V3::ARC510::S10-M@1",
+      "transfer": "T22V3::ARC510::S10-T@1"
+    },
+    {
+      "order": 11,
+      "id": "T22V3::ARC510::S11@1",
+      "moduleId": "ARC510",
+      "title": "FTC endpoint evaluation and net change",
+      "focus": "Use the accumulation derivative plus antiderivative uniqueness to derive endpoint evaluation, then interpret it as net change.",
+      "purpose": "Close the two-way bridge between local derivative information and proper accumulated totals without redefining the integral as an antiderivative.",
+      "centralCapability": "Reconstruct and apply the endpoint-evaluation form of FTC under explicit continuity hypotheses.",
+      "principalObstacle": "Endpoint brackets are often memorized as the definition of integration, obscuring both the prior Riemann definition and why additive constants cancel.",
+      "entryPrerequisites": [
+        "M11-S08 FTC local recovery",
+        "M11-S10 antiderivative uniqueness",
+        "M10 derivative rules"
+      ],
+      "requiredOwnership": [
+        "Reconstruct FTC endpoint evaluation from the accumulation function and antiderivative uniqueness.",
+        "Evaluate a proper definite integral with a verified antiderivative without adding an arbitrary constant to the final number.",
+        "Use the integral of a rate as net change between endpoint states."
+      ],
+      "applicationScope": "Continuous integrands on finite closed intervals and verified antiderivatives.",
+      "transferScope": "Changed from theorem reconstruction/exact integral to a signed state-change model with an initial condition.",
+      "inScope": [
+        "FTC endpoint evaluation",
+        "antiderivative verification",
+        "net change",
+        "+C cancellation"
+      ],
+      "outOfScope": [
+        "improper integrals",
+        "ODE solution families",
+        "numerical quadrature"
+      ],
+      "exitCondition": "The learner can say why F(b)-F(a) is legal and can move between rate and state change.",
+      "lesson": "Orient. S03 defined the integral from sums. S08 showed that an accumulation A(x)=∫_a^x f has derivative f when f is continuous. S10 now lets us compare A with any other antiderivative.\nDefine. If f is continuous on [a,b] and F'=f there, define A(x)=∫_a^x f(t)dt. S08 gives A'=f on the interior. Hence (F-A)'=0, so S10 makes F-A constant on the interval.\nConnect. At x=a, A(a)=0, so F(x)-A(x)=F(a). Therefore A(b)=F(b)-F(a), i.e. ∫_a^b f(x)dx=F(b)-F(a). This is a theorem built on the Riemann integral, not its definition.\nExplain. Replacing F by F+C changes both endpoint values by C, which cancels. Thus +C belongs to the antiderivative family, not to the numerical definite integral.\nWorked example: for f(x)=2x on [1,3], F(x)=x² is an antiderivative, so ∫_1^3 2x dx=9-1=8. A differentiation check verifies F'=2x.\nGuided practice: evaluate ∫_0^2 3x² dx using F=x³. Check: 8. Then explain why (x³+17)|_0^2 gives the same result.",
+      "main": "T22V3::ARC510::S11-M@1",
+      "transfer": "T22V3::ARC510::S11-T@1"
+    },
+    {
+      "order": 12,
+      "id": "T22V3::ARC510::S12@1",
+      "moduleId": "ARC510",
+      "title": "A small antiderivative repertoire, verified by differentiation",
+      "focus": "Reverse only derivative facts already available from M10, preserving constants and original domains.",
+      "purpose": "Create enough exact evaluation fluency for later M11 transformations/improper limits without turning the module into an integration-trick catalogue.",
+      "centralCapability": "Assemble and verify elementary antiderivatives from established derivative pairs with domain conditions visible.",
+      "principalObstacle": "Formula-table memory encourages wrong signs, missing logarithmic domains and antiderivatives that cross points where the integrand is undefined.",
+      "entryPrerequisites": [
+        "M11-S10 antiderivative definition",
+        "+C uniqueness on intervals",
+        "M10 polynomial/product/quotient/trig/exp/log derivatives"
+      ],
+      "requiredOwnership": [
+        "Construct an elementary antiderivative by reversing established derivative rules and linearity.",
+        "Verify a proposed antiderivative by differentiating it back to the integrand.",
+        "Preserve interval/domain restrictions, especially for 1/x and negative powers."
+      ],
+      "applicationScope": "Finite linear combinations of powers already justified from M10, e^x/b^x, sin/cos and 1/x on legal intervals.",
+      "transferScope": "Changed to a negative-power/base-exponential combination on a negative interval, forcing domain preservation and derivative verification.",
+      "inScope": [
+        "+C",
+        "ln|x| on intervals excluding 0",
+        "basic exp/trig pairs",
+        "integer powers n≠-1"
+      ],
+      "outOfScope": [
+        "inverse-trig catalogue",
+        "trigonometric substitutions",
+        "partial fractions catalogue",
+        "special functions"
+      ],
+      "exitCondition": "The learner verifies rather than merely recognizes formulas and never bridges across an excluded point with one antiderivative interval.",
+      "lesson": "Orient. FTC makes antiderivatives computationally useful, but M11 needs only a small repertoire that can be checked from M10.\nDefine. An indefinite-integral expression ∫f(x)dx=F(x)+C abbreviates the antiderivative family on a stated interval; it is not a definite integral. Constants combine by linearity.\nConnect. Reverse verified M10 derivatives: d(x^{n+1}/(n+1))/dx=x^n for integer n≠-1 on its legal domain; d(e^x)/dx=e^x; d(b^x/ln b)/dx=b^x for b>0,b≠1; d(sin x)/dx=cos x; d(-cos x)/dx=sin x. Since d(ln x)/dx=1/x for x>0 and d(ln(-x))/dx=1/x for x<0, an intervalwise shorthand is ln|x|+C for 1/x on intervals not crossing 0.\nExplain. The safest check is differentiation. A formula that differentiates correctly where the original integrand is undefined still cannot create a legal antiderivative across the excluded point.\nWorked example: on x>0, an antiderivative of 2x+3e^x-4/x is x²+3e^x-4ln x+C. Differentiation returns 2x+3e^x-4/x.\nGuided practice: verify that -3cos x+2sin x differentiates to 3sin x+2cos x. Then state that adding any constant changes no derivative.",
+      "main": "T22V3::ARC510::S12-M@1",
+      "transfer": "T22V3::ARC510::S12-T@1"
     }
   ],
   "problems": {
@@ -499,6 +612,48 @@
       "order": 9,
       "kind": "transfer",
       "prompt": "Let J(x)=∫_{x²}^{2x+1} ln(1+t²)dt. Find J'(x), keeping the upper- and lower-endpoint contributions separate. Then explain why differentiating ln(1+t²) with respect to x is not part of this calculation.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S10-M@1": {
+      "id": "T22V3::ARC510::S10-M@1",
+      "order": 10,
+      "kind": "main",
+      "prompt": "Let I be an interval, and let F and G be differentiable on I with F'(x)=G'(x) for every x∈I. Using the Mean Value Theorem as stated in the lesson, prove that F-G is constant on I. Then explain how this proves that all antiderivatives of one function on I differ by an additive constant.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S10-T@1": {
+      "id": "T22V3::ARC510::S10-T@1",
+      "order": 10,
+      "kind": "transfer",
+      "prompt": "Define H on D=(-∞,0)∪(0,∞) by H(x)=0 for x<0 and H(x)=1 for x>0. Show that H'(x)=0 at every point of D, yet H is not one constant on all of D. Identify exactly which hypothesis from the S10 derivative-zero theorem fails, and state the correct componentwise conclusion.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S11-M@1": {
+      "id": "T22V3::ARC510::S11-M@1",
+      "order": 11,
+      "kind": "main",
+      "prompt": "Assume f is continuous on [a,b] and F is an antiderivative of f there. Define A(x)=∫_a^x f(t)dt. Using S08 and S10, reconstruct why ∫_a^b f(x)dx=F(b)-F(a). Then apply the theorem to evaluate ∫_{-1}^{2}(4x³-2x)dx with a verified antiderivative.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S11-T@1": {
+      "id": "T22V3::ARC510::S11-T@1",
+      "order": 11,
+      "kind": "transfer",
+      "prompt": "A storage level Q(t) has rate Q'(t)=4t-10 liters/hour for 0≤t≤3, and Q(0)=50 liters. Use net-change integration to find Q(3). Also state why adding the positive and negative rate portions separately would give the same net result if done correctly.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S12-M@1": {
+      "id": "T22V3::ARC510::S12-M@1",
+      "order": 12,
+      "kind": "main",
+      "prompt": "On the interval x>0, find an antiderivative family for f(x)=3x²-4e^x+2cos x+5/x. Differentiate your result to verify it, and state why the interval condition matters for the logarithmic term.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S12-T@1": {
+      "id": "T22V3::ARC510::S12-T@1",
+      "order": 12,
+      "kind": "transfer",
+      "prompt": "On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
       "obligationVersion": 1
     }
   },
@@ -850,6 +1005,122 @@
         }
       ],
       "marking": "Accept algebraically equivalent expressions. Do not require the name 'Leibniz rule'; the parameterized-integrand theorem is explicitly out of scope."
+    },
+    "T22V3::ARC510::S10-M@1": {
+      "reference": "Set H=F-G. Then H'=F'-G'=0 on I. For any u<v in I, the closed segment [u,v] lies in I. Differentiability on I gives continuity on [u,v] and differentiability on (u,v), so MVT supplies c∈(u,v) with H(v)-H(u)=H'(c)(v-u)=0. Thus H(v)=H(u) for arbitrary u,v and H is constant on I. Therefore if F and G are antiderivatives of the same f, F-G=C, so the family is F+C.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Defines H=F-G and establishes H'=0 on I."
+        },
+        {
+          "points": 4,
+          "criterion": "Applies MVT on an arbitrary segment [u,v]⊂I with its continuity/differentiability conditions to obtain H(v)=H(u)."
+        },
+        {
+          "points": 3,
+          "criterion": "Concludes H is constant and connects this directly to the additive-constant antiderivative family."
+        }
+      ],
+      "marking": "This is proof reconstruction. Accept the equivalent derivative-zero corollary if its interval/MVT hypotheses are explicitly invoked; do not accept 'obvious +C' as a proof."
+    },
+    "T22V3::ARC510::S10-T@1": {
+      "reference": "On each component H is locally constant, so H'(x)=0 for every x∈D. But H takes value 0 on the negative component and 1 on the positive component, so it is not one global constant. The domain D is not an interval: for u<0<v, [u,v] is not contained in D, so MVT cannot be applied across the gap. The correct conclusion is that H is constant on each connected interval component separately.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Shows H'=0 at every point of the stated domain."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows H is not a single global constant because the two components have values 0 and 1."
+        },
+        {
+          "points": 3,
+          "criterion": "Identifies failure of the interval/segment hypothesis needed for MVT across the gap."
+        },
+        {
+          "points": 2,
+          "criterion": "States the correct componentwise constant conclusion."
+        }
+      ],
+      "marking": "Do not require topology terminology beyond 'interval' or 'separate interval components'."
+    },
+    "T22V3::ARC510::S11-M@1": {
+      "reference": "S08 gives A'=f on the interval interior. Since F'=f, (F-A)'=0; S10 makes F-A constant. At a, A(a)=0, so F(x)-A(x)=F(a), hence A(b)=F(b)-F(a). For 4x³-2x, an antiderivative is x^4-x² because its derivative is 4x³-2x. Endpoint evaluation gives (16-4)-(1-1)=12.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Uses A'=f and F'=f to make F-A derivative zero, then invokes the interval constant result."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses A(a)=0 to derive A(b)=F(b)-F(a), hence the endpoint-evaluation theorem."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies x^4-x² differentiates to 4x³-2x."
+        },
+        {
+          "points": 2,
+          "criterion": "Evaluates the definite integral as 12 with no spurious +C in the final number."
+        }
+      ],
+      "marking": "The theorem proof is reconstruction evidence. Accept any algebraically equivalent antiderivative and endpoint calculation."
+    },
+    "T22V3::ARC510::S11-T@1": {
+      "reference": "Net change is ∫_0^3(4t-10)dt=[2t²-10t]_0^3=18-30=-12 liters. Therefore Q(3)=50-12=38 liters. Splitting at the sign change t=2.5 is legal by interval additivity; the negative and positive contributions then recombine to the same signed integral.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes the signed rate integral over [0,3] as -12 liters."
+        },
+        {
+          "points": 3,
+          "criterion": "Adds net change to Q(0)=50 to obtain Q(3)=38 liters."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that splitting at the rate sign change preserves the result by interval additivity and signed accumulation."
+        }
+      ],
+      "marking": "Equivalent splitting at t=2.5 is accepted. Do not replace signed net change by total absolute flow."
+    },
+    "T22V3::ARC510::S12-M@1": {
+      "reference": "One antiderivative is F(x)=x³-4e^x+2sin x+5ln x+C. Differentiating gives 3x²-4e^x+2cos x+5/x. The x>0 condition makes ln x defined and matches the 1/x derivative; on an interval x<0 one would use ln(-x)=ln|x| instead, while no single interval containing 0 is legal because 1/x is undefined there.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Constructs x³-4e^x+2sin x+5ln x+C or an equivalent antiderivative on x>0."
+        },
+        {
+          "points": 3,
+          "criterion": "Differentiates the proposed antiderivative back to the full integrand."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains the logarithmic/domain restriction and does not claim an antiderivative interval crossing x=0."
+        }
+      ],
+      "marking": "Equivalent constant choices are accepted. The domain explanation is substantive, not ceremonial."
+    },
+    "T22V3::ARC510::S12-T@1": {
+      "reference": "An antiderivative is Q(x)=-1/x²+(3/ln2)2^x+C, because d(-x^{-2})/dx=2x^{-3} and d[(3/ln2)2^x]/dx=3·2^x. It is valid on x<0 (and the same algebraic expression is separately differentiable on x>0), but q is undefined at x=0, so there is no antiderivative on one interval crossing 0 for this integrand.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Constructs -1/x²+(3/ln2)2^x+C or an equivalent antiderivative on x<0."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies both derivative terms, including the ln2 factor for 2^x."
+        },
+        {
+          "points": 3,
+          "criterion": "Preserves the exclusion of x=0 and explains why the antiderivative claim is intervalwise."
+        }
+      ],
+      "marking": "Accept equivalent power notation. Do not require ln|x| because this integrand has x^-3, not 1/x."
     }
   },
   "coverage": {
@@ -959,6 +1230,42 @@
         "transfer"
       ],
       [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S10@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S11@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S12@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
         "transfer"
       ]
     ]
@@ -1276,6 +1583,110 @@
         "escapeAttempt": "Related correct endpoint arithmetic does not by itself show the requested distinction.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::ARC510::S10@1": [
+      {
+        "claim": "Use the Mean Value Theorem to prove that a differentiable function with zero derivative on an interval is constant.",
+        "task": "main",
+        "publicRequest": "Let I be an interval, and let F and G be differentiable on I with F'(x)=G'(x) for every x∈I. Using the Mean Value Theorem as stated in the lesson, prove that F-G is constant on I. Then explain how this proves that all antiderivatives of one function on I differ by an additive constant.",
+        "rubricEvidence": [
+          "Defines H=F-G and establishes H'=0 on I.",
+          "Applies MVT on an arbitrary segment [u,v]⊂I with its continuity/differentiability conditions to obtain H(v)=H(u)."
+        ],
+        "escapeAttempt": "The +C slogan cannot earn the MVT proof rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use the derivative-zero result to justify that two antiderivatives of the same function differ by a constant on an interval.",
+        "task": "main",
+        "publicRequest": "Let I be an interval, and let F and G be differentiable on I with F'(x)=G'(x) for every x∈I. Using the Mean Value Theorem as stated in the lesson, prove that F-G is constant on I. Then explain how this proves that all antiderivatives of one function on I differ by an additive constant.",
+        "rubricEvidence": [
+          "Concludes H is constant and connects this directly to the additive-constant antiderivative family."
+        ],
+        "escapeAttempt": "Related derivative-zero arithmetic alone does not satisfy the explicit antiderivative-family request.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Preserve the interval/domain hypothesis by diagnosing a disconnected-domain counterexample.",
+        "task": "transfer",
+        "publicRequest": "Define H on D=(-∞,0)∪(0,∞) by H(x)=0 for x<0 and H(x)=1 for x>0. Show that H'(x)=0 at every point of D, yet H is not one constant on all of D. Identify exactly which hypothesis from the S10 derivative-zero theorem fails, and state the correct componentwise conclusion.",
+        "rubricEvidence": [
+          "Identifies failure of the interval/segment hypothesis needed for MVT across the gap.",
+          "States the correct componentwise constant conclusion."
+        ],
+        "escapeAttempt": "Showing H'=0 without diagnosing the domain does not earn theorem-boundary credit.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S11@1": [
+      {
+        "claim": "Reconstruct FTC endpoint evaluation from the accumulation function and antiderivative uniqueness.",
+        "task": "main",
+        "publicRequest": "Assume f is continuous on [a,b] and F is an antiderivative of f there. Define A(x)=∫_a^x f(t)dt. Using S08 and S10, reconstruct why ∫_a^b f(x)dx=F(b)-F(a). Then apply the theorem to evaluate ∫_{-1}^{2}(4x³-2x)dx with a verified antiderivative.",
+        "rubricEvidence": [
+          "Uses A'=f and F'=f to make F-A derivative zero, then invokes the interval constant result.",
+          "Uses A(a)=0 to derive A(b)=F(b)-F(a), hence the endpoint-evaluation theorem."
+        ],
+        "escapeAttempt": "Endpoint substitution with no theorem argument cannot earn these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Evaluate a proper definite integral with a verified antiderivative without adding an arbitrary constant to the final number.",
+        "task": "main",
+        "publicRequest": "Assume f is continuous on [a,b] and F is an antiderivative of f there. Define A(x)=∫_a^x f(t)dt. Using S08 and S10, reconstruct why ∫_a^b f(x)dx=F(b)-F(a). Then apply the theorem to evaluate ∫_{-1}^{2}(4x³-2x)dx with a verified antiderivative.",
+        "rubricEvidence": [
+          "Verifies x^4-x² differentiates to 4x³-2x.",
+          "Evaluates the definite integral as 12 with no spurious +C in the final number."
+        ],
+        "escapeAttempt": "An unverified candidate or +C-valued result does not meet the public request.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use the integral of a rate as net change between endpoint states.",
+        "task": "transfer",
+        "publicRequest": "A storage level Q(t) has rate Q'(t)=4t-10 liters/hour for 0≤t≤3, and Q(0)=50 liters. Use net-change integration to find Q(3). Also state why adding the positive and negative rate portions separately would give the same net result if done correctly.",
+        "rubricEvidence": [
+          "Computes the signed rate integral over [0,3] as -12 liters.",
+          "Adds net change to Q(0)=50 to obtain Q(3)=38 liters."
+        ],
+        "escapeAttempt": "Absolute accumulation cannot earn net-change credit.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S12@1": [
+      {
+        "claim": "Construct an elementary antiderivative by reversing established derivative rules and linearity.",
+        "task": "main+transfer",
+        "publicRequest": "On the interval x>0, find an antiderivative family for f(x)=3x²-4e^x+2cos x+5/x. Differentiate your result to verify it, and state why the interval condition matters for the logarithmic term. | On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
+        "rubricEvidence": [
+          "Constructs x³-4e^x+2sin x+5ln x+C or an equivalent antiderivative on x>0.",
+          "Constructs -1/x²+(3/ln2)2^x+C or an equivalent antiderivative on x<0."
+        ],
+        "escapeAttempt": "A partial formula cannot earn the complete construction rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Verify a proposed antiderivative by differentiating it back to the integrand.",
+        "task": "main+transfer",
+        "publicRequest": "On the interval x>0, find an antiderivative family for f(x)=3x²-4e^x+2cos x+5/x. Differentiate your result to verify it, and state why the interval condition matters for the logarithmic term. | On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
+        "rubricEvidence": [
+          "Differentiates the proposed antiderivative back to the full integrand.",
+          "Verifies both derivative terms, including the ln2 factor for 2^x."
+        ],
+        "escapeAttempt": "Pattern recognition without backward differentiation does not satisfy the requested verification.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Preserve interval/domain restrictions, especially for 1/x and negative powers.",
+        "task": "main+transfer",
+        "publicRequest": "On the interval x>0, find an antiderivative family for f(x)=3x²-4e^x+2cos x+5/x. Differentiate your result to verify it, and state why the interval condition matters for the logarithmic term. | On the interval x<0, find and verify an antiderivative of q(x)=2/x³+3·2^x. State why your formula is an intervalwise antiderivative on x<0 rather than evidence of one antiderivative defined across x=0.",
+        "rubricEvidence": [
+          "Explains the logarithmic/domain restriction and does not claim an antiderivative interval crossing x=0.",
+          "Preserves the exclusion of x=0 and explains why the antiderivative claim is intervalwise."
+        ],
+        "escapeAttempt": "Correct local algebra does not imply a legal cross-zero domain.",
+        "disposition": "adequate"
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -1288,7 +1699,7 @@
     "m10Reused": [
       "M10-S03 local-rate interpretation and units"
     ],
-    "localBridge": "none in S01",
+    "localBridge": "S10 explicitly introduces the bounded MVT/derivative-zero support bridge before FTC endpoint evaluation consumes it; no broad MVT applications are imported.",
     "sessions": {
       "T22V3::ARC510::S01@1": [
         "arithmetic/units already in M01",
@@ -1332,6 +1743,21 @@
         "M11-S08 FTC local recovery",
         "M10-S14 chain rule",
         "M11-S05 orientation"
+      ],
+      "T22V3::ARC510::S10@1": [
+        "M09-S26 Extreme Value Theorem",
+        "M10 derivative definition/differentiability⇒continuity",
+        "M03 proof/counterexample discipline"
+      ],
+      "T22V3::ARC510::S11@1": [
+        "M11-S08 FTC local recovery",
+        "M11-S10 antiderivative uniqueness",
+        "M10 derivative rules"
+      ],
+      "T22V3::ARC510::S12@1": [
+        "M11-S10 antiderivative definition",
+        "+C uniqueness on intervals",
+        "M10 polynomial/product/quotient/trig/exp/log derivatives"
       ]
     }
   },
@@ -1429,6 +1855,36 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer changes to two independently moving endpoints and explicitly tests the dummy-variable/parameter distinction, not just another one-endpoint substitution."
         }
+      },
+      "T22V3::ARC510::S10@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson explicitly proves the derivative-zero and antiderivative-uniqueness route; Main reconstructs that argument and is not fresh proof evidence."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes the interval hypothesis and supplies a disconnected-domain counterexample, forcing the learner to locate the exact theorem boundary rather than repeat the proof."
+        }
+      },
+      "T22V3::ARC510::S11@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson derives endpoint evaluation in general; Main explicitly asks the learner to reconstruct the same theorem and then apply it to fresh polynomial data."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes from theorem proof to a state/rate model with an initial condition and sign-changing rate, requiring net-change interpretation rather than formula recall alone."
+        }
+      },
+      "T22V3::ARC510::S12@1": {
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main primarily retrieves and assembles derivative-antiderivative pairs already taught in M10/M11, then verifies them; it is not labeled fresh theorem evidence."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to a negative interval, negative power and non-e base exponential, forcing derivative verification and domain-component reasoning rather than direct reuse of Main's terms."
+        }
       }
     },
     "wrongSolverTests": {
@@ -1521,6 +1977,36 @@
         "wrongApproach": "Use only the upper endpoint, omit the lower minus sign, or differentiate f(t) with respect to x.",
         "result": "Misses one or more explicit endpoint/dummy-variable obligations.",
         "validAlternative": "Write J=A(v)-A(u) and differentiate the two compositions."
+      },
+      "T22V3::ARC510::S10-M@1": {
+        "wrongApproach": "Write F=G+C by convention without applying an interval theorem.",
+        "result": "States the desired result but does not establish it and loses the proof/hypothesis criteria.",
+        "validAlternative": "Apply MVT directly to F-G or invoke the derived zero-derivative corollary with its interval hypotheses."
+      },
+      "T22V3::ARC510::S10-T@1": {
+        "wrongApproach": "Apply MVT from a negative u to positive v despite 0 being outside the domain.",
+        "result": "Uses the theorem illegally and cannot earn the hypothesis diagnosis.",
+        "validAlternative": "Reason separately on (-∞,0) and (0,∞)."
+      },
+      "T22V3::ARC510::S11-M@1": {
+        "wrongApproach": "Treat F(b)-F(a) as the definition or append +C to the definite integral.",
+        "result": "Misses the requested theorem reconstruction and/or produces a malformed numerical answer.",
+        "validAlternative": "Compare A and F via the zero-derivative theorem or an equivalent established FTC proof using the allowed prerequisites."
+      },
+      "T22V3::ARC510::S11-T@1": {
+        "wrongApproach": "Integrate |4t-10| or ignore the negative-rate portion.",
+        "result": "Computes total movement rather than net state change and loses the signed-rate criteria.",
+        "validAlternative": "Integrate directly or split at 2.5 and add signed pieces."
+      },
+      "T22V3::ARC510::S12-M@1": {
+        "wrongApproach": "Use 5ln|x| but claim the antiderivative is globally valid across x=0, or omit verification.",
+        "result": "The formula may be locally correct but the public domain/verification obligations remain unsatisfied.",
+        "validAlternative": "ln x on x>0 or ln|x| restricted to x>0 is accepted."
+      },
+      "T22V3::ARC510::S12-T@1": {
+        "wrongApproach": "Integrate 2^x as 2^x or treat -1/x² as valid through x=0.",
+        "result": "Misses the ln2 scale or original-domain exclusion.",
+        "validAlternative": "Any derivative-verified equivalent on x<0 passes."
       }
     }
   },
@@ -1560,6 +2046,18 @@
         "transfer": "none"
       },
       "T22V3::ARC510::S09@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S10@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S11@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S12@1": {
         "main": "none",
         "transfer": "none"
       }
@@ -1602,6 +2100,18 @@
         "transfer": "distinct"
       },
       "T22V3::ARC510::S09@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S10@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S11@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S12@1": {
         "main": "distinct",
         "transfer": "distinct"
       }
