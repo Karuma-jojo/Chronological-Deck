@@ -24,11 +24,13 @@ assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
-assert.equal(a.repairVersionAudit.changedPublicTasks.length,24);
-assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===2).length,23);
+assert.equal(a.repairVersionAudit.changedPublicTasks.length,29);
+assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===2).length,27);
 assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===3).length,1);
-assert.equal(a.problems['T22V3::T22E-CODE01::S22-M@1'].obligationVersion,3);
-for(const id of ['M08-F01','M08-F02','M08-F03','M08-F04']) assert(a.followupAudit.findings[id],id);
+assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===4).length,1);
+assert.equal(a.problems['T22V3::T22E-CODE01::S18-T@1'].obligationVersion,3);
+assert.equal(a.problems['T22V3::T22E-CODE01::S22-M@1'].obligationVersion,4);
+for(const id of ['M08-F01','M08-F02','M08-F03','M08-F04','M08-F05','M08-F05']) assert(a.followupAudit.findings[id],id);
 assert.equal(Object.keys(a.assessmentSeparationAudit.sessions).length,24);
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01','T22E-DISC01','ARC048']);
 assert.deepEqual(deps.modules.find(x=>x.id==='T22E-CODE01').prerequisites,a.boundary.prerequisiteModules);
@@ -53,20 +55,20 @@ for(const token of [
 ]) assert(independent.includes(token),token);
 
 for(const token of [
-  '24 changed public obligations','obligationVersion2','S22-M is obligationVersion3','assessmentSeparationAudit',
+  '29 changed public obligations','27 are version2','S18-T is version3','S22-M is version4','assessmentSeparationAudit',
   'zip(..., strict=True)','traceback','S14–S16','bounded follow-up',
-  'M08-F01','M08-F02','M08-F03','M08-F04'
+  'M08-F01','M08-F02','M08-F03','M08-F04','M08-F05'
 ]) assert(resolution.includes(token),token);
 
 for(const token of [
   'independent-audit + bounded-follow-up repaired candidate awaiting final exact-head validation',
-  '24 changed public obligations','S22-M carries `obligationVersion=3`',
+  '29 changed public obligations','S18-T carries `obligationVersion=3`','S22-M carries `obligationVersion=4`',
   'm08-authoring-v2-independent-repair','m08-semantic-contract-independent-r2-2026-09-24',
-  'M08-F01','M08-F02','M08-F03','M08-F04',
+  'M08-F01','M08-F02','M08-F03','M08-F04','M08-F05',
   'historical and superseded for final-head authority','M09 remains closed'
 ]) assert(hand.includes(token),token);
 
 for(const token of ['M01','M03','M04','M21','M30','PY-MATH','PY-IMPORT','PY-ZIP','PY-TRACE','Hard stop']) assert(boundary.includes(token),token);
 assert(builderAudit.startsWith('> **Historical builder audit.**'));
 
-console.log('PASS M08 repair handoff: 24/48/120 independent-audit + bounded-follow-up repaired candidate, 24 changed obligations (23 v2 + one v3), semantic contamination/hidden-syntax guards, rebuilt Python oracles and hard M09 stop; exact-head validation pending.');
+console.log('PASS M08 repair handoff: 24/48/120 independent-audit + bounded-follow-up repaired candidate, 29 changed obligations (27 v2 + one v3 + one v4), semantic contamination/hidden-syntax/executable-syntax guards, rebuilt Python oracles and hard M09 stop; exact-head validation pending.');
