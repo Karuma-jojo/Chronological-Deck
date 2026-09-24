@@ -37,8 +37,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m08-observability-independent-repair-r3-2026-09-24",
-    "status": "Independent hostile audit plus bounded follow-up repaired assessment contamination, observability gaps, import/name-binding inconsistency and hidden syntax (conditional expression, list comprehension, lambda in reference). Awaiting final exact-head validation.",
+    "version": "m08-observability-independent-repair-r4-2026-09-24",
+    "status": "Independent hostile audit plus bounded follow-up repaired assessment contamination, observability, imports, hidden syntax, and invalid compressed compound-statement snippets. Final exact-head validation required.",
     "policy": "Each link was authored from the observable capability, then adversarially checked against a named misconception. Structural membership is not treated as semantic proof; docs/t22-course/audit/m08-semantic-contract.json pins the builder-reviewed links and mutation guards."
   },
   "sourceLedger": {
@@ -303,7 +303,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S04 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "`range(start,stop)` includes start and excludes stop. An accumulator should have a meaning after every iteration. Worked example: `total=0; for k in range(1,5): total+=k` visits1,2,3,4 and leaves10; after each step total is the sum visited so far. Guided check: Which range visits2 through6 exactly?",
+      "lesson": "`range(start,stop)` includes start and excludes stop. An accumulator should have a meaning after every iteration. Worked example:\n```python\ntotal = 0\nfor k in range(1,5):\n    total += k\n```\nThis visits1,2,3,4 and leaves10; after each step total is the sum visited so far. Guided check: Which range visits2 through6 exactly?",
       "main": "T22V3::T22E-CODE01::S04-M@1",
       "transfer": "T22V3::T22E-CODE01::S04-T@1"
     },
@@ -347,7 +347,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S05 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "A while loop repeats while its condition is True. The body should make progress toward a stopping condition. Worked example: `x=2; steps=0; while x<11: x+=3; steps+=1` gives post-update5,8,11 and stops after3. Guided check: Starting1 and adding4 while x<10, trace post-update values.",
+      "lesson": "A while loop repeats while its condition is True. The body should make progress toward a stopping condition. Worked example:\n```python\nx = 2\nsteps = 0\nwhile x < 11:\n    x += 3\n    steps += 1\n```\nThe post-update x values are5,8,11 and the loop stops after3 iterations. Guided check: Starting1 and adding4 while x<10, trace the post-update values.",
       "main": "T22V3::T22E-CODE01::S05-M@1",
       "transfer": "T22V3::T22E-CODE01::S05-T@1"
     },
@@ -391,7 +391,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S06 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "A function is a reusable mapping from explicit inputs to an output. `return` is its result contract. Worked example: `def gap(a,b): return b-a` returns5 on(4,9) and-3 on(10,7). If a baseline matters, pass it rather than silently reading a global. Guided check: Refactor `base=10; def change(x): return x-base` to expose both inputs.",
+      "lesson": "A function is a reusable mapping from explicit inputs to an output. `return` is its result contract. Worked example: `def gap(a,b): return b-a` returns5 on(4,9) and-3 on(10,7). If a baseline matters, pass it rather than silently reading a global. Guided check: refactor this so both inputs are explicit:\n```python\nbase = 10\ndef change(x):\n    return x - base\n```",
       "main": "T22V3::T22E-CODE01::S06-M@1",
       "transfer": "T22V3::T22E-CODE01::S06-T@1"
     },
@@ -521,7 +521,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S09 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "A set answers uniqueness/membership, not multiplicity. A dictionary can preserve keyed counts. Worked example: `obs=['H','T','H']`; `unique=set(obs)` has size2, while `counts={}; for label in obs: counts[label]=counts.get(label,0)+1` produces H:2,T:1 over three observations. Guided check: For `[2,2,5,2]`, what information is lost by converting to a set, and what information does a count dictionary preserve?",
+      "lesson": "A set answers uniqueness/membership, not multiplicity. A dictionary can preserve keyed counts. Worked example:\n```python\nobs = ['H','T','H']\nunique = set(obs)\ncounts = {}\nfor label in obs:\n    counts[label] = counts.get(label,0) + 1\n```\nThe unique set has size2, while the count dictionary preserves H:2,T:1 over three observations. Guided check: For `[2,2,5,2]`, what information is lost by converting to a set, and what information does a count dictionary preserve?",
       "main": "T22V3::T22E-CODE01::S09-M@1",
       "transfer": "T22V3::T22E-CODE01::S09-T@1"
     },
@@ -876,7 +876,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S17 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "Assertions are development-time claims. Good tests target invariants and known cases; Python can omit assert under `-O`. Worked example: after counting hits, `assert 0<=hits<=len(xs)` checks an invariant; on `[1,2,3,4]`, even-count2 is a known oracle. Guided check: Which input distinguishes x>=5 from x>5?",
+      "lesson": "Assertions are development-time claims. Good tests target invariants and known cases; Python can omit `assert` under `-O`. Essential runtime contracts therefore need ordinary control flow. A basic active failure pattern is:\n```python\nif n <= 0:\n    raise ValueError('n must be positive')\n```\nWorked example: after counting hits, `assert 0<=hits<=len(xs)` checks an invariant; on `[1,2,3,4]`, even-count2 is a known oracle. Guided check: Which input distinguishes x>=5 from x>5?",
       "main": "T22V3::T22E-CODE01::S17-M@1",
       "transfer": "T22V3::T22E-CODE01::S17-T@1"
     },
@@ -1235,8 +1235,8 @@
       "id": "T22V3::T22E-CODE01::S04-M@1",
       "order": 4,
       "kind": "main",
-      "prompt": "Trace `total=0; for k in range(1,6): total += k*k`. List k values, final total, and an accumulator invariant.",
-      "obligationVersion": 1
+      "prompt": "Trace without running:\n```python\ntotal = 0\nfor k in range(1,6):\n    total += k*k\n```\nList the k values, final total, and an accumulator invariant.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S04-T@1": {
       "id": "T22V3::T22E-CODE01::S04-T@1",
@@ -1249,15 +1249,15 @@
       "id": "T22V3::T22E-CODE01::S05-M@1",
       "order": 5,
       "kind": "main",
-      "prompt": "Trace `bank=10; rounds=0; while bank<20: bank+=3; rounds+=1`. Give bank after each iteration, final bank/rounds, and why termination is guaranteed.",
-      "obligationVersion": 1
+      "prompt": "Trace without running:\n```python\nbank = 10\nrounds = 0\nwhile bank < 20:\n    bank += 3\n    rounds += 1\n```\nGive bank after each iteration, final bank/rounds, and why termination is guaranteed.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S05-T@1": {
       "id": "T22V3::T22E-CODE01::S05-T@1",
       "order": 5,
       "kind": "transfer",
-      "prompt": "Audit `x=0; while x != 10: x += 3`. Does it terminate? Give a trace showing why, then repair for 'add3 until x reaches or exceeds10'.",
-      "obligationVersion": 1
+      "prompt": "Audit:\n```python\nx = 0\nwhile x != 10:\n    x += 3\n```\nDoes it terminate? Give a trace showing why, then repair it for the requirement “add3 until x reaches or exceeds10.”",
+      "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S06-M@1": {
       "id": "T22V3::T22E-CODE01::S06-M@1",
@@ -1270,8 +1270,8 @@
       "id": "T22V3::T22E-CODE01::S06-T@1",
       "order": 6,
       "kind": "transfer",
-      "prompt": "Audit `base=100; def change(end): return (end-base)/base`. Why is this hidden-state dependent? Refactor so callers can use bases100 and80 without rebinding a global.",
-      "obligationVersion": 1
+      "prompt": "Audit:\n```python\nbase = 100\ndef change(end):\n    return (end-base)/base\n```\nWhy is this hidden-state dependent? Refactor it so callers can use bases100 and80 without rebinding a global.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S07-M@1": {
       "id": "T22V3::T22E-CODE01::S07-M@1",
@@ -1438,8 +1438,8 @@
       "id": "T22V3::T22E-CODE01::S18-T@1",
       "order": 18,
       "kind": "transfer",
-      "prompt": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception and reduce the failure to the smallest offending expression. Explain the off-by-one cause, give two repairs, and explain why `try: ... except Exception: pass` is unacceptable.",
-      "obligationVersion": 2
+      "prompt": "Audit:\n```python\nxs = [4,7,9]\nfor i in range(len(xs)+1):\n    print(xs[i])\n```\nIdentify the first invalid index/exception and reduce the failure to the smallest offending expression. Explain the off-by-one cause, give two repairs, and explain why `try: ... except Exception: pass` is unacceptable.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-CODE01::S19-M@1": {
       "id": "T22V3::T22E-CODE01::S19-M@1",
@@ -1487,8 +1487,8 @@
       "id": "T22V3::T22E-CODE01::S22-M@1",
       "order": 22,
       "kind": "main",
-      "prompt": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
-      "obligationVersion": 3
+      "prompt": "Trace without needing numeric floats:\n```python\nr = Random(31)\nprefix = []\nfor i in range(2):\n    prefix.append(r.random())\nstate = r.getstate()\nsuffix1 = []\nfor i in range(3):\n    suffix1.append(r.random())\nr.setstate(state)\nsuffix2 = []\nfor i in range(3):\n    suffix2.append(r.random())\n```\nWhich list equality is guaranteed, and what exactly does the snapshot represent?",
+      "obligationVersion": 4
     },
     "T22V3::T22E-CODE01::S22-T@1": {
       "id": "T22V3::T22E-CODE01::S22-T@1",
@@ -1522,8 +1522,8 @@
       "id": "T22V3::T22E-CODE01::S24-T@1",
       "order": 24,
       "kind": "transfer",
-      "prompt": "Audit `rng=Random(7); wins=0; for _ in range(N): a=rng.randrange(1,6); b=a; if a+b>=8: wins+=1; estimate=wins/N` for the same game. Identify at least three independent defects and repair each before discussing N.",
-      "obligationVersion": 1
+      "prompt": "Audit this simulator for the same game:\n```python\nrng = Random(7)\nwins = 0\nfor i in range(N):\n    a = rng.randrange(1,6)\n    b = a\n    if a+b >= 8:\n        wins += 1\nestimate = wins/N\n```\nIdentify at least three independent defects and repair each before discussing N.",
+      "obligationVersion": 2
     }
   },
   "evaluators": {
@@ -1840,7 +1840,7 @@
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     },
     "T22V3::T22E-CODE01::S07-M@1": {
-      "reference": "Example: `def is_large(x): return x>=10`; `def count_event(xs,predicate): hits=0; for x in xs: \n    if predicate(x): hits+=1\n  return hits`. `count_event([4,10,13,2],is_large)` returns2. `predicate` refers to the supplied function object, which is called for each x. Boundary: `is_large(10)` is True.",
+      "reference": "Example:\n```python\ndef is_large(x):\n    return x >= 10\n\ndef count_event(xs, predicate):\n    hits = 0\n    for x in xs:\n        if predicate(x):\n            hits += 1\n    return hits\n```\n`count_event([4,10,13,2],is_large)` returns2. `predicate` refers to the supplied function object, which is called for each x. Boundary: `is_large(10)` is True.",
       "rubric": [
         {
           "points": 2,
@@ -1944,7 +1944,7 @@
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     },
     "T22V3::T22E-CODE01::S09-M@1": {
-      "reference": "Example: `unique=set(observations)` and `counts={}; for label in observations: counts[label]=counts.get(label,0)+1`. Unique labels are G,R,B (order irrelevant), distinct count3, observations6, counts G:3,R:2,B:1. Empirical frequencies divide by6, not3.",
+      "reference": "Example:\n```python\nunique = set(observations)\ncounts = {}\nfor label in observations:\n    counts[label] = counts.get(label,0) + 1\n```\nUnique labels are G,R,B (order irrelevant), distinct count3, observations6, counts G:3,R:2,B:1. Empirical frequencies divide by6, not3.",
       "rubric": [
         {
           "points": 2,
@@ -2074,7 +2074,7 @@
       "marking": "Score only the public Main task. Accept equivalent correct Python or precise pseudocode where behavior is unambiguous. Do not infer mastery from an unexplained output; code must implement the stated model."
     },
     "T22V3::T22E-CODE01::S11-T@1": {
-      "reference": "Plain zip ignores value9 and yields weighted sum32. `zip(...,strict=True)` raises ValueError when the lengths differ. An explicit `if len(values)!=len(weights): raise ValueError(...)` check is an alternative.",
+      "reference": "Plain zip ignores value9 and yields weighted sum32. `zip(...,strict=True)` raises ValueError when the lengths differ. An explicit precondition such as `if len(values) != len(weights):` followed by rejection/returning an error status is an alternative; the key is not to accept silently truncated alignment.",
       "rubric": [
         {
           "points": 2,
@@ -3332,7 +3332,7 @@
       {
         "claim": "State the stop of `range(start,stop)` is excluded.",
         "task": "main",
-        "publicRequest": "Trace `total=0; for k in range(1,6): total += k*k`. List k values, final total, and an accumulator invariant.",
+        "publicRequest": "Trace without running:\n```python\ntotal = 0\nfor k in range(1,6):\n    total += k*k\n```\nList the k values, final total, and an accumulator invariant.",
         "rubricEvidence": [
           "Half-open endpoint behavior is correct."
         ]
@@ -3340,7 +3340,7 @@
       {
         "claim": "Trace a finite loop in order.",
         "task": "main",
-        "publicRequest": "Trace `total=0; for k in range(1,6): total += k*k`. List k values, final total, and an accumulator invariant.",
+        "publicRequest": "Trace without running:\n```python\ntotal = 0\nfor k in range(1,6):\n    total += k*k\n```\nList the k values, final total, and an accumulator invariant.",
         "rubricEvidence": [
           "Visited values1..5 are correct.",
           "Final total55 is correct."
@@ -3349,7 +3349,7 @@
       {
         "claim": "Maintain an accumulator with a stated invariant.",
         "task": "main",
-        "publicRequest": "Trace `total=0; for k in range(1,6): total += k*k`. List k values, final total, and an accumulator invariant.",
+        "publicRequest": "Trace without running:\n```python\ntotal = 0\nfor k in range(1,6):\n    total += k*k\n```\nList the k values, final total, and an accumulator invariant.",
         "rubricEvidence": [
           "A meaningful accumulator invariant is stated.",
           "Trace and invariant agree."
@@ -3379,7 +3379,7 @@
       {
         "claim": "Check the while condition before each iteration.",
         "task": "main",
-        "publicRequest": "Trace `bank=10; rounds=0; while bank<20: bank+=3; rounds+=1`. Give bank after each iteration, final bank/rounds, and why termination is guaranteed.",
+        "publicRequest": "Trace without running:\n```python\nbank = 10\nrounds = 0\nwhile bank < 20:\n    bank += 3\n    rounds += 1\n```\nGive bank after each iteration, final bank/rounds, and why termination is guaranteed.",
         "rubricEvidence": [
           "All post-update values are correct.",
           "Condition-before-iteration behavior is respected."
@@ -3388,7 +3388,7 @@
       {
         "claim": "Trace state updates until false.",
         "task": "main",
-        "publicRequest": "Trace `bank=10; rounds=0; while bank<20: bank+=3; rounds+=1`. Give bank after each iteration, final bank/rounds, and why termination is guaranteed.",
+        "publicRequest": "Trace without running:\n```python\nbank = 10\nrounds = 0\nwhile bank < 20:\n    bank += 3\n    rounds += 1\n```\nGive bank after each iteration, final bank/rounds, and why termination is guaranteed.",
         "rubricEvidence": [
           "All post-update values are correct.",
           "Final bank22 is correct.",
@@ -3398,7 +3398,7 @@
       {
         "claim": "Give a simple progress argument for termination.",
         "task": "main",
-        "publicRequest": "Trace `bank=10; rounds=0; while bank<20: bank+=3; rounds+=1`. Give bank after each iteration, final bank/rounds, and why termination is guaranteed.",
+        "publicRequest": "Trace without running:\n```python\nbank = 10\nrounds = 0\nwhile bank < 20:\n    bank += 3\n    rounds += 1\n```\nGive bank after each iteration, final bank/rounds, and why termination is guaranteed.",
         "rubricEvidence": [
           "A valid progress/termination argument is given."
         ]
@@ -3406,7 +3406,7 @@
       {
         "claim": "Detect equality-based nontermination when updates skip the target.",
         "task": "transfer",
-        "publicRequest": "Audit `x=0; while x != 10: x += 3`. Does it terminate? Give a trace showing why, then repair for 'add3 until x reaches or exceeds10'.",
+        "publicRequest": "Audit:\n```python\nx = 0\nwhile x != 10:\n    x += 3\n```\nDoes it terminate? Give a trace showing why, then repair it for the requirement “add3 until x reaches or exceeds10.”",
         "rubricEvidence": [
           "Nontermination is identified.",
           "A trace demonstrates skipping10.",
@@ -3416,7 +3416,7 @@
       {
         "claim": "Repair to reach-or-exceed semantics.",
         "task": "transfer",
-        "publicRequest": "Audit `x=0; while x != 10: x += 3`. Does it terminate? Give a trace showing why, then repair for 'add3 until x reaches or exceeds10'.",
+        "publicRequest": "Audit:\n```python\nx = 0\nwhile x != 10:\n    x += 3\n```\nDoes it terminate? Give a trace showing why, then repair it for the requirement “add3 until x reaches or exceeds10.”",
         "rubricEvidence": [
           "`while x<10` is supplied.",
           "Stopping value12 is correct."
@@ -3453,7 +3453,7 @@
       {
         "claim": "Recognize a hidden global dependency.",
         "task": "transfer",
-        "publicRequest": "Audit `base=100; def change(end): return (end-base)/base`. Why is this hidden-state dependent? Refactor so callers can use bases100 and80 without rebinding a global.",
+        "publicRequest": "Audit:\n```python\nbase = 100\ndef change(end):\n    return (end-base)/base\n```\nWhy is this hidden-state dependent? Refactor it so callers can use bases100 and80 without rebinding a global.",
         "rubricEvidence": [
           "The global dependency is identified.",
           "Its context sensitivity is explained."
@@ -3462,7 +3462,7 @@
       {
         "claim": "Refactor hidden state into an explicit parameter.",
         "task": "transfer",
-        "publicRequest": "Audit `base=100; def change(end): return (end-base)/base`. Why is this hidden-state dependent? Refactor so callers can use bases100 and80 without rebinding a global.",
+        "publicRequest": "Audit:\n```python\nbase = 100\ndef change(end):\n    return (end-base)/base\n```\nWhy is this hidden-state dependent? Refactor it so callers can use bases100 and80 without rebinding a global.",
         "rubricEvidence": [
           "A two-parameter refactor is supplied.",
           "Different callers can pass100 and80 explicitly.",
@@ -4007,7 +4007,7 @@
       {
         "claim": "Use a minimal failing input.",
         "task": "transfer",
-        "publicRequest": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception and reduce the failure to the smallest offending expression. Explain the off-by-one cause, give two repairs, and explain why `try: ... except Exception: pass` is unacceptable.",
+        "publicRequest": "Audit:\n```python\nxs = [4,7,9]\nfor i in range(len(xs)+1):\n    print(xs[i])\n```\nIdentify the first invalid index/exception and reduce the failure to the smallest offending expression. Explain the off-by-one cause, give two repairs, and explain why `try: ... except Exception: pass` is unacceptable.",
         "rubricEvidence": [
           "Invalid index3 and IndexError are correctly identified.",
           "The failure is reduced/localized to the minimal offending expression `xs[3]`."
@@ -4016,7 +4016,7 @@
       {
         "claim": "Repair the root condition rather than suppressing the exception.",
         "task": "transfer",
-        "publicRequest": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception and reduce the failure to the smallest offending expression. Explain the off-by-one cause, give two repairs, and explain why `try: ... except Exception: pass` is unacceptable.",
+        "publicRequest": "Audit:\n```python\nxs = [4,7,9]\nfor i in range(len(xs)+1):\n    print(xs[i])\n```\nIdentify the first invalid index/exception and reduce the failure to the smallest offending expression. Explain the off-by-one cause, give two repairs, and explain why `try: ... except Exception: pass` is unacceptable.",
         "rubricEvidence": [
           "The +1 half-open-range endpoint error is explained.",
           "Both a correct-range repair and a direct-iteration/enumerate repair are supplied."
@@ -4025,7 +4025,7 @@
       {
         "claim": "Explain why broad exception suppression can hide defects.",
         "task": "transfer",
-        "publicRequest": "Audit `xs=[4,7,9]; for i in range(len(xs)+1): print(xs[i])`. Identify first invalid index/exception and reduce the failure to the smallest offending expression. Explain the off-by-one cause, give two repairs, and explain why `try: ... except Exception: pass` is unacceptable.",
+        "publicRequest": "Audit:\n```python\nxs = [4,7,9]\nfor i in range(len(xs)+1):\n    print(xs[i])\n```\nIdentify the first invalid index/exception and reduce the failure to the smallest offending expression. Explain the off-by-one cause, give two repairs, and explain why `try: ... except Exception: pass` is unacceptable.",
         "rubricEvidence": [
           "A blanket catch-and-ignore is rejected because it hides rather than repairs the defect."
         ]
@@ -4174,7 +4174,7 @@
       {
         "claim": "Capture current state with getstate.",
         "task": "main",
-        "publicRequest": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+        "publicRequest": "Trace without needing numeric floats:\n```python\nr = Random(31)\nprefix = []\nfor i in range(2):\n    prefix.append(r.random())\nstate = r.getstate()\nsuffix1 = []\nfor i in range(3):\n    suffix1.append(r.random())\nr.setstate(state)\nsuffix2 = []\nfor i in range(3):\n    suffix2.append(r.random())\n```\nWhich list equality is guaranteed, and what exactly does the snapshot represent?",
         "rubricEvidence": [
           "The snapshot is located after exactly two prefix draws."
         ]
@@ -4182,7 +4182,7 @@
       {
         "claim": "Advance after the snapshot.",
         "task": "main",
-        "publicRequest": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+        "publicRequest": "Trace without needing numeric floats:\n```python\nr = Random(31)\nprefix = []\nfor i in range(2):\n    prefix.append(r.random())\nstate = r.getstate()\nsuffix1 = []\nfor i in range(3):\n    suffix1.append(r.random())\nr.setstate(state)\nsuffix2 = []\nfor i in range(3):\n    suffix2.append(r.random())\n```\nWhich list equality is guaranteed, and what exactly does the snapshot represent?",
         "rubricEvidence": [
           "The first three-draw suffix is recognized as advancing from that snapshot."
         ]
@@ -4190,7 +4190,7 @@
       {
         "claim": "Restore with setstate.",
         "task": "main",
-        "publicRequest": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+        "publicRequest": "Trace without needing numeric floats:\n```python\nr = Random(31)\nprefix = []\nfor i in range(2):\n    prefix.append(r.random())\nstate = r.getstate()\nsuffix1 = []\nfor i in range(3):\n    suffix1.append(r.random())\nr.setstate(state)\nsuffix2 = []\nfor i in range(3):\n    suffix2.append(r.random())\n```\nWhich list equality is guaranteed, and what exactly does the snapshot represent?",
         "rubricEvidence": [
           "Restore is tracked before the second three-draw suffix."
         ]
@@ -4198,7 +4198,7 @@
       {
         "claim": "Predict replay of the first draw after the saved state.",
         "task": "main",
-        "publicRequest": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+        "publicRequest": "Trace without needing numeric floats:\n```python\nr = Random(31)\nprefix = []\nfor i in range(2):\n    prefix.append(r.random())\nstate = r.getstate()\nsuffix1 = []\nfor i in range(3):\n    suffix1.append(r.random())\nr.setstate(state)\nsuffix2 = []\nfor i in range(3):\n    suffix2.append(r.random())\n```\nWhich list equality is guaranteed, and what exactly does the snapshot represent?",
         "rubricEvidence": [
           "`suffix1==suffix2` is stated and justified by state replay."
         ]
@@ -4303,7 +4303,7 @@
       {
         "claim": "Diagnose multiple independent model/code mismatches.",
         "task": "transfer",
-        "publicRequest": "Audit `rng=Random(7); wins=0; for _ in range(N): a=rng.randrange(1,6); b=a; if a+b>=8: wins+=1; estimate=wins/N` for the same game. Identify at least three independent defects and repair each before discussing N.",
+        "publicRequest": "Audit this simulator for the same game:\n```python\nrng = Random(7)\nwins = 0\nfor i in range(N):\n    a = rng.randrange(1,6)\n    b = a\n    if a+b >= 8:\n        wins += 1\nestimate = wins/N\n```\nIdentify at least three independent defects and repair each before discussing N.",
         "rubricEvidence": [
           "The missing-face defect is found/repaired.",
           "The reused-draw defect is found/repaired.",
@@ -4748,7 +4748,8 @@
     },
     "T22V3::T22E-CODE01::S04@1": {
       "main": [
-        "total=0; for k in range(1,6): total += k*k"
+        "range(1,6)",
+        "total += k*k"
       ],
       "transfer": [
         "1²+2²+3²+4²+5²"
@@ -4756,10 +4757,12 @@
     },
     "T22V3::T22E-CODE01::S05@1": {
       "main": [
-        "bank=10; rounds=0; while bank<20: bank+=3; rounds+=1"
+        "bank = 10",
+        "while bank < 20"
       ],
       "transfer": [
-        "x=0; while x != 10: x += 3"
+        "while x != 10",
+        "x += 3"
       ]
     },
     "T22V3::T22E-CODE01::S06@1": {
@@ -4767,7 +4770,8 @@
         "relative_change(start,end)"
       ],
       "transfer": [
-        "base=100; def change(end): return (end-base)/base"
+        "base = 100",
+        "def change(end):"
       ]
     },
     "T22V3::T22E-CODE01::S07@1": {
@@ -4910,9 +4914,9 @@
     "T22V3::T22E-CODE01::S22@1": {
       "main": [
         "Random(31)",
-        "prefix=[]",
-        "suffix1=[]",
-        "suffix2=[]"
+        "prefix = []",
+        "suffix1 = []",
+        "suffix2 = []"
       ],
       "transfer": [
         "unknown extra number of draws"
@@ -4932,8 +4936,9 @@
         "paying +8 when sum==8"
       ],
       "transfer": [
-        "rng=Random(7)",
-        "a=rng.randrange(1,6)"
+        "rng = Random(7)",
+        "a = rng.randrange(1,6)",
+        "if a+b >= 8"
       ]
     }
   },
@@ -5208,7 +5213,7 @@
     "sessions": {}
   },
   "repairVersionAudit": {
-    "version": "m08-independent-repair-r3-2026-09-24",
+    "version": "m08-independent-repair-r4-2026-09-24",
     "changedPublicTasks": [
       "T22V3::T22E-CODE01::S02-M@1",
       "T22V3::T22E-CODE01::S02-T@1",
@@ -5233,9 +5238,14 @@
       "T22V3::T22E-CODE01::S21-M@1",
       "T22V3::T22E-CODE01::S22-M@1",
       "T22V3::T22E-CODE01::S24-M@1",
-      "T22V3::T22E-CODE01::S12-M@1"
+      "T22V3::T22E-CODE01::S12-M@1",
+      "T22V3::T22E-CODE01::S04-M@1",
+      "T22V3::T22E-CODE01::S05-M@1",
+      "T22V3::T22E-CODE01::S05-T@1",
+      "T22V3::T22E-CODE01::S06-T@1",
+      "T22V3::T22E-CODE01::S24-T@1"
     ],
-    "policy": "Every public prompt/rubric change increments its obligationVersion. The initial independent repair produced v2 tasks; bounded follow-up then corrected S12 import-call consistency (v2) and removed hidden list-comprehension syntax from S22 Main (v3). Lesson/reference-only syntax cleanups do not stale public obligations.",
+    "policy": "Every public prompt/rubric change increments its obligationVersion. Initial independent repairs created v2 contracts; bounded follow-up then repaired import/name-binding and hidden syntax. F05 converted code-looking compound-statement snippets into valid multiline Python, incrementing every affected fixed prompt.",
     "obligationVersions": {
       "T22V3::T22E-CODE01::S02-M@1": 2,
       "T22V3::T22E-CODE01::S02-T@1": 2,
@@ -5256,11 +5266,16 @@
       "T22V3::T22E-CODE01::S16-M@1": 2,
       "T22V3::T22E-CODE01::S16-T@1": 2,
       "T22V3::T22E-CODE01::S18-M@1": 2,
-      "T22V3::T22E-CODE01::S18-T@1": 2,
+      "T22V3::T22E-CODE01::S18-T@1": 3,
       "T22V3::T22E-CODE01::S21-M@1": 2,
-      "T22V3::T22E-CODE01::S22-M@1": 3,
+      "T22V3::T22E-CODE01::S22-M@1": 4,
       "T22V3::T22E-CODE01::S24-M@1": 2,
-      "T22V3::T22E-CODE01::S12-M@1": 2
+      "T22V3::T22E-CODE01::S12-M@1": 2,
+      "T22V3::T22E-CODE01::S04-M@1": 2,
+      "T22V3::T22E-CODE01::S05-M@1": 2,
+      "T22V3::T22E-CODE01::S05-T@1": 2,
+      "T22V3::T22E-CODE01::S06-T@1": 2,
+      "T22V3::T22E-CODE01::S24-T@1": 2
     }
   },
   "assessmentSeparationAudit": {
@@ -5498,8 +5513,9 @@
       "M08-F01": "S12 lesson taught `from itertools import product`, while Main still named `itertools.product`; from-import does not bind the module name.",
       "M08-F02": "S22 Main used list comprehensions not taught anywhere in M08.",
       "M08-F03": "S07 lesson used an untaught conditional expression and S14 lesson an untaught list comprehension.",
-      "M08-F04": "S17 revealed reference used an untaught lambda despite an equivalent named helper already being taught."
+      "M08-F04": "S17 revealed reference used an untaught lambda despite an equivalent named helper already being taught.",
+      "M08-F05": "Multiple code-looking snippets compressed compound statements after semicolons (`...; for`, `...; while`, `...; def`), which is not valid executable Python. All learner-facing/public instances were converted to valid multiline Python; affected obligations were versioned."
     },
-    "disposition": "All repaired using previously taught syntax; S12-M versioned2 and S22-M versioned3. No new session was required."
+    "disposition": "F01–F05 repaired using previously taught syntax and valid executable Python. No new session was required; every changed fixed prompt was versioned rather than silently recertified."
   }
 }
