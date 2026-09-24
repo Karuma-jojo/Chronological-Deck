@@ -19,7 +19,7 @@ Successful full implementation-head workflow:
 
 The documentation/handoff commits after the implementation checkpoint are not to be confused with that run. The exact final documentation/checker head must also pass the same full workflow before this handoff is reported as final.
 
-**Current status: builder-validated, independently adversarially audited, bounded repairs applied; unpublished; awaiting focused independent confirmation of the changed surfaces.**
+**Current status: builder-validated, independently adversarially audited, bounded repairs applied and focused-confirmed; registered in the authorized twelve-module publication route; awaiting exact-head publication CI and main merge.**
 
 M13 has not been opened.
 
@@ -189,11 +189,11 @@ High-risk checks include:
 
 ## Canonical-state / rendering / preservation
 
-- canonical status is **builder-validated-candidate-unpublished**;
+- canonical status is **publication-candidate-independent-audit-repaired**;
 - canonical boundary describes the completed M12, not the build process;
 - M13 remains closed;
 - M12 is not added to the learner registry;
-- browser verification confirms the shared learner UI remains the nine-module published frontier;
+- publication browser verification must confirm the shared learner UI exposes the twelve-module route through SIDE267;
 - Chromium separately fetches the M12 candidate, prepares actual runtime contract hashes/fingerprints and renders every changed text surface into the DOM;
 - no visible escaped `\\n` or replacement-character corruption was found;
 - protected M01–M11 authoring/runtime state remains pinned.
