@@ -45,8 +45,8 @@ try{
   await page.goto(base+'/smmc-course.html');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
 
-  assert.equal(await page.locator('#unitSelect option').count(),13);
-  assert((await page.locator('#status').textContent()).includes('26 neutral tasks'));
+  assert.equal(await page.locator('#unitSelect option').count(),14);
+  assert((await page.locator('#status').textContent()).includes('28 neutral tasks'));
   await page.click('#tabMap');
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat strong').allTextContents(),['39','27','22','30','24','18']);
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat span').allTextContents(),['GREEN','AMBER','RED','GREEN','AMBER','RED']);

@@ -301,6 +301,30 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "distinguishes compact-interval continuity consequences from weaker Riemann-integrability consequences",
       "uses boundedness to control a definite integral without inventing continuity"
     ]
+  },
+  {
+    id: "S-BRIDGE-AN2-U02",
+    moduleId: "S-BRIDGE-AN2",
+    kind: "bridge",
+    orderWithinModule: 2,
+    title: "Convex envelopes and contest optimization",
+    t25Targets: ["A3", "C5", "F5"],
+    prerequisiteUnits: ["S-BRIDGE-AN2-U01"],
+    learningNote: [
+      "A function f on an interval is convex when f((1-t)x+ty)≤(1-t)f(x)+t f(y) for 0≤t≤1; geometrically, its graph lies below every chord joining two graph points.",
+      "Affine functions satisfy the convexity inequality with equality, and the pointwise maximum of finitely many affine functions is convex because each affine value is bounded by the corresponding convex combination of the two endpoint maxima.",
+      "An upper envelope of affine functions is piecewise affine; determine which line is active by comparing intersections rather than assuming every pairwise crossing appears on the envelope.",
+      "A convex-envelope construction is a two-part proof: build a convex candidate satisfying the required pointwise bounds, then prove every competing convex function lies below it using chord inequalities.",
+      "For optimization, monotone slopes of a piecewise-affine convex envelope locate minima at slope-sign changes; state the active pieces and boundary points explicitly."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-AN2-03",
+    transferTaskId: "S-NEUTRAL-AN2-04",
+    completionEvidence: [
+      "proves a finite maximum of affine functions is convex rather than relying on a graph",
+      "identifies active envelope pieces by valid comparisons",
+      "uses the chord inequality to dominate every admissible convex competitor",
+      "separates construction of an envelope candidate from proof of its maximality"
+    ]
   }
 ]);
 

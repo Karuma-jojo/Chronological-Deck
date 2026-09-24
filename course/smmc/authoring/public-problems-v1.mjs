@@ -157,6 +157,18 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-BRIDGE-AN2-U01",
     role: "transfer",
     prompt: "Let f:[0,1]→R be Riemann integrable in the ordinary bounded compact-interval sense. Audit the following claims: (i) f is bounded; (ii) f must be continuous; (iii) f must attain its supremum. State which are guaranteed and justify your answer. For any false claims, use the explicit function h(x)=x for 0≤x<1 and h(1)=0 as a counterexample, using the fact that changing a Riemann-integrable function at finitely many points preserves integrability and its integral. Finally, if |f(x)|≤M for all x, prove |∫_0^1 f(x)dx|≤M."
+  },
+  "S-NEUTRAL-AN2-03": {
+    id: "S-NEUTRAL-AN2-03",
+    unitId: "S-BRIDGE-AN2-U02",
+    role: "main",
+    prompt: "Let F(x)=max{-x, x-2, 2x-5} for real x. Prove from the convexity definition (or the general max-of-affine lemma, if you prove it) that F is convex. Determine exactly which affine function is active on each interval, including all switch points, and then find the global minimum value of F and every point where it is attained. Do not infer the envelope only from the three pairwise intersections."
+  },
+  "S-NEUTRAL-AN2-04": {
+    id: "S-NEUTRAL-AN2-04",
+    unitId: "S-BRIDGE-AN2-U02",
+    role: "transfer",
+    prompt: "Among all convex functions g:[0,2]→R satisfying g(0)≤0, g(1)≤-1, and g(2)≤0, find the pointwise greatest possible function E: that is, construct a convex E satisfying the three bounds and prove that every admissible convex g obeys g(x)≤E(x) for every x∈[0,2]. Your proof must use the chord inequality on [0,1] and [1,2], and must verify convexity of the candidate rather than merely drawing it."
   }
 });
 

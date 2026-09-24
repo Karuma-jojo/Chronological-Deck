@@ -684,3 +684,35 @@ Expected bank:
 - 13 authored units;
 - 26 neutral public tasks;
 - 26 separate evaluator references.
+
+
+### Checkpoint M validation receipt
+
+AN2-U01 head: `e20a11b3867dfefd1b11e28bf4d462853b729004`.  
+SMMC authoring checks run: `35986582040`, job `107590567785`: **SUCCESS**.
+
+The theorem-level bridge passed complete ledger/curriculum/domain reconciliation, 13-unit authoring, final-engine scaffold, T25 payload, browser, workspace and cross-device checks.
+
+## Checkpoint N — AN2 convex-envelope bridge
+
+Added:
+
+### S-BRIDGE-AN2-U02 — Convex envelopes and contest optimization
+
+The unit is intentionally one-dimensional and finite:
+- convexity through chord inequalities;
+- maxima of finitely many affine functions;
+- active-piece analysis for upper envelopes;
+- supporting-chord domination;
+- construction + maximality proof for a greatest convex minorant under finite pointwise caps.
+
+Neutral assessments:
+- analyze and optimize the upper envelope max{-x,x-2,2x-5}, including a pairwise crossing that is not active;
+- construct the greatest convex function below three pointwise caps on [0,2] and prove pointwise maximality.
+
+No historical requirement mapping is added at this checkpoint. Although this unit targets the convex-structure gap behind 2023 A2/2025 C4, sufficiency for any exact historical unlock is reserved for a separate problem-by-problem mapping audit.
+
+Expected bank:
+- 14 authored units;
+- 28 neutral public tasks;
+- 28 separate evaluator references.

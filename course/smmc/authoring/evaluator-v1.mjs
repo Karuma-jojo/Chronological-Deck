@@ -366,6 +366,36 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must invoke the supplied finite-point-modification fact to justify h remains Riemann integrable.",
       "Must derive the integral bound from -M≤f≤M and integral monotonicity, not from an unsupported mean-value claim."
     ]
+  },
+  "S-NEUTRAL-AN2-03": {
+    reference: [
+      "General lemma: if L_i are affine and F=max_i L_i, then for 0≤t≤1, each L_i((1-t)x+ty)=(1-t)L_i(x)+tL_i(y)≤(1-t)F(x)+tF(y); taking the maximum over i proves convexity of F.",
+      "Compare the three lines. The crossings are -x=x-2 at x=1, -x=2x-5 at x=5/3, and x-2=2x-5 at x=3.",
+      "The crossing x=5/3 is hidden below x-2 and is not an envelope switch. Direct comparison gives F(x)=-x for x≤1, F(x)=x-2 for 1≤x≤3, and F(x)=2x-5 for x≥3.",
+      "On x≤1 the active piece -x decreases as x increases; on [1,3] the active piece x-2 increases; the final piece also increases.",
+      "Therefore the global minimum is F(1)=-1, attained only at x=1."
+    ].join(" "),
+    rubric: [
+      "Must prove convexity, either directly or through a correctly proved max-of-affine lemma.",
+      "Must identify the hidden -x/2x-5 crossing as nonactive and give the correct active intervals and switch points 1 and 3.",
+      "Must justify the global minimum from the active pieces rather than from an unverified sketch.",
+      "Must state both the minimum value -1 and the unique minimizer x=1."
+    ]
+  },
+  "S-NEUTRAL-AN2-04": {
+    reference: [
+      "The candidate is E(x)=-x for 0≤x≤1 and E(x)=x-2 for 1≤x≤2, equivalently E(x)=|x-1|-1.",
+      "It satisfies E(0)=0, E(1)=-1, E(2)=0. Its slopes are -1 then +1, hence nondecreasing; equivalently |x-1| is convex, so E is convex.",
+      "Let g be any admissible convex function. For x∈[0,1], write x=(1-x)·0+x·1. Convexity gives g(x)≤(1-x)g(0)+xg(1)≤-x=E(x).",
+      "For x∈[1,2], write x=(2-x)·1+(x-1)·2. Convexity gives g(x)≤(2-x)g(1)+(x-1)g(2)≤x-2=E(x).",
+      "Thus every admissible convex g lies pointwise below E, while E itself is admissible, so E is the pointwise greatest possible function."
+    ].join(" "),
+    rubric: [
+      "Must construct the correct piecewise-affine candidate and verify all three pointwise constraints.",
+      "Must prove the candidate is convex; a picture alone is insufficient.",
+      "Must use convexity/chord bounds separately on [0,1] and [1,2] to dominate an arbitrary admissible g.",
+      "Must conclude pointwise maximality of E, not merely that E is one admissible example."
+    ]
   }
 });
 
