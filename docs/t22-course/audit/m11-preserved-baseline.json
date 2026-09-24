@@ -72,7 +72,7 @@
     "docs/t22-course/audit/m06-handoff-checks.mjs": "cfb63c4176642e12f5d06334d7eb5565ecc6dfc5",
     "docs/t22-course/audit/m06-independent-math.mjs": "003c39b0eb709d47720dbccc30e34d7fdcf4b1fb",
     "docs/t22-course/audit/m07-astra-repair-checks.mjs": "8a4230b01e0a08f936e2f0283389fb4998a445fb",
-    "docs/t22-course/audit/m07-handoff-checks.mjs": "61a811989673d4f7b0569efcc9cfa73ca7cb9b32",
+    "docs/t22-course/audit/m07-handoff-checks.mjs": "8479fd73eb030ec40a163b17fe9a463dfdf24554",
     "docs/t22-course/audit/m07-independent-math.mjs": "2e4f99ca131e2b3eaa4734748f5153215f2fca8b",
     "docs/t22-course/audit/m07-review-baseline.json": "431f20694344b80fc792dc723d8840f04a461a8d",
     "docs/t22-course/audit/m07-review-checks.mjs": "e12e2ee4ed1ad1fd700ae4a25cacec17d6e7de80",
@@ -109,6 +109,7 @@
   "authorizedM07Retrofit": {
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
     "reason": "Later user-authorized M07-only v1.1 retrofit. Rebase only the explicitly changed M07 canonical/audit/test surfaces and add its new design gate; all unrelated M01-M10/runtime blobs stay pinned.",
-    "baselineLedgerPropagation": "M09 and M10 preservation ledgers were themselves updated only to pin the authorized new M07 hash; their new blob IDs are therefore pinned here too."
+    "baselineLedgerPropagation": "M09 and M10 preservation ledgers were themselves updated only to pin the authorized new M07 hash; their new blob IDs are therefore pinned here too.",
+    "handoffGuardRepair": "Case-sensitive status-token false positive repaired; no course content changed."
   }
 }
