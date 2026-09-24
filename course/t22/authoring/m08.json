@@ -178,7 +178,7 @@
       "centralCapability": "Choose /, // and % correctly and verify an exact integer reconstruction invariant.",
       "principalObstacle": "A learner may report a fractional number of complete groups or forget that quotient/remainder encode a different question from ordinary division.",
       "entryPrerequisites": [
-        "M01 division/remainders",
+        "M03-S12 quotient/remainder identity",
         "JIT Python numeric operators"
       ],
       "requiredOwnership": [
@@ -309,7 +309,7 @@
       "centralCapability": "Trace and construct finite loops whose iteration set and accumulator invariant are explicit.",
       "principalObstacle": "Learners often assume the stop endpoint is included.",
       "entryPrerequisites": [
-        "M01 finite sums",
+        "M01 arithmetic; finite accumulation is taught JIT in this lesson",
         "M03 finite counting",
         "Python range semantics"
       ],
@@ -557,7 +557,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S10 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "A set answers uniqueness/membership, not multiplicity. A dictionary can store counts. Worked example: `['H','T','H']` has unique set {H,T} of size2 but three observations; counts are H:2,T:1. Guided check: For `[2,2,5,2]`, what information is lost by converting to a set?",
+      "lesson": "A set answers uniqueness/membership, not multiplicity. A dictionary can store keyed counts. A standard update is `counts={}; for x in observations: counts[x]=counts.get(x,0)+1`: `get(x,0)` supplies zero the first time a key appears. Worked example: for `['H','T','H']`, the unique set is {H,T} of size2, while the update loop produces `{'H':2,'T':1}` from three observations. Guided check: For `[2,2,5,2]`, what information is lost by converting to a set?",
       "main": "T22V3::T22E-CODE01::S09-M@1",
       "transfer": "T22V3::T22E-CODE01::S09-T@1"
     },
@@ -645,7 +645,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S12 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "`zip(values,weights)` supplies aligned pairs, but default zip stops at the shorter input. When equal lengths are a required invariant, modern Python provides `zip(values,weights,strict=True)`, which raises `ValueError` instead of silently truncating. `enumerate(...)` adds positions. Keep weighted_sum and weight_sum meanings explicit. Worked example: values[4,7], weights[2,1] give weighted sum15 and total weight3. Guided check: What should happen if a required pair is missing?",
+      "lesson": "`zip(values,weights)` supplies aligned pairs, but default zip stops at the shorter input. When equal lengths are a required invariant, modern Python provides `zip(values,weights,strict=True)`, which raises `ValueError` instead of silently truncating. `enumerate(...)` adds positions. Keep weighted_sum and weight_sum meanings explicit. For a weighted average the total weight must be nonzero; then `weighted_average=weighted_sum/weight_sum`. Worked example: values[4,7], weights[2,1] give weighted sum15, total weight3 and weighted average5. Guided check: What should happen if a required pair is missing?",
       "main": "T22V3::T22E-CODE01::S11-M@1",
       "transfer": "T22V3::T22E-CODE01::S11-T@1"
     },
@@ -956,7 +956,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S19 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "Exceptions are evidence. A traceback shows the call path and ends with the exception type/message; the relevant source line tells you which operation failed. Reduce the case before changing code. Worked example: `def ratio(a,b): return a/b`; calling ratio(1,0) ends in `ZeroDivisionError: division by zero` at the division line, exposing the nonzero-denominator precondition. Returning0 would change the mathematics. Guided check: In a traceback ending at `xs[i]` with `IndexError`, what two pieces of information should you extract before repairing anything?",
+      "lesson": "Exceptions are evidence. A traceback shows the call path and ends with the exception type/message; the relevant source line tells you which operation failed. Reduce the case before changing code. A required runtime precondition should be rejected explicitly; for example, `if count < 1: raise ValueError(\"count must be positive\")`. Worked example: `def ratio(a,b): return a/b`; calling ratio(1,0) ends in `ZeroDivisionError: division by zero` at the division line, exposing the nonzero-denominator precondition. Returning0 would change the mathematics. Guided check: In a traceback ending at `xs[i]` with `IndexError`, what two pieces of information should you extract before repairing anything?",
       "main": "T22V3::T22E-CODE01::S18-M@1",
       "transfer": "T22V3::T22E-CODE01::S18-T@1"
     },
@@ -4482,8 +4482,8 @@
     ],
     "S02": [
       {
-        "item": "M01 division/remainders",
-        "source": "M01 division/remainders",
+        "item": "M03-S12 quotient/remainder identity",
+        "source": "M03-S12 remainder classes / exact n=dq+r identity",
         "decision": "reuse-or-teach-before-use"
       },
       {
@@ -4528,8 +4528,8 @@
     ],
     "S05": [
       {
-        "item": "M01 finite sums",
-        "source": "M01 finite sums",
+        "item": "M01 arithmetic; finite accumulation JIT",
+        "source": "M01 arithmetic + accumulator meaning taught in M08-S05",
         "decision": "reuse-or-teach-before-use"
       },
       {

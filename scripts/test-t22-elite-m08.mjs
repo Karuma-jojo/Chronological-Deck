@@ -85,13 +85,18 @@ for(const forbidden of ['numpy','pandas','bootstrap','confidence interval','cent
 }
 assert(by(13).lesson.includes('No RNG is involved'));
 assert(by(2).lesson.includes('23//4')&&by(2).lesson.includes('23%4'));
+assert.deepEqual(by(2).entryPrerequisites,['M03-S12 quotient/remainder identity','JIT Python numeric operators']);
+assert(by(5).entryPrerequisites[0].includes('finite accumulation is taught JIT in this lesson'));
 assert(by(3).lesson.includes('import math')&&by(3).lesson.includes('abs_tol'));
 assert(by(8).lesson.includes('passed as arguments')&&by(8).lesson.includes('without parentheses'));
+assert(by(10).lesson.includes('counts.get(x,0)+1'));
 assert(by(12).lesson.includes('strict=True')&&by(12).lesson.includes('ValueError'));
+assert(by(12).lesson.includes('weighted_average=weighted_sum/weight_sum')&&by(12).lesson.includes('total weight must be nonzero'));
 assert(by(13).lesson.includes('from itertools import product'));
 assert(by(14).lesson.includes('from fractions import Fraction'));
 assert(by(18).lesson.includes('-O'));
 assert(by(19).lesson.includes('traceback')&&by(19).lesson.includes('source line'));
+assert(by(19).lesson.includes('raise ValueError')&&by(19).lesson.includes('count < 1'));
 assert(by(20).lesson.includes('from random import Random')&&by(20).lesson.includes('internal state'));
 assert.deepEqual(by(7).entryPrerequisites,['M03-S20 functions as mappings','M08-S01 assignment','Python function definitions']);
 assert(by(22).lesson.includes('estimate0.322'));

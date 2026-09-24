@@ -124,6 +124,8 @@ assert(!by(4).lesson.includes('generated independently'));
 assert(by(7).lesson.includes('P(B)>0'));
 assert(by(14).lesson.includes('triple intersection'));
 assert(by(18).lesson.includes('Bayes territory'));
+assert(by(18).entryPrerequisites.some(x=>x.includes('JIT disjoint/exhaustive partition definition')));
+assert(!by(18).entryPrerequisites.some(x=>x.includes('M03-S17 partitions/disjoint unions')));
 assert(!by(21).lesson.includes('E[XY]=E[X]E[Y]'));
 assert(by(23).lesson.includes('M05 will introduce'));
 assert(by(24).lesson.includes('North with probability0.2'));
