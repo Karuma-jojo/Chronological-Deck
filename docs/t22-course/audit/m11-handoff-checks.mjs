@@ -29,7 +29,9 @@ for(const doc of [handoff,verification]){
   assert.match(doc,/M12/);
 }
 assert.match(handoff,/STOP for final bounded M11 confirmation/i);
-assert.match(handoff,/61 claim→task→rubric links/i);
+assert.match(handoff,/61.*ownership claims/i);
+assert.match(handoff,/m11-semantic-contract\.json/i);
+assert.match(handoff,/m11-ownership-audit\.json/i);
 assert.match(verification,/bounded independent-review findings implemented/i);
 assert.match(verification,/direct supremum proof/i);
 assert.match(handoff,/S01\/S02\/S05\/S06\/S09\/S13\/S14\/S19 → retrieval/i);
