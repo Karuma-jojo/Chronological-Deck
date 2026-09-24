@@ -61,7 +61,7 @@ try{
     };
   });
   assert.equal(candidate.ok,true);assert.equal(candidate.status,200);
-  assert.equal(candidate.id,'SIDE267');assert.equal(candidate.order,12);assert.match(candidate.moduleStatus,/publication-candidate-independent-audit-repaired/);
+  assert.equal(candidate.id,'SIDE267');assert.equal(candidate.order,12);assert.match(candidate.moduleStatus,/published-independent-audit-repaired/);
   assert.equal(candidate.sessions,19);assert.equal(candidate.problems,38);assert.equal(candidate.evaluators,38);
   assert.equal(candidate.hashes,true);assert.equal(candidate.fingerprints,38);
   assert.equal(candidate.badEscaped,0);assert.equal(candidate.badReplacement,0);assert.equal(candidate.lessonNewlines,true);
