@@ -20,9 +20,9 @@ The [162-session finalization audit](docs/t25-finalization-audit.md) records the
 
 ## Progress and archive
 
-Existing world and T22 progress keys are preserved. T25 concept checkmarks use the existing world-progress mechanism. T25 practice evidence and the companion-exam choice are **device-local**, with a separate evidence export/import. A concept checkmark is a self-assessment; it does not certify exam readiness.
+Existing world and T22 progress keys are preserved. T25 concept checkmarks use the existing world-progress mechanism. T25 course evidence, Aster choices, SMMC durable study/evidence, and the T25/Aster/SMMC workspace position save locally first and, when signed in, mirror to the same account-private Supabase cloud used by Chrono-Deck. Export/import remains available as a manual backup path. Unsaved textarea drafts stay session-local by design. A concept checkmark is a self-assessment; it does not certify exam readiness.
 
-The page contains the existing optional cloud-sync setup controls. The [Obsidian bridge guide](docs/obsidian-bridge.md) describes the archive integration. These are separate from the T25 practice log. Keep backups using each relevant export control.
+The page contains the existing optional cloud-sync account controls. This deployment ships its public Supabase endpoint/publishable key, so ordinary use only requires account sign-in; alternate/self-hosted configuration remains under Advanced. The [Obsidian bridge guide](docs/obsidian-bridge.md) describes the archive integration. These are separate from the T25 practice log. Keep backups using each relevant export control.
 
 T25 atomic cards also have a small cloud-backed [review / retention layer](docs/t25-review-retention.md), shown as **Revision Stack**. Delayed reviews never silently change academic clearance. It uses the existing cloud login and is separate from the device-local practice log.
 

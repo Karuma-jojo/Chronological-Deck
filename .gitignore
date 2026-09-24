@@ -4,3 +4,7 @@ chatgpt-app/data/exports/
 chatgpt-app/.env
 
 test-artifacts/
+
+# Ephemeral lean learner payloads; rebuilt for Pages/CI.
+course/generated/runtime.json
+course/generated/notes.json

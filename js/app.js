@@ -1,4 +1,5 @@
 import { WORLD } from "./data/world.js";
+import { DEFAULT_CLOUD_CONFIG } from "./cloud-defaults.js";
 import { routeLayout, validTerminalStage, DEFAULT_STAGE_NAMES } from "./route-layout.js";
 const BYID = new Map(WORLD.nodes.map(n => [n.id,n]));
 const TERMINALS = new Map(WORLD.terminals.map(t => [t.id,t]));
@@ -96,7 +97,8 @@ let lastCloudUpdatedAt = null;
 let syncBusy = false;
 
 function loadSyncConfig(){
-  try{return JSON.parse(localStorage.getItem(SYNCCFGKEY)||"null")||{};}catch(e){return {};}
+  try{return {...DEFAULT_CLOUD_CONFIG,...(JSON.parse(localStorage.getItem(SYNCCFGKEY)||"null")||{})};}
+  catch(e){return {...DEFAULT_CLOUD_CONFIG};}
 }
 function loadSyncSession(){
   try{return JSON.parse(localStorage.getItem(SYNCSESSIONKEY)||"null");}catch(e){return null;}
@@ -321,7 +323,7 @@ document.getElementById("syncSignOut").addEventListener("click",async()=>{
 });
 document.getElementById("disconnectSync").addEventListener("click",()=>{
   if(!confirm("Disconnect cloud sync on this device? Local progress will remain."))return;
-  persistSyncSession(null);syncConfig={};
+  persistSyncSession(null);syncConfig={...DEFAULT_CLOUD_CONFIG};
   localStorage.removeItem(SYNCCFGKEY);
   clearInterval(syncPollTimer);
   hydrateSyncFields();
@@ -649,6 +651,15 @@ document.querySelector('.tab[data-tab="explore"]').textContent=`Explore all ${WO
 document.getElementById("worldSummary").textContent=`${WORLD.nodes.length}-node knowledge world · 39-node FROZEN scientific core · ${WORLD.terminals.length} terminal routes · app version 1.8`;
 updateAll();
 hydrateSyncFields();
+function focusCloudPanel(){
+  const panel=document.getElementById("cloudSyncPanel");
+  if(!panel)return;
+  panel.open=true;
+  requestAnimationFrame(()=>panel.scrollIntoView({block:"start"}));
+}
+if(location.hash==="#cloudSyncPanel")focusCloudPanel();
+window.addEventListener("hashchange",()=>{if(location.hash==="#cloudSyncPanel")focusCloudPanel();});
+document.getElementById("syncPill")?.addEventListener("click",focusCloudPanel);
 if(signedIn()){
   initialCloudReconcile();
 }else{
