@@ -201,4 +201,23 @@ for(const banned of ['jacobian','hessian','regularity structure','renormalizatio
 assert(!a.boundary.owns.join(' ').toLowerCase().includes('pilot'));
 assert(!/s06 is the required pilot|candidate sessions pending/i.test(a.module.gate));
 
+
+// Independent-audit bounded-repair regressions.
+assert.equal(a.version,'m12-side267-builder-candidate-v1.1-audit-repair');
+assert.equal(a.instructionVersion,'m12-side267-instruction-v1.1-audit-repair');
+assert(a.independentAuditRepairs?.findings?.length===5,'M12 independent-audit repair receipt missing');
+assert.equal(a.independentAuditRepairs.preserved.sessionArchitecture,19);
+assert.equal(a.independentAuditRepairs.preserved.fixedTasks,38);
+assert.match(a.sessions[0].lesson,/successive values are 0,1,8,24,24/,'S01 worked-example q(1) regression');
+assert(!a.sessions[0].lesson.includes('successive values are 1,1,8,24,24'),'S01 old arithmetic error returned');
+assert.equal(a.sessions[0].requiredOwnership[1],"Explain that f''' denotes the third successive derivative rather than exponentiation.");
+assert.equal(a.sessions[1].requiredOwnership[1],"Use and explain factorial scaling in centered Taylor coefficients, including why a quadratic coefficient is f''(a)/2!.");
+assert.equal(a.sessions[3].requiredOwnership[1],"Explain why a fixed-degree scaled-residual limit near the center does not imply global accuracy.");
+assert.equal(a.sessions[6].requiredOwnership[2],"Choose among supplied Taylor degrees using a stated certified error tolerance.");
+assert.equal(a.sessions[9].requiredOwnership[0],"Use the partial-sum criterion to determine ordinary series convergence or divergence.");
+assert.equal(a.sessions[11].requiredOwnership[1],"Distinguish a finite Taylor polynomial from the full Taylor-series candidate and from convergence/equality claims.");
+assert.equal(a.sessions[16].requiredOwnership[0],"Use the neighborhood equality criterion to determine whether a Taylor series represents the function near the center.");
+assert.match(a.sessions[16].lesson,/difference quotient/i,'S17 derivative-at-zero induction step missing');
+assert.match(a.sessions[16].lesson,/phi\^\(n\+1\)\(0\)=0/,'S17 induction conclusion missing');
+
 console.log('PASS M12 semantic/evidence validator: 19 design-derived sessions, 38 tasks, 58 literal ownership links; series/MVT bridges explicit; source roles complete; prior runtime preserved; M12 remains unpublished.');
