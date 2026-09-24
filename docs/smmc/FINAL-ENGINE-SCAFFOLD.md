@@ -117,3 +117,16 @@ S-PAPER uses a three-hour session contract. A+B competition-day mode will be rep
 - no change to canonical T25 academic state.
 
 Those are the next implementation stages, now with explicit contracts to build against.
+
+
+## Phase 1 status — complete
+
+Primary-domain reconciliation closed on 2026-09-24.
+
+Frozen counts:
+- all 88: S1 22, S2 17, S3 14, S4 12, S5 14, S6 9;
+- East 72: S1 17, S2 16, S3 12, S4 10, S5 11, S6 6.
+
+Eight hybrid labels changed after source-based review. See `DOMAIN-RECONCILIATION-2017-2025.md` for the full rationale and future-change rule.
+
+Phase 2 — core method/bridge authoring — is now the active content-build phase.
