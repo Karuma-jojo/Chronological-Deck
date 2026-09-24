@@ -90,6 +90,6 @@ assert(a.evaluators[by(24).main].reference.includes('Net cash P&L=3768−3749=19
 for(const forbidden of ['law of one price','risk-neutral probability','state price','Black-Scholes','efficient frontier','covariance matrix','price-time priority','microprice','implementation shortfall','TWAP','VWAP']){
  assert(!a.sessions.some(s=>s.lesson.toLowerCase().includes(forbidden.toLowerCase())),`M07 taught deferred topic: ${forbidden}`);
 }
-assert(!fs.existsSync('course/t22/authoring/m08.json'),'M08 must remain closed');
+assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized; M07 content remains frozen by its own semantic/provenance guards');
 
 console.log('PASS M07 Astra-repair structural/pedagogy: 24 sessions, 48 fixed tasks, 120 explicit claim→public-request→rubric links, separated instruction, high-risk discrimination guards and hard downstream boundaries.');
