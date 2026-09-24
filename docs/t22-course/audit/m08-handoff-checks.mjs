@@ -11,20 +11,21 @@ const hand=fs.readFileSync('docs/t22-course/M08-REVIEW-HANDOFF.md','utf8');
 const boundary=fs.readFileSync('docs/t22-course/M08-BOUNDARY.md','utf8');
 const audit=fs.readFileSync('docs/t22-course/M08-CERBERUS-AUDIT.md','utf8');
 const sizing=fs.readFileSync('docs/t22-course/M08-SESSION-SIZING-AUDIT.md','utf8');
+const followup=fs.readFileSync('docs/t22-course/M08-INDEPENDENT-FOLLOWUP.md','utf8');
 const browser=fs.readFileSync('scripts/test-t22-elite-course-browser.mjs','utf8');
 const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 
 assert.equal(a.module.id,'T22E-CODE01');
-assert.equal(a.module.status,'session-sizing-rebalanced-25-fully-green-awaiting-bounded-followup');
+assert.equal(a.module.status,'independently-accepted-frozen');
 assert.equal(a.sessions.length,25);
 assert.equal(Object.keys(a.problems).length,50);
 assert.equal(Object.keys(a.evaluators).length,50);
 assert.equal(Object.values(a.claimEvidence).flat().length,125);
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01','T22E-DISC01','ARC048']);
 assert.deepEqual(deps.modules.find(x=>x.id==='T22E-CODE01').prerequisites,a.boundary.prerequisiteModules);
-assert.equal(road.modules.find(x=>x.id==='T22E-CODE01').availability,'validation');
-assert.equal(sem.entries.find(x=>x.id==='T22E-CODE01').semanticStatus,'boundary-accepted-content-candidate');
+assert.equal(road.modules.find(x=>x.id==='T22E-CODE01').availability,'authored');
+assert.equal(sem.entries.find(x=>x.id==='T22E-CODE01').semanticStatus,'accepted');
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'));
 assert(!meta.moduleSources.some(x=>x.order>=9));
 assert(!fs.existsSync('course/t22/authoring/m09.json'),'M09 must remain closed');
@@ -48,7 +49,8 @@ for(const token of [
   '1/9',
   '5/36',
   '-11/18',
-  'bounded independent follow-up',
+  'INDEPENDENTLY ACCEPTED / FROZEN',
+  '35970605448',
   'M09 remains closed'
 ]) assert(hand.includes(token),token);
 
@@ -58,9 +60,10 @@ assert(sizing.includes('S02 — Integer division'));
 assert(sizing.includes('S03 — Floating-point'));
 assert(fs.existsSync('docs/t22-course/M08-INDEPENDENT-REVIEW.md'));
 assert(fs.existsSync('docs/t22-course/M08-RESOLUTION.md'));
+for(const token of ['ACCEPTED / FROZEN','f048a93b8cf0fff8bcd915437b8ba2ec8bacefd5','35970605448','stale','S02F@1']) assert(followup.includes(token),token);
 const review=fs.readFileSync('docs/t22-course/M08-INDEPENDENT-REVIEW.md','utf8');
 const resolution=fs.readFileSync('docs/t22-course/M08-RESOLUTION.md','utf8');
 for(const token of ['M08-R01','M08-R08','REPAIRS REQUIRED']) assert(review.includes(token),token);
 for(const token of ['R01 — fresh assessment surfaces','R08 — strict zip','M09 remains closed']) assert(resolution.includes(token),token);
 
-console.log('PASS M08 handoff: 25-session sizing state, 50 tasks/125 claims, independent-review repairs retained, stable existing IDs, bounded follow-up and hard M09 stop.');
+console.log('PASS M08 handoff: independently accepted/frozen 25-session M08; 50 tasks/125 claims; bounded follow-up/provenance evidence retained; hard M09 stop.');

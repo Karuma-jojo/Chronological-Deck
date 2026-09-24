@@ -2,7 +2,7 @@
 
 Date: 2026-09-24
 Mode: BUILD → independent REVIEW/REPAIR
-Status: boundary accepted; independent-review repairs applied; bounded follow-up pending
+Status: independently accepted/frozen after bounded follow-up; M09 remains closed
 Stop boundary: M08 only. M09 remains closed.
 
 ## Gate 0 recovery receipt

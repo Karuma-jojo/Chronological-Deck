@@ -25,9 +25,9 @@ The repair preserves all existing stable IDs. S13-M becomes obligationVersion2; 
 
 ## Current disposition
 
-**REPAIRED; FULL VALIDATION + ONE FINAL FOLLOW-UP REQUIRED BEFORE FREEZE.**
+**ACCEPTED / FROZEN.**
 
-This file is not itself an acceptance certificate. The actual pushed repair head and its full CI/browser result must be inspected before M08 can be frozen.
+Acceptance is supported by the inspected repair-head CI/browser evidence below and the final semantic reread after the bounded repairs.
 
 
 ## Repair checkpoint verification
@@ -40,3 +40,24 @@ Result: **SUCCESS**
 The actual job steps were inspected: syntax checks, structural/pedagogy/semantic/evidence regressions, Python executable oracles, Chromium installation and the real browser evidence workflow all completed successfully.
 
 The final follow-up identified one **verification gap, not a curriculum defect**: M08 did not yet have a module-specific executable witness that the new S13/S23/S24 `obligationVersion` bumps change assessment fingerprints, make older attempts stale, and still preserve those attempts. A bounded regression test is therefore added before freeze. It also proves that the sizing split's new `S02F@1` ID did not renumber the pre-existing stable S03–S24 IDs.
+
+
+## Final provenance-hardened validation
+
+Head: `f048a93b8cf0fff8bcd915437b8ba2ec8bacefd5`  
+Actions run: `35970605448`  
+Job: `107539182656`  
+Result: **SUCCESS**
+
+The M08 regression proves that the S13/S23/S24 obligation-version bumps produce different assessment fingerprints, older attempts become stale rather than silently current, and those attempts remain preserved. It also proves that the new `T22V3::T22E-CODE01::S02F@1` ID is the sizing-split insertion while every pre-existing stable S03–S24 ID remains unchanged.
+
+The final semantic pass over the repaired high-risk surfaces found no remaining material defect:
+- S02/S03 split is coherent and float scope remains bounded to Python numerical comparison;
+- S13–S17 form a clean executable-oracle progression;
+- S20–S24 distinguish RNG creation, one trial, repetition, state replay and adversarial audit;
+- S24 Main now requires a learner-chosen diagnostic event rather than a disguised number swap;
+- all 125 ownership links are defensible after the recorded narrowing/remapping;
+- browser/evidence behavior is green;
+- M09 is absent/closed.
+
+**Acceptance: M08 independently accepted/frozen.**

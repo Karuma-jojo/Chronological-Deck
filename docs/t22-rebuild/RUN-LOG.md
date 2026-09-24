@@ -1,7 +1,7 @@
 # T22 rebuild recovery state
 
 Date: 2026-09-24
-State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENT-REVIEW REPAIRED + 25-SESSION SIZING FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M09 CLOSED**
+State: **M01–M06 ACCEPTED/FROZEN; M07 ASTRA REPAIRED + FULLY GREEN, BOUNDED FOLLOW-UP PENDING; M08 INDEPENDENTLY ACCEPTED/FROZEN AFTER BOUNDED FOLLOW-UP; M09 CLOSED**
 Branch: `codex/t22-pedagogical-rebuild`
 Repository: `Karuma-jojo/Chronological-Deck`
 Current accepted M03 runtime checkpoint before handoff: `d3f3e8b70abf51e297c545fdc739ad506262e90f`
@@ -14,7 +14,7 @@ Sizing-only audit decided **25 sessions; add one, merge none**. Former S02 was s
 
 Exact green sizing checkpoint: `44b78d327c78fcc7ddf02fe56d1b293901637ee9`; T22 Elite Actions run `35967257130`, job `107528549359`, **SUCCESS**, including Chromium/eight-module browser evidence.
 
-**Current status: fully green, bounded follow-up pending. M09 remains closed.** See `docs/t22-course/M08-SESSION-SIZING-AUDIT.md` and current `M08-REVIEW-HANDOFF.md`.
+**Current status: independently accepted/frozen after bounded follow-up. M09 remains closed.** Final validated repair head `f048a93b8cf0fff8bcd915437b8ba2ec8bacefd5`; Actions `35970605448`, job `107539182656`, SUCCESS. See `docs/t22-course/M08-INDEPENDENT-FOLLOWUP.md` and current `M08-REVIEW-HANDOFF.md`.
 
 ## Historical M08 independent-review repair — 2026-09-24 (authority for M08)
 

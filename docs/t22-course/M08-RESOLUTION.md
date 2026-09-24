@@ -89,3 +89,10 @@ The shared evidence key remains `chrono_t22_elite_course_evidence_v1`. Stable ID
 
 ### Next gate
 Run the complete structural/semantic/oracle/Chromium workflow on the repair checkpoint, inspect the actual job steps, then perform one final bounded follow-up. M09 remains closed.
+
+
+## Final M08 acceptance — 2026-09-24
+
+The bounded follow-up repairs were validated at `f048a93b8cf0fff8bcd915437b8ba2ec8bacefd5`, Actions run `35970605448`, job `107539182656`, **SUCCESS**. The run includes the real Chromium browser workflow and the M08-specific assessment-fingerprint/stable-ID provenance regression.
+
+The final post-repair semantic reread found no remaining material finding. M08 is therefore **INDEPENDENTLY ACCEPTED / FROZEN** at the working-branch acceptance state. M09 remains closed. Publication of these post-publication follow-up repairs to `main` is a separate action.
