@@ -35,11 +35,13 @@ has(5,'main','∫_1^7 f=5+(-2)=3','∫_7^1 f=-3','=-3');
 has(5,'transfer','A[0,5]=6-4=2 L','A[5,0]=-2 L','=1 L');
 
 // S06 signed/magnitude/average and bounds.
+assert.match(session(6).lesson,/\|f\| is Riemann integrable/i);
 near(4*1.5-2*2,2);near(4*1.5+2*2,10);near(2/3.5,4/7);
 has(6,'main','2 km','10 km','4/7 km/h');
 has(6,'transfer','-4≤∫q≤12','-5≤∫q≤5','-4≤∫q≤5');
 
 // S07 continuity before differentiability.
+assert.match(session(7).lesson,/restriction to every closed subinterval is Riemann integrable/i);
 has(7,'main','≤7|y-x|','δ=ε/7');
 has(7,'transfer','H(x)=2x','H(x)=2(1)+(-1)(x-1)=3-x','left derivative is 2','right derivative is -1');
 
@@ -96,6 +98,8 @@ has(18,'main','finite exactly for p<1','1/(1-p)');
 has(18,'transfer','1/ε-1→∞','right side also diverges');
 
 // S19 comparison and symmetric cancellation.
+assert(!/monotone-bounded convergence/i.test(session(19).lesson));
+assert.match(session(19).lesson,/sup\{F\(T\):T≥a\}/);
 for(const x of [1,2,5,10]){
   assert(1/(x*x+x)<=1/(x*x)+1e-15);
   assert(1/Math.sqrt(x*x+4)>=1/(Math.sqrt(5)*x)-1e-15);

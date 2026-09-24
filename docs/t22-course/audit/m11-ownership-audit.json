@@ -1,5 +1,5 @@
 {
-  "version": "m11-ownership-audit-v1-2026-09-24",
+  "version": "m11-ownership-audit-v2-independent-review-2026-09-24",
   "module": {
     "id": "ARC510",
     "order": 11,
@@ -10,11 +10,12 @@
   "summary": {
     "originalClaims": 61,
     "finalClaims": 61,
-    "retained": 56,
-    "narrowed": 4,
+    "retained": 53,
+    "narrowed": 7,
     "hypothesisRepairs": 1,
     "removed": 0,
-    "assessmentFreshnessRepairs": 1
+    "assessmentFreshnessRepairs": 1,
+    "classificationCalibrations": 8
   },
   "assessmentRepairs": [
     {
@@ -70,14 +71,14 @@
       "session": 2,
       "originalClaimIndex": 1,
       "originalClaim": "Construct a valid partition, subinterval widths and tags for a bounded interval.",
-      "disposition": "retain",
-      "finalClaim": "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+      "disposition": "narrow",
+      "finalClaim": "Use a supplied partition, compute its subinterval widths, and verify supplied tags on a bounded interval.",
       "task": "main",
       "rubricEvidence": [
         "Lists the nonuniform widths as 1, 2.5 and 1.5.",
         "Checks each supplied tag against its corresponding subinterval."
       ],
-      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+      "rationale": "Independent review found that the original ownership wording exceeded the literal fixed-task observer; the claim was narrowed to exactly what the cited public request and rubric rows score."
     },
     {
       "session": 2,
@@ -109,14 +110,14 @@
       "session": 3,
       "originalClaimIndex": 1,
       "originalClaim": "State the operational tagged-partition criterion for a proper Riemann integral.",
-      "disposition": "retain",
-      "finalClaim": "State the operational tagged-partition criterion for a proper Riemann integral.",
+      "disposition": "narrow",
+      "finalClaim": "Apply the operational tagged-partition criterion for a proper Riemann integral.",
       "task": "main+transfer",
       "rubricEvidence": [
         "Closes the epsilon/mesh definition by observing the error is 0 for every sufficiently fine partition.",
         "Applies the supplied estimate to every tagged partition with mesh below δ."
       ],
-      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+      "rationale": "Independent review found that the original ownership wording exceeded the literal fixed-task observer; the claim was narrowed to exactly what the cited public request and rubric rows score."
     },
     {
       "session": 3,
@@ -148,14 +149,14 @@
       "session": 4,
       "originalClaimIndex": 1,
       "originalClaim": "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
-      "disposition": "retain",
-      "finalClaim": "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+      "disposition": "narrow",
+      "finalClaim": "Show that a bounded single-point value change can preserve a known Riemann integral by bounding its tagged-sum effect.",
       "task": "main",
       "rubricEvidence": [
         "Bounds the effect of the exceptional point by 50||P|| or another valid bound that handles the possible two adjacent tagged subintervals.",
         "Uses the bound to prove the common tagged-sum limit is 15."
       ],
-      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+      "rationale": "Independent review found that the original ownership wording exceeded the literal fixed-task observer; the claim was narrowed to exactly what the cited public request and rubric rows score."
     },
     {
       "session": 4,
@@ -680,6 +681,7 @@
       "finalClaim": "Distinguish convergence to a finite value from divergence and reject literal substitution of infinity.",
       "task": "main",
       "rubricEvidence": [
+        "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number.",
         "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1."
       ],
       "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
@@ -813,6 +815,83 @@
         "Uses the finite base total 1/(p-1) to obtain C=6(p-1)."
       ],
       "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    }
+  ],
+  "independentReviewBase": "e358cea517a4d638550e5990c03894f586a85620",
+  "classificationCalibrations": [
+    {
+      "session": 1,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main is a direct retrieval/application of the taught local-quantity×width construction, unit tracking and unequal-width diagnostic on new battery data; new context does not make the evidence structurally fresh."
+    },
+    {
+      "session": 2,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main supplies the partition, tags and function values and asks the learner to execute the already taught width/tag/sum/mesh routine; this is retrieval/application on new data."
+    },
+    {
+      "session": 5,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main applies the three structural laws taught immediately before it—additivity, orientation and linearity—to new supplied integral values; the numerical surface is new but the decision structure is retrieval."
+    },
+    {
+      "session": 6,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main directly applies the taught signed-total, absolute-magnitude and average-value distinctions to a new piecewise rate; this is retrieval/application rather than new conceptual evidence."
+    },
+    {
+      "session": 9,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main directly applies the taught FTC-plus-chain moving-endpoint rule to a new endpoint and integrand. The lack of an elementary antiderivative blocks an irrelevant detour but does not change the taught decision structure."
+    },
+    {
+      "session": 13,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main repeats the taught reverse-chain substitution pattern with new coefficients and power and then performs the already taught differentiation check; this is retrieval/application."
+    },
+    {
+      "session": 14,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main directly applies the taught definite-substitution procedure—transforming bounds and checking transformed domain—to a new rational/log surface; this is retrieval/application."
+    },
+    {
+      "session": 19,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main applies the comparison directions just taught to two new inequalities. Selecting the concrete comparison is useful, but the assessed convergence logic is retrieval/application rather than independent fresh-theorem evidence."
+    }
+  ],
+  "independentReviewRepairs": [
+    {
+      "session": 2,
+      "claim": 1,
+      "type": "narrow",
+      "reason": "Public Main supplies P and tags; it observes computing widths and verifying tags, not constructing them."
+    },
+    {
+      "session": 3,
+      "claim": 1,
+      "type": "narrow",
+      "reason": "Fixed tasks apply the tagged-partition criterion but do not require the learner to state the full quantified definition."
+    },
+    {
+      "session": 4,
+      "claim": 1,
+      "type": "narrow",
+      "reason": "Fixed Main changes one point; the finite-many extension remains instruction but is not claimed as assessed ownership."
+    },
+    {
+      "session": 17,
+      "claim": 3,
+      "type": "evidence-remap",
+      "reason": "Mapped explicitly to the finite-truncation rubric row that observes rejection of literal infinity substitution."
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "version": "m11-semantic-contract-v1-2026-09-24",
+  "version": "m11-semantic-contract-v2-independent-review-2026-09-24",
   "module": {
     "id": "ARC510",
     "order": 11,
@@ -13,7 +13,7 @@
     "fresh Main evidence",
     "changed-surface Transfer"
   ],
-  "policy": "Ownership requires literal public/scored observability. Taught proofs assessed later are proof reconstruction. Fixed prompts/references were screened against all M09+M10 and legally available M11 instruction; repaired contract has zero exact or 12-token normalized overlaps.",
+  "policy": "Ownership requires literal public/scored observability. Taught proofs assessed later are proof reconstruction. Freshness labels describe evidence distance, not task quality: direct applications on new numbers/contexts are retrieval. Fixed prompts/references remain screened against all M09+M10 and legally available M11 instruction.",
   "unpublished": true,
   "changedObligations": [],
   "sessions": [
@@ -79,7 +79,7 @@
             "criterion": "Explains that an unweighted rate average ignores unequal exposure durations rather than merely stating that it is wrong."
           }
         ],
-        "classification": "fresh Main evidence"
+        "classification": "retrieval"
       },
       "transfer": {
         "id": "T22V3::ARC510::S01-T@1",
@@ -111,13 +111,13 @@
       "order": 2,
       "title": "Partitions, tags and mesh",
       "requiredOwnership": [
-        "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+        "Use a supplied partition, compute its subinterval widths, and verify supplied tags on a bounded interval.",
         "Compute a tagged finite sum and its mesh on a nonuniform partition.",
         "Explain why increasing the number of arbitrary subintervals does not by itself force refinement."
       ],
       "claimEvidence": [
         {
-          "claim": "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+          "claim": "Use a supplied partition, compute its subinterval widths, and verify supplied tags on a bounded interval.",
           "task": "main",
           "publicRequest": "On [1,6], let P={1,2,4.5,6}. Use tags t_1=1.4, t_2=3, t_3=5.2, and suppose f(t_1)=4, f(t_2)=-2, f(t_3)=1. List the three subinterval widths, verify that each tag is legal, compute Σ f(t_i)Δx_i, and state ||P||.",
           "rubricEvidence": [
@@ -125,7 +125,7 @@
             "Checks each supplied tag against its corresponding subinterval."
           ],
           "escapeAttempt": "Equal-width or misplaced-tag work cannot earn both rows.",
-          "disposition": "adequate"
+          "disposition": "narrowed-after-independent-review"
         },
         {
           "claim": "Compute a tagged finite sum and its mesh on a nonuniform partition.",
@@ -172,7 +172,7 @@
             "criterion": "States the mesh as 2.5, the largest subinterval width."
           }
         ],
-        "classification": "fresh Main evidence"
+        "classification": "retrieval"
       },
       "transfer": {
         "id": "T22V3::ARC510::S02-T@1",
@@ -200,13 +200,13 @@
       "order": 3,
       "title": "The definite integral is a common refinement limit",
       "requiredOwnership": [
-        "State the operational tagged-partition criterion for a proper Riemann integral.",
+        "Apply the operational tagged-partition criterion for a proper Riemann integral.",
         "Use that criterion to reconstruct a constant-function integral directly from sums.",
         "Convert a uniform mesh-dependent error bound into an epsilon-delta integrability proof."
       ],
       "claimEvidence": [
         {
-          "claim": "State the operational tagged-partition criterion for a proper Riemann integral.",
+          "claim": "Apply the operational tagged-partition criterion for a proper Riemann integral.",
           "task": "main+transfer",
           "publicRequest": "Using the tagged-partition definition rather than FTC or an antiderivative, prove that the constant function f(x)=-3 on [2,5] has definite integral -9. Your argument must apply to every tagged partition, not only equal-width partitions. | Suppose a bounded function g on [0,2] has the following proved property: for every tagged partition P, |S(g;P,t)-7|≤5||P||. Use only this certificate and the Riemann-integral definition to prove ∫_0^2 g(x)dx=7. Give an explicit δ in terms of ε.",
           "rubricEvidence": [
@@ -214,7 +214,7 @@
             "Applies the supplied estimate to every tagged partition with mesh below δ."
           ],
           "escapeAttempt": "A special-grid or endpoint-antiderivative answer cannot earn the definition-level rows.",
-          "disposition": "adequate"
+          "disposition": "narrowed-after-independent-review"
         },
         {
           "claim": "Use that criterion to reconstruct a constant-function integral directly from sums.",
@@ -285,13 +285,13 @@
       "order": 4,
       "title": "Integrability diagnostics: point changes and tag dependence",
       "requiredOwnership": [
-        "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+        "Show that a bounded single-point value change can preserve a known Riemann integral by bounding its tagged-sum effect.",
         "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
         "Explain why discontinuity alone does not decide Riemann integrability."
       ],
       "claimEvidence": [
         {
-          "claim": "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+          "claim": "Show that a bounded single-point value change can preserve a known Riemann integral by bounding its tagged-sum effect.",
           "task": "main",
           "publicRequest": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere.",
           "rubricEvidence": [
@@ -299,7 +299,7 @@
             "Uses the bound to prove the common tagged-sum limit is 15."
           ],
           "escapeAttempt": "A continuity-only verdict cannot earn the mesh-bound proof.",
-          "disposition": "adequate"
+          "disposition": "narrowed-after-independent-review"
         },
         {
           "claim": "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
@@ -440,7 +440,7 @@
             "criterion": "Correctly associates additivity, orientation and linearity with the three steps."
           }
         ],
-        "classification": "fresh Main evidence"
+        "classification": "retrieval"
       },
       "transfer": {
         "id": "T22V3::ARC510::S05-T@1",
@@ -529,7 +529,7 @@
             "criterion": "Explains cancellation versus magnitude as the reason the two totals differ."
           }
         ],
-        "classification": "fresh Main evidence"
+        "classification": "retrieval"
       },
       "transfer": {
         "id": "T22V3::ARC510::S06-T@1",
@@ -781,7 +781,7 @@
             "criterion": "States that e^{t²} is continuous on the endpoint range, so the FTC accumulation derivative is available."
           }
         ],
-        "classification": "fresh Main evidence"
+        "classification": "retrieval"
       },
       "transfer": {
         "id": "T22V3::ARC510::S09-T@1",
@@ -1127,7 +1127,7 @@
             "criterion": "Differentiates the result back to 6x(3x²+2)^4."
           }
         ],
-        "classification": "fresh Main evidence"
+        "classification": "retrieval"
       },
       "transfer": {
         "id": "T22V3::ARC510::S13-T@1",
@@ -1211,7 +1211,7 @@
             "criterion": "States that the transformed interval stays in u>0, where 1/u is continuous and ln u is valid."
           }
         ],
-        "classification": "fresh Main evidence"
+        "classification": "retrieval"
       },
       "transfer": {
         "id": "T22V3::ARC510::S14-T@1",
@@ -1453,9 +1453,10 @@
           "task": "main",
           "publicRequest": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation.",
           "rubricEvidence": [
+            "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number.",
             "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1."
           ],
-          "escapeAttempt": "The finite-value formula for p>1 cannot be extended through p=1.",
+          "escapeAttempt": "A solver who substitutes ∞ as a number fails the explicit finite-truncation row even if it later discusses the p=1 divergence.",
           "disposition": "adequate"
         }
       ],
@@ -1648,7 +1649,7 @@
             "criterion": "Explains the comparison directions correctly rather than treating any inequality as interchangeable."
           }
         ],
-        "classification": "fresh Main evidence"
+        "classification": "retrieval"
       },
       "transfer": {
         "id": "T22V3::ARC510::S19-T@1",

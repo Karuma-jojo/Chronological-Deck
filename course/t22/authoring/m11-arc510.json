@@ -1,13 +1,13 @@
 {
-  "version": "m11-arc510-semantic-repair-v4",
+  "version": "m11-arc510-independent-review-repair-v5",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "builder-verified-review-handoff-unpublished",
+    "status": "independent-review-repair-candidate-unpublished",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
-    "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
+    "gate": "All 20 design-derived sessions are authored and the bounded independent-review repairs are applied. Freeze requires the full structural/semantic/math/browser suite to pass; M11 remains unpublished and M12 remains closed.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
   },
   "boundary": {
@@ -16,7 +16,16 @@
       "ARC053"
     ],
     "owns": [
-      "finite accumulation from local quantity times width (pilot scope only)"
+      "finite signed accumulation from local quantity times interval width, with units and weighting",
+      "partitions, tags, mesh and tagged Riemann sums on bounded intervals",
+      "proper one-variable Riemann integration as a partition-independent refinement limit, with bounded integrability diagnostics",
+      "integral linearity, interval additivity, orientation, order, magnitude and average value",
+      "accumulation functions and their continuity for bounded Riemann-integrable inputs",
+      "FTC local recovery, variable endpoints and the distinction between local rate and accumulated total",
+      "bounded MVT support for antiderivative uniqueness and FTC endpoint evaluation/net change",
+      "a small verified antiderivative repertoire, one-variable substitution, integration by parts and method forensics",
+      "one-variable improper integrals on infinite and singular intervals, p-integral thresholds, nonnegative comparison and two-sided convergence",
+      "synthesis from finite local contributions through proper and improper accumulated totals"
     ],
     "excludes": [
       "M12 Taylor polynomials/series, higher-order asymptotics and remainder theorems",
@@ -37,7 +46,7 @@
     "pedagogicalAtoms": 20,
     "authoredSessions": 20,
     "ownershipClaimCount": 61,
-    "note": "No target count exists. 61 is the emergent final count after the full semantic/evidence audit; it is not a quota and future repairs may change it."
+    "note": "No target count exists. 61 remains the emergent count after builder and bounded independent semantic audits; it is not a quota and future evidence repairs may change it."
   },
   "sessions": [
     {
@@ -74,7 +83,7 @@
         "antiderivatives"
       ],
       "exitCondition": "Solve both fixed tasks by constructing the weighted contributions, with no answer exposure; an unweighted solver must lose the relevant credit.",
-      "lesson": "Orient. A local rate or density tells you an amount per unit of input. A total over a finite piece must therefore combine two things: the local quantity and how much input-range that quantity acts over.\\nDefine. For a finite list of pieces, write width_i for the size of piece i and q_i for its signed local quantity per input-unit. The contribution of that piece is q_i·width_i. The finite accumulated total is the sum of those contributions. If q_i is measured in units/hour and width_i in hours, their product is in units.\\nConnect. M10 interpreted a derivative as a local rate with output-units per input-unit. Here we do not yet take a continuum limit; we only ask how already-specified local rates contribute over finite pieces.\\nExplain. Unequal widths matter. Adding rates alone has the units of a rate, not a total. Taking an unweighted average of rates treats all pieces as equally wide even when they are not. Signs also matter: a negative local rate contributes negative change.\\nWorked example: an inventory changes at +8 units/hour for 0.5 h, -2 units/hour for 1.5 h, and +5 units/hour for 1 h. The contributions are +4 units, -3 units and +5 units, so the net change is +6 units. The widths total 3 h, and the width-weighted average rate is 6/3=2 units/hour. The ordinary average (8-2+5)/3=11/3 units/hour is a different quantity and does not reconstruct the net change.\\nGuided practice: a process adds material at 3 g/min for 2 min and then removes material at 1 g/min for 4 min. Write the two signed contributions before adding them. Check: +6 g and -4 g, giving +2 g net. Explain why the signs belong to the local rates while the interval widths stay positive.",
+      "lesson": "Orient. A local rate or density tells you an amount per unit of input. A total over a finite piece must therefore combine two things: the local quantity and how much input-range that quantity acts over.\nDefine. For a finite list of pieces, write width_i for the size of piece i and q_i for its signed local quantity per input-unit. The contribution of that piece is q_i·width_i. The finite accumulated total is the sum of those contributions. If q_i is measured in units/hour and width_i in hours, their product is in units.\nConnect. M10 interpreted a derivative as a local rate with output-units per input-unit. Here we do not yet take a continuum limit; we only ask how already-specified local rates contribute over finite pieces.\nExplain. Unequal widths matter. Adding rates alone has the units of a rate, not a total. Taking an unweighted average of rates treats all pieces as equally wide even when they are not. Signs also matter: a negative local rate contributes negative change.\nWorked example: an inventory changes at +8 units/hour for 0.5 h, -2 units/hour for 1.5 h, and +5 units/hour for 1 h. The contributions are +4 units, -3 units and +5 units, so the net change is +6 units. The widths total 3 h, and the width-weighted average rate is 6/3=2 units/hour. The ordinary average (8-2+5)/3=11/3 units/hour is a different quantity and does not reconstruct the net change.\nGuided practice: a process adds material at 3 g/min for 2 min and then removes material at 1 g/min for 4 min. Write the two signed contributions before adding them. Check: +6 g and -4 g, giving +2 g net. Explain why the signs belong to the local rates while the interval widths stay positive.",
       "main": "T22V3::ARC510::S01-M@1",
       "transfer": "T22V3::ARC510::S01-T@1"
     },
@@ -93,7 +102,7 @@
         "M03/M09 quantifier discipline"
       ],
       "requiredOwnership": [
-        "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+        "Use a supplied partition, compute its subinterval widths, and verify supplied tags on a bounded interval.",
         "Compute a tagged finite sum and its mesh on a nonuniform partition.",
         "Explain why increasing the number of arbitrary subintervals does not by itself force refinement."
       ],
@@ -130,7 +139,7 @@
         "M09 function-limit and epsilon discipline"
       ],
       "requiredOwnership": [
-        "State the operational tagged-partition criterion for a proper Riemann integral.",
+        "Apply the operational tagged-partition criterion for a proper Riemann integral.",
         "Use that criterion to reconstruct a constant-function integral directly from sums.",
         "Convert a uniform mesh-dependent error bound into an epsilon-delta integrability proof."
       ],
@@ -167,7 +176,7 @@
         "continuous⇒Riemann-integrable theorem stated here as source-supported support"
       ],
       "requiredOwnership": [
-        "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+        "Show that a bounded single-point value change can preserve a known Riemann integral by bounding its tagged-sum effect.",
         "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
         "Explain why discontinuity alone does not decide Riemann integrability."
       ],
@@ -259,7 +268,7 @@
         "probability expectation"
       ],
       "exitCondition": "A wrong solver who equates signed and absolute accumulation or reverses comparison direction loses targeted credit.",
-      "lesson": "Orient. Integral linearity tells us how totals combine; order tells us whether a proposed total is even plausible.\nDefine. If f(x)≤g(x) everywhere on [a,b] and both are integrable, then ∫f≤∫g. Hence m≤f≤M gives m(b-a)≤∫f≤M(b-a). For b>a, the average value is f_avg=(1/(b-a))∫_a^b f.\nConnect. Because -|f|≤f≤|f|, integration preserves the inequalities: -∫|f|≤∫f≤∫|f|. Therefore |∫f|≤∫|f|. Equality is not automatic because positive and negative contributions can cancel in ∫f.\nExplain. Signed accumulation answers net change. Integrating |f| answers accumulated magnitude in contexts where absolute rate has that meaning. Geometric area is therefore not the universal definition of an integral.\nWorked example: a piecewise rate is +3 units/hour on [0,1] and -1 unit/hour on [1,4]. The signed total is 3(1)-1(3)=0 units, while the magnitude total is 3(1)+1(3)=6 units. The average signed rate over four hours is 0 units/hour.\nGuided practice: if an integrable q satisfies 2≤q(x)≤5 on an interval of length 3, bound its integral before calculating anything else. Check: 6≤∫q≤15.",
+      "lesson": "Orient. Integral linearity tells us how totals combine; order tells us whether a proposed total is even plausible.\nDefine. If f(x)≤g(x) everywhere on [a,b] and both are integrable, then ∫f≤∫g. Hence m≤f≤M gives m(b-a)≤∫f≤M(b-a). For b>a, the average value is f_avg=(1/(b-a))∫_a^b f. We also use the standard Riemann-closure fact that if f is Riemann integrable on [a,b], then |f| is Riemann integrable there.\nConnect. Because -|f|≤f≤|f|, integration preserves the inequalities: -∫|f|≤∫f≤∫|f|. Therefore |∫f|≤∫|f|. Equality is not automatic because positive and negative contributions can cancel in ∫f.\nExplain. Signed accumulation answers net change. Integrating |f| answers accumulated magnitude in contexts where absolute rate has that meaning. Geometric area is a valid special interpretation: when f≥0, ∫f can represent the ordinary area under the graph; for sign-changing f, ∫f is signed/net area while ∫|f| gives total geometric area. Area is therefore not the universal definition of an integral.\nWorked example: a piecewise rate is +3 units/hour on [0,1] and -1 unit/hour on [1,4]. The signed total is 3(1)-1(3)=0 units, while the magnitude total is 3(1)+1(3)=6 units. The average signed rate over four hours is 0 units/hour.\nGuided practice: if an integrable q satisfies 2≤q(x)≤5 on an interval of length 3, bound its integral before calculating anything else. Check: 6≤∫q≤15.",
       "main": "T22V3::ARC510::S06-M@1",
       "transfer": "T22V3::ARC510::S06-T@1"
     },
@@ -295,7 +304,7 @@
         "measure theory"
       ],
       "exitCondition": "The learner does not infer A'=f merely from continuity and can explain a continuous cumulative total across a bounded rate jump.",
-      "lesson": "Orient. Define A(x)=∫_a^x f(t)dt. Before asking for A'(x), ask the weaker question: can A itself jump when x moves a tiny amount?\nDefine. A Riemann-integrable function on a finite closed interval is bounded, so choose M with |f(t)|≤M. For any x,y in the domain, interval additivity gives A(y)-A(x)=∫_x^y f(t)dt.\nConnect. S06 gives |∫_x^y f|≤∫_x^y |f|≤M|y-x| (with orientation handled by absolute value). Thus |A(y)-A(x)|≤M|y-x|.\nExplain. Given ε>0, taking |y-x|<ε/M (when M>0) makes |A(y)-A(x)|<ε. So A is continuous even if f itself has bounded jumps. This does not say A is differentiable at those jumps.\nWorked example: let f(t)=1 for -1≤t<0 and f(t)=3 for 0≤t≤1, and A(x)=∫_{-1}^x f(t)dt. Then A(x)=x+1 for x≤0 and A(x)=1+3x for x≥0. Both formulas give A(0)=1, so A is continuous, but its left slope is 1 and right slope is 3.\nGuided practice: if |q(t)|≤6 and Q(x)=∫_0^x q(t)dt, what bound controls |Q(2.01)-Q(2)|? Check: at most 6(0.01)=0.06. State what this proves about continuity, and what it does not prove about Q'(2).",
+      "lesson": "Orient. Define A(x)=∫_a^x f(t)dt. Before asking for A'(x), ask the weaker question: can A itself jump when x moves a tiny amount?\nDefine. A Riemann-integrable function on a finite closed interval is bounded, so choose M with |f(t)|≤M. We also use the standard restriction fact: its restriction to every closed subinterval is Riemann integrable. Thus for any x,y in the domain the subinterval integral is defined, and interval additivity/orientation gives A(y)-A(x)=∫_x^y f(t)dt.\nConnect. S06 gives |∫_x^y f|≤∫_x^y |f|≤M|y-x| (with orientation handled by absolute value). Thus |A(y)-A(x)|≤M|y-x|.\nExplain. Given ε>0, taking |y-x|<ε/M (when M>0) makes |A(y)-A(x)|<ε. So A is continuous even if f itself has bounded jumps. This does not say A is differentiable at those jumps.\nWorked example: let f(t)=1 for -1≤t<0 and f(t)=3 for 0≤t≤1, and A(x)=∫_{-1}^x f(t)dt. Then A(x)=x+1 for x≤0 and A(x)=1+3x for x≥0. Both formulas give A(0)=1, so A is continuous, but its left slope is 1 and right slope is 3.\nGuided practice: if |q(t)|≤6 and Q(x)=∫_0^x q(t)dt, what bound controls |Q(2.01)-Q(2)|? Check: at most 6(0.01)=0.06. State what this proves about continuity, and what it does not prove about Q'(2).",
       "main": "T22V3::ARC510::S07-M@1",
       "transfer": "T22V3::ARC510::S07-T@1"
     },
@@ -740,7 +749,7 @@
         "asymptotic expansions"
       ],
       "exitCondition": "A wrong comparison direction or symmetric-zero solver loses direct evidence.",
-      "lesson": "Orient. Exact antiderivatives are not always needed: inequalities can transfer convergence information, but only in safe directions.\nDefine. For x≥a, if 0≤f(x)≤g(x) and ∫_a^∞g converges, then ∫_a^∞f converges. If ∫_a^∞f diverges to +∞, then the larger nonnegative g also diverges.\nConnect. For each finite T, order gives 0≤F(T)=∫_a^T f≤G(T)=∫_a^T g. If G(T) is bounded above and F(T) is nondecreasing, M09's monotone-bounded convergence gives a finite limit. The divergence direction follows from G(T)≥F(T).\nExplain. For ∫_{-∞}^{∞}f, choose any finite split point c and require both ∫_{-∞}^c f and ∫_c^∞ f to converge finitely. A symmetric limit lim_{R→∞}∫_{-R}^R f may exist by cancellation even when those one-sided requirements fail; that is not ordinary improper convergence.\nWorked example: for x≥1, 0≤1/(x²+1)≤1/x², and the p=2 tail converges, so ∫_1^∞1/(x²+1)dx converges without needing its exact value.\nGuided practice: for x≥1, sqrt(x²+1)≤sqrt(2)x, so 1/sqrt(x²+1)≥1/(sqrt(2)x). Since the harmonic tail diverges, the larger integrand's tail diverges too.",
+      "lesson": "Orient. Exact antiderivatives are not always needed: inequalities can transfer convergence information, but only in safe directions.\nDefine. For x≥a, if 0≤f(x)≤g(x) and ∫_a^∞g converges, then ∫_a^∞f converges. If ∫_a^∞f diverges to +∞, then the larger nonnegative g also diverges.\nConnect. For each finite T, order gives 0≤F(T)=∫_a^T f≤G(T)=∫_a^T g. If ∫_a^∞g converges to a finite value L, then the nonnegative truncations satisfy G(T)≤L, so F(T) is nondecreasing and bounded above. Let M=sup{F(T):T≥a}. Given ε>0, the supremum property gives T₀ with F(T₀)>M-ε; then for every T≥T₀, M-ε<F(T₀)≤F(T)≤M. Hence F(T)→M. This reuses M09's supremum mechanism, not its sequence-only monotone convergence theorem. For divergence, if F(T)→+∞ and G(T)≥F(T), then G(T)→+∞.\nExplain. For ∫_{-∞}^{∞}f, choose any finite split point c and require both ∫_{-∞}^c f and ∫_c^∞ f to converge finitely. A symmetric limit lim_{R→∞}∫_{-R}^R f may exist by cancellation even when those one-sided requirements fail; that is not ordinary improper convergence.\nWorked example: for x≥1, 0≤1/(x²+1)≤1/x², and the p=2 tail converges, so ∫_1^∞1/(x²+1)dx converges without needing its exact value.\nGuided practice: for x≥1, sqrt(x²+1)≤sqrt(2)x, so 1/sqrt(x²+1)≥1/(sqrt(2)x). Since the harmonic tail diverges, the larger integrand's tail diverges too.",
       "main": "T22V3::ARC510::S19-M@1",
       "transfer": "T22V3::ARC510::S19-T@1"
     },
@@ -2132,7 +2141,7 @@
     ],
     "T22V3::ARC510::S02@1": [
       {
-        "claim": "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+        "claim": "Use a supplied partition, compute its subinterval widths, and verify supplied tags on a bounded interval.",
         "task": "main",
         "publicRequest": "On [1,6], let P={1,2,4.5,6}. Use tags t_1=1.4, t_2=3, t_3=5.2, and suppose f(t_1)=4, f(t_2)=-2, f(t_3)=1. List the three subinterval widths, verify that each tag is legal, compute Σ f(t_i)Δx_i, and state ||P||.",
         "rubricEvidence": [
@@ -2140,7 +2149,7 @@
           "Checks each supplied tag against its corresponding subinterval."
         ],
         "escapeAttempt": "Equal-width or misplaced-tag work cannot earn both rows.",
-        "disposition": "adequate"
+        "disposition": "narrowed-after-independent-review"
       },
       {
         "claim": "Compute a tagged finite sum and its mesh on a nonuniform partition.",
@@ -2167,7 +2176,7 @@
     ],
     "T22V3::ARC510::S03@1": [
       {
-        "claim": "State the operational tagged-partition criterion for a proper Riemann integral.",
+        "claim": "Apply the operational tagged-partition criterion for a proper Riemann integral.",
         "task": "main+transfer",
         "publicRequest": "Using the tagged-partition definition rather than FTC or an antiderivative, prove that the constant function f(x)=-3 on [2,5] has definite integral -9. Your argument must apply to every tagged partition, not only equal-width partitions. | Suppose a bounded function g on [0,2] has the following proved property: for every tagged partition P, |S(g;P,t)-7|≤5||P||. Use only this certificate and the Riemann-integral definition to prove ∫_0^2 g(x)dx=7. Give an explicit δ in terms of ε.",
         "rubricEvidence": [
@@ -2175,7 +2184,7 @@
           "Applies the supplied estimate to every tagged partition with mesh below δ."
         ],
         "escapeAttempt": "A special-grid or endpoint-antiderivative answer cannot earn the definition-level rows.",
-        "disposition": "adequate"
+        "disposition": "narrowed-after-independent-review"
       },
       {
         "claim": "Use that criterion to reconstruct a constant-function integral directly from sums.",
@@ -2202,7 +2211,7 @@
     ],
     "T22V3::ARC510::S04@1": [
       {
-        "claim": "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+        "claim": "Show that a bounded single-point value change can preserve a known Riemann integral by bounding its tagged-sum effect.",
         "task": "main",
         "publicRequest": "Define g on [0,3] by g(x)=5 for x≠1 and g(1)=-20. Using tagged sums and a mesh bound, prove that g is Riemann integrable and find its integral. Then state whether this example is continuous everywhere.",
         "rubricEvidence": [
@@ -2210,7 +2219,7 @@
           "Uses the bound to prove the common tagged-sum limit is 15."
         ],
         "escapeAttempt": "A continuity-only verdict cannot earn the mesh-bound proof.",
-        "disposition": "adequate"
+        "disposition": "narrowed-after-independent-review"
       },
       {
         "claim": "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
@@ -2678,9 +2687,10 @@
         "task": "main",
         "publicRequest": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation.",
         "rubricEvidence": [
+          "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number.",
           "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1."
         ],
-        "escapeAttempt": "The finite-value formula for p>1 cannot be extended through p=1.",
+        "escapeAttempt": "A solver who substitutes ∞ as a number fails the explicit finite-truncation row even if it later discusses the p=1 divergence.",
         "disposition": "adequate"
       }
     ],
@@ -2921,8 +2931,8 @@
     "sessions": {
       "T22V3::ARC510::S01@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "The lesson teaches the finite contribution mechanism on inventory data, while Main uses a fresh battery schedule with unequal durations and requires the learner to reconstruct the weighted signed total and diagnose unweighted averaging."
+          "classification": "retrieval",
+          "reason": "Main is a direct retrieval/application of the taught local-quantity×width construction, unit tracking and unequal-width diagnostic on new battery data; new context does not make the evidence structurally fresh."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -2931,8 +2941,8 @@
       },
       "T22V3::ARC510::S02@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main uses a new nonuniform partition and supplied tagged values; the lesson's worked partition/data are different and do not reveal the requested finite sum or mesh."
+          "classification": "retrieval",
+          "reason": "Main supplies the partition, tags and function values and asks the learner to execute the already taught width/tag/sum/mesh routine; this is retrieval/application on new data."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -2961,8 +2971,8 @@
       },
       "T22V3::ARC510::S05@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main provides new interval integrals and asks the learner to organize three different structural laws; the lesson's numerical ledger is distinct."
+          "classification": "retrieval",
+          "reason": "Main applies the three structural laws taught immediately before it—additivity, orientation and linearity—to new supplied integral values; the numerical surface is new but the decision structure is retrieval."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -2971,8 +2981,8 @@
       },
       "T22V3::ARC510::S06@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main uses a new signed piecewise velocity schedule and asks separately for signed total, magnitude total and normalized average, none of which appears in the lesson."
+          "classification": "retrieval",
+          "reason": "Main directly applies the taught signed-total, absolute-magnitude and average-value distinctions to a new piecewise rate; this is retrieval/application rather than new conceptual evidence."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3001,8 +3011,8 @@
       },
       "T22V3::ARC510::S09@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main uses an endpoint whose integrand has no elementary antiderivative in the taught repertoire, so the learner must select FTC+chain directly on a fresh function."
+          "classification": "retrieval",
+          "reason": "Main directly applies the taught FTC-plus-chain moving-endpoint rule to a new endpoint and integrand. The lack of an elementary antiderivative blocks an irrelevant detour but does not change the taught decision structure."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3041,8 +3051,8 @@
       },
       "T22V3::ARC510::S13@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main uses a fresh inner polynomial/power and requires the learner to construct and verify the scale-adjusted reverse chain on new data."
+          "classification": "retrieval",
+          "reason": "Main repeats the taught reverse-chain substitution pattern with new coefficients and power and then performs the already taught differentiation check; this is retrieval/application."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3051,8 +3061,8 @@
       },
       "T22V3::ARC510::S14@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main uses a rational/log structure with fresh bounds and requires transformed-domain justification; no answer-bearing prior example matches it."
+          "classification": "retrieval",
+          "reason": "Main directly applies the taught definite-substitution procedure—transforming bounds and checking transformed domain—to a new rational/log surface; this is retrieval/application."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3101,8 +3111,8 @@
       },
       "T22V3::ARC510::S19@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main gives two new comparison problems in opposite logical directions; the divergent case now uses 1/sqrt(x²+4), distinct from the lesson's guided example, so method selection is directly tested rather than replayed."
+          "classification": "retrieval",
+          "reason": "Main applies the comparison directions just taught to two new inequalities. Selecting the concrete comparison is useful, but the assessed convergence logic is retrieval/application rather than independent fresh-theorem evidence."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3503,12 +3513,13 @@
     "semanticRepair": "Global 61-claim audit narrowed S05-C3, S06-C3, S12-C1 and S16-C3 to directly observed capabilities; S10/S11 MVT hypotheses were made endpoint-safe. No claim was retained merely because related mathematics appears.",
     "s19FreshnessRepair": "S19 Main-B was changed from 1/sqrt(x²+1), which duplicated the lesson guided practice, to 1/sqrt(x²+4) with comparison 1/(sqrt(5)x). M11 is unpublished, so obligationVersion remains 1.",
     "provenanceRepair": "Expanded canonical sourceLedger from the S01 pilot subset to the complete design-gate dossier before final executable verification.",
-    "builderValidation": "Full T22 Elite CI run 36009416136 succeeded at implementation commit 136ca2c647f2c23a39b40390eaed40efa6df3bff: syntax, semantic/evidence regressions, M11 independent math, inherited M01-M10 regressions, Chromium and both browser workflows all passed."
+    "builderValidation": "Full T22 Elite CI run 36009416136 succeeded at implementation commit 136ca2c647f2c23a39b40390eaed40efa6df3bff: syntax, semantic/evidence regressions, M11 independent math, inherited M01-M10 regressions, Chromium and both browser workflows all passed.",
+    "independentReviewRepair": "Bounded independent review preserved all 20 sessions and all 40 fixed tasks; repaired S19 comparison rigor via M09's supremum mechanism, replaced stale canonical gate/ownership boundary, narrowed S02-C1/S03-C1/S04-C1, remapped S17-C3 evidence, recalibrated eight procedural Main classifications to retrieval, surfaced |f|-integrability/subinterval-restriction support facts, added the S06 area-vs-signed-area contrast, repaired S01 literal newline serialization, and added Lebl properties + MAA IPG provenance."
   },
   "authoringPolicy": "Original lessons and tasks. Ownership follows literal public/scored actions, never a fixed count. Evidence classes are retrieval, proof reconstruction, fresh Main evidence or changed-surface Transfer. Proofs taught before assessment are reconstruction evidence, not fresh proof evidence. Equivalent valid routes earn full credit. Define notation before use, preserve domains/hypotheses/exceptions, and never use M12+ machinery as a premise.",
   "sourceLedger": {
     "checked": "2026-09-24",
-    "policy": "MIT/OpenStax/Lebl ground sequence, definitions, theorem hypotheses and proof boundaries. IES/WWC and the cited calculus-education studies constrain lesson design and known misconception handling. None is treated as T22 acceptance evidence. All fixed tasks and lesson prose are original.",
+    "policy": "MIT/OpenStax/Lebl ground sequence, definitions, theorem hypotheses, closure facts and proof boundaries. IES/WWC and the MAA Instructional Practices Guide provide general evidence-based pedagogy baselines; the cited calculus-education studies constrain integration-specific misconception handling. None is treated as T22 acceptance evidence. All fixed tasks and lesson prose are original.",
     "sources": [
       {
         "id": "MIT-1801-RS",
@@ -3571,6 +3582,12 @@
         "supports": "Fermat/Rolle/MVT proof discipline and derivative-zero interval consequence"
       },
       {
+        "id": "LEBL-RPROP",
+        "source": "https://www.jirka.org/ra/html/sec_rintprop.html",
+        "section": "§5.2 Properties of the integral",
+        "supports": "source-supported Riemann closure facts used in S06-S07: restrictions to closed subintervals remain integrable, and |f| is integrable when f is"
+      },
+      {
         "id": "IES-WWC",
         "source": "https://ies.ed.gov/ncee/wwc/PracticeGuide/1",
         "section": "Organizing Instruction and Study",
@@ -3593,6 +3610,12 @@
         "source": "https://eric.ed.gov/?id=EJ1377710",
         "section": "Bajracharya, Sealey & Thompson 2023",
         "supports": "signed integral/orientation misconceptions and physical-quantity interpretation"
+      },
+      {
+        "id": "MAA-IPG",
+        "source": "https://maa.org/resource/instructional-practices-guide/",
+        "section": "MAA Instructional Practices Guide (2017): Classroom, Assessment and Design Practices",
+        "supports": "permanent undergraduate-mathematics pedagogy baseline for engagement, assessment alignment and course/lesson design; consistency support only"
       }
     ]
   }

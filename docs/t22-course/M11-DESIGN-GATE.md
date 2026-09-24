@@ -147,7 +147,9 @@ Sources have assigned epistemic roles. None is treated as a complete syllabus au
 | OS2-37 | OpenStax Calculus V2 §3.7 Improper Integrals | Infinite/singular definitions and comparison theorem | Definition and comparison anchor. Examples requiring L'Hôpital are excluded. |
 | LEBL-RIEMANN | Jiří Lebl, Basic Analysis, Ch.5 §§5.1–5.3 | Rigorous Riemann/FTC hypotheses and proof structure | Proof/hypothesis audit. Full real-analysis prerequisites are not silently imported. |
 | LEBL-MVT | Lebl, Basic Analysis §4.2 | Fermat/Rolle/MVT and derivative-zero⇒constant | Confirms the bounded bridge and its interval hypotheses. |
+| LEBL-RPROP | Lebl, Basic Analysis §5.2 Properties of the integral | Which Riemann closure facts are legal before S06–S07? | Supports restriction to closed subintervals and integrability of |f|; no broader real-analysis unit is imported. |
 | IES-WWC | IES/WWC, Organizing Instruction and Study | Worked-example/problem alternation, spacing, representations | Pedagogical constraint only; does not validate T22. |
+| MAA-IPG | Mathematical Association of America, Instructional Practices Guide | General evidence-based undergraduate-mathematics classroom, assessment and design practices | Permanent pedagogy baseline for alignment/engagement/design consistency; domain-specific calculus research still governs the concrete M11 misconception choices. |
 | PED-JONES | Jones (2015), ERIC EJ1061209 | Are area/antiderivative-only conceptions enough for contextual definite integrals? | Motivates repeated rate×width/Riemann-sum meaning; population is two US colleges (n=150), not a universal causal claim. |
 | PED-WAGNER | Wagner (2018), ERIC EJ1189820 | What obstacles arise with Riemann-sum interpretations? | Motivates explicit sum-based sense-making rather than FTC algebra alone. |
 | PED-SIGN | Bajracharya, Sealey & Thompson (2023), ERIC EJ1377710 | Where do sign/orientation misconceptions appear? | Motivates signed accumulation, backward bounds and physical interpretation before formula manipulation. |
@@ -167,7 +169,9 @@ URLs:
 - https://www.jirka.org/ra/html/int_chapter.html
 - https://www.jirka.org/ra/html/sec_ftc.html
 - https://www.jirka.org/ra/html/sec_mvt.html
+- https://www.jirka.org/ra/html/sec_rintprop.html
 - https://ies.ed.gov/ncee/wwc/PracticeGuide/1
+- https://maa.org/resource/instructional-practices-guide/
 - https://eric.ed.gov/?id=EJ1061209
 - https://eric.ed.gov/?id=EJ1189820
 - https://eric.ed.gov/?id=EJ1377710
@@ -175,6 +179,8 @@ URLs:
 ### Source-ledger decisions
 
 - **Source-supported theorem:** every continuous real function on a closed interval is Riemann integrable. M11 may use this as a stated sufficient theorem but will not claim its full proof as M11 ownership.
+- **Source-supported Riemann closure facts:** if f is Riemann integrable on a closed interval, its restrictions to closed subintervals are integrable and |f| is Riemann integrable. S06–S07 surface these facts before consuming them; their full analysis proofs are not M11 ownership.
+- **Undergraduate-mathematics pedagogy baseline:** MAA IPG supplies a general classroom/assessment/design baseline; the integration-specific Jones/Wagner/Bajracharya findings remain the more targeted evidence for M11 conceptions and failure modes.
 - **Independently derived in M11:** finite contribution architecture, integral operator laws from sums/limits, accumulation continuity bound, FTC local-average mechanism, substitution from chain rule/FTC, integration by parts from product rule/FTC, p-integral thresholds and elementary nonnegative comparison.
 - **Chosen modelling convention:** signed local contribution = local rate/intensity × signed/positive interval width according to the oriented integral convention; contexts will state units and sign semantics.
 - **Unresolved essentials:** none. Advanced integrability criteria and measure-theoretic generalizations are intentionally deferred rather than treated as gaps.

@@ -36,6 +36,10 @@ assert.equal(Object.keys(a.evaluators).length,40);
 assert.deepEqual(a.boundary.prerequisiteModules,deps.modules.find(m=>m.id==='ARC510').prerequisites);
 assert.deepEqual(a.boundary.prerequisiteModules,['SIDE263','ARC053']);
 assert.match(a.boundary.decisiveProhibition,/M12|Taylor|asympt/i);
+assert(a.boundary.owns.length>=9,'canonical M11 ownership boundary is still pilot-thin');
+assert(!a.boundary.owns.join(' ').toLowerCase().includes('pilot scope'),'stale pilot ownership boundary');
+assert.match(a.module.gate,/all 20 design-derived sessions/i);
+assert(!/s01 is the required pilot/i.test(a.module.gate),'stale pilot module gate');
 
 assert.equal(meta.moduleSources.length,9,'M11 must not rewrite accepted learner registry');
 assert.equal(meta.moduleSources.at(-1).source,'course/t22/authoring/m09.json');
@@ -77,6 +81,8 @@ for(let i=0;i<a.sessions.length;i++){
   assert.equal(s.moduleId,'ARC510');
   assert(!ids.has(s.id));ids.add(s.id);
   for(const marker of ['Orient.','Define.','Connect.','Explain.','Worked example:','Guided practice:']) assert(s.lesson.includes(marker),s.id+' missing lesson atom '+marker);
+  assert(s.lesson.includes('\n'),s.id+' lesson must contain real line breaks');
+  assert(!s.lesson.includes('\\n'),s.id+' contains visible escaped-newline serialization');
   assert(s.entryPrerequisites.length>0);
   assert.equal(a.claimEvidence[s.id].length,s.requiredOwnership.length);
   assert.equal(a.coverage[s.id].length,s.requiredOwnership.length);
@@ -136,10 +142,21 @@ assert.match(a.sessions[9].lesson,/Mean Value Theorem/);
 assert.match(a.sessions[9].lesson,/continuous on an interval/i);
 assert.match(a.problems[a.sessions[9].main].prompt,/continuous on I/);
 assert(a.sessions[18].lesson.includes('1/sqrt(x²+1)'));
+assert(!/monotone-bounded convergence/i.test(a.sessions[18].lesson),'S19 must not apply the M09 sequence theorem to real T');
+assert.match(a.sessions[18].lesson,/sup\{F\(T\):T≥a\}/,'S19 supremum repair missing');
+assert.match(a.sessions[5].lesson,/\|f\| is Riemann integrable/i,'S06 |f| closure fact missing');
+assert.match(a.sessions[5].lesson,/signed\/net area/i,'S06 area contrast missing');
+assert.match(a.sessions[6].lesson,/restriction to every closed subinterval is Riemann integrable/i,'S07 restriction-integrability support missing');
 assert(a.problems[a.sessions[18].main].prompt.includes('1/sqrt(x²+4)'),'S19 freshness repair missing');
 assert.match(a.initialVersionAudit.s19FreshnessRepair,/duplicated the lesson guided practice/i);
-const requiredSources=['MIT-1801-RS','MIT-1801-IMP','OS-52','OS-53','OS-44','OS-55','OS2-31','OS2-37','LEBL-RIEMANN','LEBL-MVT','IES-WWC','PED-JONES','PED-WAGNER','PED-SIGN'];
+const requiredSources=['MIT-1801-RS','MIT-1801-IMP','OS-52','OS-53','OS-44','OS-55','OS2-31','OS2-37','LEBL-RIEMANN','LEBL-MVT','LEBL-RPROP','IES-WWC','MAA-IPG','PED-JONES','PED-WAGNER','PED-SIGN'];
 for(const id of requiredSources)assert(a.sourceLedger.sources.some(s=>s.id===id),'missing M11 source '+id);
+const expectedRetrieval=[1,2,5,6,9,13,14,19];
+for(const n of expectedRetrieval)assert.equal(a.semanticSeparationAudit.sessions[a.sessions[n-1].id].main.classification,'retrieval','S'+n+' Main freshness is overstated');
+assert.equal(a.sessions[1].requiredOwnership[0],'Use a supplied partition, compute its subinterval widths, and verify supplied tags on a bounded interval.');
+assert.equal(a.sessions[2].requiredOwnership[0],'Apply the operational tagged-partition criterion for a proper Riemann integral.');
+assert.equal(a.sessions[3].requiredOwnership[0],'Show that a bounded single-point value change can preserve a known Riemann integral by bounding its tagged-sum effect.');
+assert(a.claimEvidence[a.sessions[16].id][2].rubricEvidence.includes(a.evaluators[a.sessions[16].main].rubric[0].criterion),'S17 infinity-substitution ownership is not mapped to the truncation observer');
 
 const premiseText=a.sessions.map(s=>s.lesson+'\n'+a.evaluators[s.main].reference+'\n'+a.evaluators[s.transfer].reference).join('\n').toLowerCase();
 for(const banned of ['taylor series','jacobian','lebesgue integral','differentiation under the integral sign',"l'hôpital","l’hôpital"]){
