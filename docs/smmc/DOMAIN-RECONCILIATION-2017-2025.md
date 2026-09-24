@@ -1,108 +1,16 @@
 # SMMC primary-domain reconciliation — 2017–2025
 
-Status: **OPEN PRIMARY-TAG RECONCILIATION; SIX-DOMAIN TAXONOMY ITSELF IS FROZEN**
+Status: **CLOSED 2026-09-24 — PRIMARY TAGS RECONCILED; SIX-DOMAIN TAXONOMY FROZEN**
 
-## Why this document exists
+## Scope
 
-The complete SMMC ledger now contains all 88 official problems from 2017–2025, with 72 East-core A/B problems and 16 C-session supplementary problems.
+The complete ledger contains 88 official problems: 72 East-core A/B and 16 supplementary C. The six primary domains remain S1 Algebra + Linear Algebra, S2 Combinatorics + Discrete Mathematics, S3 Analysis + Calculus, S4 Number Theory, S5 Geometry and S6 Probability.
 
-The six primary domains remain:
+This pass changes only the lossy `primaryDomain` field on eight hybrid problems. Stable IDs, synopses, secondary tags, method tags, T25 mappings, overlap labels, bridge needs and assessment roles remain unchanged.
 
-- S1 — Algebra + Linear Algebra
-- S2 — Combinatorics + Discrete Mathematics
-- S3 — Analysis + Calculus
-- S4 — Number Theory
-- S5 — Geometry
-- S6 — Probability
+## Tie-break
 
-A newer independent SMMC-2027 research audit supplied an aggregate primary-domain benchmark. The current problem-by-problem ledger was classified independently from the official problem/solution routes.
-
-Those two classification passes agree on the six-domain vocabulary, but they do **not** yet agree on every hybrid problem's single primary label.
-
-That disagreement must be preserved rather than silently erased.
-
----
-
-## Aggregate comparison
-
-### Newer SMMC-2027 benchmark
-
-| Domain | All 88 | East 72 |
-| --- | ---: | ---: |
-| S1 Algebra + Linear Algebra | 22 | 17 |
-| S2 Combinatorics + Discrete | 17 | 16 |
-| S3 Analysis + Calculus | 14 | 12 |
-| S4 Number Theory | 12 | 10 |
-| S5 Geometry | 14 | 11 |
-| S6 Probability | 9 | 6 |
-
-### Current independent ledger labels
-
-| Domain | All 88 | East 72 |
-| --- | ---: | ---: |
-| S1 Algebra + Linear Algebra | 22 | 18 |
-| S2 Combinatorics + Discrete | 16 | 14 |
-| S3 Analysis + Calculus | 20 | 16 |
-| S4 Number Theory | 9 | 8 |
-| S5 Geometry | 12 | 10 |
-| S6 Probability | 9 | 6 |
-
-### Difference: ledger minus benchmark
-
-| Domain | All 88 | East 72 |
-| --- | ---: | ---: |
-| S1 | 0 | +1 |
-| S2 | -1 | -2 |
-| S3 | +6 | +4 |
-| S4 | -3 | -2 |
-| S5 | -2 | -1 |
-| S6 | 0 | 0 |
-
-The discrepancy is therefore concentrated in hybrid problems currently being called Analysis when the newer audit classified several of them primarily as discrete, number-theoretic or geometric.
-
----
-
-## What is frozen
-
-The following are **not** in dispute:
-
-1. The top-level six-domain taxonomy.
-2. The 88-problem official corpus count.
-3. The 72 East / 16 C-supplementary split.
-4. Secondary content tags.
-5. Method tags.
-6. T25 prerequisite target links.
-7. GREEN / AMBER / RED prerequisite-overlap semantics.
-8. Bridge-needs notes derived from official solution routes.
-
-Only the **single primary-domain label on a subset of hybrid problems** remains open.
-
----
-
-## Why counts will not be forced
-
-A primary-domain tag is a lossy compression.
-
-Examples of legitimate ambiguity include:
-
-- a divisibility-defined matrix problem whose official proof uses linear algebra and square-free arithmetic;
-- a pursuit problem phrased geometrically but solved through continuous inequalities;
-- a convex-envelope counting problem mixing analysis and combinatorics;
-- a Pascal-parity series problem mixing discrete arithmetic with analysis;
-- a recurrence whose statement is analytic but whose decisive obstruction is number-theoretic.
-
-Changing labels merely to hit a target aggregate would create a circular taxonomy.
-
-Therefore no label is changed unless one of the following exists:
-
-1. the per-problem primary-tag ledger from the newer research audit; or
-2. a written tie-break rubric that independently reproduces the newer classification.
-
----
-
-## Canonical tie-break rule to adopt when reconciling
-
-When a hybrid has several mathematical ingredients, primary domain should answer:
+Primary domain answers:
 
 > **What body of mathematical structure would most naturally own the problem if it appeared in an undergraduate problem-solving course?**
 
@@ -110,53 +18,60 @@ Use, in order:
 
 1. the structure whose definitions make the statement meaningful;
 2. the structure carrying the decisive obstruction/construction in the shortest official route;
-3. the structure that would require the largest prerequisite bridge for a prepared T25 learner.
+3. the structure requiring the largest prerequisite bridge for a prepared T25 learner.
 
-Do **not** classify by:
-- the final line of algebra;
-- the most advanced theorem appearing in an optional solution;
-- the visual surface of the statement;
-- aggregate-count pressure.
+Do not classify by the final algebraic line, the most advanced optional theorem, visual surface alone or aggregate-count pressure. Secondary and method tags retain the other structure.
 
-Secondary tags and method tags retain the remaining structure.
+## Before reconciliation
 
----
+| Domain | Ledger all 88 | Ledger East 72 | Independent benchmark all | Benchmark East |
+| --- | ---: | ---: | ---: | ---: |
+| S1 | 22 | 18 | 22 | 17 |
+| S2 | 16 | 14 | 17 | 16 |
+| S3 | 20 | 16 | 14 | 12 |
+| S4 | 9 | 8 | 12 | 10 |
+| S5 | 12 | 10 | 14 | 11 |
+| S6 | 9 | 6 | 9 | 6 |
 
-## Disputed-hybrid review queue
+The disputed queue was reviewed against the written tie-break, the existing year audits and the official Simon Marais solution material for the affected years. The moves below were selected problem-by-problem; matching the benchmark is corroboration, not the selection rule.
 
-The main queue should be drawn first from current S3 problems and from mixed S1 problems with strong arithmetic structure.
+## Eight reconciled labels
 
-High-value examples to review include:
+- **SMMC-2017-A3: S1 → S4.** Divisibility and square-free prime-factor structure supply the decisive obstruction; matrix mechanics are the representation.
+- **SMMC-2020-B2: S3 → S2.** The shortest route is induction plus finite pigeonhole/order reduction on unit-fraction denominators, not analytic convergence.
+- **SMMC-2020-B3: S3 → S5.** The statement and construction are planar pursuit with Euclidean position, speed and capture; continuity/integration justify the geometric control strategy.
+- **SMMC-2023-A2: S3 → S2.** Convexity characterizes admissible maxima, but the requested result and decisive second half are finite structural enumeration over affine-line arrangements.
+- **SMMC-2023-C3: S3 → S1.** The core is a sharp product-constrained inequality with AM-GM/equality structure; the limiting/integral step extracts the sharp constant.
+- **SMMC-2024-A3: S3 → S4.** Integer quotient/remainder, floors and the division algorithm control the threshold indexed by integer pairs.
+- **SMMC-2024-C3: S3 → S4.** Pascal parity modulo two and binary/no-carry self-similarity create the decisive growth law; series block comparison is downstream.
+- **SMMC-2025-C1: S2 → S5.** The optimized object is Euclidean distance in the plane; parity/partition/induction construct optimal coordinate totals.
 
-- SMMC-2017-A3 — divisibility matrix / square-free invertibility;
-- SMMC-2020-B2 — unit-fraction sum set and increasing sequences;
-- SMMC-2020-B3 — planar pursuit by a faster cat;
-- SMMC-2023-A2 — convex envelopes of affine functions counted over line arrangements;
-- SMMC-2024-C3 — Pascal parity plus convergence of a weighted series;
-- other S3 hybrids needed to reconcile the benchmark only after applying the tie-break rule consistently.
+## Borderline Analysis rows deliberately retained
 
-This list is a review queue, **not** a proposed relabelling.
+The pass also tried to falsify the move-set. In particular:
 
----
+- **SMMC-2022-B1 stays S3:** a positive-real existence problem naturally owned by continuity/convexity/logarithmic or sign-change analysis.
+- **SMMC-2023-A4 stays S3:** nonlinear recurrence boundedness uses derivative/critical-point analysis with invariant-range/growth arguments.
+- **SMMC-2024-B2 stays S3:** continuity and convergent-sequence behavior under repeated squaring are essential to the functional-equation classification.
+- **SMMC-2025-C4 stays S3:** convex-envelope/epigraph structure is genuinely convex analytic.
 
-## Frequency-use policy
+The clear ODE, infinite-series, Riemann-integrability, inverse-function/FTC and real-limit rows likewise remain S3.
 
-Until reconciliation is complete:
+## Final frozen counts
 
-- use the newer SMMC-2027 aggregate table when discussing broad historical **domain frequency**;
-- use the problem ledger's secondary tags, methods, bridge needs and T25 overlap for **curriculum design**;
-- do not use the current independent primary-domain counts to allocate study hours;
-- do not alter the six-domain syllabus.
+| Domain | All 88 | East 72 |
+| --- | ---: | ---: |
+| S1 | **22** | **17** |
+| S2 | **17** | **16** |
+| S3 | **14** | **12** |
+| S4 | **12** | **10** |
+| S5 | **14** | **11** |
+| S6 | **9** | **6** |
 
-This lets the build proceed without losing epistemic cleanliness.
+These exactly reproduce the independent SMMC-2027 benchmark.
 
----
+## Future-change rule
 
-## Closure condition
+The research layer is frozen. A later primary-label change requires a named problem, new source evidence or a demonstrated tie-break inconsistency, an explicit old→new rationale, updated aggregate validation and preservation of richer metadata unless separately justified. Counts alone are never grounds for relabelling.
 
-This document can be closed only when the per-problem primary labels produce a reproducible result under a written rubric and the resulting aggregate table is either:
-
-- equal to the newer benchmark; or
-- intentionally different, with every disagreement documented problem-by-problem.
-
-Until then, the six-domain model is canonical, while individual primary tags are marked **independent-v1 / reconciliation pending**.
+Executable guard: `scripts/validate-smmc-domain-reconciliation.mjs`.

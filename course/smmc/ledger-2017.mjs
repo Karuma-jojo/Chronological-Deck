@@ -72,7 +72,7 @@ export default [
     "problem": 3,
     "eastRelevant": true,
     "synopsis": "A divisibility-defined 0–1 matrix; characterize invertibility in terms of whether n+1 is square-free.",
-    "primaryDomain": "S1",
+    "primaryDomain": "S4",
     "secondaryTags": [
       "LA",
       "PRIME",

@@ -17,6 +17,12 @@ jobs:
           cache-dependency-path: scripts/review-tests/package-lock.json
       - run: npm ci --prefix scripts/review-tests
       - run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - name: Validate complete SMMC ledger
+        run: node scripts/validate-smmc-ledger.mjs
+      - name: Validate frozen SMMC curriculum
+        run: node scripts/validate-smmc-curriculum.mjs
+      - name: Validate primary-domain reconciliation
+        run: node scripts/validate-smmc-domain-reconciliation.mjs
       - name: Validate SMMC authoring contracts
         run: node scripts/validate-smmc-authoring-v1.mjs
       - name: Validate SMMC final-engine scaffold

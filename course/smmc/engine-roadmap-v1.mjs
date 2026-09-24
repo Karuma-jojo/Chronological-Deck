@@ -16,7 +16,7 @@ export const SMMC_ENGINE_PHASES = Object.freeze([
     id: "research-freeze",
     order: 1,
     title: "Close primary-domain reconciliation",
-    status: "pending",
+    status: "complete",
     exitCriteria: [
       "every disputed hybrid is reviewed under the written tie-break rule",
       "aggregate domain totals are reproducible",
@@ -250,7 +250,7 @@ export const SMMC_EAST_REQUIREMENT_BACKLOG = Object.freeze(
 );
 
 export const SMMC_ENGINE_FEATURES = Object.freeze({
-  domainReconciliation: "open",
+  domainReconciliation: "frozen",
   neutralAuthoring: "partial",
   eastRequirementMapping: "partial",
   t25EvidenceIngestion: "contract-scaffolded",

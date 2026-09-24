@@ -128,7 +128,7 @@ export default [
     id: "SMMC-2025-C1",
     year: 2025, session: "C", problem: 1, eastRelevant: false,
     synopsis: "A frog makes odd-length north/east jumps; determine the minimum possible distance from the start after n jumps.",
-    primaryDomain: "S2",
+    primaryDomain: "S5",
     secondaryTags: ["CONST", "VECTOR-GEO"],
     methodTags: ["CONSTRUCTION", "PARITY", "INDUCTION", "OPTIMIZATION"],
     t25Targets: ["A2", "A3", "G2", "P2"],
