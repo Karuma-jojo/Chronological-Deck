@@ -4,7 +4,7 @@ Date: 2026-09-24
 Repository: `Karuma-jojo/Chronological-Deck`
 Repair branch: `codex/t22-m08-independent-repair`
 Module: M08 · `T22E-CODE01`
-Current status: **independent-audit repaired candidate awaiting full repair-head validation and bounded follow-up**
+Current status: **independent-audit repaired + fully validated candidate awaiting bounded independent follow-up**
 Stop boundary: **M09 remains closed**
 
 ## Baseline and reason for reopening
@@ -108,7 +108,20 @@ The existing Fraction/product/assert/aliasing sources remain authoritative. Sour
 
 ## Validation state
 
-The repair branch must obtain a complete green T22 Elite workflow including real Chromium/browser evidence before this handoff can claim implementation validation. Until that run is recorded here, status remains **repaired candidate, validation pending**.
+Validated repair head: `772e5dc12bcd44340bbf1d96a093d1b802c10699`.
+
+- T22 Elite Actions run: `35961691590`
+- validate job: `107511449788`
+- result: **SUCCESS**
+- dedicated suite: syntax; structural/pedagogy/semantic/evidence; rebuilt Python oracle; Chromium; real eight-module browser/evidence workflow
+- broader PR matrix on the same head: **37/37 workflows succeeded, 0 failures**, including frontend integrity, SMMC, T25 review/browser and legacy T22 rich-module checks
+
+Inspected PASS evidence includes:
+- `PASS M08 independent repair: 24 sessions, 48 tasks, 120 semantic links, v2 obligation staleness, fresh lesson/Main instances, executable programming ownership, primary-source pins and hard M09 stop.`
+- `PASS M08 independent executable oracles: repaired Python tasks cover imports/tolerances, callable predicates, container mutation/counting, strict zip, exact finite oracles, traceback/validation, explicit RNG state, reproducible simulation and synthesis arithmetic.`
+- `PASS browser: ... M08 save-reveal-review ... eight-module export/import ... packet exposure through M08 ...`
+
+Implementation validation is therefore complete for this repair head. This is still **not** a claim of independent pedagogical freeze; the bounded follow-up below remains the next authority.
 
 ## Bounded follow-up targets
 
