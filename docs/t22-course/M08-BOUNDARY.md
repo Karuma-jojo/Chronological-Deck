@@ -1,8 +1,8 @@
 # M08 Boundary & Research Ledger — T22E-CODE01
 
 Date: 2026-09-24
-Mode: BUILD
-Status: builder boundary accepted; content candidate under validation
+Mode: BUILD → independent REVIEW/REPAIR
+Status: boundary accepted; independent-review repairs applied; bounded follow-up pending
 Stop boundary: M08 only. M09 remains closed.
 
 ## Gate 0 recovery receipt
@@ -37,7 +37,7 @@ The build does **not** require M07 market mechanics. Examples therefore remain p
 
 ### New objects introduced here
 
-Python expression/assignment semantics; booleans and branches; `range`; `for`/`while`; function parameters/returns; list/tuple/set/dict behavior; aliasing; `zip`/`enumerate`; `Fraction`; `itertools.product`; development assertions; basic exception diagnosis; `random.Random`; generator state; `getstate`/`setstate`; empirical frequency.
+Python expression/assignment semantics; imports/module namespaces; booleans and branches; `range`; `for`/`while`; function parameters/returns and callable values; list/tuple/set/dict behavior; aliasing; `zip`/`enumerate` including `strict=True` for required alignment; `Fraction`; `itertools.product`; development assertions; traceback/exception diagnosis; `random.Random`; generator state; `getstate`/`setstate`; empirical frequency.
 
 ### Deferred
 
@@ -57,6 +57,9 @@ Research questions were written before source lookup. Search snippets were not t
 | PY-RNG | What does Python document about explicit PRNG objects, state and reproducibility? | `random` docs | S19–S24 | M08 does not treat helper algorithms such as `randrange` output sequences as a cross-version fixed-output contract. |
 | PY-ASSERT | Can `assert` be used as essential runtime validation? | Python Language Reference — assert | S17 | No; optimization can remove assertions. |
 | PY-FAQ | Why do aliases and repeated mutable references surprise learners? | Python Programming FAQ | S10 | Teach the object/reference consequence, not implementation trivia. |
+| PY-MOD | How are standard-library names made available explicitly? | Python Tutorial — Modules | S02/S12/S13/S19 | Teach only the import forms actually used here. |
+| PY-ERR | What information does a basic traceback expose? | Python Tutorial — Errors and Exceptions | S18 | M08 reads exception type/message and failing source context; advanced exception architecture is deferred. |
+| PY-ZIP | How should required equal-length iteration fail on mismatch? | Python built-ins — `zip` | S11 | `strict=True` is used because the model requires aligned equal lengths. |
 
 Primary URLs are stored directly in `course/t22/authoring/m08.json::sourceLedger` with checked date 2026-09-24.
 
