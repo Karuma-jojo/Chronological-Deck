@@ -1,11 +1,11 @@
 {
-  "version": "m11-arc510-s01-s06-v1",
+  "version": "m11-arc510-s01-s09-v1",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "authoring-in-progress-s01-s06-verified",
+    "status": "authoring-in-progress-s01-s09-verified",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -35,8 +35,8 @@
   "coverageAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pedagogicalAtoms": 20,
-    "authoredSessions": 6,
-    "ownershipClaimCount": 18,
+    "authoredSessions": 9,
+    "ownershipClaimCount": 27,
     "note": "No target count exists. This count is the S01 pilot output only."
   },
   "sessions": [
@@ -262,6 +262,116 @@
       "lesson": "Orient. Integral linearity tells us how totals combine; order tells us whether a proposed total is even plausible.\nDefine. If f(x)≤g(x) everywhere on [a,b] and both are integrable, then ∫f≤∫g. Hence m≤f≤M gives m(b-a)≤∫f≤M(b-a). For b>a, the average value is f_avg=(1/(b-a))∫_a^b f.\nConnect. Because -|f|≤f≤|f|, integration preserves the inequalities: -∫|f|≤∫f≤∫|f|. Therefore |∫f|≤∫|f|. Equality is not automatic because positive and negative contributions can cancel in ∫f.\nExplain. Signed accumulation answers net change. Integrating |f| answers accumulated magnitude in contexts where absolute rate has that meaning. Geometric area is therefore not the universal definition of an integral.\nWorked example: a piecewise rate is +3 units/hour on [0,1] and -1 unit/hour on [1,4]. The signed total is 3(1)-1(3)=0 units, while the magnitude total is 3(1)+1(3)=6 units. The average signed rate over four hours is 0 units/hour.\nGuided practice: if an integrable q satisfies 2≤q(x)≤5 on an interval of length 3, bound its integral before calculating anything else. Check: 6≤∫q≤15.",
       "main": "T22V3::ARC510::S06-M@1",
       "transfer": "T22V3::ARC510::S06-T@1"
+    },
+    {
+      "order": 7,
+      "id": "T22V3::ARC510::S07@1",
+      "moduleId": "ARC510",
+      "title": "Accumulation functions are continuous before they are differentiable",
+      "focus": "Turn one endpoint into a variable and use boundedness of a proper Riemann integrand to control changes in accumulated total.",
+      "purpose": "Separate continuity of cumulative amount from the stronger FTC claim that its derivative equals the integrand.",
+      "centralCapability": "Prove and use the continuity bound for A(x)=∫_a^x f when f is bounded/integrable.",
+      "principalObstacle": "A jump in the local integrand can tempt the learner to predict a jump in the accumulated total, even though a point or short interval contributes vanishing total width.",
+      "entryPrerequisites": [
+        "M11-S05 interval additivity/orientation",
+        "M11-S06 absolute/order bounds",
+        "Riemann integrable functions are bounded on their finite domain"
+      ],
+      "requiredOwnership": [
+        "Derive a bound |A(y)-A(x)|≤M|y-x| from |f|≤M for an accumulation function.",
+        "Use the bound to prove continuity of an accumulation function without assuming f is continuous.",
+        "Distinguish continuity of accumulated total from differentiability at a jump of the integrand."
+      ],
+      "applicationScope": "Proper accumulation functions of bounded Riemann-integrable real functions.",
+      "transferScope": "Changed from an abstract bound to an explicit step-rate accumulation whose cumulative function stays continuous but has a corner.",
+      "inScope": [
+        "accumulation function",
+        "bounded-integrand continuity estimate",
+        "step integrand"
+      ],
+      "outOfScope": [
+        "FTC derivative recovery until S08",
+        "absolute continuity as a theory",
+        "measure theory"
+      ],
+      "exitCondition": "The learner does not infer A'=f merely from continuity and can explain a continuous cumulative total across a bounded rate jump.",
+      "lesson": "Orient. Define A(x)=∫_a^x f(t)dt. Before asking for A'(x), ask the weaker question: can A itself jump when x moves a tiny amount?\nDefine. A Riemann-integrable function on a finite closed interval is bounded, so choose M with |f(t)|≤M. For any x,y in the domain, interval additivity gives A(y)-A(x)=∫_x^y f(t)dt.\nConnect. S06 gives |∫_x^y f|≤∫_x^y |f|≤M|y-x| (with orientation handled by absolute value). Thus |A(y)-A(x)|≤M|y-x|.\nExplain. Given ε>0, taking |y-x|<ε/M (when M>0) makes |A(y)-A(x)|<ε. So A is continuous even if f itself has bounded jumps. This does not say A is differentiable at those jumps.\nWorked example: let f(t)=1 for -1≤t<0 and f(t)=3 for 0≤t≤1, and A(x)=∫_{-1}^x f(t)dt. Then A(x)=x+1 for x≤0 and A(x)=1+3x for x≥0. Both formulas give A(0)=1, so A is continuous, but its left slope is 1 and right slope is 3.\nGuided practice: if |q(t)|≤6 and Q(x)=∫_0^x q(t)dt, what bound controls |Q(2.01)-Q(2)|? Check: at most 6(0.01)=0.06. State what this proves about continuity, and what it does not prove about Q'(2).",
+      "main": "T22V3::ARC510::S07-M@1",
+      "transfer": "T22V3::ARC510::S07-T@1"
+    },
+    {
+      "order": 8,
+      "id": "T22V3::ARC510::S08@1",
+      "moduleId": "ARC510",
+      "title": "FTC local recovery from a shrinking average",
+      "focus": "Prove that the derivative of an accumulation function recovers the integrand at a point where the integrand is continuous.",
+      "purpose": "Make the first FTC direction a theorem with a mechanism and hypotheses rather than symbolic cancellation.",
+      "centralCapability": "Reconstruct the local-average proof that A'(c)=f(c) when f is integrable and continuous at c.",
+      "principalObstacle": "The difference quotient is an average over a shrinking interval, not literally f(c); continuity is the step that turns nearby values into the point value.",
+      "entryPrerequisites": [
+        "M11-S07 accumulation continuity",
+        "M09-S24 continuity",
+        "M10-S02 derivative definition"
+      ],
+      "requiredOwnership": [
+        "Reconstruct the short-interval-average proof of A'(c)=f(c) under the stated continuity/integrability hypotheses.",
+        "Recover a local rate and its units from the derivative of a cumulative quantity.",
+        "Refuse FTC derivative recovery at a jump when the one-sided accumulated slopes disagree."
+      ],
+      "applicationScope": "Proper Riemann-integrable f and points of continuity; interior-point proof, with one-sided endpoint variants only when explicitly stated.",
+      "transferScope": "Changed to a cumulative dose model plus a jump-rate countercase requiring theorem-hypothesis auditing.",
+      "inScope": [
+        "FTC accumulation derivative",
+        "continuity at active point",
+        "units"
+      ],
+      "outOfScope": [
+        "FTC endpoint evaluation",
+        "differentiation under a parameterized integrand",
+        "improper endpoints"
+      ],
+      "exitCondition": "The learner can explain why the shrinking average tends to f(c) and can identify a discontinuity failure without declaring the accumulation undefined.",
+      "lesson": "Orient. S07 showed that A(x)=∫_a^x f is continuous. To get A'(c)=f(c), we need to understand its difference quotient.\nDefine. For h≠0 with c+h in the interval, [A(c+h)-A(c)]/h=(1/h)∫_c^{c+h} f(t)dt. This is the signed average value of f over the short interval from c to c+h.\nConnect. Subtract f(c): [A(c+h)-A(c)]/h-f(c)=(1/h)∫_c^{c+h}[f(t)-f(c)]dt. If f is continuous at c, then for any ε>0 all sufficiently nearby t satisfy |f(t)-f(c)|<ε.\nExplain. The integral bound gives the absolute difference between the short-interval average and f(c) at most ε, for positive or negative h. Therefore the difference quotient tends to f(c), so A'(c)=f(c). The Riemann integral must exist on the relevant intervals; continuity at c is the local hypothesis that drives derivative recovery.\nWorked example: if f is continuous and f(2)=4, then for A(x)=∫_0^x f(t)dt the theorem gives A'(2)=4 without finding a formula for A. If f has a jump at c, S07 still gives a continuous accumulation, but the derivative can fail there.\nGuided practice: suppose f is continuous at -1 with f(-1)=5 and B(x)=∫_3^x f(t)dt. What is B'(-1)? Check: 5. Explain why the fixed basepoint 3 disappears from the local difference quotient.",
+      "main": "T22V3::ARC510::S08-M@1",
+      "transfer": "T22V3::ARC510::S08-T@1"
+    },
+    {
+      "order": 9,
+      "id": "T22V3::ARC510::S09@1",
+      "moduleId": "ARC510",
+      "title": "Moving endpoints without differentiating the integrand",
+      "focus": "Compose FTC accumulation with M10's chain rule and interval orientation for variable upper/lower endpoints.",
+      "purpose": "Extend the local recovery theorem to moving bounds while sharply separating it from parameter-dependent integrands.",
+      "centralCapability": "Differentiate proper integrals with ordinary variable endpoints under explicit continuity/domain hypotheses.",
+      "principalObstacle": "Leibniz-looking notation can tempt learners either to forget the endpoint chain factor or to differentiate the dummy-variable integrand with respect to x.",
+      "entryPrerequisites": [
+        "M11-S08 FTC local recovery",
+        "M10-S14 chain rule",
+        "M11-S05 orientation"
+      ],
+      "requiredOwnership": [
+        "Differentiate a variable upper endpoint by composing an accumulation function with the endpoint map.",
+        "Differentiate an integral with two moving endpoints using orientation and two chain-rule contributions.",
+        "Distinguish moving-bound differentiation from differentiation under the integral sign."
+      ],
+      "applicationScope": "Integrands independent of the outer variable; proper finite intervals; endpoint images remain in a region where the integrand is continuous.",
+      "transferScope": "Changed from one composite upper endpoint to two independently moving endpoints and a dummy-variable misconception check.",
+      "inScope": [
+        "upper endpoint",
+        "lower endpoint",
+        "two moving endpoints",
+        "chain factor",
+        "dummy variable"
+      ],
+      "outOfScope": [
+        "parameter-dependent integrands",
+        "general Leibniz integral rule",
+        "improper variable endpoints"
+      ],
+      "exitCondition": "Every endpoint contribution has the correct sign, evaluation point and chain factor; no derivative of the dummy integrand is invented.",
+      "lesson": "Orient. If A(y)=∫_a^y f(t)dt and f is continuous where needed, S08 gives A'(y)=f(y). Now let the endpoint itself depend on x.\nDefine. H(x)=∫_a^{g(x)}f(t)dt is A(g(x)), so M10's chain rule gives H'(x)=f(g(x))g'(x). For a lower endpoint, ∫_{g(x)}^a f=-A(g(x)), producing a minus sign.\nConnect. Therefore J(x)=∫_{u(x)}^{v(x)}f(t)dt can be written A(v(x))-A(u(x)), so J'(x)=f(v(x))v'(x)-f(u(x))u'(x), provided the endpoint images stay where FTC applies.\nExplain. The t in f(t) is a dummy integration variable. Nothing here differentiates an integrand that itself depends on x. That more general theorem is outside M11.\nWorked example: H(x)=∫_1^{x²+1} cos t dt. Since cos is continuous, H'(x)=cos(x²+1)·2x. No antiderivative is required.\nGuided practice: K(x)=∫_{x³}^2 e^t dt. Check K'(x)=-e^{x³}·3x². Identify the minus sign as lower-endpoint orientation, not as a derivative of e^t.",
+      "main": "T22V3::ARC510::S09-M@1",
+      "transfer": "T22V3::ARC510::S09-T@1"
     }
   ],
   "problems": {
@@ -347,6 +457,48 @@
       "order": 6,
       "kind": "transfer",
       "prompt": "Let q be integrable on [2,6] and suppose -1≤q(x)≤3 for every x. Also suppose ∫_2^6 |q(x)|dx=5. Give the sharp bounds that follow immediately for ∫_2^6 q(x)dx from (a) the pointwise bounds and (b) the absolute-value inequality. Combine the information to state the tightest interval you can certify for the signed integral.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S07-M@1": {
+      "id": "T22V3::ARC510::S07-M@1",
+      "order": 7,
+      "kind": "main",
+      "prompt": "Let g be Riemann integrable on [0,5] with |g(t)|≤7, and define G(x)=∫_2^x g(t)dt. Prove that |G(y)-G(x)|≤7|y-x| for all x,y∈[0,5], and use the bound to prove G is continuous. Do not assume g itself is continuous.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S07-T@1": {
+      "id": "T22V3::ARC510::S07-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "A signed rate is h(t)=2 for 0≤t<1 and h(t)=-1 for 1≤t≤3. Define H(x)=∫_0^x h(t)dt. Find H(x) on 0≤x≤1 and on 1≤x≤3. Is H continuous at x=1? Is H differentiable there? Justify the differentiability answer from one-sided slopes rather than from a cancellation slogan.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S08-M@1": {
+      "id": "T22V3::ARC510::S08-M@1",
+      "order": 8,
+      "kind": "main",
+      "prompt": "Let f be Riemann integrable on [-1,4], continuous at c=2, and satisfy f(2)=-3. Define A(x)=∫_{-1}^x f(t)dt. Reconstruct the local proof that A'(2)=-3: write the difference quotient as a short-interval average and use continuity at 2 to control its error.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S08-T@1": {
+      "id": "T22V3::ARC510::S08-T@1",
+      "order": 8,
+      "kind": "transfer",
+      "prompt": "A cumulative dose is C(t)=∫_0^t r(s)ds, where r is measured in mg/min. First suppose r is continuous at t=5 and r(5)=2.4 mg/min. Find C'(5) and its units. Now instead suppose r is bounded and integrable but has left-hand values tending to 2 mg/min and right-hand values tending to 4 mg/min at t=5. State what remains true about C at t=5 and whether C'(5) exists, with a reason.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S09-M@1": {
+      "id": "T22V3::ARC510::S09-M@1",
+      "order": 9,
+      "kind": "main",
+      "prompt": "Define F(x)=∫_0^{3x-1} e^{t²}dt. Without trying to find an elementary antiderivative of e^{t²}, find F'(x) and evaluate F'(1). State the continuity/domain fact that makes the endpoint rule legal.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S09-T@1": {
+      "id": "T22V3::ARC510::S09-T@1",
+      "order": 9,
+      "kind": "transfer",
+      "prompt": "Let J(x)=∫_{x²}^{2x+1} ln(1+t²)dt. Find J'(x), keeping the upper- and lower-endpoint contributions separate. Then explain why differentiating ln(1+t²) with respect to x is not part of this calculation.",
       "obligationVersion": 1
     }
   },
@@ -590,6 +742,114 @@
         }
       ],
       "marking": "Accept any equivalent interval notation. Do not award a guessed point value; the public data determine bounds only."
+    },
+    "T22V3::ARC510::S07-M@1": {
+      "reference": "By interval additivity and orientation, G(y)-G(x)=∫_x^y g(t)dt. Therefore |G(y)-G(x)|≤∫_{min(x,y)}^{max(x,y)}|g(t)|dt≤7|y-x|. Given ε>0, choose δ=ε/7; then |y-x|<δ implies |G(y)-G(x)|<ε. Hence G is continuous without any continuity assumption on g.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Uses interval additivity/orientation to rewrite G(y)-G(x) as accumulation over the interval between x and y."
+        },
+        {
+          "points": 3,
+          "criterion": "Applies |g|≤7 to obtain |G(y)-G(x)|≤7|y-x|."
+        },
+        {
+          "points": 3,
+          "criterion": "Chooses a valid δ such as ε/7 and concludes continuity without assuming g is continuous."
+        }
+      ],
+      "marking": "This is proof reconstruction of the lesson mechanism on a new basepoint/bound. Accept any equivalent absolute-value interval argument."
+    },
+    "T22V3::ARC510::S07-T@1": {
+      "reference": "For 0≤x≤1, H(x)=2x. For 1≤x≤3, H(x)=2(1)+(-1)(x-1)=3-x. Both formulas give H(1)=2, so H is continuous at 1. The left derivative is 2 and the right derivative is -1, so H is not differentiable at 1.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Obtains H(x)=2x for x≤1 and H(x)=3-x for x≥1."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows both pieces meet at H(1)=2 and concludes continuity."
+        },
+        {
+          "points": 4,
+          "criterion": "Compares the one-sided slopes 2 and -1 and concludes H is not differentiable at x=1."
+        }
+      ],
+      "marking": "Equivalent endpoint conventions for h(1) do not change H. The differentiability criterion requires one-sided slope reasoning."
+    },
+    "T22V3::ARC510::S08-M@1": {
+      "reference": "For h≠0 with 2+h in the interval, [A(2+h)-A(2)]/h=(1/h)∫_2^{2+h}f(t)dt. Subtract f(2)=-3 to get (1/h)∫_2^{2+h}[f(t)-f(2)]dt. Given ε>0, continuity at 2 gives η>0 such that |t-2|<η implies |f(t)-f(2)|<ε. For 0<|h|<η, every t between 2 and 2+h lies in that neighborhood, so the absolute average error is at most ε. Hence the difference quotient tends to f(2)=-3 and A'(2)=-3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Rewrites the accumulation difference quotient as (1/h)∫_2^{2+h} f(t)dt."
+        },
+        {
+          "points": 4,
+          "criterion": "Subtracts f(2) and uses continuity to bound the short-interval average error."
+        },
+        {
+          "points": 3,
+          "criterion": "Concludes the derivative exists and equals A'(2)=f(2)=-3."
+        }
+      ],
+      "marking": "This is proof reconstruction because the general argument is taught in the lesson. Accept equivalent epsilon/local-supremum reasoning for both signs of h."
+    },
+    "T22V3::ARC510::S08-T@1": {
+      "reference": "In the continuous case, FTC gives C'(5)=r(5)=2.4 mg/min; differentiating accumulated mg with respect to minutes returns mg/min. In the jump case, C remains continuous by the bounded-accumulation result from S07. But the left short-interval averages tend to 2 and the right short-interval averages tend to 4, so the one-sided derivatives disagree and C'(5) does not exist.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Uses continuity at 5 to obtain C'(5)=2.4 mg/min with correct units."
+        },
+        {
+          "points": 3,
+          "criterion": "States that the bounded-integrand accumulation C remains continuous at the jump."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses the unequal left/right local average limits 2 and 4 to conclude C'(5) does not exist."
+        }
+      ],
+      "marking": "Do not award the last criterion for merely saying 'FTC does not apply'; the public request asks for the one-sided reason."
+    },
+    "T22V3::ARC510::S09-M@1": {
+      "reference": "Let A(y)=∫_0^y e^{t²}dt. The integrand is continuous for all real t, so A'(y)=e^{y²}. Since F(x)=A(3x-1), the chain rule gives F'(x)=3e^{(3x-1)²}. Thus F'(1)=3e^4. The endpoint 3x-1 always lies in the real domain where the integrand is continuous.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Applies FTC plus the endpoint chain factor to obtain F'(x)=3e^{(3x-1)²}."
+        },
+        {
+          "points": 2,
+          "criterion": "Evaluates F'(1)=3e^4."
+        },
+        {
+          "points": 4,
+          "criterion": "States that e^{t²} is continuous on the endpoint range, so the FTC accumulation derivative is available."
+        }
+      ],
+      "marking": "No elementary antiderivative exists in the M11 repertoire and none is needed. Equivalent composition notation is accepted."
+    },
+    "T22V3::ARC510::S09-T@1": {
+      "reference": "With f(t)=ln(1+t²), u(x)=x² and v(x)=2x+1, J'(x)=f(v(x))v'(x)-f(u(x))u'(x)=2ln(1+(2x+1)²)-2x ln(1+x^4). The integrand is continuous for all real t. The symbol t is a dummy variable and the integrand has no x-parameter; the x-dependence is only in the bounds.",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Obtains the upper contribution 2ln(1+(2x+1)²) and lower contribution -2x ln(1+x^4) with correct signs and chain factors."
+        },
+        {
+          "points": 2,
+          "criterion": "States the continuity/domain condition for ln(1+t²) on the endpoint range."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that t is a dummy variable and the integrand itself has no x-dependence to differentiate."
+        }
+      ],
+      "marking": "Accept algebraically equivalent expressions. Do not require the name 'Leibniz rule'; the parameterized-integrand theorem is explicitly out of scope."
     }
   },
   "coverage": {
@@ -666,6 +926,40 @@
       ],
       [
         "main"
+      ]
+    ],
+    "T22V3::ARC510::S07@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S08@1": [
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S09@1": [
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
       ]
     ]
   },
@@ -880,6 +1174,108 @@
         "escapeAttempt": "Reporting the total 2 km as an average has wrong units and loses the row.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::ARC510::S07@1": [
+      {
+        "claim": "Derive a bound |A(y)-A(x)|≤M|y-x| from |f|≤M for an accumulation function.",
+        "task": "main",
+        "publicRequest": "Let g be Riemann integrable on [0,5] with |g(t)|≤7, and define G(x)=∫_2^x g(t)dt. Prove that |G(y)-G(x)|≤7|y-x| for all x,y∈[0,5], and use the bound to prove G is continuous. Do not assume g itself is continuous.",
+        "rubricEvidence": [
+          "Uses interval additivity/orientation to rewrite G(y)-G(x) as accumulation over the interval between x and y.",
+          "Applies |g|≤7 to obtain |G(y)-G(x)|≤7|y-x|."
+        ],
+        "escapeAttempt": "Invoking FTC without the bound does not observe this capability.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use the bound to prove continuity of an accumulation function without assuming f is continuous.",
+        "task": "main+transfer",
+        "publicRequest": "Let g be Riemann integrable on [0,5] with |g(t)|≤7, and define G(x)=∫_2^x g(t)dt. Prove that |G(y)-G(x)|≤7|y-x| for all x,y∈[0,5], and use the bound to prove G is continuous. Do not assume g itself is continuous. | A signed rate is h(t)=2 for 0≤t<1 and h(t)=-1 for 1≤t≤3. Define H(x)=∫_0^x h(t)dt. Find H(x) on 0≤x≤1 and on 1≤x≤3. Is H continuous at x=1? Is H differentiable there? Justify the differentiability answer from one-sided slopes rather than from a cancellation slogan.",
+        "rubricEvidence": [
+          "Chooses a valid δ such as ε/7 and concludes continuity without assuming g is continuous.",
+          "Shows both pieces meet at H(1)=2 and concludes continuity."
+        ],
+        "escapeAttempt": "Assuming integrand continuity is unnecessary and cannot substitute for the requested evidence.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish continuity of accumulated total from differentiability at a jump of the integrand.",
+        "task": "transfer",
+        "publicRequest": "A signed rate is h(t)=2 for 0≤t<1 and h(t)=-1 for 1≤t≤3. Define H(x)=∫_0^x h(t)dt. Find H(x) on 0≤x≤1 and on 1≤x≤3. Is H continuous at x=1? Is H differentiable there? Justify the differentiability answer from one-sided slopes rather than from a cancellation slogan.",
+        "rubricEvidence": [
+          "Compares the one-sided slopes 2 and -1 and concludes H is not differentiable at x=1."
+        ],
+        "escapeAttempt": "Continuity alone cannot earn the differentiability diagnosis.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S08@1": [
+      {
+        "claim": "Reconstruct the short-interval-average proof of A'(c)=f(c) under the stated continuity/integrability hypotheses.",
+        "task": "main",
+        "publicRequest": "Let f be Riemann integrable on [-1,4], continuous at c=2, and satisfy f(2)=-3. Define A(x)=∫_{-1}^x f(t)dt. Reconstruct the local proof that A'(2)=-3: write the difference quotient as a short-interval average and use continuity at 2 to control its error.",
+        "rubricEvidence": [
+          "Rewrites the accumulation difference quotient as (1/h)∫_2^{2+h} f(t)dt.",
+          "Subtracts f(2) and uses continuity to bound the short-interval average error.",
+          "Concludes the derivative exists and equals A'(2)=f(2)=-3."
+        ],
+        "escapeAttempt": "A cancellation slogan cannot earn the reconstruction rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Recover a local rate and its units from the derivative of a cumulative quantity.",
+        "task": "transfer",
+        "publicRequest": "A cumulative dose is C(t)=∫_0^t r(s)ds, where r is measured in mg/min. First suppose r is continuous at t=5 and r(5)=2.4 mg/min. Find C'(5) and its units. Now instead suppose r is bounded and integrable but has left-hand values tending to 2 mg/min and right-hand values tending to 4 mg/min at t=5. State what remains true about C at t=5 and whether C'(5) exists, with a reason.",
+        "rubricEvidence": [
+          "Uses continuity at 5 to obtain C'(5)=2.4 mg/min with correct units."
+        ],
+        "escapeAttempt": "A unitless 2.4 does not fully answer the rate-recovery request.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Refuse FTC derivative recovery at a jump when the one-sided accumulated slopes disagree.",
+        "task": "transfer",
+        "publicRequest": "A cumulative dose is C(t)=∫_0^t r(s)ds, where r is measured in mg/min. First suppose r is continuous at t=5 and r(5)=2.4 mg/min. Find C'(5) and its units. Now instead suppose r is bounded and integrable but has left-hand values tending to 2 mg/min and right-hand values tending to 4 mg/min at t=5. State what remains true about C at t=5 and whether C'(5) exists, with a reason.",
+        "rubricEvidence": [
+          "States that the bounded-integrand accumulation C remains continuous at the jump.",
+          "Uses the unequal left/right local average limits 2 and 4 to conclude C'(5) does not exist."
+        ],
+        "escapeAttempt": "Merely citing a failed hypothesis without the requested local reason cannot earn full credit.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S09@1": [
+      {
+        "claim": "Differentiate a variable upper endpoint by composing an accumulation function with the endpoint map.",
+        "task": "main",
+        "publicRequest": "Define F(x)=∫_0^{3x-1} e^{t²}dt. Without trying to find an elementary antiderivative of e^{t²}, find F'(x) and evaluate F'(1). State the continuity/domain fact that makes the endpoint rule legal.",
+        "rubricEvidence": [
+          "Applies FTC plus the endpoint chain factor to obtain F'(x)=3e^{(3x-1)²}.",
+          "States that e^{t²} is continuous on the endpoint range, so the FTC accumulation derivative is available."
+        ],
+        "escapeAttempt": "Omitting the factor 3 or searching for an antiderivative does not earn the endpoint-composition evidence.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Differentiate an integral with two moving endpoints using orientation and two chain-rule contributions.",
+        "task": "transfer",
+        "publicRequest": "Let J(x)=∫_{x²}^{2x+1} ln(1+t²)dt. Find J'(x), keeping the upper- and lower-endpoint contributions separate. Then explain why differentiating ln(1+t²) with respect to x is not part of this calculation.",
+        "rubricEvidence": [
+          "Obtains the upper contribution 2ln(1+(2x+1)²) and lower contribution -2x ln(1+x^4) with correct signs and chain factors."
+        ],
+        "escapeAttempt": "A one-endpoint-only derivative cannot earn this row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish moving-bound differentiation from differentiation under the integral sign.",
+        "task": "transfer",
+        "publicRequest": "Let J(x)=∫_{x²}^{2x+1} ln(1+t²)dt. Find J'(x), keeping the upper- and lower-endpoint contributions separate. Then explain why differentiating ln(1+t²) with respect to x is not part of this calculation.",
+        "rubricEvidence": [
+          "Explains that t is a dummy variable and the integrand itself has no x-dependence to differentiate."
+        ],
+        "escapeAttempt": "Related correct endpoint arithmetic does not by itself show the requested distinction.",
+        "disposition": "adequate"
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -921,6 +1317,21 @@
       "T22V3::ARC510::S06@1": [
         "M11-S05 integral structure",
         "M02 inequalities/absolute value"
+      ],
+      "T22V3::ARC510::S07@1": [
+        "M11-S05 interval additivity/orientation",
+        "M11-S06 absolute/order bounds",
+        "Riemann integrable functions are bounded on their finite domain"
+      ],
+      "T22V3::ARC510::S08@1": [
+        "M11-S07 accumulation continuity",
+        "M09-S24 continuity",
+        "M10-S02 derivative definition"
+      ],
+      "T22V3::ARC510::S09@1": [
+        "M11-S08 FTC local recovery",
+        "M10-S14 chain rule",
+        "M11-S05 orientation"
       ]
     }
   },
@@ -988,6 +1399,36 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer removes an explicit function formula and instead supplies pointwise and integral inequalities; the learner must combine two independent certificates and resist inventing a point estimate."
         }
+      },
+      "T22V3::ARC510::S07@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson derives the general bounded-integrand continuity estimate; Main reconstructs it with a new bound and basepoint, so it is not fresh proof evidence."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes from an abstract norm bound to a piecewise signed rate, requiring explicit accumulation formulas and a continuity-versus-differentiability diagnosis at the jump."
+        }
+      },
+      "T22V3::ARC510::S08@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson gives the general short-average proof; Main asks for the same proof mechanism at a fresh point/value and is therefore reconstruction evidence."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer moves to a unit-bearing cumulative dose and then changes the continuity hypothesis to a jump, requiring preservation of accumulation continuity while rejecting derivative recovery."
+        }
+      },
+      "T22V3::ARC510::S09@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main uses an endpoint whose integrand has no elementary antiderivative in the taught repertoire, so the learner must select FTC+chain directly on a fresh function."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to two independently moving endpoints and explicitly tests the dummy-variable/parameter distinction, not just another one-endpoint substitution."
+        }
       }
     },
     "wrongSolverTests": {
@@ -1050,6 +1491,36 @@
         "wrongApproach": "Reverse comparison direction or conclude ∫q=5 because ∫|q|=5.",
         "result": "Violates the inequality and loses the relevant bound criteria.",
         "validAlternative": "Any correct intersection of [-4,12] and [-5,5] passes."
+      },
+      "T22V3::ARC510::S07-M@1": {
+        "wrongApproach": "Assume g is continuous and invoke FTC to say G'=g, then infer continuity.",
+        "result": "Uses an ungranted stronger hypothesis and the next session's theorem; it cannot earn the requested bound proof.",
+        "validAlternative": "Any direct integral bound producing 7|y-x| passes."
+      },
+      "T22V3::ARC510::S07-T@1": {
+        "wrongApproach": "Say H jumps because h jumps, or say H'=h at x=1 by symbol cancellation.",
+        "result": "Contradicts the computed pieces/one-sided slopes and loses continuity/differentiability credit.",
+        "validAlternative": "Compute the two piecewise accumulated totals then inspect their meeting value and one-sided slopes."
+      },
+      "T22V3::ARC510::S08-M@1": {
+        "wrongApproach": "Write d/dx ∫ f=f and stop.",
+        "result": "Does not reconstruct the requested difference quotient or continuity error control and loses proof criteria.",
+        "validAlternative": "An equivalent average-value/supremum bound proof is accepted."
+      },
+      "T22V3::ARC510::S08-T@1": {
+        "wrongApproach": "Declare C discontinuous or undefined when r jumps, or assign C'(5) one of the side rates.",
+        "result": "Confuses cumulative continuity with local derivative recovery and loses the targeted distinction.",
+        "validAlternative": "Use S07 for continuity and short-interval one-sided averages for derivative failure."
+      },
+      "T22V3::ARC510::S09-M@1": {
+        "wrongApproach": "Try to integrate e^{t²} first or omit the factor 3.",
+        "result": "The first route is unsupported and the second gives the wrong derivative, losing endpoint-chain evidence.",
+        "validAlternative": "Define an accumulation A and compose, or apply the established endpoint formula with hypotheses."
+      },
+      "T22V3::ARC510::S09-T@1": {
+        "wrongApproach": "Use only the upper endpoint, omit the lower minus sign, or differentiate f(t) with respect to x.",
+        "result": "Misses one or more explicit endpoint/dummy-variable obligations.",
+        "validAlternative": "Write J=A(v)-A(u) and differentiate the two compositions."
       }
     }
   },
@@ -1077,6 +1548,18 @@
         "transfer": "none"
       },
       "T22V3::ARC510::S06@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S07@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S08@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S09@1": {
         "main": "none",
         "transfer": "none"
       }
@@ -1107,6 +1590,18 @@
         "transfer": "distinct"
       },
       "T22V3::ARC510::S06@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S07@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S08@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S09@1": {
         "main": "distinct",
         "transfer": "distinct"
       }
