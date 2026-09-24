@@ -38,7 +38,7 @@ const allowedClass=new Set(['retrieval','proof reconstruction','fresh Main evide
 assert.equal(a.module.order,10);
 assert.equal(a.module.id,'ARC053');
 assert.equal(a.module.title,'Derivatives & Local Linearity');
-assert.match(a.module.status,/publication-candidate-semantic-repair-verified/);
+assert.match(a.module.status,/published-semantic-repair-verified/);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
