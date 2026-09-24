@@ -1,0 +1,43 @@
+{
+  "version": "m11-validation-receipt-v1-2026-09-24",
+  "module": {
+    "id": "ARC510",
+    "order": 11,
+    "title": "Integration & Accumulation"
+  },
+  "validatedImplementationCommit": "136ca2c647f2c23a39b40390eaed40efa6df3bff",
+  "workflow": {
+    "runId": 36009416136,
+    "jobId": 107665945138,
+    "name": "T22 Elite checks",
+    "conclusion": "success",
+    "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36009416136"
+  },
+  "checks": {
+    "syntax": "success",
+    "structuralPedagogySemanticEvidence": "success",
+    "m11SemanticValidator": "success",
+    "m11IndependentMath": "success",
+    "inheritedM01ToM10": "success",
+    "chromiumInstall": "success",
+    "existingCourseBrowser": "success",
+    "m11UnpublishedBoundaryBrowser": "success"
+  },
+  "evidence": {
+    "sessions": 20,
+    "fixedTasks": 40,
+    "ownershipClaims": 61,
+    "protectedPreM11Blobs": 99,
+    "legalInstructionOverlapFindingsAfterRepair": 0,
+    "obligationVersions": "all v1 because M11 is unpublished/unregistered"
+  },
+  "browser": {
+    "learnerRegistryModules": 9,
+    "m11Registered": false,
+    "candidateFetchAndParse": true,
+    "candidateSessions": 20,
+    "mobileWidthCheck": true,
+    "pageErrors": 0
+  },
+  "caveat": "This is builder verification of repository state and mathematics/evidence contracts. It is not independent pedagogical acceptance, learner-pilot evidence or mastery certification."
+}

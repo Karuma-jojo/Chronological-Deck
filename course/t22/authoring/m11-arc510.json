@@ -5,7 +5,7 @@
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "builder-candidate-unpublished",
+    "status": "builder-verified-review-handoff-unpublished",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -3502,7 +3502,8 @@
     "fullAuthoring": "20 design-derived sessions authored; global semantic/evidence and mathematical audits still required before handoff.",
     "semanticRepair": "Global 61-claim audit narrowed S05-C3, S06-C3, S12-C1 and S16-C3 to directly observed capabilities; S10/S11 MVT hypotheses were made endpoint-safe. No claim was retained merely because related mathematics appears.",
     "s19FreshnessRepair": "S19 Main-B was changed from 1/sqrt(x²+1), which duplicated the lesson guided practice, to 1/sqrt(x²+4) with comparison 1/(sqrt(5)x). M11 is unpublished, so obligationVersion remains 1.",
-    "provenanceRepair": "Expanded canonical sourceLedger from the S01 pilot subset to the complete design-gate dossier before final executable verification."
+    "provenanceRepair": "Expanded canonical sourceLedger from the S01 pilot subset to the complete design-gate dossier before final executable verification.",
+    "builderValidation": "Full T22 Elite CI run 36009416136 succeeded at implementation commit 136ca2c647f2c23a39b40390eaed40efa6df3bff: syntax, semantic/evidence regressions, M11 independent math, inherited M01-M10 regressions, Chromium and both browser workflows all passed."
   },
   "authoringPolicy": "Original lessons and tasks. Ownership follows literal public/scored actions, never a fixed count. Evidence classes are retrieval, proof reconstruction, fresh Main evidence or changed-surface Transfer. Proofs taught before assessment are reconstruction evidence, not fresh proof evidence. Equivalent valid routes earn full credit. Define notation before use, preserve domains/hypotheses/exceptions, and never use M12+ machinery as a premise.",
   "sourceLedger": {
