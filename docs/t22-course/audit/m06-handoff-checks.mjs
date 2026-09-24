@@ -28,7 +28,7 @@ assert.equal(road.modules.find(x=>x.id==='ARC502').availability,'authored');
 assert.equal(sem.entries.find(x=>x.id==='ARC502').semanticStatus,'accepted');
 assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'validation');
 assert(meta.moduleSources.some(x=>x.id==='ARC502'&&x.source==='course/t22/authoring/m06.json'));
-assert(meta.version.startsWith('T22E-course-0.7.'),'course metadata must include the authorized M07 candidate');
+assert(meta.version.startsWith('T22E-course-0.8.'),'course metadata must include the later-authorized M08 candidate while preserving M06');
 assert.equal(meta.moduleSources.filter(x=>x.order<=6).length,6);
 assert(meta.moduleSources.some(x=>x.id==='T22E-MKT01'&&x.source==='course/t22/authoring/m07.json'));
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'),'Later-authorized M08 candidate must remain registered');\nassert(!meta.moduleSources.some(x=>x.order>=9),'M09 must remain unloaded');
