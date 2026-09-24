@@ -55,6 +55,6 @@ for(const token of [
 ]) assert(hand.includes(token),token);
 
 for(const token of ['M01', 'M03', 'M04', 'M21', 'M30', 'S12', 'Hard stop']) assert(boundary.includes(token),token);
-for(const token of ['S17 observability gap','S18 assessment gap','wrong-solver','Remaining limitations','Builder-validated candidate awaiting independent review']) assert(audit.includes(token),token);
+for(const token of ['S17 observability gap','S18 assessment gap','Wrong-solver','Remaining limitations','Builder-validated candidate awaiting independent review']) assert(audit.includes(token),token);
 
 console.log('PASS M08 handoff: 24/48/120 builder candidate, official-source ledger, executable Python oracles, eight-module browser evidence, implementation run 35956181744 and hard M09 stop.');
