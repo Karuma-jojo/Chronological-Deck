@@ -253,7 +253,7 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Since both formulas hold in every case, the two identities hold for all real x,y."
     ].join(" "),
     rubric: [
-      "Must state why x≥y and x<y are exhaustive, nonoverlapping, and place x=y explicitly.",
+      "Must choose a valid exhaustive nonoverlapping order partition and assign x=y explicitly; x≥y/x<y or the equivalent reversed convention is acceptable.",
       "Must prove the absolute-value lemma once and reuse it rather than silently assuming both formulas.",
       "Must verify both max and min identities in both cases.",
       "Must reassemble the cases into a global conclusion for all real x,y."
@@ -269,7 +269,7 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
     ].join(" "),
     rubric: [
       "Must state the final classification as the iff condition xy≥0.",
-      "Must make xy≥0 versus xy<0 the exhaustive nonoverlapping outer split and account for zero.",
+      "Must choose an exhaustive nonoverlapping sign architecture and account for zero exactly; xy≥0/xy<0 or an equivalent fully closed partition is acceptable.",
       "Must prove a strict opposite-sign lemma rather than merely assert triangle-inequality equality conditions.",
       "Must prove both sufficiency and necessity and close the iff."
     ]
