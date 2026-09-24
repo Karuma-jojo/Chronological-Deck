@@ -638,9 +638,9 @@
         "M10-S09"
       ],
       "requiredOwnership": [
-        "Derive (sin x)'=cos x using angle addition and M09 limits.",
-        "Derive (cos x)'=-sin x without assuming either derivative formula.",
-        "Use radian-dependent trig derivatives in a linear combination."
+        "Derive a sine-or-cosine derivative from an angle-addition identity and M09 normalized trigonometric limits.",
+        "Use the established sine/cosine derivatives inside a fresh linear combination.",
+        "Explain why the normalized derivative derivation is radian-dependent."
       ],
       "applicationScope": "Single-variable real functions and scalar quantitative models; every derivative claim retains the original domain, limit hypotheses and finite/local meaning.",
       "transferScope": "Changed representation or dependency structure requiring method selection, domain/hypothesis auditing or reconstruction rather than number substitution.",
@@ -658,7 +658,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "M09 established in radians that sin h/h→1 and (cos h-1)/h→0. Using sin(x+h)=sin x cos h+cos x sin h, the sine difference quotient becomes sin x[(cos h-1)/h]+cos x[sin h/h], whose limit is cos x. Similarly, cos(x+h)=cos x cos h-sin x sin h yields derivative -sin x.\nThese proofs show why radians matter: the normalized limit sin h/h=1 is a radian statement.\nWorked example: d/dx[3sin x-2cos x]=3cos x+2sin x. Guided practice: reconstruct one line of each angle-addition proof and identify exactly where each M09 limit enters.",
+      "lesson": "M09 established in radians that sin h/h→1 and (cos h-1)/h→0. Using sin(x+h)=sin x cos h+cos x sin h, the sine difference quotient becomes sin x[(cos h-1)/h]+cos x[sin h/h], whose limit is cos x. Thus (sin x)'=cos x. This proof shows why the M09 limit matters and why radians matter: the normalized limit sin h/h=1 is a radian statement.\nWorked example: use the established sine derivative plus derivative linearity to differentiate 3sin x+2x², obtaining 3cos x+4x. This is an application after the foundational limit proof, not a replacement for it.\nGuided practice: write the cosine addition identity cos(x+h)=cos x cos h-sin x sin h and split its difference quotient into two terms. Stop after identifying which two M09 limits would finish the proof; do not quote the final derivative as the justification.",
       "main": "T22V3::ARC053::S16-M@1",
       "transfer": "T22V3::ARC053::S16-T@1"
     },
@@ -929,7 +929,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "A derivative audit starts with the original function, not the final simplified formula. Check: is the function defined at the point? is continuity already impossible? is the required finite derivative limit present? were product/quotient/chain hypotheses satisfied? did simplification delete a restriction? does the conclusion claim more than local first-order information?\nWorked audit: sqrt(x²)=|x|, so the claim d/dx sqrt(x²)=1 for all x is false: the derivative is -1 for x<0, +1 for x>0 and absent at 0. Separately, ln(x²) has derivative 2/x only on x≠0, exactly its real domain.\nGuided practice: for (x²-9)/(x-3), distinguish the derivative on x≠3 from the derivative of a separately filled continuous extension at 3.",
+      "lesson": "A derivative audit starts with the original function, not the final simplified formula. Check: is the function defined at the point? is continuity already impossible? is the required finite derivative limit present? were product/quotient/chain hypotheses satisfied? did simplification delete a restriction? does the conclusion claim more than local first-order information?\nWorked example: sqrt(x²)=|x|, so the claim d/dx sqrt(x²)=1 for all x is false: the derivative is -1 for x<0, +1 for x>0 and absent at 0. Separately, ln(x²) has derivative 2/x only on x≠0, exactly its real domain.\nGuided practice: for (x²-9)/(x-3), distinguish the derivative on x≠3 from the derivative of a separately filled continuous extension at 3.",
       "main": "T22V3::ARC053::S23-M@1",
       "transfer": "T22V3::ARC053::S23-T@1"
     },
@@ -966,7 +966,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "A synthesis solution begins by naming the object: derivative at a point, derivative function, conditional slope along a relation, or first-order model. Next audit the original domain and any branch assumptions. Only then choose definition or proved rules. A final symbolic derivative is not the end: interpret its local coefficient and state what has **not** been proved.\nWorked synthesis: define u(x)=(x²-9)/(x-3) for x≠3 and u(3)=6. Then u=x+3 everywhere after the explicit fill, so u'(3)=1. For F=e^u, F'(3)=e^6. Hence F(3+h)=e^6+e^6 h+o(h). This does not supply a Taylor remainder bound or a global monotonicity theorem.\nGuided practice: along x²+y²=13 near (2,3), assume a differentiable branch, find y'=-2/3, then propagate it through Z=e^y. Mark exactly where the branch assumption enters.",
+      "lesson": "A synthesis solution begins by naming the object: derivative at a point, derivative function, conditional slope along a relation, or first-order model. Next audit the original domain and any branch assumptions. Only then choose definition or proved rules. A final symbolic derivative is not the end: interpret its local coefficient and state what has **not** been proved.\nWorked example: define u(x)=(x²-9)/(x-3) for x≠3 and u(3)=6. Then u=x+3 everywhere after the explicit fill, so u'(3)=1. For F=e^u, F'(3)=e^6. Hence F(3+h)=e^6+e^6 h+o(h). This does not supply a Taylor remainder bound or a global monotonicity theorem.\nGuided practice: along x²+y²=13 near (2,3), assume a differentiable branch, find y'=-2/3, then propagate it through Z=e^y. Mark exactly where the branch assumption enters.",
       "main": "T22V3::ARC053::S24-M@1",
       "transfer": "T22V3::ARC053::S24-T@1"
     }
@@ -1032,7 +1032,7 @@
       "id": "T22V3::ARC053::S05-M@1",
       "order": 5,
       "kind": "main",
-      "prompt": "Starting from the definition, derive the derivative function of f(x)=x²+1. State the domain of f and the domain of f'.",
+      "prompt": "Starting from the difference-quotient definition, derive the derivative function of f(x)=x³-2x. State the domain of f and the domain of f'.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S05-T@1": {
@@ -1046,7 +1046,7 @@
       "id": "T22V3::ARC053::S06-M@1",
       "order": 6,
       "kind": "main",
-      "prompt": "Prove from the derivative definition that if f'(a) exists as a finite number, then f is continuous at a. Then explain what this theorem lets you conclude immediately about any function with a jump discontinuity at a.",
+      "prompt": "Assume f'(a)=L exists as a finite number. Let (x_n) be any sequence with x_n→a and x_n≠a. Show from the derivative information that f(x_n)→f(a) by factoring f(x_n)-f(a). Explain why this sequential conclusion establishes continuity at a using M09's limit machinery.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S06-T@1": {
@@ -1074,7 +1074,7 @@
       "id": "T22V3::ARC053::S08-M@1",
       "order": 8,
       "kind": "main",
-      "prompt": "Use the local linearization of f(x)=x² at a=5 to estimate f(5.03). Then compute the exact value, the signed error exact-minus-linear, and explain which part of your error knowledge comes from this specific polynomial rather than from differentiability alone.",
+      "prompt": "Use the local linearization of f(x)=x³ at a=2 to estimate f(2.02). Then compute the exact value, the signed error exact-minus-linear, and identify the exact polynomial remainder in terms of h. Explain which part of the error knowledge is specific to this polynomial rather than guaranteed by differentiability alone.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S08-T@1": {
@@ -1172,7 +1172,7 @@
       "id": "T22V3::ARC053::S15-M@1",
       "order": 15,
       "kind": "main",
-      "prompt": "For F(x)=1/[1+(3x-2)^4], compute F'(1) by naming intermediate quantities. State why no denominator-domain exclusion occurs.",
+      "prompt": "For F(x)=[1+(x-1)²]³, compute F'(2) by naming intermediate quantities and their evaluation points. State the original real domain and explain why there is no hidden denominator restriction.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S15-T@1": {
@@ -1186,14 +1186,14 @@
       "id": "T22V3::ARC053::S16-M@1",
       "order": 16,
       "kind": "main",
-      "prompt": "Starting from sin(x+h)=sin x cos h+cos x sin h, derive (sin x)'=cos x using only M09 trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x.",
+      "prompt": "Starting from cos(x+h)=cos x cos h-sin x sin h, complete the derivative proof for cos x using M09's two normalized trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x. Finally state why this derivation is normalized for radians rather than degree measure.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S16-T@1": {
       "id": "T22V3::ARC053::S16-T@1",
       "order": 16,
       "kind": "transfer",
-      "prompt": "Starting from the cosine addition identity, derive (cos x)'=-sin x rather than quoting it. Then find the derivative at x=0 of sin x+2cos x.",
+      "prompt": "For H(x)=2sin x-3cos x, derive H'(0) from the established sine/cosine derivatives, then explain how the result would be rescaled if the input variable represented degrees rather than radians.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S17-M@1": {
@@ -1228,7 +1228,7 @@
       "id": "T22V3::ARC053::S19-M@1",
       "order": 19,
       "kind": "main",
-      "prompt": "For the ellipse x²/9+y²/4=1, assume a differentiable local branch y(x). Derive y' where finite. Evaluate it at (0,2), and explain what happens to the solved slope formula at (3,0).",
+      "prompt": "Assume a differentiable local branch y(x) satisfies x³+xy+y²=7 near the point (1,2). Derive y' and evaluate it at (1,2). State the coefficient that must be nonzero when you solve for y', and explain what the calculation does not prove.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S19-T@1": {
@@ -1256,7 +1256,7 @@
       "id": "T22V3::ARC053::S21-M@1",
       "order": 21,
       "kind": "main",
-      "prompt": "For a fixed base b>0, b≠1, derive the derivatives of b^x and log_b x from natural exponential/log identities. Then find the derivative at x=1 of F(x)=3^x ln x.",
+      "prompt": "Fix b>0, b≠1. Starting from the identity b^{log_b x}=x for x>0 and the already established derivative of b^u, derive (log_b x)' without using the quotient ln x/ln b as your proof route. Then use your result and the chain rule to find the derivative at x=1 of G(x)=log_b(x²+1).",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S21-T@1": {
@@ -1284,7 +1284,7 @@
       "id": "T22V3::ARC053::S23-M@1",
       "order": 23,
       "kind": "main",
-      "prompt": "Audit these three claims. (A) d/dx sqrt(x²)=1 for every real x. (B) d/dx ln(x²)=2/x for every x in the real domain of ln(x²). (C) For F(x)=(x²-4)/(x-2) with its original domain, F'(2)=1 because F simplifies to x+2. Mark each claim true/false and justify from the original function/domain.",
+      "prompt": "Audit these three claims against the original real functions and domains. (A) d/dx |x|³=3x² for every real x. (B) d/dx ln((x+1)²)=2/(x+1) for every point in its real domain. (C) For F(x)=(x²-x)/x with its original domain, F'(0)=1 because F simplifies to x-1. Mark each claim true/false and justify.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S23-T@1": {
@@ -1298,14 +1298,14 @@
       "id": "T22V3::ARC053::S24-M@1",
       "order": 24,
       "kind": "main",
-      "prompt": "Define u(x)=(x²-4)/(x-2) for x≠2 and u(2)=4, and let F(x)=e^{u(x)}. (i) Prove u'(2) from the derivative definition or the filled formula. (ii) Find F'(2). (iii) Write the first-order local model for F(2+h). (iv) Explain why changing only F(2) to 0 while keeping nearby values would destroy differentiability at 2.",
+      "prompt": "Define u(x)=(x³-1)/(x-1) for x≠1 and u(1)=3, and let F(x)=ln(u(x)). (i) Establish u'(1) for the actually filled function. (ii) Find F'(1). (iii) Write the first-order local model for F(1+h). (iv) Explain why changing only u(1) to 4 while keeping every nearby value unchanged would destroy differentiability of both u at 1 and ln∘u at 1.",
       "obligationVersion": 1
     },
     "T22V3::ARC053::S24-T@1": {
       "id": "T22V3::ARC053::S24-T@1",
       "order": 24,
       "kind": "transfer",
-      "prompt": "Assume a differentiable local branch y(x) satisfies x²+y²=10 near (1,3), and define Z(x)=e^{y(x)}. Find y'(1), Z'(1), and the first-order local model for Z near x=1. State one thing your calculation does not prove about the relation.",
+      "prompt": "A one-to-one differentiable function f satisfies f(2)=5 and f'(2)=3, and its inverse g is continuous near 5. Define Z(y)=ln(g(y)+1). (i) Find g'(5). (ii) Find Z'(5). (iii) Write the first-order local model for Z(5+k). (iv) name the hypotheses used and one conclusion this local model does not supply.",
       "obligationVersion": 1
     }
   },
@@ -1455,19 +1455,19 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S05-M@1": {
-      "reference": "[(x+h)²+1-(x²+1)]/h=2x+h for h≠0, so f'(x)=2x. Both f and f' have domain R.",
+      "reference": "For h≠0, [(x+h)³-2(x+h)-(x³-2x)]/h=3x²+3xh+h²-2. Letting h→0 gives f'(x)=3x²-2. Both f and f' have domain R.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Derives f'(x)=2x from a pointwise difference quotient."
+          "criterion": "Expands and simplifies the pointwise difference quotient correctly."
         },
         {
           "points": 3,
-          "criterion": "States dom(f)=R."
+          "criterion": "Takes the limit to obtain f'(x)=3x²-2."
         },
         {
           "points": 4,
-          "criterion": "States dom(f')=R and treats it as a separate claim."
+          "criterion": "States dom(f)=R and dom(f')=R as separate claims."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -1491,19 +1491,19 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S06-M@1": {
-      "reference": "Write f(a+h)-f(a)=hQ(h), where Q(h)=[f(a+h)-f(a)]/h→f'(a). Since h→0 and Q(h) has a finite limit, hQ(h)→0. Hence f(a+h)→f(a). By contrapositive, a discontinuous function at a cannot be differentiable there.",
+      "reference": "For every n, f(x_n)-f(a)=(x_n-a)·[(f(x_n)-f(a))/(x_n-a)]. Since x_n→a, the first factor tends to 0. Because the derivative limit is L, the quotient along every such approaching sequence tends to L. The product therefore tends to 0, so f(x_n)→f(a). This holds for every sequence approaching a (with occurrences of a themselves harmless), which is the sequential form of continuity at a.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Provides the product decomposition of the increment."
+          "criterion": "Uses the exact factorization of the function increment along x_n."
         },
         {
           "points": 3,
-          "criterion": "Uses finite quotient limit times h→0 to prove continuity."
+          "criterion": "Combines x_n-a→0 with the derivative quotient tending to finite L."
         },
         {
           "points": 4,
-          "criterion": "Correctly uses discontinuity only as a sufficient reason for non-differentiability."
+          "criterion": "Concludes f(x_n)→f(a) for arbitrary approaches and connects this to continuity rather than merely checking examples."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -1563,19 +1563,19 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S08-M@1": {
-      "reference": "L(5.03)=25+10(0.03)=25.3. The exact value is 25.3009, so exact-minus-linear=0.0009. The explicit polynomial expansion gives the error h²; differentiability by itself only says error/h→0 as h→0 and does not certify 0.0009 in advance.",
+      "reference": "Here f(2)=8 and f'(2)=12, so L(2.02)=8+12(0.02)=8.24. Exactly, 2.02³=8.242408, so exact-minus-linear=0.002408. Since (2+h)³=8+12h+6h²+h³, the exact remainder is 6h²+h³. That explicit remainder gives the numerical error; generic differentiability alone only gives r(h)/h→0 and no fixed decimal bound at h=0.02.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Builds and evaluates the correct local line to get 25.3."
+          "criterion": "Builds the correct local line and obtains 8.24."
         },
         {
           "points": 3,
-          "criterion": "Computes exact 25.3009 and signed error 0.0009."
+          "criterion": "Computes exact 8.242408 and signed error 0.002408, with remainder 6h²+h³."
         },
         {
           "points": 4,
-          "criterion": "Separates the explicit polynomial error formula from the generic o(h) statement."
+          "criterion": "Separates the explicit cubic remainder from the generic o(h) guarantee."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -1815,19 +1815,19 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S15-M@1": {
-      "reference": "Let u=3x-2, v=1+u^4, F=v^{-1}. At x=1, u=1,u'=3; v=2,v'=4·1³·3=12. Thus F'=-v'/v²=-12/4=-3. Since 1+(3x-2)^4≥1, the denominator never vanishes.",
+      "reference": "Let u=x-1 and v=1+u², so F=v³. At x=2, u=1,u'=1; v=2,v'=2u·u'=2. Therefore F'(2)=3v²v'=3·4·2=24. The expression is polynomially composed and defined for every real x, so there is no denominator exclusion.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Tracks the nested variables and all derivative factors."
+          "criterion": "Tracks the nested variables and evaluation points correctly."
         },
         {
           "points": 3,
-          "criterion": "Computes F'(1)=-3."
+          "criterion": "Multiplies every chain factor and obtains F'(2)=24."
         },
         {
           "points": 4,
-          "criterion": "Audits the denominator and correctly finds no real exclusion."
+          "criterion": "States the original domain R and correctly finds no denominator restriction."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -1851,37 +1851,37 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S16-M@1": {
-      "reference": "The quotient splits into sin x(cos h-1)/h+cos x(sin h/h), tending to 0+cos x. Thus derivative of 4sin x+cos x is 4cos x-sin x, which at π/2 is -1.",
+      "reference": "The cosine quotient is cos x[(cos h-1)/h]-sin x[sin h/h], which tends to 0-sin x, so (cos x)'=-sin x. Hence (4sin x+cos x)'=4cos x-sin x, which equals -1 at π/2. The proof uses sin h/h→1; that normalization holds when h is measured in radians (degree measure introduces a conversion factor).",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Derives the sine derivative from the two normalized M09 limits."
+          "criterion": "Completes the cosine derivative proof from the addition identity and the two M09 limits."
         },
         {
           "points": 3,
-          "criterion": "Uses derivative linearity to differentiate 4sin x+cos x."
+          "criterion": "Uses both established trig derivatives to obtain -1 at x=π/2."
         },
         {
           "points": 4,
-          "criterion": "Evaluates the derivative at π/2 as -1."
+          "criterion": "Identifies the radian normalization as essential rather than treating angle units as irrelevant."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S16-T@1": {
-      "reference": "The cosine quotient is cos x(cos h-1)/h-sin x(sin h/h), tending to -sin x. Therefore derivative of sin x+2cos x is cos x-2sin x, which at 0 is 1.",
+      "reference": "In radians H'=2cos x+3sin x, so H'(0)=2. If the numerical input θ is measured in degrees, the corresponding radian angle is πθ/180; differentiating with respect to θ introduces the factor π/180, so the degree-input derivative at 0 is 2π/180=π/90.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Derives the cosine derivative from the angle-addition quotient."
+          "criterion": "Differentiates the fresh linear combination correctly."
         },
         {
           "points": 3,
-          "criterion": "Uses the already established sine derivative and linearity appropriately."
+          "criterion": "Evaluates the radian-input derivative at 0 as 2."
         },
         {
           "points": 4,
-          "criterion": "Evaluates the combined derivative at 0 as 1."
+          "criterion": "Accounts for the π/180 conversion factor for a degree-valued input."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -1959,19 +1959,19 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S19-M@1": {
-      "reference": "Differentiating gives 2x/9+(y/2)y'=0, so y'=-4x/(9y) when y≠0. At (0,2), y'=0. At (3,0), the division step is illegal and no finite y'(x) is supplied by this formula; the tangent is vertical in the usual geometric description.",
+      "reference": "Differentiating gives 3x²+y+xy'+2yy'=0. Thus (x+2y)y'=-(3x²+y), so y'=-(3x²+y)/(x+2y) where x+2y≠0. At (1,2), the denominator is 5 and the numerator is 5, hence y'=-1. This is conditional on a differentiable local branch; it does not establish branch existence or global single-valuedness.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Derives y'=-4x/(9y) under the nonzero-y condition."
+          "criterion": "Uses product and chain rules to obtain the correct differentiated relation."
         },
         {
           "points": 3,
-          "criterion": "Evaluates the finite slope at (0,2) as 0."
+          "criterion": "Checks x+2y=5≠0 and obtains y'=-1 at (1,2)."
         },
         {
           "points": 4,
-          "criterion": "Flags the invalid division/vertical case at (3,0) instead of substituting into the formula."
+          "criterion": "Separates the conditional slope calculation from a branch-existence/global-function theorem."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -2031,19 +2031,19 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S21-M@1": {
-      "reference": "(b^x)'=b^x ln b and (log_b x)'=1/(x ln b). For F, product rule gives F'=3^x ln3·ln x+3^x/x. At x=1, ln1=0, so F'(1)=3.",
+      "reference": "Differentiate b^{log_b x}=x: b^{log_b x} ln b·(log_b x)'=1. Since b^{log_b x}=x, (log_b x)'=1/(x ln b). For G, G'(x)=2x/[(x²+1)ln b], so G'(1)=1/ln b.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Derives both arbitrary-base formulas with their base/domain conditions."
+          "criterion": "Derives (log_b x)'=1/(x ln b) from the inverse identity, with b>0,b≠1 and x>0."
         },
         {
           "points": 3,
-          "criterion": "Differentiates 3^x ln x using product rule."
+          "criterion": "Applies the chain rule to G(x)=log_b(x²+1)."
         },
         {
           "points": 4,
-          "criterion": "Evaluates F'(1)=3."
+          "criterion": "Obtains G'(1)=1/ln b with the base condition retained."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -2103,19 +2103,19 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S23-M@1": {
-      "reference": "A is false: sqrt(x²)=|x|, derivative -1 for x<0, +1 for x>0, undefined at 0. B is true on x≠0: chain rule gives (1/x²)·2x=2/x, and ln(x²) is defined exactly when x≠0. C is false for the original F because F is undefined at 2; F'=1 only for x≠2 unless a new extension is defined.",
+      "reference": "A is false: for x>0, |x|³=x³ so the derivative is 3x²; for x<0, |x|³=-x³ so the derivative is -3x²; at 0 the derivative is 0. B is true on the original domain x≠-1: chain rule gives [1/(x+1)²]·2(x+1)=2/(x+1). C is false for the original F because x=0 is excluded; F'=1 only for x≠0 unless a new extension is explicitly defined.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Correctly rejects A using |x| and the nondifferentiable point 0."
+          "criterion": "Correctly rejects A by auditing the absolute-value branches, including the derivative at 0."
         },
         {
           "points": 3,
-          "criterion": "Accepts B only on x≠0 and justifies the chain rule/domain."
+          "criterion": "Accepts B exactly on x≠-1 and justifies the chain rule/domain."
         },
         {
           "points": 4,
-          "criterion": "Rejects C at x=2 because simplification does not restore the original domain."
+          "criterion": "Rejects C at x=0 because simplification cannot restore the original function's excluded input."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -2139,37 +2139,37 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S24-M@1": {
-      "reference": "With the explicit fill, u(x)=x+2 for every x, so u'(2)=1 (also follows from its difference quotient). F(2)=e^4 and F'(2)=e^4·1=e^4. Thus F(2+h)=e^4+e^4h+o(h). If only the point value were changed to 0, the resulting function would be discontinuous at 2 because nearby values tend to e^4; differentiability would therefore be impossible.",
+      "reference": "Because x³-1=(x-1)(x²+x+1), the explicit fill makes u(x)=x²+x+1 for every x. Hence u'(1)=3 and u(1)=3. Chain rule gives F'(1)=u'(1)/u(1)=1, so F(1+h)=ln3+h+o(h). If only u(1) were changed to 4, nearby u-values would still tend to 3, making u discontinuous at 1; differentiability of u would fail. ln∘u would likewise have point value ln4 but nearby limit ln3, so it too would be discontinuous and non-differentiable there.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Establishes u'(2)=1 for the actually filled function."
+          "criterion": "Uses the explicit fill to establish u'(1)=3 for the actual function."
         },
         {
           "points": 3,
-          "criterion": "Uses chain rule to obtain F'(2)=e^4 and writes the o(h) local model."
+          "criterion": "Obtains F'(1)=1 and writes F(1+h)=ln3+h+o(h)."
         },
         {
           "points": 4,
-          "criterion": "Uses differentiability⇒continuity to reject the altered point-value function as differentiable."
+          "criterion": "Uses differentiability⇒continuity to diagnose both altered point-value failures."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S24-T@1": {
-      "reference": "Implicit differentiation gives 2x+2yy'=0, so y'(1)=-1/3. Then Z'(1)=e^3(-1/3)=-e^3/3. Hence Z(1+h)=e^3-(e^3/3)h+o(h). The calculation assumes a differentiable local branch; it does not itself prove branch existence or a global single-valued y(x).",
+      "reference": "The inverse derivative theorem gives g'(5)=1/3 because g(5)=2 and f'(2)=3≠0. Then Z'(5)=[1/(g(5)+1)]g'(5)=(1/3)(1/3)=1/9. Thus Z(5+k)=ln3+(1/9)k+o(k). The calculation uses local one-to-one/inverse continuity, differentiability and nonzero forward derivative, plus log-domain positivity. It does not supply a global error bound, a Taylor theorem or global behavior of f/g.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Finds y'(1)=-1/3 under the stated branch assumption."
+          "criterion": "Uses the inverse-point data to obtain g'(5)=1/3."
         },
         {
           "points": 3,
-          "criterion": "Propagates through exp to get Z'(1)=-e^3/3."
+          "criterion": "Propagates through ln to obtain Z'(5)=1/9 and the correct local model."
         },
         {
           "points": 4,
-          "criterion": "Writes the first-order local model and states the branch-existence limitation."
+          "criterion": "States the needed hypotheses and refuses an unsupported global/higher-order conclusion."
         }
       ],
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
@@ -2578,17 +2578,17 @@
       {
         "claim": "Construct a derivative function from pointwise limits.",
         "task": "main",
-        "publicRequest": "Starting from the definition, derive the derivative function of f(x)=x²+1. State the domain of f and the domain of f'.",
+        "publicRequest": "Starting from the difference-quotient definition, derive the derivative function of f(x)=x³-2x. State the domain of f and the domain of f'.",
         "rubricEvidence": [
-          "Derives f'(x)=2x from a pointwise difference quotient."
+          "Expands and simplifies the pointwise difference quotient correctly."
         ]
       },
       {
         "claim": "Determine the domain of a derivative function.",
         "task": "main+transfer",
-        "publicRequest": "Starting from the definition, derive the derivative function of f(x)=x²+1. State the domain of f and the domain of f'. | For g(x)=|x-2|, determine g'(x) on every region where it exists and state dom(g'). Compare it with dom(g).",
+        "publicRequest": "Starting from the difference-quotient definition, derive the derivative function of f(x)=x³-2x. State the domain of f and the domain of f'. | For g(x)=|x-2|, determine g'(x) on every region where it exists and state dom(g'). Compare it with dom(g).",
         "rubricEvidence": [
-          "States dom(f)=R.",
+          "Takes the limit to obtain f'(x)=3x²-2.",
           "Shows the derivative fails at 2."
         ]
       },
@@ -2605,17 +2605,17 @@
       {
         "claim": "Prove differentiability at a point implies continuity there.",
         "task": "main",
-        "publicRequest": "Prove from the derivative definition that if f'(a) exists as a finite number, then f is continuous at a. Then explain what this theorem lets you conclude immediately about any function with a jump discontinuity at a.",
+        "publicRequest": "Assume f'(a)=L exists as a finite number. Let (x_n) be any sequence with x_n→a and x_n≠a. Show from the derivative information that f(x_n)→f(a) by factoring f(x_n)-f(a). Explain why this sequential conclusion establishes continuity at a using M09's limit machinery.",
         "rubricEvidence": [
-          "Provides the product decomposition of the increment."
+          "Uses the exact factorization of the function increment along x_n."
         ]
       },
       {
         "claim": "Use discontinuity as a valid screen against differentiability.",
         "task": "main+transfer",
-        "publicRequest": "Prove from the derivative definition that if f'(a) exists as a finite number, then f is continuous at a. Then explain what this theorem lets you conclude immediately about any function with a jump discontinuity at a. | Show that g(x)=|x|^(2/3) is continuous at 0 but has no finite derivative there. Use the difference quotient to identify the failure rather than citing a graph.",
+        "publicRequest": "Assume f'(a)=L exists as a finite number. Let (x_n) be any sequence with x_n→a and x_n≠a. Show from the derivative information that f(x_n)→f(a) by factoring f(x_n)-f(a). Explain why this sequential conclusion establishes continuity at a using M09's limit machinery. | Show that g(x)=|x|^(2/3) is continuous at 0 but has no finite derivative there. Use the difference quotient to identify the failure rather than citing a graph.",
         "rubricEvidence": [
-          "Uses finite quotient limit times h→0 to prove continuity.",
+          "Combines x_n-a→0 with the derivative quotient tending to finite L.",
           "Analyzes the signed derivative quotient and its unbounded one-sided behavior."
         ]
       },
@@ -2659,17 +2659,17 @@
       {
         "claim": "Construct the first-order approximation L(x)=f(a)+f'(a)(x-a).",
         "task": "main",
-        "publicRequest": "Use the local linearization of f(x)=x² at a=5 to estimate f(5.03). Then compute the exact value, the signed error exact-minus-linear, and explain which part of your error knowledge comes from this specific polynomial rather than from differentiability alone.",
+        "publicRequest": "Use the local linearization of f(x)=x³ at a=2 to estimate f(2.02). Then compute the exact value, the signed error exact-minus-linear, and identify the exact polynomial remainder in terms of h. Explain which part of the error knowledge is specific to this polynomial rather than guaranteed by differentiability alone.",
         "rubricEvidence": [
-          "Builds and evaluates the correct local line to get 25.3."
+          "Builds the correct local line and obtains 8.24."
         ]
       },
       {
         "claim": "Compare exact and first-order values in a case where both are available.",
         "task": "main+transfer",
-        "publicRequest": "Use the local linearization of f(x)=x² at a=5 to estimate f(5.03). Then compute the exact value, the signed error exact-minus-linear, and explain which part of your error knowledge comes from this specific polynomial rather than from differentiability alone. | A model satisfies F(100+h)=250+1.8h+r(h), with r(h)/h→0. Give the first-order estimate for F(99.6), interpret the coefficient 1.8, and state whether the given information alone certifies the estimate to the nearest 0.01.",
+        "publicRequest": "Use the local linearization of f(x)=x³ at a=2 to estimate f(2.02). Then compute the exact value, the signed error exact-minus-linear, and identify the exact polynomial remainder in terms of h. Explain which part of the error knowledge is specific to this polynomial rather than guaranteed by differentiability alone. | A model satisfies F(100+h)=250+1.8h+r(h), with r(h)/h→0. Give the first-order estimate for F(99.6), interpret the coefficient 1.8, and state whether the given information alone certifies the estimate to the nearest 0.01.",
         "rubricEvidence": [
-          "Computes exact 25.3009 and signed error 0.0009.",
+          "Computes exact 8.242408 and signed error 0.002408, with remainder 6h²+h³.",
           "Interprets 1.8 as a local sensitivity with units."
         ]
       },
@@ -2848,17 +2848,17 @@
       {
         "claim": "Differentiate a multi-layer scalar composition with every local factor present.",
         "task": "main",
-        "publicRequest": "For F(x)=1/[1+(3x-2)^4], compute F'(1) by naming intermediate quantities. State why no denominator-domain exclusion occurs.",
+        "publicRequest": "For F(x)=[1+(x-1)²]³, compute F'(2) by naming intermediate quantities and their evaluation points. State the original real domain and explain why there is no hidden denominator restriction.",
         "rubricEvidence": [
-          "Tracks the nested variables and all derivative factors."
+          "Tracks the nested variables and evaluation points correctly."
         ]
       },
       {
         "claim": "Audit the original domain before simplifying a nested derivative.",
         "task": "main+transfer",
-        "publicRequest": "For F(x)=1/[1+(3x-2)^4], compute F'(1) by naming intermediate quantities. State why no denominator-domain exclusion occurs. | Differentiate G(x)=1/(x²-1)² on its original domain. Then audit the claim 'the derivative formula can be evaluated at x=1 after simplification because it is only a formula.'",
+        "publicRequest": "For F(x)=[1+(x-1)²]³, compute F'(2) by naming intermediate quantities and their evaluation points. State the original real domain and explain why there is no hidden denominator restriction. | Differentiate G(x)=1/(x²-1)² on its original domain. Then audit the claim 'the derivative formula can be evaluated at x=1 after simplification because it is only a formula.'",
         "rubricEvidence": [
-          "Computes F'(1)=-3.",
+          "Multiplies every chain factor and obtains F'(2)=24.",
           "States the original domain x≠±1."
         ]
       },
@@ -2873,28 +2873,28 @@
     ],
     "T22V3::ARC053::S16@1": [
       {
-        "claim": "Derive (sin x)'=cos x using angle addition and M09 limits.",
+        "claim": "Derive a sine-or-cosine derivative from an angle-addition identity and M09 normalized trigonometric limits.",
         "task": "main",
-        "publicRequest": "Starting from sin(x+h)=sin x cos h+cos x sin h, derive (sin x)'=cos x using only M09 trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x.",
+        "publicRequest": "Starting from cos(x+h)=cos x cos h-sin x sin h, complete the derivative proof for cos x using M09's two normalized trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x. Finally state why this derivation is normalized for radians rather than degree measure.",
         "rubricEvidence": [
-          "Derives the sine derivative from the two normalized M09 limits."
+          "Completes the cosine derivative proof from the addition identity and the two M09 limits."
         ]
       },
       {
-        "claim": "Derive (cos x)'=-sin x without assuming either derivative formula.",
+        "claim": "Use the established sine/cosine derivatives inside a fresh linear combination.",
         "task": "main+transfer",
-        "publicRequest": "Starting from sin(x+h)=sin x cos h+cos x sin h, derive (sin x)'=cos x using only M09 trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x. | Starting from the cosine addition identity, derive (cos x)'=-sin x rather than quoting it. Then find the derivative at x=0 of sin x+2cos x.",
+        "publicRequest": "Starting from cos(x+h)=cos x cos h-sin x sin h, complete the derivative proof for cos x using M09's two normalized trigonometric limits. Then find the derivative at x=π/2 of 4sin x+cos x. Finally state why this derivation is normalized for radians rather than degree measure. | For H(x)=2sin x-3cos x, derive H'(0) from the established sine/cosine derivatives, then explain how the result would be rescaled if the input variable represented degrees rather than radians.",
         "rubricEvidence": [
-          "Uses derivative linearity to differentiate 4sin x+cos x.",
-          "Uses the already established sine derivative and linearity appropriately."
+          "Uses both established trig derivatives to obtain -1 at x=π/2.",
+          "Evaluates the radian-input derivative at 0 as 2."
         ]
       },
       {
-        "claim": "Use radian-dependent trig derivatives in a linear combination.",
+        "claim": "Explain why the normalized derivative derivation is radian-dependent.",
         "task": "transfer",
-        "publicRequest": "Starting from the cosine addition identity, derive (cos x)'=-sin x rather than quoting it. Then find the derivative at x=0 of sin x+2cos x.",
+        "publicRequest": "For H(x)=2sin x-3cos x, derive H'(0) from the established sine/cosine derivatives, then explain how the result would be rescaled if the input variable represented degrees rather than radians.",
         "rubricEvidence": [
-          "Evaluates the combined derivative at 0 as 1."
+          "Accounts for the π/180 conversion factor for a degree-valued input."
         ]
       }
     ],
@@ -2956,17 +2956,17 @@
       {
         "claim": "Apply the chain rule to an implicitly defined relation along a differentiable branch.",
         "task": "main",
-        "publicRequest": "For the ellipse x²/9+y²/4=1, assume a differentiable local branch y(x). Derive y' where finite. Evaluate it at (0,2), and explain what happens to the solved slope formula at (3,0).",
+        "publicRequest": "Assume a differentiable local branch y(x) satisfies x³+xy+y²=7 near the point (1,2). Derive y' and evaluate it at (1,2). State the coefficient that must be nonzero when you solve for y', and explain what the calculation does not prove.",
         "rubricEvidence": [
-          "Derives y'=-4x/(9y) under the nonzero-y condition."
+          "Uses product and chain rules to obtain the correct differentiated relation."
         ]
       },
       {
         "claim": "Solve for dy/dx only when the coefficient permits it.",
         "task": "main+transfer",
-        "publicRequest": "For the ellipse x²/9+y²/4=1, assume a differentiable local branch y(x). Derive y' where finite. Evaluate it at (0,2), and explain what happens to the solved slope formula at (3,0). | Along a differentiable local branch satisfying xy+y³=3 at the point (2,1), find y'. State explicitly what coefficient must be nonzero for your solved expression and what your calculation does not prove.",
+        "publicRequest": "Assume a differentiable local branch y(x) satisfies x³+xy+y²=7 near the point (1,2). Derive y' and evaluate it at (1,2). State the coefficient that must be nonzero when you solve for y', and explain what the calculation does not prove. | Along a differentiable local branch satisfying xy+y³=3 at the point (2,1), find y'. State explicitly what coefficient must be nonzero for your solved expression and what your calculation does not prove.",
         "rubricEvidence": [
-          "Evaluates the finite slope at (0,2) as 0.",
+          "Checks x+2y=5≠0 and obtains y'=-1 at (1,2).",
           "Checks x+3y²=5≠0 and obtains -1/5."
         ]
       },
@@ -3010,17 +3010,17 @@
       {
         "claim": "Derive (ln x)'=1/x on x>0 and extend to log_b.",
         "task": "main",
-        "publicRequest": "For a fixed base b>0, b≠1, derive the derivatives of b^x and log_b x from natural exponential/log identities. Then find the derivative at x=1 of F(x)=3^x ln x.",
+        "publicRequest": "Fix b>0, b≠1. Starting from the identity b^{log_b x}=x for x>0 and the already established derivative of b^u, derive (log_b x)' without using the quotient ln x/ln b as your proof route. Then use your result and the chain rule to find the derivative at x=1 of G(x)=log_b(x²+1).",
         "rubricEvidence": [
-          "Derives both arbitrary-base formulas with their base/domain conditions."
+          "Derives (log_b x)'=1/(x ln b) from the inverse identity, with b>0,b≠1 and x>0."
         ]
       },
       {
         "claim": "Derive (b^x)'=b^x ln b for b>0.",
         "task": "main+transfer",
-        "publicRequest": "For a fixed base b>0, b≠1, derive the derivatives of b^x and log_b x from natural exponential/log identities. Then find the derivative at x=1 of F(x)=3^x ln x. | For x>-1 define y=(x+1)^x, which is positive. Use logarithmic differentiation to find y'(1).",
+        "publicRequest": "Fix b>0, b≠1. Starting from the identity b^{log_b x}=x for x>0 and the already established derivative of b^u, derive (log_b x)' without using the quotient ln x/ln b as your proof route. Then use your result and the chain rule to find the derivative at x=1 of G(x)=log_b(x²+1). | For x>-1 define y=(x+1)^x, which is positive. Use logarithmic differentiation to find y'(1).",
         "rubricEvidence": [
-          "Differentiates 3^x ln x using product rule.",
+          "Applies the chain rule to G(x)=log_b(x²+1).",
           "Differentiates the logarithmic identity with the product and chain factors."
         ]
       },
@@ -3064,17 +3064,17 @@
       {
         "claim": "Diagnose derivative claims against the original domain and definition.",
         "task": "main",
-        "publicRequest": "Audit these three claims. (A) d/dx sqrt(x²)=1 for every real x. (B) d/dx ln(x²)=2/x for every x in the real domain of ln(x²). (C) For F(x)=(x²-4)/(x-2) with its original domain, F'(2)=1 because F simplifies to x+2. Mark each claim true/false and justify from the original function/domain.",
+        "publicRequest": "Audit these three claims against the original real functions and domains. (A) d/dx |x|³=3x² for every real x. (B) d/dx ln((x+1)²)=2/(x+1) for every point in its real domain. (C) For F(x)=(x²-x)/x with its original domain, F'(0)=1 because F simplifies to x-1. Mark each claim true/false and justify.",
         "rubricEvidence": [
-          "Correctly rejects A using |x| and the nondifferentiable point 0."
+          "Correctly rejects A by auditing the absolute-value branches, including the derivative at 0."
         ]
       },
       {
         "claim": "Recognize differentiability at a point without assuming f' is continuous there.",
         "task": "main+transfer",
-        "publicRequest": "Audit these three claims. (A) d/dx sqrt(x²)=1 for every real x. (B) d/dx ln(x²)=2/x for every x in the real domain of ln(x²). (C) For F(x)=(x²-4)/(x-2) with its original domain, F'(2)=1 because F simplifies to x+2. Mark each claim true/false and justify from the original function/domain. | Define g(0)=0 and g(x)=x² sin(1/x) for x≠0. Determine g'(0) directly from the definition. For x≠0 derive g'(x). Does g'(x) tend to g'(0) as x→0? Explain what this shows about differentiability versus continuity of the derivative function.",
+        "publicRequest": "Audit these three claims against the original real functions and domains. (A) d/dx |x|³=3x² for every real x. (B) d/dx ln((x+1)²)=2/(x+1) for every point in its real domain. (C) For F(x)=(x²-x)/x with its original domain, F'(0)=1 because F simplifies to x-1. Mark each claim true/false and justify. | Define g(0)=0 and g(x)=x² sin(1/x) for x≠0. Determine g'(0) directly from the definition. For x≠0 derive g'(x). Does g'(x) tend to g'(0) as x→0? Explain what this shows about differentiability versus continuity of the derivative function.",
         "rubricEvidence": [
-          "Accepts B only on x≠0 and justifies the chain rule/domain.",
+          "Accepts B exactly on x≠-1 and justifies the chain rule/domain.",
           "Differentiates correctly for x≠0 with the chain factor producing -cos(1/x)."
         ]
       },
@@ -3091,26 +3091,26 @@
       {
         "claim": "Choose between definition, algebraic rule and local-linear reasoning based on the structure.",
         "task": "main",
-        "publicRequest": "Define u(x)=(x²-4)/(x-2) for x≠2 and u(2)=4, and let F(x)=e^{u(x)}. (i) Prove u'(2) from the derivative definition or the filled formula. (ii) Find F'(2). (iii) Write the first-order local model for F(2+h). (iv) Explain why changing only F(2) to 0 while keeping nearby values would destroy differentiability at 2.",
+        "publicRequest": "Define u(x)=(x³-1)/(x-1) for x≠1 and u(1)=3, and let F(x)=ln(u(x)). (i) Establish u'(1) for the actually filled function. (ii) Find F'(1). (iii) Write the first-order local model for F(1+h). (iv) Explain why changing only u(1) to 4 while keeping every nearby value unchanged would destroy differentiability of both u at 1 and ln∘u at 1.",
         "rubricEvidence": [
-          "Establishes u'(2)=1 for the actually filled function."
+          "Uses the explicit fill to establish u'(1)=3 for the actual function."
         ]
       },
       {
         "claim": "Carry domain/hypothesis information through a multi-step derivative argument.",
         "task": "main+transfer",
-        "publicRequest": "Define u(x)=(x²-4)/(x-2) for x≠2 and u(2)=4, and let F(x)=e^{u(x)}. (i) Prove u'(2) from the derivative definition or the filled formula. (ii) Find F'(2). (iii) Write the first-order local model for F(2+h). (iv) Explain why changing only F(2) to 0 while keeping nearby values would destroy differentiability at 2. | Assume a differentiable local branch y(x) satisfies x²+y²=10 near (1,3), and define Z(x)=e^{y(x)}. Find y'(1), Z'(1), and the first-order local model for Z near x=1. State one thing your calculation does not prove about the relation.",
+        "publicRequest": "Define u(x)=(x³-1)/(x-1) for x≠1 and u(1)=3, and let F(x)=ln(u(x)). (i) Establish u'(1) for the actually filled function. (ii) Find F'(1). (iii) Write the first-order local model for F(1+h). (iv) Explain why changing only u(1) to 4 while keeping every nearby value unchanged would destroy differentiability of both u at 1 and ln∘u at 1. | A one-to-one differentiable function f satisfies f(2)=5 and f'(2)=3, and its inverse g is continuous near 5. Define Z(y)=ln(g(y)+1). (i) Find g'(5). (ii) Find Z'(5). (iii) Write the first-order local model for Z(5+k). (iv) name the hypotheses used and one conclusion this local model does not supply.",
         "rubricEvidence": [
-          "Uses chain rule to obtain F'(2)=e^4 and writes the o(h) local model.",
-          "Propagates through exp to get Z'(1)=-e^3/3."
+          "Obtains F'(1)=1 and writes F(1+h)=ln3+h+o(h).",
+          "Propagates through ln to obtain Z'(5)=1/9 and the correct local model."
         ]
       },
       {
         "claim": "End with a justified first-order model while rejecting conclusions owned by later modules.",
         "task": "transfer",
-        "publicRequest": "Assume a differentiable local branch y(x) satisfies x²+y²=10 near (1,3), and define Z(x)=e^{y(x)}. Find y'(1), Z'(1), and the first-order local model for Z near x=1. State one thing your calculation does not prove about the relation.",
+        "publicRequest": "A one-to-one differentiable function f satisfies f(2)=5 and f'(2)=3, and its inverse g is continuous near 5. Define Z(y)=ln(g(y)+1). (i) Find g'(5). (ii) Find Z'(5). (iii) Write the first-order local model for Z(5+k). (iv) name the hypotheses used and one conclusion this local model does not supply.",
         "rubricEvidence": [
-          "Writes the first-order local model and states the branch-existence limitation."
+          "States the needed hypotheses and refuses an unsupported global/higher-order conclusion."
         ]
       }
     ]
@@ -3573,7 +3573,7 @@
   "initialVersionAudit": {
     "designGate": "docs/t22-course/M10-DESIGN-GATE.md",
     "legacyArc053Use": "Historical six-atomic ARC053 material was inspected only as scope inventory. New sessions/tasks were authored for the M65 route; no historical fixed answer was imported.",
-    "globalContaminationReview": "Builder reviewed all 48 fixed tasks against all 24 current lessons and intentionally separated worked/guided surfaces from Main/Transfer surfaces.",
+    "globalContaminationReview": "Builder adversarial pass repaired S05 near-isomorphism, S06 theorem-proof rehearsal, S08 number-swapped local approximation, S15 nested-surface rehearsal, S16 trig-proof leakage, S19 implicit-surface similarity, S21 formula-derivation rehearsal, S23 exact worked-audit leakage and S24 synthesis rehearsal. Fixed tasks were then rechecked against all preceding/current instruction.",
     "boundaryReview": "MVT, integration, Taylor, optimization, multivariable calculus, l’Hopital and numerical differentiation are not used as premises."
   },
   "authoringPolicy": "Original lessons and fixed assessments. Equivalent exact forms and mathematically valid alternate proofs earn full credit. A symbolic derivative without requested domain/hypothesis justification is incomplete. Local linearity claims are asymptotic unless an explicit finite error bound is separately proved.",
