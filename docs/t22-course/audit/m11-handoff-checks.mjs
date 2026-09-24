@@ -28,7 +28,7 @@ for(const doc of [handoff,verification]){
   assert(/not independent pedagogical acceptance|does \*\*not\*\* mean/i.test(doc),'handoff/verification must explicitly refuse independent acceptance');
   assert.match(doc,/M12/);
 }
-assert.match(handoff,/registered as M11.*publication route through M12/i);
+assert.match(handoff,/published as M11.*shared route through M12/i);
 assert.match(verification,/unpublished/i,'historical verification must retain the pre-publication state it actually tested');
 assert.match(handoff,/STOP for final bounded M11 confirmation/i);
 assert.match(handoff,/61.*ownership claims/i);
