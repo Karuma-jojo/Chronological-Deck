@@ -36,7 +36,7 @@ assert(fs.existsSync('course/t22/authoring/m12-side267.json'));
 assert.equal(Object.keys(contract.sessions).length,25);
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(browser.includes("T22E-CODE01"));
-assert(browser.includes("eight-module export/import"));
+assert(browser.includes("twelve-module export/import"));
 assert(browser.includes("packet exposure through M08"));
 assert(workflow.includes("actions/setup-python@v5"));
 assert(workflow.includes("node scripts/test-t22-elite-m08.mjs"));
