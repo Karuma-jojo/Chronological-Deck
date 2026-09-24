@@ -1,6 +1,6 @@
 # M09 verification and repair record
 
-Date: 2026-09-24. Status at initial implementation checkpoint: local content/math checks passed; full Actions and browser results pending. See the publication receipt appended after actual runs.
+Date: 2026-09-24. Status: builder verified and published to main. Full Actions and actual Chromium passed at the implementation SHA; see the receipt below.
 
 ## What was checked
 
@@ -55,3 +55,16 @@ The strongest synthesis is S27: the lesson uses rational envelopes, Main indepen
 The local environment initially lacked a Chromium executable. That failed launch is not a browser pass. The full GitHub workflow installs Chromium and must actually complete the browser step before publication is called verified. A workflow file or passing mathematical subset alone is insufficient. Record exact run/head/job and outcome below after inspection.
 
 No assertion here says the module is perfect or independently accepted. The deliverable is a coherent, mathematically reviewed builder checkpoint with executable regression coverage and explicit limits.
+
+## Verified publication receipt — 2026-09-24
+
+Implementation commit: `1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f`. Pushed to `codex/t22-pedagogical-rebuild`, read back, then fast-forwarded to `main` and read back. Both heads were checked before publication; main had not moved. All six accepted follow-up commits beyond the recovered main remain ancestors. Remote tree hashes verified all 19 implementation files.
+
+- Branch full T22 run: [35983499159](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983499159), job `107580669242`, **SUCCESS**.
+- Main full T22 run: [35983644114](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644114), job `107581139237`, **SUCCESS** at the exact implementation SHA.
+- Actual logs from both jobs were inspected: inherited checks, M09 mathematical/semantic/provenance checks and the real Chromium browser step all passed. Browser coverage includes every M09 lesson and task, mobile width, assistance/draft persistence, save/reveal/review, packet exposure, fresh navigation and nine-module export/import.
+- All 64 local non-browser workflow commands passed. Local Chromium was absent; browser success is the executed GitHub result, not a claim that the failed local launch passed.
+- All 40 observed workflow runs at the implementation SHA reported success, including the repository's existing main-triggered integrity and publication workflows. No T25 or SMMC source changes were made.
+- Machine-readable receipt: `docs/t22-course/audit/m09-validation-receipt.json`.
+
+A subsequent documentation-only receipt commit records these facts; the validated implementation remains the SHA above. M01–M08 canonical files and progress identifiers are preserved. M09 is builder verified, not independently accepted. **Stop here: M10 remains closed.**

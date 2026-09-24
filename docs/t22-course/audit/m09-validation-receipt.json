@@ -1,0 +1,347 @@
+{
+  "module": "M09",
+  "implementationHead": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+  "recoveredMain": "2f8bd161fc9b9a0163713ed0c7f4341879b47419",
+  "preservedBranchBase": "de020e0e7a3a37d62b0d7570512be46755b70ec2",
+  "branchRun": {
+    "id": 35983499159,
+    "job": 107580669242,
+    "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983499159",
+    "conclusion": "success"
+  },
+  "mainRun": {
+    "id": 35983644114,
+    "job": 107581139237,
+    "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644114",
+    "conclusion": "success"
+  },
+  "localNonBrowserCommands": {
+    "total": 64,
+    "failed": 0
+  },
+  "browser": "Actual Chromium workflow logs inspected on branch and main; 27 lessons/54 tasks, mobile width, assistance/drafts, save/reveal/review, packet exposure, fresh navigation and nine-module export/import passed.",
+  "observedRuns": [
+    {
+      "id": 35983643956,
+      "name": "T22 rich module 43 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643956"
+    },
+    {
+      "id": 35983644134,
+      "name": "T22 rich module 50 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644134"
+    },
+    {
+      "id": 35983643843,
+      "name": "T22 rich module 54 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643843"
+    },
+    {
+      "id": 35983643846,
+      "name": "T22 rich module 32 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643846"
+    },
+    {
+      "id": 35983644038,
+      "name": "T22 rich module 58 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644038"
+    },
+    {
+      "id": 35983643907,
+      "name": "T22 rich module 56 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643907"
+    },
+    {
+      "id": 35983644120,
+      "name": "T22 rich module 35 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644120"
+    },
+    {
+      "id": 35983644160,
+      "name": "Cloud archive and review polish checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644160"
+    },
+    {
+      "id": 35983644096,
+      "name": "T22 rich module 51 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644096"
+    },
+    {
+      "id": 35983644153,
+      "name": "T22 rich module 37 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644153"
+    },
+    {
+      "id": 35983644046,
+      "name": "T22 rich module 41 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644046"
+    },
+    {
+      "id": 35983644148,
+      "name": "T22 rich module 52 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644148"
+    },
+    {
+      "id": 35983644094,
+      "name": "T22 rich module 28 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644094"
+    },
+    {
+      "id": 35983644040,
+      "name": "T22 rich module 46 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644040"
+    },
+    {
+      "id": 35983643855,
+      "name": "T22 rich module 48 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643855"
+    },
+    {
+      "id": 35983643829,
+      "name": "T22 rich module 53 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643829"
+    },
+    {
+      "id": 35983644145,
+      "name": "T22 rich module 34 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644145"
+    },
+    {
+      "id": 35983644053,
+      "name": "T22 rich module 36 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644053"
+    },
+    {
+      "id": 35983643862,
+      "name": "T22 rich module 55 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643862"
+    },
+    {
+      "id": 35983644174,
+      "name": "T22 rich module 47 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644174"
+    },
+    {
+      "id": 35983644039,
+      "name": "T22 rich module 33 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644039"
+    },
+    {
+      "id": 35983644117,
+      "name": "T22 rich module 57 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644117"
+    },
+    {
+      "id": 35983644093,
+      "name": "T22 rich module 38 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644093"
+    },
+    {
+      "id": 35983644176,
+      "name": "T22 rich module 42 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644176"
+    },
+    {
+      "id": 35983643938,
+      "name": "T22 rich module 44 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643938"
+    },
+    {
+      "id": 35983644076,
+      "name": "T22 rich module 40 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644076"
+    },
+    {
+      "id": 35983644214,
+      "name": "T22 rich module 39 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644214"
+    },
+    {
+      "id": 35983643996,
+      "name": "T22 rich module 29 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643996"
+    },
+    {
+      "id": 35983644075,
+      "name": "T22 rich module 31 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644075"
+    },
+    {
+      "id": 35983643882,
+      "name": "T22 rich module 30 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643882"
+    },
+    {
+      "id": 35983644042,
+      "name": "T22 rich module 49 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644042"
+    },
+    {
+      "id": 35983643869,
+      "name": "T22 atomic curriculum checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643869"
+    },
+    {
+      "id": 35983644147,
+      "name": "Deploy static site to GitHub Pages",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644147"
+    },
+    {
+      "id": 35983644156,
+      "name": "T22 rich module 45 checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644156"
+    },
+    {
+      "id": 35983643925,
+      "name": "SMMC authoring checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643925"
+    },
+    {
+      "id": 35983643877,
+      "name": "Frontend integrity checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643877"
+    },
+    {
+      "id": 35983644114,
+      "name": "T22 Elite checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983644114"
+    },
+    {
+      "id": 35983643967,
+      "name": "T25 review retention checks",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983643967"
+    },
+    {
+      "id": 35983642950,
+      "name": "pages build and deployment",
+      "branch": "main",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983642950"
+    },
+    {
+      "id": 35983499159,
+      "name": "T22 Elite checks",
+      "branch": "codex/t22-pedagogical-rebuild",
+      "head": "1eb834ef93ca7ab36cc8ded0abd0cbc9479d4b0f",
+      "conclusion": "success",
+      "url": "https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/35983499159"
+    }
+  ],
+  "scope": "Builder verified; no independent pedagogical acceptance or learner mastery recertification claimed. No M10 build.",
+  "receiptPolicy": "This document pins the implementation commit. A subsequent documentation-only receipt commit has a distinct SHA; recovery must inspect the latest heads without confusing that with the implementation provenance."
+}
