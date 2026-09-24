@@ -34,8 +34,9 @@ for (const problem of ledger) {
 }
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
-expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 18, "Expected eighteen authored public problems.");
-expect(Object.keys(SMMC_EVALUATOR_V1).length === 18, "Expected eighteen authored evaluator references.");
+expect(SMMC_UNITS_V1.length === 10, "Expected ten authored SMMC units.");
+expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 20, "Expected twenty authored public problems.");
+expect(Object.keys(SMMC_EVALUATOR_V1).length === 20, "Expected twenty authored evaluator references.");
 
 for (const unit of SMMC_UNITS_V1) {
   expect(moduleIds.has(unit.moduleId), `Unknown module for ${unit.id}`);

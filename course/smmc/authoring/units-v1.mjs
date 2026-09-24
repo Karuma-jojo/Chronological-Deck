@@ -205,6 +205,30 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "justifies algebraic operations that require nonzero or sign conditions",
       "ends with the requested conclusion rather than stopping at an equivalent intermediate statement"
     ]
+  },
+  {
+    id: "S-METHOD-C1-U01",
+    moduleId: "S-METHOD-C1",
+    kind: "method",
+    orderWithinModule: 1,
+    title: "Build exhaustive cases and extract reusable lemmas",
+    t25Targets: ["A3", "F4"],
+    prerequisiteUnits: [],
+    learningNote: [
+      "Before computing, choose a case variable whose possible states cover every allowed input.",
+      "State cases so exactly one applies; assign equality and other boundary values explicitly instead of leaving them between cases.",
+      "If the same reasoning would be repeated, isolate it as a lemma, prove it once, and cite it where needed.",
+      "Prove the structural classification before doing case-specific algebra, then reassemble the cases into the exact requested conclusion.",
+      "When a problem asks for a classification, existence, uniqueness or sharpness are separate obligations: do not let solving one case stand in for closing the whole proof."
+    ].join(" "),
+    mainTaskId: "S-NEUTRAL-C1-01",
+    transferTaskId: "S-NEUTRAL-C1-02",
+    completionEvidence: [
+      "chooses an exhaustive nonoverlapping case partition with boundaries assigned",
+      "extracts and proves a reusable subclaim instead of duplicating reasoning",
+      "closes every case and reassembles the requested global statement",
+      "separates necessary and sufficient directions when giving a classification"
+    ]
   }
 ]);
 

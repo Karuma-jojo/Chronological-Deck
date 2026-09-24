@@ -553,3 +553,33 @@ Roadmap phase `research-freeze` is now `complete`; `SMMC_ENGINE_FEATURES.domainR
 CI now runs the complete ledger validator, frozen curriculum validator, dedicated domain-reconciliation validator and the existing authoring/runtime/browser/workspace checks.
 
 This closes the research-classification gate. Core bridge/method authoring is the active content-build phase; historical unlock mappings remain fail-closed until exact authored units exist.
+
+
+## Checkpoint J — case architecture + lemma extraction
+
+Added:
+
+### S-METHOD-C1-U01 — Build exhaustive cases and extract reusable lemmas
+
+Corpus motivation:
+- CASE-DECOMPOSITION is tagged on 34 problems across the full corpus;
+- LEMMA-EXTRACTION is tagged on 12;
+- the frozen curriculum therefore treats their combined signal as a high-frequency reusable method rather than a subject-specific bridge.
+
+The unit trains:
+- choosing an exhaustive, nonoverlapping outer partition;
+- assigning equality/boundary cases explicitly;
+- extracting one reusable subclaim instead of repeating local reasoning;
+- closing every case and reassembling the global result;
+- separating necessity from sufficiency in classifications.
+
+Two original neutral tasks were added:
+- max/min identities from a two-case absolute-value lemma;
+- classification of equality in |x+y|≤|x|+|y| via the split xy≥0 versus xy<0.
+
+The tasks use no historical SMMC statement, identifier or solution route. The exact historical requirement map remains unchanged: C1 is a broadly useful method unit, not a blanket prerequisite that should newly lock the corpus.
+
+Expected authored bank after this checkpoint:
+- 10 units;
+- 20 learner-facing neutral tasks;
+- 20 separate evaluator references.

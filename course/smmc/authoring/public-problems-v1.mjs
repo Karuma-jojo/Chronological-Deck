@@ -109,6 +109,18 @@ export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
     unitId: "S-METHOD-W1-U01",
     role: "transfer",
     prompt: "Let a,b,c be real numbers with a+b+c=0. Prove that a³+b³+c³=3abc. Present the argument as a complete contest proof: state where the assumption is used, justify any factorization or substitution, and close the proof with the exact required identity."
+  },
+  "S-NEUTRAL-C1-01": {
+    id: "S-NEUTRAL-C1-01",
+    unitId: "S-METHOD-C1-U01",
+    role: "main",
+    prompt: "Let x and y be real numbers. Using exactly the two cases x≥y and x<y, prove both identities max(x,y)=(x+y+|x-y|)/2 and min(x,y)=(x+y-|x-y|)/2. First isolate the behavior of |x-y| as a reusable lemma, use it for both identities, and state explicitly why the two cases are exhaustive, nonoverlapping, and include the boundary x=y."
+  },
+  "S-NEUTRAL-C1-02": {
+    id: "S-NEUTRAL-C1-02",
+    unitId: "S-METHOD-C1-U01",
+    role: "transfer",
+    prompt: "Classify exactly all real pairs (x,y) for which |x+y|=|x|+|y|. Your final answer must be an if-and-only-if condition. Use the exhaustive nonoverlapping split xy≥0 versus xy<0, handle zero within that architecture, extract a reusable lemma showing that opposite nonzero signs force strict inequality, and prove both directions of the classification."
   }
 });
 

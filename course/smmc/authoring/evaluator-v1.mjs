@@ -243,6 +243,36 @@ export const SMMC_EVALUATOR_V1 = Object.freeze({
       "Must justify the factorization, either by expansion or by a previously established algebraic identity.",
       "Must finish with the requested equality and not stop at an unexplained zero product."
     ]
+  },
+  "S-NEUTRAL-C1-01": {
+    reference: [
+      "Lemma: if x≥y then x-y≥0, so |x-y|=x-y; if x<y then x-y<0, so |x-y|=y-x.",
+      "The cases x≥y and x<y are exhaustive and disjoint, and x=y belongs to the first case.",
+      "If x≥y, substituting |x-y|=x-y gives (x+y+x-y)/2=x=max(x,y) and (x+y-x+y)/2=y=min(x,y).",
+      "If x<y, substituting |x-y|=y-x gives (x+y+y-x)/2=y=max(x,y) and (x+y-y+x)/2=x=min(x,y).",
+      "Since both formulas hold in every case, the two identities hold for all real x,y."
+    ].join(" "),
+    rubric: [
+      "Must state why x≥y and x<y are exhaustive, nonoverlapping, and place x=y explicitly.",
+      "Must prove the absolute-value lemma once and reuse it rather than silently assuming both formulas.",
+      "Must verify both max and min identities in both cases.",
+      "Must reassemble the cases into a global conclusion for all real x,y."
+    ]
+  },
+  "S-NEUTRAL-C1-02": {
+    reference: [
+      "Claim: |x+y|=|x|+|y| if and only if xy≥0.",
+      "First suppose xy≥0. Then x and y have the same weak sign: either both are nonnegative or both are nonpositive, with zero included. In the nonnegative case |x+y|=x+y=|x|+|y|; in the nonpositive case |x+y|=-(x+y)=(-x)+(-y)=|x|+|y|.",
+      "For the opposite-sign case, prove the lemma: if a,b>0 then |a-b|<a+b. If a≥b, then |a-b|=a-b<a+b because b>0; the case b>a is symmetric.",
+      "Now if xy<0, x and y are nonzero with opposite signs. Put a=|x| and b=|y|. Then |x+y|=|a-b|<a+b=|x|+|y|, so equality is impossible.",
+      "Therefore equality implies xy is not negative, hence xy≥0; together with the first direction this proves the classification."
+    ].join(" "),
+    rubric: [
+      "Must state the final classification as the iff condition xy≥0.",
+      "Must make xy≥0 versus xy<0 the exhaustive nonoverlapping outer split and account for zero.",
+      "Must prove a strict opposite-sign lemma rather than merely assert triangle-inequality equality conditions.",
+      "Must prove both sufficiency and necessity and close the iff."
+    ]
   }
 });
 
