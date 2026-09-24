@@ -22,13 +22,13 @@ assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'validation'
 assert.deepEqual(road.modules.find(x=>x.id==='T22E-MKT01').prerequisites,['T22E-FND01','T22E-FND02','T22E-TRD01']);
 assert.equal(sem.entries.find(x=>x.id==='T22E-MKT01').semanticStatus,'boundary-accepted-content-candidate');
 assert(meta.moduleSources.some(x=>x.order===7&&x.id==='T22E-MKT01'&&x.source==='course/t22/authoring/m07.json'));
-assert(!meta.moduleSources.some(x=>x.order>=8));
+assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'));\nassert(!meta.moduleSources.some(x=>x.order>=9));
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
-assert(browser.includes("T22E-MKT01")&&browser.includes("seven-module export/import"));
-assert(!fs.existsSync('course/t22/authoring/m08.json'),'M08 must remain closed');
+assert(browser.includes("T22E-MKT01")&&browser.includes("T22E-CODE01")&&browser.includes("eight-module export/import"));
+assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized; historical M07 handoff stop text remains provenance');
 for(const token of ['M07-RESOLUTION.md','m07-authoring-astra-r1','m07-instruction-astra-r1','all120','10 changed fixed assessment','five changed ownership','a0f76357f5e36de6e77799e2a30707c950ce1060','35952806534','107484744356','M08 CLOSED','Astra'])assert(hand.includes(token),token);
 for(const token of ['C-01','C-02','C-03','C-04','Capability discrimination','Prompt ↔ rubric fairness'])assert(audit.includes(token),token);
 assert(fs.existsSync('docs/t22-course/M07-RESOLUTION.md'));
 assert(fs.existsSync('docs/t22-course/audit/m07-semantic-contract.json'));
 assert(fs.existsSync('docs/t22-course/audit/m07-astra-repair-checks.mjs'));
-console.log('PASS M07 handoff: 24/48/120 Astra-repair candidate, reviewed semantic contract, shared evidence key, seven-module runtime integration and hard M08 stop.');
+console.log('PASS M07 handoff: 24/48/120 Astra-repair candidate, reviewed semantic contract, shared evidence key, historical seven-module checkpoint retained; later-authorized M08 runtime integration verified separately.');
