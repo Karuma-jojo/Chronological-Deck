@@ -13,7 +13,7 @@ near(((4.001**2+2*4.001)-(4**2+2*4))/0.001,10.001,1e-9);
 has(1,'main','10+h','instantaneous rate is 10');
 has(1,'transfer','2+h','local rate is 2');
 has(2,'main','x+2','7+h','7');
-has(2,'transfer',"g'(2)=1","k'(2)");
+has(2,'transfer',"g'(2)=1",'For k','no finite two-sided limit');
 near(3*2**2-2,10);
 has(3,'main',"s'(2)=10",'m/s','y=4+10(t-2)');
 has(3,'transfer','30 dollars per unit','22 dollars per unit');
