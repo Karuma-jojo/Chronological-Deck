@@ -1,3 +1,17 @@
+# Current M07 v1.1 retrospective repair — 2026-09-24
+
+User explicitly authorized repair of M07 after identifying that the original module was not constructed with the later stepwise methodology. Recovered branch head before retrofit: `546103699478051ba58b82475a11156e3bed3ae9`; full T22 workflow `36017308549` was green there. Retrospective design gate committed at `239d1e24bb6d793b1116cda29deb15ae77b451f8`.
+
+The v1.1 design reconstruction preserves the sound post-Astra market-mechanics spine but does not privilege the historical 24-session count. Boundary/source/support/pedagogy/dependency/distinction/misconception/representation/downstream/sizing passes independently conclude **KEEP 24**.
+
+Implementation scope is bounded: all 48 fixed tasks and lessons stay unchanged; S02 C1–C3 and S20 C4 ownership wording is narrowed; source/support/pedagogy ledgers and honest evidence-distance labels are added; semantic/canonical/serialization guards are strengthened. No obligationVersion changes. M08–M11 and main are untouched.
+
+Exact-head verification is now complete at `0c66088d7a1cc65614aae1b4ac7e18671d806f17`: T22 Elite run `36027608844`, job `107728006706`, **SUCCESS**. Logs inspected: M07 independent mathematics and v1.1 protocol guards PASS; M09–M11 preservation gates PASS after explicit authorized rebase; Chromium and real browser evidence workflows PASS.
+
+**Current next gate: separate bounded M07 independent confirmation only. Do not call M07 independently frozen from this self-repair.**
+
+---
+
 # Current M09 build — 2026-09-24
 
 User accepted M01–M08 as the baseline and explicitly authorized M09 start-to-finish plus push to main. Historical stop/no-main statements below are retained as history and superseded for this M09 assignment only. M10 remains closed. No T25/SMMC/legacy progress changes.
@@ -447,3 +461,36 @@ Exported `docs/t22-course/packets/T22-Elite-M01-S02-Compiled-Engine-Prompt.md` f
 ## Local verification before implementation push
 
 All46 non-browser commands in the updated full workflow passed on2026-09-23 (syntax plus structural, mathematical, semantic, evidence-provenance and handoff checks). `git diff --check` passed. Local browser launch was attempted and failed solely because Chromium is not installed. Remote full-suite browser validation subsequently succeeded in run35917978076. The stale M03 progression guard was advanced without changing accepted module content.
+
+
+## M11 builder-verified review handoff — current authority
+
+M11 · `ARC510` was built from the recovered M09→M10 endpoint using the full pre-authoring protocol. The design graph produced **20 sessions**; no predecessor session count was inherited.
+
+Final authored surface: **20 sessions / 40 fixed Main+Transfer tasks / 61 post-audit observable ownership claims**. All claims were semantically re-audited against public requests and rubric rows; four were narrowed, S10/S11 MVT hypotheses were repaired, S04's exceptional-point tagged-sum bound was corrected to the endpoint-safe two-adjacent-interval case, and S19 Main was replaced after detecting guided-practice contamination.
+
+Validated implementation: `136ca2c647f2c23a39b40390eaed40efa6df3bff`. Full T22 Elite run `36009416136`, job `107665945138`, **SUCCESS**, including M11 semantic/evidence checks, independent math, all inherited M01–M10 regressions, Chromium, existing course browser checks and the M11 unpublished-boundary browser test. The 99-file pre-M11 canonical/runtime baseline remained unchanged.
+
+Review packet: `docs/t22-course/M11-REVIEW-HANDOFF.md`. Verification detail: `docs/t22-course/M11-VERIFICATION.md`.
+
+**M11 is builder-verified and unpublished, not independently pedagogically accepted. STOP before M12.**
+
+
+## M11 bounded independent-review repairs — current authority
+
+The independent review of builder-verified M11 recommended a bounded repair with no rebuild and no session-count change. The repair implementation is `645c3d4c96ccdf1b2ad6120f63940d388077e7e9`.
+
+Closed findings include: S19's real-truncation comparison proof now uses M09's supremum mechanism instead of its sequence-only theorem; stale pilot `boundary.owns` / `module.gate` metadata are replaced; S02-C1, S03-C1 and S04-C1 are narrowed to literal fixed-task observability; S17-C3 is remapped to the finite-truncation rubric observer; S01/S02/S05/S06/S09/S13/S14/S19 Main evidence is recalibrated to retrieval; S06/S07 surface Riemann closure facts; S06 explicitly situates geometric area; S01 literal newline serialization is repaired; Lebl §5.2 and MAA IPG are added to provenance.
+
+Full run `36015062169`, job `107685344598`: **SUCCESS**, including inherited M01–M10 regressions, repaired M11 semantic/evidence checks, independent mathematics, Chromium and both browser workflows. M11 remains unregistered/unpublished.
+
+Final-confirmation handoff: `docs/t22-course/M11-REVIEW-HANDOFF.md`.
+
+**STOP for bounded final M11 confirmation. M12 remains closed.**
+
+
+## M11 resolution note — 2026-09-24
+
+Added `docs/t22-course/M11-RESOLUTION.md` for consistency with prior repaired modules. It records the bounded independent-review findings, exact dispositions, repair checkpoint `645c3d4c96ccdf1b2ad6120f63940d388077e7e9`, successful runs `36015062169` and `36015805901`, architecture/task preservation, and the independent follow-up's conclusion that no substantive defect from the reported audit remains.
+
+This is documentation-only closure. No M11 lesson, task, rubric, ownership claim or mathematical boundary changed.

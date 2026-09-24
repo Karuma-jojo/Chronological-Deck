@@ -1,5 +1,5 @@
 {
-  "version": "T22E-course-0.9.0-m09-builder-verified",
+  "version": "T22E-course-0.12.0-through-m12-publication",
   "routeVersion": "M65-semantic-r2-2026-09-18",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
@@ -110,6 +110,24 @@
       "id": "SIDE263",
       "sourceType": "authoring-pack",
       "source": "course/t22/authoring/m09.json"
+    },
+    {
+      "order": 10,
+      "id": "ARC053",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m10-arc053.json"
+    },
+    {
+      "order": 11,
+      "id": "ARC510",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m11-arc510.json"
+    },
+    {
+      "order": 12,
+      "id": "SIDE267",
+      "sourceType": "authoring-pack",
+      "source": "course/t22/authoring/m12-side267.json"
     }
   ]
 }

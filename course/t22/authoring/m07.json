@@ -1,14 +1,14 @@
 {
-  "version": "m07-authoring-astra-r1",
+  "version": "m07-authoring-v1.1-r2",
   "instructionVersion": "m07-instruction-astra-r1",
   "module": {
     "order": 7,
     "id": "T22E-MKT01",
     "title": "Markets 0 — Prices, Returns & Trading Mechanics",
-    "status": "authored-astra-repaired-awaiting-independent-followup",
+    "status": "authored-v1.1-retrofitted-awaiting-independent-confirmation",
     "destination": "Read and audit a basic market record: separate price/cash flow/payoff, compute simple/gross/log/total returns, keep long/short P&L signs straight, interpret quotes/orders/fills, aggregate executions, and reconcile a small cash/position/P&L ledger without importing later microstructure or asset-pricing theory.",
-    "gate": "Page completion is not clearance. Every owned market-mechanics capability must be publicly elicited and scored, fixed assessments must remain distinct from instruction, and evidence must preserve exposure/version provenance.",
-    "nextBoundary": "M08 owns programming/simulation. Deep market-data engineering, microstructure, asset pricing, portfolio construction and execution optimization remain much later."
+    "gate": "Retrospective v1.1 design reconstruction passed: the 24-session architecture is justified by explicit dependencies, distinctions, misconception targets and source roles. Every ownership claim must be literally observable, evidence distance must be labelled honestly, support conventions must be visible before use, and fixed tasks remain protected by semantic/separation/provenance guards.",
+    "nextBoundary": "M08 owns programming/simulation. Deep market-data engineering, microstructure, asset pricing, portfolio construction and execution optimization remain later owners; this retrofit does not reopen M08-M11."
   },
   "boundary": {
     "prerequisiteModules": [
@@ -48,9 +48,13 @@
     ]
   },
   "coverageAudit": {
-    "version": "m07-observability-astra-r1-2026-09-24",
-    "status": "120/120 claims re-audited against explicit public requests and exact semantic rubric evidence after independent review",
-    "policy": "Claim evidence is governed by docs/t22-course/audit/m07-semantic-contract.json. Claims may use Main or Transfer and multiple rubric rows. A separate mutation test proves that a wrong-but-existing criterion is rejected; structural membership alone is not semantic acceptance."
+    "designGate": "docs/t22-course/M07-DESIGN-GATE.md",
+    "version": "m07-observability-v1.1-r2-2026-09-24",
+    "status": "120/120 claims re-read under literal public observability after retrospective v1.1 design reconstruction; two wording overclaims narrowed, no fixed assessment rewritten",
+    "pedagogicalAtoms": 24,
+    "authoredSessions": 24,
+    "ownershipClaimCount": 120,
+    "note": "Counts are descriptive, not quotas. Session count survived a fresh split/merge audit rather than being inherited from the historical bulk build."
   },
   "sessions": [
     {
@@ -108,9 +112,9 @@
         "M01 signed arithmetic"
       ],
       "requiredOwnership": [
-        "Define an order as an instruction rather than an execution.",
-        "Define a quote as displayed market information rather than a completed trade.",
-        "Define a fill/trade as an executed quantity at an execution price.",
+        "Identify and distinguish an order as an instruction rather than an execution.",
+        "Identify and distinguish a quote as displayed market information rather than a completed trade.",
+        "Identify and distinguish a fill/trade as an executed quantity at an execution price.",
         "Compute the unfilled remainder of a partially filled order.",
         "Update a signed position from the executed quantity rather than the submitted quantity."
       ],
@@ -850,7 +854,7 @@
         "Compute gross price P&L before fees.",
         "Sum explicit entry and exit fees exactly as supplied.",
         "Compute net P&L=gross P&L−explicit fees.",
-        "Keep fee units separate from percentage-return units.",
+        "Treat supplied fees as currency costs in the net-P&L calculation rather than as percentage-return quantities.",
         "Avoid inventing spread/impact/borrow costs when they are not part of the stated task."
       ],
       "applicationScope": "Basic market arithmetic and mechanics under explicitly stated prices, quantities, quotes, fills, cash flows and accounting conventions.",
@@ -3088,7 +3092,7 @@
     ],
     "T22V3::T22E-MKT01::S02@1": [
       {
-        "claim": "Define an order as an instruction rather than an execution.",
+        "claim": "Identify and distinguish an order as an instruction rather than an execution.",
         "task": "main",
         "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
@@ -3096,7 +3100,7 @@
         ]
       },
       {
-        "claim": "Define a quote as displayed market information rather than a completed trade.",
+        "claim": "Identify and distinguish a quote as displayed market information rather than a completed trade.",
         "task": "main",
         "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
@@ -3104,7 +3108,7 @@
         ]
       },
       {
-        "claim": "Define a fill/trade as an executed quantity at an execution price.",
+        "claim": "Identify and distinguish a fill/trade as an executed quantity at an execution price.",
         "task": "main",
         "publicRequest": "A quote is displayed at 99 bid / 101 ask. You start with position −2 and submit an order to buy 12 units. Seven units execute at 101.00 and the remaining five do not execute yet. Identify the order quantity, quote, fill quantity and fill price; compute the unfilled remainder and the new signed position. Explain why the submitted quantity 12 must not be used as if all 12 traded.",
         "rubricEvidence": [
@@ -3874,7 +3878,7 @@
         ]
       },
       {
-        "claim": "Keep fee units separate from percentage-return units.",
+        "claim": "Treat supplied fees as currency costs in the net-P&L calculation rather than as percentage-return quantities.",
         "task": "main",
         "publicRequest": "A long position of25 units is bought at40 and sold at42. Explicit commission is2 on entry and2 on exit. Compute gross price P&L, total explicit fees and net P&L. State why you do not add an impact or borrow cost that the task never supplied.",
         "rubricEvidence": [
@@ -4506,107 +4510,300 @@
     }
   },
   "semanticSeparationAudit": {
-    "version": "m07-semantic-separation-cerberus-v1",
+    "version": "m07-v1.1-retrofit-2026-09-24",
     "sessions": {
       "T22V3::T22E-MKT01::S01@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S01: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S02@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer reverses buy/sell direction and starting inventory, so the learner reconstructs order-versus-fill and signed-position logic."
+        },
         "note": "Post-review separation/observability pass for S02: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S03@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S03: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S04@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S04: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S05@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S05: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S06@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson already derives log-return additivity; Main reconstructs the same proof mechanism on fresh prices."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S06: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S07@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S07: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S08@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S08: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S09@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S09: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S10@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S10: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S11@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to a short signed quantity, forcing separation of negative exposure, positive notional, underlying return and short P&L."
+        },
         "note": "Post-review separation/observability pass for S11: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S12@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S12: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S13@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S13: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S14@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S14: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S15@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer reverses to a market sell and requires reconstructing quote-reference deviation on the opposite side."
+        },
         "note": "Post-review separation/observability pass for S15: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S16@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer reverses from buy-limit/ask logic to sell-limit/bid logic with the inequality direction changed."
+        },
         "note": "Post-review separation/observability pass for S16: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S17@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer starts from a nonzero long position and sell fills, so cumulative fill state must be separated from signed inventory."
+        },
         "note": "Post-review separation/observability pass for S17: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S18@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S18: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S19@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer supplies a flawed average-cost ledger and requires diagnosis/reconstruction rather than another routine partial-close calculation."
+        },
         "note": "Post-review separation/observability pass for S19: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S20@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S20: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S21@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer supplies a false cost decomposition and requires separating spread loss from explicit commission."
+        },
         "note": "Post-review separation/observability pass for S21: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S22@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer reverses to sells from a long position and contains an exact close followed by opening the opposite side."
+        },
         "note": "Post-review separation/observability pass for S22: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S23@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies or retrieves the immediately/previously taught capability on new data; changed numbers or market story do not make the evidence fresh."
+        },
+        "transfer": {
+          "classification": "retrieval",
+          "reason": "The task is useful parallel application/practice, but its core decision structure is substantially the same as taught/Main material; new constants/context alone are not classified as transfer."
+        },
         "note": "Post-review separation/observability pass for S23: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       },
       "T22V3::T22E-MKT01::S24@1": {
-        "status": "astra-r1-builder-repaired",
+        "status": "v1.1-retrofit-reviewed",
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main independently combines order eligibility, fills, weighted execution, mark, executable exit, fees and reconciliation; no earlier fixed task combines this obligation set."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer supplies a partly wrong integrated ledger and requires identifying which lines are correct and which must be reconstructed."
+        },
         "note": "Post-review separation/observability pass for S24: current lesson data are distinct from fixed tasks; claim evidence follows the external semantic contract and may use Main/Transfer or multiple rows. Historical solved/practice overlaps are preserved separately where applicable."
       }
-    }
+    },
+    "policy": "Compare every fixed task against current/earlier M07 instruction and legal prerequisites. Evidence distance is descriptive: retrieval, proof reconstruction, fresh Main evidence, or changed-surface Transfer. A task named Transfer is not automatically classified as transfer."
   },
-  "authoringPolicy": "Original T22 Elite M07 material. Teach market arithmetic and operational vocabulary before later research; state conventions; keep price/return/P&L units distinct; never imply market/limit fills are guaranteed; do not smuggle in microstructure, execution optimization, no-arbitrage, portfolio theory or data engineering.",
+  "authoringPolicy": "Original T22 Elite M07 material, retrofitted under the v1.1 boundary/source/support/pedagogy protocol. Teach market objects and arithmetic before later research; state chosen conventions and object types; keep price/return/P&L units distinct; label frozen-quote/average-cost/unlevered-ledger assumptions; never imply market/limit fills are guaranteed; do not smuggle in microstructure, execution optimization, no-arbitrage, portfolio theory, data engineering or jurisdiction-specific trading law.",
   "initialVersionAudit": {
     "policy": "New M07 module: all fixed assessment obligations begin at version1; stable IDs are new and no historical M07 lesson/task exposure exists in the T22 Elite evidence store at authoring time. Later changes must version affected assessment or instruction contracts rather than recertify old evidence."
   },
@@ -4666,5 +4863,422 @@
     ],
     "lessonOnlySessionIds": [],
     "fixedAssessmentChanges": []
+  },
+  "sourceLedger": {
+    "checked": "2026-09-24",
+    "designGate": "docs/t22-course/M07-DESIGN-GATE.md",
+    "policy": "Sources have assigned epistemic roles. Repository boundaries own curriculum scope; university/open finance sources compare route and notation; regulator/investor-education sources ground generic order terminology; MAA/IES and domain-specific studies constrain pedagogy. No source is cited decoratively and no external source overrides later T22 ownership.",
+    "sources": [
+      {
+        "id": "REPO-M07",
+        "source": "T22 M65 skeleton + m65.dependencies.json + M07 boundary/review/resolution",
+        "type": "repository contract",
+        "epistemicRole": "curriculum authority",
+        "sections": "M07 prerequisites, owned/deferred capability lists and downstream owners",
+        "supports": "exact M07 boundary and future-module ownership",
+        "populationContext": null,
+        "limitations": "Repository contract is a design authority, not external empirical validation.",
+        "notImported": "No legacy rich-module ordering is treated as canonical."
+      },
+      {
+        "id": "MIT-15401",
+        "source": "https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/pages/video-lectures-and-slides/risk-and-return/",
+        "type": "course",
+        "epistemicRole": "canonical university route comparator",
+        "sections": "Risk and Return lecture route within Finance Theory I",
+        "supports": "conventional return language and separation of elementary return arithmetic from deeper risk/portfolio/valuation theory",
+        "populationContext": null,
+        "limitations": "Course sequence is broader and more advanced than M07.",
+        "notImported": "CAPM, portfolio theory, valuation, derivatives and empirical return modelling."
+      },
+      {
+        "id": "OS-FIN-151",
+        "source": "https://openstax.org/books/principles-finance-2e/pages/15-1-risk-and-return-to-an-individual-asset",
+        "type": "textbook",
+        "epistemicRole": "broad coverage and notation comparator",
+        "sections": "§15.1 Risk and Return to an Individual Asset",
+        "supports": "dollar versus percentage return, holding-period return, dividends/capital gain and initial-base denominator",
+        "populationContext": null,
+        "limitations": "Open textbook coverage is broader than the M07 contract.",
+        "notImported": "annualization, expected-return theory, portfolio/risk machinery."
+      },
+      {
+        "id": "SEC-ORDER",
+        "source": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14",
+        "type": "primary market authority",
+        "epistemicRole": "generic order-mechanics terminology authority",
+        "sections": "Understanding Order Types; market and limit orders, partial fills and execution-price uncertainty",
+        "supports": "market order has no fixed execution-price guarantee; buy/sell limit inequalities; limit fill is not guaranteed",
+        "populationContext": null,
+        "limitations": "U.S. investor education; not an Indian-law or venue-specific authority.",
+        "notImported": "jurisdiction-specific regulation, routing, queue priority, depth or best-execution doctrine."
+      },
+      {
+        "id": "SEC-EXEC",
+        "source": "https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/executing-order",
+        "type": "primary market authority",
+        "epistemicRole": "quote-versus-execution comparator",
+        "sections": "Executing an Order",
+        "supports": "execution is not instantaneous and displayed prices can differ from eventual execution",
+        "populationContext": null,
+        "limitations": "Generic U.S. market explanation.",
+        "notImported": "routing algorithms, impact attribution and venue microstructure."
+      },
+      {
+        "id": "SEC-BIDASK",
+        "source": "https://www.investor.gov/introduction-investing/investing-basics/glossary/ask-price",
+        "type": "primary market authority",
+        "epistemicRole": "quote terminology authority",
+        "sections": "Ask Price / bid-ask glossary material",
+        "supports": "bid/ask side meanings and quoted spread",
+        "populationContext": null,
+        "limitations": "Glossary-level terminology only.",
+        "notImported": "claim that midquote is universally executable or a fair-value estimator."
+      },
+      {
+        "id": "SEC-SHORT",
+        "source": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-51",
+        "type": "primary market authority",
+        "epistemicRole": "short-sale terminology authority",
+        "sections": "An Introduction to Short Sales; borrow/sell then repurchase-to-return mechanism",
+        "supports": "bounded novice bridge for short/cover and the price-only short P&L cash-flow sign",
+        "populationContext": null,
+        "limitations": "U.S. regulatory/investor context; M07 uses a deliberately simplified model.",
+        "notImported": "margin, locate/borrow regulation, detailed fees, recalls or full risk doctrine."
+      },
+      {
+        "id": "FINRA-ORDER",
+        "source": "https://www.finra.org/investors/investing/investment-products/stocks/order-types",
+        "type": "primary/industry-regulatory comparator",
+        "epistemicRole": "independent order-semantics cross-check",
+        "sections": "Order Types",
+        "supports": "market/limit order execution and price-uncertainty distinctions",
+        "populationContext": null,
+        "limitations": "U.S. securities context.",
+        "notImported": "venue-specific execution rules or queue models."
+      },
+      {
+        "id": "MAA-IPG",
+        "source": "https://maa.org/resource/instructional-practices-guide/",
+        "type": "pedagogy guide",
+        "epistemicRole": "general undergraduate-mathematics pedagogy baseline",
+        "sections": "Instructional Practices Guide: classroom, assessment and design practices",
+        "supports": "alignment, engagement, explanation and assessment design",
+        "populationContext": "undergraduate mathematics practice guide",
+        "limitations": "General baseline; not an empirical validation of M07.",
+        "notImported": "No recommendation is treated as proof that T22 improves learning."
+      },
+      {
+        "id": "IES-WWC",
+        "source": "https://ies.ed.gov/ncee/wwc/practiceguide/1",
+        "type": "pedagogy guide",
+        "epistemicRole": "general learning-evidence baseline",
+        "sections": "Organizing Instruction and Study",
+        "supports": "worked-example/problem alternation, representation links, retrieval and explanatory questions",
+        "populationContext": "recommendations span K–postsecondary evidence bases; ratings vary by recommendation",
+        "limitations": "Not direct experimental evidence for this adult T22 learner.",
+        "notImported": "No K–8 result is presented as direct adult-quant evidence."
+      },
+      {
+        "id": "PED-SAWATZKI",
+        "source": "https://eric.ed.gov/?id=EJ1132888",
+        "type": "empirical math-ed research",
+        "epistemicRole": "domain-specific financial-literacy task-design evidence",
+        "sections": "Sawatzki 2017, Lessons in financial literacy task design",
+        "supports": "tasks should fit circumstance, remain accessible/challenging and have coherent pedagogical architecture; unfamiliar-but-imaginable contexts can be productive",
+        "populationContext": "14 teachers and more than 300 Year 5/6 students in Darwin, Australia",
+        "limitations": "School-age context; principles transferred cautiously.",
+        "notImported": "No prevalence or causal claim is generalized to adult quant learners."
+      },
+      {
+        "id": "PED-NGU",
+        "source": "https://doi.org/10.1080/0020739X.2018.1494860",
+        "type": "empirical math-ed research",
+        "epistemicRole": "percentage-change representation evidence",
+        "sections": "Ngu 2019, solution representations in percentage-change problems",
+        "supports": "representation choice and complexity matter; equation-based structure can reduce cognitive burden in percentage-change work",
+        "populationContext": "20 pre-service primary teachers",
+        "limitations": "Small sample and non-quant-professional population.",
+        "notImported": "No claim that one representation is universally optimal."
+      },
+      {
+        "id": "PED-PERCENT",
+        "source": "https://eric.ed.gov/?id=EJ1105176",
+        "type": "empirical math-ed research",
+        "epistemicRole": "percentage misconception evidence",
+        "sections": "Cincinatus & Sheffet 2016",
+        "supports": "base/denominator and procedural-transfer misconceptions motivate explicit starting-price contrasts",
+        "populationContext": "17 pre-service mathematics teachers; motivating grade-8 lesson context",
+        "limitations": "Small non-random sample.",
+        "notImported": "No population-wide misconception rate."
+      }
+    ]
+  },
+  "supportFactLedger": [
+    {
+      "id": "SF01",
+      "result": "Price return uses the starting price as denominator.",
+      "firstUse": "S03",
+      "alreadyOwned": "M01 owns ratios/percentages, not market return.",
+      "source": "OS-FIN-151 + local derivation",
+      "objectType": "dimensionless return from two positive price observations",
+      "hypotheses": "starting price P0>0",
+      "treatment": "derive locally",
+      "futureBoundary": "does not import statistical return modelling"
+    },
+    {
+      "id": "SF02",
+      "result": "G=P1/P0=1+R.",
+      "firstUse": "S04",
+      "alreadyOwned": "No",
+      "source": "independently derived from S03",
+      "objectType": "gross-return factor",
+      "hypotheses": "P0>0",
+      "treatment": "prove algebraically",
+      "futureBoundary": "elementary identity only"
+    },
+    {
+      "id": "SF03",
+      "result": "Sequential simple returns compound through the product of gross factors.",
+      "firstUse": "S05",
+      "alreadyOwned": "No",
+      "source": "independently derived",
+      "objectType": "finite sequence of period return factors",
+      "hypotheses": "stated sequence has no intervening external cash flow in the simplified price-growth model",
+      "treatment": "derive locally",
+      "futureBoundary": "no stochastic return process"
+    },
+    {
+      "id": "SF04",
+      "result": "g=ln(P1/P0), g=ln(1+R), R=e^g-1 and R>-1 for strictly positive endpoints.",
+      "firstUse": "S06-S07",
+      "alreadyOwned": "M02 owns log/exp algebra and domains.",
+      "source": "M02 + local derivation",
+      "objectType": "one-period log/simple return conversion",
+      "hypotheses": "P0>0 and P1>0",
+      "treatment": "derive locally",
+      "futureBoundary": "no distributional/asymptotic log-return theory"
+    },
+    {
+      "id": "SF05",
+      "result": "A supplied per-unit cash distribution enters the stated holding-period total return once.",
+      "firstUse": "S08",
+      "alreadyOwned": "No",
+      "source": "OS-FIN-151 comparator + stated model",
+      "objectType": "holding-period cash-flow return",
+      "hypotheses": "one explicitly supplied distribution under the task convention",
+      "treatment": "state and derive",
+      "futureBoundary": "not a valuation model"
+    },
+    {
+      "id": "SF06",
+      "result": "Price-only P&L=q(P1-P0) under the signed-position convention.",
+      "firstUse": "S09",
+      "alreadyOwned": "No",
+      "source": "chosen T22 ledger convention + algebra",
+      "objectType": "currency P&L",
+      "hypotheses": "signed quantity q; only stated price move; exclusions visible",
+      "treatment": "state and derive",
+      "futureBoundary": "no leverage/margin model"
+    },
+    {
+      "id": "SF07",
+      "result": "A simplified short sells borrowed units first and covers by repurchasing them; price-only P&L=q(P0-P1) for q>0 shorted.",
+      "firstUse": "S10",
+      "alreadyOwned": "No",
+      "source": "SEC-SHORT + local cash-flow derivation",
+      "objectType": "simplified short position cash flow",
+      "hypotheses": "borrow/margin/distribution/fee mechanics excluded unless supplied",
+      "treatment": "state bounded mechanism and derive sign",
+      "futureBoundary": "no short-sale regulation unit"
+    },
+    {
+      "id": "SF08",
+      "result": "A mark is a supplied valuation input for open inventory, not a new cash event.",
+      "firstUse": "S09",
+      "alreadyOwned": "No",
+      "source": "chosen T22 ledger convention",
+      "objectType": "valuation input",
+      "hypotheses": "open inventory and supplied mark",
+      "treatment": "state before use and recur in S12/S23",
+      "futureBoundary": "no accounting/data-feed theory"
+    },
+    {
+      "id": "SF09",
+      "result": "Realized/unrealized calculations use the explicitly stated average-cost convention.",
+      "firstUse": "S12",
+      "alreadyOwned": "No",
+      "source": "chosen T22 accounting convention",
+      "objectType": "inventory bookkeeping convention",
+      "hypotheses": "average-cost tasks only",
+      "treatment": "state before each family",
+      "futureBoundary": "other accounting conventions not claimed"
+    },
+    {
+      "id": "SF10",
+      "result": "Bid is displayed buy-side price, ask displayed sell-side price; spread=ask-bid.",
+      "firstUse": "S13",
+      "alreadyOwned": "No",
+      "source": "SEC-BIDASK",
+      "objectType": "two-sided quote",
+      "hypotheses": "basic displayed non-crossed quote where stated",
+      "treatment": "define locally",
+      "futureBoundary": "no depth/priority"
+    },
+    {
+      "id": "SF11",
+      "result": "Under the explicit frozen-quote model, immediate buy uses ask and immediate sell uses bid.",
+      "firstUse": "S14",
+      "alreadyOwned": "No",
+      "source": "chosen didactic model anchored in bid/ask meanings",
+      "objectType": "mechanical two-leg execution model",
+      "hypotheses": "quote unchanged and sufficient for stated quantity",
+      "treatment": "label as model before arithmetic",
+      "futureBoundary": "not a universal execution theorem"
+    },
+    {
+      "id": "SF12",
+      "result": "A market order does not set a fixed execution price; a prior quote is not a guaranteed fill.",
+      "firstUse": "S15",
+      "alreadyOwned": "No",
+      "source": "SEC-ORDER + SEC-EXEC + FINRA-ORDER",
+      "objectType": "generic order instruction",
+      "hypotheses": "generic market-order semantics",
+      "treatment": "source-supported statement",
+      "futureBoundary": "routing/impact attribution deferred"
+    },
+    {
+      "id": "SF13",
+      "result": "Buy limit executions respect price≤L; sell limit executions respect price≥L; eligible price does not guarantee a fill.",
+      "firstUse": "S16",
+      "alreadyOwned": "No",
+      "source": "SEC-ORDER + FINRA-ORDER",
+      "objectType": "generic limit-order instruction",
+      "hypotheses": "generic limit-order semantics",
+      "treatment": "source-supported statement",
+      "futureBoundary": "queue/depth/fill probability deferred"
+    },
+    {
+      "id": "SF14",
+      "result": "Orders may receive partial fills; cancellation removes only the unfilled remainder in the simplified ledger.",
+      "firstUse": "S17",
+      "alreadyOwned": "S02 owns order versus fill.",
+      "source": "SEC-ORDER + local lifecycle convention",
+      "objectType": "order/fill state",
+      "hypotheses": "stated fills are executed and persistent",
+      "treatment": "state before lifecycle arithmetic",
+      "futureBoundary": "venue priority deferred"
+    },
+    {
+      "id": "SF15",
+      "result": "Quantity-weighted average execution price equals total executed value divided by total executed quantity.",
+      "firstUse": "S18",
+      "alreadyOwned": "No",
+      "source": "independently derived",
+      "objectType": "aggregate execution price",
+      "hypotheses": "positive executed quantities and supplied fills",
+      "treatment": "derive locally",
+      "futureBoundary": "no TCA statistics"
+    },
+    {
+      "id": "SF16",
+      "result": "In the simple unlevered one-asset ledger, marked equity=cash+q×mark.",
+      "firstUse": "S23",
+      "alreadyOwned": "No",
+      "source": "chosen T22 ledger convention",
+      "objectType": "marked equity identity",
+      "hypotheses": "single asset, no leverage, explicit fees only",
+      "treatment": "state and reconcile",
+      "futureBoundary": "no balance-sheet/margin theory"
+    }
+  ],
+  "pedagogyEvidenceLedger": [
+    {
+      "concept": "percentage/base reasoning",
+      "documentedDifficulty": "percentage work can produce base/denominator and procedural-transfer misconceptions",
+      "populationContext": "Cincinatus & Sheffet 2016: 17 pre-service mathematics teachers, with a grade-8 lesson motivation",
+      "evidenceStrengthLimitation": "small non-random empirical sample; not an adult-quant prevalence estimate",
+      "likelyFalseModel": "raw change or ending price is used as the percentage base",
+      "usefulRepresentation": "show currency change and dimensionless return side by side",
+      "usefulContrast": "same raw change on different starting prices / starting versus ending denominator",
+      "sequencingImplication": "S03 establishes the denominator before gross factors/compounding",
+      "workedExampleImplication": "worked examples name numerator units and denominator explicitly",
+      "assessmentImplication": "S03 requires raw change, decimal/percent return and the starting denominator"
+    },
+    {
+      "concept": "percentage-change representation",
+      "documentedDifficulty": "more complex percentage-change tasks were harder and representation choice mattered in the studied group",
+      "populationContext": "Ngu 2019: 20 pre-service primary teachers",
+      "evidenceStrengthLimitation": "small sample; indirect transfer to T22",
+      "likelyFalseModel": "story arithmetic without an invariant equation",
+      "usefulRepresentation": "R=(P1-P0)/P0 and G=1+R",
+      "usefulContrast": "additive raw change versus multiplicative factor",
+      "sequencingImplication": "S03→S04→S05",
+      "workedExampleImplication": "equation first, then numerical story",
+      "assessmentImplication": "compounding task forces factor representation rather than only a verbal answer"
+    },
+    {
+      "concept": "financial task context",
+      "documentedDifficulty": "task usefulness depends on circumstance fit, accessibility/challenge and pedagogical architecture; unfamiliar-but-imaginable contexts can be useful",
+      "populationContext": "Sawatzki 2017: 14 teachers and >300 Year 5/6 students",
+      "evidenceStrengthLimitation": "school-age design study; principles transferred cautiously",
+      "likelyFalseModel": "context alone creates authenticity/transfer",
+      "usefulRepresentation": "compact auditable market records/ledgers",
+      "usefulContrast": "parallel numeric drill versus diagnostic ledger",
+      "sequencingImplication": "build object vocabulary before integrated ledgers",
+      "workedExampleImplication": "contexts stay imaginable and mathematically inspectable",
+      "assessmentImplication": "S19/S21/S24 Transfers change decision/diagnosis, not only names/constants"
+    },
+    {
+      "concept": "worked examples and retrieval",
+      "documentedDifficulty": "novices benefit from worked examples interleaved with independent problem solving and explanatory prompts",
+      "populationContext": "IES/WWC practice-guide evidence spans multiple learner populations with recommendation-specific ratings",
+      "evidenceStrengthLimitation": "general learning evidence; not a direct M07 trial",
+      "likelyFalseModel": "seeing a solved procedure equals independent evidence",
+      "usefulRepresentation": "worked→guided→independent surfaces with distinct data",
+      "usefulContrast": "solved instructional instance versus protected fixed assessment",
+      "sequencingImplication": "local teaching precedes Main/Transfer while separation is audited",
+      "workedExampleImplication": "worked reasoning is complete but uses different fixed-task data",
+      "assessmentImplication": "historical overlap ledger and semantic separation guards remain active"
+    },
+    {
+      "concept": "undergraduate quantitative course design",
+      "documentedDifficulty": "assessment and classroom/course design should align with intended mathematical practices",
+      "populationContext": "MAA Instructional Practices Guide; undergraduate-mathematics baseline",
+      "evidenceStrengthLimitation": "practice guide, not experimental validation of T22",
+      "likelyFalseModel": "a taught idea is automatically an assessed capability",
+      "usefulRepresentation": "claim→public request→rubric evidence ledger",
+      "usefulContrast": "related rubric row versus literal observer",
+      "sequencingImplication": "ownership follows task evidence rather than session headings",
+      "workedExampleImplication": "distinctions taught before independent observation",
+      "assessmentImplication": "all 120 ownership links are literal-observability audited"
+    }
+  ],
+  "v11RetrofitAudit": {
+    "designGate": "docs/t22-course/M07-DESIGN-GATE.md",
+    "recoveredBaselineHead": "546103699478051ba58b82475a11156e3bed3ae9",
+    "designGateCommit": "239d1e24bb6d793b1116cda29deb15ae77b451f8",
+    "sessionSizing": "24 retained after independent dependency/distinction/misconception split-merge reconstruction; no historical count inheritance accepted as evidence",
+    "changedAssessmentIds": [],
+    "changedContractSessionIds": [
+      "T22V3::T22E-MKT01::S02@1",
+      "T22V3::T22E-MKT01::S20@1"
+    ],
+    "instructionVersionChanged": false,
+    "fixedTaskCount": 48,
+    "ownershipClaimCount": 120,
+    "evidenceClasses": {
+      "main": {
+        "retrieval": 22,
+        "proofReconstruction": 1,
+        "freshMainEvidence": 1
+      },
+      "transfer": {
+        "retrieval": 15,
+        "changedSurfaceTransfer": 9
+      }
+    },
+    "canonicalState": "v1.1 retrofit complete; no fixed-task rewrite; awaiting separate bounded confirmation rather than self-declared independent acceptance",
+    "policy": "The retrofit narrows only claims not literally observed, preserves stable IDs/lessons/tasks/provenance, and turns newly identified defect classes into persistent guards."
   }
 }

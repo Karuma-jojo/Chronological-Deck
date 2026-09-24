@@ -1,0 +1,898 @@
+{
+  "version": "m11-ownership-audit-v2-independent-review-2026-09-24",
+  "module": {
+    "id": "ARC510",
+    "order": 11,
+    "title": "Integration & Accumulation"
+  },
+  "reviewedAuthoringHead": "645c3d4c96ccdf1b2ad6120f63940d388077e7e9",
+  "originalAuthoringCheckpoint": "209ee2b3ba296d468f59d0cf6463a86b78d3f5fe",
+  "summary": {
+    "originalClaims": 61,
+    "finalClaims": 61,
+    "retained": 53,
+    "narrowed": 7,
+    "hypothesisRepairs": 1,
+    "removed": 0,
+    "assessmentFreshnessRepairs": 1,
+    "classificationCalibrations": 8
+  },
+  "assessmentRepairs": [
+    {
+      "session": 19,
+      "task": "Main",
+      "issue": "Original divergent comparison duplicated the lesson guided practice, invalidating fresh Main classification.",
+      "repair": "Changed 1/sqrt(x²+1) to 1/sqrt(x²+4), with lower comparison 1/(sqrt(5)x).",
+      "obligationVersion": 1,
+      "versionReason": "M11 is unpublished/unregistered; no learner evidence exists."
+    }
+  ],
+  "records": [
+    {
+      "session": 1,
+      "originalClaimIndex": 1,
+      "originalClaim": "Construct a finite signed accumulation as a sum of local quantity times interval width.",
+      "disposition": "retain",
+      "finalClaim": "Construct a finite signed accumulation as a sum of local quantity times interval width.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Builds the signed rate-times-duration sum with all three unequal interval widths.",
+        "Constructs density-times-length contributions for all three sections."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 1,
+      "originalClaimIndex": 2,
+      "originalClaim": "Track units from local quantity times width to the accumulated total.",
+      "disposition": "retain",
+      "finalClaim": "Track units from local quantity times width to the accumulated total.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Computes the net change as +3 Wh and gives an energy unit.",
+        "Identifies that adding densities retains kg/m rather than producing kg."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 1,
+      "originalClaimIndex": 3,
+      "originalClaim": "Reject an unweighted sum or unweighted-rate average when interval widths are unequal.",
+      "disposition": "retain",
+      "finalClaim": "Reject an unweighted sum or unweighted-rate average when interval widths are unequal.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Explains that an unweighted rate average ignores unequal exposure durations rather than merely stating that it is wrong.",
+        "Identifies omission of section lengths as the structural error in the reported sum."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 2,
+      "originalClaimIndex": 1,
+      "originalClaim": "Construct a valid partition, subinterval widths and tags for a bounded interval.",
+      "disposition": "narrow",
+      "finalClaim": "Use a supplied partition, compute its subinterval widths, and verify supplied tags on a bounded interval.",
+      "task": "main",
+      "rubricEvidence": [
+        "Lists the nonuniform widths as 1, 2.5 and 1.5.",
+        "Checks each supplied tag against its corresponding subinterval."
+      ],
+      "rationale": "Independent review found that the original ownership wording exceeded the literal fixed-task observer; the claim was narrowed to exactly what the cited public request and rubric rows score."
+    },
+    {
+      "session": 2,
+      "originalClaimIndex": 2,
+      "originalClaim": "Compute a tagged finite sum and its mesh on a nonuniform partition.",
+      "disposition": "retain",
+      "finalClaim": "Compute a tagged finite sum and its mesh on a nonuniform partition.",
+      "task": "main",
+      "rubricEvidence": [
+        "Computes the tagged sum as 0.5 using f(t_i)Δx_i.",
+        "States the mesh as 2.5, the largest subinterval width."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 2,
+      "originalClaimIndex": 3,
+      "originalClaim": "Explain why increasing the number of arbitrary subintervals does not by itself force refinement.",
+      "disposition": "retain",
+      "finalClaim": "Explain why increasing the number of arbitrary subintervals does not by itself force refinement.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Explains that the persistent [0,1/3] interval prevents whole-domain refinement despite the growing interval count.",
+        "Identifies mesh tending to zero as the needed refinement condition."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 3,
+      "originalClaimIndex": 1,
+      "originalClaim": "State the operational tagged-partition criterion for a proper Riemann integral.",
+      "disposition": "narrow",
+      "finalClaim": "Apply the operational tagged-partition criterion for a proper Riemann integral.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Closes the epsilon/mesh definition by observing the error is 0 for every sufficiently fine partition.",
+        "Applies the supplied estimate to every tagged partition with mesh below δ."
+      ],
+      "rationale": "Independent review found that the original ownership wording exceeded the literal fixed-task observer; the claim was narrowed to exactly what the cited public request and rubric rows score."
+    },
+    {
+      "session": 3,
+      "originalClaimIndex": 2,
+      "originalClaim": "Use that criterion to reconstruct a constant-function integral directly from sums.",
+      "disposition": "retain",
+      "finalClaim": "Use that criterion to reconstruct a constant-function integral directly from sums.",
+      "task": "main",
+      "rubricEvidence": [
+        "Shows for an arbitrary tagged partition that Σ(-3)Δx_i=-3(5-2)=-9.",
+        "Makes the argument independent of equal widths or a special tag choice."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 3,
+      "originalClaimIndex": 3,
+      "originalClaim": "Convert a uniform mesh-dependent error bound into an epsilon-delta integrability proof.",
+      "disposition": "retain",
+      "finalClaim": "Convert a uniform mesh-dependent error bound into an epsilon-delta integrability proof.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Chooses δ=ε/5 or another valid positive bound ensuring 5||P||<ε.",
+        "Concludes the proper Riemann integral equals 7 from the definition."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 4,
+      "originalClaimIndex": 1,
+      "originalClaim": "Show that finitely many bounded point-value changes can preserve a known Riemann integral by bounding their tagged-sum effect.",
+      "disposition": "narrow",
+      "finalClaim": "Show that a bounded single-point value change can preserve a known Riemann integral by bounding its tagged-sum effect.",
+      "task": "main",
+      "rubricEvidence": [
+        "Bounds the effect of the exceptional point by 50||P|| or another valid bound that handles the possible two adjacent tagged subintervals.",
+        "Uses the bound to prove the common tagged-sum limit is 15."
+      ],
+      "rationale": "Independent review found that the original ownership wording exceeded the literal fixed-task observer; the claim was narrowed to exactly what the cited public request and rubric rows score."
+    },
+    {
+      "session": 4,
+      "originalClaimIndex": 2,
+      "originalClaim": "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
+      "disposition": "retain",
+      "finalClaim": "Refute Riemann integrability by constructing incompatible tagged sums on arbitrarily fine partitions.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Uses rational tags to produce a tagged sum of 1 on an arbitrary partition.",
+        "Uses irrational tags to produce a tagged sum of 0 on the same arbitrary partition.",
+        "Concludes nonintegrability from persistent incompatible tagged sums at arbitrarily small mesh."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 4,
+      "originalClaimIndex": 3,
+      "originalClaim": "Explain why discontinuity alone does not decide Riemann integrability.",
+      "disposition": "retain",
+      "finalClaim": "Explain why discontinuity alone does not decide Riemann integrability.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Identifies the discontinuity at x=1.",
+        "Uses Main and Transfer to reject 'discontinuous implies nonintegrable' as a general rule."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 5,
+      "originalClaimIndex": 1,
+      "originalClaim": "Use linearity of the definite integral for finite linear combinations.",
+      "disposition": "retain",
+      "finalClaim": "Use linearity of the definite integral for finite linear combinations.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Uses linearity to obtain ∫_1^7(2f-3g)=-3.",
+        "Uses linearity on the supplied accumulations to obtain +1 L for 2A-B."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 5,
+      "originalClaimIndex": 2,
+      "originalClaim": "Use additivity across adjacent intervals to reconstruct a total.",
+      "disposition": "retain",
+      "finalClaim": "Use additivity across adjacent intervals to reconstruct a total.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Uses adjacent-interval additivity to obtain ∫_1^7 f=3.",
+        "Combines the adjacent A intervals to obtain +2 L."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 5,
+      "originalClaimIndex": 3,
+      "originalClaim": "Apply the zero-width and reversed-bound conventions with the correct sign.",
+      "disposition": "narrow",
+      "finalClaim": "Apply the reversed-bound convention with the correct sign.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Uses reversed-bound orientation to obtain ∫_7^1 f=-3.",
+        "Reverses orientation to obtain -2 L from hour 5 to hour 0."
+      ],
+      "rationale": "Original wording exceeded the literal fixed-task observer and was narrowed to the scored action without changing the mathematical session spine."
+    },
+    {
+      "session": 6,
+      "originalClaimIndex": 1,
+      "originalClaim": "Use pointwise bounds to bound a definite integral on a finite interval.",
+      "disposition": "retain",
+      "finalClaim": "Use pointwise bounds to bound a definite integral on a finite interval.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Uses the pointwise bounds to obtain -4≤∫q≤12.",
+        "Intersects the two bounds to certify -4≤∫q≤5 without claiming a specific value."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 6,
+      "originalClaimIndex": 2,
+      "originalClaim": "Distinguish signed accumulation ∫f from total magnitude ∫|f| and apply |∫f|≤∫|f|.",
+      "disposition": "retain",
+      "finalClaim": "Distinguish signed accumulation ∫f from total magnitude ∫|f| and apply |∫f|≤∫|f|.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Computes the signed integral as 2 km with the negative segment subtracting.",
+        "Computes the absolute-value integral as 10 km.",
+        "Uses |∫q|≤∫|q|=5 to obtain -5≤∫q≤5."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 6,
+      "originalClaimIndex": 3,
+      "originalClaim": "Compute and interpret the average value (1/(b-a))∫_a^b f for b>a.",
+      "disposition": "narrow",
+      "finalClaim": "Compute the average value (1/(b-a))∫_a^b f for b>a.",
+      "task": "main",
+      "rubricEvidence": [
+        "Computes the average value as 4/7 km/h."
+      ],
+      "rationale": "Original wording exceeded the literal fixed-task observer and was narrowed to the scored action without changing the mathematical session spine."
+    },
+    {
+      "session": 7,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive a bound |A(y)-A(x)|≤M|y-x| from |f|≤M for an accumulation function.",
+      "disposition": "retain",
+      "finalClaim": "Derive a bound |A(y)-A(x)|≤M|y-x| from |f|≤M for an accumulation function.",
+      "task": "main",
+      "rubricEvidence": [
+        "Uses interval additivity/orientation to rewrite G(y)-G(x) as accumulation over the interval between x and y.",
+        "Applies |g|≤7 to obtain |G(y)-G(x)|≤7|y-x|."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 7,
+      "originalClaimIndex": 2,
+      "originalClaim": "Use the bound to prove continuity of an accumulation function without assuming f is continuous.",
+      "disposition": "retain",
+      "finalClaim": "Use the bound to prove continuity of an accumulation function without assuming f is continuous.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Chooses a valid δ such as ε/7 and concludes continuity without assuming g is continuous.",
+        "Shows both pieces meet at H(1)=2 and concludes continuity."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 7,
+      "originalClaimIndex": 3,
+      "originalClaim": "Distinguish continuity of accumulated total from differentiability at a jump of the integrand.",
+      "disposition": "retain",
+      "finalClaim": "Distinguish continuity of accumulated total from differentiability at a jump of the integrand.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Compares the one-sided slopes 2 and -1 and concludes H is not differentiable at x=1."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 8,
+      "originalClaimIndex": 1,
+      "originalClaim": "Reconstruct the short-interval-average proof of A'(c)=f(c) under the stated continuity/integrability hypotheses.",
+      "disposition": "retain",
+      "finalClaim": "Reconstruct the short-interval-average proof of A'(c)=f(c) under the stated continuity/integrability hypotheses.",
+      "task": "main",
+      "rubricEvidence": [
+        "Rewrites the accumulation difference quotient as (1/h)∫_2^{2+h} f(t)dt.",
+        "Subtracts f(2) and uses continuity to bound the short-interval average error.",
+        "Concludes the derivative exists and equals A'(2)=f(2)=-3."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 8,
+      "originalClaimIndex": 2,
+      "originalClaim": "Recover a local rate and its units from the derivative of a cumulative quantity.",
+      "disposition": "retain",
+      "finalClaim": "Recover a local rate and its units from the derivative of a cumulative quantity.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Uses continuity at 5 to obtain C'(5)=2.4 mg/min with correct units."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 8,
+      "originalClaimIndex": 3,
+      "originalClaim": "Refuse FTC derivative recovery at a jump when the one-sided accumulated slopes disagree.",
+      "disposition": "retain",
+      "finalClaim": "Refuse FTC derivative recovery at a jump when the one-sided accumulated slopes disagree.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "States that the bounded-integrand accumulation C remains continuous at the jump.",
+        "Uses the unequal left/right local average limits 2 and 4 to conclude C'(5) does not exist."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 9,
+      "originalClaimIndex": 1,
+      "originalClaim": "Differentiate a variable upper endpoint by composing an accumulation function with the endpoint map.",
+      "disposition": "retain",
+      "finalClaim": "Differentiate a variable upper endpoint by composing an accumulation function with the endpoint map.",
+      "task": "main",
+      "rubricEvidence": [
+        "Applies FTC plus the endpoint chain factor to obtain F'(x)=3e^{(3x-1)²}.",
+        "States that e^{t²} is continuous on the endpoint range, so the FTC accumulation derivative is available."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 9,
+      "originalClaimIndex": 2,
+      "originalClaim": "Differentiate an integral with two moving endpoints using orientation and two chain-rule contributions.",
+      "disposition": "retain",
+      "finalClaim": "Differentiate an integral with two moving endpoints using orientation and two chain-rule contributions.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Obtains the upper contribution 2ln(1+(2x+1)²) and lower contribution -2x ln(1+x^4) with correct signs and chain factors."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 9,
+      "originalClaimIndex": 3,
+      "originalClaim": "Distinguish moving-bound differentiation from differentiation under the integral sign.",
+      "disposition": "retain",
+      "finalClaim": "Distinguish moving-bound differentiation from differentiation under the integral sign.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Explains that t is a dummy variable and the integrand itself has no x-dependence to differentiate."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 10,
+      "originalClaimIndex": 1,
+      "originalClaim": "Use the Mean Value Theorem to prove that a differentiable function with zero derivative on an interval is constant.",
+      "disposition": "hypothesis-repair",
+      "finalClaim": "Use the Mean Value Theorem to prove that a function continuous on an interval and differentiable on its interior with zero derivative there is constant.",
+      "task": "main",
+      "rubricEvidence": [
+        "Defines H=F-G and establishes that H is continuous on I with H'=0 at every interior point.",
+        "Applies MVT on an arbitrary [u,v]⊂I using continuity on [u,v] and differentiability on (u,v) to obtain H(v)=H(u)."
+      ],
+      "rationale": "Capability remains directly observed, but wording plus S10/S11 theorem assumptions were repaired to require continuity on the interval and differentiability on its interior, removing endpoint ambiguity."
+    },
+    {
+      "session": 10,
+      "originalClaimIndex": 2,
+      "originalClaim": "Use the derivative-zero result to justify that two antiderivatives of the same function differ by a constant on an interval.",
+      "disposition": "retain",
+      "finalClaim": "Use the derivative-zero result to justify that two antiderivatives of the same function differ by a constant on an interval.",
+      "task": "main",
+      "rubricEvidence": [
+        "Concludes H is constant and connects this directly to the additive-constant antiderivative family."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 10,
+      "originalClaimIndex": 3,
+      "originalClaim": "Preserve the interval/domain hypothesis by diagnosing a disconnected-domain counterexample.",
+      "disposition": "retain",
+      "finalClaim": "Preserve the interval/domain hypothesis by diagnosing a disconnected-domain counterexample.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Identifies failure of the interval/segment hypothesis needed for MVT across the gap.",
+        "States the correct componentwise constant conclusion."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 11,
+      "originalClaimIndex": 1,
+      "originalClaim": "Reconstruct FTC endpoint evaluation from the accumulation function and antiderivative uniqueness.",
+      "disposition": "retain",
+      "finalClaim": "Reconstruct FTC endpoint evaluation from the accumulation function and antiderivative uniqueness.",
+      "task": "main",
+      "rubricEvidence": [
+        "Uses A'=f and F'=f to make F-A derivative zero, then invokes the interval constant result.",
+        "Uses A(a)=0 to derive A(b)=F(b)-F(a), hence the endpoint-evaluation theorem."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 11,
+      "originalClaimIndex": 2,
+      "originalClaim": "Evaluate a proper definite integral with a verified antiderivative without adding an arbitrary constant to the final number.",
+      "disposition": "retain",
+      "finalClaim": "Evaluate a proper definite integral with a verified antiderivative without adding an arbitrary constant to the final number.",
+      "task": "main",
+      "rubricEvidence": [
+        "Verifies x^4-x² differentiates to 4x³-2x.",
+        "Evaluates the definite integral as 12 with no spurious +C in the final number."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 11,
+      "originalClaimIndex": 3,
+      "originalClaim": "Use the integral of a rate as net change between endpoint states.",
+      "disposition": "retain",
+      "finalClaim": "Use the integral of a rate as net change between endpoint states.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Computes the signed rate integral over [0,3] as -12 liters.",
+        "Adds net change to Q(0)=50 to obtain Q(3)=38 liters."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 12,
+      "originalClaimIndex": 1,
+      "originalClaim": "Construct an elementary antiderivative by reversing established derivative rules and linearity.",
+      "disposition": "narrow",
+      "finalClaim": "Construct an elementary antiderivative on a stated interval from the established repertoire.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Constructs x³-4e^x+2sin x+5ln x+C or an equivalent antiderivative on x>0.",
+        "Constructs -1/x²+(3/ln2)2^x+C or an equivalent antiderivative on x<0."
+      ],
+      "rationale": "Original wording exceeded the literal fixed-task observer and was narrowed to the scored action without changing the mathematical session spine."
+    },
+    {
+      "session": 12,
+      "originalClaimIndex": 2,
+      "originalClaim": "Verify a proposed antiderivative by differentiating it back to the integrand.",
+      "disposition": "retain",
+      "finalClaim": "Verify a proposed antiderivative by differentiating it back to the integrand.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Differentiates the proposed antiderivative back to the full integrand.",
+        "Verifies both derivative terms, including the ln2 factor for 2^x."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 12,
+      "originalClaimIndex": 3,
+      "originalClaim": "Preserve interval/domain restrictions, especially for 1/x and negative powers.",
+      "disposition": "retain",
+      "finalClaim": "Preserve interval/domain restrictions, especially for 1/x and negative powers.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Explains the logarithmic/domain restriction and does not claim an antiderivative interval crossing x=0.",
+        "Preserves the exclusion of x=0 and explains why the antiderivative claim is intervalwise."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 13,
+      "originalClaimIndex": 1,
+      "originalClaim": "Recognize a reverse-chain integrand f(g(x))g'(x) and choose the inner transformation.",
+      "disposition": "retain",
+      "finalClaim": "Recognize a reverse-chain integrand f(g(x))g'(x) and choose the inner transformation.",
+      "task": "main",
+      "rubricEvidence": [
+        "Chooses u=3x²+2 and du=6x dx, matching the inner derivative factor."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 13,
+      "originalClaimIndex": 2,
+      "originalClaim": "Carry the derivative scale factor correctly through an indefinite substitution.",
+      "disposition": "retain",
+      "finalClaim": "Carry the derivative scale factor correctly through an indefinite substitution.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Obtains (3x²+2)^5/5+C.",
+        "Corrects the missing scale and obtains (x²+1)^4/8+C."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 13,
+      "originalClaimIndex": 3,
+      "originalClaim": "Verify a substitution result by differentiating it in the original variable.",
+      "disposition": "retain",
+      "finalClaim": "Verify a substitution result by differentiating it in the original variable.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Differentiates the result back to 6x(3x²+2)^4.",
+        "Verifies the corrected antiderivative by differentiation."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 14,
+      "originalClaimIndex": 1,
+      "originalClaim": "Transform definite-integration bounds consistently under u=g(x).",
+      "disposition": "retain",
+      "finalClaim": "Transform definite-integration bounds consistently under u=g(x).",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Uses u=x³+1 and transforms x=1,2 into u=2,9.",
+        "Transforms the bounds as 3→2 under u=3-x²."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 14,
+      "originalClaimIndex": 2,
+      "originalClaim": "Preserve orientation when the transformed endpoint order reverses.",
+      "disposition": "retain",
+      "finalClaim": "Preserve orientation when the transformed endpoint order reverses.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Explains that reordering reversed u-bounds requires a minus sign.",
+        "Computes the correct value -19/3."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 14,
+      "originalClaimIndex": 3,
+      "originalClaim": "Check the continuity/domain conditions needed by the transformed integrand.",
+      "disposition": "retain",
+      "finalClaim": "Check the continuity/domain conditions needed by the transformed integrand.",
+      "task": "main",
+      "rubricEvidence": [
+        "States that the transformed interval stays in u>0, where 1/u is continuous and ln u is valid."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 15,
+      "originalClaimIndex": 1,
+      "originalClaim": "Reconstruct the integration-by-parts identity from the product rule and FTC.",
+      "disposition": "retain",
+      "finalClaim": "Reconstruct the integration-by-parts identity from the product rule and FTC.",
+      "task": "main",
+      "rubricEvidence": [
+        "Reconstructs the definite integration-by-parts identity from the product rule with the minus sign and boundary term."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 15,
+      "originalClaimIndex": 2,
+      "originalClaim": "Choose a workable differentiated/integrated factor split within the available antiderivative repertoire.",
+      "disposition": "retain",
+      "finalClaim": "Choose a workable differentiated/integrated factor split within the available antiderivative repertoire.",
+      "task": "main",
+      "rubricEvidence": [
+        "Chooses u=x and v=e^{2x}/2 (or an equivalent productive split) correctly."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 15,
+      "originalClaimIndex": 3,
+      "originalClaim": "Carry definite boundary terms with correct signs.",
+      "disposition": "retain",
+      "finalClaim": "Carry definite boundary terms with correct signs.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Carries [xe^{2x}/2]_0^1 and the remaining integral with correct signs.",
+        "Computes the correct definite value -2 including the zero boundary term."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 16,
+      "originalClaimIndex": 1,
+      "originalClaim": "Choose direct evaluation, substitution or integration by parts from the integrand's derivative structure.",
+      "disposition": "retain",
+      "finalClaim": "Choose direct evaluation, substitution or integration by parts from the integrand's derivative structure.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Classifies A as substitution and obtains 26/3 with transformed bounds.",
+        "Classifies B as integration by parts and obtains sin1+cos1-1.",
+        "Classifies C as direct FTC and obtains -1.",
+        "Recognizes the reverse-chain structure u=x², du=2x dx and obtains e^{x²}+C."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 16,
+      "originalClaimIndex": 2,
+      "originalClaim": "Recognize when none of the current exact elementary tools has been justified instead of fabricating an antiderivative.",
+      "disposition": "retain",
+      "finalClaim": "Recognize when none of the current exact elementary tools has been justified instead of fabricating an antiderivative.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Classifies D as outside the current exact elementary toolkit while distinguishing that from nonexistence of the proper integral.",
+        "Identifies that the proposed parts split requires the unavailable exact antiderivative of e^{x²}."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 16,
+      "originalClaimIndex": 3,
+      "originalClaim": "Use differentiation/sign/bounds to verify or reject a chosen method/result.",
+      "disposition": "narrow",
+      "finalClaim": "Verify a selected antiderivative by differentiating it back to the integrand.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Verifies the result by differentiation."
+      ],
+      "rationale": "Original wording exceeded the literal fixed-task observer and was narrowed to the scored action without changing the mathematical session spine."
+    },
+    {
+      "session": 17,
+      "originalClaimIndex": 1,
+      "originalClaim": "Rewrite an infinite-upper-bound integral as a limit of proper finite-bound integrals before evaluating it.",
+      "disposition": "retain",
+      "finalClaim": "Rewrite an infinite-upper-bound integral as a limit of proper finite-bound integrals before evaluating it.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number.",
+        "Writes and evaluates the finite truncation for w, obtaining the limit 2."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 17,
+      "originalClaimIndex": 2,
+      "originalClaim": "Derive the threshold ∫_1^∞ x^{-p}dx converges exactly when p>1.",
+      "disposition": "retain",
+      "finalClaim": "Derive the threshold ∫_1^∞ x^{-p}dx converges exactly when p>1.",
+      "task": "main+transfer",
+      "rubricEvidence": [
+        "Handles p≠1 correctly and obtains finite limit 1/(p-1) exactly when p>1.",
+        "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1.",
+        "Recognizes z as a shifted p-tail with p=3/4 and concludes divergence."
+      ],
+      "rationale": "Retained because the cited public main+transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 17,
+      "originalClaimIndex": 3,
+      "originalClaim": "Distinguish convergence to a finite value from divergence and reject literal substitution of infinity.",
+      "disposition": "retain",
+      "finalClaim": "Distinguish convergence to a finite value from divergence and reject literal substitution of infinity.",
+      "task": "main",
+      "rubricEvidence": [
+        "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number.",
+        "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 18,
+      "originalClaimIndex": 1,
+      "originalClaim": "Rewrite an endpoint-singular integral as a one-sided limit and derive ∫_0^1 x^{-p}dx converges exactly when p<1.",
+      "disposition": "retain",
+      "finalClaim": "Rewrite an endpoint-singular integral as a one-sided limit and derive ∫_0^1 x^{-p}dx converges exactly when p<1.",
+      "task": "main",
+      "rubricEvidence": [
+        "Introduces the one-sided truncation ∫_ε^1 and sends ε→0+.",
+        "Analyzes p≠1 correctly and obtains 1/(1-p) exactly for p<1.",
+        "Handles p=1 separately with -ln ε→∞ and states the full p<1 threshold."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 18,
+      "originalClaimIndex": 2,
+      "originalClaim": "Split an interior singularity into two one-sided improper integrals and require both to converge.",
+      "disposition": "retain",
+      "finalClaim": "Split an interior singularity into two one-sided improper integrals and require both to converge.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Writes the integral as two separate one-sided improper limits at x=1.",
+        "Shows at least one side diverges to +∞ and correctly concludes the whole improper integral diverges."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 18,
+      "originalClaimIndex": 3,
+      "originalClaim": "Reject direct endpoint evaluation across an undefined singular point.",
+      "disposition": "retain",
+      "finalClaim": "Reject direct endpoint evaluation across an undefined singular point.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Identifies x=1 as an interior singularity that invalidates direct endpoint evaluation across [0,2]."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 19,
+      "originalClaimIndex": 1,
+      "originalClaim": "Use the nonnegative improper comparison theorem in the correct convergence/divergence direction.",
+      "disposition": "retain",
+      "finalClaim": "Use the nonnegative improper comparison theorem in the correct convergence/divergence direction.",
+      "task": "main",
+      "rubricEvidence": [
+        "Uses 0≤1/(x²+x)≤1/x² and the convergent p=2 tail to conclude A converges.",
+        "Uses 1/sqrt(x²+4)≥1/(sqrt(5)x) and the divergent p=1 tail to conclude B diverges.",
+        "Explains the comparison directions correctly rather than treating any inequality as interchangeable."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 19,
+      "originalClaimIndex": 2,
+      "originalClaim": "Require both one-sided tails to converge for an ordinary integral over (-∞,∞).",
+      "disposition": "retain",
+      "finalClaim": "Require both one-sided tails to converge for an ordinary integral over (-∞,∞).",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Computes the right one-sided truncation and shows it tends to +∞.",
+        "Computes the left one-sided truncation and shows it tends to -∞."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 19,
+      "originalClaimIndex": 3,
+      "originalClaim": "Distinguish a symmetric cancellation limit from ordinary improper convergence.",
+      "disposition": "retain",
+      "finalClaim": "Distinguish a symmetric cancellation limit from ordinary improper convergence.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Shows or justifies that the proper symmetric truncations equal 0.",
+        "Concludes ordinary improper divergence and distinguishes it from the symmetric cancellation limit."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 20,
+      "originalClaimIndex": 1,
+      "originalClaim": "Connect a tagged local-quantity×width sum to the continuum accumulated total and preserve units.",
+      "disposition": "retain",
+      "finalClaim": "Connect a tagged local-quantity×width sum to the continuum accumulated total and preserve units.",
+      "task": "main",
+      "rubricEvidence": [
+        "Explains the tagged sum as rate-times-width contributions and gives accumulated-quantity units."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 20,
+      "originalClaimIndex": 2,
+      "originalClaim": "Choose and justify a legal exact method for a proper accumulated total, then connect the result back to the state variable.",
+      "disposition": "retain",
+      "finalClaim": "Choose and justify a legal exact method for a proper accumulated total, then connect the result back to the state variable.",
+      "task": "main",
+      "rubricEvidence": [
+        "Recognizes reverse-chain structure, uses u=t² (or equivalent), and obtains Q(1)=9+e."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 20,
+      "originalClaimIndex": 3,
+      "originalClaim": "Use FTC locally with its continuity hypothesis while distinguishing local rate from interval net change.",
+      "disposition": "retain",
+      "finalClaim": "Use FTC locally with its continuity hypothesis while distinguishing local rate from interval net change.",
+      "task": "main",
+      "rubricEvidence": [
+        "Uses continuity of r to obtain Q'(1)=2e with rate units.",
+        "Distinguishes interval net change e-1 from local rate 2e by meaning and units."
+      ],
+      "rationale": "Retained because the cited public main request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    },
+    {
+      "session": 20,
+      "originalClaimIndex": 4,
+      "originalClaim": "Audit an infinite-domain accumulated total for existence before solving for its scale parameter.",
+      "disposition": "retain",
+      "finalClaim": "Audit an infinite-domain accumulated total for existence before solving for its scale parameter.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Writes the infinite-domain total as an explicit finite-T limit and reduces it to the shifted p-tail.",
+        "Identifies p>1 as exactly the finite-total region and rejects p≤1 before solving for C.",
+        "Uses the finite base total 1/(p-1) to obtain C=6(p-1)."
+      ],
+      "rationale": "Retained because the cited public transfer request and exact scoring rows directly observe the capability; related lesson mathematics was not treated as ownership evidence."
+    }
+  ],
+  "independentReviewBase": "e358cea517a4d638550e5990c03894f586a85620",
+  "classificationCalibrations": [
+    {
+      "session": 1,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main is a direct retrieval/application of the taught local-quantity×width construction, unit tracking and unequal-width diagnostic on new battery data; new context does not make the evidence structurally fresh."
+    },
+    {
+      "session": 2,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main supplies the partition, tags and function values and asks the learner to execute the already taught width/tag/sum/mesh routine; this is retrieval/application on new data."
+    },
+    {
+      "session": 5,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main applies the three structural laws taught immediately before it—additivity, orientation and linearity—to new supplied integral values; the numerical surface is new but the decision structure is retrieval."
+    },
+    {
+      "session": 6,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main directly applies the taught signed-total, absolute-magnitude and average-value distinctions to a new piecewise rate; this is retrieval/application rather than new conceptual evidence."
+    },
+    {
+      "session": 9,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main directly applies the taught FTC-plus-chain moving-endpoint rule to a new endpoint and integrand. The lack of an elementary antiderivative blocks an irrelevant detour but does not change the taught decision structure."
+    },
+    {
+      "session": 13,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main repeats the taught reverse-chain substitution pattern with new coefficients and power and then performs the already taught differentiation check; this is retrieval/application."
+    },
+    {
+      "session": 14,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main directly applies the taught definite-substitution procedure—transforming bounds and checking transformed domain—to a new rational/log surface; this is retrieval/application."
+    },
+    {
+      "session": 19,
+      "from": "fresh Main evidence",
+      "to": "retrieval",
+      "reason": "Main applies the comparison directions just taught to two new inequalities. Selecting the concrete comparison is useful, but the assessed convergence logic is retrieval/application rather than independent fresh-theorem evidence."
+    }
+  ],
+  "independentReviewRepairs": [
+    {
+      "session": 2,
+      "claim": 1,
+      "type": "narrow",
+      "reason": "Public Main supplies P and tags; it observes computing widths and verifying tags, not constructing them."
+    },
+    {
+      "session": 3,
+      "claim": 1,
+      "type": "narrow",
+      "reason": "Fixed tasks apply the tagged-partition criterion but do not require the learner to state the full quantified definition."
+    },
+    {
+      "session": 4,
+      "claim": 1,
+      "type": "narrow",
+      "reason": "Fixed Main changes one point; the finite-many extension remains instruction but is not claimed as assessed ownership."
+    },
+    {
+      "session": 17,
+      "claim": 3,
+      "type": "evidence-remap",
+      "reason": "Mapped explicitly to the finite-truncation rubric row that observes rejection of literal infinity substitution."
+    }
+  ],
+  "validatedRepairRun": 36015062169
+}

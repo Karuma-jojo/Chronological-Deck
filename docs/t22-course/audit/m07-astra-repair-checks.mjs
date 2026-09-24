@@ -11,10 +11,10 @@ const by=n=>a.sessions[n-1];
 const oldInstruction='m07-instruction-v1-cerberus';
 const preAt='2026-09-24T00:30:00.000Z',seenAt='2026-09-24T01:00:00.000Z',postAt='2026-09-24T02:00:00.000Z',newAt='2026-09-24T03:00:00.000Z';
 
-assert.equal(a.version,'m07-authoring-astra-r1');
+assert.equal(a.version,'m07-authoring-v1.1-r2');
 assert.equal(a.instructionVersion,'m07-instruction-astra-r1');
-assert.equal(a.module.status,'authored-astra-repaired-awaiting-independent-followup');
-assert.equal(semantic.version,'m07-semantic-contract-astra-r1-2026-09-24');
+assert.equal(a.module.status,'authored-v1.1-retrofitted-awaiting-independent-confirmation');
+assert.equal(semantic.version,'m07-semantic-contract-v1.1-r2-2026-09-24');
 assert.equal(Object.keys(semantic.sessions).length,24);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
@@ -105,8 +105,11 @@ for(const ss of a.sessions)for(const kind of ['main','transfer']){
  assert.equal(round.attempts.length,1,'Old evidence must be retained even when stale');
 }
 const cleanupContracts=new Set(a.crossModulePrerequisiteCleanup?.changedContractSessionIds||[]);
+const v11Contracts=new Set(a.v11RetrofitAudit?.changedContractSessionIds||[]);
+assert.deepEqual(a.v11RetrofitAudit.changedAssessmentIds,[],'v1.1 retrofit must not change fixed assessments');
+assert.deepEqual([...v11Contracts],[by(2).id,by(20).id]);
 for(const ss of a.sessions){
- const shouldChange=a.repairVersionAudit.changedContractSessionIds.includes(ss.id)||cleanupContracts.has(ss.id);
+ const shouldChange=a.repairVersionAudit.changedContractSessionIds.includes(ss.id)||cleanupContracts.has(ss.id)||v11Contracts.has(ss.id);
  assert.equal(ss.contractHash!==baseline.contractHashes[ss.id],shouldChange,`contract hash ${ss.id}`);
 }
 
@@ -149,5 +152,10 @@ for(const [sourceId,targets] of Object.entries(a.historicalGuidedPracticeOverlap
  for(const pid of targets)assert.equal(state.exposures[pid]?.referenceSeenAt,undefined,'Unsolved guided practice must not fabricate reference exposure');
 }
 
+assert(fs.existsSync('docs/t22-course/M07-DESIGN-GATE.md'));
+assert(a.sourceLedger.sources.some(x=>x.id==='MAA-IPG')&&a.sourceLedger.sources.some(x=>x.id==='SEC-ORDER'));
+assert.equal(a.semanticSeparationAudit.sessions[by(6).id].main.classification,'proof reconstruction');
+assert.equal(a.semanticSeparationAudit.sessions[by(24).id].main.classification,'fresh Main evidence');
+assert.equal(a.semanticSeparationAudit.sessions[by(19).id].transfer.classification,'changed-surface Transfer');
 assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized after the recorded M07 repair checkpoint');
-console.log('PASS M07 Astra repair: semantic mutation contract, clean instruction, 10 versioned assessments, 5 ownership-contract changes, 3 solved-exposure links, guided-only S03→S04 overlap, novice bridges, stronger Transfers; historical M08 stop is superseded only by explicit later authorization.');
+console.log('PASS M07 v1.1 retrofit: historical Astra/provenance repairs preserved; design/source/support/pedagogy guards active; S02/S20 ownership narrowed; evidence distance honest; no fixed assessment changed.');

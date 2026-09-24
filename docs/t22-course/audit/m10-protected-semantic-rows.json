@@ -1,0 +1,94 @@
+{
+  "capturedFrom": "through-M12 publication semantic state",
+  "purpose": "Protect the semantic-ledger rows M10 and its prerequisites own after the explicitly authorized publication transition; later modules may update only their own downstream rows.",
+  "rows": [
+    {
+      "order": 1,
+      "id": "T22E-FND01",
+      "mode": "new",
+      "semanticStatus": "accepted",
+      "bridges": [],
+      "note": "M01 repaired under Astra A-01–A-05."
+    },
+    {
+      "order": 2,
+      "id": "T22E-FND02",
+      "mode": "new",
+      "semanticStatus": "accepted",
+      "bridges": [],
+      "note": "M02 final-accepted after boundary audit, 24-session/48-task authoring, 120/120 ownership mapping, prerequisite-symbol and instruction-separation audits, independent mathematics checks, shared evidence/runtime integration and real Chromium validation. Do not copy M02 patterns into M03 without first applying known findings and M03's own semantic boundary audit."
+    },
+    {
+      "order": 3,
+      "id": "T22E-DISC01",
+      "mode": "new",
+      "semanticStatus": "accepted",
+      "bridges": [],
+      "note": "M03 semantic boundary remains accepted. Astra findings M03-01→M03-04 were repaired and fully validated at implementation head 439e0bc55ff694d9d188f8b76bfb8dabca4b7adb / run 35329318149. Repair includes semantic lesson/task separation, novice worked reasoning, S21 claim-5 Transfer observability, three-event inclusion-exclusion bridge/derivation, and timestamp-aware M03 historical lesson exposure. Independent bounded repair review is still required before opening M04."
+    },
+    {
+      "order": 4,
+      "id": "ARC048",
+      "mode": "adapted",
+      "semanticStatus": "accepted",
+      "bridges": [],
+      "note": "M04 remains semantically accepted after independent review findings M04-01→M04-04 were bounded and repaired at implementation head 10df637dbb46bd4985a1f98fc298c746b52bf1fd. Repair adds S11 complement-independence derivation, a complete 120-claim semantic observability re-audit with S05/S13 Transfer mappings, obligationVersion=2 repairs for S05-T and S21-M, an S22 positional-marginal derivation, and S04 prerequisite cleanup. Bounded independent follow-up remains required before M05/M06 open."
+    },
+    {
+      "order": 5,
+      "id": "T22E-TRD01",
+      "mode": "new",
+      "semanticStatus": "accepted",
+      "bridges": [],
+      "note": "M05 authored as a 24-session finite decision module on accepted ARC048: payoff accounting, EV/fair price/break-even, loss probability, repeated expectation, bankroll/drawdown/finite ruin, explicit loss constraints, multiplicative recovery, finite utility/CE, statewise/maximin and simple 2x2 adversarial algebra. Bayes remains M06; market mechanics M07; formal distribution/variance M26; Kelly/general optimization/DP/MDP/formal minimax remain later."
+    },
+    {
+      "order": 6,
+      "id": "ARC502",
+      "mode": "reused",
+      "semanticStatus": "accepted",
+      "bridges": [],
+      "note": "M06 authored as 24 finite Bayesian-updating sessions directly on ARC048: base-rate/frequency reasoning, Bayes derivation and finite normalization, odds/LRs, sequential updates, conditional-independence-gated LR multiplication, duplicate-evidence rejection and prior/likelihood sensitivity. M05 decision utility, M07 market mechanics, M26 formal distributions, M33 likelihood/MLE and M35 LR testing remain separate."
+    },
+    {
+      "order": 7,
+      "id": "T22E-MKT01",
+      "mode": "new",
+      "semanticStatus": "boundary-accepted-content-candidate",
+      "bridges": [],
+      "note": "M07 Astra-repair candidate: 24 sessions / 48 fixed tasks / 120 claims. Independent review findings M07-01..05 are implemented: solved/practice overlap separated with historical provenance migration, all120 semantic claim links re-audited under mutation-sensitive contract, prompt/rubric/fill-size ambiguities repaired, short/cover and mark JIT bridges added, and S19/S21/S24 Transfers strengthened. Full repair-head validation and bounded independent follow-up remain required. M08 closed."
+    },
+    {
+      "order": 8,
+      "id": "T22E-CODE01",
+      "mode": "new",
+      "semanticStatus": "accepted",
+      "bridges": [],
+      "note": "M08 independently accepted/frozen after severe review, 25-session sizing, bounded follow-up repairs and full validation. Final validated repair head f048a93b8cf0fff8bcd915437b8ba2ec8bacefd5; Actions 35970605448, job 107539182656 SUCCESS, including M08-specific stale-fingerprint preservation, stable S02F migration, Python oracles and Chromium/eight-module browser evidence. Canonical prerequisites remain M01+M03+M04; M21/M30 boundaries remain hard. M09 remains closed."
+    },
+    {
+      "order": 9,
+      "id": "SIDE263",
+      "mode": "adapted",
+      "semanticStatus": "accepted",
+      "bridges": [
+        {
+          "id": "M09-B01",
+          "owner": "SIDE263",
+          "title": "Limit foundations without derivatives",
+          "before": "first derivative-dependent legacy material",
+          "content": "Teach sequence/function limit language, epsilon-style intuition appropriate to route level, algebraic limit laws and squeeze/monotone arguments without assuming ARC053. Legacy entry text that names ARC053 is not reusable.",
+          "implementedBy": "M09-S01–S27; docs/t22-course/M09-BOUNDARY.md"
+        }
+      ],
+      "acceptanceScope": "Builder boundary/prerequisite acceptance for publication; not an independent content review or learner certification."
+    },
+    {
+      "order": 10,
+      "id": "ARC053",
+      "mode": "reused",
+      "semanticStatus": "accepted",
+      "bridges": []
+    }
+  ]
+}

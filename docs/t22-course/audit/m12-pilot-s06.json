@@ -1,0 +1,155 @@
+{
+  "version": "m12-pilot-s06-v2-separated",
+  "moduleId": "SIDE267",
+  "session": {
+    "order": 6,
+    "id": "T22V3::SIDE267::S06@1",
+    "title": "Taylor's theorem: derivative matching plus a legal remainder",
+    "focus": "Turn a derivative-matching polynomial into a theorem-level local approximation with the Lagrange remainder and all interval/derivative hypotheses visible.",
+    "purpose": "Prevent Taylor polynomials from becoming unexplained formulas by showing exactly what theorem connects them to the target function and where the unknown remainder point comes from.",
+    "centralCapability": "Reconstruct and audit the one-variable Lagrange-remainder theorem on a bounded interval, including its hypotheses and the role of the intermediate point.",
+    "principalObstacle": "The coefficient derivatives are evaluated at the center, which tempts a learner to put the remainder derivative there too; the theorem instead uses an unknown point between the center and the evaluation point and requires derivative hypotheses across that interval.",
+    "entryPrerequisites": [
+      "M12-S02 derivative-matching Taylor polynomial and coefficient rule",
+      "M12-S04 residual R_n=f-P_n",
+      "M12-S05 compact Rolle/MVT support bridge",
+      "M09 interval/continuity/hypothesis discipline"
+    ],
+    "requiredOwnership": [
+      "Reconstruct a valid proof of the degree-2 Lagrange remainder using Rolle/MVT or an equivalent legal argument.",
+      "Distinguish the Taylor center from the unknown intermediate remainder point and locate that point between center and evaluation point.",
+      "Audit a proposed Taylor-theorem use for the required higher-derivative hypothesis on the whole intervening open interval."
+    ],
+    "applicationScope": "One-variable finite-order Taylor theorem on a closed interval joining center and evaluation point; degree-2 proof as representative of the general repeated-Rolle mechanism.",
+    "transferScope": "Changed from theorem reconstruction to hypothesis forensics on a piecewise-smooth function crossing an interior point where the next derivative fails to exist.",
+    "inScope": [
+      "degree-2 Taylor polynomial",
+      "Lagrange remainder",
+      "continuous lower derivatives on the closed interval",
+      "next derivative on the open interval",
+      "intermediate point c",
+      "repeated Rolle/MVT proof architecture"
+    ],
+    "outOfScope": [
+      "numerical tolerance/order selection (S07)",
+      "big-O/little-o notation (S08)",
+      "infinite Taylor series (S12+)",
+      "multivariable Taylor theorem"
+    ],
+    "exitCondition": "A learner can prove the representative n=2 remainder result and reject the transfer theorem invocation because f''' fails at an interior point, even though the Taylor polynomial at the center exists.",
+    "lesson": "Orient. A polynomial can match f and its derivatives at a center and still separate from f away from that center. We need a theorem that turns derivative matching into a statement about the residual.\n\nDefine. For center a, let P_n be the degree-n Taylor polynomial and R_n(x)=f(x)-P_n(x). If f has n continuous derivatives on the closed interval joining a and x and f^(n+1) exists at every interior point, then for some c strictly between a and x,\nR_n(x)=f^(n+1)(c)(x-a)^(n+1)/(n+1)!.\nThe point c is supplied by the theorem; it is not automatically a or x.\n\nConnect. S02 forced P_n^(k)(a)=f^(k)(a) for k≤n. S05 supplied Rolle/MVT. Those two facts are exactly the ingredients used in the remainder proof.\n\nExplain the proof architecture on degree 1, not on the fixed Main instance. Fix a≠x and choose M so\nf(x)-P_1(x)=M(x-a)^2.\nSet g(t)=f(t)-P_1(t)-M(t-a)^2. Then g(x)=0, while derivative matching at a gives g(a)=g'(a)=0. Rolle applied to g between a and x gives an interior point d with g'(d)=0. Applying Rolle to g' between a and d gives c strictly between a and x with g''(c)=0. Since g''(t)=f''(t)-2M, we obtain M=f''(c)/2 and hence\nf(x)-P_1(x)=f''(c)(x-a)^2/2.\nThe general theorem repeats the same zero-forcing idea enough times; Main asks you to reconstruct the next degree rather than copy this proof verbatim.\n\nWorked example. Let f(t)=ln t, center a=1 and evaluate x=1.2. For n=1, P_1(t)=t-1 because f(1)=0 and f'(1)=1. Since ln has the required derivatives on [1,1.2], Taylor's theorem gives\nln(1.2)-0.2=f''(c)(0.2)^2/2\nfor some c∈(1,1.2). Since f''(c)=-1/c^2, the remainder is negative. We have not yet replaced c by a numerical bound; S07 will do that.\n\nGuided practice. For f(t)=e^t, center 0 and a first-degree polynomial evaluated at x=0.3, write only the legal Lagrange-remainder statement and locate c. Check: e^0.3-(1+0.3)=e^c(0.3)^2/2 for some c∈(0,0.3). Do not set c=0 merely because the polynomial coefficients use derivatives at 0.\n\nDistinction check. \"P_n uses derivatives at a\" and \"the remainder contains f^(n+1)(c)\" are different theorem roles. Existence of the Taylor polynomial at one point is not enough to invoke the Lagrange theorem across an interval where the next derivative fails."
+  },
+  "problems": {
+    "T22V3::SIDE267::S06-M@1": {
+      "id": "T22V3::SIDE267::S06-M@1",
+      "order": 6,
+      "kind": "main",
+      "prompt": "Let a<x. Suppose f,f',f'' are continuous on [a,x] and f''' exists at every point of (a,x). Let P_2(t)=f(a)+f'(a)(t-a)+f''(a)(t-a)^2/2. Prove that there is some c∈(a,x) such that f(x)-P_2(x)=f'''(c)(x-a)^3/6. You may use the Rolle/MVT bridge already established in this module. Your proof must make clear why c lies between a and x and must not assume c=a."
+    },
+    "T22V3::SIDE267::S06-T@1": {
+      "id": "T22V3::SIDE267::S06-T@1",
+      "order": 6,
+      "kind": "transfer",
+      "prompt": "Let f(t)=|t|^3, take center a=-1/2 and evaluation point x=1/2, and consider the degree-2 Taylor polynomial at a. A proposed solution says: “The degree-2 Taylor polynomial exists at a, so Taylor's theorem guarantees c∈(-1/2,1/2) with f(x)-P_2(x)=f'''(c)(x-a)^3/6.” Audit this claim. Compute the needed derivatives on t<0 and t>0, identify the theorem hypothesis that fails, and use the actual remainder together with the possible values of f''' where it exists to show concretely that this invocation cannot be correct."
+    }
+  },
+  "evaluators": {
+    "T22V3::SIDE267::S06-M@1": {
+      "reference": "Set M=[f(x)-P_2(x)]/(x-a)^3 and g(t)=f(t)-P_2(t)-M(t-a)^3. Then g(x)=0 by the definition of M. Taylor matching at a gives g(a)=g'(a)=g''(a)=0. Apply Rolle's theorem to g between a and x to obtain a first point where g'=0; apply it again to g' between a and that point to obtain a point where g''=0; apply it once more to g'' to obtain c∈(a,x) with g'''(c)=0. Since P_2'''=0 and d^3[M(t-a)^3]/dt^3=6M, g'''(c)=f'''(c)-6M=0. Thus M=f'''(c)/6 and f(x)-P_2(x)=f'''(c)(x-a)^3/6. An equivalent correct proof using the established MVT/Rolle machinery is acceptable.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Constructs a valid auxiliary/repeated-Rolle (or mathematically equivalent) proof setup in which the residual vanishes at both endpoints and has the needed derivative matching at a."
+        },
+        {
+          "points": 3,
+          "criterion": "Legally applies Rolle/MVT successively under the supplied interval hypotheses to obtain an interior c with the required third-derivative relation."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the third derivative of the auxiliary relation correctly and obtains the factor 3!=6."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes the stated remainder formula and explicitly keeps c between a and x rather than replacing it by the center."
+        }
+      ],
+      "marking": "Score the public proof obligations, not a preferred notation. Accept any valid proof of this n=2 Lagrange remainder using the established support theorem. Do not require the exact auxiliary-function symbol g or exact order of exposition."
+    },
+    "T22V3::SIDE267::S06-T@1": {
+      "reference": "For t>0, f(t)=t^3, so f'(t)=3t^2, f''(t)=6t and f'''(t)=6. For t<0, f(t)=-t^3, so f'(t)=-3t^2, f''(t)=-6t and f'''(t)=-6. At t=0, f'' is continuous with value 0, but f''' does not exist because the one-sided third derivatives are -6 and 6. Since 0 is an interior point of (-1/2,1/2), the n=2 Lagrange theorem's requirement that f''' exist throughout the intervening open interval fails. The degree-2 Taylor polynomial at a=-1/2 still exists: f(a)=1/8, f'(a)=-3/4, f''(a)=3, so at x=1/2 (where x-a=1), P_2(x)=1/8-3/4+3/2=7/8. Thus the actual remainder is 1/8-7/8=-3/4. Wherever f''' exists in the open interval, f'''(c)/6 is either -1 or 1, never -3/4. Hence no legal c can satisfy the claimed formula: existence of P_2 at the center did not establish the theorem's interval hypothesis.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes the piecewise derivatives sufficiently to show f'''=-6 for t<0, f'''=6 for t>0, and f''' does not exist at the interior point 0."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies failure of the next-derivative hypothesis on the full open interval between center and evaluation point, rather than claiming the Taylor polynomial itself does not exist."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes P_2(1/2)=7/8 and the actual remainder -3/4."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows the proposed Lagrange form would yield only ±1 for f'''(c)(x-a)^3/6 where f''' exists, so it cannot equal -3/4."
+        }
+      ],
+      "marking": "Accept equivalent piecewise-derivative notation and exact fractions/decimals. The key distinction is that P_2 exists at a while the interval theorem is illegal. Do not award the hypothesis criterion for merely saying the function is 'not smooth' without locating the failed derivative."
+    }
+  },
+  "claimEvidence": [
+    {
+      "claim": "Reconstruct a valid degree-2 Lagrange-remainder proof from derivative matching and the established Rolle/MVT support bridge.",
+      "observer": "T22V3::SIDE267::S06-M@1",
+      "scoringEvidence": "Main rubric rows 1–4",
+      "escapeAttempt": "A response that merely quotes the final Taylor formula cannot earn the proof-setup or repeated-Rolle criteria.",
+      "disposition": "adequate"
+    },
+    {
+      "claim": "Distinguish the center from the theorem's unknown intermediate remainder point and locate that point between center and evaluation point.",
+      "observer": "T22V3::SIDE267::S06-M@1",
+      "scoringEvidence": "Main rubric rows 2 and 4",
+      "escapeAttempt": "Setting c=a gives no credit for the interior-point/repeated-Rolle reasoning.",
+      "disposition": "adequate"
+    },
+    {
+      "claim": "Audit a Taylor-theorem invocation for the required next-derivative hypothesis on the whole intervening open interval.",
+      "observer": "T22V3::SIDE267::S06-T@1",
+      "scoringEvidence": "Transfer rubric rows 1–2, with rows 3–4 providing a concrete contradiction witness",
+      "escapeAttempt": "Saying only 'Taylor does not apply' without identifying f''' failure at the interior point cannot earn the hypothesis criterion.",
+      "disposition": "adequate"
+    }
+  ],
+  "evidenceDistance": {
+    "main": {
+      "classification": "proof reconstruction",
+      "reason": "The lesson teaches the repeated-Rolle proof architecture on the distinct degree-1 case; Main reconstructs the degree-2 proof, so the demand is proof reconstruction without exact worked-answer exposure."
+    },
+    "transfer": {
+      "classification": "changed-surface Transfer",
+      "reason": "Transfer changes from proving the theorem under supplied legal hypotheses to auditing a piecewise-smooth function that has a valid degree-2 polynomial at the center but fails the next-derivative condition at an interior point, then requires a numerical contradiction witness."
+    }
+  },
+  "wrongSolverTests": {
+    "main": {
+      "wrongApproach": "Quote f(x)=P_2(x)+f'''(a)(x-a)^3/6 because all Taylor coefficients are evaluated at a.",
+      "result": "Fails the proof obligations and illegally replaces the theorem's intermediate c by a; cannot earn rows 1,2 or 4.",
+      "validAlternative": "A correct Cauchy-MVT or equivalent Rolle-based proof is accepted even if it does not use the exact g/M notation."
+    },
+    "transfer": {
+      "wrongApproach": "Claim the theorem applies because f,f',f'' exist at the center and P_2 can be computed there.",
+      "result": "Misses the interval-wide f''' hypothesis and contradicts the explicit remainder values; loses the hypothesis/contradiction criteria.",
+      "validAlternative": "Any correct derivative audit that locates nonexistence of f''' at 0 and demonstrates incompatibility with the actual remainder passes."
+    }
+  },
+  "separation": {
+    "instructionalProofInstance": "degree-1 generic repeated-Rolle remainder proof",
+    "instructionalWorkedExample": "ln(t), center 1, evaluation 1.2, n=1",
+    "guidedPractice": "exp(t), center 0, evaluation 0.3, n=1",
+    "main": "general degree-2 proof with symbolic a,x",
+    "transfer": "|t|^3 across [-1/2,1/2]",
+    "finding": "No fixed task reuses the worked-example or guided-practice instance. Main reconstructs the next-degree theorem architecture rather than copying the lesson's degree-1 proof; Transfer changes object surface and demand."
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "version": "m10-ownership-audit-v2-2026-09-24",
+  "reviewedAgainst": "Public Main/Transfer prompts and exact rubric rows at repaired M10 v2",
+  "question": "Does the learner actually perform this capability in the cited fixed assessment, rather than merely using nearby mathematics or encountering the concept in instruction?",
+  "policy": "No ownership from lesson coverage, mathematical implication or merely related rubric rows. Claims are preserved only when observable; otherwise remap, narrow, repair the task, or remove.",
+  "summary": {
+    "originalClaims": 72,
+    "finalClaims": 69,
+    "removed": 3,
+    "materialTaskChanges": 5,
+    "taskIdsChanged": [
+      "T22V3::ARC053::S12-M@1",
+      "T22V3::ARC053::S14-T@1",
+      "T22V3::ARC053::S15-T@1",
+      "T22V3::ARC053::S20-M@1",
+      "T22V3::ARC053::S21-M@1"
+    ]
+  },
+  "records": [
+    {
+      "session": 1,
+      "originalClaimIndex": 1,
+      "originalClaim": "Distinguish average rate from instantaneous rate.",
+      "disposition": "remap",
+      "finalClaim": "Compute and distinguish a finite average rate and its limiting instantaneous rate.",
+      "rationale": "Old mapping cited only quotient formation; repaired evidence cites both the finite average rate and limiting instantaneous rate."
+    },
+    {
+      "session": 1,
+      "originalClaimIndex": 2,
+      "originalClaim": "Build a shrinking-interval rate and take its limit.",
+      "disposition": "remap",
+      "finalClaim": "Build a shrinking-interval rate and take its limit.",
+      "rationale": "Old mapping omitted construction of the shrinking interval; repaired mapping cites construction plus limiting steps on both tasks."
+    },
+    {
+      "session": 1,
+      "originalClaimIndex": 3,
+      "originalClaim": "Explain why h=0 is not substituted into the secant quotient.",
+      "disposition": "remap",
+      "finalClaim": "Explain why h=0 is not substituted into the secant quotient.",
+      "rationale": "Old mapping pointed to finite-observation discussion, not the h=0 issue; repaired to Main's explicit limit-versus-substitution row."
+    },
+    {
+      "session": 2,
+      "originalClaimIndex": 1,
+      "originalClaim": "State and use the derivative definition at a point.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Use the derivative definition at a point in both x→a and h→0 forms.",
+      "rationale": "‘State and use’ was stronger than the task; narrowed to use both standard forms and mapped to the two construction rows."
+    },
+    {
+      "session": 2,
+      "originalClaimIndex": 2,
+      "originalClaim": "Show the x→a and h→0 forms represent the same limit.",
+      "disposition": "remap",
+      "finalClaim": "Explain why the x→a and h→0 derivative forms are equivalent.",
+      "rationale": "Old Transfer citation was unrelated to equivalence; repaired to Main's explicit equivalence row."
+    },
+    {
+      "session": 2,
+      "originalClaimIndex": 3,
+      "originalClaim": "Keep the actual point value f(a) inside the derivative calculation.",
+      "disposition": "remap",
+      "finalClaim": "Keep the actual point value f(a) inside the derivative calculation.",
+      "rationale": "Transfer directly observes dependence on the actual point value; mapping corrected to that row."
+    },
+    {
+      "session": 3,
+      "originalClaimIndex": 1,
+      "originalClaim": "Construct the tangent line from f(a) and f'(a).",
+      "disposition": "remap",
+      "finalClaim": "Construct the tangent line from f(a) and f'(a).",
+      "rationale": "Old mapping cited derivative computation rather than tangent-line construction; repaired to the tangent-line row."
+    },
+    {
+      "session": 3,
+      "originalClaimIndex": 2,
+      "originalClaim": "Interpret a derivative as an instantaneous rate with correct units.",
+      "disposition": "remap",
+      "finalClaim": "Interpret a derivative as an instantaneous/local rate with correct units.",
+      "rationale": "Old evidence was semantically scrambled; repaired to rate-with-units rows."
+    },
+    {
+      "session": 3,
+      "originalClaimIndex": 3,
+      "originalClaim": "Separate instantaneous rate from average level or average rate.",
+      "disposition": "remap",
+      "finalClaim": "Separate a local derivative rate from an average level or average rate.",
+      "rationale": "Transfer explicitly contrasts marginal/local rate with average cost; mapping repaired."
+    },
+    {
+      "session": 4,
+      "originalClaimIndex": 1,
+      "originalClaim": "Compare one-sided derivative limits at an interior point.",
+      "disposition": "remap",
+      "finalClaim": "Compare one-sided derivative limits at an interior point.",
+      "rationale": "Both one-sided limits and the agreement conclusion are now cited."
+    },
+    {
+      "session": 4,
+      "originalClaimIndex": 2,
+      "originalClaim": "Classify representative finite-derivative failure modes.",
+      "disposition": "remap",
+      "finalClaim": "Classify representative finite-derivative failure modes.",
+      "rationale": "Failure-mode classification belongs entirely to Transfer, not Main."
+    },
+    {
+      "session": 4,
+      "originalClaimIndex": 3,
+      "originalClaim": "Distinguish an infinite/vertical tangent behavior from a finite derivative.",
+      "disposition": "remap",
+      "finalClaim": "Distinguish unbounded/vertical-tangent behavior from a finite derivative.",
+      "rationale": "Unbounded quotient versus finite derivative is observed directly in Transfer."
+    },
+    {
+      "session": 5,
+      "originalClaimIndex": 1,
+      "originalClaim": "Construct a derivative function from pointwise limits.",
+      "disposition": "remap",
+      "finalClaim": "Construct a derivative function from pointwise limits.",
+      "rationale": "Derivative-function construction now cites both quotient algebra and limiting step."
+    },
+    {
+      "session": 5,
+      "originalClaimIndex": 2,
+      "originalClaim": "Determine the domain of a derivative function.",
+      "disposition": "remap",
+      "finalClaim": "Determine the domain of a derivative function.",
+      "rationale": "Domain ownership now cites explicit domain conclusions/failure point rather than derivative computation."
+    },
+    {
+      "session": 5,
+      "originalClaimIndex": 3,
+      "originalClaim": "Distinguish the domain of f from the domain of f'.",
+      "disposition": "remap",
+      "finalClaim": "Distinguish the domain of f from the domain of f'.",
+      "rationale": "Transfer's explicit dom(g) versus dom(g') row is the observer."
+    },
+    {
+      "session": 6,
+      "originalClaimIndex": 1,
+      "originalClaim": "Prove differentiability at a point implies continuity there.",
+      "disposition": "remap",
+      "finalClaim": "Prove differentiability at a point implies continuity there.",
+      "rationale": "The complete epsilon-delta proof rubric now observes the theorem proof."
+    },
+    {
+      "session": 6,
+      "originalClaimIndex": 2,
+      "originalClaim": "Use discontinuity as a valid screen against differentiability.",
+      "disposition": "remove",
+      "finalClaim": null,
+      "rationale": "No fixed task asks the learner to use discontinuity as a contrapositive screen; removed rather than inferred."
+    },
+    {
+      "session": 6,
+      "originalClaimIndex": 3,
+      "originalClaim": "Give and justify a continuous but non-differentiable counterexample.",
+      "disposition": "remap",
+      "finalClaim": "Give and justify a continuous but non-differentiable counterexample.",
+      "rationale": "Transfer explicitly proves continuity and derivative failure, so the counterexample claim is retained."
+    },
+    {
+      "session": 7,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive the remainder form f(a+h)=f(a)+mh+r(h).",
+      "disposition": "narrow+remap",
+      "finalClaim": "Put a concrete function into local-linear remainder form and identify its first-order coefficient.",
+      "rationale": "General ‘derive remainder form’ overstated a concrete task; narrowed to putting a concrete function into local-linear remainder form."
+    },
+    {
+      "session": 7,
+      "originalClaimIndex": 2,
+      "originalClaim": "Use r(h)/h→0 as the first-order accuracy criterion.",
+      "disposition": "remap",
+      "finalClaim": "Use r(h)/h→0 as the first-order accuracy criterion.",
+      "rationale": "Both tasks explicitly verify the scaled-remainder criterion."
+    },
+    {
+      "session": 7,
+      "originalClaimIndex": 3,
+      "originalClaim": "Recover the derivative coefficient from a local-linear expansion.",
+      "disposition": "remap",
+      "finalClaim": "Recover the derivative coefficient from a local-linear expansion.",
+      "rationale": "Transfer directly recovers differentiability/derivative from the supplied local form."
+    },
+    {
+      "session": 8,
+      "originalClaimIndex": 1,
+      "originalClaim": "Construct the first-order approximation L(x)=f(a)+f'(a)(x-a).",
+      "disposition": "remap",
+      "finalClaim": "Construct the first-order approximation L(x)=f(a)+f'(a)(x-a).",
+      "rationale": "Main directly constructs the local line."
+    },
+    {
+      "session": 8,
+      "originalClaimIndex": 2,
+      "originalClaim": "Compare exact and first-order values in a case where both are available.",
+      "disposition": "remap",
+      "finalClaim": "Compare exact and first-order values when both are available.",
+      "rationale": "Only Main has both exact and first-order values; removed unrelated Transfer citation."
+    },
+    {
+      "session": 8,
+      "originalClaimIndex": 3,
+      "originalClaim": "State what r(h)/h→0 does and does not certify for a particular finite h.",
+      "disposition": "remap",
+      "finalClaim": "State what r(h)/h→0 does and does not certify for a particular finite h.",
+      "rationale": "Main and Transfer both distinguish asymptotic information from a finite-error guarantee."
+    },
+    {
+      "session": 9,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive derivative linearity from difference quotients.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Reconstruct derivative linearity from difference quotients and limit linearity.",
+      "rationale": "Lesson already derives linearity; claim now honestly says reconstruct and cites the proof row."
+    },
+    {
+      "session": 9,
+      "originalClaimIndex": 2,
+      "originalClaim": "Apply linearity to given differentiable functions.",
+      "disposition": "remap",
+      "finalClaim": "Apply derivative linearity to given differentiable functions.",
+      "rationale": "Application evidence repaired to actual derivative computations/constraint use."
+    },
+    {
+      "session": 9,
+      "originalClaimIndex": 3,
+      "originalClaim": "Distinguish derivative linearity from unrelated algebraic rules such as products.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Use derivative linearity rather than function-value cancellation.",
+      "rationale": "Old ‘unrelated algebraic rules such as products’ was not tested; narrowed to the explicitly tested contrast with function-value cancellation."
+    },
+    {
+      "session": 10,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive the positive-integer power rule from a difference quotient.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Reconstruct a positive-integer power derivative from first principles without assuming the power rule.",
+      "rationale": "General power-rule ownership overstated a specific reconstruction; narrowed to a positive-integer first-principles reconstruction."
+    },
+    {
+      "session": 10,
+      "originalClaimIndex": 2,
+      "originalClaim": "Explain structurally why the coefficient n appears.",
+      "disposition": "remap",
+      "finalClaim": "Explain structurally why the integer coefficient appears.",
+      "rationale": "Structural coefficient explanation is directly observed in the factorization Transfer."
+    },
+    {
+      "session": 10,
+      "originalClaimIndex": 3,
+      "originalClaim": "Use the proved rule only within its established exponent scope.",
+      "disposition": "remove",
+      "finalClaim": null,
+      "rationale": "No task tests awareness of the theorem's exponent-scope boundary; removed."
+    },
+    {
+      "session": 11,
+      "originalClaimIndex": 1,
+      "originalClaim": "Differentiate a finite polynomial from established rules.",
+      "disposition": "remap",
+      "finalClaim": "Differentiate a finite polynomial from established rules.",
+      "rationale": "Main's derivative formula plus stated rule basis observe polynomial assembly."
+    },
+    {
+      "session": 11,
+      "originalClaimIndex": 2,
+      "originalClaim": "Evaluate a polynomial derivative at a point.",
+      "disposition": "remap",
+      "finalClaim": "Evaluate a polynomial derivative at a point.",
+      "rationale": "Main's point evaluation is the direct observer; old Transfer citation was unrelated."
+    },
+    {
+      "session": 11,
+      "originalClaimIndex": 3,
+      "originalClaim": "Use derivative constraints to infer unknown polynomial coefficients.",
+      "disposition": "remap",
+      "finalClaim": "Use derivative constraints to infer unknown polynomial coefficients.",
+      "rationale": "Transfer's equations and solution directly observe inverse coefficient inference."
+    },
+    {
+      "session": 12,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive the product rule from exact increments/difference quotients.",
+      "disposition": "assessment-repair+narrow",
+      "finalClaim": "Reconstruct the product rule from an exact increment expansion.",
+      "rationale": "Main previously only applied product rule. Main v2 now reconstructs it from an exact increment expansion; classified as proof reconstruction because the lesson teaches the rule."
+    },
+    {
+      "session": 12,
+      "originalClaimIndex": 2,
+      "originalClaim": "Account for the cross-increment term at the correct order.",
+      "disposition": "assessment-repair+remap",
+      "finalClaim": "Account for the cross-increment term at the correct order.",
+      "rationale": "Main v2 and Transfer directly observe why the cross increment is higher order."
+    },
+    {
+      "session": 12,
+      "originalClaimIndex": 3,
+      "originalClaim": "Apply product differentiation without replacing it by f'g'.",
+      "disposition": "remap",
+      "finalClaim": "Apply product differentiation without replacing it by f'g'.",
+      "rationale": "Application is observed in repaired Main and local-model Transfer without relying on f'g'."
+    },
+    {
+      "session": 13,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive/use the reciprocal and quotient rules with denominator conditions.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Use the quotient rule with its nonzero-denominator condition.",
+      "rationale": "‘Derive/use reciprocal and quotient rules’ exceeded Main; narrowed to use the quotient rule with denominator condition."
+    },
+    {
+      "session": 13,
+      "originalClaimIndex": 2,
+      "originalClaim": "Preserve the original domain after algebraic simplification.",
+      "disposition": "remap",
+      "finalClaim": "Preserve the original function domain after algebraic simplification.",
+      "rationale": "Domain preservation is directly observed in Main restriction and all Transfer hole/extension reasoning."
+    },
+    {
+      "session": 13,
+      "originalClaimIndex": 3,
+      "originalClaim": "Extend the power rule to negative integer exponents on their legal domain.",
+      "disposition": "remove",
+      "finalClaim": null,
+      "rationale": "Negative-integer power extension was taught but never directly assessed; removed."
+    },
+    {
+      "session": 14,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive the one-variable chain rule from local first-order models.",
+      "disposition": "assessment-repair+narrow",
+      "finalClaim": "Compose local first-order models to recover the chain-rule coefficient on a changed surface.",
+      "rationale": "General theorem derivation was stronger than the tasks. Transfer v2 now directly composes first-order models; claim narrowed to that observable mechanism."
+    },
+    {
+      "session": 14,
+      "originalClaimIndex": 2,
+      "originalClaim": "Track the outer derivative at the inner function value.",
+      "disposition": "remap",
+      "finalClaim": "Track the outer derivative at the inner function value.",
+      "rationale": "Main directly tracks inner value and outer derivative."
+    },
+    {
+      "session": 14,
+      "originalClaimIndex": 3,
+      "originalClaim": "Avoid a proof that requires dividing by a possibly zero inner increment.",
+      "disposition": "assessment-repair+narrow",
+      "finalClaim": "Explain why the local-model chain argument does not require a nonzero inner increment at every nearby point.",
+      "rationale": "Transfer v2 explicitly requires bounded k(h)/h and handling k(h)=0, directly observing proof safety."
+    },
+    {
+      "session": 15,
+      "originalClaimIndex": 1,
+      "originalClaim": "Differentiate a multi-layer scalar composition with every local factor present.",
+      "disposition": "remap",
+      "finalClaim": "Differentiate a multi-layer scalar composition with every local factor present.",
+      "rationale": "Main directly tracks all nested chain factors."
+    },
+    {
+      "session": 15,
+      "originalClaimIndex": 2,
+      "originalClaim": "Audit the original domain before simplifying a nested derivative.",
+      "disposition": "remap",
+      "finalClaim": "Audit the original domain before evaluating a nested derivative.",
+      "rationale": "Domain auditing is directly observed in Main and repaired Transfer."
+    },
+    {
+      "session": 15,
+      "originalClaimIndex": 3,
+      "originalClaim": "Diagnose a missing-factor or wrong-evaluation chain-rule error.",
+      "disposition": "assessment-repair+narrow",
+      "finalClaim": "Diagnose a missing chain factor and an illegal derivative evaluation.",
+      "rationale": "Transfer v2 now contains both a missing-chain-factor error and an illegal evaluation error; claim narrowed to those observed diagnoses."
+    },
+    {
+      "session": 16,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive a sine-or-cosine derivative from an angle-addition identity and M09 normalized trigonometric limits.",
+      "disposition": "narrow+classification",
+      "finalClaim": "Reconstruct the cosine derivative proof from an angle-addition identity and M09 normalized trigonometric limits.",
+      "rationale": "Guided practice gives the cosine identity and needed limits; Main is proof reconstruction, so ownership now says reconstruct rather than fresh derive."
+    },
+    {
+      "session": 16,
+      "originalClaimIndex": 2,
+      "originalClaim": "Use the established sine/cosine derivatives inside a fresh linear combination.",
+      "disposition": "remap",
+      "finalClaim": "Use the established sine/cosine derivatives inside a fresh linear combination.",
+      "rationale": "Both tasks directly differentiate fresh linear combinations."
+    },
+    {
+      "session": 16,
+      "originalClaimIndex": 3,
+      "originalClaim": "Explain why the normalized derivative derivation is radian-dependent.",
+      "disposition": "remap",
+      "finalClaim": "Explain why the normalized derivative derivation is radian-dependent.",
+      "rationale": "Main and Transfer explicitly observe radian normalization/degree conversion."
+    },
+    {
+      "session": 17,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive at least one non-sine/cosine trig derivative from existing rules.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Use the established tan/sec/cot/csc derivative rules with correct signs.",
+      "rationale": "Neither task derives the family formulas from scratch; claim narrowed to correct use of established tan/sec/cot/csc rules."
+    },
+    {
+      "session": 17,
+      "originalClaimIndex": 2,
+      "originalClaim": "Apply trig derivative rules through a composition.",
+      "disposition": "remap",
+      "finalClaim": "Apply a non-sine/cosine trigonometric derivative through a composition.",
+      "rationale": "Main's tan(3x) term directly observes composition/chain factor."
+    },
+    {
+      "session": 17,
+      "originalClaimIndex": 3,
+      "originalClaim": "State the domain restrictions inherited from sine/cosine denominators.",
+      "disposition": "remap",
+      "finalClaim": "State the domain restrictions inherited from sine/cosine denominators.",
+      "rationale": "Both tasks explicitly state the inherited denominator domains."
+    },
+    {
+      "session": 18,
+      "originalClaimIndex": 1,
+      "originalClaim": "State and prove the scoped inverse-derivative relation used here.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Apply the scoped inverse-derivative relation with its hypotheses visible.",
+      "rationale": "Lesson proves the theorem; Main applies it. Claim narrowed from ‘state and prove’ to applying the scoped relation with hypotheses visible."
+    },
+    {
+      "session": 18,
+      "originalClaimIndex": 2,
+      "originalClaim": "Evaluate an inverse derivative at the corresponding inverse point.",
+      "disposition": "remap",
+      "finalClaim": "Evaluate an inverse derivative at the corresponding inverse point.",
+      "rationale": "Both tasks directly identify the corresponding inverse point and derivative."
+    },
+    {
+      "session": 18,
+      "originalClaimIndex": 3,
+      "originalClaim": "Respect branch choice and nonzero forward derivative.",
+      "disposition": "remap",
+      "finalClaim": "Respect branch choice and a nonzero forward derivative.",
+      "rationale": "Main observes nonzero forward slope; Transfer observes branch choice/sign."
+    },
+    {
+      "session": 19,
+      "originalClaimIndex": 1,
+      "originalClaim": "Apply the chain rule to an implicitly defined relation along a differentiable branch.",
+      "disposition": "remap",
+      "finalClaim": "Apply product/chain rules to an implicitly defined relation along an assumed differentiable branch.",
+      "rationale": "Both tasks explicitly apply chain/product rules to an assumed local branch."
+    },
+    {
+      "session": 19,
+      "originalClaimIndex": 2,
+      "originalClaim": "Solve for dy/dx only when the coefficient permits it.",
+      "disposition": "remap",
+      "finalClaim": "Solve for dy/dx only when its coefficient is nonzero.",
+      "rationale": "Both tasks identify/check the coefficient before solving for y'."
+    },
+    {
+      "session": 19,
+      "originalClaimIndex": 3,
+      "originalClaim": "Distinguish a computed local slope condition from proof that a differentiable branch exists.",
+      "disposition": "remap",
+      "finalClaim": "Distinguish a computed local slope condition from proof that a differentiable branch exists.",
+      "rationale": "Both tasks explicitly state that calculation does not prove branch existence."
+    },
+    {
+      "session": 20,
+      "originalClaimIndex": 1,
+      "originalClaim": "State the local normalization used for e^x.",
+      "disposition": "assessment-repair",
+      "finalClaim": "State the adopted zero-point normalization for e^x.",
+      "rationale": "Main v2 now requires the learner to state the adopted normalization."
+    },
+    {
+      "session": 20,
+      "originalClaimIndex": 2,
+      "originalClaim": "Derive (e^x)'=e^x from that normalized zero-point limit.",
+      "disposition": "assessment-repair+narrow",
+      "finalClaim": "Reconstruct (e^x)'=e^x from the normalization and the exponential law.",
+      "rationale": "Main v2 now reconstructs the derivative of e^x from that normalization; claim says reconstruct because the lesson already presents the proof."
+    },
+    {
+      "session": 20,
+      "originalClaimIndex": 3,
+      "originalClaim": "Differentiate an exponential composition and interpret proportional rate.",
+      "disposition": "remap",
+      "finalClaim": "Differentiate an exponential composition and interpret proportional rate.",
+      "rationale": "Main and Transfer directly observe exponential composition and proportional-rate interpretation."
+    },
+    {
+      "session": 21,
+      "originalClaimIndex": 1,
+      "originalClaim": "Derive (ln x)'=1/x on x>0 and extend to log_b.",
+      "disposition": "assessment-repair+narrow",
+      "finalClaim": "Derive (log_b x)' and recover (ln x)' with the required base/domain conditions.",
+      "rationale": "Original claim bundled ln→log_b while Main did not assess all of it. Main v2 directly derives log_b and recovers ln; wording reordered to match the evidence."
+    },
+    {
+      "session": 21,
+      "originalClaimIndex": 2,
+      "originalClaim": "Derive (b^x)'=b^x ln b for b>0.",
+      "disposition": "assessment-repair",
+      "finalClaim": "Derive (b^x)'=b^x ln b for b>0.",
+      "rationale": "Main v2 now directly derives (b^x)' rather than merely assuming it."
+    },
+    {
+      "session": 21,
+      "originalClaimIndex": 3,
+      "originalClaim": "Use logarithmic differentiation with an explicit positive-domain condition.",
+      "disposition": "remap",
+      "finalClaim": "Use logarithmic differentiation with an explicit positive-domain condition.",
+      "rationale": "Transfer explicitly uses positivity and logarithmic differentiation; all relevant rubric rows are cited."
+    },
+    {
+      "session": 22,
+      "originalClaimIndex": 1,
+      "originalClaim": "Translate a derivative into a first-order output change with units.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Translate a derivative into a first-order output change and interpret it locally.",
+      "rationale": "Prompt/rubric do not require units, so claim narrowed to first-order change plus local interpretation."
+    },
+    {
+      "session": 22,
+      "originalClaimIndex": 2,
+      "originalClaim": "Compute and interpret local elasticity when input/output values are nonzero.",
+      "disposition": "remap",
+      "finalClaim": "Compute and interpret local elasticity when input/output values are nonzero.",
+      "rationale": "Transfer is the clean observer because it computes elasticity and gives the first-order percentage interpretation."
+    },
+    {
+      "session": 22,
+      "originalClaimIndex": 3,
+      "originalClaim": "Keep local sensitivity distinct from optimization or global monotonicity claims.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Keep local sensitivity distinct from optimization or exact global claims.",
+      "rationale": "Main rejects an optimization conclusion; Transfer rejects exact/global interpretation."
+    },
+    {
+      "session": 23,
+      "originalClaimIndex": 1,
+      "originalClaim": "Diagnose derivative claims against the original domain and definition.",
+      "disposition": "remap",
+      "finalClaim": "Diagnose derivative claims against the original domain and definition.",
+      "rationale": "Main's A/C audits observe definition/domain legality."
+    },
+    {
+      "session": 23,
+      "originalClaimIndex": 2,
+      "originalClaim": "Recognize differentiability at a point without assuming f' is continuous there.",
+      "disposition": "remap",
+      "finalClaim": "Recognize differentiability at a point without assuming f' is continuous there.",
+      "rationale": "Transfer directly establishes differentiability while showing g' lacks continuity; old Main citations were unrelated."
+    },
+    {
+      "session": 23,
+      "originalClaimIndex": 3,
+      "originalClaim": "Separate a correct formula on its domain from an illegal endpoint/restored-point claim.",
+      "disposition": "remap",
+      "finalClaim": "Separate a correct derivative formula on its domain from an illegal restored-point claim.",
+      "rationale": "Main's B/C pair directly contrasts valid formula-on-domain with illegal restored-point evaluation."
+    },
+    {
+      "session": 24,
+      "originalClaimIndex": 1,
+      "originalClaim": "Choose between definition, algebraic rule and local-linear reasoning based on the structure.",
+      "disposition": "narrow+remap",
+      "finalClaim": "Integrate algebraic simplification, derivative rules and local-linear reasoning in one argument.",
+      "rationale": "‘Choose between’ was not explicitly verbalized; narrowed to integrating the three methods actually performed in Main."
+    },
+    {
+      "session": 24,
+      "originalClaimIndex": 2,
+      "originalClaim": "Carry domain/hypothesis information through a multi-step derivative argument.",
+      "disposition": "remap",
+      "finalClaim": "Carry domain and theorem hypotheses through a multi-step derivative argument.",
+      "rationale": "Main and Transfer directly carry continuity/inverse/log hypotheses through multi-step reasoning."
+    },
+    {
+      "session": 24,
+      "originalClaimIndex": 3,
+      "originalClaim": "End with a justified first-order model while rejecting conclusions owned by later modules.",
+      "disposition": "remap",
+      "finalClaim": "End with a justified first-order model while rejecting conclusions owned by later modules.",
+      "rationale": "Both tasks produce first-order models; Transfer explicitly rejects unsupported higher/global conclusions."
+    }
+  ]
+}

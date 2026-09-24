@@ -1,5 +1,5 @@
 {
-  "version": "semantic-ledger-r1-2026-09-18",
+  "version": "semantic-ledger-r3-through-m12-published-2026-09-25",
   "policy": "Every macro module must have a ledger row. Before its learner-facing authoring is published, semanticStatus must be accepted and every actual prerequisite in the authored content must trace to an earlier accepted module or a bounded bridge owned by this module. Topological position alone is not evidence of semantic ancestry.",
   "entries": [
     {
@@ -87,22 +87,39 @@
       "order": 10,
       "id": "ARC053",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
+      "semanticStatus": "accepted",
       "bridges": []
     },
     {
       "order": 11,
       "id": "ARC510",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
+      "semanticStatus": "accepted",
       "bridges": []
     },
     {
       "order": 12,
       "id": "SIDE267",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "accepted",
+      "bridges": [
+        {
+          "id": "M12-B01",
+          "owner": "SIDE267",
+          "title": "Infinite-series and power-series bridge",
+          "before": "first Taylor-series candidate",
+          "content": "Define an infinite series as the limit of its finite partial-sum sequence, derive the geometric series from the finite geometric-sum identity plus M09 geometric-sequence decay, and introduce only the power-series language/convergence-region ideas needed for Taylor-series honesty. General series-test catalogues and uniform-convergence theory remain deferred.",
+          "implementedBy": "M12-S10–S11 planned by docs/t22-course/M12-DESIGN-GATE.md"
+        },
+        {
+          "id": "M12-B02",
+          "owner": "SIDE267",
+          "title": "Rolle/MVT support for Taylor remainder",
+          "before": "Taylor theorem with Lagrange remainder",
+          "content": "Because M10 does not own a broad MVT unit and M11 is not a formal M12 prerequisite, supply a compact Fermat→Rolle→MVT support bridge before Taylor's theorem. This is support only, not a general MVT applications unit.",
+          "implementedBy": "M12-S05 planned by docs/t22-course/M12-DESIGN-GATE.md"
+        }
+      ]
     },
     {
       "order": 13,

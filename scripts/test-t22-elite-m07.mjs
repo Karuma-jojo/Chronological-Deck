@@ -4,11 +4,11 @@ import assert from 'node:assert/strict';
 const a=JSON.parse(fs.readFileSync('course/t22/authoring/m07.json','utf8'));
 const by=n=>a.sessions.find(s=>s.order===n);
 
-assert.equal(a.version,'m07-authoring-astra-r1');
+assert.equal(a.version,'m07-authoring-v1.1-r2');
 assert.equal(a.instructionVersion,'m07-instruction-astra-r1');
 assert.equal(a.module.id,'T22E-MKT01');
 assert.equal(a.module.order,7);
-assert.equal(a.module.status,'authored-astra-repaired-awaiting-independent-followup');
+assert.equal(a.module.status,'authored-v1.1-retrofitted-awaiting-independent-confirmation');
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01','T22E-FND02','T22E-TRD01']);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
@@ -24,7 +24,7 @@ for(let n=1;n<=24;n++){
  assert.equal(s.requiredOwnership.length,5);
  assert(s.lesson.includes('Worked example:')&&s.lesson.includes('Guided check:'));
  assert.equal(a.claimEvidence[s.id].length,5);
- assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'astra-r1-builder-repaired');
+ assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'v1.1-retrofit-reviewed');
  for(const kind of ['main','transfer']){
   const id=s[kind],p=a.problems[id],ev=a.evaluators[id];
   assert(p&&ev); assert.equal(p.order,n); assert.equal(p.kind,kind);
@@ -46,6 +46,46 @@ for(let n=1;n<=24;n++){
  }
  assert(a.prerequisiteAudit['S'+String(n).padStart(2,'0')]?.length);
 }
+
+// Retrospective v1.1 design/source/support/evidence guards.
+assert.equal(a.coverageAudit.designGate,'docs/t22-course/M07-DESIGN-GATE.md');
+assert(fs.existsSync(a.coverageAudit.designGate));
+assert.equal(a.v11RetrofitAudit.sessionSizing.startsWith('24 retained'),true);
+assert.deepEqual(a.v11RetrofitAudit.changedAssessmentIds,[]);
+assert.deepEqual(a.v11RetrofitAudit.changedContractSessionIds,[by(2).id,by(20).id]);
+assert.equal(a.instructionVersion,'m07-instruction-astra-r1');
+assert.equal(a.sourceLedger.designGate,a.coverageAudit.designGate);
+for(const id of ['REPO-M07','MIT-15401','OS-FIN-151','SEC-ORDER','SEC-SHORT','MAA-IPG','IES-WWC','PED-SAWATZKI','PED-NGU','PED-PERCENT']){
+ assert(a.sourceLedger.sources.some(x=>x.id===id),`missing M07 source role ${id}`);
+}
+for(const src of a.sourceLedger.sources){
+ for(const field of ['source','type','epistemicRole','sections','supports','limitations','notImported'])assert(src[field],`source ${src.id} missing ${field}`);
+ if(src.type==='empirical math-ed research')assert(src.populationContext,`empirical source ${src.id} missing population/context`);
+}
+assert(a.supportFactLedger.length>=16);
+for(const row of a.supportFactLedger)for(const field of ['result','firstUse','source','objectType','hypotheses','treatment','futureBoundary'])assert(row[field],`support fact ${row.id} missing ${field}`);
+assert(a.pedagogyEvidenceLedger.length>=5);
+for(const row of a.pedagogyEvidenceLedger)for(const field of ['concept','documentedDifficulty','populationContext','evidenceStrengthLimitation','likelyFalseModel','usefulRepresentation','usefulContrast','sequencingImplication','workedExampleImplication','assessmentImplication'])assert(row[field],`pedagogy ledger missing ${field}`);
+
+assert(!by(2).requiredOwnership.slice(0,3).some(x=>x.startsWith('Define ')),'S02 ownership must not overclaim definition from identification evidence');
+assert.equal(by(20).requiredOwnership[3],'Treat supplied fees as currency costs in the net-P&L calculation rather than as percentage-return quantities.');
+
+const allowedEvidence=new Set(['retrieval','proof reconstruction','fresh Main evidence','changed-surface Transfer']);
+const mainCounts={},transferCounts={};
+for(const s of a.sessions){
+ const rec=a.semanticSeparationAudit.sessions[s.id];
+ for(const kind of ['main','transfer']){
+  assert(allowedEvidence.has(rec[kind].classification),`S${s.order} bad ${kind} evidence class`);
+  const bucket=kind==='main'?mainCounts:transferCounts;
+  bucket[rec[kind].classification]=(bucket[rec[kind].classification]||0)+1;
+ }
+ for(const surface of [s.lesson,a.problems[s.main].prompt,a.problems[s.transfer].prompt,a.evaluators[s.main].reference,a.evaluators[s.transfer].reference]){
+  assert(!surface.includes('\\\\n'),`S${s.order} visible escaped-newline serialization`);
+  assert(!/\b(?:TODO|TBD|PLACEHOLDER)\b/i.test(surface),`S${s.order} stale placeholder`);
+ }
+}
+assert.deepEqual(mainCounts,{'retrieval':22,'proof reconstruction':1,'fresh Main evidence':1});
+assert.deepEqual(transferCounts,{'retrieval':15,'changed-surface Transfer':9});
 
 // CERBERUS high-risk capability-discrimination guards.
 assert(by(5).lesson.includes('Simple returns generally do not add'));

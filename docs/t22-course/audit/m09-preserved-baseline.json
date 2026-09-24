@@ -12,10 +12,15 @@
     "course/t22/authoring/m06.json": "65badb40514aa55c483175c673facfaa21fedce04057b9a8dbe7295008ba93cc",
     "course/t22/authoring/m05.json": "117751c09d0b0d32528674740cb79227fa4b5db57df530f58095c86dc0e6f513",
     "course/t22/authoring/m03.json": "a3af5537582fd8a2ca3973267aa0cfec4c768613bf79f43e6ca1fb76431ca283",
-    "course/t22/authoring/m07.json": "38a4b2c91753c7ac6451adad34a5d1797f7f1eb6811c8332ab0d049fdcdd397c",
+    "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
     "course/t22/authoring/m04.json": "56c0352b072761323b51e0857fefa46cb703468229fdb4cabb09e401556527e2",
     "course/t22/authoring/m02.json": "5bfcceb15f158333e4d5f56c4ebb8f90ee1253e7917bf78da628c5c773be533b",
     "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
     "course/t22/authoring/m01-repairs-1.1.json": "150ef06bdc71198164713d361f2b04f73c866c5d48916e97ce1df962b153ec54"
+  },
+  "authorizedM07Retrofit": {
+    "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
+    "reason": "User-authorized retrospective M07 v1.1 protocol repair after M09 publication; M07 fixed tasks and obligation versions unchanged, only S02/S20 ownership wording plus source/support/pedagogy/evidence metadata/guards changed.",
+    "unchangedFiles": "Every other M01-M08 preserved-baseline hash remains pinned."
   }
 }

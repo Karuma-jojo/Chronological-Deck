@@ -1,7 +1,7 @@
 {
-  "version": "m07-semantic-contract-astra-r1-2026-09-24",
-  "reviewedAgainst": "M07-ASTRA-REVIEW.md",
-  "policy": "Human-reviewed semantic claim contract. Rubric row numbers are 1-based within the selected public task. Several claims deliberately use multiple rows or Transfer evidence. This file is authoritative for mutation-sensitive observability checks; it is not generated from claimEvidence at test time.",
+  "version": "m07-semantic-contract-v1.1-r2-2026-09-24",
+  "reviewedAgainst": "M07-ASTRA-REVIEW.md + M07-DESIGN-GATE.md + full 120-claim v1.1 literal-observability reread",
+  "policy": "Human-reviewed semantic claim contract after retrospective v1.1 design reconstruction. Rubric row numbers are 1-based within the selected public task. Claims may use Main or Transfer and multiple rows. The two remaining wording overclaims were narrowed without changing observers. This file protects reviewed meaning by mutation tests; it does not automate the initial semantic judgment.",
   "sessions": {
     "10": {
       "links": [

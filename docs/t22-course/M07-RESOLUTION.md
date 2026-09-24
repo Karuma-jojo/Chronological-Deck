@@ -1,5 +1,55 @@
 # M07 RESOLUTION — Astra findings M07-01 through M07-05
 
+## Retrospective v1.1 protocol repair — 2026-09-24
+
+This is the current M07 repair authority. It supplements rather than erases the historical Astra repair below.
+
+A fresh retrospective design pass rebuilt the missing pre-authoring layer in `M07-DESIGN-GATE.md`: boundary contract, source-role dossier, support-fact/convention ledger, concept dependency graph, conceptual distinctions, misconception/failure map, pedagogy-evidence ledger, representation progression, downstream obligations, narrative spine, pedagogical atoms and split/merge audit.
+
+**Architecture result: KEEP 24 sessions.** The count is now justified by 24 distinct learner-state transitions rather than inherited from the 2026-09-23 bulk authoring commit. All 48 fixed tasks and stable IDs are preserved.
+
+A literal reread of all 120 ownership claims found two remaining wording defects:
+- S02 C1–C3 said “Define” although the public task observes identification/distinction; all three are narrowed to the literal observable action.
+- S20 C4 claimed a general fee-vs-percentage unit distinction although the public task observes supplied fees as currency costs in the net-P&L calculation; the claim is narrowed accordingly.
+
+No fixed prompt, evaluator, reference or rubric is changed. Therefore this v1.1 retrofit changes **zero assessment obligations** and bumps **no obligationVersion**. Learner-facing lessons are unchanged, so `m07-instruction-astra-r1` is retained. Only S02 and S20 capability contracts change.
+
+Permanent additions:
+- canonical source-role stack including repository authority, MIT/OpenStax comparators, SEC/FINRA market-mechanics authorities, MAA/IES pedagogy baselines and domain-specific financial/percentage-education studies;
+- visible support-fact/convention ledger for return domains, signed P&L, mark, average-cost accounting, bid/ask, frozen-quote arithmetic, market/limit order semantics, partial fills, weighted execution and marked equity;
+- evidence-distance calibration: Main = 22 retrieval, 1 proof reconstruction (S06), 1 fresh Main (S24); Transfer slots = 15 retrieval and 9 changed-surface Transfer;
+- executable guards for source roles, support facts, pedagogy populations/limitations, canonical status, literal ownership wording, evidence classes, escaped-newline serialization and stale placeholders.
+
+Historical Astra content/provenance repairs remain active. This repair does **not** self-certify independent acceptance. After exact-head full CI/Chromium verification, M07 remains a v1.1-retrofitted candidate for a separate bounded confirmation.
+
+### v1.1 exact-head verification receipt
+
+Verified repair head: `0c66088d7a1cc65614aae1b4ac7e18671d806f17`  
+Full T22 Elite workflow: `36027608844`  
+Job: `107728006706`  
+Conclusion: **SUCCESS**
+
+Inspected logs establish:
+- syntax checks: PASS;
+- M07 structural/pedagogy and independent market mathematics: PASS;
+- M07 v1.1 source-role/support-fact/pedagogy/ownership/evidence-distance guards: PASS;
+- historical Astra/provenance regressions: PASS;
+- M09, M10 and M11 preservation/semantic/mathematics gates after the authorized M07 rebase: PASS;
+- Chromium installation: PASS;
+- real learner-browser workflow: PASS, including M07 draft/assistance provenance, save/reveal/review, export/import, packet exposure, corrupt-storage preservation and mobile width;
+- M09 and M11 browser-boundary regressions: PASS.
+
+Three intermediate red runs were intentionally not papered over:
+1. M09 correctly rejected the changed historical M07 baseline until the authorized retrofit was explicitly rebased.
+2. M11 correctly rejected the changed M09/M10 baseline ledgers until that rebase propagated through its preservation guard.
+3. One handoff check then failed only because it searched case-sensitively for a lowercase status token while the handoff used uppercase; the guard was corrected without changing course content.
+
+No valid content check was weakened to obtain green status.
+
+**Current disposition:** M07 is a **v1.1-retrofitted, builder-verified candidate awaiting separate bounded independent confirmation**. The repairer does not declare independent acceptance/freeze.
+
+
+
 Date: 2026-09-24  
 Module: `T22E-MKT01` — Markets 0: Prices, Returns & Trading Mechanics  
 Independent review: `M07-ASTRA-REVIEW.md`  
