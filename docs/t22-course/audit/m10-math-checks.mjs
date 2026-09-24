@@ -24,7 +24,7 @@ has(5,'transfer',"dom(g')=R\\{2}");
 
 // S06–S08: differentiability=>continuity, local-linearity equivalence, approximation/error boundary.
 has(6,'main','|Q(h)|≤|L|+1','δ=min(δ0,ε/M)','proving continuity');
-has(6,'transfer','continuous at 0','no finite derivative');
+has(6,'transfer','Continuity follows','no finite derivative');
 has(7,'main','10+7h+h²','r(h)=h²',"f'(2)=7");
 has(7,'transfer','r(h)=h|h|','|h|→0',"F'(0)=2");
 near(2.02**3,8.242408);
