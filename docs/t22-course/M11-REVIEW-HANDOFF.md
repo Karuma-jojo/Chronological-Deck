@@ -60,7 +60,7 @@ Evidence classes mean evidence distance, not prestige:
 - `fresh Main evidence`
 - `changed-surface Transfer`
 
-The exact repaired contract is `docs/t22-course/audit/m11-semantic-contract.json`; the history is in `m11-ownership-audit.json`.
+The exact repaired contract is `docs/t22-course/audit/m11-semantic-contract.json`; the history is in `m11-ownership-audit.json`; the bounded repair dispositions are summarized in `docs/t22-course/M11-RESOLUTION.md`.
 
 ## Final-confirmation targets
 

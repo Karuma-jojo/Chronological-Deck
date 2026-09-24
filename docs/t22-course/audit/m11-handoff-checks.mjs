@@ -5,6 +5,7 @@ const a=JSON.parse(fs.readFileSync('course/t22/authoring/m11-arc510.json','utf8'
 const receipt=JSON.parse(fs.readFileSync('docs/t22-course/audit/m11-validation-receipt.json','utf8'));
 const handoff=fs.readFileSync('docs/t22-course/M11-REVIEW-HANDOFF.md','utf8');
 const verification=fs.readFileSync('docs/t22-course/M11-VERIFICATION.md','utf8');
+const resolution=fs.readFileSync('docs/t22-course/M11-RESOLUTION.md','utf8');
 
 assert.equal(a.module.id,'ARC510');
 assert.equal(a.sessions.length,20);
@@ -32,6 +33,12 @@ assert.match(handoff,/STOP for final bounded M11 confirmation/i);
 assert.match(handoff,/61.*ownership claims/i);
 assert.match(handoff,/m11-semantic-contract\.json/i);
 assert.match(handoff,/m11-ownership-audit\.json/i);
+assert.match(handoff,/M11-RESOLUTION\.md/i);
+assert(resolution.includes('645c3d4c96ccdf1b2ad6120f63940d388077e7e9'));
+assert(resolution.includes('36015062169'));
+assert(resolution.includes('36015805901'));
+assert.match(resolution,/No remaining substantive defect/i);
+assert.match(resolution,/Do not open M12/i);
 assert.match(verification,/bounded independent-review findings implemented/i);
 assert.match(verification,/supremum mechanism directly|direct supremum proof/i);
 assert.match(handoff,/S01\/S02\/S05\/S06\/S09\/S13\/S14\/S19 → retrieval/i);

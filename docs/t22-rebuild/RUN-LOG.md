@@ -473,3 +473,10 @@ Full run `36015062169`, job `107685344598`: **SUCCESS**, including inherited M01
 Final-confirmation handoff: `docs/t22-course/M11-REVIEW-HANDOFF.md`.
 
 **STOP for bounded final M11 confirmation. M12 remains closed.**
+
+
+## M11 resolution note — 2026-09-24
+
+Added `docs/t22-course/M11-RESOLUTION.md` for consistency with prior repaired modules. It records the bounded independent-review findings, exact dispositions, repair checkpoint `645c3d4c96ccdf1b2ad6120f63940d388077e7e9`, successful runs `36015062169` and `36015805901`, architecture/task preservation, and the independent follow-up's conclusion that no substantive defect from the reported audit remains.
+
+This is documentation-only closure. No M11 lesson, task, rubric, ownership claim or mathematical boundary changed.
