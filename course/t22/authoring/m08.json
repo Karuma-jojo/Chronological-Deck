@@ -37,8 +37,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m08-observability-independent-repair-r2-2026-09-24",
-    "status": "Independent hostile audit found real assessment contamination and observability gaps; repaired public tasks, prerequisite attribution, imports/namespaces, function-object use, strict pairing, traceback reading and semantic-separation guards. Awaiting bounded follow-up.",
+    "version": "m08-observability-independent-repair-r3-2026-09-24",
+    "status": "Independent hostile audit plus bounded follow-up repaired assessment contamination, observability gaps, import/name-binding inconsistency and hidden syntax (conditional expression, list comprehension, lambda in reference). Awaiting final exact-head validation.",
     "policy": "Each link was authored from the observable capability, then adversarially checked against a named misconception. Structural membership is not treated as semantic proof; docs/t22-course/audit/m08-semantic-contract.json pins the builder-reviewed links and mutation guards."
   },
   "sourceLedger": {
@@ -434,7 +434,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S07 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "Functions are values that can be passed as arguments. If a parameter named `predicate` receives a function object, `predicate(x)` calls that supplied function on x. Worked example: `def is_even(x): return x%2==0`; `def count_event(xs,predicate): hits=0; for x in xs: hits += 1 if predicate(x) else 0; return hits`. Calling `count_event([1,2,6],is_even)` returns2: `is_even` is passed without parentheses, then called inside the counter. Guided check: What is the difference between passing `is_even` and passing `is_even(4)`?",
+      "lesson": "Functions are values that can be passed as arguments. If a parameter named `predicate` receives a function object, `predicate(x)` calls that supplied function on x. Worked example: `def is_even(x): return x%2==0`; in `count_event(xs,predicate)`, start `hits=0`, loop `for x in xs:`, execute `if predicate(x): hits += 1`, then `return hits`. Calling `count_event([1,2,6],is_even)` returns2: `is_even` is passed without parentheses, then called inside the counter. Guided check: What is the difference between passing `is_even` and passing `is_even(4)`?",
       "main": "T22V3::T22E-CODE01::S07-M@1",
       "transfer": "T22V3::T22E-CODE01::S07-T@1"
     },
@@ -744,7 +744,7 @@
         "cryptographic randomness"
       ],
       "exitCondition": "Independently solve and explain M08-S14 on fresh code/model data, preserving mathematical assumptions, state and boundary conventions.",
-      "lesson": "Conditioning changes the universe. In code, build or enumerate the finite space, filter B, then filter/count A inside B. Worked example: on a fair die, `B=[x for x in range(1,7) if x%2==0]` gives {2,4,6}; filtering x>3 inside B gives {4,6}, so P(A|B)=2/3, not2/6. Guided check: Why must the denominator be `len(B)` rather than the original sample-space size?",
+      "lesson": "Conditioning changes the universe. In code, build or enumerate the finite space, filter B, then count A inside B. Worked example: on a fair die, start `B=[]`; loop `for x in range(1,7):` and append x when x is even, producing {2,4,6}. Then loop over B and count values x>3, giving {4,6}, so P(A|B)=2/3, not2/6. Guided check: Why must the denominator be `len(B)` rather than the original sample-space size?",
       "main": "T22V3::T22E-CODE01::S14-M@1",
       "transfer": "T22V3::T22E-CODE01::S14-T@1"
     },
@@ -1347,8 +1347,8 @@
       "id": "T22V3::T22E-CODE01::S12-M@1",
       "order": 12,
       "kind": "main",
-      "prompt": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
-      "obligationVersion": 1
+      "prompt": "For two independent fair six-sided dice, use nested loops or, after `from itertools import product`, use `product(range(1,7), repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-CODE01::S12-T@1": {
       "id": "T22V3::T22E-CODE01::S12-T@1",
@@ -1487,8 +1487,8 @@
       "id": "T22V3::T22E-CODE01::S22-M@1",
       "order": 22,
       "kind": "main",
-      "prompt": "Trace `r=Random(31); prefix=[r.random() for _ in range(2)]; state=r.getstate(); suffix1=[r.random() for _ in range(3)]; r.setstate(state); suffix2=[r.random() for _ in range(3)]` without needing numeric floats. Which list equality is guaranteed, and what exactly does the snapshot represent?",
-      "obligationVersion": 2
+      "prompt": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+      "obligationVersion": 3
     },
     "T22V3::T22E-CODE01::S22-T@1": {
       "id": "T22V3::T22E-CODE01::S22-T@1",
@@ -2360,7 +2360,7 @@
       "marking": "Score only the public Transfer task. Award diagnosis credit only when the stated defect and repair match the public program/model. Accept equivalent repairs that preserve the required semantics."
     },
     "T22V3::T22E-CODE01::S17-M@1": {
-      "reference": "Use e.g. `assert 0<=hits<=len(xs)` and `assert count_event([...],lambda x:x%2==0)==3`. The invariant misses many semantic bugs; one test does not prove all inputs. A discriminating boundary is x=5: `x>=5` is True while `x>5` is False.",
+      "reference": "Use e.g. `assert 0<=hits<=len(xs)`. Define `def is_even(x): return x%2==0`, then use `assert count_event([1,2,3,4,5,6],is_even)==3`. The invariant misses many semantic bugs; one test does not prove all inputs. A discriminating boundary is x=5: `x>=5` is True while `x>5` is False.",
       "rubric": [
         {
           "points": 2,
@@ -3711,7 +3711,7 @@
       {
         "claim": "Generate a finite Cartesian product with nested loops or product.",
         "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or, after `from itertools import product`, use `product(range(1,7), repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
           "A complete 6×6 enumeration is supplied."
         ]
@@ -3719,7 +3719,7 @@
       {
         "claim": "Verify total count using the product rule.",
         "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or, after `from itertools import product`, use `product(range(1,7), repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
           "Total36 is correct."
         ]
@@ -3737,7 +3737,7 @@
       {
         "claim": "Count hits over the full equally likely space.",
         "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or, after `from itertools import product`, use `product(range(1,7), repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
           "Exactly five sum-8 pairs are identified.",
           "Probability5/36 is correct."
@@ -3746,7 +3746,7 @@
       {
         "claim": "Distinguish deterministic enumeration from simulation.",
         "task": "main",
-        "publicRequest": "For two independent fair six-sided dice, use nested loops or `itertools.product(range(1,7),repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
+        "publicRequest": "For two independent fair six-sided dice, use nested loops or, after `from itertools import product`, use `product(range(1,7), repeat=2)` to enumerate the full ordered space and event `die1+die2==8`. Give total count, list event outcomes, exact probability, and explain why this is enumeration rather than simulation.",
         "rubricEvidence": [
           "Enumeration is explicitly distinguished from simulation."
         ]
@@ -4174,7 +4174,7 @@
       {
         "claim": "Capture current state with getstate.",
         "task": "main",
-        "publicRequest": "Trace `r=Random(31); prefix=[r.random() for _ in range(2)]; state=r.getstate(); suffix1=[r.random() for _ in range(3)]; r.setstate(state); suffix2=[r.random() for _ in range(3)]` without needing numeric floats. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+        "publicRequest": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
         "rubricEvidence": [
           "The snapshot is located after exactly two prefix draws."
         ]
@@ -4182,7 +4182,7 @@
       {
         "claim": "Advance after the snapshot.",
         "task": "main",
-        "publicRequest": "Trace `r=Random(31); prefix=[r.random() for _ in range(2)]; state=r.getstate(); suffix1=[r.random() for _ in range(3)]; r.setstate(state); suffix2=[r.random() for _ in range(3)]` without needing numeric floats. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+        "publicRequest": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
         "rubricEvidence": [
           "The first three-draw suffix is recognized as advancing from that snapshot."
         ]
@@ -4190,7 +4190,7 @@
       {
         "claim": "Restore with setstate.",
         "task": "main",
-        "publicRequest": "Trace `r=Random(31); prefix=[r.random() for _ in range(2)]; state=r.getstate(); suffix1=[r.random() for _ in range(3)]; r.setstate(state); suffix2=[r.random() for _ in range(3)]` without needing numeric floats. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+        "publicRequest": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
         "rubricEvidence": [
           "Restore is tracked before the second three-draw suffix."
         ]
@@ -4198,7 +4198,7 @@
       {
         "claim": "Predict replay of the first draw after the saved state.",
         "task": "main",
-        "publicRequest": "Trace `r=Random(31); prefix=[r.random() for _ in range(2)]; state=r.getstate(); suffix1=[r.random() for _ in range(3)]; r.setstate(state); suffix2=[r.random() for _ in range(3)]` without needing numeric floats. Which list equality is guaranteed, and what exactly does the snapshot represent?",
+        "publicRequest": "Trace this already-taught-syntax version without needing numeric floats: `r=Random(31); prefix=[]; for _ in range(2): prefix.append(r.random()); state=r.getstate(); suffix1=[]; for _ in range(3): suffix1.append(r.random()); r.setstate(state); suffix2=[]; for _ in range(3): suffix2.append(r.random())`. Which list equality is guaranteed, and what exactly does the snapshot represent?",
         "rubricEvidence": [
           "`suffix1==suffix2` is stated and justified by state replay."
         ]
@@ -4819,7 +4819,8 @@
     },
     "T22V3::T22E-CODE01::S12@1": {
       "main": [
-        "itertools.product(range(1,7),repeat=2)"
+        "product(range(1,7), repeat=2)",
+        "die1+die2==8"
       ],
       "transfer": [
         "[1,2,4]"
@@ -4909,8 +4910,9 @@
     "T22V3::T22E-CODE01::S22@1": {
       "main": [
         "Random(31)",
-        "suffix1",
-        "suffix2"
+        "prefix=[]",
+        "suffix1=[]",
+        "suffix2=[]"
       ],
       "transfer": [
         "unknown extra number of draws"
@@ -5206,7 +5208,7 @@
     "sessions": {}
   },
   "repairVersionAudit": {
-    "version": "m08-independent-repair-r2-2026-09-24",
+    "version": "m08-independent-repair-r3-2026-09-24",
     "changedPublicTasks": [
       "T22V3::T22E-CODE01::S02-M@1",
       "T22V3::T22E-CODE01::S02-T@1",
@@ -5230,9 +5232,36 @@
       "T22V3::T22E-CODE01::S18-T@1",
       "T22V3::T22E-CODE01::S21-M@1",
       "T22V3::T22E-CODE01::S22-M@1",
-      "T22V3::T22E-CODE01::S24-M@1"
+      "T22V3::T22E-CODE01::S24-M@1",
+      "T22V3::T22E-CODE01::S12-M@1"
     ],
-    "policy": "Any repaired public prompt/rubric carries obligationVersion 2; lesson-only repairs do not stale fixed-task obligations. Follow-up review must treat v2 tasks as fresh evidence."
+    "policy": "Every public prompt/rubric change increments its obligationVersion. The initial independent repair produced v2 tasks; bounded follow-up then corrected S12 import-call consistency (v2) and removed hidden list-comprehension syntax from S22 Main (v3). Lesson/reference-only syntax cleanups do not stale public obligations.",
+    "obligationVersions": {
+      "T22V3::T22E-CODE01::S02-M@1": 2,
+      "T22V3::T22E-CODE01::S02-T@1": 2,
+      "T22V3::T22E-CODE01::S03-M@1": 2,
+      "T22V3::T22E-CODE01::S07-M@1": 2,
+      "T22V3::T22E-CODE01::S07-T@1": 2,
+      "T22V3::T22E-CODE01::S08-M@1": 2,
+      "T22V3::T22E-CODE01::S09-M@1": 2,
+      "T22V3::T22E-CODE01::S09-T@1": 2,
+      "T22V3::T22E-CODE01::S11-M@1": 2,
+      "T22V3::T22E-CODE01::S11-T@1": 2,
+      "T22V3::T22E-CODE01::S13-M@1": 2,
+      "T22V3::T22E-CODE01::S13-T@1": 2,
+      "T22V3::T22E-CODE01::S14-M@1": 2,
+      "T22V3::T22E-CODE01::S14-T@1": 2,
+      "T22V3::T22E-CODE01::S15-M@1": 2,
+      "T22V3::T22E-CODE01::S15-T@1": 2,
+      "T22V3::T22E-CODE01::S16-M@1": 2,
+      "T22V3::T22E-CODE01::S16-T@1": 2,
+      "T22V3::T22E-CODE01::S18-M@1": 2,
+      "T22V3::T22E-CODE01::S18-T@1": 2,
+      "T22V3::T22E-CODE01::S21-M@1": 2,
+      "T22V3::T22E-CODE01::S22-M@1": 3,
+      "T22V3::T22E-CODE01::S24-M@1": 2,
+      "T22V3::T22E-CODE01::S12-M@1": 2
+    }
   },
   "assessmentSeparationAudit": {
     "version": "m08-independent-semantic-separation-r2-2026-09-24",
@@ -5462,5 +5491,15 @@
         "status": "independent-repair-reviewed-separated"
       }
     }
+  },
+  "followupAudit": {
+    "version": "m08-bounded-followup-r1-2026-09-24",
+    "findings": {
+      "M08-F01": "S12 lesson taught `from itertools import product`, while Main still named `itertools.product`; from-import does not bind the module name.",
+      "M08-F02": "S22 Main used list comprehensions not taught anywhere in M08.",
+      "M08-F03": "S07 lesson used an untaught conditional expression and S14 lesson an untaught list comprehension.",
+      "M08-F04": "S17 revealed reference used an untaught lambda despite an equivalent named helper already being taught."
+    },
+    "disposition": "All repaired using previously taught syntax; S12-M versioned2 and S22-M versioned3. No new session was required."
   }
 }
