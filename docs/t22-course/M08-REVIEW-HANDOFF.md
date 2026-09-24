@@ -43,7 +43,7 @@ Downstream ownership remains unchanged: M21 scientific-computing/research engine
 - 24 sessions retained after an explicit session-count reconsideration.
 - 48 fixed assessments and 48 evaluator references.
 - 120 ownership claims and 120 repaired semantic claim→task→rubric links.
-- 24 changed public obligations are stale relative to v1: 23 carry `obligationVersion=2`, S22-M carries `obligationVersion=3`, and unchanged obligations remain version1.
+- 29 changed public obligations are stale relative to v1: 27 carry `obligationVersion=2`, S18-T carries `obligationVersion=3`, and S22-M carries `obligationVersion=4`, and unchanged obligations remain version1.
 - `assessmentSeparationAudit` now records explicit lesson-model/Main-model identities for all24 sessions plus curated forbidden lesson fragments.
 - Historical contamination is preserved in `historicalLessonAnswerOverlap`; it is not erased.
 - M08 authoring version: `m08-authoring-v2-independent-repair` with repair provenance `m08-independent-repair-r3-2026-09-24`.
@@ -99,8 +99,9 @@ A fresh novice-path pass after the initial 37/37 green repair head found four mo
 - M08-F02 — hidden list-comprehension syntax in S22 Main;
 - M08-F03 — untaught conditional-expression/list-comprehension syntax in S07/S14 lessons;
 - M08-F04 — untaught `lambda` in S17 revealed reference.
+- M08-F05 — invalid semicolon-compressed compound statements in several code-looking lesson/task/reference snippets; all repaired to valid multiline Python.
 
-No additional session was needed; each fix belongs inside an existing owner. S12-M is now v2 and S22-M v3.
+No additional session was needed; each fix belongs inside an existing owner. S12-M is v2; S18-T is v3 after a second repair; S22-M is v4 after repeated prompt-level syntax repairs.
 
 ## Verification architecture after repair
 
@@ -120,7 +121,7 @@ No additional session was needed; each fix belongs inside an existing owner. S12
 
 ## Validation state
 
-The earlier content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed T22 Elite run `35961691590` / job `107511449788` and a 37/37 broader PR matrix. The bounded follow-up then changed learner-facing content, so that evidence is **historical and superseded for final-head authority**. The current follow-up-repair head must pass the same dedicated Chromium/browser suite and broader PR matrix before this handoff can return to fully validated status.
+The earlier content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed T22 Elite run `35961691590` / job `107511449788` and a 37/37 broader PR matrix. The bounded follow-up then changed learner-facing content, so that evidence is **historical and superseded for final-head authority**. The current F05 follow-up-repair head must pass the same dedicated Chromium/browser suite and broader PR matrix before this handoff can return to fully validated status.
 
 ## Bounded follow-up targets
 
