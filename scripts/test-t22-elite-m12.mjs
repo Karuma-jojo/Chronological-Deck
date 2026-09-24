@@ -30,7 +30,7 @@ const allowedClass=new Set(['retrieval','proof reconstruction','fresh Main evide
 assert.equal(a.module.order,12);
 assert.equal(a.module.id,'SIDE267');
 assert.equal(a.module.title,'Taylor Approximation, Asymptotics & Error');
-assert.match(a.module.status,/unpublished/);
+assert.match(a.module.status,/publication-candidate-independent-audit-repaired/);
 assert.equal(a.sessions.length,19,'M12 session count must remain design-derived');
 assert.equal(Object.keys(a.problems).length,38);
 assert.equal(Object.keys(a.evaluators).length,38);
@@ -40,16 +40,19 @@ assert(!a.boundary.prerequisiteModules.includes('ARC510'),'M11 is chronologicall
 assert.match(a.boundary.decisiveProhibition,/one-variable|deterministic/i);
 assert.match(a.boundary.decisiveProhibition,/multivariable|probability|numerical/i);
 assert.match(a.module.gate,/19 design-derived sessions/i);
-assert.match(a.module.gate,/unpublished/i);
+assert.match(a.module.gate,/registered in the shared route for publication/i);
 assert.match(a.module.nextBoundary,/M13/i);
 
-// Shared learner registry remains frozen at M09.
-assert.equal(meta.moduleSources.length,9,'M12 must not publish itself into the learner registry');
-assert.equal(meta.moduleSources.at(-1).source,'course/t22/authoring/m09.json');
-assert(!meta.moduleSources.some(x=>x.order>=10),'M10-M12 must remain deliberately unregistered');
+// Shared learner registry is intentionally published through M12.
+assert.equal(meta.moduleSources.length,12,'M10-M12 publication must produce a twelve-module registry');
+assert.equal(meta.moduleSources.at(-1).source,'course/t22/authoring/m12-side267.json');
+assert(meta.moduleSources.some(x=>x.order===10&&x.id==='ARC053'));
+assert(meta.moduleSources.some(x=>x.order===11&&x.id==='ARC510'));
+assert(meta.moduleSources.some(x=>x.order===12&&x.id==='SIDE267'));
 
 // Protected M01-M11/runtime baseline.
-for(const [path,sha] of Object.entries(baseline.files))assert.equal(gitBlobSha(path),sha,path+' changed during M12-only work');
+const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/authoring/m11-arc510.json','course/t22/generated/course-meta.json','course/t22/generated/roadmap.json']);
+for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication surfaces');
 
 // Gate-3 artifacts and pilot.
 for(const heading of [
@@ -82,7 +85,7 @@ assert.equal(a.coverageAudit.ownershipClaimCount,claimCount);
 assert.equal(contract.ownershipClaimCount,claimCount);
 assert.equal(contract.sessions.length,19);
 assert.deepEqual(new Set(contract.evidenceClasses),allowedClass);
-assert.equal(contract.unpublished,true);
+assert.equal(contract.unpublished,false);
 
 const priorBase=m09.sessions.map(s=>s.lesson).join('\n')+'\n'+m10.sessions.map(s=>s.lesson).join('\n');
 const ids=new Set(),problemIds=new Set();
@@ -220,4 +223,4 @@ assert.equal(a.sessions[16].requiredOwnership[0],"Use the neighborhood equality 
 assert.match(a.sessions[16].lesson,/difference quotient/i,'S17 derivative-at-zero induction step missing');
 assert.match(a.sessions[16].lesson,/phi\^\(n\+1\)\(0\)=0/,'S17 induction conclusion missing');
 
-console.log('PASS M12 semantic/evidence validator: 19 design-derived sessions, 38 tasks, 58 literal ownership links; series/MVT bridges explicit; source roles complete; prior runtime preserved; M12 remains unpublished.');
+console.log('PASS M12 semantic/evidence validator: 19 design-derived sessions, 38 tasks, 58 literal ownership links; series/MVT bridges explicit; source roles complete; prior content preserved; M12 registered in the twelve-module publication route.');
