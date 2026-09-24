@@ -8,6 +8,8 @@ const m09=read('course/t22/authoring/m09.json');
 const deps=read('docs/t22-rebuild/m65.dependencies.json');
 const meta=read('course/t22/generated/course-meta.json');
 const baseline=read('docs/t22-course/audit/m10-preserved-baseline.json');
+const protectedSemantic=read('docs/t22-course/audit/m10-protected-semantic-rows.json');
+const semanticLedger=read('docs/t22-rebuild/SEMANTIC-PREREQUISITES.json');
 const ownershipAudit=read('docs/t22-course/audit/m10-ownership-audit.json');
 const contract=read('docs/t22-course/audit/m10-semantic-contract.json');
 const gate=fs.readFileSync('docs/t22-course/M10-DESIGN-GATE.md','utf8');
@@ -55,6 +57,8 @@ assert(!fs.existsSync('course/t22/authoring/m10.json'),'historical M07-M09 stop-
 assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));
 
 for(const [path,sha] of Object.entries(baseline.files))assert.equal(gitBlobSha(path),sha,path+' changed during M10-only repair');
+const currentProtectedRows=semanticLedger.entries.filter(x=>x.order<=10);
+assert.deepEqual(currentProtectedRows,protectedSemantic.rows,'M01-M10 semantic-ledger rows changed after their reviewed baseline');
 
 for(const heading of ['Boundary contract','Concept dependency graph','Conceptual-distinction map','Failure-mode map','Narrative spine','Candidate session boundaries'])assert.match(gate,new RegExp(heading,'i'));
 assert.match(gate,/24 pedagogical atoms/i);
