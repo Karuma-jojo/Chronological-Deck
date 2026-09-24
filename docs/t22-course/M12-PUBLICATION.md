@@ -33,7 +33,7 @@ M13 remains closed.
 - `course/t22/generated/course-meta.json` registers M10–M12.
 - `course/t22/generated/roadmap.json` marks M10–M12 authored.
 - `docs/t22-rebuild/SEMANTIC-PREREQUISITES.json` marks M10–M12 accepted for the runtime boundary.
-- M10, M11 and M12 canonical status fields are changed from unpublished candidate wording to publication-candidate wording.
+- M10, M11 and M12 canonical status fields are now the published route statuses; historical unpublished/candidate receipts remain unchanged as provenance.
 - M11/M12 semantic contract snapshots mark `unpublished=false`.
 - Historical M06–M09 stop guards are narrowed so they continue protecting their own accepted content without blocking later explicitly authorized modules.
 - Browser coverage is upgraded from a nine-module frontier to a twelve-module route, including shared evidence export/import through M12.
@@ -65,6 +65,6 @@ After merge, the resulting exact `main` head must also complete the main-trigger
 
 ## Current state
 
-Publication candidate prepared. Exact green branch and main workflow receipts are to be appended after execution.
+The twelve-module publication tree is prepared with M10–M12 registered and canonical published statuses. Exact green branch and main workflow receipts are to be appended after execution.
 
 M13 remains closed.
