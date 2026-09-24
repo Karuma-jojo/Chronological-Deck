@@ -26,6 +26,7 @@ assert.equal(semantic.version,'m08-semantic-contract-independent-r2-2026-09-24')
 const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 const hashes=new Set();
 const changed=new Set(a.repairVersionAudit.changedPublicTasks);
+const obligationVersions=a.repairVersionAudit.obligationVersions||{};
 
 function checkAssessmentSeparation(pack){
   for(const s of pack.sessions){
@@ -51,7 +52,7 @@ for(const s of a.sessions){
   assert(!hashes.has(h)); hashes.add(h);
   for(const kind of ['main','transfer']){
     const id=s[kind],p=a.problems[id],ev=a.evaluators[id];
-    assert.equal(p.obligationVersion,changed.has(id)?2:1,id+' obligationVersion mismatch');
+    assert.equal(p.obligationVersion,changed.has(id)?obligationVersions[id]:1,id+' obligationVersion mismatch');
     assert.equal(ev.rubric.length,5);
     assert.equal(ev.rubric.reduce((z,r)=>z+r.points,0),10);
     for(const frag of a.instructionSeparation[s.id][kind]){
@@ -121,18 +122,29 @@ for(const forbidden of ['numpy','pandas','bootstrap','confidence interval','cent
 }
 assert(by(2).lesson.includes('import math')&&by(2).lesson.includes('abs_tol'));
 assert(by(7).lesson.includes('function object')&&by(7).lesson.includes('predicate(x)'));
+assert(!by(7).lesson.includes(' if predicate(x) else'),'S07 must not introduce untaught conditional-expression syntax');
 assert(by(9).lesson.includes('counts.get(label,0)+1'));
 assert(by(11).lesson.includes('strict=True'));
 assert(by(12).lesson.includes('from itertools import product')&&by(12).lesson.includes('No RNG is involved'));
+assert(a.problems[by(12).main].prompt.includes('from itertools import product'));
+assert(a.problems[by(12).main].prompt.includes('product(range(1,7), repeat=2)'));
+assert(!a.problems[by(12).main].prompt.includes('itertools.product'),'from-import Main must not require an unbound module name');
 assert(by(13).lesson.includes('from fractions import Fraction'));
 assert(by(17).lesson.includes('-O'));
+assert(!Object.values(a.evaluators).some(ev=>ev.reference.includes('lambda ')),'learner-facing references must not introduce untaught lambda syntax');
 assert(by(18).lesson.includes('traceback'));
 assert(by(19).lesson.includes('from random import Random')&&by(19).lesson.includes('Random(17)'));
 assert(!by(19).lesson.includes('Random(23)'));
 assert(by(21).lesson.includes('Random(17)')&&!by(21).lesson.includes('322')&&!by(21).lesson.includes('0.322'));
 assert(by(22).lesson.includes('Random(5)')&&!by(22).lesson.includes('Random(31)'));
+assert(!a.problems[by(22).main].prompt.includes('[r.random() for'),'S22 Main must use previously taught loops/list append, not hidden list comprehensions');
+assert.equal(a.problems[by(22).main].obligationVersion,3);
 assert(by(23).lesson.includes('two independent fair bits')&&!by(23).lesson.includes('six diagonal pairs'));
+assert(!by(14).lesson.includes('[x for'),'S14 lesson must not introduce an untaught list comprehension');
+assert.equal(a.repairVersionAudit.changedPublicTasks.length,24);
+assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===2).length,23);
+assert.equal(Object.values(a.repairVersionAudit.obligationVersions).filter(v=>v===3).length,1);
 assert(by(24).lesson.includes('model → exact oracle'));
 assert(!fs.existsSync('course/t22/authoring/m09.json'),'M09 must remain closed');
 
-console.log('PASS M08 independent repair: 24 sessions, 48 tasks, 120 semantic links, v2 obligation staleness, fresh lesson/Main instances, executable programming ownership, primary-source pins and hard M09 stop.');
+console.log('PASS M08 independent repair: 24 sessions, 48 tasks, 120 semantic links, exact v1/v2/v3 obligation provenance, fresh lesson/Main instances, no hidden novice syntax, executable programming ownership, primary-source pins and hard M09 stop.');
