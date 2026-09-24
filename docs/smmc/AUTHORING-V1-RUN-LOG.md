@@ -445,3 +445,77 @@ The authored bank is now expected to contain:
 - 18 separate evaluator references.
 
 No historical SMMC statement is quoted or consumed by these tasks.
+
+
+## Checkpoint H — final-engine broad scaffold
+
+Continuation branch: `codex/smmc-final-engine-v1`.
+
+This checkpoint does not rebuild the companion and does not claim the missing learning/practice engine is complete. It creates executable contracts for the remaining work.
+
+Added:
+
+- `course/smmc/engine-roadmap-v1.mjs`;
+- `course/smmc/runtime/final-engine-v1.mjs`;
+- `course/smmc/paper-vault-v1.mjs`;
+- `scripts/validate-smmc-engine-scaffold.mjs`;
+- `docs/smmc/FINAL-ENGINE-SCAFFOLD.md`.
+
+### Build spine
+
+The scaffold now makes seven stages explicit:
+
+1. primary-domain reconciliation;
+2. core bridge/method authoring;
+3. exact East AMBER/RED requirement mapping;
+4. canonical T25 readiness + genuine unit certification;
+5. protected historical S-XFER attempts and 0-7 review;
+6. whole-paper vault + S-PAPER;
+7. rare RED/open-problem specialists.
+
+All 18 canonical modules have explicit unit-level build slots. Existing authored unit IDs are detected from the real authoring bank; planned IDs do not become learner-facing merely because they exist in the roadmap.
+
+`S-BRIDGE-ALG1` is recorded only as `candidate-not-canonical`. Its addition requires a later exact-gap decision.
+
+### Evidence scaffold
+
+The new contracts preserve these boundaries:
+
+- self-report never certifies;
+- two saved neutral tasks do not auto-certify;
+- canonical T25 evidence is the intended normal readiness source;
+- manual T25 target input is future debug/admin fallback;
+- historical S-XFER uses a 0-7 review scale;
+- first-unseen evidence must remain distinct from later reattempts.
+
+No historical-attempt UI or automatic grading is claimed yet.
+
+### Paper-vault scaffold
+
+The 2017-2025 ledger is grouped into:
+
+- 18 East A/B papers;
+- 4 supplementary C papers;
+- 4 problems per session paper.
+
+A whole organiser PDF is now explicitly modeled as a whole-paper statement reveal. The safe runtime primitive marks all four sibling statements seen together; the current UI has not yet been rewired to invoke it.
+
+The future single-problem route must genuinely isolate one problem before it may preserve sibling questions as pristine.
+
+### Validation
+
+The dedicated scaffold validator checks:
+
+- all 18 canonical modules are represented exactly once;
+- existing authored units cannot be falsely marked planned or vice versa;
+- W1 proof writing is recognized as authored;
+- candidate ALG1 remains outside the canonical module set;
+- the complete East non-GREEN requirement backlog is represented;
+- the paper vault contains exactly 18 East A/B papers covering 72 unique East problems;
+- self-report cannot satisfy certification;
+- 0-7 S-XFER scoring boundaries;
+- whole-paper reveal consumes pristine status for all four statements.
+
+The SMMC workflow now runs this validator on `main`, pull requests, and `codex/smmc-final-engine-v1` pushes.
+
+No canonical T25 card, target, clearance, Aster campaign or historical SMMC statement was changed by this scaffold.
