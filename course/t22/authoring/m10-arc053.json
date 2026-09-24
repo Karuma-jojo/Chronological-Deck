@@ -2005,7 +2005,7 @@
       "marking": "Score only explicit public requests. Accept any mathematically valid alternative derivation with the same hypotheses. Domain, branch and theorem conditions are substantive when requested; do not award proof credit for numerical pattern-matching alone."
     },
     "T22V3::ARC053::S20-M@1": {
-      "reference": "The adopted normalization is lim(h→0)(e^h-1)/h=1. Then [e^(x+h)-e^x]/h=e^x[(e^h-1)/h]→e^x, so (e^x)'=e^x. For g(x)=2x²-x, g(1)=1 and g'(1)=3. The chain rule gives F'(1)=e^{g(1)}g'(1)=3e.",
+      "reference": "Normalization: φ(h)=(e^h-1)/h tends to 1 as h→0. The difference quotient for e^x factors as e^x·φ(h), so its limit is e^x and therefore (e^x)'=e^x. For g(x)=2x²-x, g(1)=1 and g'(1)=3; applying the chain rule gives F'(1)=3e.",
       "rubric": [
         {
           "points": 2,
@@ -3613,6 +3613,13 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer synthesizes inverse derivative, logarithm and first-order modeling with explicit hypothesis limits."
         }
+      }
+    },
+    "sessionSizingReview": {
+      "S21": {
+        "verdict": "retain one session",
+        "rationale": "S21 contains two related but distinct assessment surfaces that still fit one coherent learner transition: Main reconstructs the inverse-linked arbitrary-base exponential/logarithm derivative family; Transfer uses those established log tools for logarithmic differentiation. Both surfaces can be independently observed without introducing another prerequisite edge or overloading either fixed task.",
+        "noSplitReason": "A split would largely duplicate the same exp/log inverse, domain and chain-rule prerequisites and would disrupt the accepted 24-session route without resolving an evidence defect."
       }
     }
   },
