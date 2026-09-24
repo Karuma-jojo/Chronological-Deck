@@ -1,11 +1,11 @@
 {
-  "version": "m11-arc510-s01-s16-v1",
+  "version": "m11-arc510-s01-s19-v1",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "authoring-in-progress-s01-s16-verified",
+    "status": "authoring-in-progress-s01-s19-verified",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -35,8 +35,8 @@
   "coverageAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pedagogicalAtoms": 20,
-    "authoredSessions": 16,
-    "ownershipClaimCount": 48,
+    "authoredSessions": 19,
+    "ownershipClaimCount": 57,
     "note": "No target count exists. This count is the S01 pilot output only."
   },
   "sessions": [
@@ -632,6 +632,117 @@
       "lesson": "Orient. Substitution and parts are identities, not rituals. Ask what derivative structure is present and whether the transformation makes the remaining integral simpler.\nDefine. Direct: the integrand is already in S12's derivative-pair repertoire. Substitution: an inner expression and its derivative scale are present. Parts: a product can trade a derivative from one factor to another and v is available. None-current: no taught exact route is justified.\nConnect. Verification is part of selection: differentiate an indefinite result, or check sign/bounds for a definite one.\nExplain. 'None-current' does not mean the definite integral does not exist. It means M11 has not established an elementary exact antiderivative/technique for it. Numerical quadrature and special functions are outside this module.\nWorked example: ∫2x cos(x²)dx suggests substitution; ∫x e^x dx suggests parts; ∫(3x²-4)dx is direct; ∫e^{x²}dx has no exact method in the current repertoire.\nGuided practice: classify ∫x/(x²+5)dx (substitution), ∫x sin x dx (parts), and ∫e^{-x²}dx (none-current exact toolkit). Do not approximate the last one.",
       "main": "T22V3::ARC510::S16-M@1",
       "transfer": "T22V3::ARC510::S16-T@1"
+    },
+    {
+      "order": 17,
+      "id": "T22V3::ARC510::S17@1",
+      "moduleId": "ARC510",
+      "title": "Infinite intervals are limits, not endpoints",
+      "focus": "Define infinite-bound improper integrals through finite truncations and derive the p-tail threshold without L'Hôpital or M12 asymptotics.",
+      "purpose": "Make existence the first question whenever an integral has an infinite interval.",
+      "centralCapability": "Rewrite and decide representative infinite-tail improper integrals using M09 limits and FTC.",
+      "principalObstacle": "Endpoint notation can tempt learners to substitute ∞ into an antiderivative as if infinity were a real number, hiding the convergence claim.",
+      "entryPrerequisites": [
+        "M11-S11 FTC endpoint evaluation",
+        "M09-S22 limits at infinity",
+        "M10-S21 exp/log differentiation",
+        "M11-S12 antiderivatives"
+      ],
+      "requiredOwnership": [
+        "Rewrite an infinite-upper-bound integral as a limit of proper finite-bound integrals before evaluating it.",
+        "Derive the threshold ∫_1^∞ x^{-p}dx converges exactly when p>1.",
+        "Distinguish convergence to a finite value from divergence and reject literal substitution of infinity."
+      ],
+      "applicationScope": "One-sided infinite intervals with positive power-law tails and elementary transforms.",
+      "transferScope": "Changed from abstract p-tail proof to a shifted long-tail weight whose total must be judged by substitution to the p-tail form.",
+      "inScope": [
+        "improper integral definition",
+        "p-tail threshold",
+        "log boundary case p=1"
+      ],
+      "outOfScope": [
+        "L'Hôpital",
+        "asymptotic series",
+        "Gamma functions",
+        "probability distributions"
+      ],
+      "exitCondition": "The learner explicitly writes the truncation limit and handles p=1 separately.",
+      "lesson": "Orient. The symbol ∞ is not a real endpoint. An expression ∫_a^∞ f asks whether a sequence/limit of finite accumulated totals settles to a finite value.\nDefine. ∫_a^∞ f(x)dx means lim_{T→∞}∫_a^T f(x)dx, provided that finite limit exists. If it does not, the improper integral diverges.\nConnect. For x>0 and real α, M10's logarithm/exponential structure gives x^α=e^{αln x}, so d(x^α)/dx=αx^{α-1}. Thus for p≠1 an antiderivative of x^{-p} is x^{1-p}/(1-p); for p=1 it is ln x.\nExplain. On [1,T], p≠1 gives (T^{1-p}-1)/(1-p). If p>1, 1-p<0 and T^{1-p}→0, giving 1/(p-1). If p<1, the positive total grows without bound. At p=1, ln T→∞. Therefore the p-tail converges exactly for p>1.\nWorked example: ∫_1^∞ x^{-2}dx=lim_{T→∞}[-1/x]_1^T=1. The statement is a limit result; '-1/∞=0' is shorthand at best, not the definition.\nGuided practice: write ∫_3^∞ x^{-3}dx as a T-limit and evaluate it. Check: [-1/(2x²)]_3^T→1/18.",
+      "main": "T22V3::ARC510::S17-M@1",
+      "transfer": "T22V3::ARC510::S17-T@1"
+    },
+    {
+      "order": 18,
+      "id": "T22V3::ARC510::S18@1",
+      "moduleId": "ARC510",
+      "title": "Singular endpoints and interior breaks require separate limits",
+      "focus": "Define finite-interval improper integrals at unbounded singularities and derive the near-zero p threshold.",
+      "purpose": "Prevent a zero-width-point intuition or endpoint-bracket calculation from hiding divergent singular behavior.",
+      "centralCapability": "Identify every singular endpoint, split interior singularities and decide representative one-sided convergence.",
+      "principalObstacle": "A learner may treat an unbounded point like a harmless finite point change, or evaluate an antiderivative straight across a point where the integrand is undefined.",
+      "entryPrerequisites": [
+        "M11-S17 improper limits",
+        "M09-S18 one-sided limits",
+        "M11-S04 finite bounded point-change distinction"
+      ],
+      "requiredOwnership": [
+        "Rewrite an endpoint-singular integral as a one-sided limit and derive ∫_0^1 x^{-p}dx converges exactly when p<1.",
+        "Split an interior singularity into two one-sided improper integrals and require both to converge.",
+        "Reject direct endpoint evaluation across an undefined singular point."
+      ],
+      "applicationScope": "Positive power singularities and elementary interior singularities.",
+      "transferScope": "Changed from endpoint p-threshold to a rational integrand with an interior pole and a tempting finite endpoint-bracket answer.",
+      "inScope": [
+        "one-sided truncation",
+        "near-zero p threshold",
+        "interior split"
+      ],
+      "outOfScope": [
+        "Cauchy principal value as a developed theory",
+        "Lebesgue integrability",
+        "complex contour methods"
+      ],
+      "exitCondition": "The learner lists every problematic side before doing algebra and never lets cancellation across a singularity certify ordinary convergence.",
+      "lesson": "Orient. A single point has zero width only when the integrand stays bounded. An unbounded singularity can make nearby accumulated mass arbitrarily large.\nDefine. If f is proper on (0,b], define ∫_0^b f=lim_{ε→0+}∫_ε^b f when that finite limit exists. If f has an interior singularity c, define ∫_a^b f as ∫_a^c f+∫_c^b f only when both one-sided improper integrals converge separately.\nConnect. For x^{-p} on (0,1], p≠1 gives ∫_ε^1x^{-p}dx=(1-ε^{1-p})/(1-p). If p<1, ε^{1-p}→0 and the integral is 1/(1-p). If p>1 it diverges to +∞; p=1 gives -ln ε→∞.\nExplain. Thus the near-zero threshold is p<1, the opposite inequality from the tail threshold. Directly plugging a singular endpoint into an antiderivative is not legal.\nWorked example: ∫_0^1 x^{-1/2}dx=lim_{ε→0+}[2sqrt(x)]_ε^1=2. But ∫_0^1 dx/x diverges because -ln ε→∞.\nGuided practice: for ∫_{-1}^1 1/sqrt(|x|) dx, identify two one-sided integrals at 0. Each converges to 2, so the total is 4; the split is part of the definition.",
+      "main": "T22V3::ARC510::S18-M@1",
+      "transfer": "T22V3::ARC510::S18-T@1"
+    },
+    {
+      "order": 19,
+      "id": "T22V3::ARC510::S19@1",
+      "moduleId": "ARC510",
+      "title": "Comparison and cancellation forensics",
+      "focus": "Use nonnegative comparison to decide convergence when exact evaluation is unnecessary, and reject symmetric cancellation as ordinary two-sided improper convergence.",
+      "purpose": "Make existence proofs robust when antiderivatives are inconvenient and close the main improper-integral escape route.",
+      "centralCapability": "Apply comparison in the correct direction and audit two-sided improper convergence separately from symmetric truncation.",
+      "principalObstacle": "Learners reverse comparison implications or mistake cancellation of divergent left/right pieces for a convergent ordinary improper integral.",
+      "entryPrerequisites": [
+        "M11-S17-S18 improper definitions",
+        "M11-S06 order",
+        "M09-S12 monotone bounded convergence"
+      ],
+      "requiredOwnership": [
+        "Use the nonnegative improper comparison theorem in the correct convergence/divergence direction.",
+        "Require both one-sided tails to converge for an ordinary integral over (-∞,∞).",
+        "Distinguish a symmetric cancellation limit from ordinary improper convergence."
+      ],
+      "applicationScope": "Nonnegative comparison on tails and an elementary signed two-sided counterexample.",
+      "transferScope": "Changed from nonnegative comparison tasks to an odd signed integrand whose symmetric truncations cancel while both one-sided integrals diverge.",
+      "inScope": [
+        "comparison",
+        "monotone bounded truncations",
+        "two-sided definition",
+        "cancellation warning"
+      ],
+      "outOfScope": [
+        "principal-value theory beyond naming the distinction",
+        "absolute/conditional Lebesgue theory",
+        "asymptotic expansions"
+      ],
+      "exitCondition": "A wrong comparison direction or symmetric-zero solver loses direct evidence.",
+      "lesson": "Orient. Exact antiderivatives are not always needed: inequalities can transfer convergence information, but only in safe directions.\nDefine. For x≥a, if 0≤f(x)≤g(x) and ∫_a^∞g converges, then ∫_a^∞f converges. If ∫_a^∞f diverges to +∞, then the larger nonnegative g also diverges.\nConnect. For each finite T, order gives 0≤F(T)=∫_a^T f≤G(T)=∫_a^T g. If G(T) is bounded above and F(T) is nondecreasing, M09's monotone-bounded convergence gives a finite limit. The divergence direction follows from G(T)≥F(T).\nExplain. For ∫_{-∞}^{∞}f, choose any finite split point c and require both ∫_{-∞}^c f and ∫_c^∞ f to converge finitely. A symmetric limit lim_{R→∞}∫_{-R}^R f may exist by cancellation even when those one-sided requirements fail; that is not ordinary improper convergence.\nWorked example: for x≥1, 0≤1/(x²+1)≤1/x², and the p=2 tail converges, so ∫_1^∞1/(x²+1)dx converges without needing its exact value.\nGuided practice: for x≥1, sqrt(x²+1)≤sqrt(2)x, so 1/sqrt(x²+1)≥1/(sqrt(2)x). Since the harmonic tail diverges, the larger integrand's tail diverges too.",
+      "main": "T22V3::ARC510::S19-M@1",
+      "transfer": "T22V3::ARC510::S19-T@1"
     }
   ],
   "problems": {
@@ -857,6 +968,48 @@
       "order": 16,
       "kind": "transfer",
       "prompt": "For I=∫2x e^{x²}dx, a student proposes integration by parts with u=2x and dv=e^{x²}dx. Explain why this is not an executable M11 parts split, identify the structure that makes substitution immediate, and give the verified antiderivative.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S17-M@1": {
+      "id": "T22V3::ARC510::S17-M@1",
+      "order": 17,
+      "kind": "main",
+      "prompt": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S17-T@1": {
+      "id": "T22V3::ARC510::S17-T@1",
+      "order": 17,
+      "kind": "transfer",
+      "prompt": "A nonnegative long-tail weight is w(t)=(1+t)^(-3/2) for t≥0. Determine whether its total ∫_0^∞ w(t)dt is finite and compute it by an explicit improper-limit argument. Then consider z(t)=(1+t)^(-3/4): state whether its total is finite and justify the contrast using the p-tail threshold.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S18-M@1": {
+      "id": "T22V3::ARC510::S18-M@1",
+      "order": 18,
+      "kind": "main",
+      "prompt": "For real p, determine exactly when ∫_0^1 x^{-p}dx converges by writing the ε→0+ truncation. Treat p=1 separately and give the finite value when it converges.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S18-T@1": {
+      "id": "T22V3::ARC510::S18-T@1",
+      "order": 18,
+      "kind": "transfer",
+      "prompt": "A student evaluates ∫_0^2 1/(x-1)^2 dx by using the antiderivative -1/(x-1) at x=0 and x=2 and reports the finite answer -2. Diagnose the error. Write the required improper split at x=1 and determine whether the integral converges.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S19-M@1": {
+      "id": "T22V3::ARC510::S19-M@1",
+      "order": 19,
+      "kind": "main",
+      "prompt": "Use comparison, not exact antiderivatives, to decide both integrals. (A) ∫_1^∞ 1/(x²+x)dx. (B) ∫_1^∞ 1/sqrt(x²+1) dx. For each, write a valid inequality and explain which known p-tail controls the conclusion.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S19-T@1": {
+      "id": "T22V3::ARC510::S19-T@1",
+      "order": 19,
+      "kind": "transfer",
+      "prompt": "Consider f(x)=x/(1+x²) on the whole real line. Show that every symmetric truncation satisfies ∫_{-R}^{R} f(x)dx=0, but determine whether the ordinary improper integral ∫_{-∞}^{∞} f(x)dx converges. Your answer must inspect the two one-sided improper integrals separately.",
       "obligationVersion": 1
     }
   },
@@ -1480,6 +1633,118 @@
         }
       ],
       "marking": "Do not mark integration by parts 'illegal in general'; the flaw is that this chosen split is not executable/productive within the authorized repertoire."
+    },
+    "T22V3::ARC510::S17-M@1": {
+      "reference": "For p≠1, ∫_1^T x^{-p}dx=(T^{1-p}-1)/(1-p). If p>1, T^{1-p}→0, so the limit is 1/(p-1). If p<1, T^{1-p}→∞ and the positive integral diverges to +∞. For p=1, ∫_1^T dx/x=ln T→∞. Thus convergence occurs exactly for p>1, with value 1/(p-1).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number."
+        },
+        {
+          "points": 4,
+          "criterion": "Handles p≠1 correctly and obtains finite limit 1/(p-1) exactly when p>1."
+        },
+        {
+          "points": 3,
+          "criterion": "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1."
+        }
+      ],
+      "marking": "This is proof reconstruction of the lesson threshold. Equivalent limit algebra is accepted; L'Hôpital is outside the authorized route."
+    },
+    "T22V3::ARC510::S17-T@1": {
+      "reference": "For w, let u=1+t. The truncation ∫_0^T(1+t)^(-3/2)dt becomes ∫_1^{1+T}u^{-3/2}du=[-2u^{-1/2}]_1^{1+T}=2-2/sqrt(1+T)→2, so the total is finite and equals 2. For z the corresponding exponent is p=3/4≤1, so ∫_1^∞u^{-3/4}du diverges; its total is not finite.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Writes and evaluates the finite truncation for w, obtaining the limit 2."
+        },
+        {
+          "points": 3,
+          "criterion": "Recognizes z as a shifted p-tail with p=3/4 and concludes divergence."
+        },
+        {
+          "points": 3,
+          "criterion": "Explicitly links the contrast to the p>1 threshold rather than to finite-sample appearance."
+        }
+      ],
+      "marking": "No probability interpretation is required or allowed. Equivalent shifted-variable reasoning passes."
+    },
+    "T22V3::ARC510::S18-M@1": {
+      "reference": "For p≠1, ∫_ε^1x^{-p}dx=(1-ε^{1-p})/(1-p). If p<1, 1-p>0 and ε^{1-p}→0, giving 1/(1-p). If p>1, ε^{1-p}→∞ and the positive integral diverges. For p=1, ∫_ε^1dx/x=-ln ε→∞. Thus the endpoint integral converges exactly for p<1, with value 1/(1-p).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Introduces the one-sided truncation ∫_ε^1 and sends ε→0+."
+        },
+        {
+          "points": 4,
+          "criterion": "Analyzes p≠1 correctly and obtains 1/(1-p) exactly for p<1."
+        },
+        {
+          "points": 3,
+          "criterion": "Handles p=1 separately with -ln ε→∞ and states the full p<1 threshold."
+        }
+      ],
+      "marking": "This is proof reconstruction. Do not use the tail threshold by analogy without the endpoint calculation."
+    },
+    "T22V3::ARC510::S18-T@1": {
+      "reference": "The integrand is undefined and unbounded at the interior point x=1, so endpoint evaluation across it is illegal. One must write ∫_0^1 + ∫_1^2 with separate one-sided limits. On the left, ∫_0^{1-ε}(x-1)^{-2}dx=[-1/(x-1)]_0^{1-ε}=1/ε-1→∞. The right side also diverges to +∞. Since the one-sided pieces do not both converge finitely, the improper integral diverges.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Identifies x=1 as an interior singularity that invalidates direct endpoint evaluation across [0,2]."
+        },
+        {
+          "points": 3,
+          "criterion": "Writes the integral as two separate one-sided improper limits at x=1."
+        },
+        {
+          "points": 4,
+          "criterion": "Shows at least one side diverges to +∞ and correctly concludes the whole improper integral diverges."
+        }
+      ],
+      "marking": "Showing both sides diverge is welcome; one divergent side is enough for the final conclusion once the split is stated."
+    },
+    "T22V3::ARC510::S19-M@1": {
+      "reference": "A: for x≥1, 0≤1/(x²+x)≤1/x². Since the p=2 tail converges, comparison gives convergence. B: for x≥1, sqrt(x²+1)≤sqrt(2)x, so 1/sqrt(x²+1)≥1/(sqrt(2)x). Since the p=1 tail diverges and the target integrand is larger, B diverges.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Uses 0≤1/(x²+x)≤1/x² and the convergent p=2 tail to conclude A converges."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses 1/sqrt(x²+1)≥1/(sqrt(2)x) and the divergent p=1 tail to conclude B diverges."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains the comparison directions correctly rather than treating any inequality as interchangeable."
+        }
+      ],
+      "marking": "Equivalent valid comparison functions are accepted. Exact evaluation is unnecessary."
+    },
+    "T22V3::ARC510::S19-T@1": {
+      "reference": "The integrand is odd, so each proper symmetric truncation is 0. But ∫_0^T x/(1+x²)dx=(1/2)ln(1+T²)→+∞. Similarly ∫_{-T}^0 x/(1+x²)dx=-(1/2)ln(1+T²)→-∞. The ordinary two-sided improper integral therefore diverges because neither side has a finite limit, even though the symmetric cancellation limit is 0.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Shows or justifies that the proper symmetric truncations equal 0."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the right one-sided truncation and shows it tends to +∞."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the left one-sided truncation and shows it tends to -∞."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes ordinary improper divergence and distinguishes it from the symmetric cancellation limit."
+        }
+      ],
+      "marking": "The phrase 'principal value' is optional. The mathematical distinction and separate-side check are required."
     }
   },
   "coverage": {
@@ -1676,6 +1941,41 @@
       ],
       [
         "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S17@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::ARC510::S18@1": [
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S19@1": [
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
         "transfer"
       ]
     ]
@@ -2234,6 +2534,112 @@
         "escapeAttempt": "Correct method naming without the requested backward check does not observe verification.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::ARC510::S17@1": [
+      {
+        "claim": "Rewrite an infinite-upper-bound integral as a limit of proper finite-bound integrals before evaluating it.",
+        "task": "main+transfer",
+        "publicRequest": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation. | A nonnegative long-tail weight is w(t)=(1+t)^(-3/2) for t≥0. Determine whether its total ∫_0^∞ w(t)dt is finite and compute it by an explicit improper-limit argument. Then consider z(t)=(1+t)^(-3/4): state whether its total is finite and justify the contrast using the p-tail threshold.",
+        "rubricEvidence": [
+          "Introduces the finite truncation ∫_1^T and takes T→∞ rather than substituting infinity as a number.",
+          "Writes and evaluates the finite truncation for w, obtaining the limit 2."
+        ],
+        "escapeAttempt": "Literal infinity arithmetic cannot earn these definition rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Derive the threshold ∫_1^∞ x^{-p}dx converges exactly when p>1.",
+        "task": "main+transfer",
+        "publicRequest": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation. | A nonnegative long-tail weight is w(t)=(1+t)^(-3/2) for t≥0. Determine whether its total ∫_0^∞ w(t)dt is finite and compute it by an explicit improper-limit argument. Then consider z(t)=(1+t)^(-3/4): state whether its total is finite and justify the contrast using the p-tail threshold.",
+        "rubricEvidence": [
+          "Handles p≠1 correctly and obtains finite limit 1/(p-1) exactly when p>1.",
+          "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1.",
+          "Recognizes z as a shifted p-tail with p=3/4 and concludes divergence."
+        ],
+        "escapeAttempt": "Checking only one exponent does not establish or use the threshold.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish convergence to a finite value from divergence and reject literal substitution of infinity.",
+        "task": "main",
+        "publicRequest": "For real p, use the explicit truncation limit to determine exactly when ∫_1^∞ x^{-p}dx converges. Treat p=1 separately, and give the finite value when p>1. Do not use L'Hôpital or asymptotic-series notation.",
+        "rubricEvidence": [
+          "Handles p=1 separately via ln T→∞ and concludes the full threshold p>1."
+        ],
+        "escapeAttempt": "The finite-value formula for p>1 cannot be extended through p=1.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S18@1": [
+      {
+        "claim": "Rewrite an endpoint-singular integral as a one-sided limit and derive ∫_0^1 x^{-p}dx converges exactly when p<1.",
+        "task": "main",
+        "publicRequest": "For real p, determine exactly when ∫_0^1 x^{-p}dx converges by writing the ε→0+ truncation. Treat p=1 separately and give the finite value when it converges.",
+        "rubricEvidence": [
+          "Introduces the one-sided truncation ∫_ε^1 and sends ε→0+.",
+          "Analyzes p≠1 correctly and obtains 1/(1-p) exactly for p<1.",
+          "Handles p=1 separately with -ln ε→∞ and states the full p<1 threshold."
+        ],
+        "escapeAttempt": "Tail-rule analogy without the ε-limit does not earn endpoint proof evidence.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Split an interior singularity into two one-sided improper integrals and require both to converge.",
+        "task": "transfer",
+        "publicRequest": "A student evaluates ∫_0^2 1/(x-1)^2 dx by using the antiderivative -1/(x-1) at x=0 and x=2 and reports the finite answer -2. Diagnose the error. Write the required improper split at x=1 and determine whether the integral converges.",
+        "rubricEvidence": [
+          "Writes the integral as two separate one-sided improper limits at x=1.",
+          "Shows at least one side diverges to +∞ and correctly concludes the whole improper integral diverges."
+        ],
+        "escapeAttempt": "A single cross-singularity endpoint bracket cannot earn these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Reject direct endpoint evaluation across an undefined singular point.",
+        "task": "transfer",
+        "publicRequest": "A student evaluates ∫_0^2 1/(x-1)^2 dx by using the antiderivative -1/(x-1) at x=0 and x=2 and reports the finite answer -2. Diagnose the error. Write the required improper split at x=1 and determine whether the integral converges.",
+        "rubricEvidence": [
+          "Identifies x=1 as an interior singularity that invalidates direct endpoint evaluation across [0,2]."
+        ],
+        "escapeAttempt": "A numeric correction without identifying the illegal crossing does not observe this claim.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S19@1": [
+      {
+        "claim": "Use the nonnegative improper comparison theorem in the correct convergence/divergence direction.",
+        "task": "main",
+        "publicRequest": "Use comparison, not exact antiderivatives, to decide both integrals. (A) ∫_1^∞ 1/(x²+x)dx. (B) ∫_1^∞ 1/sqrt(x²+1) dx. For each, write a valid inequality and explain which known p-tail controls the conclusion.",
+        "rubricEvidence": [
+          "Uses 0≤1/(x²+x)≤1/x² and the convergent p=2 tail to conclude A converges.",
+          "Uses 1/sqrt(x²+1)≥1/(sqrt(2)x) and the divergent p=1 tail to conclude B diverges.",
+          "Explains the comparison directions correctly rather than treating any inequality as interchangeable."
+        ],
+        "escapeAttempt": "Wrong-direction inequalities are the explicit attack and fail these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Require both one-sided tails to converge for an ordinary integral over (-∞,∞).",
+        "task": "transfer",
+        "publicRequest": "Consider f(x)=x/(1+x²) on the whole real line. Show that every symmetric truncation satisfies ∫_{-R}^{R} f(x)dx=0, but determine whether the ordinary improper integral ∫_{-∞}^{∞} f(x)dx converges. Your answer must inspect the two one-sided improper integrals separately.",
+        "rubricEvidence": [
+          "Computes the right one-sided truncation and shows it tends to +∞.",
+          "Computes the left one-sided truncation and shows it tends to -∞."
+        ],
+        "escapeAttempt": "Symmetric truncation alone cannot earn the separate-tail observers.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish a symmetric cancellation limit from ordinary improper convergence.",
+        "task": "transfer",
+        "publicRequest": "Consider f(x)=x/(1+x²) on the whole real line. Show that every symmetric truncation satisfies ∫_{-R}^{R} f(x)dx=0, but determine whether the ordinary improper integral ∫_{-∞}^{∞} f(x)dx converges. Your answer must inspect the two one-sided improper integrals separately.",
+        "rubricEvidence": [
+          "Shows or justifies that the proper symmetric truncations equal 0.",
+          "Concludes ordinary improper divergence and distinguishes it from the symmetric cancellation limit."
+        ],
+        "escapeAttempt": "Reporting zero without the ordinary-convergence distinction loses the criterion.",
+        "disposition": "adequate"
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -2325,6 +2731,22 @@
         "M11-S12 direct antiderivatives",
         "M11-S13-S14 substitution",
         "M11-S15 integration by parts"
+      ],
+      "T22V3::ARC510::S17@1": [
+        "M11-S11 FTC endpoint evaluation",
+        "M09-S22 limits at infinity",
+        "M10-S21 exp/log differentiation",
+        "M11-S12 antiderivatives"
+      ],
+      "T22V3::ARC510::S18@1": [
+        "M11-S17 improper limits",
+        "M09-S18 one-sided limits",
+        "M11-S04 finite bounded point-change distinction"
+      ],
+      "T22V3::ARC510::S19@1": [
+        "M11-S17-S18 improper definitions",
+        "M11-S06 order",
+        "M09-S12 monotone bounded convergence"
       ]
     }
   },
@@ -2492,6 +2914,36 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer starts from a proposed method rather than an integral-only prompt and asks whether its intermediate obligation is available before reconstructing a simpler reverse-chain solution."
         }
+      },
+      "T22V3::ARC510::S17@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson derives the p-tail threshold in full; Main asks the learner to reconstruct it, so the proof is not labeled fresh independent evidence."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to shifted long-tail weights, requiring substitution plus threshold recognition and an explicit truncation value rather than repeating the exact x^{-p} prompt."
+        }
+      },
+      "T22V3::ARC510::S18@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "The lesson derives the near-zero p threshold; Main reconstructs that derivation and is labeled accordingly."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer moves to an interior rational pole and a supplied false finite calculation, forcing singularity detection, one-sided splitting and convergence judgment."
+        }
+      },
+      "T22V3::ARC510::S19@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main gives two new comparison problems in opposite logical directions, directly testing inequality selection rather than repeating the lesson examples."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes from nonnegative comparison to a signed odd integrand with symmetric cancellation, forcing the separate-tail definition and a distinction not visible in the Main computations."
+        }
       }
     },
     "wrongSolverTests": {
@@ -2654,6 +3106,36 @@
         "wrongApproach": "Say parts is always invalid here without explaining the missing v, or leave e^{x²} unevaluated despite the 2x factor.",
         "result": "Misses both the method-audit and reverse-chain evidence.",
         "validAlternative": "Recognize the derivative of x² directly without formal u notation."
+      },
+      "T22V3::ARC510::S17-M@1": {
+        "wrongApproach": "Plug x=∞ into x^{1-p}/(1-p) or omit the p=1 case.",
+        "result": "Skips the defining limit or misses the boundary case and loses the relevant rows.",
+        "validAlternative": "Any explicit finite-bound T computation with correct three-case analysis passes."
+      },
+      "T22V3::ARC510::S17-T@1": {
+        "wrongApproach": "Judge both tails finite because values eventually become small.",
+        "result": "Confuses pointwise decay with accumulated convergence and loses the threshold criteria.",
+        "validAlternative": "Shift u=1+t or compare directly to the established p-tail."
+      },
+      "T22V3::ARC510::S18-M@1": {
+        "wrongApproach": "Reuse the tail rule p>1 at zero or substitute x=0 directly.",
+        "result": "Reverses the threshold or hides the one-sided limit and loses the proof rows.",
+        "validAlternative": "Any explicit epsilon truncation with correct cases passes."
+      },
+      "T22V3::ARC510::S18-T@1": {
+        "wrongApproach": "Use the antiderivative across x=1 and subtract endpoint values.",
+        "result": "Crosses an undefined point and fabricates a finite result, losing all singularity/split evidence.",
+        "validAlternative": "Split first; then evaluate either one-sided limit to divergence."
+      },
+      "T22V3::ARC510::S19-M@1": {
+        "wrongApproach": "For A infer convergence from being larger than a convergent function, or for B infer divergence from being smaller than a divergent one.",
+        "result": "Uses invalid comparison directions and loses the direct criteria.",
+        "validAlternative": "Any valid upper convergent comparison for A and lower divergent comparison for B passes."
+      },
+      "T22V3::ARC510::S19-T@1": {
+        "wrongApproach": "Report 0 as the improper integral solely from ∫_{-R}^R=0.",
+        "result": "Ignores the required separate one-sided limits, both of which diverge.",
+        "validAlternative": "Split at any finite c; the one-sided divergence conclusion is unchanged."
       }
     }
   },
@@ -2721,6 +3203,18 @@
         "transfer": "none"
       },
       "T22V3::ARC510::S16@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S17@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S18@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S19@1": {
         "main": "none",
         "transfer": "none"
       }
@@ -2791,6 +3285,18 @@
         "transfer": "distinct"
       },
       "T22V3::ARC510::S16@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S17@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S18@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S19@1": {
         "main": "distinct",
         "transfer": "distinct"
       }
