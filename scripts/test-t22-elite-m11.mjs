@@ -1,0 +1,147 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const a=read('course/t22/authoring/m11-arc510.json');
+const m09=read('course/t22/authoring/m09.json');
+const m10=read('course/t22/authoring/m10-arc053.json');
+const deps=read('docs/t22-rebuild/m65.dependencies.json');
+const meta=read('course/t22/generated/course-meta.json');
+const baseline=read('docs/t22-course/audit/m11-preserved-baseline.json');
+const ownership=read('docs/t22-course/audit/m11-ownership-audit.json');
+const contract=read('docs/t22-course/audit/m11-semantic-contract.json');
+const gate=fs.readFileSync('docs/t22-course/M11-DESIGN-GATE.md','utf8');
+
+function gitBlobSha(path){
+  const b=fs.readFileSync(path);
+  const h=Buffer.from('blob '+b.length+'\0');
+  return createHash('sha1').update(Buffer.concat([h,b])).digest('hex');
+}
+function norm(x){return String(x||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');}
+function grams(x,n=12){
+  const t=norm(x).split(' ').filter(Boolean),out=new Set();
+  for(let i=0;i+n<=t.length;i++)out.add(t.slice(i,i+n).join(' '));
+  return out;
+}
+const allowedClass=new Set(['retrieval','proof reconstruction','fresh Main evidence','changed-surface Transfer']);
+
+assert.equal(a.module.order,11);
+assert.equal(a.module.id,'ARC510');
+assert.equal(a.module.title,'Integration & Accumulation');
+assert.match(a.module.status,/unpublished/);
+assert.equal(a.sessions.length,20,'session count is design-gate-derived, not inherited');
+assert.equal(Object.keys(a.problems).length,40);
+assert.equal(Object.keys(a.evaluators).length,40);
+assert.deepEqual(a.boundary.prerequisiteModules,deps.modules.find(m=>m.id==='ARC510').prerequisites);
+assert.deepEqual(a.boundary.prerequisiteModules,['SIDE263','ARC053']);
+assert.match(a.boundary.decisiveProhibition,/M12|Taylor|asympt/i);
+
+assert.equal(meta.moduleSources.length,9,'M11 must not rewrite accepted learner registry');
+assert.equal(meta.moduleSources.at(-1).source,'course/t22/authoring/m09.json');
+assert(!meta.moduleSources.some(x=>x.order>=10),'M10/M11 remain deliberately unregistered');
+
+for(const [path,sha] of Object.entries(baseline.files))assert.equal(gitBlobSha(path),sha,path+' changed during M11-only work');
+
+for(const heading of ['Boundary contract','Source dossier','Concept dependency graph','Conceptual-distinction map','Failure-mode map','Narrative spine','Candidate session boundaries']){
+  assert.match(gate,new RegExp(heading,'i'));
+}
+assert.match(gate,/20 pedagogical atoms/i);
+
+const claimCount=Object.values(a.claimEvidence).flat().length;
+assert.equal(a.coverageAudit.ownershipClaimCount,claimCount);
+assert.equal(contract.ownershipClaimCount,claimCount);
+assert.equal(ownership.summary.finalClaims,claimCount);
+assert.equal(ownership.records.length,ownership.summary.originalClaims);
+assert.equal(new Set(ownership.records.map(r=>r.session+':'+r.originalClaimIndex)).size,ownership.records.length);
+for(const r of ownership.records){
+  assert(['retain','narrow','hypothesis-repair'].includes(r.disposition),r.disposition);
+  assert(r.finalClaim?.length>10);
+  assert(r.rationale?.length>30);
+}
+assert.equal(ownership.summary.removed,0);
+assert.equal(ownership.assessmentRepairs.length,1);
+assert.equal(ownership.assessmentRepairs[0].session,19);
+
+assert.equal(contract.sessions.length,a.sessions.length);
+assert.deepEqual(new Set(contract.evidenceClasses),allowedClass);
+assert.equal(contract.unpublished,true);
+
+const priorBase=m09.sessions.map(s=>s.lesson).join('\n')+'\n'+m10.sessions.map(s=>s.lesson).join('\n');
+const ids=new Set(),problemIds=new Set();
+for(let i=0;i<a.sessions.length;i++){
+  const s=a.sessions[i],order=i+1,ss=String(order).padStart(2,'0');
+  assert.equal(s.order,order);
+  assert.equal(s.id,`T22V3::ARC510::S${ss}@1`);
+  assert.equal(s.moduleId,'ARC510');
+  assert(!ids.has(s.id));ids.add(s.id);
+  assert(s.lesson.includes('Worked example:'),s.id+' missing worked example');
+  assert(s.lesson.includes('Guided practice:'),s.id+' missing guided practice');
+  assert(s.entryPrerequisites.length>0);
+  assert.equal(a.claimEvidence[s.id].length,s.requiredOwnership.length);
+  assert.equal(a.coverage[s.id].length,s.requiredOwnership.length);
+
+  const sem=a.semanticSeparationAudit.sessions[s.id];
+  assert(sem?.main&&sem?.transfer,s.id+' missing evidence classification');
+  assert(allowedClass.has(sem.main.classification));
+  assert.equal(sem.transfer.classification,'changed-surface Transfer');
+  assert(sem.main.reason.length>30&&sem.transfer.reason.length>30);
+
+  const c=contract.sessions[i];
+  assert.equal(c.id,s.id);
+  assert.deepEqual(c.requiredOwnership,s.requiredOwnership);
+  assert.deepEqual(c.claimEvidence,a.claimEvidence[s.id]);
+  assert.equal(c.main.prompt,a.problems[s.main].prompt);
+  assert.equal(c.transfer.prompt,a.problems[s.transfer].prompt);
+  assert.deepEqual(c.main.rubric,a.evaluators[s.main].rubric);
+  assert.deepEqual(c.transfer.rubric,a.evaluators[s.transfer].rubric);
+  assert.equal(c.main.classification,sem.main.classification);
+  assert.equal(c.transfer.classification,sem.transfer.classification);
+
+  for(const [kind,id] of [['main',s.main],['transfer',s.transfer]]){
+    assert.equal(id,`T22V3::ARC510::S${ss}-${kind==='main'?'M':'T'}@1`);
+    assert(!problemIds.has(id));problemIds.add(id);
+    const p=a.problems[id],e=a.evaluators[id];
+    assert(p&&e,s.id+' missing '+kind);
+    assert.equal(p.order,order);assert.equal(p.kind,kind);
+    assert.equal(p.obligationVersion,1,'M11 is unpublished; pre-publication repairs retain v1');
+    assert(p.prompt.length>=80,id+' prompt too thin');
+    assert(e.reference.length>=60,id+' reference too thin');
+    assert(e.rubric.length>=2,id+' rubric too thin');
+    assert.equal(e.rubric.reduce((z,r)=>z+r.points,0),10,id+' rubric total');
+
+    const available=priorBase+'\n'+a.sessions.filter(x=>x.order<=s.order).map(x=>x.lesson).join('\n');
+    assert(!norm(available).includes(norm(p.prompt)),id+' exact prompt leaked into legal instruction');
+    assert(!norm(available).includes(norm(e.reference)),id+' exact reference leaked into legal instruction');
+    const ag=grams(available);
+    for(const [label,text] of [['prompt',p.prompt],['reference',e.reference]]){
+      const overlap=[...grams(text)].filter(g=>ag.has(g));
+      assert.equal(overlap.length,0,`${id} ${label} 12-token legal-instruction overlap: ${overlap[0]||''}`);
+    }
+  }
+
+  for(const ev of a.claimEvidence[s.id]){
+    assert(s.requiredOwnership.includes(ev.claim),s.id+' claim must be owned');
+    assert(['main','transfer','main+transfer'].includes(ev.task));
+    const taskIds=ev.task==='main'?[s.main]:ev.task==='transfer'?[s.transfer]:[s.main,s.transfer];
+    const prompts=taskIds.map(id=>a.problems[id].prompt);
+    const criteria=taskIds.flatMap(id=>a.evaluators[id].rubric.map(r=>r.criterion));
+    for(const p of prompts)assert(ev.publicRequest.includes(p),s.id+' public request missing cited task');
+    assert(ev.rubricEvidence.length>=1,s.id+' ownership lacks scored evidence');
+    for(const row of ev.rubricEvidence)assert(criteria.includes(row),s.id+' cites non-existent rubric row');
+  }
+}
+
+assert.match(a.sessions[9].lesson,/Mean Value Theorem/);
+assert.match(a.sessions[9].lesson,/continuous on an interval/i);
+assert.match(a.problems[a.sessions[9].main].prompt,/continuous on I/);
+assert(a.sessions[18].lesson.includes('1/sqrt(x²+1)'));
+assert(a.problems[a.sessions[18].main].prompt.includes('1/sqrt(x²+4)'),'S19 freshness repair missing');
+assert.match(a.initialVersionAudit.s19FreshnessRepair,/duplicated the lesson guided practice/i);
+
+const allText=a.sessions.map(s=>s.lesson+'\n'+a.problems[s.main].prompt+'\n'+a.problems[s.transfer].prompt+'\n'+a.evaluators[s.main].reference+'\n'+a.evaluators[s.transfer].reference).join('\n').toLowerCase();
+for(const banned of ['taylor series','jacobian','lebesgue integral','differentiation under the integral sign',"l'hôpital","l’hôpital"]){
+  assert(!allText.includes(banned),'future machinery leaked into M11: '+banned);
+}
+
+console.log('PASS M11 semantic/evidence validator: design-derived 20 sessions; all observable ownership rows audited; M09+M10+legal-M11 separation clean; M01-M10/runtime baseline preserved; M11 remains unpublished.');
