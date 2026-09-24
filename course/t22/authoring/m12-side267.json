@@ -7,7 +7,7 @@
     "title": "Taylor Approximation, Asymptotics & Error",
     "status": "builder-validated-candidate-unpublished",
     "destination": "Construct and interpret arbitrary-center Taylor polynomials; certify finite approximation error; use deterministic O/o/~ notation precisely; build the minimum series/power-series bridge needed to distinguish Taylor candidates, convergence and representation; diagnose center, convergence-region and smooth-nonanalytic failures.",
-    "gate": "The full 19-session M12 candidate has completed the v1.1 pre-authoring gate, S06 vertical-slice pilot, session-level Gates 4–8, whole-module integration/type check, exact semantic mapping audit, independent mathematical reconstruction, serialization/render probe and full inherited browser/regression suite. Implementation checkpoint 3a79fd433626f5e133e759c14c114b23c580391b passed workflow 36037157131. This is builder validation, not independent pedagogical acceptance; M12 remains unpublished and M13 remains closed.",
+    "gate": "The full 19 design-derived sessions of the M12 candidate have completed the v1.1 pre-authoring gate, S06 vertical-slice pilot, session-level Gates 4–8, whole-module integration/type check, exact semantic mapping audit, independent mathematical reconstruction, serialization/render probe and full inherited browser/regression suite. Implementation checkpoint 3a79fd433626f5e133e759c14c114b23c580391b passed workflow 36037157131. This is builder validation, not independent pedagogical acceptance; M12 remains unpublished and M13 remains closed.",
     "nextBoundary": "M13 owns vectors, span, basis and dot products. M12 does not open M13 or import multivariable Taylor/linear-algebra machinery."
   },
   "boundary": {
