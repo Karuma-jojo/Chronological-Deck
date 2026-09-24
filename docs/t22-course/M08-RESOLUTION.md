@@ -29,3 +29,7 @@ M08 remains at **24 sessions** after repair, not because 24 is a target. The mis
 - Semantic contract was rebuilt from the repaired public tasks/rubric rows.
 - Executable Python oracle now exercises the repaired tasks, including explicit tolerances, callable predicates, dict accumulation, strict zip, traceback/runtime validation and multi-value RNG-state replay.
 - M09 remains closed.
+
+## Repair-head validation
+
+Repair content head `772e5dc12bcd44340bbf1d96a093d1b802c10699` passed dedicated T22 Elite run `35961691590` / job `107511449788`, including the rebuilt semantic/evidence suite, executable Python oracle, Chromium and real eight-module browser workflow. The full main-targeted PR matrix on that same head finished **37/37 green with zero failures**. This closes implementation validation, not independent pedagogical freeze.
