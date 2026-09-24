@@ -15,7 +15,7 @@ Preserved exactly:
 - **38 fixed Main/Transfer assessments**
 - formal prerequisites: `SIDE263` + `ARC053`
 - the finite-Taylor → error → deterministic asymptotic notation → partial-sum series → power-series → Taylor-candidate → representation/failure route
-- M12 unpublished state
+- M12 remained unpublished during the bounded-repair cycle; publication is a later explicitly authorized transition
 - M13 closed
 
 No fixed assessment was enlarged merely to rescue an overbroad ownership claim.
@@ -129,7 +129,7 @@ The repaired candidate must pass:
 1. `scripts/test-t22-elite-m12.mjs` — structure/semantic/evidence mapping, including exact narrowed rows;
 2. `docs/t22-course/audit/m12-math-checks.mjs` — all 38 assessment references;
 3. `docs/t22-course/audit/m12-instruction-math-checks.mjs` — 19/19 learner-facing lessons + theorem hypotheses;
-4. `scripts/test-t22-elite-m12-browser.mjs` — runtime parse/hash/render/unpublished boundary;
+4. `scripts/test-t22-elite-m12-browser.mjs` — runtime parse/hash/render and twelve-module publication boundary;
 5. the complete inherited T22 regression suite.
 
 ## Focused independent confirmation
@@ -143,4 +143,4 @@ After the repaired exact head is green, the next independent review should be **
 
 Do **not** reopen the 19-session architecture unless that focused confirmation finds concrete evidence requiring it.
 
-M12 remains unpublished. M13 remains closed.
+The bounded-repair cycle is closed. M12 is now authorized for publication through the shared twelve-module route. M13 remains closed.
