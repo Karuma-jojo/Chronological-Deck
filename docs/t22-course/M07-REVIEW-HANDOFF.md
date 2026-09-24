@@ -3,7 +3,7 @@
 Date: 2026-09-24  
 Branch: `codex/t22-pedagogical-rebuild`  
 Stable module: `T22E-MKT01`  
-Status: **ASTRA REPAIRS IMPLEMENTED; FULL REPAIR-HEAD VALIDATION PENDING; INDEPENDENT FOLLOW-UP REQUIRED; M08 CLOSED**
+Status: **ASTRA REPAIRS IMPLEMENTED + FULL REPAIR-HEAD GREEN; INDEPENDENT FOLLOW-UP REQUIRED; M08 CLOSED**
 
 ## Astra repair disposition — 2026-09-24 (current authority)
 
@@ -19,7 +19,9 @@ M07-01 through M07-05 are now **implemented but not independently accepted/froze
 
 Authoring/instruction versions are now `m07-authoring-astra-r1` / `m07-instruction-astra-r1`. Stable IDs and `chrono_t22_elite_course_evidence_v1` remain unchanged. Historical solved exposure is timestamp-migrated and old stale evidence is retained rather than recertified.
 
-**Full repair-head Actions validation is pending.** After an exact-head green run including Chromium, update this handoff with the SHA/run/job and stop for bounded Astra follow-up. M01–M06 remain accepted. **M08 CLOSED.**
+Full repair-head verification is complete on `a0f76357f5e36de6e77799e2a30707c950ce1060`: Actions run `35952806534`, job `107484744356`, **SUCCESS**, including the M07 semantic mutation/provenance gate and real Chromium seven-module browser workflow.
+
+M07 remains **not independently accepted/frozen** until Astra performs the bounded follow-up. M01–M06 remain accepted. **M08 CLOSED.**
 
 ## Scope
 
