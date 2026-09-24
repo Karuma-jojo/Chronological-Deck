@@ -62,9 +62,9 @@
       "order": 8,
       "id": "T22E-CODE01",
       "mode": "new",
-      "semanticStatus": "boundary-accepted-content-candidate",
+      "semanticStatus": "independent-review-repaired-candidate",
       "bridges": [],
-      "note": "M08 builder candidate: 24 sessions / 48 fixed tasks / 120 claim links. Boundary follows canonical prerequisites M01+M03+M04 and keeps NumPy/pandas/scientific-computing engineering in M21 and Monte Carlo diagnostics in M30. Official Python documentation was checked for control flow, containers, floating point, Fraction, itertools.product, Random state/reproducibility, assert semantics and aliasing. Builder semantic mappings and executable Python oracles are present; independent review/acceptance remains required."
+      "note": "M08 independent-review repair candidate: 24 sessions / 48 fixed tasks / 120 claim links. Severe review found worked-example/Main contamination, lexical-only separation, an S06 prerequisite contradiction, weak programming observability and missing novice bridges. Repairs introduce fresh assessment surfaces, obligationVersion2 on changed tasks, explicit imports/callable passing/strict zip/traceback reading, executable S14-S16 checks, fresh RNG/state tasks, regenerated semantic mappings and independent Python oracles. Canonical prerequisites remain M01+M03+M04; M21/M30 boundaries remain hard. Final acceptance still requires a green post-repair full workflow and bounded independent follow-up."
     },
     {
       "order": 9,
