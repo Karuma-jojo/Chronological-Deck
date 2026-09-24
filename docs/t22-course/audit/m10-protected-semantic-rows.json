@@ -1,6 +1,6 @@
 {
-  "capturedFrom": "b68572b53baa556940f8f6f1ddfb5e0a7fd98cae",
-  "purpose": "Protect the semantic-ledger rows that M10 and its prerequisites actually own while allowing later authorized module boundary audits to update their own downstream rows.",
+  "capturedFrom": "through-M12 publication semantic state",
+  "purpose": "Protect the semantic-ledger rows M10 and its prerequisites own after the explicitly authorized publication transition; later modules may update only their own downstream rows.",
   "rows": [
     {
       "order": 1,
@@ -87,7 +87,7 @@
       "order": 10,
       "id": "ARC053",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
+      "semanticStatus": "accepted",
       "bridges": []
     }
   ]
