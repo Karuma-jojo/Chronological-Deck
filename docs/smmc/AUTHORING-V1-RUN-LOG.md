@@ -540,3 +540,16 @@ Inspected successful steps include:
 - same-account cross-device T25/SMMC restore.
 
 The scaffold validator reports: 18 canonical modules planned, 9 currently authored units recognized, all 42 East non-GREEN problems represented in the requirement backlog, 18 East paper-vault objects, and fail-closed certification/T25/S-XFER/S-PAPER contracts.
+
+
+## Checkpoint I — primary-domain research freeze
+
+Before further mass authoring, the open 2017–2025 hybrid-label reconciliation was completed under the repository's written ownership tie-break.
+
+Eight `primaryDomain` fields changed and no other historical-problem contract field changed. Final all-corpus and East-only counts now exactly match the independently recorded benchmark.
+
+Roadmap phase `research-freeze` is now `complete`; `SMMC_ENGINE_FEATURES.domainReconciliation` is `frozen`.
+
+CI now runs the complete ledger validator, frozen curriculum validator, dedicated domain-reconciliation validator and the existing authoring/runtime/browser/workspace checks.
+
+This closes the research-classification gate. Core bridge/method authoring is the active content-build phase; historical unlock mappings remain fail-closed until exact authored units exist.
