@@ -1,7 +1,7 @@
 # SMMC × T25 final evidence synthesis — 2017–2025
 
 Status: **COMPANION ARCHITECTURE v1.0 FROZEN**
-Primary-domain reconciliation remains open only at the per-problem hybrid-label level; see `DOMAIN-RECONCILIATION-2017-2025.md`.
+Primary-domain reconciliation closed and frozen on 2026-09-24; see `DOMAIN-RECONCILIATION-2017-2025.md`.
 
 ## 1. Corpus
 
@@ -463,21 +463,18 @@ Aster consequences belong after an attempt/review checkpoint.
 
 ---
 
-# 11. Primary-domain frequency caveat
+# 11. Primary-domain reconciliation — closed
 
-The newer SMMC-2027 research audit and the independently authored ledger disagree on several hybrid primary labels.
+The per-problem reconciliation is complete under the ownership tie-break in `DOMAIN-RECONCILIATION-2017-2025.md`.
 
-This does not affect:
-- T25 overlap;
-- bridge needs;
-- method training;
-- sealed-transfer logic.
+Eight reviewed hybrid rows changed: 2017 A3 S1→S4; 2020 B2 S3→S2; 2020 B3 S3→S5; 2023 A2 S3→S2; 2023 C3 S3→S1; 2024 A3 S3→S4; 2024 C3 S3→S4; 2025 C1 S2→S5.
 
-Until reconciliation closes, use:
-- the newer research aggregate table for broad historical domain-frequency statements;
-- the ledger's method/secondary/bridge metadata for training design.
+Final counts:
 
-See `DOMAIN-RECONCILIATION-2017-2025.md`.
+- all 88: S1 22, S2 17, S3 14, S4 12, S5 14, S6 9;
+- East 72: S1 17, S2 16, S3 12, S4 10, S5 11, S6 6.
+
+Exact agreement with the newer benchmark is a validation result, not a count-forcing rule. Secondary tags, method tags, overlap labels, T25 links and bridge needs were unchanged.
 
 ---
 
