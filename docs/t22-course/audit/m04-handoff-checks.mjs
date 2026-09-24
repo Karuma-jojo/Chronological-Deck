@@ -35,7 +35,7 @@ assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'validation'
 assert(meta.moduleSources.some(x=>x.id==='ARC048'&&x.source==='course/t22/authoring/m04.json'),'M04 source must remain registered as later modules are added');
 assert(meta.moduleSources.some(x=>x.id==='ARC048'&&x.source==='course/t22/authoring/m04.json'));
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
-assert(fs.existsSync('course/t22/authoring/m07.json'),'M07 is now explicitly authorized after the accepted M05→M06 trial');assert(!fs.existsSync('course/t22/authoring/m08.json'),'M08 remains closed');
+assert(fs.existsSync('course/t22/authoring/m07.json'),'M07 remains present');assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized after this historical M04 checkpoint');
 
 for(const s of a.sessions){
   assert.equal(s.requiredOwnership.length,5);
@@ -71,4 +71,4 @@ for(const token of [
   'STOP FOR BOUNDED FOLLOW-UP REVIEW'
 ]) assert(res.includes(token),token);
 
-console.log('PASS: M04 Astra repair handoff matches 24/48/120 state, versioned S05-T/S21-M contracts, repaired S11/S22 prerequisites, shared evidence key, later-authorized M07 validation candidate and closed M08 boundary.');
+console.log('PASS: M04 Astra repair handoff matches 24/48/120 state, versioned S05-T/S21-M contracts, repaired S11/S22 prerequisites, shared evidence key, later-authorized M07/M08 validation candidates while M04 repair acceptance remains pinned.');
