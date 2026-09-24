@@ -9,16 +9,16 @@ const resolution=fs.readFileSync('docs/t22-course/M12-RESOLUTION.md','utf8');
 const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 
 assert.equal(a.module.id,'SIDE267');
-assert.equal(a.module.status,'builder-validated-candidate-unpublished');
+assert.equal(a.module.status,'publication-candidate-independent-audit-repaired');
 assert.equal(a.sessions.length,19);
 assert.equal(Object.keys(a.problems).length,38);
 assert.equal(Object.values(a.claimEvidence).flat().length,58);
 assert.deepEqual(a.boundary.prerequisiteModules,['SIDE263','ARC053']);
 assert(!a.boundary.prerequisiteModules.includes('ARC510'));
 assert.equal(contract.ownershipClaimCount,58);
-assert.equal(contract.unpublished,true);
+assert.equal(contract.unpublished,false);
 
-assert.match(handoff,/builder-validated, independently adversarially audited, bounded repairs applied; unpublished; awaiting focused independent confirmation/i);
+assert.match(handoff,/builder-validated, independently adversarially audited, bounded repairs applied and focused-confirmed; registered in the authorized twelve-module publication route/i);
 assert.match(handoff,/3a79fd433626f5e133e759c14c114b23c580391b/);
 assert.match(handoff,/36037157131/);
 assert.match(handoff,/19 design-derived sessions/i);
@@ -59,7 +59,7 @@ assert.match(resolution,/0,1,8,24,24/);
 assert.match(resolution,/seven rows were narrowed/i);
 assert.match(resolution,/19\/19 learner-facing lessons/i);
 assert.match(resolution,/(difference quotient|derivative-at-zero step)/i);
-assert.match(resolution,/M12 remains unpublished/i);
+assert.match(resolution,/M12 is now authorized for publication through the shared twelve-module route/i);
 assert.match(resolution,/M13 remains closed/i);
 
 for(const cmd of [
@@ -69,4 +69,4 @@ for(const cmd of [
  'node scripts/test-t22-elite-m12-browser.mjs'
 ])assert(workflow.includes(cmd),'workflow missing '+cmd);
 
-console.log('PASS M12 handoff: bounded independent-audit repairs documented; 19/38 architecture preserved; seven ownership rows narrowed; 19/19 instructional-math checker mandatory; focused confirmation boundary explicit without claiming acceptance.');
+console.log('PASS M12 handoff: bounded audit/focused confirmation documented; 19/38 architecture preserved; M12 registered for twelve-module publication while M13 remains closed and no learner-mastery overclaim is made.');
