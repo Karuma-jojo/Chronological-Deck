@@ -38,7 +38,7 @@ const allowedClass=new Set(['retrieval','proof reconstruction','fresh Main evide
 assert.equal(a.module.order,10);
 assert.equal(a.module.id,'ARC053');
 assert.equal(a.module.title,'Derivatives & Local Linearity');
-assert.match(a.module.status,/semantic-repair-builder-candidate-unpublished/);
+assert.match(a.module.status,/publication-candidate-semantic-repair-verified/);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
@@ -50,13 +50,14 @@ assert.match(a.boundary.decisiveProhibition,/do not justify M10 with integration
 assert.match(a.boundary.decisiveProhibition,/Taylor/i);
 assert.match(a.boundary.decisiveProhibition,/MVT/i);
 
-assert.equal(meta.moduleSources.length,9,'M10 repair must not rewrite the accepted nine-module runtime registry');
-assert.equal(meta.moduleSources.at(-1).source,'course/t22/authoring/m09.json');
-assert(!meta.moduleSources.some(x=>x.order>=10),'M10 remains deliberately unregistered');
+assert.equal(meta.moduleSources.length,12,'publication through M12 must register twelve modules');
+assert(meta.moduleSources.some(x=>x.order===10&&x.id==='ARC053'&&x.source==='course/t22/authoring/m10-arc053.json'));
+assert.equal(meta.moduleSources.filter(x=>x.order<=10).length,10);
 assert(!fs.existsSync('course/t22/authoring/m10.json'),'historical M07-M09 stop-boundary path remains absent');
 assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));
 
-for(const [path,sha] of Object.entries(baseline.files))assert.equal(gitBlobSha(path),sha,path+' changed during M10-only repair');
+const publicationAuthorized=new Set(['course/t22/generated/course-meta.json','course/t22/generated/roadmap.json']);
+for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication metadata');
 const currentProtectedRows=semanticLedger.entries.filter(x=>x.order<=10);
 assert.deepEqual(currentProtectedRows,protectedSemantic.rows,'M01-M10 semantic-ledger rows changed after their reviewed baseline');
 
