@@ -1,11 +1,11 @@
 {
-  "version": "m11-arc510-s04-endpoint-repair-v1",
+  "version": "m11-arc510-s01-s06-v1",
   "instructionVersion": "m11-arc510-instruction-v1",
   "module": {
     "order": 11,
     "id": "ARC510",
     "title": "Integration & Accumulation",
-    "status": "authoring-in-progress-s01-s04-verified",
+    "status": "authoring-in-progress-s01-s06-verified",
     "destination": "Build one-variable integration as signed accumulation from finite local contributions, Riemann-sum limits and FTC; derive structural substitution/integration-by-parts tools; audit proper/improper existence without M12+ machinery.",
     "gate": "S01 is the required pilot vertical slice. The full 20-session architecture is frozen only at the design level until this pilot passes Gates 4-8.",
     "nextBoundary": "M12 remains closed. Taylor/higher-order asymptotics are neither used nor authored."
@@ -35,8 +35,8 @@
   "coverageAudit": {
     "designGate": "docs/t22-course/M11-DESIGN-GATE.md",
     "pedagogicalAtoms": 20,
-    "authoredSessions": 4,
-    "ownershipClaimCount": 12,
+    "authoredSessions": 6,
+    "ownershipClaimCount": 18,
     "note": "No target count exists. This count is the S01 pilot output only."
   },
   "sessions": [
@@ -188,6 +188,80 @@
       "lesson": "Orient. OpenStax's standard sufficient theorem says every continuous real function on a closed interval is Riemann integrable. It is sufficient, not necessary, and M11 does not import its full compactness/uniform-continuity proof.\nDefine. A finite point change means two bounded functions differ only at finitely many input points. A tagged sum can notice such a point only through the one subinterval whose tag hits it.\nConnect. If f and g differ only at one point c and |f(c)-g(c)|≤D, then on a partition of mesh m the exceptional point can be used as a tag in at most the two adjacent subintervals, so the tagged sums differ by at most 2Dm. All other tagged contributions match. As m→0 this discrepancy vanishes. Finitely many point changes give a finite sum of such bounds.\nExplain. By contrast, if every subinterval permits two tag types that force different heights, arbitrarily fine partitions can still support incompatible sums. Then no common value can satisfy the S03 definition.\nWorked example: let f(x)=2 on [-1,1] and let g equal 2 except g(0)=100. Any tagged sums differ only if the tag in the subinterval containing 0 is chosen as 0, and then the difference is at most 196||P||. Since f has integral 4, g also has integral 4.\nGuided practice: if two bounded functions differ only at c with value gap at most 7, what mesh condition certainly makes their tagged sums differ by less than ε? Check: ||P||<ε/14. This controls sum discrepancy; it does not claim the functions are continuous.",
       "main": "T22V3::ARC510::S04-M@1",
       "transfer": "T22V3::ARC510::S04-T@1"
+    },
+    {
+      "order": 5,
+      "id": "T22V3::ARC510::S05@1",
+      "moduleId": "ARC510",
+      "title": "Linearity, interval additivity and orientation",
+      "focus": "Derive the basic algebra of the definite integral from finite-sum identities and M09 limit laws.",
+      "purpose": "Make integral manipulation accountable to the Riemann structure before antiderivative shortcuts exist.",
+      "centralCapability": "Use linearity, adjacent-interval additivity and interval orientation with signs intact.",
+      "principalObstacle": "Learners often treat reversal as harmless, split intervals inconsistently, or apply algebra to integrals without knowing which identities are linear and which are not.",
+      "entryPrerequisites": [
+        "M11-S03 proper definite integral",
+        "M09-S07 limit linearity",
+        "finite-sum algebra"
+      ],
+      "requiredOwnership": [
+        "Use linearity of the definite integral for finite linear combinations.",
+        "Use additivity across adjacent intervals to reconstruct a total.",
+        "Apply the zero-width and reversed-bound conventions with the correct sign."
+      ],
+      "applicationScope": "Proper Riemann integrals of already integrable functions on finite intervals.",
+      "transferScope": "Changed to a contextual cumulative-flow ledger with no function formula, requiring structural composition and orientation.",
+      "inScope": [
+        "linearity",
+        "adjacent additivity",
+        "reversed bounds",
+        "zero-width convention"
+      ],
+      "outOfScope": [
+        "FTC/antiderivative evaluation",
+        "nonlinear identities such as integral of a product",
+        "improper integrals"
+      ],
+      "exitCondition": "The learner combines and reverses known integrals without inventing nonlinear rules.",
+      "lesson": "Orient. Once an integral exists, we need rules for combining accumulated quantities without rebuilding every tagged-sum limit from scratch.\nDefine. For integrable f and g and constants α,β on the same interval, linearity is ∫(αf+βg)=α∫f+β∫g. For a≤c≤b, adjacent-interval additivity is ∫_a^b f=∫_a^c f+∫_c^b f. We define ∫_a^a f=0 and ∫_b^a f=-∫_a^b f.\nConnect. At the finite-sum level, Σ[αf(t_i)+βg(t_i)]Δx_i=αΣf(t_i)Δx_i+βΣg(t_i)Δx_i; M09 limit linearity carries this identity to the integral. Interval additivity comes from concatenating the pieces.\nExplain. Reversing bounds changes orientation, so it changes the sign. Linearity does not create rules such as ∫fg=(∫f)(∫g); multiplication is not a linear operation.\nWorked example: suppose ∫_0^2 f=4 and ∫_0^2 g=-1. Then ∫_0^2(3f-2g)=3(4)-2(-1)=14. Also, if ∫_0^1 f=1.5 and ∫_1^2 f=2.5, additivity recovers ∫_0^2 f=4 and reversal gives ∫_2^0 f=-4.\nGuided practice: if ∫_1^3 q=-2 and ∫_3^5 q=7, first find ∫_1^5 q, then ∫_5^1 q. Check: 5 and -5. State which step uses additivity and which uses orientation.",
+      "main": "T22V3::ARC510::S05-M@1",
+      "transfer": "T22V3::ARC510::S05-T@1"
+    },
+    {
+      "order": 6,
+      "id": "T22V3::ARC510::S06@1",
+      "moduleId": "ARC510",
+      "title": "Order, magnitude, cancellation and average value",
+      "focus": "Use integral order structure to bound signed totals and separate net accumulation from total magnitude.",
+      "purpose": "Prevent the area/magnitude intuition from erasing sign and give quantitative sanity checks before FTC evaluation.",
+      "centralCapability": "Reason about bounds, absolute accumulation, cancellation and average value for proper integrals.",
+      "principalObstacle": "A small signed integral can hide large positive and negative contributions, and absolute value cannot be moved through an integral as an equality.",
+      "entryPrerequisites": [
+        "M11-S05 integral structure",
+        "M02 inequalities/absolute value"
+      ],
+      "requiredOwnership": [
+        "Use pointwise bounds to bound a definite integral on a finite interval.",
+        "Distinguish signed accumulation ∫f from total magnitude ∫|f| and apply |∫f|≤∫|f|.",
+        "Compute and interpret the average value (1/(b-a))∫_a^b f for b>a."
+      ],
+      "applicationScope": "Proper finite-interval integrals; average value is defined without invoking a mean-value existence theorem.",
+      "transferScope": "Changed from explicit piecewise rates to abstract inequality certificates requiring order reasoning rather than direct accumulation arithmetic.",
+      "inScope": [
+        "comparison",
+        "constant upper/lower bounds",
+        "absolute inequality",
+        "signed cancellation",
+        "average value"
+      ],
+      "outOfScope": [
+        "Lp norms",
+        "mean-value theorem for integrals",
+        "probability expectation"
+      ],
+      "exitCondition": "A wrong solver who equates signed and absolute accumulation or reverses comparison direction loses targeted credit.",
+      "lesson": "Orient. Integral linearity tells us how totals combine; order tells us whether a proposed total is even plausible.\nDefine. If f(x)≤g(x) everywhere on [a,b] and both are integrable, then ∫f≤∫g. Hence m≤f≤M gives m(b-a)≤∫f≤M(b-a). For b>a, the average value is f_avg=(1/(b-a))∫_a^b f.\nConnect. Because -|f|≤f≤|f|, integration preserves the inequalities: -∫|f|≤∫f≤∫|f|. Therefore |∫f|≤∫|f|. Equality is not automatic because positive and negative contributions can cancel in ∫f.\nExplain. Signed accumulation answers net change. Integrating |f| answers accumulated magnitude in contexts where absolute rate has that meaning. Geometric area is therefore not the universal definition of an integral.\nWorked example: a piecewise rate is +3 units/hour on [0,1] and -1 unit/hour on [1,4]. The signed total is 3(1)-1(3)=0 units, while the magnitude total is 3(1)+1(3)=6 units. The average signed rate over four hours is 0 units/hour.\nGuided practice: if an integrable q satisfies 2≤q(x)≤5 on an interval of length 3, bound its integral before calculating anything else. Check: 6≤∫q≤15.",
+      "main": "T22V3::ARC510::S06-M@1",
+      "transfer": "T22V3::ARC510::S06-T@1"
     }
   ],
   "problems": {
@@ -245,6 +319,34 @@
       "order": 4,
       "kind": "transfer",
       "prompt": "On [0,1], define h(x)=1 when x is rational and h(x)=0 when x is irrational. You may use the supplied fact that every nonempty interval contains both rational and irrational numbers. For an arbitrary partition, construct two legal tag choices whose Riemann sums disagree by 1, and use them to show h is not Riemann integrable. Finally, explain what the Main/Transfer pair shows about the claim 'every discontinuous function is nonintegrable.'",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S05-M@1": {
+      "id": "T22V3::ARC510::S05-M@1",
+      "order": 5,
+      "kind": "main",
+      "prompt": "Suppose f and g are integrable and you are given ∫_1^4 f(x)dx=5, ∫_4^7 f(x)dx=-2, and ∫_1^7 g(x)dx=3. Compute (i) ∫_1^7 f, (ii) ∫_7^1 f, and (iii) ∫_1^7 [2f(x)-3g(x)]dx. Name the structural law used at each step.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S05-T@1": {
+      "id": "T22V3::ARC510::S05-T@1",
+      "order": 5,
+      "kind": "transfer",
+      "prompt": "A signed flow model has accumulated +6 L from hour 0 to hour 2 and -4 L from hour 2 to hour 5 for component A. Component B accumulates +3 L from hour 0 to hour 5. Without inventing pointwise rate formulas, determine (i) A's accumulation from 0 to 5, (ii) A's accumulation from 5 back to 0 under the oriented convention, and (iii) the 0-to-5 accumulation of the combined rate 2A-B.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S06-M@1": {
+      "id": "T22V3::ARC510::S06-M@1",
+      "order": 6,
+      "kind": "main",
+      "prompt": "A signed velocity model is v(t)=4 km/h on 0≤t≤1.5 and v(t)=-2 km/h on 1.5<t≤3.5. Compute (i) ∫_0^3.5 v(t)dt, (ii) ∫_0^3.5 |v(t)|dt, and (iii) the average value of v over [0,3.5]. Explain in one sentence why the first two totals differ.",
+      "obligationVersion": 1
+    },
+    "T22V3::ARC510::S06-T@1": {
+      "id": "T22V3::ARC510::S06-T@1",
+      "order": 6,
+      "kind": "transfer",
+      "prompt": "Let q be integrable on [2,6] and suppose -1≤q(x)≤3 for every x. Also suppose ∫_2^6 |q(x)|dx=5. Give the sharp bounds that follow immediately for ∫_2^6 q(x)dx from (a) the pointwise bounds and (b) the absolute-value inequality. Combine the information to state the tightest interval you can certify for the signed integral.",
       "obligationVersion": 1
     }
   },
@@ -408,6 +510,86 @@
         }
       ],
       "marking": "The density fact is granted, not assessed. Do not require terminology from measure theory."
+    },
+    "T22V3::ARC510::S05-M@1": {
+      "reference": "Adjacent additivity gives ∫_1^7 f=5+(-2)=3. Reversal gives ∫_7^1 f=-3. Linearity then gives ∫_1^7(2f-3g)=2(3)-3(3)=-3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Uses adjacent-interval additivity to obtain ∫_1^7 f=3."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses reversed-bound orientation to obtain ∫_7^1 f=-3."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses linearity to obtain ∫_1^7(2f-3g)=-3."
+        },
+        {
+          "points": 1,
+          "criterion": "Correctly associates additivity, orientation and linearity with the three steps."
+        }
+      ],
+      "marking": "Equivalent notation is accepted. No function formula or antiderivative is required."
+    },
+    "T22V3::ARC510::S05-T@1": {
+      "reference": "Additivity gives A[0,5]=6-4=2 L. Orientation gives A[5,0]=-2 L. Linearity gives (2A-B)[0,5]=2(2)-3=1 L. No pointwise rate formula is needed because the task supplies the relevant accumulated integrals.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Combines the adjacent A intervals to obtain +2 L."
+        },
+        {
+          "points": 3,
+          "criterion": "Reverses orientation to obtain -2 L from hour 5 to hour 0."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses linearity on the supplied accumulations to obtain +1 L for 2A-B."
+        }
+      ],
+      "marking": "Accept integral notation or an equivalent cumulative-ledger notation. Do not require a fabricated rate function."
+    },
+    "T22V3::ARC510::S06-M@1": {
+      "reference": "The signed accumulation is 4(1.5)+(-2)(2)=6-4=2 km. The absolute accumulation is 4(1.5)+2(2)=10 km. The average value is 2/3.5=4/7 km/h. They differ because the signed integral cancels opposite-direction contributions while the absolute-value integral counts their magnitudes.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes the signed integral as 2 km with the negative segment subtracting."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the absolute-value integral as 10 km."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the average value as 4/7 km/h."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains cancellation versus magnitude as the reason the two totals differ."
+        }
+      ],
+      "marking": "Equivalent exact or decimal average values are accepted. The context uses displacement-like signed accumulation versus total travel magnitude."
+    },
+    "T22V3::ARC510::S06-T@1": {
+      "reference": "The interval length is 4, so pointwise comparison gives -4≤∫q≤12. The absolute-value inequality gives |∫q|≤5, i.e. -5≤∫q≤5. Combining the two certificates gives -4≤∫q≤5. Nothing supplied narrows it further.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Uses the pointwise bounds to obtain -4≤∫q≤12."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses |∫q|≤∫|q|=5 to obtain -5≤∫q≤5."
+        },
+        {
+          "points": 3,
+          "criterion": "Intersects the two bounds to certify -4≤∫q≤5 without claiming a specific value."
+        }
+      ],
+      "marking": "Accept any equivalent interval notation. Do not award a guessed point value; the public data determine bounds only."
     }
   },
   "coverage": {
@@ -458,6 +640,32 @@
       [
         "main",
         "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S05@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC510::S06@1": [
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
       ]
     ]
   },
@@ -602,6 +810,76 @@
         "escapeAttempt": "The learner must explicitly use the pair to separate continuity from integrability.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::ARC510::S05@1": [
+      {
+        "claim": "Use linearity of the definite integral for finite linear combinations.",
+        "task": "main+transfer",
+        "publicRequest": "Suppose f and g are integrable and you are given ∫_1^4 f(x)dx=5, ∫_4^7 f(x)dx=-2, and ∫_1^7 g(x)dx=3. Compute (i) ∫_1^7 f, (ii) ∫_7^1 f, and (iii) ∫_1^7 [2f(x)-3g(x)]dx. Name the structural law used at each step. | A signed flow model has accumulated +6 L from hour 0 to hour 2 and -4 L from hour 2 to hour 5 for component A. Component B accumulates +3 L from hour 0 to hour 5. Without inventing pointwise rate formulas, determine (i) A's accumulation from 0 to 5, (ii) A's accumulation from 5 back to 0 under the oriented convention, and (iii) the 0-to-5 accumulation of the combined rate 2A-B.",
+        "rubricEvidence": [
+          "Uses linearity to obtain ∫_1^7(2f-3g)=-3.",
+          "Uses linearity on the supplied accumulations to obtain +1 L for 2A-B."
+        ],
+        "escapeAttempt": "Nonlinear or invented-rate arithmetic cannot earn these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use additivity across adjacent intervals to reconstruct a total.",
+        "task": "main+transfer",
+        "publicRequest": "Suppose f and g are integrable and you are given ∫_1^4 f(x)dx=5, ∫_4^7 f(x)dx=-2, and ∫_1^7 g(x)dx=3. Compute (i) ∫_1^7 f, (ii) ∫_7^1 f, and (iii) ∫_1^7 [2f(x)-3g(x)]dx. Name the structural law used at each step. | A signed flow model has accumulated +6 L from hour 0 to hour 2 and -4 L from hour 2 to hour 5 for component A. Component B accumulates +3 L from hour 0 to hour 5. Without inventing pointwise rate formulas, determine (i) A's accumulation from 0 to 5, (ii) A's accumulation from 5 back to 0 under the oriented convention, and (iii) the 0-to-5 accumulation of the combined rate 2A-B.",
+        "rubricEvidence": [
+          "Uses adjacent-interval additivity to obtain ∫_1^7 f=3.",
+          "Combines the adjacent A intervals to obtain +2 L."
+        ],
+        "escapeAttempt": "Ignoring the split interval cannot produce the requested total under the cited rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Apply the zero-width and reversed-bound conventions with the correct sign.",
+        "task": "main+transfer",
+        "publicRequest": "Suppose f and g are integrable and you are given ∫_1^4 f(x)dx=5, ∫_4^7 f(x)dx=-2, and ∫_1^7 g(x)dx=3. Compute (i) ∫_1^7 f, (ii) ∫_7^1 f, and (iii) ∫_1^7 [2f(x)-3g(x)]dx. Name the structural law used at each step. | A signed flow model has accumulated +6 L from hour 0 to hour 2 and -4 L from hour 2 to hour 5 for component A. Component B accumulates +3 L from hour 0 to hour 5. Without inventing pointwise rate formulas, determine (i) A's accumulation from 0 to 5, (ii) A's accumulation from 5 back to 0 under the oriented convention, and (iii) the 0-to-5 accumulation of the combined rate 2A-B.",
+        "rubricEvidence": [
+          "Uses reversed-bound orientation to obtain ∫_7^1 f=-3.",
+          "Reverses orientation to obtain -2 L from hour 5 to hour 0."
+        ],
+        "escapeAttempt": "A same-sign reversal loses the direct orientation criteria.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::ARC510::S06@1": [
+      {
+        "claim": "Use pointwise bounds to bound a definite integral on a finite interval.",
+        "task": "transfer",
+        "publicRequest": "Let q be integrable on [2,6] and suppose -1≤q(x)≤3 for every x. Also suppose ∫_2^6 |q(x)|dx=5. Give the sharp bounds that follow immediately for ∫_2^6 q(x)dx from (a) the pointwise bounds and (b) the absolute-value inequality. Combine the information to state the tightest interval you can certify for the signed integral.",
+        "rubricEvidence": [
+          "Uses the pointwise bounds to obtain -4≤∫q≤12.",
+          "Intersects the two bounds to certify -4≤∫q≤5 without claiming a specific value."
+        ],
+        "escapeAttempt": "A guessed value or reversed inequality cannot earn these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish signed accumulation ∫f from total magnitude ∫|f| and apply |∫f|≤∫|f|.",
+        "task": "main+transfer",
+        "publicRequest": "A signed velocity model is v(t)=4 km/h on 0≤t≤1.5 and v(t)=-2 km/h on 1.5<t≤3.5. Compute (i) ∫_0^3.5 v(t)dt, (ii) ∫_0^3.5 |v(t)|dt, and (iii) the average value of v over [0,3.5]. Explain in one sentence why the first two totals differ. | Let q be integrable on [2,6] and suppose -1≤q(x)≤3 for every x. Also suppose ∫_2^6 |q(x)|dx=5. Give the sharp bounds that follow immediately for ∫_2^6 q(x)dx from (a) the pointwise bounds and (b) the absolute-value inequality. Combine the information to state the tightest interval you can certify for the signed integral.",
+        "rubricEvidence": [
+          "Computes the signed integral as 2 km with the negative segment subtracting.",
+          "Computes the absolute-value integral as 10 km.",
+          "Uses |∫q|≤∫|q|=5 to obtain -5≤∫q≤5."
+        ],
+        "escapeAttempt": "Equating signed and absolute accumulation fails both the explicit calculation and inequality observer.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Compute and interpret the average value (1/(b-a))∫_a^b f for b>a.",
+        "task": "main",
+        "publicRequest": "A signed velocity model is v(t)=4 km/h on 0≤t≤1.5 and v(t)=-2 km/h on 1.5<t≤3.5. Compute (i) ∫_0^3.5 v(t)dt, (ii) ∫_0^3.5 |v(t)|dt, and (iii) the average value of v over [0,3.5]. Explain in one sentence why the first two totals differ.",
+        "rubricEvidence": [
+          "Computes the average value as 4/7 km/h."
+        ],
+        "escapeAttempt": "Reporting the total 2 km as an average has wrong units and loses the row.",
+        "disposition": "adequate"
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -634,6 +912,15 @@
         "M11-S03 Riemann definition",
         "M09 counterexample discipline",
         "continuous⇒Riemann-integrable theorem stated here as source-supported support"
+      ],
+      "T22V3::ARC510::S05@1": [
+        "M11-S03 proper definite integral",
+        "M09-S07 limit linearity",
+        "finite-sum algebra"
+      ],
+      "T22V3::ARC510::S06@1": [
+        "M11-S05 integral structure",
+        "M02 inequalities/absolute value"
       ]
     }
   },
@@ -681,6 +968,26 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer changes from a finite exceptional point to persistent dense tag-choice ambiguity and asks for an explicit two-tag nonintegrability counterexample plus a conceptual comparison."
         }
+      },
+      "T22V3::ARC510::S05@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main provides new interval integrals and asks the learner to organize three different structural laws; the lesson's numerical ledger is distinct."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes integral formulas and supplies a physical accumulation ledger, forcing recognition that the same additive/orientation/linear structure applies to cumulative flow."
+        }
+      },
+      "T22V3::ARC510::S06@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main uses a new signed piecewise velocity schedule and asks separately for signed total, magnitude total and normalized average, none of which appears in the lesson."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes an explicit function formula and instead supplies pointwise and integral inequalities; the learner must combine two independent certificates and resist inventing a point estimate."
+        }
       }
     },
     "wrongSolverTests": {
@@ -723,6 +1030,26 @@
         "wrongApproach": "Show one rational-tag sequence converges to 1 and call that the integral.",
         "result": "Ignores legal irrational tags that give 0 on the same fine partitions, so it cannot earn nonintegrability credit.",
         "validAlternative": "Any construction of two legal tag families staying a fixed positive distance apart passes."
+      },
+      "T22V3::ARC510::S05-M@1": {
+        "wrongApproach": "Reverse bounds without changing sign, or multiply supplied integrals when combining 2f-3g.",
+        "result": "Produces wrong oriented/linear totals and loses the corresponding criteria.",
+        "validAlternative": "Any correct algebraic sequence using the three named laws passes."
+      },
+      "T22V3::ARC510::S05-T@1": {
+        "wrongApproach": "Invent an average pointwise flow rate and solve from that.",
+        "result": "Introduces unsupported information and can mis-handle the supplied signed accumulations.",
+        "validAlternative": "Operate directly on the cumulative quantities using additivity/orientation/linearity."
+      },
+      "T22V3::ARC510::S06-M@1": {
+        "wrongApproach": "Treat the negative velocity as positive in both integrals.",
+        "result": "Makes signed and magnitude totals equal and loses signed/cancellation evidence.",
+        "validAlternative": "Piecewise sum or integral-law notation both pass."
+      },
+      "T22V3::ARC510::S06-T@1": {
+        "wrongApproach": "Reverse comparison direction or conclude ∫q=5 because ∫|q|=5.",
+        "result": "Violates the inequality and loses the relevant bound criteria.",
+        "validAlternative": "Any correct intersection of [-4,12] and [-5,5] passes."
       }
     }
   },
@@ -742,6 +1069,14 @@
         "transfer": "none"
       },
       "T22V3::ARC510::S04@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S05@1": {
+        "main": "none",
+        "transfer": "none"
+      },
+      "T22V3::ARC510::S06@1": {
         "main": "none",
         "transfer": "none"
       }
@@ -764,6 +1099,14 @@
         "transfer": "distinct"
       },
       "T22V3::ARC510::S04@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S05@1": {
+        "main": "distinct",
+        "transfer": "distinct"
+      },
+      "T22V3::ARC510::S06@1": {
         "main": "distinct",
         "transfer": "distinct"
       }
