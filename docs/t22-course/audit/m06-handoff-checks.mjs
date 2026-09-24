@@ -31,7 +31,8 @@ assert(meta.moduleSources.some(x=>x.id==='ARC502'&&x.source==='course/t22/author
 assert(meta.version.startsWith('T22E-course-0.8.'),'course metadata must include the later-authorized M08 candidate while preserving M06');
 assert.equal(meta.moduleSources.filter(x=>x.order<=6).length,6);
 assert(meta.moduleSources.some(x=>x.id==='T22E-MKT01'&&x.source==='course/t22/authoring/m07.json'));
-assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'),'Later-authorized M08 candidate must remain registered');\nassert(!meta.moduleSources.some(x=>x.order>=9),'M09 must remain unloaded');
+assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'),'Later-authorized M08 candidate must remain registered');
+assert(!meta.moduleSources.some(x=>x.order>=9),'M09 must remain unloaded');
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(fs.existsSync('course/t22/authoring/m07.json'),'M07 is now explicitly authorized');
 assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized after this historical M06 checkpoint');
