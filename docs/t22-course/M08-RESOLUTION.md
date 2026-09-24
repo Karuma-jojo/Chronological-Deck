@@ -25,7 +25,7 @@ M08 remains at **24 sessions** after repair, not because 24 is a target. The mis
 ## Verification architecture after repair
 
 - 24 sessions / 48 fixed tasks / 120 ownership claims remain.
-- 24 changed public obligations are versioned to 2.
+- 29 changed public obligations are versioned to 2.
 - Semantic contract was rebuilt from the repaired public tasks/rubric rows.
 - Executable Python oracle now exercises the repaired tasks, including explicit tolerances, callable predicates, dict accumulation, strict zip, traceback/runtime validation and multi-value RNG-state replay.
 - M09 remains closed.
@@ -44,3 +44,5 @@ After the first fully green repair head, a fresh novice-path pass found four add
 - **M08-F04:** S17 reference used `lambda` even though named functions were already taught. The reference now uses a named `is_even` helper.
 
 These findings did not justify extra sessions: they were local syntax-contract defects inside existing capability owners.
+- **M08-F05:** several code-looking snippets used invalid compressed Python such as `statement; for ...`, `statement; while ...`, or `statement; def ...`. Compound statements cannot be introduced that way. All learner-facing cases were rewritten as valid multiline Python. Public fixed prompts changed by this repair were versioned instead of silently reusing prior evidence.
+
