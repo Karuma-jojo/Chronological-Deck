@@ -64,7 +64,7 @@
       "mode": "new",
       "semanticStatus": "boundary-accepted-content-candidate",
       "bridges": [],
-      "note": "M08 independent-audit + bounded-follow-up repaired candidate: canonical prerequisites remain M01+M03+M04. Initial hostile review repaired assessment contamination, stray M02 attribution, hidden imports, function-object instruction and programming observability. Follow-up then fixed S12 from-import/call inconsistency, hidden list-comprehension syntax in S22, untaught conditional/list-comprehension syntax in S07/S14 lessons, and lambda leakage in the S17 reference. 24 public obligations are now changed relative to v1 (23 at v2, S22-M at v3). Exact-head validation is pending; M09 remains closed."
+      "note": "M08 independent-audit + bounded-follow-up repaired candidate: canonical prerequisites remain M01+M03+M04. Initial hostile review repaired assessment contamination, stray M02 attribution, hidden imports, function-object instruction and programming observability. Follow-up F01–F04 fixed the S12 from-import/call inconsistency, hidden list-comprehension syntax in S22, untaught conditional/list-comprehension syntax in S07/S14 lessons, and lambda leakage in S17 reference. F05 then found invalid semicolon-compressed compound statements in multiple code-looking snippets; all learner-facing cases were rewritten as valid multiline Python. 29 public obligations now differ from v1: 27 at v2, S18-T at v3, S22-M at v4. Final exact-head validation is pending; M09 remains closed."
     },
     {
       "order": 9,
