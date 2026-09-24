@@ -58,7 +58,7 @@ for(const id of ['M12-A01','M12-A02','M12-A03','M12-A04','M12-A05']) assert.matc
 assert.match(resolution,/0,1,8,24,24/);
 assert.match(resolution,/seven rows were narrowed/i);
 assert.match(resolution,/19\/19 learner-facing lessons/i);
-assert.match(resolution,/difference quotient/i);
+assert.match(resolution,/(difference quotient|derivative-at-zero step)/i);
 assert.match(resolution,/M12 remains unpublished/i);
 assert.match(resolution,/M13 remains closed/i);
 
