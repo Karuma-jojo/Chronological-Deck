@@ -40,7 +40,7 @@
     "authoredSessions": 19,
     "ownershipClaimCount": 60,
     "fixedAssessments": 38,
-    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred."
+    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -861,7 +861,7 @@
       "id": "T22V3::SIDE276::S01-T@1",
       "order": 1,
       "kind": "transfer",
-      "prompt": "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(2,1) and P(e2)=(-1,3), with P declared linear. Q is given by Q(x,y)=(2x-y+1, x+3y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied.",
+      "prompt": "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S02-M@1": {
@@ -952,35 +952,35 @@
       "id": "T22V3::SIDE276::S08-M@1",
       "order": 8,
       "kind": "main",
-      "prompt": "Let A=[[1,2,-1],[2,4,-2]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
+      "prompt": "Let A=[[1,-1,2],[2,-2,4]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S08-T@1": {
       "id": "T22V3::SIDE276::S08-T@1",
       "order": 8,
       "kind": "transfer",
-      "prompt": "A four-parameter linear model reports two outputs according to B=[[1,0,1,2],[0,1,-1,1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space.",
+      "prompt": "A four-parameter linear model reports two outputs according to C=[[1,1,0,2],[0,1,1,-1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S09-M@1": {
       "id": "T22V3::SIDE276::S09-M@1",
       "order": 9,
       "kind": "main",
-      "prompt": "Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+      "prompt": "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S09-T@1": {
       "id": "T22V3::SIDE276::S09-T@1",
       "order": 9,
       "kind": "transfer",
-      "prompt": "A calibration map C=[[1,2,-1],[0,1,1]] must produce target b=(3,1)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about non-identifiability without using statistical terminology.",
+      "prompt": "A calibration map C=[[1,-1,1],[0,1,2]] must produce target b=(2,3)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about exact parameter ambiguity without using statistical terminology.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S10-M@1": {
       "id": "T22V3::SIDE276::S10-M@1",
       "order": 10,
       "kind": "main",
-      "prompt": "Let A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
+      "prompt": "Let A=[[1,2,0,3],[0,1,1,2],[1,3,1,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S10-T@1": {
@@ -994,7 +994,7 @@
       "id": "T22V3::SIDE276::S11-M@1",
       "order": 11,
       "kind": "main",
-      "prompt": "A 3-by-5 matrix A has RREF R=[[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
+      "prompt": "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S11-T@1": {
@@ -1008,7 +1008,7 @@
       "id": "T22V3::SIDE276::S12-M@1",
       "order": 12,
       "kind": "main",
-      "prompt": "Compare A=[[1,0],[0,1],[1,1]] as a map R^2→R^3 with B=[[1,0,1],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+      "prompt": "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,1,0],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S12-T@1": {
@@ -1036,7 +1036,7 @@
       "id": "T22V3::SIDE276::S14-M@1",
       "order": 14,
       "kind": "main",
-      "prompt": "For A=[[2,1],[1,1]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,3)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix.",
+      "prompt": "For A=[[1,2],[1,3]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,7)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S14-T@1": {
@@ -1064,7 +1064,7 @@
       "id": "T22V3::SIDE276::S16-M@1",
       "order": 16,
       "kind": "main",
-      "prompt": "For A=[[2,1],[1,3]] and C=[[1,2],[2,4]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det.",
+      "prompt": "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S16-T@1": {
@@ -1092,7 +1092,7 @@
       "id": "T22V3::SIDE276::S18-M@1",
       "order": 18,
       "kind": "main",
-      "prompt": "An operator T has B-basis matrix A=[[1,2],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,0],[1,1]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,2)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
+      "prompt": "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S18-T@1": {
@@ -1106,14 +1106,14 @@
       "id": "T22V3::SIDE276::S19-M@1",
       "order": 19,
       "kind": "main",
-      "prompt": "Let A=[[1,1,0],[0,1,1],[1,2,1]] and b=(2,1,3)^T. Let C=(e2,e1,e3), so P=P_{B←C}=[[0,1,0],[1,0,0],[0,0,1]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A.",
+      "prompt": "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S19-T@1": {
       "id": "T22V3::SIDE276::S19-T@1",
       "order": 19,
       "kind": "transfer",
-      "prompt": "Audit this technical memo about M=[[1,2],[2,4]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,2],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention.",
+      "prompt": "Audit this technical memo about M=[[2,6],[1,3]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,3],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention.",
       "obligationVersion": 1
     }
   },
@@ -1141,11 +1141,11 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
     },
     "T22V3::SIDE276::S01-T@1": {
-      "reference": "Since (x,y)=xe1+ye2, P(x,y)=x(2,1)+y(-1,3)=(2x-y,x+3y). For Q, Q(0,0)=(1,0)≠(0,0), while every linear map must send 0 to 0, so Q is not linear. The P data are sufficient because a linear map is uniquely determined by its values on a basis.",
+      "reference": "Since (x,y)=xe1+ye2, P(x,y)=x(3,-1)+y(2,4)=(3x+2y,-x+4y). For Q, Q(0,0)=(1,0)≠(0,0), while every linear map must send 0 to 0, so Q is not linear. The P data are sufficient because a linear map is uniquely determined by its values on a basis.",
       "rubric": [
         {
           "points": 4,
-          "criterion": "Reconstructs P(x,y)=(2x-y,x+3y) from the two basis images."
+          "criterion": "Reconstructs P(x,y)=(3x+2y,-x+4y) from the two fresh basis images."
         },
         {
           "points": 3,
@@ -1407,7 +1407,7 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S08-M@1": {
-      "reference": "If Au=Av=0, then A(αu+βv)=αAu+βAv=0, and A0=0, so N(A) is a subspace. The homogeneous equations reduce to x1+2x2-x3=0. With x2=s,x3=t, x=(-2s+t,s,t)=s(-2,1,0)+t(1,0,1). The two vectors span every solution by the parameterization and are independent because a(-2,1,0)+b(1,0,1)=0 forces a=0 from coordinate 2 and b=0 from coordinate 3. Thus they form a basis. N(A)⊆R^3, and either nonzero basis vector is an input change sent to zero output.",
+      "reference": "If Au=Av=0, then A(αu+βv)=αAu+βAv=0, and A0=0, so N(A) is a subspace. The homogeneous equations reduce to x1-x2+2x3=0. With x2=s,x3=t, x=(s-2t,s,t)=s(1,1,0)+t(-2,0,1). The two vectors span every solution by the parameterization and are independent because a(1,1,0)+b(-2,0,1)=0 forces a=0 from coordinate 2 and b=0 from coordinate 3. Thus they form a basis. N(A)⊆R^3, and either nonzero basis vector is an input change sent to zero output.",
       "rubric": [
         {
           "points": 2,
@@ -1415,11 +1415,11 @@
         },
         {
           "points": 4,
-          "criterion": "Derives x=s(-2,1,0)+t(1,0,1) from Ax=0."
+          "criterion": "Derives x=s(1,1,0)+t(-2,0,1) from the fresh homogeneous system."
         },
         {
           "points": 2,
-          "criterion": "Justifies that the two special solutions both span N(A) and are independent."
+          "criterion": "Justifies that the two special solutions span N(A) and are independent."
         },
         {
           "points": 2,
@@ -1429,15 +1429,15 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S08-T@1": {
-      "reference": "Invisible changes satisfy Bx=0. The equations are x1+x3+2x4=0 and x2-x3+x4=0. Let x3=s,x4=t; then x=s(-1,1,1,0)+t(-2,-1,0,1). The two vectors are independent and the parameterization shows that every invisible change is their combination. They live in R^4, the parameter/input space; the zero outputs live in R^2.",
+      "reference": "Invisible changes satisfy Cx=0. The equations are x1+x2+2x4=0 and x2+x3-x4=0. Let x2=s,x4=t; then x=s(-1,1,-1,0)+t(-2,0,1,1). The two vectors are independent and the parameterization shows that every invisible change is their combination. They live in R^4, the parameter/input space; the zero outputs live in R^2.",
       "rubric": [
         {
           "points": 4,
-          "criterion": "Finds the two null directions (-1,1,1,0) and (-2,-1,0,1), up to an equivalent basis."
+          "criterion": "Finds the two null directions (-1,1,-1,0) and (-2,0,1,1), up to an equivalent basis."
         },
         {
           "points": 3,
-          "criterion": "Uses a complete two-parameter solution of Bx=0 to prove the chosen directions span every invisible change."
+          "criterion": "Uses a complete two-parameter solution of Cx=0 to prove the chosen directions span every invisible change."
         },
         {
           "points": 3,
@@ -1447,15 +1447,15 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S09-M@1": {
-      "reference": "Take xp=(2,0,1). Solving An=0 gives n=t(-1,1,-1), so N(A)=span{(-1,1,-1)} and all solutions are (2,0,1)+t(-1,1,-1)=(2-t,t,1-t). If x=xp+n with An=0, then Ax=Axp+An=b. Conversely, if Ax=b, then A(x-xp)=Ax-Axp=b-b=0, so x-xp∈N(A). The solution set is not a subspace because 0 is not a solution: A0=0≠b.",
+      "reference": "Take xp=(3,2,0). Solving An=0 gives n=t(-1,-1,1), so N(A)=span{(-1,-1,1)} and all solutions are (3,2,0)+t(-1,-1,1)=(3-t,2-t,t). If x=xp+n with An=0, then Ax=Axp+An=b. Conversely, if Ax=b, then A(x-xp)=Ax-Axp=b-b=0, so x-xp∈N(A). The solution set is not a subspace because 0 is not a solution: A0=0≠b.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Finds a valid particular solution and N(A)=span{(-1,1,-1)}."
+          "criterion": "Finds a valid particular solution such as (3,2,0) and N(A)=span{(-1,-1,1)}."
         },
         {
           "points": 3,
-          "criterion": "Writes all solutions as (2,0,1)+t(-1,1,-1)=(2-t,t,1-t)."
+          "criterion": "Writes all solutions as (3,2,0)+t(-1,-1,1)=(3-t,2-t,t)."
         },
         {
           "points": 3,
@@ -1469,15 +1469,15 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S09-T@1": {
-      "reference": "One choice is p=(1,1,0). The null equation gives n=(3,-1,1) as a basis direction. Thus every calibration is (1,1,0)+t(3,-1,1). If Cp=Cq=b, then C(q-p)=Cq-Cp=0, so q-p∈N(C). Therefore multiple parameter vectors can produce exactly the same reported output, with their differences confined to the null direction.",
+      "reference": "One choice is p=(5,3,0). The null equation gives n=(-3,-2,1) as a basis direction. Thus every calibration is (5,3,0)+t(-3,-2,1). If Cp=Cq=b, then C(q-p)=Cq-Cp=0, so q-p∈N(C). Therefore multiple parameter vectors can produce exactly the same reported output, with their differences confined to the null direction.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Finds a valid p such as (1,1,0) and a nonzero null direction such as (3,-1,1)."
+          "criterion": "Finds a valid p such as (5,3,0) and a nonzero null direction such as (-3,-2,1)."
         },
         {
           "points": 3,
-          "criterion": "Describes every calibration as p+t(3,-1,1), up to an equivalent null-space basis/particular solution."
+          "criterion": "Describes every calibration as p+t(-3,-2,1), up to an equivalent null-space basis/particular solution."
         },
         {
           "points": 2,
@@ -1491,15 +1491,15 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S10-M@1": {
-      "reference": "One RREF is [[1,0,-1,-1],[0,1,1,2],[0,0,0,0]], so pivots are in columns 1,2. Use original a1=(1,0,1)^T and a2=(2,1,3)^T. The relations are a3=-a1+a2 and a4=-a1+2a2, proving the pair spans every column; the pivot relation test also gives independence. b1=a4=-a1+2a2, so b1∈Col(A). For b2=(0,0,1), c1a1+c2a2=b2 forces c2=0 from coordinate 2 and c1=0 from coordinate 1, contradicting coordinate 3=1, so b2∉Col(A). A is 3-by-4, hence Col(A)⊆R^3 and N(A)⊆R^4.",
+      "reference": "One RREF is [[1,0,-2,-1],[0,1,1,2],[0,0,0,0]], so pivots are in columns 1,2. Use original a1=(1,0,1)^T and a2=(2,1,3)^T. The relations are a3=-2a1+a2 and a4=-a1+2a2, proving the pair spans every column; pivot structure gives independence. b1=a4=-a1+2a2, so b1∈Col(A). For b2=(0,0,1), c1a1+c2a2=b2 forces c2=0 from coordinate 2 and c1=0 from coordinate 1, contradicting coordinate 3=1, so b2∉Col(A). A is 3-by-4, hence Col(A)⊆R^3 and N(A)⊆R^4.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Finds pivot-column indices 1 and 2 from a valid row reduction."
+          "criterion": "Finds pivot-column indices 1 and 2 from a valid row reduction to [[1,0,-2,-1],[0,1,1,2],[0,0,0,0]] or equivalent."
         },
         {
           "points": 3,
-          "criterion": "Uses original columns a1=(1,0,1)^T and a2=(2,1,3)^T as a basis and verifies a3=-a1+a2, a4=-a1+2a2."
+          "criterion": "Uses original columns a1=(1,0,1)^T and a2=(2,1,3)^T as a basis and verifies a3=-2a1+a2, a4=-a1+2a2."
         },
         {
           "points": 3,
@@ -1531,15 +1531,15 @@
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
     },
     "T22V3::SIDE276::S11-M@1": {
-      "reference": "Pivot columns are 1,2,4, so rank(A)=3; x3,x5 are free, so nullity(A)=2. Solving Rx=0 gives x1=-2x3+x5, x2=3x3-4x5, x4=-2x5. A null basis is {(-2,3,1,0,0),(1,-4,0,-2,1)}. There are r=3 pivot variables and 5-r=2 free directions, so 3+2=5, the domain dimension. Rank 3 in a codomain R^3 means Col(A) has dimension 3 and therefore equals R^3.",
+      "reference": "Pivot columns are 1,2,5, so rank(A)=3; x3,x4 are free, so nullity(A)=2. Solving Rx=0 gives x1=x3-2x4, x2=-3x3+x4, x5=0. A null basis is {(1,-3,1,0,0),(-2,1,0,1,0)}. There are r=3 pivot variables and 5-r=2 free directions, so 3+2=5, the domain dimension. Rank 3 in a codomain R^3 means Col(A) has dimension 3 and therefore equals R^3.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Identifies pivot columns 1,2,4, rank 3, free variables x3,x5 and nullity 2."
+          "criterion": "Identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2."
         },
         {
           "points": 3,
-          "criterion": "Constructs a valid null-space basis such as {(-2,3,1,0,0),(1,-4,0,-2,1)}."
+          "criterion": "Constructs a valid null-space basis such as {(1,-3,1,0,0),(-2,1,0,1,0)}."
         },
         {
           "points": 3,
@@ -1571,11 +1571,11 @@
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
     },
     "T22V3::SIDE276::S12-M@1": {
-      "reference": "A has rank 2 and nullity 0: its columns are independent. Hence A is injective, but rank 2<3 means Col(A)≠R^3, so it is not surjective. Thus some b∈R^3 have no solution; whenever a solution exists it is unique. B has rank 2 and, with 3 input coordinates, nullity 1. Since rank equals the codomain dimension 2, B is surjective; since nullity is nonzero, it is not injective. Therefore every b∈R^2 has solutions, and every solution set has a one-dimensional null-direction ambiguity.",
+      "reference": "A has rank 2 and nullity 0 because its two columns are independent. Hence A is injective, but rank 2<3 means Col(A)≠R^3, so it is not surjective. Thus some b∈R^3 have no solution; whenever a solution exists it is unique. B has rank 2 and, with 3 input coordinates, nullity 1. Since rank equals the codomain dimension 2, B is surjective; since nullity is nonzero, it is not injective. Therefore every b∈R^2 has solutions, and every solution set has a one-dimensional null-direction ambiguity.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Finds rank(A)=2,nullity(A)=0 and rank(B)=2,nullity(B)=1."
+          "criterion": "Finds rank(A)=2,nullity(A)=0 and rank(B)=2,nullity(B)=1 for the fresh matrices."
         },
         {
           "points": 3,
@@ -1655,23 +1655,23 @@
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
     },
     "T22V3::SIDE276::S14-M@1": {
-      "reference": "A valid Gauss–Jordan sequence yields [I|[[1,-1],[-1,2]]], so A^{-1}=[[1,-1],[-1,2]]. Direct multiplication in either order gives I. Then A^{-1}(5,3)^T=(2,1)^T. Conceptually, the row operations correspond to an invertible left multiplier E with EA=I; applying the same operations to I gives E, so the right block is E=A^{-1}.",
+      "reference": "A valid Gauss–Jordan sequence yields [I|[[3,-2],[-1,1]]], so A^{-1}=[[3,-2],[-1,1]]. Direct multiplication in either order gives I. Then A^{-1}(5,7)^T=(1,2)^T. Conceptually, the row operations are represented by a product E of elementary matrices with EA=I; applying the same operations to I gives E, so the right block is E=A^{-1}.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Carries [A|I] to [I|[[1,-1],[-1,2]]] by valid full-row operations."
+          "criterion": "Carries [A|I] to [I|[[3,-2],[-1,1]]] by valid full-row operations."
         },
         {
           "points": 2,
-          "criterion": "Verifies both AA^{-1}=I and A^{-1}A=I."
+          "criterion": "Verifies both AA^{-1}=I and A^{-1}A=I for the fresh inverse."
         },
         {
           "points": 2,
-          "criterion": "Uses A^{-1} to obtain x=(2,1)^T for b=(5,3)^T."
+          "criterion": "Uses A^{-1} to obtain x=(1,2)^T for b=(5,7)^T."
         },
         {
           "points": 3,
-          "criterion": "Explains the augmented construction via the same left row-operation map E satisfying EA=I."
+          "criterion": "Explains the augmented construction via the same elementary left multipliers E satisfying EA=I."
         }
       ],
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
@@ -1735,11 +1735,11 @@
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
     "T22V3::SIDE276::S16-M@1": {
-      "reference": "det(A)=2·3-1·1=5, so A is invertible; its independent columns and full rank agree with the nonzero determinant. det(C)=1·4-2·2=0; its second column is twice the first, so rank<2 and C is not invertible. A sends the unit square to a parallelogram of area 5 with preserved orientation (positive sign). C collapses the square into a line, giving area 0 and no nonzero oriented area. S15 characterized determinant algebraically; volume scaling is the geometric theorem interpreting that scalar for real square maps.",
+      "reference": "det(A)=3·2-1·1=5, so A is invertible; its independent columns and full rank agree with the nonzero determinant. det(C)=1·6-3·2=0; its second column is three times the first, so rank<2 and C is not invertible. A sends the unit square to a parallelogram of area 5 with preserved orientation. C collapses the square into a line, giving area 0. S15 characterized determinant algebraically; volume scaling is the geometric theorem interpreting that scalar for real square maps.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Computes det(A)=5 and det(C)=0."
+          "criterion": "Computes det(A)=5 and det(C)=0 for the fresh matrices."
         },
         {
           "points": 3,
@@ -1815,7 +1815,7 @@
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
     "T22V3::SIDE276::S18-M@1": {
-      "reference": "Starting from C-coordinates x, B-coordinates are Px; applying T gives APx; returning to C gives P^{-1}APx. Thus D=P^{-1}AP. Here P^{-1}=[[1,0],[-1,1]], so D=[[3,2],[0,1]]. For x=(1,2), Px=(1,3), A Px=(7,9), P^{-1}(7,9)=(7,2); also D(1,2)=(7,2). det(A)=3 and det(D)=3. Since P and P^{-1} are invertible, multiplication by them preserves rank, and D is invertible exactly when A is; determinant equality also follows from multiplicativity and det(P^{-1})det(P)=1.",
+      "reference": "Starting from C-coordinates x, B-coordinates are Px; applying T gives APx; returning to C gives P^{-1}APx. Thus D=P^{-1}AP. Here P^{-1}=[[2,-1],[-1,1]], so D=[[3,2],[0,2]]. For x=(1,-1), Px=(0,-1), A Px=(-1,-3), P^{-1}(-1,-3)=(1,-2); also D(1,-1)=(1,-2). det(A)=6 and det(D)=6. Right multiplication by P reparameterizes the same input set and left multiplication by P^{-1} bijectively changes output coordinates, so rank is preserved; invertibility is likewise preserved by the invertible coordinate conversions.",
       "rubric": [
         {
           "points": 3,
@@ -1823,15 +1823,15 @@
         },
         {
           "points": 2,
-          "criterion": "Computes D=[[3,2],[0,1]]."
+          "criterion": "Computes D=[[3,2],[0,2]] for the fresh A,P."
         },
         {
           "points": 2,
-          "criterion": "Verifies the same output (7,2)^T by both the three-stage route and direct D action."
+          "criterion": "Verifies the same output (1,-2)^T by both the three-stage route and direct D action."
         },
         {
           "points": 3,
-          "criterion": "Checks det(D)=det(A)=3 and correctly explains preservation of rank/invertibility under multiplication by P,P^{-1}."
+          "criterion": "Checks det(D)=det(A)=6 and correctly explains preservation of rank/invertibility under multiplication by P,P^{-1}."
         }
       ],
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
@@ -1855,19 +1855,19 @@
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
     "T22V3::SIDE276::S19-M@1": {
-      "reference": "Row reduction gives rank 2 with pivot columns 1,2 and N(A)=span{(-1,1,-1)}. Thus a basis for Col(A) from the original matrix is {(1,0,1)^T,(1,1,2)^T}; column 3=(0,1,1)^T is column 2 minus column 1. A particular solution is xp=(1,1,0), so every solution is (1,1,0)+t(-1,1,-1). det(A)=0 (for example row 3=row 1+row 2), matching rank 2<3, nonzero nullity and noninvertibility. With P swapping coordinates 1 and 2, D=PAP=[[1,0,1],[1,1,0],[2,1,1]]. Similarity preserves rank 2, determinant 0 and noninvertibility.",
+      "reference": "Row reduction gives rank 2 with pivot columns 1,2 and N(A)=span{(-1,-1,1)}. Thus a basis for Col(A) from the original matrix is {(1,1,2)^T,(0,1,1)^T}; column 3=(1,2,3)^T is their sum. A particular solution is xp=(1,2,0), so every solution is (1,2,0)+t(-1,-1,1). det(A)=0 because row 3=row 1+row 2, matching rank 2<3, nonzero nullity and noninvertibility. With P swapping coordinates 1 and 3, D=PAP=[[3,1,2],[2,1,1],[1,0,1]]. Similarity preserves rank 2, determinant 0 and noninvertibility.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Finds rank 2, pivot indices 1,2 and N(A)=span{(-1,1,-1)} by a valid exact reduction."
+          "criterion": "Finds rank 2, pivot indices 1,2 and N(A)=span{(-1,-1,1)} by a valid exact reduction."
         },
         {
           "points": 2,
-          "criterion": "Uses original columns (1,0,1)^T,(1,1,2)^T as a Col(A) basis and identifies a3=a2-a1."
+          "criterion": "Uses original columns (1,1,2)^T,(0,1,1)^T as a Col(A) basis and identifies a3=a1+a2."
         },
         {
           "points": 2,
-          "criterion": "Gives the complete solution (1,1,0)+t(-1,1,-1) for Ax=b."
+          "criterion": "Gives the complete solution (1,2,0)+t(-1,-1,1) for Ax=b."
         },
         {
           "points": 2,
@@ -1875,21 +1875,21 @@
         },
         {
           "points": 2,
-          "criterion": "Computes D=[[1,0,1],[1,1,0],[2,1,1]] and verifies the same rank/determinant/invertibility invariants."
+          "criterion": "Computes D=[[3,1,2],[2,1,1],[1,0,1]] and verifies the same rank/determinant/invertibility invariants."
         }
       ],
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
     "T22V3::SIDE276::S19-T@1": {
-      "reference": "Every quoted claim is false or incomplete. M is square but not invertible: n=(-2,1)^T is nonzero and Mn=0, so the kernel is nontrivial and rank is 1. Pivot index 1 tells us to take the first **original** column (1,2)^T as a basis for Col(M), not the first column of R as a vector basis for the original column space. det(M)=1·4-2·2=0, which for a square matrix is equivalent to noninvertibility and geometrically reflects area collapse. If P=P_{B←C} converts C-coordinates to B-coordinates, the C-basis operator matrix is P^{-1}MP, obtained by convert C→B, apply M in B, convert B→C.",
+      "reference": "Every quoted claim is false or incomplete. M is square but not invertible: n=(-3,1)^T is nonzero and Mn=0, so the kernel is nontrivial and rank is 1. Pivot index 1 tells us to take the first original column (2,1)^T as a basis for Col(M), not the first column of R as a vector basis for the original column space. det(M)=2·3-6·1=0, which for a square matrix is equivalent to noninvertibility and geometrically reflects area collapse. If P=P_{B←C} converts C-coordinates to B-coordinates, the C-basis operator matrix is P^{-1}MP, obtained by convert C→B, apply M in B, convert B→C.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Gives a nonzero null vector such as (-2,1)^T and uses it to reject the claim that square shape implies invertibility."
+          "criterion": "Gives a nonzero null vector such as (-3,1)^T and uses it to reject the claim that square shape implies invertibility."
         },
         {
           "points": 2,
-          "criterion": "Uses pivot index 1 to select the original column (1,2)^T as a basis for Col(M), rejecting the R-column substitution."
+          "criterion": "Uses pivot index 1 to select the original column (2,1)^T as a basis for Col(M), rejecting the R-column substitution."
         },
         {
           "points": 2,
@@ -2175,7 +2175,7 @@
           "T22V3::SIDE276::S01-T@1"
         ],
         "publicRequestExact": [
-          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(2,1) and P(e2)=(-1,3), with P declared linear. Q is given by Q(x,y)=(2x-y+1, x+3y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
         ],
         "rubricEvidence": [
           "Uses Q(0,0)=(1,0)≠0 to reject Q as linear and states why the test is necessary."
@@ -2193,7 +2193,7 @@
         ],
         "publicRequestExact": [
           "Define F:R^2→R^3 by F(x,y)=(x-2y, 3x+y, 4y). (a) Verify symbolically that F(αu+βv)=αF(u)+βF(v) for arbitrary u,v∈R^2 and real α,β. (b) Compute F(e1) and F(e2). (c) Use only those two basis images to find F(2,-1). (d) Explain why agreement on e1,e2 would force two linear maps R^2→R^3 to agree on every input.",
-          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(2,1) and P(e2)=(-1,3), with P declared linear. Q is given by Q(x,y)=(2x-y+1, x+3y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
         ],
         "rubricEvidence": [
           "Explains that unique basis coordinates plus linearity force the map on every input.",
@@ -2212,11 +2212,11 @@
         ],
         "publicRequestExact": [
           "Define F:R^2→R^3 by F(x,y)=(x-2y, 3x+y, 4y). (a) Verify symbolically that F(αu+βv)=αF(u)+βF(v) for arbitrary u,v∈R^2 and real α,β. (b) Compute F(e1) and F(e2). (c) Use only those two basis images to find F(2,-1). (d) Explain why agreement on e1,e2 would force two linear maps R^2→R^3 to agree on every input.",
-          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(2,1) and P(e2)=(-1,3), with P declared linear. Q is given by Q(x,y)=(2x-y+1, x+3y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
         ],
         "rubricEvidence": [
           "Uses the basis decomposition to obtain F(2,-1)=(4,5,-4).",
-          "Reconstructs P(x,y)=(2x-y,x+3y) from the two basis images."
+          "Reconstructs P(x,y)=(3x+2y,-x+4y) from the two fresh basis images."
         ],
         "why": "The learner actually propagates arbitrary/input coordinates through supplied basis images.",
         "escapeAttempt": "The answer cannot be obtained by a provided P formula because Transfer supplies none.",
@@ -2586,7 +2586,7 @@
           "T22V3::SIDE276::S08-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,2,-1],[2,4,-2]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction."
+          "Let A=[[1,-1,2],[2,-2,4]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction."
         ],
         "rubricEvidence": [
           "Proves N(A) contains 0 and is closed under αu+βv using A(αu+βv)=αAu+βAv."
@@ -2603,14 +2603,14 @@
           "T22V3::SIDE276::S08-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,2,-1],[2,4,-2]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
-          "A four-parameter linear model reports two outputs according to B=[[1,0,1,2],[0,1,-1,1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space."
+          "Let A=[[1,-1,2],[2,-2,4]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
+          "A four-parameter linear model reports two outputs according to C=[[1,1,0,2],[0,1,1,-1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space."
         ],
         "rubricEvidence": [
-          "Derives x=s(-2,1,0)+t(1,0,1) from Ax=0.",
-          "Justifies that the two special solutions both span N(A) and are independent.",
-          "Finds the two null directions (-1,1,1,0) and (-2,-1,0,1), up to an equivalent basis.",
-          "Uses a complete two-parameter solution of Bx=0 to prove the chosen directions span every invisible change."
+          "Derives x=s(1,1,0)+t(-2,0,1) from the fresh homogeneous system.",
+          "Justifies that the two special solutions span N(A) and are independent.",
+          "Finds the two null directions (-1,1,-1,0) and (-2,0,1,1), up to an equivalent basis.",
+          "Uses a complete two-parameter solution of Cx=0 to prove the chosen directions span every invisible change."
         ],
         "why": "Two distinct matrices require full parameterization and basis justification.",
         "escapeAttempt": "Listing plausible directions without deriving all solutions cannot earn spanning rows.",
@@ -2624,8 +2624,8 @@
           "T22V3::SIDE276::S08-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,2,-1],[2,4,-2]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
-          "A four-parameter linear model reports two outputs according to B=[[1,0,1,2],[0,1,-1,1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space."
+          "Let A=[[1,-1,2],[2,-2,4]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
+          "A four-parameter linear model reports two outputs according to C=[[1,1,0,2],[0,1,1,-1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space."
         ],
         "rubricEvidence": [
           "Places N(A) in R^3 and interprets a nonzero null vector as an erased input direction.",
@@ -2645,8 +2645,8 @@
           "T22V3::SIDE276::S09-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
-          "A calibration map C=[[1,2,-1],[0,1,1]] must produce target b=(3,1)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about non-identifiability without using statistical terminology."
+          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+          "A calibration map C=[[1,-1,1],[0,1,2]] must produce target b=(2,3)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about exact parameter ambiguity without using statistical terminology."
         ],
         "rubricEvidence": [
           "Proves both implications between Ax=b and x-xp∈N(A) using linearity.",
@@ -2664,12 +2664,12 @@
           "T22V3::SIDE276::S09-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
-          "A calibration map C=[[1,2,-1],[0,1,1]] must produce target b=(3,1)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about non-identifiability without using statistical terminology."
+          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+          "A calibration map C=[[1,-1,1],[0,1,2]] must produce target b=(2,3)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about exact parameter ambiguity without using statistical terminology."
         ],
         "rubricEvidence": [
-          "Writes all solutions as (2,0,1)+t(-1,1,-1)=(2-t,t,1-t).",
-          "Describes every calibration as p+t(3,-1,1), up to an equivalent null-space basis/particular solution."
+          "Writes all solutions as (3,2,0)+t(-1,-1,1)=(3-t,2-t,t).",
+          "Describes every calibration as p+t(-3,-2,1), up to an equivalent null-space basis/particular solution."
         ],
         "why": "Learner constructs full solution sets on two different systems.",
         "escapeAttempt": "One particular vector cannot satisfy the complete-family rows.",
@@ -2682,7 +2682,7 @@
           "T22V3::SIDE276::S09-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer."
+          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer."
         ],
         "rubricEvidence": [
           "Correctly rejects subspace status because b≠0 and therefore 0 is not a solution."
@@ -2700,7 +2700,7 @@
           "T22V3::SIDE276::S10-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A)."
+          "Let A=[[1,2,0,3],[0,1,1,2],[1,3,1,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A)."
         ],
         "rubricEvidence": [
           "Shows b1 is reachable and b2 is not, with an explicit witness/coordinate obstruction."
@@ -2717,11 +2717,11 @@
           "T22V3::SIDE276::S10-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
+          "Let A=[[1,2,0,3],[0,1,1,2],[1,3,1,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
           "A student row-reduces M=[[1,1,0],[1,2,1],[2,3,1]] to R=[[1,0,-1],[0,1,1],[0,0,0]] and claims 'the first two columns of R are therefore a basis for Col(M)'. Audit the claim. State the correct basis from M, explain exactly what row reduction preserves that makes the pivot indices useful, and state whether Col(M)=Col(R) must hold."
         ],
         "rubricEvidence": [
-          "Uses original columns a1=(1,0,1)^T and a2=(2,1,3)^T as a basis and verifies a3=-a1+a2, a4=-a1+2a2.",
+          "Uses original columns a1=(1,0,1)^T and a2=(2,1,3)^T as a basis and verifies a3=-2a1+a2, a4=-a1+2a2.",
           "Rejects the RREF-column basis claim and gives {(1,1,2)^T,(1,2,3)^T} from the original matrix."
         ],
         "why": "Both tasks force selection from the original matrix using pivot indices.",
@@ -2736,7 +2736,7 @@
           "T22V3::SIDE276::S10-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
+          "Let A=[[1,2,0,3],[0,1,1,2],[1,3,1,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
           "A student row-reduces M=[[1,1,0],[1,2,1],[2,3,1]] to R=[[1,0,-1],[0,1,1],[0,0,0]] and claims 'the first two columns of R are therefore a basis for Col(M)'. Audit the claim. State the correct basis from M, explain exactly what row reduction preserves that makes the pivot indices useful, and state whether Col(M)=Col(R) must hold."
         ],
         "rubricEvidence": [
@@ -2757,11 +2757,11 @@
           "T22V3::SIDE276::S11-M@1"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
         ],
         "rubricEvidence": [
-          "Identifies pivot columns 1,2,4, rank 3, free variables x3,x5 and nullity 2.",
-          "Constructs a valid null-space basis such as {(-2,3,1,0,0),(1,-4,0,-2,1)}."
+          "Identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2.",
+          "Constructs a valid null-space basis such as {(1,-3,1,0,0),(-2,1,0,1,0)}."
         ],
         "why": "Main computes both dimensions from their actual bases/pivots.",
         "escapeAttempt": "Stating rank/nullity numbers without structural evidence loses the basis row.",
@@ -2774,7 +2774,7 @@
           "T22V3::SIDE276::S11-M@1"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
         ],
         "rubricEvidence": [
           "Derives 3+2=5 from pivot/free-variable counts and identifies 5 as the domain dimension."
@@ -2791,7 +2791,7 @@
           "T22V3::SIDE276::S11-T@1"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
           "A proposed linear model maps R^6→R^3. A report claims its nullity is 2. Without seeing the matrix, audit whether that claim can be true. Use rank-nullity and the codomain dimension bound, and state the minimum nullity any map R^6→R^3 must have."
         ],
         "rubricEvidence": [
@@ -2814,7 +2814,7 @@
           "T22V3::SIDE276::S12-T@1"
         ],
         "publicRequestExact": [
-          "Compare A=[[1,0],[0,1],[1,1]] as a map R^2→R^3 with B=[[1,0,1],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,1,0],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
           "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
         ],
         "rubricEvidence": [
@@ -2833,7 +2833,7 @@
           "T22V3::SIDE276::S12-T@1"
         ],
         "publicRequestExact": [
-          "Compare A=[[1,0],[0,1],[1,1]] as a map R^2→R^3 with B=[[1,0,1],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,1,0],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
           "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
         ],
         "rubricEvidence": [
@@ -2852,7 +2852,7 @@
           "T22V3::SIDE276::S12-T@1"
         ],
         "publicRequestExact": [
-          "Compare A=[[1,0],[0,1],[1,1]] as a map R^2→R^3 with B=[[1,0,1],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,1,0],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
           "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
         ],
         "rubricEvidence": [
@@ -2926,11 +2926,11 @@
           "T22V3::SIDE276::S14-M@1"
         ],
         "publicRequestExact": [
-          "For A=[[2,1],[1,1]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,3)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix."
+          "For A=[[1,2],[1,3]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,7)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix."
         ],
         "rubricEvidence": [
-          "Carries [A|I] to [I|[[1,-1],[-1,2]]] by valid full-row operations.",
-          "Explains the augmented construction via the same left row-operation map E satisfying EA=I."
+          "Carries [A|I] to [I|[[3,-2],[-1,1]]] by valid full-row operations.",
+          "Explains the augmented construction via the same elementary left multipliers E satisfying EA=I."
         ],
         "why": "Main observes both algorithm and its structural justification.",
         "escapeAttempt": "Producing the inverse by memorized 2-by-2 formula cannot earn the augmented-justification rows.",
@@ -2943,11 +2943,11 @@
           "T22V3::SIDE276::S14-M@1"
         ],
         "publicRequestExact": [
-          "For A=[[2,1],[1,1]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,3)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix."
+          "For A=[[1,2],[1,3]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,7)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix."
         ],
         "rubricEvidence": [
-          "Verifies both AA^{-1}=I and A^{-1}A=I.",
-          "Uses A^{-1} to obtain x=(2,1)^T for b=(5,3)^T."
+          "Verifies both AA^{-1}=I and A^{-1}A=I for the fresh inverse.",
+          "Uses A^{-1} to obtain x=(1,2)^T for b=(5,7)^T."
         ],
         "why": "Main requires two-sided verification and an exact solve.",
         "escapeAttempt": "One-sided or unverified inverse arithmetic cannot earn full credit.",
@@ -3036,7 +3036,7 @@
           "T22V3::SIDE276::S16-M@1"
         ],
         "publicRequestExact": [
-          "For A=[[2,1],[1,3]] and C=[[1,2],[2,4]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det."
+          "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det."
         ],
         "rubricEvidence": [
           "Links A's nonzero determinant to invertibility and C's zero determinant to dependent columns/rank loss and noninvertibility."
@@ -3053,7 +3053,7 @@
           "T22V3::SIDE276::S16-T@1"
         ],
         "publicRequestExact": [
-          "For A=[[2,1],[1,3]] and C=[[1,2],[2,4]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det.",
+          "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det.",
           "Compare I_2 with D=diag(1000,0.001). Both have determinant 1. A memo concludes: 'Because the determinants are equal, the two maps have the same directional sensitivity and should be equally numerically stable.' State what det=1 legitimately tells you, show one concrete directional difference between I_2 and D, and explain why the memo's stability conclusion is unsupported at M14."
         ],
         "rubricEvidence": [
@@ -3146,7 +3146,7 @@
           "T22V3::SIDE276::S18-T@1"
         ],
         "publicRequestExact": [
-          "An operator T has B-basis matrix A=[[1,2],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,0],[1,1]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,2)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
+          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
           "A colleague knows that P=P_{B←C} converts C-coordinates to B-coordinates, but writes the C-basis operator matrix as PAP^{-1}. Without relying on a memorized conjugation formula, audit the claim by writing the coordinate direction at each of the three stages. State the correct expression and explain why a generic product PAQ with unrelated invertible P,Q need not represent the same operator in another basis."
         ],
         "rubricEvidence": [
@@ -3165,10 +3165,10 @@
           "T22V3::SIDE276::S18-M@1"
         ],
         "publicRequestExact": [
-          "An operator T has B-basis matrix A=[[1,2],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,0],[1,1]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,2)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity."
+          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity."
         ],
         "rubricEvidence": [
-          "Verifies the same output (7,2)^T by both the three-stage route and direct D action."
+          "Verifies the same output (1,-2)^T by both the three-stage route and direct D action."
         ],
         "why": "Main checks that the coordinate descriptions actually encode one operator output.",
         "escapeAttempt": "Correct matrix multiplication alone does not establish the semantic equivalence row.",
@@ -3182,11 +3182,11 @@
           "T22V3::SIDE276::S18-T@1"
         ],
         "publicRequestExact": [
-          "An operator T has B-basis matrix A=[[1,2],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,0],[1,1]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,2)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
+          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
           "A colleague knows that P=P_{B←C} converts C-coordinates to B-coordinates, but writes the C-basis operator matrix as PAP^{-1}. Without relying on a memorized conjugation formula, audit the claim by writing the coordinate direction at each of the three stages. State the correct expression and explain why a generic product PAQ with unrelated invertible P,Q need not represent the same operator in another basis."
         ],
         "rubricEvidence": [
-          "Checks det(D)=det(A)=3 and correctly explains preservation of rank/invertibility under multiplication by P,P^{-1}.",
+          "Checks det(D)=det(A)=6 and correctly explains preservation of rank/invertibility under multiplication by P,P^{-1}.",
           "Explains that arbitrary PAQ lacks the paired inverse coordinate-change semantics required for similarity."
         ],
         "why": "Invariant reasoning and the boundary between similarity and arbitrary multiplication are explicit.",
@@ -3202,12 +3202,12 @@
           "T22V3::SIDE276::S19-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,1,0],[0,1,1],[1,2,1]] and b=(2,1,3)^T. Let C=(e2,e1,e3), so P=P_{B←C}=[[0,1,0],[1,0,0],[0,0,1]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A."
+          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A."
         ],
         "rubricEvidence": [
-          "Finds rank 2, pivot indices 1,2 and N(A)=span{(-1,1,-1)} by a valid exact reduction.",
-          "Uses original columns (1,0,1)^T,(1,1,2)^T as a Col(A) basis and identifies a3=a2-a1.",
-          "Gives the complete solution (1,1,0)+t(-1,1,-1) for Ax=b."
+          "Finds rank 2, pivot indices 1,2 and N(A)=span{(-1,-1,1)} by a valid exact reduction.",
+          "Uses original columns (1,1,2)^T,(0,1,1)^T as a Col(A) basis and identifies a3=a1+a2.",
+          "Gives the complete solution (1,2,0)+t(-1,-1,1) for Ax=b."
         ],
         "why": "Main coordinates row reduction, kernel, original-column image basis and complete solution on one unseen model.",
         "escapeAttempt": "A learner who confuses reduced/original columns or gives only one solution loses separate rows.",
@@ -3221,12 +3221,12 @@
           "T22V3::SIDE276::S19-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,1,0],[0,1,1],[1,2,1]] and b=(2,1,3)^T. Let C=(e2,e1,e3), so P=P_{B←C}=[[0,1,0],[1,0,0],[0,0,1]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A.",
-          "Audit this technical memo about M=[[1,2],[2,4]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,2],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention."
+          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A.",
+          "Audit this technical memo about M=[[2,6],[1,3]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,3],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention."
         ],
         "rubricEvidence": [
           "Computes det(A)=0 and reconciles noninvertibility with rank 2/nontrivial nullspace.",
-          "Gives a nonzero null vector such as (-2,1)^T and uses it to reject the claim that square shape implies invertibility.",
+          "Gives a nonzero null vector such as (-3,1)^T and uses it to reject the claim that square shape implies invertibility.",
           "Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation."
         ],
         "why": "Both constructive and adversarial tasks require mutually consistent rank/kernel/determinant evidence.",
@@ -3240,10 +3240,10 @@
           "T22V3::SIDE276::S19-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,1,0],[0,1,1],[1,2,1]] and b=(2,1,3)^T. Let C=(e2,e1,e3), so P=P_{B←C}=[[0,1,0],[1,0,0],[0,0,1]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A."
+          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A."
         ],
         "rubricEvidence": [
-          "Computes D=[[1,0,1],[1,1,0],[2,1,1]] and verifies the same rank/determinant/invertibility invariants."
+          "Computes D=[[3,1,2],[2,1,1],[1,0,1]] and verifies the same rank/determinant/invertibility invariants."
         ],
         "why": "Main actually changes the representation and checks preserved structure.",
         "escapeAttempt": "Naming similarity without computing/verifying the new representation loses the row.",
@@ -3256,11 +3256,11 @@
           "T22V3::SIDE276::S19-T@1"
         ],
         "publicRequestExact": [
-          "Audit this technical memo about M=[[1,2],[2,4]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,2],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention."
+          "Audit this technical memo about M=[[2,6],[1,3]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,3],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention."
         ],
         "rubricEvidence": [
-          "Gives a nonzero null vector such as (-2,1)^T and uses it to reject the claim that square shape implies invertibility.",
-          "Uses pivot index 1 to select the original column (1,2)^T as a basis for Col(M), rejecting the R-column substitution.",
+          "Gives a nonzero null vector such as (-3,1)^T and uses it to reject the claim that square shape implies invertibility.",
+          "Uses pivot index 1 to select the original column (2,1)^T as a basis for Col(M), rejecting the R-column substitution.",
           "Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation.",
           "Corrects the basis formula to P^{-1}MP for P=P_{B←C} and justifies the C→B→apply→B→C direction."
         ],
@@ -3678,8 +3678,8 @@
   },
   "instructionSeparation": {
     "policy": "Worked/guided examples use distinct numerical or structural instances from fixed assessments. Guided feedback remains staged. Fixed assessments are compared semantically against all earlier answer-bearing instruction; shared general methods are permitted but solved subanswers are not presented as fresh evidence.",
-    "pilotFinding": "S04 uses distinct worked, guided, Main and Transfer matrices. The pilot falsification pass found no solved subanswer exposure. A separate Gate-7 defect was found instead: associativity was claimed but not observed; the Main was repaired before any learner publication.",
-    "status": "full builder candidate; cross-session semantic overlap scan and independent review still required"
+    "pilotFinding": "S04 uses distinct worked, guided, Main and Transfer matrices. The pilot falsification pass found no solved subanswer exposure. A separate Gate-7 defect was found instead: associativity was claimed but not observed; the Main was repaired before any learner publication. Full-module learner-only scan later found several fixed tasks reusing solved instructional instances; all identified material overlaps were replaced with fresh data before publication.",
+    "status": "Full builder candidate after first semantic-overlap repair sweep; exact instance reuse found in S01/S08/S09/S10/S11/S12/S14/S16/S18/S19 fixed assessments was replaced before learner publication. Cross-session audit must be repeated."
   },
   "initialVersionAudit": {
     "priorCanonicalM14": "none",
