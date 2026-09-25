@@ -1,0 +1,162 @@
+{
+  "version": "m14-side276-builder-candidate-v1",
+  "instructionVersion": "m14-side276-instruction-v1",
+  "module": {
+    "order": 14,
+    "id": "SIDE276",
+    "title": "Matrices, Linear Maps & Linear Systems",
+    "status": "builder-candidate-awaiting-independent-review",
+    "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
+    "gate": "Nineteen sessions and 38 fixed assessments authored on the pedagogical branch under protocol v1.2. Builder verification and pilot/full-module semantic audits are required before any learner-route publication; page completion alone is not mastery.",
+    "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
+  },
+  "boundary": {
+    "prerequisiteModules": [
+      "ARC511"
+    ],
+    "owns": [
+      "finite real linear maps and basis-dependent matrix representations",
+      "matrix-vector action, composition and matrix multiplication with dimension/order semantics",
+      "linear systems, equivalent row operations, echelon structure and complete exact solutions",
+      "column space/image, null space/kernel, rank, nullity and rank-nullity",
+      "injectivity, surjectivity, square invertibility and exact inverse construction",
+      "determinant algebra, singularity and real oriented volume interpretation",
+      "vector coordinate changes and similar matrix representations of one operator"
+    ],
+    "excludes": [
+      "M15 orthogonal projection, Gram–Schmidt and least squares",
+      "M16 eigenvalues, eigenvectors, characteristic polynomials and diagonalization",
+      "M17 PSD/quadratic forms, QR, Cholesky, SVD and pseudoinverse",
+      "M23 floating-point conditioning, numerical rank, pivoting/stability and numerical LU/QR algorithms",
+      "M18–M19 Jacobians, Hessians and matrix calculus",
+      "infinite-dimensional, complex spectral or general operator theory"
+    ],
+    "decisiveProhibition": "Use finite real exact linear algebra only. Do not use projection/least-squares, eigenvalue/diagonalization, factorization/pseudoinverse or numerical-conditioning machinery as premises for M14 claims."
+  },
+  "coverageAudit": {
+    "designGate": "docs/t22-course/M14-DESIGN-GATE.md",
+    "pilot": "docs/t22-course/M14-PILOT-REVIEW.md",
+    "pedagogicalAtoms": 19,
+    "authoredSessions": 19,
+    "ownershipClaimCount": 58,
+    "fixedAssessments": 38,
+    "reviewProvenance": "Builder source reconstruction and falsification passes only; independent adversarial review has not yet occurred."
+  },
+  "sourceLedger": {
+    "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
+    "designGate": "docs/t22-course/M14-DESIGN-GATE.md",
+    "sources": [
+      {
+        "id": "REPO-M14",
+        "role": "curriculum authority",
+        "sections": "M65 skeleton/dependencies, semantic ledger, accepted M13, legacy SIDE276/SIDE278/SIDE279/SIDE280",
+        "supports": "formal entry, exact M14 ownership, downstream obligations and exclusions",
+        "notImported": "legacy arc count or acceptance assumptions"
+      },
+      {
+        "id": "STRANG-4E",
+        "role": "user-supplied deep textbook comparator",
+        "sections": "Introduction to Linear Algebra 4e, Ch.2 §§2.1–2.5; Ch.3 §§3.2–3.4; Ch.5 §§5.1,5.3; Ch.7 §§7.1–7.2",
+        "supports": "row/column views of Ax=b, elimination/inverse structure, nullspace/rank/complete solution, determinant rules/volume meaning, linear maps/matrices/change of basis",
+        "notImported": "projection/least squares, eigenstructure, pseudoinverse, numerical LU/conditioning and copied exercises"
+      },
+      {
+        "id": "MIT-1806",
+        "role": "canonical university route comparator",
+        "sections": "MIT OCW 18.06/18.06SC elimination, complete solution, rank/nullspace, determinants, linear transformations, change of basis",
+        "supports": "conventional scope and downstream expectations",
+        "notImported": "projection/eigenvalue material owned later"
+      },
+      {
+        "id": "AXLER-4E",
+        "role": "rigorous theorem/hypothesis source",
+        "sections": "Linear Algebra Done Right 4e Ch.3 matrix of a map/product/change of basis/invertibility; Ch.9 determinant results",
+        "supports": "basis-dependent matrix theorem, composition order, finite-dimensional injective/surjective scope and coordinate-change direction",
+        "notImported": "general operator/spectral theory and arbitrary-field generality"
+      },
+      {
+        "id": "HEFFERON",
+        "role": "developmental open-text comparator",
+        "sections": "Linear Maps, Matrices, Change of Basis",
+        "supports": "identity-map interpretation of coordinate conversion and proof-plus-computation progression",
+        "limitations": "course-level comparator; calculus-dependent material is not used"
+      },
+      {
+        "id": "MAA-IPG",
+        "role": "undergraduate pedagogy baseline",
+        "sections": "MAA Instructional Practices Guide",
+        "supports": "student explanation, comparison, active reasoning and assessment alignment",
+        "limitations": "general guidance, not a T22 efficacy study"
+      },
+      {
+        "id": "IES-WWC",
+        "role": "general learning evidence",
+        "sections": "Organizing Instruction and Study recommendations 2–4",
+        "supports": "worked-example/problem alternation, graphics+verbal descriptions, abstract/concrete connections",
+        "limitations": "heterogeneous K–postsecondary evidence; no direct M14 outcome claim"
+      },
+      {
+        "id": "PED-DORIER",
+        "role": "domain-specific linear-algebra education synthesis",
+        "sections": "Dorier ed., On the Teaching of Linear Algebra; Hillel modes of description; Sierpinska student thinking",
+        "supports": "explicit coordination across geometric, symbolic, map and matrix representations",
+        "limitations": "historical synthesis with varied populations"
+      },
+      {
+        "id": "PED-LT",
+        "role": "domain-specific empirical/qualitative comparator",
+        "sections": "Turgut et al., Understanding and Visualizing Linear Transformations; Caglayan on similar matrices/representations",
+        "supports": "linearity, representation-conversion and similarity failure modes",
+        "limitations": "specific instructional populations; frequencies not generalized"
+      },
+      {
+        "id": "PED-MM-SYS",
+        "role": "domain-specific matrix/systems comparator",
+        "sections": "Trigueros & Possani on matrix multiplication/transformations; Ramirez/Oktaç on systems/equivalent systems",
+        "supports": "composition-grounded multiplication and explicit solution-set preservation in elimination",
+        "limitations": "specific didactical designs; not a claim of unique optimal sequencing"
+      }
+    ]
+  },
+  "sessions": [],
+  "problems": {},
+  "evaluators": {},
+  "coverage": {},
+  "claimEvidence": {},
+  "evidenceDistance": {},
+  "semanticSeparationAudit": {
+    "sessions": {},
+    "note": "Each fixed task was compared against its lesson, worked example, guided action/feedback and earlier answer-bearing instruction by mathematical instance, not prompt text alone. Transfer labels state the changed representation/decision/obstacle. Full-module cross-session scan is repeated in verification."
+  },
+  "prerequisiteAudit": {
+    "formal": [
+      "ARC511"
+    ],
+    "localBridges": [
+      "S01 locally defines the map/composition language needed despite no separate formal function-module dependency",
+      "S06 proves exact row-operation equivalence before systematic elimination is consumed",
+      "S15 states a bounded finite determinant existence/uniqueness characterization before using its consequences",
+      "S16 labels volume/orientation as a theorem/interpretation rather than the determinant definition",
+      "S17 builds change of basis as the identity map between coordinate systems before S18 similarity"
+    ],
+    "futureExclusions": [
+      "M15 projection/Gram-Schmidt/least squares",
+      "M16 eigenstructure",
+      "M17 matrix factorizations/pseudoinverse",
+      "M23 conditioning/numerical stability"
+    ]
+  },
+  "instructionSeparation": {
+    "policy": "Worked/guided examples use distinct numerical or structural instances from fixed assessments. Guided feedback remains staged. Fixed assessments are compared semantically against all earlier answer-bearing instruction; shared general methods are permitted but solved subanswers are not presented as fresh evidence.",
+    "pilotFinding": "S04 deliberately makes both BA and AB legal; the fixed Main uses different rectangular matrices and the Transfer changes to a verbal square pipeline. Neither fixed output/product appears in S01–S04 instruction.",
+    "status": "builder-reviewed candidate; no M14 learner-route exposure exists because the module is not published"
+  },
+  "initialVersionAudit": {
+    "priorCanonicalM14": "none",
+    "legacySIDE276": "Historical rich-module-5 inventory uses old arc IDs and is not recertified as the new M65 M14 contract.",
+    "fixedAssessmentObligationVersion": "all 38 new fixed assessments begin at obligation version 1",
+    "instructionVersion": "v1 for all 19 new sessions",
+    "publication": "not published; no M14 learner attempts exist in the shared route to migrate"
+  },
+  "authoringPolicy": "Score only public obligations. Accept mathematically equivalent exact methods and notation. Require literal public evidence for every ownership claim. Label proof reconstruction/retrieval honestly, preserve representation direction and theorem hypotheses, and do not infer mastery from builder validation."
+}
