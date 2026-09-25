@@ -5,9 +5,9 @@
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "builder-candidate-awaiting-independent-review",
+    "status": "pilot-builder-candidate-under-review",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
-    "gate": "Nineteen sessions and 38 fixed assessments authored on the pedagogical branch under protocol v1.2. Builder verification and pilot/full-module semantic audits are required before any learner-route publication; page completion alone is not mastery.",
+    "gate": "Four entry/pilot sessions and 8 fixed assessments are authored under protocol v1.2; S04 has entered Gates 4–8 adversarial pilot review. S05–S19 remain design-only until the pilot passes. No learner-route publication.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
   },
   "boundary": {
@@ -37,9 +37,9 @@
     "designGate": "docs/t22-course/M14-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M14-PILOT-REVIEW.md",
     "pedagogicalAtoms": 19,
-    "authoredSessions": 19,
-    "ownershipClaimCount": 58,
-    "fixedAssessments": 38,
+    "authoredSessions": 4,
+    "ownershipClaimCount": 14,
+    "fixedAssessments": 8,
     "reviewProvenance": "Builder source reconstruction and falsification passes only; independent adversarial review has not yet occurred."
   },
   "sourceLedger": {
@@ -118,14 +118,789 @@
       }
     ]
   },
-  "sessions": [],
-  "problems": {},
-  "evaluators": {},
-  "coverage": {},
-  "claimEvidence": {},
-  "evidenceDistance": {},
+  "sessions": [
+    {
+      "order": 1,
+      "id": "T22V3::SIDE276::S01@1",
+      "moduleId": "SIDE276",
+      "title": "Linear maps preserve combinations",
+      "focus": "Define finite real linear maps before matrices, test superposition, and use basis images to determine the whole map.",
+      "purpose": "Make the object primary: a matrix will later represent a linear map, so the learner first needs a precise map-level contract independent of any array arithmetic.",
+      "centralCapability": "Verify or refute linearity from the defining laws and compute a linear map on arbitrary vectors from its action on a basis.",
+      "principalObstacle": "A simple-looking or line-preserving rule is accepted as linear without testing superposition, while a basis-action specification is mistaken for incomplete information.",
+      "entryPrerequisites": [
+        "M13 finite real vectors and linear combinations",
+        "M13 basis and unique coordinates",
+        "M03 witness/counterexample reasoning"
+      ],
+      "requiredOwnership": [
+        "Verify linearity by preservation of vector addition and scalar multiplication, equivalently finite linear combinations.",
+        "Derive and use T(0)=0 as a necessary consequence of linearity.",
+        "Explain why a linear map is uniquely determined by its values on a basis.",
+        "Compute the action of a linear map on an arbitrary vector from basis images."
+      ],
+      "applicationScope": "Finite-dimensional real coordinate spaces and exact algebra; affine translations may appear only as counterexamples.",
+      "transferScope": "Transfer removes the coordinate formula for one map and gives only basis action, while contrasting it with an affine-looking formula.",
+      "inScope": [
+        "linearity laws",
+        "basis-determines-map theorem",
+        "domain/codomain typing",
+        "decisive counterexamples"
+      ],
+      "outOfScope": [
+        "matrix representation",
+        "matrix multiplication",
+        "Jacobians/nonlinear linearization"
+      ],
+      "exitCondition": "Given a formula or basis-action description, determine whether a rule is linear and, when linear, determine its action on arbitrary vectors.",
+      "lesson": "Orient. A transformation is a rule T:V→W taking vectors in a domain V to vectors in a codomain W. Before arrays of numbers enter, the structural question is whether T respects the operations M13 already owns. T is linear when T(u+v)=T(u)+T(v) for every u,v in V and T(cu)=cT(u) for every real c. Combining the two gives T(au+bv)=aT(u)+bT(v), and repeating gives preservation of every finite linear combination.\n\nA forced consequence is T(0)=0. Since 0=0+0, linearity gives T(0)=T(0)+T(0), hence T(0)=0 after subtracting T(0). Therefore a nonzero translation can be rejected immediately, but passing the zero test alone does not prove linearity.\n\nBasis bridge. If B=(b1,...,bn) is a basis and v=x1b1+...+xnbn, uniqueness of M13 coordinates gives T(v)=x1T(b1)+...+xnT(bn). So once a linear map's images of the basis vectors are known, every output is forced; two linear maps that agree on a basis agree everywhere.\n\nWorked example. Let T:R²→R² satisfy T(x,y)=(2x-y,x+3y). For arbitrary scalars a,b and vectors u=(u1,u2), v=(v1,v2), expanding each coordinate gives T(au+bv)=aT(u)+bT(v), so the rule is linear. With e1=(1,0), e2=(0,1), T(e1)=(2,1) and T(e2)=(-1,3). Thus T(3,-2)=3T(e1)-2T(e2)=(8,-3).\n\nGuided practice. Compare G(x,y)=(x-y,2y) with H(x,y)=(x-y+2,2y). Before checking, test the zero vector and decide which rule is immediately disqualified. For the surviving rule, compute the images of e1,e2 and reconstruct the output at (2,-1) using only those images.\n\nDistinction check. “Straight-looking formula” and “linear transformation” are not synonyms. An affine translation may preserve lines geometrically while failing T(0)=0 and superposition. Conversely, a map can be specified completely by basis images without an explicit coordinate formula.",
+      "guidedFeedback": "Check after attempting. H(0,0)=(2,0), so H cannot be linear. G(e1)=(1,0) and G(e2)=(-1,2); therefore G(2,-1)=2G(e1)-G(e2)=(3,-2).",
+      "main": "T22V3::SIDE276::S01-M@1",
+      "transfer": "T22V3::SIDE276::S01-T@1"
+    },
+    {
+      "order": 2,
+      "id": "T22V3::SIDE276::S02@1",
+      "moduleId": "SIDE276",
+      "title": "A matrix is a map written in chosen coordinates",
+      "focus": "Construct the matrix of a linear map from transformed basis vectors and track input/output basis order and shape.",
+      "purpose": "Turn S01's basis-action theorem into a coordinate representation without letting the representation replace the underlying map.",
+      "centralCapability": "Given ordered domain and codomain bases, construct or decode the matrix representing a linear map and explain its dimensions and column meanings.",
+      "principalObstacle": "Columns are treated as arbitrary coefficient lists, basis order is ignored, or the matrix is mistaken for the underlying map independent of coordinate choices.",
+      "entryPrerequisites": [
+        "M14-S01 linear maps and basis action",
+        "M13 ordered bases and unique coordinates"
+      ],
+      "requiredOwnership": [
+        "Construct a matrix representation by placing the codomain-coordinate vectors of transformed domain-basis vectors as columns.",
+        "Infer and justify the m-by-n shape from an n-dimensional domain basis and m-dimensional codomain basis, with basis order respected.",
+        "Recover transformed basis vectors from matrix columns and distinguish the represented map from its basis-dependent matrix."
+      ],
+      "applicationScope": "Finite real spaces with explicitly named ordered bases; standard-basis cases are special cases.",
+      "transferScope": "Transfer begins with a matrix and basis labels rather than a transformation rule and asks the learner to recover the map's basis action.",
+      "inScope": [
+        "ordered basis representation",
+        "column convention",
+        "matrix shape",
+        "coordinate equation [T(v)]_C=A[v]_B"
+      ],
+      "outOfScope": [
+        "general change-of-basis algorithms",
+        "matrix products",
+        "eigenbases"
+      ],
+      "exitCondition": "Move reliably between basis-action data and a correctly typed matrix representation.",
+      "lesson": "Orient. S01 showed that a linear map is completely determined by what it does to a basis. A matrix packages exactly that finite information. Let B=(b1,...,bn) be an ordered basis of V and C=(c1,...,cm) an ordered basis of W. The matrix A=[T]_{C←B} is the m-by-n array whose jth column is the C-coordinate vector [T(bj)]_C.\n\nWhy columns? If [v]_B=(x1,...,xn)^T, then v=Σ xj bj and linearity gives T(v)=Σ xj T(bj). Taking C-coordinates therefore gives [T(v)]_C=x1[T(b1)]_C+...+xn[T(bn)]_C. The coordinate vectors of the basis images must be the columns because the input coordinates are their combination weights.\n\nWorked example. Let B=(b1,b2,b3) and C=(c1,c2). Suppose T(b1)=c1+2c2, T(b2)=-2c1+c2 and T(b3)=3c2. Then [T]_{C←B} has columns (1,2)^T, (-2,1)^T, (0,3)^T, so A=[[1,-2,0],[2,1,3]]. For v=2b1-b2+b3, [v]_B=(2,-1,1)^T and the same column combination gives [T(v)]_C=(4,6)^T. This calculation follows from the map; the array did not create the rule.\n\nGuided practice. A map S has ordered input basis D=(d1,d2) and output basis E=(e1,e2,e3), with S(d1)=2e1-e3 and S(d2)=e2+4e3. Before checking, build [S]_{E←D}, state its shape, and say what the second column means.\n\nDistinction check. T is the coordinate-free rule; [T]_{C←B} is one representation after bases are named. Changing a basis can change the entries even though the underlying map has not changed. S17–S18 will develop the conversion machinery.",
+      "guidedFeedback": "Check after attempting. The columns are [S(d1)]_E=(2,0,-1)^T and [S(d2)]_E=(0,1,4)^T, so [S]_{E←D}=[[2,0],[0,1],[-1,4]], a 3-by-2 matrix. The second column is the E-coordinate vector of S(d2).",
+      "main": "T22V3::SIDE276::S02-M@1",
+      "transfer": "T22V3::SIDE276::S02-T@1"
+    },
+    {
+      "order": 3,
+      "id": "T22V3::SIDE276::S03@1",
+      "moduleId": "SIDE276",
+      "title": "Matrix-vector action is a column combination",
+      "focus": "Interpret Ax simultaneously as a weighted combination of matrix columns and as row dot-products, with dimensions fixed before arithmetic.",
+      "purpose": "Make matrix-vector multiplication a meaningful coordinate action rather than a memorized row-by-column ritual.",
+      "centralCapability": "Compute and interpret Ax from column structure, reconcile the row and column views, and use basis-vector probes to recover a represented map.",
+      "principalObstacle": "The learner can execute row-dot arithmetic while losing the input/output meaning, confusing rows with columns, or accepting dimensionally illegal products.",
+      "entryPrerequisites": [
+        "M14-S02 matrix representation",
+        "M13 vector combinations and dot products"
+      ],
+      "requiredOwnership": [
+        "Compute Ax as the linear combination of A's columns weighted by the coordinates of x.",
+        "Reconcile the column-combination and row-dot-product calculations as two views of the same output.",
+        "Use matrix shape and basis-vector probes Ae_j to infer legal input/output dimensions and recover column responses."
+      ],
+      "applicationScope": "Exact finite matrices and coordinate vectors; no numerical storage/performance issues.",
+      "transferScope": "Transfer presents unit-input response data from a model and asks the learner to assemble the matrix and predict a mixed input.",
+      "inScope": [
+        "Ax column combination",
+        "row dot products",
+        "shape semantics",
+        "Ae_j equals column j"
+      ],
+      "outOfScope": [
+        "matrix-matrix multiplication",
+        "broadcasting/elementwise products",
+        "implementation optimization"
+      ],
+      "exitCondition": "Given a matrix and vector or unit-response table, compute the output and explain what the dimensions and columns mean.",
+      "lesson": "Orient. An m-by-n matrix A has n columns a1,...,an, each in R^m. An input x=(x1,...,xn)^T supplies the weights for one linear combination: Ax=x1a1+...+xnan. This is exactly S02's basis-action theorem written in coordinates. Therefore A accepts n-coordinate inputs and produces m-coordinate outputs.\n\nRows give the same numbers from another view. The ith component of Ax is ai1x1+...+ainxn, the dot product of row i with x. Column combination explains *what output is being assembled*; row dots explain how each output coordinate is calculated. They are not competing definitions.\n\nBasis probes. If ej is the jth standard basis vector of R^n, then Aej=aj because all weights except xj are zero. So testing a black-box linear map on the standard basis recovers every column of its standard matrix.\n\nWorked example. Let A=[[1,-2],[3,0],[-1,4]] and x=(2,-1)^T. With columns a1=(1,3,-1)^T and a2=(-2,0,4)^T, Ax=2a1-a2=(4,6,-6)^T. Row dots give 1·2+(-2)(-1)=4, 3·2=6, and -1·2+4(-1)=-6. The 3-by-2 shape predicts an R² input and R³ output before calculating.\n\nGuided practice. For B=[[2,0,-1],[1,3,2]] and x=(1,-1,2)^T, compute Bx first as a combination of its three columns, then check both output coordinates with row dots. State the legal input and output dimensions.\n\nDistinction check. “Multiply the row by the column” is a useful computation, but it hides the map structure if taught alone. A matrix-vector product is not entrywise multiplication, and a dimension mismatch is a type error rather than a difficult arithmetic case.",
+      "guidedFeedback": "Check after attempting. B is 2-by-3, so x∈R^3 and Bx∈R^2. Columnwise, Bx=(2,1)-(0,3)+2(-1,2)=(0,2). Row dots give 2+0-2=0 and 1-3+4=2.",
+      "main": "T22V3::SIDE276::S03-M@1",
+      "transfer": "T22V3::SIDE276::S03-T@1"
+    },
+    {
+      "order": 4,
+      "id": "T22V3::SIDE276::S04@1",
+      "moduleId": "SIDE276",
+      "title": "Composition makes matrix multiplication inevitable",
+      "focus": "Derive matrix multiplication from composition of represented linear maps, including order, dimensions, product columns and noncommutativity.",
+      "purpose": "Give the matrix-matrix product a structural reason before any rote multiplication routine can harden into the learner's mental model.",
+      "centralCapability": "For a chain of compatible linear maps, choose the correct product order, compute the composite matrix, and interpret what the product's columns and dimensions mean.",
+      "principalObstacle": "A learner may compute row-by-column correctly while reversing process order, treating multiplication as commutative, or checking only that dimensions happen to allow a product.",
+      "entryPrerequisites": [
+        "M14-S01 linear maps and composition language",
+        "M14-S02 matrix representations",
+        "M14-S03 matrix-vector action and shapes"
+      ],
+      "requiredOwnership": [
+        "Translate a stated composition of linear maps into the correct ordered matrix product with compatible intermediate dimensions.",
+        "Compute a matrix product and interpret each product column as the outer map applied to the corresponding inner-map column.",
+        "Explain why matrix multiplication is associative through associativity of map composition when dimensions are compatible.",
+        "Reject commutativity in general using a concrete pair for which both products are legal but represent different process orders."
+      ],
+      "applicationScope": "Exact finite matrices with explicitly tracked source, intermediate and target coordinate spaces.",
+      "transferScope": "Transfer changes from abstract map symbols and a rectangular chain to a verbal two-stage square processing pipeline where both multiplication orders are legal.",
+      "inScope": [
+        "composition order",
+        "matrix product",
+        "inner-dimension compatibility",
+        "column interpretation",
+        "associativity",
+        "noncommutativity"
+      ],
+      "outOfScope": [
+        "Hadamard/Kronecker products",
+        "matrix powers as eigen-analysis",
+        "optimized multiplication algorithms"
+      ],
+      "exitCondition": "Given unfamiliar maps or a verbal linear pipeline, construct and defend the correct composite matrix rather than relying on an order mnemonic.",
+      "lesson": "Orient. Suppose T:U→V is represented by B and S:V→W is represented by A in compatible chosen bases. For an input coordinate vector x, T produces Bx and then S produces A(Bx). The composite S∘T therefore satisfies [S∘T]x=A(Bx)=(AB)x. This defines the useful product order: the map applied first appears on the right.\n\nDimensions follow the spaces, not a memorized slogan. If B is n-by-p and A is m-by-n, then B maps p coordinates to n coordinates and A maps n to m; AB is m-by-p. The shared n is the intermediate coordinate dimension. The jth column of AB is A times the jth column of B, because that column is what the inner map does to the jth input basis vector.\n\nWorked example. Let B=[[2,0],[1,1]] and A=[[1,1],[0,2]]. Then AB=[[3,1],[2,2]], representing “B first, then A.” Reversing the process gives BA=[[2,2],[1,3]], which is also legal but different. Thus AB≠BA in general. Multiplication is nevertheless associative when shapes permit: three compatible maps R,S,T have only one composed map R∘S∘T, so ([R][S])[T]=[R]([S][T]).\n\nGuided practice. Let D=[[1,2],[0,1],[-1,1]] represent T:R²→R³ and C=[[1,0,1],[2,-1,0]] represent S:R³→R². Before checking, decide the shape of the matrix for S∘T, compute CD by treating its columns as C times the columns of D, and interpret its first column as a composed basis response.\n\nDistinction check. Dimension compatibility is necessary but not enough to determine which process a product represents. When both AB and BA are legal, semantic order decides. Matrix multiplication is composition in coordinates, not entrywise multiplication and not a commutative arithmetic inherited from scalars.",
+      "guidedFeedback": "Check after attempting. D maps R^2→R^3 and C maps R^3→R^2, so S∘T has matrix CD of shape 2-by-2. CD=[[0,3],[2,3]]. Its first column (0,2)^T is C applied to D's first column (1,0,-1)^T, i.e. the output of S(T(e1)).",
+      "main": "T22V3::SIDE276::S04-M@1",
+      "transfer": "T22V3::SIDE276::S04-T@1"
+    }
+  ],
+  "problems": {
+    "T22V3::SIDE276::S01-M@1": {
+      "id": "T22V3::SIDE276::S01-M@1",
+      "order": 1,
+      "kind": "main",
+      "prompt": "Define F:R^2→R^3 by F(x,y)=(x-2y, 3x+y, 4y). (a) Verify symbolically that F(αu+βv)=αF(u)+βF(v) for arbitrary u,v∈R^2 and real α,β. (b) Compute F(e1) and F(e2). (c) Use only those two basis images to find F(2,-1). (d) Explain why agreement on e1,e2 would force two linear maps R^2→R^3 to agree on every input.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S01-T@1": {
+      "id": "T22V3::SIDE276::S01-T@1",
+      "order": 1,
+      "kind": "transfer",
+      "prompt": "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(2,1) and P(e2)=(-1,3), with P declared linear. Q is given by Q(x,y)=(2x-y+1, x+3y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S02-M@1": {
+      "id": "T22V3::SIDE276::S02-M@1",
+      "order": 2,
+      "kind": "main",
+      "prompt": "Let B=(b1,b2,b3) be an ordered basis of V and C=(c1,c2) an ordered basis of W. A linear map T:V→W satisfies T(b1)=2c1-c2, T(b2)=c1+3c2, and T(b3)=-c1+2c2. (a) Construct A=[T]_{C←B}. (b) State and justify its shape from the two basis lengths. (c) Identify exactly what each column represents. (d) For v=2b1-b2+b3, use the columns to find [T(v)]_C.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S02-T@1": {
+      "id": "T22V3::SIDE276::S02-T@1",
+      "order": 2,
+      "kind": "transfer",
+      "prompt": "Relative to ordered bases B=(b1,b2) and C=(c1,c2,c3), a linear map T is represented by A=[[2,-1],[0,3],[1,4]]. (a) Recover T(b1) and T(b2) as linear combinations of c1,c2,c3. (b) State the coordinate dimensions of the domain and codomain. (c) Explain why the six displayed entries alone do not specify the same coordinate representation if the ordered bases are changed.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S03-M@1": {
+      "id": "T22V3::SIDE276::S03-M@1",
+      "order": 3,
+      "kind": "main",
+      "prompt": "Let A=[[1,2,-1],[0,3,4]] and x=(2,-1,1)^T. (a) Compute Ax explicitly as 2(column 1)−(column 2)+(column 3). (b) Recompute the two output coordinates as row dot-products with x and reconcile the answers. (c) State the input and output coordinate dimensions implied by A's shape. (d) State what Ae2 equals without multiplying every entry again.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S03-T@1": {
+      "id": "T22V3::SIDE276::S03-T@1",
+      "order": 3,
+      "kind": "transfer",
+      "prompt": "A linear response model has three primitive unit inputs. Their observed output vectors are r1=(1,-1,2), r2=(0,3,1), and r3=(2,0,-2). (a) Build the standard matrix A whose jth unit input produces rj. (b) Predict the output for input x=(1,-2,1)^T using the primitive responses rather than row arithmetic. (c) Explain why probing the model with e1,e2,e3 is enough to recover A.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S04-M@1": {
+      "id": "T22V3::SIDE276::S04-M@1",
+      "order": 4,
+      "kind": "main",
+      "prompt": "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S04-T@1": {
+      "id": "T22V3::SIDE276::S04-T@1",
+      "order": 4,
+      "kind": "transfer",
+      "prompt": "A two-stage linear pipeline acts on x∈R^2. Stage 1 uses C=[[1,2],[0,1]] and stage 2 uses D=[[3,0],[0,2]]. Both DC and CD are legal. (a) Determine which product represents 'first C, then D' and explain the order semantically. (b) Compute that composite matrix and its output on x=(1,-1)^T. (c) Compute the reversed-order product as well and use the two products to refute the claim that matrix multiplication is commutative.",
+      "obligationVersion": 1
+    }
+  },
+  "evaluators": {
+    "T22V3::SIDE276::S01-M@1": {
+      "reference": "Write u=(u1,u2), v=(v1,v2). Then F(αu+βv) expands coordinatewise to α(u1-2u2,3u1+u2,4u2)+β(v1-2v2,3v1+v2,4v2)=αF(u)+βF(v). F(e1)=(1,3,0) and F(e2)=(-2,1,4). Since (2,-1)=2e1-e2, F(2,-1)=2(1,3,0)-(-2,1,4)=(4,5,-4). Every (x,y)=xe1+ye2 uniquely, so linearity forces T(x,y)=xT(e1)+yT(e2); agreement on the basis therefore implies agreement everywhere.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Verifies the arbitrary superposition identity symbolically, not only on sample vectors."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes F(e1)=(1,3,0) and F(e2)=(-2,1,4)."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the basis decomposition to obtain F(2,-1)=(4,5,-4)."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that unique basis coordinates plus linearity force the map on every input."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    },
+    "T22V3::SIDE276::S01-T@1": {
+      "reference": "Since (x,y)=xe1+ye2, P(x,y)=x(2,1)+y(-1,3)=(2x-y,x+3y). For Q, Q(0,0)=(1,0)≠(0,0), while every linear map must send 0 to 0, so Q is not linear. The P data are sufficient because a linear map is uniquely determined by its values on a basis.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Reconstructs P(x,y)=(2x-y,x+3y) from the two basis images."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses Q(0,0)=(1,0)≠0 to reject Q as linear and states why the test is necessary."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why basis values uniquely determine a linear map on all of R^2."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    },
+    "T22V3::SIDE276::S02-M@1": {
+      "reference": "The columns are [T(b1)]_C=(2,-1)^T, [T(b2)]_C=(1,3)^T and [T(b3)]_C=(-1,2)^T. Hence A=[[2,1,-1],[-1,3,2]], a 2-by-3 matrix because input coordinates have length 3 and output coordinates have length 2. Column j is [T(bj)]_C. With [v]_B=(2,-1,1)^T, [T(v)]_C=2(2,-1)-(1,3)+(-1,2)=(2,-3)^T.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Constructs A=[[2,1,-1],[-1,3,2]] with the basis-image coordinates in the correct column order."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that the 3 input coordinates and 2 output coordinates require a 2-by-3 representation."
+        },
+        {
+          "points": 2,
+          "criterion": "States that column j is [T(bj)]_C for the named ordered bases."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses the columns to obtain [T(v)]_C=(2,-3)^T."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    },
+    "T22V3::SIDE276::S02-T@1": {
+      "reference": "Column 1 is (2,0,1)^T, so T(b1)=2c1+c3. Column 2 is (-1,3,4)^T, so T(b2)=-c1+3c2+4c3. The domain coordinate dimension is 2 and codomain coordinate dimension is 3. The entries encode coordinates relative to the named ordered bases; changing either basis changes the coordinate columns in general even if T itself is unchanged.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Recovers T(b1)=2c1+c3 and T(b2)=-c1+3c2+4c3 from the two columns."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies domain coordinate dimension 2 and codomain coordinate dimension 3."
+        },
+        {
+          "points": 4,
+          "criterion": "Explains that matrix entries are basis-dependent coordinates of one underlying map, with basis order part of the representation."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    },
+    "T22V3::SIDE276::S03-M@1": {
+      "reference": "The columns are a1=(1,0)^T, a2=(2,3)^T, a3=(-1,4)^T. Thus Ax=2a1-a2+a3=(2,0)+(-2,-3)+(-1,4)=(-1,1)^T. Row 1 dotted with x is 1·2+2(-1)+(-1)·1=-1; row 2 gives 0·2+3(-1)+4·1=1. A is 2-by-3, so it maps 3-coordinate inputs to 2-coordinate outputs. Ae2 is exactly column 2=(2,3)^T.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes Ax=(-1,1)^T as the requested combination of A's three columns."
+        },
+        {
+          "points": 3,
+          "criterion": "Recomputes (-1,1)^T by the two row dot-products and explains that both views produce the same coordinates."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies a 3-coordinate input and 2-coordinate output from the 2-by-3 shape."
+        },
+        {
+          "points": 2,
+          "criterion": "States Ae2=(2,3)^T because a standard basis probe selects column 2."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    },
+    "T22V3::SIDE276::S03-T@1": {
+      "reference": "The response matrix has the primitive outputs as columns: A=[[1,0,2],[-1,3,0],[2,1,-2]]. For x=(1,-2,1), Ax=r1-2r2+r3=(1,-1,2)+(0,-6,-2)+(2,0,-2)=(3,-7,-2). Since Aej is column j, the three standard-basis probes reveal all three columns and therefore the entire standard matrix.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Builds A=[[1,0,2],[-1,3,0],[2,1,-2]] with the unit responses as columns."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses r1-2r2+r3 to obtain the output (3,-7,-2)."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that Aej selects column j, so all standard-basis probes recover the full matrix."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    },
+    "T22V3::SIDE276::S04-M@1": {
+      "reference": "S∘T is represented by AB because T acts first: R^2 --B→ R^3 --A→ R^2. Thus AB is 2-by-2. Multiplication gives AB=[[5,4],[1,-4]]. Its first column is (5,1)^T; B's first column is (1,0,2)^T and A(1,0,2)^T=(5,1)^T, so it is S(T(e1)). BA is also defined: it is 3-by-3 and represents T∘S:R^3→R^3, a different composition.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Chooses AB for S∘T and justifies the 2-by-2 shape from R^2→R^3→R^2."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes AB=[[5,4],[1,-4]]."
+        },
+        {
+          "points": 2,
+          "criterion": "Interprets and verifies the first product column as S(T(e1))=(5,1)^T by applying A to B's first column."
+        },
+        {
+          "points": 2,
+          "criterion": "States that BA is a legal 3-by-3 matrix representing the reversed composition T∘S:R^3→R^3."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    },
+    "T22V3::SIDE276::S04-T@1": {
+      "reference": "First C then D is D∘C, so the composite matrix is DC=[[3,6],[0,2]]. On x=(1,-1)^T it gives (-3,-2)^T. The reversed product is CD=[[3,4],[0,2]], which differs from DC. Both are legal but represent different process orders, so this explicit example disproves commutativity in general.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Chooses DC for 'first C, then D' and explains that the first-applied map appears on the right."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes DC=[[3,6],[0,2]] and the composite output (-3,-2)^T."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the reversed product CD=[[3,4],[0,2]]."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses DC≠CD, with both products legal, as a concrete counterexample to commutativity."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    }
+  },
+  "coverage": {
+    "T22V3::SIDE276::S01@1": [
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S02@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S03@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S04@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ]
+  },
+  "claimEvidence": {
+    "T22V3::SIDE276::S01@1": [
+      {
+        "claim": "Verify linearity by preservation of vector addition and scalar multiplication, equivalently finite linear combinations.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S01-M@1"
+        ],
+        "publicRequestExact": [
+          "Define F:R^2→R^3 by F(x,y)=(x-2y, 3x+y, 4y). (a) Verify symbolically that F(αu+βv)=αF(u)+βF(v) for arbitrary u,v∈R^2 and real α,β. (b) Compute F(e1) and F(e2). (c) Use only those two basis images to find F(2,-1). (d) Explain why agreement on e1,e2 would force two linear maps R^2→R^3 to agree on every input."
+        ],
+        "rubricEvidence": [
+          "Verifies the arbitrary superposition identity symbolically, not only on sample vectors."
+        ],
+        "why": "The public Main requires a universal superposition verification.",
+        "escapeAttempt": "Checking only the displayed numeric basis values cannot earn this proof row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Derive and use T(0)=0 as a necessary consequence of linearity.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S01-T@1"
+        ],
+        "publicRequestExact": [
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(2,1) and P(e2)=(-1,3), with P declared linear. Q is given by Q(x,y)=(2x-y+1, x+3y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+        ],
+        "rubricEvidence": [
+          "Uses Q(0,0)=(1,0)≠0 to reject Q as linear and states why the test is necessary."
+        ],
+        "why": "Transfer explicitly applies the derived zero-image consequence to a new affine rule.",
+        "escapeAttempt": "A bare 'not linear' without the zero-vector implication loses the row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain why a linear map is uniquely determined by its values on a basis.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S01-M@1",
+          "T22V3::SIDE276::S01-T@1"
+        ],
+        "publicRequestExact": [
+          "Define F:R^2→R^3 by F(x,y)=(x-2y, 3x+y, 4y). (a) Verify symbolically that F(αu+βv)=αF(u)+βF(v) for arbitrary u,v∈R^2 and real α,β. (b) Compute F(e1) and F(e2). (c) Use only those two basis images to find F(2,-1). (d) Explain why agreement on e1,e2 would force two linear maps R^2→R^3 to agree on every input.",
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(2,1) and P(e2)=(-1,3), with P declared linear. Q is given by Q(x,y)=(2x-y+1, x+3y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+        ],
+        "rubricEvidence": [
+          "Explains that unique basis coordinates plus linearity force the map on every input.",
+          "Explains why basis values uniquely determine a linear map on all of R^2."
+        ],
+        "why": "Both tasks require the learner to articulate the basis-determines-map principle.",
+        "escapeAttempt": "Merely computing outputs without the uniqueness/linearity reason cannot satisfy these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Compute the action of a linear map on an arbitrary vector from basis images.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S01-M@1",
+          "T22V3::SIDE276::S01-T@1"
+        ],
+        "publicRequestExact": [
+          "Define F:R^2→R^3 by F(x,y)=(x-2y, 3x+y, 4y). (a) Verify symbolically that F(αu+βv)=αF(u)+βF(v) for arbitrary u,v∈R^2 and real α,β. (b) Compute F(e1) and F(e2). (c) Use only those two basis images to find F(2,-1). (d) Explain why agreement on e1,e2 would force two linear maps R^2→R^3 to agree on every input.",
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(2,1) and P(e2)=(-1,3), with P declared linear. Q is given by Q(x,y)=(2x-y+1, x+3y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+        ],
+        "rubricEvidence": [
+          "Uses the basis decomposition to obtain F(2,-1)=(4,5,-4).",
+          "Reconstructs P(x,y)=(2x-y,x+3y) from the two basis images."
+        ],
+        "why": "The learner actually propagates arbitrary/input coordinates through supplied basis images.",
+        "escapeAttempt": "The answer cannot be obtained by a provided P formula because Transfer supplies none.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S02@1": [
+      {
+        "claim": "Construct a matrix representation by placing the codomain-coordinate vectors of transformed domain-basis vectors as columns.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S02-M@1"
+        ],
+        "publicRequestExact": [
+          "Let B=(b1,b2,b3) be an ordered basis of V and C=(c1,c2) an ordered basis of W. A linear map T:V→W satisfies T(b1)=2c1-c2, T(b2)=c1+3c2, and T(b3)=-c1+2c2. (a) Construct A=[T]_{C←B}. (b) State and justify its shape from the two basis lengths. (c) Identify exactly what each column represents. (d) For v=2b1-b2+b3, use the columns to find [T(v)]_C."
+        ],
+        "rubricEvidence": [
+          "Constructs A=[[2,1,-1],[-1,3,2]] with the basis-image coordinates in the correct column order."
+        ],
+        "why": "Main literally constructs the representation from basis-image coordinate vectors.",
+        "escapeAttempt": "Putting images in rows or permuting columns fails the scored construction row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Infer and justify the m-by-n shape from an n-dimensional domain basis and m-dimensional codomain basis, with basis order respected.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S02-M@1",
+          "T22V3::SIDE276::S02-T@1"
+        ],
+        "publicRequestExact": [
+          "Let B=(b1,b2,b3) be an ordered basis of V and C=(c1,c2) an ordered basis of W. A linear map T:V→W satisfies T(b1)=2c1-c2, T(b2)=c1+3c2, and T(b3)=-c1+2c2. (a) Construct A=[T]_{C←B}. (b) State and justify its shape from the two basis lengths. (c) Identify exactly what each column represents. (d) For v=2b1-b2+b3, use the columns to find [T(v)]_C.",
+          "Relative to ordered bases B=(b1,b2) and C=(c1,c2,c3), a linear map T is represented by A=[[2,-1],[0,3],[1,4]]. (a) Recover T(b1) and T(b2) as linear combinations of c1,c2,c3. (b) State the coordinate dimensions of the domain and codomain. (c) Explain why the six displayed entries alone do not specify the same coordinate representation if the ordered bases are changed."
+        ],
+        "rubricEvidence": [
+          "Explains that the 3 input coordinates and 2 output coordinates require a 2-by-3 representation.",
+          "Identifies domain coordinate dimension 2 and codomain coordinate dimension 3."
+        ],
+        "why": "Both directions of the shape/type relationship are publicly observed.",
+        "escapeAttempt": "A memorized 'rows by columns' phrase without correct domain/codomain dimensions cannot satisfy both tasks.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Recover transformed basis vectors from matrix columns and distinguish the represented map from its basis-dependent matrix.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S02-M@1",
+          "T22V3::SIDE276::S02-T@1"
+        ],
+        "publicRequestExact": [
+          "Let B=(b1,b2,b3) be an ordered basis of V and C=(c1,c2) an ordered basis of W. A linear map T:V→W satisfies T(b1)=2c1-c2, T(b2)=c1+3c2, and T(b3)=-c1+2c2. (a) Construct A=[T]_{C←B}. (b) State and justify its shape from the two basis lengths. (c) Identify exactly what each column represents. (d) For v=2b1-b2+b3, use the columns to find [T(v)]_C.",
+          "Relative to ordered bases B=(b1,b2) and C=(c1,c2,c3), a linear map T is represented by A=[[2,-1],[0,3],[1,4]]. (a) Recover T(b1) and T(b2) as linear combinations of c1,c2,c3. (b) State the coordinate dimensions of the domain and codomain. (c) Explain why the six displayed entries alone do not specify the same coordinate representation if the ordered bases are changed."
+        ],
+        "rubricEvidence": [
+          "States that column j is [T(bj)]_C for the named ordered bases.",
+          "Recovers T(b1)=2c1+c3 and T(b2)=-c1+3c2+4c3 from the two columns.",
+          "Explains that matrix entries are basis-dependent coordinates of one underlying map, with basis order part of the representation."
+        ],
+        "why": "The learner both decodes columns and distinguishes map from representation.",
+        "escapeAttempt": "Correct arithmetic without basis semantics loses explicit rubric rows.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S03@1": [
+      {
+        "claim": "Compute Ax as the linear combination of A's columns weighted by the coordinates of x.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S03-M@1",
+          "T22V3::SIDE276::S03-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,-1],[0,3,4]] and x=(2,-1,1)^T. (a) Compute Ax explicitly as 2(column 1)−(column 2)+(column 3). (b) Recompute the two output coordinates as row dot-products with x and reconcile the answers. (c) State the input and output coordinate dimensions implied by A's shape. (d) State what Ae2 equals without multiplying every entry again.",
+          "A linear response model has three primitive unit inputs. Their observed output vectors are r1=(1,-1,2), r2=(0,3,1), and r3=(2,0,-2). (a) Build the standard matrix A whose jth unit input produces rj. (b) Predict the output for input x=(1,-2,1)^T using the primitive responses rather than row arithmetic. (c) Explain why probing the model with e1,e2,e3 is enough to recover A."
+        ],
+        "rubricEvidence": [
+          "Computes Ax=(-1,1)^T as the requested combination of A's three columns.",
+          "Uses r1-2r2+r3 to obtain the output (3,-7,-2)."
+        ],
+        "why": "Both fixed tasks require the column-combination action on distinct data.",
+        "escapeAttempt": "A row-only calculation in Main misses the explicit column row, and Transfer supplies response columns as the natural representation.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Reconcile the column-combination and row-dot-product calculations as two views of the same output.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S03-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,-1],[0,3,4]] and x=(2,-1,1)^T. (a) Compute Ax explicitly as 2(column 1)−(column 2)+(column 3). (b) Recompute the two output coordinates as row dot-products with x and reconcile the answers. (c) State the input and output coordinate dimensions implied by A's shape. (d) State what Ae2 equals without multiplying every entry again."
+        ],
+        "rubricEvidence": [
+          "Recomputes (-1,1)^T by the two row dot-products and explains that both views produce the same coordinates."
+        ],
+        "why": "Main explicitly demands both representations and their reconciliation.",
+        "escapeAttempt": "Providing only one numerical output without the second representation loses the row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use matrix shape and basis-vector probes Ae_j to infer legal input/output dimensions and recover column responses.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S03-M@1",
+          "T22V3::SIDE276::S03-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,-1],[0,3,4]] and x=(2,-1,1)^T. (a) Compute Ax explicitly as 2(column 1)−(column 2)+(column 3). (b) Recompute the two output coordinates as row dot-products with x and reconcile the answers. (c) State the input and output coordinate dimensions implied by A's shape. (d) State what Ae2 equals without multiplying every entry again.",
+          "A linear response model has three primitive unit inputs. Their observed output vectors are r1=(1,-1,2), r2=(0,3,1), and r3=(2,0,-2). (a) Build the standard matrix A whose jth unit input produces rj. (b) Predict the output for input x=(1,-2,1)^T using the primitive responses rather than row arithmetic. (c) Explain why probing the model with e1,e2,e3 is enough to recover A."
+        ],
+        "rubricEvidence": [
+          "Identifies a 3-coordinate input and 2-coordinate output from the 2-by-3 shape.",
+          "States Ae2=(2,3)^T because a standard basis probe selects column 2.",
+          "Explains that Aej selects column j, so all standard-basis probes recover the full matrix."
+        ],
+        "why": "Shape typing and basis probes are directly observed in both directions.",
+        "escapeAttempt": "A correct Ax value alone cannot demonstrate these claims.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S04@1": [
+      {
+        "claim": "Translate a stated composition of linear maps into the correct ordered matrix product with compatible intermediate dimensions.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S04-M@1",
+          "T22V3::SIDE276::S04-T@1"
+        ],
+        "publicRequestExact": [
+          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents.",
+          "A two-stage linear pipeline acts on x∈R^2. Stage 1 uses C=[[1,2],[0,1]] and stage 2 uses D=[[3,0],[0,2]]. Both DC and CD are legal. (a) Determine which product represents 'first C, then D' and explain the order semantically. (b) Compute that composite matrix and its output on x=(1,-1)^T. (c) Compute the reversed-order product as well and use the two products to refute the claim that matrix multiplication is commutative."
+        ],
+        "rubricEvidence": [
+          "Chooses AB for S∘T and justifies the 2-by-2 shape from R^2→R^3→R^2.",
+          "Chooses DC for 'first C, then D' and explains that the first-applied map appears on the right."
+        ],
+        "why": "Both tasks require semantic composition order; Main also forces explicit intermediate-space typing.",
+        "escapeAttempt": "Both reversed products are legal, so dimension compatibility alone cannot earn the order rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Compute a matrix product and interpret each product column as the outer map applied to the corresponding inner-map column.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S04-M@1"
+        ],
+        "publicRequestExact": [
+          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents."
+        ],
+        "rubricEvidence": [
+          "Computes AB=[[5,4],[1,-4]].",
+          "Interprets and verifies the first product column as S(T(e1))=(5,1)^T by applying A to B's first column."
+        ],
+        "why": "Main observes both arithmetic and the structural column meaning of the product.",
+        "escapeAttempt": "A memorized row-by-column result without the column interpretation loses a dedicated row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain why matrix multiplication is associative through associativity of map composition when dimensions are compatible.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S04-M@1"
+        ],
+        "publicRequestExact": [
+          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents."
+        ],
+        "rubricEvidence": [
+          "Chooses AB for S∘T and justifies the 2-by-2 shape from R^2→R^3→R^2."
+        ],
+        "why": "The lesson proves associativity from composition, but the current fixed Main does not directly ask the learner to demonstrate associativity.",
+        "escapeAttempt": "A learner could earn every current Main row without explaining why three-factor parenthesization is irrelevant.",
+        "disposition": "repair-required"
+      },
+      {
+        "claim": "Reject commutativity in general using a concrete pair for which both products are legal but represent different process orders.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S04-T@1"
+        ],
+        "publicRequestExact": [
+          "A two-stage linear pipeline acts on x∈R^2. Stage 1 uses C=[[1,2],[0,1]] and stage 2 uses D=[[3,0],[0,2]]. Both DC and CD are legal. (a) Determine which product represents 'first C, then D' and explain the order semantically. (b) Compute that composite matrix and its output on x=(1,-1)^T. (c) Compute the reversed-order product as well and use the two products to refute the claim that matrix multiplication is commutative."
+        ],
+        "rubricEvidence": [
+          "Computes the reversed product CD=[[3,4],[0,2]].",
+          "Uses DC≠CD, with both products legal, as a concrete counterexample to commutativity."
+        ],
+        "why": "Transfer requires an explicit legal noncommuting pair and a conclusion from it.",
+        "escapeAttempt": "Simply asserting 'matrices do not commute' cannot earn the two calculation/evidence rows.",
+        "disposition": "adequate"
+      }
+    ]
+  },
+  "evidenceDistance": {
+    "T22V3::SIDE276::S01@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "reason": "Main reconstructs the linearity proof and basis-extension argument on a new formula and fresh basis data."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer changes from formula verification to a basis-action specification plus an affine counterexample."
+      }
+    },
+    "T22V3::SIDE276::S02@1": {
+      "main": {
+        "classification": "retrieval",
+        "reason": "Main applies the just-derived representation theorem to fresh ordered bases and then uses the resulting columns."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer reverses the direction: a matrix plus basis labels must be decoded into map action and representation semantics."
+      }
+    },
+    "T22V3::SIDE276::S03@1": {
+      "main": {
+        "classification": "retrieval",
+        "reason": "Main reuses the just-taught Ax structure on a fresh rectangular matrix and requires both row and column representations."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer changes to an experimental/unit-response surface where the learner must assemble the matrix before applying it."
+      }
+    },
+    "T22V3::SIDE276::S04@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main uses an unseen rectangular chain where both AB and BA are legal, requiring map semantics, product calculation and column interpretation."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer moves to a verbal two-stage square pipeline and requires a concrete noncommutativity counterexample rather than abstract map notation."
+      }
+    }
+  },
   "semanticSeparationAudit": {
-    "sessions": {},
+    "sessions": {
+      "T22V3::SIDE276::S01@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "Main reconstructs the linearity proof and basis-extension argument on a new formula and fresh basis data."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes from formula verification to a basis-action specification plus an affine counterexample."
+        }
+      },
+      "T22V3::SIDE276::S02@1": {
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies the just-derived representation theorem to fresh ordered bases and then uses the resulting columns."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer reverses the direction: a matrix plus basis labels must be decoded into map action and representation semantics."
+        }
+      },
+      "T22V3::SIDE276::S03@1": {
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main reuses the just-taught Ax structure on a fresh rectangular matrix and requires both row and column representations."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to an experimental/unit-response surface where the learner must assemble the matrix before applying it."
+        }
+      },
+      "T22V3::SIDE276::S04@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main uses an unseen rectangular chain where both AB and BA are legal, requiring map semantics, product calculation and column interpretation."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer moves to a verbal two-stage square pipeline and requires a concrete noncommutativity counterexample rather than abstract map notation."
+        }
+      }
+    },
     "note": "Each fixed task was compared against its lesson, worked example, guided action/feedback and earlier answer-bearing instruction by mathematical instance, not prompt text alone. Transfer labels state the changed representation/decision/obstacle. Full-module cross-session scan is repeated in verification."
   },
   "prerequisiteAudit": {
