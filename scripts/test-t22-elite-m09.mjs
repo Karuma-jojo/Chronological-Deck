@@ -9,7 +9,7 @@ const sha=x=>createHash('sha256').update(typeof x==='string'?x:JSON.stringify(st
 const meta=read('course/t22/generated/course-meta.json'),deps=read('docs/t22-rebuild/m65.dependencies.json');
 assert.equal(a.module.id,'SIDE263');assert.equal(a.sessions.length,27);assert.equal(Object.keys(a.problems).length,54);assert.equal(Object.keys(a.evaluators).length,54);
 assert.deepEqual(a.boundary.prerequisiteModules,deps.modules.find(m=>m.id==='SIDE263').prerequisites);
-assert.equal(meta.moduleSources.filter(x=>x.order<=9).length,9);assert(meta.moduleSources.some(x=>x.order===9&&x.source==='course/t22/authoring/m09.json'));assert.equal(meta.moduleSources.length,12,'authorized publication through M12 must preserve M09 and register M10-M12');
+assert.equal(meta.moduleSources.filter(x=>x.order<=9).length,9);assert(meta.moduleSources.some(x=>x.order===9&&x.source==='course/t22/authoring/m09.json'));assert.equal(meta.moduleSources.length,13,'authorized publication through M12 must preserve M09 and register M10-M12');
 assert(!fs.existsSync('course/t22/authoring/m10.json'),'M10 is outside this assignment');
 const baseline=read('docs/t22-course/audit/m09-preserved-baseline.json');
 for(const [file,hash] of Object.entries(baseline.files))assert.equal(sha(fs.readFileSync(file,'utf8')),hash,file+' accepted-baseline drift');

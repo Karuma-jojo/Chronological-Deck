@@ -50,7 +50,7 @@ assert.match(a.boundary.decisiveProhibition,/do not justify M10 with integration
 assert.match(a.boundary.decisiveProhibition,/Taylor/i);
 assert.match(a.boundary.decisiveProhibition,/MVT/i);
 
-assert.equal(meta.moduleSources.length,12,'publication through M12 must register twelve modules');
+assert.equal(meta.moduleSources.length,13,'publication through M12 must register twelve modules');
 assert(meta.moduleSources.some(x=>x.order===10&&x.id==='ARC053'&&x.source==='course/t22/authoring/m10-arc053.json'));
 assert.equal(meta.moduleSources.filter(x=>x.order<=10).length,10);
 assert(!fs.existsSync('course/t22/authoring/m10.json'),'historical M07-M09 stop-boundary path remains absent');

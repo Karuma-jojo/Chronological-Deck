@@ -5,9 +5,9 @@
     "order": 13,
     "id": "ARC511",
     "title": "Vectors, Span, Basis & Dot Products",
-    "status": "repaired-awaiting-follow-up",
+    "status": "published-user-authorized-follow-up",
     "destination": "Reason with typed real vectors, span and subspaces, independence, bases and finite dimension, then use Euclidean dot products, norms, bounds, angles and orthogonality without M14 matrix algorithms or M15 projections.",
-    "gate": "Seventeen sessions and 34 fixed assessments repaired after independent adversarial findings. Separate follow-up acceptance has not occurred. M13 is not yet published in the learner registry.",
+    "gate": "Seventeen sessions and 34 fixed assessments published in the shared thirteen-module learner route after builder repairs and user-authorized closure. Page completion alone is not mastery; independent attempt, transfer and delayed review evidence are still required.",
     "nextBoundary": "M14/SIDE276 owns matrices, linear maps and linear systems. M15/SIDE278 owns projection, Gram–Schmidt and least squares."
   },
   "boundary": {
@@ -39,7 +39,7 @@
     "authoredSessions": 17,
     "ownershipClaimCount": 49,
     "fixedAssessments": 34,
-    "reviewProvenance": "independent adversarial findings at c40a175; builder repair awaiting separate follow-up"
+    "reviewProvenance": "Independent adversarial findings at c40a175, builder repairs at c56f88e, user reported follow-up close and authorized publication; no separate written follow-up report supplied in this thread."
   },
   "sourceLedger": {
     "policy": "Current repository boundary is authoritative; Strang fourth edition is the user-supplied deep comparator; MIT and open texts compare scope; Axler checks proof hypotheses; domain-specific research informs span assessment. All tasks are original.",
@@ -3031,7 +3031,7 @@
   "instructionSeparation": {
     "policy": "Fixed assessments use distinct objects from worked/guided examples; later lessons are also checked against earlier tasks. Historical exposure must be recorded if this changes.",
     "pilotFinding": "S04 worked generators originally repeated S03 Transfer generators; changed before publication to distinct (1,0,3),(0,1,-2).",
-    "status": "repaired after independent findings; awaiting follow-up"
+    "status": "published after user-authorized close; prior fixed task exposure remains versioned"
   },
   "initialVersionAudit": {
     "priorCanonicalM13": "none",
@@ -3043,7 +3043,8 @@
       "T22V3::ARC511::S11-T@1 → @2",
       "T22V3::ARC511::S17-M@1 → @2"
     ],
-    "instructionVersion": "v1 → v2 for all 17 sessions: guided prompt and separate feedback; M13 never entered learner registry, so no stored M13 attempts are migrated."
+    "instructionVersion": "v1 → v2 for all 17 sessions: guided prompt and separate feedback; M13 never entered learner registry, so no stored M13 attempts are migrated.",
+    "publication": "First M13 learner-route publication; no pre-publication M13 learner attempts to migrate."
   },
   "authoringPolicy": "Score only public obligations. Accept exact equivalent methods and any correctly defended alternate basis; require literal evidence for every owned claim. A proof explicitly taught is reconstruction evidence. Do not infer M14/M15 machinery or claim learner mastery from builder validation."
 }

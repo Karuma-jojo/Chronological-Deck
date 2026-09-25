@@ -1,5 +1,7 @@
 # M13 builder verification and review handoff
 
+Historical repaired-candidate checkpoint. Current publication status is in `M13-PUBLICATION.md`.
+
 Module: `ARC511`, 17 sessions, 34 fixed tasks, 49 literal ownership links. Branch: `codex/t22-pedagogical-rebuild`. Review provenance: builder reconstruction followed by a separate adversarial review at `c40a175` with six findings; the builder repairs are recorded in `M13-RESOLUTION.md`. No follow-up acceptance or learner trial has occurred. Status: **repaired awaiting follow-up**, outside the shared learner registry. The semantic ledger remains `pending-boundary-audit`.
 
 ## Learner-route and whole-module type check

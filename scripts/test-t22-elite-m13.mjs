@@ -5,6 +5,8 @@ const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const a=read('course/t22/authoring/m13-arc511.json');
 const deps=read('docs/t22-rebuild/m65.dependencies.json');
 const meta=read('course/t22/generated/course-meta.json');
+const roadmap=read('course/t22/generated/roadmap.json');
+const ledger=read('docs/t22-rebuild/SEMANTIC-PREREQUISITES.json');
 const design=fs.readFileSync('docs/t22-course/M13-DESIGN-GATE.md','utf8');
 const pilot=fs.readFileSync('docs/t22-course/M13-PILOT-REVIEW.md','utf8');
 
@@ -17,9 +19,12 @@ assert.deepEqual(a.boundary.prerequisiteModules,deps.modules.find(m=>m.id==='ARC
 assert.equal(Object.values(a.claimEvidence).flat().length,49);
 assert.equal(a.coverageAudit.ownershipClaimCount,49);
 assert.equal(a.coverageAudit.authoredSessions,17);
-assert(!meta.moduleSources.some(s=>s.id==='ARC511'),'candidate must remain outside learner registry until publication gate');
-assert.equal(a.module.status,'repaired-awaiting-follow-up');
-assert.match(a.module.gate,/not yet published/);
+assert.deepEqual(meta.moduleSources.map(x=>x.order),Array.from({length:13},(_,i)=>i+1));
+assert(meta.moduleSources.some(s=>s.order===13&&s.id==='ARC511'&&s.source==='course/t22/authoring/m13-arc511.json'));
+assert.equal(roadmap.modules.find(x=>x.id==='ARC511').availability,'authored');
+assert.equal(ledger.entries.find(x=>x.id==='ARC511').semanticStatus,'accepted');
+assert.equal(a.module.status,'published-user-authorized-follow-up');
+assert.match(a.module.gate,/published in the shared thirteen-module learner route/);
 assert.equal(a.instructionVersion,'m13-arc511-instruction-v2');
 for(const term of ['Boundary Contract','Source Dossier','Support-Theorem Ledger','Concept dependency graph','Conceptual-distinction map','Misconception / failure-mode map','Representation progression map','Downstream obligation map','Narrative spine','Candidate pedagogical atoms','Split/merge decisions']) assert(design.toLowerCase().includes(term.toLowerCase()),`missing pre-authoring artifact ${term}`);
 for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8']) assert(pilot.includes(gate),`pilot ${gate}`);
@@ -137,4 +142,4 @@ assert.equal(dot([100,0,-100],[100,0,-100]),20000);
 eq(sub(add([1,0,2],[0,2,1]),[1,2,3]),[0,0,0]);             // S17 Transfer relation
 assert.notEqual(3,2*2+2/2);                                  // S17 Transfer obstruction
 
-console.log('PASS M13 candidate: 17 sessions, 34 tasks, 49 exact claim links; selected references independently recomputed; M13 remains unpublished.');
+console.log('PASS M13 publication: 17 sessions, 34 tasks, 49 exact claim links; selected references independently recomputed; M13 registered as module 13.');

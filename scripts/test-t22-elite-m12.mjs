@@ -44,8 +44,8 @@ assert.match(a.module.gate,/published in the shared twelve-module learner route/
 assert.match(a.module.nextBoundary,/M13/i);
 
 // Shared learner registry is intentionally published through M12.
-assert.equal(meta.moduleSources.length,12,'M10-M12 publication must produce a twelve-module registry');
-assert.equal(meta.moduleSources.at(-1).source,'course/t22/authoring/m12-side267.json');
+assert.equal(meta.moduleSources.length,13,'M10-M12 publication must produce a twelve-module registry');
+assert.equal(meta.moduleSources.find(x=>x.order===12).source,'course/t22/authoring/m12-side267.json');
 assert(meta.moduleSources.some(x=>x.order===10&&x.id==='ARC053'));
 assert(meta.moduleSources.some(x=>x.order===11&&x.id==='ARC510'));
 assert(meta.moduleSources.some(x=>x.order===12&&x.id==='SIDE267'));

@@ -41,7 +41,7 @@ assert(!a.boundary.owns.join(' ').toLowerCase().includes('pilot scope'),'stale p
 assert.match(a.module.gate,/all 20 design-derived sessions/i);
 assert(!/s01 is the required pilot/i.test(a.module.gate),'stale pilot module gate');
 
-assert.equal(meta.moduleSources.length,12,'publication through M12 must register twelve modules');
+assert.equal(meta.moduleSources.length,13,'publication through M12 must register twelve modules');
 assert(meta.moduleSources.some(x=>x.order===11&&x.id==='ARC510'&&x.source==='course/t22/authoring/m11-arc510.json'));
 assert.equal(meta.moduleSources.filter(x=>x.order<=11).length,11);
 

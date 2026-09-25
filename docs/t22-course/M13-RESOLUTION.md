@@ -1,5 +1,7 @@
 # M13 independent-review resolution — repair checkpoint
 
+Historical repair checkpoint. Current publication status is in `M13-PUBLICATION.md`.
+
 Scope: `ARC511` on `codex/t22-pedagogical-rebuild`. The independent adversarial review examined the prior pushed head `c40a17517d6dccd64350ba1263636e581f37c080` and returned **REPAIRS REQUIRED**. This is the builder's response to those findings, not the independent reviewer's follow-up acceptance. M13 stays outside the shared learner registry; M14 remains untouched.
 
 | Finding | Exact repair | Verification and disposition |

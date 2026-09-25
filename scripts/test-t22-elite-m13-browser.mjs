@@ -22,13 +22,13 @@ try{
   const context=await browser.newContext({viewport:{width:390,height:844}});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 
-  // Learner registry remains published through M12; M13 is a candidate.
-  await page.goto(base+'/t22-course.html?module=12&session=1');
+  // The persisted learner registry now publishes M13 directly.
+  await page.goto(base+'/t22-course.html?module=13&session=1');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
-  assert.equal(await page.locator('#module option').count(),12,'publication route must expose twelve modules');
-  assert.equal(await page.locator('#module').inputValue(),'SIDE267');
-  assert(!(await page.locator('#module').allTextContents()).join(' ').includes('Vectors, Span, Basis & Dot Products'));
-  assert.equal(await page.locator('#session option').count(),19);
+  assert.equal(await page.locator('#module option').count(),13,'publication route must expose thirteen modules');
+  assert.equal(await page.locator('#module').inputValue(),'ARC511');
+  assert((await page.locator('#module').allTextContents()).join(' ').includes('Vectors, Span, Basis & Dot Products'));
+  assert.equal(await page.locator('#session option').count(),17);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
 
   const candidate=await page.evaluate(async()=>{
@@ -61,7 +61,7 @@ try{
     };
   });
   assert.equal(candidate.ok,true);assert.equal(candidate.status,200);
-  assert.equal(candidate.id,'ARC511');assert.equal(candidate.order,13);assert.equal(candidate.moduleStatus,'repaired-awaiting-follow-up');
+  assert.equal(candidate.id,'ARC511');assert.equal(candidate.order,13);assert.equal(candidate.moduleStatus,'published-user-authorized-follow-up');
   assert.equal(candidate.sessions,17);assert.equal(candidate.problems,34);assert.equal(candidate.evaluators,34);
   assert.equal(candidate.hashes,true);assert.equal(candidate.fingerprints,34);
   assert.equal(candidate.badEscaped,0);assert.equal(candidate.badReplacement,0);assert.equal(candidate.lessonNewlines,true);
@@ -69,18 +69,8 @@ try{
     const ss=String(i+1).padStart(2,'0');
     assert.deepEqual(candidate.ids[i],[`T22V3::ARC511::S${ss}@1`,`T22V3::ARC511::S${ss}-M@${[11,17].includes(i+1)?2:1}`,`T22V3::ARC511::S${ss}-T@${i+1===11?2:1}`]);
   }
-  // Load M13 through the real UI in this browser test only. The persisted
-  // course metadata and roadmap still keep it unpublished.
-  await page.route('**/course/t22/generated/course-meta.json',async route=>{
-    const response=await route.fetch(),meta=await response.json();
-    meta.moduleSources.push({order:13,id:'ARC511',sourceType:'authoring-pack',source:'course/t22/authoring/m13-arc511.json'});
-    await route.fulfill({response,json:meta});
-  });
-  await page.goto(base+'/t22-course.html?module=13&session=1');
-  await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
-  assert.equal(await page.locator('#module option').count(),13);
-  assert.equal(await page.locator('#module').inputValue(),'ARC511');
-  assert.equal(await page.locator('#session option').count(),17);
+  // Exercise the actual selected module, including staged guidance and all
+  // fixed-task reference/rubric surfaces.
   for(let n=1;n<=17;n++){
     await page.selectOption('#session',String(n));
     assert((await page.locator('#sessionMeta').textContent()).includes(`S${String(n).padStart(2,'0')}@1`));
@@ -102,11 +92,22 @@ try{
       assert((await page.locator('#reference').textContent()).includes('points:'));
     }
   }
+  const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));
+  assert.equal(stored.attempts.filter(a=>a.problemId.includes('ARC511')).length,34);
+  assert(stored.attempts.filter(a=>a.problemId.includes('ARC511')).every(a=>a.noteSeenDuringAttempt===true&&a.assistance==='guided'));
+  const downloadEvent=page.waitForEvent('download');await page.click('#export');
+  const download=await downloadEvent,exported=JSON.parse(await readFile(await download.path()));
+  await page.setInputFiles('#import',{name:'m13-evidence.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exported))});
+  await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('Evidence merged'));
+  await page.reload();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  assert.equal(await page.locator('#module').inputValue(),'ARC511');
+  const restored=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));
+  assert.equal(restored.attempts.filter(a=>a.problemId.includes('ARC511')).length,34);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
   assert.deepEqual(errors,[]);
   await context.close();
 
-  console.log('PASS M13 repaired candidate browser probe: persisted learner registry remains through M12; test-only M13 route renders all 17 lessons, staged guided checks, 34 task/reference/rubric surfaces, and runtime hashes/fingerprints without text corruption.');
+  console.log('PASS M13 publication browser: actual thirteen-module route renders 17 lessons, staged guided checks, 34 task/reference/rubric surfaces, and preserves M13 evidence through export/import/reload without text corruption.');
 }finally{
   if(browser)await browser.close();
   await new Promise(r=>server.close(r));
