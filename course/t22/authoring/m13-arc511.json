@@ -1,13 +1,13 @@
 {
-  "version": "m13-arc511-builder-candidate-v1",
-  "instructionVersion": "m13-arc511-instruction-v1",
+  "version": "m13-arc511-review-repair-v2",
+  "instructionVersion": "m13-arc511-instruction-v2",
   "module": {
     "order": 13,
     "id": "ARC511",
     "title": "Vectors, Span, Basis & Dot Products",
-    "status": "builder-validated-candidate",
+    "status": "repaired-awaiting-follow-up",
     "destination": "Reason with typed real vectors, span and subspaces, independence, bases and finite dimension, then use Euclidean dot products, norms, bounds, angles and orthogonality without M14 matrix algorithms or M15 projections.",
-    "gate": "Seventeen design-derived sessions and 34 fixed assessments authored with builder review. Independent acceptance and learner trial have not occurred. M13 is not yet published in the learner registry.",
+    "gate": "Seventeen sessions and 34 fixed assessments repaired after independent adversarial findings. Separate follow-up acceptance has not occurred. M13 is not yet published in the learner registry.",
     "nextBoundary": "M14/SIDE276 owns matrices, linear maps and linear systems. M15/SIDE278 owns projection, Gram–Schmidt and least squares."
   },
   "boundary": {
@@ -39,7 +39,7 @@
     "authoredSessions": 17,
     "ownershipClaimCount": 49,
     "fixedAssessments": 34,
-    "reviewProvenance": "builder self-review; no independent pedagogical review or learner trial"
+    "reviewProvenance": "independent adversarial findings at c40a175; builder repair awaiting separate follow-up"
   },
   "sourceLedger": {
     "policy": "Current repository boundary is authoritative; Strang fourth edition is the user-supplied deep comparator; MIT and open texts compare scope; Axler checks proof hypotheses; domain-specific research informs span assessment. All tasks are original.",
@@ -137,9 +137,10 @@
         "rank and projection"
       ],
       "exitCondition": "Compute and interpret coordinate operations while checking ambient dimension and the zero-vector type.",
-      "lesson": "Orient. A list of components can record a multicomponent change, but its length and coordinate order are part of its type. In R^n a vector is an ordered n-tuple of real numbers. Equality requires the same n and each corresponding component equal. A scalar is one real number; the zero vector 0_n=(0,...,0) has n components.\n\nDefine. For u=(u1,...,un), v=(v1,...,vn) in the same R^n, set u+v=(u1+v1,...,un+vn) and cu=(cu1,...,cun) for real c. Addition and subtraction require the same n; multiplication by a scalar retains n. A two-component vector cannot be added to a three-component vector by silently padding a zero.\n\nWorked example. Let u=(2,-1,3), v=(-1,4,0) in R^3. Then 2u-v=(4,-2,6)-(-1,4,0)=(5,-6,6). The zero vector here is (0,0,0), so u+(-u)=0_3; the scalar 0 merely supplies the multiplier in 0u=0_3. All three displayed vectors still have three components.\n\nGuided practice. For p=(1,3), q=(-2,5), compute p+2q: 2q=(-4,10), hence p+2q=(-3,13) in R^2. A proposed sum p+(0,0,1) is undefined: lengths two and three differ.\n\nDistinction check. Arithmetic on matching lengths is well-typed, but an application may impose further unit or coordinate-meaning constraints; those enter next.",
+      "lesson": "Orient. A list of components can record a multicomponent change, but its length and coordinate order are part of its type. In R^n a vector is an ordered n-tuple of real numbers. Equality requires the same n and each corresponding component equal. A scalar is one real number; the zero vector 0_n=(0,...,0) has n components.\n\nDefine. For u=(u1,...,un), v=(v1,...,vn) in the same R^n, set u+v=(u1+v1,...,un+vn) and cu=(cu1,...,cun) for real c. Addition and subtraction require the same n; multiplication by a scalar retains n. A two-component vector cannot be added to a three-component vector by silently padding a zero.\n\nWorked example. Let u=(2,-1,3), v=(-1,4,0) in R^3. Then 2u-v=(4,-2,6)-(-1,4,0)=(5,-6,6). The zero vector here is (0,0,0), so u+(-u)=0_3; the scalar 0 merely supplies the multiplier in 0u=0_3. All three displayed vectors still have three components.\n\nGuided practice. For p=(1,3), q=(-2,5), first calculate 2q, then p+2q. Name the ambient space. Before checking, decide whether p+(0,0,1) is defined and state the type rule you used.\n\nDistinction check. Arithmetic on matching lengths is well-typed, but an application may impose further unit or coordinate-meaning constraints; those enter next.",
       "main": "T22V3::ARC511::S01-M@1",
-      "transfer": "T22V3::ARC511::S01-T@1"
+      "transfer": "T22V3::ARC511::S01-T@1",
+      "guidedFeedback": "Check after attempting. For p=(1,3), q=(-2,5), compute p+2q: 2q=(-4,10), hence p+2q=(-3,13) in R^2. A proposed sum p+(0,0,1) is undefined: lengths two and three differ."
     },
     {
       "order": 2,
@@ -169,9 +170,10 @@
         "rank and projection"
       ],
       "exitCondition": "Construct displacements and use componentwise changes while distinguishing points from free vectors.",
-      "lesson": "Orient. Coordinates can label a location P, while a vector can describe a change. These may share notation but play different roles. Once an origin and axes are chosen, the displacement from P to Q is Q-P; adding that displacement to P reaches Q. Reversing the order reverses the direction. This is a local convention, not a claim that every data vector is a physical arrow.\n\nDefine. A typed component table records coordinate name and unit, such as (temperature change in °C, pressure change in kPa). Compatible changes may be added componentwise; a vector with different meanings in the same positions is not a meaningful sum until an explicit conversion/relabeling is supplied. Numeric dimensions alone are necessary but not sufficient for semantic compatibility.\n\nWorked example. In a plane with coordinates measured in metres, P=(1,-2) and Q=(4,3) give displacement d=Q-P=(3,5). Starting at Q and applying -d=(-3,-5) returns Q-d=(1,-2)=P. A vector (3,5) could alternatively encode two unrelated measurements; the arithmetic representation alone does not fix its interpretation.\n\nGuided practice. If A=(-2,1) and B=(0,4), then B-A=(2,3), and A+(2,3)=B. The reverse displacement A-B=(-2,-3) starts at B.\n\nDistinction check. Two location labels need not be added as if the sum were a location with a physical meaning; displacement plus location has the intended endpoint meaning here. Stating coordinate order and units is part of an application answer.",
+      "lesson": "Orient. Coordinates can label a location P, while a vector can describe a change. These may share notation but play different roles. Once an origin and axes are chosen, the displacement from P to Q is Q-P; adding that displacement to P reaches Q. Reversing the order reverses the direction. This is a local convention, not a claim that every data vector is a physical arrow.\n\nDefine. A typed component table records coordinate name and unit, such as (temperature change in °C, pressure change in kPa). Compatible changes may be added componentwise; a vector with different meanings in the same positions is not a meaningful sum until an explicit conversion/relabeling is supplied. Numeric dimensions alone are necessary but not sufficient for semantic compatibility.\n\nWorked example. In a plane with coordinates measured in metres, P=(1,-2) and Q=(4,3) give displacement d=Q-P=(3,5). Starting at Q and applying -d=(-3,-5) returns Q-d=(1,-2)=P. A vector (3,5) could alternatively encode two unrelated measurements; the arithmetic representation alone does not fix its interpretation.\n\nGuided practice. In metres, A=(-2,1) and B=(0,4). Write the displacement from A to B, verify that it reaches B when added to A, then find the reverse displacement. Which entries denote locations?\n\nDistinction check. Two location labels need not be added as if the sum were a location with a physical meaning; displacement plus location has the intended endpoint meaning here. Stating coordinate order and units is part of an application answer.",
       "main": "T22V3::ARC511::S02-M@1",
-      "transfer": "T22V3::ARC511::S02-T@1"
+      "transfer": "T22V3::ARC511::S02-T@1",
+      "guidedFeedback": "Check after attempting. If A=(-2,1) and B=(0,4), then B-A=(2,3), and A+(2,3)=B. The reverse displacement A-B=(-2,-3) starts at B."
     },
     {
       "order": 3,
@@ -201,9 +203,10 @@
         "rank and projection"
       ],
       "exitCondition": "Form and expand a general linear combination and distinguish arbitrary real coefficients from one selected example.",
-      "lesson": "Orient. Once vectors can be scaled and added, ask what changes when the scalars vary. For u and v in the same R^n, au+bv is a linear combination; unless a restriction is stated, a and b range independently over all real numbers. One chosen pair (a,b) gives one vector, while the expression with variables describes many.\n\nWorked example. For u=(1,2,-1) and v=(0,1,3), au+bv=(a,2a+b,-a+3b). At a=2,b=-1 this is (2,3,-5). The zero choice a=b=0 yields (0,0,0). Restricting to a+b=1 would give a different family, not the unrestricted set. Coefficient choices need not be unique if the generators later prove redundant.\n\nConnect. In a plane, multiples of one nonzero vector trace a line through the origin. Two vectors pointing in genuinely different directions can generate a plane. The coordinate expression, rather than a drawing alone, settles which targets are actually reachable. That exact question is next.\n\nGuided practice. For p=(2,0) and q=(1,1), cp+dq=(2c+d,d). At c=-1,d=3 this becomes (1,3); at c=d=0 it is (0,0). Allowing negative coefficients is part of unrestricted linear combinations.\n\nDistinction check. A constraint such as c,d≥0 or c+d=1 defines a subset of the possible combinations; it is not silently present in the definition of span.",
+      "lesson": "Orient. Once vectors can be scaled and added, ask what changes when the scalars vary. For u and v in the same R^n, au+bv is a linear combination; unless a restriction is stated, a and b range independently over all real numbers. One chosen pair (a,b) gives one vector, while the expression with variables describes many.\n\nWorked example. For u=(1,2,-1) and v=(0,1,3), au+bv=(a,2a+b,-a+3b). At a=2,b=-1 this is (2,3,-5). The zero choice a=b=0 yields (0,0,0). Restricting to a+b=1 would give a different family, not the unrestricted set. Coefficient choices need not be unique if the generators later prove redundant.\n\nConnect. In a plane, multiples of one nonzero vector trace a line through the origin. Two vectors pointing in genuinely different directions can generate a plane. The coordinate expression, rather than a drawing alone, settles which targets are actually reachable. That exact question is next.\n\nGuided practice. For p=(2,0) and q=(1,1), derive cp+dq for arbitrary real c,d. Evaluate c=-1,d=3 and c=d=0. Pause to explain whether negative coefficients are allowed.\n\nDistinction check. A constraint such as c,d≥0 or c+d=1 defines a subset of the possible combinations; it is not silently present in the definition of span.",
       "main": "T22V3::ARC511::S03-M@1",
-      "transfer": "T22V3::ARC511::S03-T@1"
+      "transfer": "T22V3::ARC511::S03-T@1",
+      "guidedFeedback": "Check after attempting. For p=(2,0) and q=(1,1), cp+dq=(2c+d,d). At c=-1,d=3 this becomes (1,3); at c=d=0 it is (0,0). Allowing negative coefficients is part of unrestricted linear combinations."
     },
     {
       "order": 4,
@@ -234,9 +237,10 @@
         "rank and projection"
       ],
       "exitCondition": "Decide elementary span membership by matching coordinates and producing a witness when one exists.",
-      "lesson": "Orient. A library of generators answers a reachability question: which targets can be assembled by scaling and adding its vectors? The span of u and v is the set {au+bv : a,b∈R}. It contains infinitely many vectors in most nonzero cases, including zero; it is neither the two-item list {u,v} nor any one sample sum.\n\nTranslate. To prove that a target t is in a span, exhibit real coefficients that make au+bv=t. This is an existential statement, so one verified witness suffices. Coordinate comparison turns it into simultaneous scalar equations. A picture of a line or plane may suggest the answer, but the equations supply an exact check. Showing one target is reachable does not show every vector in the surrounding R^n is reachable.\n\nWorked example. For u=(1,0,3) and v=(0,1,-2), a general combination is (a,b,3a-2b), the plane of triples whose third coordinate equals three times the first minus twice the second. The target t=(3,-2,13) has a=3,b=-2, and 3(3)-2(-2)=13, so t=3u-2v. This is one membership certificate; it does not claim the two vectors generate every triple in R^3.\n\nGuided practice. Let p=(1,1) and q=(1,-1). To make (4,2), solve c+d=4 and c-d=2: adding gives c=3, then d=1. Check 3p+q=(4,2). The coefficient witness is more informative than “looks like it is in the plane.”\n\nDistinction check. Membership of one specified target is ∃ coefficients for that target. Spanning all of R^n requires ∀ targets ∃ coefficients; the quantifiers cannot be swapped or inferred from a single success.",
+      "lesson": "Orient. A library of generators answers a reachability question: which targets can be assembled by scaling and adding its vectors? The span of u and v is the set {au+bv : a,b∈R}. It contains infinitely many vectors in most nonzero cases, including zero; it is neither the two-item list {u,v} nor any one sample sum.\n\nTranslate. To prove that a target t is in a span, exhibit real coefficients that make au+bv=t. This is an existential statement, so one verified witness suffices. Coordinate comparison turns it into simultaneous scalar equations. A picture of a line or plane may suggest the answer, but the equations supply an exact check. Showing one target is reachable does not show every vector in the surrounding R^n is reachable.\n\nWorked example. For u=(1,0,3) and v=(0,1,-2), a general combination is (a,b,3a-2b), the plane of triples whose third coordinate equals three times the first minus twice the second. The target t=(3,-2,13) has a=3,b=-2, and 3(3)-2(-2)=13, so t=3u-2v. This is one membership certificate; it does not claim the two vectors generate every triple in R^3.\n\nGuided practice. Let p=(1,1), q=(1,-1). Try to represent (4,2) as cp+dq: write both coordinate equations before solving. Check the resulting combination and say why one witness proves membership.\n\nDistinction check. Membership of one specified target is ∃ coefficients for that target. Spanning all of R^n requires ∀ targets ∃ coefficients; the quantifiers cannot be swapped or inferred from a single success.",
       "main": "T22V3::ARC511::S04-M@1",
-      "transfer": "T22V3::ARC511::S04-T@1"
+      "transfer": "T22V3::ARC511::S04-T@1",
+      "guidedFeedback": "Check after attempting. Let p=(1,1) and q=(1,-1). To make (4,2), solve c+d=4 and c-d=2: adding gives c=3, then d=1. Check 3p+q=(4,2). The coefficient witness is more informative than “looks like it is in the plane.”"
     },
     {
       "order": 5,
@@ -265,9 +269,10 @@
         "rank and projection"
       ],
       "exitCondition": "Give a valid obstruction to span membership and distinguish redundant from enlarging generators.",
-      "lesson": "Orient. A membership witness is existential, but nonmembership demands exclusion of every possible coefficient choice. One reliable route is an invariant: derive an equation every generated vector must obey, then display the target violating it. “I could not solve it” is not an argument.\n\nWorked example. Let u=(1,1,0), v=(0,1,1). Any au+bv=(a,a+b,b) satisfies middle = first + third. Thus (2,5,1) is outside the span because 5≠2+1, regardless of a,b. Adding w=(1,2,1)=u+v does not enlarge the set: every c w contributes c u+c v, and old combinations remain available by choosing c=0. Adding z=(0,1,0), by contrast, reaches the former missing target: 2u+v+2z=(2,5,1). This proves a concrete enlargement, without claiming an algorithm for arbitrary inputs.\n\nGuided practice. For p=(1,0,1), q=(0,1,1), all combinations satisfy third = first + second. Therefore (1,1,3) is impossible. The proposed new generator p+q is already reachable, so including it leaves the span unchanged.\n\nDistinction check. To show the new span is strictly larger it suffices to exhibit one new reachable vector known to be outside the old span. A redundant generator may increase the list length while adding no direction.",
+      "lesson": "Orient. A membership witness is existential, but nonmembership demands exclusion of every possible coefficient choice. One reliable route is an invariant: derive an equation every generated vector must obey, then display the target violating it. “I could not solve it” is not an argument.\n\nWorked example. Let u=(1,1,0), v=(0,1,1). Any au+bv=(a,a+b,b) satisfies middle = first + third. Thus (2,5,1) is outside the span because 5≠2+1, regardless of a,b. Adding w=(1,2,1)=u+v does not enlarge the set: every c w contributes c u+c v, and old combinations remain available by choosing c=0. Adding z=(0,1,0), by contrast, reaches the former missing target: 2u+v+2z=(2,5,1). This proves a concrete enlargement, without claiming an algorithm for arbitrary inputs.\n\nGuided practice. For p=(1,0,1), q=(0,1,1), derive a relation obeyed by every ap+bq. Decide whether (1,1,3) is reachable, then whether adding p+q changes the generated set. Justify each decision.\n\nDistinction check. To show the new span is strictly larger it suffices to exhibit one new reachable vector known to be outside the old span. A redundant generator may increase the list length while adding no direction.",
       "main": "T22V3::ARC511::S05-M@1",
-      "transfer": "T22V3::ARC511::S05-T@1"
+      "transfer": "T22V3::ARC511::S05-T@1",
+      "guidedFeedback": "Check after attempting. For p=(1,0,1), q=(0,1,1), all combinations satisfy third = first + second. Therefore (1,1,3) is impossible. The proposed new generator p+q is already reachable, so including it leaves the span unchanged."
     },
     {
       "order": 6,
@@ -297,9 +302,10 @@
         "rank and projection"
       ],
       "exitCondition": "Verify an elementary real-coordinate set is a subspace or give a decisive closure counterexample.",
-      "lesson": "Orient. A subspace H of R^n inherits vector addition and real scalar multiplication. Its zero vector must belong, and for any u,v in H and any real c, both u+v and cu must remain in H. Checking one pair is not a proof of closure; one legal failure is enough to refute it.\n\nWorked example. H={(x,y,z)∈R^3:z=x-y}. Zero satisfies 0=0-0. If u=(x1,y1,x1-y1) and v=(x2,y2,x2-y2), their sum has third coordinate (x1+x2)-(y1+y2); cu has third coordinate cx1-cy1. Both remain in H for arbitrary inputs and real c. Moreover (x,y,x-y)=x(1,0,1)+y(0,1,-1), so the geometric plane and all-coefficient description agree.\n\nGuided practice. K={(x,y)∈R²:x+y=1} contains (1,0) but not zero. Scaling (1,0) by 0 leaves K, so K is not a linear subspace. A translated line can be geometrically straight without being closed under vector operations.\n\nDistinction check. A set given by a homogeneous linear coordinate condition can be a subspace when closure is proved; a similar-looking equation with a nonzero constant is not. M13 does not need nullspaces or matrix notation for this test.",
+      "lesson": "Orient. A subspace H of R^n inherits vector addition and real scalar multiplication. Its zero vector must belong, and for any u,v in H and any real c, both u+v and cu must remain in H. Checking one pair is not a proof of closure; one legal failure is enough to refute it.\n\nWorked example. H={(x,y,z)∈R^3:z=x-y}. Zero satisfies 0=0-0. If u=(x1,y1,x1-y1) and v=(x2,y2,x2-y2), their sum has third coordinate (x1+x2)-(y1+y2); cu has third coordinate cx1-cy1. Both remain in H for arbitrary inputs and real c. Moreover (x,y,x-y)=x(1,0,1)+y(0,1,-1), so the geometric plane and all-coefficient description agree.\n\nGuided practice. Test K={(x,y)∈R²:x+y=1} as a proposed subspace. Supply one member; check zero and multiply your member by a scalar of your choice. Which exact subspace condition fails?\n\nDistinction check. A set given by a homogeneous linear coordinate condition can be a subspace when closure is proved; a similar-looking equation with a nonzero constant is not. M13 does not need nullspaces or matrix notation for this test.",
       "main": "T22V3::ARC511::S06-M@1",
-      "transfer": "T22V3::ARC511::S06-T@1"
+      "transfer": "T22V3::ARC511::S06-T@1",
+      "guidedFeedback": "Check after attempting. K={(x,y)∈R²:x+y=1} contains (1,0) but not zero. Scaling (1,0) by 0 leaves K, so K is not a linear subspace. A translated line can be geometrically straight without being closed under vector operations."
     },
     {
       "order": 7,
@@ -328,9 +334,10 @@
         "rank and projection"
       ],
       "exitCondition": "Prove or refute independence by solving the zero-combination equations, including exceptional parameter values.",
-      "lesson": "Orient. Every vector list produces zero by taking all coefficients zero. Independence asks whether this is the **only** way: for v1,...,vk, if c1v1+...+ckvk=0 then all ci=0. Dependence is the negation: produce at least one coefficient tuple not all zero whose combination is zero. “Each vector is nonzero” alone is insufficient.\n\nWorked example. Let p=(1,0), q=(2,1). If ap+bq=(a+2b,b)=(0,0), the second coordinate forces b=0 and then the first forces a=0. Thus the pair is independent. If q were (2,0), the relation 2p-q=0 would witness dependence; checking the trivial relation alone would prove nothing.\n\nGuided practice. For r=(1,2), s=(2,4), the coefficients (2,-1) give 2r-s=(0,0), so the pair is dependent. Neither the size of coefficients nor the order of vectors matters, only that the relation is genuinely nontrivial.\n\nDistinction check. The claim “all coefficients zero works” is true for every list. Independence is an implication over *every* coefficient choice; dependence needs one explicit nontrivial witness.",
+      "lesson": "Orient. Every vector list produces zero by taking all coefficients zero. Independence asks whether this is the **only** way: for v1,...,vk, if c1v1+...+ckvk=0 then all ci=0. Dependence is the negation: produce at least one coefficient tuple not all zero whose combination is zero. “Each vector is nonzero” alone is insufficient.\n\nWorked example. Let p=(1,0), q=(2,1). If ap+bq=(a+2b,b)=(0,0), the second coordinate forces b=0 and then the first forces a=0. Thus the pair is independent. If q were (2,0), the relation 2p-q=0 would witness dependence; checking the trivial relation alone would prove nothing.\n\nGuided practice. For r=(1,2), s=(2,4), find coefficients not both zero with ar+bs=0. Check both coordinates and use the definition to classify the pair.\n\nDistinction check. The claim “all coefficients zero works” is true for every list. Independence is an implication over *every* coefficient choice; dependence needs one explicit nontrivial witness.",
       "main": "T22V3::ARC511::S07-M@1",
-      "transfer": "T22V3::ARC511::S07-T@1"
+      "transfer": "T22V3::ARC511::S07-T@1",
+      "guidedFeedback": "Check after attempting. For r=(1,2), s=(2,4), the coefficients (2,-1) give 2r-s=(0,0), so the pair is dependent. Neither the size of coefficients nor the order of vectors matters, only that the relation is genuinely nontrivial."
     },
     {
       "order": 8,
@@ -360,9 +367,10 @@
         "rank and projection"
       ],
       "exitCondition": "Use a dependence certificate to identify a redundant member and prove span is preserved when it is removed.",
-      "lesson": "Orient. Dependence is about a whole list. Three vectors can be dependent even if every pair is nonparallel. A nontrivial relation c1v1+...+ckvk=0 has some cj≠0, so vj=-(1/cj) times the sum of the other terms. This division is legal because that chosen coefficient is nonzero. Conversely, if vj is a combination of the others, moving all terms to one side produces a nontrivial relation with coefficient 1 on vj.\n\nWorked example. Take p=(1,0,0), q=(0,1,0), r=(1,1,0). No pair is scalar multiples, but p+q-r=0. Because r=p+q, any ap+bq+cr=(a+c)p+(b+c)q. Thus dropping r preserves every reachable vector; the shorter list also remains inside the old span by taking c=0. Both inclusions, not just a picture, establish equality of spans.\n\nGuided practice. Let u=(1,1), v=(2,0), w=(3,1). Since u+v-w=0, w can be removed. A combination 4u-v+2w becomes 6u+v after replacing w by u+v; check both coordinate results equal (8,6).\n\nDistinction check. Pairwise nonparallel is necessary for independence of a nonzero pair, but it does not settle a list of three or more. A dependence relation has to be collective and nontrivial.",
+      "lesson": "Orient. Dependence is about a whole list. Three vectors can be dependent even if every pair is nonparallel. A nontrivial relation c1v1+...+ckvk=0 has some cj≠0, so vj=-(1/cj) times the sum of the other terms. This division is legal because that chosen coefficient is nonzero. Conversely, if vj is a combination of the others, moving all terms to one side produces a nontrivial relation with coefficient 1 on vj.\n\nWorked example. Take p=(1,0,0), q=(0,1,0), r=(1,1,0). No pair is scalar multiples, but p+q-r=0. Because r=p+q, any ap+bq+cr=(a+c)p+(b+c)q. Thus dropping r preserves every reachable vector; the shorter list also remains inside the old span by taking c=0. Both inclusions, not just a picture, establish equality of spans.\n\nGuided practice. Let u=(1,1), v=(2,0), w=(3,1). Find a nontrivial zero relation, identify a removable vector, and rewrite 4u-v+2w using only the other two. Check the result by coordinates.\n\nDistinction check. Pairwise nonparallel is necessary for independence of a nonzero pair, but it does not settle a list of three or more. A dependence relation has to be collective and nontrivial.",
       "main": "T22V3::ARC511::S08-M@1",
-      "transfer": "T22V3::ARC511::S08-T@1"
+      "transfer": "T22V3::ARC511::S08-T@1",
+      "guidedFeedback": "Check after attempting. Let u=(1,1), v=(2,0), w=(3,1). Since u+v-w=0, w can be removed. A combination 4u-v+2w becomes 6u+v after replacing w by u+v; check both coordinate results equal (8,6)."
     },
     {
       "order": 9,
@@ -392,9 +400,10 @@
         "rank and projection"
       ],
       "exitCondition": "Verify both basis conditions and derive unique coefficient representation.",
-      "lesson": "Orient. A basis for a real vector space V is a list of vectors in V that is both independent and spans V. Spanning guarantees that each target has *some* representation; independence guarantees *at most one*. Both directions are needed. The basis list itself need not be unique.\n\nWorked example. In R², e=(1,0) and f=(1,1) span because (x,y)=(x-y)e+yf for arbitrary real x,y. They are independent: ae+bf=(a+b,b)=0 forces b=0 then a=0. Thus they form a basis. If (x,y)=ae+bf=ce+df, subtracting gives (a-c)e+(b-d)f=0; independence forces a=c,b=d. This argument proves coordinate uniqueness for any independent list, not just this pair.\n\nGuided practice. In R², (1,0),(0,1),(1,1) span but are dependent because the third is the sum of the first two. The singleton (1,0) is independent but does not span (0,1). Neither list is a basis of R².\n\nDistinction check. A basis must have enough directions and no redundant directions. Coordinate numbers change with the chosen basis even when the underlying vector stays the same.",
+      "lesson": "Orient. A basis for a coordinate subspace V of some R^N is a list of vectors in V that is both independent and spans V. Spanning guarantees that each target has *some* representation; independence guarantees *at most one*. Both directions are needed. The basis list itself need not be unique.\n\nWorked example. In R², e=(1,0) and f=(1,1) span because (x,y)=(x-y)e+yf for arbitrary real x,y. They are independent: ae+bf=(a+b,b)=0 forces b=0 then a=0. Thus they form a basis. If (x,y)=ae+bf=ce+df, subtracting gives (a-c)e+(b-d)f=0; independence forces a=c,b=d. This argument proves coordinate uniqueness for any independent list, not just this pair.\n\nGuided practice. In R² compare the list (1,0),(0,1),(1,1) with the singleton (1,0). For each, decide span and independence separately, giving a witness or a target that cannot be reached.\n\nDistinction check. A basis must have enough directions and no redundant directions. Coordinate numbers change with the chosen basis even when the underlying vector stays the same.",
       "main": "T22V3::ARC511::S09-M@1",
-      "transfer": "T22V3::ARC511::S09-T@1"
+      "transfer": "T22V3::ARC511::S09-T@1",
+      "guidedFeedback": "Check after attempting. In R², (1,0),(0,1),(1,1) span but are dependent because the third is the sum of the first two. The singleton (1,0) is independent but does not span (0,1). Neither list is a basis of R²."
     },
     {
       "order": 10,
@@ -424,9 +433,10 @@
         "rank and projection"
       ],
       "exitCondition": "Construct a nonstandard basis and represent an element by unique relative coordinates.",
-      "lesson": "Orient. A vector can lie in R³ while belonging to a two-parameter plane. To choose a basis, parameterize *every* vector in that plane and read off the coefficient directions. Then verify the directions are independent. The ambient triple represents the vector in the standard coordinates of R³; the shorter tuple [t]_B lists its coefficients in the chosen subspace basis.\n\nWorked example. For H={(x,y,z):z=2x+y}, write (x,y,2x+y)=x(1,0,2)+y(0,1,1). These two directions span H. If a(1,0,2)+b(0,1,1)=0, the first two coordinates force a=b=0, proving independence. Thus B=((1,0,2),(0,1,1)) is a basis. The vector (1,2,4) has B-coordinates (1,2), not the ambient triple (1,2,4).\n\nGuided practice. For K={(x,y,z):z=y}, every member is x(1,0,0)+y(0,1,1). The vectors are independent because their first two coordinates isolate the coefficients. In K, (3,-1,-1) has coordinates (3,-1) in this basis.\n\nDistinction check. A different valid basis changes the coordinate tuple without changing the vector. Systematic change-of-basis matrices wait for M14; here direct coefficient solving is enough.",
+      "lesson": "Orient. A vector can lie in R³ while belonging to a two-parameter plane. To choose a basis, parameterize *every* vector in that plane and read off the coefficient directions. Then verify the directions are independent. The ambient triple represents the vector in the standard coordinates of R³; the shorter tuple [t]_B lists its coefficients in the chosen subspace basis.\n\nWorked example. For H={(x,y,z):z=2x+y}, write (x,y,2x+y)=x(1,0,2)+y(0,1,1). These two directions span H. If a(1,0,2)+b(0,1,1)=0, the first two coordinates force a=b=0, proving independence. Thus B=((1,0,2),(0,1,1)) is a basis. The vector (1,2,4) has B-coordinates (1,2), not the ambient triple (1,2,4).\n\nGuided practice. For K={(x,y,z):z=y}, parameterize an arbitrary member and propose a two-vector basis. Prove both basis conditions, then find coordinates of (3,-1,-1) in your chosen ordered basis.\n\nDistinction check. A different valid basis changes the coordinate tuple without changing the vector. Systematic change-of-basis matrices wait for M14; here direct coefficient solving is enough.",
       "main": "T22V3::ARC511::S10-M@1",
-      "transfer": "T22V3::ARC511::S10-T@1"
+      "transfer": "T22V3::ARC511::S10-T@1",
+      "guidedFeedback": "Check after attempting. For K={(x,y,z):z=y}, every member is x(1,0,0)+y(0,1,1). The vectors are independent because their first two coordinates isolate the coefficients. In K, (3,-1,-1) has coordinates (3,-1) in this basis."
     },
     {
       "order": 11,
@@ -435,7 +445,7 @@
       "title": "Dimension is invariant under basis choice",
       "focus": "Prove the finite replacement bound without matrices before using basis size as a space invariant.",
       "purpose": "Prove the finite replacement bound without matrices before using basis size as a space invariant.",
-      "centralCapability": "Justify that finite bases of one real vector space have the same length, using a bounded replacement argument.",
+      "centralCapability": "Justify that finite bases of one real coordinate subspace have the same length, using a bounded replacement argument.",
       "principalObstacle": "A basis count is declared intrinsic from pictures or from an unowned rank theorem.",
       "entryPrerequisites": [
         "M13-S08 redundant generator lemma",
@@ -456,10 +466,11 @@
         "systematic matrix elimination",
         "rank and projection"
       ],
-      "exitCondition": "Justify that finite bases of one real vector space have the same length, using a bounded replacement argument.",
-      "lesson": "Orient. “Dimension is the number of vectors in a basis” needs a theorem: two bases could a priori have different sizes. We prove a finite replacement bound without elimination. Suppose B=(v1,...,vm) spans V and W=(w1,...,wn) is independent. After replacing k-1 members of B, maintain a spanning list containing w1,...,w(k-1) plus m-k+1 old members. Express wk using this spanning list. Some coefficient of an *old* member must be nonzero; otherwise wk is a combination of previous w’s, contradicting independence. Solve that expression for the old member and replace it by wk: every old generator is still reachable, so the new list spans. Repeat. We cannot replace more than m old members, so n≤m.\n\nWorked example. In R² start from B=(e1,e2), and independent w1=(1,1), w2=(1,-1). Because w1=e1+e2, replace e1 and recover e1=w1-e2. In the new spanning list (w1,e2), w2=w1-2e2; the coefficient -2 is nonzero, so replace e2 and recover e2=(w1-w2)/2. The resulting two-vector list spans. This small example illustrates the general replacement, not a matrix algorithm.\n\nConclude. If B and C are both finite bases of V, C is independent and B spans, hence |C|≤|B|. Swap roles to get |B|≤|C|, so their sizes agree. That common size is dim(V).\n\nGuided practice. If a space has a spanning list of two vectors, a proposed independent list of three is impossible by n≤m. This does not assert that every two-vector list is a basis: each condition still needs proof.\n\nDistinction check. The theorem compares lists in the *same space*. A subspace of R³ can have a two-vector basis; ambient coordinate length three does not set its intrinsic dimension.",
-      "main": "T22V3::ARC511::S11-M@1",
-      "transfer": "T22V3::ARC511::S11-T@1"
+      "exitCondition": "Justify that finite bases of one real coordinate subspace have the same length, using a bounded replacement argument.",
+      "lesson": "Orient. “Dimension is the number of vectors in a basis” needs a theorem: two bases could a priori have different sizes. We prove a finite replacement bound without elimination. Suppose V is a subspace of some real R^N, B=(v1,...,vm) spans V, and W=(w1,...,wn) is independent in V. After replacing k-1 members of B, maintain a spanning list containing w1,...,w(k-1) plus m-k+1 old members. Express wk using this spanning list. Some coefficient of an *old* member must be nonzero; otherwise wk is a combination of previous w’s, contradicting independence. Solve that expression for the old member and replace it by wk: every old generator is still reachable, so the new list spans. Repeat. We cannot replace more than m old members, so n≤m.\n\nWorked example. In R² start from B=(e1,e2), and independent w1=(1,1), w2=(1,-1). Because w1=e1+e2, replace e1 and recover e1=w1-e2. In the new spanning list (w1,e2), w2=w1-2e2; the coefficient -2 is nonzero, so replace e2 and recover e2=(w1-w2)/2. The resulting two-vector list spans. This small example illustrates the general replacement, not a matrix algorithm.\n\nConclude. If B and C are both finite bases of the same coordinate subspace V, C is independent and B spans, hence |C|≤|B|. Swap roles to get |B|≤|C|, so their sizes agree. That common size is dim(V).\n\nGuided practice. A subspace of R^N has a spanning list of two vectors. Could it contain an independent list of three? Name the precise length bound and say whether the two spanning vectors must be independent.\n\nDistinction check. The theorem compares lists in the *same coordinate subspace*. A subspace of R³ can have a two-vector basis; ambient coordinate length three does not set its intrinsic dimension.",
+      "main": "T22V3::ARC511::S11-M@2",
+      "transfer": "T22V3::ARC511::S11-T@2",
+      "guidedFeedback": "Check after attempting. If a coordinate subspace has a spanning list of two vectors, a proposed independent list of three is impossible by n≤m. This does not assert that every two-vector list is a basis: each condition still needs proof."
     },
     {
       "order": 12,
@@ -490,9 +501,10 @@
         "rank and projection"
       ],
       "exitCondition": "Derive finite subspace dimension from a proved basis and handle dimension zero correctly.",
-      "lesson": "Orient. Once all basis sizes agree, dimension counts independent directions of the space, not the number of coordinates used by an ambient representation. To assign a dimension, actually give a basis and verify span and independence. In the zero space {0}, the empty list has no nontrivial zero relation and its empty combination gives zero; by convention it is a basis of size zero. A list containing 0 is dependent, since 1·0=0.\n\nWorked example. H={(x,y,z)∈R³:z=x-2y}. Every vector is x(1,0,1)+y(0,1,-2). These two directions are independent because their first two coordinates force any zero-combination coefficients to vanish. Thus dim(H)=2 even though each H-vector has three ambient entries. The full R³ has standard basis e1,e2,e3 and dimension 3.\n\nGuided practice. For L={(x,y,z):x=0,y=0}, every vector is z(0,0,1). The nonzero generator (0,0,1) is independent, so dim(L)=1. If z must also equal zero, the resulting {0} has dimension zero and empty basis.\n\nDistinction check. A line, a plane and all R³ can all contain three-component vectors while having dimensions 1, 2 and 3. The zero vector is in each but cannot appear in any independent basis.",
+      "lesson": "Orient. Once all basis sizes agree, dimension counts independent directions of the space, not the number of coordinates used by an ambient representation. To assign a dimension, actually give a basis and verify span and independence. In the zero space {0}, the empty list has no nontrivial zero relation and its empty combination gives zero; by convention it is a basis of size zero. A list containing 0 is dependent, since 1·0=0.\n\nWorked example. H={(x,y,z)∈R³:z=x-2y}. Every vector is x(1,0,1)+y(0,1,-2). These two directions are independent because their first two coordinates force any zero-combination coefficients to vanish. Thus dim(H)=2 even though each H-vector has three ambient entries. The full R³ has standard basis e1,e2,e3 and dimension 3.\n\nGuided practice. For L={(x,y,z):x=0,y=0}, propose and verify a basis and its dimension. If z is also required to be zero, what basis and dimension remain?\n\nDistinction check. A line, a plane and all R³ can all contain three-component vectors while having dimensions 1, 2 and 3. The zero vector is in each but cannot appear in any independent basis.",
       "main": "T22V3::ARC511::S12-M@1",
-      "transfer": "T22V3::ARC511::S12-T@1"
+      "transfer": "T22V3::ARC511::S12-T@1",
+      "guidedFeedback": "Check after attempting. For L={(x,y,z):x=0,y=0}, every vector is z(0,0,1). The nonzero generator (0,0,1) is independent, so dim(L)=1. If z must also equal zero, the resulting {0} has dimension zero and empty basis."
     },
     {
       "order": 13,
@@ -509,7 +521,7 @@
       ],
       "requiredOwnership": [
         "Compute the Euclidean dot product of equal-dimension real vectors as a scalar.",
-        "Compute Euclidean norm from the self-dot product and handle the zero-vector case.",
+        "Compute Euclidean norms from self-dot products and justify their nonnegativity.",
         "Reject a componentwise-vector answer masquerading as a dot product."
       ],
       "applicationScope": "Finite real coordinate vectors with explicitly stated dimensions and coefficient conventions.",
@@ -522,9 +534,10 @@
         "rank and projection"
       ],
       "exitCondition": "Compute dot products and norms with correct object types and dimension conditions.",
-      "lesson": "Orient. Vector addition outputs a vector. The Euclidean dot product takes u,v in the same R^n and outputs a **scalar**: u·v=Σ(i=1 to n) ui vi. It is symmetric and linear in each argument because real-number multiplication and finite addition are; these are properties of the definition, not extra conventions.\n\nWorked example. For u=(1,2,-2) and v=(2,0,1), u·v=1·2+2·0+(-2)·1=0, a scalar. The self-dot u·u=1+4+4=9, so ||u||=sqrt(u·u)=3. Also v·v=4+0+1=5 and ||v||=sqrt(5). Since Σui²≥0, norm is nonnegative and ||u||=0 exactly for u=0. A dot product of a two-vector with a three-vector is not defined under this rule.\n\nConnect. Coordinatewise multiplication would give a vector (2,0,-2) here, not the dot product. To check distributivity, u·(v+w)=Σui(vi+wi)=Σui vi+Σui wi. This algebra matters before assigning any geometric interpretation.\n\nGuided practice. For p=(2,-1), q=(-1,3), p·q=-2-3=-5; p·p=5 and ||p||=sqrt(5). The dot is a scalar even when it is negative; the norm is never negative.\n\nDistinction check. A zero dot product between nonzero vectors will later encode perpendicularity; zero self-dot means the vector itself is zero. Neither fact makes the dot product a componentwise vector.",
+      "lesson": "Orient. Vector addition outputs a vector. The Euclidean dot product takes u,v in the same R^n and outputs a **scalar**: u·v=Σ(i=1 to n) ui vi. It is symmetric and linear in each argument because real-number multiplication and finite addition are; these are properties of the definition, not extra conventions.\n\nWorked example. For u=(1,2,-2) and v=(2,0,1), u·v=1·2+2·0+(-2)·1=0, a scalar. The self-dot u·u=1+4+4=9, so ||u||=sqrt(u·u)=3. Also v·v=4+0+1=5 and ||v||=sqrt(5). Since Σui²≥0, norm is nonnegative and ||u||=0 exactly for u=0. A dot product of a two-vector with a three-vector is not defined under this rule.\n\nConnect. Coordinatewise multiplication would give a vector (2,0,-2) here, not the dot product. To check distributivity, u·(v+w)=Σui(vi+wi)=Σui vi+Σui wi. This algebra matters before assigning any geometric interpretation.\n\nGuided practice. For p=(2,-1), q=(-1,3), calculate p·q and p·p, then ||p||. Label the type of each result and explain why a negative dot does not make the norm negative.\n\nDistinction check. A zero dot product between nonzero vectors will later encode perpendicularity; zero self-dot means the vector itself is zero. Neither fact makes the dot product a componentwise vector.",
       "main": "T22V3::ARC511::S13-M@1",
-      "transfer": "T22V3::ARC511::S13-T@1"
+      "transfer": "T22V3::ARC511::S13-T@1",
+      "guidedFeedback": "Check after attempting. For p=(2,-1), q=(-1,3), p·q=-2-3=-5; p·p=5 and ||p||=sqrt(5). The dot is a scalar even when it is negative; the norm is never negative."
     },
     {
       "order": 14,
@@ -554,9 +567,10 @@
         "rank and projection"
       ],
       "exitCondition": "Derive and apply Cauchy–Schwarz and the triangle inequality with zero cases and hypotheses visible.",
-      "lesson": "Orient. The normalized ratio (u·v)/(||u||||v||) should lie between -1 and 1 for nonzero vectors. Prove that fact algebraically before calling it a cosine. For v=0 the bound |u·v|≤||u||||v|| is 0≤0. For v≠0 let t=(u·v)/(v·v), a real scalar. Nonnegativity gives 0≤||u-tv||²=||u||²-2t(u·v)+t²||v||²=||u||²-(u·v)²/||v||². Multiply by positive ||v||² and take nonnegative square roots: |u·v|≤||u||||v||. This is a proof device with one scalar t, not an M15 projection algorithm.\n\nWorked example. For u=(2,1), v=(1,-2), u·v=0, ||u||=||v||=sqrt(5); the inequality gives 0≤5. For a nontrivial case p=(2,0), q=(1,1), |p·q|=2≤2sqrt(2)=||p||||q||. The point is the all-vector proof above, not numerical checking.\n\nDerive. Expand ||u+v||²=||u||²+2u·v+||v||²≤(||u||+||v||)². Both norms are nonnegative, so taking square roots yields ||u+v||≤||u||+||v||. Equality questions are optional here and must not be guessed from one picture.\n\nGuided practice. If ||a||=3 and ||b||=4, |a·b|≤12; a report of a·b=13 is impossible. Also ||a+b||≤7. These statements do not reveal the actual dot product or norm of the sum.\n\nDistinction check. A universal inequality is proved from the Euclidean dot product and its positivity; a few examples are checks, not the proof.",
+      "lesson": "Orient. The normalized ratio (u·v)/(||u||||v||) should lie between -1 and 1 for nonzero vectors. Prove that fact algebraically before calling it a cosine. For v=0 the bound |u·v|≤||u||||v|| is 0≤0. For v≠0 let t=(u·v)/(v·v), a real scalar. Nonnegativity gives 0≤||u-tv||²=||u||²-2t(u·v)+t²||v||²=||u||²-(u·v)²/||v||². Multiply by positive ||v||² and take nonnegative square roots: |u·v|≤||u||||v||. This is a proof device with one scalar t, not an M15 projection algorithm.\n\nWorked example. For u=(2,1), v=(1,-2), u·v=0, ||u||=||v||=sqrt(5); the inequality gives 0≤5. For a nontrivial case p=(2,0), q=(1,1), |p·q|=2≤2sqrt(2)=||p||||q||. The point is the all-vector proof above, not numerical checking.\n\nDerive. Expand ||u+v||²=||u||²+2u·v+||v||²≤(||u||+||v||)². Both norms are nonnegative, so taking square roots yields ||u+v||≤||u||+||v||. Equality questions are optional here and must not be guessed from one picture.\n\nGuided practice. Suppose ||a||=3 and ||b||=4. What upper bound does Cauchy–Schwarz place on |a·b|, and what upper bound does the triangle inequality place on ||a+b||? Audit a claim that a·b=13.\n\nDistinction check. A universal inequality is proved from the Euclidean dot product and its positivity; a few examples are checks, not the proof.",
       "main": "T22V3::ARC511::S14-M@1",
-      "transfer": "T22V3::ARC511::S14-T@1"
+      "transfer": "T22V3::ARC511::S14-T@1",
+      "guidedFeedback": "Check after attempting. If ||a||=3 and ||b||=4, |a·b|≤12; a report of a·b=13 is impossible. Also ||a+b||≤7. These statements do not reveal the actual dot product or norm of the sum."
     },
     {
       "order": 15,
@@ -586,9 +600,10 @@
         "rank and projection"
       ],
       "exitCondition": "Compute normalized alignment and angle while guarding the zero-vector denominator.",
-      "lesson": "Orient. Dot product was defined algebraically in S13. For nonzero planar vectors, the ordinary Euclidean law of cosines applied to the triangle with sides u,v,u-v says ||u-v||²=||u||²+||v||²-2||u||||v||cos θ, where θ is the angle between their directions. Algebraic expansion gives the same left side as ||u||²+||v||²-2u·v. Comparing yields cos θ=(u·v)/(||u||||v||). In R^n the ratio defines the Euclidean angle via arccos; S14 ensures it lies in [-1,1].\n\nWorked example. For u=(2,0), v=(1,1), u·v=2, ||u||=2, ||v||=sqrt(2), so cos θ=1/sqrt(2) and θ=π/4. Scaling v by 5 changes the raw dot product from 2 to 10 but leaves the angle the same because its norm also scales by 5.\n\nGuided practice. For a=(1,0), b=(-1,0), cos θ=-1 and θ=π. For a=(1,0), c=(0,1), cos θ=0 and θ=π/2. The direction comparison uses nonzero vectors.\n\nDistinction check. If one vector is zero, its norm is zero and the displayed quotient is undefined. Although 0·v=0, a zero vector has no direction; do not assign a right angle to it. Angle is an interpretation under conditions, not the dot product’s definition.",
+      "lesson": "Orient. Dot product was defined algebraically in S13. For nonzero planar vectors, the ordinary Euclidean law of cosines applied to the triangle with sides u,v,u-v says ||u-v||²=||u||²+||v||²-2||u||||v||cos θ, where θ is the angle between their directions. Algebraic expansion gives the same left side as ||u||²+||v||²-2u·v. Comparing yields cos θ=(u·v)/(||u||||v||). In R^n the ratio defines the Euclidean angle via arccos; S14 ensures it lies in [-1,1].\n\nWorked example. For u=(2,0), v=(1,1), u·v=2, ||u||=2, ||v||=sqrt(2), so cos θ=1/sqrt(2) and θ=π/4. Scaling v by 5 changes the raw dot product from 2 to 10 but leaves the angle the same because its norm also scales by 5.\n\nGuided practice. For a=(1,0), b=(-1,0), and c=(0,1), compute both cosines and angles between a and each of b,c. Check the nonzero condition before dividing by norms.\n\nDistinction check. If one vector is zero, its norm is zero and the displayed quotient is undefined. Although 0·v=0, a zero vector has no direction; do not assign a right angle to it. Angle is an interpretation under conditions, not the dot product’s definition.",
       "main": "T22V3::ARC511::S15-M@1",
-      "transfer": "T22V3::ARC511::S15-T@1"
+      "transfer": "T22V3::ARC511::S15-T@1",
+      "guidedFeedback": "Check after attempting. For a=(1,0), b=(-1,0), cos θ=-1 and θ=π. For a=(1,0), c=(0,1), cos θ=0 and θ=π/2. The direction comparison uses nonzero vectors."
     },
     {
       "order": 16,
@@ -618,18 +633,19 @@
         "rank and projection"
       ],
       "exitCondition": "Choose and justify a magnitude or directional comparison, construct a nonzero orthogonal vector, and avoid zero-vector angle claims.",
-      "lesson": "Orient. In Euclidean R^n two vectors are algebraically orthogonal when their dot product is zero. If both are nonzero, S15 then gives cos θ=0 and a right angle. The zero vector is algebraically orthogonal to every vector under the zero-dot definition, but has no angle. This distinction prevents a definition from silently importing a geometric interpretation outside its domain.\n\nWorked example. Compare u=(1,1) with v=(50,0) and w=(2,2). Raw dots are 50 and 4, respectively; nevertheless cos(u,v)=1/sqrt(2) and cos(u,w)=1. The smaller raw dot corresponds to stronger directional alignment because v has much larger magnitude. A nonzero vector z=(-1,1) has u·z=0 and is perpendicular to u.\n\nGuided practice. For a=(1,2), b=(2,-1), a·b=2-2=0, and both are nonzero, so their angle is π/2. Replacing b by zero preserves the algebraic zero dot but removes the angle claim.\n\nDistinction check. “Orthogonal” in this module means zero Euclidean dot product, not statistical independence. A directional similarity question uses a normalized ratio when vectors are nonzero; a magnitude question uses a norm or a context-specific scale.",
+      "lesson": "Orient. In Euclidean R^n two vectors are algebraically orthogonal when their dot product is zero. If both are nonzero, S15 then gives cos θ=0 and a right angle. The zero vector is algebraically orthogonal to every vector under the zero-dot definition, but has no angle. This distinction prevents a definition from silently importing a geometric interpretation outside its domain.\n\nWorked example. Compare u=(1,1) with v=(50,0) and w=(2,2). Raw dots are 50 and 4, respectively; nevertheless cos(u,v)=1/sqrt(2) and cos(u,w)=1. The smaller raw dot corresponds to stronger directional alignment because v has much larger magnitude. A nonzero vector z=(-1,1) has u·z=0 and is perpendicular to u.\n\nGuided practice. For a=(1,2), b=(2,-1), decide whether they are orthogonal and whether their angle is π/2. Repeat the two questions when b is replaced by zero, making the algebraic/geometric distinction explicit.\n\nDistinction check. “Orthogonal” in this module means zero Euclidean dot product, not statistical independence. A directional similarity question uses a normalized ratio when vectors are nonzero; a magnitude question uses a norm or a context-specific scale.",
       "main": "T22V3::ARC511::S16-M@1",
-      "transfer": "T22V3::ARC511::S16-T@1"
+      "transfer": "T22V3::ARC511::S16-T@1",
+      "guidedFeedback": "Check after attempting. For a=(1,2), b=(2,-1), a·b=2-2=0, and both are nonzero, so their angle is π/2. Replacing b by zero preserves the algebraic zero dot but removes the angle claim."
     },
     {
       "order": 17,
       "id": "T22V3::ARC511::S17@1",
       "moduleId": "ARC511",
       "title": "Synthesis: representation, basis and geometry",
-      "focus": "Integrate generator redundancy, target coordinates and alignment under one coherent new problem.",
+      "focus": "Integrate generator redundancy, target coordinates and a self-chosen directional diagnostic under one report.",
       "purpose": "Integrate generator redundancy, target coordinates and alignment under one coherent new problem.",
-      "centralCapability": "Organize a new vector library into a basis, represent a target and defend a Euclidean comparison with valid hypotheses.",
+      "centralCapability": "Organize a new vector library into a basis, represent a target and choose a scale-invariant Euclidean comparison with valid hypotheses.",
       "principalObstacle": "Following a fixed recipe without making a representation choice or assuming a redundant list is independent.",
       "entryPrerequisites": [
         "M13-S01–S16 owned capabilities"
@@ -637,7 +653,7 @@
       "requiredOwnership": [
         "Choose and justify a nonredundant basis from a supplied finite vector library.",
         "Determine target membership and coordinates relative to the chosen basis.",
-        "Compute a normalized Euclidean angle to a specified nonzero direction with hypotheses checked.",
+        "Choose a scale-invariant Euclidean diagnostic for directional closeness and justify a comparison under unequal magnitudes.",
         "Diagnose combined false claims about dependence, membership and an angle to zero."
       ],
       "applicationScope": "Finite real coordinate vectors with explicitly stated dimensions and coefficient conventions.",
@@ -650,9 +666,10 @@
         "rank and projection"
       ],
       "exitCondition": "Organize a new vector library into a basis, represent a target and defend a Euclidean comparison with valid hypotheses.",
-      "lesson": "Orient. A synthesis task is not a list of memorized names. First ask what each vector represents and which generator directions are redundant. Separate the existential target-witness question from the universal basis question. Then decide whether a magnitude, dot product, normalized angle or zero-dot relation answers the geometric part. These decisions are available from earlier sessions; no matrix or projection algorithm is needed.\n\nWorked example. Let p=(1,0,0), q=(0,1,1), r=(1,1,1)=p+q. The pair (p,q) is independent because first and second coordinates isolate coefficients; it spans the same library as all three because r is redundant. The target (2,-1,-1)=2p-q has relative coordinates (2,-1). Against d=(0,1,0), its dot is -1 and its cosine is -1/sqrt(6), since both norms are nonzero. This example shows the order of justification, not the assessment instance.\n\nGuided practice. For a=(1,0), b=(0,1), c=(1,1), remove c because c=a+b; the target (2,3) has (a,b)-coordinates (2,3). Its dot with (1,0) is 2 and the cosine is 2/sqrt(13), not 2.\n\nDistinction check. Another valid basis may yield different coefficients for the same target. Score the basis proof and consistency of coordinates, not just one favored pair. A zero comparison direction would make the angle undefined.",
-      "main": "T22V3::ARC511::S17-M@1",
-      "transfer": "T22V3::ARC511::S17-T@1"
+      "lesson": "Orient. A synthesis task is not a list of memorized names. First ask what each vector represents and which generator directions are redundant. Separate the existential target-witness question from the universal basis question. Then decide whether a magnitude, dot product, normalized angle or zero-dot relation answers the geometric part. These decisions are available from earlier sessions; no matrix or projection algorithm is needed.\n\nWorked example. Let p=(1,0,0), q=(0,1,1), r=(1,1,1)=p+q. The pair (p,q) is independent because first and second coordinates isolate coefficients; it spans the same library as all three because r is redundant. The target (2,-1,-1)=2p-q has relative coordinates (2,-1). This solves reachability and encoding; a separate directional-comparison question must choose a suitable geometric measure and check its domain.\n\nGuided practice. A library in R² has a=(1,0), b=(0,1), c=(1,1), target (2,3) and comparison direction (1,0). Before checking, identify a redundant generator, choose an ordered basis, find target coordinates, and decide which calculation gives direction rather than raw magnitude.\n\nDistinction check. Another valid basis may yield different coefficients for the same target. Score the basis proof and consistency of coordinates, not just one favored pair. A zero comparison direction would make the angle undefined.",
+      "main": "T22V3::ARC511::S17-M@2",
+      "transfer": "T22V3::ARC511::S17-T@1",
+      "guidedFeedback": "Check after attempting. For a=(1,0), b=(0,1), c=(1,1), remove c because c=a+b; the target (2,3) has (a,b)-coordinates (2,3). Its dot with (1,0) is 2 and the cosine is 2/sqrt(13), not 2."
     }
   ],
   "problems": {
@@ -796,20 +813,6 @@
       "prompt": "In K={(x,y,z)∈R³:x+y+z=0}, a library gives a=(1,-1,0), b=(0,1,-1), and c=(1,0,-1). Choose two of these as a basis for K, justify the removal of the third and independence of your chosen pair, then give coordinates of t=(1,2,-3) relative to your stated basis.",
       "obligationVersion": 1
     },
-    "T22V3::ARC511::S11-M@1": {
-      "id": "T22V3::ARC511::S11-M@1",
-      "order": 11,
-      "kind": "main",
-      "prompt": "Let V be a real vector space with a finite spanning list B=(v1,...,vm) and an independent list W=(w1,...,wn). Explain the crucial replacement step that lets one insert wk into a currently spanning list already containing w1,...,w(k-1), and why that step implies n≤m. Then apply the bound in both directions to two bases B and C of V to justify an invariant dimension. Do not use rank or elimination.",
-      "obligationVersion": 1
-    },
-    "T22V3::ARC511::S11-T@1": {
-      "id": "T22V3::ARC511::S11-T@1",
-      "order": 11,
-      "kind": "transfer",
-      "prompt": "A real vector space U has a verified spanning list of four vectors. A report claims to have found five linearly independent vectors in U, without presenting them. Can the claim be true? Give the theorem with its object/hypothesis match and explain why the mere existence of a four-vector spanning list suffices. Does this prove the four spanning vectors themselves are independent?",
-      "obligationVersion": 1
-    },
     "T22V3::ARC511::S12-M@1": {
       "id": "T22V3::ARC511::S12-M@1",
       "order": 12,
@@ -880,19 +883,33 @@
       "prompt": "Given nonzero a=(1,2,-1) in R³, construct a nonzero b with a·b=0, verify it and state the angle between a and b. Then explain why b=(0,0,0) would satisfy the dot equation but fail to answer the angle part.",
       "obligationVersion": 1
     },
-    "T22V3::ARC511::S17-M@1": {
-      "id": "T22V3::ARC511::S17-M@1",
-      "order": 17,
-      "kind": "main",
-      "prompt": "A library in R³ contains u=(1,0,1), v=(0,1,2), and w=(1,1,3). Choose any two that form a basis for the span of the library and justify both redundancy of the omitted vector and independence of your chosen pair. Determine whether t=(3,-1,1) is in that span and give its coordinates relative to your stated ordered basis. Finally, for d=(1,0,-1), compute t·d and the cosine of the angle between t and d, checking the nonzero conditions.",
-      "obligationVersion": 1
-    },
     "T22V3::ARC511::S17-T@1": {
       "id": "T22V3::ARC511::S17-T@1",
       "order": 17,
       "kind": "transfer",
       "prompt": "Audit this report about p=(1,0,2), q=(0,2,1), r=(1,2,3), and target s=(2,2,3) in R³: “The three generators are independent because no pair is parallel; s is reachable because there are three of them; and the angle between s and zero is π/2 since their dot product is zero.” For each assertion give a mathematical correction or counterexample, with a zero relation, an all-combination obstruction, and the relevant angle condition.",
       "obligationVersion": 1
+    },
+    "T22V3::ARC511::S11-M@2": {
+      "id": "T22V3::ARC511::S11-M@2",
+      "order": 11,
+      "kind": "main",
+      "prompt": "Let V be a subspace of some real R^N, with a finite spanning list B=(v1,...,vm) and an independent list W=(w1,...,wn). Explain the crucial replacement step that lets one insert wk into a currently spanning list already containing w1,...,w(k-1), and why that step implies n≤m. Then apply the bound in both directions to two bases B and C of V to justify an invariant dimension. Do not use rank or elimination.",
+      "obligationVersion": 2
+    },
+    "T22V3::ARC511::S11-T@2": {
+      "id": "T22V3::ARC511::S11-T@2",
+      "order": 11,
+      "kind": "transfer",
+      "prompt": "A subspace U of some real R^N has a verified spanning list of four vectors. A report claims to have found five linearly independent vectors in U, without presenting them. Can the claim be true? Give the theorem with its object/hypothesis match and explain why the mere existence of a four-vector spanning list suffices. Does this prove the four spanning vectors themselves are independent?",
+      "obligationVersion": 2
+    },
+    "T22V3::ARC511::S17-M@2": {
+      "id": "T22V3::ARC511::S17-M@2",
+      "order": 17,
+      "kind": "main",
+      "prompt": "A library in R³ contains u=(1,0,1), v=(0,1,2), and w=(1,1,3). A team wants a nonredundant encoding of its reachable vectors and to know whether t=(3,-1,1) can be encoded. It also asks which of d=(100,0,-100) and e=(1,0,0) points closer to t’s direction; the choice should not change when either candidate is multiplied by a positive scalar. Write one justified report: select an ordered basis, establish its validity, decide reachability and give coordinates if possible, choose the geometric diagnostic that answers the directional question, and compare d with e. State any conditions needed for that diagnostic.",
+      "obligationVersion": 2
     }
   },
   "evaluators": {
@@ -1308,46 +1325,6 @@
       ],
       "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
     },
-    "T22V3::ARC511::S11-M@1": {
-      "reference": "At step k, express wk in the current spanning list. If all coefficients on the not-yet-replaced old members were zero, wk would lie in span{w1,...,w(k-1)}, contradicting independence. Hence one old coefficient is nonzero; solve for that old vector and replace it by wk, preserving span. Each insertion consumes an old member, so at most m insertions are possible and n≤m. For bases B,C, C independent/B spanning gives |C|≤|B|, while B independent/C spanning gives |B|≤|C|; hence equality and a well-defined dim(V).",
-      "rubric": [
-        {
-          "points": 4,
-          "criterion": "Identifies a nonzero coefficient of a remaining old generator using independence."
-        },
-        {
-          "points": 2,
-          "criterion": "Solves for that old generator to preserve spanning after replacement."
-        },
-        {
-          "points": 2,
-          "criterion": "Derives n≤m from finite repeated replacements."
-        },
-        {
-          "points": 2,
-          "criterion": "Applies the bound both ways to conclude all finite bases of V have equal size."
-        }
-      ],
-      "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
-    },
-    "T22V3::ARC511::S11-T@1": {
-      "reference": "No: for an independent list of length 5 and a spanning list of length 4 in the same real vector space, the finite replacement bound would require 5≤4. The spanning list may be redundant, so its size alone does not prove it is independent; it only gives an upper bound on any independent list length.",
-      "rubric": [
-        {
-          "points": 4,
-          "criterion": "Correctly applies the independent-length ≤ spanning-length bound to the same space."
-        },
-        {
-          "points": 3,
-          "criterion": "Explains why 5≤4 is impossible regardless of the unseen vectors."
-        },
-        {
-          "points": 3,
-          "criterion": "Declines to infer independence of the four spanning vectors and gives the redundancy reason."
-        }
-      ],
-      "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
-    },
     "T22V3::ARC511::S12-M@1": {
       "reference": "Take p=(1,0,3), q=(0,1,2). Any member (x,y,3x+2y)=xp+yq, so they span. If ap+bq=0, first and second coordinates force a=b=0, proving independence. Thus dim(H)=2, while the standard basis shows dim(R³)=3. H-vectors retain three ambient coordinates because H is a plane represented inside R³.",
       "rubric": [
@@ -1560,28 +1537,6 @@
       ],
       "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
     },
-    "T22V3::ARC511::S17-M@1": {
-      "reference": "One valid ordered basis is (u,v), since w=u+v and au+bv=0 forces a=b=0 from the first two coordinates. The target t=3u-v=(3,-1,3-2)=(3,-1,1), so its (u,v)-coordinates are (3,-1). Also t·d=3-1=2, ||t||=sqrt(11), ||d||=sqrt(2), and cos θ=2/sqrt(22). Both norms are nonzero. Other independent pairs from the library also span and give different but valid relative coordinates; accept these with proof.",
-      "rubric": [
-        {
-          "points": 3,
-          "criterion": "Chooses a pair, proves the omitted vector redundant, and proves the pair independent."
-        },
-        {
-          "points": 3,
-          "criterion": "Gives a checked target witness and coordinates consistent with the stated basis order."
-        },
-        {
-          "points": 2,
-          "criterion": "Computes t·d=2 and both positive norms sqrt(11),sqrt(2)."
-        },
-        {
-          "points": 2,
-          "criterion": "Computes cos θ=2/sqrt(22) with nonzero-denominator justification."
-        }
-      ],
-      "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
-    },
     "T22V3::ARC511::S17-T@1": {
       "reference": "Here r=p+q, so p+q-r=0 is a nontrivial relation despite no parallel pair. Any ap+bq+cr equals (a+c,2b+2c,2a+b+3c), whose coordinates satisfy z=2x+y/2. The target s=(2,2,3) violates 3=2(2)+2/2=5, so it is unreachable. Finally s·0=0, but ||0||=0 and the zero vector has no direction, so the angle is undefined, not π/2.",
       "rubric": [
@@ -1596,6 +1551,68 @@
         {
           "points": 3,
           "criterion": "Rejects the zero-vector angle claim using the nonzero/denominator condition."
+        }
+      ],
+      "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
+    },
+    "T22V3::ARC511::S11-M@2": {
+      "reference": "At step k, express wk in the current spanning list. If all coefficients on the not-yet-replaced old members were zero, wk would lie in span{w1,...,w(k-1)}, contradicting independence. Hence one old coefficient is nonzero; solve for that old vector and replace it by wk, preserving span. Each insertion consumes an old member, so at most m insertions are possible and n≤m. For bases B,C, C independent/B spanning gives |C|≤|B|, while B independent/C spanning gives |B|≤|C|; hence equality and a well-defined dim(V).",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Identifies a nonzero coefficient of a remaining old generator using independence."
+        },
+        {
+          "points": 2,
+          "criterion": "Solves for that old generator to preserve spanning after replacement."
+        },
+        {
+          "points": 2,
+          "criterion": "Derives n≤m from finite repeated replacements."
+        },
+        {
+          "points": 2,
+          "criterion": "Applies the bound both ways to conclude all finite bases of V have equal size."
+        }
+      ],
+      "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
+    },
+    "T22V3::ARC511::S11-T@2": {
+      "reference": "No: for an independent list of length 5 and a spanning list of length 4 in the same real coordinate subspace, the finite replacement bound would require 5≤4. The spanning list may be redundant, so its size alone does not prove it is independent; it only gives an upper bound on any independent list length.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Correctly applies the independent-length ≤ spanning-length bound to the same space."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why 5≤4 is impossible regardless of the unseen vectors."
+        },
+        {
+          "points": 3,
+          "criterion": "Declines to infer independence of the four spanning vectors and gives the redundancy reason."
+        }
+      ],
+      "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
+    },
+    "T22V3::ARC511::S17-M@2": {
+      "reference": "One ordered basis is (u,v): w=u+v and au+bv=0 forces a=b=0 from the first two coordinates. The target t=3u-v=(3,-1,1), so its coordinates in (u,v) are (3,-1). Other valid ordered pairs give different correct coordinates. Directional closeness must be invariant under positive rescaling, so compare cosines, not raw dots. Here ||t||=sqrt(11), ||d||=100sqrt(2), ||e||=1; t·d=200 and t·e=3, giving cos(t,d)=2/sqrt(22) and cos(t,e)=3/sqrt(11). Both candidates and t are nonzero; e is closer in direction since 3/sqrt(11)>2/sqrt(22). The larger raw dot with d is caused by its scale.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Chooses an ordered pair, proves the omitted generator redundant and the pair independent."
+        },
+        {
+          "points": 2,
+          "criterion": "Determines target membership and gives checked coordinates consistent with the chosen basis order."
+        },
+        {
+          "points": 3,
+          "criterion": "Chooses a scale-invariant normalized directional measure, computes both comparisons and checks nonzero hypotheses."
+        },
+        {
+          "points": 2,
+          "criterion": "Selects e as closer in direction and explains why the larger raw dot with d is misleading."
         }
       ],
       "marking": "Score the public obligations. Accept valid alternative methods and notation with equivalent reasoning; do not award a claim for a bare correct verdict when its public request asks for justification."
@@ -2266,10 +2283,10 @@
         "claim": "Explain why an independent list cannot be longer than a finite spanning list, using a valid replacement step.",
         "task": "main",
         "taskIds": [
-          "T22V3::ARC511::S11-M@1"
+          "T22V3::ARC511::S11-M@2"
         ],
         "publicRequestExact": [
-          "Let V be a real vector space with a finite spanning list B=(v1,...,vm) and an independent list W=(w1,...,wn). Explain the crucial replacement step that lets one insert wk into a currently spanning list already containing w1,...,w(k-1), and why that step implies n≤m. Then apply the bound in both directions to two bases B and C of V to justify an invariant dimension. Do not use rank or elimination."
+          "Let V be a subspace of some real R^N, with a finite spanning list B=(v1,...,vm) and an independent list W=(w1,...,wn). Explain the crucial replacement step that lets one insert wk into a currently spanning list already containing w1,...,w(k-1), and why that step implies n≤m. Then apply the bound in both directions to two bases B and C of V to justify an invariant dimension. Do not use rank or elimination."
         ],
         "rubricEvidence": [
           "Identifies a nonzero coefficient of a remaining old generator using independence.",
@@ -2284,10 +2301,10 @@
         "claim": "Deduce equal length of any two finite bases of the same space by applying the bound both ways.",
         "task": "main",
         "taskIds": [
-          "T22V3::ARC511::S11-M@1"
+          "T22V3::ARC511::S11-M@2"
         ],
         "publicRequestExact": [
-          "Let V be a real vector space with a finite spanning list B=(v1,...,vm) and an independent list W=(w1,...,wn). Explain the crucial replacement step that lets one insert wk into a currently spanning list already containing w1,...,w(k-1), and why that step implies n≤m. Then apply the bound in both directions to two bases B and C of V to justify an invariant dimension. Do not use rank or elimination."
+          "Let V be a subspace of some real R^N, with a finite spanning list B=(v1,...,vm) and an independent list W=(w1,...,wn). Explain the crucial replacement step that lets one insert wk into a currently spanning list already containing w1,...,w(k-1), and why that step implies n≤m. Then apply the bound in both directions to two bases B and C of V to justify an invariant dimension. Do not use rank or elimination."
         ],
         "rubricEvidence": [
           "Applies the bound both ways to conclude all finite bases of V have equal size."
@@ -2300,10 +2317,10 @@
         "claim": "Use the bound to reject an impossible independent-list cardinality claim.",
         "task": "transfer",
         "taskIds": [
-          "T22V3::ARC511::S11-T@1"
+          "T22V3::ARC511::S11-T@2"
         ],
         "publicRequestExact": [
-          "A real vector space U has a verified spanning list of four vectors. A report claims to have found five linearly independent vectors in U, without presenting them. Can the claim be true? Give the theorem with its object/hypothesis match and explain why the mere existence of a four-vector spanning list suffices. Does this prove the four spanning vectors themselves are independent?"
+          "A subspace U of some real R^N has a verified spanning list of four vectors. A report claims to have found five linearly independent vectors in U, without presenting them. Can the claim be true? Give the theorem with its object/hypothesis match and explain why the mere existence of a four-vector spanning list suffices. Does this prove the four spanning vectors themselves are independent?"
         ],
         "rubricEvidence": [
           "Correctly applies the independent-length ≤ spanning-length bound to the same space.",
@@ -2385,7 +2402,7 @@
         "disposition": "adequate"
       },
       {
-        "claim": "Compute Euclidean norm from the self-dot product and handle the zero-vector case.",
+        "claim": "Compute Euclidean norms from self-dot products and justify their nonnegativity.",
         "task": "main",
         "taskIds": [
           "T22V3::ARC511::S13-M@1"
@@ -2398,7 +2415,7 @@
           "Computes b·b=10 and ||b||=sqrt(10).",
           "Justifies nonnegative norm from sum of squares and principal square root."
         ],
-        "why": "The learner uses self-dots and nonnegative roots for both norms.",
+        "why": "The learner computes both self-dots and nonnegative norms and explains positivity; no zero-vector handling is inferred.",
         "escapeAttempt": "A signed sum cannot earn the norm rows.",
         "disposition": "adequate"
       },
@@ -2584,13 +2601,13 @@
         "claim": "Choose and justify a nonredundant basis from a supplied finite vector library.",
         "task": "main",
         "taskIds": [
-          "T22V3::ARC511::S17-M@1"
+          "T22V3::ARC511::S17-M@2"
         ],
         "publicRequestExact": [
-          "A library in R³ contains u=(1,0,1), v=(0,1,2), and w=(1,1,3). Choose any two that form a basis for the span of the library and justify both redundancy of the omitted vector and independence of your chosen pair. Determine whether t=(3,-1,1) is in that span and give its coordinates relative to your stated ordered basis. Finally, for d=(1,0,-1), compute t·d and the cosine of the angle between t and d, checking the nonzero conditions."
+          "A library in R³ contains u=(1,0,1), v=(0,1,2), and w=(1,1,3). A team wants a nonredundant encoding of its reachable vectors and to know whether t=(3,-1,1) can be encoded. It also asks which of d=(100,0,-100) and e=(1,0,0) points closer to t’s direction; the choice should not change when either candidate is multiplied by a positive scalar. Write one justified report: select an ordered basis, establish its validity, decide reachability and give coordinates if possible, choose the geometric diagnostic that answers the directional question, and compare d with e. State any conditions needed for that diagnostic."
         ],
         "rubricEvidence": [
-          "Chooses a pair, proves the omitted vector redundant, and proves the pair independent."
+          "Chooses an ordered pair, proves the omitted generator redundant and the pair independent."
         ],
         "why": "The learner chooses and proves an independent pair spanning the library.",
         "escapeAttempt": "Assuming all three are independent cannot earn this row.",
@@ -2600,33 +2617,33 @@
         "claim": "Determine target membership and coordinates relative to the chosen basis.",
         "task": "main",
         "taskIds": [
-          "T22V3::ARC511::S17-M@1"
+          "T22V3::ARC511::S17-M@2"
         ],
         "publicRequestExact": [
-          "A library in R³ contains u=(1,0,1), v=(0,1,2), and w=(1,1,3). Choose any two that form a basis for the span of the library and justify both redundancy of the omitted vector and independence of your chosen pair. Determine whether t=(3,-1,1) is in that span and give its coordinates relative to your stated ordered basis. Finally, for d=(1,0,-1), compute t·d and the cosine of the angle between t and d, checking the nonzero conditions."
+          "A library in R³ contains u=(1,0,1), v=(0,1,2), and w=(1,1,3). A team wants a nonredundant encoding of its reachable vectors and to know whether t=(3,-1,1) can be encoded. It also asks which of d=(100,0,-100) and e=(1,0,0) points closer to t’s direction; the choice should not change when either candidate is multiplied by a positive scalar. Write one justified report: select an ordered basis, establish its validity, decide reachability and give coordinates if possible, choose the geometric diagnostic that answers the directional question, and compare d with e. State any conditions needed for that diagnostic."
         ],
         "rubricEvidence": [
-          "Gives a checked target witness and coordinates consistent with the stated basis order."
+          "Determines target membership and gives checked coordinates consistent with the chosen basis order."
         ],
         "why": "The learner gives a target witness and coordinates relative to the stated ordered basis.",
         "escapeAttempt": "A coefficient tuple without an identified basis is insufficient.",
         "disposition": "adequate"
       },
       {
-        "claim": "Compute a normalized Euclidean angle to a specified nonzero direction with hypotheses checked.",
+        "claim": "Choose a scale-invariant Euclidean diagnostic for directional closeness and justify a comparison under unequal magnitudes.",
         "task": "main",
         "taskIds": [
-          "T22V3::ARC511::S17-M@1"
+          "T22V3::ARC511::S17-M@2"
         ],
         "publicRequestExact": [
-          "A library in R³ contains u=(1,0,1), v=(0,1,2), and w=(1,1,3). Choose any two that form a basis for the span of the library and justify both redundancy of the omitted vector and independence of your chosen pair. Determine whether t=(3,-1,1) is in that span and give its coordinates relative to your stated ordered basis. Finally, for d=(1,0,-1), compute t·d and the cosine of the angle between t and d, checking the nonzero conditions."
+          "A library in R³ contains u=(1,0,1), v=(0,1,2), and w=(1,1,3). A team wants a nonredundant encoding of its reachable vectors and to know whether t=(3,-1,1) can be encoded. It also asks which of d=(100,0,-100) and e=(1,0,0) points closer to t’s direction; the choice should not change when either candidate is multiplied by a positive scalar. Write one justified report: select an ordered basis, establish its validity, decide reachability and give coordinates if possible, choose the geometric diagnostic that answers the directional question, and compare d with e. State any conditions needed for that diagnostic."
         ],
         "rubricEvidence": [
-          "Computes t·d=2 and both positive norms sqrt(11),sqrt(2).",
-          "Computes cos θ=2/sqrt(22) with nonzero-denominator justification."
+          "Chooses a scale-invariant normalized directional measure, computes both comparisons and checks nonzero hypotheses.",
+          "Selects e as closer in direction and explains why the larger raw dot with d is misleading."
         ],
-        "why": "The learner computes dot, norms and normalized cosine with nonzero check.",
-        "escapeAttempt": "A raw dot alone fails normalized geometry.",
+        "why": "The learner selects a measure invariant to positive rescaling, computes both normalized comparisons, checks nonzero conditions and defends the ranking.",
+        "escapeAttempt": "A raw dot ranking chooses the wrong direction and cannot earn the normalization and explanation rows.",
         "disposition": "adequate"
       },
       {
@@ -2682,8 +2699,8 @@
     },
     "T22V3::ARC511::S04@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "The target coefficients and their consistency are not supplied; the learner must solve a new three-coordinate witness problem."
+        "classification": "retrieval",
+        "reason": "Retrieval: the lesson already models coordinate-equation membership; Main reuses that procedure on a new target and adds a quantifier check."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2692,8 +2709,8 @@
     },
     "T22V3::ARC511::S05@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "The learner derives a new invariant and tests a new impossible target."
+        "classification": "retrieval",
+        "reason": "Retrieval: the lesson derives an all-combination invariant and tests an impossible target; Main repeats that proof shape with new data."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2712,8 +2729,8 @@
     },
     "T22V3::ARC511::S07@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main requires a three-coefficient proof beyond the two-vector worked example; the equations are not supplied."
+        "classification": "retrieval",
+        "reason": "Retrieval with greater coefficient load: the prompt prescribes a zero-combination equation; the three-vector algebra extends the taught two-vector routine."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2742,8 +2759,8 @@
     },
     "T22V3::ARC511::S10@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main asks the learner to construct rather than choose a supplied basis, and to prove both obligations."
+        "classification": "retrieval",
+        "reason": "Retrieval: the lesson already parameterizes a plane, constructs a basis and computes relative coordinates; Main changes the plane data."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2802,8 +2819,8 @@
     },
     "T22V3::ARC511::S16@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "The learner must decide the appropriate alignment measure and rank new candidate vectors; raw dots are a trap."
+        "classification": "retrieval",
+        "reason": "Retrieval: the lesson already contrasts a large raw dot with stronger normalized alignment; Main repeats the comparison on more candidates."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2813,7 +2830,7 @@
     "T22V3::ARC511::S17@1": {
       "main": {
         "classification": "fresh Main evidence",
-        "reason": "Main leaves the basis choice, target representation and geometric calculation to the learner on a new library."
+        "reason": "Main combines an uncued basis/reachability report with a scale-invariant directional decision between two new candidates; instruction never works this combined comparison."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2855,8 +2872,8 @@
       },
       "T22V3::ARC511::S04@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "The target coefficients and their consistency are not supplied; the learner must solve a new three-coordinate witness problem."
+          "classification": "retrieval",
+          "reason": "Retrieval: the lesson already models coordinate-equation membership; Main reuses that procedure on a new target and adds a quantifier check."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -2865,8 +2882,8 @@
       },
       "T22V3::ARC511::S05@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "The learner derives a new invariant and tests a new impossible target."
+          "classification": "retrieval",
+          "reason": "Retrieval: the lesson derives an all-combination invariant and tests an impossible target; Main repeats that proof shape with new data."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -2885,8 +2902,8 @@
       },
       "T22V3::ARC511::S07@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main requires a three-coefficient proof beyond the two-vector worked example; the equations are not supplied."
+          "classification": "retrieval",
+          "reason": "Retrieval with greater coefficient load: the prompt prescribes a zero-combination equation; the three-vector algebra extends the taught two-vector routine."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -2915,8 +2932,8 @@
       },
       "T22V3::ARC511::S10@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main asks the learner to construct rather than choose a supplied basis, and to prove both obligations."
+          "classification": "retrieval",
+          "reason": "Retrieval: the lesson already parameterizes a plane, constructs a basis and computes relative coordinates; Main changes the plane data."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -2975,8 +2992,8 @@
       },
       "T22V3::ARC511::S16@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "The learner must decide the appropriate alignment measure and rank new candidate vectors; raw dots are a trap."
+          "classification": "retrieval",
+          "reason": "Retrieval: the lesson already contrasts a large raw dot with stronger normalized alignment; Main repeats the comparison on more candidates."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -2986,7 +3003,7 @@
       "T22V3::ARC511::S17@1": {
         "main": {
           "classification": "fresh Main evidence",
-          "reason": "Main leaves the basis choice, target representation and geometric calculation to the learner on a new library."
+          "reason": "Main combines an uncued basis/reachability report with a scale-invariant directional decision between two new candidates; instruction never works this combined comparison."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3014,12 +3031,19 @@
   "instructionSeparation": {
     "policy": "Fixed assessments use distinct objects from worked/guided examples; later lessons are also checked against earlier tasks. Historical exposure must be recorded if this changes.",
     "pilotFinding": "S04 worked generators originally repeated S03 Transfer generators; changed before publication to distinct (1,0,3),(0,1,-2).",
-    "status": "builder review in progress"
+    "status": "repaired after independent findings; awaiting follow-up"
   },
   "initialVersionAudit": {
     "priorCanonicalM13": "none",
     "legacyARC511": "Historical rich-module-4 inventory uses different IDs; this new M65 authoring contract does not recertify old attempts.",
-    "fixedAssessmentObligationVersion": 1
+    "fixedAssessmentObligationVersion": "31 unchanged tasks at v1; S11 Main/Transfer and S17 Main at v2",
+    "repairFrom": "c40a17517d6dccd64350ba1263636e581f37c080",
+    "changedObligations": [
+      "T22V3::ARC511::S11-M@1 → @2",
+      "T22V3::ARC511::S11-T@1 → @2",
+      "T22V3::ARC511::S17-M@1 → @2"
+    ],
+    "instructionVersion": "v1 → v2 for all 17 sessions: guided prompt and separate feedback; M13 never entered learner registry, so no stored M13 attempts are migrated."
   },
   "authoringPolicy": "Score only public obligations. Accept exact equivalent methods and any correctly defended alternate basis; require literal evidence for every owned claim. A proof explicitly taught is reconstruction evidence. Do not infer M14/M15 machinery or claim learner mastery from builder validation."
 }

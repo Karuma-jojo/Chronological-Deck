@@ -42,7 +42,7 @@ Status: pre-authoring boundary/source checkpoint at branch head `935e98c73282192
 | Span is a subspace and is the smallest subspace containing generators | S05 | Finite subset of real `R^n` | Prove closure and containment from the definition | No column-space algorithm. |
 | Dependent finite list iff a member lies in the span of the rest | S08 | Finite nonempty list; nonzero coefficient in a nontrivial relation | Prove both directions, including zero-vector case | No rank shortcut. |
 | Uniqueness of coefficients iff generating list is independent | S09 | Representation in its span | Prove by subtraction and a nontrivial zero relation | No inverse matrix. |
-| Finite replacement / length bound | S11 | A spanning list of `m` vectors in a real vector space; an independent list of `n` vectors | Prove elementary replacement in stages, hence `n≤m`; apply both ways to bases | No matrix elimination/rank. |
+| Finite replacement / length bound | S11 | A spanning list of `m` vectors and an independent list of `n` vectors in the same subspace `V⊆R^N` | Prove elementary replacement in stages, hence `n≤m`; apply both ways to bases | No matrix elimination/rank or untaught abstract vector-space axioms. |
 | `|u·v|≤||u||||v||` | S14 | Real Euclidean vectors of equal ambient dimension | Prove via nonnegative `||u-tv||²`, handling `v=0` | No projection algorithm. |
 | `||u+v||≤||u||+||v||` | S14 | Real Euclidean vectors of equal ambient dimension | Expand squares and apply Cauchy–Schwarz | No abstract normed spaces. |
 | Planar law of cosines / geometric interpretation | S15 | Two nonzero planar displacement vectors with angle θ | Supply the elementary planar law as a local geometric fact; compare with the algebraic squared-distance expansion, then define the angle by arccos in `R^n` | No projection or unproved general angle claim. |
@@ -145,7 +145,7 @@ First identify what can be added and scaled, then ask **what can this collection
 | S14 | Cauchy–Schwarz and triangle bounds | Justify geometry before dividing by norms. |
 | S15 | cosine/angle and zero-vector exception | Interpretation has domain and is not the definition. |
 | S16 | orthogonality and magnitude-versus-alignment diagnosis | Contrasts useful interpretations without projection. |
-| S17 | whole-module synthesis | Learner chooses representation, basis and geometry tools. |
+| S17 | whole-module synthesis | Learner chooses an ordered basis and a scale-invariant directional diagnostic while organizing reachability, coordinates and geometry. |
 
 **Sizing judgment.** Seventeen candidate sessions arise from 17 distinct acquisition/decision transitions above, not neighboring counts or the five historical arcs. Recheck after the S04 pilot; merge or split if its real learning load warrants it. No finished sessions beyond the pilot are authored before Gates 4–8 pass locally.
 

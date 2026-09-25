@@ -42,7 +42,7 @@ try{
     host.id='m13-render-probe';host.style.whiteSpace='pre-wrap';host.style.overflowWrap='anywhere';document.body.append(host);
     let badEscaped=0,badReplacement=0;
     for(const s of json.sessions){
-      for(const text of [s.title,s.focus,s.lesson,json.problems[s.main].prompt,json.problems[s.transfer].prompt,json.evaluators[s.main].reference,json.evaluators[s.transfer].reference,...json.evaluators[s.main].rubric.map(r=>r.criterion),...json.evaluators[s.transfer].rubric.map(r=>r.criterion)]){
+      for(const text of [s.title,s.focus,s.lesson,s.guidedFeedback,json.problems[s.main].prompt,json.problems[s.transfer].prompt,json.evaluators[s.main].reference,json.evaluators[s.transfer].reference,...json.evaluators[s.main].rubric.map(r=>r.criterion),...json.evaluators[s.transfer].rubric.map(r=>r.criterion)]){
         host.textContent=text;
         const rendered=host.innerText;
         if(rendered.includes('\\\\n'))badEscaped++;
@@ -61,18 +61,52 @@ try{
     };
   });
   assert.equal(candidate.ok,true);assert.equal(candidate.status,200);
-  assert.equal(candidate.id,'ARC511');assert.equal(candidate.order,13);assert.equal(candidate.moduleStatus,'builder-validated-candidate');
+  assert.equal(candidate.id,'ARC511');assert.equal(candidate.order,13);assert.equal(candidate.moduleStatus,'repaired-awaiting-follow-up');
   assert.equal(candidate.sessions,17);assert.equal(candidate.problems,34);assert.equal(candidate.evaluators,34);
   assert.equal(candidate.hashes,true);assert.equal(candidate.fingerprints,34);
   assert.equal(candidate.badEscaped,0);assert.equal(candidate.badReplacement,0);assert.equal(candidate.lessonNewlines,true);
   for(let i=0;i<candidate.ids.length;i++){
     const ss=String(i+1).padStart(2,'0');
-    assert.deepEqual(candidate.ids[i],[`T22V3::ARC511::S${ss}@1`,`T22V3::ARC511::S${ss}-M@1`,`T22V3::ARC511::S${ss}-T@1`]);
+    assert.deepEqual(candidate.ids[i],[`T22V3::ARC511::S${ss}@1`,`T22V3::ARC511::S${ss}-M@${[11,17].includes(i+1)?2:1}`,`T22V3::ARC511::S${ss}-T@${i+1===11?2:1}`]);
   }
+  // Load M13 through the real UI in this browser test only. The persisted
+  // course metadata and roadmap still keep it unpublished.
+  await page.route('**/course/t22/generated/course-meta.json',async route=>{
+    const response=await route.fetch(),meta=await response.json();
+    meta.moduleSources.push({order:13,id:'ARC511',sourceType:'authoring-pack',source:'course/t22/authoring/m13-arc511.json'});
+    await route.fulfill({response,json:meta});
+  });
+  await page.goto(base+'/t22-course.html?module=13&session=1');
+  await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  assert.equal(await page.locator('#module option').count(),13);
+  assert.equal(await page.locator('#module').inputValue(),'ARC511');
+  assert.equal(await page.locator('#session option').count(),17);
+  for(let n=1;n<=17;n++){
+    await page.selectOption('#session',String(n));
+    assert((await page.locator('#sessionMeta').textContent()).includes(`S${String(n).padStart(2,'0')}@1`));
+    await page.click('#note');
+    assert.equal(await page.locator('#guidedPanel').isVisible(),true);
+    assert.equal(await page.locator('#guidedCheck').isDisabled(),true);
+    assert.equal(await page.locator('#guidedFeedback').isVisible(),false);
+    await page.fill('#guidedAnswer',`S${n} attempted before checking.`);
+    await page.click('#guidedCheck');
+    assert((await page.locator('#guidedFeedback').textContent()).startsWith('Check after attempting.'));
+    for(const kind of ['main','transfer']){
+      await page.click(kind==='main'?'#mainTask':'#transferTask');
+      assert((await page.locator('#problem').textContent()).length>90);
+      await page.fill('#answer',`Browser render probe for S${n} ${kind}.`);
+      await page.click('#save');
+      await page.click('#reveal');
+      await page.waitForSelector('#reference:not([hidden])');
+      assert.equal(await page.locator('#reference').isVisible(),true);
+      assert((await page.locator('#reference').textContent()).includes('points:'));
+    }
+  }
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
   assert.deepEqual(errors,[]);
   await context.close();
 
-  console.log('PASS M13 candidate browser/render probe: learner UI remains through M12; Chromium parses all 17 M13 sessions, computes runtime hashes/fingerprints and renders changed text surfaces without escaped-newline or replacement-character corruption.');
+  console.log('PASS M13 repaired candidate browser probe: persisted learner registry remains through M12; test-only M13 route renders all 17 lessons, staged guided checks, 34 task/reference/rubric surfaces, and runtime hashes/fingerprints without text corruption.');
 }finally{
   if(browser)await browser.close();
   await new Promise(r=>server.close(r));

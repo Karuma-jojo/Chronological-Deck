@@ -56,7 +56,9 @@ assert.equal(meta.moduleSources.filter(x=>x.order<=10).length,10);
 assert(!fs.existsSync('course/t22/authoring/m10.json'),'historical M07-M09 stop-boundary path remains absent');
 assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));
 
-const publicationAuthorized=new Set(['course/t22/generated/course-meta.json','course/t22/generated/roadmap.json']);
+// M13 adds optional staged guided feedback to the shared UI; earlier module
+// behavior remains covered by the existing browser suite and M13 UI checks.
+const publicationAuthorized=new Set(['course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/ui.js','t22-course.html']);
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication metadata');
 const currentProtectedRows=semanticLedger.entries.filter(x=>x.order<=10);
 assert.deepEqual(currentProtectedRows,protectedSemantic.rows,'M01-M10 semantic-ledger rows changed after their reviewed baseline');

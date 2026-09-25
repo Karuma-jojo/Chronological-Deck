@@ -51,7 +51,7 @@ assert(meta.moduleSources.some(x=>x.order===11&&x.id==='ARC510'));
 assert(meta.moduleSources.some(x=>x.order===12&&x.id==='SIDE267'));
 
 // Protected M01-M11/runtime baseline.
-const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/authoring/m11-arc510.json','course/t22/generated/course-meta.json','course/t22/generated/roadmap.json']);
+const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/authoring/m11-arc510.json','course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/ui.js','t22-course.html']);
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication surfaces');
 
 // Gate-3 artifacts and pilot.

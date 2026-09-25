@@ -18,8 +18,9 @@ assert.equal(Object.values(a.claimEvidence).flat().length,49);
 assert.equal(a.coverageAudit.ownershipClaimCount,49);
 assert.equal(a.coverageAudit.authoredSessions,17);
 assert(!meta.moduleSources.some(s=>s.id==='ARC511'),'candidate must remain outside learner registry until publication gate');
-assert.equal(a.module.status,'builder-validated-candidate');
+assert.equal(a.module.status,'repaired-awaiting-follow-up');
 assert.match(a.module.gate,/not yet published/);
+assert.equal(a.instructionVersion,'m13-arc511-instruction-v2');
 for(const term of ['Boundary Contract','Source Dossier','Support-Theorem Ledger','Concept dependency graph','Conceptual-distinction map','Misconception / failure-mode map','Representation progression map','Downstream obligation map','Narrative spine','Candidate pedagogical atoms','Split/merge decisions']) assert(design.toLowerCase().includes(term.toLowerCase()),`missing pre-authoring artifact ${term}`);
 for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8']) assert(pilot.includes(gate),`pilot ${gate}`);
 for(const id of ['REPO-M13','MIT-1806','STRANG-4E','AXLER-4E','OPENSTAX-C3-23','MAA-IPG','IES-WWC','PED-DENG']) assert(a.sourceLedger.sources.some(s=>s.id===id),`source ${id}`);
@@ -51,17 +52,19 @@ for(let i=0;i<17;i++){
   assert.equal(s.id,`T22V3::ARC511::S${n}@1`);
   assert(!ids.has(s.id)); ids.add(s.id);
   assert.equal(s.moduleId,'ARC511');
-  assert.equal(s.main,`T22V3::ARC511::S${n}-M@1`);
-  assert.equal(s.transfer,`T22V3::ARC511::S${n}-T@1`);
+  assert.equal(s.main,`T22V3::ARC511::S${n}-M@${[11,17].includes(i+1)?2:1}`);
+  assert.equal(s.transfer,`T22V3::ARC511::S${n}-T@${i+1===11?2:1}`);
   assert(s.lesson.length>700 && s.lesson.includes('\n\n'));
   assert(!s.lesson.includes('\\n'),`${s.id} visible escape`);
   assert(/Worked example\./.test(s.lesson) && /Guided practice\./.test(s.lesson) && /Distinction check\./.test(s.lesson));
+  assert(s.guidedFeedback?.startsWith('Check after attempting. '));
+  assert(!s.lesson.includes(s.guidedFeedback.slice(24)),`${s.id} guided answer is exposed before attempt`);
   assert.deepEqual(a.coverage[s.id].length,s.requiredOwnership.length);
   assert.equal(a.claimEvidence[s.id].length,s.requiredOwnership.length);
   for(const c of a.claimEvidence[s.id])validateClaim(s,c);
   for(const [kind,id] of [['main',s.main],['transfer',s.transfer]]){
     const p=a.problems[id],e=a.evaluators[id];
-    assert(p && e && p.kind===kind && p.order===i+1 && p.obligationVersion===1);
+    assert(p && e && p.kind===kind && p.order===i+1 && p.obligationVersion===([11,17].includes(i+1)&&kind==='main'||i+1===11&&kind==='transfer'?2:1));
     assert(p.prompt.length>90 && e.reference.length>80 && e.rubric.length>=2);
     assert.equal(e.rubric.reduce((sum,row)=>sum+row.points,0),10);
     assert(!s.lesson.includes(p.prompt) && !s.lesson.includes(e.reference),`${id} exact answer exposure`);
@@ -70,6 +73,17 @@ for(let i=0;i<17;i++){
   assert.equal(a.evidenceDistance[s.id].transfer.classification,'changed-surface Transfer');
   assert.deepEqual(a.semanticSeparationAudit.sessions[s.id],a.evidenceDistance[s.id]);
 }
+// Known-bad controls from the separate adversarial review: a solved guided
+// action, a fresh label on a rehearsed proof, and an unobserved zero case.
+for(const i of [4,5,7,10,16]) assert.equal(a.evidenceDistance[a.sessions[i-1].id].main.classification,'retrieval');
+assert(!a.sessions[12].requiredOwnership.some(x=>/handle the zero-vector case/.test(x)));
+assert(a.sessions[12].requiredOwnership.some(x=>/justify their nonnegativity/.test(x)));
+assert.match(a.sessions[10].lesson,/subspace of some real R\^N/);
+assert.match(a.problems[a.sessions[10].main].prompt,/subspace of some real R\^N/);
+assert.match(a.problems[a.sessions[10].transfer].prompt,/subspace U of some real R\^N/);
+assert.match(a.problems[a.sessions[16].main].prompt,/choose the geometric diagnostic/);
+assert.match(a.evaluators[a.sessions[16].main].reference,/cos\(t,e\)=3\/sqrt\(11\)/);
+assert(!/Finally, for d=.*compute t·d and the cosine/.test(a.problems[a.sessions[16].main].prompt));
 // Mutation control: a real rubric row from the wrong task cannot masquerade as evidence.
 {
   const s=a.sessions[0],c=structuredClone(a.claimEvidence[s.id][0]);
@@ -115,9 +129,11 @@ assert.equal(dot([1,0],[100,100]),100);                      // S16 raw versus n
 assert.equal(dot([1,0],[2,0]),2);
 assert.equal(dot([1,0],[0,3]),0);
 eq(add(mul(3,[1,0,1]),mul(-1,[0,1,2])),[3,-1,1]);           // S17 basis witness
-assert.equal(dot([3,-1,1],[1,0,-1]),2);
+assert.equal(dot([3,-1,1],[100,0,-100]),200);
+assert.equal(dot([3,-1,1],[1,0,0]),3);
+assert(3/Math.sqrt(11)>2/Math.sqrt(22));
 assert.equal(dot([3,-1,1],[3,-1,1]),11);
-assert.equal(dot([1,0,-1],[1,0,-1]),2);
+assert.equal(dot([100,0,-100],[100,0,-100]),20000);
 eq(sub(add([1,0,2],[0,2,1]),[1,2,3]),[0,0,0]);             // S17 Transfer relation
 assert.notEqual(3,2*2+2/2);                                  // S17 Transfer obstruction
 
