@@ -1008,7 +1008,7 @@
       "id": "T22V3::SIDE276::S12-M@1",
       "order": 12,
       "kind": "main",
-      "prompt": "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,1,0],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+      "prompt": "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,0,1],[1,1,0]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S12-T@1": {
@@ -1085,7 +1085,7 @@
       "id": "T22V3::SIDE276::S17-T@1",
       "order": 17,
       "kind": "transfer",
-      "prompt": "You are given P_{B←C}=[[1,2],[1,3]] and a vector whose B-coordinate column is [w]_B=(5,8)^T. A colleague multiplies P_{B←C}[w]_B to 'convert to C coordinates'. Diagnose the direction error, compute [w]_C correctly, and verify by converting your answer back to B coordinates.",
+      "prompt": "You are given P_{B←C}=[[1,3],[1,4]] and a vector whose B-coordinate column is [w]_B=(7,9)^T. A colleague multiplies P_{B←C}[w]_B to 'convert to C coordinates'. Diagnose the direction error, compute [w]_C correctly, and verify by converting your answer back to B coordinates.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S18-M@1": {
@@ -1571,7 +1571,7 @@
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
     },
     "T22V3::SIDE276::S12-M@1": {
-      "reference": "A has rank 2 and nullity 0 because its two columns are independent. Hence A is injective, but rank 2<3 means Col(A)≠R^3, so it is not surjective. Thus some b∈R^3 have no solution; whenever a solution exists it is unique. B has rank 2 and, with 3 input coordinates, nullity 1. Since rank equals the codomain dimension 2, B is surjective; since nullity is nonzero, it is not injective. Therefore every b∈R^2 has solutions, and every solution set has a one-dimensional null-direction ambiguity.",
+      "reference": "A has rank 2 and nullity 0 because its two columns are independent. Hence A is injective, but rank 2<3 means Col(A)≠R^3, so it is not surjective. Thus some b∈R^3 have no solution; whenever a solution exists it is unique. B has rank 2 because its rows are independent, and with 3 input coordinates nullity 1 (indeed N(B)=span{(-1,1,1)}). Since rank equals the codomain dimension 2, B is surjective; since nullity is nonzero, it is not injective. Therefore every b∈R^2 has solutions, and every solution set has a one-dimensional null-direction ambiguity.",
       "rubric": [
         {
           "points": 2,
@@ -1797,7 +1797,7 @@
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
     "T22V3::SIDE276::S17-T@1": {
-      "reference": "P_{B←C} maps C-coordinates to B-coordinates, so it cannot be applied in that direction to [w]_B. Its inverse is P_{C←B}=[[3,-2],[-1,1]]. Thus [w]_C=P^{-1}(5,8)^T=(-1,3)^T. Converting back gives P(-1,3)^T=(5,8)^T.",
+      "reference": "P_{B←C} maps C-coordinates to B-coordinates, so it cannot be applied in that direction to [w]_B. Its inverse is P_{C←B}=[[4,-3],[-1,1]]. Thus [w]_C=P^{-1}(7,9)^T=(1,2)^T. Converting back gives P(1,2)^T=(7,9)^T.",
       "rubric": [
         {
           "points": 3,
@@ -1805,11 +1805,11 @@
         },
         {
           "points": 4,
-          "criterion": "Computes P_{C←B}=P^{-1}=[[3,-2],[-1,1]] and obtains [w]_C=(-1,3)^T."
+          "criterion": "Computes P_{C←B}=P^{-1}=[[4,-3],[-1,1]] and obtains [w]_C=(1,2)^T."
         },
         {
           "points": 3,
-          "criterion": "Verifies the result by P_{B←C}(-1,3)^T=(5,8)^T."
+          "criterion": "Verifies the result by P_{B←C}(1,2)^T=(7,9)^T."
         }
       ],
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
@@ -2814,7 +2814,7 @@
           "T22V3::SIDE276::S12-T@1"
         ],
         "publicRequestExact": [
-          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,1,0],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,0,1],[1,1,0]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
           "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
         ],
         "rubricEvidence": [
@@ -2833,7 +2833,7 @@
           "T22V3::SIDE276::S12-T@1"
         ],
         "publicRequestExact": [
-          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,1,0],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,0,1],[1,1,0]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
           "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
         ],
         "rubricEvidence": [
@@ -2852,7 +2852,7 @@
           "T22V3::SIDE276::S12-T@1"
         ],
         "publicRequestExact": [
-          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,1,0],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,0,1],[1,1,0]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
           "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
         ],
         "rubricEvidence": [
@@ -3125,12 +3125,12 @@
         ],
         "publicRequestExact": [
           "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors.",
-          "You are given P_{B←C}=[[1,2],[1,3]] and a vector whose B-coordinate column is [w]_B=(5,8)^T. A colleague multiplies P_{B←C}[w]_B to 'convert to C coordinates'. Diagnose the direction error, compute [w]_C correctly, and verify by converting your answer back to B coordinates."
+          "You are given P_{B←C}=[[1,3],[1,4]] and a vector whose B-coordinate column is [w]_B=(7,9)^T. A colleague multiplies P_{B←C}[w]_B to 'convert to C coordinates'. Diagnose the direction error, compute [w]_C correctly, and verify by converting your answer back to B coordinates."
         ],
         "rubricEvidence": [
           "Computes P_{C←B}=P^{-1}=(1/7)[[3,1],[-1,2]] and recovers the original C-coordinates.",
           "States that P_{B←C} takes C-coordinates in and B-coordinates out, so the colleague used it backwards.",
-          "Computes P_{C←B}=P^{-1}=[[3,-2],[-1,1]] and obtains [w]_C=(-1,3)^T."
+          "Computes P_{C←B}=P^{-1}=[[4,-3],[-1,1]] and obtains [w]_C=(1,2)^T."
         ],
         "why": "Both inverse direction and a live direction-error diagnosis are observed.",
         "escapeAttempt": "A correct coordinate pair guessed without naming the arrow/inverse cannot earn all rows.",
@@ -3679,7 +3679,7 @@
   "instructionSeparation": {
     "policy": "Worked/guided examples use distinct numerical or structural instances from fixed assessments. Guided feedback remains staged. Fixed assessments are compared semantically against all earlier answer-bearing instruction; shared general methods are permitted but solved subanswers are not presented as fresh evidence.",
     "pilotFinding": "S04 uses distinct worked, guided, Main and Transfer matrices. The pilot falsification pass found no solved subanswer exposure. A separate Gate-7 defect was found instead: associativity was claimed but not observed; the Main was repaired before any learner publication. Full-module learner-only scan later found several fixed tasks reusing solved instructional instances; all identified material overlaps were replaced with fresh data before publication.",
-    "status": "Full builder candidate after first semantic-overlap repair sweep; exact instance reuse found in S01/S08/S09/S10/S11/S12/S14/S16/S18/S19 fixed assessments was replaced before learner publication. Cross-session audit must be repeated."
+    "status": "Full builder candidate after repeated semantic-overlap repair sweeps; material solved-instance reuse has been removed before learner publication. Remaining exact-number echoes are incidental cross-context values rather than shared solved mathematical instances."
   },
   "initialVersionAudit": {
     "priorCanonicalM14": "none",
