@@ -5,9 +5,9 @@
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "builder-candidate-through-invertibility",
+    "status": "full-builder-candidate-awaiting-integration-review",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
-    "gate": "Fourteen sessions and 28 fixed assessments are authored under protocol v1.2. The route now reaches exact invertibility/inverse construction; determinant and coordinate-change sessions S15–S19 remain. No learner-route publication.",
+    "gate": "Nineteen sessions and 38 fixed assessments are now authored under protocol v1.2. S04 pilot passed local Gates 4–8 after a real observer repair. Full-module learner-route, mathematics, semantic-overlap and independent adversarial verification remain before publication.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
   },
   "boundary": {
@@ -37,9 +37,9 @@
     "designGate": "docs/t22-course/M14-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M14-PILOT-REVIEW.md",
     "pedagogicalAtoms": 19,
-    "authoredSessions": 14,
-    "ownershipClaimCount": 44,
-    "fixedAssessments": 28,
+    "authoredSessions": 19,
+    "ownershipClaimCount": 60,
+    "fixedAssessments": 38,
     "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred."
   },
   "sourceLedger": {
@@ -655,6 +655,197 @@
       "guidedFeedback": "Check after attempting. K^{-1}=[[1,-2],[0,1]], and both KK^{-1} and K^{-1}K are I. Kx=(5,2) gives x=(1,2). A 2-by-3 map cannot be bijective between R^3 and R^2, so no two-sided square inverse exists.",
       "main": "T22V3::SIDE276::S14-M@1",
       "transfer": "T22V3::SIDE276::S14-T@1"
+    },
+    {
+      "order": 15,
+      "id": "T22V3::SIDE276::S15@1",
+      "moduleId": "SIDE276",
+      "title": "Determinant algebra before determinant folklore",
+      "focus": "Characterize the determinant structurally, derive row-operation computation rules, and separate multilinearity in one row from false whole-matrix linearity.",
+      "purpose": "Give determinant calculations a principled algebraic foundation before geometric volume interpretation, singularity conclusions or cofactor-heavy recipes.",
+      "centralCapability": "Compute exact determinants efficiently from structural rules and apply multiplicativity without overgeneralizing determinant as a linear function of the whole matrix.",
+      "principalObstacle": "The learner memorizes cofactor formulas, assumes det(A+B)=det A+det B or det(cA)=c det A, or loses row-swap/row-scale factors during elimination.",
+      "entryPrerequisites": [
+        "M14-S06 row operations",
+        "M14-S04 matrix products",
+        "M13 finite linear combinations"
+      ],
+      "requiredOwnership": [
+        "State and use the determinant's alternating multilinear row rules with det(I)=1, distinguishing linearity in one row from linearity of the whole matrix.",
+        "Compute a square-matrix determinant by determinant-aware elimination/triangular structure while tracking row swaps and row scalings.",
+        "Use det(AB)=det(A)det(B) under its square compatible hypotheses and reject false additivity or scalar-linearity claims."
+      ],
+      "applicationScope": "Exact real square matrices; cofactor expansion may appear as an optional computation, not the conceptual definition.",
+      "transferScope": "Transfer is a misconception audit using I and 2I plus multiplicativity data rather than another elimination.",
+      "inScope": [
+        "determinant characterization",
+        "row-operation rules",
+        "triangular determinant",
+        "2x2 formula",
+        "multiplicativity"
+      ],
+      "outOfScope": [
+        "characteristic polynomials",
+        "Jacobian determinants",
+        "log-determinants",
+        "numerical conditioning"
+      ],
+      "exitCondition": "Compute and reason with determinants while stating exactly which algebraic rules are valid.",
+      "lesson": "Orient. For real n-by-n matrices, the determinant is the unique scalar function normalized by det(I)=1 that is linear in each row separately while the other rows are fixed, and alternating: swapping two rows reverses the sign. A standard finite formula guarantees existence, but the learning goal is to use the structural rules rather than memorize a large expansion.\n\nConsequences. Multiplying one row by c multiplies the determinant by c. Replacing Ri by Ri+cRj leaves the determinant unchanged: row-linearity adds c times a determinant with two equal rows, and alternation makes that extra term zero. A row swap multiplies the determinant by -1. Therefore an upper-triangular matrix has determinant equal to the product of its diagonal entries. For [[a,b],[c,d]], these rules give ad-bc.\n\nWorked example. For A=[[1,2,1],[2,5,3],[0,1,2]], use R2←R2-2R1 to obtain [0,1,1] and then R3←R3-R2 to obtain [0,0,1]. Row replacement did not change det, and the triangular diagonal is 1,1,1, so det(A)=1.\n\nWhole-matrix warning. Linearity in *one row at a time* does not make det a linear map on matrices. Scaling every row of an n-by-n matrix by c gives det(cA)=c^n det(A). In general det(A+B)≠det A+det B.\n\nMultiplicativity. For compatible square A,B, det(AB)=det(A)det(B). One structural proof fixes B and views det(AB) as an alternating multilinear function of A's rows; its value at I is det(B), so uniqueness gives det(AB)=det(A)det(B).\n\nGuided practice. For G=[[0,1,2],[2,0,1],[0,3,1]], swap the first two rows, then use R3←R3-3R2 on the swapped matrix. Track the sign from the swap and compute det(G) from the resulting triangular matrix.\n\nDistinction check. A determinant is one scalar invariant of a square map. It is not entrywise multiplication, not a generic linear functional on matrices, and not yet a statement about numerical stability.",
+      "guidedFeedback": "Check after attempting. After swapping rows 1 and 2, the matrix is [[2,0,1],[0,1,2],[0,3,1]]. Replacing R3 by R3-3R2 gives diagonal 2,1,-5, whose product is -10 for the swapped matrix. One row swap changed the sign, so det(G)=10.",
+      "main": "T22V3::SIDE276::S15-M@1",
+      "transfer": "T22V3::SIDE276::S15-T@1"
+    },
+    {
+      "order": 16,
+      "id": "T22V3::SIDE276::S16@1",
+      "moduleId": "SIDE276",
+      "title": "Determinant measures oriented volume collapse, not conditioning",
+      "focus": "Connect det(A)=0 with noninvertibility and interpret |det A| as real volume scaling and sign as orientation.",
+      "purpose": "Attach geometric and structural meaning to the determinant while sharply limiting what one scalar can establish.",
+      "centralCapability": "Use determinant to diagnose singularity and exact oriented volume scaling without making unsupported numerical-sensitivity claims.",
+      "principalObstacle": "Area/volume scaling is treated as the definition in every context, det=0 is remembered without structural justification, or determinant magnitude is mistaken for a condition/stability measure.",
+      "entryPrerequisites": [
+        "M14-S15 determinant rules",
+        "M14-S13 invertibility/rank",
+        "M13 Euclidean geometric interpretation"
+      ],
+      "requiredOwnership": [
+        "Derive and use det(A)=0 iff a real square matrix is noninvertible, connecting row-reduction/determinant rules to rank loss.",
+        "Interpret |det(A)| as the n-dimensional volume scale factor and the sign as orientation for a real square linear map.",
+        "Explain why determinant magnitude alone does not measure directional sensitivity or numerical conditioning."
+      ],
+      "applicationScope": "Exact real square maps and Euclidean area/volume interpretation; no condition-number computation.",
+      "transferScope": "Transfer compares two matrices with equal determinant but radically different axis scalings to expose what determinant cannot distinguish.",
+      "inScope": [
+        "singularity test",
+        "orientation",
+        "area/volume scaling",
+        "scope limitation"
+      ],
+      "outOfScope": [
+        "condition numbers",
+        "singular values",
+        "Jacobian change-of-variables formula"
+      ],
+      "exitCondition": "State exactly what determinant zero/nonzero and determinant magnitude/sign establish—and what they do not.",
+      "lesson": "Orient. Determinant becomes structurally decisive for square maps because row reduction links it to pivots. If elimination reaches a zero row, the triangular product is zero, so det(A)=0 and rank<n. Conversely, if every pivot exists, elimination reaches an invertible triangular matrix with nonzero diagonal; reversing the legal operations shows det(A)≠0. Combined with S13, det(A)≠0 exactly when A is invertible.\n\nGeometry is a theorem/interpretation, not the algebraic definition used in S15. A real n-by-n linear map scales oriented n-dimensional volume by det(A). Thus |det(A)| is the ordinary volume scale factor: 2 means volumes double, 1 preserves volume magnitude, and 0 collapses n-dimensional volume into a lower-dimensional set. A negative sign reverses orientation.\n\nWorked contrast. A=[[2,1],[1,3]] has det=5. It maps the unit square to a parallelogram of area 5 and preserves orientation; nonzero determinant also proves invertibility. C=[[1,2],[2,4]] has det=0 because its columns are dependent. The unit square collapses to a line segment, area zero, and C is not invertible.\n\nWhat determinant does not say. A single product-like volume factor does not reveal how differently individual directions are stretched. Two matrices can both have determinant 1 while one stretches one axis enormously and compresses another. Numerical conditioning is a later topic and cannot be inferred from determinant size alone.\n\nGuided practice. Compare diag(4,1/2) with diag(2,1). Compute both determinants, their area scale factors and orientation signs. Then state one directional fact that the determinant alone hides.\n\nDistinction check. “Large determinant” is not synonymous with “stable,” and det=1 is not synonymous with “nearly identity.”",
+      "guidedFeedback": "Check after attempting. Both diagonal matrices have determinant 2, so both double area and preserve orientation. But the first scales the coordinate axes by 4 and 1/2 while the second scales them by 2 and 1; the determinant records only the product of those directional scales.",
+      "main": "T22V3::SIDE276::S16-M@1",
+      "transfer": "T22V3::SIDE276::S16-T@1"
+    },
+    {
+      "order": 17,
+      "id": "T22V3::SIDE276::S17@1",
+      "moduleId": "SIDE276",
+      "title": "Changing coordinates does not change the vector",
+      "focus": "Construct coordinate-change matrices as representations of the identity map between two ordered bases and track direction explicitly.",
+      "purpose": "Prepare similarity by separating the underlying vector from its coordinate column and making basis-conversion direction a typed operation rather than a memorized P/P^{-1} formula.",
+      "centralCapability": "Construct P_{B←C}, convert coordinates both ways and verify that two coordinate columns describe the same underlying vector.",
+      "principalObstacle": "The change matrix is used in the wrong direction, its columns are taken from the wrong basis coordinates, or different coordinate columns are mistaken for different vectors.",
+      "entryPrerequisites": [
+        "M13 ordered bases and unique coordinates",
+        "M14-S02 matrix representation",
+        "M14-S14 inverses"
+      ],
+      "requiredOwnership": [
+        "Construct P_{B←C} with columns [c_j]_B and justify [v]_B=P_{B←C}[v]_C.",
+        "Convert a vector's coordinates between two bases in both directions and verify the underlying vector is unchanged.",
+        "Use P_{C←B}=P_{B←C}^{-1} and diagnose a reversed change-of-coordinate direction."
+      ],
+      "applicationScope": "Finite real vector spaces with ordered bases; no orthogonality assumption.",
+      "transferScope": "Transfer begins with B-coordinates and a named C→B matrix, forcing the learner to choose the inverse rather than follow the displayed arrow blindly.",
+      "inScope": [
+        "coordinate columns",
+        "identity map between bases",
+        "change matrix",
+        "inverse direction"
+      ],
+      "outOfScope": [
+        "operator similarity",
+        "eigenbasis selection",
+        "orthogonal-basis algorithms"
+      ],
+      "exitCondition": "Given two ordered bases, convert coordinate descriptions with explicit arrow direction and preserve the underlying vector.",
+      "lesson": "Orient. A vector v does not change when we change bases; only its coordinate column changes. Let B=(b1,...,bn) and C=(c1,...,cn) be ordered bases of the same space. Define P_{B←C} to be the matrix of the identity map when the input is written in C-coordinates and the output in B-coordinates.\n\nBy S02, its jth column must be [cj]_B. If [v]_C=x, then v=Σ xj cj. Replacing each cj by its B-coordinate column gives [v]_B=P_{B←C}x. The arrow in the subscript states the direction: **C coordinates in, B coordinates out**.\n\nBecause coordinate descriptions are unique, conversion is reversible. The opposite matrix is P_{C←B}=P_{B←C}^{-1}.\n\nWorked example. Let B be the standard basis of R² and C=(c1,c2) with c1=(1,1), c2=(1,-1). Then P_{B←C}=[[1,1],[1,-1]]. If [v]_C=(3,-1)^T, then [v]_B=(2,4)^T; directly, 3c1-c2=(2,4). The inverse (1/2)[[1,1],[1,-1]] converts (2,4) back to (3,-1).\n\nGuided practice. Relative to basis B, let c1=2b1+b2 and c2=-b1+3b2. Build P_{B←C}. Convert [v]_C=(1,2)^T to B-coordinates, then use the inverse to recover the original C-coordinate column.\n\nDistinction check. A coordinate-change matrix represents the identity map on vectors. It changes descriptions, not the vector itself. S18 will insert an actual operator between two such identity conversions.",
+      "guidedFeedback": "Check after attempting. P_{B←C}=[[2,-1],[1,3]]. It sends (1,2)^T to (0,7)^T. Since P^{-1}=(1/7)[[3,1],[-1,2]], converting (0,7)^T back gives (1,2)^T.",
+      "main": "T22V3::SIDE276::S17-M@1",
+      "transfer": "T22V3::SIDE276::S17-T@1"
+    },
+    {
+      "order": 18,
+      "id": "T22V3::SIDE276::S18@1",
+      "moduleId": "SIDE276",
+      "title": "Similar matrices are the same operator in different bases",
+      "focus": "Derive D=P^{-1}AP by converting C-coordinates to B, applying the operator, and converting back.",
+      "purpose": "Make similarity a representation theorem rather than a magic conjugation formula and establish the invariants needed before later eigenbasis work.",
+      "centralCapability": "Given an operator and two bases, derive/compute its two matrix representations and justify their similarity with every coordinate direction labelled.",
+      "principalObstacle": "P and P^{-1} are reversed, PAP^{-1} is written from memory, or similar matrices are treated as different operators merely because their entries differ.",
+      "entryPrerequisites": [
+        "M14-S17 coordinate change",
+        "M14-S04 composition/products",
+        "M14-S14 inverses",
+        "M14-S15 determinant multiplicativity"
+      ],
+      "requiredOwnership": [
+        "Derive [T]_C=P_{B←C}^{-1}[T]_B P_{B←C} from the convert→apply→convert-back chain.",
+        "Verify on a coordinate vector that the two similar matrices produce descriptions of the same underlying operator output.",
+        "Explain that similarity preserves rank, invertibility and determinant and distinguish similarity from arbitrary left/right multiplication."
+      ],
+      "applicationScope": "One finite real operator V→V represented in two ordered bases; P is invertible because it converts bases.",
+      "transferScope": "Transfer audits the common PAP^{-1} direction error from named coordinate arrows rather than supplying a memorized formula.",
+      "inScope": [
+        "similarity",
+        "conjugation by basis conversion",
+        "representation invariants"
+      ],
+      "outOfScope": [
+        "diagonalization",
+        "eigenvectors/eigenbases",
+        "Jordan form"
+      ],
+      "exitCondition": "Reconstruct the similarity formula from coordinate semantics and use it without confusing representation with operator.",
+      "lesson": "Orient. Let A=[T]_{B←B} describe an operator T:V→V in basis B. Let P=P_{B←C}, so [v]_B=P[v]_C. To compute the output while starting and ending in C-coordinates, follow the actual pipeline:\n1. convert C→B: multiply by P;\n2. apply T in B-coordinates: multiply by A;\n3. convert B→C: multiply by P^{-1}.\nTherefore [T(v)]_C=P^{-1}AP[v]_C, so D=[T]_{C←C}=P^{-1}AP.\n\nWorked example. Let A=[[2,0],[1,3]] and P=[[1,1],[0,1]]. Then P^{-1}=[[1,-1],[0,1]] and D=P^{-1}AP=[[1,-2],[1,4]]. For [v]_C=(2,-1), convert to B: P[v]_C=(1,-1). Apply A to get (2,-2). Convert back: P^{-1}(2,-2)=(4,-2). Directly D(2,-1)=(4,-2), confirming the same operator output in C-coordinates.\n\nInvariants. Multiplication by an invertible P on either side does not change rank. D is invertible iff A is, because D=P^{-1}AP is a product of invertible factors exactly when A is. Determinant multiplicativity gives det D=det(P^{-1})det(A)det(P)=det(A). These properties belong to the underlying operator, not one coordinate table.\n\nGuided practice. With A=[[1,2],[0,3]] and P=[[1,0],[1,1]], compute P^{-1}AP. Then check one C-coordinate input (1,2)^T by both the three-stage route and direct multiplication by D.\n\nDistinction check. Similarity is not arbitrary PAQ. The left and right factors are inverse coordinate conversions tied to the same two bases. Choosing a special eigenbasis is M16, not M14.",
+      "guidedFeedback": "Check after attempting. P^{-1}=[[1,0],[-1,1]] and D=P^{-1}AP=[[3,2],[0,1]]. For x_C=(1,2), P x_C=(1,3), A(1,3)=(7,9), P^{-1}(7,9)=(7,2), and D(1,2)=(7,2).",
+      "main": "T22V3::SIDE276::S18-M@1",
+      "transfer": "T22V3::SIDE276::S18-T@1"
+    },
+    {
+      "order": 19,
+      "id": "T22V3::SIDE276::S19@1",
+      "moduleId": "SIDE276",
+      "title": "Synthesis: one map, many representations",
+      "focus": "Integrate map, matrix, system, image/kernel, rank, determinant and basis-change reasoning without using later projection or eigenstructure.",
+      "purpose": "Test whether the learner can choose and coordinate M14 representations instead of executing a fixed chapter-by-chapter recipe.",
+      "centralCapability": "Audit a new square linear model from reachability/ambiguity through determinant and a changed-basis representation, with every conclusion tied to evidence.",
+      "principalObstacle": "The learner conflates row-reduced and original columns, treats det=0 as an isolated fact, or changes coordinates as if the underlying operator changed.",
+      "entryPrerequisites": [
+        "M14-S01–S18 owned capabilities"
+      ],
+      "requiredOwnership": [
+        "Use one exact row reduction to coordinate nullspace, column-space basis, rank and complete Ax=b solutions without confusing original and reduced columns.",
+        "Connect rank deficiency, a nontrivial null direction, determinant zero and failure of invertibility as mutually consistent evidence.",
+        "Change the same operator to a new basis by similarity and verify that structural invariants remain unchanged.",
+        "Diagnose a multi-claim report containing representation, invertibility and basis-change errors with explicit counterevidence."
+      ],
+      "applicationScope": "Small exact finite-dimensional model; synthesis chooses among already-owned M14 tools.",
+      "transferScope": "Transfer changes from constructive analysis to adversarial audit of a flawed technical memo.",
+      "inScope": [
+        "whole-module representation coordination",
+        "method choice",
+        "invariant checks"
+      ],
+      "outOfScope": [
+        "projection/least squares",
+        "eigenvalue-based diagnosis",
+        "SVD/pseudoinverse",
+        "conditioning"
+      ],
+      "exitCondition": "Produce or audit a coherent linear-model report in which every map/matrix/system/basis claim has a valid observer.",
+      "lesson": "Orient. M14 has built several descriptions of one finite linear object. A matrix can represent a map; Ax=b asks for a preimage; N(A) records erased input directions; Col(A) records reachable outputs; rank measures the image dimension; determinant adds square-map singularity and volume information; a basis change changes coordinate tables without changing the operator.\n\nA synthesis should therefore start from the question, not from a favorite algorithm. For reachability or ambiguity, row reduction can expose pivots and the nullspace, but a column-space basis must still come from the original matrix. For square invertibility, rank/nullspace and determinant should agree. For a new basis, derive the coordinate arrows and use similarity; do not invoke eigenvectors merely because similarity has appeared.\n\nWorked example. Let A=[[1,1,0],[0,1,1],[1,2,1]]. The third row is the sum of the first two, so rank≤2; the first two rows/columns show rank 2. Solving Ax=0 gives N(A)=span{(-1,1,-1)} and det(A)=0, all agreeing that A is not invertible. For b=(2,1,3), xp=(1,1,0) works, so every solution is (1,1,0)+t(-1,1,-1). A basis for Col(A) can use original columns a1=(1,0,1), a2=(1,1,2), with a3=a2-a1.\n\nIf C simply swaps the first two standard basis vectors and keeps e3, its change matrix P is the corresponding permutation matrix and P^{-1}=P. The same operator in C-coordinates is P^{-1}AP=PAP; its entries change, but rank 2, determinant 0 and noninvertibility do not.\n\nGuided practice. Reuse the worked matrix only as a *method map*: before checking, name which artifact answers each question—'Is b reachable?', 'Which inputs are invisible?', 'Which original columns form an output basis?', 'Is the square map invertible?', 'How do I rewrite it in another basis?' Do not perform new arithmetic.\n\nDistinction check. Agreement among several valid invariants is a consistency check, not permission to substitute one definition for another. Row reduction, determinant and similarity each answer different questions.",
+      "guidedFeedback": "Check after attempting. Reachability: solve Ax=b / test b∈Col(A). Invisible inputs: N(A). Output basis: pivot indices applied to original columns. Invertibility: square full rank/trivial kernel, equivalently nonzero determinant once S15–S16 are owned. New basis: use the identity coordinate conversion P and form P^{-1}AP.",
+      "main": "T22V3::SIDE276::S19-M@1",
+      "transfer": "T22V3::SIDE276::S19-T@1"
     }
   ],
   "problems": {
@@ -852,6 +1043,76 @@
       "order": 14,
       "kind": "transfer",
       "prompt": "Let P=[[1,1],[0,1]] and Q=[[2,0],[0,3]], with P^{-1}=[[1,-1],[0,1]] and Q^{-1}=[[1/2,0],[0,1/3]]. (a) Construct (PQ)^{-1} in the correct order and verify it by multiplying with PQ. (b) Explain from composition why the inverse order must reverse. (c) A separate matrix C is 2-by-3; decide whether the notation C^{-1} can denote a two-sided matrix inverse and justify from the map dimensions.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S15-M@1": {
+      "id": "T22V3::SIDE276::S15-M@1",
+      "order": 15,
+      "kind": "main",
+      "prompt": "Compute det(M) for M=[[0,2,1],[1,1,0],[2,0,3]] using determinant-aware row operations rather than cofactor expansion. Show every row swap or scaling that changes the determinant, use row replacements freely, and finish from a triangular matrix. Then state why a row replacement Ri←Ri+cRj does not change det.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S15-T@1": {
+      "id": "T22V3::SIDE276::S15-T@1",
+      "order": 15,
+      "kind": "transfer",
+      "prompt": "A report says: 'det is linear, so for 3-by-3 matrices det(2A)=2det(A) and det(A+B)=det(A)+det(B).' Audit the report using A=B=I_3. Compute det(2I_3) and compare it with 2det(I_3) and det(I_3)+det(I_3). Explain the exact kind of linearity the determinant does have. Finally, if det(P)=-2 and det(Q)=5 for 3-by-3 P,Q, compute det(PQ) and name the theorem used.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S16-M@1": {
+      "id": "T22V3::SIDE276::S16-M@1",
+      "order": 16,
+      "kind": "main",
+      "prompt": "For A=[[2,1],[1,3]] and C=[[1,2],[2,4]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S16-T@1": {
+      "id": "T22V3::SIDE276::S16-T@1",
+      "order": 16,
+      "kind": "transfer",
+      "prompt": "Compare I_2 with D=diag(1000,0.001). Both have determinant 1. A memo concludes: 'Because the determinants are equal, the two maps have the same directional sensitivity and should be equally numerically stable.' State what det=1 legitimately tells you, show one concrete directional difference between I_2 and D, and explain why the memo's stability conclusion is unsupported at M14.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S17-M@1": {
+      "id": "T22V3::SIDE276::S17-M@1",
+      "order": 17,
+      "kind": "main",
+      "prompt": "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S17-T@1": {
+      "id": "T22V3::SIDE276::S17-T@1",
+      "order": 17,
+      "kind": "transfer",
+      "prompt": "You are given P_{B←C}=[[1,2],[1,3]] and a vector whose B-coordinate column is [w]_B=(5,8)^T. A colleague multiplies P_{B←C}[w]_B to 'convert to C coordinates'. Diagnose the direction error, compute [w]_C correctly, and verify by converting your answer back to B coordinates.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S18-M@1": {
+      "id": "T22V3::SIDE276::S18-M@1",
+      "order": 18,
+      "kind": "main",
+      "prompt": "An operator T has B-basis matrix A=[[1,2],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,0],[1,1]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,2)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S18-T@1": {
+      "id": "T22V3::SIDE276::S18-T@1",
+      "order": 18,
+      "kind": "transfer",
+      "prompt": "A colleague knows that P=P_{B←C} converts C-coordinates to B-coordinates, but writes the C-basis operator matrix as PAP^{-1}. Without relying on a memorized conjugation formula, audit the claim by writing the coordinate direction at each of the three stages. State the correct expression and explain why a generic product PAQ with unrelated invertible P,Q need not represent the same operator in another basis.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S19-M@1": {
+      "id": "T22V3::SIDE276::S19-M@1",
+      "order": 19,
+      "kind": "main",
+      "prompt": "Let A=[[1,1,0],[0,1,1],[1,2,1]] and b=(2,1,3)^T. Let C=(e2,e1,e3), so P=P_{B←C}=[[0,1,0],[1,0,0],[0,0,1]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S19-T@1": {
+      "id": "T22V3::SIDE276::S19-T@1",
+      "order": 19,
+      "kind": "transfer",
+      "prompt": "Audit this technical memo about M=[[1,2],[2,4]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,2],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention.",
       "obligationVersion": 1
     }
   },
@@ -1431,6 +1692,214 @@
         }
       ],
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S15-M@1": {
+      "reference": "Swap rows 1 and 2 to obtain M'=[[1,1,0],[0,2,1],[2,0,3]], so det(M')=-det(M). Replace R3←R3-2R1 to get [0,-2,3], then R3←R3+R2 to get [0,0,4]. These row replacements preserve determinant. The triangular determinant is 1·2·4=8, so det(M')=8 and det(M)=-8. For Ri←Ri+cRj, row-linearity splits the determinant into the original plus c times a determinant having two equal rows; the second term is zero by alternation.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Uses one row swap and valid row replacements to reach a triangular matrix with diagonal 1,2,4, or an equivalent determinant-aware reduction."
+        },
+        {
+          "points": 3,
+          "criterion": "Tracks the swap sign correctly and obtains det(M)=-8."
+        },
+        {
+          "points": 2,
+          "criterion": "Does not assign determinant factors to pure row-replacement operations."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains row-replacement invariance using row-linearity plus the zero determinant from repeated rows."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S15-T@1": {
+      "reference": "det(I_3)=1. Scaling every row of I_3 by 2 contributes a factor 2 three times, so det(2I_3)=2^3=8, not 2. Since I_3+I_3=2I_3, det(I_3+I_3)=8 while det(I_3)+det(I_3)=2. The determinant is multilinear in the rows separately, not linear as a function of the whole matrix. Multiplicativity gives det(PQ)=det(P)det(Q)=(-2)(5)=-10.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes det(2I_3)=8 and uses it to refute both claimed whole-matrix linearity statements."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that determinant is linear in each row separately with other rows fixed, so scaling all three rows produces 2^3."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses determinant multiplicativity to obtain det(PQ)=-10."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S16-M@1": {
+      "reference": "det(A)=2·3-1·1=5, so A is invertible; its independent columns and full rank agree with the nonzero determinant. det(C)=1·4-2·2=0; its second column is twice the first, so rank<2 and C is not invertible. A sends the unit square to a parallelogram of area 5 with preserved orientation (positive sign). C collapses the square into a line, giving area 0 and no nonzero oriented area. S15 characterized determinant algebraically; volume scaling is the geometric theorem interpreting that scalar for real square maps.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Computes det(A)=5 and det(C)=0."
+        },
+        {
+          "points": 3,
+          "criterion": "Links A's nonzero determinant to invertibility and C's zero determinant to dependent columns/rank loss and noninvertibility."
+        },
+        {
+          "points": 3,
+          "criterion": "Interprets A as area scale 5 with preserved orientation and C as area collapse to zero."
+        },
+        {
+          "points": 2,
+          "criterion": "Distinguishes the volume-scaling theorem/interpretation from the algebraic determinant characterization."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S16-T@1": {
+      "reference": "det(I_2)=det(D)=1, so both preserve area magnitude and have positive orientation; both are invertible. But I_2 leaves e1 unchanged while D sends e1 to 1000e1, and D sends e2 to 0.001e2. The determinant records the product 1000·0.001=1, not the imbalance across directions. Numerical sensitivity/conditioning requires additional machinery deferred to the numerical-linear-algebra module, so equal determinant does not justify equal stability.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "States that det=1 implies invertibility, positive orientation and area-magnitude preservation for both maps."
+        },
+        {
+          "points": 4,
+          "criterion": "Exhibits the directional contrast e1→1000e1 and e2→0.001e2 for D versus identity action for I_2."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects the numerical-stability conclusion because determinant alone does not measure directional sensitivity/conditioning."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S17-M@1": {
+      "reference": "The columns [c1]_B=(2,1)^T and [c2]_B=(-1,3)^T give P_{B←C}=[[2,-1],[1,3]]. Thus [v]_B=P(2,-1)^T=(5,-1)^T. Directly 2c1-c2=2(2b1+b2)-(-b1+3b2)=5b1-b2. det P=7 and P^{-1}=(1/7)[[3,1],[-1,2]]=P_{C←B}; applying it to (5,-1)^T gives (2,-1)^T. Both columns are coordinate descriptions of the same underlying v in different ordered bases.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Constructs P_{B←C}=[[2,-1],[1,3]] from the B-coordinates of c1,c2 in column order."
+        },
+        {
+          "points": 2,
+          "criterion": "Converts (2,-1)_C to (5,-1)_B and verifies the same vector by direct basis expansion."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes P_{C←B}=P^{-1}=(1/7)[[3,1],[-1,2]] and recovers the original C-coordinates."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that changing coordinate columns changes description, not the underlying vector."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S17-T@1": {
+      "reference": "P_{B←C} maps C-coordinates to B-coordinates, so it cannot be applied in that direction to [w]_B. Its inverse is P_{C←B}=[[3,-2],[-1,1]]. Thus [w]_C=P^{-1}(5,8)^T=(-1,3)^T. Converting back gives P(-1,3)^T=(5,8)^T.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "States that P_{B←C} takes C-coordinates in and B-coordinates out, so the colleague used it backwards."
+        },
+        {
+          "points": 4,
+          "criterion": "Computes P_{C←B}=P^{-1}=[[3,-2],[-1,1]] and obtains [w]_C=(-1,3)^T."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies the result by P_{B←C}(-1,3)^T=(5,8)^T."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S18-M@1": {
+      "reference": "Starting from C-coordinates x, B-coordinates are Px; applying T gives APx; returning to C gives P^{-1}APx. Thus D=P^{-1}AP. Here P^{-1}=[[1,0],[-1,1]], so D=[[3,2],[0,1]]. For x=(1,2), Px=(1,3), A Px=(7,9), P^{-1}(7,9)=(7,2); also D(1,2)=(7,2). det(A)=3 and det(D)=3. Since P and P^{-1} are invertible, multiplication by them preserves rank, and D is invertible exactly when A is; determinant equality also follows from multiplicativity and det(P^{-1})det(P)=1.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Derives D=P^{-1}AP from the labelled C→B→apply T→B→C pipeline."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes D=[[3,2],[0,1]]."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies the same output (7,2)^T by both the three-stage route and direct D action."
+        },
+        {
+          "points": 3,
+          "criterion": "Checks det(D)=det(A)=3 and correctly explains preservation of rank/invertibility under multiplication by P,P^{-1}."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S18-T@1": {
+      "reference": "Starting with [v]_C, the first step must be P[v]_C to obtain B-coordinates. The operator in B is then A, giving AP[v]_C. To return B→C one applies P^{-1}, yielding P^{-1}AP[v]_C. Therefore the correct C-basis matrix is P^{-1}AP, not PAP^{-1} for this definition of P. A generic PAQ has no guarantee that Q is the C→B identity conversion and P the inverse B→C conversion; without inverse paired coordinate maps it can change the underlying operator rather than merely its representation.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Tracks C→B with P, applies A in B, and tracks B→C with P^{-1} in the correct order."
+        },
+        {
+          "points": 3,
+          "criterion": "Concludes the correct representation is P^{-1}AP and identifies why PAP^{-1} reverses the named conversion convention."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that arbitrary PAQ lacks the paired inverse coordinate-change semantics required for similarity."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S19-M@1": {
+      "reference": "Row reduction gives rank 2 with pivot columns 1,2 and N(A)=span{(-1,1,-1)}. Thus a basis for Col(A) from the original matrix is {(1,0,1)^T,(1,1,2)^T}; column 3=(0,1,1)^T is column 2 minus column 1. A particular solution is xp=(1,1,0), so every solution is (1,1,0)+t(-1,1,-1). det(A)=0 (for example row 3=row 1+row 2), matching rank 2<3, nonzero nullity and noninvertibility. With P swapping coordinates 1 and 2, D=PAP=[[1,0,1],[1,1,0],[2,1,1]]. Similarity preserves rank 2, determinant 0 and noninvertibility.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Finds rank 2, pivot indices 1,2 and N(A)=span{(-1,1,-1)} by a valid exact reduction."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses original columns (1,0,1)^T,(1,1,2)^T as a Col(A) basis and identifies a3=a2-a1."
+        },
+        {
+          "points": 2,
+          "criterion": "Gives the complete solution (1,1,0)+t(-1,1,-1) for Ax=b."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes det(A)=0 and reconciles noninvertibility with rank 2/nontrivial nullspace."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes D=[[1,0,1],[1,1,0],[2,1,1]] and verifies the same rank/determinant/invertibility invariants."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S19-T@1": {
+      "reference": "Every quoted claim is false or incomplete. M is square but not invertible: n=(-2,1)^T is nonzero and Mn=0, so the kernel is nontrivial and rank is 1. Pivot index 1 tells us to take the first **original** column (1,2)^T as a basis for Col(M), not the first column of R as a vector basis for the original column space. det(M)=1·4-2·2=0, which for a square matrix is equivalent to noninvertibility and geometrically reflects area collapse. If P=P_{B←C} converts C-coordinates to B-coordinates, the C-basis operator matrix is P^{-1}MP, obtained by convert C→B, apply M in B, convert B→C.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Gives a nonzero null vector such as (-2,1)^T and uses it to reject the claim that square shape implies invertibility."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses pivot index 1 to select the original column (1,2)^T as a basis for Col(M), rejecting the R-column substitution."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation."
+        },
+        {
+          "points": 3,
+          "criterion": "Corrects the basis formula to P^{-1}MP for P=P_{B←C} and justifies the C→B→apply→B→C direction."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     }
   },
   "coverage": {
@@ -1607,6 +2076,70 @@
     "T22V3::SIDE276::S14@1": [
       [
         "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S15@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S16@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S17@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S18@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S19@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
       ],
       [
         "main"
@@ -2437,6 +2970,303 @@
         "escapeAttempt": "Writing A^{-1}B^{-1} or accepting a nonsquare inverse fails explicit rows.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::SIDE276::S15@1": [
+      {
+        "claim": "State and use the determinant's alternating multilinear row rules with det(I)=1, distinguishing linearity in one row from linearity of the whole matrix.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S15-M@1",
+          "T22V3::SIDE276::S15-T@1"
+        ],
+        "publicRequestExact": [
+          "Compute det(M) for M=[[0,2,1],[1,1,0],[2,0,3]] using determinant-aware row operations rather than cofactor expansion. Show every row swap or scaling that changes the determinant, use row replacements freely, and finish from a triangular matrix. Then state why a row replacement Ri←Ri+cRj does not change det.",
+          "A report says: 'det is linear, so for 3-by-3 matrices det(2A)=2det(A) and det(A+B)=det(A)+det(B).' Audit the report using A=B=I_3. Compute det(2I_3) and compare it with 2det(I_3) and det(I_3)+det(I_3). Explain the exact kind of linearity the determinant does have. Finally, if det(P)=-2 and det(Q)=5 for 3-by-3 P,Q, compute det(PQ) and name the theorem used."
+        ],
+        "rubricEvidence": [
+          "Explains row-replacement invariance using row-linearity plus the zero determinant from repeated rows.",
+          "Explains that determinant is linear in each row separately with other rows fixed, so scaling all three rows produces 2^3."
+        ],
+        "why": "Both tasks require the actual multilinearity/alternation structure rather than formula recall.",
+        "escapeAttempt": "A correct determinant number without explaining the row rule cannot earn these conceptual rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Compute a square-matrix determinant by determinant-aware elimination/triangular structure while tracking row swaps and row scalings.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S15-M@1"
+        ],
+        "publicRequestExact": [
+          "Compute det(M) for M=[[0,2,1],[1,1,0],[2,0,3]] using determinant-aware row operations rather than cofactor expansion. Show every row swap or scaling that changes the determinant, use row replacements freely, and finish from a triangular matrix. Then state why a row replacement Ri←Ri+cRj does not change det."
+        ],
+        "rubricEvidence": [
+          "Uses one row swap and valid row replacements to reach a triangular matrix with diagonal 1,2,4, or an equivalent determinant-aware reduction.",
+          "Tracks the swap sign correctly and obtains det(M)=-8.",
+          "Does not assign determinant factors to pure row-replacement operations."
+        ],
+        "why": "Main directly observes determinant-aware elimination and factor bookkeeping.",
+        "escapeAttempt": "A cofactor-only answer bypasses the specifically requested method and loses method rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use det(AB)=det(A)det(B) under its square compatible hypotheses and reject false additivity or scalar-linearity claims.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S15-T@1"
+        ],
+        "publicRequestExact": [
+          "A report says: 'det is linear, so for 3-by-3 matrices det(2A)=2det(A) and det(A+B)=det(A)+det(B).' Audit the report using A=B=I_3. Compute det(2I_3) and compare it with 2det(I_3) and det(I_3)+det(I_3). Explain the exact kind of linearity the determinant does have. Finally, if det(P)=-2 and det(Q)=5 for 3-by-3 P,Q, compute det(PQ) and name the theorem used."
+        ],
+        "rubricEvidence": [
+          "Computes det(2I_3)=8 and uses it to refute both claimed whole-matrix linearity statements.",
+          "Uses determinant multiplicativity to obtain det(PQ)=-10."
+        ],
+        "why": "Transfer observes both the false overgeneralizations and the true product theorem.",
+        "escapeAttempt": "Naming multiplicativity without the requested computation cannot satisfy the row.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S16@1": [
+      {
+        "claim": "Derive and use det(A)=0 iff a real square matrix is noninvertible, connecting row-reduction/determinant rules to rank loss.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S16-M@1"
+        ],
+        "publicRequestExact": [
+          "For A=[[2,1],[1,3]] and C=[[1,2],[2,4]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det."
+        ],
+        "rubricEvidence": [
+          "Links A's nonzero determinant to invertibility and C's zero determinant to dependent columns/rank loss and noninvertibility."
+        ],
+        "why": "Main connects determinant signs to the previously owned rank/invertibility structure.",
+        "escapeAttempt": "A bare det computation without the structural conclusion loses the row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Interpret |det(A)| as the n-dimensional volume scale factor and the sign as orientation for a real square linear map.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S16-M@1",
+          "T22V3::SIDE276::S16-T@1"
+        ],
+        "publicRequestExact": [
+          "For A=[[2,1],[1,3]] and C=[[1,2],[2,4]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det.",
+          "Compare I_2 with D=diag(1000,0.001). Both have determinant 1. A memo concludes: 'Because the determinants are equal, the two maps have the same directional sensitivity and should be equally numerically stable.' State what det=1 legitimately tells you, show one concrete directional difference between I_2 and D, and explain why the memo's stability conclusion is unsupported at M14."
+        ],
+        "rubricEvidence": [
+          "Interprets A as area scale 5 with preserved orientation and C as area collapse to zero.",
+          "States that det=1 implies invertibility, positive orientation and area-magnitude preservation for both maps."
+        ],
+        "why": "Both positive, zero and unit determinant meanings are publicly observed.",
+        "escapeAttempt": "Calling determinant 'area' without scale/sign meaning cannot satisfy the rubrics.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain why determinant magnitude alone does not measure directional sensitivity or numerical conditioning.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S16-T@1"
+        ],
+        "publicRequestExact": [
+          "Compare I_2 with D=diag(1000,0.001). Both have determinant 1. A memo concludes: 'Because the determinants are equal, the two maps have the same directional sensitivity and should be equally numerically stable.' State what det=1 legitimately tells you, show one concrete directional difference between I_2 and D, and explain why the memo's stability conclusion is unsupported at M14."
+        ],
+        "rubricEvidence": [
+          "Exhibits the directional contrast e1→1000e1 and e2→0.001e2 for D versus identity action for I_2.",
+          "Rejects the numerical-stability conclusion because determinant alone does not measure directional sensitivity/conditioning."
+        ],
+        "why": "Transfer constructs a same-determinant counterexample to the overclaim.",
+        "escapeAttempt": "A generic warning about numerics without the directional witness loses most points.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S17@1": [
+      {
+        "claim": "Construct P_{B←C} with columns [c_j]_B and justify [v]_B=P_{B←C}[v]_C.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S17-M@1"
+        ],
+        "publicRequestExact": [
+          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors."
+        ],
+        "rubricEvidence": [
+          "Constructs P_{B←C}=[[2,-1],[1,3]] from the B-coordinates of c1,c2 in column order."
+        ],
+        "why": "Main literally constructs the identity-map representation from basis-vector coordinates.",
+        "escapeAttempt": "Using basis vectors as rows or reversing the arrow fails the row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Convert a vector's coordinates between two bases in both directions and verify the underlying vector is unchanged.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S17-M@1"
+        ],
+        "publicRequestExact": [
+          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors."
+        ],
+        "rubricEvidence": [
+          "Converts (2,-1)_C to (5,-1)_B and verifies the same vector by direct basis expansion.",
+          "Explains that changing coordinate columns changes description, not the underlying vector."
+        ],
+        "why": "The learner converts and independently verifies vector identity.",
+        "escapeAttempt": "Matrix arithmetic alone without underlying-vector consistency loses the semantic row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use P_{C←B}=P_{B←C}^{-1} and diagnose a reversed change-of-coordinate direction.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S17-M@1",
+          "T22V3::SIDE276::S17-T@1"
+        ],
+        "publicRequestExact": [
+          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors.",
+          "You are given P_{B←C}=[[1,2],[1,3]] and a vector whose B-coordinate column is [w]_B=(5,8)^T. A colleague multiplies P_{B←C}[w]_B to 'convert to C coordinates'. Diagnose the direction error, compute [w]_C correctly, and verify by converting your answer back to B coordinates."
+        ],
+        "rubricEvidence": [
+          "Computes P_{C←B}=P^{-1}=(1/7)[[3,1],[-1,2]] and recovers the original C-coordinates.",
+          "States that P_{B←C} takes C-coordinates in and B-coordinates out, so the colleague used it backwards.",
+          "Computes P_{C←B}=P^{-1}=[[3,-2],[-1,1]] and obtains [w]_C=(-1,3)^T."
+        ],
+        "why": "Both inverse direction and a live direction-error diagnosis are observed.",
+        "escapeAttempt": "A correct coordinate pair guessed without naming the arrow/inverse cannot earn all rows.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S18@1": [
+      {
+        "claim": "Derive [T]_C=P_{B←C}^{-1}[T]_B P_{B←C} from the convert→apply→convert-back chain.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S18-M@1",
+          "T22V3::SIDE276::S18-T@1"
+        ],
+        "publicRequestExact": [
+          "An operator T has B-basis matrix A=[[1,2],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,0],[1,1]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,2)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
+          "A colleague knows that P=P_{B←C} converts C-coordinates to B-coordinates, but writes the C-basis operator matrix as PAP^{-1}. Without relying on a memorized conjugation formula, audit the claim by writing the coordinate direction at each of the three stages. State the correct expression and explain why a generic product PAQ with unrelated invertible P,Q need not represent the same operator in another basis."
+        ],
+        "rubricEvidence": [
+          "Derives D=P^{-1}AP from the labelled C→B→apply T→B→C pipeline.",
+          "Tracks C→B with P, applies A in B, and tracks B→C with P^{-1} in the correct order.",
+          "Concludes the correct representation is P^{-1}AP and identifies why PAP^{-1} reverses the named conversion convention."
+        ],
+        "why": "Both clean derivation and adversarial direction audit are observed.",
+        "escapeAttempt": "Quoting P^{-1}AP without the conversion arrows cannot earn the derivation rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Verify on a coordinate vector that the two similar matrices produce descriptions of the same underlying operator output.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S18-M@1"
+        ],
+        "publicRequestExact": [
+          "An operator T has B-basis matrix A=[[1,2],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,0],[1,1]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,2)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity."
+        ],
+        "rubricEvidence": [
+          "Verifies the same output (7,2)^T by both the three-stage route and direct D action."
+        ],
+        "why": "Main checks that the coordinate descriptions actually encode one operator output.",
+        "escapeAttempt": "Correct matrix multiplication alone does not establish the semantic equivalence row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain that similarity preserves rank, invertibility and determinant and distinguish similarity from arbitrary left/right multiplication.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S18-M@1",
+          "T22V3::SIDE276::S18-T@1"
+        ],
+        "publicRequestExact": [
+          "An operator T has B-basis matrix A=[[1,2],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,0],[1,1]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,2)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
+          "A colleague knows that P=P_{B←C} converts C-coordinates to B-coordinates, but writes the C-basis operator matrix as PAP^{-1}. Without relying on a memorized conjugation formula, audit the claim by writing the coordinate direction at each of the three stages. State the correct expression and explain why a generic product PAQ with unrelated invertible P,Q need not represent the same operator in another basis."
+        ],
+        "rubricEvidence": [
+          "Checks det(D)=det(A)=3 and correctly explains preservation of rank/invertibility under multiplication by P,P^{-1}.",
+          "Explains that arbitrary PAQ lacks the paired inverse coordinate-change semantics required for similarity."
+        ],
+        "why": "Invariant reasoning and the boundary between similarity and arbitrary multiplication are explicit.",
+        "escapeAttempt": "A generic statement 'similar matrices are alike' cannot satisfy either row.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S19@1": [
+      {
+        "claim": "Use one exact row reduction to coordinate nullspace, column-space basis, rank and complete Ax=b solutions without confusing original and reduced columns.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S19-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,1,0],[0,1,1],[1,2,1]] and b=(2,1,3)^T. Let C=(e2,e1,e3), so P=P_{B←C}=[[0,1,0],[1,0,0],[0,0,1]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A."
+        ],
+        "rubricEvidence": [
+          "Finds rank 2, pivot indices 1,2 and N(A)=span{(-1,1,-1)} by a valid exact reduction.",
+          "Uses original columns (1,0,1)^T,(1,1,2)^T as a Col(A) basis and identifies a3=a2-a1.",
+          "Gives the complete solution (1,1,0)+t(-1,1,-1) for Ax=b."
+        ],
+        "why": "Main coordinates row reduction, kernel, original-column image basis and complete solution on one unseen model.",
+        "escapeAttempt": "A learner who confuses reduced/original columns or gives only one solution loses separate rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Connect rank deficiency, a nontrivial null direction, determinant zero and failure of invertibility as mutually consistent evidence.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S19-M@1",
+          "T22V3::SIDE276::S19-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,1,0],[0,1,1],[1,2,1]] and b=(2,1,3)^T. Let C=(e2,e1,e3), so P=P_{B←C}=[[0,1,0],[1,0,0],[0,0,1]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A.",
+          "Audit this technical memo about M=[[1,2],[2,4]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,2],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention."
+        ],
+        "rubricEvidence": [
+          "Computes det(A)=0 and reconciles noninvertibility with rank 2/nontrivial nullspace.",
+          "Gives a nonzero null vector such as (-2,1)^T and uses it to reject the claim that square shape implies invertibility.",
+          "Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation."
+        ],
+        "why": "Both constructive and adversarial tasks require mutually consistent rank/kernel/determinant evidence.",
+        "escapeAttempt": "A determinant-only slogan cannot satisfy the nullspace/rank reconciliation.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Change the same operator to a new basis by similarity and verify that structural invariants remain unchanged.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S19-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,1,0],[0,1,1],[1,2,1]] and b=(2,1,3)^T. Let C=(e2,e1,e3), so P=P_{B←C}=[[0,1,0],[1,0,0],[0,0,1]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A."
+        ],
+        "rubricEvidence": [
+          "Computes D=[[1,0,1],[1,1,0],[2,1,1]] and verifies the same rank/determinant/invertibility invariants."
+        ],
+        "why": "Main actually changes the representation and checks preserved structure.",
+        "escapeAttempt": "Naming similarity without computing/verifying the new representation loses the row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Diagnose a multi-claim report containing representation, invertibility and basis-change errors with explicit counterevidence.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S19-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit this technical memo about M=[[1,2],[2,4]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,2],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention."
+        ],
+        "rubricEvidence": [
+          "Gives a nonzero null vector such as (-2,1)^T and uses it to reject the claim that square shape implies invertibility.",
+          "Uses pivot index 1 to select the original column (1,2)^T as a basis for Col(M), rejecting the R-column substitution.",
+          "Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation.",
+          "Corrects the basis formula to P^{-1}MP for P=P_{B←C} and justifies the C→B→apply→B→C direction."
+        ],
+        "why": "Transfer is a multi-claim memo audit spanning the major representation failure modes.",
+        "escapeAttempt": "A partial correction cannot earn the rows attached to the untouched false claims.",
+        "disposition": "adequate"
+      }
     ]
   },
   "evidenceDistance": {
@@ -2578,6 +3408,56 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "reason": "Transfer changes to a composition/inverse-order audit with supplied component inverses and a nonsquare case."
+      }
+    },
+    "T22V3::SIDE276::S15@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main requires determinant-aware elimination on an unseen matrix plus a structural proof of row-replacement invariance."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer switches to misconception forensics and product reasoning on identity/determinant data."
+      }
+    },
+    "T22V3::SIDE276::S16@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main integrates determinant calculation, singularity structure and geometry on two fresh matrices."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer uses equal-determinant but anisotropic maps to test the boundary of determinant interpretation."
+      }
+    },
+    "T22V3::SIDE276::S17@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main constructs, applies, inverts and semantically verifies a fresh coordinate-change matrix."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer begins with coordinates on the output side of a named conversion and requires diagnosing the arrow reversal."
+      }
+    },
+    "T22V3::SIDE276::S18@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main derives and verifies a similarity transform on fresh A,P and requires invariant reasoning."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer removes arithmetic and attacks the conversion-direction misconception directly."
+      }
+    },
+    "T22V3::SIDE276::S19@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main is a new integrated model requiring method coordination across all major M14 representations."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer changes from constructive solving to adversarial audit of linked false claims."
       }
     }
   },
@@ -2722,6 +3602,56 @@
           "classification": "changed-surface Transfer",
           "reason": "Transfer changes to a composition/inverse-order audit with supplied component inverses and a nonsquare case."
         }
+      },
+      "T22V3::SIDE276::S15@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main requires determinant-aware elimination on an unseen matrix plus a structural proof of row-replacement invariance."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer switches to misconception forensics and product reasoning on identity/determinant data."
+        }
+      },
+      "T22V3::SIDE276::S16@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main integrates determinant calculation, singularity structure and geometry on two fresh matrices."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer uses equal-determinant but anisotropic maps to test the boundary of determinant interpretation."
+        }
+      },
+      "T22V3::SIDE276::S17@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main constructs, applies, inverts and semantically verifies a fresh coordinate-change matrix."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer begins with coordinates on the output side of a named conversion and requires diagnosing the arrow reversal."
+        }
+      },
+      "T22V3::SIDE276::S18@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main derives and verifies a similarity transform on fresh A,P and requires invariant reasoning."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes arithmetic and attacks the conversion-direction misconception directly."
+        }
+      },
+      "T22V3::SIDE276::S19@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main is a new integrated model requiring method coordination across all major M14 representations."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes from constructive solving to adversarial audit of linked false claims."
+        }
       }
     },
     "note": "Each fixed task was compared against its lesson, worked example, guided action/feedback and earlier answer-bearing instruction by mathematical instance, not prompt text alone. Transfer labels state the changed representation/decision/obstacle. Full-module cross-session scan is repeated in verification."
@@ -2747,7 +3677,7 @@
   "instructionSeparation": {
     "policy": "Worked/guided examples use distinct numerical or structural instances from fixed assessments. Guided feedback remains staged. Fixed assessments are compared semantically against all earlier answer-bearing instruction; shared general methods are permitted but solved subanswers are not presented as fresh evidence.",
     "pilotFinding": "S04 uses distinct worked, guided, Main and Transfer matrices. The pilot falsification pass found no solved subanswer exposure. A separate Gate-7 defect was found instead: associativity was claimed but not observed; the Main was repaired before any learner publication.",
-    "status": "builder-reviewed candidate; no M14 learner-route exposure exists because the module is not published"
+    "status": "full builder candidate; cross-session semantic overlap scan and independent review still required"
   },
   "initialVersionAudit": {
     "priorCanonicalM14": "none",
