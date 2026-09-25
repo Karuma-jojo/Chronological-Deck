@@ -5,9 +5,9 @@
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "pilot-builder-candidate-under-review",
+    "status": "pilot-builder-candidate-local-gates-passed",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
-    "gate": "Four entry/pilot sessions and 8 fixed assessments are authored under protocol v1.2; S04 has entered Gates 4–8 adversarial pilot review. S05–S19 remain design-only until the pilot passes. No learner-route publication.",
+    "gate": "Four entry/pilot sessions and 8 fixed assessments are authored under protocol v1.2. The S04 vertical slice passed local Gates 4–8 after one real ownership-gap repair; S05–S19 may now be authored in dependency order. No learner-route publication.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
   },
   "boundary": {
@@ -40,7 +40,7 @@
     "authoredSessions": 4,
     "ownershipClaimCount": 14,
     "fixedAssessments": 8,
-    "reviewProvenance": "Builder source reconstruction and falsification passes only; independent adversarial review has not yet occurred."
+    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -321,7 +321,7 @@
       "id": "T22V3::SIDE276::S04-M@1",
       "order": 4,
       "kind": "main",
-      "prompt": "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents.",
+      "prompt": "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents. (e) If R:R^2→R^2 is represented by any compatible matrix C, explain without entrywise multiplication why (CA)B=C(AB) represents the same three-stage map R∘S∘T.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S04-T@1": {
@@ -454,14 +454,14 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
     },
     "T22V3::SIDE276::S04-M@1": {
-      "reference": "S∘T is represented by AB because T acts first: R^2 --B→ R^3 --A→ R^2. Thus AB is 2-by-2. Multiplication gives AB=[[5,4],[1,-4]]. Its first column is (5,1)^T; B's first column is (1,0,2)^T and A(1,0,2)^T=(5,1)^T, so it is S(T(e1)). BA is also defined: it is 3-by-3 and represents T∘S:R^3→R^3, a different composition.",
+      "reference": "S∘T is represented by AB because T acts first: R^2 --B→ R^3 --A→ R^2. Thus AB is 2-by-2. Multiplication gives AB=[[5,4],[1,-4]]. Its first column is (5,1)^T; B's first column is (1,0,2)^T and A(1,0,2)^T=(5,1)^T, so it is S(T(e1)). BA is also defined: it is 3-by-3 and represents T∘S:R^3→R^3, a different composition. For any compatible C representing R:R^2→R^2, (CA)B and C(AB) both represent x↦R(S(T(x))). Function composition is associative, so the represented linear maps are identical; uniqueness of a matrix representation in fixed bases gives (CA)B=C(AB).",
       "rubric": [
         {
-          "points": 3,
+          "points": 2,
           "criterion": "Chooses AB for S∘T and justifies the 2-by-2 shape from R^2→R^3→R^2."
         },
         {
-          "points": 3,
+          "points": 2,
           "criterion": "Computes AB=[[5,4],[1,-4]]."
         },
         {
@@ -471,6 +471,10 @@
         {
           "points": 2,
           "criterion": "States that BA is a legal 3-by-3 matrix representing the reversed composition T∘S:R^3→R^3."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains (CA)B=C(AB) from associativity of the same three-stage map R∘S∘T, not from entrywise algebra."
         }
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
@@ -753,7 +757,7 @@
           "T22V3::SIDE276::S04-T@1"
         ],
         "publicRequestExact": [
-          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents.",
+          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents. (e) If R:R^2→R^2 is represented by any compatible matrix C, explain without entrywise multiplication why (CA)B=C(AB) represents the same three-stage map R∘S∘T.",
           "A two-stage linear pipeline acts on x∈R^2. Stage 1 uses C=[[1,2],[0,1]] and stage 2 uses D=[[3,0],[0,2]]. Both DC and CD are legal. (a) Determine which product represents 'first C, then D' and explain the order semantically. (b) Compute that composite matrix and its output on x=(1,-1)^T. (c) Compute the reversed-order product as well and use the two products to refute the claim that matrix multiplication is commutative."
         ],
         "rubricEvidence": [
@@ -771,7 +775,7 @@
           "T22V3::SIDE276::S04-M@1"
         ],
         "publicRequestExact": [
-          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents."
+          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents. (e) If R:R^2→R^2 is represented by any compatible matrix C, explain without entrywise multiplication why (CA)B=C(AB) represents the same three-stage map R∘S∘T."
         ],
         "rubricEvidence": [
           "Computes AB=[[5,4],[1,-4]].",
@@ -788,14 +792,14 @@
           "T22V3::SIDE276::S04-M@1"
         ],
         "publicRequestExact": [
-          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents."
+          "T:R^2→R^3 has standard matrix B=[[1,2],[0,-1],[2,1]], and S:R^3→R^2 has standard matrix A=[[1,0,2],[-1,3,1]]. (a) Which ordered product represents S∘T, and what shape must it have? Justify from the source/intermediate/target spaces. (b) Compute that product. (c) Interpret its first column as a composed basis response and verify it by applying A to the first column of B. (d) Is BA meaningless here? If not, state the map and coordinate dimensions that BA represents. (e) If R:R^2→R^2 is represented by any compatible matrix C, explain without entrywise multiplication why (CA)B=C(AB) represents the same three-stage map R∘S∘T."
         ],
         "rubricEvidence": [
-          "Chooses AB for S∘T and justifies the 2-by-2 shape from R^2→R^3→R^2."
+          "Explains (CA)B=C(AB) from associativity of the same three-stage map R∘S∘T, not from entrywise algebra."
         ],
-        "why": "The lesson proves associativity from composition, but the current fixed Main does not directly ask the learner to demonstrate associativity.",
-        "escapeAttempt": "A learner could earn every current Main row without explaining why three-factor parenthesization is irrelevant.",
-        "disposition": "repair-required"
+        "why": "The repaired Main now directly requires the learner to justify three-factor associativity from function composition.",
+        "escapeAttempt": "A learner who only computes AB can still lose the explicit associativity row.",
+        "disposition": "adequate"
       },
       {
         "claim": "Reject commutativity in general using a concrete pair for which both products are legal but represent different process orders.",
@@ -923,7 +927,7 @@
   },
   "instructionSeparation": {
     "policy": "Worked/guided examples use distinct numerical or structural instances from fixed assessments. Guided feedback remains staged. Fixed assessments are compared semantically against all earlier answer-bearing instruction; shared general methods are permitted but solved subanswers are not presented as fresh evidence.",
-    "pilotFinding": "S04 deliberately makes both BA and AB legal; the fixed Main uses different rectangular matrices and the Transfer changes to a verbal square pipeline. Neither fixed output/product appears in S01–S04 instruction.",
+    "pilotFinding": "S04 uses distinct worked, guided, Main and Transfer matrices. The pilot falsification pass found no solved subanswer exposure. A separate Gate-7 defect was found instead: associativity was claimed but not observed; the Main was repaired before any learner publication.",
     "status": "builder-reviewed candidate; no M14 learner-route exposure exists because the module is not published"
   },
   "initialVersionAudit": {
