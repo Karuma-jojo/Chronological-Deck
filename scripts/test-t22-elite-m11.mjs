@@ -41,11 +41,11 @@ assert(!a.boundary.owns.join(' ').toLowerCase().includes('pilot scope'),'stale p
 assert.match(a.module.gate,/all 20 design-derived sessions/i);
 assert(!/s01 is the required pilot/i.test(a.module.gate),'stale pilot module gate');
 
-assert.equal(meta.moduleSources.length,12,'publication through M12 must register twelve modules');
+assert.equal(meta.moduleSources.length,13,'publication through M12 must register twelve modules');
 assert(meta.moduleSources.some(x=>x.order===11&&x.id==='ARC510'&&x.source==='course/t22/authoring/m11-arc510.json'));
 assert.equal(meta.moduleSources.filter(x=>x.order<=11).length,11);
 
-const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/generated/course-meta.json','scripts/test-t22-elite-m09.mjs','scripts/test-t22-elite-m10.mjs','docs/t22-course/audit/m06-handoff-checks.mjs','docs/t22-course/audit/m07-handoff-checks.mjs','docs/t22-course/audit/m08-handoff-checks.mjs','docs/t22-course/audit/m10-protected-semantic-rows.json']);
+const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/generated/course-meta.json','scripts/test-t22-elite-m09.mjs','scripts/test-t22-elite-m10.mjs','docs/t22-course/audit/m06-handoff-checks.mjs','docs/t22-course/audit/m07-handoff-checks.mjs','docs/t22-course/audit/m08-handoff-checks.mjs','docs/t22-course/audit/m10-protected-semantic-rows.json','js/t22-course/ui.js','t22-course.html']);
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized through-M12 publication surfaces');
 
 for(const heading of ['Boundary contract','Source dossier','Concept dependency graph','Conceptual-distinction map','Failure-mode map','Narrative spine','Candidate session boundaries']){

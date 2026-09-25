@@ -24,7 +24,7 @@ try{
 
   await page.goto(base+'/t22-course.html?module=11&session=20');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
-  assert.equal(await page.locator('#module option').count(),12,'publication route must expose twelve modules');
+  assert.equal(await page.locator('#module option').count(),13,'publication route must expose twelve modules');
   assert.equal(await page.locator('#module').inputValue(),'ARC510');
   assert((await page.locator('#module').allTextContents()).join(' ').includes('Integration & Accumulation'));
   assert.equal(await page.locator('#session option').count(),20);

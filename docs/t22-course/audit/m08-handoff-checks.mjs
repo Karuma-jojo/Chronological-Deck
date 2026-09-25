@@ -27,7 +27,7 @@ assert.deepEqual(deps.modules.find(x=>x.id==='T22E-CODE01').prerequisites,a.boun
 assert.equal(road.modules.find(x=>x.id==='T22E-CODE01').availability,'authored');
 assert.equal(sem.entries.find(x=>x.id==='T22E-CODE01').semanticStatus,'accepted');
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'));
-assert.equal(meta.moduleSources.length,12,'later-authorized publication through M12 is allowed');
+assert.equal(meta.moduleSources.length,13,'later-authorized publication through M12 is allowed');
 assert(fs.existsSync('course/t22/authoring/m09.json'),'M09 is now explicitly authorized');
 assert(!fs.existsSync('course/t22/authoring/m10.json'),'historical obsolete M10 path remains absent; canonical M10 is m10-arc053.json');
 assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));

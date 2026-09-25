@@ -6,6 +6,8 @@ const tell=x=>$('status').textContent=x;
 const uuid=()=>crypto.randomUUID();
 let course,roadmap,state,session,problemId,lastSaved=null,keys=null,visit=0,noteSeen=false,storageOK=true,activeModuleId=null;
 const drafts=new Map();
+const guidedDrafts=new Map();
+const learningNoteSeenThisVisit=new Set();
 const put=(id,text)=>$(id).textContent=text;
 async function json(url){const r=await fetch(url);if(!r.ok)throw Error(`Could not load ${url} (${r.status})`);return r.json();}
 function persist(message){if(storageOK){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{storageOK=false;}}if(message)tell(message+(storageOK?'':' — held in memory only; export now to keep it.'));return storageOK;}
@@ -55,12 +57,12 @@ function captureDraft(){
 function showProblem(id){
  captureDraft();
  problemId=id;visit++;lastSaved=null;
- const draft=drafts.get(id);noteSeen=!!draft?.noteSeen;
+ const draft=drafts.get(id);noteSeen=!!draft?.noteSeen||(typeof learningNoteSeenThisVisit!=='undefined'&&learningNoteSeenThisVisit.has(session?.id));
  const p=course.problems[id],prior=state.exposures[id];
  put('taskMeta',`${p.kind.toUpperCase()} · ${id}`);put('problem',taskText(p));
  put('exposure',prior?`Previously displayed in this browser log (${prior.views} view${prior.views===1?'':'s'}).${prior.referenceSeenAt?' Answer-bearing material has been exposed for this task.':''}`:'First display in this browser log. Outside exposure is unknown.');
  expose(state,id);persist();
- $('answer').value=draft?.answer||'';$('assistance').value=draft?.assistance||'independent';$('minutes').value=draft?.minutes??'0';$('reference').hidden=true;put('reference','');$('learning').hidden=true;put('learning','');$('reveal').disabled=true;$('review').disabled=true;renderHistory();renderQueue();renderModuleEvidence();
+ $('answer').value=draft?.answer||'';$('assistance').value=draft?.assistance||'independent';$('minutes').value=draft?.minutes??'0';$('reference').hidden=true;put('reference','');$('learning').hidden=true;put('learning','');$('guidedPanel').hidden=true;$('guidedFeedback').hidden=true;put('guidedFeedback','');$('reveal').disabled=true;$('review').disabled=true;renderHistory();renderQueue();renderModuleEvidence();
 }
 function selectSession(orderOrId,kind='main'){
  const list=moduleSessions(),wanted=typeof orderOrId==='string'&&orderOrId.includes('::')?list.find(s=>s.id===orderOrId):list.find(s=>s.order===Number(orderOrId));
@@ -122,7 +124,9 @@ async function init(){
  $('previous').onclick=()=>{const list=moduleSessions(),idx=list.findIndex(s=>s.id===session.id);if(idx>0)selectSession(list[idx-1].id);};
  $('next').onclick=()=>{const list=moduleSessions(),idx=list.findIndex(s=>s.id===session.id);if(idx>=0&&idx<list.length-1)selectSession(list[idx+1].id);};
  $('mainTask').onclick=()=>selectSession(session.id,'main');$('transferTask').onclick=()=>selectSession(session.id,'transfer');
- $('note').onclick=()=>{put('learning','LEARNING NOTE — ASSISTANCE, NOT INDEPENDENT EVIDENCE\n\n'+session.lesson);$('learning').hidden=false;noteSeen=true;if($('assistance').value==='independent')$('assistance').value='guided';const e=expose(state,problemId,undefined,'lessonSeenAt');e.lessonContentVersion=session.instructionVersion||course.instructionVersion||course.version;persist('Learning note opened; assistance exposure recorded.');};
+ $('note').onclick=()=>{put('learning','LEARNING NOTE — ASSISTANCE, NOT INDEPENDENT EVIDENCE\n\n'+session.lesson);$('learning').hidden=false;const hasGuide=typeof session.guidedFeedback==='string'&&session.guidedFeedback.length>0;$('guidedPanel').hidden=!hasGuide;$('guidedFeedback').hidden=true;put('guidedFeedback','');$('guidedAnswer').value=hasGuide?(guidedDrafts.get(session.id)||''):'';$('guidedCheck').disabled=!$('guidedAnswer').value.trim();noteSeen=true;if(hasGuide)learningNoteSeenThisVisit.add(session.id);if($('assistance').value==='independent')$('assistance').value='guided';const e=expose(state,problemId,undefined,'lessonSeenAt');e.lessonContentVersion=session.instructionVersion||course.instructionVersion||course.version;persist('Learning note opened; assistance exposure recorded.');};
+ $('guidedAnswer').oninput=()=>{guidedDrafts.set(session.id,$('guidedAnswer').value);$('guidedCheck').disabled=!$('guidedAnswer').value.trim();};
+ $('guidedCheck').onclick=()=>{if(!session.guidedFeedback||!$('guidedAnswer').value.trim())return;put('guidedFeedback',session.guidedFeedback);$('guidedFeedback').hidden=false;persist('Guided-practice check opened; this is learning assistance, not fixed-task clearance.');};
  $('save').onclick=()=>{const answer=$('answer').value.trim(),minutes=Number($('minutes').value);if(!answer){tell('Record your working or attempted reasoning before saving.');return;}if(answer.length>100000||!Number.isFinite(minutes)||minutes<0||minutes>100000){tell('Check answer length and minutes.');return;}const referenceSeenBefore=!!answerExposureAt(state,problemId);const assistance=referenceSeenBefore?'revealed':noteSeen&&$('assistance').value==='independent'?'guided':$('assistance').value;const a={id:uuid(),problemId,at:new Date().toISOString(),answer,assistance,minutes,result:'unreviewed',error:'',referenceSeenBefore,noteSeenDuringAttempt:noteSeen,contractHash:session.contractHash,assessmentFingerprint:course.assessmentFingerprints[problemId]};state.attempts.push(a);lastSaved=a.id;$('reveal').disabled=false;$('review').disabled=false;persist('Attempt saved. No mastery clearance was granted.');renderHistory();renderQueue();renderModuleEvidence();};
  $('reveal').onclick=reveal;
  $('saveReview').onclick=()=>{const a=state.attempts.find(x=>x.id===lastSaved);if(!a||a.problemId!==problemId||a.reviewOf)return;state.attempts.push({...a,id:uuid(),at:new Date().toISOString(),reviewOf:a.id,result:$('result').value,error:$('error').value});persist('Review saved against the original attempt. It is not a new practice day.');renderHistory();renderQueue();renderModuleEvidence();};

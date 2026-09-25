@@ -125,8 +125,33 @@
       "order": 13,
       "id": "ARC511",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "accepted",
+      "bridges": [
+        {
+          "id": "M13-B01",
+          "owner": "ARC511",
+          "title": "Typed coordinate vectors and displacement convention",
+          "before": "first linear-combination and span task",
+          "content": "Introduce real R^n ordered vectors, equal-length arithmetic, component units/order and the point-to-displacement convention locally in S01–S02; do not assume M14 matrices.",
+          "implementedBy": "M13-S01–S02"
+        },
+        {
+          "id": "M13-B02",
+          "owner": "ARC511",
+          "title": "Matrix-free finite replacement bound",
+          "before": "basis-size invariance and dimension",
+          "content": "Prove the independent-list length bound against a spanning list in the same subspace of a real R^N by successive replacement, with no rank/elimination premise.",
+          "implementedBy": "M13-S11"
+        },
+        {
+          "id": "M13-B03",
+          "owner": "ARC511",
+          "title": "Angle-domain support",
+          "before": "nonzero Euclidean angle and orthogonality",
+          "content": "Use the elementary planar law of cosines locally and the prior Cauchy–Schwarz bound to define arccos in R^n only for nonzero vectors. M02 trigonometry is a transitive prerequisite via M03.",
+          "implementedBy": "M13-S14–S15"
+        }
+      ]
     },
     {
       "order": 14,
