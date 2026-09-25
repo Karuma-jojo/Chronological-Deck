@@ -1,0 +1,45 @@
+# M13 builder verification and review handoff
+
+Module: `ARC511`, 17 sessions, 34 fixed tasks, 49 literal ownership links. Branch: `codex/t22-pedagogical-rebuild`. Review provenance: one builder's content and reconstruction passes on 2026-09-25; no separate reviewer and no learner trial. Status: **builder-validated candidate**, outside the shared learner registry. The semantic ledger remains `pending-boundary-audit`; this document does not confer independent acceptance.
+
+## Learner-route and whole-module type check
+
+The sequence moves from typed real `R^n` objects and meaningful components (S01–S02), to combinations/span and proof of reachability or obstruction (S03–S06), independence/basis/finite dimension (S07–S12), then Euclidean dot, norm, inequalities, angle and orthogonality (S13–S16), ending with synthesis (S17). Each new proof uses the earlier definition or a locally supplied support result. S11 proves the finite replacement bound before calling basis size invariant; S14 proves Cauchy–Schwarz before S15 divides by norms. The zero-vector angle exception is stated and assessed. No matrix elimination/rank or projection procedure is used as a premise.
+
+Pedagogy: each lesson has orientation, a solved example, guided work and a distinction check. Coherence: reachability leads to basis, then to intrinsic dimension; dot/norm form a second strand reunited in S17. Information flow: scalar equations precede witnesses, universal closure/replacement precedes dimension claims, and positivity precedes angles. Syllabus: the boundary explicitly defers M14 matrix and M15 projection machinery. The main representations recur in later assessments: typed components S02/S17, coefficient families S04–S10/S17, proof of set claims S06/S09/S11, and normalized alignment S15–S17.
+
+## Task-by-task mathematical and evidence reconstruction
+
+This is a builder reconstruction from the public givens followed by comparison to the stored reference and rubric. It is not a blind or independent audit. `M` and `T` name the distinct Main and Transfer obligations in each row. Every rubric totals 10, and the 49 claims contain exact public prompts and scoring-row locators.
+
+| Session | Main result / boundary | Transfer result / boundary | Separation judgment |
+| --- | --- | --- | --- |
+| S01 | `2a-b=(7,-7,7)` in `R³`; mixed lengths invalid. | `3d=(12,-9)` in `R²`, `3e=(12,-9,0)` in `R³`; equality needs a map. | Different typed objects and instance. |
+| S02 | `Q-P=(-3,4,-2)` metres; reverse sign. | Align units/order before adding: `(12 °C,3 kPa)`. | Location arithmetic changes to semantic coordinate alignment. |
+| S03 | `au+bv=(2a-b,a,3b)`; specified value `(5,2,-3)`. | Restricted family `(a,1-a,3a-1)`, `0≤a≤1`; `2p` only in unrestricted span. | Parameter constraint requires new decision. |
+| S04 | Coefficients `(2,1)` reach `(2,3,1)`; one target does not prove all `R³`. | `T(r,s)=rg+sh` for all real parameters. | One witness changes to an all-target symbolic proof. |
+| S05 | All old targets obey `z=2x+3y`; `(2,-1,0)` violates it. | `w` violates `z=2(y-x)`; `t=2p+2q-w`. | New library and a strict-enlargement argument. |
+| S06 | Zero, addition and scalar closure for `x-2y+z=0`. | `(4,0,0)` lies in the translated plane, but scaling by zero leaves it. | Universal proof changes to a concrete counterexample. |
+| S07 | Equations force all three coefficients zero over the reals. | Dependence exactly at `t=2`, with `2u-v=0`. | Parameter exception changes the quantifier and surface. |
+| S08 | `u+v-w=0`, no parallel pair; two span containments. | Solve `b=2a+3c`; no inference that the remaining pair is independent. | Symbolic relation rather than fixed coordinates. |
+| S09 | `d=(x-y)/3`, `c=(2x+y)/3`; independent, hence unique. | Pair independent, `(0,0,1)` unreachable; `r=p+q` adds nothing. | Basis construction changes to a near-miss diagnosis. |
+| S10 | Basis `((1,0,1),(0,1,3))`; target coordinates `(2,-1)`. | `c=a+b`, basis `(a,b)`; target `(1,2,-3)` has coordinates `(1,3)`. | Different plane and multiple valid ordered bases. |
+| S11 | A remaining old coefficient is nonzero; replacement preserves span and gives `n≤m`; compare bases both ways. | Five independent in a four-spanned same space contradicts the bound; spanning alone is not independence. | General proof changes to hypothesis-matched application. |
+| S12 | Basis `((1,0,3),(0,1,2))`; plane dimension 2, ambient 3. | Empty basis of `{0₄}` gives dimension 0; `[0₄]` is dependent. | Degenerate case tests convention and object type. |
+| S13 | `a·b=-5`, `||a||=3`, `||b||=√10`; dot is scalar. | Componentwise product `(12,-10)` differs from scalar dot `2`; cross-dimension dot undefined. | Object-type diagnostic rather than routine arithmetic. |
+| S14 | For `v≠0`, choose `t=(u·v)/||v||²`, derive Cauchy–Schwarz, then triangle; handle zero. | `|-12|>10` and `20>7`; both reports impossible, no exact replacement. | Proof changes to a data-validity audit. |
+| S15 | Dot `4`, norms `√5`, cosine `4/5`, angle `arccos(4/5)`; ratio bounded by S14. | Zero dot with zero vector, norm `0`; angle undefined. | Defined angle changes to failed-domain inference. |
+| S16 | Raw dots `100,2,0`; cosines `1/√2,1,0`; `w` most aligned, `z` orthogonal. | Example `b=(2,-1,0)` has zero dot with nonzero `a`; angle `π/2`, unlike zero vector. | Ranking changes to construction and boundary condition. |
+| S17 | `w=u+v`, target `3u-v`, dot `2`, cosine `2/√22`; alternate bases accepted. | `r=p+q`, all combinations obey `z=2x+y/2`, target violates it; zero angle undefined. | New synthesis instances and adversarial false claims. |
+
+The S04 lesson's first worked pair had matched the S03 Transfer generators and was changed during pilot repair. Later cross-session review changed S09 Transfer generators, S10 Transfer target, S16 worked comparison and S17 Transfer generators to remove exact solved-subanswer overlap. A final tuple-overlap scan found shared individual coordinates across lessons and tasks, but no assessed generator/target instance solved earlier. Shared definitions and proof architecture remain deliberately reusable; a method being taught is not an answer key. The S05 Transfer rubric initially used unrelated `u,v` names and was corrected to `t=2p+2q-w`. The S09 Transfer rubric initially demanded a nonzero third coordinate even though `(1,0,0)` is a valid obstruction; it now credits any valid outside target. Those two corrections have bounded executable guards.
+
+All 34 public prompts were read without the claim annotations, then compared with references and rubrics. The S11 theorem is for an independent list and a spanning list of the **same finite real vector space**; it does not say an arbitrary spanning list is independent. S14 uses a scalar proof device, not a projection algorithm. S15 defines the `R^n` angle only for nonzero vectors. Rubrics accept equivalent witnesses and valid alternate bases where the prompt permits them.
+
+## Implementation, versions and remaining work
+
+The M13 file is new: all 17 session contracts and 34 task obligations begin at version 1. No earlier M13 learner attempts, fingerprints or instruction versions were migrated. No predecessor artifact, stored learner evidence, or route metadata was changed. The candidate is deliberately not offered in the dropdown, so no new fixed-task exposure is created in the shared route. The M13 browser probe parses every changed text surface and computes runtime contract hashes/fingerprints from this candidate while retaining the twelve-module learner route.
+
+Local verification: 49 syntax checks and 39 structural/semantic commands from the workflow passed, including the new M13 validator. The M13 validator checks structure, exact claim-to-prompt/rubric links, selected numeric reconstruction, stale status and the two known rubric defects. It cannot certify prose teaching or all possible answer exposures. Local Chromium was unavailable, so browser verification awaits the pushed-head Actions run. The full Actions URL and result must be added to the handoff after the actual run; a workflow file alone is not a browser pass.
+
+Source Dossier and support-theorem ledger: `M13-DESIGN-GATE.md`; pilot receipt: `M13-PILOT-REVIEW.md`. The user-supplied Strang 4e was a deep comparator; Axler supplied the matrix-free finite replacement route. There are no requested additional textbook files. Remaining acceptance work is a genuinely separate adversarial review and any authorized learner trial; neither is simulated by this builder pass. Stop at M13: no M14 authoring, main merge, deployment, T25 edit or legacy-progress migration.
