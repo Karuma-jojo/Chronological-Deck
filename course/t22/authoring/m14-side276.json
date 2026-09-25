@@ -105,7 +105,7 @@
       {
         "id": "PED-LT",
         "role": "domain-specific empirical/qualitative comparator",
-        "sections": "Turgut et al., Understanding and Visualizing Linear Transformations; Caglayan on similar matrices/representations",
+        "sections": "Asuman Oktaç (2018), Understanding and Visualizing Linear Transformations; Caglayan (2018) on similar matrices/matrix representations",
         "supports": "linearity, representation-conversion and similarity failure modes",
         "limitations": "specific instructional populations; frequencies not generalized"
       },
