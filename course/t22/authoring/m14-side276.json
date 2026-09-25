@@ -5,9 +5,9 @@
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "builder-candidate-systems-spine-authored",
+    "status": "builder-candidate-through-invertibility",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
-    "gate": "Nine sessions and 18 fixed assessments are authored under protocol v1.2. S04 pilot passed local Gates 4–8 after repair; S05–S09 were authored in dependency order and remain subject to the full-module adversarial pass. No learner-route publication.",
+    "gate": "Fourteen sessions and 28 fixed assessments are authored under protocol v1.2. The route now reaches exact invertibility/inverse construction; determinant and coordinate-change sessions S15–S19 remain. No learner-route publication.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
   },
   "boundary": {
@@ -37,9 +37,9 @@
     "designGate": "docs/t22-course/M14-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M14-PILOT-REVIEW.md",
     "pedagogicalAtoms": 19,
-    "authoredSessions": 9,
-    "ownershipClaimCount": 29,
-    "fixedAssessments": 18,
+    "authoredSessions": 14,
+    "ownershipClaimCount": 44,
+    "fixedAssessments": 28,
     "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred."
   },
   "sourceLedger": {
@@ -463,6 +463,198 @@
       "guidedFeedback": "Check after attempting. One particular solution is xp=(1,1,0). Solving Cn=0 gives n=t(3,-1,1), so every solution is (1,1,0)+t(3,-1,1). Any two choices differ by a scalar multiple of (3,-1,1), hence by a null vector.",
       "main": "T22V3::SIDE276::S09-M@1",
       "transfer": "T22V3::SIDE276::S09-T@1"
+    },
+    {
+      "order": 10,
+      "id": "T22V3::SIDE276::S10@1",
+      "moduleId": "SIDE276",
+      "title": "Column space is the set of reachable outputs",
+      "focus": "Define Col(A) as the image of the matrix map, connect consistency to membership, and extract a basis from pivot columns of the original matrix.",
+      "purpose": "Turn the S05 column picture into a named output-side subspace while preventing the classic mistake of using RREF columns as if row reduction preserved literal column space.",
+      "centralCapability": "Compute and interpret Col(A), select a basis from original pivot columns, and use it to decide reachability.",
+      "principalObstacle": "The learner confuses Col(A) with N(A), places it in the domain, or takes pivot columns from the row-reduced matrix instead of the original matrix.",
+      "entryPrerequisites": [
+        "M14-S06 row-equivalent systems",
+        "M14-S07 pivots/free variables",
+        "M14-S08 nullspace",
+        "M13 span/basis"
+      ],
+      "requiredOwnership": [
+        "Interpret Col(A)={Ax:x∈R^n} as the range/reachable-output subspace and connect Ax=b consistency to b∈Col(A).",
+        "Use pivot positions from row reduction to choose a basis from the corresponding columns of the original matrix A.",
+        "Explain why row reduction preserves column-dependence relations/pivot indices but generally changes the literal column space, and distinguish Col(A)⊆R^m from N(A)⊆R^n."
+      ],
+      "applicationScope": "Exact finite matrices; basis selection uses original columns and exact row reduction.",
+      "transferScope": "Transfer presents an RREF beside the original matrix and asks the learner to audit an incorrect RREF-column basis claim.",
+      "inScope": [
+        "column space/image",
+        "reachability",
+        "original pivot columns",
+        "row-reduction distinction"
+      ],
+      "outOfScope": [
+        "row space as a developed object",
+        "orthogonal complements",
+        "SVD/numerical rank"
+      ],
+      "exitCondition": "Given A and a target, identify the correct output subspace, an original-column basis and exact reachability evidence.",
+      "lesson": "Orient. S05's column picture said Ax is a linear combination of the columns of A. The set of *all* such outputs is the column space Col(A)={Ax:x∈R^n}=span{a1,...,an}. For an m-by-n matrix, every column lies in R^m, so Col(A) is a subspace of the output space R^m. The equation Ax=b is consistent exactly when b∈Col(A).\n\nWhich original columns form a basis? Row reduction reveals pivot positions, but it changes the actual column vectors. The safe rule is: reduce A to an echelon form R, locate pivot-column indices in R, then select those indexed columns from the **original A**.\n\nWhy the index rule works. Row operations preserve the solution set of Ac=0, so a coefficient relation among A's columns exists exactly when the same coefficient vector gives a relation among R's columns. In echelon form the pivot columns are independent and every free column is a combination of earlier pivot columns. The same relation coefficients therefore hold among the corresponding original columns.\n\nWorked example. A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]] reduces to R=[[1,0,-1,-1],[0,1,1,2],[0,0,0,0]]. Pivots are in columns 1 and 2. Thus a1=(1,0,1)^T and a2=(2,1,3)^T form a basis of Col(A). Indeed a3=-a1+a2 and a4=-a1+2a2. The columns of R span a different plane in R^3; they are not the requested original-column basis.\n\nGuided practice. For B=[[1,1,2],[1,2,3],[2,3,5]], row-reduce enough to find pivot indices, then choose a basis for Col(B) from B itself. Decide whether the third column is a new direction or a combination of the first two.\n\nDistinction check. N(A) lives in input space and records inputs sent to zero. Col(A) lives in output space and records outputs that can be reached. Rectangular matrices make this type difference impossible to ignore.",
+      "guidedFeedback": "Check after attempting. Column 3 equals column 1 plus column 2, while columns 1 and 2 are independent. Pivot indices are 1 and 2, so a basis for Col(B) is {(1,1,2)^T,(1,2,3)^T}; the third column adds no new direction.",
+      "main": "T22V3::SIDE276::S10-M@1",
+      "transfer": "T22V3::SIDE276::S10-T@1"
+    },
+    {
+      "order": 11,
+      "id": "T22V3::SIDE276::S11@1",
+      "moduleId": "SIDE276",
+      "title": "Rank and nullity count reachable and invisible directions",
+      "focus": "Define rank and nullity as dimensions of image and kernel and derive rank-nullity from pivot and free-variable counts.",
+      "purpose": "Compress the structural information exposed by elimination into two basis-independent dimensions that later control injectivity, surjectivity and invertibility.",
+      "centralCapability": "Compute and justify rank/nullity and use rank(A)+nullity(A)=number of input coordinates with correct dimension bounds.",
+      "principalObstacle": "Rank is confused with the number of rows/columns, nullity with zero rows, or the rank-nullity sum is attached to the wrong dimension.",
+      "entryPrerequisites": [
+        "M14-S10 column-space basis",
+        "M14-S08 null-space basis",
+        "M13 finite dimension"
+      ],
+      "requiredOwnership": [
+        "Define rank(A)=dim Col(A) and nullity(A)=dim N(A) and compute both from pivot/free-variable structure.",
+        "Derive rank(A)+nullity(A)=n for an m-by-n matrix from r pivot variables and n-r free variables.",
+        "Use rank≤min(m,n) and rank-nullity to audit claimed dimensions or infer missing structural information."
+      ],
+      "applicationScope": "Exact finite real matrices; rank is exact algebraic rank, not tolerance-based numerical rank.",
+      "transferScope": "Transfer supplies only domain/codomain sizes and a claimed nullity, requiring a consistency audit rather than row reduction.",
+      "inScope": [
+        "rank",
+        "nullity",
+        "rank-nullity theorem",
+        "dimension bounds"
+      ],
+      "outOfScope": [
+        "numerical rank",
+        "singular values",
+        "conditioning"
+      ],
+      "exitCondition": "Given pivot/nullspace data or matrix dimensions, infer and defend the rank-nullity structure.",
+      "lesson": "Orient. Two dimensions summarize the map's structure. The rank of A is dim Col(A): the number of independent output directions the map can reach. The nullity is dim N(A): the number of independent input directions erased by the map.\n\nFor an m-by-n matrix reduced to echelon form with r pivots, the r pivot columns of the original A form a basis of Col(A), so rank(A)=r. The n-r nonpivot variable columns give n-r free variables in Ax=0. Setting one free variable at a time to 1 produces n-r independent special solutions spanning N(A), so nullity(A)=n-r. Therefore rank(A)+nullity(A)=r+(n-r)=n, the dimension of the **domain**, not the codomain.\n\nWorked example. Suppose a 3-by-5 matrix has RREF [[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. Pivots are in columns 1,2,4, so rank=3. Free variables x3,x5 give nullity=2. Their sum is 5, the input dimension. A rank cannot exceed either the number of rows or columns because Col(A)⊆R^m and no more than n columns can be independent.\n\nGuided practice. A 4-by-6 matrix has pivot columns 1,3,4. Without solving entries, state rank, nullity, number of free variables and the largest possible rank for any 4-by-6 matrix.\n\nDistinction check. A zero row in an echelon form can help reveal rank, but rank is not “the number of nonzero-looking rows” by definition. It is the dimension of the image; pivot count is a theorem/computational route to that dimension.",
+      "guidedFeedback": "Check after attempting. Three pivot columns give rank 3. With six input coordinates there are 6-3=3 free variables, so nullity 3 and rank+nullity=6. Any 4-by-6 matrix has rank at most min(4,6)=4.",
+      "main": "T22V3::SIDE276::S11-M@1",
+      "transfer": "T22V3::SIDE276::S11-T@1"
+    },
+    {
+      "order": 12,
+      "id": "T22V3::SIDE276::S12@1",
+      "moduleId": "SIDE276",
+      "title": "Injective and surjective mean different things for rectangular maps",
+      "focus": "Connect one-to-one behavior to a trivial kernel and onto behavior to full image dimension, then separate full-column from full-row rank.",
+      "purpose": "Prevent square-matrix intuition from contaminating rectangular maps and prepare the precise equal-dimension collapse used for invertibility.",
+      "centralCapability": "Classify a finite linear map as injective and/or surjective from nullspace/rank evidence and translate that classification into solution behavior for Ax=b.",
+      "principalObstacle": "Full rank is said without specifying row/column meaning, or injective and surjective are treated as interchangeable for every rectangular matrix.",
+      "entryPrerequisites": [
+        "M14-S11 rank-nullity",
+        "M14-S10 image/column space",
+        "M14-S08 nullspace"
+      ],
+      "requiredOwnership": [
+        "Prove that a linear map is injective iff its null space is {0}, equivalently full column rank for an m-by-n matrix.",
+        "Characterize surjectivity onto R^m as Col(A)=R^m, equivalently rank m (full row rank).",
+        "Use matrix shape and rank to determine existence/uniqueness behavior of Ax=b and explain why a nonsquare map generally cannot be both injective and surjective."
+      ],
+      "applicationScope": "Finite real coordinate maps; 'full rank' must be qualified by shape.",
+      "transferScope": "Transfer describes a full-row-rank model R^4→R^2 in words and asks for preimage multiplicity without displaying entries.",
+      "inScope": [
+        "injective",
+        "surjective",
+        "full column rank",
+        "full row rank",
+        "solution existence/uniqueness"
+      ],
+      "outOfScope": [
+        "inverse matrix construction",
+        "determinant tests",
+        "pseudoinverse"
+      ],
+      "exitCondition": "Read shape/rank/nullity evidence as map behavior and exact-solution guarantees.",
+      "lesson": "Orient. A linear map T is injective if T(x)=T(y) forces x=y. Subtracting gives T(x-y)=0, so injectivity is exactly the statement N(T)={0}. For an m-by-n matrix, rank-nullity then gives nullity 0 iff rank=n: full **column** rank.\n\nT is surjective onto R^m if every b∈R^m equals Ax for some x. That says Col(A)=R^m, hence rank=m: full **row** rank. These are different requirements when m≠n.\n\nWorked contrast. A=[[1,0],[0,1],[1,1]] is 3-by-2 with two independent columns, so rank=2=n and nullity=0: it is injective R²→R³. But rank 2<3, so it is not onto R³; some targets have no solution. B=[[1,0,1],[0,1,1]] is 2-by-3 with rank 2=m, so it is onto R². Rank-nullity gives nullity 1, so it is not injective; every reachable target has multiple preimages differing by a null vector.\n\nGuided practice. A map R³→R⁵ has rank 3. Decide injectivity and surjectivity, then state what can be guaranteed about the solution of Ax=b when a solution exists. A map R⁵→R³ also has rank 3; repeat the analysis.\n\nDistinction check. A tall matrix can be injective without being onto; a wide matrix can be onto without being injective. Only when domain and codomain dimensions match can full column and full row rank coincide.",
+      "guidedFeedback": "Check after attempting. For R^3→R^5 with rank 3, nullity is 0, so the map is injective but cannot be onto R^5; any existing solution is unique. For R^5→R^3 with rank 3, the map is onto but nullity is 2, so each target has infinitely many preimages.",
+      "main": "T22V3::SIDE276::S12-M@1",
+      "transfer": "T22V3::SIDE276::S12-T@1"
+    },
+    {
+      "order": 13,
+      "id": "T22V3::SIDE276::S13@1",
+      "moduleId": "SIDE276",
+      "title": "For square maps, the invertibility conditions collapse together",
+      "focus": "Unify injectivity, surjectivity, full rank, trivial kernel and unique solvability for square finite-dimensional linear maps before introducing an inverse algorithm or determinant.",
+      "purpose": "Make invertibility a structural property of a bijective map rather than a formula available to every square matrix.",
+      "centralCapability": "Determine square-map invertibility from equivalent structural evidence and prove why the conditions coincide in equal finite dimensions.",
+      "principalObstacle": "Square shape is mistaken for invertibility, or inverse notation is used before one-to-one/onto structure has been established.",
+      "entryPrerequisites": [
+        "M14-S12 injective/surjective",
+        "M14-S11 rank-nullity",
+        "M14-S04 composition and identity map"
+      ],
+      "requiredOwnership": [
+        "Define an inverse linear map as a two-sided compositional inverse and explain why invertibility requires a bijection.",
+        "For an n-by-n matrix, connect rank n, N(A)={0}, injectivity, surjectivity and unique solvability of Ax=b for every b.",
+        "Reject invertibility of a square map from a nonzero null vector or missing pivot without using determinant or eigenvalue arguments."
+      ],
+      "applicationScope": "Finite real square maps; inverse existence is separated from inverse construction.",
+      "transferScope": "Transfer supplies a nonzero null vector for a square matrix and asks the learner to propagate that evidence through the entire equivalence chain.",
+      "inScope": [
+        "bijective linear maps",
+        "two-sided inverse",
+        "invertible matrix theorem without determinant",
+        "unique solvability"
+      ],
+      "outOfScope": [
+        "Gauss-Jordan inverse construction",
+        "determinants",
+        "eigenvalue zero tests"
+      ],
+      "exitCondition": "Given square-map structural evidence, decide whether an inverse exists and justify the decision through exact equivalences.",
+      "lesson": "Orient. An inverse of T:V→V is a map T^{-1}:V→V satisfying T^{-1}∘T=I and T∘T^{-1}=I. The first identity forces T to be injective; the second forces it to be surjective. Thus a two-sided inverse exists only for a bijection. For linear bijections, the inverse is also linear: applying T to the required additivity/scaling identities and using injectivity proves them.\n\nFor an n-by-n real matrix A, S12 and rank-nullity make several conditions equivalent. N(A)={0} iff nullity=0 iff rank=n. Rank=n equals both full column rank and full row rank because domain and codomain dimensions are both n. Thus injective iff surjective. Equivalently, every b is reachable and each has only one preimage, so Ax=b has a unique solution for every b.\n\nWorked example. Suppose row reduction of a 3-by-3 matrix yields a pivot in every column. Then rank=3 and nullity=0, so the map is injective. Equal dimensions turn rank 3 into surjectivity as well. Hence the map is bijective and has a two-sided inverse, even before that inverse is computed.\n\nCounterexample. A square matrix can fail completely: if Az=0 for some z≠0, then A0=Az while 0≠z, so A is not injective. Rank-nullity then gives rank<n, hence it is also not onto and no two-sided inverse exists.\n\nGuided practice. A 4-by-4 matrix has exactly three pivots. Without determinants, state rank, nullity, injectivity, surjectivity and whether every b has a unique solution.\n\nDistinction check. “Square” only makes the two full-rank requirements numerically comparable. It does not supply the pivots. S14 will construct an inverse only after these existence conditions are satisfied.",
+      "guidedFeedback": "Check after attempting. Three pivots give rank 3 and nullity 1. The map is neither injective nor surjective; some b are unreachable, and any reachable b has multiple preimages. No inverse exists.",
+      "main": "T22V3::SIDE276::S13-M@1",
+      "transfer": "T22V3::SIDE276::S13-T@1"
+    },
+    {
+      "order": 14,
+      "id": "T22V3::SIDE276::S14@1",
+      "moduleId": "SIDE276",
+      "title": "Construct an inverse only after it exists",
+      "focus": "Derive Gauss–Jordan inverse construction from reversible row operations, verify inverses by composition, and prove inverse order reversal.",
+      "purpose": "Separate inverse existence from inverse computation and make the augmented algorithm a consequence of applying the same reversible transformation to A and I.",
+      "centralCapability": "Construct, verify and correctly compose exact inverse matrices while rejecting inverse notation outside its hypotheses.",
+      "principalObstacle": "The learner treats [A|I] reduction as magic, solves systems by reflexively forming an inverse, or writes (AB)^{-1}=A^{-1}B^{-1}.",
+      "entryPrerequisites": [
+        "M14-S13 invertibility existence",
+        "M14-S06 reversible row operations",
+        "M14-S04 composition/product order"
+      ],
+      "requiredOwnership": [
+        "Construct A^{-1} by reducing [A|I] to [I|A^{-1}] and explain why the same row operations produce the inverse.",
+        "Verify a proposed inverse by two-sided multiplication and use it to solve Ax=b exactly when A is invertible.",
+        "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject inverse notation for nonsquare or singular matrices."
+      ],
+      "applicationScope": "Small exact square matrices; explicit inversion is not presented as the preferred numerical method for large systems.",
+      "transferScope": "Transfer changes from Gauss–Jordan construction to a composition audit with supplied inverses plus a nonsquare counterexample.",
+      "inScope": [
+        "Gauss-Jordan inverse",
+        "two-sided verification",
+        "inverse product order",
+        "hypothesis checks"
+      ],
+      "outOfScope": [
+        "condition numbers",
+        "stable numerical solvers",
+        "pseudoinverse"
+      ],
+      "exitCondition": "Compute an exact inverse when justified, verify it, and reason correctly about inverse composition order and invalid cases.",
+      "lesson": "Orient. S13 decides whether an inverse exists. If A is invertible, reversible row operations can turn A into I. Apply those *same* row operations to an attached identity matrix: [A|I]→[I|B]. If the combined row-operation map is E, then EA=I and EI=E=B, so BA=I. Because A is already known invertible, B is its unique inverse; equivalently the successful Gauss–Jordan reduction constructs A^{-1}.\n\nWorked example. For A=[[2,1],[1,1]], start [2,1|1,0; 1,1|0,1]. Swap rows, then R2←R2-2R1, then R2←-R2, then R1←R1-R2. The result is [I|[[1,-1],[-1,2]]]. Check both AA^{-1}=I and A^{-1}A=I. For b=(5,3)^T, x=A^{-1}b=(2,1)^T.\n\nProduct inverse. If A and B are invertible, (AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=I and (B^{-1}A^{-1})(AB)=I. Therefore (AB)^{-1}=B^{-1}A^{-1}: inverse order reverses because undoing a composition reverses the stages.\n\nGuided practice. Invert K=[[1,2],[0,1]] by [K|I], verify both products, and solve Kx=(5,2)^T. Then say why a 2-by-3 matrix cannot have a two-sided matrix inverse.\n\nDistinction check. A^{-1} is not “1/A” and should not be formed merely because a system needs solving. This module is exact algebra; later numerical work will compare stable solver choices.",
+      "guidedFeedback": "Check after attempting. K^{-1}=[[1,-2],[0,1]], and both KK^{-1} and K^{-1}K are I. Kx=(5,2) gives x=(1,2). A 2-by-3 map cannot be bijective between R^3 and R^2, so no two-sided square inverse exists.",
+      "main": "T22V3::SIDE276::S14-M@1",
+      "transfer": "T22V3::SIDE276::S14-T@1"
     }
   ],
   "problems": {
@@ -590,6 +782,76 @@
       "order": 9,
       "kind": "transfer",
       "prompt": "A calibration map C=[[1,2,-1],[0,1,1]] must produce target b=(3,1)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about non-identifiability without using statistical terminology.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S10-M@1": {
+      "id": "T22V3::SIDE276::S10-M@1",
+      "order": 10,
+      "kind": "main",
+      "prompt": "Let A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S10-T@1": {
+      "id": "T22V3::SIDE276::S10-T@1",
+      "order": 10,
+      "kind": "transfer",
+      "prompt": "A student row-reduces M=[[1,1,0],[1,2,1],[2,3,1]] to R=[[1,0,-1],[0,1,1],[0,0,0]] and claims 'the first two columns of R are therefore a basis for Col(M)'. Audit the claim. State the correct basis from M, explain exactly what row reduction preserves that makes the pivot indices useful, and state whether Col(M)=Col(R) must hold.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S11-M@1": {
+      "id": "T22V3::SIDE276::S11-M@1",
+      "order": 11,
+      "kind": "main",
+      "prompt": "A 3-by-5 matrix A has RREF R=[[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S11-T@1": {
+      "id": "T22V3::SIDE276::S11-T@1",
+      "order": 11,
+      "kind": "transfer",
+      "prompt": "A proposed linear model maps R^6→R^3. A report claims its nullity is 2. Without seeing the matrix, audit whether that claim can be true. Use rank-nullity and the codomain dimension bound, and state the minimum nullity any map R^6→R^3 must have.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S12-M@1": {
+      "id": "T22V3::SIDE276::S12-M@1",
+      "order": 12,
+      "kind": "main",
+      "prompt": "Compare A=[[1,0],[0,1],[1,1]] as a map R^2→R^3 with B=[[1,0,1],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S12-T@1": {
+      "id": "T22V3::SIDE276::S12-T@1",
+      "order": 12,
+      "kind": "transfer",
+      "prompt": "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S13-M@1": {
+      "id": "T22V3::SIDE276::S13-M@1",
+      "order": 13,
+      "kind": "main",
+      "prompt": "Let A be an n-by-n real matrix. Starting from rank-nullity and the definitions of injective/surjective, prove the chain N(A)={0} ⇔ rank(A)=n ⇔ A is injective ⇔ A is surjective ⇔ Ax=b has exactly one solution for every b∈R^n. Then explain why these conditions are precisely what is needed for a two-sided inverse map.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S13-T@1": {
+      "id": "T22V3::SIDE276::S13-T@1",
+      "order": 13,
+      "kind": "transfer",
+      "prompt": "A square 3-by-3 matrix M satisfies M(2,-1,3)^T=0 with (2,-1,3)^T≠0. Without computing a determinant or eigenvalue, state what this proves about injectivity, rank, surjectivity, the solutions of Mx=0, the existence of at least one unreachable right-hand side, and whether M^{-1} is meaningful.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S14-M@1": {
+      "id": "T22V3::SIDE276::S14-M@1",
+      "order": 14,
+      "kind": "main",
+      "prompt": "For A=[[2,1],[1,1]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,3)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S14-T@1": {
+      "id": "T22V3::SIDE276::S14-T@1",
+      "order": 14,
+      "kind": "transfer",
+      "prompt": "Let P=[[1,1],[0,1]] and Q=[[2,0],[0,3]], with P^{-1}=[[1,-1],[0,1]] and Q^{-1}=[[1/2,0],[0,1/3]]. (a) Construct (PQ)^{-1} in the correct order and verify it by multiplying with PQ. (b) Explain from composition why the inverse order must reverse. (c) A separate matrix C is 2-by-3; decide whether the notation C^{-1} can denote a two-sided matrix inverse and justify from the map dimensions.",
       "obligationVersion": 1
     }
   },
@@ -965,6 +1227,210 @@
         }
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S10-M@1": {
+      "reference": "One RREF is [[1,0,-1,-1],[0,1,1,2],[0,0,0,0]], so pivots are in columns 1,2. Use original a1=(1,0,1)^T and a2=(2,1,3)^T. The relations are a3=-a1+a2 and a4=-a1+2a2, proving the pair spans every column; the pivot relation test also gives independence. b1=a4=-a1+2a2, so b1∈Col(A). For b2=(0,0,1), c1a1+c2a2=b2 forces c2=0 from coordinate 2 and c1=0 from coordinate 1, contradicting coordinate 3=1, so b2∉Col(A). A is 3-by-4, hence Col(A)⊆R^3 and N(A)⊆R^4.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Finds pivot-column indices 1 and 2 from a valid row reduction."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses original columns a1=(1,0,1)^T and a2=(2,1,3)^T as a basis and verifies a3=-a1+a2, a4=-a1+2a2."
+        },
+        {
+          "points": 3,
+          "criterion": "Shows b1 is reachable and b2 is not, with an explicit witness/coordinate obstruction."
+        },
+        {
+          "points": 2,
+          "criterion": "Places Col(A) in R^3 and N(A) in R^4."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S10-T@1": {
+      "reference": "The pivot indices 1,2 are useful, but the basis for Col(M) must use the corresponding original columns: (1,1,2)^T and (1,2,3)^T. Row operations preserve the coefficient relations among columns because Mc=0 and Rc=0 have the same solution set; thus independence/spanning relations indexed by the pivots transfer back to M. Literal column space is generally not preserved: here Col(R)=span{(1,0,0)^T,(0,1,0)^T}, while Col(M) is the plane spanned by the two original columns, so they need not be equal.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Rejects the RREF-column basis claim and gives {(1,1,2)^T,(1,2,3)^T} from the original matrix."
+        },
+        {
+          "points": 4,
+          "criterion": "Explains that row operations preserve column coefficient relations via equality of the homogeneous solution sets Mc=0 and Rc=0."
+        },
+        {
+          "points": 3,
+          "criterion": "States that Col(M) and Col(R) need not be the same literal subspace and distinguishes the two here."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S11-M@1": {
+      "reference": "Pivot columns are 1,2,4, so rank(A)=3; x3,x5 are free, so nullity(A)=2. Solving Rx=0 gives x1=-2x3+x5, x2=3x3-4x5, x4=-2x5. A null basis is {(-2,3,1,0,0),(1,-4,0,-2,1)}. There are r=3 pivot variables and 5-r=2 free directions, so 3+2=5, the domain dimension. Rank 3 in a codomain R^3 means Col(A) has dimension 3 and therefore equals R^3.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Identifies pivot columns 1,2,4, rank 3, free variables x3,x5 and nullity 2."
+        },
+        {
+          "points": 3,
+          "criterion": "Constructs a valid null-space basis such as {(-2,3,1,0,0),(1,-4,0,-2,1)}."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives 3+2=5 from pivot/free-variable counts and identifies 5 as the domain dimension."
+        },
+        {
+          "points": 2,
+          "criterion": "Interprets rank 3 in R^3 as Col(A)=R^3."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S11-T@1": {
+      "reference": "If nullity were 2, rank-nullity would force rank=6-2=4. But the image lies in R^3, so rank≤3. The report is impossible. Since rank≤3, nullity=6-rank≥3. Thus every linear map R^6→R^3 has nullity at least 3.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Uses rank-nullity to show the claimed nullity 2 would force rank 4."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the codomain bound rank≤3 to identify the contradiction."
+        },
+        {
+          "points": 3,
+          "criterion": "Concludes that nullity must be at least 3 for any map R^6→R^3."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S12-M@1": {
+      "reference": "A has rank 2 and nullity 0: its columns are independent. Hence A is injective, but rank 2<3 means Col(A)≠R^3, so it is not surjective. Thus some b∈R^3 have no solution; whenever a solution exists it is unique. B has rank 2 and, with 3 input coordinates, nullity 1. Since rank equals the codomain dimension 2, B is surjective; since nullity is nonzero, it is not injective. Therefore every b∈R^2 has solutions, and every solution set has a one-dimensional null-direction ambiguity.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Finds rank(A)=2,nullity(A)=0 and rank(B)=2,nullity(B)=1."
+        },
+        {
+          "points": 3,
+          "criterion": "Classifies A as injective but not surjective using trivial kernel and rank<3 image evidence."
+        },
+        {
+          "points": 3,
+          "criterion": "Classifies B as surjective but not injective using rank=2=codomain dimension and nontrivial nullity."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly states A's conditional uniqueness/sometimes-no-solution behavior and B's all-target/multiple-preimage behavior."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S12-T@1": {
+      "reference": "Rank 2 equals the codomain dimension, so T is onto R^2. Rank-nullity gives nullity=4-2=2, so T is not injective. Every b∈R^2 is reachable, and once one solution xp is found the entire solution set is xp+N(T), a two-parameter affine family; hence infinitely many exact parameter solutions exist for each b.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Concludes T is surjective because rank 2 equals the R^2 codomain dimension."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses rank-nullity to obtain nullity 2 and rejects injectivity."
+        },
+        {
+          "points": 4,
+          "criterion": "Explains that every target is reachable and has a two-parameter affine family of exact preimages."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S13-M@1": {
+      "reference": "Rank-nullity gives dim N(A)=n-rank(A), so N(A)={0} iff rank(A)=n. Trivial kernel is equivalent to injectivity. For a square map rank n also means Col(A)=R^n, hence surjectivity; conversely surjectivity forces rank n. If the map is both onto and one-to-one, every b has at least one and at most one preimage, so Ax=b has exactly one solution; that property in turn gives surjectivity and, applying it to b=0, trivial kernel. A two-sided inverse assigns each b its unique preimage; conversely a two-sided inverse forces injectivity and surjectivity.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Correctly derives N(A)={0} ⇔ rank(A)=n from rank-nullity and connects trivial kernel to injectivity."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses equal domain/codomain dimension to connect rank n with surjectivity."
+        },
+        {
+          "points": 2,
+          "criterion": "Connects bijectivity with exactly one solution of Ax=b for every b, including the converse."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why a two-sided inverse exists exactly under this bijective structure."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S13-T@1": {
+      "reference": "The nonzero null vector proves M is not injective. Nullity≥1, so rank≤2<3. For a square map this means M is not surjective, hence some b∈R^3 is unreachable. Mx=0 has at least the distinct solutions 0 and (2,-1,3), indeed a nontrivial nullspace. Therefore no two-sided inverse exists and M^{-1} is not defined.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Uses the nonzero null vector to reject injectivity and infer nullity≥1, rank≤2."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses square equal dimensions to reject surjectivity and infer that at least one right-hand side is unreachable."
+        },
+        {
+          "points": 2,
+          "criterion": "Notes that Mx=0 already has at least two distinct solutions."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes that a two-sided inverse does not exist, without invoking determinant/eigenvalue machinery."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S14-M@1": {
+      "reference": "A valid Gauss–Jordan sequence yields [I|[[1,-1],[-1,2]]], so A^{-1}=[[1,-1],[-1,2]]. Direct multiplication in either order gives I. Then A^{-1}(5,3)^T=(2,1)^T. Conceptually, the row operations correspond to an invertible left multiplier E with EA=I; applying the same operations to I gives E, so the right block is E=A^{-1}.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Carries [A|I] to [I|[[1,-1],[-1,2]]] by valid full-row operations."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies both AA^{-1}=I and A^{-1}A=I."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses A^{-1} to obtain x=(2,1)^T for b=(5,3)^T."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains the augmented construction via the same left row-operation map E satisfying EA=I."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S14-T@1": {
+      "reference": "(PQ)^{-1}=Q^{-1}P^{-1}=[[1/2,-1/2],[0,1/3]]. Since PQ=[[2,3],[0,3]], multiplying gives (PQ)(Q^{-1}P^{-1})=I (and the reverse product also equals I). The order reverses because undoing 'Q first?': matrix PQ means Q acts first then P, so the inverse must undo P then Q, represented by Q^{-1}P^{-1}. A 2-by-3 matrix maps R^3 to R^2 and cannot be bijective between spaces of different finite dimensions, so no two-sided matrix inverse C^{-1} exists.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes (PQ)^{-1}=Q^{-1}P^{-1}=[[1/2,-1/2],[0,1/3]] and verifies it against PQ."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains inverse-order reversal from undoing the stages of a composition."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects a two-sided inverse for the 2-by-3 matrix C using unequal domain/codomain dimensions."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
     }
   },
   "coverage": {
@@ -1086,6 +1552,67 @@
       ],
       [
         "main"
+      ]
+    ],
+    "T22V3::SIDE276::S10@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S11@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S12@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S13@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S14@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
       ]
     ]
   },
@@ -1630,6 +2157,286 @@
         "escapeAttempt": "Calling the set a subspace because it is parallel to N(A) loses the row.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::SIDE276::S10@1": [
+      {
+        "claim": "Interpret Col(A)={Ax:x∈R^n} as the range/reachable-output subspace and connect Ax=b consistency to b∈Col(A).",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S10-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A)."
+        ],
+        "rubricEvidence": [
+          "Shows b1 is reachable and b2 is not, with an explicit witness/coordinate obstruction."
+        ],
+        "why": "Main uses column-space membership exactly as consistency/reachability evidence.",
+        "escapeAttempt": "A bare membership verdict cannot earn the witness/obstruction row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use pivot positions from row reduction to choose a basis from the corresponding columns of the original matrix A.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S10-M@1",
+          "T22V3::SIDE276::S10-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
+          "A student row-reduces M=[[1,1,0],[1,2,1],[2,3,1]] to R=[[1,0,-1],[0,1,1],[0,0,0]] and claims 'the first two columns of R are therefore a basis for Col(M)'. Audit the claim. State the correct basis from M, explain exactly what row reduction preserves that makes the pivot indices useful, and state whether Col(M)=Col(R) must hold."
+        ],
+        "rubricEvidence": [
+          "Uses original columns a1=(1,0,1)^T and a2=(2,1,3)^T as a basis and verifies a3=-a1+a2, a4=-a1+2a2.",
+          "Rejects the RREF-column basis claim and gives {(1,1,2)^T,(1,2,3)^T} from the original matrix."
+        ],
+        "why": "Both tasks force selection from the original matrix using pivot indices.",
+        "escapeAttempt": "Using RREF columns directly fails explicit rubric rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Explain why row reduction preserves column-dependence relations/pivot indices but generally changes the literal column space, and distinguish Col(A)⊆R^m from N(A)⊆R^n.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S10-M@1",
+          "T22V3::SIDE276::S10-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,1,3],[0,1,1,2],[1,3,2,5]]. (a) Row-reduce A to an echelon or reduced echelon form and identify its pivot-column indices. (b) Give a basis for Col(A) using columns of the original A and prove the nonpivot columns are generated by it. (c) Decide whether b1=(3,2,5)^T and b2=(0,0,1)^T belong to Col(A), giving a witness or obstruction for each. (d) State the ambient spaces of Col(A) and N(A).",
+          "A student row-reduces M=[[1,1,0],[1,2,1],[2,3,1]] to R=[[1,0,-1],[0,1,1],[0,0,0]] and claims 'the first two columns of R are therefore a basis for Col(M)'. Audit the claim. State the correct basis from M, explain exactly what row reduction preserves that makes the pivot indices useful, and state whether Col(M)=Col(R) must hold."
+        ],
+        "rubricEvidence": [
+          "Places Col(A) in R^3 and N(A) in R^4.",
+          "Explains that row operations preserve column coefficient relations via equality of the homogeneous solution sets Mc=0 and Rc=0.",
+          "States that Col(M) and Col(R) need not be the same literal subspace and distinguishes the two here."
+        ],
+        "why": "The domain/codomain typing and row-reduction limitation are literally observed.",
+        "escapeAttempt": "Correct pivot indices alone do not show the claimed conceptual distinction.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S11@1": [
+      {
+        "claim": "Define rank(A)=dim Col(A) and nullity(A)=dim N(A) and compute both from pivot/free-variable structure.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S11-M@1"
+        ],
+        "publicRequestExact": [
+          "A 3-by-5 matrix A has RREF R=[[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
+        ],
+        "rubricEvidence": [
+          "Identifies pivot columns 1,2,4, rank 3, free variables x3,x5 and nullity 2.",
+          "Constructs a valid null-space basis such as {(-2,3,1,0,0),(1,-4,0,-2,1)}."
+        ],
+        "why": "Main computes both dimensions from their actual bases/pivots.",
+        "escapeAttempt": "Stating rank/nullity numbers without structural evidence loses the basis row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Derive rank(A)+nullity(A)=n for an m-by-n matrix from r pivot variables and n-r free variables.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S11-M@1"
+        ],
+        "publicRequestExact": [
+          "A 3-by-5 matrix A has RREF R=[[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
+        ],
+        "rubricEvidence": [
+          "Derives 3+2=5 from pivot/free-variable counts and identifies 5 as the domain dimension."
+        ],
+        "why": "The public task asks for the derivation rather than a memorized formula.",
+        "escapeAttempt": "Quoting rank-nullity without connecting r pivots to n-r free directions is insufficient.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use rank≤min(m,n) and rank-nullity to audit claimed dimensions or infer missing structural information.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S11-M@1",
+          "T22V3::SIDE276::S11-T@1"
+        ],
+        "publicRequestExact": [
+          "A 3-by-5 matrix A has RREF R=[[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
+          "A proposed linear model maps R^6→R^3. A report claims its nullity is 2. Without seeing the matrix, audit whether that claim can be true. Use rank-nullity and the codomain dimension bound, and state the minimum nullity any map R^6→R^3 must have."
+        ],
+        "rubricEvidence": [
+          "Interprets rank 3 in R^3 as Col(A)=R^3.",
+          "Uses rank-nullity to show the claimed nullity 2 would force rank 4.",
+          "Uses the codomain bound rank≤3 to identify the contradiction.",
+          "Concludes that nullity must be at least 3 for any map R^6→R^3."
+        ],
+        "why": "The learner uses both the theorem and rank bounds to infer/audit unseen structure.",
+        "escapeAttempt": "A local row-reduction routine cannot answer the transfer because no matrix entries are supplied.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S12@1": [
+      {
+        "claim": "Prove that a linear map is injective iff its null space is {0}, equivalently full column rank for an m-by-n matrix.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S12-M@1",
+          "T22V3::SIDE276::S12-T@1"
+        ],
+        "publicRequestExact": [
+          "Compare A=[[1,0],[0,1],[1,1]] as a map R^2→R^3 with B=[[1,0,1],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
+        ],
+        "rubricEvidence": [
+          "Classifies A as injective but not surjective using trivial kernel and rank<3 image evidence.",
+          "Uses rank-nullity to obtain nullity 2 and rejects injectivity."
+        ],
+        "why": "Injectivity is tied explicitly to kernel/nullity on two different shapes.",
+        "escapeAttempt": "A rank number without the kernel implication cannot earn the classification rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Characterize surjectivity onto R^m as Col(A)=R^m, equivalently rank m (full row rank).",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S12-M@1",
+          "T22V3::SIDE276::S12-T@1"
+        ],
+        "publicRequestExact": [
+          "Compare A=[[1,0],[0,1],[1,1]] as a map R^2→R^3 with B=[[1,0,1],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
+        ],
+        "rubricEvidence": [
+          "Classifies B as surjective but not injective using rank=2=codomain dimension and nontrivial nullity.",
+          "Concludes T is surjective because rank 2 equals the R^2 codomain dimension."
+        ],
+        "why": "Surjectivity is observed through full codomain dimension, not assumed from many columns.",
+        "escapeAttempt": "Counting columns alone cannot earn these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use matrix shape and rank to determine existence/uniqueness behavior of Ax=b and explain why a nonsquare map generally cannot be both injective and surjective.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S12-M@1",
+          "T22V3::SIDE276::S12-T@1"
+        ],
+        "publicRequestExact": [
+          "Compare A=[[1,0],[0,1],[1,1]] as a map R^2→R^3 with B=[[1,0,1],[0,1,1]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
+          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
+        ],
+        "rubricEvidence": [
+          "Correctly states A's conditional uniqueness/sometimes-no-solution behavior and B's all-target/multiple-preimage behavior.",
+          "Explains that every target is reachable and has a two-parameter affine family of exact preimages."
+        ],
+        "why": "Both tasks translate map properties into existence/uniqueness statements.",
+        "escapeAttempt": "Correct labels without the requested solution behavior lose dedicated rubric points.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S13@1": [
+      {
+        "claim": "Define an inverse linear map as a two-sided compositional inverse and explain why invertibility requires a bijection.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S13-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A be an n-by-n real matrix. Starting from rank-nullity and the definitions of injective/surjective, prove the chain N(A)={0} ⇔ rank(A)=n ⇔ A is injective ⇔ A is surjective ⇔ Ax=b has exactly one solution for every b∈R^n. Then explain why these conditions are precisely what is needed for a two-sided inverse map."
+        ],
+        "rubricEvidence": [
+          "Explains why a two-sided inverse exists exactly under this bijective structure."
+        ],
+        "why": "Main explicitly ties inverse existence to two-sided composition and bijectivity.",
+        "escapeAttempt": "Merely listing rank conditions cannot earn the inverse-map row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "For an n-by-n matrix, connect rank n, N(A)={0}, injectivity, surjectivity and unique solvability of Ax=b for every b.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S13-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A be an n-by-n real matrix. Starting from rank-nullity and the definitions of injective/surjective, prove the chain N(A)={0} ⇔ rank(A)=n ⇔ A is injective ⇔ A is surjective ⇔ Ax=b has exactly one solution for every b∈R^n. Then explain why these conditions are precisely what is needed for a two-sided inverse map."
+        ],
+        "rubricEvidence": [
+          "Correctly derives N(A)={0} ⇔ rank(A)=n from rank-nullity and connects trivial kernel to injectivity.",
+          "Uses equal domain/codomain dimension to connect rank n with surjectivity.",
+          "Connects bijectivity with exactly one solution of Ax=b for every b, including the converse."
+        ],
+        "why": "The full equivalence chain is the public Main proof.",
+        "escapeAttempt": "A learner cannot earn full credit by quoting a memorized theorem name.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Reject invertibility of a square map from a nonzero null vector or missing pivot without using determinant or eigenvalue arguments.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S13-T@1"
+        ],
+        "publicRequestExact": [
+          "A square 3-by-3 matrix M satisfies M(2,-1,3)^T=0 with (2,-1,3)^T≠0. Without computing a determinant or eigenvalue, state what this proves about injectivity, rank, surjectivity, the solutions of Mx=0, the existence of at least one unreachable right-hand side, and whether M^{-1} is meaningful."
+        ],
+        "rubricEvidence": [
+          "Uses the nonzero null vector to reject injectivity and infer nullity≥1, rank≤2.",
+          "Uses square equal dimensions to reject surjectivity and infer that at least one right-hand side is unreachable.",
+          "Concludes that a two-sided inverse does not exist, without invoking determinant/eigenvalue machinery."
+        ],
+        "why": "Transfer propagates one concrete null witness through the square-map equivalences.",
+        "escapeAttempt": "Calling a square matrix 'singular' without the structural consequences loses most points.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S14@1": [
+      {
+        "claim": "Construct A^{-1} by reducing [A|I] to [I|A^{-1}] and explain why the same row operations produce the inverse.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S14-M@1"
+        ],
+        "publicRequestExact": [
+          "For A=[[2,1],[1,1]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,3)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix."
+        ],
+        "rubricEvidence": [
+          "Carries [A|I] to [I|[[1,-1],[-1,2]]] by valid full-row operations.",
+          "Explains the augmented construction via the same left row-operation map E satisfying EA=I."
+        ],
+        "why": "Main observes both algorithm and its structural justification.",
+        "escapeAttempt": "Producing the inverse by memorized 2-by-2 formula cannot earn the augmented-justification rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Verify a proposed inverse by two-sided multiplication and use it to solve Ax=b exactly when A is invertible.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S14-M@1"
+        ],
+        "publicRequestExact": [
+          "For A=[[2,1],[1,1]], (a) row-reduce [A|I] to construct A^{-1}, showing the augmented steps; (b) verify both AA^{-1}=I and A^{-1}A=I; (c) use the inverse to solve Ax=(5,3)^T; (d) explain why the successful left block I means the right block is the inverse rather than an unrelated matrix."
+        ],
+        "rubricEvidence": [
+          "Verifies both AA^{-1}=I and A^{-1}A=I.",
+          "Uses A^{-1} to obtain x=(2,1)^T for b=(5,3)^T."
+        ],
+        "why": "Main requires two-sided verification and an exact solve.",
+        "escapeAttempt": "One-sided or unverified inverse arithmetic cannot earn full credit.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject inverse notation for nonsquare or singular matrices.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S14-T@1"
+        ],
+        "publicRequestExact": [
+          "Let P=[[1,1],[0,1]] and Q=[[2,0],[0,3]], with P^{-1}=[[1,-1],[0,1]] and Q^{-1}=[[1/2,0],[0,1/3]]. (a) Construct (PQ)^{-1} in the correct order and verify it by multiplying with PQ. (b) Explain from composition why the inverse order must reverse. (c) A separate matrix C is 2-by-3; decide whether the notation C^{-1} can denote a two-sided matrix inverse and justify from the map dimensions."
+        ],
+        "rubricEvidence": [
+          "Computes (PQ)^{-1}=Q^{-1}P^{-1}=[[1/2,-1/2],[0,1/3]] and verifies it against PQ.",
+          "Explains inverse-order reversal from undoing the stages of a composition.",
+          "Rejects a two-sided inverse for the 2-by-3 matrix C using unequal domain/codomain dimensions."
+        ],
+        "why": "Transfer tests order reversal plus hypothesis checking on a different surface.",
+        "escapeAttempt": "Writing A^{-1}B^{-1} or accepting a nonsquare inverse fails explicit rows.",
+        "disposition": "adequate"
+      }
     ]
   },
   "evidenceDistance": {
@@ -1721,6 +2528,56 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "reason": "Transfer recasts complete solutions as calibration ambiguity and asks for a same-output difference proof."
+      }
+    },
+    "T22V3::SIDE276::S10@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main combines row reduction, original-column basis selection and two reachability decisions on fresh data."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer is an adversarial audit of the classic RREF-column-space mistake rather than another clean basis exercise."
+      }
+    },
+    "T22V3::SIDE276::S11@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "reason": "Main reconstructs rank-nullity from fresh pivot/free data and a concrete null basis."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer removes matrix entries and requires a dimension-consistency audit from theorem bounds alone."
+      }
+    },
+    "T22V3::SIDE276::S12@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main contrasts tall and wide fresh matrices so injectivity/surjectivity cannot collapse into one slogan."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer removes entries and requires structural inference from only shape and rank."
+      }
+    },
+    "T22V3::SIDE276::S13@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "reason": "Main asks for a bounded proof of the square invertibility equivalence from previously owned rank/nullspace machinery."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer changes to forensic inference from one supplied nonzero kernel witness."
+      }
+    },
+    "T22V3::SIDE276::S14@1": {
+      "main": {
+        "classification": "retrieval",
+        "reason": "Main executes and explains the just-derived Gauss–Jordan inverse construction on a fresh invertible matrix."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer changes to a composition/inverse-order audit with supplied component inverses and a nonsquare case."
       }
     }
   },
@@ -1814,6 +2671,56 @@
         "transfer": {
           "classification": "changed-surface Transfer",
           "reason": "Transfer recasts complete solutions as calibration ambiguity and asks for a same-output difference proof."
+        }
+      },
+      "T22V3::SIDE276::S10@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main combines row reduction, original-column basis selection and two reachability decisions on fresh data."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer is an adversarial audit of the classic RREF-column-space mistake rather than another clean basis exercise."
+        }
+      },
+      "T22V3::SIDE276::S11@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "Main reconstructs rank-nullity from fresh pivot/free data and a concrete null basis."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes matrix entries and requires a dimension-consistency audit from theorem bounds alone."
+        }
+      },
+      "T22V3::SIDE276::S12@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main contrasts tall and wide fresh matrices so injectivity/surjectivity cannot collapse into one slogan."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes entries and requires structural inference from only shape and rank."
+        }
+      },
+      "T22V3::SIDE276::S13@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "Main asks for a bounded proof of the square invertibility equivalence from previously owned rank/nullspace machinery."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to forensic inference from one supplied nonzero kernel witness."
+        }
+      },
+      "T22V3::SIDE276::S14@1": {
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main executes and explains the just-derived Gauss–Jordan inverse construction on a fresh invertible matrix."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes to a composition/inverse-order audit with supplied component inverses and a nonsquare case."
         }
       }
     },
