@@ -5,9 +5,9 @@
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "pilot-builder-candidate-local-gates-passed",
+    "status": "builder-candidate-systems-spine-authored",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
-    "gate": "Four entry/pilot sessions and 8 fixed assessments are authored under protocol v1.2. The S04 vertical slice passed local Gates 4–8 after one real ownership-gap repair; S05–S19 may now be authored in dependency order. No learner-route publication.",
+    "gate": "Nine sessions and 18 fixed assessments are authored under protocol v1.2. S04 pilot passed local Gates 4–8 after repair; S05–S09 were authored in dependency order and remain subject to the full-module adversarial pass. No learner-route publication.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
   },
   "boundary": {
@@ -37,9 +37,9 @@
     "designGate": "docs/t22-course/M14-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M14-PILOT-REVIEW.md",
     "pedagogicalAtoms": 19,
-    "authoredSessions": 4,
-    "ownershipClaimCount": 14,
-    "fixedAssessments": 8,
+    "authoredSessions": 9,
+    "ownershipClaimCount": 29,
+    "fixedAssessments": 18,
     "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred."
   },
   "sourceLedger": {
@@ -272,6 +272,197 @@
       "guidedFeedback": "Check after attempting. D maps R^2→R^3 and C maps R^3→R^2, so S∘T has matrix CD of shape 2-by-2. CD=[[0,3],[2,3]]. Its first column (0,2)^T is C applied to D's first column (1,0,-1)^T, i.e. the output of S(T(e1)).",
       "main": "T22V3::SIDE276::S04-M@1",
       "transfer": "T22V3::SIDE276::S04-T@1"
+    },
+    {
+      "order": 5,
+      "id": "T22V3::SIDE276::S05@1",
+      "moduleId": "SIDE276",
+      "title": "A linear system has row and column meanings",
+      "focus": "Translate simultaneous scalar equations into Ax=b and interpret the same statement as intersecting row constraints and as a column-combination reachability question.",
+      "purpose": "Make the system's solution set and the meaning of Ax=b explicit before an elimination algorithm changes its representation.",
+      "centralCapability": "Formulate a finite linear system as Ax=b, move between row and column views, and use a coefficient witness or obstruction to interpret exact solvability.",
+      "principalObstacle": "The equation array is treated as notation only; learners may forget that a solution must satisfy every row simultaneously or that the unknown coordinates are weights on A's columns.",
+      "entryPrerequisites": [
+        "M14-S03 matrix-vector action",
+        "M13 span membership and obstruction",
+        "M01 simultaneous scalar equations"
+      ],
+      "requiredOwnership": [
+        "Translate a finite system of scalar linear equations into a correctly typed matrix equation Ax=b.",
+        "Interpret the row view as simultaneous scalar constraints and the column view as a linear combination of A's columns equaling b.",
+        "Use a coefficient witness or contradiction to decide exact solvability in an elementary system without relying on equation-count heuristics."
+      ],
+      "applicationScope": "Exact finite systems; geometric row pictures are used only where dimensions make them meaningful.",
+      "transferScope": "Transfer changes from a written system to a response-library reachability problem whose unit responses are the columns.",
+      "inScope": [
+        "coefficient matrix",
+        "unknown vector",
+        "right-hand side",
+        "row constraints",
+        "column combination",
+        "exact solvability"
+      ],
+      "outOfScope": [
+        "systematic Gaussian elimination",
+        "least squares",
+        "rank terminology"
+      ],
+      "exitCondition": "Given equations or a column-response model, formulate Ax=b and explain what a solution means in both representations.",
+      "lesson": "Orient. A system of linear equations asks for one unknown vector x that satisfies several scalar constraints at once. Writing the coefficient rows into a matrix A and the constants into a vector b gives Ax=b. This is not new mathematics pasted into a compact notation: S03 tells us exactly what the statement means from two complementary views.\n\nRow view. If row i of A is ri, then the ith equation is ri·x=bi. A solution must lie on every row constraint simultaneously. In two or three unknowns those constraints may be drawn as lines or planes, but the algebraic statement remains valid in any finite dimension.\n\nColumn view. If A=[a1 ... an] and x=(x1,...,xn)^T, then Ax=x1a1+...+xnan. Solving Ax=b therefore asks whether the target b can be assembled from the columns with coefficients xj. This reconnects M14 systems to M13 span membership without yet naming the full column-space object.\n\nWorked example. Let A have columns a1=(1,0,2), a2=(2,-1,1), a3=(0,1,1), and let b=(5,-3,3). The vector x=(1,2,-1) gives a1+2a2-a3=(5,-3,3), so it is a solution. Written by rows, the same witness satisfies x1+2x2=5, -x2+x3=-3, and 2x1+x2+x3=3. One vector has satisfied all three constraints.\n\nGuided practice. Convert the system 2u-v=1, u+3v=7 into Ax=b. Then rewrite Ax as a combination of A's two columns and verify that (u,v)=(2,3) is *not* a solution before finding the actual pair by elementary scalar algebra.\n\nDistinction check. Three equations in three unknowns do not guarantee one solution. Dependence or inconsistency can produce many or no solutions. S06–S07 will expose that structure systematically instead of counting equations.",
+      "guidedFeedback": "Check after attempting. A=[[2,-1],[1,3]], x=(u,v)^T and b=(1,7)^T. Ax=u(2,1)^T+v(-1,3)^T. At (2,3), the first component is 1 but the second is 11, so it is not a solution. Solving gives v=13/7 and u=10/7.",
+      "main": "T22V3::SIDE276::S05-M@1",
+      "transfer": "T22V3::SIDE276::S05-T@1"
+    },
+    {
+      "order": 6,
+      "id": "T22V3::SIDE276::S06@1",
+      "moduleId": "SIDE276",
+      "title": "Row operations preserve the solution set",
+      "focus": "Encode a system as an augmented matrix and justify elementary row operations as reversible transformations of the same simultaneous constraints.",
+      "purpose": "Establish why elimination is legal before asking the learner to trust a row-reduction procedure.",
+      "centralCapability": "Apply elementary row operations to an augmented system and prove that each legal step preserves exactly the same solutions.",
+      "principalObstacle": "Rows are manipulated as detached number strings, the right-hand side is forgotten, or an irreversible operation such as multiplying a row by zero is treated as harmless.",
+      "entryPrerequisites": [
+        "M14-S05 Ax=b row meaning",
+        "M01 equation-preserving scalar algebra"
+      ],
+      "requiredOwnership": [
+        "Represent Ax=b as an augmented matrix [A|b] and apply a row operation to every entry of the affected equation, including b.",
+        "Justify row swap, nonzero row scaling and row replacement as reversible operations that preserve the exact solution set.",
+        "Diagnose an invalid or incompletely applied row operation and explain how it can change the represented system."
+      ],
+      "applicationScope": "Exact finite systems; row operations are equation transformations, not numerical pivoting strategy.",
+      "transferScope": "Transfer audits a proposed elimination step that changes coefficients but not the augmented constant and asks for a corrected operation.",
+      "inScope": [
+        "augmented matrices",
+        "three elementary row operations",
+        "equivalent systems",
+        "reversibility"
+      ],
+      "outOfScope": [
+        "echelon classification",
+        "floating-point pivoting",
+        "LU factorization"
+      ],
+      "exitCondition": "Carry out and justify legal row operations while preserving the represented solution set exactly.",
+      "lesson": "Orient. Row operations are legal because each row stands for an equation, and the allowed moves replace a system by an *equivalent* system with exactly the same solutions. Write Ax=b as the augmented matrix [A|b] so the constants travel with their equations.\n\nThere are three elementary moves. (1) Swap two rows: reordering simultaneous equations changes no solution. (2) Multiply a row by a nonzero scalar c: multiplying both sides of an equation by c is reversible by multiplying by 1/c. (3) Replace Ri by Ri+cRj for i≠j: any old solution satisfies the new equation; conversely subtracting cRj recovers the old Ri. Reversibility is the key. Multiplying a row by zero is not reversible and can erase a constraint.\n\nWorked example. From 2x+y=5 and 4x+3y=11, [A|b]=[[2,1|5],[4,3|11]]. Replace R2 by R2-2R1 to get [[2,1|5],[0,1|1]]. The constant 11 becomes 1 along with the coefficients. Every old solution satisfies the new second equation because it is equation 2 minus twice equation 1, and adding twice row 1 reverses the step.\n\nGuided practice. For [[1,2,-1|3],[2,5,1|8],[-1,0,2|1]], perform R2←R2-2R1 and R3←R3+R1. Write the whole resulting augmented matrix and name the inverse operation for each step.\n\nDistinction check. Row reduction changes the *representation* of the system, not its solution set. It can and usually does change the literal rows and columns of A, which will matter when S10 discusses column space.",
+      "guidedFeedback": "Check after attempting. The two replacements give [[1,2,-1|3],[0,1,3|2],[0,2,1|4]]. The inverse steps are R2←R2+2R1 and R3←R3-R1. Each constant changed with its row.",
+      "main": "T22V3::SIDE276::S06-M@1",
+      "transfer": "T22V3::SIDE276::S06-T@1"
+    },
+    {
+      "order": 7,
+      "id": "T22V3::SIDE276::S07@1",
+      "moduleId": "SIDE276",
+      "title": "Pivots and free variables classify exact solutions",
+      "focus": "Reduce exact systems to echelon form, identify pivot/free variables, and distinguish inconsistent, unique and underdetermined cases.",
+      "purpose": "Turn legal row operations into structural information about the entire solution set rather than just a way to obtain one numerical answer.",
+      "centralCapability": "Use echelon structure to classify a finite exact system and parameterize every solution when free variables remain.",
+      "principalObstacle": "The learner counts equations versus unknowns, treats a zero row as automatically inconsistent, or reports one particular vector when infinitely many solutions exist.",
+      "entryPrerequisites": [
+        "M14-S06 equivalent row operations",
+        "M01 scalar algebra"
+      ],
+      "requiredOwnership": [
+        "Reduce a small exact system to row-echelon form while tracking pivots and free variables.",
+        "Classify a system as inconsistent, uniquely solvable or infinitely solvable from contradiction rows and pivot/free-variable structure.",
+        "Parameterize all solutions of a consistent underdetermined system and verify the parameterized family."
+      ],
+      "applicationScope": "Exact finite systems; RREF may be used when helpful but is not required if echelon/back-substitution suffices.",
+      "transferScope": "Transfer keeps the coefficient pattern but changes the right-hand side so a previously redundant row becomes a contradiction.",
+      "inScope": [
+        "row echelon form",
+        "pivot positions",
+        "free variables",
+        "0=c inconsistency",
+        "parametric solutions"
+      ],
+      "outOfScope": [
+        "rank terminology",
+        "least squares for inconsistency",
+        "floating-point pivot rules"
+      ],
+      "exitCondition": "Read an echelon system structurally and report the complete exact solution set, not merely a sample solution.",
+      "lesson": "Orient. Elimination has a destination: an echelon system where leading nonzero entries, or pivots, step to the right as we move down. Variables whose columns contain pivots are pivot variables; the remaining variables are free. The pattern tells us how many choices survive after all constraints are enforced.\n\nThree cases. A row [0 ... 0|c] with c≠0 says 0=c and makes the system inconsistent. If no contradiction occurs and every variable column has a pivot, back-substitution gives one unique solution. If no contradiction occurs but at least one variable is free, each free choice generates a solution family, so there are infinitely many real solutions.\n\nWorked example. For x+y+z=4, 2x+3y+z=7 and x+2y=3, use R2←R2-2R1 and R3←R3-R1. The last two rows both become y-z=-1, so one is redundant. With z=t free, y=t-1 and x=5-2t. Thus every solution is (5-2t,t-1,t), t∈R. Substitution into all three original equations verifies the family.\n\nGuided practice. Reduce x+y+z=2, 2x+2y+2z=4, and y-z=1. Identify pivot and free variables, choose a parameter, and write every solution. Then imagine only the second right-hand side changes from 4 to 5; predict the contradiction before checking.\n\nDistinction check. A zero row [0 ... 0|0] removes no solutions; it records a redundant equation. A contradiction row [0 ... 0|c], c≠0, destroys all solutions. Equation count alone does not distinguish them.",
+      "guidedFeedback": "Check after attempting. Row 2 is twice row 1, so it reduces to [0,0,0|0]. With y-z=1, let z=t, then y=1+t and x=1-2t; every solution is (1-2t,1+t,t). If the second right-hand side were 5, subtracting 2R1 would instead give [0,0,0|1], so there would be no solution.",
+      "main": "T22V3::SIDE276::S07-M@1",
+      "transfer": "T22V3::SIDE276::S07-T@1"
+    },
+    {
+      "order": 8,
+      "id": "T22V3::SIDE276::S08@1",
+      "moduleId": "SIDE276",
+      "title": "The null space records inputs erased by a map",
+      "focus": "Define N(A)={x:Ax=0}, prove it is a subspace, and construct a basis from homogeneous free-variable solutions.",
+      "purpose": "Promote homogeneous-solution mechanics into a reusable domain-side object that will control ambiguity, rank-nullity and invertibility.",
+      "centralCapability": "Compute and interpret a null-space basis while keeping the null space in the input/domain space.",
+      "principalObstacle": "The null space is confused with a set of output vectors, the zero right-hand side is thought to force only x=0, or special solutions are listed without proving they span every homogeneous solution.",
+      "entryPrerequisites": [
+        "M14-S07 pivots/free variables and parameterization",
+        "M13 subspace/basis language"
+      ],
+      "requiredOwnership": [
+        "Prove that N(A)={x:Ax=0} is a subspace of the domain by closure under linear combinations.",
+        "Solve Ax=0 and construct a basis for N(A) from independent free-variable special solutions.",
+        "Interpret a nonzero null vector as an input direction erased by the represented linear map and identify the correct ambient domain."
+      ],
+      "applicationScope": "Exact finite real matrices; nullspace and kernel are treated as the same domain-side object.",
+      "transferScope": "Transfer changes to a four-parameter response map and asks for two invisible parameter directions rather than a textbook homogeneous-system presentation.",
+      "inScope": [
+        "homogeneous systems",
+        "nullspace/kernel",
+        "special solutions",
+        "basis",
+        "domain interpretation"
+      ],
+      "outOfScope": [
+        "orthogonal complements",
+        "row space theory",
+        "numerical nullspace/SVD"
+      ],
+      "exitCondition": "Given a matrix, compute and explain its null space as the full set of invisible input directions.",
+      "lesson": "Orient. The homogeneous equation Ax=0 asks which inputs the map erases completely. Its solution set is the null space (or kernel) N(A). Because x is an input to A, N(A) lives in the domain R^n for an m-by-n matrix, not in the output R^m.\n\nSubspace proof. Zero is in N(A) because A0=0. If u,v∈N(A) and a,b are real, then A(au+bv)=aAu+bAv=0, so every linear combination stays in N(A). This is a direct use of S01 linearity and proves N(A) is a subspace.\n\nWorked example. For A=[[1,2,-1],[2,4,-2]], Ax=0 reduces to x1+2x2-x3=0. Let x2=s and x3=t. Then x1=-2s+t, so x=s(-2,1,0)+t(1,0,1). The two displayed special solutions are independent and every null vector is their combination, hence they form a basis. Each is a nonzero input that produces zero output.\n\nGuided practice. For B=[[1,0,1,2],[0,1,-1,1]], solve Bx=0 with x3=s,x4=t. Construct the two special solutions and state the ambient space of N(B).\n\nDistinction check. The zero right-hand side guarantees that x=0 is one solution; it does not guarantee uniqueness. A nontrivial null space means different inputs can have the same output, a fact S09 will make explicit.",
+      "guidedFeedback": "Check after attempting. The equations give x1=-x3-2x4 and x2=x3-x4. Thus x=s(-1,1,1,0)+t(-2,-1,0,1). These two independent vectors span N(B), which is a subspace of the input space R^4.",
+      "main": "T22V3::SIDE276::S08-M@1",
+      "transfer": "T22V3::SIDE276::S08-T@1"
+    },
+    {
+      "order": 9,
+      "id": "T22V3::SIDE276::S09@1",
+      "moduleId": "SIDE276",
+      "title": "Every consistent solution set is a translated null space",
+      "focus": "Derive the complete solution of Ax=b as one particular solution plus N(A), and distinguish affine solution sets from subspaces.",
+      "purpose": "Connect consistency and ambiguity: once one input reaches b, every other input reaching b differs by an invisible null direction.",
+      "centralCapability": "Construct and prove the full affine solution set xp+N(A) for a consistent nonhomogeneous system.",
+      "principalObstacle": "The learner reports a single particular solution as 'the solution', or incorrectly calls a translated solution set a subspace because it is parallel to one.",
+      "entryPrerequisites": [
+        "M14-S08 null space",
+        "M14-S05 exact solvability",
+        "M13 subspaces"
+      ],
+      "requiredOwnership": [
+        "Prove that if Axp=b then every solution of Ax=b is exactly xp+n with n∈N(A).",
+        "Construct a complete parameterized solution set from one particular solution and a null-space basis.",
+        "Distinguish a homogeneous null subspace from a nonhomogeneous affine translate and state when the solution set contains 0."
+      ],
+      "applicationScope": "Consistent exact finite systems; the affine-language distinction is geometric/structural, not projection.",
+      "transferScope": "Transfer changes to model calibration: two parameter vectors produce the same target exactly when their difference is a null direction.",
+      "inScope": [
+        "particular solution",
+        "homogeneous solution",
+        "affine translate",
+        "same-output difference"
+      ],
+      "outOfScope": [
+        "least-squares best approximation",
+        "affine transformations as a separate theory",
+        "projection"
+      ],
+      "exitCondition": "Given one consistent Ax=b, describe every solution and explain the role of N(A) in nonuniqueness.",
+      "lesson": "Orient. Suppose Axp=b. If n∈N(A), then A(xp+n)=Axp+An=b, so adding any null vector preserves the output. Conversely, if Ax=b too, subtracting gives A(x-xp)=0, hence x-xp∈N(A). Therefore the complete solution set is exactly xp+N(A).\n\nThis is a structural theorem, not just a solving trick. The null space describes all ambiguity left after a target b is reached. Any two solutions of the same system differ by a null vector, and any null vector moves one solution to another.\n\nWorked example. Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. One particular solution is xp=(2,0,1). Solving Ax=0 gives N(A)=span{(-1,1,-1)}. Hence every solution is (2,0,1)+t(-1,1,-1)=(2-t,t,1-t). Direct multiplication returns b for all t.\n\nAffine versus subspace. N(A) always contains 0. The translated set xp+N(A) contains 0 exactly when b=0: if 0 solved Ax=b, then b=A0=0. Thus a consistent nonhomogeneous solution set with b≠0 is generally not a subspace even though it is parallel to the null space.\n\nGuided practice. For C=[[1,2,-1],[0,1,1]] and b=(3,1), find a particular solution, solve Cn=0, and write every solution as xp+t n. Then choose two different parameter values and verify their difference lies in N(C).\n\nDistinction check. “Many solutions” does not mean arbitrary inputs work. They form one translated copy of the null space anchored at a particular solution.",
+      "guidedFeedback": "Check after attempting. One particular solution is xp=(1,1,0). Solving Cn=0 gives n=t(3,-1,1), so every solution is (1,1,0)+t(3,-1,1). Any two choices differ by a scalar multiple of (3,-1,1), hence by a null vector.",
+      "main": "T22V3::SIDE276::S09-M@1",
+      "transfer": "T22V3::SIDE276::S09-T@1"
     }
   ],
   "problems": {
@@ -329,6 +520,76 @@
       "order": 4,
       "kind": "transfer",
       "prompt": "A two-stage linear pipeline acts on x∈R^2. Stage 1 uses C=[[1,2],[0,1]] and stage 2 uses D=[[3,0],[0,2]]. Both DC and CD are legal. (a) Determine which product represents 'first C, then D' and explain the order semantically. (b) Compute that composite matrix and its output on x=(1,-1)^T. (c) Compute the reversed-order product as well and use the two products to refute the claim that matrix multiplication is commutative.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S05-M@1": {
+      "id": "T22V3::SIDE276::S05-M@1",
+      "order": 5,
+      "kind": "main",
+      "prompt": "Consider x+2y=5, -y+z=-3, and 2x+y+z=3. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S05-T@1": {
+      "id": "T22V3::SIDE276::S05-T@1",
+      "order": 5,
+      "kind": "transfer",
+      "prompt": "A response library has primitive output vectors p=(1,2,0)^T and q=(0,-1,1)^T. A requested output is b=(3,4,-1)^T. Model the request as A(c,d)^T=b with columns p,q. Decide whether an exact solution exists by using coordinate constraints, and explain why the answer is not determined merely by having two unknown coefficients and three output coordinates.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S06-M@1": {
+      "id": "T22V3::SIDE276::S06-M@1",
+      "order": 6,
+      "kind": "main",
+      "prompt": "Start with the system x+2y-z=3, 2x+5y+z=8, and -x+2z=1. (a) Write [A|b]. (b) Apply R2←R2-2R1 and R3←R3+R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S06-T@1": {
+      "id": "T22V3::SIDE276::S06-T@1",
+      "order": 6,
+      "kind": "transfer",
+      "prompt": "A student begins with 2u-v=5 and u+3v=4. To eliminate u from the second equation, they replace the coefficient row (1,3) by (1,3)-(1/2)(2,-1)=(0,7/2) but leave the right-hand side equal to 4. Diagnose the error, give the correctly transformed second augmented row, and explain whether multiplying an entire equation by 0 would be an allowed elementary row operation.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S07-M@1": {
+      "id": "T22V3::SIDE276::S07-M@1",
+      "order": 7,
+      "kind": "main",
+      "prompt": "Solve the exact system x+y+z=4, 2x+3y+z=7, x+2y=3 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S07-T@1": {
+      "id": "T22V3::SIDE276::S07-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "Keep the same coefficient matrix as the Main but change the third equation to x+2y=4, so the system is x+y+z=4, 2x+3y+z=7, x+2y=4. Reduce enough to classify it. Exhibit the contradiction row and explain why 'three equations in three unknowns' did not guarantee a unique solution in either version.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S08-M@1": {
+      "id": "T22V3::SIDE276::S08-M@1",
+      "order": 8,
+      "kind": "main",
+      "prompt": "Let A=[[1,2,-1],[2,4,-2]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S08-T@1": {
+      "id": "T22V3::SIDE276::S08-T@1",
+      "order": 8,
+      "kind": "transfer",
+      "prompt": "A four-parameter linear model reports two outputs according to B=[[1,0,1,2],[0,1,-1,1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S09-M@1": {
+      "id": "T22V3::SIDE276::S09-M@1",
+      "order": 9,
+      "kind": "main",
+      "prompt": "Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S09-T@1": {
+      "id": "T22V3::SIDE276::S09-T@1",
+      "order": 9,
+      "kind": "transfer",
+      "prompt": "A calibration map C=[[1,2,-1],[0,1,1]] must produce target b=(3,1)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about non-identifiability without using statistical terminology.",
       "obligationVersion": 1
     }
   },
@@ -500,6 +761,210 @@
         }
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
+    },
+    "T22V3::SIDE276::S05-M@1": {
+      "reference": "A=[[1,2,0],[0,-1,1],[2,1,1]], b=(5,-3,3)^T. Its rows encode exactly the three displayed scalar equations. The columns are a1=(1,0,2)^T, a2=(2,-1,1)^T, a3=(0,1,1)^T, so Ax=xa1+ya2+za3. At (1,2,-1), a1+2a2-a3=(5,-3,3)=b; equivalently all three row equations hold. In the column picture the coefficients (1,2,-1) are a witness that b is reachable as a linear combination of the columns.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Constructs A=[[1,2,0],[0,-1,1],[2,1,1]], x_vec=(x,y,z)^T and b=(5,-3,3)^T in the correct positions."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies the rows as the three simultaneous scalar constraints rather than independent solution choices."
+        },
+        {
+          "points": 2,
+          "criterion": "Writes Ax=x a1+y a2+z a3 using the three columns of A."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies (1,2,-1)^T and interprets it as a coefficient witness producing b from the columns."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S05-T@1": {
+      "reference": "A=[[1,0],[2,-1],[0,1]]. If cp+dq=b, the first coordinate forces c=3 and the third forces d=-1. The second coordinate would then be 2(3)-(-1)=7, not 4, so no exact solution exists. The counts 2 unknowns and 3 output coordinates do not by themselves decide consistency; the actual column relationships and target matter.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Builds A with columns p,q and writes the target equation A(c,d)^T=b."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses c=3 and d=-1 from the first/third coordinates and obtains the contradictory second coordinate 7≠4."
+        },
+        {
+          "points": 3,
+          "criterion": "Concludes no exact solution and rejects equation/unknown counting as a sufficient consistency test."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S06-M@1": {
+      "reference": "The augmented matrix is [[1,2,-1|3],[2,5,1|8],[-1,0,2|1]]. After R2←R2-2R1 it has row 2 [0,1,3|2]. After R3←R3+R1 it has row 3 [0,2,1|4], so the result is [[1,2,-1|3],[0,1,3|2],[0,2,1|4]]. The inverse operations are R2←R2+2R1 and R3←R3-R1. Because each step is reversible and is formed from valid equation combinations, a vector solves one system iff it solves the other.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Writes the correct initial augmented matrix, including the constants."
+        },
+        {
+          "points": 3,
+          "criterion": "Obtains [[1,2,-1|3],[0,1,3|2],[0,2,1|4]] by applying both operations to the full augmented rows."
+        },
+        {
+          "points": 2,
+          "criterion": "Gives the inverse operations R2←R2+2R1 and R3←R3-R1."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses reversibility/equation equivalence to justify equality of the two solution sets."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S06-T@1": {
+      "reference": "The row operation must act on the constant too. The original second augmented row is [1,3|4]; subtracting one half of [2,-1|5] gives [0,7/2|3/2], not [0,7/2|4]. Leaving 4 changes the equation and generally the solution set. Multiplying an entire equation by 0 is not an elementary equivalence operation because it is not reversible and can erase a constraint.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Identifies that the right-hand side must undergo the same row replacement and computes [0,7/2|3/2]."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that leaving the constant at 4 changes the represented equation/system rather than giving an equivalent row."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects multiplication of a row by 0 because the operation is not reversible and can lose a constraint."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S07-M@1": {
+      "reference": "R2←R2-2R1 gives y-z=-1. R3←R3-R1 also gives y-z=-1, so subtracting those rows leaves a zero row. One echelon form is [[1,1,1|4],[0,1,-1|-1],[0,0,0|0]]. Pivots are in x and y; z is free. Set z=t. Then y=t-1 and x=5-2t, so all solutions are (5-2t,t-1,t), t∈R. Substitution gives 4,7,3 respectively for every t, confirming the family. Hence there are infinitely many solutions.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Produces a valid echelon form equivalent to [[1,1,1|4],[0,1,-1|-1],[0,0,0|0]]."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies x,y as pivot variables and z as a free variable, and classifies infinitely many solutions."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives the complete family (5-2t,t-1,t), t∈R."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies the parameterized family against the original equations, not only the echelon system."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S07-T@1": {
+      "reference": "As before R2-2R1 gives y-z=-1. Now R3-R1 gives y-z=0. Subtracting the second reduced constraint from the third gives 0=1, i.e. an augmented contradiction row [0,0,0|1]. Therefore the changed system has no solution. The number of equations and unknowns does not reveal dependence or inconsistency; pivot/free-variable and contradiction structure does.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Reduces the changed system to incompatible constraints y-z=-1 and y-z=0, or equivalently a row [0,0,0|1]."
+        },
+        {
+          "points": 3,
+          "criterion": "Classifies the changed system as inconsistent/no solution from the contradiction row."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why equal equation/unknown counts did not determine uniqueness in either the Main or Transfer system."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S08-M@1": {
+      "reference": "If Au=Av=0, then A(αu+βv)=αAu+βAv=0, and A0=0, so N(A) is a subspace. The homogeneous equations reduce to x1+2x2-x3=0. With x2=s,x3=t, x=(-2s+t,s,t)=s(-2,1,0)+t(1,0,1). The two vectors span every solution by the parameterization and are independent because a(-2,1,0)+b(1,0,1)=0 forces a=0 from coordinate 2 and b=0 from coordinate 3. Thus they form a basis. N(A)⊆R^3, and either nonzero basis vector is an input change sent to zero output.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Proves N(A) contains 0 and is closed under αu+βv using A(αu+βv)=αAu+βAv."
+        },
+        {
+          "points": 4,
+          "criterion": "Derives x=s(-2,1,0)+t(1,0,1) from Ax=0."
+        },
+        {
+          "points": 2,
+          "criterion": "Justifies that the two special solutions both span N(A) and are independent."
+        },
+        {
+          "points": 2,
+          "criterion": "Places N(A) in R^3 and interprets a nonzero null vector as an erased input direction."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S08-T@1": {
+      "reference": "Invisible changes satisfy Bx=0. The equations are x1+x3+2x4=0 and x2-x3+x4=0. Let x3=s,x4=t; then x=s(-1,1,1,0)+t(-2,-1,0,1). The two vectors are independent and the parameterization shows that every invisible change is their combination. They live in R^4, the parameter/input space; the zero outputs live in R^2.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Finds the two null directions (-1,1,1,0) and (-2,-1,0,1), up to an equivalent basis."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses a complete two-parameter solution of Bx=0 to prove the chosen directions span every invisible change."
+        },
+        {
+          "points": 3,
+          "criterion": "Justifies independence and distinguishes the R^4 input/null space from the R^2 output space."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S09-M@1": {
+      "reference": "Take xp=(2,0,1). Solving An=0 gives n=t(-1,1,-1), so N(A)=span{(-1,1,-1)} and all solutions are (2,0,1)+t(-1,1,-1)=(2-t,t,1-t). If x=xp+n with An=0, then Ax=Axp+An=b. Conversely, if Ax=b, then A(x-xp)=Ax-Axp=b-b=0, so x-xp∈N(A). The solution set is not a subspace because 0 is not a solution: A0=0≠b.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Finds a valid particular solution and N(A)=span{(-1,1,-1)}."
+        },
+        {
+          "points": 3,
+          "criterion": "Writes all solutions as (2,0,1)+t(-1,1,-1)=(2-t,t,1-t)."
+        },
+        {
+          "points": 3,
+          "criterion": "Proves both implications between Ax=b and x-xp∈N(A) using linearity."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly rejects subspace status because b≠0 and therefore 0 is not a solution."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S09-T@1": {
+      "reference": "One choice is p=(1,1,0). The null equation gives n=(3,-1,1) as a basis direction. Thus every calibration is (1,1,0)+t(3,-1,1). If Cp=Cq=b, then C(q-p)=Cq-Cp=0, so q-p∈N(C). Therefore multiple parameter vectors can produce exactly the same reported output, with their differences confined to the null direction.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Finds a valid p such as (1,1,0) and a nonzero null direction such as (3,-1,1)."
+        },
+        {
+          "points": 3,
+          "criterion": "Describes every calibration as p+t(3,-1,1), up to an equivalent null-space basis/particular solution."
+        },
+        {
+          "points": 2,
+          "criterion": "Proves C(q-p)=0 whenever Cp=Cq=b."
+        },
+        {
+          "points": 2,
+          "criterion": "Interprets the null direction as exact parameter ambiguity producing the same output."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     }
   },
   "coverage": {
@@ -558,6 +1023,69 @@
       ],
       [
         "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S05@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S06@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S07@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::SIDE276::S08@1": [
+      [
+        "main"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ]
+    ],
+    "T22V3::SIDE276::S09@1": [
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main",
+        "transfer"
+      ],
+      [
+        "main"
       ]
     ]
   },
@@ -818,6 +1346,290 @@
         "escapeAttempt": "Simply asserting 'matrices do not commute' cannot earn the two calculation/evidence rows.",
         "disposition": "adequate"
       }
+    ],
+    "T22V3::SIDE276::S05@1": [
+      {
+        "claim": "Translate a finite system of scalar linear equations into a correctly typed matrix equation Ax=b.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S05-M@1",
+          "T22V3::SIDE276::S05-T@1"
+        ],
+        "publicRequestExact": [
+          "Consider x+2y=5, -y+z=-3, and 2x+y+z=3. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
+          "A response library has primitive output vectors p=(1,2,0)^T and q=(0,-1,1)^T. A requested output is b=(3,4,-1)^T. Model the request as A(c,d)^T=b with columns p,q. Decide whether an exact solution exists by using coordinate constraints, and explain why the answer is not determined merely by having two unknown coefficients and three output coordinates."
+        ],
+        "rubricEvidence": [
+          "Constructs A=[[1,2,0],[0,-1,1],[2,1,1]], x_vec=(x,y,z)^T and b=(5,-3,3)^T in the correct positions.",
+          "Builds A with columns p,q and writes the target equation A(c,d)^T=b."
+        ],
+        "why": "Both surfaces require literal construction of a typed matrix equation.",
+        "escapeAttempt": "A verbal solvability claim without placing coefficients/target correctly cannot earn these rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Interpret the row view as simultaneous scalar constraints and the column view as a linear combination of A's columns equaling b.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S05-M@1"
+        ],
+        "publicRequestExact": [
+          "Consider x+2y=5, -y+z=-3, and 2x+y+z=3. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture."
+        ],
+        "rubricEvidence": [
+          "Identifies the rows as the three simultaneous scalar constraints rather than independent solution choices.",
+          "Writes Ax=x a1+y a2+z a3 using the three columns of A."
+        ],
+        "why": "Main explicitly observes both row and column interpretations of the same Ax=b.",
+        "escapeAttempt": "Merely writing A and b does not earn either interpretation row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Use a coefficient witness or contradiction to decide exact solvability in an elementary system without relying on equation-count heuristics.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S05-M@1",
+          "T22V3::SIDE276::S05-T@1"
+        ],
+        "publicRequestExact": [
+          "Consider x+2y=5, -y+z=-3, and 2x+y+z=3. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
+          "A response library has primitive output vectors p=(1,2,0)^T and q=(0,-1,1)^T. A requested output is b=(3,4,-1)^T. Model the request as A(c,d)^T=b with columns p,q. Decide whether an exact solution exists by using coordinate constraints, and explain why the answer is not determined merely by having two unknown coefficients and three output coordinates."
+        ],
+        "rubricEvidence": [
+          "Verifies (1,2,-1)^T and interprets it as a coefficient witness producing b from the columns.",
+          "Uses c=3 and d=-1 from the first/third coordinates and obtains the contradictory second coordinate 7≠4.",
+          "Concludes no exact solution and rejects equation/unknown counting as a sufficient consistency test."
+        ],
+        "why": "The learner demonstrates both a positive witness and a negative coordinate obstruction.",
+        "escapeAttempt": "Counting dimensions alone cannot satisfy the fresh contradiction calculation.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S06@1": [
+      {
+        "claim": "Represent Ax=b as an augmented matrix [A|b] and apply a row operation to every entry of the affected equation, including b.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S06-M@1",
+          "T22V3::SIDE276::S06-T@1"
+        ],
+        "publicRequestExact": [
+          "Start with the system x+2y-z=3, 2x+5y+z=8, and -x+2z=1. (a) Write [A|b]. (b) Apply R2←R2-2R1 and R3←R3+R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set.",
+          "A student begins with 2u-v=5 and u+3v=4. To eliminate u from the second equation, they replace the coefficient row (1,3) by (1,3)-(1/2)(2,-1)=(0,7/2) but leave the right-hand side equal to 4. Diagnose the error, give the correctly transformed second augmented row, and explain whether multiplying an entire equation by 0 would be an allowed elementary row operation."
+        ],
+        "rubricEvidence": [
+          "Writes the correct initial augmented matrix, including the constants.",
+          "Obtains [[1,2,-1|3],[0,1,3|2],[0,2,1|4]] by applying both operations to the full augmented rows.",
+          "Identifies that the right-hand side must undergo the same row replacement and computes [0,7/2|3/2]."
+        ],
+        "why": "The learner must update coefficients and constants together on two distinct systems.",
+        "escapeAttempt": "Changing only A cannot earn the explicit augmented-row rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Justify row swap, nonzero row scaling and row replacement as reversible operations that preserve the exact solution set.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S06-M@1"
+        ],
+        "publicRequestExact": [
+          "Start with the system x+2y-z=3, 2x+5y+z=8, and -x+2z=1. (a) Write [A|b]. (b) Apply R2←R2-2R1 and R3←R3+R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set."
+        ],
+        "rubricEvidence": [
+          "Gives the inverse operations R2←R2+2R1 and R3←R3-R1.",
+          "Uses reversibility/equation equivalence to justify equality of the two solution sets."
+        ],
+        "why": "Main asks for both inverse moves and the logical solution-set implication.",
+        "escapeAttempt": "Executing arithmetic without explaining reversibility loses two rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Diagnose an invalid or incompletely applied row operation and explain how it can change the represented system.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S06-T@1"
+        ],
+        "publicRequestExact": [
+          "A student begins with 2u-v=5 and u+3v=4. To eliminate u from the second equation, they replace the coefficient row (1,3) by (1,3)-(1/2)(2,-1)=(0,7/2) but leave the right-hand side equal to 4. Diagnose the error, give the correctly transformed second augmented row, and explain whether multiplying an entire equation by 0 would be an allowed elementary row operation."
+        ],
+        "rubricEvidence": [
+          "Explains that leaving the constant at 4 changes the represented equation/system rather than giving an equivalent row.",
+          "Rejects multiplication of a row by 0 because the operation is not reversible and can lose a constraint."
+        ],
+        "why": "Transfer requires diagnosis of two plausible but invalid operations.",
+        "escapeAttempt": "A corrected numeric row without explaining why the original move fails cannot earn full credit.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S07@1": [
+      {
+        "claim": "Reduce a small exact system to row-echelon form while tracking pivots and free variables.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S07-M@1"
+        ],
+        "publicRequestExact": [
+          "Solve the exact system x+y+z=4, 2x+3y+z=7, x+2y=3 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system."
+        ],
+        "rubricEvidence": [
+          "Produces a valid echelon form equivalent to [[1,1,1|4],[0,1,-1|-1],[0,0,0|0]].",
+          "Identifies x,y as pivot variables and z as a free variable, and classifies infinitely many solutions."
+        ],
+        "why": "Main requires actual elimination plus pivot/free reading.",
+        "escapeAttempt": "Jumping directly to a parameterization without an equivalent echelon structure misses the first row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Classify a system as inconsistent, uniquely solvable or infinitely solvable from contradiction rows and pivot/free-variable structure.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S07-M@1",
+          "T22V3::SIDE276::S07-T@1"
+        ],
+        "publicRequestExact": [
+          "Solve the exact system x+y+z=4, 2x+3y+z=7, x+2y=3 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
+          "Keep the same coefficient matrix as the Main but change the third equation to x+2y=4, so the system is x+y+z=4, 2x+3y+z=7, x+2y=4. Reduce enough to classify it. Exhibit the contradiction row and explain why 'three equations in three unknowns' did not guarantee a unique solution in either version."
+        ],
+        "rubricEvidence": [
+          "Identifies x,y as pivot variables and z as a free variable, and classifies infinitely many solutions.",
+          "Classifies the changed system as inconsistent/no solution from the contradiction row.",
+          "Explains why equal equation/unknown counts did not determine uniqueness in either the Main or Transfer system."
+        ],
+        "why": "The two tasks discriminate consistent-free and inconsistent structures on nearly identical coefficients.",
+        "escapeAttempt": "Counting equations cannot satisfy the explicit pivot/contradiction evidence.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Parameterize all solutions of a consistent underdetermined system and verify the parameterized family.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S07-M@1"
+        ],
+        "publicRequestExact": [
+          "Solve the exact system x+y+z=4, 2x+3y+z=7, x+2y=3 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system."
+        ],
+        "rubricEvidence": [
+          "Derives the complete family (5-2t,t-1,t), t∈R.",
+          "Verifies the parameterized family against the original equations, not only the echelon system."
+        ],
+        "why": "Main asks for all solutions and a universal substitution check.",
+        "escapeAttempt": "One sample solution earns neither the complete-family nor verification row.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S08@1": [
+      {
+        "claim": "Prove that N(A)={x:Ax=0} is a subspace of the domain by closure under linear combinations.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S08-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,-1],[2,4,-2]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction."
+        ],
+        "rubricEvidence": [
+          "Proves N(A) contains 0 and is closed under αu+βv using A(αu+βv)=αAu+βAv."
+        ],
+        "why": "Main literally asks for the subspace closure proof.",
+        "escapeAttempt": "Computing a basis alone cannot earn the proof row.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Solve Ax=0 and construct a basis for N(A) from independent free-variable special solutions.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S08-M@1",
+          "T22V3::SIDE276::S08-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,-1],[2,4,-2]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
+          "A four-parameter linear model reports two outputs according to B=[[1,0,1,2],[0,1,-1,1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space."
+        ],
+        "rubricEvidence": [
+          "Derives x=s(-2,1,0)+t(1,0,1) from Ax=0.",
+          "Justifies that the two special solutions both span N(A) and are independent.",
+          "Finds the two null directions (-1,1,1,0) and (-2,-1,0,1), up to an equivalent basis.",
+          "Uses a complete two-parameter solution of Bx=0 to prove the chosen directions span every invisible change."
+        ],
+        "why": "Two distinct matrices require full parameterization and basis justification.",
+        "escapeAttempt": "Listing plausible directions without deriving all solutions cannot earn spanning rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Interpret a nonzero null vector as an input direction erased by the represented linear map and identify the correct ambient domain.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S08-M@1",
+          "T22V3::SIDE276::S08-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2,-1],[2,4,-2]]. (a) Prove directly from matrix linearity that N(A) is closed under arbitrary linear combinations. (b) Solve Ax=0 and produce a basis for N(A), proving both spanning and independence. (c) State the ambient space of N(A) and interpret one nonzero basis vector as an input direction.",
+          "A four-parameter linear model reports two outputs according to B=[[1,0,1,2],[0,1,-1,1]]. Find two independent nonzero parameter changes that leave both reported outputs unchanged. Prove that every invisible parameter change is a combination of your two directions, and state why these directions live in parameter space rather than output space."
+        ],
+        "rubricEvidence": [
+          "Places N(A) in R^3 and interprets a nonzero null vector as an erased input direction.",
+          "Justifies independence and distinguishes the R^4 input/null space from the R^2 output space."
+        ],
+        "why": "Both tasks explicitly observe ambient-space typing and the erased-input meaning.",
+        "escapeAttempt": "A correct homogeneous solve with null vectors placed in the codomain loses the interpretation rows.",
+        "disposition": "adequate"
+      }
+    ],
+    "T22V3::SIDE276::S09@1": [
+      {
+        "claim": "Prove that if Axp=b then every solution of Ax=b is exactly xp+n with n∈N(A).",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S09-M@1",
+          "T22V3::SIDE276::S09-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+          "A calibration map C=[[1,2,-1],[0,1,1]] must produce target b=(3,1)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about non-identifiability without using statistical terminology."
+        ],
+        "rubricEvidence": [
+          "Proves both implications between Ax=b and x-xp∈N(A) using linearity.",
+          "Proves C(q-p)=0 whenever Cp=Cq=b."
+        ],
+        "why": "Both theorem directions and the same-output difference consequence are directly observed.",
+        "escapeAttempt": "A parameterization alone cannot earn the proof rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Construct a complete parameterized solution set from one particular solution and a null-space basis.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE276::S09-M@1",
+          "T22V3::SIDE276::S09-T@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+          "A calibration map C=[[1,2,-1],[0,1,1]] must produce target b=(3,1)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about non-identifiability without using statistical terminology."
+        ],
+        "rubricEvidence": [
+          "Writes all solutions as (2,0,1)+t(-1,1,-1)=(2-t,t,1-t).",
+          "Describes every calibration as p+t(3,-1,1), up to an equivalent null-space basis/particular solution."
+        ],
+        "why": "Learner constructs full solution sets on two different systems.",
+        "escapeAttempt": "One particular vector cannot satisfy the complete-family rows.",
+        "disposition": "adequate"
+      },
+      {
+        "claim": "Distinguish a homogeneous null subspace from a nonhomogeneous affine translate and state when the solution set contains 0.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE276::S09-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer."
+        ],
+        "rubricEvidence": [
+          "Correctly rejects subspace status because b≠0 and therefore 0 is not a solution."
+        ],
+        "why": "Main explicitly asks the affine-versus-subspace distinction.",
+        "escapeAttempt": "Calling the set a subspace because it is parallel to N(A) loses the row.",
+        "disposition": "adequate"
+      }
     ]
   },
   "evidenceDistance": {
@@ -859,6 +1671,56 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "reason": "Transfer moves to a verbal two-stage square pipeline and requires a concrete noncommutativity counterexample rather than abstract map notation."
+      }
+    },
+    "T22V3::SIDE276::S05@1": {
+      "main": {
+        "classification": "retrieval",
+        "reason": "Main applies the row/column semantics to fresh equations and requires a verified column witness."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer removes the written equations and presents reachability as a primitive-response model with an inconsistent target."
+      }
+    },
+    "T22V3::SIDE276::S06@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "reason": "Main performs fresh row replacements and reconstructs the reversibility argument supplied in instruction."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer switches to adversarial error diagnosis rather than asking for a clean elimination."
+      }
+    },
+    "T22V3::SIDE276::S07@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main combines elimination, structural classification and complete parameterization on an unseen system."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer changes only the right-hand side and tests whether the learner tracks how consistency changes despite the same equation count."
+      }
+    },
+    "T22V3::SIDE276::S08@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "reason": "Main reconstructs the nullspace-subspace proof and solves a fresh homogeneous system."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer recasts the kernel as invisible parameter changes in a four-input/two-output model."
+      }
+    },
+    "T22V3::SIDE276::S09@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "reason": "Main integrates particular solutions, nullspace, a bidirectional proof and affine/subspace classification on fresh data."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "reason": "Transfer recasts complete solutions as calibration ambiguity and asks for a same-output difference proof."
       }
     }
   },
@@ -902,6 +1764,56 @@
         "transfer": {
           "classification": "changed-surface Transfer",
           "reason": "Transfer moves to a verbal two-stage square pipeline and requires a concrete noncommutativity counterexample rather than abstract map notation."
+        }
+      },
+      "T22V3::SIDE276::S05@1": {
+        "main": {
+          "classification": "retrieval",
+          "reason": "Main applies the row/column semantics to fresh equations and requires a verified column witness."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer removes the written equations and presents reachability as a primitive-response model with an inconsistent target."
+        }
+      },
+      "T22V3::SIDE276::S06@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "Main performs fresh row replacements and reconstructs the reversibility argument supplied in instruction."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer switches to adversarial error diagnosis rather than asking for a clean elimination."
+        }
+      },
+      "T22V3::SIDE276::S07@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main combines elimination, structural classification and complete parameterization on an unseen system."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer changes only the right-hand side and tests whether the learner tracks how consistency changes despite the same equation count."
+        }
+      },
+      "T22V3::SIDE276::S08@1": {
+        "main": {
+          "classification": "proof reconstruction",
+          "reason": "Main reconstructs the nullspace-subspace proof and solves a fresh homogeneous system."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer recasts the kernel as invisible parameter changes in a four-input/two-output model."
+        }
+      },
+      "T22V3::SIDE276::S09@1": {
+        "main": {
+          "classification": "fresh Main evidence",
+          "reason": "Main integrates particular solutions, nullspace, a bidirectional proof and affine/subspace classification on fresh data."
+        },
+        "transfer": {
+          "classification": "changed-surface Transfer",
+          "reason": "Transfer recasts complete solutions as calibration ambiguity and asks for a same-output difference proof."
         }
       }
     },
