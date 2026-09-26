@@ -5,9 +5,9 @@
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "v1.2-followup-repaired-awaiting-exact-head-verification",
+    "status": "v1.2-followup-repaired-awaiting-independent-acceptance",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
-    "gate": "Nineteen-session architecture and mathematical spine preserved. Independent follow-up closed R01/R02/R06/R08/R09/R11 but found four final bounded evidence/provenance issues: S14 ownership verb, S09 Transfer distance, full design-gate wrong-solver coverage, and stale canonical-state text. FU-01/FU-02/FU-03 are repaired in the current candidate; M14 remains unpublished while the exact repaired head is rerun before focused independent acceptance.",
+    "gate": "Final bounded follow-up repairs are implemented: S14 ownership is narrowed to apply-and-justify, S09-T@2 is a collision-first changed-surface Transfer, all 16 design-gate misconception rows are explicitly covered by current-task wrong-solver evidence, and canonical stale-state wording is removed. M14 remains unpublished. Independent acceptance requires the required full GitHub Actions workflow on the exact current branch HEAD to be green; any later edit reopens that implementation check.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
   },
   "boundary": {
@@ -40,7 +40,7 @@
     "authoredSessions": 19,
     "ownershipClaimCount": 60,
     "fixedAssessments": 38,
-    "reviewProvenance": "Independent v1.2 review and follow-up are the controlling provenance. The 19-session architecture and mathematics were preserved. Current evidence package includes 60 claim observers with generalization distance, a 38-task semantic-separation ledger, decision audits, explicit coverage of all 16 design-gate misconception discriminators, versioned repairs for S07-T, S09-T, S11-M, S18-M and S19-M, targeted math/instruction gates, Gate-9 learner-route integration, and an unpublished-M14 Chromium probe. Run #469 at head 41f3de9bf2e055efe8f2f717da55f0e56fd540b2 was fully green before the final follow-up repairs. The current follow-up candidate must receive a new exact-head full workflow before independent acceptance."
+    "reviewProvenance": "Independent v1.2 review and follow-up are the controlling provenance. The 19-session architecture and mathematics were preserved. Current evidence contains 60 claim observers with generalization distance, a 38-task semantic-separation ledger, 21 decision audits, 19 wrong-solver attacks explicitly covering all 16 design-gate failure modes, versioned S07-T/S09-T/S11-M/S18-M/S19-M obligations, targeted fixed-assessment and instructional math gates, Gate-9 learner-route integration, and an unpublished-M14 Chromium probe. Pre-follow-up run #469 at head 41f3de9bf2e055efe8f2f717da55f0e56fd540b2 was fully green. Final follow-up content/evidence candidate run #482 at head 3ec16b4d92317bcb756cca893630080b8c367348 was fully green. Canonical acceptance uses the stronger invariant that the required workflow attached to whatever SHA is current at handoff must itself be green; older runs never self-certify later commits."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -4321,7 +4321,16 @@
       "FU-01": "S14 ownership narrowed from prove to apply and justify; fixed assessment unchanged.",
       "FU-02": "S09 Transfer versioned to @2 and redesigned as collision-first reconstruction rather than context-only replay.",
       "FU-03": "Wrong-solver ledger now explicitly accounts for all 16 design-gate failure modes.",
-      "FU-04": "Canonical construction-state residue is being replaced by exact final head/run evidence after rerun."
+      "FU-04": "Canonical verification/handoff now use an exact-current-HEAD CI rule rather than stale '#462 current' or 'browser pending' language. Historical checkpoints are labelled as history, not current closure."
+    },
+    "builderVerificationCheckpoint": {
+      "head": "3ec16b4d92317bcb756cca893630080b8c367348",
+      "workflowRun": {
+        "id": 36224436636,
+        "number": 482,
+        "conclusion": "success"
+      },
+      "scope": "Exact-head full workflow after FU-01/FU-02/FU-03 content and evidence repairs, before the final canonical-status-only transition."
     }
   }
 }
