@@ -172,7 +172,7 @@
       "requiredOwnership": [
         "Derive the coefficient formula ci=v·qi for expansion in an orthonormal basis.",
         "Use orthonormal coordinates to reconstruct vectors and verify the finite Pythagorean/Parseval identity.",
-        "Keep the orthonormal-basis hypothesis explicit rather than applying dot-product coefficients to arbitrary bases."
+        "Distinguish a complete orthonormal basis from an incomplete orthonormal set when interpreting dot-product coefficients."
       ],
       "applicationScope": "Finite ON bases in R^n.",
       "transferScope": "Use an incomplete ON list and interpret the leftover component rather than pretending the coefficients are complete coordinates.",
@@ -737,7 +737,7 @@
       "id": "T22V3::SIDE278::S03-M@1",
       "order": 3,
       "kind": "main",
-      "prompt": "Let W=span{(1,1,0),(0,1,1)} in R^3. Explain why generator tests suffice, solve for W^perp, verify your basis, and prove directly that W^perp is closed under arbitrary real linear combinations.",
+      "prompt": "Let W=span{(1,1,0),(0,1,1)} in R^3. (a) Starting from the definition of W^perp, explain why it is enough to impose x·w1=x·w2=0. (b) Solve those constraints and give a basis for W^perp. (c) Verify your basis vector is orthogonal to both generators. (d) Prove directly that 0∈W^perp and that W^perp is closed under arbitrary real linear combinations, hence is a subspace of R^3.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S03-T@1": {
@@ -1020,7 +1020,7 @@
       "marking": "Score only public obligations; changed-surface reasoning must be visible where requested."
     },
     "T22V3::SIDE278::S03-M@1": {
-      "reference": "For x=(a,b,c), constraints are a+b=0 and b+c=0, so x=t(1,-1,1). The generator is orthogonal to both spanning vectors. Closure follows from bilinearity: (rx+sy)·w=r(x·w)+s(y·w)=0.",
+      "reference": "For any w=αw1+βw2, x·w=α(x·w1)+β(x·w2), so zero dot products with the two generators imply orthogonality to every w in W. The equations are a+b=0 and b+c=0, giving x=t(1,-1,1), so W^perp=span{(1,-1,1)}; its generator is orthogonal to both w1,w2. Also 0·w=0 for every w∈W, so 0∈W^perp. If x,y∈W^perp and r,s∈R, then (rx+sy)·w=r(x·w)+s(y·w)=0 for every w∈W, proving closure and therefore the subspace property.",
       "rubric": [
         {
           "points": 2,
@@ -1036,7 +1036,7 @@
         },
         {
           "points": 3,
-          "criterion": "Proves closure under arbitrary real linear combinations."
+          "criterion": "Proves 0∈W^perp and closure under arbitrary real linear combinations using dot-product bilinearity, hence establishes the subspace test."
         }
       ],
       "marking": "Score only public obligations; accept equivalent exact methods and valid proofs."
@@ -1645,7 +1645,7 @@
     "T22V3::SIDE278::S02@1": [
       "Derive the coefficient formula ci=v·qi for expansion in an orthonormal basis.",
       "Use orthonormal coordinates to reconstruct vectors and verify the finite Pythagorean/Parseval identity.",
-      "Keep the orthonormal-basis hypothesis explicit rather than applying dot-product coefficients to arbitrary bases."
+      "Distinguish a complete orthonormal basis from an incomplete orthonormal set when interpreting dot-product coefficients."
     ],
     "T22V3::SIDE278::S03@1": [
       "Define W^perp and prove it is a subspace of the same ambient R^n.",
@@ -1730,12 +1730,13 @@
           "Let u1=(1,1,0), u2=(1,-1,0), u3=(0,0,3). (a) Verify all pairwise dot products are zero. (b) Compute all norms and classify the list as orthogonal or orthonormal. (c) Normalize it explicitly. (d) From c1u1+c2u2+c3u3=0, prove c1=c2=c3=0 by dotting with the uj rather than citing the theorem."
         ],
         "rubricEvidence": [
-          "Computes norms sqrt(2), sqrt(2), 3 and distinguishes orthogonal from orthonormal."
+          "Computes norms sqrt(2), sqrt(2), 3 and distinguishes orthogonal from orthonormal.",
+          "Produces a correct normalized orthonormal list."
         ],
         "disposition": "adequate",
-        "why": "Main separately scores norms/classification and normalization.",
-        "escapeAttempt": "A zero dot-product list alone cannot earn the classification row.",
-        "generalizationDistance": "Fresh three-dimensional data replace the worked two-vector pair."
+        "why": "The Main separately scores the orthogonal/orthonormal distinction and the actual normalization.",
+        "escapeAttempt": "A learner who classifies correctly but never normalizes cannot earn all cited evidence.",
+        "generalizationDistance": "Observed on a fresh three-vector list rather than the two-vector lesson examples."
       },
       {
         "claim": "Prove that a finite pairwise-orthogonal list of nonzero vectors is linearly independent.",
@@ -1800,15 +1801,16 @@
           "Let q1=(1,0,0), q2=(0,3/5,4/5), q3=(0,4/5,-3/5) be an orthonormal basis and v=(2,5,0). (a) Derive cj=v·qj from v=Σciqi. (b) Compute all coefficients. (c) Reconstruct v. (d) Verify ||v||^2=Σci^2 numerically."
         ],
         "rubricEvidence": [
+          "Reconstructs v=(2,5,0).",
           "Verifies 29=4+9+16 and links it to vanishing cross terms."
         ],
         "disposition": "adequate",
-        "why": "Main scores reconstruction and norm identity.",
-        "escapeAttempt": "Coefficient list alone misses reconstruction/norm evidence.",
-        "generalizationDistance": "New basis and target prevent answer copying."
+        "why": "The Main requires both reconstructing v and verifying the norm-squared identity.",
+        "escapeAttempt": "Correct coefficients alone do not establish either reconstruction or Parseval evidence.",
+        "generalizationDistance": "Fresh rational ON basis and target."
       },
       {
-        "claim": "Keep the orthonormal-basis hypothesis explicit rather than applying dot-product coefficients to arbitrary bases.",
+        "claim": "Distinguish a complete orthonormal basis from an incomplete orthonormal set when interpreting dot-product coefficients.",
         "task": "transfer",
         "taskIds": [
           "T22V3::SIDE278::S02-T@1"
@@ -1820,9 +1822,9 @@
           "Explains that two vectors do not form a basis of R^3, so the coefficients are incomplete."
         ],
         "disposition": "adequate",
-        "why": "Transfer explicitly scores the completeness hypothesis.",
-        "escapeAttempt": "Treating an ON set as a full basis fails the row.",
-        "generalizationDistance": "Changed surface removes spanning and requires a remainder."
+        "why": "The Transfer explicitly asks whether the two coefficients form a complete basis-coordinate list in R^3.",
+        "escapeAttempt": "Calling an incomplete ON set a basis fails the cited criterion.",
+        "generalizationDistance": "This deliberately narrows the claim to the completeness distinction actually observed."
       }
     ],
     "T22V3::SIDE278::S03@1": [
@@ -1833,15 +1835,15 @@
           "T22V3::SIDE278::S03-M@1"
         ],
         "publicRequestExact": [
-          "Let W=span{(1,1,0),(0,1,1)} in R^3. Explain why generator tests suffice, solve for W^perp, verify your basis, and prove directly that W^perp is closed under arbitrary real linear combinations."
+          "Let W=span{(1,1,0),(0,1,1)} in R^3. (a) Starting from the definition of W^perp, explain why it is enough to impose x·w1=x·w2=0. (b) Solve those constraints and give a basis for W^perp. (c) Verify your basis vector is orthogonal to both generators. (d) Prove directly that 0∈W^perp and that W^perp is closed under arbitrary real linear combinations, hence is a subspace of R^3."
         ],
         "rubricEvidence": [
-          "Proves closure under arbitrary real linear combinations."
+          "Proves 0∈W^perp and closure under arbitrary real linear combinations using dot-product bilinearity, hence establishes the subspace test."
         ],
         "disposition": "adequate",
-        "why": "Main scores the subspace proof and finite-generator justification.",
-        "escapeAttempt": "A basis answer alone misses proof evidence.",
-        "generalizationDistance": "Proof reconstruction uses new W."
+        "why": "The public Main now requires both zero membership and linear-combination closure and names the subspace conclusion.",
+        "escapeAttempt": "A basis computation with no subspace proof cannot earn the cited row.",
+        "generalizationDistance": "The claim is now literally observed rather than inferred from a closure-only request."
       },
       {
         "claim": "Reduce orthogonality to an entire finite span to dot-product constraints against a spanning set.",
@@ -1850,7 +1852,7 @@
           "T22V3::SIDE278::S03-M@1"
         ],
         "publicRequestExact": [
-          "Let W=span{(1,1,0),(0,1,1)} in R^3. Explain why generator tests suffice, solve for W^perp, verify your basis, and prove directly that W^perp is closed under arbitrary real linear combinations."
+          "Let W=span{(1,1,0),(0,1,1)} in R^3. (a) Starting from the definition of W^perp, explain why it is enough to impose x·w1=x·w2=0. (b) Solve those constraints and give a basis for W^perp. (c) Verify your basis vector is orthogonal to both generators. (d) Prove directly that 0∈W^perp and that W^perp is closed under arbitrary real linear combinations, hence is a subspace of R^3."
         ],
         "rubricEvidence": [
           "Justifies why testing the two generators covers their whole span."
@@ -1906,12 +1908,13 @@
           "Let W=span{(1,1,0),(0,0,1)} and v=(3,1,2). Find p∈W and r∈W^perp with v=p+r; verify both membership conditions; prove W∩W^perp={0}; then use that fact to prove this decomposition is unique."
         ],
         "rubricEvidence": [
+          "Proves W∩W^perp={0} using z·z=0.",
           "Uses the zero intersection to prove uniqueness."
         ],
         "disposition": "adequate",
-        "why": "Uniqueness proof is separately scored.",
-        "escapeAttempt": "Bare uniqueness claim earns no row.",
-        "generalizationDistance": "Proof reconstruction tied to concrete split."
+        "why": "The Main separately proves the zero intersection and then uses it for uniqueness.",
+        "escapeAttempt": "A bare uniqueness assertion misses both the intersection proof and its use.",
+        "generalizationDistance": "Fresh tilted subspace instance with an explicit theorem reconstruction."
       },
       {
         "claim": "Distinguish an arbitrary vector split from an orthogonal decomposition by checking both memberships.",
@@ -1959,12 +1962,13 @@
           "Let a=(2,1,-1) and v=(3,0,1). (a) Starting from p=ta and (v-p)·a=0, derive t=(v·a)/(a·a). (b) Compute t, p and r=v-p exactly. (c) Verify r·a=0. (d) State precisely why a=0 would make this derivation invalid."
         ],
         "rubricEvidence": [
+          "Computes t=5/6, p=(5/3,5/6,-5/6), and r=(4/3,-5/6,11/6).",
           "Verifies r·a=0 exactly."
         ],
         "disposition": "adequate",
-        "why": "Main separately scores p,r and orthogonality verification.",
-        "escapeAttempt": "Coefficient alone cannot establish projection.",
-        "generalizationDistance": "New exact fractional instance."
+        "why": "The Main scores the projected vector/residual calculation and an independent orthogonality check.",
+        "escapeAttempt": "A scalar coefficient or unchecked vector alone is insufficient.",
+        "generalizationDistance": "Fresh 3D line with exact fractional arithmetic."
       },
       {
         "claim": "Explain why changing a nonzero generator of the same line changes the coefficient but not the projected vector.",
@@ -2004,20 +2008,23 @@
       },
       {
         "claim": "Verify the residual is orthogonal to every basis vector and therefore to W.",
-        "task": "main",
+        "task": "main+transfer",
         "taskIds": [
-          "T22V3::SIDE278::S06-M@1"
+          "T22V3::SIDE278::S06-M@1",
+          "T22V3::SIDE278::S06-T@1"
         ],
         "publicRequestExact": [
-          "Let q1=(1/sqrt(2))(1,0,1), q2=(0,1,0), let W=span{q1,q2}, and let v=(4,1,0). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis."
+          "Let q1=(1/sqrt(2))(1,0,1), q2=(0,1,0), let W=span{q1,q2}, and let v=(4,1,0). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis.",
+          "The plane W={(x,y,z):x=y} is given without a basis, and v=(5,-1,3). Construct an orthonormal basis for W using obvious geometric directions, use it to compute the W component p and residual r, and verify directly that r is orthogonal to every direction in your chosen basis."
         ],
         "rubricEvidence": [
-          "Verifies r is orthogonal to both q1 and q2."
+          "Verifies r is orthogonal to both q1 and q2.",
+          "Explains why those basis checks imply r is orthogonal to all of W."
         ],
         "disposition": "adequate",
-        "why": "Main separately requires p,r and both residual checks.",
-        "escapeAttempt": "One coefficient or one dot product is insufficient.",
-        "generalizationDistance": "New values prevent direct copying."
+        "why": "Main verifies the residual against every ON basis vector; Transfer explicitly explains why those checks imply orthogonality to all of W.",
+        "escapeAttempt": "Checking only one direction or omitting the span implication cannot satisfy both rows.",
+        "generalizationDistance": "Two distinct subspaces test the computational and universal parts of the claim."
       },
       {
         "claim": "Construct a suitable ON basis when a subspace is described geometrically rather than already given by ON vectors.",
@@ -2127,20 +2134,23 @@
       },
       {
         "claim": "Normalize the resulting nonzero orthogonal pair and diagnose a flawed subtraction.",
-        "task": "transfer",
+        "task": "main+transfer",
         "taskIds": [
+          "T22V3::SIDE278::S08-M@1",
           "T22V3::SIDE278::S08-T@1"
         ],
         "publicRequestExact": [
+          "Let v1=(1,1,0), v2=(1,0,1). (a) Derive u2=v2-((v2·u1)/(u1·u1))u1 from the projection idea with u1=v1. (b) Compute u2 and an equivalent integer-scaled orthogonal direction. (c) Verify u1·u2=0. (d) Prove span(v1,v2)=span(u1,u2), then normalize to an orthonormal basis.",
           "A student tries to orthogonalize v1=(1,2,0), v2=(2,0,1) and writes u1=v1, u2=(1,-2,1), claiming they subtracted “the component along v1.” (a) Test the claim by computing u1·u2. (b) Compute the correct projection coefficient and corrected u2. (c) Give an integer-scaled orthogonal direction. (d) Explain exactly what was wrong with the student's subtraction."
         ],
         "rubricEvidence": [
+          "Normalizes to q1=(1/sqrt(2))(1,1,0), q2=(1/sqrt(6))(1,-1,2), up to allowed signs.",
           "Explains that Gram–Schmidt must subtract the exact projection, not an arbitrary component-looking multiple."
         ],
         "disposition": "adequate",
-        "why": "Transfer explicitly scores debugging the wrong subtraction rule.",
-        "escapeAttempt": "Merely replacing the vector without diagnosis fails.",
-        "generalizationDistance": "Changed surface is error analysis."
+        "why": "Main observes normalization of a valid cleaned pair; Transfer observes diagnosis of an invalid subtraction.",
+        "escapeAttempt": "Either normalization alone or debugging alone demonstrates only half the compound capability.",
+        "generalizationDistance": "The two assessments deliberately split construction and error diagnosis."
       }
     ],
     "T22V3::SIDE278::S09@1": [
@@ -2171,12 +2181,13 @@
           "Apply Gram–Schmidt in the stated order to v1=(1,1,0), v2=(1,0,1), v3=(0,1,1). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree."
         ],
         "rubricEvidence": [
+          "Normalizes the triple to an ON basis, up to signs.",
           "Demonstrates prefix-span preservation for the first two vectors and the full three-vector list."
         ],
         "disposition": "adequate",
-        "why": "Prefix-span invariants are separately scored.",
-        "escapeAttempt": "Correct dot products alone do not establish span preservation.",
-        "generalizationDistance": "Proof/check extends beyond visible transparent example."
+        "why": "The Main separately scores normalization and prefix-span preservation.",
+        "escapeAttempt": "A correct orthogonal triple without normalization or span argument is incomplete.",
+        "generalizationDistance": "Fresh three-vector run exercises both output and invariant."
       },
       {
         "claim": "Interpret a zero new residual as dependence and explain why reordering inputs may change the ON basis while preserving the final span.",
@@ -2188,12 +2199,13 @@
           "Let d1=(1,0,1), d2=(0,1,1), d3=(1,1,2)=d1+d2. Run the Gram–Schmidt logic far enough to determine what happens at the third residual, and explain why that outcome is mathematically necessary. Then consider the reordered list d2,d1,d3: state one way the ON output can differ while the final span remains the same."
         ],
         "rubricEvidence": [
-          "Explains that zero residual means the new input lies in the earlier span and therefore certifies dependence."
+          "Explains that zero residual means the new input lies in the earlier span and therefore certifies dependence.",
+          "Explains how reordering can change the ON basis while preserving the final span."
         ],
         "disposition": "adequate",
-        "why": "Transfer explicitly scores the structural meaning of an exact zero residual.",
-        "escapeAttempt": "Calling it divide-by-zero or stopping without diagnosis fails.",
-        "generalizationDistance": "Changed surface is dependence diagnosis, not routine orthogonalization."
+        "why": "Transfer scores both the dependence meaning of a zero residual and the effect of reordering on basis versus span.",
+        "escapeAttempt": "Saying only 'dependent' does not demonstrate the order distinction.",
+        "generalizationDistance": "One changed-surface task observes both structural consequences."
       }
     ],
     "T22V3::SIDE278::S10@1": [
@@ -2207,12 +2219,12 @@
           "Let A=[[1,2],[0,-1],[3,1]] and y=(2,1,-1)^T. (a) Write A^T and state both shapes. (b) Compute A^T y. (c) Name the two columns a1,a2 of A and independently compute a1·y and a2·y. (d) Derive generally, from the entry definition of transpose and matrix-vector multiplication, why (A^T y)_j=a_j·y."
         ],
         "rubricEvidence": [
-          "Derives the general identity (A^T y)_j=a_j·y from entry/row definitions."
+          "Writes A^T correctly and states A is 3×2 while A^T is 2×3."
         ],
         "disposition": "adequate",
-        "why": "Main scores the entrywise derivation of the column-dot identity.",
-        "escapeAttempt": "Mechanical transpose/product arithmetic alone misses the claim.",
-        "generalizationDistance": "New rectangular shape demands explicit derivation."
+        "why": "The first Main row literally requires the correct rectangular transpose and both shapes.",
+        "escapeAttempt": "A learner can derive a dot-product identity while still transposing the shape incorrectly; this row isolates the shape/definition evidence.",
+        "generalizationDistance": "Observed on a fresh 3×2 matrix."
       },
       {
         "claim": "Derive and use (A^T y)_j=a_j·y for the columns of A.",
@@ -2224,12 +2236,14 @@
           "Let A=[[1,2],[0,-1],[3,1]] and y=(2,1,-1)^T. (a) Write A^T and state both shapes. (b) Compute A^T y. (c) Name the two columns a1,a2 of A and independently compute a1·y and a2·y. (d) Derive generally, from the entry definition of transpose and matrix-vector multiplication, why (A^T y)_j=a_j·y."
         ],
         "rubricEvidence": [
-          "Writes A^T correctly and states A is 3×2 while A^T is 2×3."
+          "Computes A^T y=(-1,2)^T.",
+          "Independently computes the two column dot products -1 and 2.",
+          "Derives the general identity (A^T y)_j=a_j·y from entry/row definitions."
         ],
         "disposition": "adequate",
-        "why": "Shape and transpose are separately scored.",
-        "escapeAttempt": "Treating transpose as shape-preserving fails.",
-        "generalizationDistance": "Fresh 3×2 matrix."
+        "why": "The Main computes A^T y, independently computes the column dot products, and derives the identity generally.",
+        "escapeAttempt": "Writing the transpose alone cannot earn these rows.",
+        "generalizationDistance": "Numeric use plus general derivation prevents a purely syntactic observer."
       },
       {
         "claim": "Interpret A^T y=0 as y orthogonal to every column, not as y=0.",
@@ -2277,12 +2291,13 @@
           "Let A=[[1,0],[0,1],[1,1]] and b=(2,1,0)^T. (a) Starting from r=b-Ac perpendicular to Col(A), derive A^T A c=A^T b. (b) Compute A^T A and A^T b, solve for c, then compute p=Ac and r. (c) Verify A^T r=0. (d) Prove full column rank makes A^T A invertible using x^T A^T A x=||Ax||^2 and M14 null-space logic."
         ],
         "rubricEvidence": [
+          "Computes A^T A=[[2,1],[1,2]], A^T b=(2,1), c=(1,0), p=(1,0,1), and r=(1,1,-1).",
           "Verifies A^T r=0."
         ],
         "disposition": "adequate",
-        "why": "Main requires a complete exact solve and residual check.",
-        "escapeAttempt": "Coefficient only cannot establish projection.",
-        "generalizationDistance": "Fixed Main is distinct from worked/guided matrices."
+        "why": "The Main scores the complete coefficient/fitted/residual solve and then A^T r=0.",
+        "escapeAttempt": "A correct diagnostic with no solved projection, or vice versa, is incomplete.",
+        "generalizationDistance": "Fresh full-column-rank matrix distinct from lesson and pilot examples."
       },
       {
         "claim": "Prove A^T A is invertible under full column rank using x^T A^T A x=||Ax||^2 and M14 null-space logic.",
@@ -2347,12 +2362,13 @@
           "Consider Q=[[1,1],[0,0]]. (a) Verify Q^2=Q. (b) Check whether Q is symmetric. (c) Determine Range(Q). (d) Apply Q to v=(0,1), compute r=v-Qv, and test whether r is orthogonal to Range(Q). Use these facts to decide whether Q is an orthogonal projector, and state exactly which tempting implication fails."
         ],
         "rubricEvidence": [
+          "Finds Range(Q)=span(e1), computes r=(-1,1), and shows r·e1=-1.",
           "Rejects Q as an orthogonal projector and identifies idempotence-alone as the failed criterion."
         ],
         "disposition": "adequate",
-        "why": "Transfer directly discriminates idempotent from orthogonal projection.",
-        "escapeAttempt": "Seeing Q²=Q and stopping gives the wrong verdict.",
-        "generalizationDistance": "Changed surface is a counterexample audit."
+        "why": "The Transfer requires an explicit range/residual counterexample and the final idempotence-alone diagnosis.",
+        "escapeAttempt": "Checking nonsymmetry without the geometric residual test does not fully observe the claim.",
+        "generalizationDistance": "Changed-surface counterexample directly discriminates orthogonal from oblique idempotent projection."
       }
     ],
     "T22V3::SIDE278::S13@1": [
@@ -2366,12 +2382,13 @@
           "Let A=[[1,0],[1,1],[0,2]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
         ],
         "rubricEvidence": [
-          "Formulates min ||Ax-b||^2 and derives the normal equations from projection/residual orthogonality."
+          "Formulates min ||Ax-b||^2 and derives the normal equations from projection/residual orthogonality.",
+          "Computes ||r||^2=4/9 and proves global minimality with the orthogonal Pythagorean decomposition."
         ],
         "disposition": "adequate",
-        "why": "Main requires formulation and geometry, not only a normal-equation solve.",
-        "escapeAttempt": "Starting from a formula without explaining the objective misses the row.",
-        "generalizationDistance": "Fresh inconsistent system ties M14 consistency to M15 projection."
+        "why": "The Main publicly formulates the least-squares objective from projection geometry and uses the orthogonal decomposition to certify nearest-point optimality.",
+        "escapeAttempt": "A normal-equation calculation with no objective/geometry or optimality argument cannot satisfy both rows.",
+        "generalizationDistance": "Fresh inconsistent 3×2 system connects formulation to global meaning."
       },
       {
         "claim": "Solve an exact full-column-rank least-squares problem and verify A^T r=0 with a nonzero residual.",
@@ -2383,29 +2400,29 @@
           "Let A=[[1,0],[1,1],[0,2]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
         ],
         "rubricEvidence": [
-          "Computes ||r||^2=4/9 and proves global minimality with the orthogonal Pythagorean decomposition."
+          "Computes x_hat=(5/9,17/9), p=(5/9,22/9,34/9), r=(4/9,-4/9,2/9), and verifies A^T r=0."
         ],
         "disposition": "adequate",
-        "why": "Global minimality proof is separately scored.",
-        "escapeAttempt": "A stationary equation alone cannot earn it.",
-        "generalizationDistance": "Nearest-point theorem is transferred into matrix fitting."
+        "why": "The Main row explicitly requires x_hat, p, nonzero r and the A^T r=0 verification.",
+        "escapeAttempt": "A minimality proof without the actual fit cannot earn this evidence.",
+        "generalizationDistance": "Exact full-column-rank calculation on new data."
       },
       {
         "claim": "Use orthogonal decomposition to prove global minimality rather than infer it from a stationary equation alone.",
-        "task": "transfer",
+        "task": "main",
         "taskIds": [
-          "T22V3::SIDE278::S13-T@1"
+          "T22V3::SIDE278::S13-M@1"
         ],
         "publicRequestExact": [
-          "A calibration asks for one scalar x to satisfy x≈1, x≈3, and x≈8 simultaneously. Without beginning from a memorized averaging rule, model this as a one-column least-squares problem, derive the orthogonality condition, find x_hat, list the three residuals, compute their squared norm, and explain why the residuals sum to zero but are not individually zero."
+          "Let A=[[1,0],[1,1],[0,2]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
         ],
         "rubricEvidence": [
-          "Explains why zero residual sum expresses column orthogonality while individual residuals remain nonzero because exact fit is impossible."
+          "Computes ||r||^2=4/9 and proves global minimality with the orthogonal Pythagorean decomposition."
         ],
         "disposition": "adequate",
-        "why": "Transfer scores interpretation of zero residual sum versus zero residual vector.",
-        "escapeAttempt": "Calling all residuals zero is explicitly falsified.",
-        "generalizationDistance": "Changed surface removes matrix notation and uses scalar calibration."
+        "why": "The Main explicitly requests and scores the Pythagorean global-minimality proof.",
+        "escapeAttempt": "Stationarity or A^T r=0 alone does not satisfy the criterion.",
+        "generalizationDistance": "This observes the theorem use directly rather than borrowing an interpretation from Transfer."
       }
     ],
     "T22V3::SIDE278::S14@1": [
@@ -2419,12 +2436,13 @@
           "Let A=[[1,2],[2,4],[0,0]] and b=(1,2,1)^T. (a) Identify Col(A) and find the unique projected fitted vector p and residual r. (b) Solve Ax=p and parameterize every least-squares coefficient vector. (c) Compute a basis for Null(A) and express the minimizer family as x0+Null(A). (d) Explain why A^T A is not invertible and why that does not destroy the unique fitted vector."
         ],
         "rubricEvidence": [
-          "Identifies Col(A)=span{(1,2,0)}, p=(1,2,0), and r=(0,0,1)."
+          "Identifies Col(A)=span{(1,2,0)}, p=(1,2,0), and r=(0,0,1).",
+          "Explains singular A^T A from dependent columns/nontrivial null space while preserving uniqueness of p."
         ],
         "disposition": "adequate",
-        "why": "Main observes unique fitted vector/residual without a full-rank assumption.",
-        "escapeAttempt": "Attempting an inverse cannot produce this geometric evidence.",
-        "generalizationDistance": "Fresh rank-one 3×2 map."
+        "why": "The Main computes the unique projected fitted vector and explicitly explains why singular A^T A does not destroy that uniqueness.",
+        "escapeAttempt": "One coefficient family alone cannot establish fitted-vector uniqueness.",
+        "generalizationDistance": "Rank-one geometry tests the object-level distinction."
       },
       {
         "claim": "Describe all least-squares coefficient minimizers as the coefficient solutions of Ax=p, differing by Null(A).",
@@ -2436,12 +2454,13 @@
           "Let A=[[1,2],[2,4],[0,0]] and b=(1,2,1)^T. (a) Identify Col(A) and find the unique projected fitted vector p and residual r. (b) Solve Ax=p and parameterize every least-squares coefficient vector. (c) Compute a basis for Null(A) and express the minimizer family as x0+Null(A). (d) Explain why A^T A is not invertible and why that does not destroy the unique fitted vector."
         ],
         "rubricEvidence": [
+          "Solves x1+2x2=1 and parameterizes all minimizers x=(1-2t,t).",
           "Gives Null(A)=span{(-2,1)} and writes the family as (1,0)+Null(A)."
         ],
         "disposition": "adequate",
-        "why": "Full coefficient family and null-space form are explicitly scored.",
-        "escapeAttempt": "One arbitrary minimizer is insufficient.",
-        "generalizationDistance": "M14 complete-solution reasoning transfers into least squares."
+        "why": "The Main requires the full parameterized minimizer family and its Null(A) form.",
+        "escapeAttempt": "Providing one minimizer is insufficient.",
+        "generalizationDistance": "Exact M14 null-space machinery is reused in a new least-squares role."
       },
       {
         "claim": "Diagnose invalid use of (A^T A)^{-1} in a rank-deficient problem without importing pseudoinverse machinery.",
@@ -2489,12 +2508,13 @@
           "For t=(-1,0,1) and observed deterministic targets y=(1,1,3), fit y≈alpha+beta t by least squares. (a) Build the 3×2 design matrix with columns 1 and t. (b) Compute A^T A and A^T y and solve for alpha,beta. (c) Compute fitted values and residuals. (d) Verify both residual orthogonality conditions and state one statistical claim this deterministic calculation does not justify."
         ],
         "rubricEvidence": [
+          "Computes A^T A=[[3,0],[0,2]], A^T y=(5,2), and obtains (alpha,beta)=(5/3,1).",
           "Computes fitted values (2/3,5/3,8/3), residuals (1/3,-2/3,1/3), and verifies both orthogonality sums."
         ],
         "disposition": "adequate",
-        "why": "Main requires full fit/residual and both orthogonality checks.",
-        "escapeAttempt": "Coefficients alone are insufficient.",
-        "generalizationDistance": "Nonzero-residual instance tests geometry."
+        "why": "The Main separately scores coefficient solving and fitted/residual computation with both orthogonality sums.",
+        "escapeAttempt": "Coefficients without residuals or residuals without the solved line are incomplete.",
+        "generalizationDistance": "Fresh deterministic table with nonzero residual."
       },
       {
         "claim": "Interpret residual orthogonality to the intercept and t columns without claiming sampling, causality or inference.",
@@ -2506,12 +2526,13 @@
           "For t=(-1,0,1) and observed deterministic targets y=(1,1,3), fit y≈alpha+beta t by least squares. (a) Build the 3×2 design matrix with columns 1 and t. (b) Compute A^T A and A^T y and solve for alpha,beta. (c) Compute fitted values and residuals. (d) Verify both residual orthogonality conditions and state one statistical claim this deterministic calculation does not justify."
         ],
         "rubricEvidence": [
+          "Computes fitted values (2/3,5/3,8/3), residuals (1/3,-2/3,1/3), and verifies both orthogonality sums.",
           "Names a statistical/inferential claim that is not justified by this deterministic least-squares calculation."
         ],
         "disposition": "adequate",
-        "why": "Main explicitly scores epistemic boundary discipline.",
-        "escapeAttempt": "Making an inferential claim fails the row.",
-        "generalizationDistance": "Separates M15 deterministic ownership from M36."
+        "why": "The Main observes the two residual orthogonality equations and also requires an explicit inferential boundary.",
+        "escapeAttempt": "A scope disclaimer without geometric interpretation, or vice versa, is incomplete.",
+        "generalizationDistance": "One task keeps deterministic mathematics and epistemic boundary linked."
       }
     ],
     "T22V3::SIDE278::S16@1": [
@@ -2542,12 +2563,14 @@
           "Let A have columns a1=(1,2,0) and a2=(1,0,1), so A=[[1,1],[2,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p."
         ],
         "rubricEvidence": [
+          "Computes c=(2/3,2/3), p=(4/3,4/3,2/3), and r=(2/3,-1/3,-2/3).",
+          "Verifies A^T r=0.",
           "Constructs a valid ON basis q1=(1/sqrt(5))(1,2,0), q2=(1/(3sqrt(5)))(4,-2,5), up to signs, and cross-checks that ON projection gives the same p."
         ],
         "disposition": "adequate",
-        "why": "Main requires a second representation to reproduce p.",
-        "escapeAttempt": "One-route answer cannot establish cross-check claim.",
-        "generalizationDistance": "Fresh general-column problem must be rebuilt via GS."
+        "why": "The Main requires the general-column solve, A^T r diagnostic, and a Gram–Schmidt/ON reconstruction of the same p.",
+        "escapeAttempt": "One-route success cannot satisfy the cross-representation claim.",
+        "generalizationDistance": "Fresh synthesis instance forces agreement of three representations."
       },
       {
         "claim": "Audit a plausible wrong solver that uses dot-product coefficients on nonorthogonal columns.",
@@ -3718,6 +3741,7 @@
       "T22V3::SIDE278::S13-M@1",
       "T22V3::SIDE278::S16-M@1"
     ],
-    "note": "All five tasks keep obligationVersion 1 because M15 has never been in the learner registry and no M15 learner evidence exists. Repairs change mathematical instances rather than wording; exact prompt/rubric receipts were regenerated. Full Gates 4–11 recheck remains required."
+    "note": "All five tasks keep obligationVersion 1 because M15 has never been in the learner registry and no M15 learner evidence exists. Repairs change mathematical instances rather than wording; exact prompt/rubric receipts were regenerated. Full Gates 4–11 recheck remains required.",
+    "claimAudit": "All 48 ownership claims were re-audited semantically after recovery. Overbroad S02 claim 3 was narrowed to the complete-vs-incomplete ON-set distinction actually observed; S03 Main was strengthened to prove the full subspace test; compound claims now cite every necessary rubric row rather than nearby single rows."
   }
 }
