@@ -5,7 +5,7 @@
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "full-builder-candidate-awaiting-integration-review",
+    "status": "full-builder-candidate-adversarially-repaired-awaiting-ci-and-independent-review",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
     "gate": "Nineteen sessions and 38 fixed assessments are now authored under protocol v1.2. S04 pilot passed local Gates 4–8 after a real observer repair. Full-module learner-route, mathematics, semantic-overlap and independent adversarial verification remain before publication.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
@@ -40,7 +40,7 @@
     "authoredSessions": 19,
     "ownershipClaimCount": 60,
     "fixedAssessments": 38,
-    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication."
+    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication. Claim-observer audit found three wording/evidence gaps: S01 claimed derivation of T(0)=0 without observing it, S06 claimed all three elementary-operation justifications while assessing only row replacement, and S16 claimed a general determinant singularity derivation while assessing examples only. Public tasks were repaired. S12's local claim was narrowed because S13 owns the general proof."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -536,7 +536,7 @@
         "conditioning"
       ],
       "exitCondition": "Given pivot/nullspace data or matrix dimensions, infer and defend the rank-nullity structure.",
-      "lesson": "Orient. Two dimensions summarize the map's structure. The rank of A is dim Col(A): the number of independent output directions the map can reach. The nullity is dim N(A): the number of independent input directions erased by the map.\n\nFor an m-by-n matrix reduced to echelon form with r pivots, the r pivot columns of the original A form a basis of Col(A), so rank(A)=r. The n-r nonpivot variable columns give n-r free variables in Ax=0. Setting one free variable at a time to 1 produces n-r independent special solutions spanning N(A), so nullity(A)=n-r. Therefore rank(A)+nullity(A)=r+(n-r)=n, the dimension of the **domain**, not the codomain.\n\nWorked example. Suppose a 3-by-5 matrix has RREF [[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. Pivots are in columns 1,2,4, so rank=3. Free variables x3,x5 give nullity=2. Their sum is 5, the input dimension. A rank cannot exceed either the number of rows or columns because Col(A)⊆R^m and no more than n columns can be independent.\n\nGuided practice. A 4-by-6 matrix has pivot columns 1,3,4. Without solving entries, state rank, nullity, number of free variables and the largest possible rank for any 4-by-6 matrix.\n\nDistinction check. A zero row in an echelon form can help reveal rank, but rank is not “the number of nonzero-looking rows” by definition. It is the dimension of the image; pivot count is a theorem/computational route to that dimension.",
+      "lesson": "Orient. Two dimensions summarize the map's structure. The rank of A is dim Col(A): the number of independent output directions the map can reach. The nullity is dim N(A): the number of independent input directions erased by the map.\n\nFor an m-by-n matrix reduced to echelon form with r pivots, the r pivot columns of the original A form a basis of Col(A), so rank(A)=r. The n-r nonpivot variable columns give n-r free variables in Ax=0. Setting one free variable at a time to 1 while the other free variables are 0 produces n-r special solutions. They span N(A) because the general homogeneous solution is obtained by assigning arbitrary values to those free variables and is the corresponding linear combination of the special solutions. They are independent because in any zero combination, inspecting each free-variable coordinate forces its coefficient to be 0. Hence nullity(A)=n-r. Therefore rank(A)+nullity(A)=r+(n-r)=n, the dimension of the **domain**, not the codomain.\n\nWorked example. Suppose a 3-by-5 matrix has RREF [[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. Pivots are in columns 1,2,4, so rank=3. Free variables x3,x5 give nullity=2. Their sum is 5, the input dimension. A rank cannot exceed either the number of rows or columns because Col(A)⊆R^m and no more than n columns can be independent.\n\nGuided practice. A 4-by-6 matrix has pivot columns 1,3,4. Without solving entries, state rank, nullity, number of free variables and the largest possible rank for any 4-by-6 matrix.\n\nDistinction check. A zero row in an echelon form can help reveal rank, but rank is not “the number of nonzero-looking rows” by definition. It is the dimension of the image; pivot count is a theorem/computational route to that dimension.",
       "guidedFeedback": "Check after attempting. Three pivot columns give rank 3. With six input coordinates there are 6-3=3 free variables, so nullity 3 and rank+nullity=6. Any 4-by-6 matrix has rank at most min(4,6)=4.",
       "main": "T22V3::SIDE276::S11-M@1",
       "transfer": "T22V3::SIDE276::S11-T@1"
@@ -556,8 +556,8 @@
         "M14-S08 nullspace"
       ],
       "requiredOwnership": [
-        "Prove that a linear map is injective iff its null space is {0}, equivalently full column rank for an m-by-n matrix.",
-        "Characterize surjectivity onto R^m as Col(A)=R^m, equivalently rank m (full row rank).",
+        "Use and justify the equivalence between injectivity and a trivial null space, together with full column rank, to classify finite maps.",
+        "Use Col(A)=R^m, equivalently rank m, to justify surjectivity onto R^m.",
         "Use matrix shape and rank to determine existence/uniqueness behavior of Ax=b and explain why a nonsquare map generally cannot be both injective and surjective."
       ],
       "applicationScope": "Finite real coordinate maps; 'full rank' must be qualified by shape.",
@@ -861,7 +861,7 @@
       "id": "T22V3::SIDE276::S01-T@1",
       "order": 1,
       "kind": "transfer",
-      "prompt": "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied.",
+      "prompt": "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Starting only from linearity, derive why every linear map L must satisfy L(0)=0; then use that necessary condition to determine whether Q can be linear. (c) State why the basis data for P are sufficient even though no formula was initially supplied.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S02-M@1": {
@@ -924,7 +924,7 @@
       "id": "T22V3::SIDE276::S06-M@1",
       "order": 6,
       "kind": "main",
-      "prompt": "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set.",
+      "prompt": "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each replacement, give its inverse and use reversibility to explain why the original and new systems have exactly the same solution set. (d) Also state why a row swap is reversible and why scaling a row by c≠0 is reversible, naming the inverse operation in each case.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S06-T@1": {
@@ -1064,7 +1064,7 @@
       "id": "T22V3::SIDE276::S16-M@1",
       "order": 16,
       "kind": "main",
-      "prompt": "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det.",
+      "prompt": "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det; (e) generalize the singularity test: explain briefly, using echelon pivots/rank and the determinant row rules, why det(M)=0 iff a real square matrix M is noninvertible.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S16-T@1": {
@@ -1141,7 +1141,7 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
     },
     "T22V3::SIDE276::S01-T@1": {
-      "reference": "Since (x,y)=xe1+ye2, P(x,y)=x(3,-1)+y(2,4)=(3x+2y,-x+4y). For Q, Q(0,0)=(1,0)≠(0,0), while every linear map must send 0 to 0, so Q is not linear. The P data are sufficient because a linear map is uniquely determined by its values on a basis.",
+      "reference": "Since (x,y)=xe1+ye2, P(x,y)=x(3,-1)+y(2,4)=(3x+2y,-x+4y). If L is linear, L(0)=L(0+0)=L(0)+L(0), so subtracting L(0) gives L(0)=0. For Q, Q(0,0)=(1,0)≠(0,0), so Q is not linear. The P data are sufficient because a linear map is uniquely determined by its values on a basis.",
       "rubric": [
         {
           "points": 4,
@@ -1149,7 +1149,7 @@
         },
         {
           "points": 3,
-          "criterion": "Uses Q(0,0)=(1,0)≠0 to reject Q as linear and states why the test is necessary."
+          "criterion": "Derives L(0)=0 from linearity and applies Q(0,0)=(1,0)≠0 to reject Q."
         },
         {
           "points": 3,
@@ -1327,23 +1327,23 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S06-M@1": {
-      "reference": "The augmented matrix is [[1,-1,2|4],[3,0,-1|2],[2,1,1|7]]. After R2←R2-3R1, row 2 becomes [0,3,-7|-10]. After R3←R3-2R1, row 3 becomes [0,3,-3|-1]. Thus the new augmented matrix is [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]]. The inverse operations are R2←R2+3R1 and R3←R3+2R1. Each move is reversible and corresponds to replacing one equation by an equivalent linear combination, so the two systems have exactly the same solution set.",
+      "reference": "The augmented matrix is [[1,-1,2|4],[3,0,-1|2],[2,1,1|7]]. After R2←R2-3R1, row 2 becomes [0,3,-7|-10]. After R3←R3-2R1, row 3 becomes [0,3,-3|-1]. Thus the result is [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]]. The inverse replacements are R2←R2+3R1 and R3←R3+2R1. A row swap is its own inverse. Scaling Ri by c≠0 is reversed by scaling the same row by 1/c. Hence all three elementary row-operation types are reversible and preserve the exact solution set.",
       "rubric": [
         {
-          "points": 3,
+          "points": 2,
           "criterion": "Writes the correct fresh augmented matrix [[1,-1,2|4],[3,0,-1|2],[2,1,1|7]]."
         },
         {
           "points": 3,
-          "criterion": "Obtains [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]] by applying both operations to the full augmented rows."
+          "criterion": "Obtains [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]] by applying both replacements to the full augmented rows."
         },
         {
           "points": 2,
-          "criterion": "Gives the inverse operations R2←R2+3R1 and R3←R3+2R1."
+          "criterion": "Gives the inverse replacements R2←R2+3R1 and R3←R3+2R1 and links reversibility to the same solution set."
         },
         {
-          "points": 2,
-          "criterion": "Uses reversibility/equation equivalence to justify equality of the two solution sets."
+          "points": 3,
+          "criterion": "Explains that a row swap is self-inverse and nonzero scaling by c is reversed by scaling by 1/c, completing the three reversible elementary-operation types."
         }
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
@@ -1735,23 +1735,27 @@
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
     "T22V3::SIDE276::S16-M@1": {
-      "reference": "det(A)=3·2-1·1=5, so A is invertible; its independent columns and full rank agree with the nonzero determinant. det(C)=1·6-3·2=0; its second column is three times the first, so rank<2 and C is not invertible. A sends the unit square to a parallelogram of area 5 with preserved orientation. C collapses the square into a line, giving area 0. S15 characterized determinant algebraically; volume scaling is the geometric theorem interpreting that scalar for real square maps.",
+      "reference": "det(A)=3·2-1·1=5, so A is invertible; its independent columns and full rank agree with the nonzero determinant. det(C)=1·6-3·2=0; its second column is three times the first, so rank<2 and C is not invertible. A sends the unit square to a parallelogram of area 5 with preserved orientation. C collapses the square into a line, giving area 0. S15 characterized determinant algebraically; volume scaling is the geometric theorem interpreting that scalar for real square maps. In general, determinant-aware elimination preserves zero-versus-nonzero up to nonzero row-scaling factors and sign: a missing pivot produces a zero diagonal entry and determinant 0, while n pivots produce an upper-triangular matrix with all nonzero diagonal entries and hence nonzero determinant. By S13, full pivot rank is equivalent to invertibility. Thus det(M)=0 iff M is noninvertible.",
       "rubric": [
         {
           "points": 2,
           "criterion": "Computes det(A)=5 and det(C)=0 for the fresh matrices."
         },
         {
-          "points": 3,
+          "points": 2,
           "criterion": "Links A's nonzero determinant to invertibility and C's zero determinant to dependent columns/rank loss and noninvertibility."
         },
         {
-          "points": 3,
+          "points": 2,
           "criterion": "Interprets A as area scale 5 with preserved orientation and C as area collapse to zero."
         },
         {
-          "points": 2,
+          "points": 1,
           "criterion": "Distinguishes the volume-scaling theorem/interpretation from the algebraic determinant characterization."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives the general equivalence det(M)=0 iff square M is noninvertible from pivot/rank structure plus determinant row-operation rules."
         }
       ],
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
@@ -2175,10 +2179,10 @@
           "T22V3::SIDE276::S01-T@1"
         ],
         "publicRequestExact": [
-          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Starting only from linearity, derive why every linear map L must satisfy L(0)=0; then use that necessary condition to determine whether Q can be linear. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
         ],
         "rubricEvidence": [
-          "Uses Q(0,0)=(1,0)≠0 to reject Q as linear and states why the test is necessary."
+          "Derives L(0)=0 from linearity and applies Q(0,0)=(1,0)≠0 to reject Q."
         ],
         "why": "Transfer explicitly applies the derived zero-image consequence to a new affine rule.",
         "escapeAttempt": "A bare 'not linear' without the zero-vector implication loses the row.",
@@ -2193,7 +2197,7 @@
         ],
         "publicRequestExact": [
           "Define F:R^2→R^3 by F(x,y)=(x-2y, 3x+y, 4y). (a) Verify symbolically that F(αu+βv)=αF(u)+βF(v) for arbitrary u,v∈R^2 and real α,β. (b) Compute F(e1) and F(e2). (c) Use only those two basis images to find F(2,-1). (d) Explain why agreement on e1,e2 would force two linear maps R^2→R^3 to agree on every input.",
-          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Starting only from linearity, derive why every linear map L must satisfy L(0)=0; then use that necessary condition to determine whether Q can be linear. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
         ],
         "rubricEvidence": [
           "Explains that unique basis coordinates plus linearity force the map on every input.",
@@ -2212,7 +2216,7 @@
         ],
         "publicRequestExact": [
           "Define F:R^2→R^3 by F(x,y)=(x-2y, 3x+y, 4y). (a) Verify symbolically that F(αu+βv)=αF(u)+βF(v) for arbitrary u,v∈R^2 and real α,β. (b) Compute F(e1) and F(e2). (c) Use only those two basis images to find F(2,-1). (d) Explain why agreement on e1,e2 would force two linear maps R^2→R^3 to agree on every input.",
-          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Use one decisive necessary condition to determine whether Q can be linear, and justify the verdict. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
+          "Two rules R^2→R^2 are proposed. P is specified only by P(e1)=(3,-1) and P(e2)=(2,4), with P declared linear. Q is given by Q(x,y)=(3x+2y+1, -x+4y). (a) Reconstruct P(x,y) for arbitrary (x,y) from its basis action. (b) Starting only from linearity, derive why every linear map L must satisfy L(0)=0; then use that necessary condition to determine whether Q can be linear. (c) State why the basis data for P are sufficient even though no formula was initially supplied."
         ],
         "rubricEvidence": [
           "Uses the basis decomposition to obtain F(2,-1)=(4,5,-4).",
@@ -2475,12 +2479,12 @@
           "T22V3::SIDE276::S06-T@1"
         ],
         "publicRequestExact": [
-          "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set.",
+          "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each replacement, give its inverse and use reversibility to explain why the original and new systems have exactly the same solution set. (d) Also state why a row swap is reversible and why scaling a row by c≠0 is reversible, naming the inverse operation in each case.",
           "A student begins with 2u-v=5 and u+3v=4. To eliminate u from the second equation, they replace the coefficient row (1,3) by (1,3)-(1/2)(2,-1)=(0,7/2) but leave the right-hand side equal to 4. Diagnose the error, give the correctly transformed second augmented row, and explain whether multiplying an entire equation by 0 would be an allowed elementary row operation."
         ],
         "rubricEvidence": [
           "Writes the correct fresh augmented matrix [[1,-1,2|4],[3,0,-1|2],[2,1,1|7]].",
-          "Obtains [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]] by applying both operations to the full augmented rows.",
+          "Obtains [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]] by applying both replacements to the full augmented rows.",
           "Identifies that the right-hand side must undergo the same row replacement and computes [0,7/2|3/2]."
         ],
         "why": "The learner must update coefficients and constants together on two distinct systems.",
@@ -2494,11 +2498,11 @@
           "T22V3::SIDE276::S06-M@1"
         ],
         "publicRequestExact": [
-          "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set."
+          "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each replacement, give its inverse and use reversibility to explain why the original and new systems have exactly the same solution set. (d) Also state why a row swap is reversible and why scaling a row by c≠0 is reversible, naming the inverse operation in each case."
         ],
         "rubricEvidence": [
-          "Gives the inverse operations R2←R2+3R1 and R3←R3+2R1.",
-          "Uses reversibility/equation equivalence to justify equality of the two solution sets."
+          "Gives the inverse replacements R2←R2+3R1 and R3←R3+2R1 and links reversibility to the same solution set.",
+          "Explains that a row swap is self-inverse and nonzero scaling by c is reversed by scaling by 1/c, completing the three reversible elementary-operation types."
         ],
         "why": "Main asks for both inverse moves and the logical solution-set implication.",
         "escapeAttempt": "Executing arithmetic without explaining reversibility loses two rows.",
@@ -2807,7 +2811,7 @@
     ],
     "T22V3::SIDE276::S12@1": [
       {
-        "claim": "Prove that a linear map is injective iff its null space is {0}, equivalently full column rank for an m-by-n matrix.",
+        "claim": "Use and justify the equivalence between injectivity and a trivial null space, together with full column rank, to classify finite maps.",
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE276::S12-M@1",
@@ -2826,7 +2830,7 @@
         "disposition": "adequate"
       },
       {
-        "claim": "Characterize surjectivity onto R^m as Col(A)=R^m, equivalently rank m (full row rank).",
+        "claim": "Use Col(A)=R^m, equivalently rank m, to justify surjectivity onto R^m.",
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE276::S12-M@1",
@@ -3036,10 +3040,11 @@
           "T22V3::SIDE276::S16-M@1"
         ],
         "publicRequestExact": [
-          "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det."
+          "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det; (e) generalize the singularity test: explain briefly, using echelon pivots/rank and the determinant row rules, why det(M)=0 iff a real square matrix M is noninvertible."
         ],
         "rubricEvidence": [
-          "Links A's nonzero determinant to invertibility and C's zero determinant to dependent columns/rank loss and noninvertibility."
+          "Links A's nonzero determinant to invertibility and C's zero determinant to dependent columns/rank loss and noninvertibility.",
+          "Derives the general equivalence det(M)=0 iff square M is noninvertible from pivot/rank structure plus determinant row-operation rules."
         ],
         "why": "Main connects determinant signs to the previously owned rank/invertibility structure.",
         "escapeAttempt": "A bare det computation without the structural conclusion loses the row.",
@@ -3053,7 +3058,7 @@
           "T22V3::SIDE276::S16-T@1"
         ],
         "publicRequestExact": [
-          "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det.",
+          "For A=[[3,1],[1,2]] and C=[[1,3],[2,6]]: (a) compute both determinants; (b) decide invertibility without constructing inverses and justify det=0/nonzero using the rank/column structure where appropriate; (c) describe what happens to the area and orientation of the unit square under each map; (d) explain why the area interpretation is a theorem about the real linear map, not the algebraic definition used to compute det; (e) generalize the singularity test: explain briefly, using echelon pivots/rank and the determinant row rules, why det(M)=0 iff a real square matrix M is noninvertible.",
           "Compare I_2 with D=diag(1000,0.001). Both have determinant 1. A memo concludes: 'Because the determinants are equal, the two maps have the same directional sensitivity and should be equally numerically stable.' State what det=1 legitimately tells you, show one concrete directional difference between I_2 and D, and explain why the memo's stability conclusion is unsupported at M14."
         ],
         "rubricEvidence": [
@@ -3423,8 +3428,8 @@
     },
     "T22V3::SIDE276::S16@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main integrates determinant calculation, singularity structure and geometry on two fresh matrices."
+        "classification": "proof reconstruction + fresh application",
+        "reason": "Main applies determinant/rank geometry to fresh matrices and reconstructs the general det=0 iff noninvertible argument from previously taught pivot and row-operation facts."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -3616,8 +3621,8 @@
       },
       "T22V3::SIDE276::S16@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main integrates determinant calculation, singularity structure and geometry on two fresh matrices."
+          "classification": "proof reconstruction + fresh application",
+          "reason": "Main applies determinant/rank geometry to fresh matrices and reconstructs the general det=0 iff noninvertible argument from previously taught pivot and row-operation facts."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
