@@ -37,9 +37,9 @@
     "designGate": "docs/t22-course/M15-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M15-PILOT-REVIEW.md",
     "pedagogicalAtoms": 16,
-    "authoredSessions": 12,
-    "ownershipClaimCount": 36,
-    "fixedAssessments": 24,
+    "authoredSessions": 16,
+    "ownershipClaimCount": 48,
+    "fixedAssessments": 32,
     "reviewProvenance": "Gate 0–3 design and S11 Gates 4–8 pilot completed by the builder. Pilot Gate 8 caught and repaired a solved-example/Main collision before bulk authoring. Independent adversarial review remains pending."
   },
   "sourceLedger": {
@@ -553,6 +553,155 @@
       "guidedFeedback": "Check after attempting. P(4,0)=(2,2), residual=(2,-2), and its dot product with (1,1) is 0. Direct multiplication gives P^2=P and symmetry is visible.",
       "main": "T22V3::SIDE278::S12-M@1",
       "transfer": "T22V3::SIDE278::S12-T@1"
+    },
+    {
+      "order": 13,
+      "id": "T22V3::SIDE278::S13@1",
+      "moduleId": "SIDE278",
+      "title": "Least squares: the best attainable answer to an inconsistent system",
+      "focus": "Formulate Euclidean least squares as projection onto Col(A), derive residual orthogonality, and prove global minimality.",
+      "purpose": "The learner must understand what least squares does when Ax=b has no exact solution before seeing statistical regression later.",
+      "centralCapability": "Recognize an inconsistent linear system as an approximation problem, minimize ||Ax-b||^2 through column-space projection, and interpret the nonzero residual.",
+      "principalObstacle": "Least squares is believed to make Ax=b exact or normal equations are treated as unrelated algebra.",
+      "entryPrerequisites": [
+        "S07 nearest-point theorem",
+        "S11 normal equations",
+        "M14 consistency/column space"
+      ],
+      "requiredOwnership": [
+        "Formulate least squares as minimizing ||Ax-b||^2 over coefficient vectors and reinterpret it as nearest-point projection onto Col(A).",
+        "Solve an exact full-column-rank least-squares problem and verify A^T r=0 with a nonzero residual.",
+        "Use orthogonal decomposition to prove global minimality rather than infer it from a stationary equation alone."
+      ],
+      "applicationScope": "Deterministic exact Euclidean fitting; no sampling or regression inference.",
+      "transferScope": "Collapse a multi-equation scalar fitting problem into a one-dimensional column-space projection and interpret the residual.",
+      "inScope": [
+        "least-squares objective",
+        "projection interpretation",
+        "global minimality",
+        "nonzero residual"
+      ],
+      "outOfScope": [
+        "statistical regression",
+        "weighted/nonlinear least squares",
+        "QR/SVD algorithms"
+      ],
+      "exitCondition": "Turn a fresh inconsistent system into a least-squares projection and explain exactly what is optimized and what remains unexplained.",
+      "lesson": "Orient. M14 classified some systems Ax=b as inconsistent: b lies outside Col(A). M15 does not pretend the contradiction disappears. Instead it asks for the attainable vector Ax closest to b in Euclidean distance.\n\nDefine. Least squares minimizes ||Ax-b||^2. Since every Ax lies in Col(A), this is exactly the nearest-point problem from S07 with W=Col(A). The fitted vector p=A x_hat is the orthogonal projection of b, and residual r=b-p lies in Col(A)^perp.\n\nConnect. S10 turns residual orthogonality into A^T r=0, yielding the normal equations. S07 supplies global optimality: for any other x, b-Ax=(b-p)+(p-Ax) with orthogonal terms, so ||b-Ax||^2=||r||^2+||p-Ax||^2≥||r||^2.\n\nWorked example. Fit one common scalar x to the inconsistent pair x≈1 and x≈3. Here A=(1,1)^T, b=(1,3), and the normal equation gives 2x=4, so x_hat=2. The fitted vector is (2,2), residual (-1,1), which is nonzero but sums to zero and is orthogonal to the column (1,1).\n\nGuided practice. For A=[[1,0],[1,1],[1,2]] and b=(1,2,2), form A^T A and A^T b, solve, compute the residual, and check A^T r before feedback. Say why a nonzero residual is not a failure of least squares.\n\nFade. Main uses a different design matrix/target; Transfer removes matrix notation and describes three incompatible scalar requests.\n\nDistinction check. Least squares minimizes residual norm; it does not assert every original equation is satisfied. Statistical claims about noise, uncertainty or prediction remain outside this deterministic geometry.",
+      "guidedFeedback": "Check after attempting. The solution is (7/6,1/2). Fitted values are (7/6,5/3,13/6), residual (-1/6,1/3,-1/6), and A^T r=0. The residual is nonzero because b is outside the column space; least squares makes it smallest, not zero.",
+      "main": "T22V3::SIDE278::S13-M@1",
+      "transfer": "T22V3::SIDE278::S13-T@1"
+    },
+    {
+      "order": 14,
+      "id": "T22V3::SIDE278::S14@1",
+      "moduleId": "SIDE278",
+      "title": "Rank-deficient least squares: one fit, many coefficients",
+      "focus": "Separate existence/uniqueness of the projected fitted vector from nonuniqueness of coefficient representations when columns are dependent.",
+      "purpose": "The learner must not infer that singular A^T A destroys the least-squares fitted vector or that a unique fit implies identifiable coefficients.",
+      "centralCapability": "Solve a rank-deficient least-squares problem geometrically, describe all coefficient minimizers as one representative plus Null(A), and keep pseudoinverse/minimum-norm selection deferred.",
+      "principalObstacle": "Failure of (A^T A)^{-1} is mistaken for nonexistence of a least-squares fit, or fitted-vector uniqueness is conflated with coefficient uniqueness.",
+      "entryPrerequisites": [
+        "S13 least-squares projection",
+        "M14 null space and complete solution",
+        "S11 full-rank hypothesis discipline"
+      ],
+      "requiredOwnership": [
+        "Explain why the orthogonal projection onto Col(A) exists uniquely even when A has dependent columns.",
+        "Describe all least-squares coefficient minimizers as the coefficient solutions of Ax=p, differing by Null(A).",
+        "Diagnose invalid use of (A^T A)^{-1} in a rank-deficient problem without importing pseudoinverse machinery."
+      ],
+      "applicationScope": "Small exact rank-deficient real matrices.",
+      "transferScope": "Duplicate columns create infinitely many coefficient minimizers for one unique fitted vector.",
+      "inScope": [
+        "rank-deficient least squares geometry",
+        "coefficient families",
+        "null-space ambiguity"
+      ],
+      "outOfScope": [
+        "Moore–Penrose pseudoinverse",
+        "minimum-norm selection",
+        "regularization"
+      ],
+      "exitCondition": "Produce the unique best fit and the full family of coefficient minimizers while explaining why no ordinary inverse is legal.",
+      "lesson": "Orient. S11's inverse formula needed full column rank. What if columns are dependent? The attainable set Col(A) is still a finite-dimensional subspace, so S07 still gives a unique closest fitted vector p. What may fail is uniqueness of the coefficients that represent p.\n\nDefine. Least-squares minimizers are exactly the solutions of Ax=p where p=proj_{Col(A)} b. If x0 is one solution, M14 says every solution is x0+z with z∈Null(A). Thus coefficient ambiguity is the same old null-space ambiguity, now inside a fitting problem.\n\nConnect to normal equations. A^T A becomes singular when A has nontrivial null space, so writing (A^T A)^{-1} is illegal. Normal equations can still characterize minimizers, but M15 does not choose a special coefficient among them. The Moore–Penrose pseudoinverse and minimum-norm rule belong to M17.\n\nWorked example. Let A=[[1,1],[0,0]] and b=(2,1). Col(A)=span(e1), so p=(2,0), residual=(0,1). Every coefficient pair with x1+x2=2 gives the same p; Null(A)=span{(1,-1)}. There is one fitted vector and infinitely many coefficients.\n\nGuided practice. Let the columns be a and 2a with a=(1,1). For b=(3,0), first project b onto span(a), then write the scalar equation on coefficients that reproduces that p. Do not try to invert A^T A.\n\nFade. Main uses a 3×2 rank-one matrix; Transfer uses duplicate columns and asks for the entire coefficient family.\n\nDistinction check. Projection uniqueness belongs to vectors in Col(A). Coefficient uniqueness requires injectivity of the map x↦Ax. Those are different objects and different theorems.",
+      "guidedFeedback": "Check after attempting. Projection of (3,0) onto span(1,1) is (3/2,3/2). If A=[a,2a], then Ax=(x1+2x2)a, so every pair satisfying x1+2x2=3/2 is a minimizer. No inverse of A^T A is needed or legal.",
+      "main": "T22V3::SIDE278::S14-M@1",
+      "transfer": "T22V3::SIDE278::S14-T@1"
+    },
+    {
+      "order": 15,
+      "id": "T22V3::SIDE278::S15@1",
+      "moduleId": "SIDE278",
+      "title": "Deterministic line fitting from a data table",
+      "focus": "Translate a small affine line-fitting table into a design matrix and interpret fitted values/residuals purely deterministically.",
+      "purpose": "Least-squares geometry should transfer to a familiar quantitative representation without prematurely importing statistical regression assumptions.",
+      "centralCapability": "Build the intercept/slope design matrix from tabular data, solve the exact least-squares line, and audit residual orthogonality to both model columns.",
+      "principalObstacle": "The matrix is treated as supplied magic, intercept/slope roles are reversed, or deterministic fit is mistaken for statistical inference.",
+      "entryPrerequisites": [
+        "S13 least squares",
+        "M14 matrix representation discipline"
+      ],
+      "requiredOwnership": [
+        "Translate a table (t_i,y_i) into the deterministic model y≈alpha+beta t with design columns 1 and t.",
+        "Solve the exact two-parameter least-squares fit and compute fitted values/residuals.",
+        "Interpret residual orthogonality to the intercept and t columns without claiming sampling, causality or inference."
+      ],
+      "applicationScope": "Small deterministic calibration/curve-fitting tables.",
+      "transferScope": "A different irregular t-grid requires rebuilding the design matrix and interpreting the two orthogonality equations.",
+      "inScope": [
+        "design matrix from table",
+        "intercept/slope fit",
+        "residual interpretation"
+      ],
+      "outOfScope": [
+        "standard errors",
+        "hypothesis tests",
+        "causal claims",
+        "regression diagnostics"
+      ],
+      "exitCondition": "Turn a fresh data table into a deterministic least-squares model and state exactly what the fit does and does not establish.",
+      "lesson": "Orient. Least squares is geometry before it is statistics. A table of input values t_i and deterministic targets y_i can be fit by a line alpha+beta t simply by choosing a two-column subspace of possible fitted-value vectors.\n\nDefine. The design matrix has first column all ones and second column t: A_i=(1,t_i). The coefficient vector x=(alpha,beta) produces fitted values Ax. Residual orthogonality to the ones column means residuals sum to zero; orthogonality to the t column means their t-weighted sum is zero.\n\nConnect. These are geometric consequences of projection, not assumptions about random noise. Without a sampling model, least squares alone does not provide standard errors, p-values, causality or predictive validity. Those belong to later statistical modules.\n\nWorked example. For t=-1,0,1 and y=0,1,2, A=[(1,-1),(1,0),(1,1)] and the exact line is alpha=1,beta=1 with zero residual. This is an exact-fit special case, not the general least-squares situation.\n\nGuided practice. For t=0,1,2 and y=2,2,5, build A, compute A^T A and A^T y, solve alpha,beta, then check the two residual orthogonality sums.\n\nFade. Main changes grid/targets and has nonzero residual; Transfer uses an irregular t-grid so no symmetry shortcut should be assumed.\n\nDistinction check. A deterministic least-squares line summarizes this table under a chosen Euclidean criterion. It does not by itself certify a stochastic regression model.",
+      "guidedFeedback": "Check after attempting. The solution is alpha=3/2,beta=3/2. Fitted values are (3/2,3,9/2), residuals (1/2,-1,1/2); they sum to 0 and their t-weighted sum is 0.",
+      "main": "T22V3::SIDE278::S15-M@1",
+      "transfer": "T22V3::SIDE278::S15-T@1"
+    },
+    {
+      "order": 16,
+      "id": "T22V3::SIDE278::S16@1",
+      "moduleId": "SIDE278",
+      "title": "Synthesis: choose the geometry, not a memorized formula",
+      "focus": "Integrate orthogonality, Gram–Schmidt, projection and least-squares reasoning while choosing a method from representation and rank information.",
+      "purpose": "M15 should exit with method selection and cross-checking, not a collection of isolated formulas.",
+      "centralCapability": "Given an unfamiliar subspace/model representation, choose a justified route, compute the best component/fit, cross-check with an alternative M15 representation, and reject an invalid shortcut.",
+      "principalObstacle": "The learner reaches for dot-product coefficients on nonorthogonal columns, or blindly inverts A^T A without first classifying the representation/rank.",
+      "entryPrerequisites": [
+        "S01–S15",
+        "M14 rank/null-space reasoning"
+      ],
+      "requiredOwnership": [
+        "Choose an M15 projection/least-squares route from the given representation and justify why its hypotheses hold.",
+        "Compute and cross-check a projection using both general-column residual conditions and an orthonormal basis constructed by Gram–Schmidt.",
+        "Audit a plausible wrong solver that uses dot-product coefficients on nonorthogonal columns."
+      ],
+      "applicationScope": "Small exact finite models combining multiple M15 representations.",
+      "transferScope": "Two solution reports compete; learner must use residual diagnostics and hypothesis checks rather than recompute blindly.",
+      "inScope": [
+        "method choice",
+        "cross-representation verification",
+        "wrong-solver audit"
+      ],
+      "outOfScope": [
+        "QR naming",
+        "SVD/pseudoinverse",
+        "numerical algorithm ranking",
+        "statistical inference"
+      ],
+      "exitCondition": "Solve a fresh mixed-representation projection problem, justify method choice and detect a wrong method from its violated hypothesis.",
+      "lesson": "Orient. M15 has several routes to the same geometry. If an ON basis is already available, dot-product coefficients are simplest. If independent nonorthogonal columns are given, normal equations express residual orthogonality. If a clean basis is useful, Gram–Schmidt can manufacture one. If columns are dependent, do not invert A^T A; separate the unique fitted vector from coefficient ambiguity.\n\nMethod contract. Before calculating, identify the representation and rank facts. Ask: Are these vectors orthonormal? Are the columns independent? Do I need one target or repeated targets? Which theorem's hypotheses are actually satisfied? A formula is only legal after this check.\n\nCross-check. Different legal routes must produce the same projected vector because S04/S07 give uniqueness. Thus Gram–Schmidt plus ON projection can audit a normal-equation result, and A^T r=0 can audit an ON-basis result without repeating every step.\n\nWorked example. Suppose W has the ON basis {(1/sqrt(2))(1,1,0),(0,0,1)}. For one target, use direct dot products; building a normal equation would be legal but needlessly indirect. By contrast, two nonorthogonal independent columns invite either Gram–Schmidt first or a direct normal-equation solve.\n\nGuided practice. For columns (1,0,0),(1,1,0) and target (0,2,1), first reject direct dot-product coefficients because the columns are not orthogonal. Choose either Gram–Schmidt or normal equations, compute only enough to predict that the residual must be parallel to e3, and state an independent check.\n\nFade. Main requires a complete solve plus a Gram–Schmidt cross-check. Transfer is an adversarial comparison between a naive dot-product report and a residual-orthogonality report.\n\nDistinction check. M15 ownership is geometry and exact reasoning. Naming QR, using pseudoinverse, or making numerical-stability claims would cross future module boundaries even if those tools could solve the same problem.",
+      "guidedFeedback": "Check after attempting. The column space is the xy-plane, so the projected vector must be (0,2,0) and residual (0,0,1). Direct dot products with the nonorthogonal raw columns are not coordinates. A^T r=0 is an independent check; Gram–Schmidt could also produce e1,e2.",
+      "main": "T22V3::SIDE278::S16-M@1",
+      "transfer": "T22V3::SIDE278::S16-T@1"
     }
   ],
   "problems": {
@@ -722,6 +871,62 @@
       "order": 12,
       "kind": "transfer",
       "prompt": "Consider Q=[[1,1],[0,0]]. (a) Verify Q^2=Q. (b) Check whether Q is symmetric. (c) Determine Range(Q). (d) Apply Q to v=(0,1), compute r=v-Qv, and test whether r is orthogonal to Range(Q). Use these facts to decide whether Q is an orthogonal projector, and state exactly which tempting implication fails.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S13-M@1": {
+      "id": "T22V3::SIDE278::S13-M@1",
+      "order": 13,
+      "kind": "main",
+      "prompt": "Let A=[[1,0],[0,1],[1,1]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S13-T@1": {
+      "id": "T22V3::SIDE278::S13-T@1",
+      "order": 13,
+      "kind": "transfer",
+      "prompt": "A calibration asks for one scalar x to satisfy x≈1, x≈3, and x≈8 simultaneously. Without beginning from a memorized averaging rule, model this as a one-column least-squares problem, derive the orthogonality condition, find x_hat, list the three residuals, compute their squared norm, and explain why the residuals sum to zero but are not individually zero.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S14-M@1": {
+      "id": "T22V3::SIDE278::S14-M@1",
+      "order": 14,
+      "kind": "main",
+      "prompt": "Let A=[[1,2],[2,4],[0,0]] and b=(1,2,1)^T. (a) Identify Col(A) and find the unique projected fitted vector p and residual r. (b) Solve Ax=p and parameterize every least-squares coefficient vector. (c) Compute a basis for Null(A) and express the minimizer family as x0+Null(A). (d) Explain why A^T A is not invertible and why that does not destroy the unique fitted vector.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S14-T@1": {
+      "id": "T22V3::SIDE278::S14-T@1",
+      "order": 14,
+      "kind": "transfer",
+      "prompt": "Let C=[[1,1],[1,1]] and d=(1,0)^T. Find the orthogonal projection p of d onto Col(C), then describe every coefficient vector x with Cx=p. Give two distinct minimizers explicitly, verify they produce the same fitted vector and residual, and explain why no coefficient-level uniqueness follows from the unique geometric projection.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S15-M@1": {
+      "id": "T22V3::SIDE278::S15-M@1",
+      "order": 15,
+      "kind": "main",
+      "prompt": "For t=(-1,0,1) and observed deterministic targets y=(1,1,3), fit y≈alpha+beta t by least squares. (a) Build the 3×2 design matrix with columns 1 and t. (b) Compute A^T A and A^T y and solve for alpha,beta. (c) Compute fitted values and residuals. (d) Verify both residual orthogonality conditions and state one statistical claim this deterministic calculation does not justify.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S15-T@1": {
+      "id": "T22V3::SIDE278::S15-T@1",
+      "order": 15,
+      "kind": "transfer",
+      "prompt": "A second deterministic table has t=(-1,1,2) and y=(0,2,5). Build the design matrix yourself, solve the least-squares line exactly, compute the fitted values and residuals, and verify both residual orthogonality equations. Then explain why an irregular t-grid changes the arithmetic but not the geometric criterion.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S16-M@1": {
+      "id": "T22V3::SIDE278::S16-M@1",
+      "order": 16,
+      "kind": "main",
+      "prompt": "Let A have columns a1=(1,1,0) and a2=(1,0,1), so A=[[1,1],[1,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S16-T@1": {
+      "id": "T22V3::SIDE278::S16-T@1",
+      "order": 16,
+      "kind": "transfer",
+      "prompt": "For E=[[1,1],[0,1],[1,0]] and d=(0,2,1)^T, Report X uses the raw dot products E^T d=(1,2) as coefficients and claims fitted vector (3,2,1). Report Y uses coefficients (0,1), claiming fitted vector (1,1,0). Audit both reports without starting by solving normal equations: compute each residual and E^T r, identify the valid projection, and state the exact hypothesis that Report X violated.",
       "obligationVersion": 1
     }
   },
@@ -1253,6 +1458,182 @@
         }
       ],
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S13-M@1": {
+      "reference": "Exact equations would require x1=1,x2=2 and then x1+x2=3≠4, so b∉Col(A). A^T A=[[2,1],[1,2]], A^T b=(5,6), giving x_hat=(4/3,7/3). Then p=(4/3,7/3,11/3), r=(-1/3,-1/3,1/3), A^T r=0, and ||r||^2=1/3. For any x, p-Ax∈Col(A) and r⊥Col(A), so ||b-Ax||^2=||r||^2+||p-Ax||^2≥||r||^2.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Demonstrates inconsistency by showing the first two exact equations force a third value 3 rather than 4."
+        },
+        {
+          "points": 2,
+          "criterion": "Formulates min ||Ax-b||^2 and derives the normal equations from projection/residual orthogonality."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes x_hat=(4/3,7/3), p=(4/3,7/3,11/3), r=(-1/3,-1/3,1/3), and verifies A^T r=0."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes ||r||^2=1/3 and proves global minimality with the orthogonal Pythagorean decomposition."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact routes."
+    },
+    "T22V3::SIDE278::S13-T@1": {
+      "reference": "Use A=(1,1,1)^T and b=(1,3,8)^T. The residual is b-x(1,1,1); orthogonality to the column gives (1-x)+(3-x)+(8-x)=0, hence x_hat=4. Residuals are (-3,-1,4), whose sum is 0 and squared norm is 9+1+16=26. They need not individually vanish because the three requested equalities are incompatible.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Builds the one-column model A=(1,1,1)^T, b=(1,3,8)^T."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives the residual-sum orthogonality equation and obtains x_hat=4."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes residuals (-3,-1,4) and squared norm 26."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why zero residual sum expresses column orthogonality while individual residuals remain nonzero because exact fit is impossible."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S14-M@1": {
+      "reference": "Col(A)=span{(1,2,0)} and b=(1,2,1) decomposes as p=(1,2,0)+r=(0,0,1), with r perpendicular to the column space. Ax=p requires x1+2x2=1, so x=(1-2t,t). Null(A)=span{(-2,1)}, and the family is (1,0)+t(-2,1). A has dependent columns, so Null(A) is nontrivial; any z∈Null(A) also satisfies A^T A z=0, making A^T A singular. The projection p remains unique because it is a nearest vector in the subspace Col(A).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Identifies Col(A)=span{(1,2,0)}, p=(1,2,0), and r=(0,0,1)."
+        },
+        {
+          "points": 3,
+          "criterion": "Solves x1+2x2=1 and parameterizes all minimizers x=(1-2t,t)."
+        },
+        {
+          "points": 2,
+          "criterion": "Gives Null(A)=span{(-2,1)} and writes the family as (1,0)+Null(A)."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains singular A^T A from dependent columns/nontrivial null space while preserving uniqueness of p."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact routes."
+    },
+    "T22V3::SIDE278::S14-T@1": {
+      "reference": "Col(C)=span{(1,1)}. Projection of d is p=(1/2,1/2), residual=(1/2,-1/2). Cx=(x1+x2)(1,1), so minimizers satisfy x1+x2=1/2. Examples are (1/2,0) and (0,1/2); both yield p and the same residual. Unique p does not imply unique x because Null(C)=span{(1,-1)} is nontrivial.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes p=(1/2,1/2) and residual=(1/2,-1/2)."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives the full coefficient family x1+x2=1/2."
+        },
+        {
+          "points": 2,
+          "criterion": "Exhibits two distinct minimizers and verifies they produce the same fitted vector/residual."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains coefficient nonuniqueness through the nontrivial null space despite unique projection."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S15-M@1": {
+      "reference": "A=[[1,-1],[1,0],[1,1]], A^T A=[[3,0],[0,2]], A^T y=(5,2), so alpha=5/3,beta=1. Fitted values are (2/3,5/3,8/3); residuals are (1/3,-2/3,1/3). Their sum is 0 and (-1)(1/3)+0+1(1/3)=0. The calculation alone gives no standard error, p-value, causal interpretation or population prediction guarantee.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Builds A=[[1,-1],[1,0],[1,1]] with intercept and t columns correctly."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes A^T A=[[3,0],[0,2]], A^T y=(5,2), and obtains (alpha,beta)=(5/3,1)."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes fitted values (2/3,5/3,8/3), residuals (1/3,-2/3,1/3), and verifies both orthogonality sums."
+        },
+        {
+          "points": 2,
+          "criterion": "Names a statistical/inferential claim that is not justified by this deterministic least-squares calculation."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact routes."
+    },
+    "T22V3::SIDE278::S15-T@1": {
+      "reference": "A=[[1,-1],[1,1],[1,2]]. The normal equations give (alpha,beta)=(9/7,11/7). Fitted values are (-2/7,20/7,31/7), residuals (2/7,-6/7,4/7). Residual sum is 0 and t-weighted sum is (-1)(2/7)+1(-6/7)+2(4/7)=0. The grid changes A^T A but the criterion remains projection onto the column space under Euclidean residual norm.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Builds the correct irregular-grid design matrix."
+        },
+        {
+          "points": 3,
+          "criterion": "Solves exactly for (alpha,beta)=(9/7,11/7)."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes fitted values/residuals and verifies both orthogonality equations."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that the grid changes matrix arithmetic, not the projection/least-squares criterion."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S16-M@1": {
+      "reference": "The columns are independent and have dot product 1, so direct ON coefficients are not legal. Normal equations give A^T A=[[2,1],[1,2]], A^T b=(3,2), hence c=(4/3,1/3). Then p=(5/3,4/3,1/3), r=(1/3,-1/3,-1/3), and A^T r=0. Gram–Schmidt gives q1=(1/sqrt(2))(1,1,0), q2=(1/sqrt(6))(1,-1,2); summing (b·q1)q1+(b·q2)q2 reproduces p. Uniqueness explains why both routes must agree.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Correctly classifies the columns as independent but nonorthogonal and chooses/justifies a legal M15 route."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes c=(4/3,1/3), p=(5/3,4/3,1/3), and r=(1/3,-1/3,-1/3)."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies A^T r=0."
+        },
+        {
+          "points": 3,
+          "criterion": "Constructs a valid ON basis by Gram–Schmidt and cross-checks that ON projection gives the same p."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact routes."
+    },
+    "T22V3::SIDE278::S16-T@1": {
+      "reference": "For X, residual is d-(3,2,1)=(-3,0,0) and E^T r=(-3,-3)≠0, so it is not the projection. For Y, residual is (-1,1,1) and E^T r=(0,0), so Y is the projection. The raw columns of E are not orthonormal (their dot product is 1), so E^T d gives column dot products, not expansion coefficients in that nonorthogonal basis.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes Report X residual (-3,0,0), E^T r=(-3,-3), and rejects X."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes Report Y residual (-1,1,1), E^T r=(0,0), and accepts Y."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies nonorthogonality of the raw columns as the hypothesis failure behind Report X."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that E^T d contains column dot products, not automatic coordinates for a nonorthogonal basis."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
     }
   },
   "coverage": {
@@ -1315,6 +1696,26 @@
       "Derive P=A(A^T A)^{-1}A^T from the normal-equation coefficient solution under full column rank.",
       "Verify idempotence P^2=P and symmetry P^T=P for an orthogonal projector.",
       "Discriminate an idempotent nonsymmetric map from an orthogonal projector by checking its residual against its range."
+    ],
+    "T22V3::SIDE278::S13@1": [
+      "Formulate least squares as minimizing ||Ax-b||^2 over coefficient vectors and reinterpret it as nearest-point projection onto Col(A).",
+      "Solve an exact full-column-rank least-squares problem and verify A^T r=0 with a nonzero residual.",
+      "Use orthogonal decomposition to prove global minimality rather than infer it from a stationary equation alone."
+    ],
+    "T22V3::SIDE278::S14@1": [
+      "Explain why the orthogonal projection onto Col(A) exists uniquely even when A has dependent columns.",
+      "Describe all least-squares coefficient minimizers as the coefficient solutions of Ax=p, differing by Null(A).",
+      "Diagnose invalid use of (A^T A)^{-1} in a rank-deficient problem without importing pseudoinverse machinery."
+    ],
+    "T22V3::SIDE278::S15@1": [
+      "Translate a table (t_i,y_i) into the deterministic model y≈alpha+beta t with design columns 1 and t.",
+      "Solve the exact two-parameter least-squares fit and compute fitted values/residuals.",
+      "Interpret residual orthogonality to the intercept and t columns without claiming sampling, causality or inference."
+    ],
+    "T22V3::SIDE278::S16@1": [
+      "Choose an M15 projection/least-squares route from the given representation and justify why its hypotheses hold.",
+      "Compute and cross-check a projection using both general-column residual conditions and an orthonormal basis constructed by Gram–Schmidt.",
+      "Audit a plausible wrong solver that uses dot-product coefficients on nonorthogonal columns."
     ]
   },
   "claimEvidence": {
@@ -1953,6 +2354,218 @@
         "escapeAttempt": "Seeing Q²=Q and stopping gives the wrong verdict.",
         "generalizationDistance": "Changed surface is a counterexample audit."
       }
+    ],
+    "T22V3::SIDE278::S13@1": [
+      {
+        "claim": "Formulate least squares as minimizing ||Ax-b||^2 over coefficient vectors and reinterpret it as nearest-point projection onto Col(A).",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S13-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,0],[0,1],[1,1]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
+        ],
+        "rubricEvidence": [
+          "Formulates min ||Ax-b||^2 and derives the normal equations from projection/residual orthogonality."
+        ],
+        "disposition": "adequate",
+        "why": "Main requires formulation and geometry, not only a normal-equation solve.",
+        "escapeAttempt": "Starting from a formula without explaining the objective misses the row.",
+        "generalizationDistance": "Fresh inconsistent system ties M14 consistency to M15 projection."
+      },
+      {
+        "claim": "Solve an exact full-column-rank least-squares problem and verify A^T r=0 with a nonzero residual.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S13-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,0],[0,1],[1,1]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
+        ],
+        "rubricEvidence": [
+          "Computes ||r||^2=1/3 and proves global minimality with the orthogonal Pythagorean decomposition."
+        ],
+        "disposition": "adequate",
+        "why": "Global minimality proof is separately scored.",
+        "escapeAttempt": "A stationary equation alone cannot earn it.",
+        "generalizationDistance": "Nearest-point theorem is transferred into matrix fitting."
+      },
+      {
+        "claim": "Use orthogonal decomposition to prove global minimality rather than infer it from a stationary equation alone.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S13-T@1"
+        ],
+        "publicRequestExact": [
+          "A calibration asks for one scalar x to satisfy x≈1, x≈3, and x≈8 simultaneously. Without beginning from a memorized averaging rule, model this as a one-column least-squares problem, derive the orthogonality condition, find x_hat, list the three residuals, compute their squared norm, and explain why the residuals sum to zero but are not individually zero."
+        ],
+        "rubricEvidence": [
+          "Explains why zero residual sum expresses column orthogonality while individual residuals remain nonzero because exact fit is impossible."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer scores interpretation of zero residual sum versus zero residual vector.",
+        "escapeAttempt": "Calling all residuals zero is explicitly falsified.",
+        "generalizationDistance": "Changed surface removes matrix notation and uses scalar calibration."
+      }
+    ],
+    "T22V3::SIDE278::S14@1": [
+      {
+        "claim": "Explain why the orthogonal projection onto Col(A) exists uniquely even when A has dependent columns.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S14-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2],[2,4],[0,0]] and b=(1,2,1)^T. (a) Identify Col(A) and find the unique projected fitted vector p and residual r. (b) Solve Ax=p and parameterize every least-squares coefficient vector. (c) Compute a basis for Null(A) and express the minimizer family as x0+Null(A). (d) Explain why A^T A is not invertible and why that does not destroy the unique fitted vector."
+        ],
+        "rubricEvidence": [
+          "Identifies Col(A)=span{(1,2,0)}, p=(1,2,0), and r=(0,0,1)."
+        ],
+        "disposition": "adequate",
+        "why": "Main observes unique fitted vector/residual without a full-rank assumption.",
+        "escapeAttempt": "Attempting an inverse cannot produce this geometric evidence.",
+        "generalizationDistance": "Fresh rank-one 3×2 map."
+      },
+      {
+        "claim": "Describe all least-squares coefficient minimizers as the coefficient solutions of Ax=p, differing by Null(A).",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S14-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2],[2,4],[0,0]] and b=(1,2,1)^T. (a) Identify Col(A) and find the unique projected fitted vector p and residual r. (b) Solve Ax=p and parameterize every least-squares coefficient vector. (c) Compute a basis for Null(A) and express the minimizer family as x0+Null(A). (d) Explain why A^T A is not invertible and why that does not destroy the unique fitted vector."
+        ],
+        "rubricEvidence": [
+          "Gives Null(A)=span{(-2,1)} and writes the family as (1,0)+Null(A)."
+        ],
+        "disposition": "adequate",
+        "why": "Full coefficient family and null-space form are explicitly scored.",
+        "escapeAttempt": "One arbitrary minimizer is insufficient.",
+        "generalizationDistance": "M14 complete-solution reasoning transfers into least squares."
+      },
+      {
+        "claim": "Diagnose invalid use of (A^T A)^{-1} in a rank-deficient problem without importing pseudoinverse machinery.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S14-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2],[2,4],[0,0]] and b=(1,2,1)^T. (a) Identify Col(A) and find the unique projected fitted vector p and residual r. (b) Solve Ax=p and parameterize every least-squares coefficient vector. (c) Compute a basis for Null(A) and express the minimizer family as x0+Null(A). (d) Explain why A^T A is not invertible and why that does not destroy the unique fitted vector."
+        ],
+        "rubricEvidence": [
+          "Explains singular A^T A from dependent columns/nontrivial null space while preserving uniqueness of p."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores why inverse failure and fit existence can coexist.",
+        "escapeAttempt": "Saying singular means no solution fails.",
+        "generalizationDistance": "Changed theorem hypothesis is central."
+      }
+    ],
+    "T22V3::SIDE278::S15@1": [
+      {
+        "claim": "Translate a table (t_i,y_i) into the deterministic model y≈alpha+beta t with design columns 1 and t.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S15-M@1"
+        ],
+        "publicRequestExact": [
+          "For t=(-1,0,1) and observed deterministic targets y=(1,1,3), fit y≈alpha+beta t by least squares. (a) Build the 3×2 design matrix with columns 1 and t. (b) Compute A^T A and A^T y and solve for alpha,beta. (c) Compute fitted values and residuals. (d) Verify both residual orthogonality conditions and state one statistical claim this deterministic calculation does not justify."
+        ],
+        "rubricEvidence": [
+          "Builds A=[[1,-1],[1,0],[1,1]] with intercept and t columns correctly."
+        ],
+        "disposition": "adequate",
+        "why": "Main observes table→matrix modeling.",
+        "escapeAttempt": "A supplied formula without design construction fails.",
+        "generalizationDistance": "Fresh table representation changes surface."
+      },
+      {
+        "claim": "Solve the exact two-parameter least-squares fit and compute fitted values/residuals.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S15-M@1"
+        ],
+        "publicRequestExact": [
+          "For t=(-1,0,1) and observed deterministic targets y=(1,1,3), fit y≈alpha+beta t by least squares. (a) Build the 3×2 design matrix with columns 1 and t. (b) Compute A^T A and A^T y and solve for alpha,beta. (c) Compute fitted values and residuals. (d) Verify both residual orthogonality conditions and state one statistical claim this deterministic calculation does not justify."
+        ],
+        "rubricEvidence": [
+          "Computes fitted values (2/3,5/3,8/3), residuals (1/3,-2/3,1/3), and verifies both orthogonality sums."
+        ],
+        "disposition": "adequate",
+        "why": "Main requires full fit/residual and both orthogonality checks.",
+        "escapeAttempt": "Coefficients alone are insufficient.",
+        "generalizationDistance": "Nonzero-residual instance tests geometry."
+      },
+      {
+        "claim": "Interpret residual orthogonality to the intercept and t columns without claiming sampling, causality or inference.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S15-M@1"
+        ],
+        "publicRequestExact": [
+          "For t=(-1,0,1) and observed deterministic targets y=(1,1,3), fit y≈alpha+beta t by least squares. (a) Build the 3×2 design matrix with columns 1 and t. (b) Compute A^T A and A^T y and solve for alpha,beta. (c) Compute fitted values and residuals. (d) Verify both residual orthogonality conditions and state one statistical claim this deterministic calculation does not justify."
+        ],
+        "rubricEvidence": [
+          "Names a statistical/inferential claim that is not justified by this deterministic least-squares calculation."
+        ],
+        "disposition": "adequate",
+        "why": "Main explicitly scores epistemic boundary discipline.",
+        "escapeAttempt": "Making an inferential claim fails the row.",
+        "generalizationDistance": "Separates M15 deterministic ownership from M36."
+      }
+    ],
+    "T22V3::SIDE278::S16@1": [
+      {
+        "claim": "Choose an M15 projection/least-squares route from the given representation and justify why its hypotheses hold.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S16-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A have columns a1=(1,1,0) and a2=(1,0,1), so A=[[1,1],[1,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p."
+        ],
+        "rubricEvidence": [
+          "Correctly classifies the columns as independent but nonorthogonal and chooses/justifies a legal M15 route."
+        ],
+        "disposition": "adequate",
+        "why": "Main explicitly scores method classification before calculation.",
+        "escapeAttempt": "Blind formula use cannot satisfy method-choice evidence.",
+        "generalizationDistance": "Synthesis task provides multiple legal routes."
+      },
+      {
+        "claim": "Compute and cross-check a projection using both general-column residual conditions and an orthonormal basis constructed by Gram–Schmidt.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S16-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A have columns a1=(1,1,0) and a2=(1,0,1), so A=[[1,1],[1,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p."
+        ],
+        "rubricEvidence": [
+          "Constructs a valid ON basis by Gram–Schmidt and cross-checks that ON projection gives the same p."
+        ],
+        "disposition": "adequate",
+        "why": "Main requires a second representation to reproduce p.",
+        "escapeAttempt": "One-route answer cannot establish cross-check claim.",
+        "generalizationDistance": "Fresh general-column problem must be rebuilt via GS."
+      },
+      {
+        "claim": "Audit a plausible wrong solver that uses dot-product coefficients on nonorthogonal columns.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S16-T@1"
+        ],
+        "publicRequestExact": [
+          "For E=[[1,1],[0,1],[1,0]] and d=(0,2,1)^T, Report X uses the raw dot products E^T d=(1,2) as coefficients and claims fitted vector (3,2,1). Report Y uses coefficients (0,1), claiming fitted vector (1,1,0). Audit both reports without starting by solving normal equations: compute each residual and E^T r, identify the valid projection, and state the exact hypothesis that Report X violated."
+        ],
+        "rubricEvidence": [
+          "Identifies nonorthogonality of the raw columns as the hypothesis failure behind Report X."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer exposes the exact wrong hypothesis behind a plausible solver.",
+        "escapeAttempt": "Merely choosing Y without diagnosing X fails.",
+        "generalizationDistance": "Changed surface is adversarial report comparison."
+      }
     ]
   },
   "evidenceDistance": {
@@ -2074,6 +2687,46 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "Transfer supplies an idempotent nonsymmetric map and asks for a concrete residual counterexample, attacking the converse misconception."
+      }
+    },
+    "T22V3::SIDE278::S13@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "mechanism": "Learner must diagnose inconsistency, formulate the objective, solve, and prove global minimality on fresh data."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Transfer expresses least squares as three incompatible scalar requests and requires rebuilding the column-space model."
+      }
+    },
+    "T22V3::SIDE278::S14@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "mechanism": "Rank-deficient Main changes the full-rank assumptions and requires geometric fit plus complete coefficient family."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Duplicate-column Transfer asks for two explicit distinct minimizers and object-level uniqueness diagnosis."
+      }
+    },
+    "T22V3::SIDE278::S15@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "mechanism": "Learner builds the design matrix and completes a nonzero-residual fit from a new table."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Transfer changes to an irregular t-grid and requires rebuilding rather than using symmetric-grid shortcuts."
+      }
+    },
+    "T22V3::SIDE278::S16@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "mechanism": "Learner chooses a route, completes a fresh solve, then reconstructs an ON basis to cross-check the unique projection."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Transfer gives two finished reports and asks for residual-based audit plus hypothesis diagnosis, not another ordinary solve."
       }
     }
   },
@@ -2308,6 +2961,82 @@
         ],
         "mathematicalDifference": "Transfer tests a specific idempotent nonsymmetric matrix and requires range/residual geometry.",
         "exposureDisposition": "CLEAR — Q and v instance are unseen."
+      },
+      "T22V3::SIDE278::S13-M@1": {
+        "sessionId": "T22V3::SIDE278::S13@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S13 worked two-request scalar fit",
+          "S13 guided 3×2 fit"
+        ],
+        "mathematicalDifference": "Main adds explicit inconsistency proof, 2-parameter solve and global Pythagorean optimality argument.",
+        "exposureDisposition": "CLEAR — x_hat=(4/3,7/3) instance unseen."
+      },
+      "T22V3::SIDE278::S13-T@1": {
+        "sessionId": "T22V3::SIDE278::S13@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S13 worked one-column pair"
+        ],
+        "mathematicalDifference": "Transfer presents no matrix and forces model construction for three scalar requests.",
+        "exposureDisposition": "CLEAR — data 1,3,8 and residuals unseen."
+      },
+      "T22V3::SIDE278::S14-M@1": {
+        "sessionId": "T22V3::SIDE278::S14@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S14 worked duplicate columns in 2×2",
+          "S14 guided proportional columns"
+        ],
+        "mathematicalDifference": "Main uses different rank-one 3×2 geometry and parameterizes all minimizers through Null(A).",
+        "exposureDisposition": "CLEAR — p/r and family x1+2x2=1 are unseen."
+      },
+      "T22V3::SIDE278::S14-T@1": {
+        "sessionId": "T22V3::SIDE278::S14@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S14 explanation of one fit/many coefficients"
+        ],
+        "mathematicalDifference": "Transfer requires explicit duplicate-column projection and two distinct minimizers in R2.",
+        "exposureDisposition": "CLEAR — C,d instance unseen."
+      },
+      "T22V3::SIDE278::S15-M@1": {
+        "sessionId": "T22V3::SIDE278::S15@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S15 worked exact line on symmetric grid",
+          "S15 guided noisy 0,1,2 grid"
+        ],
+        "mathematicalDifference": "Main uses different targets and requires both fit geometry and scope statement.",
+        "exposureDisposition": "CLEAR — (5/3,1) solution unseen."
+      },
+      "T22V3::SIDE278::S15-T@1": {
+        "sessionId": "T22V3::SIDE278::S15@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S15 table→design pattern"
+        ],
+        "mathematicalDifference": "Transfer uses irregular t values and exact fractional fit, blocking symmetry imitation.",
+        "exposureDisposition": "CLEAR — (-1,1,2)/(0,2,5) instance unseen."
+      },
+      "T22V3::SIDE278::S16-M@1": {
+        "sessionId": "T22V3::SIDE278::S16@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S16 worked method-selection contrasts",
+          "S16 guided nonorthogonal xy-plane columns"
+        ],
+        "mathematicalDifference": "Main uses a fully 3D two-column model and requires both normal-equation and Gram–Schmidt representations to agree.",
+        "exposureDisposition": "CLEAR — c,p,r and ON basis for A are not solved in instruction."
+      },
+      "T22V3::SIDE278::S16-T@1": {
+        "sessionId": "T22V3::SIDE278::S16@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S16 warning against raw dot coefficients"
+        ],
+        "mathematicalDifference": "Transfer supplies competing reports on a different E,d and requires E^T residual diagnostics.",
+        "exposureDisposition": "CLEAR — Report X/Y numerical data unseen."
       }
     }
   },
@@ -2384,6 +3113,30 @@
         "sessionId": "T22V3::SIDE278::S12@1",
         "firstNewOperation": "orthogonal projector matrix structure",
         "earlierOwnerOrBridge": "S11 normal equations + bounded transpose identities",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S13@1",
+        "firstNewOperation": "least-squares objective as projection",
+        "earlierOwnerOrBridge": "S07 nearest point + S11 normal equations + M14 consistency",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S14@1",
+        "firstNewOperation": "rank-deficient least-squares coefficient family",
+        "earlierOwnerOrBridge": "S13 projection + M14 null-space complete solutions",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S15@1",
+        "firstNewOperation": "deterministic data-table design matrix",
+        "earlierOwnerOrBridge": "S13 least squares + M14 matrix representation",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S16@1",
+        "firstNewOperation": "integrated method choice and cross-representation audit",
+        "earlierOwnerOrBridge": "S01–S15 complete M15 spine",
         "status": "supported"
       }
     ]
@@ -2474,6 +3227,34 @@
         "main": "T22V3::SIDE278::S12-M@1",
         "transfer": "T22V3::SIDE278::S12-T@1",
         "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S13@1": {
+        "workedExample": "x≈1,3",
+        "guidedPractice": "A=[[1,0],[1,1],[1,2]],b=(1,2,2)",
+        "main": "T22V3::SIDE278::S13-M@1",
+        "transfer": "T22V3::SIDE278::S13-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S14@1": {
+        "workedExample": "A=[[1,1],[0,0]],b=(2,1)",
+        "guidedPractice": "columns a,2a; b=(3,0)",
+        "main": "T22V3::SIDE278::S14-M@1",
+        "transfer": "T22V3::SIDE278::S14-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S15@1": {
+        "workedExample": "t=-1,0,1;y=0,1,2",
+        "guidedPractice": "t=0,1,2;y=2,2,5",
+        "main": "T22V3::SIDE278::S15-M@1",
+        "transfer": "T22V3::SIDE278::S15-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S16@1": {
+        "workedExample": "method-selection contrast cases",
+        "guidedPractice": "columns (1,0,0),(1,1,0), target (0,2,1)",
+        "main": "T22V3::SIDE278::S16-M@1",
+        "transfer": "T22V3::SIDE278::S16-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
       }
     }
   },
@@ -2556,6 +3337,30 @@
         "alreadySuppliedByPrompt": "NO — only Q is supplied.",
         "decisivelyRehearsedInVisibleInstruction": "PARTLY — criterion is taught, no solved oblique counterexample.",
         "learnerActionActuallyScored": "Checks idempotence, symmetry, range and residual before rejecting Q."
+      },
+      "T22V3::SIDE278::S13-T@1": {
+        "claimedLearnerDecision": "Decide how to represent incompatible scalar requests as a column-space approximation problem.",
+        "alreadySuppliedByPrompt": "NO — model matrix and solution method are not supplied.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — a two-request example is shown, not this three-request modeling task.",
+        "learnerActionActuallyScored": "Constructs the model, derives orthogonality and interprets nonzero residuals."
+      },
+      "T22V3::SIDE278::S14-T@1": {
+        "claimedLearnerDecision": "Decide whether singular A^T A destroys the fitted vector or only coefficient uniqueness.",
+        "alreadySuppliedByPrompt": "NO — projection and coefficient family must be derived.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — distinction is taught, not this duplicate-column instance.",
+        "learnerActionActuallyScored": "Finds unique p, all coefficients, two minimizers and null-space explanation."
+      },
+      "T22V3::SIDE278::S15-T@1": {
+        "claimedLearnerDecision": "Decide how an irregular table maps into model columns and what the fitted residual conditions mean.",
+        "alreadySuppliedByPrompt": "NO — design matrix and fit are not supplied.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — table modeling is taught on different grids.",
+        "learnerActionActuallyScored": "Builds A, solves fit, verifies both orthogonality equations and preserves deterministic scope."
+      },
+      "T22V3::SIDE278::S16-T@1": {
+        "claimedLearnerDecision": "Choose between competing reports based on legal hypotheses and residual diagnostics.",
+        "alreadySuppliedByPrompt": "PARTLY — reports are supplied, validity is not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — no solved competing-report audit.",
+        "learnerActionActuallyScored": "Rejects naive raw-dot coefficients, accepts orthogonal residual report and names the violated ON hypothesis."
       }
     }
   },
