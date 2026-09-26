@@ -37,9 +37,9 @@
     "designGate": "docs/t22-course/M15-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M15-PILOT-REVIEW.md",
     "pedagogicalAtoms": 16,
-    "authoredSessions": 8,
-    "ownershipClaimCount": 24,
-    "fixedAssessments": 16,
+    "authoredSessions": 12,
+    "ownershipClaimCount": 36,
+    "fixedAssessments": 24,
     "reviewProvenance": "Gate 0–3 design and S11 Gates 4–8 pilot completed by the builder. Pilot Gate 8 caught and repaired a solved-example/Main collision before bulk authoring. Independent adversarial review remains pending."
   },
   "sourceLedger": {
@@ -404,6 +404,155 @@
       "guidedFeedback": "Check after attempting. proj_{v1}(v2)=((2)/(2))(1,1)=(1,1), so u2=(1,-1), orthogonal to u1. Also v2=u2+u1, proving both original vectors lie in the cleaned span.",
       "main": "T22V3::SIDE278::S08-M@1",
       "transfer": "T22V3::SIDE278::S08-T@1"
+    },
+    {
+      "order": 9,
+      "id": "T22V3::SIDE278::S09@1",
+      "moduleId": "SIDE278",
+      "title": "Gram–Schmidt at full depth: span, dependence and order",
+      "focus": "Extend Gram–Schmidt to multiple vectors, subtract every earlier orthogonal component, and interpret zero residuals and order dependence.",
+      "purpose": "Three or more directions expose the structural content of the algorithm: prefix spans are preserved, dependence is detected, and output basis depends on input order.",
+      "centralCapability": "Execute full multi-vector Gram–Schmidt, prove/check prefix span preservation, diagnose a zero residual as dependence, and explain order dependence.",
+      "principalObstacle": "Only the immediately previous component is subtracted; a zero residual is treated as an arithmetic accident; or the ON output is assumed order-independent.",
+      "entryPrerequisites": [
+        "S08 two-vector Gram–Schmidt",
+        "M13 dependence and bases"
+      ],
+      "requiredOwnership": [
+        "Construct each new Gram–Schmidt vector by subtracting projections onto all previously constructed orthogonal directions.",
+        "Verify prefix span preservation and normalize a nonzero multi-vector output to an ON basis.",
+        "Interpret a zero new residual as dependence and explain why reordering inputs may change the ON basis while preserving the final span."
+      ],
+      "applicationScope": "Small ordered finite lists in R^n.",
+      "transferScope": "A dependent input list is presented, and the learner must predict/interpret the zero residual and compare a reordered run.",
+      "inScope": [
+        "multi-vector Gram–Schmidt",
+        "prefix span invariants",
+        "dependence detection",
+        "order dependence"
+      ],
+      "outOfScope": [
+        "QR factorization",
+        "modified Gram–Schmidt",
+        "numerical stability"
+      ],
+      "exitCondition": "Orthogonalize a fresh three-vector list, preserve the correct spans, and diagnose dependent/order-sensitive cases.",
+      "lesson": "Orient. With three vectors, subtracting only the most recent component is not enough: the new direction must be perpendicular to the entire span already built. Gram–Schmidt therefore removes every previously constructed orthogonal component.\n\nDefine. Set u1=v1. For k>1, define uk=vk-Σ_{j<k} proj_span(uj)(vk). Because the uj are pairwise orthogonal, dotting uk with any earlier ui cancels exactly the ith projection and all other projection terms vanish.\n\nConnect span preservation. Each uk is made from v1,...,vk, so the cleaned prefix lies in the original prefix span. Conversely vk=uk+Σ projections onto earlier uj, and those uj lie in earlier original prefix spans. Induction gives span(v1,...,vk)=span(u1,...,uk) at every stage.\n\nDependence and order. If uk=0, then vk lies in the span of earlier inputs; the zero is a dependence certificate, not a nuisance to normalize. Reordering an independent list can change the ON vectors because each subtraction depends on what came earlier, but the final span is unchanged.\n\nWorked example. v1=(1,0,0), v2=(1,1,0), v3=(1,1,1) clean successively to e1,e2,e3. This transparent case shows all previous components are removed at the third step.\n\nGuided practice. Let v1=(1,1,0), v2=(1,-1,0), v3=(1,0,1). The first two are already orthogonal. Remove both of their components from v3 and verify the remaining direction is along e3.\n\nFade. Main uses a fully nonorthogonal three-vector list; Transfer uses an exactly dependent third vector and then changes the input order.\n\nDistinction check. Gram–Schmidt preserves spans, not original vector identities. A different order can produce a different ON basis of the same subspace.",
+      "guidedFeedback": "Check after attempting. The v3 projection onto v1 is (1/2)v1 and onto v2 is (1/2)v2; subtracting both leaves (0,0,1). Omitting either earlier direction leaves a nonzero dot product.",
+      "main": "T22V3::SIDE278::S09-M@1",
+      "transfer": "T22V3::SIDE278::S09-T@1"
+    },
+    {
+      "order": 10,
+      "id": "T22V3::SIDE278::S10@1",
+      "moduleId": "SIDE278",
+      "title": "Transpose as the column-orthogonality bridge",
+      "focus": "Introduce only the real matrix-transpose facts needed to compress many column dot products into A^T y.",
+      "purpose": "M14 did not own transpose. M15 must repair this prerequisite gap before normal equations rather than silently assuming A^T notation.",
+      "centralCapability": "Form A^T with correct dimensions, derive (A^T y)_j=a_j·y for A=[a1 ... an], and interpret Null(A^T) as vectors orthogonal to all columns.",
+      "principalObstacle": "Transpose is treated as an inverse, rectangular shape is ignored, or A^T y=0 is read as y=0.",
+      "entryPrerequisites": [
+        "M14 matrix shape and matrix-vector action",
+        "M13 dot products",
+        "S03 orthogonal complements"
+      ],
+      "requiredOwnership": [
+        "Define transpose entrywise and track its shape for rectangular real matrices.",
+        "Derive and use (A^T y)_j=a_j·y for the columns of A.",
+        "Interpret A^T y=0 as y orthogonal to every column, not as y=0."
+      ],
+      "applicationScope": "Finite real matrices only; transpose is used as a compact Euclidean dot-product bridge.",
+      "transferScope": "Solve Null(A^T) for a rectangular matrix and reinterpret it as a column-space orthogonal complement.",
+      "inScope": [
+        "transpose",
+        "column-dot identity",
+        "Null(A^T)=Col(A)^perp in finite real coordinates"
+      ],
+      "outOfScope": [
+        "adjoints in general inner-product spaces",
+        "complex conjugate transpose",
+        "row-space/four-subspaces theorem"
+      ],
+      "exitCondition": "Translate fluently between column-wise residual orthogonality and the matrix equation A^T y=0.",
+      "lesson": "Orient. Least squares will need one compact statement saying a residual is perpendicular to every model column. M14 taught columns and matrix-vector action but did not own transpose, so we introduce exactly the missing bridge here.\n\nDefine. If A is m×n, A^T is n×m with (A^T)_{ij}=A_{ji}; rows become columns and columns become rows. Transpose is a re-indexing operation, not an inverse. A rectangular matrix can always be transposed even when no inverse exists.\n\nConnect to dot products. Write A=[a1 ... an] with aj∈R^m and y∈R^m. Row j of A^T is aj^T, so component j of A^T y is aj·y. Therefore A^T y=0 exactly when y is orthogonal to every column, equivalently to their span.\n\nWorked example. For A=[[1,0,2],[0,1,-1]] and y=(3,4), A^T=[[1,0],[0,1],[2,-1]] and A^T y=(3,4,2). Those entries are the three column dot products with y.\n\nGuided practice. For C=[[1,2],[2,0],[0,1]] and y=(1,-1,2), first state the shape of C^T and C^T y, then compute both column dot products and confirm the matrix product matches them.\n\nFade. Main changes shape/data; Transfer asks for an entire null space and geometric interpretation rather than one product.\n\nDistinction check. A^T y=0 says y is perpendicular to Col(A). It need not say y=0 when the columns do not span all of R^m.",
+      "guidedFeedback": "Check after attempting. C is 3×2, so C^T is 2×3 and C^T y is in R^2. Column dots are (1,2,0)·(1,-1,2)=-1 and (2,0,1)·(1,-1,2)=4, so C^T y=(-1,4).",
+      "main": "T22V3::SIDE278::S10-M@1",
+      "transfer": "T22V3::SIDE278::S10-T@1"
+    },
+    {
+      "order": 11,
+      "id": "T22V3::SIDE278::S11@1",
+      "moduleId": "SIDE278",
+      "title": "General-column projection and the normal equations",
+      "focus": "Derive normal equations from residual orthogonality for full-column-rank A and justify invertibility of A^T A without future spectral machinery.",
+      "purpose": "This is the bridge from geometric projection to the matrix equation used in exact least squares.",
+      "centralCapability": "Derive A^T(b-Ac)=0, solve A^T A c=A^T b, prove A^T A invertible under full column rank, and verify the residual.",
+      "principalObstacle": "Normal equations are memorized, or (A^T A)^{-1} is used without checking full column rank.",
+      "entryPrerequisites": [
+        "S07 nearest-point geometry",
+        "S10 transpose bridge",
+        "M14 full-column-rank/null-space logic"
+      ],
+      "requiredOwnership": [
+        "Derive the normal equations from residual orthogonality rather than quote them.",
+        "Solve an exact full-column-rank projection problem and verify A^T r=0.",
+        "Prove A^T A is invertible under full column rank using x^T A^T A x=||Ax||^2 and M14 null-space logic."
+      ],
+      "applicationScope": "Exact finite real full-column-rank matrices.",
+      "transferScope": "Audit two proposed coefficient vectors by residual diagnostics instead of solving normal equations from scratch.",
+      "inScope": [
+        "normal equations",
+        "full-rank Gram matrix invertibility",
+        "residual audit"
+      ],
+      "outOfScope": [
+        "PSD terminology",
+        "QR/SVD/pseudoinverse",
+        "conditioning"
+      ],
+      "exitCondition": "Derive and execute normal equations with a public rank hypothesis, and audit a proposed solution through A^T r.",
+      "lesson": "Orient. With an ON basis, projection coefficients separate. General independent model columns need coupled coefficients. Write A=[a1 ... an], candidate p=Ac, residual r=b-Ac. The defining condition remains geometric: r must be perpendicular to Col(A).\n\nDefine and connect. S10 says perpendicular to every column is exactly A^T r=0. Substituting r=b-Ac gives A^T(b-Ac)=0, hence A^T A c=A^T b. These are the normal equations: a consequence of residual orthogonality, not the definition of projection.\n\nWhy the inverse is legal when columns are independent. If A^T A x=0, multiply on the left by x^T: 0=x^T A^T A x=(Ax)^T(Ax)=||Ax||^2. Thus Ax=0. Full column rank means Null(A)={0}, so x=0. A^T A is square with trivial null space and therefore invertible by M14. No eigenvalue or PSD argument is needed.\n\nWorked example. Let C=[[1,0],[1,1],[0,1]], d=(0,2,1). Then C^T C=[[2,1],[1,2]], C^T d=(2,3), giving c=(1/3,4/3). The fitted vector is (1/3,5/3,4/3), residual (-1/3,1/3,-1/3), and C^T r=0.\n\nGuided practice. Use D=[[1,0],[0,1],[1,-1]], g=(1,2,0). Compute D^T D and D^T g, solve for c, then check D^T(g-Dc)=0. Before feedback, state exactly where full column rank is used.\n\nFade. Main uses a third matrix and asks for derivation plus invertibility proof. Transfer supplies competing coefficient reports and forbids a from-scratch normal-equation solve.\n\nDistinction check. Normal equations can have solutions even when Ax=b is inconsistent. Residual orthogonality means best attainable geometry, not zero residual.",
+      "guidedFeedback": "Check after attempting. D^T D=[[2,-1],[-1,2]], D^T g=(1,2), so c=(4/3,5/3). The residual is (-1/3,1/3,1/3) and D^T r=0. Full column rank is used to prove A^T A has trivial null space and hence is invertible.",
+      "main": "T22V3::SIDE278::S11-M@1",
+      "transfer": "T22V3::SIDE278::S11-T@1"
+    },
+    {
+      "order": 12,
+      "id": "T22V3::SIDE278::S12@1",
+      "moduleId": "SIDE278",
+      "title": "Orthogonal projector matrices: symmetry plus idempotence",
+      "focus": "Package full-rank projection as P=A(A^T A)^{-1}A^T and distinguish orthogonal projectors from merely idempotent maps.",
+      "purpose": "A projection operator should have checkable algebraic structure before later factorization/eigen modules reuse it.",
+      "centralCapability": "Derive the full-rank projector matrix, verify P^2=P and P^T=P, and use symmetry to distinguish orthogonal from oblique idempotent projection.",
+      "principalObstacle": "Idempotence alone is assumed to imply orthogonal projection, or P is treated as a black-box formula.",
+      "entryPrerequisites": [
+        "S11 normal equations",
+        "S10 transpose",
+        "M14 matrix multiplication/inverse"
+      ],
+      "requiredOwnership": [
+        "Derive P=A(A^T A)^{-1}A^T from the normal-equation coefficient solution under full column rank.",
+        "Verify idempotence P^2=P and symmetry P^T=P for an orthogonal projector.",
+        "Discriminate an idempotent nonsymmetric map from an orthogonal projector by checking its residual against its range."
+      ],
+      "applicationScope": "Exact finite real full-column-rank matrices and small square projector matrices.",
+      "transferScope": "Audit an idempotent but nonsymmetric matrix through an explicit residual/range counterexample.",
+      "inScope": [
+        "projector matrix",
+        "idempotence",
+        "symmetry",
+        "range/residual interpretation"
+      ],
+      "outOfScope": [
+        "eigenvalue characterization",
+        "spectral theorem",
+        "oblique projection theory beyond counterexample"
+      ],
+      "exitCondition": "Derive and validate a small orthogonal projector and reject an idempotent impostor.",
+      "lesson": "Orient. S11 solved projection one target at a time. When A has full column rank, c=(A^T A)^{-1}A^T b, so the fitted vector is p=A(A^T A)^{-1}A^T b. The matrix multiplying b is the orthogonal projector onto Col(A).\n\nDefine P=A(A^T A)^{-1}A^T. Idempotence means P^2=P: once a vector is already projected into the model subspace, projecting again changes nothing. Substituting the formula and cancelling A^T A in the middle proves this directly.\n\nSymmetry. For real matrices, (XY)^T=Y^T X^T. Also A^T A is symmetric, and the inverse of an invertible symmetric matrix is symmetric because ((M^{-1})^T)=(M^T)^{-1}=M^{-1}. Therefore P^T=P. These are bounded transpose support facts, not an invitation to spectral theory.\n\nWhy both matter. Idempotence alone describes projections that may travel along slanted directions. Symmetry is what makes the residual perpendicular to the range: if y=Pz lies in Range(P), then (x-Px)·y=x^T Pz-x^T P^T Pz=0 when P^T=P and P^2=P.\n\nWorked example. P=diag(1,0) is symmetric and idempotent; it keeps the x-component and residuals are vertical, perpendicular to its range.\n\nGuided practice. For P=(1/2)[[1,1],[1,1]], verify P^2=P and P^T=P, apply it to (4,0), and check the residual is perpendicular to span(1,1).\n\nFade. Main derives a 3×3 projector from a rectangular A; Transfer gives an idempotent nonsymmetric impostor.\n\nDistinction check. Every orthogonal projector is idempotent, but idempotence without symmetry is not enough.",
+      "guidedFeedback": "Check after attempting. P(4,0)=(2,2), residual=(2,-2), and its dot product with (1,1) is 0. Direct multiplication gives P^2=P and symmetry is visible.",
+      "main": "T22V3::SIDE278::S12-M@1",
+      "transfer": "T22V3::SIDE278::S12-T@1"
     }
   ],
   "problems": {
@@ -517,6 +666,62 @@
       "order": 8,
       "kind": "transfer",
       "prompt": "A student tries to orthogonalize v1=(1,2,0), v2=(2,0,1) and writes u1=v1, u2=(1,-2,1), claiming they subtracted “the component along v1.” (a) Test the claim by computing u1·u2. (b) Compute the correct projection coefficient and corrected u2. (c) Give an integer-scaled orthogonal direction. (d) Explain exactly what was wrong with the student's subtraction.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S09-M@1": {
+      "id": "T22V3::SIDE278::S09-M@1",
+      "order": 9,
+      "kind": "main",
+      "prompt": "Apply Gram–Schmidt in the stated order to v1=(1,1,0), v2=(1,0,1), v3=(0,1,1). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S09-T@1": {
+      "id": "T22V3::SIDE278::S09-T@1",
+      "order": 9,
+      "kind": "transfer",
+      "prompt": "Let d1=(1,0,1), d2=(0,1,1), d3=(1,1,2)=d1+d2. Run the Gram–Schmidt logic far enough to determine what happens at the third residual, and explain why that outcome is mathematically necessary. Then consider the reordered list d2,d1,d3: state one way the ON output can differ while the final span remains the same.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S10-M@1": {
+      "id": "T22V3::SIDE278::S10-M@1",
+      "order": 10,
+      "kind": "main",
+      "prompt": "Let A=[[1,2],[0,-1],[3,1]] and y=(2,1,-1)^T. (a) Write A^T and state both shapes. (b) Compute A^T y. (c) Name the two columns a1,a2 of A and independently compute a1·y and a2·y. (d) Derive generally, from the entry definition of transpose and matrix-vector multiplication, why (A^T y)_j=a_j·y.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S10-T@1": {
+      "id": "T22V3::SIDE278::S10-T@1",
+      "order": 10,
+      "kind": "transfer",
+      "prompt": "Let B=[[1,0],[0,1],[1,1]]. Find every y∈R^3 satisfying B^T y=0. Give a basis for Null(B^T), then reinterpret that same set without transpose notation as the vectors orthogonal to Col(B). Explain why nonzero solutions do not contradict the equation B^T y=0.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S11-M@1": {
+      "id": "T22V3::SIDE278::S11-M@1",
+      "order": 11,
+      "kind": "main",
+      "prompt": "Let A=[[1,0],[0,1],[1,1]] and b=(2,1,0)^T. (a) Starting from r=b-Ac perpendicular to Col(A), derive A^T A c=A^T b. (b) Compute A^T A and A^T b, solve for c, then compute p=Ac and r. (c) Verify A^T r=0. (d) Prove full column rank makes A^T A invertible using x^T A^T A x=||Ax||^2 and M14 null-space logic.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S11-T@1": {
+      "id": "T22V3::SIDE278::S11-T@1",
+      "order": 11,
+      "kind": "transfer",
+      "prompt": "Let B=[[1,1],[1,-1],[0,1]], d=(1,2,0)^T, and candidate coefficients c1=(3/2,-1/3)^T and c2=(1,0)^T. Without solving the normal equations from scratch, decide which candidate gives the orthogonal projection of d onto Col(B). For each, compute the residual and B^T r; justify the passing candidate and explain why its coefficient vector is unique.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S12-M@1": {
+      "id": "T22V3::SIDE278::S12-M@1",
+      "order": 12,
+      "kind": "main",
+      "prompt": "Let A=[[1,0],[0,1],[1,1]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S12-T@1": {
+      "id": "T22V3::SIDE278::S12-T@1",
+      "order": 12,
+      "kind": "transfer",
+      "prompt": "Consider Q=[[1,1],[0,0]]. (a) Verify Q^2=Q. (b) Check whether Q is symmetric. (c) Determine Range(Q). (d) Apply Q to v=(0,1), compute r=v-Qv, and test whether r is orthogonal to Range(Q). Use these facts to decide whether Q is an orthogonal projector, and state exactly which tempting implication fails.",
       "obligationVersion": 1
     }
   },
@@ -872,6 +1077,182 @@
         }
       ],
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S09-M@1": {
+      "reference": "u1=(1,1,0). u2=(1/2,-1/2,1), which may be scaled to (1,-1,2). For v3, subtract its projections onto u1,u2 to obtain u3=(-2/3,2/3,2/3), proportional to (-1,1,1). The scaled directions (1,1,0),(1,-1,2),(-1,1,1) are pairwise orthogonal. A normalized basis is q1=(1/sqrt(2))(1,1,0), q2=(1/sqrt(6))(1,-1,2), q3=(1/sqrt(3))(-1,1,1), up to signs. Prefix span equality follows from u2=v2-(1/2)u1 and v2=u2+(1/2)u1; the same construction/recovery argument adds v3,u3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes a correct orthogonal triple proportional to (1,1,0),(1,-1,2),(-1,1,1)."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies all pairwise dot products are zero."
+        },
+        {
+          "points": 2,
+          "criterion": "Normalizes the triple to an ON basis, up to signs."
+        },
+        {
+          "points": 3,
+          "criterion": "Demonstrates prefix-span preservation for the first two vectors and the full three-vector list."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact routes and signs/scalings where mathematically appropriate."
+    },
+    "T22V3::SIDE278::S09-T@1": {
+      "reference": "Because d3 lies in span(d1,d2), after removing its components in the orthogonalized span of d1,d2 the third residual is exactly 0. This certifies dependence and cannot be normalized. Reordering starts with d2 rather than d1, so the first normalized direction changes and the subsequent ON basis may differ, but both nonzero outputs still span span(d1,d2).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Recognizes d3=d1+d2 and predicts an exactly zero third Gram–Schmidt residual."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that zero residual means the new input lies in the earlier span and therefore certifies dependence."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why the zero vector must be discarded rather than normalized."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains how reordering can change the ON basis while preserving the final span."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S10-M@1": {
+      "reference": "A is 3×2 and A^T=[[1,0,3],[2,-1,1]] is 2×3. A^T y=(-1,2)^T. The column dots are (1,0,3)·(2,1,-1)=-1 and (2,-1,1)·(2,1,-1)=2. Generally row j of A^T consists of column j of A, so its row-dot-product with y is exactly a_j·y.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Writes A^T correctly and states A is 3×2 while A^T is 2×3."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes A^T y=(-1,2)^T."
+        },
+        {
+          "points": 2,
+          "criterion": "Independently computes the two column dot products -1 and 2."
+        },
+        {
+          "points": 4,
+          "criterion": "Derives the general identity (A^T y)_j=a_j·y from entry/row definitions."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact routes and signs/scalings where mathematically appropriate."
+    },
+    "T22V3::SIDE278::S10-T@1": {
+      "reference": "B^T=[[1,0,1],[0,1,1]]. Equations are y1+y3=0 and y2+y3=0, so y=t(-1,-1,1). Thus Null(B^T)=span{(-1,-1,1)}. By the column-dot identity, these are exactly vectors orthogonal to both columns and therefore to Col(B). Nonzero y exist because the two columns span only a 2D subspace of R^3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Solves B^T y=0 and obtains y=t(-1,-1,1)."
+        },
+        {
+          "points": 2,
+          "criterion": "Gives basis {(-1,-1,1)} for Null(B^T)."
+        },
+        {
+          "points": 3,
+          "criterion": "Reinterprets the null-space condition as orthogonality to every column and to Col(B)."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why nonzero solutions are compatible with a proper 2D column space in R^3."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S11-M@1": {
+      "reference": "Residual orthogonality gives A^T(b-Ac)=0, hence the normal equations. A^T A=[[2,1],[1,2]], A^T b=(2,1), so c=(1,0). Then p=(1,0,1), r=(1,1,-1), and A^T r=0. If A^T A x=0 then ||Ax||^2=0, so Ax=0; full column rank forces x=0, hence A^T A is invertible.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Derives A^T(b-Ac)=0 and the normal equations from residual orthogonality."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes A^T A=[[2,1],[1,2]], A^T b=(2,1), c=(1,0), p=(1,0,1), and r=(1,1,-1)."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies A^T r=0."
+        },
+        {
+          "points": 2,
+          "criterion": "Gives the full-column-rank invertibility proof through ||Ax||^2 and trivial null space."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact routes and signs/scalings where mathematically appropriate."
+    },
+    "T22V3::SIDE278::S11-T@1": {
+      "reference": "For c1, Bc1=(7/6,11/6,-1/3), r1=(-1/6,1/6,1/3), and B^T r1=0, so c1 passes. For c2, Bc2=(1,1,0), r2=(0,1,0), and B^T r2=(1,-1), so it fails. B's columns are independent, hence full column rank gives a unique coefficient vector for the projection.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes r1=(-1/6,1/6,1/3) and verifies B^T r1=0."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes r2=(0,1,0) and B^T r2=(1,-1)≠0."
+        },
+        {
+          "points": 2,
+          "criterion": "Chooses c1 and explains the residual diagnostic in column-orthogonality terms."
+        },
+        {
+          "points": 1,
+          "criterion": "Justifies coefficient uniqueness from independent columns/full column rank."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S12-M@1": {
+      "reference": "A^T A=[[2,1],[1,2]] with inverse (1/3)[[2,-1],[-1,2]]. Thus P=[[2/3,-1/3,1/3],[-1/3,2/3,1/3],[1/3,1/3,2/3]]. Direct multiplication gives P^2=P and it is symmetric. For b=(3,0,0), Pb=(2,-1,1), residual=(1,1,-1), whose dot products with (1,0,1) and (0,1,1) are both 0.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Derives P=A(A^T A)^{-1}A^T from the normal-equation coefficient solution."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the stated 3×3 projector matrix exactly."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies both P^2=P and P^T=P."
+        },
+        {
+          "points": 2,
+          "criterion": "Applies P to b and verifies the residual is orthogonal to both columns of A."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact routes and signs/scalings where mathematically appropriate."
+    },
+    "T22V3::SIDE278::S12-T@1": {
+      "reference": "Q^2=Q, but Q^T=[[1,0],[1,0]]≠Q. Range(Q)=span(e1). Qv=(1,0), so r=(-1,1); r·e1=-1≠0. Thus Q is idempotent but not an orthogonal projector. The false implication is 'idempotent ⇒ orthogonal projector'; symmetry/residual orthogonality is missing.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Verifies Q^2=Q."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows Q^T≠Q."
+        },
+        {
+          "points": 3,
+          "criterion": "Finds Range(Q)=span(e1), computes r=(-1,1), and shows r·e1=-1."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects Q as an orthogonal projector and identifies idempotence-alone as the failed criterion."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
     }
   },
   "coverage": {
@@ -914,6 +1295,26 @@
       "Derive the two-vector Gram–Schmidt update by subtracting the projection onto the first direction.",
       "Verify orthogonality and prove span(v1,v2)=span(u1,u2).",
       "Normalize the resulting nonzero orthogonal pair and diagnose a flawed subtraction."
+    ],
+    "T22V3::SIDE278::S09@1": [
+      "Construct each new Gram–Schmidt vector by subtracting projections onto all previously constructed orthogonal directions.",
+      "Verify prefix span preservation and normalize a nonzero multi-vector output to an ON basis.",
+      "Interpret a zero new residual as dependence and explain why reordering inputs may change the ON basis while preserving the final span."
+    ],
+    "T22V3::SIDE278::S10@1": [
+      "Define transpose entrywise and track its shape for rectangular real matrices.",
+      "Derive and use (A^T y)_j=a_j·y for the columns of A.",
+      "Interpret A^T y=0 as y orthogonal to every column, not as y=0."
+    ],
+    "T22V3::SIDE278::S11@1": [
+      "Derive the normal equations from residual orthogonality rather than quote them.",
+      "Solve an exact full-column-rank projection problem and verify A^T r=0.",
+      "Prove A^T A is invertible under full column rank using x^T A^T A x=||Ax||^2 and M14 null-space logic."
+    ],
+    "T22V3::SIDE278::S12@1": [
+      "Derive P=A(A^T A)^{-1}A^T from the normal-equation coefficient solution under full column rank.",
+      "Verify idempotence P^2=P and symmetry P^T=P for an orthogonal projector.",
+      "Discriminate an idempotent nonsymmetric map from an orthogonal projector by checking its residual against its range."
     ]
   },
   "claimEvidence": {
@@ -1340,6 +1741,218 @@
         "escapeAttempt": "Merely replacing the vector without diagnosis fails.",
         "generalizationDistance": "Changed surface is error analysis."
       }
+    ],
+    "T22V3::SIDE278::S09@1": [
+      {
+        "claim": "Construct each new Gram–Schmidt vector by subtracting projections onto all previously constructed orthogonal directions.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S09-M@1"
+        ],
+        "publicRequestExact": [
+          "Apply Gram–Schmidt in the stated order to v1=(1,1,0), v2=(1,0,1), v3=(0,1,1). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree."
+        ],
+        "rubricEvidence": [
+          "Computes a correct orthogonal triple proportional to (1,1,0),(1,-1,2),(-1,1,1)."
+        ],
+        "disposition": "adequate",
+        "why": "Main forces subtraction against the entire previously built span through a nontrivial third vector.",
+        "escapeAttempt": "A two-vector-only recipe cannot reach the correct u3.",
+        "generalizationDistance": "Fresh 3D triple demands full multi-vector execution."
+      },
+      {
+        "claim": "Verify prefix span preservation and normalize a nonzero multi-vector output to an ON basis.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S09-M@1"
+        ],
+        "publicRequestExact": [
+          "Apply Gram–Schmidt in the stated order to v1=(1,1,0), v2=(1,0,1), v3=(0,1,1). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree."
+        ],
+        "rubricEvidence": [
+          "Demonstrates prefix-span preservation for the first two vectors and the full three-vector list."
+        ],
+        "disposition": "adequate",
+        "why": "Prefix-span invariants are separately scored.",
+        "escapeAttempt": "Correct dot products alone do not establish span preservation.",
+        "generalizationDistance": "Proof/check extends beyond visible transparent example."
+      },
+      {
+        "claim": "Interpret a zero new residual as dependence and explain why reordering inputs may change the ON basis while preserving the final span.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S09-T@1"
+        ],
+        "publicRequestExact": [
+          "Let d1=(1,0,1), d2=(0,1,1), d3=(1,1,2)=d1+d2. Run the Gram–Schmidt logic far enough to determine what happens at the third residual, and explain why that outcome is mathematically necessary. Then consider the reordered list d2,d1,d3: state one way the ON output can differ while the final span remains the same."
+        ],
+        "rubricEvidence": [
+          "Explains that zero residual means the new input lies in the earlier span and therefore certifies dependence."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer explicitly scores the structural meaning of an exact zero residual.",
+        "escapeAttempt": "Calling it divide-by-zero or stopping without diagnosis fails.",
+        "generalizationDistance": "Changed surface is dependence diagnosis, not routine orthogonalization."
+      }
+    ],
+    "T22V3::SIDE278::S10@1": [
+      {
+        "claim": "Define transpose entrywise and track its shape for rectangular real matrices.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S10-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2],[0,-1],[3,1]] and y=(2,1,-1)^T. (a) Write A^T and state both shapes. (b) Compute A^T y. (c) Name the two columns a1,a2 of A and independently compute a1·y and a2·y. (d) Derive generally, from the entry definition of transpose and matrix-vector multiplication, why (A^T y)_j=a_j·y."
+        ],
+        "rubricEvidence": [
+          "Derives the general identity (A^T y)_j=a_j·y from entry/row definitions."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores the entrywise derivation of the column-dot identity.",
+        "escapeAttempt": "Mechanical transpose/product arithmetic alone misses the claim.",
+        "generalizationDistance": "New rectangular shape demands explicit derivation."
+      },
+      {
+        "claim": "Derive and use (A^T y)_j=a_j·y for the columns of A.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S10-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,2],[0,-1],[3,1]] and y=(2,1,-1)^T. (a) Write A^T and state both shapes. (b) Compute A^T y. (c) Name the two columns a1,a2 of A and independently compute a1·y and a2·y. (d) Derive generally, from the entry definition of transpose and matrix-vector multiplication, why (A^T y)_j=a_j·y."
+        ],
+        "rubricEvidence": [
+          "Writes A^T correctly and states A is 3×2 while A^T is 2×3."
+        ],
+        "disposition": "adequate",
+        "why": "Shape and transpose are separately scored.",
+        "escapeAttempt": "Treating transpose as shape-preserving fails.",
+        "generalizationDistance": "Fresh 3×2 matrix."
+      },
+      {
+        "claim": "Interpret A^T y=0 as y orthogonal to every column, not as y=0.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S10-T@1"
+        ],
+        "publicRequestExact": [
+          "Let B=[[1,0],[0,1],[1,1]]. Find every y∈R^3 satisfying B^T y=0. Give a basis for Null(B^T), then reinterpret that same set without transpose notation as the vectors orthogonal to Col(B). Explain why nonzero solutions do not contradict the equation B^T y=0."
+        ],
+        "rubricEvidence": [
+          "Reinterprets the null-space condition as orthogonality to every column and to Col(B)."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer requires geometric reinterpretation of the whole null space.",
+        "escapeAttempt": "Solving equations without connecting to columns misses the row.",
+        "generalizationDistance": "Changed surface links algebraic null space to orthogonal complement."
+      }
+    ],
+    "T22V3::SIDE278::S11@1": [
+      {
+        "claim": "Derive the normal equations from residual orthogonality rather than quote them.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S11-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,0],[0,1],[1,1]] and b=(2,1,0)^T. (a) Starting from r=b-Ac perpendicular to Col(A), derive A^T A c=A^T b. (b) Compute A^T A and A^T b, solve for c, then compute p=Ac and r. (c) Verify A^T r=0. (d) Prove full column rank makes A^T A invertible using x^T A^T A x=||Ax||^2 and M14 null-space logic."
+        ],
+        "rubricEvidence": [
+          "Derives A^T(b-Ac)=0 and the normal equations from residual orthogonality."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores geometric derivation of the normal equations.",
+        "escapeAttempt": "Quoted formula fails the row.",
+        "generalizationDistance": "Pilot-approved proof reconstruction on fresh fixed data."
+      },
+      {
+        "claim": "Solve an exact full-column-rank projection problem and verify A^T r=0.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S11-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,0],[0,1],[1,1]] and b=(2,1,0)^T. (a) Starting from r=b-Ac perpendicular to Col(A), derive A^T A c=A^T b. (b) Compute A^T A and A^T b, solve for c, then compute p=Ac and r. (c) Verify A^T r=0. (d) Prove full column rank makes A^T A invertible using x^T A^T A x=||Ax||^2 and M14 null-space logic."
+        ],
+        "rubricEvidence": [
+          "Verifies A^T r=0."
+        ],
+        "disposition": "adequate",
+        "why": "Main requires a complete exact solve and residual check.",
+        "escapeAttempt": "Coefficient only cannot establish projection.",
+        "generalizationDistance": "Fixed Main is distinct from worked/guided matrices."
+      },
+      {
+        "claim": "Prove A^T A is invertible under full column rank using x^T A^T A x=||Ax||^2 and M14 null-space logic.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S11-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,0],[0,1],[1,1]] and b=(2,1,0)^T. (a) Starting from r=b-Ac perpendicular to Col(A), derive A^T A c=A^T b. (b) Compute A^T A and A^T b, solve for c, then compute p=Ac and r. (c) Verify A^T r=0. (d) Prove full column rank makes A^T A invertible using x^T A^T A x=||Ax||^2 and M14 null-space logic."
+        ],
+        "rubricEvidence": [
+          "Gives the full-column-rank invertibility proof through ||Ax||^2 and trivial null space."
+        ],
+        "disposition": "adequate",
+        "why": "Invertibility argument is explicitly scored.",
+        "escapeAttempt": "Saying 'det nonzero' without proof misses it.",
+        "generalizationDistance": "Fresh support-theorem reconstruction avoids PSD/eigen machinery."
+      }
+    ],
+    "T22V3::SIDE278::S12@1": [
+      {
+        "claim": "Derive P=A(A^T A)^{-1}A^T from the normal-equation coefficient solution under full column rank.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S12-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,0],[0,1],[1,1]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A."
+        ],
+        "rubricEvidence": [
+          "Derives P=A(A^T A)^{-1}A^T from the normal-equation coefficient solution."
+        ],
+        "disposition": "adequate",
+        "why": "Main derives P from prior geometry rather than treating it as a definition.",
+        "escapeAttempt": "Quoting P formula loses derivation credit.",
+        "generalizationDistance": "Fresh rectangular A leads to a nontrivial 3×3 P."
+      },
+      {
+        "claim": "Verify idempotence P^2=P and symmetry P^T=P for an orthogonal projector.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S12-M@1"
+        ],
+        "publicRequestExact": [
+          "Let A=[[1,0],[0,1],[1,1]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A."
+        ],
+        "rubricEvidence": [
+          "Verifies both P^2=P and P^T=P."
+        ],
+        "disposition": "adequate",
+        "why": "Main separately verifies both structural identities.",
+        "escapeAttempt": "One identity alone cannot establish the claim.",
+        "generalizationDistance": "Exact new matrix requires independent multiplication."
+      },
+      {
+        "claim": "Discriminate an idempotent nonsymmetric map from an orthogonal projector by checking its residual against its range.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S12-T@1"
+        ],
+        "publicRequestExact": [
+          "Consider Q=[[1,1],[0,0]]. (a) Verify Q^2=Q. (b) Check whether Q is symmetric. (c) Determine Range(Q). (d) Apply Q to v=(0,1), compute r=v-Qv, and test whether r is orthogonal to Range(Q). Use these facts to decide whether Q is an orthogonal projector, and state exactly which tempting implication fails."
+        ],
+        "rubricEvidence": [
+          "Rejects Q as an orthogonal projector and identifies idempotence-alone as the failed criterion."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer directly discriminates idempotent from orthogonal projection.",
+        "escapeAttempt": "Seeing Q²=Q and stopping gives the wrong verdict.",
+        "generalizationDistance": "Changed surface is a counterexample audit."
+      }
     ]
   },
   "evidenceDistance": {
@@ -1421,6 +2034,46 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "Transfer provides an incorrect output and asks for falsification/correction, not routine execution."
+      }
+    },
+    "T22V3::SIDE278::S09@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "mechanism": "The learner must execute all projections on a fresh fully nonorthogonal triple and preserve prefix-span invariants."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "The third vector is deliberately dependent and the task asks for structural prediction plus an order comparison, not calculation of a full ON triple."
+      }
+    },
+    "T22V3::SIDE278::S10@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Local transpose definition is taught, but the general column-dot identity must be reconstructed and checked numerically."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Transfer moves from one product to solving an entire transpose null space and reinterpreting it geometrically."
+      }
+    },
+    "T22V3::SIDE278::S11@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Pilot-approved Main reconstructs geometry→normal equations, executes fresh exact data and proves the rank hypothesis."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Transfer reverses direction into auditing competing outputs via residual diagnostics, so no normal-equation solve is the obvious route."
+      }
+    },
+    "T22V3::SIDE278::S12@1": {
+      "main": {
+        "classification": "fresh Main evidence",
+        "mechanism": "Learner derives and validates a nontrivial projector from A, including both algebraic identities and geometric residual checks."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Transfer supplies an idempotent nonsymmetric map and asks for a concrete residual counterexample, attacking the converse misconception."
       }
     }
   },
@@ -1579,6 +2232,82 @@
         ],
         "mathematicalDifference": "Transfer begins from a plausible flawed u2 whose error is exposed by the dot product.",
         "exposureDisposition": "CLEAR — v1=(1,2,0),v2=(2,0,1) unseen."
+      },
+      "T22V3::SIDE278::S09-M@1": {
+        "sessionId": "T22V3::SIDE278::S09@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S09 worked staircase vectors",
+          "S09 guided first-two-already-orthogonal triple"
+        ],
+        "mathematicalDifference": "Main has no pre-orthogonal pair and requires nontrivial third subtraction plus explicit span invariants.",
+        "exposureDisposition": "CLEAR — orthogonal triple values are not shown."
+      },
+      "T22V3::SIDE278::S09-T@1": {
+        "sessionId": "T22V3::SIDE278::S09@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S09 dependence/order explanation"
+        ],
+        "mathematicalDifference": "Transfer supplies an exact linear dependence and asks what the algorithm must do before/after reordering.",
+        "exposureDisposition": "CLEAR — d1,d2,d3 instance is unseen."
+      },
+      "T22V3::SIDE278::S10-M@1": {
+        "sessionId": "T22V3::SIDE278::S10@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S10 worked 2×3 matrix",
+          "S10 guided 3×2 matrix C"
+        ],
+        "mathematicalDifference": "Main uses distinct 3×2 data and requires both numerical and general identity derivation.",
+        "exposureDisposition": "CLEAR — A/y product (-1,2) is unseen."
+      },
+      "T22V3::SIDE278::S10-T@1": {
+        "sessionId": "T22V3::SIDE278::S10@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S10 column-dot equivalence explanation"
+        ],
+        "mathematicalDifference": "Transfer asks for Null(B^T) and Col(B)^perp rather than a direct product.",
+        "exposureDisposition": "CLEAR — B and basis (-1,-1,1) unseen."
+      },
+      "T22V3::SIDE278::S11-M@1": {
+        "sessionId": "T22V3::SIDE278::S11@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S11 worked C,d",
+          "S11 guided D,g"
+        ],
+        "mathematicalDifference": "Main uses different A,b and requires derivation plus the full-rank invertibility proof.",
+        "exposureDisposition": "CLEAR — pilot Gate 8 explicitly removed Main data from visible examples."
+      },
+      "T22V3::SIDE278::S11-T@1": {
+        "sessionId": "T22V3::SIDE278::S11@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S11 residual-diagnostic principle"
+        ],
+        "mathematicalDifference": "Transfer supplies two coefficient reports and asks which survives B^T r=0 plus uniqueness audit.",
+        "exposureDisposition": "CLEAR — B,d,c1,c2 never appear solved in instruction."
+      },
+      "T22V3::SIDE278::S12-M@1": {
+        "sessionId": "T22V3::SIDE278::S12@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S12 worked coordinate-axis projector",
+          "S12 guided line projector"
+        ],
+        "mathematicalDifference": "Main constructs a new 3×3 projector from a rectangular design matrix and checks action plus identities.",
+        "exposureDisposition": "CLEAR — 3×3 P entries are not visible earlier."
+      },
+      "T22V3::SIDE278::S12-T@1": {
+        "sessionId": "T22V3::SIDE278::S12@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S12 explanation that symmetry matters"
+        ],
+        "mathematicalDifference": "Transfer tests a specific idempotent nonsymmetric matrix and requires range/residual geometry.",
+        "exposureDisposition": "CLEAR — Q and v instance are unseen."
       }
     }
   },
@@ -1631,6 +2360,30 @@
         "sessionId": "T22V3::SIDE278::S08@1",
         "firstNewOperation": "two-vector Gram–Schmidt",
         "earlierOwnerOrBridge": "S05 projection + M13 span",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S09@1",
+        "firstNewOperation": "multi-vector Gram–Schmidt and dependence/order diagnostics",
+        "earlierOwnerOrBridge": "S08 + M13 dependence",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S10@1",
+        "firstNewOperation": "real matrix transpose and column-dot identity",
+        "earlierOwnerOrBridge": "local S10 bridge; M14 supplies matrix shapes/action",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S11@1",
+        "firstNewOperation": "general-column projection/normal equations",
+        "earlierOwnerOrBridge": "S10 transpose bridge + M14 full rank",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S12@1",
+        "firstNewOperation": "orthogonal projector matrix structure",
+        "earlierOwnerOrBridge": "S11 normal equations + bounded transpose identities",
         "status": "supported"
       }
     ]
@@ -1693,6 +2446,34 @@
         "main": "T22V3::SIDE278::S08-M@1",
         "transfer": "T22V3::SIDE278::S08-T@1",
         "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S09@1": {
+        "workedExample": "(1,0,0),(1,1,0),(1,1,1)",
+        "guidedPractice": "(1,1,0),(1,-1,0),(1,0,1)",
+        "main": "T22V3::SIDE278::S09-M@1",
+        "transfer": "T22V3::SIDE278::S09-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S10@1": {
+        "workedExample": "A 2×3,y=(3,4)",
+        "guidedPractice": "C 3×2,y=(1,-1,2)",
+        "main": "T22V3::SIDE278::S10-M@1",
+        "transfer": "T22V3::SIDE278::S10-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S11@1": {
+        "workedExample": "C=[[1,0],[1,1],[0,1]],d=(0,2,1)",
+        "guidedPractice": "D=[[1,0],[0,1],[1,-1]],g=(1,2,0)",
+        "main": "T22V3::SIDE278::S11-M@1",
+        "transfer": "T22V3::SIDE278::S11-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S12@1": {
+        "workedExample": "P=diag(1,0)",
+        "guidedPractice": "P=1/2[[1,1],[1,1]]",
+        "main": "T22V3::SIDE278::S12-M@1",
+        "transfer": "T22V3::SIDE278::S12-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
       }
     }
   },
@@ -1751,6 +2532,30 @@
         "alreadySuppliedByPrompt": "NO — student's claim may be false.",
         "decisivelyRehearsedInVisibleInstruction": "NO — no solved debugging instance.",
         "learnerActionActuallyScored": "Rejects via dot product, reconstructs exact projection and diagnoses the error."
+      },
+      "T22V3::SIDE278::S09-T@1": {
+        "claimedLearnerDecision": "Decide whether a zero third residual is a computational failure or a structural dependence certificate, and what reordering changes.",
+        "alreadySuppliedByPrompt": "PARTLY — d3=d1+d2 is visible but algorithmic consequence is not stated.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — dependence meaning is taught, no solved dependent triple.",
+        "learnerActionActuallyScored": "Predicts zero residual, identifies dependence, refuses normalization and distinguishes basis from span."
+      },
+      "T22V3::SIDE278::S10-T@1": {
+        "claimedLearnerDecision": "Decide what nonzero solutions of B^T y=0 mean geometrically.",
+        "alreadySuppliedByPrompt": "NO — null space and interpretation are not supplied.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — identity is taught, not a null-space example.",
+        "learnerActionActuallyScored": "Solves the null space and identifies it with vectors orthogonal to Col(B)."
+      },
+      "T22V3::SIDE278::S11-T@1": {
+        "claimedLearnerDecision": "Choose which proposed coefficient vector is the projection using residual diagnostics rather than recomputing the solve.",
+        "alreadySuppliedByPrompt": "NO — candidates supplied, verdict not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — no competing-candidate audit is solved.",
+        "learnerActionActuallyScored": "Computes both diagnostics, selects c1 and justifies uniqueness."
+      },
+      "T22V3::SIDE278::S12-T@1": {
+        "claimedLearnerDecision": "Decide whether an idempotent matrix is genuinely an orthogonal projector.",
+        "alreadySuppliedByPrompt": "NO — only Q is supplied.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — criterion is taught, no solved oblique counterexample.",
+        "learnerActionActuallyScored": "Checks idempotence, symmetry, range and residual before rejecting Q."
       }
     }
   },
