@@ -40,7 +40,7 @@
     "authoredSessions": 19,
     "ownershipClaimCount": 60,
     "fixedAssessments": 38,
-    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication. Claim-observer audit found three wording/evidence gaps: S01 claimed derivation of T(0)=0 without observing it, S06 claimed all three elementary-operation justifications while assessing only row replacement, and S16 claimed a general determinant singularity derivation while assessing examples only. Public tasks were repaired. S12's local claim was narrowed because S13 owns the general proof. Evidence-distance labels were conservatively recalibrated: procedural fresh-instance Mains in S04/S09/S10/S12/S15/S17/S18 were relabelled as retrieval/proof-reconstruction/integration rather than overclaimed as fresh evidence; several Transfers were relabelled by their actual shift (failure-mode, misconception, direction or adversarial audit)."
+    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication. Claim-observer audit found three wording/evidence gaps: S01 claimed derivation of T(0)=0 without observing it, S06 claimed all three elementary-operation justifications while assessing only row replacement, and S16 claimed a general determinant singularity derivation while assessing examples only. Public tasks were repaired. S12's local claim was narrowed because S13 owns the general proof. Evidence-distance labels were conservatively recalibrated: procedural fresh-instance Mains in S04/S09/S10/S12/S15/S17/S18 were relabelled as retrieval/proof-reconstruction/integration rather than overclaimed as fresh evidence; several Transfers were relabelled by their actual shift (failure-mode, misconception, direction or adversarial audit). A second literal-observer pass closed six bounded issues: S07 now observes the unique-solution echelon case, S09 observes the general b=0 condition for 0 in the solution set, S11 publicly states rank/nullity definitions, S12 observes the unequal-dimension injective+surjective impossibility, and S10/S13/S15 wording was narrowed to what fixed tasks literally demonstrate. S17's coordinate-change claim now cites its conversion/verification rubric row as well."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -480,7 +480,7 @@
         "M13 span/basis"
       ],
       "requiredOwnership": [
-        "Interpret Col(A)={Ax:x∈R^n} as the range/reachable-output subspace and connect Ax=b consistency to b∈Col(A).",
+        "Use Col(A)={Ax:x∈R^n} as the reachable-output subspace to decide exact reachability of specified right-hand sides.",
         "Use pivot positions from row reduction to choose a basis from the corresponding columns of the original matrix A.",
         "Explain why row reduction preserves column-dependence relations/pivot indices but generally changes the literal column space, and distinguish Col(A)⊆R^m from N(A)⊆R^n."
       ],
@@ -595,7 +595,7 @@
         "M14-S04 composition and identity map"
       ],
       "requiredOwnership": [
-        "Define an inverse linear map as a two-sided compositional inverse and explain why invertibility requires a bijection.",
+        "Explain why a two-sided compositional inverse exists exactly for a bijective finite linear map.",
         "For an n-by-n matrix, connect rank n, N(A)={0}, injectivity, surjectivity and unique solvability of Ax=b for every b.",
         "Reject invertibility of a square map from a nonzero null vector or missing pivot without using determinant or eigenvalue arguments."
       ],
@@ -672,7 +672,7 @@
         "M13 finite linear combinations"
       ],
       "requiredOwnership": [
-        "State and use the determinant's alternating multilinear row rules with det(I)=1, distinguishing linearity in one row from linearity of the whole matrix.",
+        "Use the determinant's alternating multilinear row rules with det(I)=1, distinguishing linearity in one row from false linearity of the whole matrix.",
         "Compute a square-matrix determinant by determinant-aware elimination/triangular structure while tracking row swaps and row scalings.",
         "Use det(AB)=det(A)det(B) under its square compatible hypotheses and reject false additivity or scalar-linearity claims."
       ],
@@ -945,7 +945,7 @@
       "id": "T22V3::SIDE276::S07-T@1",
       "order": 7,
       "kind": "transfer",
-      "prompt": "Keep the same coefficient matrix as the Main but change the third equation to 3x+4y+2z=11, so the system is x+y+z=3, 2x+3y+z=7, 3x+4y+2z=11. Reduce enough to classify it. Exhibit the contradiction row and explain why 'three equations in three unknowns' did not guarantee a unique solution in either version.",
+      "prompt": "Keep the same coefficient matrix as the Main but change the third equation to 3x+4y+2z=11, so the system is x+y+z=3, 2x+3y+z=7, 3x+4y+2z=11. (a) Reduce enough to classify it. (b) Exhibit the contradiction row. (c) Explain why 'three equations in three unknowns' did not guarantee a unique solution in either version. (d) State the echelon-pattern condition that would certify a unique solution for a consistent system.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S08-M@1": {
@@ -966,7 +966,7 @@
       "id": "T22V3::SIDE276::S09-M@1",
       "order": 9,
       "kind": "main",
-      "prompt": "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+      "prompt": "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S09-T@1": {
@@ -994,7 +994,7 @@
       "id": "T22V3::SIDE276::S11-M@1",
       "order": 11,
       "kind": "main",
-      "prompt": "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
+      "prompt": "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S11-T@1": {
@@ -1015,7 +1015,7 @@
       "id": "T22V3::SIDE276::S12-T@1",
       "order": 12,
       "kind": "transfer",
-      "prompt": "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2.",
+      "prompt": "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2. Then generalize: use rank bounds to explain why a linear map between unequal finite dimensions cannot be both injective and surjective.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S13-M@1": {
@@ -1389,19 +1389,23 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S07-T@1": {
-      "reference": "As in the Main, R2-2R1 gives y-z=1. Now R3-3R1 gives y-z=2. Subtracting the second reduced constraint from the third gives 0=1, i.e. an augmented contradiction row [0,0,0|1]. Therefore the changed system has no solution. Equal equation/unknown counts do not reveal dependence or inconsistency; pivot/free-variable and contradiction structure does.",
+      "reference": "As in the Main, R2-2R1 gives y-z=1. Now R3-3R1 gives y-z=2. Subtracting the second reduced constraint from the third gives 0=1, i.e. an augmented contradiction row [0,0,0|1]. Therefore the changed system has no solution. Equal equation/unknown counts do not reveal dependence or inconsistency. A consistent system has a unique solution exactly when every variable column has a pivot, so there are no free variables.",
       "rubric": [
         {
-          "points": 4,
+          "points": 3,
           "criterion": "Reduces the changed system to incompatible constraints y-z=1 and y-z=2, or equivalently a row [0,0,0|1]."
         },
         {
-          "points": 3,
+          "points": 2,
           "criterion": "Classifies the changed system as inconsistent/no solution from the contradiction row."
         },
         {
           "points": 3,
           "criterion": "Explains why equal equation/unknown counts did not determine uniqueness in either the Main or Transfer system."
+        },
+        {
+          "points": 2,
+          "criterion": "States that a consistent echelon system is uniquely solvable when every variable column has a pivot, leaving no free variables."
         }
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
@@ -1447,7 +1451,7 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S09-M@1": {
-      "reference": "Take xp=(3,2,0). Solving An=0 gives n=t(-1,-1,1), so N(A)=span{(-1,-1,1)} and all solutions are (3,2,0)+t(-1,-1,1)=(3-t,2-t,t). If x=xp+n with An=0, then Ax=Axp+An=b. Conversely, if Ax=b, then A(x-xp)=Ax-Axp=b-b=0, so x-xp∈N(A). The solution set is not a subspace because 0 is not a solution: A0=0≠b.",
+      "reference": "Take xp=(3,2,0). Solving An=0 gives n=t(-1,-1,1), so N(A)=span{(-1,-1,1)} and all solutions are (3,2,0)+t(-1,-1,1)=(3-t,2-t,t). If x=xp+n with An=0, then Ax=Axp+An=b. Conversely, if Ax=b, then A(x-xp)=Ax-Axp=b-b=0, so x-xp∈N(A). This solution set is not a subspace because 0 is not a solution. In general 0 belongs to {x:Ax=b} iff A0=b, i.e. iff b=0.",
       "rubric": [
         {
           "points": 2,
@@ -1463,7 +1467,7 @@
         },
         {
           "points": 2,
-          "criterion": "Correctly rejects subspace status because b≠0 and therefore 0 is not a solution."
+          "criterion": "Rejects subspace status here and states the general condition 0∈{x:Ax=b} iff b=0."
         }
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
@@ -1531,11 +1535,11 @@
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
     },
     "T22V3::SIDE276::S11-M@1": {
-      "reference": "Pivot columns are 1,2,5, so rank(A)=3; x3,x4 are free, so nullity(A)=2. Solving Rx=0 gives x1=x3-2x4, x2=-3x3+x4, x5=0. A null basis is {(1,-3,1,0,0),(-2,1,0,1,0)}. There are r=3 pivot variables and 5-r=2 free directions, so 3+2=5, the domain dimension. Rank 3 in a codomain R^3 means Col(A) has dimension 3 and therefore equals R^3.",
+      "reference": "By definition rank(A)=dim Col(A) and nullity(A)=dim N(A). Pivot columns are 1,2,5, so rank(A)=3; x3,x4 are free, so nullity(A)=2. Solving Rx=0 gives x1=x3-2x4, x2=-3x3+x4, x5=0. A null basis is {(1,-3,1,0,0),(-2,1,0,1,0)}. There are r=3 pivot variables and 5-r=2 free directions, so 3+2=5, the domain dimension. Rank 3 in a codomain R^3 means Col(A) has dimension 3 and therefore equals R^3.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2."
+          "criterion": "States rank(A)=dim Col(A), nullity(A)=dim N(A), then identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2."
         },
         {
           "points": 3,
@@ -1593,19 +1597,23 @@
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
     },
     "T22V3::SIDE276::S12-T@1": {
-      "reference": "Rank 2 equals the codomain dimension, so T is onto R^2. Rank-nullity gives nullity=4-2=2, so T is not injective. Every b∈R^2 is reachable, and once one solution xp is found the entire solution set is xp+N(T), a two-parameter affine family; hence infinitely many exact parameter solutions exist for each b.",
+      "reference": "Rank 2 equals the codomain dimension, so T is onto R^2. Rank-nullity gives nullity=4-2=2, so T is not injective. Every b∈R^2 is reachable, and once one solution xp is found the entire solution set is xp+N(T), a two-parameter affine family; hence infinitely many exact parameter solutions exist for each b. In general, injectivity for R^n→R^m requires rank=n, while surjectivity requires rank=m. Both can hold only if n=m, so unequal finite dimensions prevent both properties simultaneously.",
       "rubric": [
         {
-          "points": 3,
+          "points": 2,
           "criterion": "Concludes T is surjective because rank 2 equals the R^2 codomain dimension."
         },
         {
-          "points": 3,
+          "points": 2,
           "criterion": "Uses rank-nullity to obtain nullity 2 and rejects injectivity."
         },
         {
-          "points": 4,
+          "points": 3,
           "criterion": "Explains that every target is reachable and has a two-parameter affine family of exact preimages."
+        },
+        {
+          "points": 3,
+          "criterion": "Generalizes from rank=n for injectivity and rank=m for surjectivity to show unequal finite dimensions cannot support both."
         }
       ],
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
@@ -2553,12 +2561,12 @@
         ],
         "publicRequestExact": [
           "Solve the exact system x+y+z=3, 2x+3y+z=7, 3x+4y+2z=10 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
-          "Keep the same coefficient matrix as the Main but change the third equation to 3x+4y+2z=11, so the system is x+y+z=3, 2x+3y+z=7, 3x+4y+2z=11. Reduce enough to classify it. Exhibit the contradiction row and explain why 'three equations in three unknowns' did not guarantee a unique solution in either version."
+          "Keep the same coefficient matrix as the Main but change the third equation to 3x+4y+2z=11, so the system is x+y+z=3, 2x+3y+z=7, 3x+4y+2z=11. (a) Reduce enough to classify it. (b) Exhibit the contradiction row. (c) Explain why 'three equations in three unknowns' did not guarantee a unique solution in either version. (d) State the echelon-pattern condition that would certify a unique solution for a consistent system."
         ],
         "rubricEvidence": [
           "Identifies x,y as pivot variables and z as a free variable, and classifies infinitely many solutions.",
           "Classifies the changed system as inconsistent/no solution from the contradiction row.",
-          "Explains why equal equation/unknown counts did not determine uniqueness in either the Main or Transfer system."
+          "States that a consistent echelon system is uniquely solvable when every variable column has a pivot, leaving no free variables."
         ],
         "why": "The two tasks discriminate consistent-free and inconsistent structures on nearly identical coefficients.",
         "escapeAttempt": "Counting equations cannot satisfy the explicit pivot/contradiction evidence.",
@@ -2649,7 +2657,7 @@
           "T22V3::SIDE276::S09-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0.",
           "A calibration map C=[[1,-1,1],[0,1,2]] must produce target b=(2,3)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about exact parameter ambiguity without using statistical terminology."
         ],
         "rubricEvidence": [
@@ -2668,7 +2676,7 @@
           "T22V3::SIDE276::S09-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer.",
+          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0.",
           "A calibration map C=[[1,-1,1],[0,1,2]] must produce target b=(2,3)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about exact parameter ambiguity without using statistical terminology."
         ],
         "rubricEvidence": [
@@ -2686,10 +2694,10 @@
           "T22V3::SIDE276::S09-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace and justify the answer."
+          "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0."
         ],
         "rubricEvidence": [
-          "Correctly rejects subspace status because b≠0 and therefore 0 is not a solution."
+          "Rejects subspace status here and states the general condition 0∈{x:Ax=b} iff b=0."
         ],
         "why": "Main explicitly asks the affine-versus-subspace distinction.",
         "escapeAttempt": "Calling the set a subspace because it is parallel to N(A) loses the row.",
@@ -2698,7 +2706,7 @@
     ],
     "T22V3::SIDE276::S10@1": [
       {
-        "claim": "Interpret Col(A)={Ax:x∈R^n} as the range/reachable-output subspace and connect Ax=b consistency to b∈Col(A).",
+        "claim": "Use Col(A)={Ax:x∈R^n} as the reachable-output subspace to decide exact reachability of specified right-hand sides.",
         "task": "main",
         "taskIds": [
           "T22V3::SIDE276::S10-M@1"
@@ -2761,10 +2769,10 @@
           "T22V3::SIDE276::S11-M@1"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
         ],
         "rubricEvidence": [
-          "Identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2.",
+          "States rank(A)=dim Col(A), nullity(A)=dim N(A), then identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2.",
           "Constructs a valid null-space basis such as {(1,-3,1,0,0),(-2,1,0,1,0)}."
         ],
         "why": "Main computes both dimensions from their actual bases/pivots.",
@@ -2778,7 +2786,7 @@
           "T22V3::SIDE276::S11-M@1"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
         ],
         "rubricEvidence": [
           "Derives 3+2=5 from pivot/free-variable counts and identifies 5 as the domain dimension."
@@ -2795,7 +2803,7 @@
           "T22V3::SIDE276::S11-T@1"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) Find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
           "A proposed linear model maps R^6→R^3. A report claims its nullity is 2. Without seeing the matrix, audit whether that claim can be true. Use rank-nullity and the codomain dimension bound, and state the minimum nullity any map R^6→R^3 must have."
         ],
         "rubricEvidence": [
@@ -2819,7 +2827,7 @@
         ],
         "publicRequestExact": [
           "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,0,1],[1,1,0]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
-          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
+          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2. Then generalize: use rank bounds to explain why a linear map between unequal finite dimensions cannot be both injective and surjective."
         ],
         "rubricEvidence": [
           "Classifies A as injective but not surjective using trivial kernel and rank<3 image evidence.",
@@ -2838,7 +2846,7 @@
         ],
         "publicRequestExact": [
           "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,0,1],[1,1,0]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
-          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
+          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2. Then generalize: use rank bounds to explain why a linear map between unequal finite dimensions cannot be both injective and surjective."
         ],
         "rubricEvidence": [
           "Classifies B as surjective but not injective using rank=2=codomain dimension and nontrivial nullity.",
@@ -2857,11 +2865,12 @@
         ],
         "publicRequestExact": [
           "Compare A=[[1,0],[1,1],[0,1]] as a map R^2→R^3 with B=[[1,0,1],[1,1,0]] as a map R^3→R^2. (a) Determine rank and nullity of each. (b) Classify each map as injective and/or surjective, with proofs from N(.) and Col(.). (c) Translate each classification into what can be said about existence and uniqueness of Ax=b or Bx=b for arbitrary targets in the codomain.",
-          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2."
+          "A linear measurement system maps four parameters to two reported quantities, T:R^4→R^2, and is known to have rank 2. Without matrix entries, determine whether T is onto, whether it can be one-to-one, the dimension of N(T), and how many exact parameter solutions exist for each reported target b∈R^2. Then generalize: use rank bounds to explain why a linear map between unequal finite dimensions cannot be both injective and surjective."
         ],
         "rubricEvidence": [
           "Correctly states A's conditional uniqueness/sometimes-no-solution behavior and B's all-target/multiple-preimage behavior.",
-          "Explains that every target is reachable and has a two-parameter affine family of exact preimages."
+          "Explains that every target is reachable and has a two-parameter affine family of exact preimages.",
+          "Generalizes from rank=n for injectivity and rank=m for surjectivity to show unequal finite dimensions cannot support both."
         ],
         "why": "Both tasks translate map properties into existence/uniqueness statements.",
         "escapeAttempt": "Correct labels without the requested solution behavior lose dedicated rubric points.",
@@ -2870,7 +2879,7 @@
     ],
     "T22V3::SIDE276::S13@1": [
       {
-        "claim": "Define an inverse linear map as a two-sided compositional inverse and explain why invertibility requires a bijection.",
+        "claim": "Explain why a two-sided compositional inverse exists exactly for a bijective finite linear map.",
         "task": "main",
         "taskIds": [
           "T22V3::SIDE276::S13-M@1"
@@ -2978,7 +2987,7 @@
     ],
     "T22V3::SIDE276::S15@1": [
       {
-        "claim": "State and use the determinant's alternating multilinear row rules with det(I)=1, distinguishing linearity in one row from linearity of the whole matrix.",
+        "claim": "Use the determinant's alternating multilinear row rules with det(I)=1, distinguishing linearity in one row from false linearity of the whole matrix.",
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE276::S15-M@1",
@@ -3098,7 +3107,8 @@
           "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=b1+2b2 and c2=3b1+b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors."
         ],
         "rubricEvidence": [
-          "Constructs P_{B←C}=[[1,3],[2,1]] from the B-coordinates of c1,c2 in column order."
+          "Constructs P_{B←C}=[[1,3],[2,1]] from the B-coordinates of c1,c2 in column order.",
+          "Converts (2,-1)_C to (-1,3)_B and verifies the same vector by direct basis expansion."
         ],
         "why": "Main literally constructs the identity-map representation from basis-vector coordinates.",
         "escapeAttempt": "Using basis vectors as rows or reversing the arrow fails the row.",
