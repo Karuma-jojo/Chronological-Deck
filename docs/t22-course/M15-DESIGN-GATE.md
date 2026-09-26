@@ -247,10 +247,13 @@ Tags: T = theorem/textbook-supported risk, R = repository-specific risk. No popu
 
 ### Representation progression map
 
+Canonical-state note: M15's current learner surface is text/math based. It does **not** claim a new graph/diagram-reading capability and therefore does not pretend that an unimplemented visual counts as evidence. Geometric meaning is coordinated through explicit coordinate vectors, subspace membership, dot products, decompositions and residual conditions. A later visual enhancement may aid exposition, but it would be enrichment unless the ownership contract is changed.
+
+
 | Representation / learner action | Introduction → connection → reuse | Independent evidence |
 | --- | --- | --- |
-| vector arrows/right-angle geometry | M13 → S01/S05 → residual geometry S07 | S05–S07 |
-| ON coordinate table / coefficient list | S02 → subspace projection S06 → Gram–Schmidt S08–S09 | S02/S06/S09 |
+| coordinate-vector right-angle / residual geometry | M13 dot-product geometry → S01/S05 → decomposition and residual geometry S07 | S05–S07; no new diagram-reading capability is claimed |
+| ON coefficient list / reconstruction | S02 → subspace projection S06 → Gram–Schmidt S08–S09 | S02/S06/S09 |
 | `W^perp` constraints | S03 → decomposition S04 → residual spaces S06/S07 | S03/S04 |
 | decomposition `v=p+r` | S04 → projection S05–S07 → least squares S13 | S04/S07/S13 |
 | ordered vector list under Gram–Schmidt | S08 → S09 dependence/order | S08/S09 |
