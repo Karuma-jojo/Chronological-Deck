@@ -115,6 +115,13 @@
         "sections": "Trigueros & Possani on matrix multiplication/transformations; Ramirez/Oktaç on systems/equivalent systems",
         "supports": "composition-grounded multiplication and explicit solution-set preservation in elimination",
         "limitations": "specific didactical designs; not a claim of unique optimal sequencing"
+      },
+      {
+        "id": "PED-DET",
+        "role": "domain-specific determinant misconception comparator",
+        "sections": "Kazunga & Bansilal (2018), Misconceptions About Determinants, Challenges and Strategies in Teaching Linear Algebra, pp.127–145, DOI 10.1007/978-3-319-66811-6_6",
+        "supports": "S15 attacks rule-overextension and distinguishes row multilinearity from false whole-matrix linearity; determinant claims name their hypotheses rather than inheriting scalar algebra rules",
+        "limitations": "Study population was 116 Zimbabwean in-service mathematics teachers; misconception frequencies are not generalized to this T22 learner"
       }
     ]
   },
