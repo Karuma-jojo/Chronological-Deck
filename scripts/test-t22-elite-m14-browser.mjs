@@ -54,7 +54,7 @@ try{
     };
   });
   assert.equal(runtime.id,'SIDE276');assert.equal(runtime.order,14);
-  assert(runtime.status.includes('v1.2')&&runtime.status.includes('awaiting'));
+  assert.equal(runtime.status,'published-user-authorized-independent-accepted');
   assert.equal(runtime.sessions,19);assert.equal(runtime.tasks,38);
   assert.equal(runtime.hashes,true);assert.equal(runtime.fingerprints,38);
 
