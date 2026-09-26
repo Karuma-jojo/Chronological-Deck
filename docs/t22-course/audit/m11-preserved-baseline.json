@@ -1,8 +1,8 @@
 {
-  "version": "m11-preserved-baseline-after-m07-v1.1-2026-09-24",
+  "version": "m11-preserved-baseline-with-m14-shared-runtime-wrap-2026-09-26",
   "baseCommit": "2805a56d8d0376c72243fdaecfe0d0dedf8bad2e",
   "baseTree": "a540c16fd5bae45cf193d2fbec76cc1eeb376029",
-  "purpose": "Executable guard for M11-era preservation, rebased for the explicitly authorized M07 v1.1 retrofit and for the M12-era validator-only repair that scopes M10 semantic-ledger preservation to M01–M10 rows instead of freezing downstream rows. M07/M10 validation-infrastructure surfaces are pinned at those authorized repairs; M01–M11 mathematical content and unrelated runtime/audit surfaces remain pinned.",
+  "purpose": "Executable guard for M11-era preservation. It retains the explicitly authorized M07 v1.1 retrofit and M12-era validator-only M10 ledger repair, and now pins the exact M14-era shared CSS wrapping repair discovered by the unpublished M14 Chromium probe. The CSS change only adds overflow wrapping/min-width behavior to learner text/problem surfaces; all preserved M01–M11 curriculum blobs remain pinned.",
   "fileCount": 100,
   "files": {
     "course/t22/authoring/m01-repairs-1.1.json": "d9d6433dd5acc926defee5458c75a73342bc5c4e",
@@ -16,7 +16,7 @@
     "course/t22/authoring/m09.json": "7656609fb4ee448e03ef697e4cf29b733d965103",
     "course/t22/authoring/m10-arc053.json": "b5998f843fb07f59bad42ae715b475c51b1e51fe",
     "course/t22/generated/course-meta.json": "b477d42e502a0fadc5f64719a95988278e22bf78",
-    "css/t22-course.css": "a960f2419afa1c077b6f52d06c0144632cb7e05f",
+    "css/t22-course.css": "868bd0ee2ec001867b1ed1c1e161aed6b6229805",
     "docs/t22-course/M01-ACCEPTANCE.md": "306677a1e9c84cb1ab08ffe6bb29f83a180e97e7",
     "docs/t22-course/M02-ASTRA-RESOLUTION.md": "c371483a7b40571ef035985bff36f98c59105b36",
     "docs/t22-course/M02-ASTRA-REVIEW.md": "082bb4e41c0fa39a0e3f178a5bdcfc6a1a611a33",
@@ -126,5 +126,13 @@
       "scripts/test-t22-elite-m10.mjs",
       "docs/t22-course/audit/m10-protected-semantic-rows.json"
     ]
+  },
+  "runtimeRebase": {
+    "reason": "M14 Gate-11 unpublished-candidate Chromium probe exposed mobile horizontal overflow on long learner/evaluator math surfaces.",
+    "path": "css/t22-course.css",
+    "priorBlob": "a960f2419afa1c077b6f52d06c0144632cb7e05f",
+    "currentBlob": "868bd0ee2ec001867b1ed1c1e161aed6b6229805",
+    "scope": "shared presentation only; accepted curriculum content unchanged",
+    "requiredRegression": "complete inherited T22 browser workflow including M01–M13 plus M14 candidate"
   }
 }
