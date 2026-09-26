@@ -793,7 +793,7 @@
       "id": "T22V3::SIDE278::S07-M@1",
       "order": 7,
       "kind": "main",
-      "prompt": "Let W={(x,y,z):z=0}, v=(2,-1,4), and p=(2,-1,0). For the rival y=(5,3,0): (a) verify v-p is orthogonal to W; (b) derive the general identity ||v-y'||^2=||v-p||^2+||p-y'||^2 for arbitrary y'∈W; (c) compute the three squared distances for the given y; (d) use the identity to prove p is the unique nearest point in W.",
+      "prompt": "Let W={(x,y,z)∈R^3:x+z=0}, v=(3,2,1), and p=(1,2,-1). Let the rival point be y=(0,4,0)∈W. (a) Verify p∈W and v-p∈W^perp. (b) For arbitrary y'∈W, derive ||v-y'||^2=||v-p||^2+||p-y'||^2. (c) Compute the three squared distances for the stated rival y. (d) Use the identity to prove p is the unique nearest point in W.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S07-T@1": {
@@ -821,14 +821,14 @@
       "id": "T22V3::SIDE278::S09-M@1",
       "order": 9,
       "kind": "main",
-      "prompt": "Apply Gram–Schmidt in the stated order to v1=(1,1,0), v2=(1,0,1), v3=(0,1,1). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree.",
+      "prompt": "Apply Gram–Schmidt in the stated order to v1=(1,1,1), v2=(1,0,0), v3=(0,1,0). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S09-T@1": {
       "id": "T22V3::SIDE278::S09-T@1",
       "order": 9,
       "kind": "transfer",
-      "prompt": "Let d1=(1,0,1), d2=(0,1,1), d3=(1,1,2)=d1+d2. Run the Gram–Schmidt logic far enough to determine what happens at the third residual, and explain why that outcome is mathematically necessary. Then consider the reordered list d2,d1,d3: state one way the ON output can differ while the final span remains the same.",
+      "prompt": "Let d1=(2,1,0), d2=(0,1,2), and d3=(2,2,2)=d1+d2. Run the Gram–Schmidt logic far enough to determine what happens at the third residual, and explain why that outcome is mathematically necessary. Then consider the reordered list d2,d1,d3: state one way the ON output can differ while the final span remains the same.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S10-M@1": {
@@ -1196,11 +1196,11 @@
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
     },
     "T22V3::SIDE278::S07-M@1": {
-      "reference": "v-p=(0,0,4), orthogonal to every (x,y,0). For y'∈W, v-y'=(v-p)+(p-y') with perpendicular terms, so the squared norms add. For y=(5,3,0), ||v-y||^2=41, ||v-p||^2=16, ||p-y||^2=25. Since the second addend is ≥0 and vanishes only at y'=p, p is uniquely nearest.",
+      "reference": "p=(1,2,-1) satisfies 1+(-1)=0, so p∈W. The residual v-p=(2,0,2). Every w∈W has form (x,y,-x), and (2,0,2)·(x,y,-x)=2x-2x=0, so v-p∈W^perp. For any y'∈W, v-y'=(v-p)+(p-y') with perpendicular terms, hence the squared norms add. For y=(0,4,0), ||v-y||^2=14, ||v-p||^2=8, and ||p-y||^2=6, so 14=8+6. The second addend is nonnegative and vanishes only at y'=p, proving p is uniquely nearest.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Verifies v-p=(0,0,4) lies in W^perp."
+          "criterion": "Verifies p∈W and proves v-p=(2,0,2) is orthogonal to every vector of W."
         },
         {
           "points": 3,
@@ -1208,7 +1208,7 @@
         },
         {
           "points": 2,
-          "criterion": "Computes 41=16+25 for the stated rival."
+          "criterion": "Computes 14=8+6 for the stated rival."
         },
         {
           "points": 3,
@@ -1284,11 +1284,11 @@
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
     },
     "T22V3::SIDE278::S09-M@1": {
-      "reference": "u1=(1,1,0). u2=(1/2,-1/2,1), which may be scaled to (1,-1,2). For v3, subtract its projections onto u1,u2 to obtain u3=(-2/3,2/3,2/3), proportional to (-1,1,1). The scaled directions (1,1,0),(1,-1,2),(-1,1,1) are pairwise orthogonal. A normalized basis is q1=(1/sqrt(2))(1,1,0), q2=(1/sqrt(6))(1,-1,2), q3=(1/sqrt(3))(-1,1,1), up to signs. Prefix span equality follows from u2=v2-(1/2)u1 and v2=u2+(1/2)u1; the same construction/recovery argument adds v3,u3.",
+      "reference": "u1=(1,1,1). Subtracting (1/3)u1 from v2 gives u2=(2/3,-1/3,-1/3), proportional to (2,-1,-1). For v3, subtract (1/3)u1 and then the projection coefficient -1/2 times u2, giving u3=(0,1/2,-1/2), proportional to (0,1,-1). The scaled directions (1,1,1),(2,-1,-1),(0,1,-1) are pairwise orthogonal. A normalized basis is q1=(1/sqrt(3))(1,1,1), q2=(1/sqrt(6))(2,-1,-1), q3=(1/sqrt(2))(0,1,-1), up to signs. Prefix span equality follows because u2=v2-(1/3)u1 and v2=u2+(1/3)u1; similarly u3 is built from v1,v2,v3 and v3 is recovered from u3 plus earlier cleaned directions.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Computes a correct orthogonal triple proportional to (1,1,0),(1,-1,2),(-1,1,1)."
+          "criterion": "Computes a correct orthogonal triple proportional to (1,1,1),(2,-1,-1),(0,1,-1)."
         },
         {
           "points": 2,
@@ -1306,7 +1306,7 @@
       "marking": "Score only public obligations; accept equivalent exact routes and signs/scalings where mathematically appropriate."
     },
     "T22V3::SIDE278::S09-T@1": {
-      "reference": "Because d3 lies in span(d1,d2), after removing its components in the orthogonalized span of d1,d2 the third residual is exactly 0. This certifies dependence and cannot be normalized. Reordering starts with d2 rather than d1, so the first normalized direction changes and the subsequent ON basis may differ, but both nonzero outputs still span span(d1,d2).",
+      "reference": "Because d3=d1+d2 lies in span(d1,d2), after removing its components in the orthogonalized span of d1,d2 the third residual is exactly 0. This certifies dependence and cannot be normalized. Reordering starts with d2 rather than d1, so the first normalized direction changes and the subsequent ON basis may differ, while the nonzero cleaned outputs still span the same two-dimensional subspace span(d1,d2).",
       "rubric": [
         {
           "points": 3,
@@ -2052,7 +2052,7 @@
           "T22V3::SIDE278::S07-M@1"
         ],
         "publicRequestExact": [
-          "Let W={(x,y,z):z=0}, v=(2,-1,4), and p=(2,-1,0). For the rival y=(5,3,0): (a) verify v-p is orthogonal to W; (b) derive the general identity ||v-y'||^2=||v-p||^2+||p-y'||^2 for arbitrary y'∈W; (c) compute the three squared distances for the given y; (d) use the identity to prove p is the unique nearest point in W."
+          "Let W={(x,y,z)∈R^3:x+z=0}, v=(3,2,1), and p=(1,2,-1). Let the rival point be y=(0,4,0)∈W. (a) Verify p∈W and v-p∈W^perp. (b) For arbitrary y'∈W, derive ||v-y'||^2=||v-p||^2+||p-y'||^2. (c) Compute the three squared distances for the stated rival y. (d) Use the identity to prove p is the unique nearest point in W."
         ],
         "rubricEvidence": [
           "Derives the Pythagorean distance identity for arbitrary y'∈W."
@@ -2069,7 +2069,7 @@
           "T22V3::SIDE278::S07-M@1"
         ],
         "publicRequestExact": [
-          "Let W={(x,y,z):z=0}, v=(2,-1,4), and p=(2,-1,0). For the rival y=(5,3,0): (a) verify v-p is orthogonal to W; (b) derive the general identity ||v-y'||^2=||v-p||^2+||p-y'||^2 for arbitrary y'∈W; (c) compute the three squared distances for the given y; (d) use the identity to prove p is the unique nearest point in W."
+          "Let W={(x,y,z)∈R^3:x+z=0}, v=(3,2,1), and p=(1,2,-1). Let the rival point be y=(0,4,0)∈W. (a) Verify p∈W and v-p∈W^perp. (b) For arbitrary y'∈W, derive ||v-y'||^2=||v-p||^2+||p-y'||^2. (c) Compute the three squared distances for the stated rival y. (d) Use the identity to prove p is the unique nearest point in W."
         ],
         "rubricEvidence": [
           "Proves global minimality and uniqueness from nonnegativity/equality conditions."
@@ -2161,10 +2161,10 @@
           "T22V3::SIDE278::S09-M@1"
         ],
         "publicRequestExact": [
-          "Apply Gram–Schmidt in the stated order to v1=(1,1,0), v2=(1,0,1), v3=(0,1,1). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree."
+          "Apply Gram–Schmidt in the stated order to v1=(1,1,1), v2=(1,0,0), v3=(0,1,0). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree."
         ],
         "rubricEvidence": [
-          "Computes a correct orthogonal triple proportional to (1,1,0),(1,-1,2),(-1,1,1)."
+          "Computes a correct orthogonal triple proportional to (1,1,1),(2,-1,-1),(0,1,-1)."
         ],
         "disposition": "adequate",
         "why": "Main forces subtraction against the entire previously built span through a nontrivial third vector.",
@@ -2178,7 +2178,7 @@
           "T22V3::SIDE278::S09-M@1"
         ],
         "publicRequestExact": [
-          "Apply Gram–Schmidt in the stated order to v1=(1,1,0), v2=(1,0,1), v3=(0,1,1). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree."
+          "Apply Gram–Schmidt in the stated order to v1=(1,1,1), v2=(1,0,0), v3=(0,1,0). (a) Compute nonzero orthogonal u1,u2,u3 exactly. (b) Verify all three pairwise dot products vanish. (c) Give a normalized ON basis. (d) Show explicitly that span(v1,v2)=span(u1,u2) and that the three-vector spans also agree."
         ],
         "rubricEvidence": [
           "Normalizes the triple to an ON basis, up to signs.",
@@ -2196,7 +2196,7 @@
           "T22V3::SIDE278::S09-T@1"
         ],
         "publicRequestExact": [
-          "Let d1=(1,0,1), d2=(0,1,1), d3=(1,1,2)=d1+d2. Run the Gram–Schmidt logic far enough to determine what happens at the third residual, and explain why that outcome is mathematically necessary. Then consider the reordered list d2,d1,d3: state one way the ON output can differ while the final span remains the same."
+          "Let d1=(2,1,0), d2=(0,1,2), and d3=(2,2,2)=d1+d2. Run the Gram–Schmidt logic far enough to determine what happens at the third residual, and explain why that outcome is mathematically necessary. Then consider the reordered list d2,d1,d3: state one way the ON output can differ while the final span remains the same."
         ],
         "rubricEvidence": [
           "Explains that zero residual means the new input lies in the earlier span and therefore certifies dependence.",
@@ -2878,8 +2878,8 @@
           "S07 worked x-axis example",
           "S07 guided z=0 example"
         ],
-        "mathematicalDifference": "Main includes arbitrary-y proof plus a different rival and explicit uniqueness condition.",
-        "exposureDisposition": "CLEAR — 41=16+25 instance unseen."
+        "mathematicalDifference": "Main now uses the oblique plane x+z=0, a new target/projection pair and a rival point; unlike the earlier draft, it is not the S04 worked xy-plane projection.",
+        "exposureDisposition": "CLEAR — W, v=(3,2,1), p=(1,2,-1) and the distance identity values 14=8+6 are not solved in prior visible instruction."
       },
       "T22V3::SIDE278::S07-T@1": {
         "sessionId": "T22V3::SIDE278::S07@1",
@@ -2916,8 +2916,8 @@
           "S09 worked staircase vectors",
           "S09 guided first-two-already-orthogonal triple"
         ],
-        "mathematicalDifference": "Main has no pre-orthogonal pair and requires nontrivial third subtraction plus explicit span invariants.",
-        "exposureDisposition": "CLEAR — orthogonal triple values are not shown."
+        "mathematicalDifference": "Main uses a fresh three-vector list whose first two vectors were not previously orthogonalized together; all three cleaned directions and the prefix-span reconstruction are new.",
+        "exposureDisposition": "CLEAR — the earlier S08 fixed tasks do not contain the pair (1,1,1),(1,0,0), so no Gram–Schmidt prefix subanswer is pre-solved."
       },
       "T22V3::SIDE278::S09-T@1": {
         "sessionId": "T22V3::SIDE278::S09@1",
@@ -2925,8 +2925,8 @@
         "closestInstructionalExamples": [
           "S09 dependence/order explanation"
         ],
-        "mathematicalDifference": "Transfer supplies an exact linear dependence and asks what the algorithm must do before/after reordering.",
-        "exposureDisposition": "CLEAR — d1,d2,d3 instance is unseen."
+        "mathematicalDifference": "Transfer uses a fresh dependent triple and asks for structural prediction plus an order comparison rather than a full numerical orthogonalization.",
+        "exposureDisposition": "CLEAR — the d1,d2 pair is not the later S11 column pair and no prior fixed reference supplies this dependence instance."
       },
       "T22V3::SIDE278::S10-M@1": {
         "sessionId": "T22V3::SIDE278::S10@1",
@@ -3214,7 +3214,7 @@
         "guidedPractice": "z=0,v=(1,2,3),y=0",
         "main": "T22V3::SIDE278::S07-M@1",
         "transfer": "T22V3::SIDE278::S07-T@1",
-        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+        "status": "CLEAR after recovery repair — S07 Main no longer reuses S04's worked xy-plane target/projection."
       },
       "T22V3::SIDE278::S08@1": {
         "workedExample": "v1=(1,0),v2=(1,1)",
@@ -3228,7 +3228,7 @@
         "guidedPractice": "(1,1,0),(1,-1,0),(1,0,1)",
         "main": "T22V3::SIDE278::S09-M@1",
         "transfer": "T22V3::SIDE278::S09-T@1",
-        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+        "status": "CLEAR after recovery repair — neither S09 fixed task reuses an S08 solved prefix or a later S11 fixed column pair."
       },
       "T22V3::SIDE278::S10@1": {
         "workedExample": "A 2×3,y=(3,4)",
@@ -3745,11 +3745,15 @@
       "T22V3::SIDE278::S10-T@1",
       "T22V3::SIDE278::S12-M@1",
       "T22V3::SIDE278::S13-M@1",
-      "T22V3::SIDE278::S16-M@1"
+      "T22V3::SIDE278::S16-M@1",
+      "T22V3::SIDE278::S07-M@1",
+      "T22V3::SIDE278::S09-M@1",
+      "T22V3::SIDE278::S09-T@1"
     ],
     "note": "All five tasks keep obligationVersion 1 because M15 has never been in the learner registry and no M15 learner evidence exists. Repairs change mathematical instances rather than wording; exact prompt/rubric receipts were regenerated. Full Gates 4–11 recheck remains required.",
     "claimAudit": "All 48 ownership claims were re-audited semantically after recovery. Overbroad S02 claim 3 was narrowed to the complete-vs-incomplete ON-set distinction actually observed; S03 Main was strengthened to prove the full subspace test; compound claims now cite every necessary rubric row rather than nearby single rows.",
     "evidenceDistance": "S09, S14 and S15 Main were downgraded to retrieval; S12 and S13 Main to proof reconstruction. S16 remains fresh Main evidence only for the unworked complete two-route synthesis.",
-    "sourceDossier": "Machine-readable source roles synchronized to the recovered Gate-2 dossier; vague PED-PROJ entry replaced by identifiable Appova/Berezovski RUME16 vector/projection misconception study with population limitation."
+    "sourceDossier": "Machine-readable source roles synchronized to the recovered Gate-2 dossier; vague PED-PROJ entry replaced by identifiable Appova/Berezovski RUME16 vector/projection misconception study with population limitation.",
+    "crossSessionExposure": "Recovery whole-module scan found and repaired S07 Main's exact reuse of the S04 worked projection, S09 Main's already-solved S08 Gram–Schmidt prefix, and S09 Transfer's overlap with the later S11 column pair. Replacements use new mathematical objects and were re-solved."
   }
 }
