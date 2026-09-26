@@ -37,9 +37,9 @@
     "designGate": "docs/t22-course/M15-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M15-PILOT-REVIEW.md",
     "pedagogicalAtoms": 16,
-    "authoredSessions": 4,
-    "ownershipClaimCount": 12,
-    "fixedAssessments": 8,
+    "authoredSessions": 8,
+    "ownershipClaimCount": 24,
+    "fixedAssessments": 16,
     "reviewProvenance": "Gate 0–3 design and S11 Gates 4–8 pilot completed by the builder. Pilot Gate 8 caught and repaired a solved-example/Main collision before bulk authoring. Independent adversarial review remains pending."
   },
   "sourceLedger": {
@@ -261,6 +261,149 @@
       "guidedFeedback": "Check after attempting. (3-t,1-t)·(1,1)=4-2t=0 gives t=2, so p=(2,2), r=(1,-1). Uniqueness follows from W∩W^perp={0}.",
       "main": "T22V3::SIDE278::S04-M@1",
       "transfer": "T22V3::SIDE278::S04-T@1"
+    },
+    {
+      "order": 5,
+      "id": "T22V3::SIDE278::S05@1",
+      "moduleId": "SIDE278",
+      "title": "Projection onto one direction",
+      "focus": "Derive projection onto a nonzero line from the defining orthogonal-residual condition.",
+      "purpose": "The line case isolates the projection coefficient so the formula is understood as a consequence, not a mnemonic.",
+      "centralCapability": "Derive and use proj_span(a)(v)=((v·a)/(a·a))a for a≠0, verify the residual, and track generator scaling.",
+      "principalObstacle": "The scalar coefficient is confused with the projected vector, or the formula is applied when a=0.",
+      "entryPrerequisites": [
+        "S04 orthogonal decomposition",
+        "M13 dot products and scalar multiples"
+      ],
+      "requiredOwnership": [
+        "Derive the line-projection coefficient from the condition (v-ta)·a=0 with a≠0.",
+        "Compute the projected vector and residual and verify residual orthogonality.",
+        "Explain why changing a nonzero generator of the same line changes the coefficient but not the projected vector."
+      ],
+      "applicationScope": "Exact nonzero lines in R^n.",
+      "transferScope": "Represent one line with two differently scaled generators and reconcile different scalar coefficients.",
+      "inScope": [
+        "line projection",
+        "residual check",
+        "generator-scaling invariance"
+      ],
+      "outOfScope": [
+        "nearest-point theorem",
+        "matrix projector"
+      ],
+      "exitCondition": "Derive, compute and verify a fresh line projection without treating its scalar coefficient as the answer.",
+      "lesson": "Orient. S04 gave a unique decomposition v=p+r with p in a subspace and r perpendicular. On a line L=span(a), every candidate p has the form ta. We can therefore solve the defining orthogonality condition directly.\n\nDefine and derive. Require (v-ta)·a=0. Expanding gives v·a-t(a·a)=0. If a≠0, then a·a=||a||^2>0, so t=(v·a)/(a·a) and p=((v·a)/(a·a))a. The nonzero hypothesis is what makes the denominator legal.\n\nConnect. The scalar t is a coordinate relative to the chosen generator; p is the geometric vector. Replacing a by ca with c≠0 changes t to t/c but leaves ta unchanged. Projection belongs to the line, not to a preferred scaling of its generator.\n\nWorked example. Let a=(1,1) and v=(3,0). Then t=3/2, p=(3/2,3/2), r=(3/2,-3/2), and r·a=0. The fraction is not a defect; it is the exact coefficient demanded by perpendicularity.\n\nGuided practice. Let a=(1,2), v=(5,0). Derive t from the residual equation, compute p and r, then check r·a before opening feedback.\n\nFade. Main uses a 3D line with a nonunit generator; Transfer uses the same line described by two different generators and asks for reconciliation.\n\nDistinction check. Projection coefficient, projected vector and residual are three different objects. The coefficient depends on the generator scale; the projected vector does not.",
+      "guidedFeedback": "Check after attempting. t=(5)/(5)=1, so p=(1,2), r=(4,-2), and r·a=4-4=0.",
+      "main": "T22V3::SIDE278::S05-M@1",
+      "transfer": "T22V3::SIDE278::S05-T@1"
+    },
+    {
+      "order": 6,
+      "id": "T22V3::SIDE278::S06@1",
+      "moduleId": "SIDE278",
+      "title": "Projection onto an orthonormal subspace",
+      "focus": "Generalize line projection to a finite-dimensional subspace with an orthonormal basis.",
+      "purpose": "Orthogonal coordinates now become an algorithm for extracting the complete model component without solving coupled equations.",
+      "centralCapability": "Compute p=Σ(v·qi)qi for an ON basis of W and verify r=v-p lies in W^perp.",
+      "principalObstacle": "The formula is applied to a nonorthonormal spanning set, or only one basis direction is checked.",
+      "entryPrerequisites": [
+        "S02 ON coordinates",
+        "S03 complements",
+        "S05 line projection"
+      ],
+      "requiredOwnership": [
+        "Derive the ON-basis projection formula p=Σ(v·qi)qi from orthogonal decomposition.",
+        "Verify the residual is orthogonal to every basis vector and therefore to W.",
+        "Construct a suitable ON basis when a subspace is described geometrically rather than already given by ON vectors."
+      ],
+      "applicationScope": "Finite real subspaces with explicit or easily constructed ON bases.",
+      "transferScope": "A plane is given by an equation rather than an ON list; learner must choose a basis before projecting.",
+      "inScope": [
+        "ON-subspace projection",
+        "residual in W^perp",
+        "representation conversion"
+      ],
+      "outOfScope": [
+        "general nonorthogonal columns",
+        "normal equations"
+      ],
+      "exitCondition": "Project onto a fresh finite subspace and verify both model membership and residual orthogonality.",
+      "lesson": "Orient. A line needed one coefficient. If W has an orthonormal basis q1,...,qk, S02 already tells us how to measure each W-direction independently. Projection is the sum of those independent components.\n\nDefine and derive. Set p=Σ(v·qi)qi. Clearly p∈W. For each qj, (v-p)·qj=v·qj-Σ(v·qi)(qi·qj)=v·qj-v·qj=0. By S03, the residual is orthogonal to the whole span W. Thus p is exactly the W component in the unique S04 decomposition.\n\nConnect. The simple coefficient formula depends on orthonormality. For a nonorthogonal basis, subtracting components independently double-counts shared directions. We postpone the general-column case until the transpose bridge and normal equations are derived.\n\nWorked example. For W=span{e1,e3} and v=(2,5,-1), the ON basis e1,e3 gives p=(2,0,-1), r=(0,5,0). Both residual dot products vanish.\n\nGuided practice. Let q1=(1/sqrt(2))(1,1,0), q2=(0,0,1), and v=(2,0,1). Compute the two coefficients, p and r, and verify both dot products before feedback.\n\nFade. Main changes all values; Transfer supplies the plane as x=y, so an ON basis must be constructed rather than copied.\n\nDistinction check. An ON basis lets coefficients separate. “Basis” alone is not enough for p=Σ(v·qi)qi.",
+      "guidedFeedback": "Check after attempting. Coefficients are sqrt(2) and 1. Hence p=(1,1,1), r=(1,-1,0), and r·q1=r·q2=0.",
+      "main": "T22V3::SIDE278::S06-M@1",
+      "transfer": "T22V3::SIDE278::S06-T@1"
+    },
+    {
+      "order": 7,
+      "id": "T22V3::SIDE278::S07@1",
+      "moduleId": "SIDE278",
+      "title": "Why projection is the unique nearest point",
+      "focus": "Prove the nearest-point theorem using orthogonal decomposition and Pythagoras.",
+      "purpose": "Projection is not merely a perpendicular decomposition; its residual orthogonality certifies global Euclidean optimality over the entire subspace.",
+      "centralCapability": "Prove ||v-y||^2=||v-p||^2+||p-y||^2 for y∈W and use it to establish unique nearest-point optimality.",
+      "principalObstacle": "A perpendicular residual is treated as a local picture with no optimization meaning, or uniqueness is skipped when equality occurs.",
+      "entryPrerequisites": [
+        "S04 orthogonal decomposition",
+        "S06 projection",
+        "S02 Pythagorean identity"
+      ],
+      "requiredOwnership": [
+        "Derive the Pythagorean distance identity for a projection p and arbitrary y∈W.",
+        "Use the identity to prove p uniquely minimizes Euclidean distance from v over W.",
+        "Audit a rival candidate quantitatively without assuming a picture is to scale."
+      ],
+      "applicationScope": "Finite-dimensional Euclidean subspaces.",
+      "transferScope": "A rival point is claimed to be closer on a line; learner must falsify it through the identity and exact distances.",
+      "inScope": [
+        "nearest-point theorem",
+        "global minimality",
+        "uniqueness"
+      ],
+      "outOfScope": [
+        "general optimization/gradients",
+        "statistical loss functions"
+      ],
+      "exitCondition": "Given a projection and rival point, prove and quantify why the projection is uniquely closest.",
+      "lesson": "Orient. Projection gives v=p+r with p∈W and r⊥W. Why should p be the closest vector in W? The answer is not visual intuition but an exact distance identity.\n\nDefine and derive. For any y∈W, v-y=(v-p)+(p-y). The first term lies in W^perp; the second lies in W. They are orthogonal. Pythagoras gives ||v-y||^2=||v-p||^2+||p-y||^2.\n\nExplain optimality. The second term is nonnegative, so no y∈W can beat p. Equality holds only when ||p-y||^2=0, meaning y=p. Thus the projection is the unique nearest point, globally over the whole subspace.\n\nWorked example. Let W be the x-axis in R^2, v=(2,3), p=(2,0). For y=(5,0), ||v-y||^2=18, while ||v-p||^2+||p-y||^2=9+9=18. The extra in-subspace move can only add squared distance.\n\nGuided practice. For W={z=0}, v=(1,2,3), p=(1,2,0), choose y=(0,0,0). Compute all three squared distances and verify the identity before feedback.\n\nFade. Main uses a new plane and rival point; Transfer begins with a disputed line candidate and requires exact refutation.\n\nDistinction check. Residual orthogonality is the structural condition; nearest-point optimality is a theorem derived from it. We do not use one as an unexplained definition of the other.",
+      "guidedFeedback": "Check after attempting. ||v-y||^2=14, ||v-p||^2=9, ||p-y||^2=5, so 14=9+5. Any different y in the plane adds the nonnegative ||p-y||^2 term.",
+      "main": "T22V3::SIDE278::S07-M@1",
+      "transfer": "T22V3::SIDE278::S07-T@1"
+    },
+    {
+      "order": 8,
+      "id": "T22V3::SIDE278::S08@1",
+      "moduleId": "SIDE278",
+      "title": "Gram–Schmidt: remove what earlier directions already explain",
+      "focus": "Derive the two-vector Gram–Schmidt step from projection and preserve span while creating orthogonality.",
+      "purpose": "The learner needs to manufacture orthogonal coordinates from ordinary independent directions before multi-vector and least-squares work.",
+      "centralCapability": "Given independent v1,v2, form u1=v1 and u2=v2-proj_span(u1)(v2), prove u2⊥u1 and preserve span, then normalize.",
+      "principalObstacle": "Projection is subtracted with the wrong coefficient, or orthogonality is checked without proving the new pair spans the same subspace.",
+      "entryPrerequisites": [
+        "S05 line projection",
+        "M13 span/independence",
+        "S01 normalization"
+      ],
+      "requiredOwnership": [
+        "Derive the two-vector Gram–Schmidt update by subtracting the projection onto the first direction.",
+        "Verify orthogonality and prove span(v1,v2)=span(u1,u2).",
+        "Normalize the resulting nonzero orthogonal pair and diagnose a flawed subtraction."
+      ],
+      "applicationScope": "Independent ordered pairs in R^n.",
+      "transferScope": "Debug an incorrect orthogonalization step rather than execute a clean recipe.",
+      "inScope": [
+        "two-vector Gram–Schmidt",
+        "span preservation",
+        "debugging"
+      ],
+      "outOfScope": [
+        "named QR factorization",
+        "floating-point stability"
+      ],
+      "exitCondition": "Orthogonalize a fresh independent pair, prove span preservation, normalize and detect a wrong projection subtraction.",
+      "lesson": "Orient. Projection can remove the part of one vector already explained by another. Gram–Schmidt repeats that idea to clean a spanning list without changing the subspace it spans.\n\nDefine. For independent v1,v2, set u1=v1 and u2=v2-proj_span(u1)(v2). By construction u2·u1=0. Independence ensures u2≠0; otherwise v2 would already lie in span(v1).\n\nConnect span preservation. u2 is built from v1,v2, so span(u1,u2)⊆span(v1,v2). Conversely v1=u1 and v2=u2+proj_span(u1)(v2), so v2 lies in span(u1,u2). The spans are equal. Normalizing u1,u2 then preserves the same span again.\n\nWorked example. v1=(1,0), v2=(1,1). u1=(1,0); subtracting proj onto u1 gives u2=(0,1). The cleaned pair is already orthonormal and spans the same plane.\n\nGuided practice. With v1=(1,1), v2=(2,0), compute the projection of v2 onto v1, subtract it, verify orthogonality, and express v2 back as u2 plus a multiple of u1.\n\nFade. Main uses R^3 with nontrivial fractions; Transfer is a debugging task where a plausible subtraction fails the dot-product check.\n\nDistinction check. Gram–Schmidt changes basis vectors but preserves their cumulative span. It is not trying to preserve each original direction separately.",
+      "guidedFeedback": "Check after attempting. proj_{v1}(v2)=((2)/(2))(1,1)=(1,1), so u2=(1,-1), orthogonal to u1. Also v2=u2+u1, proving both original vectors lie in the cleaned span.",
+      "main": "T22V3::SIDE278::S08-M@1",
+      "transfer": "T22V3::SIDE278::S08-T@1"
     }
   ],
   "problems": {
@@ -318,6 +461,62 @@
       "order": 4,
       "kind": "transfer",
       "prompt": "Let L=span{(1,0,1)} and v=(2,3,0). A report proposes p=(1,0,1), r=(1,3,-1). Audit p∈L, v=p+r and r∈L^perp; then start from p=t(1,0,1) and independently derive t from orthogonality. Explain why an arbitrary algebraic split with first term in L need not be orthogonal.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S05-M@1": {
+      "id": "T22V3::SIDE278::S05-M@1",
+      "order": 5,
+      "kind": "main",
+      "prompt": "Let a=(2,1,-1) and v=(3,0,1). (a) Starting from p=ta and (v-p)·a=0, derive t=(v·a)/(a·a). (b) Compute t, p and r=v-p exactly. (c) Verify r·a=0. (d) State precisely why a=0 would make this derivation invalid.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S05-T@1": {
+      "id": "T22V3::SIDE278::S05-T@1",
+      "order": 5,
+      "kind": "transfer",
+      "prompt": "The line L is described once by a=(1,2,2) and again by b=3a=(3,6,6). For v=(4,0,1), compute the projection using each generator separately. Record the two scalar coefficients, compare the two projected vectors, and explain why different coefficients do not mean different projections.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S06-M@1": {
+      "id": "T22V3::SIDE278::S06-M@1",
+      "order": 6,
+      "kind": "main",
+      "prompt": "Let q1=(1/sqrt(2))(1,1,0), q2=(0,0,1), let W=span{q1,q2}, and let v=(3,1,2). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S06-T@1": {
+      "id": "T22V3::SIDE278::S06-T@1",
+      "order": 6,
+      "kind": "transfer",
+      "prompt": "The plane W={(x,y,z):x=y} is given without a basis, and v=(5,-1,3). Construct an orthonormal basis for W using obvious geometric directions, use it to compute the W component p and residual r, and verify directly that r is orthogonal to every direction in your chosen basis.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S07-M@1": {
+      "id": "T22V3::SIDE278::S07-M@1",
+      "order": 7,
+      "kind": "main",
+      "prompt": "Let W={(x,y,z):z=0}, v=(2,-1,4), and p=(2,-1,0). For the rival y=(5,3,0): (a) verify v-p is orthogonal to W; (b) derive the general identity ||v-y'||^2=||v-p||^2+||p-y'||^2 for arbitrary y'∈W; (c) compute the three squared distances for the given y; (d) use the identity to prove p is the unique nearest point in W.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S07-T@1": {
+      "id": "T22V3::SIDE278::S07-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "For L=span{(1,1)} in R^2 and v=(4,0), one report claims y=(3,3) is closer than the orthogonal component p=(2,2) because y has a larger first coordinate. Audit the claim using exact squared distances and the decomposition identity; explain why coordinatewise closeness is not the Euclidean criterion.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S08-M@1": {
+      "id": "T22V3::SIDE278::S08-M@1",
+      "order": 8,
+      "kind": "main",
+      "prompt": "Let v1=(1,1,0), v2=(1,0,1). (a) Derive u2=v2-((v2·u1)/(u1·u1))u1 from the projection idea with u1=v1. (b) Compute u2 and an equivalent integer-scaled orthogonal direction. (c) Verify u1·u2=0. (d) Prove span(v1,v2)=span(u1,u2), then normalize to an orthonormal basis.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S08-T@1": {
+      "id": "T22V3::SIDE278::S08-T@1",
+      "order": 8,
+      "kind": "transfer",
+      "prompt": "A student tries to orthogonalize v1=(1,2,0), v2=(2,0,1) and writes u1=v1, u2=(1,-2,1), claiming they subtracted “the component along v1.” (a) Test the claim by computing u1·u2. (b) Compute the correct projection coefficient and corrected u2. (c) Give an integer-scaled orthogonal direction. (d) Explain exactly what was wrong with the student's subtraction.",
       "obligationVersion": 1
     }
   },
@@ -497,6 +696,182 @@
         }
       ],
       "marking": "Score only public obligations; changed-surface reasoning must be visible where requested."
+    },
+    "T22V3::SIDE278::S05-M@1": {
+      "reference": "v·a=5 and a·a=6, so t=5/6. Thus p=(5/3,5/6,-5/6) and r=(4/3,-5/6,11/6). The dot product r·a=8/3-5/6-11/6=0. If a=0, then a·a=0 and span(a) is the zero subspace; division by a·a is illegal.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Derives t=(v·a)/(a·a) from residual orthogonality and states a≠0."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes t=5/6, p=(5/3,5/6,-5/6), and r=(4/3,-5/6,11/6)."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies r·a=0 exactly."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why a=0 invalidates division by a·a and changes the line to {0}."
+        }
+      ],
+      "marking": "Score only public obligations; accept mathematically equivalent exact routes."
+    },
+    "T22V3::SIDE278::S05-T@1": {
+      "reference": "Using a, v·a=6 and a·a=9, so ta has t=2/3 and p=(2/3,4/3,4/3). Using b, v·b=18 and b·b=81, so the coefficient is 2/9; (2/9)b=(2/3,4/3,4/3), the same p. Coefficients are coordinates relative to differently scaled generators; the line and projected vector are unchanged.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Using a, computes coefficient 2/3 and p=(2/3,4/3,4/3)."
+        },
+        {
+          "points": 3,
+          "criterion": "Using b=3a, computes coefficient 2/9 and the same projected vector."
+        },
+        {
+          "points": 2,
+          "criterion": "Explicitly reconciles the different scalar coefficients with the same geometric vector."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that nonzero scaling changes the generator coordinate, not the underlying line."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S06-M@1": {
+      "reference": "The ON equations give coefficients v·q1=2sqrt(2), v·q2=2. Thus p=(2,2,2), r=(1,-1,0). The two residual dot products are 0, so r∈W^perp. For a nonorthogonal basis, cross dot products do not vanish and the coefficients interact; direct dot products need not be basis coordinates.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Derives the ON-basis projection coefficients from residual orthogonality."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes p=(2,2,2) and r=(1,-1,0)."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies r is orthogonal to both q1 and q2."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why nonorthogonal basis vectors do not justify independent dot-product coefficients."
+        }
+      ],
+      "marking": "Score only public obligations; accept mathematically equivalent exact routes."
+    },
+    "T22V3::SIDE278::S06-T@1": {
+      "reference": "Take q1=(1/sqrt(2))(1,1,0), q2=(0,0,1). Coefficients are 2sqrt(2) and 3, so p=(2,2,3), r=(3,-3,0). Both dot products with q1,q2 vanish, hence r∈W^perp.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Constructs a valid ON basis such as {(1/sqrt(2))(1,1,0),(0,0,1)} for W."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes p=(2,2,3) and r=(3,-3,0)."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies both residual dot products vanish."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why those basis checks imply r is orthogonal to all of W."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S07-M@1": {
+      "reference": "v-p=(0,0,4), orthogonal to every (x,y,0). For y'∈W, v-y'=(v-p)+(p-y') with perpendicular terms, so the squared norms add. For y=(5,3,0), ||v-y||^2=41, ||v-p||^2=16, ||p-y||^2=25. Since the second addend is ≥0 and vanishes only at y'=p, p is uniquely nearest.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Verifies v-p=(0,0,4) lies in W^perp."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives the Pythagorean distance identity for arbitrary y'∈W."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes 41=16+25 for the stated rival."
+        },
+        {
+          "points": 3,
+          "criterion": "Proves global minimality and uniqueness from nonnegativity/equality conditions."
+        }
+      ],
+      "marking": "Score only public obligations; accept mathematically equivalent exact routes."
+    },
+    "T22V3::SIDE278::S07-T@1": {
+      "reference": "v-p=(2,-2), so ||v-p||^2=8. For y=(3,3), v-y=(1,-3), so ||v-y||^2=10. Also p-y=(-1,-1), ||p-y||^2=2, and 10=8+2. Thus y is farther. A single coordinate being closer does not control total Euclidean squared distance.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes ||v-p||^2=8 and ||v-y||^2=10."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes ||p-y||^2=2 and verifies 10=8+2."
+        },
+        {
+          "points": 2,
+          "criterion": "Rejects y and identifies p as closer using the orthogonal-decomposition identity."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why coordinatewise closeness is not the Euclidean distance criterion."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S08-M@1": {
+      "reference": "u1=(1,1,0). The coefficient is 1/2, so u2=(1/2,-1/2,1), equivalently scaled direction (1,-1,2). Dot product with u1 is 0. u2 is a combination of v1,v2, while v2=u2+(1/2)u1, giving equal spans. Normalizing yields q1=(1/sqrt(2))(1,1,0), q2=(1/sqrt(6))(1,-1,2).",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Derives the Gram–Schmidt subtraction from line projection."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes u2=(1/2,-1/2,1), or a correct nonzero scalar multiple."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies orthogonality and proves span preservation in both directions."
+        },
+        {
+          "points": 3,
+          "criterion": "Normalizes to q1=(1/sqrt(2))(1,1,0), q2=(1/sqrt(6))(1,-1,2), up to allowed signs."
+        }
+      ],
+      "marking": "Score only public obligations; accept mathematically equivalent exact routes."
+    },
+    "T22V3::SIDE278::S08-T@1": {
+      "reference": "u1·(1,-2,1)=1-4=-3, so the proposed u2 is not orthogonal. The correct coefficient is (v2·v1)/(v1·v1)=2/5, so u2=(2,0,1)-(2/5)(1,2,0)=(8/5,-4/5,1), proportional to (8,-4,5). Its dot product with (1,2,0) is 8-8=0. The student subtracted an arbitrary-looking multiple rather than the orthogonal projection coefficient.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Computes u1·u2=-3 and rejects the proposed orthogonalization."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes the correct projection coefficient 2/5 and u2=(8/5,-4/5,1)."
+        },
+        {
+          "points": 2,
+          "criterion": "Provides a valid scaled orthogonal direction such as (8,-4,5) and verifies the dot product."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that Gram–Schmidt must subtract the exact projection, not an arbitrary component-looking multiple."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
     }
   },
   "coverage": {
@@ -519,6 +894,26 @@
       "Construct p∈W and r∈W^perp with v=p+r for concrete subspaces.",
       "Prove W∩W^perp={0} and use it to establish uniqueness.",
       "Distinguish an arbitrary vector split from an orthogonal decomposition by checking both memberships."
+    ],
+    "T22V3::SIDE278::S05@1": [
+      "Derive the line-projection coefficient from the condition (v-ta)·a=0 with a≠0.",
+      "Compute the projected vector and residual and verify residual orthogonality.",
+      "Explain why changing a nonzero generator of the same line changes the coefficient but not the projected vector."
+    ],
+    "T22V3::SIDE278::S06@1": [
+      "Derive the ON-basis projection formula p=Σ(v·qi)qi from orthogonal decomposition.",
+      "Verify the residual is orthogonal to every basis vector and therefore to W.",
+      "Construct a suitable ON basis when a subspace is described geometrically rather than already given by ON vectors."
+    ],
+    "T22V3::SIDE278::S07@1": [
+      "Derive the Pythagorean distance identity for a projection p and arbitrary y∈W.",
+      "Use the identity to prove p uniquely minimizes Euclidean distance from v over W.",
+      "Audit a rival candidate quantitatively without assuming a picture is to scale."
+    ],
+    "T22V3::SIDE278::S08@1": [
+      "Derive the two-vector Gram–Schmidt update by subtracting the projection onto the first direction.",
+      "Verify orthogonality and prove span(v1,v2)=span(u1,u2).",
+      "Normalize the resulting nonzero orthogonal pair and diagnose a flawed subtraction."
     ]
   },
   "claimEvidence": {
@@ -733,6 +1128,218 @@
         "escapeAttempt": "Checking only p+r=v fails.",
         "generalizationDistance": "Changed surface starts from a proposed report."
       }
+    ],
+    "T22V3::SIDE278::S05@1": [
+      {
+        "claim": "Derive the line-projection coefficient from the condition (v-ta)·a=0 with a≠0.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S05-M@1"
+        ],
+        "publicRequestExact": [
+          "Let a=(2,1,-1) and v=(3,0,1). (a) Starting from p=ta and (v-p)·a=0, derive t=(v·a)/(a·a). (b) Compute t, p and r=v-p exactly. (c) Verify r·a=0. (d) State precisely why a=0 would make this derivation invalid."
+        ],
+        "rubricEvidence": [
+          "Derives t=(v·a)/(a·a) from residual orthogonality and states a≠0."
+        ],
+        "disposition": "adequate",
+        "why": "Derivation row observes the defining residual condition and nonzero hypothesis.",
+        "escapeAttempt": "Quoted formula without derivation fails.",
+        "generalizationDistance": "Fresh 3D line requires proof reconstruction."
+      },
+      {
+        "claim": "Compute the projected vector and residual and verify residual orthogonality.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S05-M@1"
+        ],
+        "publicRequestExact": [
+          "Let a=(2,1,-1) and v=(3,0,1). (a) Starting from p=ta and (v-p)·a=0, derive t=(v·a)/(a·a). (b) Compute t, p and r=v-p exactly. (c) Verify r·a=0. (d) State precisely why a=0 would make this derivation invalid."
+        ],
+        "rubricEvidence": [
+          "Verifies r·a=0 exactly."
+        ],
+        "disposition": "adequate",
+        "why": "Main separately scores p,r and orthogonality verification.",
+        "escapeAttempt": "Coefficient alone cannot establish projection.",
+        "generalizationDistance": "New exact fractional instance."
+      },
+      {
+        "claim": "Explain why changing a nonzero generator of the same line changes the coefficient but not the projected vector.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S05-T@1"
+        ],
+        "publicRequestExact": [
+          "The line L is described once by a=(1,2,2) and again by b=3a=(3,6,6). For v=(4,0,1), compute the projection using each generator separately. Record the two scalar coefficients, compare the two projected vectors, and explain why different coefficients do not mean different projections."
+        ],
+        "rubricEvidence": [
+          "Explicitly reconciles the different scalar coefficients with the same geometric vector."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer explicitly scores coefficient-vs-vector reconciliation.",
+        "escapeAttempt": "Two numbers without explanation fail.",
+        "generalizationDistance": "Changed surface varies representation of the same line."
+      }
+    ],
+    "T22V3::SIDE278::S06@1": [
+      {
+        "claim": "Derive the ON-basis projection formula p=Σ(v·qi)qi from orthogonal decomposition.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S06-M@1"
+        ],
+        "publicRequestExact": [
+          "Let q1=(1/sqrt(2))(1,1,0), q2=(0,0,1), let W=span{q1,q2}, and let v=(3,1,2). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis."
+        ],
+        "rubricEvidence": [
+          "Derives the ON-basis projection coefficients from residual orthogonality."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores the derivation from residual orthogonality.",
+        "escapeAttempt": "Formula recall alone fails.",
+        "generalizationDistance": "Fresh target but taught ON geometry."
+      },
+      {
+        "claim": "Verify the residual is orthogonal to every basis vector and therefore to W.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S06-M@1"
+        ],
+        "publicRequestExact": [
+          "Let q1=(1/sqrt(2))(1,1,0), q2=(0,0,1), let W=span{q1,q2}, and let v=(3,1,2). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis."
+        ],
+        "rubricEvidence": [
+          "Verifies r is orthogonal to both q1 and q2."
+        ],
+        "disposition": "adequate",
+        "why": "Main separately requires p,r and both residual checks.",
+        "escapeAttempt": "One coefficient or one dot product is insufficient.",
+        "generalizationDistance": "New values prevent direct copying."
+      },
+      {
+        "claim": "Construct a suitable ON basis when a subspace is described geometrically rather than already given by ON vectors.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S06-T@1"
+        ],
+        "publicRequestExact": [
+          "The plane W={(x,y,z):x=y} is given without a basis, and v=(5,-1,3). Construct an orthonormal basis for W using obvious geometric directions, use it to compute the W component p and residual r, and verify directly that r is orthogonal to every direction in your chosen basis."
+        ],
+        "rubricEvidence": [
+          "Constructs a valid ON basis such as {(1/sqrt(2))(1,1,0),(0,0,1)} for W."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer requires constructing the ON representation first.",
+        "escapeAttempt": "Using the plane equation alone without a basis misses the row.",
+        "generalizationDistance": "Changed surface begins from a geometric constraint."
+      }
+    ],
+    "T22V3::SIDE278::S07@1": [
+      {
+        "claim": "Derive the Pythagorean distance identity for a projection p and arbitrary y∈W.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S07-M@1"
+        ],
+        "publicRequestExact": [
+          "Let W={(x,y,z):z=0}, v=(2,-1,4), and p=(2,-1,0). For the rival y=(5,3,0): (a) verify v-p is orthogonal to W; (b) derive the general identity ||v-y'||^2=||v-p||^2+||p-y'||^2 for arbitrary y'∈W; (c) compute the three squared distances for the given y; (d) use the identity to prove p is the unique nearest point in W."
+        ],
+        "rubricEvidence": [
+          "Derives the Pythagorean distance identity for arbitrary y'∈W."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores the arbitrary-y theorem derivation.",
+        "escapeAttempt": "Checking only the supplied rival cannot earn it.",
+        "generalizationDistance": "Proof reconstruction on new plane data."
+      },
+      {
+        "claim": "Use the identity to prove p uniquely minimizes Euclidean distance from v over W.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S07-M@1"
+        ],
+        "publicRequestExact": [
+          "Let W={(x,y,z):z=0}, v=(2,-1,4), and p=(2,-1,0). For the rival y=(5,3,0): (a) verify v-p is orthogonal to W; (b) derive the general identity ||v-y'||^2=||v-p||^2+||p-y'||^2 for arbitrary y'∈W; (c) compute the three squared distances for the given y; (d) use the identity to prove p is the unique nearest point in W."
+        ],
+        "rubricEvidence": [
+          "Proves global minimality and uniqueness from nonnegativity/equality conditions."
+        ],
+        "disposition": "adequate",
+        "why": "Main separately scores global minimality and uniqueness.",
+        "escapeAttempt": "One numerical comparison is insufficient.",
+        "generalizationDistance": "General conclusion follows from fresh identity proof."
+      },
+      {
+        "claim": "Audit a rival candidate quantitatively without assuming a picture is to scale.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S07-T@1"
+        ],
+        "publicRequestExact": [
+          "For L=span{(1,1)} in R^2 and v=(4,0), one report claims y=(3,3) is closer than the orthogonal component p=(2,2) because y has a larger first coordinate. Audit the claim using exact squared distances and the decomposition identity; explain why coordinatewise closeness is not the Euclidean criterion."
+        ],
+        "rubricEvidence": [
+          "Rejects y and identifies p as closer using the orthogonal-decomposition identity."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer scores a falsification of a rival heuristic.",
+        "escapeAttempt": "A visual or coordinate-only claim fails.",
+        "generalizationDistance": "Changed surface is adversarial report audit."
+      }
+    ],
+    "T22V3::SIDE278::S08@1": [
+      {
+        "claim": "Derive the two-vector Gram–Schmidt update by subtracting the projection onto the first direction.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S08-M@1"
+        ],
+        "publicRequestExact": [
+          "Let v1=(1,1,0), v2=(1,0,1). (a) Derive u2=v2-((v2·u1)/(u1·u1))u1 from the projection idea with u1=v1. (b) Compute u2 and an equivalent integer-scaled orthogonal direction. (c) Verify u1·u2=0. (d) Prove span(v1,v2)=span(u1,u2), then normalize to an orthonormal basis."
+        ],
+        "rubricEvidence": [
+          "Derives the Gram–Schmidt subtraction from line projection."
+        ],
+        "disposition": "adequate",
+        "why": "Main observes derivation from projection.",
+        "escapeAttempt": "Recipe statement alone misses the row.",
+        "generalizationDistance": "Fresh R3 pair requires reconstruction."
+      },
+      {
+        "claim": "Verify orthogonality and prove span(v1,v2)=span(u1,u2).",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S08-M@1"
+        ],
+        "publicRequestExact": [
+          "Let v1=(1,1,0), v2=(1,0,1). (a) Derive u2=v2-((v2·u1)/(u1·u1))u1 from the projection idea with u1=v1. (b) Compute u2 and an equivalent integer-scaled orthogonal direction. (c) Verify u1·u2=0. (d) Prove span(v1,v2)=span(u1,u2), then normalize to an orthonormal basis."
+        ],
+        "rubricEvidence": [
+          "Verifies orthogonality and proves span preservation in both directions."
+        ],
+        "disposition": "adequate",
+        "why": "Span preservation is explicitly scored with orthogonality.",
+        "escapeAttempt": "Correct u2 alone cannot establish equal spans.",
+        "generalizationDistance": "Proof plus exact arithmetic on new data."
+      },
+      {
+        "claim": "Normalize the resulting nonzero orthogonal pair and diagnose a flawed subtraction.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S08-T@1"
+        ],
+        "publicRequestExact": [
+          "A student tries to orthogonalize v1=(1,2,0), v2=(2,0,1) and writes u1=v1, u2=(1,-2,1), claiming they subtracted “the component along v1.” (a) Test the claim by computing u1·u2. (b) Compute the correct projection coefficient and corrected u2. (c) Give an integer-scaled orthogonal direction. (d) Explain exactly what was wrong with the student's subtraction."
+        ],
+        "rubricEvidence": [
+          "Explains that Gram–Schmidt must subtract the exact projection, not an arbitrary component-looking multiple."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer explicitly scores debugging the wrong subtraction rule.",
+        "escapeAttempt": "Merely replacing the vector without diagnosis fails.",
+        "generalizationDistance": "Changed surface is error analysis."
+      }
     ]
   },
   "evidenceDistance": {
@@ -774,6 +1381,46 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "Learner audits a supplied report and independently recovers its coefficient rather than constructing from scratch."
+      }
+    },
+    "T22V3::SIDE278::S05@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Line formula is derived in instruction but reconstructed on fresh 3D data with boundary hypothesis."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Same subspace is presented through two scaled generators, so the learner must separate coordinate coefficient from projected vector."
+      }
+    },
+    "T22V3::SIDE278::S06@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Projection formula is reconstructed from residual conditions on a fresh ON subspace."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Plane arrives as an equation, requiring representation choice before the taught projection mechanism can run."
+      }
+    },
+    "T22V3::SIDE278::S07@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Pythagorean proof is taught but must be reconstructed for arbitrary rival points and applied numerically."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Transfer starts from a misleading coordinate heuristic and requires exact refutation rather than constructing a projection."
+      }
+    },
+    "T22V3::SIDE278::S08@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Two-vector method is taught, but derivation/span proof and fresh fractional calculation are required."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Transfer provides an incorrect output and asks for falsification/correction, not routine execution."
       }
     }
   },
@@ -856,6 +1503,82 @@
         ],
         "mathematicalDifference": "Transfer begins with a candidate report in R^3 and asks both audit and reconstruction.",
         "exposureDisposition": "CLEAR — L/v/report unseen."
+      },
+      "T22V3::SIDE278::S05-M@1": {
+        "sessionId": "T22V3::SIDE278::S05@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S05 worked a=(1,1),v=(3,0)",
+          "S05 guided a=(1,2),v=(5,0)"
+        ],
+        "mathematicalDifference": "Main uses a nonunit 3D direction and fractional coefficient plus zero-generator boundary.",
+        "exposureDisposition": "CLEAR — no Main data or result appears."
+      },
+      "T22V3::SIDE278::S05-T@1": {
+        "sessionId": "T22V3::SIDE278::S05@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S05 explanation of scaling invariance"
+        ],
+        "mathematicalDifference": "Transfer demands two independent calculations for scaled generators and reconciliation of distinct coefficients.",
+        "exposureDisposition": "CLEAR — a=(1,2,2),v=(4,0,1) unseen."
+      },
+      "T22V3::SIDE278::S06-M@1": {
+        "sessionId": "T22V3::SIDE278::S06@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S06 worked span{e1,e3}",
+          "S06 guided rotated q1 plus e3"
+        ],
+        "mathematicalDifference": "Main uses different target and separately asks hypothesis comparison with nonorthogonal bases.",
+        "exposureDisposition": "CLEAR — p=(2,2,2),r=(1,-1,0) not exposed."
+      },
+      "T22V3::SIDE278::S06-T@1": {
+        "sessionId": "T22V3::SIDE278::S06@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S06 ON-basis examples"
+        ],
+        "mathematicalDifference": "Transfer gives W through x=y rather than basis vectors, forcing basis construction.",
+        "exposureDisposition": "CLEAR — v=(5,-1,3) and its p/r unseen."
+      },
+      "T22V3::SIDE278::S07-M@1": {
+        "sessionId": "T22V3::SIDE278::S07@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S07 worked x-axis example",
+          "S07 guided z=0 example"
+        ],
+        "mathematicalDifference": "Main includes arbitrary-y proof plus a different rival and explicit uniqueness condition.",
+        "exposureDisposition": "CLEAR — 41=16+25 instance unseen."
+      },
+      "T22V3::SIDE278::S07-T@1": {
+        "sessionId": "T22V3::SIDE278::S07@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S07 worked/guided distance identities"
+        ],
+        "mathematicalDifference": "Transfer is a contested claim on a diagonal line and tests coordinatewise-vs-Euclidean reasoning.",
+        "exposureDisposition": "CLEAR — L/v/y values unseen."
+      },
+      "T22V3::SIDE278::S08-M@1": {
+        "sessionId": "T22V3::SIDE278::S08@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S08 worked v1=(1,0),v2=(1,1)",
+          "S08 guided v1=(1,1),v2=(2,0)"
+        ],
+        "mathematicalDifference": "Main uses R3 fractional projection and requires bidirectional span proof plus normalization.",
+        "exposureDisposition": "CLEAR — u2=(1/2,-1/2,1) not exposed."
+      },
+      "T22V3::SIDE278::S08-T@1": {
+        "sessionId": "T22V3::SIDE278::S08@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S08 definition of exact projection subtraction"
+        ],
+        "mathematicalDifference": "Transfer begins from a plausible flawed u2 whose error is exposed by the dot product.",
+        "exposureDisposition": "CLEAR — v1=(1,2,0),v2=(2,0,1) unseen."
       }
     }
   },
@@ -884,6 +1607,30 @@
         "sessionId": "T22V3::SIDE278::S04@1",
         "firstNewOperation": "orthogonal decomposition and uniqueness",
         "earlierOwnerOrBridge": "S03 complement + S02 ON coordinates",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S05@1",
+        "firstNewOperation": "line projection coefficient",
+        "earlierOwnerOrBridge": "S04 decomposition + M13 dot products",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S06@1",
+        "firstNewOperation": "projection onto ON subspace",
+        "earlierOwnerOrBridge": "S02 coordinate formula + S04 decomposition",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S07@1",
+        "firstNewOperation": "nearest-point theorem",
+        "earlierOwnerOrBridge": "S04 decomposition + S02 Pythagoras",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S08@1",
+        "firstNewOperation": "two-vector Gram–Schmidt",
+        "earlierOwnerOrBridge": "S05 projection + M13 span",
         "status": "supported"
       }
     ]
@@ -918,6 +1665,34 @@
         "main": "T22V3::SIDE278::S04-M@1",
         "transfer": "T22V3::SIDE278::S04-T@1",
         "status": "CLEAR — worked/guided instances differ from both fixed tasks."
+      },
+      "T22V3::SIDE278::S05@1": {
+        "workedExample": "a=(1,1),v=(3,0)",
+        "guidedPractice": "a=(1,2),v=(5,0)",
+        "main": "T22V3::SIDE278::S05-M@1",
+        "transfer": "T22V3::SIDE278::S05-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S06@1": {
+        "workedExample": "W=span(e1,e3),v=(2,5,-1)",
+        "guidedPractice": "q1=(1,1,0)/sqrt2,q2=e3,v=(2,0,1)",
+        "main": "T22V3::SIDE278::S06-M@1",
+        "transfer": "T22V3::SIDE278::S06-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S07@1": {
+        "workedExample": "x-axis,v=(2,3),y=(5,0)",
+        "guidedPractice": "z=0,v=(1,2,3),y=0",
+        "main": "T22V3::SIDE278::S07-M@1",
+        "transfer": "T22V3::SIDE278::S07-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+      },
+      "T22V3::SIDE278::S08@1": {
+        "workedExample": "v1=(1,0),v2=(1,1)",
+        "guidedPractice": "v1=(1,1),v2=(2,0)",
+        "main": "T22V3::SIDE278::S08-M@1",
+        "transfer": "T22V3::SIDE278::S08-T@1",
+        "status": "CLEAR — worked/guided instances differ from fixed tasks."
       }
     }
   },
@@ -952,6 +1727,30 @@
         "alreadySuppliedByPrompt": "PARTLY — split supplied, validity not.",
         "decisivelyRehearsedInVisibleInstruction": "NO — instruction constructs rather than audits.",
         "learnerActionActuallyScored": "Checks sum/membership/orthogonality and independently derives t."
+      },
+      "T22V3::SIDE278::S05-T@1": {
+        "claimedLearnerDecision": "Decide whether two different generator coefficients represent different projected vectors.",
+        "alreadySuppliedByPrompt": "NO — equality of projections is not stated.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — scaling principle is explained, not solved on this instance.",
+        "learnerActionActuallyScored": "Computes both routes and reconciles coefficient dependence with geometric invariance."
+      },
+      "T22V3::SIDE278::S06-T@1": {
+        "claimedLearnerDecision": "Choose an ON basis from a geometric plane description before projecting.",
+        "alreadySuppliedByPrompt": "NO — no basis is supplied.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — visible projection examples start with ON vectors.",
+        "learnerActionActuallyScored": "Constructs an ON basis, computes p/r and verifies the residual."
+      },
+      "T22V3::SIDE278::S07-T@1": {
+        "claimedLearnerDecision": "Decide whether a rival point with a superficially favorable coordinate can beat the orthogonal projection.",
+        "alreadySuppliedByPrompt": "PARTLY — p and y are supplied; correct verdict is not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — no coordinate-heuristic audit is solved.",
+        "learnerActionActuallyScored": "Computes exact distances, verifies the identity and rejects the rival rationale."
+      },
+      "T22V3::SIDE278::S08-T@1": {
+        "claimedLearnerDecision": "Decide whether a proposed subtraction actually removed the component along v1.",
+        "alreadySuppliedByPrompt": "NO — student's claim may be false.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — no solved debugging instance.",
+        "learnerActionActuallyScored": "Rejects via dot product, reconstructs exact projection and diagnoses the error."
       }
     }
   },
