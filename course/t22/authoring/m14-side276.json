@@ -1120,7 +1120,7 @@
       "id": "T22V3::SIDE276::S09-T@2",
       "order": 9,
       "kind": "transfer",
-      "prompt": "A controller uses C=[[1,2,-1],[0,1,1]]. Two accepted parameter settings p=(2,0,1)^T and q=(-1,1,0)^T are both reported to produce y=(1,1)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity.",
+      "prompt": "A controller uses C=[[2,-1,1],[1,1,0]]. Two accepted parameter settings p=(0,2,1)^T and q=(1,1,-2)^T are both reported to produce y=(-1,2)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity.",
       "obligationVersion": 2
     }
   },
@@ -1904,19 +1904,19 @@
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
     "T22V3::SIDE276::S09-T@2": {
-      "reference": "Cp=(1,1)^T and Cq=(1,1)^T. Their difference q-p=(-3,1,-1)^T is nonzero and C(q-p)=0, so the collision reveals a zero-output input direction. Solving Cx=y gives x2+x3=1 and x1+2x2-x3=1. With x3=t, x=(-1+3t,1-t,t). Equivalently, using s=1-t, every solution is p+s(q-p)=(2,0,1)+s(-3,1,-1), s∈R; s=0 gives p and s=1 gives q. Completeness follows because if Cx=y=Cp, then C(x-p)=0, and solving Cz=0 gives z=s(-3,1,-1), so every solution has exactly that form. The ambiguity is caused by a nontrivial zero-output direction, equivalently a nontrivial kernel/noninjectivity.",
+      "reference": "Cp=(-1,2)^T and Cq=(-1,2)^T. Their difference q-p=(1,-1,-3)^T is nonzero and C(q-p)=0, so the collision reveals a zero-output input direction. Solving Cx=y gives x+y=2 and 2x-y+z=-1. Let x=t; then y=2-t and z=1-3t. Thus every solution is (t,2-t,1-3t)=p+t(q-p), t∈R; t=0 gives p and t=1 gives q. Completeness follows because if Cx=y=Cp, then C(x-p)=0, and solving Cz=0 gives z=t(1,-1,-3), so every solution has exactly that form. The ambiguity is caused by a nontrivial zero-output direction, equivalently a nontrivial kernel/noninjectivity.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Verifies Cp=Cq=(1,1)^T and identifies the nonzero difference q-p=(-3,1,-1)^T with C(q-p)=0."
+          "criterion": "Verifies Cp=Cq=(-1,2)^T and identifies the nonzero difference q-p=(1,-1,-3)^T with C(q-p)=0."
         },
         {
           "points": 3,
-          "criterion": "Determines the complete family x=p+s(q-p)=(2,0,1)+s(-3,1,-1), or an equivalent parameterization, and shows p and q occur in it."
+          "criterion": "Determines the complete family x=p+t(q-p)=(0,2,1)+t(1,-1,-3), or an equivalent parameterization, and shows p and q occur in it."
         },
         {
           "points": 3,
-          "criterion": "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (-3,1,-1)^T."
+          "criterion": "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (1,-1,-3)^T."
         },
         {
           "points": 2,
@@ -2550,11 +2550,11 @@
         ],
         "publicRequestExact": [
           "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0.",
-          "A controller uses C=[[1,2,-1],[0,1,1]]. Two accepted parameter settings p=(2,0,1)^T and q=(-1,1,0)^T are both reported to produce y=(1,1)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity."
+          "A controller uses C=[[2,-1,1],[1,1,0]]. Two accepted parameter settings p=(0,2,1)^T and q=(1,1,-2)^T are both reported to produce y=(-1,2)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity."
         ],
         "rubricEvidence": [
           "Proves both implications between Ax=b and x-xp∈N(A) using linearity.",
-          "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (-3,1,-1)^T."
+          "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (1,-1,-3)^T."
         ],
         "why": "Main proves the full affine-solution theorem; Transfer reverses the direction by starting from an unexplained same-output collision and reconstructing why every solution differs from p by a zero-output direction.",
         "escapeAttempt": "A parameterization alone cannot earn the proof rows.",
@@ -2570,12 +2570,12 @@
         ],
         "publicRequestExact": [
           "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0.",
-          "A controller uses C=[[1,2,-1],[0,1,1]]. Two accepted parameter settings p=(2,0,1)^T and q=(-1,1,0)^T are both reported to produce y=(1,1)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity."
+          "A controller uses C=[[2,-1,1],[1,1,0]]. Two accepted parameter settings p=(0,2,1)^T and q=(1,1,-2)^T are both reported to produce y=(-1,2)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity."
         ],
         "rubricEvidence": [
           "Writes all solutions as (3,2,0)+t(-1,-1,1)=(3-t,2-t,t).",
-          "Determines the complete family x=p+s(q-p)=(2,0,1)+s(-3,1,-1), or an equivalent parameterization, and shows p and q occur in it.",
-          "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (-3,1,-1)^T."
+          "Determines the complete family x=p+t(q-p)=(0,2,1)+t(1,-1,-3), or an equivalent parameterization, and shows p and q occur in it.",
+          "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (1,-1,-3)^T."
         ],
         "why": "Main constructs a solution family from a particular solution and null basis; Transfer reconstructs the complete family from a same-output collision without being told to invoke the nullspace/affine-translate theorem.",
         "escapeAttempt": "One particular vector cannot satisfy the complete-family rows.",
@@ -3773,7 +3773,7 @@
           "S09 affine-solution theorem and worked xp+N(A) construction",
           "S09 guided practice: construct a family from a supplied system"
         ],
-        "mathematicalDifference": "Instruction proceeds forward from a particular solution plus zero-output directions. The new Transfer instead begins with two distinct observed inputs that collide at the same output and an incorrect 'only two settings' report; the learner must infer the hidden zero-output direction and then prove the complete preimage family without a nullspace cue.",
+        "mathematicalDifference": "Instruction proceeds forward from a particular solution plus zero-output directions. The new Transfer instead begins with a fresh 2-by-3 matrix and two distinct observed inputs that collide at the same output, plus an incorrect 'only two settings' report; the learner must infer the hidden zero-output direction and then prove the complete preimage family without a nullspace cue.",
         "exposureDisposition": "CLEAR — the exact matrix, collision pair, output, complete family and diagnostic route are not solved in visible instruction; the mathematical direction and information surface are changed."
       }
     }
@@ -3937,7 +3937,7 @@
         "claimedLearnerDecision": "Recognize that a same-output collision should be analyzed through the difference of the two inputs, infer the zero-output structure, and use it to reconstruct every preimage.",
         "alreadySuppliedByPrompt": "PARTLY — the prompt supplies C,p,q,y and asks for a structural witness, but it does not name nullspace/kernel, affine translates, the xp+N(A) theorem, or a solution method.",
         "decisivelyRehearsedInVisibleInstruction": "PARTLY — S09 teaches xp+N(A), but the visible instruction starts from a known particular solution/nullspace; the Transfer reverses the direction by starting from an unexplained collision and an incorrect finite-settings claim.",
-        "learnerActionActuallyScored": "Verifies Cp=Cq=(1,1)^T and identifies the nonzero difference q-p=(-3,1,-1)^T with C(q-p)=0. | Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (-3,1,-1)^T."
+        "learnerActionActuallyScored": "Verifies Cp=Cq=(-1,2)^T and identifies the nonzero difference q-p=(1,-1,-3)^T with C(q-p)=0. | Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (1,-1,-3)^T."
       }
     }
   },
