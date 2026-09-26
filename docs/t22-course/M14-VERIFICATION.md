@@ -306,4 +306,36 @@ The canonical M14 source now additionally contains:
 
 Gate 11 now has a dedicated unpublished-candidate browser test, `scripts/test-t22-elite-m14-browser.mjs`. It does not alter the persisted learner registry: only the Playwright test request for `course-meta.json` is intercepted, after which the real course UI/runtime loads SIDE276 as module 14 and renders every M14 lesson/guided/task/reference/rubric path.
 
-**Current acceptance status: repaired awaiting exact-head integration and independent follow-up; not independently accepted.**
+**Current acceptance status: repaired implementation is green through run #462 and awaits focused independent follow-up; not independently accepted.**
+
+
+## First full v1.2 repaired implementation run
+
+Repaired implementation/runtime checkpoint:
+- `59f6ceaea143255d024fcb0b2b78460035024cfa`
+
+Full workflow:
+- https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36221875839
+- run #462
+- conclusion: **SUCCESS**
+
+This run passed:
+- syntax;
+- inherited M01–M13 structural/semantic regressions;
+- M14 v1.2 structural/evidence contract;
+- fixed-assessment hybrid math gate;
+- 19/19 instructional-math gate;
+- M14 handoff-state guard;
+- Chromium install;
+- existing M01–M13 browser flows;
+- the new unpublished-M14 browser probe.
+
+The M14 browser probe loaded SIDE276 through **test-only course-meta interception** while the persisted learner registry remained M01–M13. It exercised all 19 lesson/guided surfaces and all 38 prompt/reference/rubric paths. It reported **355 learner surfaces checked**, with save/reveal/export/import/reload, no replacement-character/escaped-newline corruption and no remaining horizontal overflow.
+
+The first browser attempt exposed a genuine mobile overflow defect. The shared CSS fix was then pinned as an exact runtime rebase in the M11 preservation baseline; run #462 proves the inherited browser suite still passes with accepted curriculum content unchanged.
+
+Gate-9 integration receipt:
+- `docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md`
+- result: **PASS_WITH_EVIDENCE**, builder-side only.
+
+M14 therefore proceeds to **focused independent follow-up**, not publication.
