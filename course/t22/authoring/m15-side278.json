@@ -37,9 +37,9 @@
     "designGate": "docs/t22-course/M15-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M15-PILOT-REVIEW.md",
     "pedagogicalAtoms": 16,
-    "authoredSessions": 0,
-    "ownershipClaimCount": 0,
-    "fixedAssessments": 0,
+    "authoredSessions": 4,
+    "ownershipClaimCount": 12,
+    "fixedAssessments": 8,
     "reviewProvenance": "Gate 0–3 design and S11 Gates 4–8 pilot completed by the builder. Pilot Gate 8 caught and repaired a solved-example/Main collision before bulk authoring. Independent adversarial review remains pending."
   },
   "sourceLedger": {
@@ -118,24 +118,808 @@
       }
     ]
   },
-  "sessions": [],
-  "problems": {},
-  "evaluators": {},
-  "coverage": {},
-  "claimEvidence": {},
-  "evidenceDistance": {},
+  "sessions": [
+    {
+      "order": 1,
+      "id": "T22V3::SIDE278::S01@1",
+      "moduleId": "SIDE278",
+      "title": "Orthogonal is not orthonormal",
+      "focus": "Distinguish orthogonal from orthonormal lists, normalize nonzero directions, and connect orthogonality to independence.",
+      "purpose": "M13 introduced pairwise dot-product orthogonality; M15 needs list-level structure before coordinates and projection.",
+      "centralCapability": "Classify and normalize fresh vector lists and prove the exact nonzero-hypothesis theorem linking orthogonality to independence.",
+      "principalObstacle": "Orthogonal is confused with unit length, and the zero vector is allowed into an independence proof.",
+      "entryPrerequisites": [
+        "M13 dot products, norms and orthogonality",
+        "M13 linear independence"
+      ],
+      "requiredOwnership": [
+        "Distinguish pairwise orthogonality from orthonormality and normalize a nonzero orthogonal list.",
+        "Prove that a finite pairwise-orthogonal list of nonzero vectors is linearly independent.",
+        "Diagnose the zero-vector boundary: pairwise zero dot products alone do not imply independence if the list contains 0."
+      ],
+      "applicationScope": "Exact finite vectors in R^n.",
+      "transferScope": "Audit a plausible theorem overextension caused by a hidden zero vector.",
+      "inScope": [
+        "orthogonal lists",
+        "orthonormal lists",
+        "normalization",
+        "orthogonality→independence with nonzero hypothesis"
+      ],
+      "outOfScope": [
+        "orthogonal complements",
+        "projection",
+        "Gram–Schmidt"
+      ],
+      "exitCondition": "Correctly classify, normalize and prove independence for a fresh list while handling the zero-vector exception.",
+      "lesson": "Orient. M13 let us test whether two vectors are perpendicular by a dot product. M15 needs a coordinate-system version of that idea. A list is orthogonal when every distinct pair has dot product zero. It is orthonormal only when it is orthogonal and every member also has norm one. Those are different claims.\n\nDefine and connect. If u≠0, then q=u/||u|| has norm one and keeps the same direction. Normalizing each member of an orthogonal nonzero list preserves every zero cross-dot-product. The zero vector is special: it is orthogonal to everything, but cannot be normalized and makes any containing list dependent.\n\nExplain. If c1u1+...+ckuk=0 for nonzero pairwise-orthogonal ui, dot with uj. All cross terms vanish and give cj||uj||^2=0. Since ||uj||^2>0, cj=0. Repeating for every j proves independence and shows exactly where nonzero is required.\n\nWorked example. a=(2,0) and b=(0,-3) satisfy a·b=0, but their norms are 2 and 3, so they are orthogonal, not orthonormal. Normalizing yields (1,0) and (0,-1).\n\nGuided practice. For u=(1,1), v=(1,-1), compute the dot product and norms, classify the pair, normalize it, and state the extra hypothesis needed for the independence theorem.\n\nFade. Fixed tasks use a three-vector R^3 list and a theorem-audit trap; no classifications are supplied.\n\nDistinction check. Pairwise orthogonality is a relation among vectors; orthonormality adds unit norm; independence follows only when every vector in the orthogonal list is nonzero.",
+      "guidedFeedback": "Check after attempting. u·v=0 and both norms are sqrt(2), so the pair is orthogonal but not orthonormal. Divide each by sqrt(2). The independence theorem requires every member to be nonzero.",
+      "main": "T22V3::SIDE278::S01-M@1",
+      "transfer": "T22V3::SIDE278::S01-T@1"
+    },
+    {
+      "order": 2,
+      "id": "T22V3::SIDE278::S02@1",
+      "moduleId": "SIDE278",
+      "title": "Orthonormal coordinates make geometry auditable",
+      "focus": "Derive dot-product coefficients in an orthonormal basis and the finite Pythagorean/Parseval identity.",
+      "purpose": "Projection becomes transparent only after the learner sees why orthonormal coordinates separate without interference.",
+      "centralCapability": "Recover orthonormal coordinates by dot products, reconstruct the vector, and verify squared-norm decomposition.",
+      "principalObstacle": "The formula ci=v·qi is memorized or applied to a basis that is not orthonormal.",
+      "entryPrerequisites": [
+        "S01 orthonormal lists",
+        "M13 basis coordinates"
+      ],
+      "requiredOwnership": [
+        "Derive the coefficient formula ci=v·qi for expansion in an orthonormal basis.",
+        "Use orthonormal coordinates to reconstruct vectors and verify the finite Pythagorean/Parseval identity.",
+        "Keep the orthonormal-basis hypothesis explicit rather than applying dot-product coefficients to arbitrary bases."
+      ],
+      "applicationScope": "Finite ON bases in R^n.",
+      "transferScope": "Use an incomplete ON list and interpret the leftover component rather than pretending the coefficients are complete coordinates.",
+      "inScope": [
+        "ON coordinates",
+        "finite Pythagorean identity",
+        "basis-hypothesis discipline"
+      ],
+      "outOfScope": [
+        "projection terminology",
+        "nearest-point theorem"
+      ],
+      "exitCondition": "Derive and use ON coordinate coefficients while detecting an incomplete orthonormal list.",
+      "lesson": "Orient. In an arbitrary basis, M13 coordinates can require solving equations. Orthonormal directions behave like independent sensors: dotting with one direction ignores every other direction.\n\nDefine. If v=Σciqi in an orthonormal basis, dot with qj. Because qi·qj=0 for i≠j and qj·qj=1, v·qj=cj. This is a theorem with an orthonormal-basis hypothesis, not a generic coordinate recipe.\n\nConnect. Expanding ||v||^2=v·v makes all cross terms vanish, so ||v||^2=Σci^2. Each orthogonal coordinate contributes independently to squared magnitude.\n\nWorked example. With q1=(1/sqrt(2))(1,1,0), q2=(1/sqrt(2))(1,-1,0), q3=(0,0,1), v=(4,2,3), coefficients are 3sqrt(2),sqrt(2),3. Their squared sum 18+2+9=29 equals ||v||^2.\n\nGuided practice. For r1=(1/sqrt(2))(1,0,1), r2=(0,1,0), r3=(1/sqrt(2))(1,0,-1), w=(3,2,1), compute coefficients, reconstruct w and verify the squared-norm identity.\n\nFade. Main uses a rational ON basis; Transfer intentionally supplies only two ON directions in R^3.\n\nDistinction check. Orthonormality licenses dot-product coordinates. Merely being independent or spanning does not.",
+      "guidedFeedback": "Check after attempting. Coefficients are 2sqrt(2),2,sqrt(2); they reconstruct (3,2,1), and 8+4+2=14=||w||^2.",
+      "main": "T22V3::SIDE278::S02-M@1",
+      "transfer": "T22V3::SIDE278::S02-T@1"
+    },
+    {
+      "order": 3,
+      "id": "T22V3::SIDE278::S03@1",
+      "moduleId": "SIDE278",
+      "title": "Orthogonal complements",
+      "focus": "Define W^perp, prove it is a subspace, and reduce a universal orthogonality condition to finitely many spanning-vector tests.",
+      "purpose": "Projection needs a precise space for residuals, not an informal perpendicular arrow.",
+      "centralCapability": "Compute and justify W^perp from span or constraint descriptions while preserving ambient-space meaning.",
+      "principalObstacle": "Testing one convenient vector is mistaken for testing the whole subspace, or W^perp is placed in another ambient space.",
+      "entryPrerequisites": [
+        "M13 span/subspace",
+        "M13 dot-product bilinearity",
+        "S01 orthogonality language"
+      ],
+      "requiredOwnership": [
+        "Define W^perp and prove it is a subspace of the same ambient R^n.",
+        "Reduce orthogonality to an entire finite span to dot-product constraints against a spanning set.",
+        "Compute a basis for a concrete orthogonal complement with correct ambient-space meaning."
+      ],
+      "applicationScope": "Finite subspaces of R^n.",
+      "transferScope": "Reverse representation from coordinate constraints to a span before constructing the complement.",
+      "inScope": [
+        "orthogonal complements",
+        "spanning tests",
+        "ambient typing"
+      ],
+      "outOfScope": [
+        "projection",
+        "four-fundamental-subspaces theorem"
+      ],
+      "exitCondition": "Compute W^perp from fresh data and justify why finite generator checks cover all of W.",
+      "lesson": "Orient. A residual should be perpendicular to every model direction, not merely one convenient vector. For W⊆R^n define W^perp={x∈R^n:x·w=0 for every w∈W}; both spaces live in the same ambient R^n.\n\nDefine and prove. 0 belongs to W^perp. If x,y∈W^perp and a,b are real, then (ax+by)·w=a(x·w)+b(y·w)=0 for every w∈W, so W^perp is a subspace.\n\nConnect. If W=span(w1,...,wk), checking x·wi=0 for every generator is enough: every w is Σciwi and bilinearity then forces x·w=0. This proof licenses the finite shortcut.\n\nWorked example. For W=span{(1,0,0),(0,1,0)}, x=(a,b,c) lies in W^perp exactly when a=b=0, so W^perp=span{(0,0,1)}.\n\nGuided practice. For L=span{(1,1,0)}, solve a+b=0 and parametrize L^perp with two independent spanning vectors.\n\nFade. Main couples two constraints; Transfer starts from a constrained-set description instead of a span.\n\nDistinction check. The definition quantifies over all of W; the generator test is a proved finite method, not the definition itself.",
+      "guidedFeedback": "Check after attempting. L^perp={(a,-a,c)}=span{(1,-1,0),(0,0,1)}.",
+      "main": "T22V3::SIDE278::S03-M@1",
+      "transfer": "T22V3::SIDE278::S03-T@1"
+    },
+    {
+      "order": 4,
+      "id": "T22V3::SIDE278::S04@1",
+      "moduleId": "SIDE278",
+      "title": "Every vector splits into model part plus perpendicular part",
+      "focus": "Construct and prove the unique orthogonal decomposition v=p+r with p∈W and r∈W^perp.",
+      "purpose": "Projection should emerge as one component of a structural decomposition, not a memorized formula.",
+      "centralCapability": "Construct and verify the W/W^perp split and prove uniqueness via W∩W^perp={0}.",
+      "principalObstacle": "Any algebraic split is mistaken for an orthogonal decomposition, or uniqueness is asserted without an intersection argument.",
+      "entryPrerequisites": [
+        "S03 orthogonal complements",
+        "S02 ON coordinates"
+      ],
+      "requiredOwnership": [
+        "Construct p∈W and r∈W^perp with v=p+r for concrete subspaces.",
+        "Prove W∩W^perp={0} and use it to establish uniqueness.",
+        "Distinguish an arbitrary vector split from an orthogonal decomposition by checking both memberships."
+      ],
+      "applicationScope": "Finite-dimensional real subspaces.",
+      "transferScope": "Audit a supplied line decomposition and independently recover its coefficient.",
+      "inScope": [
+        "orthogonal decomposition",
+        "uniqueness",
+        "membership checks"
+      ],
+      "outOfScope": [
+        "nearest-point theorem",
+        "matrix projector formula"
+      ],
+      "exitCondition": "Produce and justify the unique model-plus-perpendicular split for a fresh target.",
+      "lesson": "Orient. Orthogonal complements let us split a target into what lies in W and what remains perpendicular to W. We seek v=p+r with p∈W and r∈W^perp.\n\nExplain uniqueness first. If z∈W∩W^perp, then z is orthogonal to itself, so ||z||^2=0 and z=0. If p1+r1=p2+r2 are two valid splits, then p1-p2=r2-r1 lies in both spaces, hence is zero.\n\nConnect existence. With an ON basis q1,...,qk of W, define p=Σ(v·qi)qi. The residual has zero dot product with each qi and therefore with W; so r=v-p lies in W^perp.\n\nWorked example. For W=xy-plane and v=(2,-1,4), p=(2,-1,0), r=(0,0,4). The algebraic split (2,0,0)+(0,-1,4) is not orthogonal because the remainder is not perpendicular to every xy direction.\n\nGuided practice. For W=span{(1,1)} and v=(3,1), set p=t(1,1), impose residual orthogonality, solve t and verify both memberships.\n\nFade. Main uses a two-generator subspace; Transfer audits a proposed R^3 line decomposition.\n\nDistinction check. v=p+r alone is cheap; p∈W and r∈W^perp create the special decomposition and its uniqueness.",
+      "guidedFeedback": "Check after attempting. (3-t,1-t)·(1,1)=4-2t=0 gives t=2, so p=(2,2), r=(1,-1). Uniqueness follows from W∩W^perp={0}.",
+      "main": "T22V3::SIDE278::S04-M@1",
+      "transfer": "T22V3::SIDE278::S04-T@1"
+    }
+  ],
+  "problems": {
+    "T22V3::SIDE278::S01-M@1": {
+      "id": "T22V3::SIDE278::S01-M@1",
+      "order": 1,
+      "kind": "main",
+      "prompt": "Let u1=(1,1,0), u2=(1,-1,0), u3=(0,0,3). (a) Verify all pairwise dot products are zero. (b) Compute all norms and classify the list as orthogonal or orthonormal. (c) Normalize it explicitly. (d) From c1u1+c2u2+c3u3=0, prove c1=c2=c3=0 by dotting with the uj rather than citing the theorem.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S01-T@1": {
+      "id": "T22V3::SIDE278::S01-T@1",
+      "order": 1,
+      "kind": "transfer",
+      "prompt": "For z1=(2,0,0), z2=(0,-3,0), z3=(0,0,0), a report says: “Every pair has dot product zero, so the three vectors are independent and can all be normalized.” Audit every clause, identify the first invalid inference and failed hypothesis, and give the largest sublist that can be normalized to an orthonormal set.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S02-M@1": {
+      "id": "T22V3::SIDE278::S02-M@1",
+      "order": 2,
+      "kind": "main",
+      "prompt": "Let q1=(1,0,0), q2=(0,3/5,4/5), q3=(0,4/5,-3/5) be an orthonormal basis and v=(2,5,0). (a) Derive cj=v·qj from v=Σciqi. (b) Compute all coefficients. (c) Reconstruct v. (d) Verify ||v||^2=Σci^2 numerically.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S02-T@1": {
+      "id": "T22V3::SIDE278::S02-T@1",
+      "order": 2,
+      "kind": "transfer",
+      "prompt": "Let r1=(1/sqrt(2))(1,1,0), r2=(1/sqrt(2))(1,-1,0) and v=(3,1,2). Compute s=(v·r1)r1+(v·r2)r2 and h=v-s; verify h is orthogonal to both directions and ||v||^2=||s||^2+||h||^2. Explain why the two dot-product coefficients are not a complete basis-coordinate list for v in R^3.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S03-M@1": {
+      "id": "T22V3::SIDE278::S03-M@1",
+      "order": 3,
+      "kind": "main",
+      "prompt": "Let W=span{(1,1,0),(0,1,1)} in R^3. Explain why generator tests suffice, solve for W^perp, verify your basis, and prove directly that W^perp is closed under arbitrary real linear combinations.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S03-T@1": {
+      "id": "T22V3::SIDE278::S03-T@1",
+      "order": 3,
+      "kind": "transfer",
+      "prompt": "Let W={(x1,x2,x3,x4):x1=x2 and x3=0}. (a) Produce a spanning set for W. (b) Derive the dot-product constraints defining W^perp. (c) Give a basis for W^perp. (d) Check the concrete dimensions sum to 4 without citing an unproved general dimension theorem.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S04-M@1": {
+      "id": "T22V3::SIDE278::S04-M@1",
+      "order": 4,
+      "kind": "main",
+      "prompt": "Let W=span{(1,1,0),(0,0,1)} and v=(3,1,2). Find p∈W and r∈W^perp with v=p+r; verify both membership conditions; prove W∩W^perp={0}; then use that fact to prove this decomposition is unique.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S04-T@1": {
+      "id": "T22V3::SIDE278::S04-T@1",
+      "order": 4,
+      "kind": "transfer",
+      "prompt": "Let L=span{(1,0,1)} and v=(2,3,0). A report proposes p=(1,0,1), r=(1,3,-1). Audit p∈L, v=p+r and r∈L^perp; then start from p=t(1,0,1) and independently derive t from orthogonality. Explain why an arbitrary algebraic split with first term in L need not be orthogonal.",
+      "obligationVersion": 1
+    }
+  },
+  "evaluators": {
+    "T22V3::SIDE278::S01-M@1": {
+      "reference": "All three cross dot products are 0. Norms are sqrt(2), sqrt(2), 3, so the list is orthogonal but not orthonormal. Normalize to (1/sqrt(2))(1,1,0), (1/sqrt(2))(1,-1,0), (0,0,1). Dotting the zero combination with uj gives cj||uj||^2=0; all three squared norms are positive, hence every cj=0.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Verifies all three pairwise dot products are zero."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes norms sqrt(2), sqrt(2), 3 and distinguishes orthogonal from orthonormal."
+        },
+        {
+          "points": 2,
+          "criterion": "Produces a correct normalized orthonormal list."
+        },
+        {
+          "points": 4,
+          "criterion": "Proves independence by dotting the zero combination with each uj and using ||uj||^2>0."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact methods and valid proofs."
+    },
+    "T22V3::SIDE278::S01-T@1": {
+      "reference": "Every pairwise dot product is zero, but z3=0 makes the list dependent and violates the nonzero hypothesis; z3 also cannot be normalized. The maximal usable sublist is z1,z2, which normalizes to (1,0,0),(0,-1,0).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Confirms pairwise orthogonality without falsely inferring independence."
+        },
+        {
+          "points": 3,
+          "criterion": "Identifies z3=0 as the failed nonzero hypothesis and dependence witness."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why the zero vector cannot be normalized."
+        },
+        {
+          "points": 2,
+          "criterion": "Removes z3 and correctly normalizes z1,z2."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible where requested."
+    },
+    "T22V3::SIDE278::S02-M@1": {
+      "reference": "Dotting v=Σciqi with qj leaves cj. Here c=(2,3,4). Then 2q1+3q2+4q3=(2,5,0). Finally 29=4+9+16.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Derives cj=v·qj from the orthonormal expansion."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes coefficients (2,3,4)."
+        },
+        {
+          "points": 2,
+          "criterion": "Reconstructs v=(2,5,0)."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies 29=4+9+16 and links it to vanishing cross terms."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact methods and valid proofs."
+    },
+    "T22V3::SIDE278::S02-T@1": {
+      "reference": "Coefficients are 2sqrt(2),sqrt(2), so s=(3,1,0), h=(0,0,2). h is orthogonal to both; 14=10+4. The two vectors span only the xy-plane and are not a basis of R^3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes the two coefficients and s=(3,1,0)."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes h=(0,0,2) and verifies both orthogonality conditions."
+        },
+        {
+          "points": 3,
+          "criterion": "Verifies 14=10+4."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that two vectors do not form a basis of R^3, so the coefficients are incomplete."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible where requested."
+    },
+    "T22V3::SIDE278::S03-M@1": {
+      "reference": "For x=(a,b,c), constraints are a+b=0 and b+c=0, so x=t(1,-1,1). The generator is orthogonal to both spanning vectors. Closure follows from bilinearity: (rx+sy)·w=r(x·w)+s(y·w)=0.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Justifies why testing the two generators covers their whole span."
+        },
+        {
+          "points": 3,
+          "criterion": "Solves the constraints and obtains W^perp=span{(1,-1,1)}."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies the complement generator against both spanning vectors."
+        },
+        {
+          "points": 3,
+          "criterion": "Proves closure under arbitrary real linear combinations."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact methods and valid proofs."
+    },
+    "T22V3::SIDE278::S03-T@1": {
+      "reference": "W=span{(1,1,0,0),(0,0,0,1)}. For y=(a,b,c,d), complement constraints are a+b=0 and d=0, so W^perp=span{(1,-1,0,0),(0,0,1,0)}. Both dimensions are 2.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Rewrites W as span{(1,1,0,0),(0,0,0,1)}."
+        },
+        {
+          "points": 3,
+          "criterion": "Derives a+b=0 and d=0."
+        },
+        {
+          "points": 3,
+          "criterion": "Gives basis {(1,-1,0,0),(0,0,1,0)} for W^perp."
+        },
+        {
+          "points": 2,
+          "criterion": "Checks the concrete dimensions 2+2=4."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible where requested."
+    },
+    "T22V3::SIDE278::S04-M@1": {
+      "reference": "Write p=(a,a,b). Residual orthogonality gives 4-2a=0 and 2-b=0, so p=(2,2,2), r=(1,-1,0). The checks hold. If z∈W∩W^perp then z·z=0, so z=0; subtracting two valid decompositions puts their difference in the intersection, proving uniqueness.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes p=(2,2,2) and r=(1,-1,0) from orthogonality."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies p∈W and r∈W^perp."
+        },
+        {
+          "points": 2,
+          "criterion": "Proves W∩W^perp={0} using z·z=0."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the zero intersection to prove uniqueness."
+        }
+      ],
+      "marking": "Score only public obligations; accept equivalent exact methods and valid proofs."
+    },
+    "T22V3::SIDE278::S04-T@1": {
+      "reference": "The proposed p is in L, p+r=v, and r·(1,0,1)=0, so it is valid. Starting from t gives residual (2-t,3,-t), dot product 2-2t, hence t=1. Another split fails unless its residual also lies in L^perp.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Audits all three defining conditions for the proposed decomposition."
+        },
+        {
+          "points": 3,
+          "criterion": "Independently derives t=1 from residual orthogonality."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why first-term membership in L alone is insufficient."
+        },
+        {
+          "points": 2,
+          "criterion": "Connects orthogonality to uniqueness of the valid split."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible where requested."
+    }
+  },
+  "coverage": {
+    "T22V3::SIDE278::S01@1": [
+      "Distinguish pairwise orthogonality from orthonormality and normalize a nonzero orthogonal list.",
+      "Prove that a finite pairwise-orthogonal list of nonzero vectors is linearly independent.",
+      "Diagnose the zero-vector boundary: pairwise zero dot products alone do not imply independence if the list contains 0."
+    ],
+    "T22V3::SIDE278::S02@1": [
+      "Derive the coefficient formula ci=v·qi for expansion in an orthonormal basis.",
+      "Use orthonormal coordinates to reconstruct vectors and verify the finite Pythagorean/Parseval identity.",
+      "Keep the orthonormal-basis hypothesis explicit rather than applying dot-product coefficients to arbitrary bases."
+    ],
+    "T22V3::SIDE278::S03@1": [
+      "Define W^perp and prove it is a subspace of the same ambient R^n.",
+      "Reduce orthogonality to an entire finite span to dot-product constraints against a spanning set.",
+      "Compute a basis for a concrete orthogonal complement with correct ambient-space meaning."
+    ],
+    "T22V3::SIDE278::S04@1": [
+      "Construct p∈W and r∈W^perp with v=p+r for concrete subspaces.",
+      "Prove W∩W^perp={0} and use it to establish uniqueness.",
+      "Distinguish an arbitrary vector split from an orthogonal decomposition by checking both memberships."
+    ]
+  },
+  "claimEvidence": {
+    "T22V3::SIDE278::S01@1": [
+      {
+        "claim": "Distinguish pairwise orthogonality from orthonormality and normalize a nonzero orthogonal list.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S01-M@1"
+        ],
+        "publicRequestExact": [
+          "Let u1=(1,1,0), u2=(1,-1,0), u3=(0,0,3). (a) Verify all pairwise dot products are zero. (b) Compute all norms and classify the list as orthogonal or orthonormal. (c) Normalize it explicitly. (d) From c1u1+c2u2+c3u3=0, prove c1=c2=c3=0 by dotting with the uj rather than citing the theorem."
+        ],
+        "rubricEvidence": [
+          "Computes norms sqrt(2), sqrt(2), 3 and distinguishes orthogonal from orthonormal."
+        ],
+        "disposition": "adequate",
+        "why": "Main separately scores norms/classification and normalization.",
+        "escapeAttempt": "A zero dot-product list alone cannot earn the classification row.",
+        "generalizationDistance": "Fresh three-dimensional data replace the worked two-vector pair."
+      },
+      {
+        "claim": "Prove that a finite pairwise-orthogonal list of nonzero vectors is linearly independent.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S01-M@1"
+        ],
+        "publicRequestExact": [
+          "Let u1=(1,1,0), u2=(1,-1,0), u3=(0,0,3). (a) Verify all pairwise dot products are zero. (b) Compute all norms and classify the list as orthogonal or orthonormal. (c) Normalize it explicitly. (d) From c1u1+c2u2+c3u3=0, prove c1=c2=c3=0 by dotting with the uj rather than citing the theorem."
+        ],
+        "rubricEvidence": [
+          "Proves independence by dotting the zero combination with each uj and using ||uj||^2>0."
+        ],
+        "disposition": "adequate",
+        "why": "The proof row requires the dot-with-uj argument.",
+        "escapeAttempt": "A theorem name without proof loses the row.",
+        "generalizationDistance": "Honest proof reconstruction on a new three-vector list."
+      },
+      {
+        "claim": "Diagnose the zero-vector boundary: pairwise zero dot products alone do not imply independence if the list contains 0.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S01-T@1"
+        ],
+        "publicRequestExact": [
+          "For z1=(2,0,0), z2=(0,-3,0), z3=(0,0,0), a report says: “Every pair has dot product zero, so the three vectors are independent and can all be normalized.” Audit every clause, identify the first invalid inference and failed hypothesis, and give the largest sublist that can be normalized to an orthonormal set."
+        ],
+        "rubricEvidence": [
+          "Identifies z3=0 as the failed nonzero hypothesis and dependence witness."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer scores the zero-vector hypothesis failure explicitly.",
+        "escapeAttempt": "Pairwise orthogonality alone misses the decisive failure.",
+        "generalizationDistance": "Changed surface is theorem audit rather than construction."
+      }
+    ],
+    "T22V3::SIDE278::S02@1": [
+      {
+        "claim": "Derive the coefficient formula ci=v·qi for expansion in an orthonormal basis.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S02-M@1"
+        ],
+        "publicRequestExact": [
+          "Let q1=(1,0,0), q2=(0,3/5,4/5), q3=(0,4/5,-3/5) be an orthonormal basis and v=(2,5,0). (a) Derive cj=v·qj from v=Σciqi. (b) Compute all coefficients. (c) Reconstruct v. (d) Verify ||v||^2=Σci^2 numerically."
+        ],
+        "rubricEvidence": [
+          "Derives cj=v·qj from the orthonormal expansion."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores the derivation rather than formula recall.",
+        "escapeAttempt": "Quoted formula alone misses the derivation row.",
+        "generalizationDistance": "Fresh rational ON basis follows the taught proof architecture."
+      },
+      {
+        "claim": "Use orthonormal coordinates to reconstruct vectors and verify the finite Pythagorean/Parseval identity.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S02-M@1"
+        ],
+        "publicRequestExact": [
+          "Let q1=(1,0,0), q2=(0,3/5,4/5), q3=(0,4/5,-3/5) be an orthonormal basis and v=(2,5,0). (a) Derive cj=v·qj from v=Σciqi. (b) Compute all coefficients. (c) Reconstruct v. (d) Verify ||v||^2=Σci^2 numerically."
+        ],
+        "rubricEvidence": [
+          "Verifies 29=4+9+16 and links it to vanishing cross terms."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores reconstruction and norm identity.",
+        "escapeAttempt": "Coefficient list alone misses reconstruction/norm evidence.",
+        "generalizationDistance": "New basis and target prevent answer copying."
+      },
+      {
+        "claim": "Keep the orthonormal-basis hypothesis explicit rather than applying dot-product coefficients to arbitrary bases.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S02-T@1"
+        ],
+        "publicRequestExact": [
+          "Let r1=(1/sqrt(2))(1,1,0), r2=(1/sqrt(2))(1,-1,0) and v=(3,1,2). Compute s=(v·r1)r1+(v·r2)r2 and h=v-s; verify h is orthogonal to both directions and ||v||^2=||s||^2+||h||^2. Explain why the two dot-product coefficients are not a complete basis-coordinate list for v in R^3."
+        ],
+        "rubricEvidence": [
+          "Explains that two vectors do not form a basis of R^3, so the coefficients are incomplete."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer explicitly scores the completeness hypothesis.",
+        "escapeAttempt": "Treating an ON set as a full basis fails the row.",
+        "generalizationDistance": "Changed surface removes spanning and requires a remainder."
+      }
+    ],
+    "T22V3::SIDE278::S03@1": [
+      {
+        "claim": "Define W^perp and prove it is a subspace of the same ambient R^n.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S03-M@1"
+        ],
+        "publicRequestExact": [
+          "Let W=span{(1,1,0),(0,1,1)} in R^3. Explain why generator tests suffice, solve for W^perp, verify your basis, and prove directly that W^perp is closed under arbitrary real linear combinations."
+        ],
+        "rubricEvidence": [
+          "Proves closure under arbitrary real linear combinations."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores the subspace proof and finite-generator justification.",
+        "escapeAttempt": "A basis answer alone misses proof evidence.",
+        "generalizationDistance": "Proof reconstruction uses new W."
+      },
+      {
+        "claim": "Reduce orthogonality to an entire finite span to dot-product constraints against a spanning set.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S03-M@1"
+        ],
+        "publicRequestExact": [
+          "Let W=span{(1,1,0),(0,1,1)} in R^3. Explain why generator tests suffice, solve for W^perp, verify your basis, and prove directly that W^perp is closed under arbitrary real linear combinations."
+        ],
+        "rubricEvidence": [
+          "Justifies why testing the two generators covers their whole span."
+        ],
+        "disposition": "adequate",
+        "why": "Generator-to-span reasoning is explicitly scored.",
+        "escapeAttempt": "Testing only samples fails the row.",
+        "generalizationDistance": "New two-generator configuration."
+      },
+      {
+        "claim": "Compute a basis for a concrete orthogonal complement with correct ambient-space meaning.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S03-T@1"
+        ],
+        "publicRequestExact": [
+          "Let W={(x1,x2,x3,x4):x1=x2 and x3=0}. (a) Produce a spanning set for W. (b) Derive the dot-product constraints defining W^perp. (c) Give a basis for W^perp. (d) Check the concrete dimensions sum to 4 without citing an unproved general dimension theorem."
+        ],
+        "rubricEvidence": [
+          "Gives basis {(1,-1,0,0),(0,0,1,0)} for W^perp."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer requires constructing a basis after changing representation.",
+        "escapeAttempt": "A dimension count alone misses the basis row.",
+        "generalizationDistance": "Coordinate-defined W forces reverse representation."
+      }
+    ],
+    "T22V3::SIDE278::S04@1": [
+      {
+        "claim": "Construct p∈W and r∈W^perp with v=p+r for concrete subspaces.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S04-M@1"
+        ],
+        "publicRequestExact": [
+          "Let W=span{(1,1,0),(0,0,1)} and v=(3,1,2). Find p∈W and r∈W^perp with v=p+r; verify both membership conditions; prove W∩W^perp={0}; then use that fact to prove this decomposition is unique."
+        ],
+        "rubricEvidence": [
+          "Computes p=(2,2,2) and r=(1,-1,0) from orthogonality."
+        ],
+        "disposition": "adequate",
+        "why": "Main scores actual construction from orthogonality.",
+        "escapeAttempt": "A guessed split without derivation misses the row.",
+        "generalizationDistance": "Fresh tilted 2D subspace."
+      },
+      {
+        "claim": "Prove W∩W^perp={0} and use it to establish uniqueness.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE278::S04-M@1"
+        ],
+        "publicRequestExact": [
+          "Let W=span{(1,1,0),(0,0,1)} and v=(3,1,2). Find p∈W and r∈W^perp with v=p+r; verify both membership conditions; prove W∩W^perp={0}; then use that fact to prove this decomposition is unique."
+        ],
+        "rubricEvidence": [
+          "Uses the zero intersection to prove uniqueness."
+        ],
+        "disposition": "adequate",
+        "why": "Uniqueness proof is separately scored.",
+        "escapeAttempt": "Bare uniqueness claim earns no row.",
+        "generalizationDistance": "Proof reconstruction tied to concrete split."
+      },
+      {
+        "claim": "Distinguish an arbitrary vector split from an orthogonal decomposition by checking both memberships.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE278::S04-T@1"
+        ],
+        "publicRequestExact": [
+          "Let L=span{(1,0,1)} and v=(2,3,0). A report proposes p=(1,0,1), r=(1,3,-1). Audit p∈L, v=p+r and r∈L^perp; then start from p=t(1,0,1) and independently derive t from orthogonality. Explain why an arbitrary algebraic split with first term in L need not be orthogonal."
+        ],
+        "rubricEvidence": [
+          "Audits all three defining conditions for the proposed decomposition."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer scores condition-by-condition audit.",
+        "escapeAttempt": "Checking only p+r=v fails.",
+        "generalizationDistance": "Changed surface starts from a proposed report."
+      }
+    ]
+  },
+  "evidenceDistance": {
+    "T22V3::SIDE278::S01@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Taught proof architecture must be reconstructed on a fresh three-vector list."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Zero-vector report audit reverses the task and cannot be solved by substituting worked-example numbers."
+      }
+    },
+    "T22V3::SIDE278::S02@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Coefficient theorem is taught but must be derived and executed on fresh rational data."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Incomplete ON set changes full-coordinate expansion into component-plus-remainder and hypothesis diagnosis."
+      }
+    },
+    "T22V3::SIDE278::S03@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Universal-to-finite and closure proofs are reconstructed on new coupled constraints."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Coordinate constraints must first be converted into a span, reversing the visible examples."
+      }
+    },
+    "T22V3::SIDE278::S04@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Uniqueness architecture is taught but reconstructed with a fresh two-generator decomposition."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Learner audits a supplied report and independently recovers its coefficient rather than constructing from scratch."
+      }
+    }
+  },
   "semanticSeparationAudit": {
     "status": "PENDING BULK AUTHORING",
     "method": "Compare each fixed task with the closest answer-bearing visible instruction by mathematical object/data, requested conclusion, decisive argument and scored subanswers; string overlap is only a candidate finder.",
-    "tasks": {}
+    "tasks": {
+      "T22V3::SIDE278::S01-M@1": {
+        "sessionId": "T22V3::SIDE278::S01@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S01 worked a=(2,0),b=(0,-3)",
+          "S01 guided u=(1,1),v=(1,-1)"
+        ],
+        "mathematicalDifference": "Main uses three R^3 vectors, three normalization factors and an explicit coefficient proof.",
+        "exposureDisposition": "CLEAR — no Main vector list or answer is solved visibly."
+      },
+      "T22V3::SIDE278::S01-T@1": {
+        "sessionId": "T22V3::SIDE278::S01@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S01 explanation of the nonzero hypothesis"
+        ],
+        "mathematicalDifference": "Transfer embeds 0 in an otherwise pairwise-orthogonal list and asks for an audit plus repair.",
+        "exposureDisposition": "CLEAR — no solved zero-vector report appears."
+      },
+      "T22V3::SIDE278::S02-M@1": {
+        "sessionId": "T22V3::SIDE278::S02@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S02 worked rotated xy basis",
+          "S02 guided r-basis"
+        ],
+        "mathematicalDifference": "Main uses different rational ON directions and a new target; derivation is independently required.",
+        "exposureDisposition": "CLEAR — coefficients (2,3,4) are not exposed."
+      },
+      "T22V3::SIDE278::S02-T@1": {
+        "sessionId": "T22V3::SIDE278::S02@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S02 full-basis theorem"
+        ],
+        "mathematicalDifference": "Transfer supplies only two ON directions in R^3 and requires nonzero remainder plus completeness diagnosis.",
+        "exposureDisposition": "CLEAR — no incomplete-set answer is shown."
+      },
+      "T22V3::SIDE278::S03-M@1": {
+        "sessionId": "T22V3::SIDE278::S03@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S03 worked coordinate plane",
+          "S03 guided line"
+        ],
+        "mathematicalDifference": "Main uses two non-axis generators and a formal closure proof.",
+        "exposureDisposition": "CLEAR — (1,-1,1) is unseen."
+      },
+      "T22V3::SIDE278::S03-T@1": {
+        "sessionId": "T22V3::SIDE278::S03@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S03 span-based examples"
+        ],
+        "mathematicalDifference": "Transfer starts from equations in R^4 and requires reverse construction.",
+        "exposureDisposition": "CLEAR — no constrained R^4 example is solved."
+      },
+      "T22V3::SIDE278::S04-M@1": {
+        "sessionId": "T22V3::SIDE278::S04@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S04 worked xy-plane",
+          "S04 guided R2 line"
+        ],
+        "mathematicalDifference": "Main uses a tilted 2D subspace and formal uniqueness proof.",
+        "exposureDisposition": "CLEAR — p=(2,2,2),r=(1,-1,0) unseen."
+      },
+      "T22V3::SIDE278::S04-T@1": {
+        "sessionId": "T22V3::SIDE278::S04@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S04 guided coefficient pattern"
+        ],
+        "mathematicalDifference": "Transfer begins with a candidate report in R^3 and asks both audit and reconstruction.",
+        "exposureDisposition": "CLEAR — L/v/report unseen."
+      }
+    }
   },
   "prerequisiteAudit": {
     "status": "Gates 1–3 PASS; session-level audit pending canonical authoring",
-    "checks": []
+    "checks": [
+      {
+        "sessionId": "T22V3::SIDE278::S01@1",
+        "firstNewOperation": "list-level orthogonality/orthonormality",
+        "earlierOwnerOrBridge": "M13 dot product/norm plus local definitions",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S02@1",
+        "firstNewOperation": "orthonormal coordinate extraction and Parseval identity",
+        "earlierOwnerOrBridge": "S01 + M13 coordinates",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S03@1",
+        "firstNewOperation": "orthogonal complement",
+        "earlierOwnerOrBridge": "M13 span/subspace + dot bilinearity",
+        "status": "supported"
+      },
+      {
+        "sessionId": "T22V3::SIDE278::S04@1",
+        "firstNewOperation": "orthogonal decomposition and uniqueness",
+        "earlierOwnerOrBridge": "S03 complement + S02 ON coordinates",
+        "status": "supported"
+      }
+    ]
   },
   "instructionSeparation": {
     "status": "PENDING",
-    "sessions": {}
+    "sessions": {
+      "T22V3::SIDE278::S01@1": {
+        "workedExample": "a=(2,0),b=(0,-3)",
+        "guidedPractice": "u=(1,1),v=(1,-1)",
+        "main": "T22V3::SIDE278::S01-M@1",
+        "transfer": "T22V3::SIDE278::S01-T@1",
+        "status": "CLEAR — worked/guided instances differ from both fixed tasks."
+      },
+      "T22V3::SIDE278::S02@1": {
+        "workedExample": "rotated xy ON basis, v=(4,2,3)",
+        "guidedPractice": "r-basis, w=(3,2,1)",
+        "main": "T22V3::SIDE278::S02-M@1",
+        "transfer": "T22V3::SIDE278::S02-T@1",
+        "status": "CLEAR — worked/guided instances differ from both fixed tasks."
+      },
+      "T22V3::SIDE278::S03@1": {
+        "workedExample": "xy-plane complement",
+        "guidedPractice": "L=span(1,1,0)",
+        "main": "T22V3::SIDE278::S03-M@1",
+        "transfer": "T22V3::SIDE278::S03-T@1",
+        "status": "CLEAR — worked/guided instances differ from both fixed tasks."
+      },
+      "T22V3::SIDE278::S04@1": {
+        "workedExample": "xy-plane, v=(2,-1,4)",
+        "guidedPractice": "span(1,1), v=(3,1)",
+        "main": "T22V3::SIDE278::S04-M@1",
+        "transfer": "T22V3::SIDE278::S04-T@1",
+        "status": "CLEAR — worked/guided instances differ from both fixed tasks."
+      }
+    }
   },
   "initialVersionAudit": {
     "status": "All M15 obligations are new; no prior learner evidence or stable M15 authoring obligations existed at recovery.",
@@ -144,7 +928,32 @@
   "authoringPolicy": "Score only public obligations. Accept mathematically equivalent exact methods and notation. Require literal public evidence for every ownership claim. Label retrieval/proof reconstruction/fresh Main/changed-surface Transfer honestly. Do not infer mastery from builder validation.",
   "decisionAudit": {
     "status": "PENDING",
-    "tasks": {}
+    "tasks": {
+      "T22V3::SIDE278::S01-T@1": {
+        "claimedLearnerDecision": "Decide which clauses of a theorem-based report survive the zero-vector boundary.",
+        "alreadySuppliedByPrompt": "PARTLY — report supplied, validity not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — no solved zero-vector audit.",
+        "learnerActionActuallyScored": "Keeps pairwise orthogonality, rejects independence/normalization, repairs the list."
+      },
+      "T22V3::SIDE278::S02-T@1": {
+        "claimedLearnerDecision": "Decide whether two ON coefficients are complete coordinates in R^3.",
+        "alreadySuppliedByPrompt": "NO — spanning is not stated.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — full-basis case is taught.",
+        "learnerActionActuallyScored": "Constructs the span component/remainder and rejects completeness."
+      },
+      "T22V3::SIDE278::S03-T@1": {
+        "claimedLearnerDecision": "Choose a spanning representation before constructing the complement.",
+        "alreadySuppliedByPrompt": "NO — only coordinate constraints are supplied.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — examples start from spans.",
+        "learnerActionActuallyScored": "Builds W's span, complement constraints and basis."
+      },
+      "T22V3::SIDE278::S04-T@1": {
+        "claimedLearnerDecision": "Decide whether a supplied split satisfies the stronger orthogonal-decomposition contract.",
+        "alreadySuppliedByPrompt": "PARTLY — split supplied, validity not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — instruction constructs rather than audits.",
+        "learnerActionActuallyScored": "Checks sum/membership/orthogonality and independently derives t."
+      }
+    }
   },
   "misconceptionDiscriminatorAudit": {
     "status": "PENDING",
