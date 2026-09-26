@@ -144,7 +144,7 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
  assert.deepEqual(mv(A,[1,1,0]),[0,0]);
  assert.deepEqual(mv(A,[-2,0,1]),[0,0]);
  assert.equal(rank([[1,1,0],[-2,0,1]]),2);
- contains(id,'x=s(1,1,0)+t(-2,0,1)');
+ contains(id,'s(1,1,0)+t(-2,0,1)');
 }
 {
  const id='T22V3::SIDE276::S08-T@1',C=[[1,1,0,2],[0,1,1,-1]];
@@ -183,7 +183,7 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
  const id='T22V3::SIDE276::S10-T@1';
  const M=[[1,1,0],[1,2,1],[2,3,1]];
  assert.equal(rank(M),2);
- contains(id,'(1,1,2)^T','(1,2,3)^T','Col(M) and Col(R) need not be the same');
+ contains(id,'(1,1,2)^T','(1,2,3)^T','they need not be equal');
 }
 
 // S11
@@ -279,7 +279,7 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
  const CtoB=[[1,3],[1,4]],BtoC=[[4,-3],[-1,1]];
  assert.deepEqual(mv(BtoC,[7,9]),[1,2]);
  assert.deepEqual(mv(CtoB,[1,2]),[7,9]);
- contains(id,'used it backwards');
+ contains(id,'cannot be applied in that direction');
 }
 
 // S18
@@ -293,7 +293,7 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
 }
 {
  const id='T22V3::SIDE276::S18-T@1';
- contains(id,'P^{-1}AP','not PAP^{-1}','paired inverse coordinate maps');
+ contains(id,'P^{-1}AP','not PAP^{-1}','without inverse paired coordinate maps');
 }
 
 // S19
