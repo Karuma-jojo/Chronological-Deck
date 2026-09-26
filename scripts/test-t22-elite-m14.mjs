@@ -90,6 +90,15 @@ for(let i=0;i<19;i++){
 // matrix literal from an earlier lesson/guided answer/reference or from its
 // own lesson/guided answer. Incidental scalar/vector echoes are reviewed
 // semantically rather than treated as automatic contamination.
+//
+// Four non-matrix semantic exposures were found during adversarial review;
+// keep explicit regression fixtures so those solved instructional objects
+// cannot silently return to the fixed tasks.
+assert(!a.problems[a.sessions[4].main].prompt.includes("x+2y=5, -y+z=-3, and 2x+y+z=3"),'S05 Main reused the worked system');
+assert(!a.problems[a.sessions[5].main].prompt.includes("x+2y-z=3, 2x+5y+z=8, and -x+2z=1"),'S06 Main reused guided practice');
+assert(!a.problems[a.sessions[6].main].prompt.includes("x+y+z=4, 2x+3y+z=7, x+2y=3"),'S07 Main reused the worked system');
+assert(!a.problems[a.sessions[16].main].prompt.includes("c1=2b1+b2 and c2=-b1+3b2"),'S17 Main reused the guided basis-change matrix');
+
 const matrixRE=/\[\[[^\n]+?\]\]/g;
 const matrices=t=>[...new Set(t.match(matrixRE)||[])];
 for(const s of a.sessions){
@@ -133,7 +142,7 @@ const eq=(x,y)=>assert.deepEqual(x,y);
 
 // Selected independent reconstructions spanning the module.
 eq(mm([[1,0,2],[-1,3,1]],[[1,2],[0,-1],[2,1]]),[[5,4],[1,-4]]); // S04
-eq(mv([[1,1,1],[2,3,1],[1,2,0]],[1,1,2]),[4,7,3]);               // S07 family t=2
+eq(mv([[1,1,1],[2,3,1],[3,4,2]],[-2,3,2]),[3,7,10]);             // S07 family t=2
 eq(mv([[1,-1,2],[2,-2,4]],[1,1,0]),[0,0]);                       // S08
 eq(mv([[1,0,1],[0,1,1]],[1,0,2]),[3,2]);                         // S09 family t=2
 assert.equal(det([[0,2,1],[1,1,0],[2,0,3]]),-8);                  // S15
