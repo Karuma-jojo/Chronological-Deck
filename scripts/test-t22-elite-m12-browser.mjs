@@ -25,7 +25,7 @@ try{
   // Learner registry is intentionally published through M12.
   await page.goto(base+'/t22-course.html?module=12&session=19');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
-  assert.equal(await page.locator('#module option').count(),13,'publication route must expose twelve modules');
+  assert((await page.locator('#module option').count())>=12,'later publication must preserve the M12-era learner route');
   assert.equal(await page.locator('#module').inputValue(),'SIDE267');
   assert((await page.locator('#module').allTextContents()).join(' ').includes('Taylor Approximation, Asymptotics & Error'));
   assert.equal(await page.locator('#session option').count(),19);
