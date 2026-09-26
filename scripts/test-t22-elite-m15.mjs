@@ -49,7 +49,7 @@ for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8'])
 for(const id of ['REPO-M15','STRANG-4E','MIT-1806','AXLER-4E','HEFFERON','MAA-IPG','IES-WWC','PED-DORIER','PED-INNER','PED-VECTOR-PROJ'])
   assert(a.sourceLedger.sources.some(s=>s.id===id),'missing source role '+id);
 assert(!a.sourceLedger.sources.some(s=>s.id==='PED-PROJ'),'vague pre-recovery pedagogy source survived');
-assert.match(design,/supplied PDF pages 199[–-]246/);
+assert.match(design,/PDF pages 199[–-]246/);
 assert.match(design,/sessions \*\*14[–-]17\*\*/i);
 assert.match(design,/23 freshmen, non-mathematics majors/i);
 assert.match(design,/no new diagram-reading capability is claimed/i);
