@@ -1,3 +1,5 @@
+> **Current status (2026-09-26): PUBLISHED.** The review-era unpublished/stop statements below are historical receipts. Independent review accepted M14, the user authorized publication, SIDE276 is now registered as module 14, and M15 remains closed.
+
 # T22 Elite — M14 Builder/Adversarial Resolution
 
 Date: 2026-09-26  
@@ -290,3 +292,21 @@ The receipt captures pre-FU head `41f3de9bf2e055efe8f2f717da55f0e56fd540b2`, gre
 The repository does not self-certify independent acceptance. Before closing the hold, the independent reviewer must verify FU-01…FU-04 against the current artifacts **and** verify that the required Actions workflow on the exact current branch HEAD is fully green.
 
 M14 remains unpublished and M15 remains closed until that independent acceptance.
+
+
+---
+
+## Publication closure — 2026-09-26
+
+Independent review closed the final content hold. The user then explicitly authorized publication.
+
+Publication actions:
+- add SIDE276 to the shared learner registry as module 14;
+- mark SIDE276 `authored` in the roadmap;
+- mark SIDE276 `accepted` in the semantic-prerequisite ledger;
+- mark the canonical authoring pack `published-user-authorized-independent-accepted`;
+- convert the M14 browser test from unpublished test-only injection to direct persisted-registry verification.
+
+The review-era stop statements above remain historical evidence of the controlled process; they are superseded by this publication closure.
+
+M14 is now the learner frontier. M15 remains closed.
