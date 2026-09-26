@@ -53,7 +53,7 @@ for(const x of prior.changedAssessments){
 
 const allowedEvidence=new Set(['retrieval','proof reconstruction','fresh Main evidence','changed-surface Transfer']);
 const mainV=new Map([[11,2],[18,2],[19,2]]);
-const transferV=new Map([[7,2]]);
+const transferV=new Map([[7,2],[9,2]]);
 
 function validateClaim(s,c){
   assert(s.requiredOwnership.includes(c.claim),s.id+' foreign ownership claim');
@@ -132,7 +132,12 @@ for(const id of [a.sessions[3].main,a.sessions[18].main,...a.sessions.map(s=>s.t
 }
 
 // Gate 6 wrong-solver discrimination: rows must be actual rubric rows.
-assert.equal(a.misconceptionDiscriminatorAudit.cases.length,13);
+assert.equal(a.misconceptionDiscriminatorAudit.cases.length,19);
+assert.equal(a.misconceptionDiscriminatorAudit.designGateCoverage.length,16);
+assert(a.misconceptionDiscriminatorAudit.designGateCoverage.every(x=>x.status==='covered'&&x.caseIds.length>0),'all design-gate misconception rows must be explicitly covered');
+const mcIds=new Set(a.misconceptionDiscriminatorAudit.cases.map(x=>x.caseId));
+assert.equal(mcIds.size,a.misconceptionDiscriminatorAudit.cases.length,'misconception case IDs must be unique');
+for(const row of a.misconceptionDiscriminatorAudit.designGateCoverage)for(const id of row.caseIds)assert(mcIds.has(id),'design-gate row cites missing misconception case '+id);
 for(const c of a.misconceptionDiscriminatorAudit.cases){
   assert(a.problems[c.targetTask],'misconception target missing '+c.targetTask);
   const rows=a.evaluators[c.targetTask].rubric.map(r=>r.criterion);
@@ -144,9 +149,16 @@ for(const c of a.misconceptionDiscriminatorAudit.cases){
 // Independent-review findings R06/R07/R08/R09 must remain closed.
 assert(a.problems[a.sessions[10].main].prompt.includes('if an m-by-n matrix has r pivots'));
 assert(a.evaluators[a.sessions[10].main].rubric.some(r=>r.criterion.includes('r pivots give rank r')));
+assert(a.sessions[13].requiredOwnership[2].startsWith('Apply and justify the inverse-order rule'),'S14 still overclaims proof of the general inverse-product identity');
+assert(!a.sessions[13].requiredOwnership.some(x=>/Prove and apply \(AB\)/.test(x)),'S14 retained overstrong prove-and-apply ownership verb');
 assert(!a.sessions[13].requiredOwnership.some(x=>/singular matrices/.test(x)),'S14 retained unobserved singular branch');
 assert(a.problems[a.sessions[17].main].prompt.includes('Prove generally from determinant multiplicativity'));
 assert(a.evaluators[a.sessions[17].main].rubric.some(r=>r.criterion.includes('det(P^{-1}AP)=det(A)')));
+assert.equal(a.sessions[8].transfer,'T22V3::SIDE276::S09-T@2');
+assert(a.problems[a.sessions[8].transfer].prompt.includes('Two accepted parameter settings'));
+assert(!/nullspace|null space|N\(C\)|invisible parameter direction/i.test(a.problems[a.sessions[8].transfer].prompt),'S09 Transfer must not supply the hidden nullspace method cue');
+assert(a.evidenceDistance[a.sessions[8].id].transfer.mechanism.includes('same-output collision'));
+assert(a.decisionAudit.tasks[a.sessions[8].transfer].alreadySuppliedByPrompt.startsWith('PARTLY'));
 assert(a.problems[a.sessions[18].main].prompt.includes('choose the order of attack'));
 assert(a.evaluators[a.sessions[18].main].rubric[0].criterion.includes('Chooses a coherent audit route'));
 assert(a.sessions[18].lesson.includes('choose an order, reuse evidence where legitimate'));
