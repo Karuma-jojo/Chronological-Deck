@@ -196,3 +196,58 @@ Reopen the 19-session architecture only if concrete evidence requires it.
 ## Stop boundary
 
 **STOP at M14 for independent review. Do not publish M14, open M15, merge to main, or reinterpret legacy progress.**
+
+
+---
+
+## v1.2 independent-review repair round — 2026-09-26
+
+An independent review of the builder-verified head `937a4ca33a921ca87f83fa14651d87e473272ff1` applied the uploaded **T22 Module Builder and Adversarial Checker v1.2** more strictly and returned **REPAIR_REQUIRED, bounded repair, no rebuild**.
+
+The reviewer explicitly preserved the 19-session mathematical architecture and reopened Gates 5, 7, 8, 9 and 11.
+
+### Independent findings and current dispositions
+
+| ID | Independent finding | Repair |
+| --- | --- | --- |
+| M14-R01 | Gate 11 did not render unpublished M14 itself in the learner UI. | **REPAIRED IN CODE; exact-head run pending.** Added `scripts/test-t22-elite-m14-browser.mjs`, which uses test-only metadata interception to load unpublished SIDE276 into the real learner UI and walks all 19 lessons/guided states plus all 38 prompt/reference/rubric paths. |
+| M14-R02 | `semanticSeparationAudit` merely duplicated evidence labels. | **REPAIRED.** Replaced with a genuine 38-task ledger: closest instructional examples, mathematical-instance difference and exposure disposition for every current fixed task. |
+| M14-R03 | Evidence classes used non-v1.2 labels. | **REPAIRED.** Primary classes are now only `retrieval`, `proof reconstruction`, `fresh Main evidence` or `changed-surface Transfer`. Secondary mechanism descriptions are stored separately. |
+| M14-R04 | Required decision audits were absent. | **REPAIRED.** Added 21 decision-audit rows: every changed-surface Transfer plus S04 product-order choice and S19 synthesis. Each records the claimed decision, prompt cueing, visible rehearsal and actual scored action. |
+| M14-R05 | Gate 7 lacked generalization distance. | **REPAIRED.** All 60 ownership records now carry a reviewed `generalizationDistance` field. |
+| M14-R06 | S11 claimed the general rank-nullity derivation but observed only `3+2=5`. | **REPAIRED + VERSIONED.** S11 Main is now `S11-M@2` and explicitly derives `r+(n-r)=n`, including why the n-r special null solutions span and are independent. |
+| M14-R07 | S14 claim included singular rejection without a local observer. | **REPAIRED BY NARROWING.** S14 owns inverse-order reversal and the nonsquare two-sided-inverse boundary; singular rejection remains in S13. |
+| M14-R08 | S18 only numerically checked determinant invariance. | **REPAIRED + VERSIONED.** S18 Main is now `S18-M@2` and publicly proves `det(P^{-1}AP)=det(A)` from multiplicativity before the numerical check. |
+| M14-R09 | S19 was an integration recipe, not v1.2 synthesis. | **REPAIRED + VERSIONED.** S19 Main is now `S19-M@2`: the learner chooses the attack order, justifies at least two representation/method choices and reuses a shared row-reduction artifact while still meeting explicit output obligations. |
+| M14-R10 | Misconception discriminators were not systematically run against actual rubrics. | **REPAIRED.** Added 13 central wrong-solver cases, each tied to the current task and exact rubric rows it fails. |
+| M14-R11 | Math-gate prose overstated mechanical coverage. | **REPAIRED.** The fixed-task checker is now described as targeted arithmetic/property reconstruction plus reviewed reference assertions; prose proofs remain human semantic obligations. S10 non-membership was also upgraded from a weak failed-example check to an actual coefficient obstruction. |
+
+### Additional Gate-7 repairs found by the 60-claim generalization audit
+
+The required generalization-distance pass found additional overreach not listed in the independent review:
+
+- **S04-C2:** narrowed “interpret each product column” to “interpret a product column,” matching the fixed observer.
+- **S13-C3:** removed the unobserved “missing pivot” branch; the fixed Transfer owns rejection from a supplied nonzero null vector.
+- **S16-C2:** narrowed general n-dimensional volume ownership to the 2-by-2 area/orientation interpretation actually observed.
+- **S01-C3:** explicitly bounded the basis-determines-map claim to finite-dimensional coordinate settings.
+
+### Gate-10 version/provenance receipt
+
+Before editing public obligations, the prior head and fingerprints were captured in:
+
+`docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json`
+
+Versioned current tasks:
+
+- `S07-T@1 → S07-T@2`
+- `S11-M@1 → S11-M@2`
+- `S18-M@1 → S18-M@2`
+- `S19-M@1 → S19-M@2`
+
+M14 was unpublished at both versions, so no learner-route attempt is silently recertified.
+
+### Current status
+
+**v1.2 repairs implemented; full exact-head integration and the new M14 learner-UI Chromium probe must still pass before independent follow-up.**
+
+M14 remains unpublished. M15 remains closed.
