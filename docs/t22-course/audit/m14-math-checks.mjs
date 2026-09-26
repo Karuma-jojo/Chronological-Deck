@@ -166,10 +166,13 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
  contains(id,'not a subspace');
 }
 {
- const id='T22V3::SIDE276::S09-T@1',C=[[1,-1,1],[0,1,2]];
- assert.deepEqual(mv(C,[5,3,0]),[2,3]);
- assert.deepEqual(mv(C,[-3,-2,1]),[0,0]);
- contains(id,'C(q-p)=Cq-Cp=0');
+ const id='T22V3::SIDE276::S09-T@2',C=[[1,2,-1],[0,1,1]],p=[2,0,1],q=[-1,1,0],n=[-3,1,-1];
+ assert.deepEqual(mv(C,p),[1,1]);
+ assert.deepEqual(mv(C,q),[1,1]);
+ assert.deepEqual(q.map((v,i)=>v-p[i]),n);
+ assert.deepEqual(mv(C,n),[0,0]);
+ for(const s of [-3,0,1,4])assert.deepEqual(mv(C,add(p,sm(s,n))),[1,1]);
+ contains(id,'q-p=(-3,1,-1)^T','every solution is p+s(q-p)','C(x-p)=0');
 }
 
 // S10
