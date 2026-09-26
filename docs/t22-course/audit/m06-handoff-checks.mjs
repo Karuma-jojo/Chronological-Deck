@@ -28,7 +28,7 @@ assert.equal(road.modules.find(x=>x.id==='ARC502').availability,'authored');
 assert.equal(sem.entries.find(x=>x.id==='ARC502').semanticStatus,'accepted');
 assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'validation');
 assert(meta.moduleSources.some(x=>x.id==='ARC502'&&x.source==='course/t22/authoring/m06.json'));
-assert(meta.version.startsWith('T22E-course-0.13.'),'course metadata must preserve M06 while allowing the authorized route through M12');
+const courseMinor=Number(meta.version.match(/^T22E-course-0\.(\d+)\./)?.[1]||NaN);assert(courseMinor>=13,'course metadata must preserve M06 while allowing later authorized learner-route publication');
 assert.equal(meta.moduleSources.filter(x=>x.order<=6).length,6);
 assert(meta.moduleSources.some(x=>x.id==='T22E-MKT01'&&x.source==='course/t22/authoring/m07.json'));
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'),'Later-authorized M08 candidate must remain registered');
