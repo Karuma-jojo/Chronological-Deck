@@ -17,7 +17,7 @@ const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 
 assert.equal(a.module.order,14);
 assert.equal(a.module.id,'SIDE276');
-assert.equal(a.module.status,'builder-verified-adversarially-repaired-awaiting-independent-review');
+assert.equal(a.module.status,'v1.2-repaired-awaiting-integration-and-independent-follow-up');
 assert.equal(a.sessions.length,19);
 assert.equal(Object.keys(a.problems).length,38);
 assert.equal(Object.keys(a.evaluators).length,38);
@@ -54,14 +54,16 @@ for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8'])
 assert(resolution.includes('BOUNDED REPAIR'),'resolution must preserve bounded-repair disposition');
 assert(resolution.includes('No finding required a rebuild'),'resolution must preserve the bounded-repair architecture decision');
 assert(verification.includes('M14 remains intentionally **outside** the shared learner registry'),'verification lost unpublished-state receipt');
-assert(handoff.includes('awaiting independent review'),'handoff lost independent-review status');
+assert(handoff.includes('repaired awaiting full exact-head integration/browser verification and independent follow-up'),'handoff lost v1.2 repair/follow-up status');
 assert(handoff.includes('publish/register M14'),'handoff lost publication stop boundary');
 assert(handoff.includes('open M15'),'handoff lost M15 stop boundary');
 
 for(const cmd of [
   'node scripts/test-t22-elite-m14.mjs',
   'node docs/t22-course/audit/m14-math-checks.mjs',
-  'node docs/t22-course/audit/m14-instruction-math-checks.mjs'
+  'node docs/t22-course/audit/m14-instruction-math-checks.mjs',
+  'node docs/t22-course/audit/m14-handoff-checks.mjs',
+  'node scripts/test-t22-elite-m14-browser.mjs'
 ]) assert(workflow.includes(cmd),'workflow missing '+cmd);
 
 const authoringNames=fs.readdirSync('course/t22/authoring');
@@ -74,5 +76,13 @@ assert(fs.existsSync('docs/t22-course/M14-VERIFICATION.md'));
 assert(fs.existsSync('docs/t22-course/M14-REVIEW-HANDOFF.md'));
 assert(fs.existsSync('docs/t22-course/audit/m14-math-checks.mjs'));
 assert(fs.existsSync('docs/t22-course/audit/m14-instruction-math-checks.mjs'));
+assert(fs.existsSync('docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json'));
+assert(fs.existsSync('scripts/test-t22-elite-m14-browser.mjs'));
 
-console.log('PASS M14 handoff state: 19 sessions, 38 fixed tasks, 60 claims; source roles complete; M13 remains learner frontier; M14 unpublished and isolated; M15 closed; verification and independent-review stop boundary intact.');
+assert.equal(Object.keys(a.semanticSeparationAudit?.tasks||{}).length,38,'Gate 8 must cover all 38 current tasks');
+assert.equal(Object.values(a.claimEvidence).flat().filter(c=>typeof c.generalizationDistance==='string'&&c.generalizationDistance.length>20).length,60,'Gate 7 generalization-distance coverage');
+assert.equal(Object.keys(a.decisionAudit?.tasks||{}).length,21,'Gate 5 decision-audit coverage');
+assert.equal(a.misconceptionDiscriminatorAudit?.cases?.length,13,'wrong-solver audit coverage');
+assert(handoff.includes('S07-T@1 → S07-T@2')&&handoff.includes('S11-M@1 → S11-M@2')&&handoff.includes('S18-M@1 → S18-M@2')&&handoff.includes('S19-M@1 → S19-M@2'),'handoff lost Gate-10 version receipts');
+
+console.log('PASS M14 v1.2 handoff state: 19 sessions, 38 fixed tasks, 60 generalization-audited claims, 38 semantic-separation rows, decision/wrong-solver audits present; M13 remains learner frontier; M14 unpublished; M15 closed; browser gate required before independent follow-up.');
