@@ -1,0 +1,198 @@
+# T22 Elite — M14 Builder/Adversarial Resolution
+
+Date: 2026-09-26  
+Repository: `Karuma-jojo/Chronological-Deck`  
+Branch: `codex/t22-pedagogical-rebuild`  
+Module: **M14 · SIDE276 · Matrices, Linear Maps & Linear Systems**  
+Disposition: **BOUNDED REPAIR — PRESERVE THE 19-SESSION ARCHITECTURE**
+
+This file records the builder-side adversarial findings discovered before any M14 learner-route publication. It is **not** an independent pedagogical acceptance record.
+
+## Scope preserved
+
+No finding required a rebuild.
+
+Preserved:
+- **19 design-derived sessions**
+- **38 fixed Main/Transfer assessments**
+- **60 current ownership claims**
+- formal prerequisite: **M13 / ARC511 only**
+- route: linear maps → matrix representation → matrix-vector action → composition/product → exact systems/elimination → nullspace/complete solution → column space/rank/nullity → injective/surjective → invertibility/inverse → determinant → coordinate change/similarity → synthesis
+- M15 projection/least-squares, M16 eigenstructure, M17 factorizations and M23 numerical conditioning remain excluded
+- M14 remains **unpublished**
+
+## Findings and dispositions
+
+### M14-A01 — S04 associativity was taught but not observed
+
+**Finding.** The first S04 draft claimed learner ownership of associativity from function composition, but the fixed Main did not ask the learner to exhibit that capability.
+
+**Repair.** S04 Main now explicitly asks why `(CA)B=C(AB)` represents the same three-stage map `R∘S∘T`, and the rubric has a dedicated observer.
+
+**Disposition:** RESOLVED.
+
+### M14-A02 — fixed-task answer exposure escaped a literal matrix-only scan
+
+A first semantic scan caught several exact full-matrix reuses, but a later learner-only adversarial read found four deeper exposures that were not always represented as identical matrix literals:
+
+- **S05 Main** duplicated the worked system/witness;
+- **S06 Main** duplicated the guided augmented-matrix exercise;
+- **S07 Main** duplicated the worked underdetermined system;
+- **S17 Main** reused the guided basis-change matrix and therefore exposed its inverse structure.
+
+**Repair.** All four fixed tasks were regenerated on fresh mathematical objects before learner publication. Existing IDs remain obligation version 1 because no M14 learner route or stored attempt exists.
+
+A regression fixture now explicitly guards these four exposure classes, in addition to the full-matrix overlap scan.
+
+**Disposition:** RESOLVED.
+
+### M14-A03 — implicit elementary-matrix premise in S14
+
+**Finding.** The first inverse-construction explanation jumped from “perform row operations on `[A|I]`” to an unexplained combined left multiplier `E`.
+
+**Repair.** S14 now supplies the local bridge:
+- apply a legal row operation to `I` to obtain its elementary matrix `E`;
+- left multiplication `EA` applies that same row operation to `A`;
+- reversibility makes `E` invertible;
+- a sequence `E_k...E_1 A=I` applied simultaneously to the attached identity yields `A^{-1}`.
+
+The support-theorem ledger records this bridge. Numerical LU/pivoting remains deferred.
+
+**Disposition:** RESOLVED.
+
+### M14-A04 — row-echelon definition was under-explicit
+
+**Finding.** S07 initially used echelon language without giving the complete bounded definition before consuming pivot/free-variable structure.
+
+**Repair.** S07 now states:
+- nonzero rows precede zero rows;
+- successive pivots move strictly right;
+- entries below pivots are zero;
+- pivot normalization to 1 belongs to reduced echelon form, not ordinary echelon form.
+
+**Disposition:** RESOLVED.
+
+### M14-A05 — ownership claims stronger than their public observers
+
+Literal claim→task→rubric auditing found multiple cases where instruction was correct but the ownership sentence exceeded what the fixed task actually observed.
+
+Repairs:
+- **S01:** Transfer now derives, not merely uses, `T(0)=0`.
+- **S06:** Main now publicly justifies row swap, nonzero scaling and row replacement as reversible operations.
+- **S16:** Main now reconstructs the general `det(M)=0 ⇔ M noninvertible` argument from pivots/rank and determinant row rules.
+- **S12:** local claim wording was narrowed from a general proof claim because S13 owns the full square-map equivalence proof.
+
+**Disposition:** RESOLVED.
+
+### M14-A06 — second observer audit found additional bounded gaps
+
+A second independent-order read of all 60 ownership rows found:
+
+- **S07:** infinite/no-solution cases were observed, but the unique-solution echelon pattern was only taught;
+- **S09:** the task rejected subspace status for `b≠0`, but the claim also said when the solution set contains 0 generally;
+- **S11:** rank/nullity definitions were taught but not explicitly requested publicly;
+- **S12:** the claim generalized that unequal finite dimensions prevent simultaneous injectivity and surjectivity, while tasks only instantiated the fact;
+- **S10/S13/S15:** wording contained “define/prove/state” strength not warranted by the local fixed observer;
+- **S17:** its first claim had a valid conversion observer that was not cited in the evidence locator.
+
+Repairs:
+- S07 Transfer now states the all-variable-pivot/no-free-variable unique-solution criterion;
+- S09 Main now states `0∈{x:Ax=b} ⇔ b=0`;
+- S11 Main publicly states `rank(A)=dim Col(A)` and `nullity(A)=dim N(A)`;
+- S12 Transfer now generalizes from rank requirements to unequal dimensions;
+- S10/S13/S15 claim wording was narrowed rather than bloating tasks;
+- S17 evidence mapping now cites its conversion/verification rubric row.
+
+**Disposition:** RESOLVED.
+
+### M14-A07 — evidence-distance labels were optimistic
+
+**Finding.** Several fresh-number procedural Mains were labelled “fresh Main evidence” even though the method or proof architecture had been directly taught.
+
+**Repair.** Evidence labels were conservatively recalibrated:
+- S04: proof reconstruction + application;
+- S09: proof reconstruction + application;
+- S10: retrieval + integration;
+- S12: retrieval;
+- S15: retrieval + proof reconstruction;
+- S17: retrieval;
+- S18: proof reconstruction + application.
+
+Transfers that were not genuinely surface changes are now labelled by their real shift, including failure-mode, changed-constraint, misconception-audit, forensic, direction-audit and adversarial-synthesis Transfer.
+
+**Disposition:** RESOLVED.
+
+### M14-A08 — fixed-assessment mathematics and instructional mathematics needed separate gates
+
+**Finding.** Structural/evidence validation alone cannot certify every learner-facing worked/guided calculation.
+
+**Repair.** Added:
+- `docs/t22-course/audit/m14-math-checks.mjs` — fixed-task mathematics across all 19 sessions / 38 assessments;
+- `docs/t22-course/audit/m14-instruction-math-checks.mjs` — worked/guided mathematics across 19/19 lessons;
+- both are mandatory in `.github/workflows/t22-elite-checks.yml`.
+
+The M14 structural validator remains separate so evidence semantics and mathematics cannot silently stand in for each other.
+
+**Disposition:** RESOLVED.
+
+### M14-A09 — determinant pedagogy source was too vague
+
+**Finding.** The design gate said “Kazunga/Bansilal and related studies” without pinning the exact source.
+
+**Repair.** The dossier and canonical source ledger now identify:
+
+Cathrine Kazunga & Sarah Bansilal, “Misconceptions About Determinants,” in *Challenges and Strategies in Teaching Linear Algebra* (Springer, 2018), pp.127–145, DOI `10.1007/978-3-319-66811-6_6`.
+
+Its population and limitation are stated explicitly; misconception frequencies are not generalized to the T22 learner.
+
+**Disposition:** RESOLVED.
+
+## Mathematics preserved after repair
+
+The repairs did not alter M14's mathematical spine.
+
+Protected distinctions remain:
+- map versus basis-dependent matrix representation;
+- columns versus rows;
+- composition order versus scalar-style commutativity;
+- system versus augmented representation;
+- original matrix versus row-reduced matrix;
+- nullspace/domain versus column-space/codomain;
+- rank versus dimensions;
+- homogeneous subspace versus affine solution translate;
+- full-column versus full-row rank;
+- square versus invertible;
+- determinant algebra versus geometric interpretation;
+- determinant magnitude versus conditioning;
+- vector versus coordinate column;
+- same operator versus similar matrix representations.
+
+## Verification surface
+
+Mandatory builder gates now include:
+1. `scripts/test-t22-elite-m14.mjs`;
+2. `docs/t22-course/audit/m14-math-checks.mjs`;
+3. `docs/t22-course/audit/m14-instruction-math-checks.mjs`;
+4. the complete inherited T22 structural/regression suite;
+5. the existing shared-route Chromium workflow, which must continue to pass while M14 remains unpublished.
+
+## Independent-review target
+
+The next reviewer should **not** assume builder green means pedagogical acceptance.
+
+Prioritize:
+- S04 composition/product/associativity;
+- S05–S07 system/elimination progression and repaired separation;
+- S10 original-pivot-column argument;
+- S11 rank-nullity support proof;
+- S14 elementary-matrix inverse bridge;
+- S15–S16 determinant characterization/singularity/geometry boundary;
+- S17–S18 coordinate direction and similarity;
+- all 60 literal ownership observers;
+- the two M14 math checkers, especially whether they genuinely reconstruct rather than merely pin text.
+
+Reopen the 19-session architecture only if concrete evidence requires it.
+
+## Stop boundary
+
+**STOP at M14 for independent review. Do not publish M14, open M15, merge to main, or reinterpret legacy progress.**
