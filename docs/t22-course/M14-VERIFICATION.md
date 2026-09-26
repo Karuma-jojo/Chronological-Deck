@@ -1,5 +1,7 @@
 # T22 Elite — M14 Verification
 
+> **Current-status override (2026-09-26):** the earlier builder-verification checkpoint below is historical. A later independent v1.2 review returned bounded REPAIR_REQUIRED findings M14-R01…R11. Those repairs are now implemented in source, but exact-head integration/browser verification is still required before independent follow-up.
+
 Date: 2026-09-26  
 Repository: `Karuma-jojo/Chronological-Deck`  
 Branch: `codex/t22-pedagogical-rebuild`  
@@ -245,32 +247,7 @@ S07 Transfer intentionally reuses the Main coefficient matrix with one changed r
 
 ### Fixed assessments
 
-`docs/t22-course/audit/m14-math-checks.mjs` independently reconstructs/checks mathematics across **all 19 sessions / 38 fixed assessments**, including:
-- basis-action linear maps;
-- matrix representations and products;
-- row/column views of `Ax`;
-- composition order and associativity;
-- row-operation arithmetic/reversibility;
-- parameterized solution families;
-- nullspace bases;
-- affine complete solutions;
-- original-pivot-column relations;
-- rank/nullity bounds;
-- injective/surjective consequences;
-- exact inverses/product inverse;
-- determinants and row-rule factors;
-- determinant singularity/geometry;
-- coordinate-change inverses;
-- similarity and invariants;
-- final synthesis.
-
-### Learner-facing instruction
-
-`docs/t22-course/audit/m14-instruction-math-checks.mjs` separately reconstructs worked/guided mathematics across **19/19 sessions**, including the elementary-matrix and rank-nullity support bridges.
-
-This separation prevents a green assessment oracle from falsely certifying an untested worked example.
-
-**Result: PASS.**
+`docs/t22-course/audit/m14-math-checks.mjs` provides targeted independent arithmetic/property checks across all **19 sessions / 38 current fixed assessments**, plus reviewed reference-string assertions where executable reconstruction is not a suitable proof oracle. Prose proofs remain part of human semantic review; a matching string is not treated as proof of mathematical correctness.\n\nThe v1.2 repair also strengthened the S10 non-membership check so it derives the only coefficients compatible with the first two coordinates and verifies the third-coordinate obstruction, rather than merely testing one arbitrary failed coefficient vector.\n\n**Current result:** repaired checker present; exact-head workflow still required.
 
 ## Adversarial repair summary
 
@@ -311,3 +288,22 @@ Still required:
 ## Stop boundary
 
 **STOP at M14 for independent review. Do not publish M14, open M15, merge/deploy, or rewrite accepted M01–M13 content.**
+
+
+---
+
+## v1.2 Gate 5/7/8/9/11 repair state
+
+The canonical M14 source now additionally contains:
+
+- **60/60 Gate-7 generalization-distance rows**;
+- a **38/38 task semantic-separation ledger** distinct from evidence classification;
+- only the four v1.2 primary evidence classes;
+- **21 decision-audit rows**;
+- **13 deliberate wrong-solver/rubric discriminator rows**;
+- version/provenance receipts for the four changed public obligations;
+- a repaired S19 synthesis that leaves a scored organizing decision.
+
+Gate 11 now has a dedicated unpublished-candidate browser test, `scripts/test-t22-elite-m14-browser.mjs`. It does not alter the persisted learner registry: only the Playwright test request for `course-meta.json` is intercepted, after which the real course UI/runtime loads SIDE276 as module 14 and renders every M14 lesson/guided/task/reference/rubric path.
+
+**Current acceptance status: repaired awaiting exact-head integration and independent follow-up; not independently accepted.**
