@@ -1,13 +1,13 @@
 {
-  "version": "m14-side276-v12-repair-candidate-v2",
+  "version": "m14-side276-v12-followup-repair-candidate-v3",
   "instructionVersion": "m14-side276-instruction-v2",
   "module": {
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "v1.2-repaired-awaiting-independent-follow-up",
+    "status": "v1.2-followup-repaired-awaiting-exact-head-verification",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
-    "gate": "Nineteen-session architecture preserved after independent v1.2 bounded repair. Gates 5,7,8,9,11 have repaired evidence: four-class evidence labels, 60 generalization-distance claim audits, 38 semantic-separation rows, decision/wrong-solver audits, versioned S07/S11/S18/S19 obligations, Gate-9 integration review and an actual unpublished-M14 learner-UI Chromium pass. Full implementation run #462 passed; M14 remains unpublished pending focused independent follow-up.",
+    "gate": "Nineteen-session architecture and mathematical spine preserved. Independent follow-up closed R01/R02/R06/R08/R09/R11 but found four final bounded evidence/provenance issues: S14 ownership verb, S09 Transfer distance, full design-gate wrong-solver coverage, and stale canonical-state text. FU-01/FU-02/FU-03 are repaired in the current candidate; M14 remains unpublished while the exact repaired head is rerun before focused independent acceptance.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
   },
   "boundary": {
@@ -40,7 +40,7 @@
     "authoredSessions": 19,
     "ownershipClaimCount": 60,
     "fixedAssessments": 38,
-    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication. Claim-observer audit found three wording/evidence gaps: S01 claimed derivation of T(0)=0 without observing it, S06 claimed all three elementary-operation justifications while assessing only row replacement, and S16 claimed a general determinant singularity derivation while assessing examples only. Public tasks were repaired. S12's local claim was narrowed because S13 owns the general proof. Evidence-distance labels were conservatively recalibrated: procedural fresh-instance Mains in S04/S09/S10/S12/S15/S17/S18 were relabelled as retrieval/proof-reconstruction/integration rather than overclaimed as fresh evidence; several Transfers were relabelled by their actual shift (failure-mode, misconception, direction or adversarial audit). A second literal-observer pass closed six bounded issues: S07 now observes the unique-solution echelon case, S09 observes the general b=0 condition for 0 in the solution set, S11 publicly states rank/nullity definitions, S12 observes the unequal-dimension injective+surjective impossibility, and S10/S13/S15 wording was narrowed to what fixed tasks literally demonstrate. S17's coordinate-change claim now cites its conversion/verification rubric row as well. Full workflow run 36219131246 at resolution head 9b2a61aa4059dabdae60dd2217361849347ff4be passed syntax, structural/pedagogy/semantic/evidence, both M14 math gates and the inherited Chromium route regression. Independent v1.2 review reopened Gates 5/7/8/9/11. Repair added 60/60 generalization-distance rows, a genuine 38-task semantic-separation ledger, normalized four-class evidence labels, 21 decision audits, 13 wrong-solver misconception discriminators, S07 Transfer changed-surface redesign, S11 general rank-nullity observer, S14 claim narrowing, S18 determinant-invariance proof observer, S19 organizing-choice synthesis, and several additional claim narrowings discovered by the generalization audit. Gate 11 M14 UI rendering remains pending until the browser probe lands and passes. Gate-9 learner-route integration review is recorded in docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md. Full run 36221875839 (#462) at head 59f6ceaea143255d024fcb0b2b78460035024cfa passed inherited regressions and the M14 unpublished-candidate UI probe after a real mobile-overflow repair."
+    "reviewProvenance": "Independent v1.2 review and follow-up are the controlling provenance. The 19-session architecture and mathematics were preserved. Current evidence package includes 60 claim observers with generalization distance, a 38-task semantic-separation ledger, decision audits, explicit coverage of all 16 design-gate misconception discriminators, versioned repairs for S07-T, S09-T, S11-M, S18-M and S19-M, targeted math/instruction gates, Gate-9 learner-route integration, and an unpublished-M14 Chromium probe. Run #469 at head 41f3de9bf2e055efe8f2f717da55f0e56fd540b2 was fully green before the final follow-up repairs. The current follow-up candidate must receive a new exact-head full workflow before independent acceptance."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -469,7 +469,7 @@
       "lesson": "Orient. Suppose Axp=b. If n∈N(A), then A(xp+n)=Axp+An=b, so adding any null vector preserves the output. Conversely, if Ax=b too, subtracting gives A(x-xp)=0, hence x-xp∈N(A). Therefore the complete solution set is exactly xp+N(A).\n\nThis is a structural theorem, not just a solving trick. The null space describes all ambiguity left after a target b is reached. Any two solutions of the same system differ by a null vector, and any null vector moves one solution to another.\n\nWorked example. Let A=[[1,1,0],[0,1,1]] and b=(2,1)^T. One particular solution is xp=(2,0,1). Solving Ax=0 gives N(A)=span{(-1,1,-1)}. Hence every solution is (2,0,1)+t(-1,1,-1)=(2-t,t,1-t). Direct multiplication returns b for all t.\n\nAffine versus subspace. N(A) always contains 0. The translated set xp+N(A) contains 0 exactly when b=0: if 0 solved Ax=b, then b=A0=0. Thus a consistent nonhomogeneous solution set with b≠0 is generally not a subspace even though it is parallel to the null space.\n\nGuided practice. For C=[[1,2,-1],[0,1,1]] and b=(3,1), find a particular solution, solve Cn=0, and write every solution as xp+t n. Then choose two different parameter values and verify their difference lies in N(C).\n\nDistinction check. “Many solutions” does not mean arbitrary inputs work. They form one translated copy of the null space anchored at a particular solution.",
       "guidedFeedback": "Check after attempting. One particular solution is xp=(1,1,0). Solving Cn=0 gives n=t(3,-1,1), so every solution is (1,1,0)+t(3,-1,1). Any two choices differ by a scalar multiple of (3,-1,1), hence by a null vector.",
       "main": "T22V3::SIDE276::S09-M@1",
-      "transfer": "T22V3::SIDE276::S09-T@1"
+      "transfer": "T22V3::SIDE276::S09-T@2"
     },
     {
       "order": 10,
@@ -643,7 +643,7 @@
       "requiredOwnership": [
         "Construct A^{-1} by reducing [A|I] to [I|A^{-1}] and explain why the same row operations produce the inverse.",
         "Verify a proposed inverse by two-sided multiplication and use it to solve Ax=b exactly when A is invertible.",
-        "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions."
+        "Apply and justify the inverse-order rule (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions."
       ],
       "applicationScope": "Small exact square matrices; explicit inversion is not presented as the preferred numerical method for large systems.",
       "transferScope": "Transfer changes from Gauss–Jordan construction to a composition audit with supplied inverses plus a nonsquare counterexample.",
@@ -969,13 +969,6 @@
       "prompt": "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0.",
       "obligationVersion": 1
     },
-    "T22V3::SIDE276::S09-T@1": {
-      "id": "T22V3::SIDE276::S09-T@1",
-      "order": 9,
-      "kind": "transfer",
-      "prompt": "A calibration map C=[[1,-1,1],[0,1,2]] must produce target b=(2,3)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about exact parameter ambiguity without using statistical terminology.",
-      "obligationVersion": 1
-    },
     "T22V3::SIDE276::S10-M@1": {
       "id": "T22V3::SIDE276::S10-M@1",
       "order": 10,
@@ -1121,6 +1114,13 @@
       "order": 19,
       "kind": "main",
       "prompt": "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. An internal memo makes four claims: (I) b is reachable but its preimages are not unique; (II) the reachable-output space has dimension 2 and one original column is redundant; (III) the square map is noninvertible; (IV) rewriting the same operator in basis C changes the table but not rank, determinant or invertibility. Produce one coherent technical audit. You must choose the order of attack and justify at least two representation/method choices. Reuse one exact row reduction as a shared artifact wherever it is genuinely informative. Your finished audit must give the complete solution set for Ax=b, an original-column basis for Col(A), mutually consistent rank/nullspace/determinant/invertibility evidence, the C-basis matrix D=P^{-1}AP, and a check of the stated invariants. Do not organize the response as a blind replay of the four claims; explain why your chosen route is efficient and valid.",
+      "obligationVersion": 2
+    },
+    "T22V3::SIDE276::S09-T@2": {
+      "id": "T22V3::SIDE276::S09-T@2",
+      "order": 9,
+      "kind": "transfer",
+      "prompt": "A controller uses C=[[1,2,-1],[0,1,1]]. Two accepted parameter settings p=(2,0,1)^T and q=(-1,1,0)^T are both reported to produce y=(1,1)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity.",
       "obligationVersion": 2
     }
   },
@@ -1453,28 +1453,6 @@
         {
           "points": 2,
           "criterion": "Rejects subspace status here and states the general condition 0∈{x:Ax=b} iff b=0."
-        }
-      ],
-      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
-    },
-    "T22V3::SIDE276::S09-T@1": {
-      "reference": "One choice is p=(5,3,0). The null equation gives n=(-3,-2,1) as a basis direction. Thus every calibration is (5,3,0)+t(-3,-2,1). If Cp=Cq=b, then C(q-p)=Cq-Cp=0, so q-p∈N(C). Therefore multiple parameter vectors can produce exactly the same reported output, with their differences confined to the null direction.",
-      "rubric": [
-        {
-          "points": 3,
-          "criterion": "Finds a valid p such as (5,3,0) and a nonzero null direction such as (-3,-2,1)."
-        },
-        {
-          "points": 3,
-          "criterion": "Describes every calibration as p+t(-3,-2,1), up to an equivalent null-space basis/particular solution."
-        },
-        {
-          "points": 2,
-          "criterion": "Proves C(q-p)=0 whenever Cp=Cq=b."
-        },
-        {
-          "points": 2,
-          "criterion": "Interprets the null direction as exact parameter ambiguity producing the same output."
         }
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
@@ -1924,6 +1902,28 @@
         }
       ],
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S09-T@2": {
+      "reference": "Cp=(1,1)^T and Cq=(1,1)^T. Their difference q-p=(-3,1,-1)^T is nonzero and C(q-p)=0, so the collision reveals a zero-output input direction. Solving Cx=y gives x2+x3=1 and x1+2x2-x3=1. With x3=t, x=(-1+3t,1-t,t). Equivalently, using s=1-t, every solution is p+s(q-p)=(2,0,1)+s(-3,1,-1), s∈R; s=0 gives p and s=1 gives q. Completeness follows because if Cx=y=Cp, then C(x-p)=0, and solving Cz=0 gives z=s(-3,1,-1), so every solution has exactly that form. The ambiguity is caused by a nontrivial zero-output direction, equivalently a nontrivial kernel/noninjectivity.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Verifies Cp=Cq=(1,1)^T and identifies the nonzero difference q-p=(-3,1,-1)^T with C(q-p)=0."
+        },
+        {
+          "points": 3,
+          "criterion": "Determines the complete family x=p+s(q-p)=(2,0,1)+s(-3,1,-1), or an equivalent parameterization, and shows p and q occur in it."
+        },
+        {
+          "points": 3,
+          "criterion": "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (-3,1,-1)^T."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that a nontrivial zero-output direction/noninjectivity is the structural source of the same-output ambiguity."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     }
   },
   "coverage": {
@@ -1997,7 +1997,7 @@
     "T22V3::SIDE276::S14@1": [
       "Construct A^{-1} by reducing [A|I] to [I|A^{-1}] and explain why the same row operations produce the inverse.",
       "Verify a proposed inverse by two-sided multiplication and use it to solve Ax=b exactly when A is invertible.",
-      "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions."
+      "Apply and justify the inverse-order rule (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions."
     ],
     "T22V3::SIDE276::S15@1": [
       "Use the determinant's alternating multilinear row rules with det(I)=1, distinguishing linearity in one row from false linearity of the whole matrix.",
@@ -2546,40 +2546,41 @@
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE276::S09-M@1",
-          "T22V3::SIDE276::S09-T@1"
+          "T22V3::SIDE276::S09-T@2"
         ],
         "publicRequestExact": [
           "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0.",
-          "A calibration map C=[[1,-1,1],[0,1,2]] must produce target b=(2,3)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about exact parameter ambiguity without using statistical terminology."
+          "A controller uses C=[[1,2,-1],[0,1,1]]. Two accepted parameter settings p=(2,0,1)^T and q=(-1,1,0)^T are both reported to produce y=(1,1)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity."
         ],
         "rubricEvidence": [
           "Proves both implications between Ax=b and x-xp∈N(A) using linearity.",
-          "Proves C(q-p)=0 whenever Cp=Cq=b."
+          "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (-3,1,-1)^T."
         ],
-        "why": "Both theorem directions and the same-output difference consequence are directly observed.",
+        "why": "Main proves the full affine-solution theorem; Transfer reverses the direction by starting from an unexplained same-output collision and reconstructing why every solution differs from p by a zero-output direction.",
         "escapeAttempt": "A parameterization alone cannot earn the proof rows.",
         "disposition": "adequate",
-        "generalizationDistance": "No material gap: Main proves both directions symbolically from Axp=b and Transfer proves the same-output difference result for arbitrary p,q on its map."
+        "generalizationDistance": "Main proves both directions symbolically from Axp=b. Transfer does not merely rename the theorem: it starts from two observed preimages and requires reconstructing the hidden zero-output structure and proving completeness of the resulting family."
       },
       {
         "claim": "Construct a complete parameterized solution set from one particular solution and a null-space basis.",
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE276::S09-M@1",
-          "T22V3::SIDE276::S09-T@1"
+          "T22V3::SIDE276::S09-T@2"
         ],
         "publicRequestExact": [
           "Let A=[[1,0,1],[0,1,1]] and b=(3,2)^T. (a) Find one particular solution xp and a basis for N(A). (b) Write the complete solution set as xp+N(A) and as a one-parameter coordinate formula. (c) Prove both directions of the statement 'x solves Ax=b iff x-xp∈N(A)'. (d) Decide whether this nonhomogeneous solution set is a subspace, and state the general condition on b under which the solution set of Ax=b contains 0.",
-          "A calibration map C=[[1,-1,1],[0,1,2]] must produce target b=(2,3)^T. (a) Find one calibration p and one nonzero invisible parameter direction n with Cn=0. (b) Describe every calibration producing b. (c) Suppose p and q are any two calibrations producing b; prove directly that q-p is invisible. Explain what this says about exact parameter ambiguity without using statistical terminology."
+          "A controller uses C=[[1,2,-1],[0,1,1]]. Two accepted parameter settings p=(2,0,1)^T and q=(-1,1,0)^T are both reported to produce y=(1,1)^T. A colleague says this is a coincidence and that only those two settings can produce y. Audit that claim without being told a named subspace or a preferred method. (a) Verify the two reported outputs. (b) Diagnose mathematically why two distinct settings can share the same output, producing an exact structural witness from p,q and C. (c) Determine every x∈R^3 with Cx=y in a form that makes p and q visible as members. (d) Prove that your family is complete rather than merely a collection of examples, and state the structural feature of C that creates the ambiguity."
         ],
         "rubricEvidence": [
           "Writes all solutions as (3,2,0)+t(-1,-1,1)=(3-t,2-t,t).",
-          "Describes every calibration as p+t(-3,-2,1), up to an equivalent null-space basis/particular solution."
+          "Determines the complete family x=p+s(q-p)=(2,0,1)+s(-3,1,-1), or an equivalent parameterization, and shows p and q occur in it.",
+          "Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (-3,1,-1)^T."
         ],
-        "why": "Learner constructs full solution sets on two different systems.",
+        "why": "Main constructs a solution family from a particular solution and null basis; Transfer reconstructs the complete family from a same-output collision without being told to invoke the nullspace/affine-translate theorem.",
         "escapeAttempt": "One particular vector cannot satisfy the complete-family rows.",
         "disposition": "adequate",
-        "generalizationDistance": "Observed on two distinct consistent systems; ownership is bounded to finite exact solution sets."
+        "generalizationDistance": "Observed on two distinct consistent systems with different starting information: Main is theorem-forward, while Transfer is collision-first and requires reconstructing the hidden homogeneous direction before parameterizing all preimages."
       },
       {
         "claim": "Distinguish a homogeneous null subspace from a nonhomogeneous affine translate and state when the solution set contains 0.",
@@ -2877,7 +2878,7 @@
         "generalizationDistance": "Observed by two-sided verification and exact solving for the fresh inverse."
       },
       {
-        "claim": "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions.",
+        "claim": "Apply and justify the inverse-order rule (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions.",
         "task": "transfer",
         "taskIds": [
           "T22V3::SIDE276::S14-T@1"
@@ -2893,7 +2894,7 @@
         "why": "Transfer tests order reversal plus hypothesis checking on a different surface.",
         "escapeAttempt": "Writing A^{-1}B^{-1} or accepting a nonsquare inverse fails explicit rows.",
         "disposition": "adequate",
-        "generalizationDistance": "Repaired/narrowed: Transfer proves inverse-order reversal and rejects a 2-by-3 two-sided inverse; singular rejection remains owned by S13 rather than implied here."
+        "generalizationDistance": "Transfer verifies the rule on one concrete invertible pair and requires a composition-level undo-order justification. Ownership therefore says apply and justify the general rule, not prove the arbitrary identity from scratch; the nonsquare two-sided-inverse boundary is literally observed."
       }
     ],
     "T22V3::SIDE276::S15@1": [
@@ -3299,7 +3300,7 @@
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "mechanism": "calibration ambiguity and same-output difference proof"
+        "mechanism": "same-output collision and false 'only two settings' report → infer the hidden zero-output direction and reconstruct the complete preimage family without a nullspace cue"
       }
     },
     "T22V3::SIDE276::S10@1": {
@@ -3572,16 +3573,6 @@
         "mathematicalDifference": "Main uses a fresh map/target and reconstructs both theorem directions plus the b=0 origin condition.",
         "exposureDisposition": "CLEAR — theorem architecture is taught, numerical instance is fresh."
       },
-      "T22V3::SIDE276::S09-T@1": {
-        "sessionId": "T22V3::SIDE276::S09@1",
-        "kind": "transfer",
-        "closestInstructionalExamples": [
-          "S09 affine-solution theorem",
-          "S09 guided solution-family practice"
-        ],
-        "mathematicalDifference": "Transfer uses calibration ambiguity and asks for an invisible direction and same-output difference proof.",
-        "exposureDisposition": "CLEAR — changed application surface and fresh coefficients."
-      },
       "T22V3::SIDE276::S10-M@1": {
         "sessionId": "T22V3::SIDE276::S10@1",
         "kind": "main",
@@ -3774,6 +3765,16 @@
         ],
         "mathematicalDifference": "Transfer combines four false claims on a fresh 2-by-2 matrix into one technical memo audit.",
         "exposureDisposition": "CLEAR — answers for M are not present in instruction; combined surface requires reconstruction across representations."
+      },
+      "T22V3::SIDE276::S09-T@2": {
+        "sessionId": "T22V3::SIDE276::S09@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S09 affine-solution theorem and worked xp+N(A) construction",
+          "S09 guided practice: construct a family from a supplied system"
+        ],
+        "mathematicalDifference": "Instruction proceeds forward from a particular solution plus zero-output directions. The new Transfer instead begins with two distinct observed inputs that collide at the same output and an incorrect 'only two settings' report; the learner must infer the hidden zero-output direction and then prove the complete preimage family without a nullspace cue.",
+        "exposureDisposition": "CLEAR — the exact matrix, collision pair, output, complete family and diagnostic route are not solved in visible instruction; the mathematical direction and information surface are changed."
       }
     }
   },
@@ -3866,12 +3867,6 @@
         "decisivelyRehearsedInVisibleInstruction": "YES — nullspace construction is taught; parameter-language surface is new.",
         "learnerActionActuallyScored": "Finds the two null directions (-1,1,-1,0) and (-2,0,1,1), up to an equivalent basis."
       },
-      "T22V3::SIDE276::S09-T@1": {
-        "claimedLearnerDecision": "Choose a calibration and invisible direction, then explain all calibration ambiguity.",
-        "alreadySuppliedByPrompt": "NO — map/target are supplied; particular/null choices are not.",
-        "decisivelyRehearsedInVisibleInstruction": "YES — xp+N(A) is taught.",
-        "learnerActionActuallyScored": "Finds a valid p such as (5,3,0) and a nonzero null direction such as (-3,-2,1)."
-      },
       "T22V3::SIDE276::S10-T@1": {
         "claimedLearnerDecision": "Reject or accept the student's RREF-column basis claim.",
         "alreadySuppliedByPrompt": "NO — a wrong claim is supplied, correct original-column basis must be chosen.",
@@ -3937,11 +3932,17 @@
         "alreadySuppliedByPrompt": "NO — required outputs are public, but no computation order or first method is prescribed.",
         "decisivelyRehearsedInVisibleInstruction": "PARTLY — S19 lesson/guided practice rehearses the available tool map, not the order or exact route for this A,b,P.",
         "learnerActionActuallyScored": "Chooses a coherent audit route and justifies at least two representation/method choices instead of following a supplied computation order."
+      },
+      "T22V3::SIDE276::S09-T@2": {
+        "claimedLearnerDecision": "Recognize that a same-output collision should be analyzed through the difference of the two inputs, infer the zero-output structure, and use it to reconstruct every preimage.",
+        "alreadySuppliedByPrompt": "PARTLY — the prompt supplies C,p,q,y and asks for a structural witness, but it does not name nullspace/kernel, affine translates, the xp+N(A) theorem, or a solution method.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — S09 teaches xp+N(A), but the visible instruction starts from a known particular solution/nullspace; the Transfer reverses the direction by starting from an unexplained collision and an incorrect finite-settings claim.",
+        "learnerActionActuallyScored": "Verifies Cp=Cq=(1,1)^T and identifies the nonzero difference q-p=(-3,1,-1)^T with C(q-p)=0. | Proves completeness by showing any solution x satisfies C(x-p)=0 and that every zero-output difference is a scalar multiple of (-3,1,-1)^T."
       }
     }
   },
   "misconceptionDiscriminatorAudit": {
-    "status": "PASS_WITH_EVIDENCE for the central misconceptions listed in the design gate; each flawed solver was compared with the actual current task/rubric.",
+    "status": "PASS_WITH_EVIDENCE after follow-up repair: all 16 design-gate failure modes are explicitly accounted for by current-task wrong solvers and exact rubric-row failures; additional adversarial cases are retained where useful.",
     "cases": [
       {
         "misconception": "Affine offset mistaken for linearity",
@@ -3950,7 +3951,8 @@
         "rubricRowsFailed": [
           "Derives L(0)=0 from linearity and applies Q(0,0)=(1,0)≠0 to reject Q."
         ],
-        "discriminationResult": "Rejected: the rubric requires deriving L(0)=0 and applying Q(0,0)≠0."
+        "discriminationResult": "Rejected: the rubric requires deriving L(0)=0 and applying Q(0,0)≠0.",
+        "caseId": "MC01"
       },
       {
         "misconception": "Composition order treated left-to-right",
@@ -3960,7 +3962,8 @@
           "Chooses DC for 'first C, then D' and explains that the first-applied map appears on the right.",
           "Computes DC=[[3,6],[0,2]] and the composite output (-3,-2)^T."
         ],
-        "discriminationResult": "Rejected: wrong product/order misses both semantic-order and composite-output credit."
+        "discriminationResult": "Rejected: wrong product/order misses both semantic-order and composite-output credit.",
+        "caseId": "MC04"
       },
       {
         "misconception": "Row operation changes coefficients but not RHS",
@@ -3970,7 +3973,8 @@
           "Identifies that the right-hand side must undergo the same row replacement and computes [0,7/2|3/2].",
           "Explains that leaving the constant at 4 changes the represented equation/system rather than giving an equivalent row."
         ],
-        "discriminationResult": "Rejected: correct full augmented row and changed-system diagnosis are separately scored."
+        "discriminationResult": "Rejected: correct full augmented row and changed-system diagnosis are separately scored.",
+        "caseId": "MC05B"
       },
       {
         "misconception": "Equation/variable count decides solution type",
@@ -3982,7 +3986,8 @@
           "Repairs E3 to a unique solution because every variable column has a pivot and identifies (2,-1,3) if values are reported.",
           "States the correct three-way echelon decision rule in terms of contradiction rows and free versus fully pivoted variable columns."
         ],
-        "discriminationResult": "Rejected: every classification row requires pivot/free/contradiction evidence."
+        "discriminationResult": "Rejected: every classification row requires pivot/free/contradiction evidence.",
+        "caseId": "MC06"
       },
       {
         "misconception": "Nullspace placed in output space",
@@ -3991,7 +3996,8 @@
         "rubricRowsFailed": [
           "Justifies independence and distinguishes the R^4 input/null space from the R^2 output space."
         ],
-        "discriminationResult": "Rejected: ambient input/null-space typing is explicit in the rubric."
+        "discriminationResult": "Rejected: ambient input/null-space typing is explicit in the rubric.",
+        "caseId": "MC08"
       },
       {
         "misconception": "RREF columns used as original column-space basis",
@@ -4001,7 +4007,8 @@
           "Rejects the RREF-column basis claim and gives {(1,1,2)^T,(1,2,3)^T} from the original matrix.",
           "Explains that row operations preserve column coefficient relations via equality of the homogeneous solution sets Mc=0 and Rc=0."
         ],
-        "discriminationResult": "Rejected: rubric requires corresponding original columns and the preservation explanation."
+        "discriminationResult": "Rejected: rubric requires corresponding original columns and the preservation explanation.",
+        "caseId": "MC07"
       },
       {
         "misconception": "Impossible nullity accepted without rank bound",
@@ -4012,7 +4019,8 @@
           "Uses the codomain bound rank≤3 to identify the contradiction.",
           "Concludes that nullity must be at least 3 for any map R^6→R^3."
         ],
-        "discriminationResult": "Rejected: rank-nullity plus rank≤3 must expose rank 4 as impossible."
+        "discriminationResult": "Rejected: rank-nullity plus rank≤3 must expose rank 4 as impossible.",
+        "caseId": "MC09B"
       },
       {
         "misconception": "Square implies invertible",
@@ -4023,7 +4031,8 @@
           "Uses square equal dimensions to reject surjectivity and infer that at least one right-hand side is unreachable.",
           "Concludes that a two-sided inverse does not exist, without invoking determinant/eigenvalue machinery."
         ],
-        "discriminationResult": "Rejected: kernel/rank/surjectivity/inverse consequences are separately scored."
+        "discriminationResult": "Rejected: kernel/rank/surjectivity/inverse consequences are separately scored.",
+        "caseId": "MC10"
       },
       {
         "misconception": "Determinant treated as a linear map on matrices",
@@ -4033,7 +4042,8 @@
           "Computes det(2I_3)=8 and uses it to refute both claimed whole-matrix linearity statements.",
           "Explains that determinant is linear in each row separately with other rows fixed, so scaling all three rows produces 2^3."
         ],
-        "discriminationResult": "Rejected by the I3 counterexample and row-multilinearity criterion."
+        "discriminationResult": "Rejected by the I3 counterexample and row-multilinearity criterion.",
+        "caseId": "MC12"
       },
       {
         "misconception": "Equal determinant means equal stability",
@@ -4043,7 +4053,8 @@
           "Exhibits the directional contrast e1→1000e1 and e2→0.001e2 for D versus identity action for I_2.",
           "Rejects the numerical-stability conclusion because determinant alone does not measure directional sensitivity/conditioning."
         ],
-        "discriminationResult": "Rejected: directional contrast and the conditioning boundary are explicit obligations."
+        "discriminationResult": "Rejected: directional contrast and the conditioning boundary are explicit obligations.",
+        "caseId": "MC13"
       },
       {
         "misconception": "Coordinate matrix applied in the wrong direction",
@@ -4054,7 +4065,8 @@
           "Computes P_{C←B}=P^{-1}=[[4,-3],[-1,1]] and obtains [w]_C=(1,2)^T.",
           "Verifies the result by P_{B←C}(1,2)^T=(7,9)^T."
         ],
-        "discriminationResult": "Rejected: direction diagnosis, inverse computation and back-conversion are all scored."
+        "discriminationResult": "Rejected: direction diagnosis, inverse computation and back-conversion are all scored.",
+        "caseId": "MC15"
       },
       {
         "misconception": "Similarity convention reversed",
@@ -4064,7 +4076,8 @@
           "Tracks C→B with P, applies A in B, and tracks B→C with P^{-1} in the correct order.",
           "Concludes the correct representation is P^{-1}AP and identifies why PAP^{-1} reverses the named conversion convention."
         ],
-        "discriminationResult": "Rejected: the rubric requires the C→B→apply→B→C arrow chain."
+        "discriminationResult": "Rejected: the rubric requires the C→B→apply→B→C arrow chain.",
+        "caseId": "MC16"
       },
       {
         "misconception": "Multi-error memo accepted by surface cues",
@@ -4076,7 +4089,191 @@
           "Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation.",
           "Corrects the basis formula to P^{-1}MP for P=P_{B←C} and justifies the C→B→apply→B→C direction."
         ],
-        "discriminationResult": "Rejected across all four rubric rows; no convenient data lets the false models earn full credit."
+        "discriminationResult": "Rejected across all four rubric rows; no convenient data lets the false models earn full credit.",
+        "caseId": "MCX1"
+      },
+      {
+        "caseId": "MC02",
+        "misconception": "Basis images treated as insufficient to define a map",
+        "targetTask": "T22V3::SIDE276::S01-M@1",
+        "plausibleFlawedResponse": "Knowing F(e1) and F(e2) is not enough to determine F on other vectors; an explicit coordinate formula must be supplied separately.",
+        "rubricRowsFailed": [
+          "Uses the basis decomposition to obtain F(2,-1)=(4,5,-4).",
+          "Explains that unique basis coordinates plus linearity force the map on every input."
+        ],
+        "discriminationResult": "Rejected: the task requires constructing F(2,-1) from the basis images and explicitly explaining why unique basis coordinates plus linearity determine every input."
+      },
+      {
+        "caseId": "MC03",
+        "misconception": "Matrix-vector multiplication treated only as row-dot arithmetic",
+        "targetTask": "T22V3::SIDE276::S03-M@1",
+        "plausibleFlawedResponse": "Compute the two row dot-products correctly and stop; there is no need to interpret Ax as a weighted combination of columns or read input/output dimensions from the matrix shape.",
+        "rubricRowsFailed": [
+          "Computes Ax=(-1,1)^T as the requested combination of A's three columns.",
+          "Identifies a 3-coordinate input and 2-coordinate output from the 2-by-3 shape."
+        ],
+        "discriminationResult": "Rejected: row-dot arithmetic alone misses the independently scored column-combination interpretation and dimension meaning."
+      },
+      {
+        "caseId": "MC05",
+        "misconception": "Row operations believed to alter the solution set",
+        "targetTask": "T22V3::SIDE276::S06-M@1",
+        "plausibleFlawedResponse": "After replacing a row, the equations are different, so the reduced system may have different solutions and cannot be used as an equivalent system.",
+        "rubricRowsFailed": [
+          "Gives the inverse replacements R2←R2+3R1 and R3←R3+2R1 and links reversibility to the same solution set.",
+          "Explains that a row swap is self-inverse and nonzero scaling by c is reversed by scaling by 1/c, completing the three reversible elementary-operation types."
+        ],
+        "discriminationResult": "Rejected: the rubric requires inverse operations and an explicit reversibility argument establishing the same solution set for all three elementary-operation types."
+      },
+      {
+        "caseId": "MC09",
+        "misconception": "Rank confused with row or column count",
+        "targetTask": "T22V3::SIDE276::S10-M@1",
+        "plausibleFlawedResponse": "A is 3-by-4, so its rank must be 3 because it has three rows (or 4 because it has four columns), without checking pivots or image dimension.",
+        "rubricRowsFailed": [
+          "Finds pivot-column indices 1 and 2 from a valid row reduction to [[1,0,-2,-1],[0,1,1,2],[0,0,0,0]] or equivalent.",
+          "Uses original columns a1=(1,0,1)^T and a2=(2,1,3)^T as a basis and verifies a3=-2a1+a2, a4=-a1+2a2."
+        ],
+        "discriminationResult": "Rejected: the fresh 3-by-4 matrix has only pivot columns 1 and 2, so rank is 2; the rubric requires actual pivot structure and a two-vector original-column basis."
+      },
+      {
+        "caseId": "MC11",
+        "misconception": "A nonsquare matrix may still have a two-sided inverse if its columns look independent",
+        "targetTask": "T22V3::SIDE276::S14-T@1",
+        "plausibleFlawedResponse": "The 2-by-3 matrix C can have C^{-1} as long as its columns are sufficiently independent; rectangular shape alone does not prevent a two-sided inverse.",
+        "rubricRowsFailed": [
+          "Rejects a two-sided inverse for the 2-by-3 matrix C using unequal domain/codomain dimensions."
+        ],
+        "discriminationResult": "Rejected: the task explicitly requires using the unequal R^3 domain and R^2 codomain dimensions to rule out a two-sided inverse."
+      },
+      {
+        "caseId": "MC14",
+        "misconception": "Area or volume scaling silently substituted as the definition of determinant",
+        "targetTask": "T22V3::SIDE276::S16-M@1",
+        "plausibleFlawedResponse": "The determinant is defined as the area scale factor, so the geometric picture itself is the algebraic definition and no distinction is needed.",
+        "rubricRowsFailed": [
+          "Distinguishes the volume-scaling theorem/interpretation from the algebraic determinant characterization."
+        ],
+        "discriminationResult": "Rejected: S16 Main separately scores the statement that volume/area scaling is a theorem/interpretation, not the algebraic determinant characterization used for computation."
+      }
+    ],
+    "designGateCoverage": [
+      {
+        "designFailure": "Affine translation accepted as linear because its graph “looks straight”",
+        "caseIds": [
+          "MC01"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Basis images treated as insufficient to define a map",
+        "caseIds": [
+          "MC02"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Matrix-vector product treated only as row-dot arithmetic",
+        "caseIds": [
+          "MC03"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "AB=BA or composition order reversed",
+        "caseIds": [
+          "MC04"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Row operation believed to alter the solution set",
+        "caseIds": [
+          "MC05",
+          "MC05B"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Number of equations/unknowns used alone to classify solutions",
+        "caseIds": [
+          "MC06"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Columns of RREF used as a basis for Col(A)",
+        "caseIds": [
+          "MC07"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Null space and column space placed in the same ambient space",
+        "caseIds": [
+          "MC08"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Rank confused with rows/columns count",
+        "caseIds": [
+          "MC09",
+          "MC09B"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Square assumed invertible",
+        "caseIds": [
+          "MC10"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Inverse used on nonsquare/singular matrix",
+        "caseIds": [
+          "MC10",
+          "MC11"
+        ],
+        "status": "covered",
+        "note": "MC10 supplies the singular-square branch; MC11 supplies the nonsquare branch."
+      },
+      {
+        "designFailure": "Determinant treated as linear in the whole matrix",
+        "caseIds": [
+          "MC12"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Large |det A| claimed to imply numerical stability",
+        "caseIds": [
+          "MC13"
+        ],
+        "status": "covered",
+        "note": "MC13 attacks the same forbidden determinant→stability inference with equal determinant and extreme directional sensitivity; the rubric explicitly states determinant alone does not measure conditioning."
+      },
+      {
+        "designFailure": "Area/volume scaling silently substituted as the definition",
+        "caseIds": [
+          "MC14"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Change-of-basis direction reversed",
+        "caseIds": [
+          "MC15"
+        ],
+        "status": "covered"
+      },
+      {
+        "designFailure": "Similarity formula memorized without basis semantics",
+        "caseIds": [
+          "MC16"
+        ],
+        "status": "covered"
       }
     ]
   },
@@ -4104,8 +4301,27 @@
         "old": "T22V3::SIDE276::S19-M@1",
         "current": "T22V3::SIDE276::S19-M@2",
         "reason": "numbered recipe → organizing-choice synthesis"
+      },
+      {
+        "old": "T22V3::SIDE276::S09-T@1",
+        "current": "T22V3::SIDE276::S09-T@2",
+        "reason": "context-only calibration replay → collision-first changed-surface reconstruction"
       }
     ],
     "learnerEvidenceDisposition": "M14 was not in the shared learner registry at either version; no M14 learner attempts are silently recertified."
+  },
+  "followupRepair": {
+    "priorAcceptedForFollowupHead": "41f3de9bf2e055efe8f2f717da55f0e56fd540b2",
+    "priorGreenRun": {
+      "id": 36222070177,
+      "number": 469
+    },
+    "versionReceipt": "docs/t22-course/audit/m14-followup-pre-fu-repair-version-receipt.json",
+    "dispositions": {
+      "FU-01": "S14 ownership narrowed from prove to apply and justify; fixed assessment unchanged.",
+      "FU-02": "S09 Transfer versioned to @2 and redesigned as collision-first reconstruction rather than context-only replay.",
+      "FU-03": "Wrong-solver ledger now explicitly accounts for all 16 design-gate failure modes.",
+      "FU-04": "Canonical construction-state residue is being replaced by exact final head/run evidence after rerun."
+    }
   }
 }
