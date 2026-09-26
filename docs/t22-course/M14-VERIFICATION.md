@@ -1,341 +1,151 @@
 # T22 Elite — M14 Verification
 
-> **Current-status override (2026-09-26):** the earlier builder-verification checkpoint below is historical. A later independent v1.2 review returned bounded REPAIR_REQUIRED findings M14-R01…R11. Those repairs are now implemented in source, but exact-head integration/browser verification is still required before independent follow-up.
-
 Date: 2026-09-26  
-Repository: `Karuma-jojo/Chronological-Deck`  
-Branch: `codex/t22-pedagogical-rebuild`  
-Module: **M14 · SIDE276 · Matrices, Linear Maps & Linear Systems**
+Module: **M14 · SIDE276 · Matrices, Linear Maps & Linear Systems**  
+Branch: `codex/t22-pedagogical-rebuild`
 
-## First complete repaired implementation checkpoint
+## Authoritative current state
 
-Implementation/source-ledger head:
-- `f38e340ccf5db82235fe6257d070cd484f82e70b`
+M14 is **unpublished**. M13 remains the learner frontier and M15 remains closed.
 
-Full workflow:
-- run: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36219050868
-- conclusion: **SUCCESS**
-- syntax checks: **SUCCESS**
-- structural/pedagogy/semantic/evidence regressions: **SUCCESS**
-- M14 fixed-assessment math checker: **SUCCESS**
-- M14 instructional math checker: **SUCCESS**
-- browser dependency/Chromium/shared-route browser workflow: **SUCCESS**
+The 19-session architecture and mathematical spine survived both independent review rounds. The current candidate contains the final bounded follow-up repairs:
 
-This is builder verification plus an adversarial self-review cycle. It is **not** independent pedagogical acceptance.
+- **FU-01:** S14 ownership now says **apply and justify** the inverse-order rule rather than overclaiming a general proof.
+- **FU-02:** `S09-T@1 → S09-T@2`; the Transfer now starts from a same-output collision and false finite-settings report, requiring reconstruction of the hidden zero-output direction and complete preimage family without a nullspace cue.
+- **FU-03:** the wrong-solver ledger explicitly accounts for **all 16/16 design-gate failure modes**; 19 concrete current-task attacks are retained.
+- **FU-04:** stale construction-state language and obsolete #462-as-current wording have been removed from the canonical verification/handoff contract.
 
-A later documentation-only exact head must also pass the same workflow before this handoff is treated as final.
+The pre-follow-up fully green baseline was:
+- head `41f3de9bf2e055efe8f2f717da55f0e56fd540b2`
+- workflow #469 / `36222070177`
+- all steps green, including the unpublished-M14 Chromium probe.
 
-## Scope verified
+That run is historical evidence for the state before FU-01…FU-04. It is **not** used to self-certify a later commit.
 
-Canonical candidate:
-- `course/t22/authoring/m14-side276.json`
+## Exact-head verification rule
 
-Design/research:
-- `docs/t22-course/M14-DESIGN-GATE.md`
-- `docs/t22-course/M14-PILOT-REVIEW.md`
-- `docs/t22-course/M14-RESOLUTION.md`
+This file deliberately does not embed a supposedly permanent “latest” run number.
 
-Executable verification:
-- `scripts/test-t22-elite-m14.mjs`
-- `docs/t22-course/audit/m14-math-checks.mjs`
-- `docs/t22-course/audit/m14-instruction-math-checks.mjs`
-- full inherited T22 regression/browser suite
+For independent acceptance, verify that the **required GitHub Actions workflow attached to the current branch HEAD** is green on that exact SHA. An older green run is insufficient after any content, evaluator, test or canonical-state edit.
 
-## Whole-module route audit
+Required layers:
 
-### Entry
+1. syntax checks;
+2. inherited M01–M13 structural/semantic/evidence regressions;
+3. `scripts/test-t22-elite-m14.mjs`;
+4. `docs/t22-course/audit/m14-math-checks.mjs`;
+5. `docs/t22-course/audit/m14-instruction-math-checks.mjs`;
+6. `docs/t22-course/audit/m14-handoff-checks.mjs`;
+7. existing learner-browser regressions;
+8. `scripts/test-t22-elite-m14-browser.mjs`.
 
-Formal prerequisite remains exactly:
-- **M13 / ARC511 — Vectors, Span, Basis & Dot Products**
+The handoff message to the independent reviewer must name the exact final SHA and successful run URL/ID observed after these edits.
 
-M13 supplies:
-- typed finite real vectors;
-- linear combinations/span/subspaces;
-- independence/bases/coordinates;
-- finite dimension;
-- Euclidean dot-product geometry.
+## Current evidence package
 
-M14 does **not** assume prior matrix arithmetic, elimination, rank, determinant, inverse algorithms or change-of-basis matrices.
+### Architecture / boundary
+- 19 design-derived sessions
+- 38 current fixed assessments
+- 60 retained ownership claims
+- formal prerequisite: M13 / ARC511
+- no projection/least-squares, eigenstructure, QR/SVD, conditioning or matrix-calculus leakage
 
-### Route
+### Gate 5
+Primary evidence classes use only:
+- `retrieval`
+- `proof reconstruction`
+- `fresh Main evidence`
+- `changed-surface Transfer`
 
-The 19-session route is:
+Every Transfer slot is audited separately from its descriptive mechanism.
 
-1. linear maps before matrices;
-2. matrix representation from basis images;
-3. matrix-vector action / row-column meanings;
-4. composition and matrix multiplication;
-5. systems as `Ax=b`;
-6. reversible row operations;
-7. echelon structure / pivots / free variables;
-8. null space;
-9. complete affine solution;
-10. column space / reachability / original pivot columns;
-11. rank / nullity / rank-nullity;
-12. injective versus surjective rectangular maps;
-13. square invertibility equivalences;
-14. exact inverse construction;
-15. determinant algebra;
-16. determinant singularity / geometry / scope;
-17. vector coordinate changes;
-18. similarity: one operator, two bases;
-19. whole-module synthesis.
+`S09-T@2` is the final material Transfer repair: it reverses the information direction from “particular solution + null direction → family” to “two unexplained colliding inputs → infer hidden zero-output structure → reconstruct every preimage.”
 
-The count is design-derived. It does not inherit the legacy eight-arc SIDE276 split or copy M13's session count.
-
-## Source-grounding audit
-
-### User-supplied deep comparator
-
-The complete **571-page** Strang *Introduction to Linear Algebra*, 4th ed. scan was used as the main first-course comparator, not merely the parser-visible first 150 pages.
-
-Relevant inspected regions:
-- Ch.2 §§2.1–2.5 — `Ax=b`, elimination, products, inverse;
-- Ch.3 §§3.2–3.4 — nullspace, rank/RREF, complete solution;
-- Ch.5 §§5.1, 5.3 — determinant rules, singularity, area/volume;
-- Ch.7 §§7.1–7.2 — linear transformations, matrices, composition, change of basis.
-
-Deliberate non-imports:
-- Ch.4 projection/least squares → M15;
-- Ch.6 eigenstructure → M16;
-- §7.3 pseudoinverse → later;
-- numerical LU/conditioning → M23.
-
-### Other source roles
-
-- MIT OCW 18.06/18.06SC — canonical university route comparator;
-- Axler 4e — theorem/hypothesis and basis-direction comparator;
-- Hefferon — developmental first-course comparator;
-- MAA Instructional Practices Guide — undergraduate mathematics pedagogy;
-- IES/WWC learning guide — worked examples/problems and representation connections;
-- Dorier/Hillel/Sierpinska — representation difficulties in linear algebra;
-- Oktaç — linear-transformation representation difficulties;
-- Trigueros/Possani — matrix multiplication through transformations;
-- Ramirez/Oktaç — systems/equivalent-system meaning;
-- Caglayan — similarity/change-of-basis coordination;
-- Kazunga & Bansilal (2018) — determinant misconception comparator, now pinned exactly with population/limitations.
-
-Repository ownership remains authoritative over all external sources.
-
-## Final whole-module type check
-
-### Mathematical objects
-
-Protected typing:
-- `T:V→W` map versus its chosen-basis matrix;
-- input/domain coordinate dimension versus output/codomain coordinate dimension;
-- `N(A)⊆R^n` versus `Col(A)⊆R^m`;
-- vector versus coordinate column;
-- one operator versus its similar matrix representations.
-
-**Result: PASS.**
-
-### Definitions / theorems / interpretations
-
-Protected distinctions include:
-- linearity laws before matrix representation;
-- multiplication as represented composition;
-- row operations as reversible equation transformations;
-- original pivot columns versus RREF columns;
-- rank as `dim Col(A)`, nullity as `dim N(A)`;
-- homogeneous null subspace versus nonhomogeneous affine translate;
-- injective/full-column-rank versus surjective/full-row-rank;
-- square versus invertible;
-- inverse existence versus inverse construction;
-- determinant alternating row-multilinearity versus false whole-matrix linearity;
-- determinant algebraic characterization versus volume/orientation interpretation;
-- determinant magnitude versus conditioning;
-- basis conversion versus changing the underlying vector;
-- similarity versus arbitrary left/right multiplication.
-
-**Result: PASS.**
-
-### Support theorems / hidden prerequisites
-
-Surfaced before use:
-- basis determines a finite linear map;
-- matrix of a map in ordered bases;
-- product/composition correspondence;
-- reversibility of all three elementary row-operation types;
-- explicit row-echelon definition;
-- complete solution `x_p+N(A)`;
-- original-pivot-column basis rule;
-- rank-nullity support argument;
-- equal-dimension injective/surjective collapse;
-- elementary-matrix bridge for `[A|I]`;
-- determinant row rules and multiplicativity;
-- determinant singularity equivalence;
-- change-of-coordinate inverse direction;
-- similarity/invariant arguments.
-
-The S11 instruction explicitly proves why free-variable special solutions span and are independent, rather than merely asserting their count.
-
-**Result: PASS.**
-
-### Future boundary
-
-No M14 learner task consumes:
-- projection, Gram–Schmidt or least squares;
-- eigenvalues/eigenvectors/diagonalization;
-- QR/Cholesky/SVD/pseudoinverse;
-- Jacobians/Hessians/matrix calculus;
-- floating-point pivoting, numerical rank or condition numbers.
-
-The few future terms that appear in learner-facing text occur only as explicit **non-import boundaries** (for example “without eigenvalues” or “conditioning is later”).
-
-**Result: PASS.**
-
-## Evidence audit
-
-Canonical candidate contains:
-- **19 sessions**
-- **38 fixed assessments**
-- **60 ownership claims**
-
-Every ownership claim stores:
-- exact task ID(s);
-- exact current public prompt text;
-- exact cited rubric row(s);
+### Gate 7
+All 60 ownership rows contain:
+- precise claim;
+- exact current public request;
+- exact current rubric evidence;
 - literal observer rationale;
-- an escape attempt;
+- escape attempt;
+- generalization distance;
 - disposition.
 
-Current Main evidence-distance labels:
-- proof reconstruction: **5**
-- retrieval: **6**
-- proof reconstruction + application: **3**
-- retrieval + structural classification: **1**
-- retrieval + integration: **1**
-- retrieval + proof reconstruction: **1**
-- proof reconstruction + fresh application: **1**
-- fresh Main evidence: **1** (S19 synthesis)
+S14's third ownership claim is now bounded to what its fixed observer literally elicits:
+> Apply and justify the inverse-order rule ((AB)^{-1}=B^{-1}A^{-1}) for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions.
 
-Transfer labels:
-- changed-surface Transfer: **12**
-- failure-mode Transfer: **1**
-- changed-constraint Transfer: **1**
-- misconception-audit Transfer: **2**
-- forensic Transfer: **1**
-- direction-audit Transfer: **1**
-- adversarial synthesis Transfer: **1**
+### Gate 8
+The semantic-separation ledger covers exactly the 38 current tasks. Each row records:
+- closest answer-bearing instructional comparator(s);
+- mathematical-instance difference;
+- exposure disposition.
 
-Labels are deliberately conservative and describe evidence distance rather than quality/prestige.
+The S09 row is keyed to current `S09-T@2`, not the retired `@1` obligation.
 
-**Result: PASS.**
+### Misconception falsification
+The design gate lists 16 explicit failure modes. The canonical audit now has:
+- 19 concrete wrong-solver cases with stable case IDs;
+- a 16-row `designGateCoverage` table;
+- exact current task and rubric rows for each attack or paired coverage.
 
-## Separation / answer-exposure audit
+New explicit attacks include:
+- basis images falsely treated as insufficient;
+- row-dot-only matrix-vector understanding;
+- row operations falsely believed to alter the solution set;
+- rank confused with row/column count;
+- nonsquare matrix treated as having a two-sided inverse;
+- area/volume scaling substituted as determinant definition.
 
-The module was audited against worked examples, guided practice, guided feedback and earlier answer-bearing instruction.
+### Mathematical verification scope
+`m14-math-checks.mjs` is a hybrid gate:
+- executable arithmetic/property reconstruction where appropriate;
+- targeted invariants and counterexamples;
+- reviewed reference assertions for prose obligations.
 
-Material findings were discovered and repaired before publication:
-- S05 Main duplicated its worked system;
-- S06 Main duplicated its guided system;
-- S07 Main duplicated its worked system;
-- S17 Main reused the guided basis-change matrix/inverse;
-- additional full-matrix overlaps were removed in an earlier scan.
+It is not a machine proof oracle for prose mathematics. Human semantic review remains required.
 
-The structural checker now:
-- rejects full-matrix answer reuse;
-- contains explicit regression fixtures for the four non-matrix semantic exposures;
-- verifies current public prompt receipts against all claim records.
+`m14-instruction-math-checks.mjs` separately checks learner-facing worked/guided mathematics across all 19 sessions.
 
-S07 Transfer intentionally reuses the Main coefficient matrix with one changed right-hand side. It is labelled **changed-constraint Transfer**, not changed-surface Transfer.
+### Learner UI
+`scripts/test-t22-elite-m14-browser.mjs` loads unpublished M14 into the **real learner UI** through test-only metadata interception. It exercises:
+- 19 session/lesson surfaces;
+- 19 staged guided-feedback states;
+- 38 public prompts;
+- 38 evaluator references and all rubric rows;
+- save → reveal → export → import → reload;
+- text corruption checks;
+- 390px horizontal-overflow checks.
 
-**Result: PASS.**
+The persisted learner registry remains M01–M13.
 
-## Mathematical reconstruction
+## Version / provenance
 
-### Fixed assessments
+Earlier v1.2 version receipt:
+- `docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json`
 
-`docs/t22-course/audit/m14-math-checks.mjs` provides targeted independent arithmetic/property checks across all **19 sessions / 38 current fixed assessments**, plus reviewed reference-string assertions where executable reconstruction is not a suitable proof oracle. Prose proofs remain part of human semantic review; a matching string is not treated as proof of mathematical correctness.\n\nThe v1.2 repair also strengthened the S10 non-membership check so it derives the only coefficients compatible with the first two coordinates and verifies the third-coordinate obstruction, rather than merely testing one arbitrary failed coefficient vector.\n\n**Current result:** repaired checker present; exact-head workflow still required.
+Final follow-up version receipt:
+- `docs/t22-course/audit/m14-followup-pre-fu-repair-version-receipt.json`
 
-## Adversarial repair summary
+Current versioned assessment obligations:
+- `S07-T@1 → S07-T@2`
+- `S09-T@1 → S09-T@2`
+- `S11-M@1 → S11-M@2`
+- `S18-M@1 → S18-M@2`
+- `S19-M@1 → S19-M@2`
 
-The bounded repair history is recorded in `M14-RESOLUTION.md`.
+M14 has never been placed in the shared learner registry, so these repairs do not silently recertify learner-route M14 evidence.
 
-Material defect classes found during builder/adversarial review:
-1. S04 associativity ownership gap;
-2. fixed-task answer exposure missed by shallow overlap scans;
-3. implicit S14 elementary-matrix premise;
-4. under-explicit echelon definition;
-5. claim→observer overreach;
-6. further literal observer gaps;
-7. optimistic evidence labels;
-8. missing dedicated fixed/instruction math gates;
-9. vague determinant-pedagogy source attribution.
+## Independent acceptance boundary
 
-All are repaired without changing the 19-session spine.
+Builder-side verification can establish that the repaired candidate is internally coherent and implementation-green. It cannot create independence.
 
-## Canonical / publication state
+The focused independent reviewer should now recheck:
+1. S14 ownership verb versus actual Transfer/rubric;
+2. S09-T@2 evidence distance and decision audit;
+3. 16/16 design-gate misconception coverage;
+4. canonical-state hygiene;
+5. exact current branch SHA and its required full green workflow.
 
-M14 remains intentionally **outside** the shared learner registry:
-- `course-meta.json` still contains exactly M01–M13 module sources;
-- roadmap availability for SIDE276 remains `planned`;
-- semantic-prerequisite row remains `pending-boundary-audit` until independent acceptance/publication authorization;
-- browser regression therefore validates that M01–M13 remain intact while M14 stays unpublished.
+Only that reviewer may close the remaining independent-acceptance hold.
 
-No legacy M14 attempts are migrated or recertified.
-
-## Remaining status
-
-Builder mathematics, instruction, structure, evidence semantics, source roles and inherited regressions are green at the implementation/source-ledger checkpoint.
-
-Still required:
-- exact-head green workflow after final verification/handoff documentation;
-- **independent adversarial review/confirmation** of M14 before publication;
-- explicit user authorization for publication/route registration after independent acceptance.
-
-## Stop boundary
-
-**STOP at M14 for independent review. Do not publish M14, open M15, merge/deploy, or rewrite accepted M01–M13 content.**
-
-
----
-
-## v1.2 Gate 5/7/8/9/11 repair state
-
-The canonical M14 source now additionally contains:
-
-- **60/60 Gate-7 generalization-distance rows**;
-- a **38/38 task semantic-separation ledger** distinct from evidence classification;
-- only the four v1.2 primary evidence classes;
-- **21 decision-audit rows**;
-- **13 deliberate wrong-solver/rubric discriminator rows**;
-- version/provenance receipts for the four changed public obligations;
-- a repaired S19 synthesis that leaves a scored organizing decision.
-
-Gate 11 now has a dedicated unpublished-candidate browser test, `scripts/test-t22-elite-m14-browser.mjs`. It does not alter the persisted learner registry: only the Playwright test request for `course-meta.json` is intercepted, after which the real course UI/runtime loads SIDE276 as module 14 and renders every M14 lesson/guided/task/reference/rubric path.
-
-**Current acceptance status: repaired implementation is green through run #462 and awaits focused independent follow-up; not independently accepted.**
-
-
-## First full v1.2 repaired implementation run
-
-Repaired implementation/runtime checkpoint:
-- `59f6ceaea143255d024fcb0b2b78460035024cfa`
-
-Full workflow:
-- https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36221875839
-- run #462
-- conclusion: **SUCCESS**
-
-This run passed:
-- syntax;
-- inherited M01–M13 structural/semantic regressions;
-- M14 v1.2 structural/evidence contract;
-- fixed-assessment hybrid math gate;
-- 19/19 instructional-math gate;
-- M14 handoff-state guard;
-- Chromium install;
-- existing M01–M13 browser flows;
-- the new unpublished-M14 browser probe.
-
-The M14 browser probe loaded SIDE276 through **test-only course-meta interception** while the persisted learner registry remained M01–M13. It exercised all 19 lesson/guided surfaces and all 38 prompt/reference/rubric paths. It reported **355 learner surfaces checked**, with save/reveal/export/import/reload, no replacement-character/escaped-newline corruption and no remaining horizontal overflow.
-
-The first browser attempt exposed a genuine mobile overflow defect. The shared CSS fix was then pinned as an exact runtime rebase in the M11 preservation baseline; run #462 proves the inherited browser suite still passes with accepted curriculum content unchanged.
-
-Gate-9 integration receipt:
-- `docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md`
-- result: **PASS_WITH_EVIDENCE**, builder-side only.
-
-M14 therefore proceeds to **focused independent follow-up**, not publication.
+**Do not publish M14, merge it to main, or open M15 before that closure.**
