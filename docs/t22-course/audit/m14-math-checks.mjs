@@ -92,7 +92,7 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
  assert.deepEqual(mm(D,C),[[3,6],[0,2]]);
  assert.deepEqual(mm(C,D),[[3,4],[0,2]]);
  assert.deepEqual(mv(mm(D,C),[1,-1]),[-3,-2]);
- contains(id,'DC≠CD');
+ contains(id,'which differs from DC');
 }
 
 // S05
