@@ -45,6 +45,8 @@ jobs:
           node --check scripts/test-t22-elite-m12.mjs
           node --check scripts/test-t22-elite-m13.mjs
           node --check scripts/test-t22-elite-m14.mjs
+          node --check scripts/test-t22-elite-m15.mjs
+          node --check docs/t22-course/audit/m15-math-checks.mjs
           node --check docs/t22-course/audit/m14-math-checks.mjs
           node --check docs/t22-course/audit/m14-instruction-math-checks.mjs
           node --check docs/t22-course/audit/m14-handoff-checks.mjs
@@ -52,6 +54,7 @@ jobs:
           node --check scripts/test-t22-elite-m12-browser.mjs
           node --check scripts/test-t22-elite-m13-browser.mjs
           node --check scripts/test-t22-elite-m14-browser.mjs
+          node --check scripts/test-t22-elite-m15-browser.mjs
           node --check scripts/test-t22-elite-m09-browser.mjs
           node --check docs/t22-course/audit/m09-math-checks.mjs
           node --check docs/t22-course/audit/m10-math-checks.mjs
@@ -98,6 +101,8 @@ jobs:
           node scripts/test-t22-elite-m12.mjs
           node scripts/test-t22-elite-m13.mjs
           node scripts/test-t22-elite-m14.mjs
+          node scripts/test-t22-elite-m15.mjs
+          node docs/t22-course/audit/m15-math-checks.mjs
           node docs/t22-course/audit/m14-math-checks.mjs
           node docs/t22-course/audit/m14-instruction-math-checks.mjs
           node docs/t22-course/audit/m14-handoff-checks.mjs
@@ -139,3 +144,4 @@ jobs:
           node scripts/test-t22-elite-m12-browser.mjs
           node scripts/test-t22-elite-m13-browser.mjs
           node scripts/test-t22-elite-m14-browser.mjs
+          node scripts/test-t22-elite-m15-browser.mjs
