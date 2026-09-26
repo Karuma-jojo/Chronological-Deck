@@ -1,168 +1,107 @@
-# T22 Elite — M14 v1.2 Repair Follow-up Handoff
+# T22 Elite — M14 Final Follow-up Handoff
 
 Date: 2026-09-26  
 Repository: `Karuma-jojo/Chronological-Deck`  
 Branch: `codex/t22-pedagogical-rebuild`  
 Module: **M14 · SIDE276 · Matrices, Linear Maps & Linear Systems**
 
-## Current status
+## Status
 
-The first independent review **did not accept M14**. It preserved the mathematical spine and 19-session architecture but returned bounded findings **M14-R01 through M14-R11** under protocol v1.2.
+**Final bounded follow-up repairs implemented; M14 remains unpublished pending focused independent acceptance.**
 
-Those findings have now been repaired in source.
-
-**Status: repaired implementation green; awaiting focused independent follow-up.**
-
-M14 remains unpublished. M13 remains the learner frontier. M15 has not been opened.
-
-## Architecture intentionally preserved
-
-- 19 design-derived sessions
+Architecture remains:
+- 19 sessions
 - 38 current fixed assessments
-- 60 retained ownership claims
-- formal prerequisite: M13 / ARC511 only
-- no projection/least-squares, eigenstructure, matrix calculus or numerical-conditioning import
+- 60 ownership claims
+- M13 / ARC511 formal prerequisite
+- M15 closed
 
-## v1.2 repair surface
+The prior independent follow-up held acceptance for FU-01…FU-04 only. No mathematical defect or architectural rebuild requirement was found.
 
-### Gate 5
+## FU dispositions
 
-- Primary evidence classes normalized to exactly:
-  - `retrieval`
-  - `proof reconstruction`
-  - `fresh Main evidence`
-  - `changed-surface Transfer`
-- Secondary task mechanisms are descriptive only.
-- 21 decision-audit rows record who makes the decisive choice and what is actually scored.
-- S07 Transfer was replaced with a genuine changed-surface wrong-report audit rather than a coefficient/right-hand-side perturbation.
-- S19 Main was redesigned from a numbered recipe into a scored organizing-choice synthesis.
+### FU-01 — S14 ownership verb
+**REPAIRED BY NARROWING.**
 
-### Gate 7
+Current claim:
+> Apply and justify the inverse-order rule ((AB)^{-1}=B^{-1}A^{-1}) for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions.
 
-Every one of the 60 ownership records now stores:
-- exact current task IDs and public prompt text;
-- exact rubric locators;
-- literal observer rationale;
-- escape attempt;
-- **generalization distance**;
-- disposition.
+The fixed `S14-T@1` obligation is unchanged. No assessment-version bump was needed.
 
-Concrete repairs include:
-- S11 general `r+(n-r)=n` observer;
-- S14 singular branch narrowed away;
-- S18 determinant-invariance proof;
-- S04 product-column wording narrowed;
-- S13 missing-pivot branch narrowed;
-- S16 general n-volume claim narrowed to observed 2D area/orientation.
+### FU-02 — S09 Transfer distance
+**REPAIRED + VERSIONED.**
 
-### Gate 8
+`S09-T@1 → S09-T@2`.
 
-`semanticSeparationAudit` is no longer a copy of `evidenceDistance`.
+The retired task replayed the Main's `x_p+N(A)` skeleton under calibration vocabulary.
 
-It contains **38 current task rows**, each recording:
-- closest answer-bearing instructional example(s);
-- mathematical-instance difference;
-- exposure disposition.
+The current Transfer instead gives:
+- a fresh matrix;
+- two distinct settings with the same output;
+- a false “only those two settings” report;
+- no named nullspace/kernel or affine-translate method.
 
-The old full-matrix and known-exposure regression guards remain only cheap candidate finders; they are not described as exhaustive semantic detection.
+The learner must infer the nonzero zero-output difference, reconstruct every preimage, prove completeness and explain the structural source of ambiguity.
 
-### Gate 9
+### FU-03 — design-gate wrong-solver contract
+**REPAIRED.**
 
-S19 now asks the learner to choose an audit order and justify at least two representation/method choices. Required deliverables remain explicit and gradeable, but the computation order is not supplied.
+The design gate has 16 explicit misconception/failure-mode rows.
 
-The repaired whole-module route remains:
+Canonical evidence now contains:
+- 19 concrete wrong-solver cases;
+- stable case IDs;
+- `designGateCoverage` with exactly 16/16 rows marked covered;
+- actual current task IDs and rubric rows.
 
-linear maps → matrix representation/action → composition/product → systems/elimination → nullspace/complete solution → column space/rank/nullity → injective/surjective → invertibility/inverse → determinant → coordinate change/similarity → synthesis.
+The newly explicit cases cover basis sufficiency, row-dot-only multiplication, row-operation equivalence, rank-vs-shape, nonsquare inverse and determinant-geometry-as-definition. Existing cases/cross-references cover the remaining design rows.
 
-### Gate 11
+### FU-04 — canonical-state hygiene
+**REPAIRED.**
 
-New test:
-- `scripts/test-t22-elite-m14-browser.mjs`
+The authoritative verification/handoff no longer says:
+- the M14 browser probe is still pending;
+- exact-head verification is still pending because of the old #462 checkpoint;
+- #462 is the current final implementation run.
 
-It uses **test-only metadata interception** to load unpublished M14 into the real learner UI. It then walks:
-- all 19 session contract/lesson surfaces;
-- all 19 guided-feedback states after an attempted response;
-- all 38 public task prompts;
-- all 38 evaluator references;
-- every rubric row;
-- save/reveal evidence behavior;
-- export/import/reload;
-- text-corruption and mobile horizontal-overflow checks.
+The historical pre-follow-up green baseline is correctly identified as head `41f3de9bf2e055efe8f2f717da55f0e56fd540b2`, workflow #469 / `36222070177`.
 
-The persisted `course-meta.json` remains M01–M13 only.
+After FU edits, acceptance uses a simple rule: **the required full workflow associated with the current branch HEAD must be green on that exact SHA.** The reviewer should verify that current SHA/run directly rather than trusting a hard-coded stale “latest run” sentence.
 
-## Assessment versions changed under Gate 10
+## Gate-10 receipt
 
-Prior head/fingerprints:
-- `docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json`
+Final follow-up pre-edit receipt:
+- `docs/t22-course/audit/m14-followup-pre-fu-repair-version-receipt.json`
 
-Versioned obligations:
+It captures:
+- pre-FU head `41f3de9bf2e055efe8f2f717da55f0e56fd540b2`;
+- green workflow #469 / `36222070177`;
+- retired `S09-T@1` obligation version/fingerprint;
+- planned `S09-T@2` replacement reason.
+
+Current versioned tasks:
 - `S07-T@1 → S07-T@2`
+- `S09-T@1 → S09-T@2`
 - `S11-M@1 → S11-M@2`
 - `S18-M@1 → S18-M@2`
 - `S19-M@1 → S19-M@2`
 
-No M14 learner-route evidence existed, so no old attempt is being silently recertified.
+## Focused independent recheck
 
-## Wrong-solver audit
+Do not reopen the 19-session architecture by default. Re-attack only:
 
-The canonical candidate now records 13 deliberate misconception attacks against the actual current rubrics, including:
-- affine offset mistaken for linearity;
-- reversed composition order;
-- RHS omitted from row operations;
-- equation-count solution classification;
-- nullspace placed in output space;
-- RREF columns used for the original column space;
-- impossible rank/nullity claims;
-- square ⇒ invertible;
-- determinant treated as whole-matrix linear;
-- equal determinant ⇒ equal stability;
-- reversed coordinate conversion;
-- reversed similarity convention;
-- multi-error synthesis memo.
+1. Does S14 now claim only **apply and justify**, matching the concrete pair + composition-order explanation?
+2. Is `S09-T@2` genuinely changed-surface rather than context-renamed retrieval?
+3. Does the prompt avoid supplying the nullspace/affine-translate method while keeping the task fair?
+4. Do all 16 design-gate misconception rows map to real current wrong solvers and rubric discrimination?
+5. Is current canonical text free of stale “browser pending / exact-head pending / #462 current” contradictions?
+6. Is the required workflow green on the **exact current branch SHA**, including Chromium and the M14 355-surface learner-UI probe?
 
-## Math-checker scope
-
-`m14-math-checks.mjs` is intentionally a **hybrid gate**:
-- executable arithmetic/property reconstruction where appropriate;
-- targeted invariants/counterexamples;
-- reviewed reference assertions for prose obligations.
-
-It is **not** described as a machine proof oracle for every prose proof. Human semantic review remains required.
-
-`m14-instruction-math-checks.mjs` separately checks worked/guided learner-facing mathematics across 19/19 sessions.
-
-## Focused independent follow-up
-
-Full repaired implementation run #462 (`36221875839`) is green, including the actual unpublished-M14 Chromium probe. Recheck the original independent findings rather than reopening the architecture by default:
-
-1. Does Chromium actually render M14 itself, not merely M01–M13?
-2. Do all 38 Gate-8 rows identify a plausible closest instructional comparator and a real mathematical difference?
-3. Are all primary evidence labels one of the four v1.2 classes and honest?
-4. Do decision audits avoid claiming a learner choice when the prompt supplies it?
-5. Are all 60 generalization-distance judgments defensible?
-6. Is S11's general theorem now literally observed?
-7. Is S14's local ownership correctly narrowed?
-8. Does S18 now publicly prove determinant invariance?
-9. Does S19 leave a meaningful organizing decision while remaining fairly specified?
-10. Do the wrong-solver cases genuinely fail the cited current rubric rows?
-11. Does verification documentation accurately limit what automated math gates establish?
-
-If these are clean and the final documentation/checker head remains green, the independent reviewer may close the bounded repair.
+If those hold, the bounded follow-up can be independently accepted.
 
 ## Stop boundary
 
-**M14 only. Do not publish/register M14, open M15, merge to main or modify accepted M01–M13 content.**
-
-
-## Repaired implementation evidence
-
-- implementation/runtime head: `59f6ceaea143255d024fcb0b2b78460035024cfa`
-- full Actions run: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36221875839
-- run #462: **SUCCESS**
-- unpublished M14 browser: **PASS**, 355 rendered learner surfaces
-- Gate-9 integration: `docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md` — **PASS_WITH_EVIDENCE**
-- persisted learner registry: still M01–M13
-- M15: closed
-
-This is sufficient for **independent follow-up review**, not for self-declared acceptance or publication.
+M14 only.  
+Do not publish/register M14.  
+Do not merge to main.  
+Do not open M15.
