@@ -64,11 +64,11 @@ This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M
 | Exact linear-system solving/inverse | M14 S06–S14 | S11 onward | Reuse for small exact normal equations. |
 | Orthogonal/orthonormal list consequences | Not previously developed | S01–S02 | Teach/prove locally. |
 | Orthogonal complement | NONE as owned algorithmic capability | S03 | Define/prove locally. |
-| Orthogonal decomposition | NONE | S04 | Prove locally in finite-dimensional real spaces. |
+| Orthogonal decomposition | NONE | S04/S09 | S04 proves uniqueness and constructs ON-basis-accessible cases; S09 closes general finite-dimensional existence after Gram–Schmidt can produce an ON basis. |
 | Projection formula | NONE | S05–S06 | Derive from residual orthogonality. |
 | Nearest-point theorem | NONE | S07 | Prove by Pythagorean decomposition. |
 | Gram–Schmidt | NONE | S08–S09 | Derive from repeated projection subtraction. |
-| Matrix transpose | M14 uses rows but does not own transpose | S10 | Bounded local bridge: definition, shape and column-dot identity. |
+| Matrix transpose | M14 uses rows but does not own transpose | S10 | Bounded local bridge: definition, shape and column-dot identity; then combine with M14 rank–nullity to obtain `dim W^perp=n-dim W`. |
 | `A^T A` invertible under full column rank | NONE | S11 | Prove from `x^T A^T A x=||Ax||^2` and M14 null-space/invertibility logic, without naming PSD. |
 | Product-transpose and inverse-transpose identities | NONE | S12 | Supply/prove only as exact finite-matrix support facts needed to verify symmetry of an orthogonal projector. |
 | Normal equations | NONE | S11/S13 | Derive from residual orthogonality, not memorize. |
@@ -83,7 +83,8 @@ This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M
 | Pythagorean identity for finite orthogonal sums | S02 onward | finite orthogonal list | Prove from dot-product expansion | Extends M13 pairwise geometry, no factorization. |
 | `W^perp` is a subspace | S03 | subspace `W⊆R^n` | Prove from dot-product linearity | Core M15. |
 | Orthogonality to a spanning set is equivalent to orthogonality to its span | S03 | finite span | Prove directly | Needed to make complement tests finite. |
-| `R^n=W⊕W^perp` and `dim W^perp=n-dim W` | S04 | finite-dimensional real Euclidean space | Prove using an ON basis extended/constructed within the finite setting | No spectral theory. |
+| `R^n=W⊕W^perp` (existence + uniqueness) | S04 uniqueness; general existence closes S09 | finite-dimensional real Euclidean space | S04 proves `W∩W^perp={0}` and constructs the split when an ON basis is available; S09 uses Gram–Schmidt on an arbitrary finite basis of W to close general existence | No spectral theory; dependency order is explicit. |
+| `dim W^perp=n-dim W` | S10 | finite-dimensional `W⊆R^n` with ON basis matrix Q | Use S10 `W^perp=Null(Q^T)`, independence of the ON rows of `Q^T`, and M14 rank–nullity | No eigenvalue/spectral argument. |
 | Projection onto nonzero line `span(a)` has coefficient `(v·a)/(a·a)` | S05 | `a≠0` | Derive from residual orthogonality | Core M15. |
 | Projection on ON basis is `sum (v·q_i)q_i` | S06 | ON basis of target subspace | Derive from S02/S04 | Core M15. |
 | Orthogonal projection is the unique nearest point in a subspace | S07 | finite-dimensional subspace | Prove by Pythagoras | Core M15 minimization geometry. |
@@ -187,12 +188,12 @@ Access/recheck date for public web sources: **27 September 2026**. The user-supp
 → orthogonal vs orthonormal lists
 → ON coordinates/Pythagorean decomposition
 → orthogonal complement
-→ unique orthogonal decomposition
+→ concrete/ON-basis-accessible orthogonal decomposition + uniqueness
 → line projection
 → ON-subspace projection
 → nearest-point theorem
-→ Gram–Schmidt construction
-→ transpose/column-dot bridge
+→ Gram–Schmidt construction + general finite-dimensional decomposition existence
+→ transpose/column-dot bridge + complement dimension
 → general-column projection / normal equations
 → projector matrix structure
 → least-squares objective/global minimality
