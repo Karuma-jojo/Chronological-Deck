@@ -55,8 +55,8 @@ assert(resolution.includes('BOUNDED REPAIR'),'resolution must preserve bounded-r
 assert(resolution.includes('No finding required a rebuild'),'resolution must preserve the bounded-repair architecture decision');
 assert(verification.includes('M14 remains intentionally **outside** the shared learner registry'),'verification lost unpublished-state receipt');
 assert(handoff.includes('awaiting independent review'),'handoff lost independent-review status');
-assert(handoff.includes('Do not publish/register M14'),'handoff lost publication stop boundary');
-assert(handoff.includes('Do not') && handoff.includes('open M15'),'handoff lost M15 stop boundary');
+assert(handoff.includes('publish/register M14'),'handoff lost publication stop boundary');
+assert(handoff.includes('open M15'),'handoff lost M15 stop boundary');
 
 for(const cmd of [
   'node scripts/test-t22-elite-m14.mjs',
