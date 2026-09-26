@@ -25,7 +25,7 @@ try{
   // The persisted learner registry now publishes M13 directly.
   await page.goto(base+'/t22-course.html?module=13&session=1');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
-  assert.equal(await page.locator('#module option').count(),13,'publication route must expose thirteen modules');
+  assert((await page.locator('#module option').count())>=13,'later publication must preserve the M13-era learner route');
   assert.equal(await page.locator('#module').inputValue(),'ARC511');
   assert((await page.locator('#module').allTextContents()).join(' ').includes('Vectors, Span, Basis & Dot Products'));
   assert.equal(await page.locator('#session option').count(),17);
@@ -107,7 +107,7 @@ try{
   assert.deepEqual(errors,[]);
   await context.close();
 
-  console.log('PASS M13 publication browser: actual thirteen-module route renders 17 lessons, staged guided checks, 34 task/reference/rubric surfaces, and preserves M13 evidence through export/import/reload without text corruption.');
+  console.log('PASS M13 publication browser: the current learner route still renders M13\'s 17 lessons, staged guided checks and 34 task/reference/rubric surfaces, preserving M13 evidence through export/import/reload without text corruption.');
 }finally{
   if(browser)await browser.close();
   await new Promise(r=>server.close(r));
