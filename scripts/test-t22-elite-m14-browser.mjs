@@ -24,23 +24,15 @@ try{
   const context=await browser.newContext({viewport:{width:390,height:844}});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 
-  // M14 is deliberately unpublished. Intercept only the test browser's metadata
-  // request so the real learner UI/runtime loads the candidate as module 14.
-  await page.route('**/course/t22/generated/course-meta.json',async route=>{
-    const meta=JSON.parse(await readFile('course/t22/generated/course-meta.json','utf8'));
-    assert.equal(meta.moduleSources.length,13,'persisted registry must still stop at M13');
-    meta.version=meta.version+'+test-only-m14-candidate';
-    meta.moduleSources=[...meta.moduleSources,{
-      order:14,id:'SIDE276',sourceType:'authoring-pack',
-      source:'course/t22/authoring/m14-side276.json'
-    }];
-    await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(meta)});
-  });
+  // M14 is published: load the persisted learner registry without interception.
+  const publishedMeta=JSON.parse(await readFile('course/t22/generated/course-meta.json','utf8'));
+  assert.equal(publishedMeta.moduleSources.length,14,'published registry must contain M01-M14');
+  assert(publishedMeta.moduleSources.some(x=>x.order===14&&x.id==='SIDE276'&&x.source==='course/t22/authoring/m14-side276.json'),'published registry missing SIDE276');
 
   await page.goto(base+'/t22-course.html?module=14&session=1');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
 
-  assert.equal(await page.locator('#module option').count(),14,'test-only learner route must expose M14');
+  assert.equal(await page.locator('#module option').count(),14,'published learner route must expose M14');
   assert.equal(await page.locator('#module').inputValue(),'SIDE276');
   assert((await page.locator('#module').allTextContents()).join(' ').includes('Matrices, Linear Maps & Linear Systems'));
   assert.equal(await page.locator('#session option').count(),19);
@@ -135,7 +127,7 @@ try{
   assert.deepEqual(errors,[]);
   await context.close();
 
-  console.log(`PASS M14 unpublished-candidate browser: test-only metadata interception loaded the real learner UI; all 19 lessons/guided states and 38 prompt/reference/rubric paths rendered, saved, revealed, exported/imported and reloaded without text corruption or horizontal overflow. Surfaces checked: ${renderedSurfaces}.`);
+  console.log(`PASS M14 published learner browser: persisted M01-M14 registry loaded SIDE276 in the real learner UI; all 19 lessons/guided states and 38 prompt/reference/rubric paths rendered, saved, revealed, exported/imported and reloaded without text corruption or horizontal overflow. Surfaces checked: ${renderedSurfaces}.`);
 }finally{
   if(browser)await browser.close();
   await new Promise(r=>server.close(r));
