@@ -189,8 +189,18 @@
       "order": 15,
       "id": "SIDE278",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "boundary-accepted-content-candidate",
+      "bridges": [
+        {
+          "id": "M15-B01",
+          "owner": "SIDE278",
+          "title": "Real transpose as the column-orthogonality bridge",
+          "before": "M15-S11 normal equations",
+          "content": "Define transpose entrywise in M15-S10, track rectangular shape, and prove (A^T y)_j equals the dot product of column j of A with y. M14 did not own transpose, so M15 must supply this bounded bridge locally before using A^T r=0.",
+          "implementedBy": "M15-S10"
+        }
+      ],
+      "note": "M15 builder candidate: 16 sessions / 32 fixed tasks / 48 ownership claims. Gates 0–10 candidate authoring complete; S11 pilot Gate 8 repaired a solved-example/Main collision before bulk authoring. One bounded prerequisite bridge supplies real transpose/column-dot meaning locally because accepted M14 does not own transpose. M15 remains unpublished pending independent adversarial review; M16+ stay closed."
     },
     {
       "order": 16,
