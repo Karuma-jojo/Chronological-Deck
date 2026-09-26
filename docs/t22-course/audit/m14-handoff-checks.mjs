@@ -13,11 +13,12 @@ const pilot=fs.readFileSync('docs/t22-course/M14-PILOT-REVIEW.md','utf8');
 const resolution=fs.readFileSync('docs/t22-course/M14-RESOLUTION.md','utf8');
 const verification=fs.readFileSync('docs/t22-course/M14-VERIFICATION.md','utf8');
 const handoff=fs.readFileSync('docs/t22-course/M14-REVIEW-HANDOFF.md','utf8');
+const integration=fs.readFileSync('docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md','utf8');
 const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 
 assert.equal(a.module.order,14);
 assert.equal(a.module.id,'SIDE276');
-assert(['v1.2-followup-repaired-awaiting-exact-head-verification','v1.2-followup-repaired-awaiting-independent-acceptance'].includes(a.module.status),'unexpected final follow-up status');
+assert.equal(a.module.status,'published-user-authorized-independent-accepted');
 assert.equal(a.sessions.length,19);
 assert.equal(Object.keys(a.problems).length,38);
 assert.equal(Object.keys(a.evaluators).length,38);
@@ -28,17 +29,21 @@ assert(dep,'SIDE276 missing from dependency authority');
 assert.deepEqual(a.boundary.prerequisiteModules,dep.prerequisites);
 assert.deepEqual(a.boundary.prerequisiteModules,['ARC511']);
 
-assert.equal(meta.moduleSources.length,13,'M14 must remain outside the shared learner registry');
-assert(!meta.moduleSources.some(x=>x.order===14||x.id==='SIDE276'),'M14 was published before independent authorization');
-assert.equal(meta.moduleSources.find(x=>x.order===13)?.id,'ARC511','M13 must remain the current learner frontier');
+// Published learner frontier must be exactly M14.
+assert.equal(meta.moduleSources.length,14,'published registry must contain M01-M14');
+assert.equal(meta.moduleSources.at(-1)?.order,14);
+assert.equal(meta.moduleSources.at(-1)?.id,'SIDE276');
+assert.equal(meta.moduleSources.at(-1)?.source,'course/t22/authoring/m14-side276.json');
+assert.equal(meta.version,'T22E-course-0.14.0-through-m14-publication');
 
 const road=roadmap.modules.find(x=>x.id==='SIDE276');
 assert(road,'SIDE276 missing from roadmap');
-assert.equal(road.availability,'planned','M14 roadmap state changed before independent acceptance');
+assert.equal(road.availability,'authored','M14 must be visible as authored');
 
 const sem=semantic.entries.find(x=>x.id==='SIDE276');
 assert(sem,'SIDE276 missing from semantic-prerequisite ledger');
-assert.equal(sem.semanticStatus,'pending-boundary-audit','M14 semantic row advanced before independent acceptance');
+assert.equal(sem.semanticStatus,'accepted','published M14 semantic boundary must be accepted');
+assert.equal(sem.bridges.length,3,'M14 semantic ledger should retain the three bounded local bridges');
 
 for(const sourceId of [
   'REPO-M14','STRANG-4E','MIT-1806','AXLER-4E','HEFFERON',
@@ -51,12 +56,11 @@ for(const [name,text] of Object.entries({design,pilot,resolution,verification,ha
 for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8'])
   assert(pilot.includes(gate),'pilot receipt missing '+gate);
 
-assert(resolution.includes('BOUNDED REPAIR'),'resolution must preserve bounded-repair disposition');
-assert(resolution.includes('No finding required a rebuild'),'resolution must preserve the bounded-repair architecture decision');
-assert(verification.includes('M14 is **unpublished**'),'verification lost unpublished-state receipt');
-assert(handoff.includes('Final bounded follow-up repairs implemented')&&handoff.includes('focused independent acceptance'),'handoff lost final follow-up status');
-assert(handoff.includes('publish/register M14'),'handoff lost publication stop boundary');
-assert(handoff.includes('open M15'),'handoff lost M15 stop boundary');
+assert(verification.includes('M14 is **published**'),'verification lost published-state receipt');
+assert(verification.includes('current learner frontier: **M14 / SIDE276**'),'verification lost M14 frontier receipt');
+assert(handoff.includes('M14 is now registered as the fourteenth learner module'),'handoff lost publication closure');
+assert(handoff.includes('M15 / SIDE278 — planned and closed'),'handoff lost M15 stop boundary');
+assert(resolution.startsWith('> **Current status (2026-09-26): PUBLISHED.**'),'resolution missing publication supersession notice');
 
 for(const cmd of [
   'node scripts/test-t22-elite-m14.mjs',
@@ -66,31 +70,23 @@ for(const cmd of [
   'node scripts/test-t22-elite-m14-browser.mjs'
 ]) assert(workflow.includes(cmd),'workflow missing '+cmd);
 
-const authoringNames=fs.readdirSync('course/t22/authoring');
-assert(!authoringNames.some(x=>/^m15(?:[-.])/i.test(x)),'M15 authoring opened before M14 independent acceptance');
-
-assert(fs.existsSync('docs/t22-course/M14-DESIGN-GATE.md'));
-assert(fs.existsSync('docs/t22-course/M14-PILOT-REVIEW.md'));
-assert(fs.existsSync('docs/t22-course/M14-RESOLUTION.md'));
-assert(fs.existsSync('docs/t22-course/M14-VERIFICATION.md'));
-assert(fs.existsSync('docs/t22-course/M14-REVIEW-HANDOFF.md'));
-assert(fs.existsSync('docs/t22-course/audit/m14-math-checks.mjs'));
-assert(fs.existsSync('docs/t22-course/audit/m14-instruction-math-checks.mjs'));
-assert(fs.existsSync('docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json'));
-assert(fs.existsSync('scripts/test-t22-elite-m14-browser.mjs'));
-assert(fs.existsSync('docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md'));
-const integration=fs.readFileSync('docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md','utf8');
-assert(integration.includes('PASS_WITH_EVIDENCE for the repaired candidate'),'Gate-9 integration status missing');
-assert(integration.includes('36221875839'),'Gate-9 receipt missing first full repaired run');
-assert(!a.module.gate.includes('run #462'),'canonical gate must not retain stale #462 as current closure evidence');
-assert(!a.module.gate.includes('remains pending until the browser probe'),'canonical gate retained stale Gate-11 pending language');
-
 assert.equal(Object.keys(a.semanticSeparationAudit?.tasks||{}).length,38,'Gate 8 must cover all 38 current tasks');
 assert.equal(Object.values(a.claimEvidence).flat().filter(c=>typeof c.generalizationDistance==='string'&&c.generalizationDistance.length>20).length,60,'Gate 7 generalization-distance coverage');
 assert.equal(Object.keys(a.decisionAudit?.tasks||{}).length,21,'Gate 5 decision-audit coverage');
 assert.equal(a.misconceptionDiscriminatorAudit?.cases?.length,19,'wrong-solver audit coverage');
-assert.equal(a.misconceptionDiscriminatorAudit?.designGateCoverage?.length,16,'all design-gate misconception rows must be accounted for');
+assert.equal(a.misconceptionDiscriminatorAudit?.designGateCoverage?.length,16,'design-gate misconception coverage');
 assert(a.misconceptionDiscriminatorAudit.designGateCoverage.every(x=>x.status==='covered'),'uncovered design-gate misconception row');
-assert(handoff.includes('S07-T@1 → S07-T@2')&&handoff.includes('S09-T@1 → S09-T@2')&&handoff.includes('S11-M@1 → S11-M@2')&&handoff.includes('S18-M@1 → S18-M@2')&&handoff.includes('S19-M@1 → S19-M@2'),'handoff lost Gate-10 version receipts');
 
-console.log('PASS M14 final follow-up handoff state: architecture preserved; S09-T@2 changed-surface repair, S14 ownership narrowing, 16/16 design-gate misconception coverage, canonical stale-state guards; M14 unpublished and M15 closed.');
+assert(integration.includes('PASS_WITH_EVIDENCE for the repaired candidate'),'Gate-9 integration status missing');
+assert(a.publication?.status==='published','canonical publication receipt missing');
+assert.equal(a.publication?.roadmapAvailability,'authored');
+assert.equal(a.publication?.semanticStatus,'accepted');
+
+const authoringNames=fs.readdirSync('course/t22/authoring');
+assert(!authoringNames.some(x=>/^m15(?:[-.])/i.test(x)),'M15 authoring opened during M14 publication');
+
+assert(fs.existsSync('docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json'));
+assert(fs.existsSync('docs/t22-course/audit/m14-followup-pre-fu-repair-version-receipt.json'));
+assert(fs.existsSync('scripts/test-t22-elite-m14-browser.mjs'));
+
+console.log('PASS M14 publication state: SIDE276 is the authored/accepted module-14 learner frontier; 19 sessions, 38 tasks, 60 claims, 38 separation rows, 21 decision audits and 16/16 misconception coverage are preserved; M15 remains closed.');
