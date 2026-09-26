@@ -40,7 +40,7 @@ for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8'])
 
 for(const id of [
   'REPO-M14','STRANG-4E','MIT-1806','AXLER-4E','HEFFERON',
-  'MAA-IPG','IES-WWC','PED-DORIER','PED-LT','PED-MM-SYS'
+  'MAA-IPG','IES-WWC','PED-DORIER','PED-LT','PED-MM-SYS','PED-DET'
 ]) assert(a.sourceLedger.sources.some(s=>s.id===id),'missing source role '+id);
 
 function validateClaim(s,c){
