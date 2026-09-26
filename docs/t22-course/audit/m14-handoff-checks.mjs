@@ -53,7 +53,7 @@ for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8'])
 
 assert(resolution.includes('BOUNDED REPAIR'),'resolution must preserve bounded-repair disposition');
 assert(resolution.includes('No finding required a rebuild'),'resolution must preserve the bounded-repair architecture decision');
-assert(verification.includes('M14 remains intentionally **outside** the shared learner registry'),'verification lost unpublished-state receipt');
+assert(verification.includes('M14 is **unpublished**'),'verification lost unpublished-state receipt');
 assert(handoff.includes('Final bounded follow-up repairs implemented')&&handoff.includes('focused independent acceptance'),'handoff lost final follow-up status');
 assert(handoff.includes('publish/register M14'),'handoff lost publication stop boundary');
 assert(handoff.includes('open M15'),'handoff lost M15 stop boundary');
