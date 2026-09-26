@@ -1,0 +1,19 @@
+{
+  "priorHead": "41f3de9bf2e055efe8f2f717da55f0e56fd540b2",
+  "priorRun": {
+    "id": 36222070177,
+    "number": 469,
+    "conclusion": "success"
+  },
+  "reason": "Independent follow-up found FU-02: S09 Transfer was context-shifted but not genuinely changed-surface under v1.2.",
+  "learnerPublicationState": "M14 remains unpublished; no learner-route M14 attempts exist.",
+  "changedAssessments": [
+    {
+      "oldId": "T22V3::SIDE276::S09-T@1",
+      "oldObligationVersion": 1,
+      "oldFingerprint": "4d30b932b77c2a5a8f836281a124b4ce055d6873aa4575cf4d7c56777e40973c",
+      "plannedNewId": "T22V3::SIDE276::S09-T@2",
+      "reason": "replace calibration-context replay with same-output collision audit that reconstructs the hidden zero-output direction and complete ambiguity without a nullspace cue"
+    }
+  ]
+}
