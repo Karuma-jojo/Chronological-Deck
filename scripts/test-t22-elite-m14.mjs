@@ -22,11 +22,15 @@ assert.equal(a.coverageAudit.authoredSessions,19);
 assert.equal(a.coverageAudit.fixedAssessments,38);
 assert.equal(a.coverageAudit.ownershipClaimCount,60);
 
-// M14 remains intentionally outside the learner registry during repair.
-assert.equal(meta.moduleSources.length,13);
-assert(!meta.moduleSources.some(x=>x.order===14||x.id==='SIDE276'));
-assert.equal(roadmap.modules.find(x=>x.id==='SIDE276').availability,'planned');
-assert.equal(ledger.entries.find(x=>x.id==='SIDE276').semanticStatus,'pending-boundary-audit');
+// Published M14 must be present in the shared learner registry and accepted route metadata.
+assert.equal(meta.moduleSources.length,14);
+const publishedSource=meta.moduleSources.find(x=>x.order===14&&x.id==='SIDE276');
+assert(publishedSource,'M14 missing from published learner registry');
+assert.equal(publishedSource.sourceType,'authoring-pack');
+assert.equal(publishedSource.source,'course/t22/authoring/m14-side276.json');
+assert.equal(roadmap.modules.find(x=>x.id==='SIDE276').availability,'authored');
+assert.equal(ledger.entries.find(x=>x.id==='SIDE276').semanticStatus,'accepted');
+assert.equal(a.module.status,'published-user-authorized-independent-accepted');
 
 for(const term of [
   'Boundary Contract','Source Dossier','Support-Theorem Ledger',
@@ -221,4 +225,4 @@ eq(D,[[3,2],[0,2]]); assert.equal(det(D),6);
 eq(mv([[1,0,1],[1,1,2],[2,1,3]],[-1,-1,1]),[0,0,0]);
 eq(mm(mm([[0,0,1],[0,1,0],[1,0,0]],[[1,0,1],[1,1,2],[2,1,3]]),[[0,0,1],[0,1,0],[1,0,0]]),[[3,1,2],[2,1,1],[1,0,1]]);
 
-console.log('PASS M14 final follow-up structural/evidence candidate: 19 sessions, 38 current tasks, 60 claim observers with generalization distance, 38 semantic-separation rows, 21 decision audits, 19 wrong-solver attacks covering 16/16 design-gate failure modes, versioned S09-T@2 repair, and M14 remains unpublished.');
+console.log('PASS M14 published structural/evidence route: 19 sessions, 38 current tasks, 60 claim observers with generalization distance, 38 semantic-separation rows, 21 decision audits, 19 wrong-solver attacks covering 16/16 design-gate failure modes, SIDE276 registered as authored/accepted module 14.');
