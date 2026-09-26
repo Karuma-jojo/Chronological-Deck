@@ -5,7 +5,7 @@
     "order": 15,
     "id": "SIDE278",
     "title": "Orthogonality, Projection & Least Squares Geometry",
-    "status": "builder-candidate-unpublished",
+    "status": "repaired-builder-candidate-unpublished",
     "destination": "Work in finite-dimensional real Euclidean coordinate spaces to construct orthonormal coordinates and orthogonal complements, derive orthogonal projections and nearest-point geometry, execute Gram–Schmidt with dependence/order diagnostics, derive the transpose bridge and normal equations, and solve exact Euclidean least-squares problems while separating fitted-vector uniqueness from coefficient uniqueness.",
     "gate": "Sixteen design-derived sessions are being authored under the v1.2 gated protocol. M15 remains outside the persisted learner registry until independent review and explicit user authorization; page completion is never treated as mastery.",
     "nextBoundary": "M16/SIDE279 owns eigenstructure independently from M14; M17/SIDE280 owns PSD/quadratic forms, named QR/Cholesky/SVD and pseudoinverse; M23 owns numerical conditioning/stable algorithms; M36 owns statistical regression."
@@ -40,81 +40,81 @@
     "authoredSessions": 16,
     "ownershipClaimCount": 48,
     "fixedAssessments": 32,
-    "reviewProvenance": "Builder completed Gates 0–10 candidate authoring: 16 design-derived sessions, 32 fixed assessments, 48 ownership claims, 32 task-level semantic-separation rows, 16 decision audits and 18 misconception attacks. S11 pilot Gate 8 caught and repaired solved-example/Main exposure before bulk authoring. Independent adversarial review and learner-route publication remain pending."
+    "reviewProvenance": "Recovery re-audit in progress under v1.2. Gates 0–3 were revalidated; five cross-session solved-instance collisions were repaired; all 48 claim observers were semantically re-audited; source roles and evidence-distance labels were corrected. Gates 4–8 are being rechecked session-by-session, followed by Gates 9–11. Independent adversarial review has not occurred."
   },
   "sourceLedger": {
-    "policy": "Repository ownership is authoritative. The user-supplied Strang 4e scan is the deep first-course comparator; MIT 18.06/18.06SC checks conventional route; Axler 4e checks theorem hypotheses; Hefferon checks developmental exposition; MAA/IES and domain-specific linear-algebra education sources shape representation, misconception and assessment design. All learner tasks are original.",
+    "policy": "Repository ownership is authoritative. Strang 4e (user-supplied) is the deep first-course comparator; MIT 18.06 is the canonical route comparator; Axler 4e is the rigorous theorem/hypothesis source; Hefferon is the broad developmental/notation comparator; MAA + IES/WWC + domain-specific math-education sources inform pedagogy with population/context limits. All learner tasks are original.",
     "designGate": "docs/t22-course/M15-DESIGN-GATE.md",
     "sources": [
       {
         "id": "REPO-M15",
         "role": "curriculum authority",
-        "sections": "M65 skeleton/dependencies, semantic ledger, accepted M13/M14, legacy SIDE278/SIDE279/SIDE280",
-        "supports": "formal entry, exact M15 ownership, downstream obligations and exclusions",
-        "notImported": "legacy four-arc count or historical acceptance assumptions"
+        "locator": "Current T22 repository: M65-SKELETON.md, m65.dependencies.json, SEMANTIC-PREREQUISITES.json, accepted M13/M14 packs and M14 handoffs",
+        "supports": "formal M15 entry, ownership, downstream boundaries and publication stop",
+        "limitations": "legacy SIDE278/SIDE279/SIDE280 inventories are comparators only; they do not dictate pedagogy or session count"
       },
       {
         "id": "STRANG-4E",
-        "role": "user-supplied deep textbook comparator",
-        "sections": "Introduction to Linear Algebra 4e Ch.4 §§4.1–4.4",
-        "supports": "orthogonality, projection, least-squares geometry, orthogonal bases and Gram–Schmidt progression",
-        "notImported": "named QR factorization, copied exercises, SVD/pseudoinverse or numerical-algorithm claims"
+        "role": "user-supplied deep first-course comparator",
+        "locator": "Introduction to Linear Algebra 4e Ch.4: §4.1 pp196–206, §4.2 pp207–218, §4.3 pp219–230, §4.4 pp231–244; supplied PDF pages 199–246",
+        "supports": "orthogonal-subspace geometry, projection, nearest point, least squares/normal equations, Gram–Schmidt",
+        "limitations": "do not copy exercises; named QR/four-subspace expansion beyond M15 boundary is not imported"
       },
       {
         "id": "MIT-1806",
         "role": "canonical university route comparator",
-        "sections": "18.06/18.06SC Unit II orthogonal vectors/subspaces, projections, projection matrices/least squares, Gram–Schmidt",
-        "supports": "conventional scope and problem expectations",
-        "notImported": "MIT route order where it conflicts with T22; QR continuation remains M17"
+        "locator": "MIT OCW 18.06 Spring 2010 readings/video sessions 14–17: Orthogonality, Projections, Least Squares, Gram–Schmidt/A=QR",
+        "supports": "conventional scope, prerequisite expectations and problem types",
+        "limitations": "MIT route does not override T22; QR remains M17"
       },
       {
         "id": "AXLER-4E",
         "role": "rigorous theorem/hypothesis source",
-        "sections": "Linear Algebra Done Right 4e Ch.6 §§6A–6C, especially orthonormal coordinates, Gram–Schmidt and orthogonal complements/minimization",
-        "supports": "finite-dimensional hypotheses and proof architecture",
-        "notImported": "complex conventions, pseudoinverse, adjoints/spectral theory, QR/Cholesky"
+        "locator": "Linear Algebra Done Right 4e Ch.6, especially §6B Orthonormal Bases / Gram–Schmidt 6.32 and §6C Orthogonal Complements and Minimization Problems",
+        "supports": "finite-dimensional hypotheses, ON coordinates, span preservation, complements/minimization",
+        "limitations": "complex conventions, Riesz/adjoint/spectral machinery, pseudoinverse and later factorizations are not imported"
       },
       {
         "id": "HEFFERON",
-        "role": "developmental open-text comparator",
-        "sections": "Linear Algebra, orthogonal projection and Gram–Schmidt development",
-        "supports": "motivation, worked-step progression and projection-subtraction interpretation",
-        "limitations": "full course lists calculus prerequisite; M15 uses no calculus-dependent content"
+        "role": "broad coverage and developmental comparator",
+        "locator": "Linear Algebra, Chapter Three Section VI Projection: VI.1 line projection, VI.2 Gram–Schmidt, VI.3 subspace projection; Line of Best Fit topic",
+        "supports": "motivation, notation, worked-step development and projection-subtraction interpretation",
+        "limitations": "textbook rather than empirical pedagogy; course lists calculus but M15 imports no calculus-dependent content"
       },
       {
         "id": "MAA-IPG",
-        "role": "undergraduate pedagogy baseline",
-        "sections": "Instructional Practices Guide assessment/alignment practices",
-        "supports": "observable outcomes, explanation/comparison and aligned assessment",
-        "limitations": "general guidance, not an M15 outcome study"
+        "role": "required undergraduate mathematics pedagogy baseline",
+        "locator": "MAA Instructional Practices Guide, 2018 open-access edition",
+        "supports": "outcome-assessment alignment, student-produced reasoning, comparison and multiple meaningful evidence forms",
+        "limitations": "practice guidance, not direct experimental validation of M15"
       },
       {
         "id": "IES-WWC",
-        "role": "general learning evidence",
-        "sections": "Organizing Instruction and Study recommendations 2–4 and 7",
-        "supports": "worked/problem alternation, graphic+verbal and abstract/concrete links, explanatory questions",
-        "limitations": "heterogeneous K–postsecondary evidence; no direct M15 efficacy claim"
+        "role": "general learning-evidence comparator",
+        "locator": "IES/WWC Organizing Instruction and Study to Improve Student Learning, 2007: recs 2–4 Moderate Evidence; rec 7 Strong Evidence",
+        "supports": "worked-example/problem alternation, graphics+verbal, abstract+concrete links and deep explanatory questions",
+        "limitations": "K–postsecondary heterogeneous evidence; transfer cautiously to adult T22 learner"
       },
       {
         "id": "PED-DORIER",
         "role": "domain-specific linear-algebra education synthesis",
-        "sections": "Dorier ed.; Hillel modes of description; Sierpinska student thinking",
-        "supports": "explicit coordination of geometric, symbolic and matrix representations",
-        "limitations": "historical synthesis with varied populations"
+        "locator": "Dorier ed. On the Teaching of Linear Algebra (2000), DOI 10.1007/0-306-47224-4; Hillel pp191–207; Sierpinska pp209–246",
+        "supports": "explicit coordination among geometric, algebraic and abstract representations",
+        "limitations": "historical synthesis across varied tertiary populations; no frequency generalization"
       },
       {
         "id": "PED-INNER",
-        "role": "domain-specific qualitative comparator",
-        "sections": "Caglayan 2018 visual/analytic coordination in inner-product-space concepts",
-        "supports": "explicit geometry↔analytic coordination for orthogonality/orthonormality",
-        "limitations": "specific technology-assisted university population; no frequency generalization"
+        "role": "domain-specific qualitative study",
+        "locator": "Caglayan 2018, Journal of Mathematical Behavior 52:37–60, DOI 10.1016/j.jmathb.2018.03.006",
+        "supports": "visual/analytic coordination for inner-product and orthogonality concepts",
+        "limitations": "US university math-major, technology-assisted polynomial context; qualitative and not directly generalizable"
       },
       {
-        "id": "PED-PROJ",
-        "role": "domain-specific pedagogy comparator",
-        "sections": "inquiry-based linear-algebra orthogonal-projection lesson literature",
-        "supports": "concrete approximation/decomposition motivation before formula introduction",
-        "limitations": "abstract-level comparator; no universal superiority claim"
+        "id": "PED-VECTOR-PROJ",
+        "role": "domain-specific misconception comparator",
+        "locator": "Appova & Berezovski, RUME16 proceedings, Commonly Identified Students' Misconceptions About Vectors and Vector Operations",
+        "supports": "explicit vector/scalar/projection distinction and misconception targeting",
+        "limitations": "23 freshman non-math liberal-arts students; qualitative small sample; no prevalence generalization"
       }
     ]
   },
@@ -2674,8 +2674,8 @@
     },
     "T22V3::SIDE278::S09@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "mechanism": "The learner must execute all projections on a fresh fully nonorthogonal triple and preserve prefix-span invariants."
+        "classification": "retrieval",
+        "mechanism": "The multi-vector procedure, prefix-span invariant and normalization pattern are taught; Main applies the same reasoning structure to fresh vectors, so retrieval/application is the honest class."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2704,8 +2704,8 @@
     },
     "T22V3::SIDE278::S12@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "mechanism": "Learner derives and validates a nontrivial projector from A, including both algebraic identities and geometric residual checks."
+        "classification": "proof reconstruction",
+        "mechanism": "The projector formula plus symmetry/idempotence proof architecture is taught; Main reconstructs those arguments on a fresh matrix."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2714,8 +2714,8 @@
     },
     "T22V3::SIDE278::S13@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "mechanism": "Learner must diagnose inconsistency, formulate the objective, solve, and prove global minimality on fresh data."
+        "classification": "proof reconstruction",
+        "mechanism": "Least-squares projection and the global Pythagorean optimality proof are taught; Main reconstructs that architecture on a fresh inconsistent system."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2724,8 +2724,8 @@
     },
     "T22V3::SIDE278::S14@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "mechanism": "Rank-deficient Main changes the full-rank assumptions and requires geometric fit plus complete coefficient family."
+        "classification": "retrieval",
+        "mechanism": "Rank-deficient projection, null-space coefficient families and the inverse boundary are taught; Main applies that same reasoning structure to fresh rank-one data."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2734,8 +2734,8 @@
     },
     "T22V3::SIDE278::S15@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "mechanism": "Learner builds the design matrix and completes a nonzero-residual fit from a new table."
+        "classification": "retrieval",
+        "mechanism": "The table-to-design-matrix least-squares procedure and residual checks are rehearsed; Main honestly measures retrieval/application on fresh deterministic data."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -2745,7 +2745,7 @@
     "T22V3::SIDE278::S16@1": {
       "main": {
         "classification": "fresh Main evidence",
-        "mechanism": "Learner chooses a route, completes a fresh solve, then reconstructs an ON basis to cross-check the unique projection."
+        "mechanism": "Main integrates method classification, a complete general-column solve, residual audit and an independently reconstructed Gram–Schmidt/ON cross-check on an unworked instance; the complete two-route synthesis is not solved in visible instruction."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -3287,7 +3287,7 @@
   },
   "authoringPolicy": "Score only public obligations. Accept mathematically equivalent exact methods and notation. Require literal public evidence for every ownership claim. Label retrieval/proof reconstruction/fresh Main/changed-surface Transfer honestly. Do not infer mastery from builder validation.",
   "decisionAudit": {
-    "status": "PASS_WITH_EVIDENCE — every changed-surface Transfer has an explicit learner-decision audit.",
+    "status": "PASS_WITH_EVIDENCE after recovery audit — all 16 Transfers plus the S16 synthesis Main have explicit learner-decision records.",
     "tasks": {
       "T22V3::SIDE278::S01-T@1": {
         "claimedLearnerDecision": "Decide which clauses of a theorem-based report survive the zero-vector boundary.",
@@ -3384,11 +3384,17 @@
         "alreadySuppliedByPrompt": "PARTLY — reports are supplied, validity is not.",
         "decisivelyRehearsedInVisibleInstruction": "NO — no solved competing-report audit.",
         "learnerActionActuallyScored": "Rejects naive raw-dot coefficients, accepts orthogonal residual report and names the violated ON hypothesis."
+      },
+      "T22V3::SIDE278::S16-M@1": {
+        "claimedLearnerDecision": "Classify the representation, choose a legal exact M15 projection route, and then choose a distinct second representation to cross-check the unique projected vector.",
+        "alreadySuppliedByPrompt": "PARTLY — the prompt requires a route and a Gram–Schmidt cross-check, but it does not supply the normal-equation result, coefficients, projected vector, residual, or ON basis.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — the lesson states the method-selection contract and guided practice asks for one route plus an independent check, but no visible example executes the complete two-route synthesis on these columns.",
+        "learnerActionActuallyScored": "Main rubric row 1 scores classification/method justification; rows 2–4 score the full solve, A^T r diagnostic and independent Gram–Schmidt/ON reconstruction."
       }
     }
   },
   "misconceptionDiscriminatorAudit": {
-    "status": "PASS_WITH_EVIDENCE — 18 design-gate failure modes are tied to concrete current tasks and exact rubric rows.",
+    "status": "PASS_WITH_EVIDENCE after recovery repair — all 18 design-gate failure modes cite current tasks and current exact rubric rows.",
     "cases": [
       {
         "caseId": "MC01",
@@ -3495,10 +3501,10 @@
         "targetTask": "T22V3::SIDE278::S10-T@1",
         "plausibleFlawedResponse": "B^T y=0 implies y=0 because multiplying by a matrix preserves zero only for the zero input.",
         "rubricRowsFailed": [
-          "Solves B^T y=0 and obtains y=t(-1,-1,1).",
+          "Solves B^T y=0 and obtains y=t(-2,1,1).",
           "Explains why nonzero solutions are compatible with a proper 2D column space in R^3."
         ],
-        "discriminationResult": "Rejected: the task constructs a nonzero one-dimensional null space and explains the proper-column-space geometry."
+        "discriminationResult": "Rejected: the task constructs the nonzero null vector family y=t(-2,1,1) and separately requires the proper-column-space explanation."
       },
       {
         "caseId": "MC11",
@@ -3729,7 +3735,7 @@
   "publication": {
     "status": "unpublished",
     "learnerRegistry": "M01–M14 only",
-    "authorization": "not requested; independent adversarial review pending"
+    "authorization": "not requested; builder verification and independent adversarial review pending"
   },
   "followupRepair": {
     "status": "builder recovery repair in progress",
@@ -3742,6 +3748,8 @@
       "T22V3::SIDE278::S16-M@1"
     ],
     "note": "All five tasks keep obligationVersion 1 because M15 has never been in the learner registry and no M15 learner evidence exists. Repairs change mathematical instances rather than wording; exact prompt/rubric receipts were regenerated. Full Gates 4–11 recheck remains required.",
-    "claimAudit": "All 48 ownership claims were re-audited semantically after recovery. Overbroad S02 claim 3 was narrowed to the complete-vs-incomplete ON-set distinction actually observed; S03 Main was strengthened to prove the full subspace test; compound claims now cite every necessary rubric row rather than nearby single rows."
+    "claimAudit": "All 48 ownership claims were re-audited semantically after recovery. Overbroad S02 claim 3 was narrowed to the complete-vs-incomplete ON-set distinction actually observed; S03 Main was strengthened to prove the full subspace test; compound claims now cite every necessary rubric row rather than nearby single rows.",
+    "evidenceDistance": "S09, S14 and S15 Main were downgraded to retrieval; S12 and S13 Main to proof reconstruction. S16 remains fresh Main evidence only for the unworked complete two-route synthesis.",
+    "sourceDossier": "Machine-readable source roles synchronized to the recovered Gate-2 dossier; vague PED-PROJ entry replaced by identifiable Appova/Berezovski RUME16 vector/projection misconception study with population limitation."
   }
 }
