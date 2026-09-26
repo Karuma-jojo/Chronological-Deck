@@ -221,4 +221,4 @@ eq(D,[[3,2],[0,2]]); assert.equal(det(D),6);
 eq(mv([[1,0,1],[1,1,2],[2,1,3]],[-1,-1,1]),[0,0,0]);
 eq(mm(mm([[0,0,1],[0,1,0],[1,0,0]],[[1,0,1],[1,1,2],[2,1,3]]),[[0,0,1],[0,1,0],[1,0,0]]),[[3,1,2],[2,1,1],[1,0,1]]);
 
-console.log('PASS M14 v1.2 structural/evidence candidate: 19 sessions, 38 current tasks, 60 claim observers with generalization distance, 38 semantic-separation rows, 21 decision audits, 13 wrong-solver discriminators, versioned repairs, and M14 remains unpublished.');
+console.log('PASS M14 final follow-up structural/evidence candidate: 19 sessions, 38 current tasks, 60 claim observers with generalization distance, 38 semantic-separation rows, 21 decision audits, 19 wrong-solver attacks covering 16/16 design-gate failure modes, versioned S09-T@2 repair, and M14 remains unpublished.');
