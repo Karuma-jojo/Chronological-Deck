@@ -40,7 +40,7 @@
     "authoredSessions": 19,
     "ownershipClaimCount": 60,
     "fixedAssessments": 38,
-    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure."
+    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -910,7 +910,7 @@
       "id": "T22V3::SIDE276::S05-M@1",
       "order": 5,
       "kind": "main",
-      "prompt": "Consider x+2y=5, -y+z=-3, and 2x+y+z=3. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
+      "prompt": "Consider 2x-y+z=-1, x+2y=5, and -y+3z=-5. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S05-T@1": {
@@ -924,7 +924,7 @@
       "id": "T22V3::SIDE276::S06-M@1",
       "order": 6,
       "kind": "main",
-      "prompt": "Start with the system x+2y-z=3, 2x+5y+z=8, and -x+2z=1. (a) Write [A|b]. (b) Apply R2←R2-2R1 and R3←R3+R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set.",
+      "prompt": "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S06-T@1": {
@@ -938,14 +938,14 @@
       "id": "T22V3::SIDE276::S07-M@1",
       "order": 7,
       "kind": "main",
-      "prompt": "Solve the exact system x+y+z=4, 2x+3y+z=7, x+2y=3 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
+      "prompt": "Solve the exact system x+y+z=3, 2x+3y+z=7, 3x+4y+2z=10 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S07-T@1": {
       "id": "T22V3::SIDE276::S07-T@1",
       "order": 7,
       "kind": "transfer",
-      "prompt": "Keep the same coefficient matrix as the Main but change the third equation to x+2y=4, so the system is x+y+z=4, 2x+3y+z=7, x+2y=4. Reduce enough to classify it. Exhibit the contradiction row and explain why 'three equations in three unknowns' did not guarantee a unique solution in either version.",
+      "prompt": "Keep the same coefficient matrix as the Main but change the third equation to 3x+4y+2z=11, so the system is x+y+z=3, 2x+3y+z=7, 3x+4y+2z=11. Reduce enough to classify it. Exhibit the contradiction row and explain why 'three equations in three unknowns' did not guarantee a unique solution in either version.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S08-M@1": {
@@ -1078,7 +1078,7 @@
       "id": "T22V3::SIDE276::S17-M@1",
       "order": 17,
       "kind": "main",
-      "prompt": "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors.",
+      "prompt": "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=b1+2b2 and c2=3b1+b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S17-T@1": {
@@ -1287,11 +1287,11 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation and logically valid proofs; do not award a reasoning claim for a bare verdict when the prompt asks for justification."
     },
     "T22V3::SIDE276::S05-M@1": {
-      "reference": "A=[[1,2,0],[0,-1,1],[2,1,1]], b=(5,-3,3)^T. Its rows encode exactly the three displayed scalar equations. The columns are a1=(1,0,2)^T, a2=(2,-1,1)^T, a3=(0,1,1)^T, so Ax=xa1+ya2+za3. At (1,2,-1), a1+2a2-a3=(5,-3,3)=b; equivalently all three row equations hold. In the column picture the coefficients (1,2,-1) are a witness that b is reachable as a linear combination of the columns.",
+      "reference": "A=[[2,-1,1],[1,2,0],[0,-1,3]], b=(-1,5,-5)^T. Its rows encode the three simultaneous scalar equations. The columns are a1=(2,1,0)^T, a2=(-1,2,-1)^T, a3=(1,0,3)^T, so Ax=xa1+ya2+za3. At (1,2,-1), a1+2a2-a3=(-1,5,-5)=b; equivalently all three row equations hold. In the column picture the coefficients (1,2,-1) witness that b is reachable from the columns.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Constructs A=[[1,2,0],[0,-1,1],[2,1,1]], x_vec=(x,y,z)^T and b=(5,-3,3)^T in the correct positions."
+          "criterion": "Constructs A=[[2,-1,1],[1,2,0],[0,-1,3]], x_vec=(x,y,z)^T and b=(-1,5,-5)^T in the correct positions."
         },
         {
           "points": 2,
@@ -1299,11 +1299,11 @@
         },
         {
           "points": 2,
-          "criterion": "Writes Ax=x a1+y a2+z a3 using the three columns of A."
+          "criterion": "Writes Ax=x a1+y a2+z a3 using the three fresh columns of A."
         },
         {
           "points": 3,
-          "criterion": "Verifies (1,2,-1)^T and interprets it as a coefficient witness producing b from the columns."
+          "criterion": "Verifies (1,2,-1)^T and interprets it as a coefficient witness producing b."
         }
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
@@ -1327,19 +1327,19 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S06-M@1": {
-      "reference": "The augmented matrix is [[1,2,-1|3],[2,5,1|8],[-1,0,2|1]]. After R2←R2-2R1 it has row 2 [0,1,3|2]. After R3←R3+R1 it has row 3 [0,2,1|4], so the result is [[1,2,-1|3],[0,1,3|2],[0,2,1|4]]. The inverse operations are R2←R2+2R1 and R3←R3-R1. Because each step is reversible and is formed from valid equation combinations, a vector solves one system iff it solves the other.",
+      "reference": "The augmented matrix is [[1,-1,2|4],[3,0,-1|2],[2,1,1|7]]. After R2←R2-3R1, row 2 becomes [0,3,-7|-10]. After R3←R3-2R1, row 3 becomes [0,3,-3|-1]. Thus the new augmented matrix is [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]]. The inverse operations are R2←R2+3R1 and R3←R3+2R1. Each move is reversible and corresponds to replacing one equation by an equivalent linear combination, so the two systems have exactly the same solution set.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Writes the correct initial augmented matrix, including the constants."
+          "criterion": "Writes the correct fresh augmented matrix [[1,-1,2|4],[3,0,-1|2],[2,1,1|7]]."
         },
         {
           "points": 3,
-          "criterion": "Obtains [[1,2,-1|3],[0,1,3|2],[0,2,1|4]] by applying both operations to the full augmented rows."
+          "criterion": "Obtains [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]] by applying both operations to the full augmented rows."
         },
         {
           "points": 2,
-          "criterion": "Gives the inverse operations R2←R2+2R1 and R3←R3-R1."
+          "criterion": "Gives the inverse operations R2←R2+3R1 and R3←R3+2R1."
         },
         {
           "points": 2,
@@ -1367,11 +1367,11 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S07-M@1": {
-      "reference": "R2←R2-2R1 gives y-z=-1. R3←R3-R1 also gives y-z=-1, so subtracting those rows leaves a zero row. One echelon form is [[1,1,1|4],[0,1,-1|-1],[0,0,0|0]]. Pivots are in x and y; z is free. Set z=t. Then y=t-1 and x=5-2t, so all solutions are (5-2t,t-1,t), t∈R. Substitution gives 4,7,3 respectively for every t, confirming the family. Hence there are infinitely many solutions.",
+      "reference": "R2←R2-2R1 gives y-z=1. R3←R3-3R1 also gives y-z=1, so subtracting those rows leaves a zero row. One echelon form is [[1,1,1|3],[0,1,-1|1],[0,0,0|0]]. Pivots are in x and y; z is free. Set z=t. Then y=1+t and x=2-2t, so all solutions are (2-2t,1+t,t), t∈R. Substitution gives 3,7,10 for every t, confirming the family. Hence there are infinitely many solutions.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Produces a valid echelon form equivalent to [[1,1,1|4],[0,1,-1|-1],[0,0,0|0]]."
+          "criterion": "Produces a valid echelon form equivalent to [[1,1,1|3],[0,1,-1|1],[0,0,0|0]]."
         },
         {
           "points": 2,
@@ -1379,7 +1379,7 @@
         },
         {
           "points": 3,
-          "criterion": "Derives the complete family (5-2t,t-1,t), t∈R."
+          "criterion": "Derives the complete family (2-2t,1+t,t), t∈R."
         },
         {
           "points": 2,
@@ -1389,11 +1389,11 @@
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
     "T22V3::SIDE276::S07-T@1": {
-      "reference": "As before R2-2R1 gives y-z=-1. Now R3-R1 gives y-z=0. Subtracting the second reduced constraint from the third gives 0=1, i.e. an augmented contradiction row [0,0,0|1]. Therefore the changed system has no solution. The number of equations and unknowns does not reveal dependence or inconsistency; pivot/free-variable and contradiction structure does.",
+      "reference": "As in the Main, R2-2R1 gives y-z=1. Now R3-3R1 gives y-z=2. Subtracting the second reduced constraint from the third gives 0=1, i.e. an augmented contradiction row [0,0,0|1]. Therefore the changed system has no solution. Equal equation/unknown counts do not reveal dependence or inconsistency; pivot/free-variable and contradiction structure does.",
       "rubric": [
         {
           "points": 4,
-          "criterion": "Reduces the changed system to incompatible constraints y-z=-1 and y-z=0, or equivalently a row [0,0,0|1]."
+          "criterion": "Reduces the changed system to incompatible constraints y-z=1 and y-z=2, or equivalently a row [0,0,0|1]."
         },
         {
           "points": 3,
@@ -1775,19 +1775,19 @@
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
     "T22V3::SIDE276::S17-M@1": {
-      "reference": "The columns [c1]_B=(2,1)^T and [c2]_B=(-1,3)^T give P_{B←C}=[[2,-1],[1,3]]. Thus [v]_B=P(2,-1)^T=(5,-1)^T. Directly 2c1-c2=2(2b1+b2)-(-b1+3b2)=5b1-b2. det P=7 and P^{-1}=(1/7)[[3,1],[-1,2]]=P_{C←B}; applying it to (5,-1)^T gives (2,-1)^T. Both columns are coordinate descriptions of the same underlying v in different ordered bases.",
+      "reference": "The columns [c1]_B=(1,2)^T and [c2]_B=(3,1)^T give P_{B←C}=[[1,3],[2,1]]. Thus [v]_B=P(2,-1)^T=(-1,3)^T. Directly 2c1-c2=2(b1+2b2)-(3b1+b2)=-b1+3b2. det P=-5 and P^{-1}=[[-1/5,3/5],[2/5,-1/5]]=P_{C←B}; applying it to (-1,3)^T gives (2,-1)^T. Both columns are coordinate descriptions of the same underlying v in different ordered bases.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Constructs P_{B←C}=[[2,-1],[1,3]] from the B-coordinates of c1,c2 in column order."
+          "criterion": "Constructs P_{B←C}=[[1,3],[2,1]] from the B-coordinates of c1,c2 in column order."
         },
         {
           "points": 2,
-          "criterion": "Converts (2,-1)_C to (5,-1)_B and verifies the same vector by direct basis expansion."
+          "criterion": "Converts (2,-1)_C to (-1,3)_B and verifies the same vector by direct basis expansion."
         },
         {
           "points": 3,
-          "criterion": "Computes P_{C←B}=P^{-1}=(1/7)[[3,1],[-1,2]] and recovers the original C-coordinates."
+          "criterion": "Computes P_{C←B}=P^{-1}=[[-1/5,3/5],[2/5,-1/5]] and recovers the original C-coordinates."
         },
         {
           "points": 2,
@@ -2417,11 +2417,11 @@
           "T22V3::SIDE276::S05-T@1"
         ],
         "publicRequestExact": [
-          "Consider x+2y=5, -y+z=-3, and 2x+y+z=3. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
+          "Consider 2x-y+z=-1, x+2y=5, and -y+3z=-5. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
           "A response library has primitive output vectors p=(1,2,0)^T and q=(0,-1,1)^T. A requested output is b=(3,4,-1)^T. Model the request as A(c,d)^T=b with columns p,q. Decide whether an exact solution exists by using coordinate constraints, and explain why the answer is not determined merely by having two unknown coefficients and three output coordinates."
         ],
         "rubricEvidence": [
-          "Constructs A=[[1,2,0],[0,-1,1],[2,1,1]], x_vec=(x,y,z)^T and b=(5,-3,3)^T in the correct positions.",
+          "Constructs A=[[2,-1,1],[1,2,0],[0,-1,3]], x_vec=(x,y,z)^T and b=(-1,5,-5)^T in the correct positions.",
           "Builds A with columns p,q and writes the target equation A(c,d)^T=b."
         ],
         "why": "Both surfaces require literal construction of a typed matrix equation.",
@@ -2435,11 +2435,11 @@
           "T22V3::SIDE276::S05-M@1"
         ],
         "publicRequestExact": [
-          "Consider x+2y=5, -y+z=-3, and 2x+y+z=3. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture."
+          "Consider 2x-y+z=-1, x+2y=5, and -y+3z=-5. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture."
         ],
         "rubricEvidence": [
           "Identifies the rows as the three simultaneous scalar constraints rather than independent solution choices.",
-          "Writes Ax=x a1+y a2+z a3 using the three columns of A."
+          "Writes Ax=x a1+y a2+z a3 using the three fresh columns of A."
         ],
         "why": "Main explicitly observes both row and column interpretations of the same Ax=b.",
         "escapeAttempt": "Merely writing A and b does not earn either interpretation row.",
@@ -2453,11 +2453,11 @@
           "T22V3::SIDE276::S05-T@1"
         ],
         "publicRequestExact": [
-          "Consider x+2y=5, -y+z=-3, and 2x+y+z=3. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
+          "Consider 2x-y+z=-1, x+2y=5, and -y+3z=-5. (a) Write the system as Ax=b with x_vec=(x,y,z)^T. (b) State the three row constraints represented by A. (c) Rewrite Ax as x(column 1)+y(column 2)+z(column 3). (d) Verify that (1,2,-1)^T is a solution and explain what that verification means in the column picture.",
           "A response library has primitive output vectors p=(1,2,0)^T and q=(0,-1,1)^T. A requested output is b=(3,4,-1)^T. Model the request as A(c,d)^T=b with columns p,q. Decide whether an exact solution exists by using coordinate constraints, and explain why the answer is not determined merely by having two unknown coefficients and three output coordinates."
         ],
         "rubricEvidence": [
-          "Verifies (1,2,-1)^T and interprets it as a coefficient witness producing b from the columns.",
+          "Verifies (1,2,-1)^T and interprets it as a coefficient witness producing b.",
           "Uses c=3 and d=-1 from the first/third coordinates and obtains the contradictory second coordinate 7≠4.",
           "Concludes no exact solution and rejects equation/unknown counting as a sufficient consistency test."
         ],
@@ -2475,12 +2475,12 @@
           "T22V3::SIDE276::S06-T@1"
         ],
         "publicRequestExact": [
-          "Start with the system x+2y-z=3, 2x+5y+z=8, and -x+2z=1. (a) Write [A|b]. (b) Apply R2←R2-2R1 and R3←R3+R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set.",
+          "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set.",
           "A student begins with 2u-v=5 and u+3v=4. To eliminate u from the second equation, they replace the coefficient row (1,3) by (1,3)-(1/2)(2,-1)=(0,7/2) but leave the right-hand side equal to 4. Diagnose the error, give the correctly transformed second augmented row, and explain whether multiplying an entire equation by 0 would be an allowed elementary row operation."
         ],
         "rubricEvidence": [
-          "Writes the correct initial augmented matrix, including the constants.",
-          "Obtains [[1,2,-1|3],[0,1,3|2],[0,2,1|4]] by applying both operations to the full augmented rows.",
+          "Writes the correct fresh augmented matrix [[1,-1,2|4],[3,0,-1|2],[2,1,1|7]].",
+          "Obtains [[1,-1,2|4],[0,3,-7|-10],[0,3,-3|-1]] by applying both operations to the full augmented rows.",
           "Identifies that the right-hand side must undergo the same row replacement and computes [0,7/2|3/2]."
         ],
         "why": "The learner must update coefficients and constants together on two distinct systems.",
@@ -2494,10 +2494,10 @@
           "T22V3::SIDE276::S06-M@1"
         ],
         "publicRequestExact": [
-          "Start with the system x+2y-z=3, 2x+5y+z=8, and -x+2z=1. (a) Write [A|b]. (b) Apply R2←R2-2R1 and R3←R3+R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set."
+          "Start with the system x-y+2z=4, 3x-z=2, and 2x+y+z=7. (a) Write [A|b]. (b) Apply R2←R2-3R1 and R3←R3-2R1 to the entire augmented rows. (c) For each operation, give the inverse row operation and use reversibility to explain why the original and new systems have exactly the same solution set."
         ],
         "rubricEvidence": [
-          "Gives the inverse operations R2←R2+2R1 and R3←R3-R1.",
+          "Gives the inverse operations R2←R2+3R1 and R3←R3+2R1.",
           "Uses reversibility/equation equivalence to justify equality of the two solution sets."
         ],
         "why": "Main asks for both inverse moves and the logical solution-set implication.",
@@ -2530,10 +2530,10 @@
           "T22V3::SIDE276::S07-M@1"
         ],
         "publicRequestExact": [
-          "Solve the exact system x+y+z=4, 2x+3y+z=7, x+2y=3 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system."
+          "Solve the exact system x+y+z=3, 2x+3y+z=7, 3x+4y+2z=10 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system."
         ],
         "rubricEvidence": [
-          "Produces a valid echelon form equivalent to [[1,1,1|4],[0,1,-1|-1],[0,0,0|0]].",
+          "Produces a valid echelon form equivalent to [[1,1,1|3],[0,1,-1|1],[0,0,0|0]].",
           "Identifies x,y as pivot variables and z as a free variable, and classifies infinitely many solutions."
         ],
         "why": "Main requires actual elimination plus pivot/free reading.",
@@ -2548,8 +2548,8 @@
           "T22V3::SIDE276::S07-T@1"
         ],
         "publicRequestExact": [
-          "Solve the exact system x+y+z=4, 2x+3y+z=7, x+2y=3 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
-          "Keep the same coefficient matrix as the Main but change the third equation to x+2y=4, so the system is x+y+z=4, 2x+3y+z=7, x+2y=4. Reduce enough to classify it. Exhibit the contradiction row and explain why 'three equations in three unknowns' did not guarantee a unique solution in either version."
+          "Solve the exact system x+y+z=3, 2x+3y+z=7, 3x+4y+2z=10 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
+          "Keep the same coefficient matrix as the Main but change the third equation to 3x+4y+2z=11, so the system is x+y+z=3, 2x+3y+z=7, 3x+4y+2z=11. Reduce enough to classify it. Exhibit the contradiction row and explain why 'three equations in three unknowns' did not guarantee a unique solution in either version."
         ],
         "rubricEvidence": [
           "Identifies x,y as pivot variables and z as a free variable, and classifies infinitely many solutions.",
@@ -2567,10 +2567,10 @@
           "T22V3::SIDE276::S07-M@1"
         ],
         "publicRequestExact": [
-          "Solve the exact system x+y+z=4, 2x+3y+z=7, x+2y=3 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system."
+          "Solve the exact system x+y+z=3, 2x+3y+z=7, 3x+4y+2z=10 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system."
         ],
         "rubricEvidence": [
-          "Derives the complete family (5-2t,t-1,t), t∈R.",
+          "Derives the complete family (2-2t,1+t,t), t∈R.",
           "Verifies the parameterized family against the original equations, not only the echelon system."
         ],
         "why": "Main asks for all solutions and a universal substitution check.",
@@ -3090,10 +3090,10 @@
           "T22V3::SIDE276::S17-M@1"
         ],
         "publicRequestExact": [
-          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors."
+          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=b1+2b2 and c2=3b1+b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors."
         ],
         "rubricEvidence": [
-          "Constructs P_{B←C}=[[2,-1],[1,3]] from the B-coordinates of c1,c2 in column order."
+          "Constructs P_{B←C}=[[1,3],[2,1]] from the B-coordinates of c1,c2 in column order."
         ],
         "why": "Main literally constructs the identity-map representation from basis-vector coordinates.",
         "escapeAttempt": "Using basis vectors as rows or reversing the arrow fails the row.",
@@ -3106,10 +3106,10 @@
           "T22V3::SIDE276::S17-M@1"
         ],
         "publicRequestExact": [
-          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors."
+          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=b1+2b2 and c2=3b1+b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors."
         ],
         "rubricEvidence": [
-          "Converts (2,-1)_C to (5,-1)_B and verifies the same vector by direct basis expansion.",
+          "Converts (2,-1)_C to (-1,3)_B and verifies the same vector by direct basis expansion.",
           "Explains that changing coordinate columns changes description, not the underlying vector."
         ],
         "why": "The learner converts and independently verifies vector identity.",
@@ -3124,11 +3124,11 @@
           "T22V3::SIDE276::S17-T@1"
         ],
         "publicRequestExact": [
-          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=2b1+b2 and c2=-b1+3b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors.",
+          "Two ordered bases B=(b1,b2) and C=(c1,c2) satisfy c1=b1+2b2 and c2=3b1+b2. (a) Construct P_{B←C}. (b) Convert [v]_C=(2,-1)^T to [v]_B and verify by expanding v directly in b1,b2. (c) Compute P_{C←B} and use it to recover (2,-1)^T from your B-coordinate result. (d) Explain why the two coordinate columns do not represent two different vectors.",
           "You are given P_{B←C}=[[1,3],[1,4]] and a vector whose B-coordinate column is [w]_B=(7,9)^T. A colleague multiplies P_{B←C}[w]_B to 'convert to C coordinates'. Diagnose the direction error, compute [w]_C correctly, and verify by converting your answer back to B coordinates."
         ],
         "rubricEvidence": [
-          "Computes P_{C←B}=P^{-1}=(1/7)[[3,1],[-1,2]] and recovers the original C-coordinates.",
+          "Computes P_{C←B}=P^{-1}=[[-1/5,3/5],[2/5,-1/5]] and recovers the original C-coordinates.",
           "States that P_{B←C} takes C-coordinates in and B-coordinates out, so the colleague used it backwards.",
           "Computes P_{C←B}=P^{-1}=[[4,-3],[-1,1]] and obtains [w]_C=(1,2)^T."
         ],
@@ -3333,12 +3333,12 @@
     },
     "T22V3::SIDE276::S07@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main combines elimination, structural classification and complete parameterization on an unseen system."
+        "classification": "retrieval + structural classification",
+        "reason": "Main uses a fresh underdetermined system and requires elimination, pivot/free-variable reading, full parameterization and verification; the procedure is taught, but the answer is not exposed."
       },
       "transfer": {
-        "classification": "changed-surface Transfer",
-        "reason": "Transfer changes only the right-hand side and tests whether the learner tracks how consistency changes despite the same equation count."
+        "classification": "changed-constraint Transfer",
+        "reason": "Transfer deliberately preserves the coefficient matrix while perturbing one right-hand side so a redundant constraint becomes a contradiction; the transfer is in consistency structure, not surface representation."
       }
     },
     "T22V3::SIDE276::S08@1": {
@@ -3526,12 +3526,12 @@
       },
       "T22V3::SIDE276::S07@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main combines elimination, structural classification and complete parameterization on an unseen system."
+          "classification": "retrieval + structural classification",
+          "reason": "Main uses a fresh underdetermined system and requires elimination, pivot/free-variable reading, full parameterization and verification; the procedure is taught, but the answer is not exposed."
         },
         "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer changes only the right-hand side and tests whether the learner tracks how consistency changes despite the same equation count."
+          "classification": "changed-constraint Transfer",
+          "reason": "Transfer deliberately preserves the coefficient matrix while perturbing one right-hand side so a redundant constraint becomes a contradiction; the transfer is in consistency structure, not surface representation."
         }
       },
       "T22V3::SIDE276::S08@1": {
@@ -3679,7 +3679,7 @@
   "instructionSeparation": {
     "policy": "Worked/guided examples use distinct numerical or structural instances from fixed assessments. Guided feedback remains staged. Fixed assessments are compared semantically against all earlier answer-bearing instruction; shared general methods are permitted but solved subanswers are not presented as fresh evidence.",
     "pilotFinding": "S04 uses distinct worked, guided, Main and Transfer matrices. The pilot falsification pass found no solved subanswer exposure. A separate Gate-7 defect was found instead: associativity was claimed but not observed; the Main was repaired before any learner publication. Full-module learner-only scan later found several fixed tasks reusing solved instructional instances; all identified material overlaps were replaced with fresh data before publication.",
-    "status": "Full builder candidate after repeated semantic-overlap repair sweeps; material solved-instance reuse has been removed before learner publication. Remaining exact-number echoes are incidental cross-context values rather than shared solved mathematical instances."
+    "status": "Full builder candidate after adversarial learner-only semantic audit. Exact solved-instance reuse in S05 Main, S06 Main, S07 Main and S17 Main was found and repaired with fresh mathematical objects before publication; S07 Transfer is explicitly labelled changed-constraint rather than changed-surface."
   },
   "initialVersionAudit": {
     "priorCanonicalM14": "none",
