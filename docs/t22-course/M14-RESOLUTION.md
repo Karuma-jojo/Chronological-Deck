@@ -248,6 +248,20 @@ M14 was unpublished at both versions, so no learner-route attempt is silently re
 
 ### Current status
 
-**v1.2 repairs implemented; full exact-head integration and the new M14 learner-UI Chromium probe must still pass before independent follow-up.**
+**v1.2 repairs implemented; full repaired implementation run #462 is green, including the unpublished-M14 learner-UI Chromium probe. M14 is repaired awaiting focused independent follow-up.**
 
 M14 remains unpublished. M15 remains closed.
+
+
+### Repaired integration result
+
+The first complete repaired implementation/runtime checkpoint is `59f6ceaea143255d024fcb0b2b78460035024cfa`.
+
+Full run:
+https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36221875839
+
+Run #462: **SUCCESS**.
+
+Gate-11 additionally found and repaired one artifact-first defect during the cycle: long M14 evaluator math could overflow the 390px learner viewport. The shared text/problem wrapping fix is pinned by exact blob in the preservation baseline, and run #462 reran the inherited M01–M13 browser suite plus the M14 candidate probe successfully.
+
+Gate-9 integration is recorded at `docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md` with status **PASS_WITH_EVIDENCE**. This remains builder-side evidence; independent follow-up is still required.
