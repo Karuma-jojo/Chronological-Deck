@@ -133,9 +133,14 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
  contains(id,'(2-2t,1+t,t)','infinitely many');
 }
 {
- const id='T22V3::SIDE276::S07-T@1';
- // R2-2R1 -> y-z=1; R3-3R1 -> y-z=2.
- contains(id,'y-z=1','y-z=2','[0,0,0|1]');
+ const id='T22V3::SIDE276::S07-T@2';
+ const E1=[[1,0,2,4],[0,1,-1,1],[0,0,0,0]];
+ const E2=[[1,0,2,4],[0,1,-1,1],[0,0,0,1]];
+ const E3=[[1,0,0,2],[0,1,0,-1],[0,0,1,3]];
+ assert.equal(rank(E1.map(r=>r.slice(0,3))),2); assert.equal(rank(E1),2);
+ assert.equal(rank(E2.map(r=>r.slice(0,3))),2); assert.equal(rank(E2),3);
+ assert.equal(rank(E3.map(r=>r.slice(0,3))),3); assert.equal(rank(E3),3);
+ contains(id,'E1 has pivots in x,y and free variable z','E2 contains [0,0,0|1]','E3 has a pivot in every variable column');
 }
 
 // S08
@@ -175,8 +180,10 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
  assert.deepEqual(add(sm(-2,a1),a2),[0,1,1]);
  assert.deepEqual(add(sm(-1,a1),sm(2,a2)),[3,2,5]);
  const b2=[0,0,1];
- // c2=0 from coord2 and c1=0 from coord1 would miss coord3.
- assert.notDeepEqual(add(sm(0,a1),sm(0,a2)),b2);
+ const c2=b2[1],c1=b2[0]-2*c2;
+ assert.equal(c2,0); assert.equal(c1,0);
+ assert.equal(c1*a1[2]+c2*a2[2],0);
+ assert.notEqual(c1*a1[2]+c2*a2[2],b2[2]);
  contains(id,'pivot','Col(A)⊆R^3','N(A)⊆R^4');
 }
 {
@@ -188,10 +195,10 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
 
 // S11
 {
- const id='T22V3::SIDE276::S11-M@1',R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]];
+ const id='T22V3::SIDE276::S11-M@2',R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]];
  assert.deepEqual(mv(R,[1,-3,1,0,0]),[0,0,0]);
  assert.deepEqual(mv(R,[-2,1,0,1,0]),[0,0,0]);
- contains(id,'rank(A)=3','nullity(A)=2','Col(A) has dimension 3');
+ contains(id,'rank(A)=3','nullity(A)=2','r pivots give rank r','nullity=n-r','Col(A) has dimension 3');
 }
 {
  const id='T22V3::SIDE276::S11-T@1';
@@ -284,12 +291,12 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
 
 // S18
 {
- const id='T22V3::SIDE276::S18-M@1';
+ const id='T22V3::SIDE276::S18-M@2';
  const A=[[2,1],[0,3]],P0=[[1,1],[1,2]],Pi=[[2,-1],[-1,1]],D=mm(mm(Pi,A),P0);
  assert.deepEqual(D,[[3,2],[0,2]]);
  assert.deepEqual(mv(D,[1,-1]),[1,-2]);
  assert.equal(det(D),det(A));
- contains(id,'rank is preserved','invertibility');
+ contains(id,'det(P^{-1}AP)=det(A)','rank is preserved','invertibility is preserved');
 }
 {
  const id='T22V3::SIDE276::S18-T@1';
@@ -298,13 +305,13 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
 
 // S19
 {
- const id='T22V3::SIDE276::S19-M@1';
+ const id='T22V3::SIDE276::S19-M@2';
  const A=[[1,0,1],[1,1,2],[2,1,3]],P0=[[0,0,1],[0,1,0],[1,0,0]];
  assert.equal(rank(A),2); assert.equal(det(A),0);
  assert.deepEqual(mv(A,[-1,-1,1]),[0,0,0]);
  assert.deepEqual(mv(A,[1,2,0]),[1,3,4]);
  assert.deepEqual(mm(mm(P0,A),P0),[[3,1,2],[2,1,1],[1,0,1]]);
- contains(id,'rank 2','determinant 0','noninvertibility');
+ contains(id,'One efficient route starts with exact row reduction','rank 2','determinant 0','noninvertibility');
 }
 {
  const id='T22V3::SIDE276::S19-T@1',M=[[2,6],[1,3]];
@@ -314,4 +321,4 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
 }
 
 assert.equal(Object.keys(P).filter(x=>x.startsWith('T22V3::SIDE276::')).length,38);
-console.log('PASS M14 fixed-assessment mathematics: all 38 references sampled/reconstructed across every session, including high-risk products, row operations, solution families, rank/nullity, determinants, inverses and similarity.');
+console.log('PASS M14 fixed-assessment math gate: all 38 current references receive targeted independent arithmetic/property checks plus reviewed reference assertions; prose proofs still require the recorded human semantic review.');
