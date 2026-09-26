@@ -779,7 +779,7 @@
       "id": "T22V3::SIDE278::S06-M@1",
       "order": 6,
       "kind": "main",
-      "prompt": "Let q1=(1/sqrt(2))(1,1,0), q2=(0,0,1), let W=span{q1,q2}, and let v=(3,1,2). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis.",
+      "prompt": "Let q1=(1/sqrt(2))(1,0,1), q2=(0,1,0), let W=span{q1,q2}, and let v=(4,1,0). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S06-T@1": {
@@ -842,7 +842,7 @@
       "id": "T22V3::SIDE278::S10-T@1",
       "order": 10,
       "kind": "transfer",
-      "prompt": "Let B=[[1,0],[0,1],[1,1]]. Find every y∈R^3 satisfying B^T y=0. Give a basis for Null(B^T), then reinterpret that same set without transpose notation as the vectors orthogonal to Col(B). Explain why nonzero solutions do not contradict the equation B^T y=0.",
+      "prompt": "Let B=[[1,0],[1,1],[1,-1]]. Find every y∈R^3 satisfying B^T y=0. Give a basis for Null(B^T), then reinterpret that same set without transpose notation as the vectors orthogonal to Col(B). Explain why nonzero solutions do not contradict the equation B^T y=0.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S11-M@1": {
@@ -863,7 +863,7 @@
       "id": "T22V3::SIDE278::S12-M@1",
       "order": 12,
       "kind": "main",
-      "prompt": "Let A=[[1,0],[0,1],[1,1]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A.",
+      "prompt": "Let A=[[1,1],[1,-1],[1,0]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S12-T@1": {
@@ -877,7 +877,7 @@
       "id": "T22V3::SIDE278::S13-M@1",
       "order": 13,
       "kind": "main",
-      "prompt": "Let A=[[1,0],[0,1],[1,1]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm.",
+      "prompt": "Let A=[[1,0],[1,1],[0,2]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S13-T@1": {
@@ -919,7 +919,7 @@
       "id": "T22V3::SIDE278::S16-M@1",
       "order": 16,
       "kind": "main",
-      "prompt": "Let A have columns a1=(1,1,0) and a2=(1,0,1), so A=[[1,1],[1,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p.",
+      "prompt": "Let A have columns a1=(1,2,0) and a2=(1,0,1), so A=[[1,1],[2,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S16-T@1": {
@@ -1152,7 +1152,7 @@
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
     },
     "T22V3::SIDE278::S06-M@1": {
-      "reference": "The ON equations give coefficients v·q1=2sqrt(2), v·q2=2. Thus p=(2,2,2), r=(1,-1,0). The two residual dot products are 0, so r∈W^perp. For a nonorthogonal basis, cross dot products do not vanish and the coefficients interact; direct dot products need not be basis coordinates.",
+      "reference": "The ON equations give coefficients v·q1=2sqrt(2) and v·q2=1. Thus p=(2,1,2) and r=(2,0,-2). The residual dot products with q1 and q2 are both 0, so r∈W^perp. For a nonorthogonal basis, cross dot products do not vanish and direct dot products need not be the basis coordinates.",
       "rubric": [
         {
           "points": 3,
@@ -1160,7 +1160,7 @@
         },
         {
           "points": 3,
-          "criterion": "Computes p=(2,2,2) and r=(1,-1,0)."
+          "criterion": "Computes p=(2,1,2) and r=(2,0,-2)."
         },
         {
           "points": 2,
@@ -1350,15 +1350,15 @@
       "marking": "Score only public obligations; accept equivalent exact routes and signs/scalings where mathematically appropriate."
     },
     "T22V3::SIDE278::S10-T@1": {
-      "reference": "B^T=[[1,0,1],[0,1,1]]. Equations are y1+y3=0 and y2+y3=0, so y=t(-1,-1,1). Thus Null(B^T)=span{(-1,-1,1)}. By the column-dot identity, these are exactly vectors orthogonal to both columns and therefore to Col(B). Nonzero y exist because the two columns span only a 2D subspace of R^3.",
+      "reference": "B^T=[[1,1,1],[0,1,-1]]. The equations are y1+y2+y3=0 and y2-y3=0. Hence y2=y3=t and y1=-2t, so y=t(-2,1,1). Thus Null(B^T)=span{(-2,1,1)}. By the column-dot identity, these are exactly the vectors orthogonal to both columns and therefore to Col(B). Nonzero solutions exist because the two columns span only a proper 2D subspace of R^3.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Solves B^T y=0 and obtains y=t(-1,-1,1)."
+          "criterion": "Solves B^T y=0 and obtains y=t(-2,1,1)."
         },
         {
           "points": 2,
-          "criterion": "Gives basis {(-1,-1,1)} for Null(B^T)."
+          "criterion": "Gives basis {(-2,1,1)} for Null(B^T)."
         },
         {
           "points": 3,
@@ -1416,7 +1416,7 @@
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
     },
     "T22V3::SIDE278::S12-M@1": {
-      "reference": "A^T A=[[2,1],[1,2]] with inverse (1/3)[[2,-1],[-1,2]]. Thus P=[[2/3,-1/3,1/3],[-1/3,2/3,1/3],[1/3,1/3,2/3]]. Direct multiplication gives P^2=P and it is symmetric. For b=(3,0,0), Pb=(2,-1,1), residual=(1,1,-1), whose dot products with (1,0,1) and (0,1,1) are both 0.",
+      "reference": "The columns are a1=(1,1,1) and a2=(1,-1,0), so A^T A=diag(3,2). Therefore P=(1/3)a1a1^T+(1/2)a2a2^T=[[5/6,-1/6,1/3],[-1/6,5/6,1/3],[1/3,1/3,1/3]]. Direct multiplication gives P^2=P and P is symmetric. For b=(3,0,0), Pb=(5/2,-1/2,1), so r=(1/2,1/2,-1). Then r·a1=0 and r·a2=0.",
       "rubric": [
         {
           "points": 2,
@@ -1424,7 +1424,7 @@
         },
         {
           "points": 3,
-          "criterion": "Computes the stated 3×3 projector matrix exactly."
+          "criterion": "Computes P=[[5/6,-1/6,1/3],[-1/6,5/6,1/3],[1/3,1/3,1/3]] exactly."
         },
         {
           "points": 3,
@@ -1432,7 +1432,7 @@
         },
         {
           "points": 2,
-          "criterion": "Applies P to b and verifies the residual is orthogonal to both columns of A."
+          "criterion": "Applies P to b=(3,0,0) and verifies the residual (1/2,1/2,-1) is orthogonal to both columns of A."
         }
       ],
       "marking": "Score only public obligations; accept equivalent exact routes and signs/scalings where mathematically appropriate."
@@ -1460,11 +1460,11 @@
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
     },
     "T22V3::SIDE278::S13-M@1": {
-      "reference": "Exact equations would require x1=1,x2=2 and then x1+x2=3≠4, so b∉Col(A). A^T A=[[2,1],[1,2]], A^T b=(5,6), giving x_hat=(4/3,7/3). Then p=(4/3,7/3,11/3), r=(-1/3,-1/3,1/3), A^T r=0, and ||r||^2=1/3. For any x, p-Ax∈Col(A) and r⊥Col(A), so ||b-Ax||^2=||r||^2+||p-Ax||^2≥||r||^2.",
+      "reference": "Exact equations would require x1=1 and x1+x2=2, so x2=1, but then 2x2=2≠4; the system is inconsistent. Here A^T A=[[2,1],[1,5]] and A^T b=(3,10), so x_hat=(5/9,17/9). Then p=(5/9,22/9,34/9), r=(4/9,-4/9,2/9), and A^T r=0. The squared residual norm is 4/9. For any x, p-Ax lies in Col(A) while r is orthogonal to Col(A), so ||b-Ax||^2=||r||^2+||p-Ax||^2≥||r||^2.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Demonstrates inconsistency by showing the first two exact equations force a third value 3 rather than 4."
+          "criterion": "Demonstrates inconsistency by showing the first two equations force x2=1 while the third would require x2=2."
         },
         {
           "points": 2,
@@ -1472,11 +1472,11 @@
         },
         {
           "points": 3,
-          "criterion": "Computes x_hat=(4/3,7/3), p=(4/3,7/3,11/3), r=(-1/3,-1/3,1/3), and verifies A^T r=0."
+          "criterion": "Computes x_hat=(5/9,17/9), p=(5/9,22/9,34/9), r=(4/9,-4/9,2/9), and verifies A^T r=0."
         },
         {
           "points": 3,
-          "criterion": "Computes ||r||^2=1/3 and proves global minimality with the orthogonal Pythagorean decomposition."
+          "criterion": "Computes ||r||^2=4/9 and proves global minimality with the orthogonal Pythagorean decomposition."
         }
       ],
       "marking": "Score only public obligations; accept equivalent exact routes."
@@ -1592,7 +1592,7 @@
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
     },
     "T22V3::SIDE278::S16-M@1": {
-      "reference": "The columns are independent and have dot product 1, so direct ON coefficients are not legal. Normal equations give A^T A=[[2,1],[1,2]], A^T b=(3,2), hence c=(4/3,1/3). Then p=(5/3,4/3,1/3), r=(1/3,-1/3,-1/3), and A^T r=0. Gram–Schmidt gives q1=(1/sqrt(2))(1,1,0), q2=(1/sqrt(6))(1,-1,2); summing (b·q1)q1+(b·q2)q2 reproduces p. Uniqueness explains why both routes must agree.",
+      "reference": "The columns are independent and have dot product 1, so raw dot products are not ON coordinates. A^T A=[[5,1],[1,2]] and A^T b=(4,2), giving c=(2/3,2/3). Thus p=(4/3,4/3,2/3), r=(2/3,-1/3,-2/3), and A^T r=0. Gram–Schmidt gives q1=(1/sqrt(5))(1,2,0) and q2=(1/(3sqrt(5)))(4,-2,5), up to sign. The ON projection (b·q1)q1+(b·q2)q2 equals the same p, as uniqueness requires.",
       "rubric": [
         {
           "points": 2,
@@ -1600,7 +1600,7 @@
         },
         {
           "points": 3,
-          "criterion": "Computes c=(4/3,1/3), p=(5/3,4/3,1/3), and r=(1/3,-1/3,-1/3)."
+          "criterion": "Computes c=(2/3,2/3), p=(4/3,4/3,2/3), and r=(2/3,-1/3,-2/3)."
         },
         {
           "points": 2,
@@ -1608,7 +1608,7 @@
         },
         {
           "points": 3,
-          "criterion": "Constructs a valid ON basis by Gram–Schmidt and cross-checks that ON projection gives the same p."
+          "criterion": "Constructs a valid ON basis q1=(1/sqrt(5))(1,2,0), q2=(1/(3sqrt(5)))(4,-2,5), up to signs, and cross-checks that ON projection gives the same p."
         }
       ],
       "marking": "Score only public obligations; accept equivalent exact routes."
@@ -1992,7 +1992,7 @@
           "T22V3::SIDE278::S06-M@1"
         ],
         "publicRequestExact": [
-          "Let q1=(1/sqrt(2))(1,1,0), q2=(0,0,1), let W=span{q1,q2}, and let v=(3,1,2). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis."
+          "Let q1=(1/sqrt(2))(1,0,1), q2=(0,1,0), let W=span{q1,q2}, and let v=(4,1,0). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis."
         ],
         "rubricEvidence": [
           "Derives the ON-basis projection coefficients from residual orthogonality."
@@ -2009,7 +2009,7 @@
           "T22V3::SIDE278::S06-M@1"
         ],
         "publicRequestExact": [
-          "Let q1=(1/sqrt(2))(1,1,0), q2=(0,0,1), let W=span{q1,q2}, and let v=(3,1,2). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis."
+          "Let q1=(1/sqrt(2))(1,0,1), q2=(0,1,0), let W=span{q1,q2}, and let v=(4,1,0). (a) Derive the projection formula from the requirement that r=v-p be orthogonal to q1,q2. (b) Compute p and r. (c) Verify both residual dot products vanish. (d) Explain why the same coefficient rule is not justified for an arbitrary nonorthogonal basis."
         ],
         "rubricEvidence": [
           "Verifies r is orthogonal to both q1 and q2."
@@ -2238,7 +2238,7 @@
           "T22V3::SIDE278::S10-T@1"
         ],
         "publicRequestExact": [
-          "Let B=[[1,0],[0,1],[1,1]]. Find every y∈R^3 satisfying B^T y=0. Give a basis for Null(B^T), then reinterpret that same set without transpose notation as the vectors orthogonal to Col(B). Explain why nonzero solutions do not contradict the equation B^T y=0."
+          "Let B=[[1,0],[1,1],[1,-1]]. Find every y∈R^3 satisfying B^T y=0. Give a basis for Null(B^T), then reinterpret that same set without transpose notation as the vectors orthogonal to Col(B). Explain why nonzero solutions do not contradict the equation B^T y=0."
         ],
         "rubricEvidence": [
           "Reinterprets the null-space condition as orthogonality to every column and to Col(B)."
@@ -2310,7 +2310,7 @@
           "T22V3::SIDE278::S12-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0],[0,1],[1,1]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A."
+          "Let A=[[1,1],[1,-1],[1,0]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A."
         ],
         "rubricEvidence": [
           "Derives P=A(A^T A)^{-1}A^T from the normal-equation coefficient solution."
@@ -2327,7 +2327,7 @@
           "T22V3::SIDE278::S12-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0],[0,1],[1,1]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A."
+          "Let A=[[1,1],[1,-1],[1,0]]. (a) Derive P=A(A^T A)^{-1}A^T from the S11 coefficient solution. (b) Compute P exactly. (c) Verify P^2=P and P^T=P. (d) Apply P to b=(3,0,0)^T and verify the residual is orthogonal to both columns of A."
         ],
         "rubricEvidence": [
           "Verifies both P^2=P and P^T=P."
@@ -2363,7 +2363,7 @@
           "T22V3::SIDE278::S13-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0],[0,1],[1,1]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
+          "Let A=[[1,0],[1,1],[0,2]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
         ],
         "rubricEvidence": [
           "Formulates min ||Ax-b||^2 and derives the normal equations from projection/residual orthogonality."
@@ -2380,10 +2380,10 @@
           "T22V3::SIDE278::S13-M@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0],[0,1],[1,1]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
+          "Let A=[[1,0],[1,1],[0,2]] and b=(1,2,4)^T. (a) Show Ax=b is inconsistent. (b) Formulate the Euclidean least-squares problem and derive the normal equations from projection geometry. (c) Solve for x_hat, compute p=A x_hat and r=b-p, and verify A^T r=0. (d) Compute ||r||^2 and prove by orthogonal decomposition why no other coefficient vector can have a smaller residual norm."
         ],
         "rubricEvidence": [
-          "Computes ||r||^2=1/3 and proves global minimality with the orthogonal Pythagorean decomposition."
+          "Computes ||r||^2=4/9 and proves global minimality with the orthogonal Pythagorean decomposition."
         ],
         "disposition": "adequate",
         "why": "Global minimality proof is separately scored.",
@@ -2522,7 +2522,7 @@
           "T22V3::SIDE278::S16-M@1"
         ],
         "publicRequestExact": [
-          "Let A have columns a1=(1,1,0) and a2=(1,0,1), so A=[[1,1],[1,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p."
+          "Let A have columns a1=(1,2,0) and a2=(1,0,1), so A=[[1,1],[2,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p."
         ],
         "rubricEvidence": [
           "Correctly classifies the columns as independent but nonorthogonal and chooses/justifies a legal M15 route."
@@ -2539,10 +2539,10 @@
           "T22V3::SIDE278::S16-M@1"
         ],
         "publicRequestExact": [
-          "Let A have columns a1=(1,1,0) and a2=(1,0,1), so A=[[1,1],[1,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p."
+          "Let A have columns a1=(1,2,0) and a2=(1,0,1), so A=[[1,1],[2,0],[0,1]], and let b=(2,1,0)^T. (a) Classify the raw columns as independent/nonorthogonal and choose an exact M15 route to the projection, justifying your choice. (b) Compute the coefficient vector, projected vector p and residual r. (c) Verify A^T r=0. (d) Gram–Schmidt the two columns to an ON basis and use it to cross-check the same p."
         ],
         "rubricEvidence": [
-          "Constructs a valid ON basis by Gram–Schmidt and cross-checks that ON projection gives the same p."
+          "Constructs a valid ON basis q1=(1/sqrt(5))(1,2,0), q2=(1/(3sqrt(5)))(4,-2,5), up to signs, and cross-checks that ON projection gives the same p."
         ],
         "disposition": "adequate",
         "why": "Main requires a second representation to reproduce p.",
@@ -2836,8 +2836,8 @@
           "S06 worked span{e1,e3}",
           "S06 guided rotated q1 plus e3"
         ],
-        "mathematicalDifference": "Main uses different target and separately asks hypothesis comparison with nonorthogonal bases.",
-        "exposureDisposition": "CLEAR — p=(2,2,2),r=(1,-1,0) not exposed."
+        "mathematicalDifference": "Main uses a fresh ON plane in the xz/y directions and target v=(4,1,0), with distinct projected vector and residual; it also asks for the nonorthogonal-basis boundary.",
+        "exposureDisposition": "CLEAR — unlike the earlier draft, this is not the same subspace/target as S04 Main, and p=(2,1,2), r=(2,0,-2) are not solved earlier."
       },
       "T22V3::SIDE278::S06-T@1": {
         "sessionId": "T22V3::SIDE278::S06@1",
@@ -2921,8 +2921,8 @@
         "closestInstructionalExamples": [
           "S10 column-dot equivalence explanation"
         ],
-        "mathematicalDifference": "Transfer asks for Null(B^T) and Col(B)^perp rather than a direct product.",
-        "exposureDisposition": "CLEAR — B and basis (-1,-1,1) unseen."
+        "mathematicalDifference": "Transfer solves a fresh transpose null space for columns (1,1,1) and (0,1,-1), then converts that algebraic answer into a geometric orthogonal-complement statement.",
+        "exposureDisposition": "CLEAR — the matrix is not reused by S11 or later fixed tasks, and the basis (-2,1,1) is not exposed earlier."
       },
       "T22V3::SIDE278::S11-M@1": {
         "sessionId": "T22V3::SIDE278::S11@1",
@@ -2950,8 +2950,8 @@
           "S12 worked coordinate-axis projector",
           "S12 guided line projector"
         ],
-        "mathematicalDifference": "Main constructs a new 3×3 projector from a rectangular design matrix and checks action plus identities.",
-        "exposureDisposition": "CLEAR — 3×3 P entries are not visible earlier."
+        "mathematicalDifference": "Main builds a new 3×3 projector from fresh orthogonal-but-nonunit columns and checks both algebraic structure and residual geometry.",
+        "exposureDisposition": "CLEAR — the A matrix and resulting P are not used in S11 instruction or fixed assessments."
       },
       "T22V3::SIDE278::S12-T@1": {
         "sessionId": "T22V3::SIDE278::S12@1",
@@ -2969,8 +2969,8 @@
           "S13 worked two-request scalar fit",
           "S13 guided 3×2 fit"
         ],
-        "mathematicalDifference": "Main adds explicit inconsistency proof, 2-parameter solve and global Pythagorean optimality argument.",
-        "exposureDisposition": "CLEAR — x_hat=(4/3,7/3) instance unseen."
+        "mathematicalDifference": "Main uses a fresh 3×2 design with a different inconsistency pattern, fractional least-squares coefficients and a global Pythagorean optimality proof.",
+        "exposureDisposition": "CLEAR — neither this A,b pair nor x_hat=(5/9,17/9) appears in prior instruction or assessment."
       },
       "T22V3::SIDE278::S13-T@1": {
         "sessionId": "T22V3::SIDE278::S13@1",
@@ -3026,8 +3026,8 @@
           "S16 worked method-selection contrasts",
           "S16 guided nonorthogonal xy-plane columns"
         ],
-        "mathematicalDifference": "Main uses a fully 3D two-column model and requires both normal-equation and Gram–Schmidt representations to agree.",
-        "exposureDisposition": "CLEAR — c,p,r and ON basis for A are not solved in instruction."
+        "mathematicalDifference": "Main integrates route choice, a fresh normal-equation solve and a Gram–Schmidt cross-check on columns not previously orthogonalized together.",
+        "exposureDisposition": "CLEAR — the earlier S08 fixed task uses a different second vector, so the ON basis and final projection are not pre-solved."
       },
       "T22V3::SIDE278::S16-T@1": {
         "sessionId": "T22V3::SIDE278::S16@1",
@@ -3324,7 +3324,7 @@
         "claimedLearnerDecision": "Decide what nonzero solutions of B^T y=0 mean geometrically.",
         "alreadySuppliedByPrompt": "NO — null space and interpretation are not supplied.",
         "decisivelyRehearsedInVisibleInstruction": "PARTLY — identity is taught, not a null-space example.",
-        "learnerActionActuallyScored": "Solves the null space and identifies it with vectors orthogonal to Col(B)."
+        "learnerActionActuallyScored": "Solves the fresh transpose null space and identifies it with vectors orthogonal to Col(B), including why nonzero solutions are possible."
       },
       "T22V3::SIDE278::S11-T@1": {
         "claimedLearnerDecision": "Choose which proposed coefficient vector is the projection using residual diagnostics rather than recomputing the solve.",
@@ -3707,5 +3707,17 @@
     "status": "unpublished",
     "learnerRegistry": "M01–M14 only",
     "authorization": "not requested; independent adversarial review pending"
+  },
+  "followupRepair": {
+    "status": "builder recovery repair in progress",
+    "reason": "The first post-stall Gate-8 whole-module scan found cross-session solved-instance reuse that the draft ledger had missed.",
+    "repairedTasks": [
+      "T22V3::SIDE278::S06-M@1",
+      "T22V3::SIDE278::S10-T@1",
+      "T22V3::SIDE278::S12-M@1",
+      "T22V3::SIDE278::S13-M@1",
+      "T22V3::SIDE278::S16-M@1"
+    ],
+    "note": "All five tasks keep obligationVersion 1 because M15 has never been in the learner registry and no M15 learner evidence exists. Repairs change mathematical instances rather than wording; exact prompt/rubric receipts were regenerated. Full Gates 4–11 recheck remains required."
   }
 }
