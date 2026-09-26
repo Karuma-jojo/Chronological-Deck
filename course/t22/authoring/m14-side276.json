@@ -1,13 +1,13 @@
 {
-  "version": "m14-side276-builder-candidate-v1",
-  "instructionVersion": "m14-side276-instruction-v1",
+  "version": "m14-side276-v12-repair-candidate-v2",
+  "instructionVersion": "m14-side276-instruction-v2",
   "module": {
     "order": 14,
     "id": "SIDE276",
     "title": "Matrices, Linear Maps & Linear Systems",
-    "status": "builder-verified-adversarially-repaired-awaiting-independent-review",
+    "status": "v1.2-repaired-awaiting-integration-and-independent-follow-up",
     "destination": "Treat real matrices as basis-dependent representations of finite-dimensional linear maps; compose maps, solve and classify exact linear systems, reason with column space/null space/rank/invertibility, use determinants with correct scope, and change coordinates/similar representations without importing projection, eigenstructure or numerical-conditioning machinery.",
-    "gate": "Nineteen sessions, 38 fixed assessments and 60 literal ownership claims are authored and builder-verified. S04 pilot and full-module adversarial repairs are closed; fixed-assessment and 19/19 instructional-math gates plus the inherited T22 workflow are green. M14 remains unpublished pending independent adversarial review and explicit publication authorization.",
+    "gate": "Nineteen-session architecture preserved. Gates 5,7,8,9,11 were reopened after independent v1.2 review: evidence classes normalized, 60 claims gained generalization-distance audits, 38 tasks gained semantic-separation rows, decision/misconception audits were added, S07/S11/S18/S19 public obligations were versioned, and actual M14 learner-UI rendering remains to be reverified before follow-up acceptance.",
     "nextBoundary": "M15/SIDE278 owns projection, Gram–Schmidt and least squares; M16/SIDE279 owns eigenstructure; M17/SIDE280 owns PSD/QR/Cholesky/SVD."
   },
   "boundary": {
@@ -40,7 +40,7 @@
     "authoredSessions": 19,
     "ownershipClaimCount": 60,
     "fixedAssessments": 38,
-    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication. Claim-observer audit found three wording/evidence gaps: S01 claimed derivation of T(0)=0 without observing it, S06 claimed all three elementary-operation justifications while assessing only row replacement, and S16 claimed a general determinant singularity derivation while assessing examples only. Public tasks were repaired. S12's local claim was narrowed because S13 owns the general proof. Evidence-distance labels were conservatively recalibrated: procedural fresh-instance Mains in S04/S09/S10/S12/S15/S17/S18 were relabelled as retrieval/proof-reconstruction/integration rather than overclaimed as fresh evidence; several Transfers were relabelled by their actual shift (failure-mode, misconception, direction or adversarial audit). A second literal-observer pass closed six bounded issues: S07 now observes the unique-solution echelon case, S09 observes the general b=0 condition for 0 in the solution set, S11 publicly states rank/nullity definitions, S12 observes the unequal-dimension injective+surjective impossibility, and S10/S13/S15 wording was narrowed to what fixed tasks literally demonstrate. S17's coordinate-change claim now cites its conversion/verification rubric row as well. Full workflow run 36219131246 at resolution head 9b2a61aa4059dabdae60dd2217361849347ff4be passed syntax, structural/pedagogy/semantic/evidence, both M14 math gates and the inherited Chromium route regression."
+    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication. Claim-observer audit found three wording/evidence gaps: S01 claimed derivation of T(0)=0 without observing it, S06 claimed all three elementary-operation justifications while assessing only row replacement, and S16 claimed a general determinant singularity derivation while assessing examples only. Public tasks were repaired. S12's local claim was narrowed because S13 owns the general proof. Evidence-distance labels were conservatively recalibrated: procedural fresh-instance Mains in S04/S09/S10/S12/S15/S17/S18 were relabelled as retrieval/proof-reconstruction/integration rather than overclaimed as fresh evidence; several Transfers were relabelled by their actual shift (failure-mode, misconception, direction or adversarial audit). A second literal-observer pass closed six bounded issues: S07 now observes the unique-solution echelon case, S09 observes the general b=0 condition for 0 in the solution set, S11 publicly states rank/nullity definitions, S12 observes the unequal-dimension injective+surjective impossibility, and S10/S13/S15 wording was narrowed to what fixed tasks literally demonstrate. S17's coordinate-change claim now cites its conversion/verification rubric row as well. Full workflow run 36219131246 at resolution head 9b2a61aa4059dabdae60dd2217361849347ff4be passed syntax, structural/pedagogy/semantic/evidence, both M14 math gates and the inherited Chromium route regression. Independent v1.2 review reopened Gates 5/7/8/9/11. Repair added 60/60 generalization-distance rows, a genuine 38-task semantic-separation ledger, normalized four-class evidence labels, 21 decision audits, 13 wrong-solver misconception discriminators, S07 Transfer changed-surface redesign, S11 general rank-nullity observer, S14 claim narrowing, S18 determinant-invariance proof observer, S19 organizing-choice synthesis, and several additional claim narrowings discovered by the generalization audit. Gate 11 M14 UI rendering remains pending until the browser probe lands and passes."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -143,7 +143,7 @@
       "requiredOwnership": [
         "Verify linearity by preservation of vector addition and scalar multiplication, equivalently finite linear combinations.",
         "Derive and use T(0)=0 as a necessary consequence of linearity.",
-        "Explain why a linear map is uniquely determined by its values on a basis.",
+        "Explain in a finite-dimensional coordinate setting why a linear map is uniquely determined by its values on a basis.",
         "Compute the action of a linear map on an arbitrary vector from basis images."
       ],
       "applicationScope": "Finite-dimensional real coordinate spaces and exact algebra; affine translations may appear only as counterexamples.",
@@ -255,7 +255,7 @@
       ],
       "requiredOwnership": [
         "Translate a stated composition of linear maps into the correct ordered matrix product with compatible intermediate dimensions.",
-        "Compute a matrix product and interpret each product column as the outer map applied to the corresponding inner-map column.",
+        "Compute a matrix product and interpret a product column as the outer map applied to the corresponding inner-map column.",
         "Explain why matrix multiplication is associative through associativity of map composition when dimensions are compatible.",
         "Reject commutativity in general using a concrete pair for which both products are legal but represent different process orders."
       ],
@@ -393,7 +393,7 @@
       "lesson": "Orient. Elimination has a destination: row-echelon form. All nonzero rows come above zero rows; the pivot of each lower nonzero row lies strictly to the right of the pivot above it; and entries below each pivot are zero. Pivots need not equal 1 unless we continue to reduced row-echelon form. Variables whose columns contain pivots are pivot variables; the remaining variables are free. The pattern tells us how many choices survive after all constraints are enforced.\n\nThree cases. A row [0 ... 0|c] with c≠0 says 0=c and makes the system inconsistent. If no contradiction occurs and every variable column has a pivot, back-substitution gives one unique solution. If no contradiction occurs but at least one variable is free, each free choice generates a solution family, so there are infinitely many real solutions.\n\nWorked example. For x+y+z=4, 2x+3y+z=7 and x+2y=3, use R2←R2-2R1 and R3←R3-R1. The last two rows both become y-z=-1, so one is redundant. With z=t free, y=t-1 and x=5-2t. Thus every solution is (5-2t,t-1,t), t∈R. Substitution into all three original equations verifies the family.\n\nGuided practice. Reduce x+y+z=2, 2x+2y+2z=4, and y-z=1. Identify pivot and free variables, choose a parameter, and write every solution. Then imagine only the second right-hand side changes from 4 to 5; predict the contradiction before checking.\n\nDistinction check. A zero row [0 ... 0|0] removes no solutions; it records a redundant equation. A contradiction row [0 ... 0|c], c≠0, destroys all solutions. Equation count alone does not distinguish them.",
       "guidedFeedback": "Check after attempting. Row 2 is twice row 1, so it reduces to [0,0,0|0]. With y-z=1, let z=t, then y=1+t and x=1-2t; every solution is (1-2t,1+t,t). If the second right-hand side were 5, subtracting 2R1 would instead give [0,0,0|1], so there would be no solution.",
       "main": "T22V3::SIDE276::S07-M@1",
-      "transfer": "T22V3::SIDE276::S07-T@1"
+      "transfer": "T22V3::SIDE276::S07-T@2"
     },
     {
       "order": 8,
@@ -545,7 +545,7 @@
       "exitCondition": "Given pivot/nullspace data or matrix dimensions, infer and defend the rank-nullity structure.",
       "lesson": "Orient. Two dimensions summarize the map's structure. The rank of A is dim Col(A): the number of independent output directions the map can reach. The nullity is dim N(A): the number of independent input directions erased by the map.\n\nFor an m-by-n matrix reduced to echelon form with r pivots, the r pivot columns of the original A form a basis of Col(A), so rank(A)=r. The n-r nonpivot variable columns give n-r free variables in Ax=0. Setting one free variable at a time to 1 while the other free variables are 0 produces n-r special solutions. They span N(A) because the general homogeneous solution is obtained by assigning arbitrary values to those free variables and is the corresponding linear combination of the special solutions. They are independent because in any zero combination, inspecting each free-variable coordinate forces its coefficient to be 0. Hence nullity(A)=n-r. Therefore rank(A)+nullity(A)=r+(n-r)=n, the dimension of the **domain**, not the codomain.\n\nWorked example. Suppose a 3-by-5 matrix has RREF [[1,0,2,0,-1],[0,1,-3,0,4],[0,0,0,1,2]]. Pivots are in columns 1,2,4, so rank=3. Free variables x3,x5 give nullity=2. Their sum is 5, the input dimension. A rank cannot exceed either the number of rows or columns because Col(A)⊆R^m and no more than n columns can be independent.\n\nGuided practice. A 4-by-6 matrix has pivot columns 1,3,4. Without solving entries, state rank, nullity, number of free variables and the largest possible rank for any 4-by-6 matrix.\n\nDistinction check. A zero row in an echelon form can help reveal rank, but rank is not “the number of nonzero-looking rows” by definition. It is the dimension of the image; pivot count is a theorem/computational route to that dimension.",
       "guidedFeedback": "Check after attempting. Three pivot columns give rank 3. With six input coordinates there are 6-3=3 free variables, so nullity 3 and rank+nullity=6. Any 4-by-6 matrix has rank at most min(4,6)=4.",
-      "main": "T22V3::SIDE276::S11-M@1",
+      "main": "T22V3::SIDE276::S11-M@2",
       "transfer": "T22V3::SIDE276::S11-T@1"
     },
     {
@@ -604,7 +604,7 @@
       "requiredOwnership": [
         "Explain why a two-sided compositional inverse exists exactly for a bijective finite linear map.",
         "For an n-by-n matrix, connect rank n, N(A)={0}, injectivity, surjectivity and unique solvability of Ax=b for every b.",
-        "Reject invertibility of a square map from a nonzero null vector or missing pivot without using determinant or eigenvalue arguments."
+        "Reject invertibility of a square map from a supplied nonzero null vector without using determinant or eigenvalue arguments."
       ],
       "applicationScope": "Finite real square maps; inverse existence is separated from inverse construction.",
       "transferScope": "Transfer supplies a nonzero null vector for a square matrix and asks the learner to propagate that evidence through the entire equivalence chain.",
@@ -643,7 +643,7 @@
       "requiredOwnership": [
         "Construct A^{-1} by reducing [A|I] to [I|A^{-1}] and explain why the same row operations produce the inverse.",
         "Verify a proposed inverse by two-sided multiplication and use it to solve Ax=b exactly when A is invertible.",
-        "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject inverse notation for nonsquare or singular matrices."
+        "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions."
       ],
       "applicationScope": "Small exact square matrices; explicit inversion is not presented as the preferred numerical method for large systems.",
       "transferScope": "Transfer changes from Gauss–Jordan construction to a composition audit with supplied inverses plus a nonsquare counterexample.",
@@ -720,7 +720,7 @@
       ],
       "requiredOwnership": [
         "Derive and use det(A)=0 iff a real square matrix is noninvertible, connecting row-reduction/determinant rules to rank loss.",
-        "Interpret |det(A)| as the n-dimensional volume scale factor and the sign as orientation for a real square linear map.",
+        "Interpret |det(A)| as the area scale factor and the determinant sign as orientation for a real 2-by-2 linear map.",
         "Explain why determinant magnitude alone does not measure directional sensitivity or numerical conditioning."
       ],
       "applicationScope": "Exact real square maps and Euclidean area/volume interpretation; no condition-number computation.",
@@ -815,7 +815,7 @@
       "exitCondition": "Reconstruct the similarity formula from coordinate semantics and use it without confusing representation with operator.",
       "lesson": "Orient. Let A=[T]_{B←B} describe an operator T:V→V in basis B. Let P=P_{B←C}, so [v]_B=P[v]_C. To compute the output while starting and ending in C-coordinates, follow the actual pipeline:\n1. convert C→B: multiply by P;\n2. apply T in B-coordinates: multiply by A;\n3. convert B→C: multiply by P^{-1}.\nTherefore [T(v)]_C=P^{-1}AP[v]_C, so D=[T]_{C←C}=P^{-1}AP.\n\nWorked example. Let A=[[2,0],[1,3]] and P=[[1,1],[0,1]]. Then P^{-1}=[[1,-1],[0,1]] and D=P^{-1}AP=[[1,-2],[1,4]]. For [v]_C=(2,-1), convert to B: P[v]_C=(1,-1). Apply A to get (2,-2). Convert back: P^{-1}(2,-2)=(4,-2). Directly D(2,-1)=(4,-2), confirming the same operator output in C-coordinates.\n\nInvariants. Right multiplication by invertible P only reparameterizes all possible inputs: {APx:x}={Ay:y}, so Col(AP)=Col(A). Left multiplication by invertible P^{-1} bijectively transforms the output subspace and therefore preserves its dimension. Hence rank(P^{-1}AP)=rank(A). Likewise D is invertible iff A is because P and P^{-1} are invertible coordinate conversions. Determinant multiplicativity gives det D=det(P^{-1})det(A)det(P)=det(A). These properties belong to the underlying operator, not one coordinate table.\n\nGuided practice. With A=[[1,2],[0,3]] and P=[[1,0],[1,1]], compute P^{-1}AP. Then check one C-coordinate input (1,2)^T by both the three-stage route and direct multiplication by D.\n\nDistinction check. Similarity is not arbitrary PAQ. The left and right factors are inverse coordinate conversions tied to the same two bases. Choosing a special eigenbasis is M16, not M14.",
       "guidedFeedback": "Check after attempting. P^{-1}=[[1,0],[-1,1]] and D=P^{-1}AP=[[3,2],[0,1]]. For x_C=(1,2), P x_C=(1,3), A(1,3)=(7,9), P^{-1}(7,9)=(7,2), and D(1,2)=(7,2).",
-      "main": "T22V3::SIDE276::S18-M@1",
+      "main": "T22V3::SIDE276::S18-M@2",
       "transfer": "T22V3::SIDE276::S18-T@1"
     },
     {
@@ -825,7 +825,7 @@
       "title": "Synthesis: one map, many representations",
       "focus": "Integrate map, matrix, system, image/kernel, rank, determinant and basis-change reasoning without using later projection or eigenstructure.",
       "purpose": "Test whether the learner can choose and coordinate M14 representations instead of executing a fixed chapter-by-chapter recipe.",
-      "centralCapability": "Audit a new square linear model from reachability/ambiguity through determinant and a changed-basis representation, with every conclusion tied to evidence.",
+      "centralCapability": "Choose and coordinate M14 representations to audit a new square linear model from reachability/ambiguity through determinant and a changed-basis representation, with each conclusion tied to an appropriate artifact.",
       "principalObstacle": "The learner conflates row-reduced and original columns, treats det=0 as an isolated fact, or changes coordinates as if the underlying operator changed.",
       "entryPrerequisites": [
         "M14-S01–S18 owned capabilities"
@@ -850,9 +850,9 @@
         "conditioning"
       ],
       "exitCondition": "Produce or audit a coherent linear-model report in which every map/matrix/system/basis claim has a valid observer.",
-      "lesson": "Orient. M14 has built several descriptions of one finite linear object. A matrix can represent a map; Ax=b asks for a preimage; N(A) records erased input directions; Col(A) records reachable outputs; rank measures the image dimension; determinant adds square-map singularity and volume information; a basis change changes coordinate tables without changing the operator.\n\nA synthesis should therefore start from the question, not from a favorite algorithm. For reachability or ambiguity, row reduction can expose pivots and the nullspace, but a column-space basis must still come from the original matrix. For square invertibility, rank/nullspace and determinant should agree. For a new basis, derive the coordinate arrows and use similarity; do not invoke eigenvectors merely because similarity has appeared.\n\nWorked example. Let A=[[1,1,0],[0,1,1],[1,2,1]]. The third row is the sum of the first two, so rank≤2; the first two rows/columns show rank 2. Solving Ax=0 gives N(A)=span{(-1,1,-1)} and det(A)=0, all agreeing that A is not invertible. For b=(2,1,3), xp=(1,1,0) works, so every solution is (1,1,0)+t(-1,1,-1). A basis for Col(A) can use original columns a1=(1,0,1), a2=(1,1,2), with a3=a2-a1.\n\nIf C simply swaps the first two standard basis vectors and keeps e3, its change matrix P is the corresponding permutation matrix and P^{-1}=P. The same operator in C-coordinates is P^{-1}AP=PAP; its entries change, but rank 2, determinant 0 and noninvertibility do not.\n\nGuided practice. Reuse the worked matrix only as a *method map*: before checking, name which artifact answers each question—'Is b reachable?', 'Which inputs are invisible?', 'Which original columns form an output basis?', 'Is the square map invertible?', 'How do I rewrite it in another basis?' Do not perform new arithmetic.\n\nDistinction check. Agreement among several valid invariants is a consistency check, not permission to substitute one definition for another. Row reduction, determinant and similarity each answer different questions.",
+      "lesson": "Orient. M14 has built several descriptions of one finite linear object. A matrix can represent a map; Ax=b asks for a preimage; N(A) records erased input directions; Col(A) records reachable outputs; rank measures the image dimension; determinant adds square-map singularity and volume information; a basis change changes coordinate tables without changing the operator.\n\nA synthesis should therefore start from the question, not from a favorite algorithm. Before calculating, decide which claim is most structurally informative and which artifact can support more than one conclusion. Row reduction can expose pivots, rank, a nullspace basis and solution ambiguity, but a column-space basis must still come from the original matrix. Determinant is a separate square-map check, not a substitute for every definition. For a new basis, derive the coordinate arrows and use similarity; do not invoke eigenvectors merely because similarity has appeared. A good audit makes the route explicit: choose an order, reuse evidence where legitimate, and say why each representation answers the claim it is attached to.\n\nWorked example. Let A=[[1,1,0],[0,1,1],[1,2,1]]. The third row is the sum of the first two, so rank≤2; the first two rows/columns show rank 2. Solving Ax=0 gives N(A)=span{(-1,1,-1)} and det(A)=0, all agreeing that A is not invertible. For b=(2,1,3), xp=(1,1,0) works, so every solution is (1,1,0)+t(-1,1,-1). A basis for Col(A) can use original columns a1=(1,0,1), a2=(1,1,2), with a3=a2-a1.\n\nIf C simply swaps the first two standard basis vectors and keeps e3, its change matrix P is the corresponding permutation matrix and P^{-1}=P. The same operator in C-coordinates is P^{-1}AP=PAP; its entries change, but rank 2, determinant 0 and noninvertibility do not.\n\nGuided practice. Reuse the worked matrix only as a *method map*: before checking, name which artifact answers each question—'Is b reachable?', 'Which inputs are invisible?', 'Which original columns form an output basis?', 'Is the square map invertible?', 'How do I rewrite it in another basis?' Do not perform new arithmetic.\n\nDistinction check. Agreement among several valid invariants is a consistency check, not permission to substitute one definition for another. Row reduction, determinant and similarity each answer different questions.",
       "guidedFeedback": "Check after attempting. Reachability: solve Ax=b / test b∈Col(A). Invisible inputs: N(A). Output basis: pivot indices applied to original columns. Invertibility: square full rank/trivial kernel, equivalently nonzero determinant once S15–S16 are owned. New basis: use the identity coordinate conversion P and form P^{-1}AP.",
-      "main": "T22V3::SIDE276::S19-M@1",
+      "main": "T22V3::SIDE276::S19-M@2",
       "transfer": "T22V3::SIDE276::S19-T@1"
     }
   ],
@@ -948,13 +948,6 @@
       "prompt": "Solve the exact system x+y+z=3, 2x+3y+z=7, 3x+4y+2z=10 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
       "obligationVersion": 1
     },
-    "T22V3::SIDE276::S07-T@1": {
-      "id": "T22V3::SIDE276::S07-T@1",
-      "order": 7,
-      "kind": "transfer",
-      "prompt": "Keep the same coefficient matrix as the Main but change the third equation to 3x+4y+2z=11, so the system is x+y+z=3, 2x+3y+z=7, 3x+4y+2z=11. (a) Reduce enough to classify it. (b) Exhibit the contradiction row. (c) Explain why 'three equations in three unknowns' did not guarantee a unique solution in either version. (d) State the echelon-pattern condition that would certify a unique solution for a consistent system.",
-      "obligationVersion": 1
-    },
     "T22V3::SIDE276::S08-M@1": {
       "id": "T22V3::SIDE276::S08-M@1",
       "order": 8,
@@ -995,13 +988,6 @@
       "order": 10,
       "kind": "transfer",
       "prompt": "A student row-reduces M=[[1,1,0],[1,2,1],[2,3,1]] to R=[[1,0,-1],[0,1,1],[0,0,0]] and claims 'the first two columns of R are therefore a basis for Col(M)'. Audit the claim. State the correct basis from M, explain exactly what row reduction preserves that makes the pivot indices useful, and state whether Col(M)=Col(R) must hold.",
-      "obligationVersion": 1
-    },
-    "T22V3::SIDE276::S11-M@1": {
-      "id": "T22V3::SIDE276::S11-M@1",
-      "order": 11,
-      "kind": "main",
-      "prompt": "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S11-T@1": {
@@ -1095,25 +1081,11 @@
       "prompt": "You are given P_{B←C}=[[1,3],[1,4]] and a vector whose B-coordinate column is [w]_B=(7,9)^T. A colleague multiplies P_{B←C}[w]_B to 'convert to C coordinates'. Diagnose the direction error, compute [w]_C correctly, and verify by converting your answer back to B coordinates.",
       "obligationVersion": 1
     },
-    "T22V3::SIDE276::S18-M@1": {
-      "id": "T22V3::SIDE276::S18-M@1",
-      "order": 18,
-      "kind": "main",
-      "prompt": "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
-      "obligationVersion": 1
-    },
     "T22V3::SIDE276::S18-T@1": {
       "id": "T22V3::SIDE276::S18-T@1",
       "order": 18,
       "kind": "transfer",
       "prompt": "A colleague knows that P=P_{B←C} converts C-coordinates to B-coordinates, but writes the C-basis operator matrix as PAP^{-1}. Without relying on a memorized conjugation formula, audit the claim by writing the coordinate direction at each of the three stages. State the correct expression and explain why a generic product PAQ with unrelated invertible P,Q need not represent the same operator in another basis.",
-      "obligationVersion": 1
-    },
-    "T22V3::SIDE276::S19-M@1": {
-      "id": "T22V3::SIDE276::S19-M@1",
-      "order": 19,
-      "kind": "main",
-      "prompt": "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A.",
       "obligationVersion": 1
     },
     "T22V3::SIDE276::S19-T@1": {
@@ -1122,6 +1094,34 @@
       "kind": "transfer",
       "prompt": "Audit this technical memo about M=[[2,6],[1,3]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,3],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention.",
       "obligationVersion": 1
+    },
+    "T22V3::SIDE276::S11-M@2": {
+      "id": "T22V3::SIDE276::S11-M@2",
+      "order": 11,
+      "kind": "main",
+      "prompt": "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A), nullity(A), and the pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the concrete pivot/free count why 3+2=5 here. Then generalize: if an m-by-n matrix has r pivots, explain why rank=r, why the n-r free variables give n-r independent null directions spanning N(A), and hence why rank(A)+nullity(A)=n. (d) State what rank 3 means about the reachable-output subspace in R^3.",
+      "obligationVersion": 2
+    },
+    "T22V3::SIDE276::S07-T@2": {
+      "id": "T22V3::SIDE276::S07-T@2",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "An auto-solver is given three already-reduced augmented systems in variables x,y,z and reports: E1=[[1,0,2|4],[0,1,-1|1],[0,0,0|0]] has a unique solution; E2=[[1,0,2|4],[0,1,-1|1],[0,0,0|1]] has infinitely many solutions; E3=[[1,0,0|2],[0,1,0|-1],[0,0,1|3]] has no solution. Audit every label without undoing the row reductions. For each Ei, identify the exact pivot/free/contradiction feature, give the correct no/one/many classification, and finish with a concise echelon-form decision rule for inconsistent, unique and infinitely-solvable exact systems.",
+      "obligationVersion": 2
+    },
+    "T22V3::SIDE276::S18-M@2": {
+      "id": "T22V3::SIDE276::S18-M@2",
+      "order": 18,
+      "kind": "main",
+      "prompt": "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Prove generally from determinant multiplicativity that det(P^{-1}AP)=det(A), then verify the equality numerically here. Also explain why rank and invertibility are representation-invariant under similarity.",
+      "obligationVersion": 2
+    },
+    "T22V3::SIDE276::S19-M@2": {
+      "id": "T22V3::SIDE276::S19-M@2",
+      "order": 19,
+      "kind": "main",
+      "prompt": "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. An internal memo makes four claims: (I) b is reachable but its preimages are not unique; (II) the reachable-output space has dimension 2 and one original column is redundant; (III) the square map is noninvertible; (IV) rewriting the same operator in basis C changes the table but not rank, determinant or invertibility. Produce one coherent technical audit. You must choose the order of attack and justify at least two representation/method choices. Reuse one exact row reduction as a shared artifact wherever it is genuinely informative. Your finished audit must give the complete solution set for Ax=b, an original-column basis for Col(A), mutually consistent rank/nullspace/determinant/invertibility evidence, the C-basis matrix D=P^{-1}AP, and a check of the stated invariants. Do not organize the response as a blind replay of the four claims; explain why your chosen route is efficient and valid.",
+      "obligationVersion": 2
     }
   },
   "evaluators": {
@@ -1395,28 +1395,6 @@
       ],
       "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
     },
-    "T22V3::SIDE276::S07-T@1": {
-      "reference": "As in the Main, R2-2R1 gives y-z=1. Now R3-3R1 gives y-z=2. Subtracting the second reduced constraint from the third gives 0=1, i.e. an augmented contradiction row [0,0,0|1]. Therefore the changed system has no solution. Equal equation/unknown counts do not reveal dependence or inconsistency. A consistent system has a unique solution exactly when every variable column has a pivot, so there are no free variables.",
-      "rubric": [
-        {
-          "points": 3,
-          "criterion": "Reduces the changed system to incompatible constraints y-z=1 and y-z=2, or equivalently a row [0,0,0|1]."
-        },
-        {
-          "points": 2,
-          "criterion": "Classifies the changed system as inconsistent/no solution from the contradiction row."
-        },
-        {
-          "points": 3,
-          "criterion": "Explains why equal equation/unknown counts did not determine uniqueness in either the Main or Transfer system."
-        },
-        {
-          "points": 2,
-          "criterion": "States that a consistent echelon system is uniquely solvable when every variable column has a pivot, leaving no free variables."
-        }
-      ],
-      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
-    },
     "T22V3::SIDE276::S08-M@1": {
       "reference": "If Au=Av=0, then A(αu+βv)=αAu+βAv=0, and A0=0, so N(A) is a subspace. The homogeneous equations reduce to x1-x2+2x3=0. With x2=s,x3=t, x=(s-2t,s,t)=s(1,1,0)+t(-2,0,1). The two vectors span every solution by the parameterization and are independent because a(1,1,0)+b(-2,0,1)=0 forces a=0 from coordinate 2 and b=0 from coordinate 3. Thus they form a basis. N(A)⊆R^3, and either nonzero basis vector is an input change sent to zero output.",
       "rubric": [
@@ -1537,28 +1515,6 @@
         {
           "points": 3,
           "criterion": "States that Col(M) and Col(R) need not be the same literal subspace and distinguishes the two here."
-        }
-      ],
-      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
-    },
-    "T22V3::SIDE276::S11-M@1": {
-      "reference": "By definition rank(A)=dim Col(A) and nullity(A)=dim N(A). Pivot columns are 1,2,5, so rank(A)=3; x3,x4 are free, so nullity(A)=2. Solving Rx=0 gives x1=x3-2x4, x2=-3x3+x4, x5=0. A null basis is {(1,-3,1,0,0),(-2,1,0,1,0)}. There are r=3 pivot variables and 5-r=2 free directions, so 3+2=5, the domain dimension. Rank 3 in a codomain R^3 means Col(A) has dimension 3 and therefore equals R^3.",
-      "rubric": [
-        {
-          "points": 2,
-          "criterion": "States rank(A)=dim Col(A), nullity(A)=dim N(A), then identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2."
-        },
-        {
-          "points": 3,
-          "criterion": "Constructs a valid null-space basis such as {(1,-3,1,0,0),(-2,1,0,1,0)}."
-        },
-        {
-          "points": 3,
-          "criterion": "Derives 3+2=5 from pivot/free-variable counts and identifies 5 as the domain dimension."
-        },
-        {
-          "points": 2,
-          "criterion": "Interprets rank 3 in R^3 as Col(A)=R^3."
         }
       ],
       "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
@@ -1833,28 +1789,6 @@
       ],
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     },
-    "T22V3::SIDE276::S18-M@1": {
-      "reference": "Starting from C-coordinates x, B-coordinates are Px; applying T gives APx; returning to C gives P^{-1}APx. Thus D=P^{-1}AP. Here P^{-1}=[[2,-1],[-1,1]], so D=[[3,2],[0,2]]. For x=(1,-1), Px=(0,-1), A Px=(-1,-3), P^{-1}(-1,-3)=(1,-2); also D(1,-1)=(1,-2). det(A)=6 and det(D)=6. Right multiplication by P reparameterizes the same input set and left multiplication by P^{-1} bijectively changes output coordinates, so rank is preserved; invertibility is likewise preserved by the invertible coordinate conversions.",
-      "rubric": [
-        {
-          "points": 3,
-          "criterion": "Derives D=P^{-1}AP from the labelled C→B→apply T→B→C pipeline."
-        },
-        {
-          "points": 2,
-          "criterion": "Computes D=[[3,2],[0,2]] for the fresh A,P."
-        },
-        {
-          "points": 2,
-          "criterion": "Verifies the same output (1,-2)^T by both the three-stage route and direct D action."
-        },
-        {
-          "points": 3,
-          "criterion": "Checks det(D)=det(A)=6 and correctly explains preservation of rank/invertibility under multiplication by P,P^{-1}."
-        }
-      ],
-      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
-    },
     "T22V3::SIDE276::S18-T@1": {
       "reference": "Starting with [v]_C, the first step must be P[v]_C to obtain B-coordinates. The operator in B is then A, giving AP[v]_C. To return B→C one applies P^{-1}, yielding P^{-1}AP[v]_C. Therefore the correct C-basis matrix is P^{-1}AP, not PAP^{-1} for this definition of P. A generic PAQ has no guarantee that Q is the C→B identity conversion and P the inverse B→C conversion; without inverse paired coordinate maps it can change the underlying operator rather than merely its representation.",
       "rubric": [
@@ -1869,32 +1803,6 @@
         {
           "points": 3,
           "criterion": "Explains that arbitrary PAQ lacks the paired inverse coordinate-change semantics required for similarity."
-        }
-      ],
-      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
-    },
-    "T22V3::SIDE276::S19-M@1": {
-      "reference": "Row reduction gives rank 2 with pivot columns 1,2 and N(A)=span{(-1,-1,1)}. Thus a basis for Col(A) from the original matrix is {(1,1,2)^T,(0,1,1)^T}; column 3=(1,2,3)^T is their sum. A particular solution is xp=(1,2,0), so every solution is (1,2,0)+t(-1,-1,1). det(A)=0 because row 3=row 1+row 2, matching rank 2<3, nonzero nullity and noninvertibility. With P swapping coordinates 1 and 3, D=PAP=[[3,1,2],[2,1,1],[1,0,1]]. Similarity preserves rank 2, determinant 0 and noninvertibility.",
-      "rubric": [
-        {
-          "points": 2,
-          "criterion": "Finds rank 2, pivot indices 1,2 and N(A)=span{(-1,-1,1)} by a valid exact reduction."
-        },
-        {
-          "points": 2,
-          "criterion": "Uses original columns (1,1,2)^T,(0,1,1)^T as a Col(A) basis and identifies a3=a1+a2."
-        },
-        {
-          "points": 2,
-          "criterion": "Gives the complete solution (1,2,0)+t(-1,-1,1) for Ax=b."
-        },
-        {
-          "points": 2,
-          "criterion": "Computes det(A)=0 and reconciles noninvertibility with rank 2/nontrivial nullspace."
-        },
-        {
-          "points": 2,
-          "criterion": "Computes D=[[3,1,2],[2,1,1],[1,0,1]] and verifies the same rank/determinant/invertibility invariants."
         }
       ],
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
@@ -1920,253 +1828,202 @@
         }
       ],
       "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S11-M@2": {
+      "reference": "By definition rank(A)=dim Col(A) and nullity(A)=dim N(A). Pivot columns are 1,2,5, so rank(A)=3; x3,x4 are free, so nullity(A)=2. Solving Rx=0 gives x1=x3-2x4, x2=-3x3+x4, x5=0. A null basis is {(1,-3,1,0,0),(-2,1,0,1,0)}. Thus the concrete count is 3+2=5. In general, r pivots give rank r. The n-r free variables each produce a special homogeneous solution by setting one free variable to 1 and the others to 0; the free-variable coordinates make these special solutions independent, and the general homogeneous solution is their linear combination, so they span N(A). Hence nullity=n-r and rank+nullity=r+(n-r)=n. Finally rank 3 in codomain R^3 means Col(A) has dimension 3 and therefore equals R^3.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "States rank(A)=dim Col(A), nullity(A)=dim N(A), then identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2."
+        },
+        {
+          "points": 2,
+          "criterion": "Constructs a valid null-space basis such as {(1,-3,1,0,0),(-2,1,0,1,0)}."
+        },
+        {
+          "points": 1,
+          "criterion": "Explains the concrete count 3+2=5 from the three pivots and two free variables."
+        },
+        {
+          "points": 3,
+          "criterion": "Generalizes: r pivots give rank r, n-r independent spanning null directions, nullity n-r, and therefore rank+nullity=n."
+        },
+        {
+          "points": 2,
+          "criterion": "Interprets rank 3 in R^3 as Col(A)=R^3."
+        }
+      ],
+      "marking": "Score only public obligations. Accept mathematically equivalent exact methods, bases, row reductions and proofs when they establish the requested claim."
+    },
+    "T22V3::SIDE276::S07-T@2": {
+      "reference": "All three labels are wrong. E1 has pivots in x,y and free variable z with no contradiction, so it has infinitely many solutions. E2 contains [0,0,0|1], so it is inconsistent and has no solution. E3 has a pivot in every variable column and no contradiction, so it has the unique solution (2,-1,3). The general decision rule is: a contradiction row [0,...,0|c], c≠0, means no solution; otherwise, if every variable column has a pivot, the solution is unique; otherwise at least one free variable remains and there are infinitely many real solutions.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Repairs E1 to infinitely many solutions using its free variable and absence of a contradiction."
+        },
+        {
+          "points": 3,
+          "criterion": "Repairs E2 to no solution from the contradiction row [0,0,0|1]."
+        },
+        {
+          "points": 2,
+          "criterion": "Repairs E3 to a unique solution because every variable column has a pivot and identifies (2,-1,3) if values are reported."
+        },
+        {
+          "points": 2,
+          "criterion": "States the correct three-way echelon decision rule in terms of contradiction rows and free versus fully pivoted variable columns."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept mathematically equivalent exact methods, notation, row-operation sequences and logically valid proofs; do not award a reasoning claim for a bare verdict when justification is requested."
+    },
+    "T22V3::SIDE276::S18-M@2": {
+      "reference": "Starting from C-coordinates x, B-coordinates are Px; applying T gives APx; returning to C gives P^{-1}APx. Thus D=P^{-1}AP. Here P^{-1}=[[2,-1],[-1,1]], so D=[[3,2],[0,2]]. For x=(1,-1), Px=(0,-1), A Px=(-1,-3), P^{-1}(-1,-3)=(1,-2); also D(1,-1)=(1,-2). In general det(P^{-1}AP)=det(P^{-1})det(A)det(P)=det(A) because det(P^{-1})det(P)=det(I)=1. Here det(A)=6 and det(D)=6. Right multiplication by P reparameterizes all inputs and left multiplication by P^{-1} bijectively changes output coordinates, so rank is preserved; invertibility is preserved because A=PDP^{-1} iff D=P^{-1}AP.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Derives D=P^{-1}AP from the labelled C→B→apply T→B→C pipeline."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes D=[[3,2],[0,2]] for the fresh A,P."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies the same output (1,-2)^T by both the three-stage route and direct D action."
+        },
+        {
+          "points": 3,
+          "criterion": "Proves det(P^{-1}AP)=det(A) by multiplicativity, verifies det(D)=det(A)=6, and correctly explains preservation of rank/invertibility under similarity."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
+    },
+    "T22V3::SIDE276::S19-M@2": {
+      "reference": "One efficient route starts with exact row reduction because the same artifact answers several claims. Row reduction gives rank 2 with pivot columns 1,2 and N(A)=span{(-1,-1,1)}. It also supplies a particular solution xp=(1,2,0), so every solution is (1,2,0)+t(-1,-1,1); this establishes reachability and nonuniqueness. The pivot indices must be returned to the original A, giving Col(A) basis {(1,1,2)^T,(0,1,1)^T}, with a3=a1+a2. A separate square-map check gives det(A)=0 because row 3=row 1+row 2, agreeing with rank 2, nontrivial nullspace and noninvertibility. For the coordinate claim, P^{-1}=P and D=PAP=[[3,1,2],[2,1,1],[1,0,1]]. Similarity preserves rank 2, determinant 0 and noninvertibility. Other valid orders are acceptable if the report explicitly justifies why the chosen row/column/determinant/coordinate representations answer the claims and does not use a reduced column as an original output basis.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Chooses a coherent audit route and justifies at least two representation/method choices instead of following a supplied computation order."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses one exact reduction to establish rank 2, pivot indices 1,2 and N(A)=span{(-1,-1,1)}, reusing that artifact where appropriate."
+        },
+        {
+          "points": 2,
+          "criterion": "Gives both the complete solution (1,2,0)+t(-1,-1,1) and an original-column Col(A) basis {(1,1,2)^T,(0,1,1)^T}, with a3=a1+a2."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes det(A)=0 and reconciles noninvertibility with rank 2 and the nontrivial nullspace."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes D=[[3,1,2],[2,1,1],[1,0,1]] and verifies rank 2, determinant 0 and noninvertibility are unchanged."
+        }
+      ],
+      "marking": "Score only the public obligations. Accept exact mathematically equivalent calculations, bases, coordinate conventions and proofs when they preserve the stated direction/hypotheses."
     }
   },
   "coverage": {
     "T22V3::SIDE276::S01@1": [
-      [
-        "main"
-      ],
-      [
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Verify linearity by preservation of vector addition and scalar multiplication, equivalently finite linear combinations.",
+      "Derive and use T(0)=0 as a necessary consequence of linearity.",
+      "Explain in a finite-dimensional coordinate setting why a linear map is uniquely determined by its values on a basis.",
+      "Compute the action of a linear map on an arbitrary vector from basis images."
     ],
     "T22V3::SIDE276::S02@1": [
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Construct a matrix representation by placing the codomain-coordinate vectors of transformed domain-basis vectors as columns.",
+      "Infer and justify the m-by-n shape from an n-dimensional domain basis and m-dimensional codomain basis, with basis order respected.",
+      "Recover transformed basis vectors from matrix columns and distinguish the represented map from its basis-dependent matrix."
     ],
     "T22V3::SIDE276::S03@1": [
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Compute Ax as the linear combination of A's columns weighted by the coordinates of x.",
+      "Reconcile the column-combination and row-dot-product calculations as two views of the same output.",
+      "Use matrix shape and basis-vector probes Ae_j to infer legal input/output dimensions and recover column responses."
     ],
     "T22V3::SIDE276::S04@1": [
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ],
-      [
-        "main"
-      ],
-      [
-        "transfer"
-      ]
+      "Translate a stated composition of linear maps into the correct ordered matrix product with compatible intermediate dimensions.",
+      "Compute a matrix product and interpret a product column as the outer map applied to the corresponding inner-map column.",
+      "Explain why matrix multiplication is associative through associativity of map composition when dimensions are compatible.",
+      "Reject commutativity in general using a concrete pair for which both products are legal but represent different process orders."
     ],
     "T22V3::SIDE276::S05@1": [
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Translate a finite system of scalar linear equations into a correctly typed matrix equation Ax=b.",
+      "Interpret the row view as simultaneous scalar constraints and the column view as a linear combination of A's columns equaling b.",
+      "Use a coefficient witness or contradiction to decide exact solvability in an elementary system without relying on equation-count heuristics."
     ],
     "T22V3::SIDE276::S06@1": [
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ],
-      [
-        "transfer"
-      ]
+      "Represent Ax=b as an augmented matrix [A|b] and apply a row operation to every entry of the affected equation, including b.",
+      "Justify row swap, nonzero row scaling and row replacement as reversible operations that preserve the exact solution set.",
+      "Diagnose an invalid or incompletely applied row operation and explain how it can change the represented system."
     ],
     "T22V3::SIDE276::S07@1": [
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ]
+      "Reduce a small exact system to row-echelon form while tracking pivots and free variables.",
+      "Classify a system as inconsistent, uniquely solvable or infinitely solvable from contradiction rows and pivot/free-variable structure.",
+      "Parameterize all solutions of a consistent underdetermined system and verify the parameterized family."
     ],
     "T22V3::SIDE276::S08@1": [
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Prove that N(A)={x:Ax=0} is a subspace of the domain by closure under linear combinations.",
+      "Solve Ax=0 and construct a basis for N(A) from independent free-variable special solutions.",
+      "Interpret a nonzero null vector as an input direction erased by the represented linear map and identify the correct ambient domain."
     ],
     "T22V3::SIDE276::S09@1": [
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ]
+      "Prove that if Axp=b then every solution of Ax=b is exactly xp+n with n∈N(A).",
+      "Construct a complete parameterized solution set from one particular solution and a null-space basis.",
+      "Distinguish a homogeneous null subspace from a nonhomogeneous affine translate and state when the solution set contains 0."
     ],
     "T22V3::SIDE276::S10@1": [
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Use Col(A)={Ax:x∈R^n} as the reachable-output subspace to decide exact reachability of specified right-hand sides.",
+      "Use pivot positions from row reduction to choose a basis from the corresponding columns of the original matrix A.",
+      "Explain why row reduction preserves column-dependence relations/pivot indices but generally changes the literal column space, and distinguish Col(A)⊆R^m from N(A)⊆R^n."
     ],
     "T22V3::SIDE276::S11@1": [
-      [
-        "main"
-      ],
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Define rank(A)=dim Col(A) and nullity(A)=dim N(A) and compute both from pivot/free-variable structure.",
+      "Derive rank(A)+nullity(A)=n for an m-by-n matrix from r pivot variables and n-r free variables.",
+      "Use rank≤min(m,n) and rank-nullity to audit claimed dimensions or infer missing structural information."
     ],
     "T22V3::SIDE276::S12@1": [
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Use and justify the equivalence between injectivity and a trivial null space, together with full column rank, to classify finite maps.",
+      "Use Col(A)=R^m, equivalently rank m, to justify surjectivity onto R^m.",
+      "Use matrix shape and rank to determine existence/uniqueness behavior of Ax=b and explain why a nonsquare map generally cannot be both injective and surjective."
     ],
     "T22V3::SIDE276::S13@1": [
-      [
-        "main"
-      ],
-      [
-        "main"
-      ],
-      [
-        "transfer"
-      ]
+      "Explain why a two-sided compositional inverse exists exactly for a bijective finite linear map.",
+      "For an n-by-n matrix, connect rank n, N(A)={0}, injectivity, surjectivity and unique solvability of Ax=b for every b.",
+      "Reject invertibility of a square map from a supplied nonzero null vector without using determinant or eigenvalue arguments."
     ],
     "T22V3::SIDE276::S14@1": [
-      [
-        "main"
-      ],
-      [
-        "main"
-      ],
-      [
-        "transfer"
-      ]
+      "Construct A^{-1} by reducing [A|I] to [I|A^{-1}] and explain why the same row operations produce the inverse.",
+      "Verify a proposed inverse by two-sided multiplication and use it to solve Ax=b exactly when A is invertible.",
+      "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions."
     ],
     "T22V3::SIDE276::S15@1": [
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ],
-      [
-        "transfer"
-      ]
+      "Use the determinant's alternating multilinear row rules with det(I)=1, distinguishing linearity in one row from false linearity of the whole matrix.",
+      "Compute a square-matrix determinant by determinant-aware elimination/triangular structure while tracking row swaps and row scalings.",
+      "Use det(AB)=det(A)det(B) under its square compatible hypotheses and reject false additivity or scalar-linearity claims."
     ],
     "T22V3::SIDE276::S16@1": [
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "transfer"
-      ]
+      "Derive and use det(A)=0 iff a real square matrix is noninvertible, connecting row-reduction/determinant rules to rank loss.",
+      "Interpret |det(A)| as the area scale factor and the determinant sign as orientation for a real 2-by-2 linear map.",
+      "Explain why determinant magnitude alone does not measure directional sensitivity or numerical conditioning."
     ],
     "T22V3::SIDE276::S17@1": [
-      [
-        "main"
-      ],
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Construct P_{B←C} with columns [c_j]_B and justify [v]_B=P_{B←C}[v]_C.",
+      "Convert a vector's coordinates between two bases in both directions and verify the underlying vector is unchanged.",
+      "Use P_{C←B}=P_{B←C}^{-1} and diagnose a reversed change-of-coordinate direction."
     ],
     "T22V3::SIDE276::S18@1": [
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ]
+      "Derive [T]_C=P_{B←C}^{-1}[T]_B P_{B←C} from the convert→apply→convert-back chain.",
+      "Verify on a coordinate vector that the two similar matrices produce descriptions of the same underlying operator output.",
+      "Explain that similarity preserves rank, invertibility and determinant and distinguish similarity from arbitrary left/right multiplication."
     ],
     "T22V3::SIDE276::S19@1": [
-      [
-        "main"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main"
-      ],
-      [
-        "transfer"
-      ]
+      "Use one exact row reduction to coordinate nullspace, column-space basis, rank and complete Ax=b solutions without confusing original and reduced columns.",
+      "Connect rank deficiency, a nontrivial null direction, determinant zero and failure of invertibility as mutually consistent evidence.",
+      "Change the same operator to a new basis by similarity and verify that structural invariants remain unchanged.",
+      "Diagnose a multi-claim report containing representation, invertibility and basis-change errors with explicit counterevidence."
     ]
   },
   "claimEvidence": {
@@ -2185,7 +2042,8 @@
         ],
         "why": "The public Main requires a universal superposition verification.",
         "escapeAttempt": "Checking only the displayed numeric basis values cannot earn this proof row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Bounded to verifying a supplied finite-coordinate rule; the Main uses arbitrary u,v and scalars, so the evidence is symbolic rather than sample-only."
       },
       {
         "claim": "Derive and use T(0)=0 as a necessary consequence of linearity.",
@@ -2201,10 +2059,11 @@
         ],
         "why": "Transfer explicitly applies the derived zero-image consequence to a new affine rule.",
         "escapeAttempt": "A bare 'not linear' without the zero-vector implication loses the row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Transfer derives L(0)=0 for an arbitrary linear L before applying it to the specific affine counterexample."
       },
       {
-        "claim": "Explain why a linear map is uniquely determined by its values on a basis.",
+        "claim": "Explain in a finite-dimensional coordinate setting why a linear map is uniquely determined by its values on a basis.",
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE276::S01-M@1",
@@ -2220,7 +2079,8 @@
         ],
         "why": "Both tasks require the learner to articulate the basis-determines-map principle.",
         "escapeAttempt": "Merely computing outputs without the uniqueness/linearity reason cannot satisfy these rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Bounded to finite-dimensional coordinate bases; the public tasks explain basis determination in R^2 and the claim explicitly excludes infinite-dimensional generalization."
       },
       {
         "claim": "Compute the action of a linear map on an arbitrary vector from basis images.",
@@ -2239,7 +2099,8 @@
         ],
         "why": "The learner actually propagates arbitrary/input coordinates through supplied basis images.",
         "escapeAttempt": "The answer cannot be obtained by a provided P formula because Transfer supplies none.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Bounded procedural skill: both tasks compute actions from supplied basis images in finite coordinates; no claim is made about infinite bases."
       }
     ],
     "T22V3::SIDE276::S02@1": [
@@ -2257,7 +2118,8 @@
         ],
         "why": "Main literally constructs the representation from basis-image coordinate vectors.",
         "escapeAttempt": "Putting images in rows or permuting columns fails the scored construction row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Representative finite case only: the construction is observed for a 3-element input basis and 2-element output basis, matching the finite ordered-basis scope."
       },
       {
         "claim": "Infer and justify the m-by-n shape from an n-dimensional domain basis and m-dimensional codomain basis, with basis order respected.",
@@ -2276,7 +2138,8 @@
         ],
         "why": "Both directions of the shape/type relationship are publicly observed.",
         "escapeAttempt": "A memorized 'rows by columns' phrase without correct domain/codomain dimensions cannot satisfy both tasks.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed in both 3→2 and 2→3 shapes; the claim concerns dimension typing/order, not an untested theorem about arbitrary cardinality."
       },
       {
         "claim": "Recover transformed basis vectors from matrix columns and distinguish the represented map from its basis-dependent matrix.",
@@ -2296,7 +2159,8 @@
         ],
         "why": "The learner both decodes columns and distinguishes map from representation.",
         "escapeAttempt": "Correct arithmetic without basis semantics loses explicit rubric rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No material gap: Transfer decodes both columns and explicitly explains basis dependence of the representation."
       }
     ],
     "T22V3::SIDE276::S03@1": [
@@ -2317,7 +2181,8 @@
         ],
         "why": "Both fixed tasks require the column-combination action on distinct data.",
         "escapeAttempt": "A row-only calculation in Main misses the explicit column row, and Transfer supplies response columns as the natural representation.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on two fresh finite matrices with different surfaces; the claim is the finite column-combination procedure itself."
       },
       {
         "claim": "Reconcile the column-combination and row-dot-product calculations as two views of the same output.",
@@ -2333,7 +2198,8 @@
         ],
         "why": "Main explicitly demands both representations and their reconciliation.",
         "escapeAttempt": "Providing only one numerical output without the second representation loses the row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Main explicitly computes the same output by columns and by row dot-products and reconciles them."
       },
       {
         "claim": "Use matrix shape and basis-vector probes Ae_j to infer legal input/output dimensions and recover column responses.",
@@ -2353,7 +2219,8 @@
         ],
         "why": "Shape typing and basis probes are directly observed in both directions.",
         "escapeAttempt": "A correct Ax value alone cannot demonstrate these claims.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on shape typing plus e2 and all-standard-basis probe reasoning; no claim extends beyond finite standard-coordinate matrices."
       }
     ],
     "T22V3::SIDE276::S04@1": [
@@ -2374,10 +2241,11 @@
         ],
         "why": "Both tasks require semantic composition order; Main also forces explicit intermediate-space typing.",
         "escapeAttempt": "Both reversed products are legal, so dimension compatibility alone cannot earn the order rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on a rectangular chain and a square pipeline where both orders are legal; the claim is bounded to compatible finite matrix representations."
       },
       {
-        "claim": "Compute a matrix product and interpret each product column as the outer map applied to the corresponding inner-map column.",
+        "claim": "Compute a matrix product and interpret a product column as the outer map applied to the corresponding inner-map column.",
         "task": "main",
         "taskIds": [
           "T22V3::SIDE276::S04-M@1"
@@ -2391,7 +2259,8 @@
         ],
         "why": "Main observes both arithmetic and the structural column meaning of the product.",
         "escapeAttempt": "A memorized row-by-column result without the column interpretation loses a dedicated row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Repaired/narrowed: the observer interprets one product column, so ownership no longer says every product column."
       },
       {
         "claim": "Explain why matrix multiplication is associative through associativity of map composition when dimensions are compatible.",
@@ -2407,7 +2276,8 @@
         ],
         "why": "The repaired Main now directly requires the learner to justify three-factor associativity from function composition.",
         "escapeAttempt": "A learner who only computes AB can still lose the explicit associativity row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Main asks for arbitrary compatible C and explains (CA)B=C(AB) from the same three-stage map."
       },
       {
         "claim": "Reject commutativity in general using a concrete pair for which both products are legal but represent different process orders.",
@@ -2424,7 +2294,8 @@
         ],
         "why": "Transfer requires an explicit legal noncommuting pair and a conclusion from it.",
         "escapeAttempt": "Simply asserting 'matrices do not commute' cannot earn the two calculation/evidence rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Transfer supplies a concrete legal noncommuting pair and requires both products."
       }
     ],
     "T22V3::SIDE276::S05@1": [
@@ -2445,7 +2316,8 @@
         ],
         "why": "Both surfaces require literal construction of a typed matrix equation.",
         "escapeAttempt": "A verbal solvability claim without placing coefficients/target correctly cannot earn these rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on written equations and a response-library model; ownership is bounded to finite exact systems."
       },
       {
         "claim": "Interpret the row view as simultaneous scalar constraints and the column view as a linear combination of A's columns equaling b.",
@@ -2462,7 +2334,8 @@
         ],
         "why": "Main explicitly observes both row and column interpretations of the same Ax=b.",
         "escapeAttempt": "Merely writing A and b does not earn either interpretation row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Main explicitly gives simultaneous row constraints and the column-combination equation."
       },
       {
         "claim": "Use a coefficient witness or contradiction to decide exact solvability in an elementary system without relying on equation-count heuristics.",
@@ -2482,7 +2355,8 @@
         ],
         "why": "The learner demonstrates both a positive witness and a negative coordinate obstruction.",
         "escapeAttempt": "Counting dimensions alone cannot satisfy the fresh contradiction calculation.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Main supplies a positive coefficient witness and Transfer supplies a contradiction; equation-count heuristics are explicitly rejected."
       }
     ],
     "T22V3::SIDE276::S06@1": [
@@ -2504,7 +2378,8 @@
         ],
         "why": "The learner must update coefficients and constants together on two distinct systems.",
         "escapeAttempt": "Changing only A cannot earn the explicit augmented-row rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on two exact augmented systems, including the right-hand side; no claim extends to numerical floating-point elimination."
       },
       {
         "claim": "Justify row swap, nonzero row scaling and row replacement as reversible operations that preserve the exact solution set.",
@@ -2521,7 +2396,8 @@
         ],
         "why": "Main asks for both inverse moves and the logical solution-set implication.",
         "escapeAttempt": "Executing arithmetic without explaining reversibility loses two rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap after repair: Main explicitly gives inverse operations for replacement, swap and nonzero scaling and links reversibility to the solution set."
       },
       {
         "claim": "Diagnose an invalid or incompletely applied row operation and explain how it can change the represented system.",
@@ -2538,7 +2414,8 @@
         ],
         "why": "Transfer requires diagnosis of two plausible but invalid operations.",
         "escapeAttempt": "A corrected numeric row without explaining why the original move fails cannot earn full credit.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Transfer diagnoses an incompletely applied replacement and zero scaling."
       }
     ],
     "T22V3::SIDE276::S07@1": [
@@ -2557,27 +2434,31 @@
         ],
         "why": "Main requires actual elimination plus pivot/free reading.",
         "escapeAttempt": "Jumping directly to a parameterization without an equivalent echelon structure misses the first row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on a fresh exact three-variable system; the claim is procedural, not a universal complexity statement."
       },
       {
         "claim": "Classify a system as inconsistent, uniquely solvable or infinitely solvable from contradiction rows and pivot/free-variable structure.",
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE276::S07-M@1",
-          "T22V3::SIDE276::S07-T@1"
+          "T22V3::SIDE276::S07-T@2"
         ],
         "publicRequestExact": [
           "Solve the exact system x+y+z=3, 2x+3y+z=7, 3x+4y+2z=10 by elimination. Show an echelon form, identify the pivot and free variables, classify the number of solutions, and parameterize every solution. Verify your parameterization in the original system.",
-          "Keep the same coefficient matrix as the Main but change the third equation to 3x+4y+2z=11, so the system is x+y+z=3, 2x+3y+z=7, 3x+4y+2z=11. (a) Reduce enough to classify it. (b) Exhibit the contradiction row. (c) Explain why 'three equations in three unknowns' did not guarantee a unique solution in either version. (d) State the echelon-pattern condition that would certify a unique solution for a consistent system."
+          "An auto-solver is given three already-reduced augmented systems in variables x,y,z and reports: E1=[[1,0,2|4],[0,1,-1|1],[0,0,0|0]] has a unique solution; E2=[[1,0,2|4],[0,1,-1|1],[0,0,0|1]] has infinitely many solutions; E3=[[1,0,0|2],[0,1,0|-1],[0,0,1|3]] has no solution. Audit every label without undoing the row reductions. For each Ei, identify the exact pivot/free/contradiction feature, give the correct no/one/many classification, and finish with a concise echelon-form decision rule for inconsistent, unique and infinitely-solvable exact systems."
         ],
         "rubricEvidence": [
           "Identifies x,y as pivot variables and z as a free variable, and classifies infinitely many solutions.",
-          "Classifies the changed system as inconsistent/no solution from the contradiction row.",
-          "States that a consistent echelon system is uniquely solvable when every variable column has a pivot, leaving no free variables."
+          "Repairs E1 to infinitely many solutions using its free variable and absence of a contradiction.",
+          "Repairs E2 to no solution from the contradiction row [0,0,0|1].",
+          "Repairs E3 to a unique solution because every variable column has a pivot and identifies (2,-1,3) if values are reported.",
+          "States the correct three-way echelon decision rule in terms of contradiction rows and free versus fully pivoted variable columns."
         ],
         "why": "The two tasks discriminate consistent-free and inconsistent structures on nearly identical coefficients.",
         "escapeAttempt": "Counting equations cannot satisfy the explicit pivot/contradiction evidence.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap after v1.2 repair: Main supplies the infinite case and Transfer independently audits infinite, inconsistent and unique echelon structures."
       },
       {
         "claim": "Parameterize all solutions of a consistent underdetermined system and verify the parameterized family.",
@@ -2594,7 +2475,8 @@
         ],
         "why": "Main asks for all solutions and a universal substitution check.",
         "escapeAttempt": "One sample solution earns neither the complete-family nor verification row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Main derives and verifies the full one-parameter family."
       }
     ],
     "T22V3::SIDE276::S08@1": [
@@ -2612,7 +2494,8 @@
         ],
         "why": "Main literally asks for the subspace closure proof.",
         "escapeAttempt": "Computing a basis alone cannot earn the proof row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Bounded finite-matrix theorem proof: Main uses arbitrary null vectors/scalars for the supplied A, which is exactly the claimed subspace mechanism."
       },
       {
         "claim": "Solve Ax=0 and construct a basis for N(A) from independent free-variable special solutions.",
@@ -2633,7 +2516,8 @@
         ],
         "why": "Two distinct matrices require full parameterization and basis justification.",
         "escapeAttempt": "Listing plausible directions without deriving all solutions cannot earn spanning rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on two different homogeneous systems and requires spanning plus independence, not only special solutions."
       },
       {
         "claim": "Interpret a nonzero null vector as an input direction erased by the represented linear map and identify the correct ambient domain.",
@@ -2652,7 +2536,8 @@
         ],
         "why": "Both tasks explicitly observe ambient-space typing and the erased-input meaning.",
         "escapeAttempt": "A correct homogeneous solve with null vectors placed in the codomain loses the interpretation rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: both tasks type the nullspace in the input space and interpret erased input directions."
       }
     ],
     "T22V3::SIDE276::S09@1": [
@@ -2673,7 +2558,8 @@
         ],
         "why": "Both theorem directions and the same-output difference consequence are directly observed.",
         "escapeAttempt": "A parameterization alone cannot earn the proof rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No material gap: Main proves both directions symbolically from Axp=b and Transfer proves the same-output difference result for arbitrary p,q on its map."
       },
       {
         "claim": "Construct a complete parameterized solution set from one particular solution and a null-space basis.",
@@ -2692,7 +2578,8 @@
         ],
         "why": "Learner constructs full solution sets on two different systems.",
         "escapeAttempt": "One particular vector cannot satisfy the complete-family rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on two distinct consistent systems; ownership is bounded to finite exact solution sets."
       },
       {
         "claim": "Distinguish a homogeneous null subspace from a nonhomogeneous affine translate and state when the solution set contains 0.",
@@ -2708,7 +2595,8 @@
         ],
         "why": "Main explicitly asks the affine-versus-subspace distinction.",
         "escapeAttempt": "Calling the set a subspace because it is parallel to N(A) loses the row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap after repair: Main now states the general condition 0 belongs to the solution set iff b=0."
       }
     ],
     "T22V3::SIDE276::S10@1": [
@@ -2726,7 +2614,8 @@
         ],
         "why": "Main uses column-space membership exactly as consistency/reachability evidence.",
         "escapeAttempt": "A bare membership verdict cannot earn the witness/obstruction row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Claim was already narrowed to deciding specified right-hand-side reachability; Main directly supplies a witness and an obstruction."
       },
       {
         "claim": "Use pivot positions from row reduction to choose a basis from the corresponding columns of the original matrix A.",
@@ -2745,7 +2634,8 @@
         ],
         "why": "Both tasks force selection from the original matrix using pivot indices.",
         "escapeAttempt": "Using RREF columns directly fails explicit rubric rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on two matrices and explicitly requires original columns chosen from pivot indices."
       },
       {
         "claim": "Explain why row reduction preserves column-dependence relations/pivot indices but generally changes the literal column space, and distinguish Col(A)⊆R^m from N(A)⊆R^n.",
@@ -2765,7 +2655,8 @@
         ],
         "why": "The domain/codomain typing and row-reduction limitation are literally observed.",
         "escapeAttempt": "Correct pivot indices alone do not show the claimed conceptual distinction.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Transfer explains the preserved homogeneous coefficient relations and non-preservation of literal column space; Main types Col(A) and N(A)."
       }
     ],
     "T22V3::SIDE276::S11@1": [
@@ -2773,10 +2664,10 @@
         "claim": "Define rank(A)=dim Col(A) and nullity(A)=dim N(A) and compute both from pivot/free-variable structure.",
         "task": "main",
         "taskIds": [
-          "T22V3::SIDE276::S11-M@1"
+          "T22V3::SIDE276::S11-M@2"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A), nullity(A), and the pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the concrete pivot/free count why 3+2=5 here. Then generalize: if an m-by-n matrix has r pivots, explain why rank=r, why the n-r free variables give n-r independent null directions spanning N(A), and hence why rank(A)+nullity(A)=n. (d) State what rank 3 means about the reachable-output subspace in R^3."
         ],
         "rubricEvidence": [
           "States rank(A)=dim Col(A), nullity(A)=dim N(A), then identifies pivot columns 1,2,5, rank 3, free variables x3,x4 and nullity 2.",
@@ -2784,33 +2675,36 @@
         ],
         "why": "Main computes both dimensions from their actual bases/pivots.",
         "escapeAttempt": "Stating rank/nullity numbers without structural evidence loses the basis row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Main states both definitions and computes both dimensions from the concrete RREF/null basis."
       },
       {
         "claim": "Derive rank(A)+nullity(A)=n for an m-by-n matrix from r pivot variables and n-r free variables.",
         "task": "main",
         "taskIds": [
-          "T22V3::SIDE276::S11-M@1"
+          "T22V3::SIDE276::S11-M@2"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3."
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A), nullity(A), and the pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the concrete pivot/free count why 3+2=5 here. Then generalize: if an m-by-n matrix has r pivots, explain why rank=r, why the n-r free variables give n-r independent null directions spanning N(A), and hence why rank(A)+nullity(A)=n. (d) State what rank 3 means about the reachable-output subspace in R^3."
         ],
         "rubricEvidence": [
-          "Derives 3+2=5 from pivot/free-variable counts and identifies 5 as the domain dimension."
+          "Explains the concrete count 3+2=5 from the three pivots and two free variables.",
+          "Generalizes: r pivots give rank r, n-r independent spanning null directions, nullity n-r, and therefore rank+nullity=n."
         ],
         "why": "The public task asks for the derivation rather than a memorized formula.",
         "escapeAttempt": "Quoting rank-nullity without connecting r pivots to n-r free directions is insufficient.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap after v1.2 repair: Main now explicitly generalizes from r pivots to n-r independent spanning null directions and derives rank+nullity=n."
       },
       {
         "claim": "Use rank≤min(m,n) and rank-nullity to audit claimed dimensions or infer missing structural information.",
         "task": "main+transfer",
         "taskIds": [
-          "T22V3::SIDE276::S11-M@1",
+          "T22V3::SIDE276::S11-M@2",
           "T22V3::SIDE276::S11-T@1"
         ],
         "publicRequestExact": [
-          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A) and nullity(A) and identify pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the pivot/free count, not by quoting the theorem alone, why rank(A)+nullity(A)=5. (d) State what rank 3 means about the reachable-output subspace in R^3.",
+          "A 3-by-5 matrix A has RREF R=[[1,0,-1,2,0],[0,1,3,-1,0],[0,0,0,0,1]]. (a) State the definitions rank(A)=dim Col(A) and nullity(A)=dim N(A), then find rank(A), nullity(A), and the pivot/free variables. (b) Construct a basis for N(A) from the free variables. (c) Explain from the concrete pivot/free count why 3+2=5 here. Then generalize: if an m-by-n matrix has r pivots, explain why rank=r, why the n-r free variables give n-r independent null directions spanning N(A), and hence why rank(A)+nullity(A)=n. (d) State what rank 3 means about the reachable-output subspace in R^3.",
           "A proposed linear model maps R^6→R^3. A report claims its nullity is 2. Without seeing the matrix, audit whether that claim can be true. Use rank-nullity and the codomain dimension bound, and state the minimum nullity any map R^6→R^3 must have."
         ],
         "rubricEvidence": [
@@ -2821,7 +2715,8 @@
         ],
         "why": "The learner uses both the theorem and rank bounds to infer/audit unseen structure.",
         "escapeAttempt": "A local row-reduction routine cannot answer the transfer because no matrix entries are supplied.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed both concretely and entry-free: Transfer audits an impossible R^6→R^3 nullity claim using the rank bound."
       }
     ],
     "T22V3::SIDE276::S12@1": [
@@ -2842,7 +2737,8 @@
         ],
         "why": "Injectivity is tied explicitly to kernel/nullity on two different shapes.",
         "escapeAttempt": "A rank number without the kernel implication cannot earn the classification rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on a fresh tall matrix and an abstract R^4→R^2 map; the claim is the finite-dimensional classification method."
       },
       {
         "claim": "Use Col(A)=R^m, equivalently rank m, to justify surjectivity onto R^m.",
@@ -2861,7 +2757,8 @@
         ],
         "why": "Surjectivity is observed through full codomain dimension, not assumed from many columns.",
         "escapeAttempt": "Counting columns alone cannot earn these rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on a fresh wide matrix and the abstract measurement system; codomain-full-rank evidence is explicit."
       },
       {
         "claim": "Use matrix shape and rank to determine existence/uniqueness behavior of Ax=b and explain why a nonsquare map generally cannot be both injective and surjective.",
@@ -2881,7 +2778,8 @@
         ],
         "why": "Both tasks translate map properties into existence/uniqueness statements.",
         "escapeAttempt": "Correct labels without the requested solution behavior lose dedicated rubric points.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Main translates map properties to solution behavior and Transfer explicitly proves unequal finite dimensions cannot be both injective and surjective."
       }
     ],
     "T22V3::SIDE276::S13@1": [
@@ -2899,7 +2797,8 @@
         ],
         "why": "Main explicitly ties inverse existence to two-sided composition and bijectivity.",
         "escapeAttempt": "Merely listing rank conditions cannot earn the inverse-map row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Main proves the two-sided inverse/bijection equivalence for a general n-by-n real matrix."
       },
       {
         "claim": "For an n-by-n matrix, connect rank n, N(A)={0}, injectivity, surjectivity and unique solvability of Ax=b for every b.",
@@ -2917,10 +2816,11 @@
         ],
         "why": "The full equivalence chain is the public Main proof.",
         "escapeAttempt": "A learner cannot earn full credit by quoting a memorized theorem name.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Main proves the full n-by-n equivalence chain, so there is no object/count generalization beyond the observer."
       },
       {
-        "claim": "Reject invertibility of a square map from a nonzero null vector or missing pivot without using determinant or eigenvalue arguments.",
+        "claim": "Reject invertibility of a square map from a supplied nonzero null vector without using determinant or eigenvalue arguments.",
         "task": "transfer",
         "taskIds": [
           "T22V3::SIDE276::S13-T@1"
@@ -2935,7 +2835,8 @@
         ],
         "why": "Transfer propagates one concrete null witness through the square-map equivalences.",
         "escapeAttempt": "Calling a square matrix 'singular' without the structural consequences loses most points.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Repaired/narrowed: the claim now owns only rejection from a supplied nonzero null vector, exactly what Transfer observes."
       }
     ],
     "T22V3::SIDE276::S14@1": [
@@ -2954,7 +2855,8 @@
         ],
         "why": "Main observes both algorithm and its structural justification.",
         "escapeAttempt": "Producing the inverse by memorized 2-by-2 formula cannot earn the augmented-justification rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on a fresh 2-by-2 inverse with an explicit elementary-matrix justification; the algorithm claim is bounded to exact finite square matrices."
       },
       {
         "claim": "Verify a proposed inverse by two-sided multiplication and use it to solve Ax=b exactly when A is invertible.",
@@ -2971,10 +2873,11 @@
         ],
         "why": "Main requires two-sided verification and an exact solve.",
         "escapeAttempt": "One-sided or unverified inverse arithmetic cannot earn full credit.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed by two-sided verification and exact solving for the fresh inverse."
       },
       {
-        "claim": "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject inverse notation for nonsquare or singular matrices.",
+        "claim": "Prove and apply (AB)^{-1}=B^{-1}A^{-1} for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions.",
         "task": "transfer",
         "taskIds": [
           "T22V3::SIDE276::S14-T@1"
@@ -2989,7 +2892,8 @@
         ],
         "why": "Transfer tests order reversal plus hypothesis checking on a different surface.",
         "escapeAttempt": "Writing A^{-1}B^{-1} or accepting a nonsquare inverse fails explicit rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Repaired/narrowed: Transfer proves inverse-order reversal and rejects a 2-by-3 two-sided inverse; singular rejection remains owned by S13 rather than implied here."
       }
     ],
     "T22V3::SIDE276::S15@1": [
@@ -3010,7 +2914,8 @@
         ],
         "why": "Both tasks require the actual multilinearity/alternation structure rather than formula recall.",
         "escapeAttempt": "A correct determinant number without explaining the row rule cannot earn these conceptual rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed through row-replacement invariance and the I3 whole-matrix-linearity counterexample; the claim concerns the row rules actually used."
       },
       {
         "claim": "Compute a square-matrix determinant by determinant-aware elimination/triangular structure while tracking row swaps and row scalings.",
@@ -3028,7 +2933,8 @@
         ],
         "why": "Main directly observes determinant-aware elimination and factor bookkeeping.",
         "escapeAttempt": "A cofactor-only answer bypasses the specifically requested method and loses method rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on one fresh 3-by-3 determinant reduction; ownership is computational within exact finite square matrices."
       },
       {
         "claim": "Use det(AB)=det(A)det(B) under its square compatible hypotheses and reject false additivity or scalar-linearity claims.",
@@ -3045,7 +2951,8 @@
         ],
         "why": "Transfer observes both the false overgeneralizations and the true product theorem.",
         "escapeAttempt": "Naming multiplicativity without the requested computation cannot satisfy the row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed for 3-by-3 P,Q and explicit false-additivity/scalar-linearity attacks; no numerical-stability conclusion is claimed."
       }
     ],
     "T22V3::SIDE276::S16@1": [
@@ -3064,10 +2971,11 @@
         ],
         "why": "Main connects determinant signs to the previously owned rank/invertibility structure.",
         "escapeAttempt": "A bare det computation without the structural conclusion loses the row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap after repair: Main gives fresh examples and explicitly reconstructs the general det(M)=0 iff noninvertible argument for real square matrices."
       },
       {
-        "claim": "Interpret |det(A)| as the n-dimensional volume scale factor and the sign as orientation for a real square linear map.",
+        "claim": "Interpret |det(A)| as the area scale factor and the determinant sign as orientation for a real 2-by-2 linear map.",
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE276::S16-M@1",
@@ -3083,7 +2991,8 @@
         ],
         "why": "Both positive, zero and unit determinant meanings are publicly observed.",
         "escapeAttempt": "Calling determinant 'area' without scale/sign meaning cannot satisfy the rubrics.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Repaired/narrowed: fixed evidence is 2D area/orientation, so ownership no longer claims unobserved n-dimensional volume scaling."
       },
       {
         "claim": "Explain why determinant magnitude alone does not measure directional sensitivity or numerical conditioning.",
@@ -3100,7 +3009,8 @@
         ],
         "why": "Transfer constructs a same-determinant counterexample to the overclaim.",
         "escapeAttempt": "A generic warning about numerics without the directional witness loses most points.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Transfer constructs a same-determinant directional counterexample and explicitly rejects a conditioning/stability inference."
       }
     ],
     "T22V3::SIDE276::S17@1": [
@@ -3119,7 +3029,8 @@
         ],
         "why": "Main literally constructs the identity-map representation from basis-vector coordinates.",
         "escapeAttempt": "Using basis vectors as rows or reversing the arrow fails the row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on a fresh pair of ordered two-vector bases and justified through column construction plus conversion."
       },
       {
         "claim": "Convert a vector's coordinates between two bases in both directions and verify the underlying vector is unchanged.",
@@ -3136,7 +3047,8 @@
         ],
         "why": "The learner converts and independently verifies vector identity.",
         "escapeAttempt": "Matrix arithmetic alone without underlying-vector consistency loses the semantic row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap: Main converts both directions and independently expands the underlying vector."
       },
       {
         "claim": "Use P_{C←B}=P_{B←C}^{-1} and diagnose a reversed change-of-coordinate direction.",
@@ -3156,7 +3068,8 @@
         ],
         "why": "Both inverse direction and a live direction-error diagnosis are observed.",
         "escapeAttempt": "A correct coordinate pair guessed without naming the arrow/inverse cannot earn all rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on Main inverse conversion and Transfer's reversed-arrow diagnosis; no untested higher-dimensional claim is required."
       }
     ],
     "T22V3::SIDE276::S18@1": [
@@ -3164,11 +3077,11 @@
         "claim": "Derive [T]_C=P_{B←C}^{-1}[T]_B P_{B←C} from the convert→apply→convert-back chain.",
         "task": "main+transfer",
         "taskIds": [
-          "T22V3::SIDE276::S18-M@1",
+          "T22V3::SIDE276::S18-M@2",
           "T22V3::SIDE276::S18-T@1"
         ],
         "publicRequestExact": [
-          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
+          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Prove generally from determinant multiplicativity that det(P^{-1}AP)=det(A), then verify the equality numerically here. Also explain why rank and invertibility are representation-invariant under similarity.",
           "A colleague knows that P=P_{B←C} converts C-coordinates to B-coordinates, but writes the C-basis operator matrix as PAP^{-1}. Without relying on a memorized conjugation formula, audit the claim by writing the coordinate direction at each of the three stages. State the correct expression and explain why a generic product PAQ with unrelated invertible P,Q need not represent the same operator in another basis."
         ],
         "rubricEvidence": [
@@ -3178,42 +3091,45 @@
         ],
         "why": "Both clean derivation and adversarial direction audit are observed.",
         "escapeAttempt": "Quoting P^{-1}AP without the conversion arrows cannot earn the derivation rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No material gap: both Main and Transfer derive the direction formula from the coordinate arrows, not from memorized conjugation."
       },
       {
         "claim": "Verify on a coordinate vector that the two similar matrices produce descriptions of the same underlying operator output.",
         "task": "main",
         "taskIds": [
-          "T22V3::SIDE276::S18-M@1"
+          "T22V3::SIDE276::S18-M@2"
         ],
         "publicRequestExact": [
-          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity."
+          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Prove generally from determinant multiplicativity that det(P^{-1}AP)=det(A), then verify the equality numerically here. Also explain why rank and invertibility are representation-invariant under similarity."
         ],
         "rubricEvidence": [
           "Verifies the same output (1,-2)^T by both the three-stage route and direct D action."
         ],
         "why": "Main checks that the coordinate descriptions actually encode one operator output.",
         "escapeAttempt": "Correct matrix multiplication alone does not establish the semantic equivalence row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on a concrete vector by both the three-stage route and direct similar-matrix action."
       },
       {
         "claim": "Explain that similarity preserves rank, invertibility and determinant and distinguish similarity from arbitrary left/right multiplication.",
         "task": "main+transfer",
         "taskIds": [
-          "T22V3::SIDE276::S18-M@1",
+          "T22V3::SIDE276::S18-M@2",
           "T22V3::SIDE276::S18-T@1"
         ],
         "publicRequestExact": [
-          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Verify that det(D)=det(A) and explain why invertibility/rank are also representation-invariant under similarity.",
+          "An operator T has B-basis matrix A=[[2,1],[0,3]]. The coordinate conversion from C to B is P=P_{B←C}=[[1,1],[1,2]]. (a) Derive from the three coordinate stages, rather than quoting a formula, which matrix D represents T in basis C. (b) Compute D. (c) For [v]_C=(1,-1)^T, compute the output once by C→B→T→C and once by D[v]_C. (d) Prove generally from determinant multiplicativity that det(P^{-1}AP)=det(A), then verify the equality numerically here. Also explain why rank and invertibility are representation-invariant under similarity.",
           "A colleague knows that P=P_{B←C} converts C-coordinates to B-coordinates, but writes the C-basis operator matrix as PAP^{-1}. Without relying on a memorized conjugation formula, audit the claim by writing the coordinate direction at each of the three stages. State the correct expression and explain why a generic product PAQ with unrelated invertible P,Q need not represent the same operator in another basis."
         ],
         "rubricEvidence": [
-          "Checks det(D)=det(A)=6 and correctly explains preservation of rank/invertibility under multiplication by P,P^{-1}.",
+          "Proves det(P^{-1}AP)=det(A) by multiplicativity, verifies det(D)=det(A)=6, and correctly explains preservation of rank/invertibility under similarity.",
           "Explains that arbitrary PAQ lacks the paired inverse coordinate-change semantics required for similarity."
         ],
         "why": "Invariant reasoning and the boundary between similarity and arbitrary multiplication are explicit.",
         "escapeAttempt": "A generic statement 'similar matrices are alike' cannot satisfy either row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "No gap after v1.2 repair: Main now proves determinant invariance generally by multiplicativity and explains rank/invertibility preservation; Transfer distinguishes arbitrary PAQ."
       }
     ],
     "T22V3::SIDE276::S19@1": [
@@ -3221,55 +3137,57 @@
         "claim": "Use one exact row reduction to coordinate nullspace, column-space basis, rank and complete Ax=b solutions without confusing original and reduced columns.",
         "task": "main",
         "taskIds": [
-          "T22V3::SIDE276::S19-M@1"
+          "T22V3::SIDE276::S19-M@2"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A."
+          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. An internal memo makes four claims: (I) b is reachable but its preimages are not unique; (II) the reachable-output space has dimension 2 and one original column is redundant; (III) the square map is noninvertible; (IV) rewriting the same operator in basis C changes the table but not rank, determinant or invertibility. Produce one coherent technical audit. You must choose the order of attack and justify at least two representation/method choices. Reuse one exact row reduction as a shared artifact wherever it is genuinely informative. Your finished audit must give the complete solution set for Ax=b, an original-column basis for Col(A), mutually consistent rank/nullspace/determinant/invertibility evidence, the C-basis matrix D=P^{-1}AP, and a check of the stated invariants. Do not organize the response as a blind replay of the four claims; explain why your chosen route is efficient and valid."
         ],
         "rubricEvidence": [
-          "Finds rank 2, pivot indices 1,2 and N(A)=span{(-1,-1,1)} by a valid exact reduction.",
-          "Uses original columns (1,1,2)^T,(0,1,1)^T as a Col(A) basis and identifies a3=a1+a2.",
-          "Gives the complete solution (1,2,0)+t(-1,-1,1) for Ax=b."
+          "Uses one exact reduction to establish rank 2, pivot indices 1,2 and N(A)=span{(-1,-1,1)}, reusing that artifact where appropriate.",
+          "Gives both the complete solution (1,2,0)+t(-1,-1,1) and an original-column Col(A) basis {(1,1,2)^T,(0,1,1)^T}, with a3=a1+a2."
         ],
         "why": "Main coordinates row reduction, kernel, original-column image basis and complete solution on one unseen model.",
         "escapeAttempt": "A learner who confuses reduced/original columns or gives only one solution loses separate rows.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Bounded synthesis claim: Main must reuse one exact reduction to coordinate rank/nullspace, original-column reachability and complete solutions on one new model."
       },
       {
         "claim": "Connect rank deficiency, a nontrivial null direction, determinant zero and failure of invertibility as mutually consistent evidence.",
         "task": "main+transfer",
         "taskIds": [
-          "T22V3::SIDE276::S19-M@1",
+          "T22V3::SIDE276::S19-M@2",
           "T22V3::SIDE276::S19-T@1"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A.",
+          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. An internal memo makes four claims: (I) b is reachable but its preimages are not unique; (II) the reachable-output space has dimension 2 and one original column is redundant; (III) the square map is noninvertible; (IV) rewriting the same operator in basis C changes the table but not rank, determinant or invertibility. Produce one coherent technical audit. You must choose the order of attack and justify at least two representation/method choices. Reuse one exact row reduction as a shared artifact wherever it is genuinely informative. Your finished audit must give the complete solution set for Ax=b, an original-column basis for Col(A), mutually consistent rank/nullspace/determinant/invertibility evidence, the C-basis matrix D=P^{-1}AP, and a check of the stated invariants. Do not organize the response as a blind replay of the four claims; explain why your chosen route is efficient and valid.",
           "Audit this technical memo about M=[[2,6],[1,3]]: 'M is square, so M^{-1} exists. Row reduction gives R=[[1,3],[0,0]], so the first column of R is a basis for Col(M). The determinant 0 only means zero area; it does not affect invertibility. If P is a C→B coordinate matrix, the C-basis operator is PMP^{-1}.' Identify and repair every false claim using M14 evidence. Your audit must name a nonzero null vector, a correct original-column basis for Col(M), the determinant/invertibility implication, and the correct similarity direction for the stated P convention."
         ],
         "rubricEvidence": [
-          "Computes det(A)=0 and reconciles noninvertibility with rank 2/nontrivial nullspace.",
+          "Computes det(A)=0 and reconciles noninvertibility with rank 2 and the nontrivial nullspace.",
           "Gives a nonzero null vector such as (-3,1)^T and uses it to reject the claim that square shape implies invertibility.",
           "Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation."
         ],
         "why": "Both constructive and adversarial tasks require mutually consistent rank/kernel/determinant evidence.",
         "escapeAttempt": "A determinant-only slogan cannot satisfy the nullspace/rank reconciliation.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on two new square maps; both require consistency among rank/kernel/determinant and invertibility evidence."
       },
       {
         "claim": "Change the same operator to a new basis by similarity and verify that structural invariants remain unchanged.",
         "task": "main",
         "taskIds": [
-          "T22V3::SIDE276::S19-M@1"
+          "T22V3::SIDE276::S19-M@2"
         ],
         "publicRequestExact": [
-          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. Produce one coherent audit: (a) row-reduce A enough to give rank(A), a basis for N(A), and pivot-column indices; (b) give a basis for Col(A) using original columns; (c) describe every solution of Ax=b; (d) compute det(A) and decide invertibility, reconciling that conclusion with rank/nullity; (e) compute D=P^{-1}AP and verify rank/determinant/invertibility agree with A."
+          "Let A=[[1,0,1],[1,1,2],[2,1,3]] and b=(1,3,4)^T. Let C=(e3,e2,e1), so P=P_{B←C}=[[0,0,1],[0,1,0],[1,0,0]] with B the standard basis and P^{-1}=P. An internal memo makes four claims: (I) b is reachable but its preimages are not unique; (II) the reachable-output space has dimension 2 and one original column is redundant; (III) the square map is noninvertible; (IV) rewriting the same operator in basis C changes the table but not rank, determinant or invertibility. Produce one coherent technical audit. You must choose the order of attack and justify at least two representation/method choices. Reuse one exact row reduction as a shared artifact wherever it is genuinely informative. Your finished audit must give the complete solution set for Ax=b, an original-column basis for Col(A), mutually consistent rank/nullspace/determinant/invertibility evidence, the C-basis matrix D=P^{-1}AP, and a check of the stated invariants. Do not organize the response as a blind replay of the four claims; explain why your chosen route is efficient and valid."
         ],
         "rubricEvidence": [
-          "Computes D=[[3,1,2],[2,1,1],[1,0,1]] and verifies the same rank/determinant/invertibility invariants."
+          "Computes D=[[3,1,2],[2,1,1],[1,0,1]] and verifies rank 2, determinant 0 and noninvertibility are unchanged."
         ],
         "why": "Main actually changes the representation and checks preserved structure.",
         "escapeAttempt": "Naming similarity without computing/verifying the new representation loses the row.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed by explicit computation of a changed-basis matrix and invariant checks on the new operator."
       },
       {
         "claim": "Diagnose a multi-claim report containing representation, invertibility and basis-change errors with explicit counterevidence.",
@@ -3288,7 +3206,8 @@
         ],
         "why": "Transfer is a multi-claim memo audit spanning the major representation failure modes.",
         "escapeAttempt": "A partial correction cannot earn the rows attached to the untouched false claims.",
-        "disposition": "adequate"
+        "disposition": "adequate",
+        "generalizationDistance": "Observed on the Transfer memo only; the claim is bounded to the listed representation/invertibility/basis-change error family."
       }
     ]
   },
@@ -3296,388 +3215,567 @@
     "T22V3::SIDE276::S01@1": {
       "main": {
         "classification": "proof reconstruction",
-        "reason": "Main reconstructs the linearity proof and basis-extension argument on a new formula and fresh basis data."
+        "mechanism": "universal linearity/basis consequences on a new coordinate rule"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer changes from formula verification to a basis-action specification plus an affine counterexample."
+        "mechanism": "basis-action plus affine-counterexample diagnosis"
       }
     },
     "T22V3::SIDE276::S02@1": {
       "main": {
         "classification": "retrieval",
-        "reason": "Main applies the just-derived representation theorem to fresh ordered bases and then uses the resulting columns."
+        "mechanism": "matrix-from-basis-images construction on fresh ordered bases"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer reverses the direction: a matrix plus basis labels must be decoded into map action and representation semantics."
+        "mechanism": "decode a matrix back to map action and basis dependence"
       }
     },
     "T22V3::SIDE276::S03@1": {
       "main": {
         "classification": "retrieval",
-        "reason": "Main reuses the just-taught Ax structure on a fresh rectangular matrix and requires both row and column representations."
+        "mechanism": "column-combination/row-dot matrix action on fresh data"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer changes to an experimental/unit-response surface where the learner must assemble the matrix before applying it."
+        "mechanism": "unit-response model rather than a supplied matrix"
       }
     },
     "T22V3::SIDE276::S04@1": {
       "main": {
-        "classification": "proof reconstruction + application",
-        "reason": "The composition/product rule and associativity argument are taught. Main reconstructs those ideas on a fresh rectangular chain where both product orders are legal and adds a new column-meaning application."
+        "classification": "proof reconstruction",
+        "mechanism": "composition/product order and associativity architecture was taught; Main reconstructs it on a fresh rectangular chain"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer moves to a verbal two-stage square pipeline and requires a concrete noncommutativity counterexample rather than abstract map notation."
+        "mechanism": "verbal process-order audit where both products are legal"
       }
     },
     "T22V3::SIDE276::S05@1": {
       "main": {
         "classification": "retrieval",
-        "reason": "Main applies the row/column semantics to fresh equations and requires a verified column witness."
+        "mechanism": "row/column meanings of Ax=b are applied to a fresh system"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer removes the written equations and presents reachability as a primitive-response model with an inconsistent target."
+        "mechanism": "response-library reachability rather than written equations"
       }
     },
     "T22V3::SIDE276::S06@1": {
       "main": {
         "classification": "proof reconstruction",
-        "reason": "Main performs fresh row replacements and reconstructs the reversibility argument supplied in instruction."
+        "mechanism": "row-operation reversibility is reconstructed on fresh augmented data"
       },
       "transfer": {
-        "classification": "failure-mode Transfer",
-        "reason": "Transfer changes from correct construction to diagnosing an incompletely applied row operation and a nonreversible zero scaling."
+        "classification": "changed-surface Transfer",
+        "mechanism": "invalid-operation diagnosis"
       }
     },
     "T22V3::SIDE276::S07@1": {
       "main": {
-        "classification": "retrieval + structural classification",
-        "reason": "Main uses a fresh underdetermined system and requires elimination, pivot/free-variable reading, full parameterization and verification; the procedure is taught, but the answer is not exposed."
+        "classification": "retrieval",
+        "mechanism": "elimination, pivot/free classification and parameterization use the taught reasoning structure on fresh data"
       },
       "transfer": {
-        "classification": "changed-constraint Transfer",
-        "reason": "Transfer deliberately preserves the coefficient matrix while perturbing one right-hand side so a redundant constraint becomes a contradiction; the transfer is in consistency structure, not surface representation."
+        "classification": "changed-surface Transfer",
+        "mechanism": "wrong-report audit over three echelon structures"
       }
     },
     "T22V3::SIDE276::S08@1": {
       "main": {
         "classification": "proof reconstruction",
-        "reason": "Main reconstructs the nullspace-subspace proof and solves a fresh homogeneous system."
+        "mechanism": "null-space subspace/basis reasoning is reconstructed on a fresh matrix"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer recasts the kernel as invisible parameter changes in a four-input/two-output model."
+        "mechanism": "invisible-parameter interpretation"
       }
     },
     "T22V3::SIDE276::S09@1": {
       "main": {
-        "classification": "proof reconstruction + application",
-        "reason": "The xp+N(A) theorem is taught. Main reconstructs both directions on a fresh system and applies it to a new affine/subspace decision."
+        "classification": "proof reconstruction",
+        "mechanism": "the xp+N(A) theorem architecture is reconstructed on fresh data"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer recasts complete solutions as calibration ambiguity and asks for a same-output difference proof."
+        "mechanism": "calibration ambiguity and same-output difference proof"
       }
     },
     "T22V3::SIDE276::S10@1": {
       "main": {
-        "classification": "retrieval + integration",
-        "reason": "The original-pivot-column method is taught. Main retrieves it on a fresh matrix and integrates it with two new reachability decisions and ambient-space typing."
+        "classification": "retrieval",
+        "mechanism": "original-pivot-column and reachability methods are applied to a fresh matrix"
       },
       "transfer": {
-        "classification": "misconception-audit Transfer",
-        "reason": "Transfer presents the classic RREF-column-space error and requires the learner to repair the representation distinction rather than repeat a clean basis construction."
+        "classification": "changed-surface Transfer",
+        "mechanism": "RREF-column misconception audit"
       }
     },
     "T22V3::SIDE276::S11@1": {
       "main": {
         "classification": "proof reconstruction",
-        "reason": "Main reconstructs rank-nullity from fresh pivot/free data and a concrete null basis."
+        "mechanism": "rank-nullity is reconstructed from pivot/free-variable structure and then generalized"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer removes matrix entries and requires a dimension-consistency audit from theorem bounds alone."
+        "mechanism": "dimension-only impossibility audit without entries"
       }
     },
     "T22V3::SIDE276::S12@1": {
       "main": {
         "classification": "retrieval",
-        "reason": "Main applies the taught injective/surjective rank-nullity distinctions to fresh tall and wide matrices; the underlying classification method is directly rehearsed in instruction."
+        "mechanism": "injective/surjective rank-nullity distinctions are applied to fresh tall/wide maps"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer removes entries and requires structural inference from only shape and rank."
+        "mechanism": "entry-free rectangular measurement-system inference"
       }
     },
     "T22V3::SIDE276::S13@1": {
       "main": {
         "classification": "proof reconstruction",
-        "reason": "Main asks for a bounded proof of the square invertibility equivalence from previously owned rank/nullspace machinery."
+        "mechanism": "the square invertibility equivalence chain is reconstructed from rank/nullspace definitions"
       },
       "transfer": {
-        "classification": "forensic Transfer",
-        "reason": "Transfer starts from one nonzero kernel witness and propagates its consequences through injectivity, rank, surjectivity, solvability and inverse existence."
+        "classification": "changed-surface Transfer",
+        "mechanism": "forensic inference from a nonzero kernel witness"
       }
     },
     "T22V3::SIDE276::S14@1": {
       "main": {
         "classification": "retrieval",
-        "reason": "Main executes and explains the just-derived Gauss–Jordan inverse construction on a fresh invertible matrix."
+        "mechanism": "Gauss-Jordan inverse construction and inverse-order reasoning use the taught method on fresh matrices"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer changes to a composition/inverse-order audit with supplied component inverses and a nonsquare case."
+        "mechanism": "composition inverse-order audit plus nonsquare boundary"
       }
     },
     "T22V3::SIDE276::S15@1": {
       "main": {
-        "classification": "retrieval + proof reconstruction",
-        "reason": "Determinant-aware elimination and row-replacement invariance are taught. Main uses fresh entries but reconstructs the same structural row-rule argument."
+        "classification": "proof reconstruction",
+        "mechanism": "determinant-aware elimination and row-rule justification reconstruct taught structure on fresh data"
       },
       "transfer": {
-        "classification": "misconception-audit Transfer",
-        "reason": "Transfer attacks false whole-matrix linearity with identity matrices and separately applies multiplicativity from determinant data."
+        "classification": "changed-surface Transfer",
+        "mechanism": "whole-matrix determinant-linearity misconception audit"
       }
     },
     "T22V3::SIDE276::S16@1": {
       "main": {
-        "classification": "proof reconstruction + fresh application",
-        "reason": "Main applies determinant/rank geometry to fresh matrices and reconstructs the general det=0 iff noninvertible argument from previously taught pivot and row-operation facts."
+        "classification": "proof reconstruction",
+        "mechanism": "singularity equivalence and determinant geometry are reconstructed/applied on fresh matrices"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer uses equal-determinant but anisotropic maps to test the boundary of determinant interpretation."
+        "mechanism": "equal-determinant anisotropy/stability boundary"
       }
     },
     "T22V3::SIDE276::S17@1": {
       "main": {
         "classification": "retrieval",
-        "reason": "Main applies the taught coordinate-change construction, inverse direction and same-vector verification to a fresh pair of ordered bases."
+        "mechanism": "coordinate-change construction/inversion is applied to fresh ordered bases"
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "reason": "Transfer begins with coordinates on the output side of a named conversion and requires diagnosing the arrow reversal."
+        "mechanism": "reversed coordinate-direction diagnosis"
       }
     },
     "T22V3::SIDE276::S18@1": {
       "main": {
-        "classification": "proof reconstruction + application",
-        "reason": "The similarity pipeline is taught. Main reconstructs C→B→operator→C on fresh A,P and then applies the derived representation to a new vector and invariant check."
+        "classification": "proof reconstruction",
+        "mechanism": "similarity is rederived from the coordinate pipeline and invariants are proved on fresh data"
       },
       "transfer": {
-        "classification": "direction-audit Transfer",
-        "reason": "Transfer removes arithmetic and requires reconstruction of the coordinate arrows to diagnose PAP^{-1} under the stated P convention."
+        "classification": "changed-surface Transfer",
+        "mechanism": "similarity-direction audit with no arithmetic cue"
       }
     },
     "T22V3::SIDE276::S19@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main is a new integrated model requiring method coordination across all major M14 representations."
+        "classification": "retrieval",
+        "mechanism": "integrated synthesis uses owned M14 tools; the organizing decision is meaningful but its tool family has been deliberately rehearsed"
       },
       "transfer": {
-        "classification": "adversarial synthesis Transfer",
-        "reason": "Transfer replaces constructive synthesis with a multi-claim technical memo containing linked invertibility, column-space, determinant and basis-change errors."
+        "classification": "changed-surface Transfer",
+        "mechanism": "multi-claim technical memo audit"
       }
     }
   },
   "semanticSeparationAudit": {
-    "sessions": {
-      "T22V3::SIDE276::S01@1": {
-        "main": {
-          "classification": "proof reconstruction",
-          "reason": "Main reconstructs the linearity proof and basis-extension argument on a new formula and fresh basis data."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer changes from formula verification to a basis-action specification plus an affine counterexample."
-        }
+    "status": "PASS_WITH_EVIDENCE after v1.2 repair; task rows are semantic judgments, not automated proof of independence.",
+    "method": "For every fixed task, compare the closest answer-bearing current/prior instruction by mathematical object/data, requested conclusion, decisive argument and scored subanswers. Exact-string/matrix scans remain only candidate finders.",
+    "tasks": {
+      "T22V3::SIDE276::S01-M@1": {
+        "sessionId": "T22V3::SIDE276::S01@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S01 worked: T(x,y)=(2x-y,x+3y)",
+          "S01 guided: G/H zero-vector screen"
+        ],
+        "mathematicalDifference": "Main uses a new R^2→R^3 rule F, universal αu+βv verification, fresh basis images and a new evaluation point.",
+        "exposureDisposition": "CLEAR — proof architecture is rehearsed but no solved F instance or answer is available."
       },
-      "T22V3::SIDE276::S02@1": {
-        "main": {
-          "classification": "retrieval",
-          "reason": "Main applies the just-derived representation theorem to fresh ordered bases and then uses the resulting columns."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer reverses the direction: a matrix plus basis labels must be decoded into map action and representation semantics."
-        }
+      "T22V3::SIDE276::S01-T@1": {
+        "sessionId": "T22V3::SIDE276::S01@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S01 guided G/H comparison",
+          "S01 worked basis-action example"
+        ],
+        "mathematicalDifference": "Transfer combines a basis-specified map P with a new affine rule Q and requires deriving L(0)=0 before diagnosis.",
+        "exposureDisposition": "CLEAR — representation and counterexample data are new."
       },
-      "T22V3::SIDE276::S03@1": {
-        "main": {
-          "classification": "retrieval",
-          "reason": "Main reuses the just-taught Ax structure on a fresh rectangular matrix and requires both row and column representations."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer changes to an experimental/unit-response surface where the learner must assemble the matrix before applying it."
-        }
+      "T22V3::SIDE276::S02-M@1": {
+        "sessionId": "T22V3::SIDE276::S02@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S02 worked: 3-input/2-output basis-image matrix"
+        ],
+        "mathematicalDifference": "Main uses different basis-image coordinates and a different target coordinate combination.",
+        "exposureDisposition": "CLEAR — retrieval method is rehearsed; solved instance is distinct."
       },
-      "T22V3::SIDE276::S04@1": {
-        "main": {
-          "classification": "proof reconstruction + application",
-          "reason": "The composition/product rule and associativity argument are taught. Main reconstructs those ideas on a fresh rectangular chain where both product orders are legal and adds a new column-meaning application."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer moves to a verbal two-stage square pipeline and requires a concrete noncommutativity counterexample rather than abstract map notation."
-        }
+      "T22V3::SIDE276::S02-T@1": {
+        "sessionId": "T22V3::SIDE276::S02@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S02 worked/main matrix construction"
+        ],
+        "mathematicalDifference": "Transfer reverses direction: decode a supplied 3-by-2 matrix into map action and explain basis dependence.",
+        "exposureDisposition": "CLEAR — no instructional answer contains this matrix or decoded basis images."
       },
-      "T22V3::SIDE276::S05@1": {
-        "main": {
-          "classification": "retrieval",
-          "reason": "Main applies the row/column semantics to fresh equations and requires a verified column witness."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer removes the written equations and presents reachability as a primitive-response model with an inconsistent target."
-        }
+      "T22V3::SIDE276::S03-M@1": {
+        "sessionId": "T22V3::SIDE276::S03@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S03 worked: 3-by-2 A and x",
+          "S03 guided: 2-by-3 B and x"
+        ],
+        "mathematicalDifference": "Main uses a new 2-by-3 matrix/vector and explicitly reconciles column and row computations plus e2 probing.",
+        "exposureDisposition": "CLEAR — same method, distinct matrix/vector/output."
       },
-      "T22V3::SIDE276::S06@1": {
-        "main": {
-          "classification": "proof reconstruction",
-          "reason": "Main performs fresh row replacements and reconstructs the reversibility argument supplied in instruction."
-        },
-        "transfer": {
-          "classification": "failure-mode Transfer",
-          "reason": "Transfer changes from correct construction to diagnosing an incompletely applied row operation and a nonreversible zero scaling."
-        }
+      "T22V3::SIDE276::S03-T@1": {
+        "sessionId": "T22V3::SIDE276::S03@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S03 basis-probe explanation",
+          "S03 worked/guided matrix-vector calculations"
+        ],
+        "mathematicalDifference": "Transfer starts from primitive unit responses rather than a matrix, so the learner must assemble A before applying it.",
+        "exposureDisposition": "CLEAR — changed representation and fresh responses."
       },
-      "T22V3::SIDE276::S07@1": {
-        "main": {
-          "classification": "retrieval + structural classification",
-          "reason": "Main uses a fresh underdetermined system and requires elimination, pivot/free-variable reading, full parameterization and verification; the procedure is taught, but the answer is not exposed."
-        },
-        "transfer": {
-          "classification": "changed-constraint Transfer",
-          "reason": "Transfer deliberately preserves the coefficient matrix while perturbing one right-hand side so a redundant constraint becomes a contradiction; the transfer is in consistency structure, not surface representation."
-        }
+      "T22V3::SIDE276::S04-M@1": {
+        "sessionId": "T22V3::SIDE276::S04@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S04 worked: square A,B",
+          "S04 guided: rectangular C,D composition"
+        ],
+        "mathematicalDifference": "Main uses a different rectangular chain where AB and BA are both legal and adds a three-factor associativity explanation.",
+        "exposureDisposition": "CLEAR — no solved Main product appears in instruction; proof architecture only is rehearsed."
       },
-      "T22V3::SIDE276::S08@1": {
-        "main": {
-          "classification": "proof reconstruction",
-          "reason": "Main reconstructs the nullspace-subspace proof and solves a fresh homogeneous system."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer recasts the kernel as invisible parameter changes in a four-input/two-output model."
-        }
+      "T22V3::SIDE276::S04-T@1": {
+        "sessionId": "T22V3::SIDE276::S04@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S04 worked square noncommuting pair"
+        ],
+        "mathematicalDifference": "Transfer presents a verbal two-stage pipeline with new C,D and requires semantic process order plus both legal products.",
+        "exposureDisposition": "CLEAR — coefficients and outputs are fresh; surface is process language."
       },
-      "T22V3::SIDE276::S09@1": {
-        "main": {
-          "classification": "proof reconstruction + application",
-          "reason": "The xp+N(A) theorem is taught. Main reconstructs both directions on a fresh system and applies it to a new affine/subspace decision."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer recasts complete solutions as calibration ambiguity and asks for a same-output difference proof."
-        }
+      "T22V3::SIDE276::S05-M@1": {
+        "sessionId": "T22V3::SIDE276::S05@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S05 worked: column-specified A,b with witness",
+          "S05 guided: 2-variable equation system"
+        ],
+        "mathematicalDifference": "Main starts from a new three-equation system and requires both row/column interpretations and a fresh witness.",
+        "exposureDisposition": "CLEAR — earlier duplicate was removed; current system is distinct."
       },
-      "T22V3::SIDE276::S10@1": {
-        "main": {
-          "classification": "retrieval + integration",
-          "reason": "The original-pivot-column method is taught. Main retrieves it on a fresh matrix and integrates it with two new reachability decisions and ambient-space typing."
-        },
-        "transfer": {
-          "classification": "misconception-audit Transfer",
-          "reason": "Transfer presents the classic RREF-column-space error and requires the learner to repair the representation distinction rather than repeat a clean basis construction."
-        }
+      "T22V3::SIDE276::S05-T@1": {
+        "sessionId": "T22V3::SIDE276::S05@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S05 column-view explanation",
+          "S05 Main exact-system formulation"
+        ],
+        "mathematicalDifference": "Transfer supplies primitive response columns and an inconsistent target rather than scalar equations.",
+        "exposureDisposition": "CLEAR — changed surface and fresh target obstruction."
       },
-      "T22V3::SIDE276::S11@1": {
-        "main": {
-          "classification": "proof reconstruction",
-          "reason": "Main reconstructs rank-nullity from fresh pivot/free data and a concrete null basis."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer removes matrix entries and requires a dimension-consistency audit from theorem bounds alone."
-        }
+      "T22V3::SIDE276::S06-M@1": {
+        "sessionId": "T22V3::SIDE276::S06@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S06 worked: 2-equation replacement",
+          "S06 guided: prior 3-equation augmented matrix"
+        ],
+        "mathematicalDifference": "Main uses a fresh 3-equation system, different row replacements, and separately asks reversibility of all three elementary-operation types.",
+        "exposureDisposition": "CLEAR — prior guided duplicate was removed."
       },
-      "T22V3::SIDE276::S12@1": {
-        "main": {
-          "classification": "retrieval",
-          "reason": "Main applies the taught injective/surjective rank-nullity distinctions to fresh tall and wide matrices; the underlying classification method is directly rehearsed in instruction."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer removes entries and requires structural inference from only shape and rank."
-        }
+      "T22V3::SIDE276::S06-T@1": {
+        "sessionId": "T22V3::SIDE276::S06@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S06 worked/main correct row operations"
+        ],
+        "mathematicalDifference": "Transfer gives a flawed partial row replacement and asks for diagnosis plus zero-scaling boundary.",
+        "exposureDisposition": "CLEAR — wrong-solver surface, not a solved clean example."
       },
-      "T22V3::SIDE276::S13@1": {
-        "main": {
-          "classification": "proof reconstruction",
-          "reason": "Main asks for a bounded proof of the square invertibility equivalence from previously owned rank/nullspace machinery."
-        },
-        "transfer": {
-          "classification": "forensic Transfer",
-          "reason": "Transfer starts from one nonzero kernel witness and propagates its consequences through injectivity, rank, surjectivity, solvability and inverse existence."
-        }
+      "T22V3::SIDE276::S07-M@1": {
+        "sessionId": "T22V3::SIDE276::S07@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S07 worked: different underdetermined system",
+          "S07 guided: another redundant system"
+        ],
+        "mathematicalDifference": "Main uses fresh coefficients/right-hand side and requires full elimination, family and verification.",
+        "exposureDisposition": "CLEAR — retrieval structure is rehearsed but exact solution family is not exposed."
       },
-      "T22V3::SIDE276::S14@1": {
-        "main": {
-          "classification": "retrieval",
-          "reason": "Main executes and explains the just-derived Gauss–Jordan inverse construction on a fresh invertible matrix."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer changes to a composition/inverse-order audit with supplied component inverses and a nonsquare case."
-        }
+      "T22V3::SIDE276::S07-T@2": {
+        "sessionId": "T22V3::SIDE276::S07@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S07 three-case classification lesson",
+          "S07 Main elimination task"
+        ],
+        "mathematicalDifference": "Transfer supplies three already-reduced systems inside an incorrect auto-solver report; learner audits labels rather than repeats elimination.",
+        "exposureDisposition": "CLEAR — v1.2 repair creates a genuine error-diagnosis surface with fresh echelon data."
       },
-      "T22V3::SIDE276::S15@1": {
-        "main": {
-          "classification": "retrieval + proof reconstruction",
-          "reason": "Determinant-aware elimination and row-replacement invariance are taught. Main uses fresh entries but reconstructs the same structural row-rule argument."
-        },
-        "transfer": {
-          "classification": "misconception-audit Transfer",
-          "reason": "Transfer attacks false whole-matrix linearity with identity matrices and separately applies multiplicativity from determinant data."
-        }
+      "T22V3::SIDE276::S08-M@1": {
+        "sessionId": "T22V3::SIDE276::S08@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S08 worked: different rank-1 homogeneous matrix",
+          "S08 guided: 2-by-4 homogeneous matrix"
+        ],
+        "mathematicalDifference": "Main uses a new matrix and adds the subspace proof plus basis spanning/independence proof.",
+        "exposureDisposition": "CLEAR — no solved Main null basis in instruction."
       },
-      "T22V3::SIDE276::S16@1": {
-        "main": {
-          "classification": "proof reconstruction + fresh application",
-          "reason": "Main applies determinant/rank geometry to fresh matrices and reconstructs the general det=0 iff noninvertible argument from previously taught pivot and row-operation facts."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer uses equal-determinant but anisotropic maps to test the boundary of determinant interpretation."
-        }
+      "T22V3::SIDE276::S08-T@1": {
+        "sessionId": "T22V3::SIDE276::S08@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S08 nullspace/invisible-direction lesson"
+        ],
+        "mathematicalDifference": "Transfer recasts kernel vectors as invisible parameter changes in a four-parameter measurement model.",
+        "exposureDisposition": "CLEAR — changed semantic surface and fresh matrix."
       },
-      "T22V3::SIDE276::S17@1": {
-        "main": {
-          "classification": "retrieval",
-          "reason": "Main applies the taught coordinate-change construction, inverse direction and same-vector verification to a fresh pair of ordered bases."
-        },
-        "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer begins with coordinates on the output side of a named conversion and requires diagnosing the arrow reversal."
-        }
+      "T22V3::SIDE276::S09-M@1": {
+        "sessionId": "T22V3::SIDE276::S09@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S09 worked: xp+N(A) on different A,b",
+          "S09 guided: different C,b"
+        ],
+        "mathematicalDifference": "Main uses a fresh map/target and reconstructs both theorem directions plus the b=0 origin condition.",
+        "exposureDisposition": "CLEAR — theorem architecture is taught, numerical instance is fresh."
       },
-      "T22V3::SIDE276::S18@1": {
-        "main": {
-          "classification": "proof reconstruction + application",
-          "reason": "The similarity pipeline is taught. Main reconstructs C→B→operator→C on fresh A,P and then applies the derived representation to a new vector and invariant check."
-        },
-        "transfer": {
-          "classification": "direction-audit Transfer",
-          "reason": "Transfer removes arithmetic and requires reconstruction of the coordinate arrows to diagnose PAP^{-1} under the stated P convention."
-        }
+      "T22V3::SIDE276::S09-T@1": {
+        "sessionId": "T22V3::SIDE276::S09@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S09 affine-solution theorem",
+          "S09 guided solution-family practice"
+        ],
+        "mathematicalDifference": "Transfer uses calibration ambiguity and asks for an invisible direction and same-output difference proof.",
+        "exposureDisposition": "CLEAR — changed application surface and fresh coefficients."
       },
-      "T22V3::SIDE276::S19@1": {
-        "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main is a new integrated model requiring method coordination across all major M14 representations."
-        },
-        "transfer": {
-          "classification": "adversarial synthesis Transfer",
-          "reason": "Transfer replaces constructive synthesis with a multi-claim technical memo containing linked invertibility, column-space, determinant and basis-change errors."
-        }
+      "T22V3::SIDE276::S10-M@1": {
+        "sessionId": "T22V3::SIDE276::S10@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S10 worked: different 3-by-4 matrix",
+          "S10 guided: 3-by-3 pivot-index practice"
+        ],
+        "mathematicalDifference": "Main uses a fresh 3-by-4 matrix, two new targets and asks both reachability witness and obstruction.",
+        "exposureDisposition": "CLEAR — pivot method rehearsed, exact RREF/targets distinct."
+      },
+      "T22V3::SIDE276::S10-T@1": {
+        "sessionId": "T22V3::SIDE276::S10@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S10 distinction warning about RREF columns"
+        ],
+        "mathematicalDifference": "Transfer presents the misconception itself on a new matrix/RREF pair and requires repair.",
+        "exposureDisposition": "CLEAR — adversarial misconception audit, no answer reused."
+      },
+      "T22V3::SIDE276::S11-M@2": {
+        "sessionId": "T22V3::SIDE276::S11@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S11 worked: different 3-by-5 RREF",
+          "S11 guided: abstract 4-by-6 pivot count"
+        ],
+        "mathematicalDifference": "Main uses a fresh RREF, constructs a fresh null basis, then explicitly generalizes r pivots to n-r null directions.",
+        "exposureDisposition": "CLEAR — concrete numbers differ and the new general proof is not a copied numerical answer."
+      },
+      "T22V3::SIDE276::S11-T@1": {
+        "sessionId": "T22V3::SIDE276::S11@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S11 rank/nullity bounds lesson",
+          "S11 guided pivot-count practice"
+        ],
+        "mathematicalDifference": "Transfer removes matrix entries entirely and asks whether a reported nullity is dimensionally possible.",
+        "exposureDisposition": "CLEAR — changed information surface; no row-reduction instance is available."
+      },
+      "T22V3::SIDE276::S12-M@1": {
+        "sessionId": "T22V3::SIDE276::S12@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S12 worked tall/wide example",
+          "S12 guided abstract rank examples"
+        ],
+        "mathematicalDifference": "Main uses different tall/wide matrices and requires rank/nullity classification plus solution-behavior translation.",
+        "exposureDisposition": "CLEAR — same concepts, fresh matrices and outputs."
+      },
+      "T22V3::SIDE276::S12-T@1": {
+        "sessionId": "T22V3::SIDE276::S12@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S12 guided R^5/R^3 rank cases"
+        ],
+        "mathematicalDifference": "Transfer gives only R^4→R^2 shape/rank and asks general unequal-dimension injective+surjective reasoning.",
+        "exposureDisposition": "CLEAR — no entries and no solved target instance."
+      },
+      "T22V3::SIDE276::S13-M@1": {
+        "sessionId": "T22V3::SIDE276::S13@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S13 worked full-pivot square case",
+          "S13 guided 4-by-4 three-pivot case"
+        ],
+        "mathematicalDifference": "Main is a symbolic n-by-n equivalence proof rather than another numerical square-matrix classification.",
+        "exposureDisposition": "CLEAR — proof reconstruction, no target proof text copied verbatim into the prompt."
+      },
+      "T22V3::SIDE276::S13-T@1": {
+        "sessionId": "T22V3::SIDE276::S13@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S13 nonzero-null-vector counterexample explanation"
+        ],
+        "mathematicalDifference": "Transfer supplies a new 3-vector kernel witness and asks propagation through rank/surjectivity/solvability/inverse consequences.",
+        "exposureDisposition": "CLEAR — same inference architecture but fresh witness; correctly classified changed-surface forensic task."
+      },
+      "T22V3::SIDE276::S14-M@1": {
+        "sessionId": "T22V3::SIDE276::S14@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S14 worked inverse [[2,1],[1,1]]",
+          "S14 guided triangular K"
+        ],
+        "mathematicalDifference": "Main uses fresh A,b and asks both Gauss-Jordan construction and elementary-left-multiplier explanation.",
+        "exposureDisposition": "CLEAR — exact inverse/solve are not exposed."
+      },
+      "T22V3::SIDE276::S14-T@1": {
+        "sessionId": "T22V3::SIDE276::S14@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S14 product-inverse proof in lesson"
+        ],
+        "mathematicalDifference": "Transfer supplies fresh P,Q and their inverses, asks reversed composition order, verification and a nonsquare boundary.",
+        "exposureDisposition": "CLEAR — proof architecture is rehearsed; matrices/results are fresh."
+      },
+      "T22V3::SIDE276::S15-M@1": {
+        "sessionId": "T22V3::SIDE276::S15@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S15 worked determinant via replacements",
+          "S15 guided determinant with a swap"
+        ],
+        "mathematicalDifference": "Main uses a new 3-by-3 matrix and requires determinant-aware elimination plus a row-replacement invariance argument.",
+        "exposureDisposition": "CLEAR — fresh determinant and row sequence."
+      },
+      "T22V3::SIDE276::S15-T@1": {
+        "sessionId": "T22V3::SIDE276::S15@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S15 whole-matrix warning",
+          "S15 multiplicativity explanation"
+        ],
+        "mathematicalDifference": "Transfer turns the exact false rules into a report to audit using I3 and separate P,Q determinant data.",
+        "exposureDisposition": "CLEAR — misconception diagnosis; no fixed answer numbers exposed beforehand."
+      },
+      "T22V3::SIDE276::S16-M@1": {
+        "sessionId": "T22V3::SIDE276::S16@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S16 worked nonsingular/singular 2-by-2 pair",
+          "S16 guided diagonal comparison"
+        ],
+        "mathematicalDifference": "Main uses fresh matrices and additionally reconstructs the general singularity equivalence from pivots/determinant rules.",
+        "exposureDisposition": "CLEAR — examples/results differ; general proof remains a reconstruction."
+      },
+      "T22V3::SIDE276::S16-T@1": {
+        "sessionId": "T22V3::SIDE276::S16@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S16 warning that determinant hides directional imbalance"
+        ],
+        "mathematicalDifference": "Transfer uses the extreme diag(1000,0.001) versus I2 and asks what det=1 does and does not justify.",
+        "exposureDisposition": "CLEAR — the qualitative warning is rehearsed, the concrete diagnostic is fresh."
+      },
+      "T22V3::SIDE276::S17-M@1": {
+        "sessionId": "T22V3::SIDE276::S17@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S17 worked standard-vs-C basis",
+          "S17 guided earlier B/C basis conversion"
+        ],
+        "mathematicalDifference": "Main uses a new basis pair with different conversion matrix/inverse and requires direct vector-expansion verification.",
+        "exposureDisposition": "CLEAR — earlier guided matrix/inverse reuse was removed."
+      },
+      "T22V3::SIDE276::S17-T@1": {
+        "sessionId": "T22V3::SIDE276::S17@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S17 direction convention and inverse conversion"
+        ],
+        "mathematicalDifference": "Transfer starts from B-coordinates on the output side of a named C→B matrix and requires reversing the arrow correctly.",
+        "exposureDisposition": "CLEAR — new matrix/vector and error-diagnosis surface."
+      },
+      "T22V3::SIDE276::S18-M@2": {
+        "sessionId": "T22V3::SIDE276::S18@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S18 worked A,P similarity example",
+          "S18 guided different A,P similarity calculation"
+        ],
+        "mathematicalDifference": "Main uses fresh A,P/vector and now adds a general determinant-invariance proof via multiplicativity.",
+        "exposureDisposition": "CLEAR — exact similar matrix/output are not exposed; proof architecture is intentionally reconstructed."
+      },
+      "T22V3::SIDE276::S18-T@1": {
+        "sessionId": "T22V3::SIDE276::S18@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S18 coordinate-arrow derivation"
+        ],
+        "mathematicalDifference": "Transfer removes arithmetic and gives the wrong PAP^{-1} formula under an explicit P convention, plus arbitrary-PAQ boundary.",
+        "exposureDisposition": "CLEAR — direction-audit surface, no numerical answer reuse."
+      },
+      "T22V3::SIDE276::S19-M@2": {
+        "sessionId": "T22V3::SIDE276::S19@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S19 worked synthesis matrix",
+          "S19 guided method-map only"
+        ],
+        "mathematicalDifference": "Main uses a fresh A,b,P and no supplied computation order; it scores choice/justification of the audit route while still requiring exact outputs.",
+        "exposureDisposition": "CLEAR — worked instance is distinct and guided practice names tool categories without solving the Main."
+      },
+      "T22V3::SIDE276::S19-T@1": {
+        "sessionId": "T22V3::SIDE276::S19@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S19 distinction map",
+          "Earlier S10/S13/S16/S18 misconception repairs"
+        ],
+        "mathematicalDifference": "Transfer combines four false claims on a fresh 2-by-2 matrix into one technical memo audit.",
+        "exposureDisposition": "CLEAR — answers for M are not present in instruction; combined surface requires reconstruction across representations."
       }
-    },
-    "note": "Each fixed task was compared against its lesson, worked example, guided action/feedback and earlier answer-bearing instruction by mathematical instance, not prompt text alone. Transfer labels state the changed representation/decision/obstacle. Full-module cross-session scan is repeated in verification."
+    }
   },
   "prerequisiteAudit": {
     "formal": [
@@ -3710,5 +3808,304 @@
     "instructionVersion": "v1 for all 19 new sessions",
     "publication": "not published; no M14 learner attempts exist in the shared route to migrate"
   },
-  "authoringPolicy": "Score only public obligations. Accept mathematically equivalent exact methods and notation. Require literal public evidence for every ownership claim. Label proof reconstruction/retrieval honestly, preserve representation direction and theorem hypotheses, and do not infer mastery from builder validation."
+  "authoringPolicy": "Score only public obligations. Accept mathematically equivalent exact methods and notation. Require literal public evidence for every ownership claim. Label proof reconstruction/retrieval honestly, preserve representation direction and theorem hypotheses, and do not infer mastery from builder validation.",
+  "decisionAudit": {
+    "status": "PASS_WITH_EVIDENCE after v1.2 repair; rows cover every changed-surface Transfer plus explicit Main strategy/synthesis decisions.",
+    "tasks": {
+      "T22V3::SIDE276::S04-M@1": {
+        "claimedLearnerDecision": "Choose product order from the map composition and intermediate spaces.",
+        "alreadySuppliedByPrompt": "NO — matrices/maps are given, but the correct order must be inferred.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — S04 teaches composition order, so this is proof reconstruction rather than fresh choice.",
+        "learnerActionActuallyScored": "Chooses AB for S∘T and justifies the 2-by-2 shape from R^2→R^3→R^2."
+      },
+      "T22V3::SIDE276::S01-T@1": {
+        "claimedLearnerDecision": "Determine which proposed rule fails linearity and why.",
+        "alreadySuppliedByPrompt": "PARTLY — prompt requests a necessary-condition derivation but does not supply Q's verdict.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — zero-vector and basis-action checks are rehearsed.",
+        "learnerActionActuallyScored": "Derives L(0)=0 from linearity and applies Q(0,0)=(1,0)≠0 to reject Q."
+      },
+      "T22V3::SIDE276::S02-T@1": {
+        "claimedLearnerDecision": "Decode which map action and dimensions the supplied matrix represents.",
+        "alreadySuppliedByPrompt": "NO — columns/basis labels are given, decoded map action is not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — construction direction is taught; Transfer reverses it.",
+        "learnerActionActuallyScored": "Recovers T(b1)=2c1+c3 and T(b2)=-c1+3c2+4c3 from the two columns."
+      },
+      "T22V3::SIDE276::S03-T@1": {
+        "claimedLearnerDecision": "Choose how primitive unit responses assemble a matrix and mixed response.",
+        "alreadySuppliedByPrompt": "NO — unit responses are supplied, assembly/action must be inferred.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — basis-probe/column action is taught.",
+        "learnerActionActuallyScored": "Builds A=[[1,0,2],[-1,3,0],[2,1,-2]] with the unit responses as columns."
+      },
+      "T22V3::SIDE276::S04-T@1": {
+        "claimedLearnerDecision": "Choose DC versus CD from the phrase 'first C, then D'.",
+        "alreadySuppliedByPrompt": "NO — both products are legal and prompt does not name the answer.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — order semantics are taught; new surface is verbal pipeline.",
+        "learnerActionActuallyScored": "Chooses DC for 'first C, then D' and explains that the first-applied map appears on the right."
+      },
+      "T22V3::SIDE276::S05-T@1": {
+        "claimedLearnerDecision": "Decide exact reachability from response columns and a target.",
+        "alreadySuppliedByPrompt": "NO — target/columns are supplied, consistency verdict is not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — row/column solvability meaning is taught.",
+        "learnerActionActuallyScored": "Uses c=3 and d=-1 from the first/third coordinates and obtains the contradictory second coordinate 7≠4."
+      },
+      "T22V3::SIDE276::S06-T@1": {
+        "claimedLearnerDecision": "Identify why a student's row operation is invalid and whether zero scaling is allowed.",
+        "alreadySuppliedByPrompt": "NO — the flawed work is supplied, the diagnosis/repair is not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — legal reversible operations are taught.",
+        "learnerActionActuallyScored": "Identifies that the right-hand side must undergo the same row replacement and computes [0,7/2|3/2]."
+      },
+      "T22V3::SIDE276::S07-T@2": {
+        "claimedLearnerDecision": "Audit three wrong no/one/many labels from echelon evidence.",
+        "alreadySuppliedByPrompt": "NO — the report intentionally supplies wrong labels; learner must replace them.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — three-case classification is taught, but the audit surface is new.",
+        "learnerActionActuallyScored": "Repairs E1 to infinitely many solutions using its free variable and absence of a contradiction. | Repairs E2 to no solution from the contradiction row [0,0,0|1]. | Repairs E3 to a unique solution because every variable column has a pivot and identifies (2,-1,3) if values are reported."
+      },
+      "T22V3::SIDE276::S08-T@1": {
+        "claimedLearnerDecision": "Choose invisible parameter directions and prove they span all invisible changes.",
+        "alreadySuppliedByPrompt": "NO — measurement matrix is given, null directions are not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — nullspace construction is taught; parameter-language surface is new.",
+        "learnerActionActuallyScored": "Finds the two null directions (-1,1,-1,0) and (-2,0,1,1), up to an equivalent basis."
+      },
+      "T22V3::SIDE276::S09-T@1": {
+        "claimedLearnerDecision": "Choose a calibration and invisible direction, then explain all calibration ambiguity.",
+        "alreadySuppliedByPrompt": "NO — map/target are supplied; particular/null choices are not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — xp+N(A) is taught.",
+        "learnerActionActuallyScored": "Finds a valid p such as (5,3,0) and a nonzero null direction such as (-3,-2,1)."
+      },
+      "T22V3::SIDE276::S10-T@1": {
+        "claimedLearnerDecision": "Reject or accept the student's RREF-column basis claim.",
+        "alreadySuppliedByPrompt": "NO — a wrong claim is supplied, correct original-column basis must be chosen.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — pivot/original-column distinction is taught.",
+        "learnerActionActuallyScored": "Rejects the RREF-column basis claim and gives {(1,1,2)^T,(1,2,3)^T} from the original matrix."
+      },
+      "T22V3::SIDE276::S11-T@1": {
+        "claimedLearnerDecision": "Decide whether a nullity report is possible without matrix entries.",
+        "alreadySuppliedByPrompt": "NO — claimed nullity is supplied, feasibility verdict must be inferred.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — rank-nullity/bounds are taught.",
+        "learnerActionActuallyScored": "Uses rank-nullity to show the claimed nullity 2 would force rank 4. | Uses the codomain bound rank≤3 to identify the contradiction."
+      },
+      "T22V3::SIDE276::S12-T@1": {
+        "claimedLearnerDecision": "Classify onto/one-to-one behavior from shape and rank, then generalize unequal dimensions.",
+        "alreadySuppliedByPrompt": "NO — rank/shape are given; map properties are not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — rectangular rank distinctions are taught.",
+        "learnerActionActuallyScored": "Concludes T is surjective because rank 2 equals the R^2 codomain dimension. | Uses rank-nullity to obtain nullity 2 and rejects injectivity."
+      },
+      "T22V3::SIDE276::S13-T@1": {
+        "claimedLearnerDecision": "Propagate one nonzero kernel witness through square-map consequences.",
+        "alreadySuppliedByPrompt": "NO — the witness is supplied, structural consequences are not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — equivalence chain is taught; forensic starting surface is new.",
+        "learnerActionActuallyScored": "Uses the nonzero null vector to reject injectivity and infer nullity≥1, rank≤2."
+      },
+      "T22V3::SIDE276::S14-T@1": {
+        "claimedLearnerDecision": "Choose inverse-product order and decide nonsquare inverse legitimacy.",
+        "alreadySuppliedByPrompt": "NO — component inverses/shapes are supplied; reversal/boundary verdicts are not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — inverse-order proof and bijection requirements are taught.",
+        "learnerActionActuallyScored": "Computes (PQ)^{-1}=Q^{-1}P^{-1}=[[1/2,-1/2],[0,1/3]] and verifies it against PQ. | Rejects a two-sided inverse for the 2-by-3 matrix C using unequal domain/codomain dimensions."
+      },
+      "T22V3::SIDE276::S15-T@1": {
+        "claimedLearnerDecision": "Determine which determinant-linearity claims fail and which multiplicative claim applies.",
+        "alreadySuppliedByPrompt": "NO — false report is supplied; counterexample conclusions/theorem use are not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — determinant row rules/multiplicativity are taught.",
+        "learnerActionActuallyScored": "Computes det(2I_3)=8 and uses it to refute both claimed whole-matrix linearity statements. | Uses determinant multiplicativity to obtain det(PQ)=-10."
+      },
+      "T22V3::SIDE276::S16-T@1": {
+        "claimedLearnerDecision": "Decide what equal determinant does and does not license about directional sensitivity.",
+        "alreadySuppliedByPrompt": "NO — matrices and bad memo conclusion are supplied; valid scope must be separated.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — determinant geometry/scope warning is taught.",
+        "learnerActionActuallyScored": "Exhibits the directional contrast e1→1000e1 and e2→0.001e2 for D versus identity action for I_2. | Rejects the numerical-stability conclusion because determinant alone does not measure directional sensitivity/conditioning."
+      },
+      "T22V3::SIDE276::S17-T@1": {
+        "claimedLearnerDecision": "Choose the correct coordinate-conversion direction from P_{B←C}.",
+        "alreadySuppliedByPrompt": "NO — the colleague's operation is intentionally wrong; inverse direction must be inferred.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — arrow convention/inverse is taught.",
+        "learnerActionActuallyScored": "States that P_{B←C} takes C-coordinates in and B-coordinates out, so the colleague used it backwards. | Computes P_{C←B}=P^{-1}=[[4,-3],[-1,1]] and obtains [w]_C=(1,2)^T."
+      },
+      "T22V3::SIDE276::S18-T@1": {
+        "claimedLearnerDecision": "Choose the correct similarity direction and reject generic PAQ as coordinate change.",
+        "alreadySuppliedByPrompt": "NO — the wrong PAP^{-1} claim is supplied; correct arrow chain must be reconstructed.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — coordinate pipeline is taught.",
+        "learnerActionActuallyScored": "Tracks C→B with P, applies A in B, and tracks B→C with P^{-1} in the correct order. | Concludes the correct representation is P^{-1}AP and identifies why PAP^{-1} reverses the named conversion convention."
+      },
+      "T22V3::SIDE276::S19-T@1": {
+        "claimedLearnerDecision": "Choose evidence that repairs four linked false claims across kernel/image/determinant/basis change.",
+        "alreadySuppliedByPrompt": "PARTLY — required repaired conclusions are named, but the supporting counterevidence must be produced.",
+        "decisivelyRehearsedInVisibleInstruction": "YES across earlier sessions; the combined adversarial surface is new.",
+        "learnerActionActuallyScored": "Gives a nonzero null vector such as (-3,1)^T and uses it to reject the claim that square shape implies invertibility. | Uses pivot index 1 to select the original column (2,1)^T as a basis for Col(M), rejecting the R-column substitution. | Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation. | Corrects the basis formula to P^{-1}MP for P=P_{B←C} and justifies the C→B→apply→B→C direction."
+      },
+      "T22V3::SIDE276::S19-M@2": {
+        "claimedLearnerDecision": "Choose the attack order and at least two representations/methods that make the multi-claim audit efficient.",
+        "alreadySuppliedByPrompt": "NO — required outputs are public, but no computation order or first method is prescribed.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — S19 lesson/guided practice rehearses the available tool map, not the order or exact route for this A,b,P.",
+        "learnerActionActuallyScored": "Chooses a coherent audit route and justifies at least two representation/method choices instead of following a supplied computation order."
+      }
+    }
+  },
+  "misconceptionDiscriminatorAudit": {
+    "status": "PASS_WITH_EVIDENCE for the central misconceptions listed in the design gate; each flawed solver was compared with the actual current task/rubric.",
+    "cases": [
+      {
+        "misconception": "Affine offset mistaken for linearity",
+        "targetTask": "T22V3::SIDE276::S01-T@1",
+        "plausibleFlawedResponse": "Q is linear because each output is a linear-looking expression in x,y; ignore the +1.",
+        "rubricRowsFailed": [
+          "Derives L(0)=0 from linearity and applies Q(0,0)=(1,0)≠0 to reject Q."
+        ],
+        "discriminationResult": "Rejected: the rubric requires deriving L(0)=0 and applying Q(0,0)≠0."
+      },
+      {
+        "misconception": "Composition order treated left-to-right",
+        "targetTask": "T22V3::SIDE276::S04-T@1",
+        "plausibleFlawedResponse": "Use CD because C is named first in 'first C, then D'.",
+        "rubricRowsFailed": [
+          "Chooses DC for 'first C, then D' and explains that the first-applied map appears on the right.",
+          "Computes DC=[[3,6],[0,2]] and the composite output (-3,-2)^T."
+        ],
+        "discriminationResult": "Rejected: wrong product/order misses both semantic-order and composite-output credit."
+      },
+      {
+        "misconception": "Row operation changes coefficients but not RHS",
+        "targetTask": "T22V3::SIDE276::S06-T@1",
+        "plausibleFlawedResponse": "Accept [0,7/2|4] after changing only the coefficient row.",
+        "rubricRowsFailed": [
+          "Identifies that the right-hand side must undergo the same row replacement and computes [0,7/2|3/2].",
+          "Explains that leaving the constant at 4 changes the represented equation/system rather than giving an equivalent row."
+        ],
+        "discriminationResult": "Rejected: correct full augmented row and changed-system diagnosis are separately scored."
+      },
+      {
+        "misconception": "Equation/variable count decides solution type",
+        "targetTask": "T22V3::SIDE276::S07-T@2",
+        "plausibleFlawedResponse": "All three 3-by-3-looking systems are unique, so accept the report without inspecting rows.",
+        "rubricRowsFailed": [
+          "Repairs E1 to infinitely many solutions using its free variable and absence of a contradiction.",
+          "Repairs E2 to no solution from the contradiction row [0,0,0|1].",
+          "Repairs E3 to a unique solution because every variable column has a pivot and identifies (2,-1,3) if values are reported.",
+          "States the correct three-way echelon decision rule in terms of contradiction rows and free versus fully pivoted variable columns."
+        ],
+        "discriminationResult": "Rejected: every classification row requires pivot/free/contradiction evidence."
+      },
+      {
+        "misconception": "Nullspace placed in output space",
+        "targetTask": "T22V3::SIDE276::S08-T@1",
+        "plausibleFlawedResponse": "Give two vectors in R^2 because the model has two reported outputs.",
+        "rubricRowsFailed": [
+          "Justifies independence and distinguishes the R^4 input/null space from the R^2 output space."
+        ],
+        "discriminationResult": "Rejected: ambient input/null-space typing is explicit in the rubric."
+      },
+      {
+        "misconception": "RREF columns used as original column-space basis",
+        "targetTask": "T22V3::SIDE276::S10-T@1",
+        "plausibleFlawedResponse": "Use the first two columns of R as a basis for Col(M).",
+        "rubricRowsFailed": [
+          "Rejects the RREF-column basis claim and gives {(1,1,2)^T,(1,2,3)^T} from the original matrix.",
+          "Explains that row operations preserve column coefficient relations via equality of the homogeneous solution sets Mc=0 and Rc=0."
+        ],
+        "discriminationResult": "Rejected: rubric requires corresponding original columns and the preservation explanation."
+      },
+      {
+        "misconception": "Impossible nullity accepted without rank bound",
+        "targetTask": "T22V3::SIDE276::S11-T@1",
+        "plausibleFlawedResponse": "Nullity 2 seems plausible because 2≤6.",
+        "rubricRowsFailed": [
+          "Uses rank-nullity to show the claimed nullity 2 would force rank 4.",
+          "Uses the codomain bound rank≤3 to identify the contradiction.",
+          "Concludes that nullity must be at least 3 for any map R^6→R^3."
+        ],
+        "discriminationResult": "Rejected: rank-nullity plus rank≤3 must expose rank 4 as impossible."
+      },
+      {
+        "misconception": "Square implies invertible",
+        "targetTask": "T22V3::SIDE276::S13-T@1",
+        "plausibleFlawedResponse": "M is 3-by-3, therefore M^{-1} exists despite the supplied nonzero kernel vector.",
+        "rubricRowsFailed": [
+          "Uses the nonzero null vector to reject injectivity and infer nullity≥1, rank≤2.",
+          "Uses square equal dimensions to reject surjectivity and infer that at least one right-hand side is unreachable.",
+          "Concludes that a two-sided inverse does not exist, without invoking determinant/eigenvalue machinery."
+        ],
+        "discriminationResult": "Rejected: kernel/rank/surjectivity/inverse consequences are separately scored."
+      },
+      {
+        "misconception": "Determinant treated as a linear map on matrices",
+        "targetTask": "T22V3::SIDE276::S15-T@1",
+        "plausibleFlawedResponse": "det(2I3)=2 and det(I3+I3)=2 by linearity.",
+        "rubricRowsFailed": [
+          "Computes det(2I_3)=8 and uses it to refute both claimed whole-matrix linearity statements.",
+          "Explains that determinant is linear in each row separately with other rows fixed, so scaling all three rows produces 2^3."
+        ],
+        "discriminationResult": "Rejected by the I3 counterexample and row-multilinearity criterion."
+      },
+      {
+        "misconception": "Equal determinant means equal stability",
+        "targetTask": "T22V3::SIDE276::S16-T@1",
+        "plausibleFlawedResponse": "I2 and diag(1000,0.001) are equally stable because both have determinant 1.",
+        "rubricRowsFailed": [
+          "Exhibits the directional contrast e1→1000e1 and e2→0.001e2 for D versus identity action for I_2.",
+          "Rejects the numerical-stability conclusion because determinant alone does not measure directional sensitivity/conditioning."
+        ],
+        "discriminationResult": "Rejected: directional contrast and the conditioning boundary are explicit obligations."
+      },
+      {
+        "misconception": "Coordinate matrix applied in the wrong direction",
+        "targetTask": "T22V3::SIDE276::S17-T@1",
+        "plausibleFlawedResponse": "Compute [w]_C=P_{B←C}[w]_B.",
+        "rubricRowsFailed": [
+          "States that P_{B←C} takes C-coordinates in and B-coordinates out, so the colleague used it backwards.",
+          "Computes P_{C←B}=P^{-1}=[[4,-3],[-1,1]] and obtains [w]_C=(1,2)^T.",
+          "Verifies the result by P_{B←C}(1,2)^T=(7,9)^T."
+        ],
+        "discriminationResult": "Rejected: direction diagnosis, inverse computation and back-conversion are all scored."
+      },
+      {
+        "misconception": "Similarity convention reversed",
+        "targetTask": "T22V3::SIDE276::S18-T@1",
+        "plausibleFlawedResponse": "Use PAP^{-1} even though P maps C-coordinates to B-coordinates.",
+        "rubricRowsFailed": [
+          "Tracks C→B with P, applies A in B, and tracks B→C with P^{-1} in the correct order.",
+          "Concludes the correct representation is P^{-1}AP and identifies why PAP^{-1} reverses the named conversion convention."
+        ],
+        "discriminationResult": "Rejected: the rubric requires the C→B→apply→B→C arrow chain."
+      },
+      {
+        "misconception": "Multi-error memo accepted by surface cues",
+        "targetTask": "T22V3::SIDE276::S19-T@1",
+        "plausibleFlawedResponse": "Accept square⇒inverse, use R columns for Col(M), treat det 0 as geometry-only, and keep PMP^{-1}.",
+        "rubricRowsFailed": [
+          "Gives a nonzero null vector such as (-3,1)^T and uses it to reject the claim that square shape implies invertibility.",
+          "Uses pivot index 1 to select the original column (2,1)^T as a basis for Col(M), rejecting the R-column substitution.",
+          "Computes det(M)=0 and states its exact equivalence to noninvertibility for this square matrix, with area collapse as interpretation.",
+          "Corrects the basis formula to P^{-1}MP for P=P_{B←C} and justifies the C→B→apply→B→C direction."
+        ],
+        "discriminationResult": "Rejected across all four rubric rows; no convenient data lets the false models earn full credit."
+      }
+    ]
+  },
+  "versionAudit": {
+    "priorReceipt": "docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json",
+    "priorHead": "937a4ca33a921ca87f83fa14651d87e473272ff1",
+    "instructionChange": "m14-side276-instruction-v1 → m14-side276-instruction-v2 (S19 synthesis organization language only)",
+    "changedAssessments": [
+      {
+        "old": "T22V3::SIDE276::S07-T@1",
+        "current": "T22V3::SIDE276::S07-T@2",
+        "reason": "changed-constraint → genuine wrong-report changed surface"
+      },
+      {
+        "old": "T22V3::SIDE276::S11-M@1",
+        "current": "T22V3::SIDE276::S11-M@2",
+        "reason": "general rank-nullity derivation added"
+      },
+      {
+        "old": "T22V3::SIDE276::S18-M@1",
+        "current": "T22V3::SIDE276::S18-M@2",
+        "reason": "general determinant-invariance proof added"
+      },
+      {
+        "old": "T22V3::SIDE276::S19-M@1",
+        "current": "T22V3::SIDE276::S19-M@2",
+        "reason": "numbered recipe → organizing-choice synthesis"
+      }
+    ],
+    "learnerEvidenceDisposition": "M14 was not in the shared learner registry at either version; no M14 learner attempts are silently recertified."
+  }
 }
