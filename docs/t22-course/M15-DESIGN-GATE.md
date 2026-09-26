@@ -1,10 +1,10 @@
 # T22 Elite M15 / SIDE278 — pre-authoring design gate
 
-Status: **Gates 0–3 complete; BUILD authorized; M15 remains unpublished and outside the learner route.**  
+Status: **Gates 0–3 revalidated after recovery cleanup; the existing S01–S16 draft is being re-audited sequentially through Gates 4–8. M15 remains unpublished and outside the learner route.**  
 Date: 2026-09-26  
 Recovered authoritative base: `bcb86a1a6ee6ab141a884c819cde07f5e41491c5`.
 
-This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M15 · SIDE278 · Orthogonality, Projection & Least Squares Geometry**. It is a planning and pilot gate, not an acceptance record.
+This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M15 · SIDE278 · Orthogonality, Projection & Least Squares Geometry**. It is a planning and pilot gate, not an acceptance record. Recovery note: an earlier stalled run scaled the draft after the pilot before completing the required sequential Gate-4–8 checks. The authored material is therefore treated as an existing draft under repair, not as evidence that those gates passed.
 
 ## 0. Recovery receipt
 
@@ -97,81 +97,87 @@ This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M
 
 ## 2. Source Dossier
 
+Access/recheck date for public web sources: **27 September 2026**. The user-supplied Strang scan was inspected locally from the uploaded 571-page PDF; Chapter 4 was rendered page-by-page for visual verification before using it as a design source.
+
 ### Repository / curriculum authority
-**Source:** current T22 repository at recovered head.  
-**Role:** curriculum authority.  
-**Inspected:** M65 skeleton/dependencies, semantic ledger, accepted M13/M14 packs and handoffs, legacy SIDE278/SIDE279/SIDE280 inventories.  
-**Supports:** exact ownership, direct prerequisite, downstream boundaries and publication stop.  
-**Not imported:** legacy four-arc count, old acceptance assumptions or later-factorization content.
+**Source:** current T22 repository on `codex/t22-pedagogical-rebuild`, recovered from published-M14 base `bcb86a1a6ee6ab141a884c819cde07f5e41491c5`.  
+**Type / epistemic role:** repository contract; curriculum authority.  
+**Specific material inspected:** `M65-SKELETON.md`, `m65.dependencies.json`, `SEMANTIC-PREREQUISITES.json`, accepted M13/M14 canonical packs and M14 review/verification handoffs, legacy SIDE278/SIDE279/SIDE280 inventories.  
+**Supports:** exact M15 boundary, direct prerequisite, previous exit state, downstream ownership and publication stop.  
+**Limit / deliberately not imported:** the legacy four-arc SIDE278 shape is only a topic inventory; it does not dictate pedagogy, session count or acceptance.
 
-### Gilbert Strang, Introduction to Linear Algebra, 4th ed. — user-supplied scan
-**Type:** deep first-course textbook comparator.  
-**Inspected:** Chapter 4 §§4.1–4.4: orthogonality of subspaces, projections, least-squares approximations, orthogonal bases and Gram–Schmidt.  
-**Supports:** geometry-first sequence; residual orthogonality; projection as closest point; normal equations as a consequence of projection; Gram–Schmidt as repeated removal of explained components.  
-**Limit:** Strang naturally continues Gram–Schmidt to QR and treats four-subspace orthogonality more broadly than M15 needs.  
-**Deliberate non-import:** named QR factorization, SVD/pseudoinverse, numerical algorithms and exercises/problem instances.
+### Gilbert Strang, *Introduction to Linear Algebra*, 4th ed. — user-supplied scan
+**Type / epistemic role:** user-supplied deep first-course textbook comparator.  
+**Specific material inspected:** Chapter 4 **Orthogonality** in the supplied scan: §4.1 *Orthogonality of the Four Subspaces* pp.196–206, §4.2 *Projections* pp.207–218, §4.3 *Least Squares Approximations* pp.219–230, §4.4 *Orthogonal Bases and Gram-Schmidt* pp.231–244 (PDF pages 199–246 in the supplied file).  
+**Supports:** complement/decomposition geometry; line/subspace projection from perpendicular residuals; projection as nearest attainable point; least squares as projection onto the column space; normal equations from residual orthogonality; Gram–Schmidt as repeated projection subtraction.  
+**Limit / deliberately not imported:** Strang also develops the four-subspace picture broadly and continues Gram–Schmidt into `A=QR`. T22 keeps named QR in M17; no Strang exercise or solved instance is copied into fixed T22 tasks.
 
-### MIT OpenCourseWare 18.06 / 18.06SC
-**Type:** canonical university route comparator.  
-**Inspected:** Unit II sessions “Orthogonal Vectors and Subspaces,” “Projections onto Subspaces,” “Projection Matrices and Least Squares,” and “Orthogonal Matrices and Gram-Schmidt”; resource index/readings.  
-**Supports:** conventional progression and expected first-course problem types; confirms projection/least-squares/Gram–Schmidt cluster.  
-**Deliberate non-import:** MIT’s same-session QR continuation and broader four-subspaces route do not override T22 ownership.
+### MIT OpenCourseWare 18.06, Spring 2010
+**URL / locator:** MIT OCW 18.06 syllabus/readings/video lectures; readings sessions **14–17**: Orthogonality (4.1), Projections and subspaces (4.2), Least squares approximations (4.3), Gram–Schmidt and `A=QR` (4.4).  
+**Type / epistemic role:** canonical university-course route comparator.  
+**Supports:** conventional conceptual cluster, prerequisite expectations, standard problem types and the progression orthogonality → projection → least squares → Gram–Schmidt.  
+**Limit / deliberately not imported:** MIT's same-session QR continuation and broader course ownership do not override T22; QR remains M17.
 
-### Sheldon Axler, Linear Algebra Done Right, 4th ed., official open-access PDF
-**Type:** rigorous theorem/hypothesis source.  
-**Inspected:** Ch.6 §§6A–6C, especially orthonormal bases/coordinate formula, Gram–Schmidt 6.32, orthogonal complements 6.48–6.52 and finite-dimensional minimization/projection results.  
-**Supports:** exact finite-dimensional hypotheses, proof architecture for ON coordinates, orthogonal decomposition and Gram–Schmidt span preservation.  
-**Deliberate non-import:** general complex inner-product conventions, Riesz machinery, pseudoinverse in §6C, adjoints/spectral theory and QR/Cholesky in Ch.7.
+### Sheldon Axler, *Linear Algebra Done Right*, 4th ed.
+**URL / locator:** official open-access edition at `linear.axler.net`; Chapter 6 **Inner Product Spaces**, especially §6B *Orthonormal Bases* (Gram–Schmidt result 6.32 and examples) and §6C *Orthogonal Complements and Minimization Problems*.  
+**Type / epistemic role:** rigorous theorem / hypothesis source.  
+**Supports:** exact finite-dimensional hypotheses; orthonormal-coordinate reasoning; Gram–Schmidt span preservation; orthogonal complement/decomposition and finite-dimensional minimization.  
+**Limit / deliberately not imported:** general complex inner-product conventions, Riesz/adjoint/spectral machinery, pseudoinverse and Chapter-7 factorizations. M15 stays finite, real and Euclidean.
 
-### Jim Hefferon, Linear Algebra, official open textbook
-**Type:** broad coverage / developmental comparator.  
-**Inspected:** developmental treatment around Chapter Three, Section VI, including orthogonal projection and “Gram-Schmidt Orthogonalization”; public companion materials confirm the section structure and worked-step style.  
-**Supports:** motivation-before-abstraction, explicit computational examples, and treating Gram–Schmidt as projection subtraction rather than a memorized recipe.  
-**Limit:** full course lists calculus as a prerequisite; M15 uses no calculus-dependent material.
+### Jim Hefferon, *Linear Algebra*
+**URL / locator:** official free text at `hefferon.net/linearalgebra/`; Chapter Three, Section VI **Projection**: Three.VI.1 *Orthogonal Projection Into a Line*, Three.VI.2 *Gram-Schmidt Orthogonalization*, Three.VI.3 *Projection Into a Subspace*, followed by the *Line of Best Fit* topic.  
+**Type / epistemic role:** broad coverage / notation and developmental comparator.  
+**Supports:** first-course motivation, explicit computations, line→Gram–Schmidt→subspace projection development and projection subtraction as a construction rather than a memorized recipe.  
+**Population/context limit:** textbook, not empirical pedagogy. The full text lists one semester of calculus as a course prerequisite; no calculus-dependent content is imported into M15.
 
-### MAA Instructional Practices Guide
-**Type:** undergraduate mathematics pedagogy baseline.  
-**Inspected:** design and assessment practices, especially alignment of learning outcomes with assessments and use of multiple meaningful measures.  
-**Supports:** public tasks must measure the mathematical actions worth learning, not merely easily graded arithmetic; comparison/explanation tasks are legitimate evidence.  
-**Limit:** general undergraduate guidance, not an M15 efficacy study.
+### Mathematical Association of America, *Instructional Practices Guide*
+**URL / locator:** MAA open-access guide, 2018 edition, `maa.org/.../InstructPracGuide_web.pdf`.  
+**Type / epistemic role:** required undergraduate-mathematics pedagogy baseline.  
+**Supports:** alignment of learning outcomes with public assessment; student-produced reasoning, comparison and multiple meaningful forms of evidence.  
+**Limit:** practice guidance, not direct experimental evidence that M15 works for this learner.
 
-### IES / WWC — Organizing Instruction and Study to Improve Student Learning
-**Type:** general learning evidence.  
-**Inspected:** recommendations 2–4 and 7. Recommendations 2–4 are rated Moderate Evidence in the guide; the guide spans K–postsecondary contexts.  
-**Supports:** worked-example/problem alternation, graphics plus verbal explanation, abstract/concrete representation links, deep explanatory questions.  
-**Limit:** heterogeneous populations; used cautiously, not as direct experimental validation of T22.
+### IES / What Works Clearinghouse, *Organizing Instruction and Study to Improve Student Learning*
+**URL / locator:** WWC Practice Guide, released September 2007. Recommendations **2–4** (worked examples/problems, graphics+verbal, abstract+concrete) are rated **Moderate Evidence**; recommendation **7** (deep explanatory questions) is rated **Strong Evidence** on the WWC page.  
+**Type / epistemic role:** general learning-evidence comparator.  
+**Population/context:** guide spans K–postsecondary and multiple content domains.  
+**Supports:** worked-example/problem alternation, explicit representation links and explanatory prompts.  
+**Limit:** heterogeneous evidence base; these recommendations are not presented as direct experimental validation for an adult T22 learner.
 
-### Dorier (ed.), On the Teaching of Linear Algebra (2000), especially Hillel and Sierpinska
-**Type:** domain-specific linear-algebra education synthesis.  
-**Inspected:** Hillel “Modes of Description and the Problem of Representation in Linear Algebra” and Sierpinska on student thinking.  
-**Supports:** movement among geometric, algebraic, matrix and abstract modes is not automatic; proof/quantifier/necessary-sufficient distinctions deserve explicit tasks.  
-**Limit:** historical synthesis and varied populations; used as design evidence, not outcome prediction.
+### Jean-Luc Dorier (ed.), *On the Teaching of Linear Algebra* (2000)
+**URL / locator:** Springer Mathematics Education Library 23, DOI `10.1007/0-306-47224-4`; Joel Hillel, *Modes of Description and the Problem of Representation in Linear Algebra*, pp.191–207; Anna Sierpinska, *On Some Aspects of Students' Thinking in Linear Algebra*, pp.209–246.  
+**Type / epistemic role:** domain-specific mathematics-education research synthesis.  
+**Population/context:** multiple tertiary linear-algebra teaching/research settings summarized in the volume.  
+**Supports:** movement among geometric, algebraic and abstract/representation modes is not automatic; definitions and representation changes deserve explicit coordination and assessment.  
+**Limit:** historical synthesis across varied populations; no frequency claim is generalized to this learner.
 
-### Caglayan (2018), Journal of Mathematical Behavior 52, on visual/analytic coordination in inner-product-space work
-**Type:** domain-specific qualitative study.  
-**Inspected:** abstract/highlights and discussion of coordinating visual and analytic representations for orthogonality, orthonormal bases and inner-product ideas.  
-**Supports:** M15 deliberately reconnects geometric residual pictures to symbolic dot-product/matrix conditions.  
-**Limit:** specific university math-major/technology-assisted context and polynomial inner-product setting; no frequency generalization.
+### Günhan Caglayan, *Coordinating analytic and visual approaches...*, Journal of Mathematical Behavior 52 (2018), 37–60
+**DOI:** `10.1016/j.jmathb.2018.03.006`.  
+**Type / epistemic role:** domain-specific qualitative math-education study.  
+**Population/context:** university mathematics majors in the United States, technology-assisted work with polynomial inner-product spaces.  
+**Supports:** deliberate coordination of visual and analytic representations for inner products, orthogonality/orthonormality and related concepts.  
+**Limit:** specific population, technology setting and polynomial object class; used to support representation coordination, not to claim measured effectiveness for M15.
 
-### Inquiry-based linear-algebra orthogonal-projection lesson literature
-**Type:** domain-specific pedagogy comparator.  
-**Inspected:** published abstract describing a college linear-algebra lesson using image-processing motivation for orthogonal projection.  
-**Supports:** projection benefits from a concrete approximation/decomposition question before formula introduction.  
-**Limit:** abstract-level inspection; no claim about effect size or universal superiority.
+### Aina Appova & Tetyana Berezovski, *Commonly Identified Students' Misconceptions About Vectors and Vector Operations*, RUME16 proceedings
+**Locator:** 16th Annual Conference on Research in Undergraduate Mathematics Education, Volume 2, pp.2-8ff in the proceedings.  
+**Type / epistemic role:** domain-specific empirical misconception comparator.  
+**Population/context:** **23 freshmen, non-mathematics majors pursuing liberal-arts degrees** after a freshman-level linear-algebra course; qualitative analysis of student work.  
+**Supports:** the study reports difficulties with vector operations/projections and vector-versus-scalar distinctions; this supports explicit projected-vector-vs-scalar-coefficient contrasts and misconception checks rather than formula-only teaching.  
+**Limit:** small, specific sample; the reported percentages are not generalized to the T22 learner.
 
 ## Pedagogy-Evidence Ledger
 
-| Concept | Documented/credible difficulty | Evidence level / context | False mental model to attack | Design consequence |
-| --- | --- | --- | --- | --- |
-| Orthogonal vs orthonormal | Procedural confusion is a standard first-course risk; Axler/Strang sharply distinguish norm-1 from perpendicularity | textbook + plausible prior-T22 risk | “orthogonal already means unit length” | S01 forces normalization and a counterexample. |
-| Multiple representations | Hillel/Dorier: switching geometric/algebraic/matrix modes is nontrivial | research synthesis | “a picture/formula automatically transfers to another register” | Same decomposition appears as geometry, dot products, columns and `A^T r=0`. |
-| Projection formula | Strang/MIT motivate from orthogonal residual; inquiry lesson literature uses concrete application | course/textbook + pedagogy comparator | “projection is a memorized scalar formula” | S05 derives the coefficient from the defining residual condition before formula use. |
-| Nonorthogonal basis | Standard source treatments distinguish ON coefficient formula from general-basis solve | mathematical/design risk | “use `v·a_i` as coefficients for any basis” | S06/S11 contrast ON and nonorthogonal columns and score hypothesis recognition. |
-| Nearest point | Source proofs use Pythagorean decomposition | theorem-scope issue | “orthogonal residual is merely a nice picture, not optimality” | S07 proves and independently uses the global nearest-point identity. |
-| Gram–Schmidt | Hefferon/Axler emphasize repeated projection subtraction and span preservation | textbook/developmental | “subtract one component and you are done” or “zero residual is a numerical accident” | S08–S09 include missing-component and dependence wrong-solvers. |
-| Transpose/normal equations | M14 did not teach transpose; MIT/Strang assume it earlier | repository-specific prerequisite gap | “`A^T r=0` is a formula to memorize” | S10 locally derives transpose/column-dot meaning before S11. |
-| Least squares | Literature on curve-fitting presentations distinguishes black-box formulas from projection derivations | textbook-analysis comparator | “least squares makes `Ax=b` exact” | S13 starts from unattainable b and keeps residual nonzero but orthogonal. |
-| Rank deficiency | M14 null-space capability plus later pseudoinverse boundary | repository/downstream risk | “singular `A^TA` means least squares does not exist” or “fit uniqueness = coefficient uniqueness” | S14 gives a rank-deficient fit with many coefficients and one fitted vector. |
+| Mathematical concept | Documented learner difficulty / design risk | Population/context | Evidence strength / limitation | Likely false mental model | Useful contrast / sequencing implication | Assessment consequence |
+| --- | --- | --- | --- | --- | --- | --- |
+| Orthogonal vs orthonormal | Representation/concept coordination is nontrivial; textbook distinction is mathematically essential. | Caglayan: US math majors in technology-assisted polynomial inner-product work; Strang/Axler are mathematical comparators. | Qualitative/domain-specific + theorem necessity; no prevalence claim. | “perpendicular already means unit length” | S01 separates pairwise zero dot products from norm-one normalization and includes the zero-vector boundary. | Score classification and actual normalization separately. |
+| Vector vs scalar projection quantities | Appova/Berezovski report vector/projection difficulties and vector-vs-scalar confusion. | 23 freshman non-math liberal-arts students. | Small qualitative sample; directly relevant misconception family but not generalizable frequency. | “the projection coefficient is the projected vector” | S05 names coefficient, projected vector and residual as distinct objects; scaled-generator contrast follows. | Transfer changes generator scale and scores coefficient-vs-vector reconciliation. |
+| Multiple representations | Hillel/Dorier analyze difficulties moving among geometric, algebraic and abstract modes. | Tertiary linear-algebra research synthesis. | Historical/multi-context; used as design hypothesis. | “a correct formula automatically transfers to another representation” | Geometry → dot products → column space → `A^T r=0` are connected explicitly. | Transfers change representation, not only constants. |
+| Projection formula | Strang/MIT derive it from orthogonal residual geometry. | Mathematical course/textbook evidence, not empirical efficacy. | Strong mathematical route evidence; pedagogy effect unmeasured. | “projection is a memorized scalar recipe” | S04 decomposition precedes S05 line formula; S07 proves nearest-point meaning later. | Main derives the coefficient; wrong-solvers that quote formulas without hypotheses lose reasoning credit. |
+| ON vs nonorthogonal coordinates | Strang/Axler/Hefferon distinguish ON coefficient extraction from general-column solving. | Mathematical comparators. | Theorem-supported design risk. | “`v·a_i` gives coordinates for any basis” | S02 ON coordinates precede S06 ON projection; S11 introduces coupled general-column equations. | S16 adversarial report uses raw dot products on nonorthogonal columns and must be rejected. |
+| Gram–Schmidt | Source treatments require subtracting every earlier orthogonal component and preserve span. | Mathematical comparators; representation concern supported by domain research. | Mathematical necessity, not a prevalence estimate. | “subtract only the previous vector” / “zero residual is numerical failure” | S08 handles two vectors; S09 separately handles full multi-vector, zero residual and order. | S08 debugging Transfer and S09 dependence/order Transfer target both failure modes. |
+| Transpose / normal equations | Repository-specific prerequisite gap: accepted M14 does not own transpose, while Strang/MIT use it in projection/least squares. | T22-specific + standard mathematical sources. | Direct dependency evidence. | “`A^T r=0` is magic notation” / “transpose is inverse” | S10 locally derives transpose shape and column-dot meaning before S11. | S10 rectangular task + nonzero `Null(B^T)` Transfer. |
+| Least squares | Strang/MIT make the nonzero error vector central: nearest attainable point, not exact solution. | Mathematical course/textbook evidence. | Strong mathematical interpretation; no learner prevalence claim. | “least squares makes `Ax=b` exact” | S13 starts with an inconsistent system and proves global minimality from orthogonal decomposition. | Require a nonzero residual and `A^T r=0`, not only coefficients. |
+| Rank-deficient least squares | M14 null-space structure + M15 projection imply unique fitted vector but potentially many coefficients. | Repository/theorem-derived risk. | Mathematical consequence; no empirical frequency claim. | “singular `A^T A` means no fit exists” / “unique fit means unique coefficients” | S14 follows full-rank least squares and explicitly removes the inverse shortcut. | Main must produce the full coefficient family and preserve one unique fitted vector. |
+| Deterministic line fit vs statistical regression | T22 ownership boundary, not an empirical misconception claim. | Repository-specific. | Curriculum boundary. | “least-squares line ⇒ statistical significance/causality” | S15 states deterministic scope before M36. | Public rubric requires naming an inferential claim not justified here. |
 
 ## 3. Pre-authoring maps
 
