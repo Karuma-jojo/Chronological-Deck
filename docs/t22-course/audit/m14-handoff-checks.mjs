@@ -17,7 +17,7 @@ const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 
 assert.equal(a.module.order,14);
 assert.equal(a.module.id,'SIDE276');
-assert.equal(a.module.status,'v1.2-repaired-awaiting-integration-and-independent-follow-up');
+assert.equal(a.module.status,'v1.2-repaired-awaiting-independent-follow-up');
 assert.equal(a.sessions.length,19);
 assert.equal(Object.keys(a.problems).length,38);
 assert.equal(Object.keys(a.evaluators).length,38);
@@ -54,7 +54,7 @@ for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8'])
 assert(resolution.includes('BOUNDED REPAIR'),'resolution must preserve bounded-repair disposition');
 assert(resolution.includes('No finding required a rebuild'),'resolution must preserve the bounded-repair architecture decision');
 assert(verification.includes('M14 remains intentionally **outside** the shared learner registry'),'verification lost unpublished-state receipt');
-assert(handoff.includes('repaired awaiting full exact-head integration/browser verification and independent follow-up'),'handoff lost v1.2 repair/follow-up status');
+assert(handoff.includes('repaired awaiting')&&handoff.includes('independent follow-up'),'handoff lost v1.2 repair/follow-up status');
 assert(handoff.includes('publish/register M14'),'handoff lost publication stop boundary');
 assert(handoff.includes('open M15'),'handoff lost M15 stop boundary');
 
@@ -78,6 +78,11 @@ assert(fs.existsSync('docs/t22-course/audit/m14-math-checks.mjs'));
 assert(fs.existsSync('docs/t22-course/audit/m14-instruction-math-checks.mjs'));
 assert(fs.existsSync('docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json'));
 assert(fs.existsSync('scripts/test-t22-elite-m14-browser.mjs'));
+assert(fs.existsSync('docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md'));
+const integration=fs.readFileSync('docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md','utf8');
+assert(integration.includes('PASS_WITH_EVIDENCE for the repaired candidate'),'Gate-9 integration status missing');
+assert(integration.includes('36221875839'),'Gate-9 receipt missing first full repaired run');
+assert(a.module.gate.includes('run #462'),'canonical gate missing repaired implementation run');
 
 assert.equal(Object.keys(a.semanticSeparationAudit?.tasks||{}).length,38,'Gate 8 must cover all 38 current tasks');
 assert.equal(Object.values(a.claimEvidence).flat().filter(c=>typeof c.generalizationDistance==='string'&&c.generalizationDistance.length>20).length,60,'Gate 7 generalization-distance coverage');
