@@ -52,7 +52,7 @@ for(const gate of ['Gate 4','Gate 5','Gate 6','Gate 7','Gate 8'])
   assert(pilot.includes(gate),'pilot receipt missing '+gate);
 
 assert(resolution.includes('BOUNDED REPAIR'),'resolution must preserve bounded-repair disposition');
-assert(resolution.includes('DO NOT REBUILD'),'resolution must explicitly reject an unsupported rebuild');
+assert(resolution.includes('No finding required a rebuild'),'resolution must preserve the bounded-repair architecture decision');
 assert(verification.includes('M14 remains intentionally **outside** the shared learner registry'),'verification lost unpublished-state receipt');
 assert(handoff.includes('awaiting independent review'),'handoff lost independent-review status');
 assert(handoff.includes('Do not publish/register M14'),'handoff lost publication stop boundary');
