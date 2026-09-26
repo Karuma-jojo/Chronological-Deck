@@ -19,7 +19,7 @@ assert.deepEqual(a.boundary.prerequisiteModules,deps.modules.find(m=>m.id==='ARC
 assert.equal(Object.values(a.claimEvidence).flat().length,49);
 assert.equal(a.coverageAudit.ownershipClaimCount,49);
 assert.equal(a.coverageAudit.authoredSessions,17);
-assert.deepEqual(meta.moduleSources.map(x=>x.order),Array.from({length:13},(_,i)=>i+1));
+assert.deepEqual(meta.moduleSources.filter(x=>x.order<=13).map(x=>x.order),Array.from({length:13},(_,i)=>i+1));
 assert(meta.moduleSources.some(s=>s.order===13&&s.id==='ARC511'&&s.source==='course/t22/authoring/m13-arc511.json'));
 assert.equal(roadmap.modules.find(x=>x.id==='ARC511').availability,'authored');
 assert.equal(ledger.entries.find(x=>x.id==='ARC511').semanticStatus,'accepted');

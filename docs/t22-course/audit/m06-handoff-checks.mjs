@@ -32,7 +32,7 @@ assert(meta.version.startsWith('T22E-course-0.13.'),'course metadata must preser
 assert.equal(meta.moduleSources.filter(x=>x.order<=6).length,6);
 assert(meta.moduleSources.some(x=>x.id==='T22E-MKT01'&&x.source==='course/t22/authoring/m07.json'));
 assert(meta.moduleSources.some(x=>x.order===8&&x.id==='T22E-CODE01'&&x.source==='course/t22/authoring/m08.json'),'Later-authorized M08 candidate must remain registered');
-assert.equal(meta.moduleSources.length,13,'later-authorized publication through M12 must not disturb M06 evidence');
+assert(meta.moduleSources.length>=13,'later-authorized publications must preserve the accepted M06 evidence route');
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 assert(fs.existsSync('course/t22/authoring/m07.json'),'M07 is now explicitly authorized');
 assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized after this historical M06 checkpoint');
