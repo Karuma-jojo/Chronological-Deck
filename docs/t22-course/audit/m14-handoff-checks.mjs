@@ -17,7 +17,7 @@ const workflow=fs.readFileSync('.github/workflows/t22-elite-checks.yml','utf8');
 
 assert.equal(a.module.order,14);
 assert.equal(a.module.id,'SIDE276');
-assert.equal(a.module.status,'v1.2-repaired-awaiting-independent-follow-up');
+assert(['v1.2-followup-repaired-awaiting-exact-head-verification','v1.2-followup-repaired-awaiting-independent-acceptance'].includes(a.module.status),'unexpected final follow-up status');
 assert.equal(a.sessions.length,19);
 assert.equal(Object.keys(a.problems).length,38);
 assert.equal(Object.keys(a.evaluators).length,38);
@@ -82,12 +82,15 @@ assert(fs.existsSync('docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md'));
 const integration=fs.readFileSync('docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md','utf8');
 assert(integration.includes('PASS_WITH_EVIDENCE for the repaired candidate'),'Gate-9 integration status missing');
 assert(integration.includes('36221875839'),'Gate-9 receipt missing first full repaired run');
-assert(a.module.gate.includes('run #462'),'canonical gate missing repaired implementation run');
+assert(!a.module.gate.includes('run #462'),'canonical gate must not retain stale #462 as current closure evidence');
+assert(!a.module.gate.includes('remains pending until the browser probe'),'canonical gate retained stale Gate-11 pending language');
 
 assert.equal(Object.keys(a.semanticSeparationAudit?.tasks||{}).length,38,'Gate 8 must cover all 38 current tasks');
 assert.equal(Object.values(a.claimEvidence).flat().filter(c=>typeof c.generalizationDistance==='string'&&c.generalizationDistance.length>20).length,60,'Gate 7 generalization-distance coverage');
 assert.equal(Object.keys(a.decisionAudit?.tasks||{}).length,21,'Gate 5 decision-audit coverage');
-assert.equal(a.misconceptionDiscriminatorAudit?.cases?.length,13,'wrong-solver audit coverage');
-assert(handoff.includes('S07-T@1 → S07-T@2')&&handoff.includes('S11-M@1 → S11-M@2')&&handoff.includes('S18-M@1 → S18-M@2')&&handoff.includes('S19-M@1 → S19-M@2'),'handoff lost Gate-10 version receipts');
+assert.equal(a.misconceptionDiscriminatorAudit?.cases?.length,19,'wrong-solver audit coverage');
+assert.equal(a.misconceptionDiscriminatorAudit?.designGateCoverage?.length,16,'all design-gate misconception rows must be accounted for');
+assert(a.misconceptionDiscriminatorAudit.designGateCoverage.every(x=>x.status==='covered'),'uncovered design-gate misconception row');
+assert(handoff.includes('S07-T@1 → S07-T@2')&&handoff.includes('S09-T@1 → S09-T@2')&&handoff.includes('S11-M@1 → S11-M@2')&&handoff.includes('S18-M@1 → S18-M@2')&&handoff.includes('S19-M@1 → S19-M@2'),'handoff lost Gate-10 version receipts');
 
-console.log('PASS M14 v1.2 handoff state: 19 sessions, 38 fixed tasks, 60 generalization-audited claims, 38 semantic-separation rows, decision/wrong-solver audits present; M13 remains learner frontier; M14 unpublished; M15 closed; browser gate required before independent follow-up.');
+console.log('PASS M14 final follow-up handoff state: architecture preserved; S09-T@2 changed-surface repair, S14 ownership narrowing, 16/16 design-gate misconception coverage, canonical stale-state guards; M14 unpublished and M15 closed.');
