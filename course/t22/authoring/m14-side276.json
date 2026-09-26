@@ -40,7 +40,7 @@
     "authoredSessions": 19,
     "ownershipClaimCount": 60,
     "fixedAssessments": 38,
-    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication. Claim-observer audit found three wording/evidence gaps: S01 claimed derivation of T(0)=0 without observing it, S06 claimed all three elementary-operation justifications while assessing only row replacement, and S16 claimed a general determinant singularity derivation while assessing examples only. Public tasks were repaired. S12's local claim was narrowed because S13 owns the general proof."
+    "reviewProvenance": "Builder source reconstruction and S04 Gates 4–8 falsification pass. One real gap was found: associativity was taught but not publicly observed; S04 Main was repaired before learner exposure. Independent full-module adversarial review has not yet occurred. Learner-only integration scan found answer-bearing instance reuse in ten sessions; those fixed tasks were regenerated on fresh mathematical objects before any learner-route exposure. Adversarial review then found four additional semantic exposures missed by literal-matrix scans: S05 Main duplicated its worked system, S06 Main duplicated guided practice, S07 Main duplicated its worked system, and S17 Main reused the guided basis-change matrix/inverse. All four fixed tasks were regenerated before learner publication. Claim-observer audit found three wording/evidence gaps: S01 claimed derivation of T(0)=0 without observing it, S06 claimed all three elementary-operation justifications while assessing only row replacement, and S16 claimed a general determinant singularity derivation while assessing examples only. Public tasks were repaired. S12's local claim was narrowed because S13 owns the general proof. Evidence-distance labels were conservatively recalibrated: procedural fresh-instance Mains in S04/S09/S10/S12/S15/S17/S18 were relabelled as retrieval/proof-reconstruction/integration rather than overclaimed as fresh evidence; several Transfers were relabelled by their actual shift (failure-mode, misconception, direction or adversarial audit)."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied full Strang 4e scan is the deep first-course comparator; MIT checks conventional route, Axler checks theorem hypotheses and basis-direction conventions, Hefferon checks developmental exposition, and mathematics-education sources shape representation/misconception tasks. All learner tasks are original.",
@@ -3308,8 +3308,8 @@
     },
     "T22V3::SIDE276::S04@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main uses an unseen rectangular chain where both AB and BA are legal, requiring map semantics, product calculation and column interpretation."
+        "classification": "proof reconstruction + application",
+        "reason": "The composition/product rule and associativity argument are taught. Main reconstructs those ideas on a fresh rectangular chain where both product orders are legal and adds a new column-meaning application."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -3332,8 +3332,8 @@
         "reason": "Main performs fresh row replacements and reconstructs the reversibility argument supplied in instruction."
       },
       "transfer": {
-        "classification": "changed-surface Transfer",
-        "reason": "Transfer switches to adversarial error diagnosis rather than asking for a clean elimination."
+        "classification": "failure-mode Transfer",
+        "reason": "Transfer changes from correct construction to diagnosing an incompletely applied row operation and a nonreversible zero scaling."
       }
     },
     "T22V3::SIDE276::S07@1": {
@@ -3358,8 +3358,8 @@
     },
     "T22V3::SIDE276::S09@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main integrates particular solutions, nullspace, a bidirectional proof and affine/subspace classification on fresh data."
+        "classification": "proof reconstruction + application",
+        "reason": "The xp+N(A) theorem is taught. Main reconstructs both directions on a fresh system and applies it to a new affine/subspace decision."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -3368,12 +3368,12 @@
     },
     "T22V3::SIDE276::S10@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main combines row reduction, original-column basis selection and two reachability decisions on fresh data."
+        "classification": "retrieval + integration",
+        "reason": "The original-pivot-column method is taught. Main retrieves it on a fresh matrix and integrates it with two new reachability decisions and ambient-space typing."
       },
       "transfer": {
-        "classification": "changed-surface Transfer",
-        "reason": "Transfer is an adversarial audit of the classic RREF-column-space mistake rather than another clean basis exercise."
+        "classification": "misconception-audit Transfer",
+        "reason": "Transfer presents the classic RREF-column-space error and requires the learner to repair the representation distinction rather than repeat a clean basis construction."
       }
     },
     "T22V3::SIDE276::S11@1": {
@@ -3388,8 +3388,8 @@
     },
     "T22V3::SIDE276::S12@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main contrasts tall and wide fresh matrices so injectivity/surjectivity cannot collapse into one slogan."
+        "classification": "retrieval",
+        "reason": "Main applies the taught injective/surjective rank-nullity distinctions to fresh tall and wide matrices; the underlying classification method is directly rehearsed in instruction."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -3402,8 +3402,8 @@
         "reason": "Main asks for a bounded proof of the square invertibility equivalence from previously owned rank/nullspace machinery."
       },
       "transfer": {
-        "classification": "changed-surface Transfer",
-        "reason": "Transfer changes to forensic inference from one supplied nonzero kernel witness."
+        "classification": "forensic Transfer",
+        "reason": "Transfer starts from one nonzero kernel witness and propagates its consequences through injectivity, rank, surjectivity, solvability and inverse existence."
       }
     },
     "T22V3::SIDE276::S14@1": {
@@ -3418,12 +3418,12 @@
     },
     "T22V3::SIDE276::S15@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main requires determinant-aware elimination on an unseen matrix plus a structural proof of row-replacement invariance."
+        "classification": "retrieval + proof reconstruction",
+        "reason": "Determinant-aware elimination and row-replacement invariance are taught. Main uses fresh entries but reconstructs the same structural row-rule argument."
       },
       "transfer": {
-        "classification": "changed-surface Transfer",
-        "reason": "Transfer switches to misconception forensics and product reasoning on identity/determinant data."
+        "classification": "misconception-audit Transfer",
+        "reason": "Transfer attacks false whole-matrix linearity with identity matrices and separately applies multiplicativity from determinant data."
       }
     },
     "T22V3::SIDE276::S16@1": {
@@ -3438,8 +3438,8 @@
     },
     "T22V3::SIDE276::S17@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main constructs, applies, inverts and semantically verifies a fresh coordinate-change matrix."
+        "classification": "retrieval",
+        "reason": "Main applies the taught coordinate-change construction, inverse direction and same-vector verification to a fresh pair of ordered bases."
       },
       "transfer": {
         "classification": "changed-surface Transfer",
@@ -3448,12 +3448,12 @@
     },
     "T22V3::SIDE276::S18@1": {
       "main": {
-        "classification": "fresh Main evidence",
-        "reason": "Main derives and verifies a similarity transform on fresh A,P and requires invariant reasoning."
+        "classification": "proof reconstruction + application",
+        "reason": "The similarity pipeline is taught. Main reconstructs C→B→operator→C on fresh A,P and then applies the derived representation to a new vector and invariant check."
       },
       "transfer": {
-        "classification": "changed-surface Transfer",
-        "reason": "Transfer removes arithmetic and attacks the conversion-direction misconception directly."
+        "classification": "direction-audit Transfer",
+        "reason": "Transfer removes arithmetic and requires reconstruction of the coordinate arrows to diagnose PAP^{-1} under the stated P convention."
       }
     },
     "T22V3::SIDE276::S19@1": {
@@ -3462,8 +3462,8 @@
         "reason": "Main is a new integrated model requiring method coordination across all major M14 representations."
       },
       "transfer": {
-        "classification": "changed-surface Transfer",
-        "reason": "Transfer changes from constructive solving to adversarial audit of linked false claims."
+        "classification": "adversarial synthesis Transfer",
+        "reason": "Transfer replaces constructive synthesis with a multi-claim technical memo containing linked invertibility, column-space, determinant and basis-change errors."
       }
     }
   },
@@ -3501,8 +3501,8 @@
       },
       "T22V3::SIDE276::S04@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main uses an unseen rectangular chain where both AB and BA are legal, requiring map semantics, product calculation and column interpretation."
+          "classification": "proof reconstruction + application",
+          "reason": "The composition/product rule and associativity argument are taught. Main reconstructs those ideas on a fresh rectangular chain where both product orders are legal and adds a new column-meaning application."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3525,8 +3525,8 @@
           "reason": "Main performs fresh row replacements and reconstructs the reversibility argument supplied in instruction."
         },
         "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer switches to adversarial error diagnosis rather than asking for a clean elimination."
+          "classification": "failure-mode Transfer",
+          "reason": "Transfer changes from correct construction to diagnosing an incompletely applied row operation and a nonreversible zero scaling."
         }
       },
       "T22V3::SIDE276::S07@1": {
@@ -3551,8 +3551,8 @@
       },
       "T22V3::SIDE276::S09@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main integrates particular solutions, nullspace, a bidirectional proof and affine/subspace classification on fresh data."
+          "classification": "proof reconstruction + application",
+          "reason": "The xp+N(A) theorem is taught. Main reconstructs both directions on a fresh system and applies it to a new affine/subspace decision."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3561,12 +3561,12 @@
       },
       "T22V3::SIDE276::S10@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main combines row reduction, original-column basis selection and two reachability decisions on fresh data."
+          "classification": "retrieval + integration",
+          "reason": "The original-pivot-column method is taught. Main retrieves it on a fresh matrix and integrates it with two new reachability decisions and ambient-space typing."
         },
         "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer is an adversarial audit of the classic RREF-column-space mistake rather than another clean basis exercise."
+          "classification": "misconception-audit Transfer",
+          "reason": "Transfer presents the classic RREF-column-space error and requires the learner to repair the representation distinction rather than repeat a clean basis construction."
         }
       },
       "T22V3::SIDE276::S11@1": {
@@ -3581,8 +3581,8 @@
       },
       "T22V3::SIDE276::S12@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main contrasts tall and wide fresh matrices so injectivity/surjectivity cannot collapse into one slogan."
+          "classification": "retrieval",
+          "reason": "Main applies the taught injective/surjective rank-nullity distinctions to fresh tall and wide matrices; the underlying classification method is directly rehearsed in instruction."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3595,8 +3595,8 @@
           "reason": "Main asks for a bounded proof of the square invertibility equivalence from previously owned rank/nullspace machinery."
         },
         "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer changes to forensic inference from one supplied nonzero kernel witness."
+          "classification": "forensic Transfer",
+          "reason": "Transfer starts from one nonzero kernel witness and propagates its consequences through injectivity, rank, surjectivity, solvability and inverse existence."
         }
       },
       "T22V3::SIDE276::S14@1": {
@@ -3611,12 +3611,12 @@
       },
       "T22V3::SIDE276::S15@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main requires determinant-aware elimination on an unseen matrix plus a structural proof of row-replacement invariance."
+          "classification": "retrieval + proof reconstruction",
+          "reason": "Determinant-aware elimination and row-replacement invariance are taught. Main uses fresh entries but reconstructs the same structural row-rule argument."
         },
         "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer switches to misconception forensics and product reasoning on identity/determinant data."
+          "classification": "misconception-audit Transfer",
+          "reason": "Transfer attacks false whole-matrix linearity with identity matrices and separately applies multiplicativity from determinant data."
         }
       },
       "T22V3::SIDE276::S16@1": {
@@ -3631,8 +3631,8 @@
       },
       "T22V3::SIDE276::S17@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main constructs, applies, inverts and semantically verifies a fresh coordinate-change matrix."
+          "classification": "retrieval",
+          "reason": "Main applies the taught coordinate-change construction, inverse direction and same-vector verification to a fresh pair of ordered bases."
         },
         "transfer": {
           "classification": "changed-surface Transfer",
@@ -3641,12 +3641,12 @@
       },
       "T22V3::SIDE276::S18@1": {
         "main": {
-          "classification": "fresh Main evidence",
-          "reason": "Main derives and verifies a similarity transform on fresh A,P and requires invariant reasoning."
+          "classification": "proof reconstruction + application",
+          "reason": "The similarity pipeline is taught. Main reconstructs C→B→operator→C on fresh A,P and then applies the derived representation to a new vector and invariant check."
         },
         "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer removes arithmetic and attacks the conversion-direction misconception directly."
+          "classification": "direction-audit Transfer",
+          "reason": "Transfer removes arithmetic and requires reconstruction of the coordinate arrows to diagnose PAP^{-1} under the stated P convention."
         }
       },
       "T22V3::SIDE276::S19@1": {
@@ -3655,8 +3655,8 @@
           "reason": "Main is a new integrated model requiring method coordination across all major M14 representations."
         },
         "transfer": {
-          "classification": "changed-surface Transfer",
-          "reason": "Transfer changes from constructive solving to adversarial audit of linked false claims."
+          "classification": "adversarial synthesis Transfer",
+          "reason": "Transfer replaces constructive synthesis with a multi-claim technical memo containing linked invertibility, column-space, determinant and basis-change errors."
         }
       }
     },
