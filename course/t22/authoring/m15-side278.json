@@ -233,8 +233,8 @@
       "moduleId": "SIDE278",
       "title": "Every vector splits into model part plus perpendicular part",
       "focus": "Construct and prove the unique orthogonal decomposition v=p+r with p∈W and r∈W^perp.",
-      "purpose": "Projection should emerge as one component of a structural decomposition, not a memorized formula.",
-      "centralCapability": "Construct and verify the W/W^perp split and prove uniqueness via W∩W^perp={0}.",
+      "purpose": "Establish the defining W plus W^perp decomposition and its uniqueness on concrete/ON-basis-accessible cases without silently assuming that every subspace already comes with an ON basis; general finite-dimensional existence is closed after Gram–Schmidt in S09.",
+      "centralCapability": "Construct and verify concrete orthogonal decompositions relative to a subspace and prove uniqueness from W∩W^perp={0}; state the ON-basis condition that supplies existence before the general existence theorem is closed in S09.",
       "principalObstacle": "Any algebraic split is mistaken for an orthogonal decomposition, or uniqueness is asserted without an intersection argument.",
       "entryPrerequisites": [
         "S03 orthogonal complements",
@@ -254,7 +254,8 @@
       ],
       "outOfScope": [
         "nearest-point theorem",
-        "matrix projector formula"
+        "matrix projector formula",
+        "general existence for arbitrary finite-dimensional W before Gram–Schmidt"
       ],
       "exitCondition": "Produce and justify the unique model-plus-perpendicular split for a fresh target.",
       "lesson": "Orient. Orthogonal complements let us split a target into what lies in W and what remains perpendicular to W. We seek v=p+r with p∈W and r∈W^perp.\n\nExplain uniqueness first. If z∈W∩W^perp, then z is orthogonal to itself, so ||z||^2=0 and z=0. If p1+r1=p2+r2 are two valid splits, then p1-p2=r2-r1 lies in both spaces, hence is zero.\n\nConnect existence. With an ON basis q1,...,qk of W, define p=Σ(v·qi)qi. The residual has zero dot product with each qi and therefore with W; so r=v-p lies in W^perp.\n\nWorked example. For W=xy-plane and v=(2,-1,4), p=(2,-1,0), r=(0,0,4). The algebraic split (2,0,0)+(0,-1,4) is not orthogonal because the remainder is not perpendicular to every xy direction.\n\nGuided practice. For W=span{(1,1)} and v=(3,1), set p=t(1,1), impose residual orthogonality, solve t and verify both memberships.\n\nFade. Main uses a two-generator subspace; Transfer audits a proposed R^3 line decomposition.\n\nDistinction check. v=p+r alone is cheap; p∈W and r∈W^perp create the special decomposition and its uniqueness.",
@@ -437,7 +438,7 @@
         "numerical stability"
       ],
       "exitCondition": "Orthogonalize a fresh three-vector list, preserve the correct spans, and diagnose dependent/order-sensitive cases.",
-      "lesson": "Orient. With three vectors, subtracting only the most recent component is not enough: the new direction must be perpendicular to the entire span already built. Gram–Schmidt therefore removes every previously constructed orthogonal component.\n\nDefine. Set u1=v1. For k>1, define uk=vk-Σ_{j<k} proj_span(uj)(vk). Because the uj are pairwise orthogonal, dotting uk with any earlier ui cancels exactly the ith projection and all other projection terms vanish.\n\nConnect span preservation. Each uk is made from v1,...,vk, so the cleaned prefix lies in the original prefix span. Conversely vk=uk+Σ projections onto earlier uj, and those uj lie in earlier original prefix spans. Induction gives span(v1,...,vk)=span(u1,...,uk) at every stage.\n\nDependence and order. If uk=0, then vk lies in the span of earlier inputs; the zero is a dependence certificate, not a nuisance to normalize. Reordering an independent list can change the ON vectors because each subtraction depends on what came earlier, but the final span is unchanged.\n\nWorked example. v1=(1,0,0), v2=(1,1,0), v3=(1,1,1) clean successively to e1,e2,e3. This transparent case shows all previous components are removed at the third step.\n\nGuided practice. Let v1=(1,1,0), v2=(1,-1,0), v3=(1,0,1). The first two are already orthogonal. Remove both of their components from v3 and verify the remaining direction is along e3.\n\nFade. Main uses a fully nonorthogonal three-vector list; Transfer uses an exactly dependent third vector and then changes the input order.\n\nDistinction check. Gram–Schmidt preserves spans, not original vector identities. A different order can produce a different ON basis of the same subspace.",
+      "lesson": "Orient. With three vectors, subtracting only the most recent component is not enough: the new direction must be perpendicular to the entire span already built. Gram–Schmidt therefore removes every previously constructed orthogonal component.\n\nDefine. Set u1=v1. For k>1, define uk=vk-Σ_{j<k} proj_span(uj)(vk). Because the uj are pairwise orthogonal, dotting uk with any earlier ui cancels exactly the ith projection and all other projection terms vanish.\n\nConnect span preservation. Each uk is made from v1,...,vk, so the cleaned prefix lies in the original prefix span. Conversely vk=uk+Σ projections onto earlier uj, and those uj lie in earlier original prefix spans. Induction gives span(v1,...,vk)=span(u1,...,uk) at every stage.\n\nDependence and order. If uk=0, then vk lies in the span of earlier inputs; the zero is a dependence certificate, not a nuisance to normalize. Reordering an independent list can change the ON vectors because each subtraction depends on what came earlier, but the final span is unchanged.\n\nClose the S04 support theorem. Any finite-dimensional subspace W has some finite basis by the meaning of finite-dimensional. Applying Gram–Schmidt to that basis produces an orthonormal basis q1,...,qk for the same W. S04's construction p=Σ(v·qi)qi then works for every v∈R^n, and r=v-p lies in W^perp. S04 already proved uniqueness. Therefore every v has a unique decomposition v=p+r with p∈W and r∈W^perp. The dimension formula for W^perp waits one more step for S10's transpose/rank-nullity bridge.\n\nWorked example. v1=(1,0,0), v2=(1,1,0), v3=(1,1,1) clean successively to e1,e2,e3. This transparent case shows all previous components are removed at the third step.\n\nGuided practice. Let v1=(1,1,0), v2=(1,-1,0), v3=(1,0,1). The first two are already orthogonal. Remove both of their components from v3 and verify the remaining direction is along e3.\n\nFade. Main uses a fully nonorthogonal three-vector list; Transfer uses an exactly dependent third vector and then changes the input order.\n\nDistinction check. Gram–Schmidt preserves spans, not original vector identities. A different order can produce a different ON basis of the same subspace.",
       "guidedFeedback": "Check after attempting. The v3 projection onto v1 is (1/2)v1 and onto v2 is (1/2)v2; subtracting both leaves (0,0,1). Omitting either earlier direction leaves a nonzero dot product.",
       "main": "T22V3::SIDE278::S09-M@1",
       "transfer": "T22V3::SIDE278::S09-T@1"
@@ -474,7 +475,7 @@
         "row-space/four-subspaces theorem"
       ],
       "exitCondition": "Translate fluently between column-wise residual orthogonality and the matrix equation A^T y=0.",
-      "lesson": "Orient. Least squares will need one compact statement saying a residual is perpendicular to every model column. M14 taught columns and matrix-vector action but did not own transpose, so we introduce exactly the missing bridge here.\n\nDefine. If A is m×n, A^T is n×m with (A^T)_{ij}=A_{ji}; rows become columns and columns become rows. Transpose is a re-indexing operation, not an inverse. A rectangular matrix can always be transposed even when no inverse exists.\n\nConnect to dot products. Write A=[a1 ... an] with aj∈R^m and y∈R^m. Row j of A^T is aj^T, so component j of A^T y is aj·y. Therefore A^T y=0 exactly when y is orthogonal to every column, equivalently to their span.\n\nWorked example. For A=[[1,0,2],[0,1,-1]] and y=(3,4), A^T=[[1,0],[0,1],[2,-1]] and A^T y=(3,4,2). Those entries are the three column dot products with y.\n\nGuided practice. For C=[[1,2],[2,0],[0,1]] and y=(1,-1,2), first state the shape of C^T and C^T y, then compute both column dot products and confirm the matrix product matches them.\n\nFade. Main changes shape/data; Transfer asks for an entire null space and geometric interpretation rather than one product.\n\nDistinction check. A^T y=0 says y is perpendicular to Col(A). It need not say y=0 when the columns do not span all of R^m.",
+      "lesson": "Orient. Least squares will need one compact statement saying a residual is perpendicular to every model column. M14 taught columns and matrix-vector action but did not own transpose, so we introduce exactly the missing bridge here.\n\nDefine. If A is m×n, A^T is n×m with (A^T)_{ij}=A_{ji}; rows become columns and columns become rows. Transpose is a re-indexing operation, not an inverse. A rectangular matrix can always be transposed even when no inverse exists.\n\nConnect to dot products. Write A=[a1 ... an] with aj∈R^m and y∈R^m. Row j of A^T is aj^T, so component j of A^T y is aj·y. Therefore A^T y=0 exactly when y is orthogonal to every column, equivalently to their span.\n\nClose the complement-dimension support fact. If Q is the n×k matrix whose columns are an orthonormal basis q1,...,qk of W, then W^perp=Null(Q^T). The k rows q_i^T of Q^T are independent because the q_i are independent, so rank(Q^T)=k. M14 rank–nullity gives dim W^perp=n-k=n-dim W. This uses only the transpose bridge plus previously owned rank–nullity; no spectral theorem is involved.\n\nWorked example. For A=[[1,0,2],[0,1,-1]] and y=(3,4), A^T=[[1,0],[0,1],[2,-1]] and A^T y=(3,4,2). Those entries are the three column dot products with y.\n\nGuided practice. For C=[[1,2],[2,0],[0,1]] and y=(1,-1,2), first state the shape of C^T and C^T y, then compute both column dot products and confirm the matrix product matches them.\n\nFade. Main changes shape/data; Transfer asks for an entire null space and geometric interpretation rather than one product.\n\nDistinction check. A^T y=0 says y is perpendicular to Col(A). It need not say y=0 when the columns do not span all of R^m.",
       "guidedFeedback": "Check after attempting. C is 3×2, so C^T is 2×3 and C^T y is in R^2. Column dots are (1,2,0)·(1,-1,2)=-1 and (2,0,1)·(1,-1,2)=4, so C^T y=(-1,4).",
       "main": "T22V3::SIDE278::S10-M@1",
       "transfer": "T22V3::SIDE278::S10-T@1"
@@ -3086,8 +3087,8 @@
       },
       {
         "sessionId": "T22V3::SIDE278::S04@1",
-        "firstNewOperation": "orthogonal decomposition and uniqueness",
-        "earlierOwnerOrBridge": "S03 complement + S02 ON coordinates",
+        "firstNewOperation": "concrete/ON-basis-accessible orthogonal decomposition plus uniqueness",
+        "earlierOwnerOrBridge": "S03 W^perp + S02 ON coordinates; general existence intentionally deferred to S09 Gram–Schmidt",
         "status": "supported"
       },
       {
@@ -3117,13 +3118,13 @@
       {
         "sessionId": "T22V3::SIDE278::S09@1",
         "firstNewOperation": "multi-vector Gram–Schmidt and dependence/order diagnostics",
-        "earlierOwnerOrBridge": "S08 + M13 dependence",
+        "earlierOwnerOrBridge": "S08 two-vector Gram–Schmidt + M13 finite-dimensional basis; closes general W⊕W^perp existence from S04",
         "status": "supported"
       },
       {
         "sessionId": "T22V3::SIDE278::S10@1",
         "firstNewOperation": "real matrix transpose and column-dot identity",
-        "earlierOwnerOrBridge": "local S10 bridge; M14 supplies matrix shapes/action",
+        "earlierOwnerOrBridge": "local transpose bridge + M14 rank–nullity; closes dim W^perp=n-dim W after S09 supplies an ON basis",
         "status": "supported"
       },
       {
@@ -3754,6 +3755,7 @@
     "claimAudit": "All 48 ownership claims were re-audited semantically after recovery. Overbroad S02 claim 3 was narrowed to the complete-vs-incomplete ON-set distinction actually observed; S03 Main was strengthened to prove the full subspace test; compound claims now cite every necessary rubric row rather than nearby single rows.",
     "evidenceDistance": "S09, S14 and S15 Main were downgraded to retrieval; S12 and S13 Main to proof reconstruction. S16 remains fresh Main evidence only for the unworked complete two-route synthesis.",
     "sourceDossier": "Machine-readable source roles synchronized to the recovered Gate-2 dossier; vague PED-PROJ entry replaced by identifiable Appova/Berezovski RUME16 vector/projection misconception study with population limitation.",
-    "crossSessionExposure": "Recovery whole-module scan found and repaired S07 Main's exact reuse of the S04 worked projection, S09 Main's already-solved S08 Gram–Schmidt prefix, and S09 Transfer's overlap with the later S11 column pair. Replacements use new mathematical objects and were re-solved."
+    "crossSessionExposure": "Recovery whole-module scan found and repaired S07 Main's exact reuse of the S04 worked projection, S09 Main's already-solved S08 Gram–Schmidt prefix, and S09 Transfer's overlap with the later S11 column pair. Replacements use new mathematical objects and were re-solved.",
+    "supportTheoremOrder": "S04 no longer silently assumes every subspace already has an ON basis. It proves uniqueness and ON-basis-accessible existence; S09 closes general finite-dimensional existence using Gram–Schmidt; S10 then derives dim W^perp=n-dim W via Q^T and M14 rank–nullity."
   }
 }
