@@ -1,0 +1,36 @@
+{
+  "priorHead": "937a4ca33a921ca87f83fa14651d87e473272ff1",
+  "priorInstructionVersion": "m14-side276-instruction-v1",
+  "reason": "v1.2 independent review reopened Gates 5,7,8,9,11 before learner publication.",
+  "learnerPublicationState": "unpublished; no M14 learner-route attempts exist",
+  "changedAssessments": [
+    {
+      "oldId": "T22V3::SIDE276::S07-T@1",
+      "oldObligationVersion": 1,
+      "oldFingerprint": "5359195e9c7c85b69a3504b7acac913384000b3e4795c1ec4a737a9ad501a9ba",
+      "plannedNewId": "T22V3::SIDE276::S07-T@2",
+      "reason": "replace coefficient-only changed-constraint task with genuine changed-surface classification audit"
+    },
+    {
+      "oldId": "T22V3::SIDE276::S11-M@1",
+      "oldObligationVersion": 1,
+      "oldFingerprint": "cc2e3a766057ed86b82e9fb339cf94cd5d68bb15f7c88cc3a27f9e718f10cce7",
+      "plannedNewId": "T22V3::SIDE276::S11-M@2",
+      "reason": "observe the general r+(n-r)=n derivation, not only 3+2=5"
+    },
+    {
+      "oldId": "T22V3::SIDE276::S18-M@1",
+      "oldObligationVersion": 1,
+      "oldFingerprint": "2a66f6f4d5b8ee4f67416cf30e97136365a1d1f07adef2482d377948ab4def7a",
+      "plannedNewId": "T22V3::SIDE276::S18-M@2",
+      "reason": "publicly derive determinant invariance under similarity via multiplicativity"
+    },
+    {
+      "oldId": "T22V3::SIDE276::S19-M@1",
+      "oldObligationVersion": 1,
+      "oldFingerprint": "fc14986edea2093c7651165efcfb437eb4aff3e9e6c6522ed113d86db066a165",
+      "plannedNewId": "T22V3::SIDE276::S19-M@2",
+      "reason": "replace numbered recipe with a synthesis audit that leaves organizing decisions to the learner"
+    }
+  ]
+}
