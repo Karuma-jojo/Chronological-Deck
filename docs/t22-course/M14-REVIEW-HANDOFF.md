@@ -11,7 +11,7 @@ The first independent review **did not accept M14**. It preserved the mathematic
 
 Those findings have now been repaired in source.
 
-**Status: repaired awaiting full exact-head integration/browser verification and independent follow-up.**
+**Status: repaired implementation green; awaiting focused independent follow-up.**
 
 M14 remains unpublished. M13 remains the learner frontier. M15 has not been opened.
 
@@ -134,7 +134,7 @@ It is **not** described as a machine proof oracle for every prose proof. Human s
 
 ## Focused independent follow-up
 
-Once the exact repaired head is green, recheck the original independent findings rather than reopening the architecture by default:
+Full repaired implementation run #462 (`36221875839`) is green, including the actual unpublished-M14 Chromium probe. Recheck the original independent findings rather than reopening the architecture by default:
 
 1. Does Chromium actually render M14 itself, not merely M01–M13?
 2. Do all 38 Gate-8 rows identify a plausible closest instructional comparator and a real mathematical difference?
@@ -148,8 +148,21 @@ Once the exact repaired head is green, recheck the original independent findings
 10. Do the wrong-solver cases genuinely fail the cited current rubric rows?
 11. Does verification documentation accurately limit what automated math gates establish?
 
-If these are clean and the complete exact-head suite is green, the independent reviewer may close the bounded repair.
+If these are clean and the final documentation/checker head remains green, the independent reviewer may close the bounded repair.
 
 ## Stop boundary
 
 **M14 only. Do not publish/register M14, open M15, merge to main or modify accepted M01–M13 content.**
+
+
+## Repaired implementation evidence
+
+- implementation/runtime head: `59f6ceaea143255d024fcb0b2b78460035024cfa`
+- full Actions run: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36221875839
+- run #462: **SUCCESS**
+- unpublished M14 browser: **PASS**, 355 rendered learner surfaces
+- Gate-9 integration: `docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md` — **PASS_WITH_EVIDENCE**
+- persisted learner registry: still M01–M13
+- M15: closed
+
+This is sufficient for **independent follow-up review**, not for self-declared acceptance or publication.
