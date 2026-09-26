@@ -296,7 +296,7 @@ const contains=(id,...xs)=>{for(const x of xs)assert(ref(id).includes(x),`${id} 
  assert.deepEqual(D,[[3,2],[0,2]]);
  assert.deepEqual(mv(D,[1,-1]),[1,-2]);
  assert.equal(det(D),det(A));
- contains(id,'det(P^{-1}AP)=det(A)','rank is preserved','invertibility is preserved');
+ contains(id,'det(P^{-1})det(A)det(P)=det(A)','rank is preserved','invertibility is preserved');
 }
 {
  const id='T22V3::SIDE276::S18-T@1';
