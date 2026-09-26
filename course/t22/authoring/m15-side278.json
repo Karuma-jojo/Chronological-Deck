@@ -1,0 +1,162 @@
+{
+  "version": "m15-side278-v1-candidate",
+  "instructionVersion": "m15-side278-instruction-v1",
+  "module": {
+    "order": 15,
+    "id": "SIDE278",
+    "title": "Orthogonality, Projection & Least Squares Geometry",
+    "status": "builder-candidate-unpublished",
+    "destination": "Work in finite-dimensional real Euclidean coordinate spaces to construct orthonormal coordinates and orthogonal complements, derive orthogonal projections and nearest-point geometry, execute Gram–Schmidt with dependence/order diagnostics, derive the transpose bridge and normal equations, and solve exact Euclidean least-squares problems while separating fitted-vector uniqueness from coefficient uniqueness.",
+    "gate": "Sixteen design-derived sessions are being authored under the v1.2 gated protocol. M15 remains outside the persisted learner registry until independent review and explicit user authorization; page completion is never treated as mastery.",
+    "nextBoundary": "M16/SIDE279 owns eigenstructure independently from M14; M17/SIDE280 owns PSD/quadratic forms, named QR/Cholesky/SVD and pseudoinverse; M23 owns numerical conditioning/stable algorithms; M36 owns statistical regression."
+  },
+  "boundary": {
+    "prerequisiteModules": [
+      "SIDE276"
+    ],
+    "owns": [
+      "finite real orthogonal and orthonormal sets, orthonormal coordinates and Pythagorean decomposition",
+      "orthogonal complements and unique finite-dimensional orthogonal decomposition",
+      "orthogonal projection onto lines and finite-dimensional subspaces, including nearest-point optimality",
+      "Gram–Schmidt orthogonalization with span, dependence and order diagnostics",
+      "bounded real matrix-transpose and column-dot-product bridge needed for projection geometry",
+      "orthogonal projector matrices and their symmetry/idempotence characterization",
+      "exact Euclidean least squares, normal equations, residual orthogonality and fitted-value/coefficient uniqueness distinctions"
+    ],
+    "excludes": [
+      "M16 eigenvalues, eigenvectors, characteristic polynomials, diagonalization and spectral theorem",
+      "M17 quadratic forms/PSD, named QR factorization, Cholesky, SVD and Moore–Penrose pseudoinverse",
+      "M23 floating-point conditioning, numerical rank, modified Gram–Schmidt, Householder/Givens and stable numerical least-squares algorithms",
+      "M36 statistical regression assumptions, inference, leverage, diagnostics and research workflow",
+      "weighted/generalized/nonlinear least squares and regularization",
+      "general complex or infinite-dimensional inner-product/Hilbert-space theory"
+    ],
+    "decisiveProhibition": "Use finite real exact Euclidean geometry only. Do not use eigenstructure, PSD/spectral arguments, named QR/SVD/pseudoinverse, floating-point conditioning, statistical-regression inference or regularization as premises for M15 claims."
+  },
+  "coverageAudit": {
+    "designGate": "docs/t22-course/M15-DESIGN-GATE.md",
+    "pilot": "docs/t22-course/M15-PILOT-REVIEW.md",
+    "pedagogicalAtoms": 16,
+    "authoredSessions": 0,
+    "ownershipClaimCount": 0,
+    "fixedAssessments": 0,
+    "reviewProvenance": "Gate 0–3 design and S11 Gates 4–8 pilot completed by the builder. Pilot Gate 8 caught and repaired a solved-example/Main collision before bulk authoring. Independent adversarial review remains pending."
+  },
+  "sourceLedger": {
+    "policy": "Repository ownership is authoritative. The user-supplied Strang 4e scan is the deep first-course comparator; MIT 18.06/18.06SC checks conventional route; Axler 4e checks theorem hypotheses; Hefferon checks developmental exposition; MAA/IES and domain-specific linear-algebra education sources shape representation, misconception and assessment design. All learner tasks are original.",
+    "designGate": "docs/t22-course/M15-DESIGN-GATE.md",
+    "sources": [
+      {
+        "id": "REPO-M15",
+        "role": "curriculum authority",
+        "sections": "M65 skeleton/dependencies, semantic ledger, accepted M13/M14, legacy SIDE278/SIDE279/SIDE280",
+        "supports": "formal entry, exact M15 ownership, downstream obligations and exclusions",
+        "notImported": "legacy four-arc count or historical acceptance assumptions"
+      },
+      {
+        "id": "STRANG-4E",
+        "role": "user-supplied deep textbook comparator",
+        "sections": "Introduction to Linear Algebra 4e Ch.4 §§4.1–4.4",
+        "supports": "orthogonality, projection, least-squares geometry, orthogonal bases and Gram–Schmidt progression",
+        "notImported": "named QR factorization, copied exercises, SVD/pseudoinverse or numerical-algorithm claims"
+      },
+      {
+        "id": "MIT-1806",
+        "role": "canonical university route comparator",
+        "sections": "18.06/18.06SC Unit II orthogonal vectors/subspaces, projections, projection matrices/least squares, Gram–Schmidt",
+        "supports": "conventional scope and problem expectations",
+        "notImported": "MIT route order where it conflicts with T22; QR continuation remains M17"
+      },
+      {
+        "id": "AXLER-4E",
+        "role": "rigorous theorem/hypothesis source",
+        "sections": "Linear Algebra Done Right 4e Ch.6 §§6A–6C, especially orthonormal coordinates, Gram–Schmidt and orthogonal complements/minimization",
+        "supports": "finite-dimensional hypotheses and proof architecture",
+        "notImported": "complex conventions, pseudoinverse, adjoints/spectral theory, QR/Cholesky"
+      },
+      {
+        "id": "HEFFERON",
+        "role": "developmental open-text comparator",
+        "sections": "Linear Algebra, orthogonal projection and Gram–Schmidt development",
+        "supports": "motivation, worked-step progression and projection-subtraction interpretation",
+        "limitations": "full course lists calculus prerequisite; M15 uses no calculus-dependent content"
+      },
+      {
+        "id": "MAA-IPG",
+        "role": "undergraduate pedagogy baseline",
+        "sections": "Instructional Practices Guide assessment/alignment practices",
+        "supports": "observable outcomes, explanation/comparison and aligned assessment",
+        "limitations": "general guidance, not an M15 outcome study"
+      },
+      {
+        "id": "IES-WWC",
+        "role": "general learning evidence",
+        "sections": "Organizing Instruction and Study recommendations 2–4 and 7",
+        "supports": "worked/problem alternation, graphic+verbal and abstract/concrete links, explanatory questions",
+        "limitations": "heterogeneous K–postsecondary evidence; no direct M15 efficacy claim"
+      },
+      {
+        "id": "PED-DORIER",
+        "role": "domain-specific linear-algebra education synthesis",
+        "sections": "Dorier ed.; Hillel modes of description; Sierpinska student thinking",
+        "supports": "explicit coordination of geometric, symbolic and matrix representations",
+        "limitations": "historical synthesis with varied populations"
+      },
+      {
+        "id": "PED-INNER",
+        "role": "domain-specific qualitative comparator",
+        "sections": "Caglayan 2018 visual/analytic coordination in inner-product-space concepts",
+        "supports": "explicit geometry↔analytic coordination for orthogonality/orthonormality",
+        "limitations": "specific technology-assisted university population; no frequency generalization"
+      },
+      {
+        "id": "PED-PROJ",
+        "role": "domain-specific pedagogy comparator",
+        "sections": "inquiry-based linear-algebra orthogonal-projection lesson literature",
+        "supports": "concrete approximation/decomposition motivation before formula introduction",
+        "limitations": "abstract-level comparator; no universal superiority claim"
+      }
+    ]
+  },
+  "sessions": [],
+  "problems": {},
+  "evaluators": {},
+  "coverage": {},
+  "claimEvidence": {},
+  "evidenceDistance": {},
+  "semanticSeparationAudit": {
+    "status": "PENDING BULK AUTHORING",
+    "method": "Compare each fixed task with the closest answer-bearing visible instruction by mathematical object/data, requested conclusion, decisive argument and scored subanswers; string overlap is only a candidate finder.",
+    "tasks": {}
+  },
+  "prerequisiteAudit": {
+    "status": "Gates 1–3 PASS; session-level audit pending canonical authoring",
+    "checks": []
+  },
+  "instructionSeparation": {
+    "status": "PENDING",
+    "sessions": {}
+  },
+  "initialVersionAudit": {
+    "status": "All M15 obligations are new; no prior learner evidence or stable M15 authoring obligations existed at recovery.",
+    "priorCanonicalPack": null
+  },
+  "authoringPolicy": "Score only public obligations. Accept mathematically equivalent exact methods and notation. Require literal public evidence for every ownership claim. Label retrieval/proof reconstruction/fresh Main/changed-surface Transfer honestly. Do not infer mastery from builder validation.",
+  "decisionAudit": {
+    "status": "PENDING",
+    "tasks": {}
+  },
+  "misconceptionDiscriminatorAudit": {
+    "status": "PENDING",
+    "cases": [],
+    "designGateCoverage": []
+  },
+  "versionAudit": {
+    "status": "Initial M15 candidate. Every fixed task starts at obligationVersion 1; later semantic changes must version affected obligations rather than silently recertify evidence."
+  },
+  "publication": {
+    "status": "unpublished",
+    "learnerRegistry": "M01–M14 only",
+    "authorization": "not requested; independent adversarial review pending"
+  }
+}
