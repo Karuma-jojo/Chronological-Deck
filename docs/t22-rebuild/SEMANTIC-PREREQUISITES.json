@@ -1,5 +1,5 @@
 {
-  "version": "semantic-ledger-r3-through-m12-published-2026-09-25",
+  "version": "semantic-ledger-r4-through-m14-published-2026-09-26",
   "policy": "Every macro module must have a ledger row. Before its learner-facing authoring is published, semanticStatus must be accepted and every actual prerequisite in the authored content must trace to an earlier accepted module or a bounded bridge owned by this module. Topological position alone is not evidence of semantic ancestry.",
   "entries": [
     {
@@ -157,8 +157,33 @@
       "order": 14,
       "id": "SIDE276",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "accepted",
+      "bridges": [
+        {
+          "id": "M14-B01",
+          "owner": "SIDE276",
+          "title": "Finite-map composition language",
+          "before": "S04 composition and matrix multiplication",
+          "content": "Define the needed composition and inverse-map language locally so M14 does not depend on an unverified earlier function module.",
+          "implementedBy": "M14-S01/S04/S13"
+        },
+        {
+          "id": "M14-B02",
+          "owner": "SIDE276",
+          "title": "Elementary-matrix row-operation bridge",
+          "before": "S14 Gauss–Jordan inverse construction",
+          "content": "Represent each legal elementary row operation by left multiplication with the corresponding elementary matrix, connecting exact elimination to inverse construction without importing numerical LU or pivoting.",
+          "implementedBy": "M14-S14"
+        },
+        {
+          "id": "M14-B03",
+          "owner": "SIDE276",
+          "title": "Rank-nullity from pivot/free structure",
+          "before": "S11 rank-nullity and rectangular map classification",
+          "content": "Derive rank plus nullity equals the domain dimension from r pivots and n-r independent spanning null directions using M13 finite-dimensional basis language.",
+          "implementedBy": "M14-S11"
+        }
+      ]
     },
     {
       "order": 15,

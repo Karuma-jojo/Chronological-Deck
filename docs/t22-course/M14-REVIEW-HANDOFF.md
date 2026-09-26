@@ -1,107 +1,72 @@
-# T22 Elite — M14 Final Follow-up Handoff
+# T22 Elite — M14 Publication Closure
 
 Date: 2026-09-26  
-Repository: `Karuma-jojo/Chronological-Deck`  
-Branch: `codex/t22-pedagogical-rebuild`  
 Module: **M14 · SIDE276 · Matrices, Linear Maps & Linear Systems**
 
 ## Status
 
-**Final bounded follow-up repairs implemented; M14 remains unpublished pending focused independent acceptance.**
+**Independent review accepted. User authorized publication. M14 is now registered as the fourteenth learner module.**
 
-Architecture remains:
-- 19 sessions
-- 38 current fixed assessments
-- 60 ownership claims
-- M13 / ARC511 formal prerequisite
-- M15 closed
+The pedagogical review cycle is closed.
 
-The prior independent follow-up held acceptance for FU-01…FU-04 only. No mathematical defect or architectural rebuild requirement was found.
+Current route:
+- M13 / ARC511 — published prerequisite
+- **M14 / SIDE276 — published learner frontier**
+- M15 / SIDE278 — planned and closed
 
-## FU dispositions
+## Independent acceptance summary
 
-### FU-01 — S14 ownership verb
-**REPAIRED BY NARROWING.**
+The final independent reviewer accepted:
+- mathematical architecture;
+- pedagogy, coherence and information flow;
+- all 38 current assessments;
+- all 60 ownership mappings;
+- evidence-distance / changed-surface Transfer contract;
+- 38-task semantic separation;
+- 16/16 misconception discrimination contract;
+- rendered learner implementation.
 
-Current claim:
-> Apply and justify the inverse-order rule ((AB)^{-1}=B^{-1}A^{-1}) for compatible invertible square matrices, and reject a two-sided inverse for a nonsquare matrix from unequal domain/codomain dimensions.
+FU-01 through FU-04 were closed before publication.
 
-The fixed `S14-T@1` obligation is unchanged. No assessment-version bump was needed.
+## Exact accepted candidate
 
-### FU-02 — S09 Transfer distance
-**REPAIRED + VERSIONED.**
+Pre-publication accepted head:
 
-`S09-T@1 → S09-T@2`.
+`7558dc4a2b4454e1e99d601c318a3351455f963a`
 
-The retired task replayed the Main's `x_p+N(A)` skeleton under calibration vocabulary.
+Exact-head workflow:
+- #483
+- `36224537927`
+- **SUCCESS**
 
-The current Transfer instead gives:
-- a fresh matrix;
-- two distinct settings with the same output;
-- a false “only those two settings” report;
-- no named nullspace/kernel or affine-translate method.
+## Publication contract
 
-The learner must infer the nonzero zero-output difference, reconstruct every preimage, prove completeness and explain the structural source of ambiguity.
+The publication branch must verify that:
 
-### FU-03 — design-gate wrong-solver contract
-**REPAIRED.**
+1. `course-meta.json` contains 14 module sources and SIDE276 points to `course/t22/authoring/m14-side276.json`;
+2. roadmap SIDE276 availability is `authored`;
+3. semantic-prerequisite SIDE276 status is `accepted`;
+4. the canonical M14 module status is published/user-authorized/independently accepted;
+5. the M14 browser test loads the persisted registry directly, with no test-only metadata injection;
+6. M15 authoring remains unopened.
 
-The design gate has 16 explicit misconception/failure-mode rows.
+Only after the publication branch workflow is green should the publication PR merge to `main`.
 
-Canonical evidence now contains:
-- 19 concrete wrong-solver cases;
-- stable case IDs;
-- `designGateCoverage` with exactly 16/16 rows marked covered;
-- actual current task IDs and rubric rows.
+## What must not change during publication
 
-The newly explicit cases cover basis sufficiency, row-dot-only multiplication, row-operation equivalence, rank-vs-shape, nonsquare inverse and determinant-geometry-as-definition. Existing cases/cross-references cover the remaining design rows.
+Publication is not a new pedagogical revision.
 
-### FU-04 — canonical-state hygiene
-**REPAIRED.**
+Do not:
+- alter M14 lessons, assessments, references or rubrics;
+- change the 19-session architecture;
+- recertify retired task versions;
+- open M15;
+- migrate unrelated legacy progress.
 
-The authoritative verification/handoff no longer says:
-- the M14 browser probe is still pending;
-- exact-head verification is still pending because of the old #462 checkpoint;
-- #462 is the current final implementation run.
+## After publication
 
-The historical pre-follow-up green baseline is correctly identified as head `41f3de9bf2e055efe8f2f717da55f0e56fd540b2`, workflow #469 / `36222070177`.
+M14 becomes the current learner frontier.
 
-After FU edits, acceptance uses a simple rule: **the required full workflow associated with the current branch HEAD must be green on that exact SHA.** The reviewer should verify that current SHA/run directly rather than trusting a hard-coded stale “latest run” sentence.
+Any future M14 modification that changes learning or assessment semantics must reopen the appropriate v1.2 gates and version affected obligations normally. Routine site/runtime fixes still require regression/browser verification.
 
-## Gate-10 receipt
-
-Final follow-up pre-edit receipt:
-- `docs/t22-course/audit/m14-followup-pre-fu-repair-version-receipt.json`
-
-It captures:
-- pre-FU head `41f3de9bf2e055efe8f2f717da55f0e56fd540b2`;
-- green workflow #469 / `36222070177`;
-- retired `S09-T@1` obligation version/fingerprint;
-- planned `S09-T@2` replacement reason.
-
-Current versioned tasks:
-- `S07-T@1 → S07-T@2`
-- `S09-T@1 → S09-T@2`
-- `S11-M@1 → S11-M@2`
-- `S18-M@1 → S18-M@2`
-- `S19-M@1 → S19-M@2`
-
-## Focused independent recheck
-
-Do not reopen the 19-session architecture by default. Re-attack only:
-
-1. Does S14 now claim only **apply and justify**, matching the concrete pair + composition-order explanation?
-2. Is `S09-T@2` genuinely changed-surface rather than context-renamed retrieval?
-3. Does the prompt avoid supplying the nullspace/affine-translate method while keeping the task fair?
-4. Do all 16 design-gate misconception rows map to real current wrong solvers and rubric discrimination?
-5. Is current canonical text free of stale “browser pending / exact-head pending / #462 current” contradictions?
-6. Is the required workflow green on the **exact current branch SHA**, including Chromium and the M14 355-surface learner-UI probe?
-
-If those hold, the bounded follow-up can be independently accepted.
-
-## Stop boundary
-
-M14 only.  
-Do not publish/register M14.  
-Do not merge to main.  
-Do not open M15.
+M15 remains closed until explicitly authorized.
