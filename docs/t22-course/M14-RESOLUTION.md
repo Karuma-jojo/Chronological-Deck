@@ -210,7 +210,7 @@ The reviewer explicitly preserved the 19-session mathematical architecture and r
 
 | ID | Independent finding | Repair |
 | --- | --- | --- |
-| M14-R01 | Gate 11 did not render unpublished M14 itself in the learner UI. | **REPAIRED IN CODE; exact-head run pending.** Added `scripts/test-t22-elite-m14-browser.mjs`, which uses test-only metadata interception to load unpublished SIDE276 into the real learner UI and walks all 19 lessons/guided states plus all 38 prompt/reference/rubric paths. |
+| M14-R01 | Gate 11 did not render unpublished M14 itself in the learner UI. | **CLOSED.** `scripts/test-t22-elite-m14-browser.mjs` uses test-only metadata interception to load unpublished SIDE276 into the real learner UI and walks all 19 lessons/guided states plus all 38 prompt/reference/rubric paths. It first exposed and then verified repair of a real 390px overflow defect. |
 | M14-R02 | `semanticSeparationAudit` merely duplicated evidence labels. | **REPAIRED.** Replaced with a genuine 38-task ledger: closest instructional examples, mathematical-instance difference and exposure disposition for every current fixed task. |
 | M14-R03 | Evidence classes used non-v1.2 labels. | **REPAIRED.** Primary classes are now only `retrieval`, `proof reconstruction`, `fresh Main evidence` or `changed-surface Transfer`. Secondary mechanism descriptions are stored separately. |
 | M14-R04 | Required decision audits were absent. | **REPAIRED.** Added 21 decision-audit rows: every changed-surface Transfer plus S04 product-order choice and S19 synthesis. Each records the claimed decision, prompt cueing, visible rehearsal and actual scored action. |
@@ -219,7 +219,7 @@ The reviewer explicitly preserved the 19-session mathematical architecture and r
 | M14-R07 | S14 claim included singular rejection without a local observer. | **REPAIRED BY NARROWING.** S14 owns inverse-order reversal and the nonsquare two-sided-inverse boundary; singular rejection remains in S13. |
 | M14-R08 | S18 only numerically checked determinant invariance. | **REPAIRED + VERSIONED.** S18 Main is now `S18-M@2` and publicly proves `det(P^{-1}AP)=det(A)` from multiplicativity before the numerical check. |
 | M14-R09 | S19 was an integration recipe, not v1.2 synthesis. | **REPAIRED + VERSIONED.** S19 Main is now `S19-M@2`: the learner chooses the attack order, justifies at least two representation/method choices and reuses a shared row-reduction artifact while still meeting explicit output obligations. |
-| M14-R10 | Misconception discriminators were not systematically run against actual rubrics. | **REPAIRED.** Added 13 central wrong-solver cases, each tied to the current task and exact rubric rows it fails. |
+| M14-R10 | Misconception discriminators were not systematically run against actual rubrics. | **FOLLOW-UP REPAIRED.** The ledger now contains 19 concrete wrong-solver cases plus an explicit 16/16 design-gate coverage table tied to current task/rubric evidence. |
 | M14-R11 | Math-gate prose overstated mechanical coverage. | **REPAIRED.** The fixed-task checker is now described as targeted arithmetic/property reconstruction plus reviewed reference assertions; prose proofs remain human semantic obligations. S10 non-membership was also upgraded from a weak failed-example check to an actual coefficient obstruction. |
 
 ### Additional Gate-7 repairs found by the 60-claim generalization audit
@@ -248,7 +248,7 @@ M14 was unpublished at both versions, so no learner-route attempt is silently re
 
 ### Current status
 
-**v1.2 repairs implemented; full repaired implementation run #462 is green, including the unpublished-M14 learner-UI Chromium probe. M14 is repaired awaiting focused independent follow-up.**
+**Historical first-round result:** the original v1.2 repair reached a fully green implementation checkpoint before the independent follow-up. FU-01…FU-04 below are the controlling final bounded repair.
 
 M14 remains unpublished. M15 remains closed.
 
@@ -265,3 +265,28 @@ Run #462: **SUCCESS**.
 Gate-11 additionally found and repaired one artifact-first defect during the cycle: long M14 evaluator math could overflow the 390px learner viewport. The shared text/problem wrapping fix is pinned by exact blob in the preservation baseline, and run #462 reran the inherited M01–M13 browser suite plus the M14 candidate probe successfully.
 
 Gate-9 integration is recorded at `docs/t22-course/audit/M14-V12-INTEGRATION-REVIEW.md` with status **PASS_WITH_EVIDENCE**. This remains builder-side evidence; independent follow-up is still required.
+
+
+---
+
+## Independent follow-up bounded repair — FU-01…FU-04
+
+The independent follow-up preserved the 19-session architecture and found no new mathematical defect. It held acceptance for four evidence/provenance issues only.
+
+| Finding | Final repair |
+| --- | --- |
+| FU-01 — S14 overclaims “prove” | Ownership narrowed to **apply and justify** the inverse-order rule on invertible square matrices plus the observed nonsquare two-sided-inverse boundary. No task change/version bump. |
+| FU-02 — S09 Transfer was a context-only replay | `S09-T@1 → S09-T@2`. New Transfer starts from two unexplained same-output settings and a false finite-settings claim; the learner must infer the zero-output direction, reconstruct every preimage and prove completeness without a nullspace cue. |
+| FU-03 — wrong-solver ledger did not prove the whole design-gate contract | Added stable case IDs, six explicit missing attacks, and a 16/16 `designGateCoverage` table. There are now 19 current-task wrong-solver cases. |
+| FU-04 — canonical state retained stale pending/#462 language | Authoritative verification and handoff were rewritten to remove stale construction-state claims. Historical runs are labelled historical; current acceptance requires the full required workflow attached to the current branch HEAD to be green on that exact SHA. |
+
+Gate-10 receipt for the S09 change:
+- `docs/t22-course/audit/m14-followup-pre-fu-repair-version-receipt.json`
+
+The receipt captures pre-FU head `41f3de9bf2e055efe8f2f717da55f0e56fd540b2`, green run #469 / `36222070177`, and the retired `S09-T@1` fingerprint before `S09-T@2` was authored.
+
+### Current closure rule
+
+The repository does not self-certify independent acceptance. Before closing the hold, the independent reviewer must verify FU-01…FU-04 against the current artifacts **and** verify that the required Actions workflow on the exact current branch HEAD is fully green.
+
+M14 remains unpublished and M15 remains closed until that independent acceptance.
