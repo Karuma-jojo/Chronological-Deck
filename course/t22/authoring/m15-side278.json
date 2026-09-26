@@ -40,7 +40,7 @@
     "authoredSessions": 16,
     "ownershipClaimCount": 48,
     "fixedAssessments": 32,
-    "reviewProvenance": "Gate 0–3 design and S11 Gates 4–8 pilot completed by the builder. Pilot Gate 8 caught and repaired a solved-example/Main collision before bulk authoring. Independent adversarial review remains pending."
+    "reviewProvenance": "Builder completed Gates 0–10 candidate authoring: 16 design-derived sessions, 32 fixed assessments, 48 ownership claims, 32 task-level semantic-separation rows, 16 decision audits and 18 misconception attacks. S11 pilot Gate 8 caught and repaired solved-example/Main exposure before bulk authoring. Independent adversarial review and learner-route publication remain pending."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. The user-supplied Strang 4e scan is the deep first-course comparator; MIT 18.06/18.06SC checks conventional route; Axler 4e checks theorem hypotheses; Hefferon checks developmental exposition; MAA/IES and domain-specific linear-algebra education sources shape representation, misconception and assessment design. All learner tasks are original.",
@@ -2731,7 +2731,7 @@
     }
   },
   "semanticSeparationAudit": {
-    "status": "PENDING BULK AUTHORING",
+    "status": "PASS_WITH_EVIDENCE — all 32 current tasks have task-level semantic separation judgments; string overlap is only a candidate finder.",
     "method": "Compare each fixed task with the closest answer-bearing visible instruction by mathematical object/data, requested conclusion, decisive argument and scored subanswers; string overlap is only a candidate finder.",
     "tasks": {
       "T22V3::SIDE278::S01-M@1": {
@@ -3041,7 +3041,7 @@
     }
   },
   "prerequisiteAudit": {
-    "status": "Gates 1–3 PASS; session-level audit pending canonical authoring",
+    "status": "PASS_WITH_EVIDENCE — all 16 sessions trace each first new operation to accepted M13/M14 capabilities or an explicit earlier M15 bridge.",
     "checks": [
       {
         "sessionId": "T22V3::SIDE278::S01@1",
@@ -3142,7 +3142,7 @@
     ]
   },
   "instructionSeparation": {
-    "status": "PENDING",
+    "status": "PASS_WITH_EVIDENCE — all 16 worked/guided instances are distinct from fixed Main/Transfer instances; S11 preserves the pilot Gate-8 repair.",
     "sessions": {
       "T22V3::SIDE278::S01@1": {
         "workedExample": "a=(2,0),b=(0,-3)",
@@ -3264,7 +3264,7 @@
   },
   "authoringPolicy": "Score only public obligations. Accept mathematically equivalent exact methods and notation. Require literal public evidence for every ownership claim. Label retrieval/proof reconstruction/fresh Main/changed-surface Transfer honestly. Do not infer mastery from builder validation.",
   "decisionAudit": {
-    "status": "PENDING",
+    "status": "PASS_WITH_EVIDENCE — every changed-surface Transfer has an explicit learner-decision audit.",
     "tasks": {
       "T22V3::SIDE278::S01-T@1": {
         "claimedLearnerDecision": "Decide which clauses of a theorem-based report survive the zero-vector boundary.",
@@ -3365,9 +3365,340 @@
     }
   },
   "misconceptionDiscriminatorAudit": {
-    "status": "PENDING",
-    "cases": [],
-    "designGateCoverage": []
+    "status": "PASS_WITH_EVIDENCE — 18 design-gate failure modes are tied to concrete current tasks and exact rubric rows.",
+    "cases": [
+      {
+        "caseId": "MC01",
+        "misconception": "Zero vector treated as harmless in an orthogonal-set independence theorem",
+        "targetTask": "T22V3::SIDE278::S01-T@1",
+        "plausibleFlawedResponse": "Every pair has dot product zero, therefore the list is independent and z3 can be normalized.",
+        "rubricRowsFailed": [
+          "Identifies z3=0 as the failed nonzero hypothesis and dependence witness.",
+          "Explains why the zero vector cannot be normalized."
+        ],
+        "discriminationResult": "Rejected: the rubric separately requires the failed nonzero hypothesis and normalization impossibility."
+      },
+      {
+        "caseId": "MC02",
+        "misconception": "An incomplete orthonormal list treated as a complete basis",
+        "targetTask": "T22V3::SIDE278::S02-T@1",
+        "plausibleFlawedResponse": "r1,r2 are orthonormal, so their two dot products are all coordinates of v in R^3.",
+        "rubricRowsFailed": [
+          "Explains that two vectors do not form a basis of R^3, so the coefficients are incomplete."
+        ],
+        "discriminationResult": "Rejected: the rubric requires recognizing that two vectors do not span R^3."
+      },
+      {
+        "caseId": "MC03",
+        "misconception": "Orthogonal complement placed or reasoned about outside the original ambient space",
+        "targetTask": "T22V3::SIDE278::S03-T@1",
+        "plausibleFlawedResponse": "W^perp should use new coordinates unrelated to the R^4 vectors defining W.",
+        "rubricRowsFailed": [
+          "Rewrites W as span{(1,1,0,0),(0,0,0,1)}.",
+          "Gives basis {(1,-1,0,0),(0,0,1,0)} for W^perp."
+        ],
+        "discriminationResult": "Rejected: the learner must build W and W^perp as explicit R^4 spans."
+      },
+      {
+        "caseId": "MC04",
+        "misconception": "Any algebraic split mistaken for an orthogonal decomposition",
+        "targetTask": "T22V3::SIDE278::S04-T@1",
+        "plausibleFlawedResponse": "Since p+r=v and p is on the line, the report is valid without checking r.",
+        "rubricRowsFailed": [
+          "Audits all three defining conditions for the proposed decomposition.",
+          "Explains why first-term membership in L alone is insufficient."
+        ],
+        "discriminationResult": "Rejected: residual membership in L^perp and why it matters are explicit scored obligations."
+      },
+      {
+        "caseId": "MC05",
+        "misconception": "Projection coefficient confused with the invariant projected vector",
+        "targetTask": "T22V3::SIDE278::S05-T@1",
+        "plausibleFlawedResponse": "The coefficients 2/3 and 2/9 differ, so the two generators produce different projections.",
+        "rubricRowsFailed": [
+          "Using b=3a, computes coefficient 2/9 and the same projected vector.",
+          "Explicitly reconciles the different scalar coefficients with the same geometric vector."
+        ],
+        "discriminationResult": "Rejected: both projected vectors and their reconciliation are scored."
+      },
+      {
+        "caseId": "MC06",
+        "misconception": "Raw spanning vectors used with the ON coefficient formula",
+        "targetTask": "T22V3::SIDE278::S06-T@1",
+        "plausibleFlawedResponse": "Use (v·(1,1,0))(1,1,0) directly without normalizing the plane direction.",
+        "rubricRowsFailed": [
+          "Constructs a valid ON basis such as {(1/sqrt(2))(1,1,0),(0,0,1)} for W.",
+          "Computes p=(2,2,3) and r=(3,-3,0)."
+        ],
+        "discriminationResult": "Rejected: the task requires constructing a valid orthonormal basis before projection."
+      },
+      {
+        "caseId": "MC07",
+        "misconception": "Coordinatewise closeness substituted for Euclidean nearest-point reasoning",
+        "targetTask": "T22V3::SIDE278::S07-T@1",
+        "plausibleFlawedResponse": "y=(3,3) is closer because its first coordinate is closer to 4.",
+        "rubricRowsFailed": [
+          "Computes ||v-p||^2=8 and ||v-y||^2=10.",
+          "Explains why coordinatewise closeness is not the Euclidean distance criterion."
+        ],
+        "discriminationResult": "Rejected: exact squared distances and the Euclidean-criterion explanation contradict the heuristic."
+      },
+      {
+        "caseId": "MC08",
+        "misconception": "Gram–Schmidt subtracts an arbitrary component-looking multiple",
+        "targetTask": "T22V3::SIDE278::S08-T@1",
+        "plausibleFlawedResponse": "Accept u2=(1,-2,1) because something along v1 was subtracted.",
+        "rubricRowsFailed": [
+          "Computes u1·u2=-3 and rejects the proposed orthogonalization.",
+          "Explains that Gram–Schmidt must subtract the exact projection, not an arbitrary component-looking multiple."
+        ],
+        "discriminationResult": "Rejected: the proposed vector fails the orthogonality test and the exact projection coefficient is required."
+      },
+      {
+        "caseId": "MC09",
+        "misconception": "Zero Gram–Schmidt residual treated as a divide-by-zero accident",
+        "targetTask": "T22V3::SIDE278::S09-T@1",
+        "plausibleFlawedResponse": "The third residual is zero, so perturb it slightly and continue normalizing.",
+        "rubricRowsFailed": [
+          "Recognizes d3=d1+d2 and predicts an exactly zero third Gram–Schmidt residual.",
+          "Explains that zero residual means the new input lies in the earlier span and therefore certifies dependence.",
+          "Explains why the zero vector must be discarded rather than normalized."
+        ],
+        "discriminationResult": "Rejected: exact dependence and the instruction to discard rather than normalize are explicit."
+      },
+      {
+        "caseId": "MC10",
+        "misconception": "Transpose-null equation interpreted as forcing the vector itself to be zero",
+        "targetTask": "T22V3::SIDE278::S10-T@1",
+        "plausibleFlawedResponse": "B^T y=0 implies y=0 because multiplying by a matrix preserves zero only for the zero input.",
+        "rubricRowsFailed": [
+          "Solves B^T y=0 and obtains y=t(-1,-1,1).",
+          "Explains why nonzero solutions are compatible with a proper 2D column space in R^3."
+        ],
+        "discriminationResult": "Rejected: the task constructs a nonzero one-dimensional null space and explains the proper-column-space geometry."
+      },
+      {
+        "caseId": "MC11",
+        "misconception": "A proposed least-squares coefficient accepted without residual orthogonality",
+        "targetTask": "T22V3::SIDE278::S11-T@1",
+        "plausibleFlawedResponse": "Choose c2=(1,0) because it looks simpler and produces a small-looking residual.",
+        "rubricRowsFailed": [
+          "Computes r2=(0,1,0) and B^T r2=(1,-1)≠0.",
+          "Chooses c1 and explains the residual diagnostic in column-orthogonality terms."
+        ],
+        "discriminationResult": "Rejected: B^T r must vanish and the rubric scores both candidate diagnostics."
+      },
+      {
+        "caseId": "MC12",
+        "misconception": "Idempotence alone treated as sufficient for orthogonal projection",
+        "targetTask": "T22V3::SIDE278::S12-T@1",
+        "plausibleFlawedResponse": "Q^2=Q, so Q is automatically an orthogonal projector.",
+        "rubricRowsFailed": [
+          "Shows Q^T≠Q.",
+          "Finds Range(Q)=span(e1), computes r=(-1,1), and shows r·e1=-1.",
+          "Rejects Q as an orthogonal projector and identifies idempotence-alone as the failed criterion."
+        ],
+        "discriminationResult": "Rejected: nonsymmetry plus a nonorthogonal residual explicitly falsify the claim."
+      },
+      {
+        "caseId": "MC13",
+        "misconception": "Least squares assumed to make every residual zero",
+        "targetTask": "T22V3::SIDE278::S13-T@1",
+        "plausibleFlawedResponse": "The best x must satisfy all three requested equalities, so the residual vector should be zero.",
+        "rubricRowsFailed": [
+          "Computes residuals (-3,-1,4) and squared norm 26.",
+          "Explains why zero residual sum expresses column orthogonality while individual residuals remain nonzero because exact fit is impossible."
+        ],
+        "discriminationResult": "Rejected: the nonzero residual vector is computed and only its column-space orthogonality is zero."
+      },
+      {
+        "caseId": "MC14",
+        "misconception": "Rank deficiency assumed to destroy existence of a least-squares fit or force unique coefficients",
+        "targetTask": "T22V3::SIDE278::S14-T@1",
+        "plausibleFlawedResponse": "C has duplicate columns, so no least-squares solution exists; alternatively the unique fitted point must have unique coefficients.",
+        "rubricRowsFailed": [
+          "Computes p=(1/2,1/2) and residual=(1/2,-1/2).",
+          "Derives the full coefficient family x1+x2=1/2.",
+          "Explains coefficient nonuniqueness through the nontrivial null space despite unique projection."
+        ],
+        "discriminationResult": "Rejected: the task requires the unique projected vector and an infinite coefficient family explained by Null(C)."
+      },
+      {
+        "caseId": "MC15",
+        "misconception": "Deterministic least-squares line treated as statistical inference",
+        "targetTask": "T22V3::SIDE278::S15-M@1",
+        "plausibleFlawedResponse": "Because the least-squares line is computed, its slope is statistically significant and predictive.",
+        "rubricRowsFailed": [
+          "Names a statistical/inferential claim that is not justified by this deterministic least-squares calculation."
+        ],
+        "discriminationResult": "Rejected: the public rubric requires naming a statistical claim that the deterministic calculation does not justify."
+      },
+      {
+        "caseId": "MC16",
+        "misconception": "Dot products with nonorthogonal columns treated as expansion coefficients",
+        "targetTask": "T22V3::SIDE278::S16-T@1",
+        "plausibleFlawedResponse": "Use E^T d=(1,2) directly as coordinates because dot products always give basis coefficients.",
+        "rubricRowsFailed": [
+          "Computes Report X residual (-3,0,0), E^T r=(-3,-3), and rejects X.",
+          "Identifies nonorthogonality of the raw columns as the hypothesis failure behind Report X.",
+          "Explains that E^T d contains column dot products, not automatic coordinates for a nonorthogonal basis."
+        ],
+        "discriminationResult": "Rejected: Report X fails residual orthogonality and the nonorthonormal hypothesis violation is scored."
+      },
+      {
+        "caseId": "MC17",
+        "misconception": "Orthogonal automatically treated as unit-normalized",
+        "targetTask": "T22V3::SIDE278::S01-M@1",
+        "plausibleFlawedResponse": "All pairwise dot products are zero, therefore u1,u2,u3 are already orthonormal.",
+        "rubricRowsFailed": [
+          "Computes norms sqrt(2), sqrt(2), 3 and distinguishes orthogonal from orthonormal.",
+          "Produces a correct normalized orthonormal list."
+        ],
+        "discriminationResult": "Rejected: norms and explicit normalization are separately scored."
+      },
+      {
+        "caseId": "MC18",
+        "misconception": "Transpose treated as inverse or as shape-preserving",
+        "targetTask": "T22V3::SIDE278::S10-M@1",
+        "plausibleFlawedResponse": "A^T should have the same 3×2 shape or should undo A like an inverse.",
+        "rubricRowsFailed": [
+          "Writes A^T correctly and states A is 3×2 while A^T is 2×3.",
+          "Derives the general identity (A^T y)_j=a_j·y from entry/row definitions."
+        ],
+        "discriminationResult": "Rejected: the task explicitly scores the 2×3 transpose shape and its entrywise column-dot derivation."
+      }
+    ],
+    "designGateCoverage": [
+      {
+        "failure": "Orthogonal means orthonormal",
+        "caseIds": [
+          "MC17"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Pairwise orthogonal list may contain 0 and still imply independence",
+        "caseIds": [
+          "MC01"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Dot-product coefficients work for any basis",
+        "caseIds": [
+          "MC16",
+          "MC06"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "W^perp lives in a different ambient space",
+        "caseIds": [
+          "MC03"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Any decomposition v=p+r is orthogonal",
+        "caseIds": [
+          "MC04"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Projection means dropping a coordinate",
+        "caseIds": [
+          "MC06"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Orthogonal residual has no nearest-point consequence",
+        "caseIds": [
+          "MC07"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Gram–Schmidt subtracts only the immediately previous direction",
+        "caseIds": [
+          "MC08",
+          "MC09"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Zero Gram–Schmidt residual is a numerical nuisance",
+        "caseIds": [
+          "MC09"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Gram–Schmidt output is order-independent",
+        "caseIds": [
+          "MC09"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Transpose is an inverse or keeps the same rectangular shape",
+        "caseIds": [
+          "MC18"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "A^T r=0 implies r=0",
+        "caseIds": [
+          "MC10",
+          "MC13"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "(A^T A)^{-1} may be used without full column rank",
+        "caseIds": [
+          "MC14"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Idempotent alone means orthogonal projector",
+        "caseIds": [
+          "MC12"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Least squares forces Ax=b exactly",
+        "caseIds": [
+          "MC13"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Rank deficiency means no least-squares fit exists",
+        "caseIds": [
+          "MC14"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Unique fitted vector implies unique coefficients",
+        "caseIds": [
+          "MC14"
+        ],
+        "status": "covered"
+      },
+      {
+        "failure": "Deterministic line fit justifies statistical inference",
+        "caseIds": [
+          "MC15"
+        ],
+        "status": "covered"
+      }
+    ]
   },
   "versionAudit": {
     "status": "Initial M15 candidate. Every fixed task starts at obligationVersion 1; later semantic changes must version affected obligations rather than silently recertify evidence."
