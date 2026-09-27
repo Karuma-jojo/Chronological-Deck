@@ -174,7 +174,16 @@ const d10=a.sessions.find(s=>s.order===10),d16=a.sessions.find(s=>s.order===16),
 const m03s26=m03.sessions.find(s=>s.order===26),m02s22=m02.sessions.find(s=>s.order===22),m02s12=m02.sessions.find(s=>s.order===12);
 assert(d10.entryPrerequisites.includes('M03-S26 finite binomial theorem/expansion'),'L04 M10-S10 must name M03-S26, not fictitious M01 binomial algebra');
 assert(!d10.entryPrerequisites.some(x=>/M01 binomial/i.test(x)),'L04 fictitious M01 binomial prerequisite must stay removed');
-assert(m03s26.requiredOwnership.includes('Use binomial coefficients to expand (x+y)^n for a small positive integer n.'),'L04 upstream binomial ownership missing');
+const binomialClaim='State and use the finite binomial theorem for positive integer n, and explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k).';
+assert(m03s26.requiredOwnership.includes(binomialClaim),'LF-R01 M10 may cite M03-S26 only if the upstream ownership itself is general in positive integer n');
+const binomialEvidence=m03.claimEvidence[m03s26.id].find(x=>x.claim===binomialClaim);
+assert(binomialEvidence&&binomialEvidence.task==='main','LF-R01 general binomial ownership must have fixed public evidence');
+const binomialPrompt=m03.problems[m03s26.main].prompt;
+assert(binomialPrompt.includes('finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n'),'LF-R01 upstream public request must state the general theorem, not only a numerical expansion');
+assert(binomialPrompt.includes('why the coefficient of x^(n−k)y^k is C(n,k)'),'LF-R01 upstream public request must require the general combinatorial coefficient argument');
+assert(binomialEvidence.rubricEvidence.includes('States the finite binomial theorem for positive integer n with coefficient C(n,k) on x^(n−k)y^k.'));
+assert(binomialEvidence.rubricEvidence.includes('Explains combinatorially that C(n,k) chooses which k of the n factors contribute y.'));
+assert(m03.problems[m03s26.main].obligationVersion===3,'LF-R01 repaired general theorem surface must be versioned');
 assert(d10.lesson.includes('M03-S26 established the finite binomial theorem'),'L04 power-rule lesson must consume the real upstream owner');
 
 assert(d16.entryPrerequisites.includes('M02-S22 sine/cosine angle-addition identities'),'L02 M10-S16 must name the angle-addition owner');
