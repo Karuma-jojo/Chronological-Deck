@@ -3,8 +3,8 @@
   "capturedBeforeM12ValidationHead": "c5d53396aada365a16cdac6c6b5b9208591ad628",
   "purpose": "Protect M01-M11 canonical authoring, learner registry/roadmap/dependency authority and shared T22 runtime from accidental mutation during M12-only work. SEMANTIC-PREREQUISITES.json is intentionally excluded because M12's own ledger row was authorized to change.",
   "files": {
-    "course/t22/authoring/m01-repairs-1.1.json": "3cab22aa97d265b71fa6dd4f44e898a4ffda758b",
-    "course/t22/authoring/m02.json": "a916d26fdcced406281561c0235dd6c1abd3204a",
+    "course/t22/authoring/m01-repairs-1.1.json": "2dafb9541468a5c4428ea8e4d02fb9fb623b9dc8",
+    "course/t22/authoring/m02.json": "307f1c5b07f3dc87ee498ee2d731fdf9012b75c6",
     "course/t22/authoring/m03.json": "23c2453d7b223a0fcff182eedc2b021a1864e736",
     "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
     "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
@@ -24,5 +24,10 @@
   "authorizedM01M02V12Retrofit": {
     "throughCommit": "e1406d951c69c99930a97840b544b388e819aeb5",
     "reason": "Explicit user-authorized retrospective M01/M02 v1.2 repair; 17+24 session architecture and stable IDs preserved. Re-pin only the two changed upstream curriculum blobs; all other protected curriculum files remain unchanged."
+  },
+  "authorizedM01M02V12Followup": {
+    "base": "cb4240fb34c28826182e838aae9943d1bd406f15",
+    "branch": "codex/t22-m01-m02-v12-followup",
+    "scope": "Independent-review findings R01–R08 only: semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain check, and interval-ray rendering. No M03+ curriculum redesign."
   }
 }
