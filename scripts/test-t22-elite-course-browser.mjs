@@ -124,7 +124,7 @@ try{
  // M01/M02 v1.2 representation retrofit: actual learner-facing figures, readiness routing and mobile rendering.
  const reprCtx=await browser.newContext({viewport:{width:390,height:844}});const rp=await reprCtx.newPage();
  await rp.goto(base+'/t22-course.html?module=1&session=1');await rp.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
- assert.equal(await rp.locator('#readiness').isVisible(),true);await rp.click('#readiness');assert.equal(await rp.locator('#readinessItems li').count(),13);await rp.click('#readinessReveal');assert((await rp.locator('#readinessKey').textContent()).includes('routing'));
+ assert.equal(await rp.locator('#readiness').isVisible(),true);await rp.click('#readiness');assert.equal(await rp.locator('#readinessItems li').count(),13);await rp.click('#readinessReveal');const readinessText=await rp.locator('#readinessKey').textContent();assert(readinessText.includes('route:')&&readinessText.includes('If you miss'),'readiness reveal must show per-item routes and routing guidance');
  for(const n of [1,2,3,4,5,6,14,15,16]){
   await rp.selectOption('#session',String(n));await rp.click('#note');assert((await rp.locator('#learningRepresentations .representation').count())>=1,`M01 S${n} representation missing`);
  }
