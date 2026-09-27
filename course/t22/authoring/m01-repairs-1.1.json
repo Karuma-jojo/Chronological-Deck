@@ -1,6 +1,6 @@
 {
-  "version": "m01-repairs-1.3-v12-retrofit",
-  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts. v1.2 retrofit preserves the 17-session architecture while adding exact claim→public-request→rubric evidence, honest evidence-distance labels, learner-facing representation progression, delayed mixed retrieval, a routing-only readiness diagnostic, and bounded mathematical precision repairs. Assessed visuals are part of the assessment fingerprint.",
+  "version": "m01-repairs-1.4-v12-followup-r01-r08",
+  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts. v1.2 retrofit preserves the 17-session architecture while adding exact claim→public-request→rubric evidence, honest evidence-distance labels, learner-facing representation progression, delayed mixed retrieval, a routing-only readiness diagnostic, and bounded mathematical precision repairs. Assessed visuals are part of the assessment fingerprint. Independent follow-up R01–R08 repairs only semantic observability/representation hardening; no session-count or boundary change.",
   "lessons": {
     "T22V3::T22E-FND01::S01@1": "A signed number has a sign and a magnitude. On the number line, farther left means smaller. Read a numerical expression from its grouping outward: parentheses first, then powers, then multiplication/division, then addition/subtraction. A leading minus outside a power is applied after the power unless the negative base is parenthesized. Worked example: −6−[3−(−2)]+3² = −6−5+9 = −2. Guided check: evaluate −4²+(−4)²−[6−(−2)] and predict the sign before calculating.",
     "T22V3::T22E-FND01::S02@1": "A fraction a/b is one number, with b≠0. Equivalent fractions come from multiplying numerator and denominator by the same nonzero factor. Addition/subtraction needs a common denominator; multiplication multiplies numerators and denominators; division by a nonzero fraction multiplies by its reciprocal. Worked example: 2/5+7/10=4/10+7/10=11/10; (4/7)(21/10)=6/5; and (5/8)÷(15/16)=(5/8)(16/15)=2/3. Guided check: reduce 21/35, then compute 7/12−1/8 and (4/9)(3/14) exactly.",
@@ -95,7 +95,7 @@
     },
     "T22V3::T22E-FND01::S14-T@1": {
       "prompt": "Read the supplied number-line figure. For set A, write exact interval notation and a simplest matching inequality. For set B, do the same. Explain why A uses a closed endpoint while B has one open and one closed endpoint.",
-      "obligationVersion": 2,
+      "obligationVersion": 3,
       "representations": [
         {
           "kind": "numberLine",
@@ -109,7 +109,8 @@
               "to": -3,
               "closedFrom": false,
               "closedTo": true,
-              "label": "A"
+              "label": "A",
+              "continueFrom": true
             },
             {
               "from": -1,
@@ -119,13 +120,17 @@
               "label": "B"
             }
           ],
-          "note": "Arrows at the frame edges mean the ray continues beyond the visible window."
+          "note": "Set A's blue interval arrow shows continuation toward −∞; the grey axis arrows belong only to the number-line axis."
         }
       ]
     },
     "T22V3::T22E-FND01::S16-T@1": {
       "prompt": "Solve 3x²−12x=−9 exactly, first putting it in standard zero form. Then classify kx²+2x+1=0 for k=0 and k=1, explaining why the quadratic formula is not the right starting point in the k=0 case.",
       "obligationVersion": 3
+    },
+    "T22V3::T22E-FND01::S09-T@1": {
+      "prompt": "Simplify 4(2x−3)−3(x+5)+2x. Show an equality chain with at least two intermediate equivalent expressions, including the fully distributed line before collecting like terms. Then verify your final simplified form at x=2 by evaluating both the original and simplified expressions.",
+      "obligationVersion": 2
     }
   },
   "evaluators": {
@@ -568,6 +573,28 @@
           "criterion": "Handles k=1 as a repeated root−1."
         }
       ]
+    },
+    "T22V3::T22E-FND01::S09-T@1": {
+      "reference": "A valid chain is 4(2x−3)−3(x+5)+2x = 8x−12−3x−15+2x = (8x−3x+2x)+(−12−15) = 7x−27. At x=2, the original is 4(1)−21+4=−13 and the simplified form is14−27=−13. The numerical agreement is a check at one input, not a proof of identity for every x.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Distributes correctly and collects only genuinely like terms to obtain 7x−27."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows a visible equality chain with at least two intermediate expressions, and every displayed step is equivalent to the previous one."
+        },
+        {
+          "points": 3,
+          "criterion": "Original and simplified expressions both evaluate to −13 at x=2."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses the numerical substitution as a check, not as proof of identity for all x."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route. Score only observed work; do not infer an unshown equality-preserving chain."
     }
   },
   "prerequisiteAudit": {
@@ -892,8 +919,7 @@
         "transfer"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-FND01::S15@1": [
@@ -1044,8 +1070,8 @@
         "(2a−3)(a+4)"
       ],
       "transfer": [
-        "4(2x−3)−3(x+5)+2x",
-        "at x=2"
+        "Show an equality chain with at least two intermediate equivalent expressions",
+        "fully distributed line before collecting like terms"
       ]
     },
     "T22V3::T22E-FND01::S10@1": {
@@ -1995,7 +2021,8 @@
         "task": "main",
         "publicRequest": "Compute (3×10^4)(2×10^−3), 16^(3/4), and √[(-7)^2]. Explain the last answer.",
         "rubricEvidence": [
-          "Does not misuse exponent laws across addition."
+          "Scientific-notation product is60.",
+          "16^(3/4)=8 with valid reasoning."
         ]
       },
       {
@@ -2051,26 +2078,26 @@
       {
         "claim": "Collect only genuinely like terms.",
         "task": "transfer",
-        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Then verify your simplified form at x=2 by evaluating both original and simplified expressions.",
+        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Show an equality chain with at least two intermediate equivalent expressions, including the fully distributed line before collecting like terms. Then verify your final simplified form at x=2 by evaluating both the original and simplified expressions.",
         "rubricEvidence": [
-          "Simplifies to7x−27."
+          "Distributes correctly and collects only genuinely like terms to obtain 7x−27."
         ]
       },
       {
         "claim": "Preserve equality at each simplification step.",
         "task": "transfer",
-        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Then verify your simplified form at x=2 by evaluating both original and simplified expressions.",
+        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Show an equality chain with at least two intermediate equivalent expressions, including the fully distributed line before collecting like terms. Then verify your final simplified form at x=2 by evaluating both the original and simplified expressions.",
         "rubricEvidence": [
-          "Simplifies to7x−27."
+          "Shows a visible equality chain with at least two intermediate expressions, and every displayed step is equivalent to the previous one."
         ]
       },
       {
         "claim": "Verify a symbolic simplification by testing one legal numerical input.",
         "task": "transfer",
-        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Then verify your simplified form at x=2 by evaluating both original and simplified expressions.",
+        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Show an equality chain with at least two intermediate equivalent expressions, including the fully distributed line before collecting like terms. Then verify your final simplified form at x=2 by evaluating both the original and simplified expressions.",
         "rubricEvidence": [
-          "Both forms evaluate to−13 atx=2.",
-          "Verification is used correctly as a check, not as a proof for all x."
+          "Original and simplified expressions both evaluate to −13 at x=2.",
+          "Uses the numerical substitution as a check, not as proof of identity for all x."
         ]
       }
     ],
@@ -2284,12 +2311,11 @@
       },
       {
         "claim": "Express and test the resulting interval or ray.",
-        "task": "transfer",
-        "publicRequest": "Read the supplied number-line figure. For set A, write exact interval notation and a simplest matching inequality. For set B, do the same. Explain why A uses a closed endpoint while B has one open and one closed endpoint.",
+        "task": "main",
+        "publicRequest": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
         "rubricEvidence": [
-          "Reads A as (−∞,−3] and x≤−3.",
-          "Reads B as (−1,3] and −1<x≤3.",
-          "Correctly explains open versus closed endpoint inclusion."
+          "Interval/ray notation is correct.",
+          "Inside/outside test points correctly verify both solution descriptions."
         ]
       }
     ],
@@ -2424,6 +2450,6 @@
     ]
   },
   "coverageAudit": {
-    "status": "85/85 semantically re-audited for v1.2; exact claim→public-request→rubric evidence recorded, with previously unobserved directions repaired before acceptance"
+    "status": "85/85 semantically re-audited through independent follow-up R01–R08; R02/R03/R06 exact observers repaired and S14 assessed ray hardened with its own continuation arrow"
   }
 }
