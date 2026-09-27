@@ -39,6 +39,7 @@ assert(a.prerequisiteAudit.S03.some(x=>x.item.includes('Pythagorean theorem')&&x
 
 assert(s4.lesson.includes('no solution')&&s4.lesson.includes('infinitely many solutions'),'L08 S04 must complete the three-way system geometry bridge');
 assert.equal(s4.representations?.length,3,'L08 S04 must render intersecting, parallel and coincident cases');
+assert(a.prerequisiteAudit.S04.some(x=>x.item==='one/no/infinitely-many elementary system classification'&&x.source.includes('M01-S13 fixed Transfer v3')),'LF-R04 M02-S04 must cite the owned M01-S13 classification rather than lesson-only background');
 
 assert(s12.requiredOwnership.includes('Use the positive-base real-exponential law b^(x+y)=b^x b^y.'),'L03 real-exponential law must be explicit ownership');
 assert(s12.lesson.includes('extends the rational powers to all real inputs')&&s12.lesson.includes('b^(x+y)=b^x b^y'),'L03 rational→real bridge missing');
@@ -54,6 +55,9 @@ assert(s21.lesson.includes('isosceles right triangle with legs1,1')&&s21.lesson.
 assert(s21.representations?.filter(x=>x.kind==='plot'&&x.segments?.length===3).length===2,'L06 both special triangles must be rendered');
 
 assert(s22.requiredOwnership.includes('Reconstruct and use sine/cosine angle-addition identities.'),'L02 S22 must own angle-addition identities');
+assert(s22.lesson.includes('rotate both points rigidly by angle −B')&&s22.lesson.includes('A rigid rotation preserves Euclidean distance'),'LF-R06 chord derivation must state the distance-preserving rotation step');
+assert(s22.lesson.includes('start from the established sine-addition identity')&&s22.lesson.includes('derive sin(A−B)'),'LF-R05 guided practice must rehearse the neighboring sine-difference move');
+assert(!s22.lesson.includes('Guided check: reconstruct cos(A+B)'),'LF-R05 guided practice must not replay the fixed cosine-sum reconstruction');
 assert(!s22.outOfScope.some(x=>/sum\/difference formulas/i.test(x)),'L02 addition formulas cannot remain out of scope');
 assert(s22.lesson.includes('cos(A−B)=cosA cosB+sinA sinB')&&s22.lesson.includes('sin(A+B)=sinA cosB+cosA sinB'),'L02 identities must be derived before use');
 assert.equal(a.problems[s22.transfer].obligationVersion,2);
@@ -113,4 +117,4 @@ const q=n=>50*1.2**n;close(Array.from({length:6},(_,n)=>q(n)).reduce((u,v)=>u+v,
 close(Math.cos(Math.PI/12),(Math.sqrt(6)+Math.sqrt(2))/4);close(Math.sin(Math.PI/4+Math.PI/6),Math.SQRT1_2*Math.sqrt(3)/2+Math.SQRT1_2*.5); // S22 addition formulas
 // S22 task's recovered 3-4-5 triangle: sin=3/5, quadrant II implies cos=-4/5 and tan=-3/4.
 close((3/5)**2+(-4/5)**2,1);close((3/5)/(-4/5),-3/4);
-console.log('PASS: M02 Lang-foundation follow-up — 24 sessions/48 tasks; Pythagorean coordinate derivation, real-exponential law, AP pairing, special triangles, addition identities and three-way system geometry pinned; R01/R04/R05/R07 protections retained.');
+console.log('PASS: M02 Lang final stitch — 24 sessions/48 tasks; S04 cites owned M01 system classification; S22 rigid-rotation lemma and non-cloned guided sine-difference reconstruction pinned; prior Lang/R01–R08 protections retained.');
