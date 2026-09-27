@@ -11,12 +11,12 @@
     "course/t22/generated/eval-m01-001-005.json": "b3f93989368259f3898728399e153f8ec3570021f8ef743ffa6c64b31f581575",
     "course/t22/authoring/m06.json": "65badb40514aa55c483175c673facfaa21fedce04057b9a8dbe7295008ba93cc",
     "course/t22/authoring/m05.json": "117751c09d0b0d32528674740cb79227fa4b5db57df530f58095c86dc0e6f513",
-    "course/t22/authoring/m03.json": "cecd34722e4521220b93900fa72d85ccf726fced729e19a010dff07bb1181e22",
+    "course/t22/authoring/m03.json": "f5fa478d182b8e65faa0d9a237642c5d21d1f5741667399dacde378ee50d2467",
     "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
     "course/t22/authoring/m04.json": "56c0352b072761323b51e0857fefa46cb703468229fdb4cabb09e401556527e2",
-    "course/t22/authoring/m02.json": "e95ac278addb98f7effd1f5c4a28eb2cd103b12555ace3459e4525d398d3a7ee",
+    "course/t22/authoring/m02.json": "017c5bd11afce9bbd7b9889f2d6a7540dce97f2b703ea35d07219c891a3756ba",
     "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
-    "course/t22/authoring/m01-repairs-1.1.json": "744b7fd03e7937791c1ca355d56c136c49856fb7ee823d766b7d1219eb012dc1"
+    "course/t22/authoring/m01-repairs-1.1.json": "a2efe7697dc4bbaf163ac81ef40f2c69d25831cda9c5c07a994f8d61d326cc19"
   },
   "authorizedM07Retrofit": {
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
@@ -41,5 +41,10 @@
     "base": "15e2e54fe1a05c442f008da134048231092f6ff5",
     "branch": "codex/t22-lang-foundation-followup",
     "scope": "L01–L10 only: prerequisite provenance/depth. M01 structural-law/readiness/system instruction; M02 coordinate/Pythagorean, real exponential, AP pairing, special triangles, angle-addition identities and system geometry; M03 binomial theorem; M10 consumer-edge repair. No architecture expansion."
+  },
+  "authorizedLangFoundationFinalStitch": {
+    "base": "60d0e9377ca49f5ee43de6c141c4368d557cd3ee",
+    "branch": "codex/t22-lang-foundation-final-stitch",
+    "scope": "LF-R01–R06 only: M03 general binomial ownership/evidence + restored choose-then-order bridge; M01 S13 one/no/infinite ownership/evidence; M02 S22 proof closure/guided separation and S04 owner citation. Architecture unchanged."
   }
 }
