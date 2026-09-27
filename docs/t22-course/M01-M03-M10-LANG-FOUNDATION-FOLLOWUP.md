@@ -7,7 +7,7 @@ Base head: `15e2e54fe1a05c442f008da134048231092f6ff5`
 
 ## Status
 
-**BOUNDED FOUNDATION REPAIR IMPLEMENTED; FULL WORKFLOW + INDEPENDENT RECONFIRMATION PENDING.**
+**BOUNDED FOUNDATION REPAIR IMPLEMENTED + FULL EXACT-HEAD WORKFLOW GREEN; INDEPENDENT RECONFIRMATION PENDING.**
 
 This follow-up does not rebuild M01 or M02. M01 remains 17 sessions; M02 remains 24 sessions. It repairs false or too-shallow prerequisite provenance exposed by a Lang-grounded end-to-end audit, plus the downstream M03/M10 edges that actually consume those prerequisites.
 
@@ -124,6 +124,27 @@ The shared representation renderer now supports authored geometric line segments
 - M10-S10/S16/S20 visible owner links;
 - the 17-item M01 readiness router.
 
+## Exact-head implementation validation
+
+Implementation head: `60d0e9377ca49f5ee43de6c141c4368d557cd3ee`  
+T22 Elite workflow: run `36309623039`, job `108592921204` — **SUCCESS**
+
+The inspected logs confirm:
+
+- **M01 Lang-foundation PASS:** 17 sessions / 34 tasks; structural-law spine, one/no/infinite systems and the 17-item routing diagnostic are pinned; earlier R02/R03/R06/R08 protections remain.
+- **M02 Lang-foundation PASS:** 24 sessions / 48 tasks; Pythagorean coordinate derivation, positive-base real-exponential law, arithmetic-sum pairing, special-triangle derivations, angle-addition identities and three-way system geometry are pinned; earlier R01/R04/R05/R07 protections remain.
+- **M03 Lang-foundation PASS:** 30 sessions / 60 tasks / 150 ownership claims; S26 finite binomial theorem ownership and explicit `(x+y)^4` evidence are pinned; earlier Astra repairs remain.
+- **M10 and all later standing gates PASS:** the derivative module still passes its semantic/evidence and independent-math suites with the repaired upstream provenance, and the later M11–M15 protections remain green.
+- **Real Chromium PASS:** 17-item readiness; S03 coordinate-right-triangle rendering; S04 one/no/infinite system geometry; S21 special triangles; S12 real-exponential-law public evidence; S22 angle-addition public evidence; M03-S26 binomial evidence; M10-S10/S16/S20 visible upstream-owner links; shared evidence, save/reveal/review, export/import, historical provenance, corrupt-storage safety and mobile width.
+
+Useful red runs before the green head were treated as findings rather than bypassed:
+
+- run 557 caught loss of the explicit `cos45°=sin45°=√2/2` invariant during the deeper S21 triangle derivation; the statement was restored and the guard remained strict;
+- run 558 required S04 to state the literal category “no solution” rather than only “one, no or infinitely many solutions”;
+- runs 559–560 exposed historical M03 handoff/repair gates pinned to the old instruction-version/status strings; the old review history was preserved while the new S26 stitch was recorded explicitly.
+
+This is builder verification, **not** independent reconfirmation.
+
 ## Boundaries preserved
 
 - M01: 17 sessions
@@ -136,6 +157,6 @@ The shared representation renderer now supports authored geometric line segments
 - no rank/determinant theory added to systems
 - no new M10 assessment ownership added
 
-Correct status until workflow + independent review complete:
+Correct status until independent review completes:
 
 **Lang-foundation L01–L10 repaired; independent reconfirmation pending.**
