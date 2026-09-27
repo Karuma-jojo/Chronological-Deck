@@ -1,3 +1,11 @@
+# Current M15 review candidate — 2026-09-27
+
+M15 · `SIDE278` has completed builder recovery and full v1.2 verification on isolated branch `codex/t22-m15-review-candidate`. Canonical implementation commit `3f5943024691501ff1678c9222cb1c6ac01d4203`; exact tested head `bb62dac23871496bb1f51626f5f3cfd4d14c2274`. Full T22 Elite run [36290674513](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36290674513), job `108540011754`, **SUCCESS**, including structural/semantic guards, independent M15 math oracles and real Chromium browser validation of 304 M15 learner surfaces. Structure: 16 sessions / 32 fixed tasks / 48 ownership claims. M15 remains outside the persisted M01–M14 learner registry. **Next action: independent adversarial review of M15 only. No publication, main merge or M16.**
+
+See `M15-DESIGN-GATE.md`, `M15-PILOT-REVIEW.md`, `M15-RESOLUTION.md`, `M15-VERIFICATION.md` and `M15-REVIEW-HANDOFF.md`.
+
+---
+
 # M09 publication — current receipt
 
 See `M09-BOUNDARY.md`, `M09-VERIFICATION.md`, `M09-REVIEW-HANDOFF.md` and the authoritative recovery entry in `docs/t22-rebuild/RUN-LOG.md`.

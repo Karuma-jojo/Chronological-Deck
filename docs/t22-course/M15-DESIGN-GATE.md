@@ -1,10 +1,11 @@
 # T22 Elite M15 / SIDE278 — pre-authoring design gate
 
-Status: **Gates 0–3 revalidated after recovery cleanup; the existing S01–S16 draft is being re-audited sequentially through Gates 4–8. M15 remains unpublished and outside the learner route.**  
+Status: **Builder recovery and Gates 0–11 complete on the isolated M15 review candidate; ready for independent adversarial review. M15 remains unpublished and outside the learner route.**  
 Date: 2026-09-26  
 Recovered authoritative base: `bcb86a1a6ee6ab141a884c819cde07f5e41491c5`.
+Review branch: `codex/t22-m15-review-candidate`; tested implementation head: `bb62dac23871496bb1f51626f5f3cfd4d14c2274`.
 
-This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M15 · SIDE278 · Orthogonality, Projection & Least Squares Geometry**. It is a planning and pilot gate, not an acceptance record. Recovery note: an earlier stalled run scaled the draft after the pilot before completing the required sequential Gate-4–8 checks. The authored material is therefore treated as an existing draft under repair, not as evidence that those gates passed.
+This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M15 · SIDE278 · Orthogonality, Projection & Least Squares Geometry**. It remains the planning/design record, not an acceptance record. Final builder verification is recorded in `M15-VERIFICATION.md`; independent review is still required. Recovery note: an earlier stalled run scaled the draft after the pilot before completing the required sequential Gate-4–8 checks. The authored material is therefore treated as an existing draft under repair, not as evidence that those gates passed.
 
 ## 0. Recovery receipt
 

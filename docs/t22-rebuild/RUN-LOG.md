@@ -1,3 +1,11 @@
+# Current M15 builder-recovery closure — 2026-09-27
+
+The initial M15 run stalled and scaled the draft beyond the intended sequential Gate-4–8 cadence. The existing draft was recovered rather than discarded. Recovery repaired cross-session solved-instance reuse, re-audited all 48 literal claim observers, corrected evidence-distance labels and theorem dependency order, hardened the source/pedagogy dossier and added independent structural/math/browser guards.
+
+Isolated review branch: `codex/t22-m15-review-candidate`. Exact tested head `bb62dac23871496bb1f51626f5f3cfd4d14c2274`; T22 Elite run `36290674513`, job `108540011754`, **SUCCESS**, including Chromium. M15 is **builder verified, not independently accepted**, and remains unpublished/outside the learner registry. Next action: independent M15 adversarial review only.
+
+---
+
 # Current M07 v1.1 retrospective repair — 2026-09-24
 
 User explicitly authorized repair of M07 after identifying that the original module was not constructed with the later stepwise methodology. Recovered branch head before retrofit: `546103699478051ba58b82475a11156e3bed3ae9`; full T22 workflow `36017308549` was green there. Retrospective design gate committed at `239d1e24bb6d793b1116cda29deb15ae77b451f8`.
