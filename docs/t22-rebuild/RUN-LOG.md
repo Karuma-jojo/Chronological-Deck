@@ -1,3 +1,8 @@
+# Current M15 independent follow-up PASS / provenance-only correction — 2026-09-27
+
+R01–R04 have passed bounded independent follow-up; the 16-session architecture and all learner-facing mathematics/tasks remain untouched. Current correction is Gate-10/12 metadata only: claim-observer provenance is corrected to 35 Main-only / 11 Transfer-only / 2 both (with all six S14/S15 claims still Main-observed), Strang §4.4 is consistently pp.231–243, and stale verification/follow-up-pending strings are removed. Runs #552 and #556 were already full SUCCESS checkpoints. Final action before any independent-acceptance/publication transition is a tiny diff/read-back confirmation of this provenance patch.
+
+---
 # Current M15 independent-review bounded repair — 2026-09-27
 
 R01–R04 from the independent review of `aa01b191...` are implemented without rebuilding the 16-session architecture. S10 now avoids row-rank theory; S11 avoids premature product-transpose algebra; S12 proves the needed transpose identities before use. S14-T/S15-T are versioned to `@2` with genuinely changed reasoning surfaces. Exact repaired head `3d0cade34f3c43df5927a808fb82d77c189c89ee`; full run `36303833184` / #552 / job `108576459161`: **SUCCESS**, including Chromium.
