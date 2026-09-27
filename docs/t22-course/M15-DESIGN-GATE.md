@@ -1,6 +1,6 @@
 # T22 Elite M15 / SIDE278 — pre-authoring design gate
 
-Status: **Independent review R01–R04 repaired; exact-head Gates 5–11 verification is green; bounded independent follow-up required. M15 remains unpublished and outside the learner route.**  
+Status: **Independent follow-up R01–R04 PASS; mathematical/pedagogical repair is closed. Provenance correction awaits final read-back confirmation. M15 remains unpublished and outside the learner route.**  
 Date: 2026-09-26  
 Recovered authoritative base: `bcb86a1a6ee6ab141a884c819cde07f5e41491c5`.
 Review branch: `codex/t22-m15-review-candidate`; current repaired implementation head: `3d0cade34f3c43df5927a808fb82d77c189c89ee`; full run #552 / `36303833184` SUCCESS.
@@ -110,7 +110,7 @@ Access/recheck date for public web sources: **27 September 2026**. The user-supp
 
 ### Gilbert Strang, *Introduction to Linear Algebra*, 4th ed. — user-supplied scan
 **Type / epistemic role:** user-supplied deep first-course textbook comparator.  
-**Specific material inspected:** Chapter 4 **Orthogonality** in the supplied scan: §4.1 *Orthogonality of the Four Subspaces* pp.196–206, §4.2 *Projections* pp.207–218, §4.3 *Least Squares Approximations* pp.219–230, §4.4 *Orthogonal Bases and Gram-Schmidt* pp.231–244 (PDF pages 199–246 in the supplied file).  
+**Specific material inspected:** Chapter 4 **Orthogonality** in the supplied scan: §4.1 *Orthogonality of the Four Subspaces* pp.196–206, §4.2 *Projections* pp.207–218, §4.3 *Least Squares Approximations* pp.219–230, §4.4 *Orthogonal Bases and Gram-Schmidt* pp.231–243 (PDF pages 199–246 in the supplied file).  
 **Supports:** complement/decomposition geometry; line/subspace projection from perpendicular residuals; projection as nearest attainable point; least squares as projection onto the column space; normal equations from residual orthogonality; Gram–Schmidt as repeated projection subtraction.  
 **Limit / deliberately not imported:** Strang also develops the four-subspace picture broadly and continues Gram–Schmidt into `A=QR`. T22 keeps named QR in M17; no Strang exercise or solved instance is copied into fixed T22 tasks.
 
