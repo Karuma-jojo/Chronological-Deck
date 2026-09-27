@@ -62,7 +62,7 @@ M03 explicitly does **not** own:
 23. Addition & product counting principles  
 24. Permutations, factorials & ordered selections  
 25. Permutations with repeated objects & multinomial grouping  
-26. Combinations, binomial coefficients & subsets  
+26. Combinations, binomial coefficients, subsets & finite binomial expansion  
 27. Stars-and-bars: combinations with repetition  
 28. Complement counting & inclusion-exclusion  
 29. Pigeonhole principle  
