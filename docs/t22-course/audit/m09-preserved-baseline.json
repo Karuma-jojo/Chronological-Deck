@@ -11,12 +11,12 @@
     "course/t22/generated/eval-m01-001-005.json": "b3f93989368259f3898728399e153f8ec3570021f8ef743ffa6c64b31f581575",
     "course/t22/authoring/m06.json": "65badb40514aa55c483175c673facfaa21fedce04057b9a8dbe7295008ba93cc",
     "course/t22/authoring/m05.json": "117751c09d0b0d32528674740cb79227fa4b5db57df530f58095c86dc0e6f513",
-    "course/t22/authoring/m03.json": "a3af5537582fd8a2ca3973267aa0cfec4c768613bf79f43e6ca1fb76431ca283",
+    "course/t22/authoring/m03.json": "cecd34722e4521220b93900fa72d85ccf726fced729e19a010dff07bb1181e22",
     "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
     "course/t22/authoring/m04.json": "56c0352b072761323b51e0857fefa46cb703468229fdb4cabb09e401556527e2",
-    "course/t22/authoring/m02.json": "19f6e6214b3871bb4212f57405ed7c1e11f68acd2fa9840dc25636cc91870458",
+    "course/t22/authoring/m02.json": "40c292af05249506c11b28c7412b8a6fac6152b7b8974ac7a0387c5d5785b189",
     "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
-    "course/t22/authoring/m01-repairs-1.1.json": "ec37adaef838319ee67067e8c6583a105c25e118f5fdd0dd59a24941c1881e08"
+    "course/t22/authoring/m01-repairs-1.1.json": "fcfa8eec9c6d75b35b59e06496bfefe9f7737e86762be392c582f42d26b1c3e8"
   },
   "authorizedM07Retrofit": {
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
@@ -36,5 +36,10 @@
     "base": "cb4240fb34c28826182e838aae9943d1bd406f15",
     "branch": "codex/t22-m01-m02-v12-followup",
     "scope": "Independent-review findings R01–R08 only: semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain check, and interval-ray rendering. No M03+ curriculum redesign."
+  },
+  "authorizedLangFoundationFollowup": {
+    "base": "15e2e54fe1a05c442f008da134048231092f6ff5",
+    "branch": "codex/t22-lang-foundation-followup",
+    "scope": "L01–L10 only: prerequisite provenance/depth. M01 structural-law/readiness/system instruction; M02 coordinate/Pythagorean, real exponential, AP pairing, special triangles, angle-addition identities and system geometry; M03 binomial theorem; M10 consumer-edge repair. No architecture expansion."
   }
 }
