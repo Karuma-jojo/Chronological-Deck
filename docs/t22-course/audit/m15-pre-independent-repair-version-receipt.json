@@ -1,0 +1,35 @@
+{
+  "module": "M15 / SIDE278",
+  "reviewedHead": "aa01b1914fd69709919651f14e27487cef7fbbe6",
+  "branch": "codex/t22-m15-review-candidate",
+  "capturedBeforeRepair": true,
+  "candidateVersion": "m15-side278-v1-candidate",
+  "instructionVersion": "m15-side278-instruction-v1",
+  "learnerRegistryStatus": "M15 unpublished; persisted learner registry M01–M14 only",
+  "sessionContractHashes": {
+    "T22V3::SIDE278::S10@1": "685c014846cfb534999c7c7f2f9030de616e81d6b10c795b94e686e1924f953d",
+    "T22V3::SIDE278::S11@1": "252abe2e0d439e17e77f2ec29a08cb9a7b54c3cc1355cec1799fab428abaf01f",
+    "T22V3::SIDE278::S12@1": "c7633676530b35e20f770a467562d95017275ec8c47937b8767907b0e41e674a",
+    "T22V3::SIDE278::S14@1": "bfc7a94ffd1c9cafee2510d5a4f5ea2e93b415b45ff1b350f834e1b358f570b9",
+    "T22V3::SIDE278::S15@1": "23a6fb64f5037ec5f559bcc3b3c3cae8713bc1b21e43510b2f7b96f7b681c513"
+  },
+  "changedAssessmentCandidates": {
+    "T22V3::SIDE278::S14-T@1": {
+      "obligationVersion": 1,
+      "fingerprint": "dd5989a4fede38058a34370aa3f9f9352190c4a443a8b64519a91ec8c359c3c6",
+      "reasonForPlannedVersioning": "Independent review R03 found the stored changed-surface Transfer classification false; task will be replaced with a materially different rank-deficiency/audit surface."
+    },
+    "T22V3::SIDE278::S15-T@1": {
+      "obligationVersion": 1,
+      "fingerprint": "e4af27832cf49a73d1359c5d7e230f7246ab9901354b7438f07829f7b61603d4",
+      "reasonForPlannedVersioning": "Independent review R04 found the stored changed-surface Transfer classification false; task will be replaced with reverse-direction residual reconstruction/diagnosis."
+    }
+  },
+  "instructionOnlyRepairCandidates": [
+    "S10 complement-dimension support proof",
+    "S11 full-column-rank Gram proof route",
+    "S12 product-transpose and inverse-transpose derivation"
+  ],
+  "evidenceDisposition": "No real M15 learner evidence exists because M15 has never been in the persisted learner registry. Versioning is nevertheless used for changed reviewed fixed obligations to preserve review/provenance history.",
+  "reviewerDisposition": "Independent adversarial review completed; bounded repairs required; unpublished."
+}
