@@ -7,7 +7,7 @@
 - Exact repaired implementation head: `3d0cade34f3c43df5927a808fb82d77c189c89ee`
 - Full Actions: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36303833184
 - Run #552 · job `108576459161` · **SUCCESS**
-- Current canonical status: **independent-review-repaired-awaiting-followup-unpublished**
+- Current canonical status: **independent-followup-passed-provenance-confirmation-pending-unpublished**
 
 This handoff is documentation written after that successful implementation run. Its later documentation SHA must not be substituted for the implementation SHA above.
 
@@ -67,7 +67,7 @@ Expected residual: `(2,-3,1)`.
 - `S14-T@1` and `S15-T@1` are no longer current;
 - current replacements are @2 / obligationVersion 2;
 - pre-repair fingerprints are preserved in `audit/m15-pre-independent-repair-version-receipt.json`;
-- 48 ownership claims remain Main-observed rather than being remapped cosmetically;
+- all 48 ownership claims are textually unchanged from `aa01b191...`; their ledger distribution is 35 Main-only / 11 Transfer-only / 2 both, and specifically all six S14/S15 claims remain Main-observed rather than being remapped cosmetically to the @2 Transfers;
 - M15 remains absent from the persisted learner registry.
 
 ## Low-severity cleanup
@@ -92,12 +92,10 @@ Exact repaired head passed:
 The repairer does **not** independently accept M15.
 
 Current disposition:
-> **Independent adversarial review → bounded repairs implemented and exact-head green → independent follow-up requested → unpublished.**
+> **Independent adversarial review → bounded repairs implemented and exact-head green → R01–R04 independent follow-up PASS → metadata/provenance confirmation pending → unpublished.**
 
 ## Stop boundary
 
-Please return either:
-1. concrete remaining R01–R04 findings with exact locations; or
-2. explicit bounded follow-up acceptance of the repaired M15 candidate.
+Please perform only a bounded diff/read-back confirmation that the provenance/canonical corrections are factual and that no learner content changed. The mathematical/pedagogical R01–R04 follow-up has already passed.
 
 Do not publish, merge to main, open M16, or infer learner mastery.
