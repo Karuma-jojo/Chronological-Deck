@@ -128,7 +128,7 @@ try{
  for(const n of [1,2,3,4,5,6,14,15,16]){
   await rp.selectOption('#session',String(n));await rp.click('#note');assert((await rp.locator('#learningRepresentations .representation').count())>=1,`M01 S${n} representation missing`);
  }
- await rp.selectOption('#session','14');await rp.click('#transferTask');assert.equal(await rp.locator('#problemRepresentations .representation').count(),1);assert((await rp.locator('#problemRepresentations svg').getAttribute('aria-label'))?.length>0);assert((await rp.locator('#problem').textContent()).includes('supplied number-line figure'));
+ await rp.selectOption('#session','14');await rp.click('#transferTask');assert.equal(await rp.locator('#problemRepresentations .representation').count(),1);assert((await rp.locator('#problemRepresentations svg').getAttribute('aria-label'))?.length>0);assert((await rp.locator('#problem').textContent()).includes('supplied number-line figure'));assert.equal(await rp.locator('#problemRepresentations .repr-interval-arrow').count(),1,'R08 assessed infinite ray must render its own continuation arrow');
  await rp.selectOption('#module','T22E-FND02');
  for(const n of [1,3,4,5,6,8,9,10,12,13,17,21,23]){
   await rp.selectOption('#session',String(n));await rp.click('#note');assert((await rp.locator('#learningRepresentations .representation').count())>=1,`M02 S${n} representation missing`);
@@ -136,8 +136,8 @@ try{
  for(const n of [3,6,9,10,23,24]){
   await rp.selectOption('#session',String(n));await rp.click('#transferTask');assert((await rp.locator('#problemRepresentations .representation').count())>=1,`M02 S${n} assessed representation missing`);
  }
- await rp.selectOption('#session','23');await rp.click('#transferTask');assert((await rp.locator('#problemRepresentations .repr-curve').count())>=1);assert((await rp.locator('#problemRepresentations .repr-axis').count())>=2);
- await rp.selectOption('#session','24');await rp.click('#transferTask');assert.equal(await rp.locator('#problemRepresentations table').count(),1);assert((await rp.locator('#problem').textContent()).includes('Choose the compatible family'));
+ await rp.selectOption('#session','21');await rp.click('#transferTask');assert((await rp.locator('#problem').textContent()).includes('7π/6 radians to degrees'),'R04 reverse conversion must be public');await rp.selectOption('#session','23');await rp.click('#transferTask');assert((await rp.locator('#problemRepresentations .repr-curve').count())>=1);assert((await rp.locator('#problemRepresentations .repr-axis').count())>=2);const s23Prompt=await rp.locator('#problem').textContent();assert(s23Prompt.includes('Using only the supplied graph'));assert(!s23Prompt.includes('y=−3cos(2x)+4'),'R01 graph-reading prompt must not leak graph formula');
+ await rp.selectOption('#session','24');await rp.click('#transferTask');assert.equal(await rp.locator('#problemRepresentations table').count(),1);const s24Prompt=await rp.locator('#problem').textContent();assert(s24Prompt.includes('Choose the compatible family'));assert(s24Prompt.includes("natural real domain"),'R05 S24 domain check must be learner-visible');
  assert(await rp.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'representation retrofit must not create mobile horizontal overflow');
  await reprCtx.close();
  await runRepairBrowserChecks(browser,base);
@@ -157,6 +157,6 @@ try{
  // Corrupt local evidence remains untouched instead of silently resetting.
  const corrupt=await browser.newContext();await corrupt.addInitScript(()=>localStorage.setItem('chrono_t22_elite_course_evidence_v1','{broken'));const cp=await corrupt.newPage();await cp.goto(base+'/t22-course.html');await cp.waitForSelector('#session option',{state:'attached'});assert((await cp.locator('#status').textContent()).includes('not been overwritten'));assert.equal(await cp.evaluate(()=>localStorage.getItem('chrono_t22_elite_course_evidence_v1')),'{broken');await corrupt.close();
  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);
- console.log('PASS browser: M01/M02 v1.2 readiness + rendered representation traversal; M01+M02+M03+M04+M05+M06+M07+M08 module scoping; M02/M03/M04/M05/M06/M07 unsaved draft + assistance provenance; shared evidence preservation; M02/M03/M04/M05/M06/M07/M08 save-reveal-review; M03 timestamp-aware historical lesson migration; twelve-module export/import; packet exposure through M08; A-07 current/legacy behavior; fresh probe; corrupt-storage preservation; mobile width.');
+ console.log('PASS browser: M01/M02 v1.2 follow-up R01/R04/R05/R08 surfaces + readiness/rendered representation traversal; M01+M02+M03+M04+M05+M06+M07+M08 module scoping; M02/M03/M04/M05/M06/M07 unsaved draft + assistance provenance; shared evidence preservation; M02/M03/M04/M05/M06/M07/M08 save-reveal-review; M03 timestamp-aware historical lesson migration; twelve-module export/import; packet exposure through M08; A-07 current/legacy behavior; fresh probe; corrupt-storage preservation; mobile width.');
  await context.close();
 }finally{await browser?.close();await new Promise(r=>server.close(r));}
