@@ -58,7 +58,7 @@
     "docs/t22-course/M10-DESIGN-GATE.md": "211527550a139804cc7b6257ec987e05a2d5ceed",
     "docs/t22-course/M10-RESOLUTION.md": "68cca54d58f76de42b2d7095c3450001a3ffd957",
     "docs/t22-course/M10-REVIEW-HANDOFF.md": "42f3c31569c242ba2bc8cb1108e61fe64d18306c",
-    "docs/t22-course/audit/m02-review-checks.mjs": "c8b5a2eccdcd76a03affd2119f3e8ea13e3f0910",
+    "docs/t22-course/audit/m02-review-checks.mjs": "8c51663be219aff91181c1a60d46bf0946931a4b",
     "docs/t22-course/audit/m03-handoff-checks.mjs": "bddd8fc633c6438c6de546d871f3de70967580a0",
     "docs/t22-course/audit/m03-independent-math.mjs": "af03889cdff59867d1fdb8eff0891439cc9ce7ff",
     "docs/t22-course/audit/m03-repair-checks.mjs": "867aa9c4c9ac1b376969fdfe4b056e6c7e433f41",
@@ -137,6 +137,7 @@
   },
   "authorizedM01M02V12Retrofit": {
     "throughCommit": "e1406d951c69c99930a97840b544b388e819aeb5",
-    "reason": "Explicit user-authorized retrospective M01/M02 v1.2 repair; 17+24 session architecture and stable IDs preserved. Re-pin only the two changed upstream curriculum blobs; all other protected curriculum files remain unchanged."
+    "reason": "Explicit user-authorized retrospective M01/M02 v1.2 repair; 17+24 session architecture and stable IDs preserved. Re-pin only the two changed upstream curriculum blobs; all other protected curriculum files remain unchanged.",
+    "relatedTestHarness": "docs/t22-course/audit/m02-review-checks.mjs was minimally adapted to the new shared representation-render call in the M01/M02 learner UI; curriculum semantics remain guarded by the dedicated M02 checks."
   }
 }
