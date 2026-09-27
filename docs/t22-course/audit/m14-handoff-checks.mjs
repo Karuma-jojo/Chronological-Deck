@@ -82,11 +82,19 @@ assert(a.publication?.status==='published','canonical publication receipt missin
 assert.equal(a.publication?.roadmapAvailability,'authored');
 assert.equal(a.publication?.semanticStatus,'accepted');
 
-const authoringNames=fs.readdirSync('course/t22/authoring');
-assert(!authoringNames.some(x=>/^m15(?:[-.])/i.test(x)),'M15 authoring opened during M14 publication');
+const m15Path='course/t22/authoring/m15-side278.json';
+if(fs.existsSync(m15Path)){
+  const m15=read(m15Path);
+  assert.equal(m15.module?.id,'SIDE278','later M15 authoring pack has unexpected module id');
+  assert.match(m15.module?.status||'',/unpublished|candidate/i,'later M15 pack must remain unpublished while M14 is the learner frontier');
+  assert.equal(m15.publication?.status,'unpublished','later M15 candidate leaked publication state');
+  assert(!meta.moduleSources.some(x=>x.id==='SIDE278'),'later M15 candidate leaked into M14 learner registry');
+  assert.equal(roadmap.modules.find(x=>x.id==='SIDE278')?.availability,'planned','later M15 candidate must not rewrite published M14-era roadmap frontier');
+  assert.notEqual(semantic.entries.find(x=>x.id==='SIDE278')?.semanticStatus,'accepted','later M15 candidate must not self-accept before review');
+}
 
 assert(fs.existsSync('docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json'));
 assert(fs.existsSync('docs/t22-course/audit/m14-followup-pre-fu-repair-version-receipt.json'));
 assert(fs.existsSync('scripts/test-t22-elite-m14-browser.mjs'));
 
-console.log('PASS M14 publication state: SIDE276 is the authored/accepted module-14 learner frontier; 19 sessions, 38 tasks, 60 claims, 38 separation rows, 21 decision audits and 16/16 misconception coverage are preserved; M15 remains closed.');
+console.log('PASS M14 publication state: SIDE276 remains the authored/accepted module-14 learner frontier; 19 sessions, 38 tasks, 60 claims, 38 separation rows, 21 decision audits and 16/16 misconception coverage are preserved; any later M15 pack is allowed only while unpublished and outside the learner registry.');
