@@ -5,9 +5,9 @@
     "order": 15,
     "id": "SIDE278",
     "title": "Orthogonality, Projection & Least Squares Geometry",
-    "status": "independent-review-repaired-awaiting-followup-unpublished",
+    "status": "independent-followup-passed-provenance-confirmation-pending-unpublished",
     "destination": "Work in finite-dimensional real Euclidean coordinate spaces to construct orthonormal coordinates and orthogonal complements, derive orthogonal projections and nearest-point geometry, execute Gram–Schmidt with dependence/order diagnostics, derive the transpose bridge and normal equations, and solve exact Euclidean least-squares problems while separating fitted-vector uniqueness from coefficient uniqueness.",
-    "gate": "Sixteen design-derived sessions and 32 current fixed assessments are complete under the T22 v1.2 protocol. Independent review R01–R04 has been repaired on the bounded review branch; exact-head verification and independent follow-up are required before any acceptance or publication. M15 remains outside the persisted learner registry.",
+    "gate": "Sixteen design-derived sessions and 32 current fixed assessments are complete under the T22 v1.2 protocol. Independent follow-up has confirmed R01–R04 repaired. Exact-head verification is complete on the repaired implementation and documentation checkpoints (runs #552 and #556); this metadata-only provenance correction now awaits final read-back confirmation before any independent-acceptance or publication transition. M15 remains outside the persisted learner registry.",
     "nextBoundary": "M16/SIDE279 owns eigenstructure independently from M14; M17/SIDE280 owns PSD/quadratic forms, named QR/Cholesky/SVD and pseudoinverse; M23 owns numerical conditioning/stable algorithms; M36 owns statistical regression."
   },
   "boundary": {
@@ -3747,7 +3747,7 @@
         "reason": "R04: irregular-grid forward replay replaced by reverse residual-orthogonality reconstruction and fit audit"
       }
     ],
-    "unchangedOwnershipClaims": "All 48 ownership claims remain Main-observed; no claim is remapped merely to make the new Transfers look useful.",
+    "unchangedOwnershipClaims": "All 48 ownership claims are textually unchanged from the independently reviewed aa01b1914fd69709919651f14e27487cef7fbbe6 state. Ledger distribution is 35 Main-only, 11 Transfer-only, and 2 observed by both. The six S14/S15 ownership claims remain Main-observed and were not cosmetically remapped to the new @2 Transfers.",
     "learnerEvidenceDisposition": "M15 is unpublished and absent from the learner registry, so no real M15 attempts exist to migrate. @2 versioning preserves independent-review provenance and prevents silent recertification of the reviewed @1 obligations."
   },
   "publication": {
@@ -3756,7 +3756,7 @@
     "authorization": "independent adversarial review and explicit publication authorization are required; no learner publication is authorized"
   },
   "followupRepair": {
-    "status": "independent-review bounded repair applied; exact-head verification and independent follow-up pending",
+    "status": "R01–R04 independently confirmed repaired; exact-head verification complete on runs #552 and #556; provenance/canonical metadata correction applied; final read-back confirmation pending; unpublished",
     "reason": "The first post-stall Gate-8 whole-module scan found cross-session solved-instance reuse that the draft ledger had missed.",
     "repairedTasks": [
       "T22V3::SIDE278::S06-M@1",
