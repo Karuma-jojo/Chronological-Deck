@@ -5,8 +5,8 @@
   "purpose": "Executable guard for M11-era preservation. It retains the explicitly authorized M07 v1.1 retrofit and M12-era validator-only M10 ledger repair, and now pins the exact M14-era shared CSS wrapping repair discovered by the unpublished M14 Chromium probe. The CSS change only adds overflow wrapping/min-width behavior to learner text/problem surfaces; all preserved M01–M11 curriculum blobs remain pinned.",
   "fileCount": 100,
   "files": {
-    "course/t22/authoring/m01-repairs-1.1.json": "3cab22aa97d265b71fa6dd4f44e898a4ffda758b",
-    "course/t22/authoring/m02.json": "a916d26fdcced406281561c0235dd6c1abd3204a",
+    "course/t22/authoring/m01-repairs-1.1.json": "2dafb9541468a5c4428ea8e4d02fb9fb623b9dc8",
+    "course/t22/authoring/m02.json": "307f1c5b07f3dc87ee498ee2d731fdf9012b75c6",
     "course/t22/authoring/m03.json": "23c2453d7b223a0fcff182eedc2b021a1864e736",
     "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
     "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
@@ -16,7 +16,7 @@
     "course/t22/authoring/m09.json": "7656609fb4ee448e03ef697e4cf29b733d965103",
     "course/t22/authoring/m10-arc053.json": "b5998f843fb07f59bad42ae715b475c51b1e51fe",
     "course/t22/generated/course-meta.json": "b477d42e502a0fadc5f64719a95988278e22bf78",
-    "css/t22-course.css": "868bd0ee2ec001867b1ed1c1e161aed6b6229805",
+    "css/t22-course.css": "319a7f8785f86b4163539f37323b84442076bb41",
     "docs/t22-course/M01-ACCEPTANCE.md": "43533caa53638b4c584663314485a8459114671b",
     "docs/t22-course/M02-ASTRA-RESOLUTION.md": "c371483a7b40571ef035985bff36f98c59105b36",
     "docs/t22-course/M02-ASTRA-REVIEW.md": "082bb4e41c0fa39a0e3f178a5bdcfc6a1a611a33",
@@ -91,8 +91,8 @@
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
     "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01",
-    "scripts/test-t22-elite-m01.mjs": "74d3032fa1513fb6daf077274d37fee2290d557b",
-    "scripts/test-t22-elite-m02.mjs": "800857d7b7dc84ea7934e0f74b8f974e3fc22c28",
+    "scripts/test-t22-elite-m01.mjs": "2f7330c730c11eabbecdda665af27f9c82ed5b97",
+    "scripts/test-t22-elite-m02.mjs": "a53d2a4c700929f1295c4c126b7ff4220ec7f718",
     "scripts/test-t22-elite-m03.mjs": "622aa845b5bc1ad4a696b27f278245eaef9d4632",
     "scripts/test-t22-elite-m04.mjs": "ebba1d1c2e4d07155af4e3329ddf51ff0465f628",
     "scripts/test-t22-elite-m05-m06-repairs.mjs": "09698eba2aa23c76f5f8bc6d3640bf1e8c277bad",
@@ -142,5 +142,10 @@
     "baselineChain": "M09/M10 preservation ledgers were re-pinned only for the same authorized M01/M02 retrofit; their other protected hashes remain unchanged.",
     "validatorGuards": "M01/M02 validators were deliberately strengthened to guard exact claim evidence, evidence-distance classes and literal learner-facing representations.",
     "closureDocumentation": "Historical M01 acceptance and M02 review-handoff were amended only with a current-status supplement pointing to the v1.2 retrofit resolution; earlier acceptance history remains intact."
+  },
+  "authorizedM01M02V12Followup": {
+    "base": "cb4240fb34c28826182e838aae9943d1bd406f15",
+    "branch": "codex/t22-m01-m02-v12-followup",
+    "scope": "Independent-review findings R01–R08 only: semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain check, and interval-ray rendering. No M03+ curriculum redesign."
   }
 }
