@@ -1,10 +1,10 @@
 {
-  "version": "m02-authoring-v12-lang-foundation-r4",
+  "version": "m02-authoring-v12-lang-foundation-r5",
   "module": {
     "order": 2,
     "id": "T22E-FND02",
     "title": "Quantitative Foundations II — Functions & Precalculus",
-    "status": "authored-v1.2-lang-foundation-repaired-awaiting-independent-reconfirmation",
+    "status": "authored-v1.2-lang-final-stitch-awaiting-independent-reconfirmation",
     "destination": "From reliable algebra, become fluent with functions as objects, legal domains/ranges, graphs and transformations, finite indexed models, exponential/logarithmic reasoning, log returns and the minimal trigonometry needed by later quantitative work.",
     "gate": "M02 is not cleared by page completion. Publication requires semantic ancestry, prerequisite-symbol audit, novice instruction, claim coverage, independent math/reference validation, evidence integrity and browser validation.",
     "nextBoundary": "M03 owns proof habits, logic, sets/maps and combinatorics. M09 owns limits, convergence and infinite-series arguments. M02 must not certify either family.",
@@ -1719,7 +1719,7 @@
         "Calculus"
       ],
       "exitCondition": "Recover an exact trig triple from partial/quadrant information and reconstruct/use one sine/cosine angle-addition identity.",
-      "lesson": "On the unit circle, cos is the x-coordinate and sin is the y-coordinate; tan=sin/cos where cos≠0. The radius-one equation gives sin²θ+cos²θ=1. The angle-addition formulas can be derived from the same coordinate geometry rather than memorized as a catalogue. Let P_A=(cosA,sinA) and P_B=(cosB,sinB) be unit-circle points. Their coordinate distance squared is (cosA−cosB)²+(sinA−sinB)²=2−2(cosA cosB+sinA sinB). The same chord subtends angle A−B, so by the unit-circle distance formula its squared length is2−2cos(A−B). Equating gives cos(A−B)=cosA cosB+sinA sinB. Replacing B by−B gives cos(A+B)=cosA cosB−sinA sinB. Using sinθ=cos(π/2−θ) then yields sin(A+B)=sinA cosB+cosA sinB and sin(A−B)=sinA cosB−cosA sinB. Worked example: cos(5π/12)=cos(π/4+π/6)=√6/4−√2/4. Guided check: reconstruct cos(A+B) from the difference formula by replacing B with−B, then compute sin(π/12)=sin(π/4−π/6) exactly.",
+      "lesson": "On the unit circle, cos is the x-coordinate and sin is the y-coordinate; tan=sin/cos where cos≠0. The radius-one equation gives sin²θ+cos²θ=1. The angle-addition formulas can be derived from the same coordinate geometry rather than memorized as a catalogue. Let P_A=(cosA,sinA) and P_B=(cosB,sinB) be unit-circle points. Their coordinate distance squared is (cosA−cosB)²+(sinA−sinB)²=2−2(cosA cosB+sinA sinB). Now rotate both points rigidly by angle −B. A rigid rotation preserves Euclidean distance, and it sends P_B to P_0=(1,0) and P_A to P_(A−B). Hence the same chord has squared length (cos(A−B)−1)²+sin²(A−B)=2−2cos(A−B). Equating the two distance expressions gives cos(A−B)=cosA cosB+sinA sinB. Replacing B by−B gives cos(A+B)=cosA cosB−sinA sinB. Using sinθ=cos(π/2−θ) then yields sin(A+B)=sinA cosB+cosA sinB and sin(A−B)=sinA cosB−cosA sinB. Worked example: cos(5π/12)=cos(π/4+π/6)=√6/4−√2/4. Guided check: start from the established sine-addition identity sin(A+B)=sinA cosB+cosA sinB, replace B by−B to derive sin(A−B), then compute sin(π/12)=sin(π/4−π/6) exactly. Do not rehearse the cosine-sum reconstruction used by the fixed Transfer.",
       "main": "T22V3::T22E-FND02::S22-M@1",
       "transfer": "T22V3::T22E-FND02::S22-T@1"
     },
@@ -4289,6 +4289,10 @@
         "source": "M02-S03 Pythagorean distance derivation"
       },
       {
+        "item": "rigid rotation preserves Euclidean distance",
+        "source": "JIT one-line geometric fact in S22 to identify the chord with angle difference A−B"
+      },
+      {
         "item": "cosine difference/sum and sine sum/difference identities",
         "source": "Derived explicitly in S22 before fixed-task evidence"
       }
@@ -4572,7 +4576,7 @@
     }
   },
   "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation. v1.2 retrofit: a graph-reading claim requires a rendered graph with usable axes/scale; changed task visuals are fingerprinted assessment content; retrieval remains honestly labeled retrieval rather than being inflated to Transfer. Independent follow-up R01–R08 is bounded to semantic observability, assessed-surface leakage, and representation hardening; no new syllabus or M03+ ownership. Lang-foundation follow-up replaces false/declarative prerequisites with explicit JIT derivations or owned prior capabilities: Pythagorean coordinate distance in S03, real-exponential laws in S12, arithmetic-sum pairing in S17, special-triangle derivations in S21, angle-addition identities in S22, and one/no/infinite system geometry in S04.",
-  "instructionVersion": "m02-instruction-v12-lang-foundation-r4",
+  "instructionVersion": "m02-instruction-v12-lang-foundation-r5",
   "claimEvidence": {
     "T22V3::T22E-FND02::S01@1": [
       {
@@ -5893,6 +5897,8 @@
     "L05": "S17 now literally derives the AP sum by forward/reverse pairing.",
     "L06": "S21 now literally derives 45° and30°/60° values from rendered right triangles.",
     "L08": "S04 renders one/no/infinite linear-system geometry, completing the M01-S13 algebra bridge.",
-    "L10": "S03 coordinate-plane/distance/midpoint development is now derived rather than formula-only."
+    "L10": "S03 coordinate-plane/distance/midpoint development is now derived rather than formula-only.",
+    "LF_R05": "S22 guided practice now reconstructs sine difference from sine addition; fixed Transfer independently reconstructs cosine sum from cosine difference, removing the ownership-critical immediate replay.",
+    "LF_R06": "S22 now explicitly closes the chord argument by rotating both unit-circle points by −B and stating that rigid rotation preserves Euclidean distance."
   }
 }
