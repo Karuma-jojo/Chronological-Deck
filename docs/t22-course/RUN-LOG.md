@@ -1,3 +1,8 @@
+# Current M15 bounded follow-up — provenance correction — 2026-09-27
+
+Independent bounded follow-up confirms **R01–R04 PASS** at reviewed head `3eb72ede248eed619f48d054bfb9328733094e8f`. No further learner-content, mathematics, task, rubric, architecture, reference-answer or obligation-version repair is required. A Gate-10/12 provenance contradiction was found: prior docs overclaimed that all 48 ownership claims were Main-observed. The actual unchanged ledger is **35 Main-only / 11 Transfer-only / 2 both**; all six S14/S15 claims remain Main-observed and were not remapped to the @2 Transfers. This patch also makes the design-gate Strang §4.4 locator consistently pp.231–243 and removes stale verification/follow-up-pending canonical wording. M15 remains unpublished; next check is provenance-only diff/read-back confirmation.
+
+---
 # Current M15 independent-review repair — 2026-09-27
 
 Independent review at `aa01b1914fd69709919651f14e27487cef7fbbe6` opened four bounded findings. R01/R02 support-theorem order is repaired in S10–S12; R03/R04 replace only S14-T and S15-T as `@2` / obligationVersion 2 changed-surface Transfers. Pre-repair fingerprints are preserved in `audit/m15-pre-independent-repair-version-receipt.json`. Exact repaired implementation head `3d0cade34f3c43df5927a808fb82d77c189c89ee` passed full T22 Elite run [36303833184](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36303833184), job `108576459161`, **SUCCESS**, including independent M15 math oracles, inherited regressions, Chromium and the 304-surface M15 browser workflow.
