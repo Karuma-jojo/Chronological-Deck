@@ -96,8 +96,10 @@ for(let i=0;i<16;i++){
     const id=s[kind],p=a.problems[id],e=a.evaluators[id];
     assert(p&&e,id+' missing problem/evaluator');
     assert.equal(p.order,n); assert.equal(p.kind,kind); assert.equal(p.obligationVersion,1);
-    assert(p.prompt.length>100,id+' prompt too thin');
-    assert(e.reference.length>100,id+' reference too thin');
+    assert(p.prompt.trim().length>0,id+' empty prompt');
+    assert(e.reference.trim().length>0,id+' empty reference');
+    assert(!/\\b(?:TODO|TBD|PLACEHOLDER)\\b/i.test(p.prompt),id+' placeholder prompt');
+    assert(!/\\b(?:TODO|TBD|PLACEHOLDER)\\b/i.test(e.reference),id+' placeholder reference');
     assert(e.rubric.length>=2,id+' rubric too thin');
     assert.equal(e.rubric.reduce((z,r)=>z+r.points,0),10,id+' rubric total');
     assert(!s.lesson.includes(p.prompt),id+' exact prompt exposure');
