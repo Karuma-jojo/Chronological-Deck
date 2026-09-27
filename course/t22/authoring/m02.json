@@ -1,14 +1,14 @@
 {
-  "version": "m02-authoring-v12-representation-r2",
+  "version": "m02-authoring-v12-followup-r3",
   "module": {
     "order": 2,
     "id": "T22E-FND02",
     "title": "Quantitative Foundations II — Functions & Precalculus",
-    "status": "authored-v1.2-retrofitted-awaiting-independent-confirmation",
+    "status": "authored-v1.2-followup-repaired-awaiting-independent-reconfirmation",
     "destination": "From reliable algebra, become fluent with functions as objects, legal domains/ranges, graphs and transformations, finite indexed models, exponential/logarithmic reasoning, log returns and the minimal trigonometry needed by later quantitative work.",
     "gate": "M02 is not cleared by page completion. Publication requires semantic ancestry, prerequisite-symbol audit, novice instruction, claim coverage, independent math/reference validation, evidence integrity and browser validation.",
     "nextBoundary": "M03 owns proof habits, logic, sets/maps and combinatorics. M09 owns limits, convergence and infinite-series arguments. M02 must not certify either family.",
-    "acceptance": "Earlier M02-01→04 repairs remain incorporated. The 2026-09-27 v1.2 retrofit preserves 24 sessions while adding actual representation use, changed-surface evidence, delayed retrieval and cross-module bridges; because fixed tasks changed, final independent follow-up is required before this retrofit is called accepted."
+    "acceptance": "Earlier M02-01→04 acceptance remains historical. The v1.2 retrofit follow-up repairs independent findings R01–R08 only; architecture remains 24 sessions and independent reconfirmation is required."
   },
   "boundary": {
     "prerequisiteModules": [
@@ -2028,8 +2028,8 @@
       "id": "T22V3::T22E-FND02::S21-T@1",
       "order": 21,
       "kind": "transfer",
-      "prompt": "Convert −45° to radians, give its unit-circle coordinates, and find the oriented arc displacement for radius10.",
-      "obligationVersion": 1
+      "prompt": "Convert −45° to radians. Separately convert 7π/6 radians to degrees. Give the unit-circle coordinates for −45°, and find the oriented arc displacement for radius10.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S22-M@1": {
       "id": "T22V3::T22E-FND02::S22-M@1",
@@ -2049,15 +2049,15 @@
       "id": "T22V3::T22E-FND02::S23-M@1",
       "order": 23,
       "kind": "main",
-      "prompt": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
-      "obligationVersion": 1
+      "prompt": "For y=2sin(4(x−π/6))+1, state amplitude and midline, state the phase shift, and compute the period by substituting B into 2π/|B|. Then solve sin x=1/2 on [0,2π).",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S23-T@1": {
       "id": "T22V3::T22E-FND02::S23-T@1",
       "order": 23,
       "kind": "transfer",
-      "prompt": "First use the supplied graph alone to read its amplitude, midline and period. Then use the revealed underlying rule y=−3cos(2x)+4 to solve cos(2x)=0 for x in [0,π).",
-      "obligationVersion": 2,
+      "prompt": "Using only the supplied graph, read its amplitude, midline and period. Cite a pair of matching extrema one full cycle apart to justify the period from the graph. Separately solve the unrelated equation cos(4x)=0 for x in [0,π/2).",
+      "obligationVersion": 3,
       "representations": [
         {
           "kind": "plot",
@@ -2118,8 +2118,8 @@
       "id": "T22V3::T22E-FND02::S24-T@1",
       "order": 24,
       "kind": "transfer",
-      "prompt": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
-      "obligationVersion": 2,
+      "prompt": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table. State p's natural real domain and separately the restricted solution interval used here, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
+      "obligationVersion": 3,
       "representations": [
         {
           "kind": "table",
@@ -3071,19 +3071,23 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S21-T@1": {
-      "reference": "−45°=−π/4. Coordinates(√2/2,−√2/2). Oriented arc displacement s=10(−π/4)=−5π/2; geometric arc length magnitude is5π/2.",
+      "reference": "−45°=−π/4. Also 7π/6 radians = 210°. The −45° unit-circle coordinates are(√2/2,−√2/2). Oriented arc displacement s=10(−π/4)=−5π/2; geometric arc-length magnitude is5π/2.",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "−π/4."
+          "points": 2,
+          "criterion": "Converts −45° to −π/4."
         },
         {
-          "points": 4,
-          "criterion": "Correct coordinates."
+          "points": 2,
+          "criterion": "Converts 7π/6 radians back to 210°."
         },
         {
           "points": 3,
-          "criterion": "Oriented displacement −5π/2 with magnitude distinction."
+          "criterion": "Gives coordinates (√2/2,−√2/2) for −45°."
+        },
+        {
+          "points": 3,
+          "criterion": "Gives oriented displacement −5π/2 and distinguishes its magnitude5π/2."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
@@ -3121,29 +3125,41 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S23-M@1": {
-      "reference": "Amplitude2, period2π, midline y=1, shift rightπ/2. sin x=1/2 at x=π/6 and5π/6 in [0,2π).",
+      "reference": "Amplitude2 and midline y=1. The graph shifts rightπ/6. Here B=4, so period=2π/|4|=π/2. Also sin x=1/2 at x=π/6 and5π/6 in[0,2π).",
       "rubric": [
         {
-          "points": 5,
-          "criterion": "All four graph parameters correct."
+          "points": 2,
+          "criterion": "Amplitude2 and midline y=1 are correct."
         },
         {
-          "points": 5,
-          "criterion": "Solutions π/6 and5π/6 only."
+          "points": 2,
+          "criterion": "Phase shift is right π/6."
+        },
+        {
+          "points": 2,
+          "criterion": "Explicitly computes period as 2π/|4|=π/2."
+        },
+        {
+          "points": 4,
+          "criterion": "Solves sin x=1/2 as π/6 and5π/6 only on [0,2π)."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S23-T@1": {
-      "reference": "From the graph, maximum7 and minimum1 give amplitude3 and midline4; one full cycle has lengthπ. Solving cos(2x)=0 gives2x=π/2 or3π/2 within[0,2π), hence x=π/4 or3π/4 in[0,π).",
+      "reference": "From the graph, maximum7 and minimum1 give amplitude3 and midline4. Matching minima occur at(0,1) and(π,1), one full cycle apart, so the period isπ. Separately, cos(4x)=0 means4x=π/2 or3π/2 in[0,2π), hence x=π/8 or3π/8 in[0,π/2).",
       "rubric": [
         {
-          "points": 5,
-          "criterion": "Reads amplitude3, midline4 and periodπ from the supplied graph."
+          "points": 3,
+          "criterion": "Reads amplitude3 and midline4 from the supplied graph."
         },
         {
-          "points": 5,
-          "criterion": "Solves cos(2x)=0 as x=π/4,3π/4 on [0,π)."
+          "points": 3,
+          "criterion": "Reads periodπ from the graph and justifies it with matching extrema one full cycle apart, such as minima at x=0 and x=π."
+        },
+        {
+          "points": 4,
+          "criterion": "Solves the separate equation cos(4x)=0 as x=π/8,3π/8 on [0,π/2)."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
@@ -3171,7 +3187,7 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S24-T@1": {
-      "reference": "The values2,5,2,−1,2 repeat around a midline2 with symmetric ±3 variation, so sinusoidal is compatible while neither constant difference nor constant ratio holds. The simplest requested model is p(θ)=2+3sinθ. Range[−1,5]. p=3.5 means sinθ=1/2, so θ=π/6,5π/6. The five displayed samples sum to10.",
+      "reference": "The values2,5,2,−1,2 repeat around midline2 with symmetric ±3 variation, so sinusoidal is compatible while neither constant difference nor constant ratio holds. The simplest requested model is p(θ)=2+3sinθ. Its natural real domain is all real θ; this task restricts solving to[0,2π]. Range[−1,5]. p=3.5 means sinθ=1/2, so θ=π/6,5π/6. The five displayed samples sum to10.",
       "rubric": [
         {
           "points": 2,
@@ -3182,12 +3198,16 @@
           "criterion": "Writes p(θ)=2+3sinθ."
         },
         {
-          "points": 2,
-          "criterion": "Range [−1,5]."
+          "points": 1,
+          "criterion": "States the natural real domain θ∈ℝ and distinguishes the task's restricted solution interval [0,2π]."
+        },
+        {
+          "points": 1,
+          "criterion": "Range is [−1,5]."
         },
         {
           "points": 2,
-          "criterion": "Solutions π/6 and5π/6."
+          "criterion": "Solutions are π/6 and5π/6 on [0,2π]."
         },
         {
           "points": 2,
@@ -3593,7 +3613,6 @@
     ],
     "T22V3::T22E-FND02::S21@1": [
       [
-        "main",
         "transfer"
       ],
       [
@@ -3638,7 +3657,7 @@
         "transfer"
       ],
       [
-        "transfer"
+        "main"
       ],
       [
         "main"
@@ -4160,7 +4179,7 @@
       ],
       "transfer": [
         "−45°",
-        "radius10"
+        "7π/6 radians"
       ]
     },
     "T22V3::T22E-FND02::S22@1": {
@@ -4175,12 +4194,12 @@
     },
     "T22V3::T22E-FND02::S23@1": {
       "main": [
-        "2sin(x−π/2)+1",
+        "2sin(4(x−π/6))+1",
         "sin x=1/2"
       ],
       "transfer": [
-        "First use the supplied graph alone",
-        "cos(2x)=0"
+        "Using only the supplied graph",
+        "cos(4x)=0"
       ]
     },
     "T22V3::T22E-FND02::S24@1": {
@@ -4191,11 +4210,11 @@
       ],
       "transfer": [
         "unlabeled sample from one of three simple families",
-        "simplest p(θ)=D+A sinθ model"
+        "natural real domain"
       ]
     }
   },
-  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation. v1.2 retrofit: a graph-reading claim requires a rendered graph with usable axes/scale; changed task visuals are fingerprinted assessment content; retrieval remains honestly labeled retrieval rather than being inflated to Transfer.",
+  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation. v1.2 retrofit: a graph-reading claim requires a rendered graph with usable axes/scale; changed task visuals are fingerprinted assessment content; retrieval remains honestly labeled retrieval rather than being inflated to Transfer. Independent follow-up R01–R08 is bounded to semantic observability, assessed-surface leakage, and representation hardening; no new syllabus or M03+ ownership.",
   "instructionVersion": "m02-instruction-v12-representation-r2",
   "claimEvidence": {
     "T22V3::T22E-FND02::S01@1": [
@@ -5052,10 +5071,11 @@
     "T22V3::T22E-FND02::S21@1": [
       {
         "claim": "Convert degrees to radians and back.",
-        "task": "main",
-        "publicRequest": "Convert150° to radians, give its unit-circle coordinates, briefly identify the reference angle/quadrant used, state what the resulting radian measure means as signed arc-displacement divided by radius, and find the arc length on a circle of radius4 for that positive angle.",
+        "task": "transfer",
+        "publicRequest": "Convert −45° to radians. Separately convert 7π/6 radians to degrees. Give the unit-circle coordinates for −45°, and find the oriented arc displacement for radius10.",
         "rubricEvidence": [
-          "Converts150° to5π/6."
+          "Converts −45° to −π/4.",
+          "Converts 7π/6 radians back to 210°."
         ]
       },
       {
@@ -5137,41 +5157,41 @@
       {
         "claim": "Identify amplitude and midline of A sin(B(x−h))+D or cosine form.",
         "task": "transfer",
-        "publicRequest": "First use the supplied graph alone to read its amplitude, midline and period. Then use the revealed underlying rule y=−3cos(2x)+4 to solve cos(2x)=0 for x in [0,π).",
+        "publicRequest": "Using only the supplied graph, read its amplitude, midline and period. Cite a pair of matching extrema one full cycle apart to justify the period from the graph. Separately solve the unrelated equation cos(4x)=0 for x in [0,π/2).",
         "rubricEvidence": [
-          "Reads amplitude3, midline4 and periodπ from the supplied graph."
+          "Reads amplitude3 and midline4 from the supplied graph."
         ]
       },
       {
         "claim": "Compute period2π/|B| for sin/cos.",
-        "task": "transfer",
-        "publicRequest": "First use the supplied graph alone to read its amplitude, midline and period. Then use the revealed underlying rule y=−3cos(2x)+4 to solve cos(2x)=0 for x in [0,π).",
+        "task": "main",
+        "publicRequest": "For y=2sin(4(x−π/6))+1, state amplitude and midline, state the phase shift, and compute the period by substituting B into 2π/|B|. Then solve sin x=1/2 on [0,2π).",
         "rubricEvidence": [
-          "Reads amplitude3, midline4 and periodπ from the supplied graph."
+          "Explicitly computes period as 2π/|4|=π/2."
         ]
       },
       {
         "claim": "Interpret horizontal phase shift h.",
         "task": "main",
-        "publicRequest": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+        "publicRequest": "For y=2sin(4(x−π/6))+1, state amplitude and midline, state the phase shift, and compute the period by substituting B into 2π/|B|. Then solve sin x=1/2 on [0,2π).",
         "rubricEvidence": [
-          "All four graph parameters correct."
+          "Phase shift is right π/6."
         ]
       },
       {
         "claim": "Solve sin x=c at standard values on [0,2π).",
         "task": "main",
-        "publicRequest": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+        "publicRequest": "For y=2sin(4(x−π/6))+1, state amplitude and midline, state the phase shift, and compute the period by substituting B into 2π/|B|. Then solve sin x=1/2 on [0,2π).",
         "rubricEvidence": [
-          "Solutions π/6 and5π/6 only."
+          "Solves sin x=1/2 as π/6 and5π/6 only on [0,2π)."
         ]
       },
       {
         "claim": "Solve cos(Bx)=c at standard values on a stated bounded interval.",
         "task": "transfer",
-        "publicRequest": "First use the supplied graph alone to read its amplitude, midline and period. Then use the revealed underlying rule y=−3cos(2x)+4 to solve cos(2x)=0 for x in [0,π).",
+        "publicRequest": "Using only the supplied graph, read its amplitude, midline and period. Cite a pair of matching extrema one full cycle apart to justify the period from the graph. Separately solve the unrelated equation cos(4x)=0 for x in [0,π/2).",
         "rubricEvidence": [
-          "Solves cos(2x)=0 as x=π/4,3π/4 on [0,π)."
+          "Solves the separate equation cos(4x)=0 as x=π/8,3π/8 on [0,π/2)."
         ]
       }
     ],
@@ -5203,26 +5223,27 @@
       {
         "claim": "Use a trig function's range and standard-angle solutions.",
         "task": "transfer",
-        "publicRequest": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
+        "publicRequest": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table. State p's natural real domain and separately the restricted solution interval used here, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
         "rubricEvidence": [
-          "Range [−1,5].",
-          "Solutions π/6 and5π/6."
+          "Range is [−1,5].",
+          "Solutions are π/6 and5π/6 on [0,2π]."
         ]
       },
       {
         "claim": "Coordinate exact algebra and domain checks across representations.",
         "task": "transfer",
-        "publicRequest": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
+        "publicRequest": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table. State p's natural real domain and separately the restricted solution interval used here, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
         "rubricEvidence": [
           "Chooses sinusoidal and rejects linear/exponential using structural evidence such as lack of constant difference/ratio plus periodic symmetry.",
-          "Writes p(θ)=2+3sinθ."
+          "Writes p(θ)=2+3sinθ.",
+          "States the natural real domain θ∈ℝ and distinguishes the task's restricted solution interval [0,2π]."
         ]
       }
     ]
   },
   "coverageAudit": {
     "version": "m02-observability-review-2026-09-18",
-    "status": "120/120 semantically re-audited for the v1.2 retrofit; exact claim→public-request→rubric links retained or updated, with rendered-representation directions pinned for S03/S06/S23/S24",
+    "status": "120/120 semantically re-audited through independent follow-up R01–R08; S21 bidirectional conversion, S23 graph-only reading/period computation and S24 domain coordination are now literal observers",
     "policy": "A claim is retained only when a public fixed task explicitly requests behavior that can observe it and at least one rubric criterion scores that behavior. This is observability mapping, not psychometric mastery certification."
   },
   "representationProgression": [
@@ -5494,7 +5515,7 @@
     },
     "T22V3::T22E-FND02::S23-T@1": {
       "classification": "changed-surface Transfer",
-      "reason": "Requires reading amplitude/midline/period from a rendered graph before solving the underlying bounded trig equation."
+      "reason": "Requires graph-only recovery of amplitude/midline/period with a visible-cycle justification; the separate cosine equation uses different frequency information and cannot disclose the graph parameters."
     },
     "T22V3::T22E-FND02::S24-M@1": {
       "classification": "fresh Main evidence",
@@ -5502,7 +5523,7 @@
     },
     "T22V3::T22E-FND02::S24-T@1": {
       "classification": "changed-surface Transfer",
-      "reason": "Starts from an unlabeled table, requires model-family selection, then reconstructs the sinusoidal rule and exact consequences."
+      "reason": "Starts from an unlabeled table, requires model-family selection, reconstruction of the sinusoidal rule, an explicit natural-versus-restricted domain check, and exact consequences."
     }
   }
 }
