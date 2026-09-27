@@ -19,7 +19,7 @@
     "docs/t22-rebuild/m65.dependencies.json": "fb45a5ab97932f5220bffb9989347c23574383b9",
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
-    "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01"
+    "js/t22-course/ui.js": "bfcd47bc0d4835626794add957b3c067385995cf"
   },
   "authorizedM01M02V12Retrofit": {
     "throughCommit": "e1406d951c69c99930a97840b544b388e819aeb5",
@@ -44,5 +44,9 @@
     "sourceReviewHead": "c6003be2f18d3f904898483a422a9a356dc5bc54",
     "scope": "Independently confirmed foundation publication; unrelated M15 candidate excluded.",
     "status": "frozen"
+  },
+  "attemptSaveUxFix": {
+    "base": "775b75fec5d1d1f346b2dceb9c24d66d5087ca66",
+    "scope": "T22 learner UX only: disarm identical Save attempt, group linked review under the root attempt, clarify local-only persistence and backup/export semantics."
   }
 }
