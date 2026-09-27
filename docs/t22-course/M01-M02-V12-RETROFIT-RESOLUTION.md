@@ -1,5 +1,9 @@
 # M01 + M02 v1.2 retrospective retrofit — resolution and review handoff
 
+> **Independent-review follow-up — 2026-09-27**  
+> The first independent adversarial pass on the green retrofit head `cb4240fb34c28826182e838aae9943d1bd406f15` opened R01–R08: six semantic-observability defects plus two metadata/representation-hardening defects. They are repaired on `codex/t22-m01-m02-v12-followup` without changing the 17+24 architecture. See `M01-M02-V12-FOLLOWUP-RESOLUTION.md`. The retrofit remains **awaiting independent reconfirmation** until that bounded follow-up is accepted.
+
+
 Date: 2026-09-27  
 Repository: `Karuma-jojo/Chronological-Deck`  
 Branch: `codex/t22-pedagogical-rebuild`  
