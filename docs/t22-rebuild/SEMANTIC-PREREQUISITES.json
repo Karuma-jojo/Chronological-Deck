@@ -200,7 +200,7 @@
           "implementedBy": "M15-S10"
         }
       ],
-      "note": "M15 review candidate: 16 sessions / 32 fixed tasks / 48 ownership claims. Builder recovery and Gates 0–11 are complete on `codex/t22-m15-review-candidate`; exact tested head `bb62dac23871496bb1f51626f5f3cfd4d14c2274` passed full T22 Elite Actions run 36290674513, including real Chromium. One bounded local bridge supplies real transpose/column-dot meaning in S10 before S11 normal equations. M15 remains unpublished and outside the learner registry pending independent adversarial review and explicit user authorization; M16+ stay closed."
+      "note": "M15 independent-review-repaired candidate: 16 sessions / 32 current fixed tasks / 48 ownership claims. R01 closes complement dimension via Q^T(Qc)=c → surjectivity → M14 rank/rank-nullity; R02 closes transpose-support order by deriving the S11 Gram scalar identity from the S10 column-dot bridge and proving product/inverse transpose in S12 before use. R03/R04 replace only S14-T and S15-T as @2 changed-surface obligations. Exact repaired head 3d0cade34f3c43df5927a808fb82d77c189c89ee passed full run 36303833184 (#552), including Chromium. M15 remains unpublished pending bounded independent follow-up and explicit authorization; M16+ stay closed."
     },
     {
       "order": 16,

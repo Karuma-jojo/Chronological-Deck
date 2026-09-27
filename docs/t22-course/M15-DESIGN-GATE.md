@@ -1,11 +1,11 @@
 # T22 Elite M15 / SIDE278 — pre-authoring design gate
 
-Status: **Builder recovery and Gates 0–11 complete on the isolated M15 review candidate; ready for independent adversarial review. M15 remains unpublished and outside the learner route.**  
+Status: **Independent review R01–R04 repaired; exact-head Gates 5–11 verification is green; bounded independent follow-up required. M15 remains unpublished and outside the learner route.**  
 Date: 2026-09-26  
 Recovered authoritative base: `bcb86a1a6ee6ab141a884c819cde07f5e41491c5`.
-Review branch: `codex/t22-m15-review-candidate`; tested implementation head: `bb62dac23871496bb1f51626f5f3cfd4d14c2274`.
+Review branch: `codex/t22-m15-review-candidate`; current repaired implementation head: `3d0cade34f3c43df5927a808fb82d77c189c89ee`; full run #552 / `36303833184` SUCCESS.
 
-This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M15 · SIDE278 · Orthogonality, Projection & Least Squares Geometry**. It remains the planning/design record, not an acceptance record. Final builder verification is recorded in `M15-VERIFICATION.md`; independent review is still required. Recovery note: an earlier stalled run scaled the draft after the pilot before completing the required sequential Gate-4–8 checks. The authored material is therefore treated as an existing draft under repair, not as evidence that those gates passed.
+This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M15 · SIDE278 · Orthogonality, Projection & Least Squares Geometry**. It remains the planning/design record, not an acceptance record. Current repaired verification is recorded in `M15-VERIFICATION.md`; the original independent review is recorded in `M15-INDEPENDENT-REVIEW.md`; only bounded independent follow-up remains. Recovery note: an earlier stalled run scaled the draft after the pilot before completing the required sequential Gate-4–8 checks. The authored material is therefore treated as an existing draft under repair, not as evidence that those gates passed.
 
 ## 0. Recovery receipt
 

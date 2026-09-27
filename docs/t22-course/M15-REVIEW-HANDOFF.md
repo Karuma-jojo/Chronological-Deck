@@ -1,160 +1,103 @@
-# T22 Elite M15 / SIDE278 — Independent Review Handoff
+# T22 Elite M15 / SIDE278 — Independent Follow-up Handoff
 
-## Module / branch / actual tested head
+## Exact target
 
-- Module: **M15 · SIDE278 · Orthogonality, Projection & Least Squares Geometry**
-- Review branch: `codex/t22-m15-review-candidate`
-- Canonical-content commit: `3f5943024691501ff1678c9222cb1c6ac01d4203`
-- Exact tested implementation head: `bb62dac23871496bb1f51626f5f3cfd4d14c2274`
-- Successful Actions run: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36290674513
-- Run #525 · job `108540011754` · **SUCCESS**
-- Current status: **review-candidate-unpublished**
+- Branch: `codex/t22-m15-review-candidate`
+- Module: **M15 / SIDE278 — Orthogonality, Projection & Least Squares Geometry**
+- Exact repaired implementation head: `3d0cade34f3c43df5927a808fb82d77c189c89ee`
+- Full Actions: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36303833184
+- Run #552 · job `108576459161` · **SUCCESS**
+- Current canonical status: **independent-review-repaired-awaiting-followup-unpublished**
 
-This handoff is a later documentation-only artifact. The run above belongs to `bb62dac...`, not to the documentation commit that contains this file.
+This handoff is documentation written after that successful implementation run. Its later documentation SHA must not be substituted for the implementation SHA above.
 
-## Scope completed and intentionally deferred
+## Follow-up scope — R01 through R04 only
 
-Completed in M15:
-- finite real orthogonal / orthonormal sets and ON coordinates;
-- orthogonal complements and finite-dimensional decomposition;
-- projection onto lines/subspaces and nearest-point geometry;
-- Gram–Schmidt with span, dependence and order diagnostics;
-- bounded real transpose/column-dot bridge;
-- general-column projection, normal equations and orthogonal projector matrices;
-- exact Euclidean least squares;
-- full-rank vs rank-deficient coefficient/fitted-vector uniqueness;
-- deterministic line/calibration fitting;
-- whole-module method-choice synthesis.
+The previous independent review at `aa01b1914fd69709919651f14e27487cef7fbbe6` found four material issues and otherwise preserved the architecture/mathematics. Review record: `M15-INDEPENDENT-REVIEW.md`.
 
-Intentionally deferred:
-- M16 eigenstructure / diagonalization / spectral theorem;
-- M17 PSD/quadratic forms, named QR, Cholesky, SVD, Moore–Penrose pseudoinverse;
-- M23 conditioning/numerical rank/stable QR or Gram–Schmidt variants;
-- M36 statistical-regression assumptions/inference/diagnostics;
-- regularization and generalized/nonlinear least squares.
+### R01 — S10 complement dimension
+Verify that the repaired route is closed under existing prerequisites:
+1. ON columns of `Q`;
+2. componentwise `Q^T(Qc)=c`;
+3. `Q^T` onto `R^k`;
+4. M14 surjectivity/rank logic gives rank `k`;
+5. rank-nullity gives `dim W^perp=n-k`.
 
-## Finding-by-finding disposition with locations
+Attack specifically for any hidden use of row-rank = column-rank.
 
-Builder recovery findings M15-R01 through M15-R08 are closed in `docs/t22-course/M15-RESOLUTION.md`.
+### R02 — S11/S12 transpose-support order
+Verify:
+- S11 derives `x·A^T(Ax)=||Ax||^2` only from S10 column-dot meaning and dot-product linearity;
+- S11 does not need `(XY)^T=Y^TX^T`;
+- S12 proves product transpose entrywise before using it;
+- S12 derives inverse-transpose from transposed inverse identities before projector symmetry.
 
-High-risk repaired locations for the reviewer to attack first:
-- S04/S09/S10 — general orthogonal-decomposition existence and complement-dimension dependency order;
-- S06/S07 — cross-session projection/nearest-point independence;
-- S09 — multi-vector Gram–Schmidt, zero residual and order;
-- S10 — transpose shape / `Null(A^T)=Col(A)^perp` bridge;
-- S11 — normal equations and full-column-rank invertibility;
-- S12 — symmetry + idempotence versus idempotence alone;
-- S13/S14 — full-rank vs rank-deficient least squares;
-- S16 — two-route synthesis and rejection of raw dot-product coefficients on nonorthogonal columns.
+### R03 — current S14-T@2
+Task: `T22V3::SIDE278::S14-T@2`.
 
-## Instruction and assessment version changes
+Attack whether it now genuinely clears the changed-surface bar:
+- three distinct columns;
+- dependence is `c3=c1+c2`, not duplication/proportionality;
+- learner must identify the unique plane projection;
+- derive the affine coefficient family/null direction;
+- audit a false “singular ⇒ projection nonunique” claim.
 
-M15 has never been published. All current stable IDs are initial M15 obligations:
-- session IDs `T22V3::SIDE278::Sxx@1`;
-- Main/Transfer IDs `T22V3::SIDE278::Sxx-M/T@1`;
-- obligationVersion 1;
-- instructionVersion `m15-side278-instruction-v1`.
+Expected exact mathematics:
+- `p=(2,-1,0)`;
+- `r=(0,0,3)`;
+- `x=(2-t,-1-t,t)`;
+- `Null(C)=span{(-1,-1,1)}`.
 
-Builder-recovery task-instance changes did not bump versions because no M15 learner evidence or prior canonical learner contract existed. The reviewer should challenge this assumption if repository history shows otherwise.
+### R04 — current S15-T@2
+Task: `T22V3::SIDE278::S15-T@2`.
 
-## Historical exposure and preserved learner evidence
+Attack whether it now genuinely changes reasoning direction:
+- proposed line supplied;
+- observation `Y` missing;
+- no normal-equation solve from scratch;
+- intercept residual condition gives `Y=6`;
+- t-weighted condition independently gives `Y=6`;
+- learner then audits `A^Tr=0` and the least-squares verdict.
 
-- Persisted learner registry remains **M01–M14 only**.
-- M15 browser validation injects M15 only inside the test browser.
-- No real M15 learner evidence was migrated, deleted or recertified.
-- Synthetic browser attempts are verification artifacts, not learner mastery.
+Expected residual: `(2,-3,1)`.
 
-## Source Dossier / support-theorem / pedagogy-evidence status
+## Version/provenance to verify
 
-Builder status: **complete for review**.
+- instruction version: `m15-side278-instruction-v2-independent-repair`;
+- `S14-T@1` and `S15-T@1` are no longer current;
+- current replacements are @2 / obligationVersion 2;
+- pre-repair fingerprints are preserved in `audit/m15-pre-independent-repair-version-receipt.json`;
+- 48 ownership claims remain Main-observed rather than being remapped cosmetically;
+- M15 remains absent from the persisted learner registry.
 
-Primary mathematical stack:
-1. T22 repository contract;
-2. user-supplied Strang 4e Ch.4;
-3. MIT 18.06 sessions 14–17;
-4. Axler 4e Ch.6B–6C;
-5. Hefferon Three.VI;
-6. MAA/IES plus bounded domain-specific linear-algebra education research.
+## Low-severity cleanup
 
-The reviewer should independently verify that:
-- the transpose bridge is truly absent from accepted M14 and sufficient before S11;
-- M15 does not steal QR/SVD/eigen/PSD/statistical-regression ownership;
-- source claims and pedagogy limitations are stated at the right strength.
+Confirm:
+- representation progression no longer promises `I-P`;
+- Strang §4.4 printed locator ends at p.243.
 
-## Whole-module type-check and canonical-state result
+## Verification already completed
 
-Builder result: **PASS**.
+Exact repaired head passed:
+- syntax;
+- structural/pedagogy/semantic/evidence regressions;
+- independent M15 math oracles;
+- inherited module protections;
+- M14 publication-frontier protection;
+- Chromium installation;
+- complete M15 candidate browser workflow across **304 surfaces**.
 
-Current canonical counts:
-- 16 sessions;
-- 32 fixed assessments;
-- 48 ownership claims;
-- 32 semantic-separation rows;
-- 17 decision audits;
-- 18 wrong-solver discriminators.
+## Acceptance authority
 
-Canonical status is `review-candidate-unpublished`. Construction-state wording was removed from the canonical pack before exact-head verification.
+The repairer does **not** independently accept M15.
 
-## Artifact-first findings and design-promise reconciliation
+Current disposition:
+> **Independent adversarial review → bounded repairs implemented and exact-head green → independent follow-up requested → unpublished.**
 
-The current learner artifact is text/math based. M15 does **not** claim ownership of a new graph/diagram-reading skill. Geometric meaning is expressed through coordinates, subspace membership, dot products, decompositions, residuals and matrix conditions. A future visual enhancement would be enrichment unless ownership/evidence contracts are changed and versioned.
+## Stop boundary
 
-## Worked-example / representation / decision / semantic-exposure results
+Please return either:
+1. concrete remaining R01–R04 findings with exact locations; or
+2. explicit bounded follow-up acceptance of the repaired M15 candidate.
 
-Builder self-review found and repaired real answer-bearing reuse rather than accepting a lexical-only scan. The final pack records the closest visible instructional comparator and mathematical difference for every fixed task.
-
-Evidence labels are deliberately conservative:
-- proof reconstruction where the decisive proof architecture is taught;
-- retrieval for S09/S14/S15 Main;
-- fresh Main only for the complete S16 two-route synthesis;
-- all Transfers are changed-surface Transfer, subject to independent confirmation.
-
-## Math / structural / semantic / provenance / rendering / browser results
-
-Full run #525 succeeded.
-
-Builder receipts:
-- M15 structural/pedagogy/semantic PASS;
-- M15 independent math-oracle PASS;
-- inherited T22 regressions PASS;
-- M14 publication frontier preserved;
-- browser candidate PASS with **304 surfaces** checked;
-- all 16 guided states and all 32 prompt/reference/rubric paths exercised;
-- save → reveal → export → import → reload exercised;
-- no text corruption or mobile horizontal overflow observed by the browser checks.
-
-## Review provenance
-
-- Builder self-review: **yes**
-- Independent adversarial review: **none yet**
-- Learner trial: **none**
-- Independent acceptance: **none**
-
-## Remaining limitations
-
-- Automated checks cannot establish teaching effectiveness or durable mastery.
-- Prose-proof quality and semantic independence still require human mathematical review.
-- The source/pedagogy dossier is a design basis, not an empirical claim that this exact module is optimal.
-- No publication/main-merge authorization exists.
-- Review branch was isolated because the shared T22 rebuild branch was receiving unrelated concurrent UI/M01 work; those later shared-branch changes are intentionally not part of this M15 review candidate.
-
-## Acceptance authority and current status
-
-The builder has **no authority to mark M15 independently accepted**.
-
-Current status: **builder verified; independent adversarial review requested; unpublished**.
-
-## Next authorized action; explicit stop boundary
-
-**Independent adversarial review of M15 now.**
-
-Review the exact branch/head above against the v1.2 protocol, the supplied Strang source and the repository boundary. Return concrete findings with exact session/task/rubric locations.
-
-Do **not**:
-- publish M15;
-- merge M15 to `main`;
-- open/build M16;
-- recertify learner evidence;
-- declare acceptance merely because CI is green.
-
-Stop after the independent review findings or an explicit no-finding confirmation.
+Do not publish, merge to main, open M16, or infer learner mastery.

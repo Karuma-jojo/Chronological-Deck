@@ -1,3 +1,11 @@
+# Current M15 independent-review bounded repair — 2026-09-27
+
+R01–R04 from the independent review of `aa01b191...` are implemented without rebuilding the 16-session architecture. S10 now avoids row-rank theory; S11 avoids premature product-transpose algebra; S12 proves the needed transpose identities before use. S14-T/S15-T are versioned to `@2` with genuinely changed reasoning surfaces. Exact repaired head `3d0cade34f3c43df5927a808fb82d77c189c89ee`; full run `36303833184` / #552 / job `108576459161`: **SUCCESS**, including Chromium.
+
+Current status: **repaired and green, not independently accepted**. Next action is bounded independent follow-up on R01–R04 only.
+
+---
+
 # Current M15 builder-recovery closure — 2026-09-27
 
 The initial M15 run stalled and scaled the draft beyond the intended sequential Gate-4–8 cadence. The existing draft was recovered rather than discarded. Recovery repaired cross-session solved-instance reuse, re-audited all 48 literal claim observers, corrected evidence-distance labels and theorem dependency order, hardened the source/pedagogy dossier and added independent structural/math/browser guards.

@@ -1,3 +1,13 @@
+# Current M15 independent-review repair — 2026-09-27
+
+Independent review at `aa01b1914fd69709919651f14e27487cef7fbbe6` opened four bounded findings. R01/R02 support-theorem order is repaired in S10–S12; R03/R04 replace only S14-T and S15-T as `@2` / obligationVersion 2 changed-surface Transfers. Pre-repair fingerprints are preserved in `audit/m15-pre-independent-repair-version-receipt.json`. Exact repaired implementation head `3d0cade34f3c43df5927a808fb82d77c189c89ee` passed full T22 Elite run [36303833184](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36303833184), job `108576459161`, **SUCCESS**, including independent M15 math oracles, inherited regressions, Chromium and the 304-surface M15 browser workflow.
+
+Status: **independent-review repaired; bounded independent follow-up pending; unpublished.** No main merge, publication or M16.
+
+See `M15-INDEPENDENT-REVIEW.md`, `M15-RESOLUTION.md`, `M15-VERIFICATION.md` and `M15-REVIEW-HANDOFF.md`.
+
+---
+
 # Current M15 review candidate — 2026-09-27
 
 M15 · `SIDE278` has completed builder recovery and full v1.2 verification on isolated branch `codex/t22-m15-review-candidate`. Canonical implementation commit `3f5943024691501ff1678c9222cb1c6ac01d4203`; exact tested head `bb62dac23871496bb1f51626f5f3cfd4d14c2274`. Full T22 Elite run [36290674513](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36290674513), job `108540011754`, **SUCCESS**, including structural/semantic guards, independent M15 math oracles and real Chromium browser validation of 304 M15 learner surfaces. Structure: 16 sessions / 32 fixed tasks / 48 ownership claims. M15 remains outside the persisted M01–M14 learner registry. **Next action: independent adversarial review of M15 only. No publication, main merge or M16.**

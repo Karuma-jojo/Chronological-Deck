@@ -1,114 +1,95 @@
-# T22 Elite M15 / SIDE278 — Builder Verification Receipt
+# T22 Elite M15 / SIDE278 — Repaired Verification Receipt
 
-Status: **BUILDER VERIFIED · INDEPENDENT REVIEW PENDING · UNPUBLISHED**  
-Review branch: `codex/t22-m15-review-candidate`
+Status: **INDEPENDENT-REVIEW REPAIRED · BUILDER/CI VERIFIED · INDEPENDENT FOLLOW-UP PENDING · UNPUBLISHED**  
+Branch: `codex/t22-m15-review-candidate`
 
 ## Exact tested implementation
 
-- Canonical-content cleanup commit: `3f5943024691501ff1678c9222cb1c6ac01d4203`.
-- Exact Actions-tested branch head: `bb62dac23871496bb1f51626f5f3cfd4d14c2274`.
-- The only change from the content commit to the tested head is the review-branch workflow trigger.
-- Full T22 Elite run: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36290674513
-- Run number: **#525**
-- Job: `108540011754`
+- Repair content head: `6a662c4e2564b2890dc9d952c9ba30c983494959`
+- Exact tested implementation head after oracle-alignment-only fix: `3d0cade34f3c43df5927a808fb82d77c189c89ee`
+- Full T22 Elite Actions: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36303833184
+- Run: **#552**
+- Job: `108576459161`
 - Result: **SUCCESS**
 
-This verification receipt is written after the successful run. Its documentation commit is therefore later than the tested implementation head and must not be mistaken for the run's SHA.
+The difference from `6a662c4...` to `3d0cade...` changes only the independent math-oracle string to match the already-correct expanded S15 reference equation. Learner content is unchanged between those two SHAs.
 
-## Verification layers actually executed
+This receipt is a later documentation artifact and must not be confused with the tested implementation SHA.
 
-### Schema / structure / reviewed semantic guards
-`scripts/test-t22-elite-m15.mjs` passed on the exact tested head.
+## Repair contract tested
 
-It checked:
-- 16 design-derived sessions;
-- 32 fixed Main/Transfer tasks and 32 evaluators;
+Independent review at `aa01b191...` opened R01–R04.
+
+### R01
+S10 no longer uses row-rank = column-rank. It proves `Q^T(Qc)=c`, hence surjectivity of `Q^T`, then uses M14 rank/rank-nullity.
+
+### R02
+S11 derives the Gram scalar identity from the S10 column-dot bridge rather than product-transpose algebra. S12 proves product transpose entrywise and inverse transpose before use.
+
+### R03
+Current Transfer is `T22V3::SIDE278::S14-T@2` / obligationVersion 2. It uses nonduplicate dependence `c3=c1+c2` and a false-report audit.
+
+### R04
+Current Transfer is `T22V3::SIDE278::S15-T@2` / obligationVersion 2. It runs least-squares reasoning backward from orthogonality constraints to reconstruct a missing observation and audit a supplied line.
+
+## Structural / semantic / evidence results
+
+PASS on exact tested head:
+- 16 sessions;
+- 32 current fixed assessments;
 - 48 literal ownership claims;
-- 32 task-level semantic-separation rows;
-- 17 decision audits (16 Transfers plus S16 synthesis Main);
+- 32 semantic-separation rows;
+- 17 decision audits;
 - 18 wrong-solver discriminators;
-- source-role presence and explicit boundary/deferred-topic guards;
-- exact claim→public-request→rubric locators;
-- conservative evidence-distance labels;
-- known-bad cross-session exposure mutations;
-- M15 unpublished / M01–M14 learner-registry boundary.
+- correct @2 task/version guards for S14-T/S15-T;
+- retired @1 tasks absent from the current problem/evaluator maps;
+- exact pre-repair fingerprints preserved separately;
+- all Transfers retain the `changed-surface Transfer` label only after the two disputed surfaces were replaced.
 
-### Independent mathematical verification
-`docs/t22-course/audit/m15-math-checks.mjs` passed on the exact tested head.
+## Independent mathematics
 
-The oracles independently recompute or attack representative mathematics across all 16 sessions, including:
-- orthogonality / orthonormality;
-- orthogonal complements and decomposition;
-- line/subspace projection;
-- nearest-point distances;
-- two- and three-vector Gram–Schmidt;
-- transpose/null-space geometry;
-- normal equations and full-rank invertibility;
-- projector symmetry/idempotence;
-- inconsistent least squares;
-- rank-deficient fitted-vector/coefficient distinctions;
-- deterministic line fitting;
-- S16 two-route projection synthesis.
+`docs/t22-course/audit/m15-math-checks.mjs` passed.
 
-### Inherited regressions / prior-module preservation
-The full workflow passed inherited T22 structural, mathematical, semantic, provenance and handoff guards. In particular the M14 publication checker confirmed that **M14 / SIDE276 remains the persisted learner frontier** and M15 remains outside the learner registry.
+New repair-specific oracles verify:
+- S14-T@2 plane projection `p=(2,-1,0)`, residual `(0,0,3)`, coefficient family `(2-t,-1-t,t)`, and null direction `(-1,-1,1)`;
+- S15-T@2 `Y=6`, residual `(2,-3,1)`, and `A^Tr=0`;
+- all previous high-risk projection, Gram–Schmidt, projector, least-squares and S16 synthesis oracles remain green.
 
-### Real browser / rendering / provenance
-`scripts/test-t22-elite-m15-browser.mjs` passed in installed Chromium on the exact tested head.
+## Browser / provenance
 
-The test:
-- first loaded the persisted learner registry and confirmed it still contains only M01–M14;
-- injected M15 into the real learner UI only inside the test browser;
-- rendered all 16 M15 lessons;
-- exercised all 16 staged guided-attempt → feedback paths;
-- exercised all 32 fixed prompt/reference/rubric paths;
-- saved attempts and checked assistance provenance;
-- exported, imported and reloaded evidence;
-- checked mobile-width horizontal overflow and text corruption;
-- checked **304 learner surfaces** in the M15 candidate workflow.
+Chromium workflow PASS on exact tested head.
 
-The successful log line is:
+The M15 candidate browser:
+- confirmed persisted learner registry still M01–M14;
+- injected M15 only in the test browser;
+- rendered all 16 lessons/guided states;
+- exercised all 32 current prompt/reference/rubric paths, including the @2 Transfers;
+- saved attempts;
+- revealed references;
+- exported/imported/reloaded evidence;
+- found no text corruption or horizontal overflow;
+- checked **304 learner surfaces**.
 
-> PASS M15 candidate browser: persisted learner registry stayed M01-M14; test-only M15 rendered all 16 lessons/guided states and 32 prompt/reference/rubric paths, saved/revealed/exported/imported/reloaded without text corruption or overflow. Surfaces checked: 304.
+## Version / evidence disposition
 
-## Gate-10 provenance / versions
+Pre-repair receipt:
+`docs/t22-course/audit/m15-pre-independent-repair-version-receipt.json`
 
-M15 was never published and no real M15 learner evidence existed during the builder-recovery repairs.
+Instruction:
+`m15-side278-instruction-v1` → `m15-side278-instruction-v2-independent-repair`.
 
-Therefore:
-- stable session/task IDs remain `@1`;
-- assessment `obligationVersion` remains 1;
-- instruction version remains `m15-side278-instruction-v1`;
-- changed mathematical instances during builder recovery do **not** recertify or delete any learner evidence because none exists for M15;
-- browser-test attempts are synthetic verification data only;
-- M01–M14 persisted evidence/route state is not migrated by M15.
+Changed reviewed assessment obligations:
+- `S14-T@1` → `S14-T@2`;
+- `S15-T@1` → `S15-T@2`.
 
-The recovery repairs and their exact task/session locations are recorded in `M15-RESOLUTION.md`.
-
-## Canonical-state audit
-
-PASS.
-
-The canonical pack now says:
-- `module.status = review-candidate-unpublished`;
-- 16 sessions / 32 fixed tasks / 48 ownership claims;
-- publication requires exact-head verification, independent adversarial review and explicit user authorization;
-- M15 is outside the persisted learner registry;
-- M16+, T25 and SMMC remain outside this assignment.
-
-Construction-history wording is retained only in historical design/pilot/resolution records, not as the canonical module state.
+M15 is unpublished; no real M15 learner evidence exists. The version bumps are still deliberate because the @1 tasks were independently reviewed artifacts and must not be silently rewritten.
 
 ## Limits
 
-This run establishes implementation integrity for the bounded M15 candidate. It does **not** establish:
-- independent pedagogical acceptance;
-- learner mastery or retention;
-- empirical effectiveness for the user;
-- correctness of future M16+ modules;
-- permission to publish M15 or merge it to `main`.
+Green CI does not itself establish independent pedagogical acceptance. R03/R04's semantic Transfer quality and R01/R02's support-theorem closure require the requested human follow-up.
 
-## Builder-verification disposition
+## Disposition
 
-**PASS for independent adversarial review.**
+**PASS for bounded independent follow-up.**
 
-No publication, main merge, M16 opening or learner-route change is authorized by this receipt.
+No publication, main merge, M16 opening or independent-acceptance claim is authorized.

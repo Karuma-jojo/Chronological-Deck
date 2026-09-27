@@ -2,7 +2,9 @@
 
 Reviewed head: `aa01b1914fd69709919651f14e27487cef7fbbe6`  
 Branch: `codex/t22-m15-review-candidate`  
-Disposition: **REPAIRS REQUIRED · BOUNDED REPAIR ONLY · UNPUBLISHED**
+Disposition at reviewed head: **REPAIRS REQUIRED · BOUNDED REPAIR ONLY · UNPUBLISHED**
+
+Current repair status: **R01–R04 implemented at `3d0cade34f3c43df5927a808fb82d77c189c89ee`; full run #552 / `36303833184` SUCCESS; independent follow-up pending.**
 
 The independent reviewer preserved the 16-session architecture and mathematical spine and found four material issues. No fixed reference answer was found wrong; no core least-squares mathematics failed; no publication leak was found; M14 does not reopen.
 
@@ -62,3 +64,24 @@ The reviewer independently recomputed and accepted the high-risk mathematics in 
 - Rerun Gates 5–11.
 - Return the repaired head for independent follow-up.
 - No publication, main merge or M16.
+
+
+## Repair implementation receipt
+
+The original findings above remain the controlling review record for `aa01b191...`. They were not edited away.
+
+- R01: S10 now proves `Q^T` is onto from `Q^T(Qc)=c`; M14 rank/rank-nullity then gives `dim W^perp=n-dim W`. No row-rank theorem is consumed.
+- R02: S11 derives `x·A^T(Ax)=||Ax||^2` directly from the S10 column-dot identity; S12 proves product transpose entrywise and derives inverse transpose before projector symmetry.
+- R03: retired current `S14-T@1`; current `S14-T@2` uses three distinct columns with `c3=c1+c2` plus a false “singular ⇒ projection nonunique” audit.
+- R04: retired current `S15-T@1`; current `S15-T@2` reconstructs a missing observation from two residual-orthogonality equations and audits a supplied fit.
+- Cleanup: the unimplemented `I-P` representation promise was removed; Strang §4.4 printed locator corrected to pp.231–243.
+
+Pre-repair fingerprints and session-contract hashes are preserved in `docs/t22-course/audit/m15-pre-independent-repair-version-receipt.json`.
+
+Exact repaired implementation verification:
+- head `3d0cade34f3c43df5927a808fb82d77c189c89ee`
+- Actions https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36303833184
+- run #552 · job `108576459161` · **SUCCESS**
+- real Chromium M15 candidate browser: **304 learner surfaces**
+
+**Next action: bounded independent follow-up on R01–R04 only.**
