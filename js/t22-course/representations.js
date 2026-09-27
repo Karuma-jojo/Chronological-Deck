@@ -54,21 +54,31 @@ function plot(spec){
  const xTicks=spec.xTicks||Array.from({length:Math.floor((xmax-Math.ceil(xmin/xt)*xt)/xt)+1},(_,i)=>{const value=Math.ceil(xmin/xt)*xt+i*xt;return {value,label:nice(value)};});
  const yTicks=spec.yTicks||Array.from({length:Math.floor((ymax-Math.ceil(ymin/yt)*yt)/yt)+1},(_,i)=>{const value=Math.ceil(ymin/yt)*yt+i*yt;return {value,label:nice(value)};});
  for(const t of xTicks){
-  const x=Number(t.value);if(x<xmin-1e-9||x>xmax+1e-9)continue;const px=X(x);svg.append(el('line',{x1:px,y1:pad.t,x2:px,y2:H-pad.b,class:'repr-grid'}));
-  if(Math.abs(x)>1e-9||!(ymin<=0&&0<=ymax))addText(svg,px,H-pad.b+20,t.label??nice(x),'repr-tick');
+  const x=Number(t.value);if(x<xmin-1e-9||x>xmax+1e-9)continue;const px=X(x);if(spec.showGrid!==false)svg.append(el('line',{x1:px,y1:pad.t,x2:px,y2:H-pad.b,class:'repr-grid'}));
+  if(spec.showAxes!==false&&(Math.abs(x)>1e-9||!(ymin<=0&&0<=ymax)))addText(svg,px,H-pad.b+20,t.label??nice(x),'repr-tick');
  }
  for(const t of yTicks){
-  const y=Number(t.value);if(y<ymin-1e-9||y>ymax+1e-9)continue;const py=Y(y);svg.append(el('line',{x1:pad.l,y1:py,x2:W-pad.r,y2:py,class:'repr-grid'}));
-  if(Math.abs(y)>1e-9||!(xmin<=0&&0<=xmax))addText(svg,pad.l-10,py+4,t.label??nice(y),'repr-tick','end');
+  const y=Number(t.value);if(y<ymin-1e-9||y>ymax+1e-9)continue;const py=Y(y);if(spec.showGrid!==false)svg.append(el('line',{x1:pad.l,y1:py,x2:W-pad.r,y2:py,class:'repr-grid'}));
+  if(spec.showAxes!==false&&(Math.abs(y)>1e-9||!(xmin<=0&&0<=xmax)))addText(svg,pad.l-10,py+4,t.label??nice(y),'repr-tick','end');
  }
  const axisY=ymin<=0&&0<=ymax?Y(0):H-pad.b,axisX=xmin<=0&&0<=xmax?X(0):pad.l;
- svg.append(el('line',{x1:pad.l,y1:axisY,x2:W-pad.r,y2:axisY,class:'repr-axis'}));
- svg.append(el('line',{x1:axisX,y1:pad.t,x2:axisX,y2:H-pad.b,class:'repr-axis'}));
- if(spec.xLabel)addText(svg,W-pad.r,H-8,spec.xLabel,'repr-axis-label','end');
- if(spec.yLabel)addText(svg,pad.l+5,pad.t-12,spec.yLabel,'repr-axis-label','start');
+ if(spec.showAxes!==false){
+  svg.append(el('line',{x1:pad.l,y1:axisY,x2:W-pad.r,y2:axisY,class:'repr-axis'}));
+  svg.append(el('line',{x1:axisX,y1:pad.t,x2:axisX,y2:H-pad.b,class:'repr-axis'}));
+  if(spec.xLabel)addText(svg,W-pad.r,H-8,spec.xLabel,'repr-axis-label','end');
+  if(spec.yLabel)addText(svg,pad.l+5,pad.t-12,spec.yLabel,'repr-axis-label','start');
+ }
  (spec.asymptotes||[]).forEach(a=>{
   if(a.axis==='x'&&a.value>=xmin&&a.value<=xmax)svg.append(el('line',{x1:X(a.value),y1:pad.t,x2:X(a.value),y2:H-pad.b,class:'repr-asymptote'}));
   if(a.axis==='y'&&a.value>=ymin&&a.value<=ymax)svg.append(el('line',{x1:pad.l,y1:Y(a.value),x2:W-pad.r,y2:Y(a.value),class:'repr-asymptote'}));
+ });
+ (spec.segments||[]).forEach(s=>{
+  const [x1,y1]=s.from,[x2,y2]=s.to;
+  svg.append(el('line',{x1:X(x1),y1:Y(y1),x2:X(x2),y2:Y(y2),class:s.className||'repr-segment'}));
+  if(s.label){
+   const lx=s.labelAt?.[0]??((x1+x2)/2),ly=s.labelAt?.[1]??((y1+y2)/2);
+   addText(svg,X(lx),Y(ly)-7,s.label,'repr-label');
+  }
  });
  (spec.series||[]).forEach((s,si)=>{
   const samples=Math.max(240,s.samples||480),segments=[];let seg=[];
