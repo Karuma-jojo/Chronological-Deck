@@ -35,7 +35,7 @@ assert(ls1.lesson.includes('commutative')&&ls1.lesson.includes('associative')&&l
 assert(ls2.lesson.includes('Cancellation is not a visual permission')&&ls2.lesson.includes('reciprocal'),'L07 fraction cancellation must be structural');
 assert(ls9.lesson.includes('Distributivity')&&ls9.lesson.includes('Commutativity and associativity'),'L07 symbolic simplification must name underlying laws');
 assert(ls11.lesson.includes('inverse operations applied equally to both sides'),'L07 equation legality must be tied to inverses');
-assert(ls13.lesson.includes('no solution')&&ls13.lesson.includes('infinitely many solutions')&&ls13.lesson.includes('0=5')&&ls13.lesson.includes('0=0'),'L08 M01 systems must expose one/no/infinite outcomes');
+assert(ls13.lesson.includes('no solution')&&ls13.lesson.includes('infinitely many solutions')&&ls13.lesson.includes('0=2')&&ls13.lesson.includes('0=0'),'L08 M01 systems must expose contradiction/identity one-no-infinite outcomes');
 assert.equal(ls13.requiredOwnership[3],'Classify an elementary two-equation linear system as having one, no, or infinitely many solutions from its elimination outcome.','LF-R04 classification must be canonical ownership, not lesson-only prose');
 assert.equal(ls13.contractHash,'ee7613d4e0a90042b30fbc8d143aed7e8918b9abff429ac5768f38b7ed34ad74','LF-R04 S13 contract hash must move with the stronger ownership contract');
 assert.equal(course.problems[ls13.transfer].obligationVersion,3);
