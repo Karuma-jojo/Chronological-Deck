@@ -2,7 +2,7 @@
 
 Independent adversarial review of green retrofit head `cb4240fb34c28826182e838aae9943d1bd406f15` found R01–R08. The architecture remains **M01 17 / M02 24**; findings are bounded to semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain checking, exponent-law observer metadata and interval-ray rendering.
 
-Repairs are isolated on `codex/t22-m01-m02-v12-followup` from the exact reviewed head. Current repair authority: `docs/t22-course/M01-M02-V12-FOLLOWUP-RESOLUTION.md`. Do not call the retrofit independently confirmed from builder repair; required next gate is a full exact-head T22 workflow followed by the independent reviewer's bounded R01–R08 reconfirmation.
+Repairs were isolated on `codex/t22-m01-m02-v12-followup` from the exact reviewed head, then fast-forwarded cleanly to `codex/t22-pedagogical-rebuild` after confirming the shared branch had not moved. Repair implementation head `ea31220ef08b298efd6f176b2a6eb0b537ffd7c2` passed full T22 Elite workflow run `36303881977`, job `108576593815`, including the new M01/M02 semantic pins and real Chromium follow-up surfaces. Current repair authority: `docs/t22-course/M01-M02-V12-FOLLOWUP-RESOLUTION.md`. Do not call the retrofit independently confirmed from builder repair; the remaining gate is the independent reviewer's bounded R01–R08 reconfirmation.
 
 ---
 
