@@ -12,7 +12,7 @@ vm.runInContext(`
 const $=id=>{if(!elements.has(id))elements.set(id,{value:'',hidden:false,disabled:false});return elements.get(id)};
 const drafts=new Map();let problemId=null,visit=0,lastSaved=null,noteSeen=false,activeModuleId='M01',session=null;
 const course={problems:{m1:{kind:'main',prompt:'one'},m2:{kind:'main',prompt:'two'}},modules:[{id:'M01',order:1,title:'one'},{id:'M02',order:2,title:'two'}],sessions:[]},state={exposures:{}};
-const put=()=>{},expose=()=>{},persist=()=>{},renderHistory=()=>{},renderQueue=()=>{},renderModuleEvidence=()=>{},taskText=p=>p.prompt;
+const put=()=>{},expose=()=>{},persist=()=>{},renderHistory=()=>{},renderQueue=()=>{},renderModuleEvidence=()=>{},renderRepresentations=()=>{},taskText=p=>p.prompt;
 const moduleMeta=id=>course.modules.find(m=>m.id===(id||activeModuleId)),moduleCode=()=>activeModuleId,moduleSessions=()=>[],applyModuleHeader=()=>{},sessionsList=()=>{},renderRoadmap=()=>{};
 const selectSession=()=>showProblem(activeModuleId==='M01'?'m1':'m2');
 ${body}
