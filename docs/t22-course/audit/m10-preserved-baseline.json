@@ -5,9 +5,9 @@
     "course/t22/generated/course-meta.json": "b477d42e502a0fadc5f64719a95988278e22bf78",
     "course/t22/generated/roadmap.json": "68665c633c93830fa19e9e5510136795d2b13a02",
     "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01",
-    "course/t22/authoring/m01-repairs-1.1.json": "80f73f6a628897ddbe85bf6f62d388e110b73b33",
-    "course/t22/authoring/m02.json": "cf4d868b07a0a695f7d6cdfaa21c04b4eaa3174f",
-    "course/t22/authoring/m03.json": "a04fbc54e0fc8f910db42ee7874a9930d53b83fe",
+    "course/t22/authoring/m01-repairs-1.1.json": "97a232a965a7cf8bcbaa2dd5858d00e9d75fee8e",
+    "course/t22/authoring/m02.json": "cf0cfd6ff790a07f7252a14e547f93d65178d9d0",
+    "course/t22/authoring/m03.json": "a63a2b9ccf4b125d32dfd7f558ace15b8749f33b",
     "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
     "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
     "course/t22/authoring/m06.json": "da9360afd3adb81f75fa987c0ffac3015a8d19cf",
@@ -33,5 +33,10 @@
     "base": "15e2e54fe1a05c442f008da134048231092f6ff5",
     "branch": "codex/t22-lang-foundation-followup",
     "scope": "L01–L10 only: prerequisite provenance/depth. M01 structural-law/readiness/system instruction; M02 coordinate/Pythagorean, real exponential, AP pairing, special triangles, angle-addition identities and system geometry; M03 binomial theorem; M10 consumer-edge repair. No architecture expansion."
+  },
+  "authorizedLangFoundationFinalStitch": {
+    "base": "60d0e9377ca49f5ee43de6c141c4368d557cd3ee",
+    "branch": "codex/t22-lang-foundation-final-stitch",
+    "scope": "LF-R01–R06 only; exact changed upstream authoring blobs re-pinned; unrelated protected curriculum unchanged."
   }
 }
