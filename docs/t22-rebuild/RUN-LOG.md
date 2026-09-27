@@ -1,3 +1,13 @@
+# Current Lang-foundation final stitch — 2026-09-27
+
+Independent follow-up on exact green Lang-repair head `60d0e9377ca49f5ee43de6c141c4368d557cd3ee` found LF-R01–LF-R06. The blocker was the remaining “taught general theorem → assessed special case → downstream general ownership” promotion in M03-S26.
+
+The bounded repair is isolated on `codex/t22-lang-foundation-final-stitch`. It keeps all session counts fixed. M03-S26 now owns the general finite binomial theorem for positive integer n with public C(n,k) factor-choice evidence and a fresh n=5 application; P(n,r)=C(n,r)r! is restored instructionally. M01-S13 now canonically owns and publicly assesses one/no/infinitely-many system classification. M02-S22 now closes the rigid-rotation chord argument and uses a distinct Guided sine-difference reconstruction rather than replaying the fixed cosine-sum move. Current authority: `docs/t22-course/M01-M03-LANG-FOUNDATION-FINAL-STITCH.md`.
+
+Status: **repair implemented on isolated branch; full workflow and independent reconfirmation pending**.
+
+---
+
 # Current Lang-foundation prerequisite-depth follow-up — 2026-09-27
 
 After R01–R08 were repaired, independent review compared the actual foundation and downstream dependency graph against Serge Lang's *Basic Mathematics*. It found L01–L10: several prerequisites were stated or misattributed rather than truly taught, including a fictitious M01 Pythagorean source, missing trig addition identities before M10, an unowned real-exponential law before the exponential derivative, and a fictitious M01 binomial prerequisite.
