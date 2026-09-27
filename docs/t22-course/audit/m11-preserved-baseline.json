@@ -5,8 +5,8 @@
   "purpose": "Executable guard for M11-era preservation. It retains the explicitly authorized M07 v1.1 retrofit and M12-era validator-only M10 ledger repair, and now pins the exact M14-era shared CSS wrapping repair discovered by the unpublished M14 Chromium probe. The CSS change only adds overflow wrapping/min-width behavior to learner text/problem surfaces; all preserved M01–M11 curriculum blobs remain pinned.",
   "fileCount": 100,
   "files": {
-    "course/t22/authoring/m01-repairs-1.1.json": "d9d6433dd5acc926defee5458c75a73342bc5c4e",
-    "course/t22/authoring/m02.json": "6906fd9b3f30be6d9197cd7d182f1879f58c0114",
+    "course/t22/authoring/m01-repairs-1.1.json": "3cab22aa97d265b71fa6dd4f44e898a4ffda758b",
+    "course/t22/authoring/m02.json": "a916d26fdcced406281561c0235dd6c1abd3204a",
     "course/t22/authoring/m03.json": "23c2453d7b223a0fcff182eedc2b021a1864e736",
     "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
     "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
@@ -134,5 +134,9 @@
     "currentBlob": "868bd0ee2ec001867b1ed1c1e161aed6b6229805",
     "scope": "shared presentation only; accepted curriculum content unchanged",
     "requiredRegression": "complete inherited T22 browser workflow including M01–M13 plus M14 candidate"
+  },
+  "authorizedM01M02V12Retrofit": {
+    "throughCommit": "e1406d951c69c99930a97840b544b388e819aeb5",
+    "reason": "Explicit user-authorized retrospective M01/M02 v1.2 repair; 17+24 session architecture and stable IDs preserved. Re-pin only the two changed upstream curriculum blobs; all other protected curriculum files remain unchanged."
   }
 }
