@@ -49,7 +49,7 @@ try{
   });
   assert.equal(runtime.ok,true);assert.equal(runtime.status,200);
   assert.equal(runtime.id,'SIDE278');assert.equal(runtime.order,15);
-  assert.equal(runtime.moduleStatus,'independent-review-repaired-awaiting-followup-unpublished');
+  assert.equal(runtime.moduleStatus,'independent-followup-passed-provenance-confirmation-pending-unpublished');
   assert.equal(runtime.sessions,16);assert.equal(runtime.tasks,32);assert.equal(runtime.hashes,true);assert.equal(runtime.fingerprints,32);
 
   // Mount M15 through the real learner UI in this browser only. Persisted
