@@ -1,6 +1,6 @@
 {
-  "version": "m01-repairs-1.5-lang-foundation",
-  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts. v1.2 retrofit preserves the 17-session architecture while adding exact claim→public-request→rubric evidence, honest evidence-distance labels, learner-facing representation progression, delayed mixed retrieval, a routing-only readiness diagnostic, and bounded mathematical precision repairs. Assessed visuals are part of the assessment fingerprint. Independent follow-up R01–R08 repairs only semantic observability/representation hardening; no session-count or boundary change. Lang-foundation follow-up deepens structural algebra laws, system-case interpretation and readiness coverage without changing the 17-session architecture or ownership boundary.",
+  "version": "m01-repairs-1.6-lang-foundation-final-stitch",
+  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts. v1.2 retrofit preserves the 17-session architecture while adding exact claim→public-request→rubric evidence, honest evidence-distance labels, learner-facing representation progression, delayed mixed retrieval, a routing-only readiness diagnostic, and bounded mathematical precision repairs. Assessed visuals are part of the assessment fingerprint. Independent follow-up R01–R08 repairs only semantic observability/representation hardening; no session-count or boundary change. Lang-foundation follow-up deepens structural algebra laws, system-case interpretation and readiness coverage without changing the 17-session architecture or ownership boundary. LF-R04 final stitch upgrades S13 from unique-case-only ownership to explicit one/no/infinitely-many classification from elimination outcomes, with a versioned public Transfer and contract-hash update.",
   "lessons": {
     "T22V3::T22E-FND01::S01@1": "A signed number has a sign and a magnitude. On the number line, farther left means smaller. Arithmetic also has reusable structure: addition and multiplication are commutative (a+b=b+a, ab=ba) and associative ((a+b)+c=a+(b+c), (ab)c=a(bc)); subtraction and division are not. Additive inverses satisfy a+(−a)=0, and nonzero multiplicative inverses satisfy a·(1/a)=1. Read a numerical expression from its grouping outward: parentheses first, then powers, then multiplication/division, then addition/subtraction. A leading minus outside a power is applied after the power unless the negative base is parenthesized. Worked example: −6−[3−(−2)]+3² = −6−5+9 = −2; regrouping 17+83+6 as (17+83)+6 uses associativity, while swapping 17 and83 uses commutativity. Guided check: evaluate −4²+(−4)²−[6−(−2)], predict the sign first, and name which law lets you regroup 25+75+4 without changing its value.",
     "T22V3::T22E-FND01::S02@1": "A fraction a/b is one number, with b≠0. Equivalent fractions come from multiplying numerator and denominator by the same nonzero factor. Cancellation is not a visual permission to cross out symbols: it is multiplication by a reciprocal inside a product, e.g. (6·5)/(6·7)=(6/6)(5/7)=5/7 because6≠0. Addition/subtraction needs a common denominator; multiplication multiplies numerators and denominators; division by a nonzero fraction multiplies by its reciprocal. Worked example: 2/5+7/10=4/10+7/10=11/10; (4/7)(21/10)=6/5; and (5/8)÷(15/16)=(5/8)(16/15)=2/3. Guided check: reduce 21/35 by identifying the common nonzero factor, then compute 7/12−1/8 and (4/9)(3/14) exactly.",
@@ -14,7 +14,7 @@
     "T22V3::T22E-FND01::S10@1": "Factoring reverses expansion. First remove a greatest common factor. For a non-monic quadratic ax²+bx+c, one beginner-safe route is the ac method: find two numbers whose product is ac and sum is b, split bx, then factor by grouping. Worked example: 12x²+x−6 has ac=−72; 9 and −8 sum to1, so 12x²+9x−8x−6=3x(4x+3)−2(4x+3)=(3x−2)(4x+3). Difference of squares gives A²−B²=(A−B)(A+B). Guided check: factor 10x²+7x+1 by splitting the middle term and verify by expansion.",
     "T22V3::T22E-FND01::S11@1": "An equation is a constraint: legal transformations preserve the same solution set. The structural reason is inverse operations applied equally to both sides. Adding c and then adding −c cancel; multiplying by a known nonzero c and then by1/c cancel. This is why one may add/subtract the same quantity on both sides, or multiply/divide both sides by the same known nonzero quantity. Worked example: (x+2)/5−1=3 gives (x+2)/5=4, then x+2=20, so x=18; each line is equivalent to the previous one and substitution checks the result. Guided check: solve (3x−2)/7+4=5 with a visible reversible chain, identify the inverse operation used at each step, and verify the candidate.",
     "T22V3::T22E-FND01::S12@1": "Treat a formula as an equation whose requested symbol is the unknown and whose other symbols are parameters. Division introduces a condition, and a rearranged form can exclude a parameter branch that the original equation still admits. Worked example: F=ma gives m=F/a only for a≠0; when a=0 the original relation requires F=0 and m is not determined by division. Guided check: from y=c+dt, solve for d and separately describe the t=0 branch.",
-    "T22V3::T22E-FND01::S13@1": "A system asks for one pair satisfying every constraint simultaneously. Substitution replaces a variable by an equivalent expression; elimination combines equations to remove a variable. Ordinary systems can have three qualitatively different outcomes. If elimination leaves one variable value, there is one solution. If it collapses to a false statement such as0=5, the constraints are inconsistent and there is no solution. If it collapses to a true identity such as0=0, the equations are dependent and there are infinitely many solutions along the same relation. Worked example: x+y=11 and2x−y=7 gives3x=18, so(x,y)=(6,5). By contrast x+y=4 and2x+2y=9 are inconsistent, while x+y=4 and2x+2y=8 describe the same constraint. Guided check: classify the three pairs {x+y=5, x−y=1}, {x+y=5, 2x+2y=12}, and {x+y=5, 2x+2y=10} as one/no/infinitely-many solutions before solving the unique case.",
+    "T22V3::T22E-FND01::S13@1": "A system asks for one pair satisfying every constraint simultaneously. Substitution replaces a variable by an equivalent expression; elimination combines equations to remove a variable. Elementary two-equation systems can have three qualitatively different outcomes. If elimination leaves a determinate variable equation such as2x=6, the system has one solution. If elimination collapses to a false statement such as0=2, the constraints are inconsistent and there is no solution. If elimination collapses to a true identity such as0=0, the equations are dependent and there are infinitely many solutions along the same relation. Worked example: x+y=11 and2x−y=7 gives3x=18, so(x,y)=(6,5). By contrast x+y=4 and2x+2y=9 eliminate to a contradiction, while x+y=4 and2x+2y=8 eliminate to an identity. Guided check: without solving a full system, explain what an elimination outcome 0=7 means and what 0=0 means; then invent one simple pair of linear equations that would produce each outcome.",
     "T22V3::T22E-FND01::S14@1": "Inequalities describe sets. Addition/subtraction preserves order; positive scaling preserves order; negative scaling reverses it. Interval notation uses square brackets for included finite endpoints, parentheses for excluded endpoints, and parentheses at infinity. Worked example: −5x≥20 gives x≤−4, written (−∞,−4]. Guided check: solve 4−2x>10, give interval notation, and test one point inside and one outside your solution.",
     "T22V3::T22E-FND01::S15@1": "Absolute value is distance: |x| is distance from0 and |x−a| is distance from a. For c≥0, |u|≤c gives a bounded interval while |u|>c gives two outside rays. Absolute value is always nonnegative, so negative thresholds can make a condition impossible or automatic. Worked example: |x−6|≤3 gives3≤x≤9. Guided check: solve |3x+2|>8, then decide |y+1|<−3 and |y+1|≥−3 immediately from nonnegativity.",
     "T22V3::T22E-FND01::S16@1": "Put a quadratic in ax²+bx+c=0 form with a≠0. Factoring plus the zero-product property is efficient when factors are visible. Completing the square explains the general method rather than making the quadratic formula appear from nowhere: x²−6x+5=0 becomes x²−6x=−5, so adding 9 to both sides gives (x−3)²=4 and x=1 or5. For ax²+bx+c=0, divide by a, move c/a, and add (b/2a)²; solving the resulting square yields x=(−b±√(b²−4ac))/(2a). The discriminant D=b²−4ac therefore controls whether the real square-root step gives two, one or no real roots. Worked example: 2x²+4x−3=0 becomes x²+2x=3/2, so (x+1)²=5/2 and x=−1±√10/2, matching the formula. Guided check: solve x²+4x−5=0 by completing the square, then identify the discriminant before checking with the formula.",
@@ -62,8 +62,8 @@
       "obligationVersion": 2
     },
     "T22V3::T22E-FND01::S13-T@1": {
-      "prompt": "A desk wants positions x and y satisfying x+y=14 and 3x−2y=17. Solve by elimination and verify the pair in both original constraints.",
-      "obligationVersion": 2
+      "prompt": "Classify each system by elimination, without graphing. A: x+y=5 and x−y=1. B: x+y=5 and 2x+2y=12. C: x+y=5 and 2x+2y=10. For each system, show a legal elimination step, state the resulting equation or statement, and classify the system as having one solution, no solution, or infinitely many solutions. Explain what a false statement such as0=2 and a true identity such as0=0 mean.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-FND01::S14-M@1": {
       "prompt": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
@@ -357,21 +357,26 @@
       ]
     },
     "T22V3::T22E-FND01::S13-T@1": {
-      "reference": "Eliminate y by doubling x+y=14 to2x+2y=28 and add to3x−2y=17:5x=45, so x=9 and y=5. Checks:9+5=14 and27−10=17.",
+      "reference": "A: adding the equations gives2x=6, a determinate variable equation, so there is one solution (indeed x=3,y=2, though solving the pair is not required for classification). B: doubling the first equation gives2x+2y=10; comparing/subtracting from2x+2y=12 yields0=2, a contradiction, so there is no solution. C: doubling the first gives exactly2x+2y=10; subtraction yields0=0, an identity, so the equations are dependent and there are infinitely many solutions. A false statement means no pair can satisfy both constraints; a true identity after elimination means one equation supplied no independent new constraint.",
       "rubric": [
         {
-          "points": 4,
-          "criterion": "Uses a valid elimination operation."
+          "points": 2,
+          "criterion": "Uses a legal elimination step on system A and classifies it as one solution from a determinate equation such as2x=6."
         },
         {
           "points": 3,
-          "criterion": "Gets x=9,y=5."
+          "criterion": "Eliminates system B to a contradiction such as0=2 and classifies it as no solution."
         },
         {
           "points": 3,
-          "criterion": "Verifies both original constraints."
+          "criterion": "Eliminates system C to an identity0=0 and classifies it as infinitely many solutions."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that a false elimination statement means inconsistency, while0=0 means dependent constraints rather than a unique pair."
         }
-      ]
+      ],
+      "marking": "Human/AI review required. Classification credit requires the elimination outcome to be shown; do not infer one/no/infinite merely from a final label."
     },
     "T22V3::T22E-FND01::S14-M@1": {
       "reference": "First multiply by positive10:2(2x−3)≤5(x+4), so4x−6≤5x+20 and x≥−26, i.e.[−26,∞). For example0 satisfies and−27 fails. Second:−6x+3>9, so−6x>6; divide by−6 and reverse: x<−1, i.e.(−∞,−1). For example−2 satisfies and0 fails.",
@@ -883,23 +888,19 @@
     ],
     "T22V3::T22E-FND01::S13@1": [
       [
-        "main",
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ],
       [
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-FND01::S14@1": [
@@ -979,7 +980,7 @@
       ]
     ]
   },
-  "instructionVersion": "m01-instruction-v12-lang-foundation-r2",
+  "instructionVersion": "m01-instruction-v12-lang-foundation-r3",
   "instructionSeparation": {
     "T22V3::T22E-FND01::S01@1": {
       "main": [
@@ -1107,12 +1108,14 @@
     },
     "T22V3::T22E-FND01::S13@1": {
       "main": [
-        "2x+3y=19 and x−y=2",
-        "why your choice is convenient"
+        "Solve 2x+3y=19 and x−y=2",
+        "Choose substitution or elimination"
       ],
       "transfer": [
-        "x+y=14",
-        "3x−2y=17"
+        "Classify each system by elimination",
+        "A: x+y=5 and x−y=1",
+        "B: x+y=5 and 2x+2y=12",
+        "C: x+y=5 and 2x+2y=10"
       ]
     },
     "T22V3::T22E-FND01::S14@1": {
@@ -1509,7 +1512,32 @@
           ],
           "note": "M02 S04 will render the same three cases geometrically."
         }
-      ]
+      ],
+      "centralCapability": "Solve elementary two-equation linear systems by substitution or elimination, classify one/no/infinitely-many solution outcomes from elimination, and verify a unique solution when one exists.",
+      "requiredOwnership": [
+        "Interpret a system as simultaneous constraints.",
+        "Choose substitution or elimination strategically.",
+        "Perform elimination with legal equation operations.",
+        "Classify an elementary two-equation linear system as having one, no, or infinitely many solutions from its elimination outcome.",
+        "Check the final pair in both original equations."
+      ],
+      "applicationScope": "Elementary two-equation linear systems with one, no, or infinitely many solutions; classification stays algebraic and pre-matrix.",
+      "transferScope": "A changed coefficient/context surface requiring elimination to expose either an inconsistency or an identity.",
+      "inScope": [
+        "Substitution",
+        "Elimination",
+        "Constraint intersection",
+        "One/no/infinitely-many classification",
+        "Pair verification"
+      ],
+      "outOfScope": [
+        "Matrix rank/determinants",
+        "Gaussian elimination beyond2×2",
+        "Least squares",
+        "Optimization"
+      ],
+      "exitCondition": "Solve one fresh unique two-unknown system and classify fresh inconsistent/dependent systems from explicit elimination outcomes.",
+      "contractHash": "ee7613d4e0a90042b30fbc8d143aed7e8918b9abff429ac5768f38b7ed34ad74"
     }
   },
   "readinessDiagnostic": {
@@ -1764,7 +1792,7 @@
     },
     "T22V3::T22E-FND01::S13-T@1": {
       "classification": "retrieval",
-      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+      "reason": "Applies the explicitly taught elimination-outcome classification to three fresh elementary systems; it is independent public ownership evidence for one/no/infinitely-many cases, not a claim of unfamiliar transfer."
     },
     "T22V3::T22E-FND01::S14-M@1": {
       "classification": "retrieval",
@@ -2336,17 +2364,22 @@
       {
         "claim": "Perform elimination with legal equation operations.",
         "task": "transfer",
-        "publicRequest": "A desk wants positions x and y satisfying x+y=14 and 3x−2y=17. Solve by elimination and verify the pair in both original constraints.",
+        "publicRequest": "Classify each system by elimination, without graphing. A: x+y=5 and x−y=1. B: x+y=5 and 2x+2y=12. C: x+y=5 and 2x+2y=10. For each system, show a legal elimination step, state the resulting equation or statement, and classify the system as having one solution, no solution, or infinitely many solutions. Explain what a false statement such as0=2 and a true identity such as0=0 mean.",
         "rubricEvidence": [
-          "Uses a valid elimination operation."
+          "Uses a legal elimination step on system A and classifies it as one solution from a determinate equation such as2x=6.",
+          "Eliminates system B to a contradiction such as0=2 and classifies it as no solution.",
+          "Eliminates system C to an identity0=0 and classifies it as infinitely many solutions."
         ]
       },
       {
-        "claim": "Detect a unique solution in ordinary nondegenerate examples.",
-        "task": "main",
-        "publicRequest": "Solve 2x+3y=19 and x−y=2. Choose substitution or elimination, briefly explain why your choice is convenient here, and verify the pair in both original equations.",
+        "claim": "Classify an elementary two-equation linear system as having one, no, or infinitely many solutions from its elimination outcome.",
+        "task": "transfer",
+        "publicRequest": "Classify each system by elimination, without graphing. A: x+y=5 and x−y=1. B: x+y=5 and 2x+2y=12. C: x+y=5 and 2x+2y=10. For each system, show a legal elimination step, state the resulting equation or statement, and classify the system as having one solution, no solution, or infinitely many solutions. Explain what a false statement such as0=2 and a true identity such as0=0 mean.",
         "rubricEvidence": [
-          "Gets x=5,y=3."
+          "Uses a legal elimination step on system A and classifies it as one solution from a determinate equation such as2x=6.",
+          "Eliminates system B to a contradiction such as0=2 and classifies it as no solution.",
+          "Eliminates system C to an identity0=0 and classifies it as infinitely many solutions.",
+          "Explains that a false elimination statement means inconsistency, while0=0 means dependent constraints rather than a unique pair."
         ]
       },
       {
@@ -2534,6 +2567,7 @@
   },
   "coverageAudit": {
     "status": "85/85 semantically re-audited through independent follow-up R01–R08; R02/R03/R06 exact observers repaired and S14 assessed ray hardened with its own continuation arrow",
-    "langFoundation": "L07 structural-law spine added instructionally across S01/S02/S09/S11; L08 one/no/infinite system cases added instructionally in S13; L09 readiness broadened to sample S12/S13/S15/S17 while remaining routing-only."
+    "langFoundation": "L07 structural-law spine added instructionally across S01/S02/S09/S11; L08 one/no/infinite system cases added instructionally in S13; L09 readiness broadened to sample S12/S13/S15/S17 while remaining routing-only.",
+    "langFoundationFinal": "LF-R04 repaired: M01-S13 contract claim 4 now owns one/no/infinitely-many classification and fixed Transfer v3 visibly elicits all three elimination outcomes."
   }
 }
