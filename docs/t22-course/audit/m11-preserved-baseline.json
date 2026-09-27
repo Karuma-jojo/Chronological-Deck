@@ -90,7 +90,7 @@
     "docs/t22-course/audit/m10-semantic-contract.json": "7dc3965cc3531e6566ea688a359791f0b53cc451",
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
-    "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01",
+    "js/t22-course/ui.js": "bfcd47bc0d4835626794add957b3c067385995cf",
     "scripts/test-t22-elite-m01.mjs": "fc826630789ddd7469492f7c16b0b9071a33472f",
     "scripts/test-t22-elite-m02.mjs": "3422e3c392126d016a2be335cf78a251da755b73",
     "scripts/test-t22-elite-m03.mjs": "ca16105659142c2e31df55717e259c5e6ecd82fd",
@@ -103,7 +103,7 @@
     "scripts/test-t22-elite-m09-browser.mjs": "52928df06f8874c7a05ae2de8bc8c63e10fc7521",
     "scripts/test-t22-elite-m09.mjs": "2911ffe422a5a19a78d2ce852dcd709e81a50cfd",
     "scripts/test-t22-elite-m10.mjs": "7851f9f4a46ffd90f51e76094c0af00ce8015d6c",
-    "t22-course.html": "f9c38ecd7d329dd62c8125729b26cc9ae65d2432",
+    "t22-course.html": "d17a2eede8f674a6af8d9aae9bf769cb8584e22f",
     "docs/t22-course/M07-DESIGN-GATE.md": "d52884808a04620976fc18b76eeaa4c8228cefab",
     "docs/t22-course/audit/m10-protected-semantic-rows.json": "1cb34d7eb93115fdb9a70b0227f344789992a29e"
   },
@@ -172,5 +172,9 @@
     "sourceReviewHead": "c6003be2f18d3f904898483a422a9a356dc5bc54",
     "scope": "Final independently confirmed M01/M02/M03/M10 foundation publication to main; M15 excluded.",
     "status": "frozen"
+  },
+  "attemptSaveUxFix": {
+    "base": "775b75fec5d1d1f346b2dceb9c24d66d5087ca66",
+    "scope": "T22 learner UX only: disarm identical Save attempt, group linked review under the root attempt, clarify local-only persistence and backup/export semantics."
   }
 }
