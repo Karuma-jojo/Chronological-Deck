@@ -4,7 +4,7 @@ Independent follow-up on exact green Lang-repair head `60d0e9377ca49f5ee43de6c14
 
 The bounded repair is isolated on `codex/t22-lang-foundation-final-stitch`. It keeps all session counts fixed. M03-S26 now owns the general finite binomial theorem for positive integer n with public C(n,k) factor-choice evidence and a fresh n=5 application; P(n,r)=C(n,r)r! is restored instructionally. M01-S13 now canonically owns and publicly assesses one/no/infinitely-many system classification. M02-S22 now closes the rigid-rotation chord argument and uses a distinct Guided sine-difference reconstruction rather than replaying the fixed cosine-sum move. Current authority: `docs/t22-course/M01-M03-LANG-FOUNDATION-FINAL-STITCH.md`.
 
-Status: **repair implemented on isolated branch; full workflow and independent reconfirmation pending**.
+The final stitch was published by clean fast-forward to `codex/t22-pedagogical-rebuild`. Exact implementation head `26ce54a127b9b9fa3aa931f4715f28596221244a` passed full T22 Elite run `36315456617` (#573), job `108609192895`, including the strengthened M01/M02/M03 semantic guards, M10 general-binomial dependency receipt and real Chromium learner surfaces. Status: **implemented + fully green; independent reconfirmation pending**.
 
 ---
 
