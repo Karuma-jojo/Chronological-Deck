@@ -1,14 +1,14 @@
 {
-  "version": "m02-authoring-v12-followup-r3",
+  "version": "m02-authoring-v12-lang-foundation-r4",
   "module": {
     "order": 2,
     "id": "T22E-FND02",
     "title": "Quantitative Foundations II — Functions & Precalculus",
-    "status": "authored-v1.2-followup-repaired-awaiting-independent-reconfirmation",
+    "status": "authored-v1.2-lang-foundation-repaired-awaiting-independent-reconfirmation",
     "destination": "From reliable algebra, become fluent with functions as objects, legal domains/ranges, graphs and transformations, finite indexed models, exponential/logarithmic reasoning, log returns and the minimal trigonometry needed by later quantitative work.",
     "gate": "M02 is not cleared by page completion. Publication requires semantic ancestry, prerequisite-symbol audit, novice instruction, claim coverage, independent math/reference validation, evidence integrity and browser validation.",
     "nextBoundary": "M03 owns proof habits, logic, sets/maps and combinatorics. M09 owns limits, convergence and infinite-series arguments. M02 must not certify either family.",
-    "acceptance": "Earlier M02-01→04 acceptance remains historical. The v1.2 retrofit follow-up repairs independent findings R01–R08 only; architecture remains 24 sessions and independent reconfirmation is required."
+    "acceptance": "R01–R08 remain repaired. Lang-foundation follow-up L01–L10 deepens prerequisite seams without changing the 24-session architecture; independent reconfirmation remains required."
   },
   "boundary": {
     "prerequisiteModules": [
@@ -189,7 +189,7 @@
       "principalObstacle": "A graph is often treated as a picture disconnected from the function values it represents.",
       "entryPrerequisites": [
         "M02-S01 function evaluation",
-        "M01 roots"
+        "M01 roots/square-root arithmetic"
       ],
       "requiredOwnership": [
         "Interpret (x,f(x)) as a graph point.",
@@ -214,10 +214,91 @@
         "Plotting software"
       ],
       "exitCondition": "From one unfamiliar rule, produce points/intercepts and one exact distance or midpoint calculation.",
-      "lesson": "The graph of y=f(x) is the set of points (x,f(x)); a table is a finite list of the same input-output pairs. A y-intercept uses x=0; an x-intercept solves f(x)=0. Reading a graph means extracting coordinates from its axes and scale, not merely repeating values already supplied in prose. For points (x₁,y₁),(x₂,y₂), distance is √[(x₂−x₁)²+(y₂−y₁)²] and midpoint averages coordinates. Worked example: y=x+2 has intercepts (−2,0),(0,2); plotting a short table makes those points visible. Guided check: tabulate y=x²−1 at x=−1,0,2, locate those three points on the supplied graph, and find the distance between the first two.",
+      "lesson": "The coordinate plane uses an ordered pair (x,y): x is horizontal position and y is vertical position. The graph of y=f(x) is the set of points (x,f(x)); a table is a finite list of the same input-output pairs. A y-intercept uses x=0; an x-intercept solves f(x)=0. For two points P=(x₁,y₁), Q=(x₂,y₂), draw the horizontal/vertical legs between them. Those legs have signed changes Δx=x₂−x₁ and Δy=y₂−y₁; their lengths are |Δx| and |Δy|. The Pythagorean theorem for a right triangle says c²=a²+b², so the straight-line distance satisfies d²=(Δx)²+(Δy)² and therefore d=√[(x₂−x₁)²+(y₂−y₁)²]. The midpoint is the coordinate-wise average because it lies halfway along each horizontal/vertical change. Reading a graph means extracting coordinates from its axes and scale, not repeating values supplied in prose. Worked example: between P=(−1,−5) and Q=(2,1), Δx=3 and Δy=6, so d=√(3²+6²)=3√5 and midpoint=(1/2,−2). Guided check: tabulate y=x²−1 at x=−1,0,2, locate those points, then construct the right-triangle legs between the first and third and derive their distance from Pythagoras.",
       "main": "T22V3::T22E-FND02::S03-M@1",
       "transfer": "T22V3::T22E-FND02::S03-T@1",
       "representations": [
+        {
+          "kind": "plot",
+          "title": "Coordinate distance comes from a right triangle",
+          "xRange": [
+            -2,
+            3
+          ],
+          "yRange": [
+            -6,
+            3
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "y",
+          "points": [
+            [
+              -1,
+              -5,
+              "P(−1,−5)"
+            ],
+            [
+              2,
+              1,
+              "Q(2,1)"
+            ],
+            [
+              2,
+              -5,
+              "R"
+            ]
+          ],
+          "segments": [
+            {
+              "from": [
+                -1,
+                -5
+              ],
+              "to": [
+                2,
+                -5
+              ],
+              "label": "Δx=3",
+              "labelAt": [
+                0.5,
+                -5
+              ]
+            },
+            {
+              "from": [
+                2,
+                -5
+              ],
+              "to": [
+                2,
+                1
+              ],
+              "label": "Δy=6",
+              "labelAt": [
+                2,
+                -2
+              ]
+            },
+            {
+              "from": [
+                -1,
+                -5
+              ],
+              "to": [
+                2,
+                1
+              ],
+              "label": "d",
+              "labelAt": [
+                0.3,
+                -1.5
+              ]
+            }
+          ],
+          "note": "PR and RQ are perpendicular coordinate changes. Pythagoras gives d²=(Δx)²+(Δy)²."
+        },
         {
           "kind": "plot",
           "title": "Rule, table and graph must agree",
@@ -258,7 +339,7 @@
               "(2,3)"
             ]
           ],
-          "note": "The highlighted points are the same pairs produced by the guided table."
+          "note": "The highlighted points are the same input-output pairs produced by the guided table."
         }
       ]
     },
@@ -298,13 +379,13 @@
         "Nonlinear interpolation"
       ],
       "exitCondition": "Build and interpret one line from data points, including slope units and one inverse-use calculation.",
-      "lesson": "For a line, slope m=(y₂−y₁)/(x₂−x₁) is output change per input change, so its units are output-units per input-unit. Once m is known, y=mx+b and one point determines b. M01 already solved two simultaneous linear constraints algebraically; in M02 those same two equations can be drawn as lines, and their common solution is their intersection. Worked example: through (1,4),(5,12), m=2 and y=2x+2. Guided check: find the line through (−2,7),(4,−5), state slope units generically, and verify both points.",
+      "lesson": "For a line, slope m=(y₂−y₁)/(x₂−x₁) is output change per input change, so its units are output-units per input-unit. Once m is known, y=mx+b and one point determines b. M01 classified two linear constraints algebraically into one, no or infinitely many solutions. Geometrically those are exactly: two distinct nonparallel lines intersect once; distinct parallel lines never intersect; two equivalent equations draw the same line and every point on it satisfies both. Worked example: through(1,4),(5,12), m=2 and y=2x+2. For y=2x+1 and y=2x−3 the equal slopes/different intercepts mean no common point; y=2x+1 and2y=4x+2 are the same line. Guided check: find the line through(−2,7),(4,−5), state slope units generically, then classify a second line with the same slope but different intercept.",
       "main": "T22V3::T22E-FND02::S04-M@1",
       "transfer": "T22V3::T22E-FND02::S04-T@1",
       "representations": [
         {
           "kind": "plot",
-          "title": "M01 simultaneous constraints become intersecting lines",
+          "title": "One solution: distinct lines intersect once",
           "xRange": [
             0,
             10
@@ -333,10 +414,67 @@
             [
               6,
               5,
-              "common solution (6,5)"
+              "one common pair"
             ]
+          ]
+        },
+        {
+          "kind": "plot",
+          "title": "No solution: distinct parallel lines",
+          "xRange": [
+            -2,
+            6
           ],
-          "note": "The algebraic pair satisfying both equations is exactly the geometric intersection."
+          "yRange": [
+            -4,
+            10
+          ],
+          "xTick": 1,
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "line",
+              "m": 1,
+              "b": 2
+            },
+            {
+              "family": "line",
+              "m": 1,
+              "b": -2
+            }
+          ],
+          "note": "Same slope, different intercepts: no intersection."
+        },
+        {
+          "kind": "plot",
+          "title": "Infinitely many solutions: the same line twice",
+          "xRange": [
+            -2,
+            6
+          ],
+          "yRange": [
+            -4,
+            10
+          ],
+          "xTick": 1,
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "line",
+              "m": 1,
+              "b": 1
+            },
+            {
+              "family": "line",
+              "m": 1,
+              "b": 1
+            }
+          ],
+          "note": "Equivalent equations produce the same geometric set, so every point on the line solves both."
         }
       ]
     },
@@ -830,33 +968,34 @@
       "centralCapability": "Interpret and evaluate A·b^t models, linking base b to per-unit multiplicative growth or decay.",
       "principalObstacle": "The base is confused with an additive change and percentages are added across periods instead of compounded.",
       "entryPrerequisites": [
-        "M01 exponents/percent multipliers",
+        "M01 rational exponents and percent multipliers",
         "M02-S01 functions"
       ],
       "requiredOwnership": [
         "Recognize b>1 as growth and 0<b<1 as decay.",
         "Interpret b as the multiplier per one input unit.",
         "Translate a percent growth/decay rate to an exponential base.",
-        "Evaluate an exponential model at integer inputs.",
+        "Use the positive-base real-exponential law b^(x+y)=b^x b^y.",
         "Identify initial value from t=0."
       ],
       "applicationScope": "Elementary real-valued functions and finite quantitative models.",
       "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
       "inScope": [
-        "Discrete exponential models",
+        "Positive-base real exponential functions",
         "Growth/decay factors",
         "Percent bases",
         "Initial value",
-        "Finite evaluation"
+        "Law b^(x+y)=b^x b^y"
       ],
       "outOfScope": [
+        "Real-analysis construction of irrational exponents",
         "Logarithmic solving until S15",
         "Continuous compounding until S16",
         "Limits",
         "Differential equations"
       ],
       "exitCondition": "Build/evaluate one growth or decay model and explain its per-step multiplier and initial value.",
-      "lesson": "In A·b^t, A is the t=0 value and b is the multiplier for each +1 in t. M01 already composed one-step percentage multipliers; an exponential function repeats the same multiplier across many equal input steps. Eight-percent growth uses b=1.08; twelve-percent decay uses b=0.88. Worked example: 200(1.05)^t starts at200 and multiplies by1.05 per period, so a table of consecutive t values has a constant output ratio. Guided check: interpret and evaluate 900(0.92)^t at t=0,1,2, then describe what its graph should do as t increases.",
+      "lesson": "M01 defined rational powers. Here we pass to the standard positive-base real exponential function x↦b^x for b>0: it extends the rational powers to all real inputs. A full construction of irrational exponents is analysis-level and is not hidden inside this course; at this stage we take the standard real-exponential laws as established properties. In particular b^(x+y)=b^x b^y, (b^x)^y=b^(xy), and for positive a,b, (ab)^x=a^x b^x. These laws preserve the multiplicative meaning between arbitrary real inputs and are exactly what later calculus will use. In A·b^t, A is the t=0 value and b is the multiplier for each +1 in t because b^(t+1)=b^t·b. Eight-percent growth uses b=1.08; twelve-percent decay uses b=0.88. Worked example: f(t)=200(1.05)^t has f(t+h)=f(t)(1.05)^h; setting h=1 recovers the one-period multiplier1.05. Guided check: for g(t)=900(0.92)^t, identify g(0), compute g(2), then use b^(x+y)=b^x b^y to rewrite g(t+h) in terms of g(t).",
       "main": "T22V3::T22E-FND02::S12-M@1",
       "transfer": "T22V3::T22E-FND02::S12-T@1",
       "representations": [
@@ -1150,7 +1289,7 @@
         "Difference equations beyond S20"
       ],
       "exitCondition": "Recover an arithmetic sequence from indexed data and compute an unfamiliar term and finite sum.",
-      "lesson": "An arithmetic sequence adds the same difference d each step. With first term a₁, a_n=a₁+(n−1)d. The finite sum is n(a₁+a_n)/2. Worked example: a₁=5,d=3 gives a₆=20 and S₆=75. Guided check: if a₃=11 and a₇=27, recover d and a₁.",
+      "lesson": "An arithmetic sequence adds the same difference d each step. With first term a₁, a_n=a₁+(n−1)d. Its finite-sum formula comes from pairing rather than memorization. Write S=a₁+a₂+⋯+a_n and again in reverse S=a_n+a_(n−1)+⋯+a₁. Adding termwise gives 2S=(a₁+a_n)+(a₂+a_(n−1))+⋯+(a_n+a₁): there are n equal pairs, each a₁+a_n. Hence 2S=n(a₁+a_n) and S=n(a₁+a_n)/2. Worked example: a₁=5,d=3 gives a₆=20 and S₆=6(5+20)/2=75; forward and reverse lists pair to25 six times. Guided check: if a₃=11 and a₇=27, recover d and a₁, then explain which two terms pair to the same sum as a₁+a₇.",
       "main": "T22V3::T22E-FND02::S17-M@1",
       "transfer": "T22V3::T22E-FND02::S17-T@1",
       "representations": [
@@ -1176,6 +1315,45 @@
             ]
           ],
           "note": "The input jumps through integers rather than all real numbers."
+        },
+        {
+          "kind": "table",
+          "title": "Forward + reverse pairing derives the arithmetic-sum formula",
+          "headers": [
+            "position",
+            1,
+            2,
+            "…",
+            "n−1",
+            "n"
+          ],
+          "rows": [
+            [
+              "forward",
+              "a₁",
+              "a₂",
+              "…",
+              "aₙ₋₁",
+              "aₙ"
+            ],
+            [
+              "reverse",
+              "aₙ",
+              "aₙ₋₁",
+              "…",
+              "a₂",
+              "a₁"
+            ],
+            [
+              "pair sum",
+              "a₁+aₙ",
+              "a₁+aₙ",
+              "…",
+              "a₁+aₙ",
+              "a₁+aₙ"
+            ]
+          ],
+          "note": "There are n identical pair sums, so 2S=n(a₁+aₙ)."
         }
       ]
     },
@@ -1336,17 +1514,173 @@
         "Complex exponential form"
       ],
       "exitCondition": "Convert and locate one unfamiliar standard angle and compute one radian arc displacement exactly.",
-      "lesson": "Angles measure rotation. Positive angles turn counterclockwise and negative angles clockwise. In radians, θ=s/r: signed angle is arc displacement divided by radius, so s=rθ. A full turn is2π radians=360°. On the unit circle the moving point is(cosθ,sinθ). The standard acute values come from two triangles: splitting an equilateral triangle gives the30°/60° values; an isosceles right triangle gives cos45°=sin45°=√2/2. Other quadrants reuse the acute reference angle with coordinate signs I(+,+), II(−,+), III(−,−), IV(+,−). Worked example: 210° has reference angle30°, lies in III, and therefore has coordinates(−√3/2,−1/2). Guided check: convert300° to radians, identify its reference angle/quadrant, and find its coordinates. Keep watching the y-coordinate: S23 will unwrap that sin-coordinate against θ to create the sine graph.",
+      "lesson": "Angles measure rotation. Positive angles turn counterclockwise and negative angles clockwise. In radians, θ=s/r: signed angle is arc displacement divided by radius, so s=rθ. A full turn is2π radians=360°. On the unit circle the moving point is(cosθ,sinθ). The standard acute values are derived from two right triangles. For45°, start with an isosceles right triangle with legs1,1; Pythagoras gives hypotenuse√2, so after normalizing to hypotenuse1 each leg is1/√2=√2/2. For30°/60°, split an equilateral triangle of side2 in half: the half-base is1, hypotenuse2, and Pythagoras gives altitude√(2²−1²)=√3. Normalizing by hypotenuse2 gives the coordinate magnitudes1/2 and√3/2. Other quadrants reuse these reference-angle magnitudes with coordinate signs I(+,+), II(−,+), III(−,−), IV(+,−). Worked example:210° has reference angle30°, lies in III, and therefore has coordinates(−√3/2,−1/2). Guided check: derive the45° coordinates from the1-1-√2 triangle, then convert300° to radians, identify its30° reference angle/quadrant, and find its coordinates. Keep watching the y-coordinate: S23 will unwrap sinθ against θ into the sine graph.",
       "main": "T22V3::T22E-FND02::S21-M@1",
       "transfer": "T22V3::T22E-FND02::S21-T@1",
       "representations": [
+        {
+          "kind": "plot",
+          "title": "45° values from a 1–1–√2 triangle",
+          "xRange": [
+            -0.2,
+            1.4
+          ],
+          "yRange": [
+            -0.2,
+            1.4
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "showGrid": false,
+          "showAxes": false,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "segments": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                0
+              ],
+              "label": "1",
+              "labelAt": [
+                0.5,
+                0
+              ]
+            },
+            {
+              "from": [
+                1,
+                0
+              ],
+              "to": [
+                1,
+                1
+              ],
+              "label": "1",
+              "labelAt": [
+                1,
+                0.5
+              ]
+            },
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                1
+              ],
+              "label": "√2",
+              "labelAt": [
+                0.45,
+                0.55
+              ]
+            }
+          ],
+          "note": "Normalize the hypotenuse √2 to1: both coordinate magnitudes become1/√2=√2/2."
+        },
+        {
+          "kind": "plot",
+          "title": "30°/60° values from half an equilateral triangle",
+          "xRange": [
+            -0.2,
+            2.2
+          ],
+          "yRange": [
+            -0.2,
+            2.1
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "showGrid": false,
+          "showAxes": false,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1.7320508075688772
+            ]
+          ],
+          "segments": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                0
+              ],
+              "label": "1",
+              "labelAt": [
+                0.5,
+                0
+              ]
+            },
+            {
+              "from": [
+                1,
+                0
+              ],
+              "to": [
+                1,
+                1.7320508075688772
+              ],
+              "label": "√3",
+              "labelAt": [
+                1,
+                0.85
+              ]
+            },
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                1.7320508075688772
+              ],
+              "label": "2",
+              "labelAt": [
+                0.45,
+                1
+              ]
+            }
+          ],
+          "note": "With hypotenuse2, the normalized legs are1/2 and√3/2."
+        },
         {
           "kind": "unitCircle",
           "title": "Coordinates on the unit circle",
           "angleRad": 3.665191429188092,
           "angleLabel": "210°",
           "pointLabel": "(−√3/2, −1/2)",
-          "note": "cosθ is the horizontal coordinate; sinθ is the vertical coordinate."
+          "note": "Reference-angle magnitudes come from the triangles; quadrant signs locate them on the unit circle."
         }
       ]
     },
@@ -1355,9 +1689,9 @@
       "id": "T22V3::T22E-FND02::S22@1",
       "moduleId": "T22E-FND02",
       "title": "Sine, cosine, tangent & core identities",
-      "focus": "Exact standard values, quadrant signs, tan=sin/cos and sin²+cos²=1.",
-      "purpose": "Build the small trig toolkit required for derivatives, periodic models and projections.",
-      "centralCapability": "Compute exact trig values and recover a missing trig ratio from quadrant information using the Pythagorean identity.",
+      "focus": "Exact trig values, Pythagorean/tangent identities, and sine/cosine angle-addition formulas.",
+      "purpose": "Build the trig toolkit later derivatives, periodic models and projections actually consume, including the angle-addition identities used in M10.",
+      "centralCapability": "Compute exact trig values, recover missing ratios with quadrant information, and derive/use the sine/cosine angle-addition formulas.",
       "principalObstacle": "Signs and square roots are chosen without quadrant information, or tan is used where cos=0.",
       "entryPrerequisites": [
         "M02-S21 unit circle",
@@ -1368,7 +1702,7 @@
         "Use tanθ=sinθ/cosθ when cosθ≠0.",
         "Use sin²θ+cos²θ=1.",
         "Choose the correct sign from the stated quadrant.",
-        "Simplify a basic identity under its legal denominator condition."
+        "Reconstruct and use sine/cosine angle-addition identities."
       ],
       "applicationScope": "Elementary real-valued functions and finite quantitative models.",
       "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
@@ -1377,16 +1711,15 @@
         "Quadrant signs",
         "Pythagorean identity",
         "Tangent",
-        "Simple simplification"
+        "Sine/cosine sum and difference identities"
       ],
       "outOfScope": [
-        "Sum/difference formulas",
         "Inverse trig",
-        "General identity proofs",
+        "Product-to-sum and multiple-angle formula catalogues",
         "Calculus"
       ],
-      "exitCondition": "Recover an exact trig triple from partial/quadrant information and simplify one elementary identity legally.",
-      "lesson": "On the unit circle, cos is x-coordinate and sin is y-coordinate; tan=sin/cos where cos≠0. The radius-one equation gives sin²θ+cos²θ=1. Worked example: at 2π/3, sin=√3/2, cos=−1/2, tan=−√3. Guided check: if cosθ=5/13 in quadrant IV, find sinθ and tanθ.",
+      "exitCondition": "Recover an exact trig triple from partial/quadrant information and reconstruct/use one sine/cosine angle-addition identity.",
+      "lesson": "On the unit circle, cos is the x-coordinate and sin is the y-coordinate; tan=sin/cos where cos≠0. The radius-one equation gives sin²θ+cos²θ=1. The angle-addition formulas can be derived from the same coordinate geometry rather than memorized as a catalogue. Let P_A=(cosA,sinA) and P_B=(cosB,sinB) be unit-circle points. Their coordinate distance squared is (cosA−cosB)²+(sinA−sinB)²=2−2(cosA cosB+sinA sinB). The same chord subtends angle A−B, so by the unit-circle distance formula its squared length is2−2cos(A−B). Equating gives cos(A−B)=cosA cosB+sinA sinB. Replacing B by−B gives cos(A+B)=cosA cosB−sinA sinB. Using sinθ=cos(π/2−θ) then yields sin(A+B)=sinA cosB+cosA sinB and sin(A−B)=sinA cosB−cosA sinB. Worked example: cos(π/12)=cos(π/4−π/6)=√6/4+√2/4. Guided check: reconstruct cos(A+B) from the difference formula by replacing B with−B, then compute sin(5π/12)=sin(π/4+π/6) exactly.",
       "main": "T22V3::T22E-FND02::S22-M@1",
       "transfer": "T22V3::T22E-FND02::S22-T@1"
     },
@@ -1895,8 +2228,8 @@
       "id": "T22V3::T22E-FND02::S12-M@1",
       "order": 12,
       "kind": "main",
-      "prompt": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
-      "obligationVersion": 1
+      "prompt": "A quantity follows f(t)=500(1.08)^t for real t. State the initial value, per-period multiplier and percent growth rate, then compute f(2). Finally use b^(x+y)=b^x b^y to rewrite f(t+h) as f(t) times a factor depending only on h, and state what h=1 recovers.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S12-T@1": {
       "id": "T22V3::T22E-FND02::S12-T@1",
@@ -2035,15 +2368,15 @@
       "id": "T22V3::T22E-FND02::S22-M@1",
       "order": 22,
       "kind": "main",
-      "prompt": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
-      "obligationVersion": 1
+      "prompt": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S22-T@1": {
       "id": "T22V3::T22E-FND02::S22-T@1",
       "order": 22,
       "kind": "transfer",
-      "prompt": "For cos x≠0 simplify (1−sin²x)/cos x. Then give sin, cos and tan at x=π/3 exactly.",
-      "obligationVersion": 1
+      "prompt": "Using the S22 chord-distance derivation, state cos(A−B)=cosA cosB+sinA sinB, then derive cos(A+B) by replacing B with −B. Use your result to compute cos(π/12)=cos(π/4−π/6) exactly. Finally state the corresponding sine addition formula sin(A+B).",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S23-M@1": {
       "id": "T22V3::T22E-FND02::S23-M@1",
@@ -2649,26 +2982,30 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S12-M@1": {
-      "reference": "Initial500. Multiplier1.08. Growth rate8% per period. f(2)=500×1.08²=583.2.",
+      "reference": "Initial500. Multiplier1.08 and growth8% per period. f(2)=500·1.08²=583.2. Using the real-exponential law, f(t+h)=500·1.08^(t+h)=500·1.08^t·1.08^h=f(t)·1.08^h. At h=1 this recovers the one-period multiplier1.08.",
       "rubric": [
         {
-          "points": 2,
-          "criterion": "Initial value500."
+          "points": 1,
+          "criterion": "Initial value is500."
         },
         {
           "points": 2,
-          "criterion": "Multiplier1.08."
+          "criterion": "Multiplier1.08 and growth rate8% per period are both identified."
         },
         {
           "points": 2,
-          "criterion": "Growth8%."
+          "criterion": "Computes f(2)=583.2."
         },
         {
-          "points": 4,
-          "criterion": "f(2)=583.2 with compounding."
+          "points": 3,
+          "criterion": "Uses b^(x+y)=b^x b^y to obtain f(t+h)=f(t)·1.08^h."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that h=1 recovers the one-period multiplier1.08."
         }
       ],
-      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+      "marking": "Human/AI review required. Score only observed work; the real-exponential law must be used explicitly for its ownership credit."
     },
     "T22V3::T22E-FND02::S12-T@1": {
       "reference": "For g, 0.85<1 so it decays by15% per period. g(1)=1020 and g(3)=1200×0.85³=736.95. Six-percent growth means multiplier/base1.06, so the separate model is 900(1.06)^t.",
@@ -3093,36 +3430,44 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S22-M@1": {
-      "reference": "At5π/4, sin=−√2/2, cos=−√2/2, tan=1. If sin=3/5 in quadrant II, cos is negative: cos=−4/5 and tan=(3/5)/(−4/5)=−3/4.",
-      "rubric": [
-        {
-          "points": 5,
-          "criterion": "Exact triple at5π/4 correct."
-        },
-        {
-          "points": 3,
-          "criterion": "cos=−4/5."
-        },
-        {
-          "points": 2,
-          "criterion": "tan=−3/4 with quadrant sign."
-        }
-      ],
-      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
-    },
-    "T22V3::T22E-FND02::S22-T@1": {
-      "reference": "1−sin²x=cos²x, so quotient=cos x because cos x≠0. Atπ/3: sin=√3/2, cos=1/2, tan=√3.",
+      "reference": "At5π/4, sin=−√2/2, cos=−√2/2, tan=1. If sinθ=3/5 in quadrantII, sin²+cos²=1 gives cos²=16/25. QuadrantII makes cos negative, so cos=−4/5 and tan=(3/5)/(−4/5)=−3/4.",
       "rubric": [
         {
           "points": 4,
-          "criterion": "Simplifies to cos x with condition used."
+          "criterion": "Exact sin/cos/tan triple at5π/4 is correct."
         },
         {
-          "points": 6,
-          "criterion": "Exact trig triple atπ/3 correct."
+          "points": 3,
+          "criterion": "Uses sin²θ+cos²θ=1 to obtain |cosθ|=4/5 and quadrantII to choose cosθ=−4/5."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses tanθ=sinθ/cosθ to obtain −3/4."
         }
       ],
-      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+      "marking": "Human/AI review required. Score only observed work; Pythagorean-identity and quadrant-sign ownership require the stated reasoning, not answer inference."
+    },
+    "T22V3::T22E-FND02::S22-T@1": {
+      "reference": "Chord distance gives cos(A−B)=cosA cosB+sinA sinB. Since cos(−B)=cosB and sin(−B)=−sinB, replacing B by−B gives cos(A+B)=cosA cosB−sinA sinB. Then cos(π/12)=cos(π/4−π/6)=(√2/2)(√3/2)+(√2/2)(1/2)=(√6+√2)/4. The sine addition formula is sin(A+B)=sinA cosB+cosA sinB.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "States the cosine-difference identity from the chord-distance derivation."
+        },
+        {
+          "points": 2,
+          "criterion": "Derives cos(A+B)=cosA cosB−sinA sinB by substituting −B with correct parity signs."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes cos(π/12)=(√6+√2)/4 exactly."
+        },
+        {
+          "points": 2,
+          "criterion": "States sin(A+B)=sinA cosB+cosA sinB."
+        }
+      ],
+      "marking": "Human/AI review required. The addition-identity ownership requires a reconstruction step plus exact use; do not award it for quoting an isolated memorized value."
     },
     "T22V3::T22E-FND02::S23-M@1": {
       "reference": "Amplitude2 and midline y=1. The graph shifts rightπ/6. Here B=4, so period=2π/|4|=π/2. Also sin x=1/2 at x=π/6 and5π/6 in[0,2π).",
@@ -3434,24 +3779,19 @@
     ],
     "T22V3::T22E-FND02::S12@1": [
       [
-        "main",
         "transfer"
       ],
       [
-        "main",
+        "main"
+      ],
+      [
         "transfer"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-FND02::S13@1": [
@@ -3634,16 +3974,13 @@
     ],
     "T22V3::T22E-FND02::S22@1": [
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
         "main"
@@ -3722,16 +4059,20 @@
     ],
     "S03": [
       {
-        "item": "ordered-pair graph interpretation",
-        "source": "JIT in S03"
+        "item": "ordered-pair/coordinate-plane interpretation",
+        "source": "JIT explicitly in S03"
       },
       {
-        "item": "distance formula",
-        "source": "JIT in S03 using M01 Pythagorean/root arithmetic"
+        "item": "Pythagorean theorem c²=a²+b² for a right triangle",
+        "source": "JIT geometric fact stated and applied in S03; not attributed to M01"
+      },
+      {
+        "item": "coordinate distance formula",
+        "source": "Derived in S03 from Δx/Δy right triangle + Pythagorean theorem + M01 roots"
       },
       {
         "item": "midpoint formula",
-        "source": "JIT in S03"
+        "source": "Derived JIT in S03 as halfway change in each coordinate"
       }
     ],
     "S04": [
@@ -3816,8 +4157,16 @@
     ],
     "S12": [
       {
-        "item": "A·b^t function family",
-        "source": "JIT in S12 from M01 exponents"
+        "item": "rational exponent meaning",
+        "source": "M01-S08"
+      },
+      {
+        "item": "positive-base real exponential extension",
+        "source": "JIT declaration in S12; full irrational-exponent construction explicitly out of scope"
+      },
+      {
+        "item": "real-exponential addition law b^(x+y)=b^x b^y",
+        "source": "Explicitly taught and independently observed in S12"
       },
       {
         "item": "percent-to-base conversion",
@@ -3871,7 +4220,7 @@
       },
       {
         "item": "finite AP sum formula",
-        "source": "JIT derivation/pairing in S17"
+        "source": "Derived explicitly by forward/reverse pairing in S17"
       }
     ],
     "S18": [
@@ -3919,7 +4268,7 @@
       },
       {
         "item": "30°/45°/60° exact unit-circle values",
-        "source": "JIT triangle derivations in S21 before fixed tasks"
+        "source": "Derived explicitly from 1-1-√2 and 1-√3-2 right triangles in S21"
       }
     ],
     "S22": [
@@ -3933,7 +4282,15 @@
       },
       {
         "item": "standard-angle values and quadrant/reflection rules",
-        "source": "M02-S21 explicit triangle/reference-angle bridge"
+        "source": "M02-S21 explicit triangle/reference-angle derivation"
+      },
+      {
+        "item": "coordinate distance on unit-circle points",
+        "source": "M02-S03 Pythagorean distance derivation"
+      },
+      {
+        "item": "cosine difference/sum and sine sum/difference identities",
+        "source": "Derived explicitly in S22 before fixed-task evidence"
       }
     ],
     "S23": [
@@ -4074,8 +4431,8 @@
     },
     "T22V3::T22E-FND02::S12@1": {
       "main": [
-        "500(1.08)^t",
-        "f(2)"
+        "f(t)=500(1.08)^t for real t",
+        "f(t+h) as f(t) times a factor"
       ],
       "transfer": [
         "1200(0.85)^t",
@@ -4184,12 +4541,12 @@
     },
     "T22V3::T22E-FND02::S22@1": {
       "main": [
-        "θ=5π/4",
-        "sinθ=3/5"
+        "At θ=5π/4",
+        "sinθ=3/5 and θ lies in quadrant II"
       ],
       "transfer": [
-        "(1−sin²x)/cos x",
-        "x=π/3"
+        "Using the S22 chord-distance derivation",
+        "cos(π/12)=cos(π/4−π/6)"
       ]
     },
     "T22V3::T22E-FND02::S23@1": {
@@ -4214,8 +4571,8 @@
       ]
     }
   },
-  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation. v1.2 retrofit: a graph-reading claim requires a rendered graph with usable axes/scale; changed task visuals are fingerprinted assessment content; retrieval remains honestly labeled retrieval rather than being inflated to Transfer. Independent follow-up R01–R08 is bounded to semantic observability, assessed-surface leakage, and representation hardening; no new syllabus or M03+ ownership.",
-  "instructionVersion": "m02-instruction-v12-representation-r2",
+  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation. v1.2 retrofit: a graph-reading claim requires a rendered graph with usable axes/scale; changed task visuals are fingerprinted assessment content; retrieval remains honestly labeled retrieval rather than being inflated to Transfer. Independent follow-up R01–R08 is bounded to semantic observability, assessed-surface leakage, and representation hardening; no new syllabus or M03+ ownership. Lang-foundation follow-up replaces false/declarative prerequisites with explicit JIT derivations or owned prior capabilities: Pythagorean coordinate distance in S03, real-exponential laws in S12, arithmetic-sum pairing in S17, special-triangle derivations in S21, angle-addition identities in S22, and one/no/infinite system geometry in S04.",
+  "instructionVersion": "m02-instruction-v12-lang-foundation-r4",
   "claimEvidence": {
     "T22V3::T22E-FND02::S01@1": [
       {
@@ -4696,9 +5053,10 @@
       {
         "claim": "Interpret b as the multiplier per one input unit.",
         "task": "main",
-        "publicRequest": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
+        "publicRequest": "A quantity follows f(t)=500(1.08)^t for real t. State the initial value, per-period multiplier and percent growth rate, then compute f(2). Finally use b^(x+y)=b^x b^y to rewrite f(t+h) as f(t) times a factor depending only on h, and state what h=1 recovers.",
         "rubricEvidence": [
-          "Multiplier1.08."
+          "Multiplier1.08 and growth rate8% per period are both identified.",
+          "Explains that h=1 recovers the one-period multiplier1.08."
         ]
       },
       {
@@ -4710,19 +5068,19 @@
         ]
       },
       {
-        "claim": "Evaluate an exponential model at integer inputs.",
+        "claim": "Use the positive-base real-exponential law b^(x+y)=b^x b^y.",
         "task": "main",
-        "publicRequest": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
+        "publicRequest": "A quantity follows f(t)=500(1.08)^t for real t. State the initial value, per-period multiplier and percent growth rate, then compute f(2). Finally use b^(x+y)=b^x b^y to rewrite f(t+h) as f(t) times a factor depending only on h, and state what h=1 recovers.",
         "rubricEvidence": [
-          "f(2)=583.2 with compounding."
+          "Uses b^(x+y)=b^x b^y to obtain f(t+h)=f(t)·1.08^h."
         ]
       },
       {
         "claim": "Identify initial value from t=0.",
         "task": "main",
-        "publicRequest": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
+        "publicRequest": "A quantity follows f(t)=500(1.08)^t for real t. State the initial value, per-period multiplier and percent growth rate, then compute f(2). Finally use b^(x+y)=b^x b^y to rewrite f(t+h) as f(t) times a factor depending only on h, and state what h=1 recovers.",
         "rubricEvidence": [
-          "Initial value500."
+          "Initial value is500."
         ]
       }
     ],
@@ -5115,41 +5473,43 @@
       {
         "claim": "Compute exact sin/cos/tan at standard unit-circle angles.",
         "task": "main",
-        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
+        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
         "rubricEvidence": [
-          "Exact triple at5π/4 correct."
+          "Exact sin/cos/tan triple at5π/4 is correct."
         ]
       },
       {
         "claim": "Use tanθ=sinθ/cosθ when cosθ≠0.",
         "task": "main",
-        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
+        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
         "rubricEvidence": [
-          "tan=−3/4 with quadrant sign."
+          "Uses tanθ=sinθ/cosθ to obtain −3/4."
         ]
       },
       {
         "claim": "Use sin²θ+cos²θ=1.",
-        "task": "transfer",
-        "publicRequest": "For cos x≠0 simplify (1−sin²x)/cos x. Then give sin, cos and tan at x=π/3 exactly.",
+        "task": "main",
+        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
         "rubricEvidence": [
-          "Simplifies to cos x with condition used."
+          "Uses sin²θ+cos²θ=1 to obtain |cosθ|=4/5 and quadrantII to choose cosθ=−4/5."
         ]
       },
       {
         "claim": "Choose the correct sign from the stated quadrant.",
         "task": "main",
-        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
+        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
         "rubricEvidence": [
-          "cos=−4/5."
+          "Uses sin²θ+cos²θ=1 to obtain |cosθ|=4/5 and quadrantII to choose cosθ=−4/5."
         ]
       },
       {
-        "claim": "Simplify a basic identity under its legal denominator condition.",
+        "claim": "Reconstruct and use sine/cosine angle-addition identities.",
         "task": "transfer",
-        "publicRequest": "For cos x≠0 simplify (1−sin²x)/cos x. Then give sin, cos and tan at x=π/3 exactly.",
+        "publicRequest": "Using the S22 chord-distance derivation, state cos(A−B)=cosA cosB+sinA sinB, then derive cos(A+B) by replacing B with −B. Use your result to compute cos(π/12)=cos(π/4−π/6) exactly. Finally state the corresponding sine addition formula sin(A+B).",
         "rubricEvidence": [
-          "Simplifies to cos x with condition used."
+          "States the cosine-difference identity from the chord-distance derivation.",
+          "Derives cos(A+B)=cosA cosB−sinA sinB by substituting −B with correct parity signs.",
+          "States sin(A+B)=sinA cosB+cosA sinB."
         ]
       }
     ],
@@ -5243,7 +5603,7 @@
   },
   "coverageAudit": {
     "version": "m02-observability-review-2026-09-18",
-    "status": "120/120 semantically re-audited through independent follow-up R01–R08; S21 bidirectional conversion, S23 graph-only reading/period computation and S24 domain coordination are now literal observers",
+    "status": "120/120 semantically re-audited through R01–R08 plus Lang-foundation L01–L10; S03 Pythagorean distance, S12 real-exponential law and S22 angle-addition ownership are now explicit downstream prerequisites",
     "policy": "A claim is retained only when a public fixed task explicitly requests behavior that can observe it and at least one rubric criterion scores that behavior. This is observability mapping, not psychometric mastery certification."
   },
   "representationProgression": [
@@ -5257,7 +5617,7 @@
     {
       "representation": "coordinate graph with axes/scale",
       "introduced": "S03",
-      "connected": "S04 lines, S05 piecewise, S06 transformations",
+      "connected": "S03 derives coordinate distance from an explicit Δx/Δy right triangle; S04 lines then expose one/no/infinite system geometry before transformations.",
       "publicEvidence": "S03 Transfer reads graph points/intercepts; S06 Transfer infers a transformation from parent/transformed graphs",
       "status": "implemented/assessed"
     },
@@ -5320,7 +5680,7 @@
     {
       "representation": "unit circle coordinate ↔ trig waveform",
       "introduced": "S21 and connected in S23",
-      "connected": "M10 trigonometric derivatives",
+      "connected": "S21 derives special-angle coordinates from right triangles; S22 derives angle-addition identities from unit-circle chord distance; S23 unwraps coordinates into waves.",
       "publicEvidence": "S23 Transfer reads amplitude/midline/period from rendered periodic graph",
       "status": "implemented/assessed"
     },
@@ -5525,5 +5885,14 @@
       "classification": "changed-surface Transfer",
       "reason": "Starts from an unlabeled table, requires model-family selection, reconstruction of the sinusoidal rule, an explicit natural-versus-restricted domain check, and exact consequences."
     }
+  },
+  "langFoundationAudit": {
+    "L01": "S03 false M01-Pythagorean provenance removed; right-triangle/Pythagorean distance derivation is now JIT and rendered.",
+    "L02": "S22 now derives/owns cosine and sine addition identities consumed by M10-S16.",
+    "L03": "S12 explicitly bridges rational powers to positive-base real exponentials and owns b^(x+y)=b^x b^y; irrational-exponent construction is honestly out of scope.",
+    "L05": "S17 now literally derives the AP sum by forward/reverse pairing.",
+    "L06": "S21 now literally derives 45° and30°/60° values from rendered right triangles.",
+    "L08": "S04 renders one/no/infinite linear-system geometry, completing the M01-S13 algebra bridge.",
+    "L10": "S03 coordinate-plane/distance/midpoint development is now derived rather than formula-only."
   }
 }
