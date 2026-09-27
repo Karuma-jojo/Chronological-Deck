@@ -132,7 +132,10 @@ const tref=n=>a.evaluators[a.sessions[n-1].transfer].reference;
  arrApprox(r,[0,0,1]);approx(dot(r,[1,2,0]),0);
  for(const t of [-2,0,3])arrApprox(mv(A,[1-2*t,t]),p);
  arrApprox(mv(A,[-2,1]),[0,0,0]);
- const C=[[1,1],[1,1]],d=[1,0],pt=[.5,.5];arrApprox(mv(C,[.5,0]),pt);arrApprox(mv(C,[0,.5]),pt);
+ const C=[[1,0,1],[0,1,1],[0,0,0]],d=[2,-1,3],pt=[2,-1,0],rr=sub(d,pt);
+ arrApprox(rr,[0,0,3]);
+ for(const t of [-2,0,3])arrApprox(mv(C,[2-t,-1-t,t]),pt);
+ arrApprox(mv(C,[-1,-1,1]),[0,0,0]);
 }
 
 // S15 — deterministic line fit and residual orthogonality.
@@ -140,8 +143,9 @@ const tref=n=>a.evaluators[a.sessions[n-1].transfer].reference;
  const A=[[1,-1],[1,0],[1,1]],y=[1,1,3],At=T(A),G=mm(At,A),rhs=mv(At,y),x=mv(inv2(G),rhs),p=mv(A,x),r=sub(y,p);
  assert.deepEqual(G,[[3,0],[0,2]]);assert.deepEqual(rhs,[5,2]);arrApprox(x,[5/3,1]);
  arrApprox(p,[2/3,5/3,8/3]);arrApprox(r,[1/3,-2/3,1/3]);arrApprox(mv(At,r),[0,0]);
- const E=[[1,-1],[1,1],[1,2]],z=[0,2,5],Et=T(E),xe=mv(inv2(mm(Et,E)),mv(Et,z));
- arrApprox(xe,[9/7,11/7]);
+ const E=[[1,-1],[1,0],[1,2]],Y=6,fit=[-1,1,5],z=[1,-2,Y],er=sub(z,fit),Et=T(E);
+ arrApprox(er,[2,-3,1]);arrApprox(mv(Et,er),[0,0]);
+ const xe=mv(inv2(mm(Et,E)),mv(Et,z));arrApprox(xe,[1,2]);
 }
 
 // S16 — repaired synthesis normal-equation route and independent GS route.
@@ -163,6 +167,8 @@ for(const [n,kind,tokens] of [
  [10,'transfer',['(-2,1,1)']],
  [12,'main',['5/6','-1/6','1/3']],
  [13,'main',['(5/9,17/9)','4/9']],
+ [14,'transfer',['(2,-1,0)','(2-t,-1-t,t)','(-1,-1,1)']],
+ [15,'transfer',['Y=6','(2,-3,1)','A^T r=(0,0)']],
  [16,'main',['(2/3,2/3)','(4/3,4/3,2/3)']]
 ]){
   const text=kind==='main'?ref(n):tref(n);

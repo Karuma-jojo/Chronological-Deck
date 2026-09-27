@@ -1,13 +1,13 @@
 {
-  "version": "m15-side278-v1-candidate",
-  "instructionVersion": "m15-side278-instruction-v1",
+  "version": "m15-side278-v2-independent-repair-candidate",
+  "instructionVersion": "m15-side278-instruction-v2-independent-repair",
   "module": {
     "order": 15,
     "id": "SIDE278",
     "title": "Orthogonality, Projection & Least Squares Geometry",
-    "status": "review-candidate-unpublished",
+    "status": "independent-review-repaired-awaiting-followup-unpublished",
     "destination": "Work in finite-dimensional real Euclidean coordinate spaces to construct orthonormal coordinates and orthogonal complements, derive orthogonal projections and nearest-point geometry, execute Gram–Schmidt with dependence/order diagnostics, derive the transpose bridge and normal equations, and solve exact Euclidean least-squares problems while separating fitted-vector uniqueness from coefficient uniqueness.",
-    "gate": "Sixteen design-derived sessions and 32 fixed assessments are complete under the T22 v1.2 gated protocol. Publication requires exact-head implementation verification, independent adversarial review, and explicit user authorization; M15 remains outside the persisted learner registry, and page completion is never treated as mastery.",
+    "gate": "Sixteen design-derived sessions and 32 current fixed assessments are complete under the T22 v1.2 protocol. Independent review R01–R04 has been repaired on the bounded review branch; exact-head verification and independent follow-up are required before any acceptance or publication. M15 remains outside the persisted learner registry.",
     "nextBoundary": "M16/SIDE279 owns eigenstructure independently from M14; M17/SIDE280 owns PSD/quadratic forms, named QR/Cholesky/SVD and pseudoinverse; M23 owns numerical conditioning/stable algorithms; M36 owns statistical regression."
   },
   "boundary": {
@@ -40,7 +40,7 @@
     "authoredSessions": 16,
     "ownershipClaimCount": 48,
     "fixedAssessments": 32,
-    "reviewProvenance": "Builder recovery re-audit completed through Gates 0–10: cross-session solved-instance collisions were repaired, all 48 ownership observers were re-audited, theorem dependency order and source roles were corrected, evidence-distance labels were made conservative, and whole-module structural/math/semantic/browser guards were added. Commit/run-specific Gate-11 evidence is externalized in verification/handoff records. Independent adversarial review has not occurred."
+    "reviewProvenance": "Independent adversarial review at aa01b1914fd69709919651f14e27487cef7fbbe6 required four bounded repairs. R01/R02 close support-theorem order in S10–S12 without changing fixed obligations. R03/R04 replace only S14-T and S15-T as obligationVersion 2 changed-surface Transfers. All 48 ownership claims remain Main-observed and are unchanged. Exact-head verification and independent follow-up remain required."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. Strang 4e (user-supplied) is the deep first-course comparator; MIT 18.06 is the canonical route comparator; Axler 4e is the rigorous theorem/hypothesis source; Hefferon is the broad developmental/notation comparator; MAA + IES/WWC + domain-specific math-education sources inform pedagogy with population/context limits. All learner tasks are original.",
@@ -56,7 +56,7 @@
       {
         "id": "STRANG-4E",
         "role": "user-supplied deep first-course comparator",
-        "locator": "Introduction to Linear Algebra 4e Ch.4: §4.1 pp196–206, §4.2 pp207–218, §4.3 pp219–230, §4.4 pp231–244; supplied PDF pages 199–246",
+        "locator": "Introduction to Linear Algebra 4e Ch.4: §4.1 pp196–206, §4.2 pp207–218, §4.3 pp219–230, §4.4 pp231–243; supplied PDF pages 199–246",
         "supports": "orthogonal-subspace geometry, projection, nearest point, least squares/normal equations, Gram–Schmidt",
         "limitations": "do not copy exercises; named QR/four-subspace expansion beyond M15 boundary is not imported"
       },
@@ -475,7 +475,7 @@
         "row-space/four-subspaces theorem"
       ],
       "exitCondition": "Translate fluently between column-wise residual orthogonality and the matrix equation A^T y=0.",
-      "lesson": "Orient. Least squares will need one compact statement saying a residual is perpendicular to every model column. M14 taught columns and matrix-vector action but did not own transpose, so we introduce exactly the missing bridge here.\n\nDefine. If A is m×n, A^T is n×m with (A^T)_{ij}=A_{ji}; rows become columns and columns become rows. Transpose is a re-indexing operation, not an inverse. A rectangular matrix can always be transposed even when no inverse exists.\n\nConnect to dot products. Write A=[a1 ... an] with aj∈R^m and y∈R^m. Row j of A^T is aj^T, so component j of A^T y is aj·y. Therefore A^T y=0 exactly when y is orthogonal to every column, equivalently to their span.\n\nClose the complement-dimension support fact. If Q is the n×k matrix whose columns are an orthonormal basis q1,...,qk of W, then W^perp=Null(Q^T). The k rows q_i^T of Q^T are independent because the q_i are independent, so rank(Q^T)=k. M14 rank–nullity gives dim W^perp=n-k=n-dim W. This uses only the transpose bridge plus previously owned rank–nullity; no spectral theorem is involved.\n\nWorked example. For A=[[1,0,2],[0,1,-1]] and y=(3,4), A^T=[[1,0],[0,1],[2,-1]] and A^T y=(3,4,2). Those entries are the three column dot products with y.\n\nGuided practice. For C=[[1,2],[2,0],[0,1]] and y=(1,-1,2), first state the shape of C^T and C^T y, then compute both column dot products and confirm the matrix product matches them.\n\nFade. Main changes shape/data; Transfer asks for an entire null space and geometric interpretation rather than one product.\n\nDistinction check. A^T y=0 says y is perpendicular to Col(A). It need not say y=0 when the columns do not span all of R^m.",
+      "lesson": "Orient. Least squares will need one compact statement saying a residual is perpendicular to every model column. M14 taught columns and matrix-vector action but did not own transpose, so we introduce exactly the missing bridge here.\n\nDefine. If A is m×n, A^T is n×m with (A^T)_{ij}=A_{ji}; rows become columns and columns become rows. Transpose is a re-indexing operation, not an inverse. A rectangular matrix can always be transposed even when no inverse exists.\n\nConnect to dot products. Write A=[a1 ... an] with aj∈R^m and y∈R^m. Row j of A^T is aj^T, so component j of A^T y is aj·y. Therefore A^T y=0 exactly when y is orthogonal to every column, equivalently to their span.\n\nClose the complement-dimension support fact without row-rank theory. If Q is the n×k matrix whose columns are an orthonormal basis q1,...,qk of W, then W^perp=Null(Q^T). For arbitrary c=(c1,...,ck)∈R^k, the i-th component of Q^T(Qc) is qi·(Σ_j cj qj)=ci by orthonormality. Hence Q^T(Qc)=c for every c, so Q^T:R^n→R^k is onto. By M14's surjectivity/rank logic, rank(Q^T)=k. Rank–nullity now gives dim Null(Q^T)=n-k=n-dim W. No row-rank theorem or spectral theorem is used.\n\nWorked example. For A=[[1,0,2],[0,1,-1]] and y=(3,4), A^T=[[1,0],[0,1],[2,-1]] and A^T y=(3,4,2). Those entries are the three column dot products with y.\n\nGuided practice. For C=[[1,2],[2,0],[0,1]] and y=(1,-1,2), first state the shape of C^T and C^T y, then compute both column dot products and confirm the matrix product matches them.\n\nFade. Main changes shape/data; Transfer asks for an entire null space and geometric interpretation rather than one product.\n\nDistinction check. A^T y=0 says y is perpendicular to Col(A). It need not say y=0 when the columns do not span all of R^m.",
       "guidedFeedback": "Check after attempting. C is 3×2, so C^T is 2×3 and C^T y is in R^2. Column dots are (1,2,0)·(1,-1,2)=-1 and (2,0,1)·(1,-1,2)=4, so C^T y=(-1,4).",
       "main": "T22V3::SIDE278::S10-M@1",
       "transfer": "T22V3::SIDE278::S10-T@1"
@@ -512,7 +512,7 @@
         "conditioning"
       ],
       "exitCondition": "Derive and execute normal equations with a public rank hypothesis, and audit a proposed solution through A^T r.",
-      "lesson": "Orient. With an ON basis, projection coefficients separate. General independent model columns need coupled coefficients. Write A=[a1 ... an], candidate p=Ac, residual r=b-Ac. The defining condition remains geometric: r must be perpendicular to Col(A).\n\nDefine and connect. S10 says perpendicular to every column is exactly A^T r=0. Substituting r=b-Ac gives A^T(b-Ac)=0, hence A^T A c=A^T b. These are the normal equations: a consequence of residual orthogonality, not the definition of projection.\n\nWhy the inverse is legal when columns are independent. If A^T A x=0, multiply on the left by x^T: 0=x^T A^T A x=(Ax)^T(Ax)=||Ax||^2. Thus Ax=0. Full column rank means Null(A)={0}, so x=0. A^T A is square with trivial null space and therefore invertible by M14. No eigenvalue or PSD argument is needed.\n\nWorked example. Let C=[[1,0],[1,1],[0,1]], d=(0,2,1). Then C^T C=[[2,1],[1,2]], C^T d=(2,3), giving c=(1/3,4/3). The fitted vector is (1/3,5/3,4/3), residual (-1/3,1/3,-1/3), and C^T r=0.\n\nGuided practice. Use D=[[1,0],[0,1],[1,-1]], g=(1,2,0). Compute D^T D and D^T g, solve for c, then check D^T(g-Dc)=0. Before feedback, state exactly where full column rank is used.\n\nFade. Main uses a third matrix and asks for derivation plus invertibility proof. Transfer supplies competing coefficient reports and forbids a from-scratch normal-equation solve.\n\nDistinction check. Normal equations can have solutions even when Ax=b is inconsistent. Residual orthogonality means best attainable geometry, not zero residual.",
+      "lesson": "Orient. With an ON basis, projection coefficients separate. General independent model columns need coupled coefficients. Write A=[a1 ... an], candidate p=Ac, residual r=b-Ac. The defining condition remains geometric: r must be perpendicular to Col(A).\n\nDefine and connect. S10 says perpendicular to every column is exactly A^T r=0. Substituting r=b-Ac gives A^T(b-Ac)=0, hence A^T A c=A^T b. These are the normal equations: a consequence of residual orthogonality, not the definition of projection.\n\nWhy the inverse is legal when columns are independent. Suppose A^T A x=0 and write A=[a1 ... an], x=(x1,...,xn). Apply S10's column-dot identity with y=Ax: x·A^T(Ax)=Σ_j xj(aj·Ax)=(Σ_j xj aj)·Ax=(Ax)·(Ax)=||Ax||^2. The left side is x·0=0, so Ax=0. Full column rank means Null(A)={0}, hence x=0. Therefore A^T A is square with trivial null space and is invertible by M14. The familiar scalar notation x^T A^T A x=||Ax||^2 abbreviates this dot-product calculation; no product-transpose law is consumed here.\n\nWorked example. Let C=[[1,0],[1,1],[0,1]], d=(0,2,1). Then C^T C=[[2,1],[1,2]], C^T d=(2,3), giving c=(1/3,4/3). The fitted vector is (1/3,5/3,4/3), residual (-1/3,1/3,-1/3), and C^T r=0.\n\nGuided practice. Use D=[[1,0],[0,1],[1,-1]], g=(1,2,0). Compute D^T D and D^T g, solve for c, then check D^T(g-Dc)=0. Before feedback, state exactly where full column rank is used.\n\nFade. Main uses a third matrix and asks for derivation plus invertibility proof. Transfer supplies competing coefficient reports and forbids a from-scratch normal-equation solve.\n\nDistinction check. Normal equations can have solutions even when Ax=b is inconsistent. Residual orthogonality means best attainable geometry, not zero residual.",
       "guidedFeedback": "Check after attempting. D^T D=[[2,-1],[-1,2]], D^T g=(1,2), so c=(4/3,5/3). The residual is (-1/3,1/3,1/3) and D^T r=0. Full column rank is used to prove A^T A has trivial null space and hence is invertible.",
       "main": "T22V3::SIDE278::S11-M@1",
       "transfer": "T22V3::SIDE278::S11-T@1"
@@ -550,7 +550,7 @@
         "oblique projection theory beyond counterexample"
       ],
       "exitCondition": "Derive and validate a small orthogonal projector and reject an idempotent impostor.",
-      "lesson": "Orient. S11 solved projection one target at a time. When A has full column rank, c=(A^T A)^{-1}A^T b, so the fitted vector is p=A(A^T A)^{-1}A^T b. The matrix multiplying b is the orthogonal projector onto Col(A).\n\nDefine P=A(A^T A)^{-1}A^T. Idempotence means P^2=P: once a vector is already projected into the model subspace, projecting again changes nothing. Substituting the formula and cancelling A^T A in the middle proves this directly.\n\nSymmetry. For real matrices, (XY)^T=Y^T X^T. Also A^T A is symmetric, and the inverse of an invertible symmetric matrix is symmetric because ((M^{-1})^T)=(M^T)^{-1}=M^{-1}. Therefore P^T=P. These are bounded transpose support facts, not an invitation to spectral theory.\n\nWhy both matter. Idempotence alone describes projections that may travel along slanted directions. Symmetry is what makes the residual perpendicular to the range: if y=Pz lies in Range(P), then (x-Px)·y=x^T Pz-x^T P^T Pz=0 when P^T=P and P^2=P.\n\nWorked example. P=diag(1,0) is symmetric and idempotent; it keeps the x-component and residuals are vertical, perpendicular to its range.\n\nGuided practice. For P=(1/2)[[1,1],[1,1]], verify P^2=P and P^T=P, apply it to (4,0), and check the residual is perpendicular to span(1,1).\n\nFade. Main derives a 3×3 projector from a rectangular A; Transfer gives an idempotent nonsymmetric impostor.\n\nDistinction check. Every orthogonal projector is idempotent, but idempotence without symmetry is not enough.",
+      "lesson": "Orient. S11 solved projection one target at a time. When A has full column rank, c=(A^T A)^{-1}A^T b, so the fitted vector is p=A(A^T A)^{-1}A^T b. The matrix multiplying b is the orthogonal projector onto Col(A).\n\nDefine P=A(A^T A)^{-1}A^T. Idempotence means P^2=P: once a vector is already projected into the model subspace, projecting again changes nothing. Substituting the formula and cancelling A^T A in the middle proves this directly.\n\nSymmetry support, proved here before use. For compatible real matrices X,Y, [(XY)^T]_{ij}=(XY)_{ji}=Σ_l X_{j l}Y_{l i}=Σ_l (Y^T)_{i l}(X^T)_{l j}=(Y^T X^T)_{ij}; hence (XY)^T=Y^T X^T. If M is invertible, transpose MM^{-1}=I and M^{-1}M=I to get (M^{-1})^T M^T=I and M^T(M^{-1})^T=I, so (M^{-1})^T=(M^T)^{-1}. Since A^T A is symmetric, its inverse is symmetric. Therefore P^T=P. These are bounded finite-matrix support facts, not an invitation to spectral theory.\n\nWhy both matter. Idempotence alone describes projections that may travel along slanted directions. Symmetry is what makes the residual perpendicular to the range: if y=Pz lies in Range(P), then (x-Px)·y=x^T Pz-x^T P^T Pz=0 when P^T=P and P^2=P.\n\nWorked example. P=diag(1,0) is symmetric and idempotent; it keeps the x-component and residuals are vertical, perpendicular to its range.\n\nGuided practice. For P=(1/2)[[1,1],[1,1]], verify P^2=P and P^T=P, apply it to (4,0), and check the residual is perpendicular to span(1,1).\n\nFade. Main derives a 3×3 projector from a rectangular A; Transfer gives an idempotent nonsymmetric impostor.\n\nDistinction check. Every orthogonal projector is idempotent, but idempotence without symmetry is not enough.",
       "guidedFeedback": "Check after attempting. P(4,0)=(2,2), residual=(2,-2), and its dot product with (1,1) is 0. Direct multiplication gives P^2=P and symmetry is visible.",
       "main": "T22V3::SIDE278::S12-M@1",
       "transfer": "T22V3::SIDE278::S12-T@1"
@@ -625,10 +625,10 @@
         "regularization"
       ],
       "exitCondition": "Produce the unique best fit and the full family of coefficient minimizers while explaining why no ordinary inverse is legal.",
-      "lesson": "Orient. S11's inverse formula needed full column rank. What if columns are dependent? The attainable set Col(A) is still a finite-dimensional subspace, so S07 still gives a unique closest fitted vector p. What may fail is uniqueness of the coefficients that represent p.\n\nDefine. Least-squares minimizers are exactly the solutions of Ax=p where p=proj_{Col(A)} b. If x0 is one solution, M14 says every solution is x0+z with z∈Null(A). Thus coefficient ambiguity is the same old null-space ambiguity, now inside a fitting problem.\n\nConnect to normal equations. A^T A becomes singular when A has nontrivial null space, so writing (A^T A)^{-1} is illegal. Normal equations can still characterize minimizers, but M15 does not choose a special coefficient among them. The Moore–Penrose pseudoinverse and minimum-norm rule belong to M17.\n\nWorked example. Let A=[[1,1],[0,0]] and b=(2,1). Col(A)=span(e1), so p=(2,0), residual=(0,1). Every coefficient pair with x1+x2=2 gives the same p; Null(A)=span{(1,-1)}. There is one fitted vector and infinitely many coefficients.\n\nGuided practice. Let the columns be a and 2a with a=(1,1). For b=(3,0), first project b onto span(a), then write the scalar equation on coefficients that reproduces that p. Do not try to invert A^T A.\n\nFade. Main uses a 3×2 rank-one matrix; Transfer uses duplicate columns and asks for the entire coefficient family.\n\nDistinction check. Projection uniqueness belongs to vectors in Col(A). Coefficient uniqueness requires injectivity of the map x↦Ax. Those are different objects and different theorems.",
+      "lesson": "Orient. S11's inverse formula needed full column rank. What if columns are dependent? The attainable set Col(A) is still a finite-dimensional subspace, so S07 still gives a unique closest fitted vector p. What may fail is uniqueness of the coefficients that represent p.\n\nDefine. Least-squares minimizers are exactly the solutions of Ax=p where p=proj_{Col(A)} b. If x0 is one solution, M14 says every solution is x0+z with z∈Null(A). Thus coefficient ambiguity is the same old null-space ambiguity, now inside a fitting problem.\n\nConnect to normal equations. A^T A becomes singular when A has nontrivial null space, so writing (A^T A)^{-1} is illegal. Normal equations can still characterize minimizers, but M15 does not choose a special coefficient among them. The Moore–Penrose pseudoinverse and minimum-norm rule belong to M17.\n\nWorked example. Let A=[[1,1],[0,0]] and b=(2,1). Col(A)=span(e1), so p=(2,0), residual=(0,1). Every coefficient pair with x1+x2=2 gives the same p; Null(A)=span{(1,-1)}. There is one fitted vector and infinitely many coefficients.\n\nGuided practice. Let the columns be a and 2a with a=(1,1). For b=(3,0), first project b onto span(a), then write the scalar equation on coefficients that reproduces that p. Do not try to invert A^T A.\n\nFade. Main uses a 3×2 rank-one matrix. Transfer removes the duplication/proportionality shortcut: three distinct columns satisfy c3=c1+c2, and the learner must audit a false report that singularity makes the geometric projection nonunique.\n\nDistinction check. Projection uniqueness belongs to vectors in Col(A). Coefficient uniqueness requires injectivity of the map x↦Ax. Those are different objects and different theorems.",
       "guidedFeedback": "Check after attempting. Projection of (3,0) onto span(1,1) is (3/2,3/2). If A=[a,2a], then Ax=(x1+2x2)a, so every pair satisfying x1+2x2=3/2 is a minimizer. No inverse of A^T A is needed or legal.",
       "main": "T22V3::SIDE278::S14-M@1",
-      "transfer": "T22V3::SIDE278::S14-T@1"
+      "transfer": "T22V3::SIDE278::S14-T@2"
     },
     {
       "order": 15,
@@ -662,10 +662,10 @@
         "regression diagnostics"
       ],
       "exitCondition": "Turn a fresh data table into a deterministic least-squares model and state exactly what the fit does and does not establish.",
-      "lesson": "Orient. Least squares is geometry before it is statistics. A table of input values t_i and deterministic targets y_i can be fit by a line alpha+beta t simply by choosing a two-column subspace of possible fitted-value vectors.\n\nDefine. The design matrix has first column all ones and second column t: A_i=(1,t_i). The coefficient vector x=(alpha,beta) produces fitted values Ax. Residual orthogonality to the ones column means residuals sum to zero; orthogonality to the t column means their t-weighted sum is zero.\n\nConnect. These are geometric consequences of projection, not assumptions about random noise. Without a sampling model, least squares alone does not provide standard errors, p-values, causality or predictive validity. Those belong to later statistical modules.\n\nWorked example. For t=-1,0,1 and y=0,1,2, A=[(1,-1),(1,0),(1,1)] and the exact line is alpha=1,beta=1 with zero residual. This is an exact-fit special case, not the general least-squares situation.\n\nGuided practice. For t=0,1,2 and y=2,2,5, build A, compute A^T A and A^T y, solve alpha,beta, then check the two residual orthogonality sums.\n\nFade. Main changes grid/targets and has nonzero residual; Transfer uses an irregular t-grid so no symmetry shortcut should be assumed.\n\nDistinction check. A deterministic least-squares line summarizes this table under a chosen Euclidean criterion. It does not by itself certify a stochastic regression model.",
+      "lesson": "Orient. Least squares is geometry before it is statistics. A table of input values t_i and deterministic targets y_i can be fit by a line alpha+beta t simply by choosing a two-column subspace of possible fitted-value vectors.\n\nDefine. The design matrix has first column all ones and second column t: A_i=(1,t_i). The coefficient vector x=(alpha,beta) produces fitted values Ax. Residual orthogonality to the ones column means residuals sum to zero; orthogonality to the t column means their t-weighted sum is zero.\n\nConnect. These are geometric consequences of projection, not assumptions about random noise. Without a sampling model, least squares alone does not provide standard errors, p-values, causality or predictive validity. Those belong to later statistical modules.\n\nWorked example. For t=-1,0,1 and y=0,1,2, A=[(1,-1),(1,0),(1,1)] and the exact line is alpha=1,beta=1 with zero residual. This is an exact-fit special case, not the general least-squares situation.\n\nGuided practice. For t=0,1,2 and y=2,2,5, build A, compute A^T A and A^T y, solve alpha,beta, then check the two residual orthogonality sums.\n\nFade. Main performs the forward fit. Transfer reverses direction: a line and an incomplete irregular-grid table are supplied, and the learner must reconstruct the missing observation from both residual-orthogonality conditions and audit whether the proposed line is genuinely least-squares.\n\nDistinction check. A deterministic least-squares line summarizes this table under a chosen Euclidean criterion. It does not by itself certify a stochastic regression model.",
       "guidedFeedback": "Check after attempting. The solution is alpha=3/2,beta=3/2. Fitted values are (3/2,3,9/2), residuals (1/2,-1,1/2); they sum to 0 and their t-weighted sum is 0.",
       "main": "T22V3::SIDE278::S15-M@1",
-      "transfer": "T22V3::SIDE278::S15-T@1"
+      "transfer": "T22V3::SIDE278::S15-T@2"
     },
     {
       "order": 16,
@@ -895,25 +895,11 @@
       "prompt": "Let A=[[1,2],[2,4],[0,0]] and b=(1,2,1)^T. (a) Identify Col(A) and find the unique projected fitted vector p and residual r. (b) Solve Ax=p and parameterize every least-squares coefficient vector. (c) Compute a basis for Null(A) and express the minimizer family as x0+Null(A). (d) Explain why A^T A is not invertible and why that does not destroy the unique fitted vector.",
       "obligationVersion": 1
     },
-    "T22V3::SIDE278::S14-T@1": {
-      "id": "T22V3::SIDE278::S14-T@1",
-      "order": 14,
-      "kind": "transfer",
-      "prompt": "Let C=[[1,1],[1,1]] and d=(1,0)^T. Find the orthogonal projection p of d onto Col(C), then describe every coefficient vector x with Cx=p. Give two distinct minimizers explicitly, verify they produce the same fitted vector and residual, and explain why no coefficient-level uniqueness follows from the unique geometric projection.",
-      "obligationVersion": 1
-    },
     "T22V3::SIDE278::S15-M@1": {
       "id": "T22V3::SIDE278::S15-M@1",
       "order": 15,
       "kind": "main",
       "prompt": "For t=(-1,0,1) and observed deterministic targets y=(1,1,3), fit y≈alpha+beta t by least squares. (a) Build the 3×2 design matrix with columns 1 and t. (b) Compute A^T A and A^T y and solve for alpha,beta. (c) Compute fitted values and residuals. (d) Verify both residual orthogonality conditions and state one statistical claim this deterministic calculation does not justify.",
-      "obligationVersion": 1
-    },
-    "T22V3::SIDE278::S15-T@1": {
-      "id": "T22V3::SIDE278::S15-T@1",
-      "order": 15,
-      "kind": "transfer",
-      "prompt": "A second deterministic table has t=(-1,1,2) and y=(0,2,5). Build the design matrix yourself, solve the least-squares line exactly, compute the fitted values and residuals, and verify both residual orthogonality equations. Then explain why an irregular t-grid changes the arithmetic but not the geometric criterion.",
       "obligationVersion": 1
     },
     "T22V3::SIDE278::S16-M@1": {
@@ -929,6 +915,20 @@
       "kind": "transfer",
       "prompt": "For E=[[1,1],[0,1],[1,0]] and d=(0,2,1)^T, Report X uses the raw dot products E^T d=(1,2) as coefficients and claims fitted vector (3,2,1). Report Y uses coefficients (0,1), claiming fitted vector (1,1,0). Audit both reports without starting by solving normal equations: compute each residual and E^T r, identify the valid projection, and state the exact hypothesis that Report X violated.",
       "obligationVersion": 1
+    },
+    "T22V3::SIDE278::S14-T@2": {
+      "id": "T22V3::SIDE278::S14-T@2",
+      "order": 14,
+      "kind": "transfer",
+      "prompt": "Let C have columns c1=(1,0,0), c2=(0,1,0), and c3=(1,1,0)=c1+c2, and let d=(2,-1,3)^T. A report claims: “Because C^T C is singular, the orthogonal projection of d onto Col(C) is not unique.” Audit the report. (a) Determine Col(C), the unique projected fitted vector p, and residual r. (b) Solve Cx=p and parameterize every coefficient vector x. (c) Give a basis for Null(C) and express the minimizer family as x0+Null(C). (d) State exactly what singularity destroys and what it does not.",
+      "obligationVersion": 2
+    },
+    "T22V3::SIDE278::S15-T@2": {
+      "id": "T22V3::SIDE278::S15-T@2",
+      "order": 15,
+      "kind": "transfer",
+      "prompt": "On the irregular grid t=(-1,0,2), a proposed deterministic fitted line is y_hat=1+2t for observations y=(1,-2,Y), where Y is missing. Do not solve normal equations from scratch. (a) Compute the first two residuals and write the third residual in terms of Y. (b) Use residual orthogonality to the intercept column and to the t column separately to infer Y, showing that both conditions give the same value. (c) With that Y, verify A^T r=0 and audit whether the proposed line is actually the least-squares fit. (d) Explain why this reverse-direction check is geometric and does not by itself justify statistical inference.",
+      "obligationVersion": 2
     }
   },
   "evaluators": {
@@ -1526,28 +1526,6 @@
       ],
       "marking": "Score only public obligations; accept equivalent exact routes."
     },
-    "T22V3::SIDE278::S14-T@1": {
-      "reference": "Col(C)=span{(1,1)}. Projection of d is p=(1/2,1/2), residual=(1/2,-1/2). Cx=(x1+x2)(1,1), so minimizers satisfy x1+x2=1/2. Examples are (1/2,0) and (0,1/2); both yield p and the same residual. Unique p does not imply unique x because Null(C)=span{(1,-1)} is nontrivial.",
-      "rubric": [
-        {
-          "points": 3,
-          "criterion": "Computes p=(1/2,1/2) and residual=(1/2,-1/2)."
-        },
-        {
-          "points": 3,
-          "criterion": "Derives the full coefficient family x1+x2=1/2."
-        },
-        {
-          "points": 2,
-          "criterion": "Exhibits two distinct minimizers and verifies they produce the same fitted vector/residual."
-        },
-        {
-          "points": 2,
-          "criterion": "Explains coefficient nonuniqueness through the nontrivial null space despite unique projection."
-        }
-      ],
-      "marking": "Score only public obligations; changed-surface reasoning must be visible."
-    },
     "T22V3::SIDE278::S15-M@1": {
       "reference": "A=[[1,-1],[1,0],[1,1]], A^T A=[[3,0],[0,2]], A^T y=(5,2), so alpha=5/3,beta=1. Fitted values are (2/3,5/3,8/3); residuals are (1/3,-2/3,1/3). Their sum is 0 and (-1)(1/3)+0+1(1/3)=0. The calculation alone gives no standard error, p-value, causal interpretation or population prediction guarantee.",
       "rubric": [
@@ -1569,28 +1547,6 @@
         }
       ],
       "marking": "Score only public obligations; accept equivalent exact routes."
-    },
-    "T22V3::SIDE278::S15-T@1": {
-      "reference": "A=[[1,-1],[1,1],[1,2]]. The normal equations give (alpha,beta)=(9/7,11/7). Fitted values are (-2/7,20/7,31/7), residuals (2/7,-6/7,4/7). Residual sum is 0 and t-weighted sum is (-1)(2/7)+1(-6/7)+2(4/7)=0. The grid changes A^T A but the criterion remains projection onto the column space under Euclidean residual norm.",
-      "rubric": [
-        {
-          "points": 2,
-          "criterion": "Builds the correct irregular-grid design matrix."
-        },
-        {
-          "points": 3,
-          "criterion": "Solves exactly for (alpha,beta)=(9/7,11/7)."
-        },
-        {
-          "points": 3,
-          "criterion": "Computes fitted values/residuals and verifies both orthogonality equations."
-        },
-        {
-          "points": 2,
-          "criterion": "Explains that the grid changes matrix arithmetic, not the projection/least-squares criterion."
-        }
-      ],
-      "marking": "Score only public obligations; changed-surface reasoning must be visible."
     },
     "T22V3::SIDE278::S16-M@1": {
       "reference": "The columns are independent and have dot product 1, so raw dot products are not ON coordinates. A^T A=[[5,1],[1,2]] and A^T b=(4,2), giving c=(2/3,2/3). Thus p=(4/3,4/3,2/3), r=(2/3,-1/3,-2/3), and A^T r=0. Gram–Schmidt gives q1=(1/sqrt(5))(1,2,0) and q2=(1/(3sqrt(5)))(4,-2,5), up to sign. The ON projection (b·q1)q1+(b·q2)q2 equals the same p, as uniqueness requires.",
@@ -1632,6 +1588,50 @@
         {
           "points": 2,
           "criterion": "Explains that E^T d contains column dot products, not automatic coordinates for a nonorthogonal basis."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S14-T@2": {
+      "reference": "The columns span the xy-plane: Col(C)={(u,v,0):u,v∈R}. Therefore the unique orthogonal projection of d=(2,-1,3) is p=(2,-1,0), with residual r=(0,0,3). Writing x=(x1,x2,x3), Cx=(x1+x3,x2+x3,0), so Cx=p gives x1+x3=2 and x2+x3=-1. With x3=t, every minimizer is x=(2-t,-1-t,t)=(2,-1,0)+t(-1,-1,1). Thus Null(C)=span{(-1,-1,1)}. C^T C is singular because C has nontrivial null space; that destroys coefficient uniqueness/invertibility, not the uniqueness of the geometric projection p onto Col(C).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Identifies Col(C) as the xy-plane and computes the unique p=(2,-1,0) with r=(0,0,3)."
+        },
+        {
+          "points": 3,
+          "criterion": "Solves Cx=p and obtains the full affine family x=(2-t,-1-t,t)."
+        },
+        {
+          "points": 2,
+          "criterion": "Gives Null(C)=span{(-1,-1,1)} and writes the minimizers as (2,-1,0)+Null(C)."
+        },
+        {
+          "points": 2,
+          "criterion": "Rejects the report by explaining that singularity destroys coefficient uniqueness/invertibility, not uniqueness of the orthogonal projection."
+        }
+      ],
+      "marking": "Score only public obligations; changed-surface reasoning must be visible."
+    },
+    "T22V3::SIDE278::S15-T@2": {
+      "reference": "The proposed line gives fitted values (-1,1,5), so r=y-y_hat=(2,-3,Y-5). Orthogonality to the intercept column requires 2-3+(Y-5)=0, hence Y=6. Orthogonality to the t column requires (-1)(2)+0(-3)+2(Y-5)=0, again giving Y=6. Thus r=(2,-3,1). With A=[[1,-1],[1,0],[1,2]], A^T r=(2-3+1,-2+0+2)=(0,0), so the residual is orthogonal to Col(A) and the proposed fitted vector is the orthogonal projection; therefore the line is a least-squares fit. This is a deterministic Euclidean projection audit and does not supply sampling assumptions, standard errors, p-values, causality, or population guarantees.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Computes fitted values (-1,1,5) and residuals r=(2,-3,Y-5)."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses both residual-orthogonality equations independently and obtains Y=6 from each."
+        },
+        {
+          "points": 3,
+          "criterion": "With Y=6, verifies A^T r=0 and correctly concludes that the proposed line is a least-squares fit."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that the reverse-direction audit is deterministic projection geometry and does not imply statistical inference."
         }
       ],
       "marking": "Score only public obligations; changed-surface reasoning must be visible."
@@ -2730,7 +2730,7 @@
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "mechanism": "Duplicate-column Transfer asks for two explicit distinct minimizers and object-level uniqueness diagnosis."
+        "mechanism": "Transfer removes the duplicate/proportional-column shortcut: a three-column dependence c3=c1+c2 must be recognized while auditing a false 'singular implies projection nonunique' report, then the learner separates the unique fitted vector from an affine coefficient family."
       }
     },
     "T22V3::SIDE278::S15@1": {
@@ -2740,7 +2740,7 @@
       },
       "transfer": {
         "classification": "changed-surface Transfer",
-        "mechanism": "Transfer changes to an irregular t-grid and requires rebuilding rather than using symmetric-grid shortcuts."
+        "mechanism": "Transfer reverses the forward fitting direction: the line is supplied, one observation is missing, and the learner reconstructs it independently from two residual-orthogonality constraints before auditing whether the proposed line is least-squares."
       }
     },
     "T22V3::SIDE278::S16@1": {
@@ -3015,15 +3015,6 @@
         "mathematicalDifference": "Main uses different rank-one 3×2 geometry and parameterizes all minimizers through Null(A).",
         "exposureDisposition": "CLEAR — p/r and family x1+2x2=1 are unseen."
       },
-      "T22V3::SIDE278::S14-T@1": {
-        "sessionId": "T22V3::SIDE278::S14@1",
-        "kind": "transfer",
-        "closestInstructionalExamples": [
-          "S14 explanation of one fit/many coefficients"
-        ],
-        "mathematicalDifference": "Transfer requires explicit duplicate-column projection and two distinct minimizers in R2.",
-        "exposureDisposition": "CLEAR — C,d instance unseen."
-      },
       "T22V3::SIDE278::S15-M@1": {
         "sessionId": "T22V3::SIDE278::S15@1",
         "kind": "main",
@@ -3033,15 +3024,6 @@
         ],
         "mathematicalDifference": "Main uses different targets and requires both fit geometry and scope statement.",
         "exposureDisposition": "CLEAR — (5/3,1) solution unseen."
-      },
-      "T22V3::SIDE278::S15-T@1": {
-        "sessionId": "T22V3::SIDE278::S15@1",
-        "kind": "transfer",
-        "closestInstructionalExamples": [
-          "S15 table→design pattern"
-        ],
-        "mathematicalDifference": "Transfer uses irregular t values and exact fractional fit, blocking symmetry imitation.",
-        "exposureDisposition": "CLEAR — (-1,1,2)/(0,2,5) instance unseen."
       },
       "T22V3::SIDE278::S16-M@1": {
         "sessionId": "T22V3::SIDE278::S16@1",
@@ -3061,6 +3043,25 @@
         ],
         "mathematicalDifference": "Transfer supplies competing reports on a different E,d and requires E^T residual diagnostics.",
         "exposureDisposition": "CLEAR — Report X/Y numerical data unseen."
+      },
+      "T22V3::SIDE278::S14-T@2": {
+        "sessionId": "T22V3::SIDE278::S14@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S14 rank-one worked example with duplicate columns",
+          "S14 guided proportional-column practice"
+        ],
+        "mathematicalDifference": "The @2 Transfer uses three distinct columns with the nontrivial relation c3=c1+c2, not duplication/proportionality, and reverses the emphasis into auditing a false singularity report while deriving a 3-parameter-coordinate affine family.",
+        "exposureDisposition": "CLEAR — the c1,c2,c3,d instance and false-report audit are not solved in prior instruction; duplicate/proportional shortcuts no longer determine the dependency pattern."
+      },
+      "T22V3::SIDE278::S15-T@2": {
+        "sessionId": "T22V3::SIDE278::S15@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S15 forward table→design→normal-equation worked/guided route"
+        ],
+        "mathematicalDifference": "The @2 Transfer supplies the fitted line and an incomplete irregular-grid table, then runs least-squares geometry backward from two orthogonality conditions to reconstruct the missing observation and audit the fit; no forward normal-equation solve is requested.",
+        "exposureDisposition": "CLEAR — reverse residual reconstruction and fit auditing are not solved in S15 instruction or earlier fixed tasks."
       }
     }
   },
@@ -3124,19 +3125,19 @@
       {
         "sessionId": "T22V3::SIDE278::S10@1",
         "firstNewOperation": "real matrix transpose and column-dot identity",
-        "earlierOwnerOrBridge": "local transpose bridge + M14 rank–nullity; closes dim W^perp=n-dim W after S09 supplies an ON basis",
+        "earlierOwnerOrBridge": "local transpose/column-dot bridge + ON-column identity Q^T(Qc)=c + M14 surjectivity/rank-nullity; no row-rank theorem",
         "status": "supported"
       },
       {
         "sessionId": "T22V3::SIDE278::S11@1",
         "firstNewOperation": "general-column projection/normal equations",
-        "earlierOwnerOrBridge": "S10 transpose bridge + M14 full rank",
+        "earlierOwnerOrBridge": "S10 column-dot bridge; the scalar identity x·A^T(Ax)=||Ax||^2 is derived directly from columns before use + M14 full-rank/null-space logic",
         "status": "supported"
       },
       {
         "sessionId": "T22V3::SIDE278::S12@1",
         "firstNewOperation": "orthogonal projector matrix structure",
-        "earlierOwnerOrBridge": "S11 normal equations + bounded transpose identities",
+        "earlierOwnerOrBridge": "S11 normal equations + S12 entrywise proof of product transpose and derived inverse-transpose identity",
         "status": "supported"
       },
       {
@@ -3263,15 +3264,15 @@
         "workedExample": "A=[[1,1],[0,0]],b=(2,1)",
         "guidedPractice": "columns a,2a; b=(3,0)",
         "main": "T22V3::SIDE278::S14-M@1",
-        "transfer": "T22V3::SIDE278::S14-T@1",
-        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+        "transfer": "T22V3::SIDE278::S14-T@2",
+        "status": "CLEAR — Main remains rank-one/proportional; @2 Transfer uses three distinct dependent columns and a false-report audit, not a solved duplicate/proportional instance."
       },
       "T22V3::SIDE278::S15@1": {
         "workedExample": "t=-1,0,1;y=0,1,2",
         "guidedPractice": "t=0,1,2;y=2,2,5",
         "main": "T22V3::SIDE278::S15-M@1",
-        "transfer": "T22V3::SIDE278::S15-T@1",
-        "status": "CLEAR — worked/guided instances differ from fixed tasks."
+        "transfer": "T22V3::SIDE278::S15-T@2",
+        "status": "CLEAR — Main/guided work forward from tables to fits; @2 Transfer runs the geometry backward from a supplied line and incomplete data."
       },
       "T22V3::SIDE278::S16@1": {
         "workedExample": "method-selection contrast cases",
@@ -3368,18 +3369,6 @@
         "decisivelyRehearsedInVisibleInstruction": "PARTLY — a two-request example is shown, not this three-request modeling task.",
         "learnerActionActuallyScored": "Constructs the model, derives orthogonality and interprets nonzero residuals."
       },
-      "T22V3::SIDE278::S14-T@1": {
-        "claimedLearnerDecision": "Decide whether singular A^T A destroys the fitted vector or only coefficient uniqueness.",
-        "alreadySuppliedByPrompt": "NO — projection and coefficient family must be derived.",
-        "decisivelyRehearsedInVisibleInstruction": "PARTLY — distinction is taught, not this duplicate-column instance.",
-        "learnerActionActuallyScored": "Finds unique p, all coefficients, two minimizers and null-space explanation."
-      },
-      "T22V3::SIDE278::S15-T@1": {
-        "claimedLearnerDecision": "Decide how an irregular table maps into model columns and what the fitted residual conditions mean.",
-        "alreadySuppliedByPrompt": "NO — design matrix and fit are not supplied.",
-        "decisivelyRehearsedInVisibleInstruction": "PARTLY — table modeling is taught on different grids.",
-        "learnerActionActuallyScored": "Builds A, solves fit, verifies both orthogonality equations and preserves deterministic scope."
-      },
       "T22V3::SIDE278::S16-T@1": {
         "claimedLearnerDecision": "Choose between competing reports based on legal hypotheses and residual diagnostics.",
         "alreadySuppliedByPrompt": "PARTLY — reports are supplied, validity is not.",
@@ -3391,6 +3380,18 @@
         "alreadySuppliedByPrompt": "PARTLY — the prompt requires a route and a Gram–Schmidt cross-check, but it does not supply the normal-equation result, coefficients, projected vector, residual, or ON basis.",
         "decisivelyRehearsedInVisibleInstruction": "PARTLY — the lesson states the method-selection contract and guided practice asks for one route plus an independent check, but no visible example executes the complete two-route synthesis on these columns.",
         "learnerActionActuallyScored": "Main rubric row 1 scores classification/method justification; rows 2–4 score the full solve, A^T r diagnostic and independent Gram–Schmidt/ON reconstruction."
+      },
+      "T22V3::SIDE278::S14-T@2": {
+        "claimedLearnerDecision": "Decide whether singular C^T C makes the geometric projection nonunique, and identify what object actually loses uniqueness.",
+        "alreadySuppliedByPrompt": "NO — the report supplies a claim to audit, not the correct verdict or coefficient family.",
+        "decisivelyRehearsedInVisibleInstruction": "PARTLY — one-fit/many-coefficients is taught only for duplicate/proportional rank-one cases, not a three-column relation c3=c1+c2 or a false-report audit.",
+        "learnerActionActuallyScored": "Identifies the plane projection, derives the affine coefficient family/null direction, and explicitly rejects the false singularity conclusion."
+      },
+      "T22V3::SIDE278::S15-T@2": {
+        "claimedLearnerDecision": "Decide whether a supplied line is genuinely least-squares by reconstructing missing data from residual orthogonality rather than fitting forward.",
+        "alreadySuppliedByPrompt": "NO — Y and the least-squares verdict are withheld.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — visible S15 instruction solves forward fits; it never reconstructs missing observations from orthogonality constraints.",
+        "learnerActionActuallyScored": "Derives Y independently from both residual constraints, checks A^T r=0, audits the proposed line, and preserves the deterministic/statistical boundary."
       }
     }
   },
@@ -3544,14 +3545,14 @@
       {
         "caseId": "MC14",
         "misconception": "Rank deficiency assumed to destroy existence of a least-squares fit or force unique coefficients",
-        "targetTask": "T22V3::SIDE278::S14-T@1",
-        "plausibleFlawedResponse": "C has duplicate columns, so no least-squares solution exists; alternatively the unique fitted point must have unique coefficients.",
+        "targetTask": "T22V3::SIDE278::S14-T@2",
+        "plausibleFlawedResponse": "C^T C is singular, so the projection is not unique and there is no single best fitted vector.",
         "rubricRowsFailed": [
-          "Computes p=(1/2,1/2) and residual=(1/2,-1/2).",
-          "Derives the full coefficient family x1+x2=1/2.",
-          "Explains coefficient nonuniqueness through the nontrivial null space despite unique projection."
+          "Identifies Col(C) as the xy-plane and computes the unique p=(2,-1,0) with r=(0,0,3).",
+          "Solves Cx=p and obtains the full affine family x=(2-t,-1-t,t).",
+          "Rejects the report by explaining that singularity destroys coefficient uniqueness/invertibility, not uniqueness of the orthogonal projection."
         ],
-        "discriminationResult": "Rejected: the task requires the unique projected vector and an infinite coefficient family explained by Null(C)."
+        "discriminationResult": "Rejected: the task separates a unique projected vector from the affine coefficient family created by the nontrivial null direction."
       },
       {
         "caseId": "MC15",
@@ -3731,7 +3732,23 @@
     ]
   },
   "versionAudit": {
-    "status": "Initial M15 candidate. Every fixed task starts at obligationVersion 1; later semantic changes must version affected obligations rather than silently recertify evidence."
+    "priorReceipt": "docs/t22-course/audit/m15-pre-independent-repair-version-receipt.json",
+    "reviewedHead": "aa01b1914fd69709919651f14e27487cef7fbbe6",
+    "instructionChange": "m15-side278-instruction-v1 → m15-side278-instruction-v2-independent-repair (S10 complement-dimension proof, S11 direct dot-product Gram proof, S12 transpose-product/inverse proof, plus S14/S15 Fade wording)",
+    "changedAssessments": [
+      {
+        "old": "T22V3::SIDE278::S14-T@1",
+        "current": "T22V3::SIDE278::S14-T@2",
+        "reason": "R03: retrieval-like duplicate-column replay replaced by nonduplicate c3=c1+c2 dependence plus false singularity-report audit"
+      },
+      {
+        "old": "T22V3::SIDE278::S15-T@1",
+        "current": "T22V3::SIDE278::S15-T@2",
+        "reason": "R04: irregular-grid forward replay replaced by reverse residual-orthogonality reconstruction and fit audit"
+      }
+    ],
+    "unchangedOwnershipClaims": "All 48 ownership claims remain Main-observed; no claim is remapped merely to make the new Transfers look useful.",
+    "learnerEvidenceDisposition": "M15 is unpublished and absent from the learner registry, so no real M15 attempts exist to migrate. @2 versioning preserves independent-review provenance and prevents silent recertification of the reviewed @1 obligations."
   },
   "publication": {
     "status": "unpublished",
@@ -3739,7 +3756,7 @@
     "authorization": "independent adversarial review and explicit publication authorization are required; no learner publication is authorized"
   },
   "followupRepair": {
-    "status": "builder recovery repair complete; independent adversarial review pending",
+    "status": "independent-review bounded repair applied; exact-head verification and independent follow-up pending",
     "reason": "The first post-stall Gate-8 whole-module scan found cross-session solved-instance reuse that the draft ledger had missed.",
     "repairedTasks": [
       "T22V3::SIDE278::S06-M@1",
@@ -3749,13 +3766,25 @@
       "T22V3::SIDE278::S16-M@1",
       "T22V3::SIDE278::S07-M@1",
       "T22V3::SIDE278::S09-M@1",
-      "T22V3::SIDE278::S09-T@1"
+      "T22V3::SIDE278::S09-T@1",
+      "T22V3::SIDE278::S14-T@2",
+      "T22V3::SIDE278::S15-T@2"
     ],
-    "note": "All five tasks keep obligationVersion 1 because M15 has never been in the learner registry and no M15 learner evidence exists. Repairs change mathematical instances rather than wording; exact prompt/rubric receipts were regenerated. Full Gates 4–11 recheck remains required.",
+    "note": "Earlier builder-recovery tasks retained @1 because no reviewed learner contract yet existed. After independent review at aa01b191..., S14-T and S15-T change public obligations and are deliberately versioned to @2 despite M15 remaining unpublished. Pre-repair fingerprints are preserved in m15-pre-independent-repair-version-receipt.json.",
     "claimAudit": "All 48 ownership claims were re-audited semantically after recovery. Overbroad S02 claim 3 was narrowed to the complete-vs-incomplete ON-set distinction actually observed; S03 Main was strengthened to prove the full subspace test; compound claims now cite every necessary rubric row rather than nearby single rows.",
     "evidenceDistance": "S09, S14 and S15 Main were downgraded to retrieval; S12 and S13 Main to proof reconstruction. S16 remains fresh Main evidence only for the unworked complete two-route synthesis.",
     "sourceDossier": "Machine-readable source roles synchronized to the recovered Gate-2 dossier; vague PED-PROJ entry replaced by identifiable Appova/Berezovski RUME16 vector/projection misconception study with population limitation.",
     "crossSessionExposure": "Recovery whole-module scan found and repaired S07 Main's exact reuse of the S04 worked projection, S09 Main's already-solved S08 Gram–Schmidt prefix, and S09 Transfer's overlap with the later S11 column pair. Replacements use new mathematical objects and were re-solved.",
-    "supportTheoremOrder": "S04 no longer silently assumes every subspace already has an ON basis. It proves uniqueness and ON-basis-accessible existence; S09 closes general finite-dimensional existence using Gram–Schmidt; S10 then derives dim W^perp=n-dim W via Q^T and M14 rank–nullity."
+    "supportTheoremOrder": "R01/R02 repaired: S10 derives complement dimension by Q^T(Qc)=c → surjectivity → M14 rank/rank-nullity, with no row-rank theorem. S11 derives x·A^T(Ax)=||Ax||^2 directly from S10's column-dot identity before using the Gram argument. S12 then proves product-transpose entrywise and derives inverse-transpose before projector symmetry.",
+    "independentReviewRepair": {
+      "R01": "S10 complement-dimension proof no longer uses row-rank=column-rank.",
+      "R02": "S11 no longer consumes product-transpose machinery; S12 proves the bounded transpose identities before use.",
+      "R03": "T22V3::SIDE278::S14-T@1 retired from current candidate; T22V3::SIDE278::S14-T@2 is a nonduplicate-dependence false-report audit.",
+      "R04": "T22V3::SIDE278::S15-T@1 retired from current candidate; T22V3::SIDE278::S15-T@2 is reverse-direction residual reconstruction.",
+      "lowSeverity": [
+        "Representation map no longer promises I-P.",
+        "Strang §4.4 printed locator corrected to pp231–243."
+      ]
+    }
   }
 }

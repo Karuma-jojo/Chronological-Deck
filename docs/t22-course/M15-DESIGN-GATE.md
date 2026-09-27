@@ -69,9 +69,9 @@ This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M
 | Projection formula | NONE | S05–S06 | Derive from residual orthogonality. |
 | Nearest-point theorem | NONE | S07 | Prove by Pythagorean decomposition. |
 | Gram–Schmidt | NONE | S08–S09 | Derive from repeated projection subtraction. |
-| Matrix transpose | M14 uses rows but does not own transpose | S10 | Bounded local bridge: definition, shape and column-dot identity; then combine with M14 rank–nullity to obtain `dim W^perp=n-dim W`. |
-| `A^T A` invertible under full column rank | NONE | S11 | Prove from `x^T A^T A x=||Ax||^2` and M14 null-space/invertibility logic, without naming PSD. |
-| Product-transpose and inverse-transpose identities | NONE | S12 | Supply/prove only as exact finite-matrix support facts needed to verify symmetry of an orthogonal projector. |
+| Matrix transpose | M14 uses rows but does not own transpose | S10 | Bounded local bridge: definition, shape and column-dot identity; for complement dimension use `Q^T(Qc)=c` to prove `Q^T` onto, then M14 rank/rank-nullity. No row-rank theorem. |
+| `A^T A` invertible under full column rank | NONE | S11 | Derive `x·A^T(Ax)=||Ax||^2` directly from S10's column-dot identity, then use M14 null-space/invertibility logic; no product-transpose, PSD or eigen machinery. |
+| Product-transpose and inverse-transpose identities | NONE | S12 | Prove `(XY)^T=Y^TX^T` entrywise, then derive `(M^{-1})^T=(M^T)^{-1` from transposed inverse identities before projector symmetry. |
 | Normal equations | NONE | S11/S13 | Derive from residual orthogonality, not memorize. |
 | Rank-deficient least-squares coefficient nonuniqueness | M14 null space + M15 projection | S14 | Prove directly; pseudoinverse remains deferred. |
 
@@ -85,13 +85,13 @@ This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M
 | `W^perp` is a subspace | S03 | subspace `W⊆R^n` | Prove from dot-product linearity | Core M15. |
 | Orthogonality to a spanning set is equivalent to orthogonality to its span | S03 | finite span | Prove directly | Needed to make complement tests finite. |
 | `R^n=W⊕W^perp` (existence + uniqueness) | S04 uniqueness; general existence closes S09 | finite-dimensional real Euclidean space | S04 proves `W∩W^perp={0}` and constructs the split when an ON basis is available; S09 uses Gram–Schmidt on an arbitrary finite basis of W to close general existence | No spectral theory; dependency order is explicit. |
-| `dim W^perp=n-dim W` | S10 | finite-dimensional `W⊆R^n` with ON basis matrix Q | Use S10 `W^perp=Null(Q^T)`, independence of the ON rows of `Q^T`, and M14 rank–nullity | No eigenvalue/spectral argument. |
+| `dim W^perp=n-dim W` | S10 | finite-dimensional `W⊆R^n` with ON basis matrix Q | Use `W^perp=Null(Q^T)` and prove `Q^T(Qc)=c` for every `c∈R^k`; hence `Q^T` is onto, so M14 gives rank `k`, then rank–nullity | No row-rank, eigenvalue or spectral argument. |
 | Projection onto nonzero line `span(a)` has coefficient `(v·a)/(a·a)` | S05 | `a≠0` | Derive from residual orthogonality | Core M15. |
 | Projection on ON basis is `sum (v·q_i)q_i` | S06 | ON basis of target subspace | Derive from S02/S04 | Core M15. |
 | Orthogonal projection is the unique nearest point in a subspace | S07 | finite-dimensional subspace | Prove by Pythagoras | Core M15 minimization geometry. |
 | Gram–Schmidt preserves each prefix span and zero residual signals dependence | S08–S09 | finite ordered list | Prove inductively/directly | QR naming/factorization deferred to M17. |
 | `(A^T y)_j=a_j·y` for columns `a_j` | S10 | real `m×n` matrix | Prove from transpose/matrix-vector definitions | Tiny bridge; no adjoint/operator theory. |
-| `A^T A` is invertible when A has full column rank | S11 | real full-column-rank A | If `A^TAx=0`, dot with x to get `||Ax||^2=0`, then M14 kernel logic | Avoids PSD ownership. |
+| `A^T A` is invertible when A has full column rank | S11 | real full-column-rank A | If `A^TAx=0`, derive `x·A^T(Ax)=Σ_jx_j(a_j·Ax)=(Ax)·(Ax)` from S10; then M14 kernel logic | Avoids product-transpose and PSD ownership. |
 | `P=A(A^TA)^{-1}A^T` is symmetric and idempotent for full-column-rank A | S12 | real full-column-rank A | Algebraic proof with bounded transpose identities | Orthogonal projector structure is M15; QR/SVD not used. |
 | Symmetric idempotent P is an orthogonal projector onto its range | S12 | real square matrix | Prove residual is orthogonal to `Range(P)` | No eigenvalue/spectral proof. |
 | Least squares `min ||Ax-b||^2` equals projection of b onto `Col(A)` | S13 | finite real matrix A | Prove by identifying attainable vectors as Col(A) and invoking nearest point | Core M15. |
@@ -261,7 +261,7 @@ Canonical-state note: M15's current learner surface is text/math based. It does 
 | ordered vector list under Gram–Schmidt | S08 → S09 dependence/order | S08/S09 |
 | rectangular matrix and transpose | S10 → `A^Tr=0` S11/S13 | S10/S11 |
 | Gram matrix `A^TA` | S11 → projector S12 → least squares S13 | S11–S13 |
-| projector matrix P and I−P | S12 → residual operator checks | S12 Transfer |
+| projector matrix P | S12 → symmetry/idempotence and residual geometry | S12 Main/Transfer |
 | attainable column-space fit | S11 → least squares S13 → rank-deficient coefficients S14 | S13/S14 |
 | data table ↔ design matrix | S15 | S15 Main/Transfer |
 | unlabeled method-choice problem | S16 | S16 Main/Transfer |

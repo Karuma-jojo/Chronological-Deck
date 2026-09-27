@@ -12,7 +12,7 @@ const pilot=fs.readFileSync('docs/t22-course/M15-PILOT-REVIEW.md','utf8');
 
 assert.equal(a.module.order,15);
 assert.equal(a.module.id,'SIDE278');
-assert.equal(a.module.status,'review-candidate-unpublished');
+assert.equal(a.module.status,'independent-review-repaired-awaiting-followup-unpublished');
 assert.equal(a.sessions.length,16);
 assert.equal(Object.keys(a.problems).length,32);
 assert.equal(Object.keys(a.evaluators).length,32);
@@ -61,7 +61,8 @@ for(let i=0;i<16;i++){
   assert.equal(s.order,n); assert.equal(s.id,`T22V3::SIDE278::S${ss}@1`);
   assert.equal(s.moduleId,'SIDE278');
   assert.equal(s.main,`T22V3::SIDE278::S${ss}-M@1`);
-  assert.equal(s.transfer,`T22V3::SIDE278::S${ss}-T@1`);
+  const expectedTransferVersion=(n===14||n===15)?2:1;
+  assert.equal(s.transfer,`T22V3::SIDE278::S${ss}-T@${expectedTransferVersion}`);
   for(const token of ['Orient.','Worked example.','Guided practice.','Fade.','Distinction check.'])
     assert(s.lesson.includes(token),s.id+' missing learner-sequence token '+token);
   assert(s.lesson.length>900,s.id+' lesson too thin');
@@ -95,7 +96,9 @@ for(let i=0;i<16;i++){
   for(const kind of ['main','transfer']){
     const id=s[kind],p=a.problems[id],e=a.evaluators[id];
     assert(p&&e,id+' missing problem/evaluator');
-    assert.equal(p.order,n); assert.equal(p.kind,kind); assert.equal(p.obligationVersion,1);
+    assert.equal(p.order,n); assert.equal(p.kind,kind);
+    const expectedObligation=(kind==='transfer'&&(n===14||n===15))?2:1;
+    assert.equal(p.obligationVersion,expectedObligation,id+' obligation version');
     assert(p.prompt.trim().length>0,id+' empty prompt');
     assert(e.reference.trim().length>0,id+' empty reference');
     assert(!/\\b(?:TODO|TBD|PLACEHOLDER)\\b/i.test(p.prompt),id+' placeholder prompt');
@@ -176,7 +179,23 @@ for(const [id,p] of Object.entries(a.problems))assert(!forbidden.test(p.prompt),
 // Gate-10 provenance: initial unpublished candidate, no evidence migration.
 assert.match(a.initialVersionAudit.status,/no prior learner evidence/i);
 assert.equal(a.initialVersionAudit.priorCanonicalPack,null);
-assert(a.followupRepair.repairedTasks.length>=8);
+assert(a.followupRepair.repairedTasks.length>=10);
+assert.equal(a.instructionVersion,'m15-side278-instruction-v2-independent-repair');
+assert.equal(a.versionAudit.reviewedHead,'aa01b1914fd69709919651f14e27487cef7fbbe6');
+assert.deepEqual(a.versionAudit.changedAssessments.map(x=>x.current),['T22V3::SIDE278::S14-T@2','T22V3::SIDE278::S15-T@2']);
+assert(!a.problems['T22V3::SIDE278::S14-T@1']&&!a.evaluators['T22V3::SIDE278::S14-T@1'],'retired S14-T@1 remained current');
+assert(!a.problems['T22V3::SIDE278::S15-T@1']&&!a.evaluators['T22V3::SIDE278::S15-T@1'],'retired S15-T@1 remained current');
+assert.match(a.sessions[9].lesson,/Q\^T\(Qc\)=c/);
+assert.match(a.sessions[9].lesson,/onto/);
+assert(!/rows q_i\^T.*rank\(Q\^T\)=k/.test(a.sessions[9].lesson),'R01 row-rank jump regressed');
+assert.match(a.sessions[10].lesson,/x·A\^T\(Ax\)/);
+assert.match(a.sessions[10].lesson,/no product-transpose law is consumed here/);
+assert.match(a.sessions[11].lesson,/\[\(XY\)\^T\]_\{ij\}/);
+assert.match(a.sessions[11].lesson,/\(M\^\{-1\}\)\^T=\(M\^T\)\^\{-1\}/);
+assert.match(a.problems['T22V3::SIDE278::S14-T@2'].prompt,/c3=\(1,1,0\)=c1\+c2/);
+assert.match(a.problems['T22V3::SIDE278::S14-T@2'].prompt,/projection.*not unique/i);
+assert.match(a.problems['T22V3::SIDE278::S15-T@2'].prompt,/Do not solve normal equations from scratch/);
+assert.match(a.problems['T22V3::SIDE278::S15-T@2'].prompt,/residual orthogonality/);
 assert.match(a.followupRepair.supportTheoremOrder,/S09|S10/);
 
 console.log('PASS M15 structural/pedagogy/semantic candidate: 16 sessions, 32 fixed tasks, 48 literal ownership claims, 32 separation rows, 17 decision audits, 18 wrong-solver discriminators; publication remains closed.');
