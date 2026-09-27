@@ -71,7 +71,7 @@ This document applies the T22 Module Builder and Adversarial Checker v1.2 to **M
 | Gram–Schmidt | NONE | S08–S09 | Derive from repeated projection subtraction. |
 | Matrix transpose | M14 uses rows but does not own transpose | S10 | Bounded local bridge: definition, shape and column-dot identity; for complement dimension use `Q^T(Qc)=c` to prove `Q^T` onto, then M14 rank/rank-nullity. No row-rank theorem. |
 | `A^T A` invertible under full column rank | NONE | S11 | Derive `x·A^T(Ax)=||Ax||^2` directly from S10's column-dot identity, then use M14 null-space/invertibility logic; no product-transpose, PSD or eigen machinery. |
-| Product-transpose and inverse-transpose identities | NONE | S12 | Prove `(XY)^T=Y^TX^T` entrywise, then derive `(M^{-1})^T=(M^T)^{-1` from transposed inverse identities before projector symmetry. |
+| Product-transpose and inverse-transpose identities | NONE | S12 | Prove `(XY)^T=Y^TX^T` entrywise, then derive `(M^{-1})^T=(M^T)^{-1}` from transposed inverse identities before projector symmetry. |
 | Normal equations | NONE | S11/S13 | Derive from residual orthogonality, not memorize. |
 | Rank-deficient least-squares coefficient nonuniqueness | M14 null space + M15 projection | S14 | Prove directly; pseudoinverse remains deferred. |
 
