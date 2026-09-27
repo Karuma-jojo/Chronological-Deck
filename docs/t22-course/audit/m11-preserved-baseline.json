@@ -61,7 +61,7 @@
     "docs/t22-course/audit/m02-review-checks.mjs": "1d2b80b4fded54bd40b738fdd13a9a51dd022d98",
     "docs/t22-course/audit/m03-handoff-checks.mjs": "a7cbea1a4e9422e3a6b0f3c2452c77ba6db261c5",
     "docs/t22-course/audit/m03-independent-math.mjs": "af03889cdff59867d1fdb8eff0891439cc9ce7ff",
-    "docs/t22-course/audit/m03-repair-checks.mjs": "867aa9c4c9ac1b376969fdfe4b056e6c7e433f41",
+    "docs/t22-course/audit/m03-repair-checks.mjs": "e1059f410ded65f62979ab97ca5a1a77c642dc16",
     "docs/t22-course/audit/m04-handoff-checks.mjs": "e67e626a71056e3ecb1825e6767deb16a7014c67",
     "docs/t22-course/audit/m04-independent-math.mjs": "36b58547788eef81a127a98fe5582d36a37fa681",
     "docs/t22-course/audit/m05-handoff-checks.mjs": "8d6867dc9cbdfc01063d694db8473ffec91b901b",
@@ -158,6 +158,7 @@
     "latestPins": "M01 readiness wording and M02 independent-law arithmetic guards updated after initial re-pin; no curriculum scope change.",
     "ciRepair": "Run 557 correctly caught loss of the explicit cos45°=sin45°=√2/2 invariant during the deeper triangle derivation. The statement was restored; the standing guard was not weakened.",
     "ciRepair2": "Run 558 required the explicit phrase 'no solution' in the S04 three-way systems bridge. The lesson was clarified; the semantic guard stayed strict.",
-    "handoffRepair": "Run 559 reached the historical M03 handoff checker; its exact old status/version assertions were updated to preserve old review history while recording the new S26 binomial ownership stitch and pending independent reconfirmation."
+    "handoffRepair": "Run 559 reached the historical M03 handoff checker; its exact old status/version assertions were updated to preserve old review history while recording the new S26 binomial ownership stitch and pending independent reconfirmation.",
+    "repairGate": "Run 560 reached the historical M03 repair gate; exact instruction-version assertion was advanced to m03-instruction-lang-binomial-r2 while all Astra repair and historical-exposure protections remain pinned."
   }
 }
