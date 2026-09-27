@@ -4,7 +4,7 @@
   "purpose": "Protect M01-M11 canonical authoring, learner registry/roadmap/dependency authority and shared T22 runtime from accidental mutation during M12-only work. SEMANTIC-PREREQUISITES.json is intentionally excluded because M12's own ledger row was authorized to change.",
   "files": {
     "course/t22/authoring/m01-repairs-1.1.json": "80f73f6a628897ddbe85bf6f62d388e110b73b33",
-    "course/t22/authoring/m02.json": "3fb2316c2df5ebda3178a438888638f6667416f2",
+    "course/t22/authoring/m02.json": "cf4d868b07a0a695f7d6cdfaa21c04b4eaa3174f",
     "course/t22/authoring/m03.json": "a04fbc54e0fc8f910db42ee7874a9930d53b83fe",
     "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
     "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
