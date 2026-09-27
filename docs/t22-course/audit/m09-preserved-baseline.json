@@ -14,9 +14,9 @@
     "course/t22/authoring/m03.json": "a3af5537582fd8a2ca3973267aa0cfec4c768613bf79f43e6ca1fb76431ca283",
     "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
     "course/t22/authoring/m04.json": "56c0352b072761323b51e0857fefa46cb703468229fdb4cabb09e401556527e2",
-    "course/t22/authoring/m02.json": "bbbf32204caed5ec573251a023d029797449dc8e050885da0cd3edbe837901da",
+    "course/t22/authoring/m02.json": "19f6e6214b3871bb4212f57405ed7c1e11f68acd2fa9840dc25636cc91870458",
     "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
-    "course/t22/authoring/m01-repairs-1.1.json": "bc8e806005dae7a0485ce516461b1fcbdad6832ea11b3218dd8d6878f679703e"
+    "course/t22/authoring/m01-repairs-1.1.json": "ec37adaef838319ee67067e8c6583a105c25e118f5fdd0dd59a24941c1881e08"
   },
   "authorizedM07Retrofit": {
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
@@ -31,5 +31,10 @@
       "course/t22/authoring/m02.json"
     ],
     "unchangedBaseline": "Every other preserved M01-M08 curriculum hash remains pinned."
+  },
+  "authorizedM01M02V12Followup": {
+    "base": "cb4240fb34c28826182e838aae9943d1bd406f15",
+    "branch": "codex/t22-m01-m02-v12-followup",
+    "scope": "Independent-review findings R01–R08 only: semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain check, and interval-ray rendering. No M03+ curriculum redesign."
   }
 }
