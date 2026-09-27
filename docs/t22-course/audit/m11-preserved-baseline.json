@@ -17,11 +17,11 @@
     "course/t22/authoring/m10-arc053.json": "b5998f843fb07f59bad42ae715b475c51b1e51fe",
     "course/t22/generated/course-meta.json": "b477d42e502a0fadc5f64719a95988278e22bf78",
     "css/t22-course.css": "868bd0ee2ec001867b1ed1c1e161aed6b6229805",
-    "docs/t22-course/M01-ACCEPTANCE.md": "306677a1e9c84cb1ab08ffe6bb29f83a180e97e7",
+    "docs/t22-course/M01-ACCEPTANCE.md": "43533caa53638b4c584663314485a8459114671b",
     "docs/t22-course/M02-ASTRA-RESOLUTION.md": "c371483a7b40571ef035985bff36f98c59105b36",
     "docs/t22-course/M02-ASTRA-REVIEW.md": "082bb4e41c0fa39a0e3f178a5bdcfc6a1a611a33",
     "docs/t22-course/M02-BOUNDARY.md": "d9c9ef6969293d85ec0412d32fdee80e0a30f5f8",
-    "docs/t22-course/M02-REVIEW-HANDOFF.md": "6493e739887b8d3d15fa30181d83212744cefd98",
+    "docs/t22-course/M02-REVIEW-HANDOFF.md": "296468ebdd948387d306cfa96cd5277233d901a1",
     "docs/t22-course/M03-ASTRA-FOLLOWUP.md": "f88e72381e50679f6238030fce7d3a47831d513b",
     "docs/t22-course/M03-ASTRA-REVIEW.md": "8c3dc68a48e0e65738ed2750df5910c0325c0f1c",
     "docs/t22-course/M03-BOUNDARY.md": "5c45eeb4c81553443c3bcfab9a148f79ccf511e1",
@@ -140,6 +140,7 @@
     "reason": "Explicit user-authorized retrospective M01/M02 v1.2 repair; 17+24 session architecture and stable IDs preserved. Re-pin only the two changed upstream curriculum blobs; all other protected curriculum files remain unchanged.",
     "relatedTestHarness": "M02 focused DOM mock now implements replaceChildren and stubs renderRepresentations so the original unsaved-draft/provenance regression remains meaningful under the new shared representation UI.",
     "baselineChain": "M09/M10 preservation ledgers were re-pinned only for the same authorized M01/M02 retrofit; their other protected hashes remain unchanged.",
-    "validatorGuards": "M01/M02 validators were deliberately strengthened to guard exact claim evidence, evidence-distance classes and literal learner-facing representations."
+    "validatorGuards": "M01/M02 validators were deliberately strengthened to guard exact claim evidence, evidence-distance classes and literal learner-facing representations.",
+    "closureDocumentation": "Historical M01 acceptance and M02 review-handoff were amended only with a current-status supplement pointing to the v1.2 retrofit resolution; earlier acceptance history remains intact."
   }
 }
