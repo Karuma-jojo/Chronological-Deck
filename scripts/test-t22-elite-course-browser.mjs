@@ -121,6 +121,25 @@ try{
  await mlp.evaluate(({exposureAt})=>{const key='chrono_t22_elite_course_evidence_v1',s=JSON.parse(localStorage.getItem(key));s.exposures['T22V3::T22E-DISC01::S29-M@1']={firstSeen:exposureAt,lastSeen:exposureAt,views:1,lessonSeenAt:exposureAt,lessonContentVersion:'m03-instruction-v1'};localStorage.setItem(key,JSON.stringify(s));},{exposureAt});
  await mlp.reload();await mlp.waitForFunction(()=>document.querySelector('#session')?.options.length===30);mls=await mlp.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));const ex=mls.exposures['T22V3::T22E-DISC01::S29-M@1'];assert.equal(ex.lessonAnswerSeenAt,exposureAt);assert.equal(ex.referenceSeenAt,exposureAt);assert(mls.attempts.some(a=>a.id===pre.id&&a.at===pre.at&&a.referenceSeenBefore===false));assert(Date.parse(pre.at)<Date.parse(ex.referenceSeenAt));
  await mlp.fill('#answer','Post-migration attempt after historically answer-containing lesson.');await mlp.click('#save');mls=await mlp.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));assert.equal(mls.attempts.at(-1).assistance,'revealed');assert.equal(mls.attempts.at(-1).referenceSeenBefore,true);await m03LegacyCtx.close();
+ // M01/M02 v1.2 representation retrofit: actual learner-facing figures, readiness routing and mobile rendering.
+ const reprCtx=await browser.newContext({viewport:{width:390,height:844}});const rp=await reprCtx.newPage();
+ await rp.goto(base+'/t22-course.html?module=1&session=1');await rp.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+ assert.equal(await rp.locator('#readiness').isVisible(),true);await rp.click('#readiness');assert.equal(await rp.locator('#readinessItems li').count(),13);await rp.click('#readinessReveal');assert((await rp.locator('#readinessKey').textContent()).includes('routing'));
+ for(const n of [1,2,3,4,5,6,14,15,16]){
+  await rp.selectOption('#session',String(n));await rp.click('#note');assert((await rp.locator('#learningRepresentations .representation').count())>=1,`M01 S${n} representation missing`);
+ }
+ await rp.selectOption('#session','14');await rp.click('#transferTask');assert.equal(await rp.locator('#problemRepresentations .representation').count(),1);assert((await rp.locator('#problemRepresentations svg').getAttribute('aria-label'))?.length>0);assert((await rp.locator('#problem').textContent()).includes('supplied number-line figure'));
+ await rp.selectOption('#module','T22E-FND02');
+ for(const n of [1,3,4,5,6,8,9,10,12,13,17,21,23]){
+  await rp.selectOption('#session',String(n));await rp.click('#note');assert((await rp.locator('#learningRepresentations .representation').count())>=1,`M02 S${n} representation missing`);
+ }
+ for(const n of [3,6,9,10,23,24]){
+  await rp.selectOption('#session',String(n));await rp.click('#transferTask');assert((await rp.locator('#problemRepresentations .representation').count())>=1,`M02 S${n} assessed representation missing`);
+ }
+ await rp.selectOption('#session','23');await rp.click('#transferTask');assert((await rp.locator('#problemRepresentations .repr-curve').count())>=1);assert((await rp.locator('#problemRepresentations .repr-axis').count())>=2);
+ await rp.selectOption('#session','24');await rp.click('#transferTask');assert.equal(await rp.locator('#problemRepresentations table').count(),1);assert((await rp.locator('#problem').textContent()).includes('Choose the compatible family'));
+ assert(await rp.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'representation retrofit must not create mobile horizontal overflow');
+ await reprCtx.close();
  await runRepairBrowserChecks(browser,base);
  await runM09BrowserChecks(browser,base,page);
  // Published calculus route M10-M12 uses the same evidence store and runtime loader.
@@ -138,6 +157,6 @@ try{
  // Corrupt local evidence remains untouched instead of silently resetting.
  const corrupt=await browser.newContext();await corrupt.addInitScript(()=>localStorage.setItem('chrono_t22_elite_course_evidence_v1','{broken'));const cp=await corrupt.newPage();await cp.goto(base+'/t22-course.html');await cp.waitForSelector('#session option',{state:'attached'});assert((await cp.locator('#status').textContent()).includes('not been overwritten'));assert.equal(await cp.evaluate(()=>localStorage.getItem('chrono_t22_elite_course_evidence_v1')),'{broken');await corrupt.close();
  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);
- console.log('PASS browser: M01+M02+M03+M04+M05+M06+M07+M08 module scoping; M02/M03/M04/M05/M06/M07 unsaved draft + assistance provenance; shared evidence preservation; M02/M03/M04/M05/M06/M07/M08 save-reveal-review; M03 timestamp-aware historical lesson migration; twelve-module export/import; packet exposure through M08; A-07 current/legacy behavior; fresh probe; corrupt-storage preservation; mobile width.');
+ console.log('PASS browser: M01/M02 v1.2 readiness + rendered representation traversal; M01+M02+M03+M04+M05+M06+M07+M08 module scoping; M02/M03/M04/M05/M06/M07 unsaved draft + assistance provenance; shared evidence preservation; M02/M03/M04/M05/M06/M07/M08 save-reveal-review; M03 timestamp-aware historical lesson migration; twelve-module export/import; packet exposure through M08; A-07 current/legacy behavior; fresh probe; corrupt-storage preservation; mobile width.');
  await context.close();
 }finally{await browser?.close();await new Promise(r=>server.close(r));}
