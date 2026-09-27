@@ -2,7 +2,7 @@ name: T22 Elite checks
 
 on:
   push:
-    branches: [codex/t22-pedagogical-rebuild, main]
+    branches: [codex/t22-pedagogical-rebuild, codex/t22-m15-review-candidate, main]
     paths:
       - 'course/t22/**'
       - 'js/t22-course/**'
