@@ -1,3 +1,15 @@
+# Current M01 + M02 v1.2 retrospective retrofit — 2026-09-27
+
+User explicitly authorized a bounded retrospective improvement of M01 and M02 after comparing the current foundation against T22 v1.2, Serge Lang's *Basic Mathematics*, AoPS scope comparators and public pedagogy/course sources. Recovered pre-retrofit head: `11b0cb369af2e26ad595a7f5a6bc7ef102d55306`. Macro architecture remains **M01 17 sessions / M02 24 sessions**; stable IDs and later-module ownership boundaries are preserved.
+
+The repair adds literal learner-facing mathematical representations, assessed graph/number-line/table evidence where representation use is claimed, M01 85/85 exact claim observers, M02 120/120 re-audited claim observers, honest evidence-distance ledgers for all 82 fixed tasks, a 13-item routing-only M01 readiness check, rational-exponent precision, a bounded completing-square derivation, delayed mixed retrieval, M01→M02 conceptual bridges, decision-richer synthesis, assessed-visual fingerprinting, and Chromium/mobile regressions. Selected fixed contracts were versioned rather than silently overwriting prior evidence.
+
+Exact-head implementation verification succeeded at `16e2eb2e4d8863eda10ddc97418bd1f066a06671`: T22 Elite run `36291523103`, job `108542408541`, **SUCCESS**. Static/math/semantic regressions passed through the current M15 candidate, and real Chromium passed the new M01/M02 representation/readiness traversal plus existing evidence workflows.
+
+The earlier M01/M02 independent acceptance remains historical evidence for the earlier state. It does **not** automatically certify the new v1.2 task/representation changes. Current status: **implemented + fully green; bounded independent confirmation pending**. Review authority: `docs/t22-course/M01-M02-V12-RETROFIT-RESOLUTION.md`.
+
+---
+
 # Current M07 v1.1 retrospective repair — 2026-09-24
 
 User explicitly authorized repair of M07 after identifying that the original module was not constructed with the later stepwise methodology. Recovered branch head before retrofit: `546103699478051ba58b82475a11156e3bed3ae9`; full T22 workflow `36017308549` was green there. Retrospective design gate committed at `239d1e24bb6d793b1116cda29deb15ae77b451f8`.
