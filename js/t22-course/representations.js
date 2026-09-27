@@ -51,14 +51,15 @@ function plot(spec){
  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'repr-svg',role:'img','aria-label':spec.alt||spec.title||'Mathematical graph'});
  svg.append(el('rect',{x:pad.l,y:pad.t,width:W-pad.l-pad.r,height:H-pad.t-pad.b,class:'repr-plot-bg'}));
  const xt=spec.xTick||1,yt=spec.yTick||1;
- const x0=Math.ceil(xmin/xt)*xt,y0=Math.ceil(ymin/yt)*yt;
- for(let x=x0;x<=xmax+1e-9;x+=xt){
-  const px=X(x);svg.append(el('line',{x1:px,y1:pad.t,x2:px,y2:H-pad.b,class:'repr-grid'}));
-  if(Math.abs(x)>1e-9||!(ymin<=0&&0<=ymax))addText(svg,px,H-pad.b+20,nice(x),'repr-tick');
+ const xTicks=spec.xTicks||Array.from({length:Math.floor((xmax-Math.ceil(xmin/xt)*xt)/xt)+1},(_,i)=>{const value=Math.ceil(xmin/xt)*xt+i*xt;return {value,label:nice(value)};});
+ const yTicks=spec.yTicks||Array.from({length:Math.floor((ymax-Math.ceil(ymin/yt)*yt)/yt)+1},(_,i)=>{const value=Math.ceil(ymin/yt)*yt+i*yt;return {value,label:nice(value)};});
+ for(const t of xTicks){
+  const x=Number(t.value);if(x<xmin-1e-9||x>xmax+1e-9)continue;const px=X(x);svg.append(el('line',{x1:px,y1:pad.t,x2:px,y2:H-pad.b,class:'repr-grid'}));
+  if(Math.abs(x)>1e-9||!(ymin<=0&&0<=ymax))addText(svg,px,H-pad.b+20,t.label??nice(x),'repr-tick');
  }
- for(let y=y0;y<=ymax+1e-9;y+=yt){
-  const py=Y(y);svg.append(el('line',{x1:pad.l,y1:py,x2:W-pad.r,y2:py,class:'repr-grid'}));
-  if(Math.abs(y)>1e-9||!(xmin<=0&&0<=xmax))addText(svg,pad.l-10,py+4,nice(y),'repr-tick','end');
+ for(const t of yTicks){
+  const y=Number(t.value);if(y<ymin-1e-9||y>ymax+1e-9)continue;const py=Y(y);svg.append(el('line',{x1:pad.l,y1:py,x2:W-pad.r,y2:py,class:'repr-grid'}));
+  if(Math.abs(y)>1e-9||!(xmin<=0&&0<=xmax))addText(svg,pad.l-10,py+4,t.label??nice(y),'repr-tick','end');
  }
  const axisY=ymin<=0&&0<=ymax?Y(0):H-pad.b,axisX=xmin<=0&&0<=xmax?X(0):pad.l;
  svg.append(el('line',{x1:pad.l,y1:axisY,x2:W-pad.r,y2:axisY,class:'repr-axis'}));
