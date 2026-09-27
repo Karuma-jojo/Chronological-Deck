@@ -4083,6 +4083,10 @@
       {
         "item": "line equation from point",
         "source": "JIT in S04 using M01 rearrangement"
+      },
+      {
+        "item": "one/no/infinitely-many elementary system classification",
+        "source": "M01-S13 fixed Transfer v3 owns the algebraic elimination outcomes; S04 retrieves them geometrically as crossing/parallel/coincident lines"
       }
     ],
     "S05": [
@@ -5899,6 +5903,7 @@
     "L08": "S04 renders one/no/infinite linear-system geometry, completing the M01-S13 algebra bridge.",
     "L10": "S03 coordinate-plane/distance/midpoint development is now derived rather than formula-only.",
     "LF_R05": "S22 guided practice now reconstructs sine difference from sine addition; fixed Transfer independently reconstructs cosine sum from cosine difference, removing the ownership-critical immediate replay.",
-    "LF_R06": "S22 now explicitly closes the chord argument by rotating both unit-circle points by −B and stating that rigid rotation preserves Euclidean distance."
+    "LF_R06": "S22 now explicitly closes the chord argument by rotating both unit-circle points by −B and stating that rigid rotation preserves Euclidean distance.",
+    "LF_R04": "M02-S04 geometric three-way picture now explicitly cites M01-S13's public algebraic ownership rather than treating the classification as instruction-only background."
   }
 }
