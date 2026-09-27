@@ -46,6 +46,7 @@ export async function prepareAssessmentFingerprints(course,keys){
    obligationVersion:problem.obligationVersion,
    kind:problem.kind,
    prompt:problem.prompt,
+   representations:problem.representations||[],
    sessionId:session?.id||null,
    markingContract:{reference:evaluator.reference,rubric:evaluator.rubric,marking:evaluator.marking}
   });
