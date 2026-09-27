@@ -1,3 +1,11 @@
+# Current M01 + M02 v1.2 independent-review follow-up — 2026-09-27
+
+Independent adversarial review of green retrofit head `cb4240fb34c28826182e838aae9943d1bd406f15` found R01–R08. The architecture remains **M01 17 / M02 24**; findings are bounded to semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain checking, exponent-law observer metadata and interval-ray rendering.
+
+Repairs are isolated on `codex/t22-m01-m02-v12-followup` from the exact reviewed head. Current repair authority: `docs/t22-course/M01-M02-V12-FOLLOWUP-RESOLUTION.md`. Do not call the retrofit independently confirmed from builder repair; required next gate is a full exact-head T22 workflow followed by the independent reviewer's bounded R01–R08 reconfirmation.
+
+---
+
 # Current M01 + M02 v1.2 retrospective retrofit — 2026-09-27
 
 User explicitly authorized a bounded retrospective improvement of M01 and M02 after comparing the current foundation against T22 v1.2, Serge Lang's *Basic Mathematics*, AoPS scope comparators and public pedagogy/course sources. Recovered pre-retrofit head: `11b0cb369af2e26ad595a7f5a6bc7ef102d55306`. Macro architecture remains **M01 17 sessions / M02 24 sessions**; stable IDs and later-module ownership boundaries are preserved.
