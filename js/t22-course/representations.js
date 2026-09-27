@@ -107,8 +107,10 @@ function numberLine(spec){
  (spec.intervals||[]).forEach((r,i)=>{
   const a=X(Math.max(min,r.from)),b=X(Math.min(max,r.to)),yy=y-18-i*13;
   svg.append(el('line',{x1:a,y1:yy,x2:b,y2:yy,class:'repr-interval'}));
-  if(r.from>min)svg.append(el('circle',{cx:X(r.from),cy:yy,r:5,class:r.closedFrom?'repr-end-closed':'repr-end-open'}));
-  if(r.to<max)svg.append(el('circle',{cx:X(r.to),cy:yy,r:5,class:r.closedTo?'repr-end-closed':'repr-end-open'}));
+  if(r.continueFrom)svg.append(el('path',{d:`M ${a} ${yy} l 12 -7 l 0 14 z`,class:'repr-interval-arrow'}));
+  if(r.continueTo)svg.append(el('path',{d:`M ${b} ${yy} l -12 -7 l 0 14 z`,class:'repr-interval-arrow'}));
+  if(r.from>min&&!r.continueFrom)svg.append(el('circle',{cx:X(r.from),cy:yy,r:5,class:r.closedFrom?'repr-end-closed':'repr-end-open'}));
+  if(r.to<max&&!r.continueTo)svg.append(el('circle',{cx:X(r.to),cy:yy,r:5,class:r.closedTo?'repr-end-closed':'repr-end-open'}));
   if(r.label)addText(svg,(a+b)/2,yy-9,r.label,'repr-label');
  });
  (spec.points||[]).forEach(p=>{const x=X(p.value);svg.append(el('circle',{cx:x,cy:y,r:5,class:'repr-point'}));if(p.label)addText(svg,x,y-13,p.label,'repr-label');});
