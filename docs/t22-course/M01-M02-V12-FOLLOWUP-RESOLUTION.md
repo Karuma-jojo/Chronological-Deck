@@ -150,6 +150,19 @@ This follow-up does not attempt to solve semantic observability generically with
 - completing-square derivation: unchanged
 - no new syllabus topics added
 
+## Exact-head repair validation
+
+Repair implementation head: `ea31220ef08b298efd6f176b2a6eb0b537ffd7c2`  
+T22 Elite workflow: run `36303881977`, job `108576593815` — **SUCCESS**
+
+Inspected logs confirm:
+
+- M01 v1.2 follow-up PASS: 17 sessions / 34 tasks / 85 exact claim-evidence rows; R02/R03/R06/R08 semantic observers pinned; interval-specific ray arrow guarded; inherited separation/exposure/fingerprint/math checks green.
+- M02 v1.2 follow-up PASS: 24 sessions / 48 tasks / 120 exact claim-evidence rows; R01/R04/R05/R07 semantic observers pinned; graph-only S23 evidence, bidirectional degree/radian conversion and S24 domain checks guarded.
+- Real Chromium PASS: R01/R04/R05/R08 public surfaces, readiness/rendered-representation traversal, mobile width, shared evidence preservation, save/reveal/review, export/import, packet exposure, fresh-probe and historical-provenance workflows all passed.
+
+This is builder/repair verification, not independent reconfirmation.
+
 ## Validation gate
 
 Do not mark the retrofit independently confirmed from this builder repair.
