@@ -200,7 +200,7 @@
           "implementedBy": "M15-S10"
         }
       ],
-      "note": "M15 independent-review-repaired candidate: 16 sessions / 32 current fixed tasks / 48 ownership claims. R01 closes complement dimension via Q^T(Qc)=c → surjectivity → M14 rank/rank-nullity; R02 closes transpose-support order by deriving the S11 Gram scalar identity from the S10 column-dot bridge and proving product/inverse transpose in S12 before use. R03/R04 replace only S14-T and S15-T as @2 changed-surface obligations. Exact repaired head 3d0cade34f3c43df5927a808fb82d77c189c89ee passed full run 36303833184 (#552), including Chromium. M15 remains unpublished pending bounded independent follow-up and explicit authorization; M16+ stay closed."
+      "note": "M15 independent-followup-passed unpublished candidate: 16 sessions / 32 current fixed tasks / 48 ownership claims. R01–R04 were independently confirmed repaired at reviewed head 3eb72ede248eed619f48d054bfb9328733094e8f. Exact-head full workflows #552 and #556 succeeded, including Chromium; M15 remains outside the M01–M14 learner registry. Current correction is provenance/canonical metadata only: all 48 claims are textually unchanged from aa01b191..., with 35 Main-only / 11 Transfer-only / 2 both; all six S14/S15 claims remain Main-observed. Final provenance read-back confirmation remains before any acceptance/publication transition; M16+ stay closed."
     },
     {
       "order": 16,
