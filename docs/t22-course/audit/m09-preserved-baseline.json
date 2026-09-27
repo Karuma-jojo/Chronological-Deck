@@ -11,16 +11,45 @@
     "course/t22/generated/eval-m01-001-005.json": "b3f93989368259f3898728399e153f8ec3570021f8ef743ffa6c64b31f581575",
     "course/t22/authoring/m06.json": "65badb40514aa55c483175c673facfaa21fedce04057b9a8dbe7295008ba93cc",
     "course/t22/authoring/m05.json": "117751c09d0b0d32528674740cb79227fa4b5db57df530f58095c86dc0e6f513",
-    "course/t22/authoring/m03.json": "a3af5537582fd8a2ca3973267aa0cfec4c768613bf79f43e6ca1fb76431ca283",
+    "course/t22/authoring/m03.json": "22aa71a8a00080fa697ae0a3a116ea61a6f2b14669dd52be0be4f722bad32319",
     "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
     "course/t22/authoring/m04.json": "56c0352b072761323b51e0857fefa46cb703468229fdb4cabb09e401556527e2",
-    "course/t22/authoring/m02.json": "5bfcceb15f158333e4d5f56c4ebb8f90ee1253e7917bf78da628c5c773be533b",
+    "course/t22/authoring/m02.json": "d54530eb493dfa75e4d03c9e8ee201f50a84303a51c71e148337e3aeffbc433a",
     "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
-    "course/t22/authoring/m01-repairs-1.1.json": "150ef06bdc71198164713d361f2b04f73c866c5d48916e97ce1df962b153ec54"
+    "course/t22/authoring/m01-repairs-1.1.json": "a2efe7697dc4bbaf163ac81ef40f2c69d25831cda9c5c07a994f8d61d326cc19"
   },
   "authorizedM07Retrofit": {
     "commit": "b76b55d1f52162f7ea576b2739f76fefeab4dc35",
     "reason": "User-authorized retrospective M07 v1.1 protocol repair after M09 publication; M07 fixed tasks and obligation versions unchanged, only S02/S20 ownership wording plus source/support/pedagogy/evidence metadata/guards changed.",
     "unchangedFiles": "Every other M01-M08 preserved-baseline hash remains pinned."
+  },
+  "authorizedM01M02V12Retrofit": {
+    "commitThrough": "e1406d951c69c99930a97840b544b388e819aeb5",
+    "reason": "User-authorized bounded M01/M02 v1.2 retrospective repair on 2026-09-27: preserve 17+24 session architecture and stable IDs while adding literal representation progression, exact claim observers, honest evidence distance, M01 readiness routing/math precision and selected versioned assessment repairs. No M03+ curriculum content was modified.",
+    "changedFiles": [
+      "course/t22/authoring/m01-repairs-1.1.json",
+      "course/t22/authoring/m02.json"
+    ],
+    "unchangedBaseline": "Every other preserved M01-M08 curriculum hash remains pinned."
+  },
+  "authorizedM01M02V12Followup": {
+    "base": "cb4240fb34c28826182e838aae9943d1bd406f15",
+    "branch": "codex/t22-m01-m02-v12-followup",
+    "scope": "Independent-review findings R01–R08 only: semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain check, and interval-ray rendering. No M03+ curriculum redesign."
+  },
+  "authorizedLangFoundationFollowup": {
+    "base": "15e2e54fe1a05c442f008da134048231092f6ff5",
+    "branch": "codex/t22-lang-foundation-followup",
+    "scope": "L01–L10 only: prerequisite provenance/depth. M01 structural-law/readiness/system instruction; M02 coordinate/Pythagorean, real exponential, AP pairing, special triangles, angle-addition identities and system geometry; M03 binomial theorem; M10 consumer-edge repair. No architecture expansion."
+  },
+  "authorizedLangFoundationFinalStitch": {
+    "base": "60d0e9377ca49f5ee43de6c141c4368d557cd3ee",
+    "branch": "codex/t22-lang-foundation-final-stitch",
+    "scope": "LF-R01–R06 only: M03 general binomial ownership/evidence + restored choose-then-order bridge; M01 S13 one/no/infinite ownership/evidence; M02 S22 proof closure/guided separation and S04 owner citation. Architecture unchanged."
+  },
+  "mainPublication": {
+    "sourceReviewHead": "c6003be2f18d3f904898483a422a9a356dc5bc54",
+    "scope": "Independently confirmed M01/M02/M03 foundation publication; M15 excluded.",
+    "status": "frozen"
   }
 }

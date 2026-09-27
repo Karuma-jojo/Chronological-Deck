@@ -1,5 +1,6 @@
 import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,exposeAnswersForSession,taskText,reviewQueue,moduleEvidenceSummary,compilerPacket,freshProbePacket,evidenceIsCurrent,prepareAssessmentFingerprints,prepareContractHashes,migrateHistoricalLessonAnswerExposure,answerExposureAt} from './core.js';
 import {applyCourseOverrides} from './overrides.js';
+import {renderRepresentations} from './representations.js';
 
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
@@ -61,8 +62,8 @@ function showProblem(id){
  const p=course.problems[id],prior=state.exposures[id];
  put('taskMeta',`${p.kind.toUpperCase()} · ${id}`);put('problem',taskText(p));
  put('exposure',prior?`Previously displayed in this browser log (${prior.views} view${prior.views===1?'':'s'}).${prior.referenceSeenAt?' Answer-bearing material has been exposed for this task.':''}`:'First display in this browser log. Outside exposure is unknown.');
- expose(state,id);persist();
- $('answer').value=draft?.answer||'';$('assistance').value=draft?.assistance||'independent';$('minutes').value=draft?.minutes??'0';$('reference').hidden=true;put('reference','');$('learning').hidden=true;put('learning','');$('guidedPanel').hidden=true;$('guidedFeedback').hidden=true;put('guidedFeedback','');$('reveal').disabled=true;$('review').disabled=true;renderHistory();renderQueue();renderModuleEvidence();
+ expose(state,id);persist();renderRepresentations($('problemRepresentations'),p.representations||[]);
+ $('answer').value=draft?.answer||'';$('assistance').value=draft?.assistance||'independent';$('minutes').value=draft?.minutes??'0';$('reference').hidden=true;put('reference','');$('learning').hidden=true;put('learningText','');renderRepresentations($('learningRepresentations'),[]);$('retrievalPractice').hidden=true;$('retrievalItems').replaceChildren();$('guidedPanel').hidden=true;$('guidedFeedback').hidden=true;put('guidedFeedback','');$('reveal').disabled=true;$('review').disabled=true;renderHistory();renderQueue();renderModuleEvidence();
 }
 function selectSession(orderOrId,kind='main'){
  const list=moduleSessions(),wanted=typeof orderOrId==='string'&&orderOrId.includes('::')?list.find(s=>s.id===orderOrId):list.find(s=>s.order===Number(orderOrId));
@@ -75,6 +76,7 @@ function selectSession(orderOrId,kind='main'){
 function applyModuleHeader(){
  const m=moduleMeta();put('moduleTitle',`${moduleCode()} · ${m.title}`);put('moduleDestination',m.destination||'');put('moduleGate',m.gate||'Module clearance requires current independent evidence; page completion alone is insufficient.');
  $('module').value=m.id;put('sessionSearchLabel',`Find a ${moduleCode()} session`);
+ $('readiness').hidden=!m.readinessDiagnostic;$('readinessPanel').hidden=true;$('readinessKey').hidden=true;
 }
 function selectModule(id,requested=1){
  if(!moduleMeta(id))throw Error('Unknown authored module');
@@ -124,7 +126,9 @@ async function init(){
  $('previous').onclick=()=>{const list=moduleSessions(),idx=list.findIndex(s=>s.id===session.id);if(idx>0)selectSession(list[idx-1].id);};
  $('next').onclick=()=>{const list=moduleSessions(),idx=list.findIndex(s=>s.id===session.id);if(idx>=0&&idx<list.length-1)selectSession(list[idx+1].id);};
  $('mainTask').onclick=()=>selectSession(session.id,'main');$('transferTask').onclick=()=>selectSession(session.id,'transfer');
- $('note').onclick=()=>{put('learning','LEARNING NOTE — ASSISTANCE, NOT INDEPENDENT EVIDENCE\n\n'+session.lesson);$('learning').hidden=false;const hasGuide=typeof session.guidedFeedback==='string'&&session.guidedFeedback.length>0;$('guidedPanel').hidden=!hasGuide;$('guidedFeedback').hidden=true;put('guidedFeedback','');$('guidedAnswer').value=hasGuide?(guidedDrafts.get(session.id)||''):'';$('guidedCheck').disabled=!$('guidedAnswer').value.trim();noteSeen=true;if(hasGuide)learningNoteSeenThisVisit.add(session.id);if($('assistance').value==='independent')$('assistance').value='guided';const e=expose(state,problemId,undefined,'lessonSeenAt');e.lessonContentVersion=session.instructionVersion||course.instructionVersion||course.version;persist('Learning note opened; assistance exposure recorded.');};
+ $('readiness').onclick=()=>{const d=moduleMeta().readinessDiagnostic;if(!d)return;put('readinessIntro',d.intro||'Use this only to route study; it is not mastery evidence.');$('readinessItems').replaceChildren(...d.items.map(x=>{const li=document.createElement('li');li.textContent=x.prompt;return li;}));$('readinessKey').hidden=true;$('readinessPanel').hidden=false;};
+ $('readinessReveal').onclick=()=>{const d=moduleMeta().readinessDiagnostic;if(!d)return;put('readinessKey',d.items.map((x,i)=>`${i+1}. ${x.answer} — route: ${x.route}`).join('\n')+'\n\n'+(d.routing||''));$('readinessKey').hidden=false;};
+ $('note').onclick=()=>{put('learningText','LEARNING NOTE — ASSISTANCE, NOT INDEPENDENT EVIDENCE\n\n'+session.lesson);renderRepresentations($('learningRepresentations'),session.representations||[]);const retrieval=session.retrievalPractice||[];$('retrievalItems').replaceChildren(...retrieval.map(x=>{const li=document.createElement('li');li.textContent=x;return li;}));$('retrievalPractice').hidden=!retrieval.length;$('learning').hidden=false;const hasGuide=typeof session.guidedFeedback==='string'&&session.guidedFeedback.length>0;$('guidedPanel').hidden=!hasGuide;$('guidedFeedback').hidden=true;put('guidedFeedback','');$('guidedAnswer').value=hasGuide?(guidedDrafts.get(session.id)||''):'';$('guidedCheck').disabled=!$('guidedAnswer').value.trim();noteSeen=true;if(hasGuide)learningNoteSeenThisVisit.add(session.id);if($('assistance').value==='independent')$('assistance').value='guided';const e=expose(state,problemId,undefined,'lessonSeenAt');e.lessonContentVersion=session.instructionVersion||course.instructionVersion||course.version;persist('Learning note opened; assistance exposure recorded.');};
  $('guidedAnswer').oninput=()=>{guidedDrafts.set(session.id,$('guidedAnswer').value);$('guidedCheck').disabled=!$('guidedAnswer').value.trim();};
  $('guidedCheck').onclick=()=>{if(!session.guidedFeedback||!$('guidedAnswer').value.trim())return;put('guidedFeedback',session.guidedFeedback);$('guidedFeedback').hidden=false;persist('Guided-practice check opened; this is learning assistance, not fixed-task clearance.');};
  $('save').onclick=()=>{const answer=$('answer').value.trim(),minutes=Number($('minutes').value);if(!answer){tell('Record your working or attempted reasoning before saving.');return;}if(answer.length>100000||!Number.isFinite(minutes)||minutes<0||minutes>100000){tell('Check answer length and minutes.');return;}const referenceSeenBefore=!!answerExposureAt(state,problemId);const assistance=referenceSeenBefore?'revealed':noteSeen&&$('assistance').value==='independent'?'guided':$('assistance').value;const a={id:uuid(),problemId,at:new Date().toISOString(),answer,assistance,minutes,result:'unreviewed',error:'',referenceSeenBefore,noteSeenDuringAttempt:noteSeen,contractHash:session.contractHash,assessmentFingerprint:course.assessmentFingerprints[problemId]};state.attempts.push(a);lastSaved=a.id;$('reveal').disabled=false;$('review').disabled=false;persist('Attempt saved. No mastery clearance was granted.');renderHistory();renderQueue();renderModuleEvidence();};

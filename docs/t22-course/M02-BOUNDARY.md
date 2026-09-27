@@ -23,7 +23,7 @@ M02 explicitly does **not** own formal logic/proofs/sets/combinatorics (M03), li
 09. Polynomial functions: zeros, multiplicity & shape
 10. Rational functions: holes, exclusions & asymptotic shape
 11. Root & power functions
-12. Exponential functions: growth & decay
+12. Exponential functions: growth & decay, including the positive-base real-exponential law used downstream
 13. Logarithms as inverse exponentials
 14. Log laws with domain discipline
 15. Exponential & logarithmic equations
@@ -33,7 +33,7 @@ M02 explicitly does **not** own formal logic/proofs/sets/combinatorics (M03), li
 19. Sigma notation & finite indexed sums
 20. Recurrences, iteration & fixed-point candidates
 21. Angles, radians & the unit circle
-22. Sine, cosine, tangent & core identities
+22. Sine, cosine, tangent, Pythagorean identity & sine/cosine angle-addition formulas
 23. Trig graphs, periodicity & basic equations
 24. M02 synthesis — functions, finite models & periodic structure
 

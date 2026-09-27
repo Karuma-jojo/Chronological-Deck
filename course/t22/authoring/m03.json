@@ -1,13 +1,13 @@
 {
-  "version": "m03-authoring-v1.2-astra-repair-verified",
-  "instructionVersion": "m03-instruction-astra-r1",
+  "version": "m03-authoring-v1.4-lang-foundation-final-stitch",
+  "instructionVersion": "m03-instruction-lang-binomial-r3",
   "module": {
     "order": 3,
     "id": "T22E-DISC01",
     "title": "Mathematical Reasoning & Discrete Foundations",
-    "status": "authored-v1.2-repair-verified-awaiting-bounded-review",
+    "status": "published-v1.4-lang-final-stitch-accepted",
     "destination": "State claims precisely, prove/refute them, reason with sets/maps, and execute deterministic finite counting before probability.",
-    "gate": "Page completion is not clearance. Every ownership claim has exact public-request/rubric evidence; universal proof tasks require general reasoning.",
+    "gate": "Lang-foundation gate CLOSED after independent reconfirmation. S26 owns the general finite binomial theorem with combinatorial C(n,k) evidence; M03 remains 30 sessions / 60 tasks / 150 ownership claims and is frozen for publication.",
     "nextBoundary": "M04 owns probability, conditional probability, independence and expectation. M03 stops at deterministic finite counting."
   },
   "boundary": {
@@ -33,7 +33,7 @@
   },
   "coverageAudit": {
     "version": "m03-observability-v1.2-astra-repair-2026-09-18",
-    "status": "150/150 semantically re-audited after M03-01→04 repairs; six Transfer directions are pinned including S21 claim 5",
+    "status": "150/150 semantically re-audited after M03-01→04, Lang L04, and LF-R01→R03 final stitch; S26 now owns the general finite binomial theorem with combinatorial coefficient evidence consumed by M10-S10",
     "policy": "Every ownership claim must be requested by the public task and supported by a concrete rubric criterion. Lesson/task semantic separation is manually audited in addition to literal fingerprints."
   },
   "sessions": [
@@ -891,11 +891,11 @@
       "order": 26,
       "id": "T22V3::T22E-DISC01::S26@1",
       "moduleId": "T22E-DISC01",
-      "title": "Combinations, binomial coefficients & subsets",
-      "focus": "Combinations, binomial coefficients & subsets",
-      "purpose": "Build combinations, binomial coefficients & subsets as an independently observable capability before later probability/research modules.",
-      "centralCapability": "Use nCr formula. Explain order irrelevance. Use nCr symmetry. Connect combinations to subsets. Verify nPr=nCr·r!.",
-      "principalObstacle": "Avoid the characteristic shortcut/category error for combinations, binomial coefficients & subsets.",
+      "title": "Combinations, binomial coefficients, subsets & binomial expansion",
+      "focus": "Combinations, subsets and the binomial theorem coefficients.",
+      "purpose": "Own combinations as subset counts, preserve the ordered↔unordered counting bridge, and establish the finite binomial theorem strongly enough for M10's arbitrary-positive-integer power-rule proof.",
+      "centralCapability": "Use nCr as a subset count, exploit symmetry, connect ordered and unordered selections, and state/use the finite binomial theorem with a combinatorial explanation of C(n,k).",
+      "principalObstacle": "Treating nCr as an isolated formula—or treating one rehearsed expansion as ownership of the general finite binomial theorem—hides the counting structure later proofs consume.",
       "entryPrerequisites": [
         "M03-S24",
         "M03-S16"
@@ -905,19 +905,25 @@
         "Explain order irrelevance.",
         "Use nCr symmetry.",
         "Connect combinations to subsets.",
-        "Verify nPr=nCr·r!."
+        "State and use the finite binomial theorem for positive integer n, and explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k)."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
       "transferScope": "Changed surface requiring the same capability without naming the method.",
       "inScope": [
-        "Combinations, binomial coefficients & subsets"
+        "Combinations",
+        "Binomial coefficients",
+        "Subset interpretation",
+        "nCr symmetry",
+        "Finite binomial expansion"
       ],
       "outOfScope": [
         "Probability/expectation until M04",
-        "Limits/convergence until M09"
+        "Limits/convergence until M09",
+        "Multinomial theorem",
+        "Infinite binomial series"
       ],
-      "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Combinations, binomial coefficients & subsets.",
-      "lesson": "A combination selects an r-element subset, so internal order is irrelevant. Divide P(n,r) by r!, and choosing included items is symmetric with choosing excluded items. Worked example: C(5,2)=10 and10·2!=20=P(5,2). Guided check: Compare C(7,3) and C(7,4).",
+      "exitCondition": "State the finite binomial theorem for positive integer n, justify its coefficient C(n,k) by factor-choice counting, and apply it on a fresh finite expansion while retaining the subset/complement interpretation of combinations.",
+      "lesson": "A combination selects an r-element subset, so internal order is irrelevant: C(n,r)=n!/[r!(n−r)!]. An ordered r-selection can be built in two stages: first choose the r-element subset in C(n,r) ways, then order its r chosen elements in r! ways. Therefore P(n,r)=C(n,r)·r!, which explains the factorial formula rather than treating division by r! as a cancellation trick. Choosing the included r items is symmetric with choosing the excluded n−r items, so C(n,r)=C(n,n−r). The same subset-counting idea gives the finite binomial theorem. In the product of n factors (x+y), a term x^(n−k)y^k is produced by choosing exactly which k of the n factors contribute y; there are C(n,k) such choices. Hence for every positive integer n, (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k. Worked example: (x+y)^3=x³+3x²y+3xy²+y³ because the coefficients are C(3,0),C(3,1),C(3,2),C(3,3). Guided check: in (p+q)^6, do not expand the whole expression. Explain why the coefficient of p^4q^2 is C(6,2)=15 by choosing which two factors contribute q, and connect that choice-count to the general coefficient C(n,k).",
       "main": "T22V3::T22E-DISC01::S26-M@1",
       "transfer": "T22V3::T22E-DISC01::S26-T@1"
     },
@@ -1417,8 +1423,8 @@
       "id": "T22V3::T22E-DISC01::S26-M@1",
       "order": 26,
       "kind": "main",
-      "prompt": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain order irrelevance, verify C(10,4)=C(10,6), interpret as a4-element subset, and verify P(10,4)=C(10,4)·4! numerically.",
-      "obligationVersion": 1
+      "prompt": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain why internal order is irrelevant, verify C(10,4)=C(10,6), and interpret the committee as a4-element subset. Then state the finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n, explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k), and use the theorem to expand (u+v)^5 completely.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S26-T@1": {
       "id": "T22V3::T22E-DISC01::S26-T@1",
@@ -2782,30 +2788,38 @@
       "marking": "Accept valid alternate reasoning; preserve domains, assumptions and proof/counting distinctions."
     },
     "T22V3::T22E-DISC01::S26-M@1": {
-      "reference": "210; symmetry210; P=5040=210·24.",
+      "reference": "C(10,4)=210. Internal order does not create a new subset, and complementary choice gives C(10,6)=210. A committee is a4-element subset. For positive integer n, (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k. The coefficient C(n,k) counts the choices of which k among the n factors contribute y (the remaining n−k contribute x). For n=5, coefficients1,5,10,10,5,1 give (u+v)^5=u^5+5u^4v+10u^3v^2+10u^2v^3+5uv^4+v^5.",
       "rubric": [
         {
-          "points": 2,
-          "criterion": "Demonstrates: Use nCr formula."
+          "points": 1,
+          "criterion": "Computes C(10,4)=210 using a valid nCr formula or equivalent counting."
+        },
+        {
+          "points": 1,
+          "criterion": "Explains why internal order does not create a different combination."
+        },
+        {
+          "points": 1,
+          "criterion": "Uses complementary-subset symmetry C(10,4)=C(10,6)."
+        },
+        {
+          "points": 1,
+          "criterion": "Interprets the committee as a4-element subset."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Explain order irrelevance."
+          "criterion": "States the finite binomial theorem for positive integer n with coefficient C(n,k) on x^(n−k)y^k."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Use nCr symmetry."
+          "criterion": "Explains combinatorially that C(n,k) chooses which k of the n factors contribute y."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Connect combinations to subsets."
-        },
-        {
-          "points": 2,
-          "criterion": "Demonstrates: Verify nPr=nCr·r!."
+          "criterion": "Uses the theorem to expand (u+v)^5 with coefficients1,5,10,10,5,1."
         }
       ],
-      "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
+      "marking": "Accept any logically valid route meeting the public request. General-theorem ownership requires the symbolic positive-integer-n statement plus the factor-choice argument; a memorized n=5 expansion alone is insufficient."
     },
     "T22V3::T22E-DISC01::S26-T@1": {
       "reference": "56=C(8,3)=C(8,5); ordered336.",
@@ -4609,41 +4623,43 @@
       {
         "claim": "Use nCr formula.",
         "task": "main",
-        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain order irrelevance, verify C(10,4)=C(10,6), interpret as a4-element subset, and verify P(10,4)=C(10,4)·4! numerically.",
+        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain why internal order is irrelevant, verify C(10,4)=C(10,6), and interpret the committee as a4-element subset. Then state the finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n, explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k), and use the theorem to expand (u+v)^5 completely.",
         "rubricEvidence": [
-          "Demonstrates: Use nCr formula."
+          "Computes C(10,4)=210 using a valid nCr formula or equivalent counting."
         ]
       },
       {
         "claim": "Explain order irrelevance.",
         "task": "main",
-        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain order irrelevance, verify C(10,4)=C(10,6), interpret as a4-element subset, and verify P(10,4)=C(10,4)·4! numerically.",
+        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain why internal order is irrelevant, verify C(10,4)=C(10,6), and interpret the committee as a4-element subset. Then state the finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n, explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k), and use the theorem to expand (u+v)^5 completely.",
         "rubricEvidence": [
-          "Demonstrates: Explain order irrelevance."
+          "Explains why internal order does not create a different combination."
         ]
       },
       {
         "claim": "Use nCr symmetry.",
         "task": "main",
-        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain order irrelevance, verify C(10,4)=C(10,6), interpret as a4-element subset, and verify P(10,4)=C(10,4)·4! numerically.",
+        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain why internal order is irrelevant, verify C(10,4)=C(10,6), and interpret the committee as a4-element subset. Then state the finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n, explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k), and use the theorem to expand (u+v)^5 completely.",
         "rubricEvidence": [
-          "Demonstrates: Use nCr symmetry."
+          "Uses complementary-subset symmetry C(10,4)=C(10,6)."
         ]
       },
       {
         "claim": "Connect combinations to subsets.",
         "task": "main",
-        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain order irrelevance, verify C(10,4)=C(10,6), interpret as a4-element subset, and verify P(10,4)=C(10,4)·4! numerically.",
+        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain why internal order is irrelevant, verify C(10,4)=C(10,6), and interpret the committee as a4-element subset. Then state the finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n, explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k), and use the theorem to expand (u+v)^5 completely.",
         "rubricEvidence": [
-          "Demonstrates: Connect combinations to subsets."
+          "Interprets the committee as a4-element subset."
         ]
       },
       {
-        "claim": "Verify nPr=nCr·r!.",
+        "claim": "State and use the finite binomial theorem for positive integer n, and explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k).",
         "task": "main",
-        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain order irrelevance, verify C(10,4)=C(10,6), interpret as a4-element subset, and verify P(10,4)=C(10,4)·4! numerically.",
+        "publicRequest": "A committee of4 is chosen from10 distinct people. Compute C(10,4), explain why internal order is irrelevant, verify C(10,4)=C(10,6), and interpret the committee as a4-element subset. Then state the finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n, explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k), and use the theorem to expand (u+v)^5 completely.",
         "rubricEvidence": [
-          "Demonstrates: Verify nPr=nCr·r!."
+          "States the finite binomial theorem for positive integer n with coefficient C(n,k) on x^(n−k)y^k.",
+          "Explains combinatorially that C(n,k) chooses which k of the n factors contribute y.",
+          "Uses the theorem to expand (u+v)^5 with coefficients1,5,10,10,5,1."
         ]
       }
     ],
@@ -5077,12 +5093,20 @@
     ],
     "S26": [
       {
-        "item": "M03-S24",
-        "source": "Prior authored M03-S24"
+        "item": "factorial/permutation counting",
+        "source": "M03-S24"
       },
       {
-        "item": "M03-S16",
-        "source": "Prior authored M03-S16"
+        "item": "subset/set language",
+        "source": "M03-S16"
+      },
+      {
+        "item": "ordered↔unordered bridge P(n,r)=C(n,r)·r!",
+        "source": "Derived explicitly in S26 by choose-then-order counting"
+      },
+      {
+        "item": "finite binomial theorem (x+y)^n=Σ C(n,k)x^(n−k)y^k",
+        "source": "Derived explicitly in S26 from factor-choice counting and publicly evidenced in general positive-integer-n form before M10 consumes it"
       }
     ],
     "S27": [
@@ -5395,8 +5419,9 @@
     },
     "T22V3::T22E-DISC01::S26@1": {
       "main": [
-        "A committee of4 is chosen from10 distinct",
-        "committee of4 is chosen from10 distinct people."
+        "A committee of4 is chosen from10 distinct people",
+        "state the finite binomial theorem",
+        "expand (u+v)^5 completely"
       ],
       "transfer": [
         "How many 3-element subsets does an8-element set",
@@ -5569,7 +5594,7 @@
       },
       "T22V3::T22E-DISC01::S26@1": {
         "status": "reviewed-separated",
-        "note": "Combination examples use different n,r values from fixed tasks."
+        "note": "LF-R02 repaired: guided practice asks only for one coefficient C(6,2) in (p+q)^6 and its factor-choice meaning; fixed Main requires the general positive-integer-n theorem, a general C(n,k) coefficient argument, and a fresh full n=5 expansion. Combination examples also use different n,r values from fixed task surfaces."
       },
       "T22V3::T22E-DISC01::S27@1": {
         "status": "reviewed-separated",
@@ -5588,5 +5613,11 @@
         "note": "Repaired: synthesis example names method selection only; no fixed counts/data are supplied."
       }
     }
+  },
+  "langFoundationAudit": {
+    "L04": "False M01-binomial dependency repaired by giving M03-S26 explicit binomial-theorem ownership via subset-counting coefficients.",
+    "LF_R01": "S26 general ownership now matches M10: positive-integer-n theorem statement + general C(n,k) factor-choice argument + fresh n=5 application.",
+    "LF_R02": "Guided coefficient-only n=6 reasoning is separated from Main's general theorem + full n=5 expansion.",
+    "LF_R03": "P(n,r)=C(n,r)·r! and its choose-then-order explanation restored instructionally without consuming a sixth ownership slot."
   }
 }

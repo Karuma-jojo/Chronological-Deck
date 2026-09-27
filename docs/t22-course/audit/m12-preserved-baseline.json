@@ -3,22 +3,46 @@
   "capturedBeforeM12ValidationHead": "c5d53396aada365a16cdac6c6b5b9208591ad628",
   "purpose": "Protect M01-M11 canonical authoring, learner registry/roadmap/dependency authority and shared T22 runtime from accidental mutation during M12-only work. SEMANTIC-PREREQUISITES.json is intentionally excluded because M12's own ledger row was authorized to change.",
   "files": {
-    "course/t22/authoring/m01-repairs-1.1.json": "d9d6433dd5acc926defee5458c75a73342bc5c4e",
-    "course/t22/authoring/m02.json": "6906fd9b3f30be6d9197cd7d182f1879f58c0114",
-    "course/t22/authoring/m03.json": "23c2453d7b223a0fcff182eedc2b021a1864e736",
+    "course/t22/authoring/m01-repairs-1.1.json": "97a232a965a7cf8bcbaa2dd5858d00e9d75fee8e",
+    "course/t22/authoring/m02.json": "3e75949b3ae7f63d963c7d8de095cf0a9f578486",
+    "course/t22/authoring/m03.json": "a58e3d751d0f4fba319987d5290a44ceb00062c4",
     "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
     "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
     "course/t22/authoring/m06.json": "da9360afd3adb81f75fa987c0ffac3015a8d19cf",
     "course/t22/authoring/m07.json": "6af63290de8cc44615871aeb456ce2946b26e08b",
     "course/t22/authoring/m08.json": "1d8bd28f49b1e73513de7a337450a2504d68d2ec",
     "course/t22/authoring/m09.json": "7656609fb4ee448e03ef697e4cf29b733d965103",
-    "course/t22/authoring/m10-arc053.json": "b5998f843fb07f59bad42ae715b475c51b1e51fe",
+    "course/t22/authoring/m10-arc053.json": "ef475fad5784bafa1a2cdaaeb2c20873f232d727",
     "course/t22/authoring/m11-arc510.json": "7c11adeb736f3699b8a7f59c07f49856d1467074",
-    "course/t22/generated/course-meta.json": "b477d42e502a0fadc5f64719a95988278e22bf78",
+    "course/t22/generated/course-meta.json": "cc7e31980e9a4764ac4f1becef92b4f77070b6d9",
     "course/t22/generated/roadmap.json": "68665c633c93830fa19e9e5510136795d2b13a02",
     "docs/t22-rebuild/m65.dependencies.json": "fb45a5ab97932f5220bffb9989347c23574383b9",
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
     "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01"
+  },
+  "authorizedM01M02V12Retrofit": {
+    "throughCommit": "e1406d951c69c99930a97840b544b388e819aeb5",
+    "reason": "Explicit user-authorized retrospective M01/M02 v1.2 repair; 17+24 session architecture and stable IDs preserved. Re-pin only the two changed upstream curriculum blobs; all other protected curriculum files remain unchanged."
+  },
+  "authorizedM01M02V12Followup": {
+    "base": "cb4240fb34c28826182e838aae9943d1bd406f15",
+    "branch": "codex/t22-m01-m02-v12-followup",
+    "scope": "Independent-review findings R01–R08 only: semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain check, and interval-ray rendering. No M03+ curriculum redesign."
+  },
+  "authorizedLangFoundationFollowup": {
+    "base": "15e2e54fe1a05c442f008da134048231092f6ff5",
+    "branch": "codex/t22-lang-foundation-followup",
+    "scope": "L01–L10 only: prerequisite provenance/depth. M01 structural-law/readiness/system instruction; M02 coordinate/Pythagorean, real exponential, AP pairing, special triangles, angle-addition identities and system geometry; M03 binomial theorem; M10 consumer-edge repair. No architecture expansion."
+  },
+  "authorizedLangFoundationFinalStitch": {
+    "base": "60d0e9377ca49f5ee43de6c141c4368d557cd3ee",
+    "branch": "codex/t22-lang-foundation-final-stitch",
+    "scope": "LF-R01–R06 only; exact changed upstream authoring blobs re-pinned; unrelated protected curriculum unchanged."
+  },
+  "mainPublication": {
+    "sourceReviewHead": "c6003be2f18d3f904898483a422a9a356dc5bc54",
+    "scope": "Independently confirmed foundation publication; unrelated M15 candidate excluded.",
+    "status": "frozen"
   }
 }

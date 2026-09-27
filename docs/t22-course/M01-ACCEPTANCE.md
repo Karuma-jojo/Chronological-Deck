@@ -1,5 +1,12 @@
 # M01 acceptance record — prerequisite safety and ownership coverage
 
+> **Foundation freeze — 2026-09-27**  
+> The later v1.2/Lang foundation changes have now been independently reconfirmed on exact head `c6003be2f18d3f904898483a422a9a356dc5bc54`. R01–R08, Lang L01–L10 and LF-R01–LF-R06 are closed. M01 remains 17 sessions and is frozen for publication; reopen only for a concrete downstream prerequisite defect. Current final authority: `docs/t22-course/M01-M03-LANG-FOUNDATION-FINAL-STITCH.md`.
+
+> **Current-status supplement — 2026-09-27**  
+> The historical acceptance below remains valid for the pre-retrofit M01 state. A later user-authorized **T22 v1.2 retrospective retrofit** changed learner-facing instruction, selected fixed assessment contracts, exact claim-evidence metadata, readiness routing and representation/runtime behavior. That retrofit is **implemented and fully green but awaiting independent confirmation**; do not treat the older acceptance run as certifying the new representation/task changes. Current authority: `docs/t22-course/M01-M02-V12-RETROFIT-RESOLUTION.md`. Green implementation receipt before this documentation pass: head `16e2eb2e4d8863eda10ddc97418bd1f066a06671`, run `36291523103`, job `108542408541`, **SUCCESS**.
+
+
 Status: **FINAL ACCEPTED after A-04/A-05/A-07 repairs and green structural, semantic, evidence and browser validation.**
 
 Authoritative runtime source for M01 is the checked-in base JSON pack set listed by `course/t22/generated/course-meta.json` **plus** `course/t22/authoring/m01-repairs-1.1.json`. The directory name `generated` is historical; these checked-in JSON documents are currently canonical authored data, not an untracked build product. The repair overlay is applied deterministically before assessment fingerprints are calculated. Future modules must have equally explicit authoring provenance before they can be marked authored.

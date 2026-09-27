@@ -1,3 +1,47 @@
+# Foundation freeze and main publication — 2026-09-27
+
+Independent reconfirmation on exact review head `c6003be2f18d3f904898483a422a9a356dc5bc54` closed LF-R01–LF-R06. Combined status: R01–R08 CLOSED; original Lang L01–L10 CLOSED at the repaired foundation level; LF-R01–LF-R06 INDEPENDENTLY CONFIRMED. M01=17, M02=24, M03=30 and M10=24 are frozen. This bounded publication updates the existing module content and required shared representation/runtime/tests on `main` while deliberately excluding unrelated M15 candidate work from the long-lived review branch.
+
+---
+
+# Current Lang-foundation final stitch — 2026-09-27
+
+Independent follow-up on exact green Lang-repair head `60d0e9377ca49f5ee43de6c141c4368d557cd3ee` found LF-R01–LF-R06. The blocker was the remaining “taught general theorem → assessed special case → downstream general ownership” promotion in M03-S26.
+
+The bounded repair is isolated on `codex/t22-lang-foundation-final-stitch`. It keeps all session counts fixed. M03-S26 now owns the general finite binomial theorem for positive integer n with public C(n,k) factor-choice evidence and a fresh n=5 application; P(n,r)=C(n,r)r! is restored instructionally. M01-S13 now canonically owns and publicly assesses one/no/infinitely-many system classification. M02-S22 now closes the rigid-rotation chord argument and uses a distinct Guided sine-difference reconstruction rather than replaying the fixed cosine-sum move. Current authority: `docs/t22-course/M01-M03-LANG-FOUNDATION-FINAL-STITCH.md`.
+
+The final stitch was published by clean fast-forward to `codex/t22-pedagogical-rebuild`. Exact implementation head `26ce54a127b9b9fa3aa931f4715f28596221244a` passed full T22 Elite run `36315456617` (#573), job `108609192895`, including the strengthened M01/M02/M03 semantic guards, M10 general-binomial dependency receipt and real Chromium learner surfaces. Status: **implemented + fully green; independent reconfirmation pending**.
+
+---
+
+# Current Lang-foundation prerequisite-depth follow-up — 2026-09-27
+
+After R01–R08 were repaired, independent review compared the actual foundation and downstream dependency graph against Serge Lang's *Basic Mathematics*. It found L01–L10: several prerequisites were stated or misattributed rather than truly taught, including a fictitious M01 Pythagorean source, missing trig addition identities before M10, an unowned real-exponential law before the exponential derivative, and a fictitious M01 binomial prerequisite.
+
+A bounded repair is isolated on `codex/t22-lang-foundation-followup` from exact green head `15e2e54fe1a05c442f008da134048231092f6ff5`. M01 remains17 sessions, M02 remains24, M03 remains30 and M10 remains24. Current authority: `docs/t22-course/M01-M03-M10-LANG-FOUNDATION-FOLLOWUP.md`. Status: **repair implemented on isolated branch; full workflow and independent reconfirmation pending**.
+
+---
+
+# Current M01 + M02 v1.2 independent-review follow-up — 2026-09-27
+
+Independent adversarial review of green retrofit head `cb4240fb34c28826182e838aae9943d1bd406f15` found R01–R08. The architecture remains **M01 17 / M02 24**; findings are bounded to semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain checking, exponent-law observer metadata and interval-ray rendering.
+
+Repairs were isolated on `codex/t22-m01-m02-v12-followup` from the exact reviewed head, then fast-forwarded cleanly to `codex/t22-pedagogical-rebuild` after confirming the shared branch had not moved. Repair implementation head `ea31220ef08b298efd6f176b2a6eb0b537ffd7c2` passed full T22 Elite workflow run `36303881977`, job `108576593815`, including the new M01/M02 semantic pins and real Chromium follow-up surfaces. Current repair authority: `docs/t22-course/M01-M02-V12-FOLLOWUP-RESOLUTION.md`. Do not call the retrofit independently confirmed from builder repair; the remaining gate is the independent reviewer's bounded R01–R08 reconfirmation.
+
+---
+
+# Current M01 + M02 v1.2 retrospective retrofit — 2026-09-27
+
+User explicitly authorized a bounded retrospective improvement of M01 and M02 after comparing the current foundation against T22 v1.2, Serge Lang's *Basic Mathematics*, AoPS scope comparators and public pedagogy/course sources. Recovered pre-retrofit head: `11b0cb369af2e26ad595a7f5a6bc7ef102d55306`. Macro architecture remains **M01 17 sessions / M02 24 sessions**; stable IDs and later-module ownership boundaries are preserved.
+
+The repair adds literal learner-facing mathematical representations, assessed graph/number-line/table evidence where representation use is claimed, M01 85/85 exact claim observers, M02 120/120 re-audited claim observers, honest evidence-distance ledgers for all 82 fixed tasks, a 13-item routing-only M01 readiness check, rational-exponent precision, a bounded completing-square derivation, delayed mixed retrieval, M01→M02 conceptual bridges, decision-richer synthesis, assessed-visual fingerprinting, and Chromium/mobile regressions. Selected fixed contracts were versioned rather than silently overwriting prior evidence.
+
+Exact-head implementation verification succeeded at `16e2eb2e4d8863eda10ddc97418bd1f066a06671`: T22 Elite run `36291523103`, job `108542408541`, **SUCCESS**. Static/math/semantic regressions passed through the current M15 candidate, and real Chromium passed the new M01/M02 representation/readiness traversal plus existing evidence workflows.
+
+The earlier M01/M02 independent acceptance remains historical evidence for the earlier state. It does **not** automatically certify the new v1.2 task/representation changes. Current status: **implemented + fully green; bounded independent confirmation pending**. Review authority: `docs/t22-course/M01-M02-V12-RETROFIT-RESOLUTION.md`.
+
+---
+
 # Current M07 v1.1 retrospective repair — 2026-09-24
 
 User explicitly authorized repair of M07 after identifying that the original module was not constructed with the later stepwise methodology. Recovered branch head before retrofit: `546103699478051ba58b82475a11156e3bed3ae9`; full T22 workflow `36017308549` was green there. Retrospective design gate committed at `239d1e24bb6d793b1116cda29deb15ae77b451f8`.

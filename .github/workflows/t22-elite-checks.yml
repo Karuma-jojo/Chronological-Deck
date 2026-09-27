@@ -31,6 +31,7 @@ jobs:
         run: |
           node --check js/t22-course/core.js
           node --check js/t22-course/overrides.js
+          node --check js/t22-course/representations.js
           node --check js/t22-course/ui.js
           node --check scripts/test-t22-elite-m01.mjs
           node --check scripts/test-t22-elite-m02.mjs

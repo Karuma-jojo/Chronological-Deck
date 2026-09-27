@@ -1,14 +1,14 @@
 {
-  "version": "m02-authoring-v1.1-astra-repaired",
+  "version": "m02-authoring-v12-lang-foundation-r5",
   "module": {
     "order": 2,
     "id": "T22E-FND02",
     "title": "Quantitative Foundations II — Functions & Precalculus",
-    "status": "authored-v1.1-independent-review-repaired",
+    "status": "published-v1.2-lang-foundation-accepted",
     "destination": "From reliable algebra, become fluent with functions as objects, legal domains/ranges, graphs and transformations, finite indexed models, exponential/logarithmic reasoning, log returns and the minimal trigonometry needed by later quantitative work.",
-    "gate": "M02 is not cleared by page completion. Publication requires semantic ancestry, prerequisite-symbol audit, novice instruction, claim coverage, independent math/reference validation, evidence integrity and browser validation.",
+    "gate": "Lang-foundation gate CLOSED after independent reconfirmation. M02 is published with 24 sessions / 48 fixed tasks / 120 exact claim observers; later changes require a new bounded review.",
     "nextBoundary": "M03 owns proof habits, logic, sets/maps and combinatorics. M09 owns limits, convergence and infinite-series arguments. M02 must not certify either family.",
-    "acceptance": "M02-01 through M02-04 from M02-ASTRA-REVIEW.md resolved; full T22 Elite checks including Chromium passed at run 35307392781 on 5fa0ab4ec6059d3726dcfff4198843bf6a5e61a9. Assessment changes stale prior fixed-task evidence through fingerprints rather than deleting it."
+    "acceptance": "R01–R08, Lang L01–L10, and LF-R01–LF-R06 were independently reconfirmed on exact head c6003be2f18d3f904898483a422a9a356dc5bc54. The 24-session architecture and repaired dependency contracts are frozen for publication; reopen only for a concrete downstream defect."
   },
   "boundary": {
     "prerequisiteModules": [
@@ -71,9 +71,72 @@
         "Limits"
       ],
       "exitCondition": "Evaluate one unfamiliar changed-input expression and write one contextual function rule with input/output roles stated.",
-      "lesson": "A function is a rule that assigns one output to each legal input. The notation f(x) names the output, not multiplication. Replace the whole input slot: if g(u)=2u+5, then g(a−1)=2(a−1)+5=2a+3. Worked example: for g(u)=2u+5, g(4)=13 and g(−3)=−1. Guided check: if H(t)=7−3t, find H(2), H(z+2), and say which symbol is the input.",
+      "lesson": "A function is an input-output object: each legal input gets exactly one output. A formula is one way to describe that object, not the object itself; a function may also be represented by a table, graph or verbal rule. The notation f(x) names the output assigned to input x, not multiplication. Replace the whole input slot: if g(u)=2u+5, then g(a−1)=2(a−1)+5=2a+3. Worked example: a taxi cost can be described verbally ('₹40 fixed plus ₹12 per km'), by C(d)=40+12d, by a table of d and C(d), or by graph points (d,C(d)); these are representations of the same relationship on its legal domain. Guided check: if H(t)=7−3t, find H(2), H(z+2), state which symbol is the input, and describe one table row without treating H as multiplication.",
       "main": "T22V3::T22E-FND02::S01-M@1",
-      "transfer": "T22V3::T22E-FND02::S01-T@1"
+      "transfer": "T22V3::T22E-FND02::S01-T@1",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "One function, several representations",
+          "headers": [
+            "input d (km)",
+            "output C(d) (₹)"
+          ],
+          "rows": [
+            [
+              0,
+              40
+            ],
+            [
+              1,
+              52
+            ],
+            [
+              3,
+              76
+            ]
+          ],
+          "note": "A table lists selected input-output pairs; the rule C(d)=40+12d describes the same relationship for every legal d."
+        },
+        {
+          "kind": "plot",
+          "title": "The same relationship as graph points",
+          "xRange": [
+            0,
+            5
+          ],
+          "yRange": [
+            30,
+            110
+          ],
+          "xTick": 1,
+          "yTick": 20,
+          "xLabel": "distance d",
+          "yLabel": "cost C(d)",
+          "series": [
+            {
+              "family": "line",
+              "m": 12,
+              "b": 40
+            }
+          ],
+          "points": [
+            [
+              0,
+              40
+            ],
+            [
+              1,
+              52
+            ],
+            [
+              3,
+              76
+            ]
+          ],
+          "note": "Every plotted point has the form (input, output)."
+        }
+      ]
     },
     {
       "order": 2,
@@ -126,7 +189,7 @@
       "principalObstacle": "A graph is often treated as a picture disconnected from the function values it represents.",
       "entryPrerequisites": [
         "M02-S01 function evaluation",
-        "M01 roots"
+        "M01 roots/square-root arithmetic"
       ],
       "requiredOwnership": [
         "Interpret (x,f(x)) as a graph point.",
@@ -151,9 +214,134 @@
         "Plotting software"
       ],
       "exitCondition": "From one unfamiliar rule, produce points/intercepts and one exact distance or midpoint calculation.",
-      "lesson": "The graph of y=f(x) consists of points (x,f(x)). A y-intercept uses x=0; an x-intercept solves f(x)=0. For points (x₁,y₁),(x₂,y₂), distance is √[(x₂−x₁)²+(y₂−y₁)²] and midpoint averages coordinates. Worked example: y=x+2 has intercepts (−2,0),(0,2). Guided check: tabulate y=x²−1 at x=−1,0,2 and find the distance between the first two graph points.",
+      "lesson": "The coordinate plane uses an ordered pair (x,y): x is horizontal position and y is vertical position. The graph of y=f(x) is the set of points (x,f(x)); a table is a finite list of the same input-output pairs. A y-intercept uses x=0; an x-intercept solves f(x)=0. For two points P=(x₁,y₁), Q=(x₂,y₂), draw the horizontal/vertical legs between them. Those legs have signed changes Δx=x₂−x₁ and Δy=y₂−y₁; their lengths are |Δx| and |Δy|. The Pythagorean theorem for a right triangle says c²=a²+b², so the straight-line distance satisfies d²=(Δx)²+(Δy)² and therefore d=√[(x₂−x₁)²+(y₂−y₁)²]. The midpoint is the coordinate-wise average because it lies halfway along each horizontal/vertical change. Reading a graph means extracting coordinates from its axes and scale, not repeating values supplied in prose. Worked example: between P=(−1,−5) and Q=(2,1), Δx=3 and Δy=6, so d=√(3²+6²)=3√5 and midpoint=(1/2,−2). Guided check: tabulate y=x²−1 at x=−1,0,2, locate those points, then construct the right-triangle legs between the first and third and derive their distance from Pythagoras.",
       "main": "T22V3::T22E-FND02::S03-M@1",
-      "transfer": "T22V3::T22E-FND02::S03-T@1"
+      "transfer": "T22V3::T22E-FND02::S03-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Coordinate distance comes from a right triangle",
+          "xRange": [
+            -2,
+            3
+          ],
+          "yRange": [
+            -6,
+            3
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "y",
+          "points": [
+            [
+              -1,
+              -5,
+              "P(−1,−5)"
+            ],
+            [
+              2,
+              1,
+              "Q(2,1)"
+            ],
+            [
+              2,
+              -5,
+              "R"
+            ]
+          ],
+          "segments": [
+            {
+              "from": [
+                -1,
+                -5
+              ],
+              "to": [
+                2,
+                -5
+              ],
+              "label": "Δx=3",
+              "labelAt": [
+                0.5,
+                -5
+              ]
+            },
+            {
+              "from": [
+                2,
+                -5
+              ],
+              "to": [
+                2,
+                1
+              ],
+              "label": "Δy=6",
+              "labelAt": [
+                2,
+                -2
+              ]
+            },
+            {
+              "from": [
+                -1,
+                -5
+              ],
+              "to": [
+                2,
+                1
+              ],
+              "label": "d",
+              "labelAt": [
+                0.3,
+                -1.5
+              ]
+            }
+          ],
+          "note": "PR and RQ are perpendicular coordinate changes. Pythagoras gives d²=(Δx)²+(Δy)²."
+        },
+        {
+          "kind": "plot",
+          "title": "Rule, table and graph must agree",
+          "xRange": [
+            -3,
+            3
+          ],
+          "yRange": [
+            -2,
+            8
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "y=x²−1",
+          "series": [
+            {
+              "family": "quadratic",
+              "a": 1,
+              "h": 0,
+              "k": -1
+            }
+          ],
+          "points": [
+            [
+              -1,
+              0,
+              "(−1,0)"
+            ],
+            [
+              0,
+              -1,
+              "(0,−1)"
+            ],
+            [
+              2,
+              3,
+              "(2,3)"
+            ]
+          ],
+          "note": "The highlighted points are the same input-output pairs produced by the guided table."
+        }
+      ]
     },
     {
       "order": 4,
@@ -191,9 +379,104 @@
         "Nonlinear interpolation"
       ],
       "exitCondition": "Build and interpret one line from data points, including slope units and one inverse-use calculation.",
-      "lesson": "For a line, slope m=(y₂−y₁)/(x₂−x₁) is output change per input change. Once m is known, y=mx+b and one point determines b. Worked example: through (1,4),(5,12), m=2 and y=2x+2. Guided check: find the line through (−2,7),(4,−5), state slope units generically, and verify both points.",
+      "lesson": "For a line, slope m=(y₂−y₁)/(x₂−x₁) is output change per input change, so its units are output-units per input-unit. Once m is known, y=mx+b and one point determines b. M01 classified two linear constraints algebraically into one solution, no solution, or infinitely many solutions. Geometrically those are exactly: two distinct nonparallel lines intersect once; distinct parallel lines never intersect; two equivalent equations draw the same line and every point on it satisfies both. Worked example: through(1,4),(5,12), m=2 and y=2x+2. For y=2x+1 and y=2x−3 the equal slopes/different intercepts mean no common point; y=2x+1 and2y=4x+2 are the same line. Guided check: find the line through(−2,7),(4,−5), state slope units generically, then classify a second line with the same slope but different intercept.",
       "main": "T22V3::T22E-FND02::S04-M@1",
-      "transfer": "T22V3::T22E-FND02::S04-T@1"
+      "transfer": "T22V3::T22E-FND02::S04-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "One solution: distinct lines intersect once",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            0,
+            12
+          ],
+          "xTick": 1,
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "line",
+              "m": -1,
+              "b": 11
+            },
+            {
+              "family": "line",
+              "m": 2,
+              "b": -7
+            }
+          ],
+          "points": [
+            [
+              6,
+              5,
+              "one common pair"
+            ]
+          ]
+        },
+        {
+          "kind": "plot",
+          "title": "No solution: distinct parallel lines",
+          "xRange": [
+            -2,
+            6
+          ],
+          "yRange": [
+            -4,
+            10
+          ],
+          "xTick": 1,
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "line",
+              "m": 1,
+              "b": 2
+            },
+            {
+              "family": "line",
+              "m": 1,
+              "b": -2
+            }
+          ],
+          "note": "Same slope, different intercepts: no intersection."
+        },
+        {
+          "kind": "plot",
+          "title": "Infinitely many solutions: the same line twice",
+          "xRange": [
+            -2,
+            6
+          ],
+          "yRange": [
+            -4,
+            10
+          ],
+          "xTick": 1,
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "line",
+              "m": 1,
+              "b": 1
+            },
+            {
+              "family": "line",
+              "m": 1,
+              "b": 1
+            }
+          ],
+          "note": "Equivalent equations produce the same geometric set, so every point on the line solves both."
+        }
+      ]
     },
     {
       "order": 5,
@@ -232,9 +515,42 @@
         "Indicator notation"
       ],
       "exitCondition": "Evaluate a new piecewise rule at boundary-adjacent inputs and convert one shifted absolute value into correct branches.",
-      "lesson": "A piecewise function is one function with different rules on different input regions. The condition chooses the rule. For |x−a|, values left of a use a−x and values at/right use x−a. Worked example: |x−1|={1−x for x<1; x−1 for x≥1}. Guided check: evaluate a two-branch rule at the boundary and rewrite |x+4| piecewise.",
+      "lesson": "A piecewise function is one function with different rules on different input regions. The condition chooses the rule, and open/closed graph endpoints show whether a boundary input belongs to that branch. M01's |x−a| was distance from a; as a function of x that same distance becomes a V-shaped graph with vertex at (a,0). For |x−a|, values left of a use a−x and values at/right use x−a. Worked example: |x−1|={1−x for x<1; x−1 for x≥1}, with vertex (1,0). Guided check: evaluate a two-branch rule at its boundary, then rewrite |x+4| piecewise and predict its vertex before plotting.",
       "main": "T22V3::T22E-FND02::S05-M@1",
-      "transfer": "T22V3::T22E-FND02::S05-T@1"
+      "transfer": "T22V3::T22E-FND02::S05-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Distance from 1 becomes a V-shaped function",
+          "xRange": [
+            -4,
+            6
+          ],
+          "yRange": [
+            -1,
+            6
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "|x−1|",
+          "series": [
+            {
+              "family": "abs",
+              "a": 1,
+              "h": 1,
+              "k": 0
+            }
+          ],
+          "points": [
+            [
+              1,
+              0,
+              "vertex"
+            ]
+          ]
+        }
+      ]
     },
     {
       "order": 6,
@@ -273,9 +589,49 @@
         "Data normalization"
       ],
       "exitCondition": "Describe and verify one unfamiliar transformation sequence and recover domain/range/key point.",
-      "lesson": "Changes outside f act on outputs; changes inside act on inputs. For q(x)=(x+2)²−4, the x² graph shifts left2 and down4. Multiplying outputs by −1 reflects across the x-axis. Worked example: y=3(x+1)²−2 has vertex(−1,−2). Guided check: describe y=−(x−4)²+7 and state its vertex and range.",
+      "lesson": "Changes outside f act on outputs; changes inside act on inputs. Track a few key points from the parent graph rather than memorizing direction slogans. For q(x)=(x+2)²−4, the x² graph shifts left2 and down4. Multiplying outputs by −1 reflects across the x-axis; replacing x by −x reflects across the y-axis. Worked example: y=3(x+1)²−2 maps the parent vertex (0,0) to (−1,−2) and vertically scales output distances by3. Guided check: describe y=−(x−4)²+7, map the vertex and two symmetric parent points, and state its range.",
       "main": "T22V3::T22E-FND02::S06-M@1",
-      "transfer": "T22V3::T22E-FND02::S06-T@1"
+      "transfer": "T22V3::T22E-FND02::S06-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Track the parent graph into the transformed graph",
+          "xRange": [
+            -3,
+            7
+          ],
+          "yRange": [
+            -8,
+            10
+          ],
+          "xTick": 1,
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "quadratic",
+              "a": 1,
+              "h": 0,
+              "k": 0
+            },
+            {
+              "family": "quadratic",
+              "a": 3,
+              "h": -1,
+              "k": -2
+            }
+          ],
+          "points": [
+            [
+              -1,
+              -2,
+              "new vertex"
+            ]
+          ],
+          "note": "Compare key points, not just memorized shift slogans."
+        }
+      ]
     },
     {
       "order": 7,
@@ -354,9 +710,51 @@
         "Jacobian inverse theorem"
       ],
       "exitCondition": "Construct and verify one inverse and repair one non-invertible standard function by an explicit domain restriction.",
-      "lesson": "An inverse reverses input and output. Write y=f(x), solve for x, then rename. f⁻¹ is not 1/f. A function needs one-to-one behavior on its chosen domain. Worked example: f(x)=5x+2 has f⁻¹(y)=(y−2)/5. Guided check: invert h(x)=(x−4)/3 and verify both compositions.",
+      "lesson": "An inverse reverses input and output. Write y=f(x), solve for x, then rename. Graphically, swapping every point (x,y) to (y,x) reflects the graph across y=x. f⁻¹ is not 1/f. A function needs one-to-one behavior on its chosen domain so the reflected relation still assigns one output per input. Worked example: f(x)=5x+2 has f⁻¹(y)=(y−2)/5; the two line graphs are mirror images across y=x. Guided check: invert h(x)=(x−4)/3 and verify both compositions.",
       "main": "T22V3::T22E-FND02::S08-M@1",
-      "transfer": "T22V3::T22E-FND02::S08-T@1"
+      "transfer": "T22V3::T22E-FND02::S08-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Inverse graphs swap coordinates across y=x",
+          "xRange": [
+            -5,
+            5
+          ],
+          "yRange": [
+            -5,
+            5
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "line",
+              "m": 2,
+              "b": 1
+            },
+            {
+              "family": "line",
+              "m": 0.5,
+              "b": -0.5
+            },
+            {
+              "family": "line",
+              "m": 1,
+              "b": 0
+            }
+          ],
+          "note": "The first two lines are inverses; y=x is the reflection line."
+        }
+      ],
+      "retrievalPractice": [
+        "Given f(x)=2x−5, compute f(a+3) without partial substitution.",
+        "Find the domain of 1/√(7−x).",
+        "From the points (1,4),(4,10), recover the line and state slope units generically.",
+        "Rewrite |x+2| piecewise and identify its vertex."
+      ]
     },
     {
       "order": 9,
@@ -394,9 +792,39 @@
         "Polynomial division theory"
       ],
       "exitCondition": "From one factored polynomial, state degree, zeros/multiplicities and a coherent qualitative graph description.",
-      "lesson": "In factored form, each factor x−r gives zero r; its exponent is the multiplicity. Odd multiplicity changes sign through the zero; even multiplicity keeps the local sign. The leading term determines far-left/far-right direction. Worked example: (x+2)²(x−4) has degree3, double zero−2 and simple zero4. Guided check: analyze −(x−1)³(x+5) for degree, zeros, multiplicities and end directions.",
+      "lesson": "In factored form, each factor x−r gives zero r; its exponent is the multiplicity. Odd multiplicity changes sign through the zero, so the graph crosses; even multiplicity keeps the local sign, so the graph touches and turns. The leading term determines far-left/far-right direction. This reconnects M01's discriminant: two, one repeated, or no real quadratic roots become two, one tangent, or no x-intercepts. Worked example: (x+2)²(x−4) has degree3, double zero−2 and simple zero4. Guided check: analyze −(x−1)³(x+5) for degree, zeros, multiplicities and end directions, then sketch only the qualitative features before checking the rendered curve.",
       "main": "T22V3::T22E-FND02::S09-M@1",
-      "transfer": "T22V3::T22E-FND02::S09-T@1"
+      "transfer": "T22V3::T22E-FND02::S09-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Multiplicity is visible at an x-intercept",
+          "xRange": [
+            -5,
+            6
+          ],
+          "yRange": [
+            -30,
+            30
+          ],
+          "xTick": 1,
+          "yTick": 10,
+          "xLabel": "x",
+          "yLabel": "p(x)",
+          "series": [
+            {
+              "family": "polynomial",
+              "coefficients": [
+                1,
+                0,
+                -12,
+                -16
+              ]
+            }
+          ],
+          "note": "At x=−2 the graph touches and turns; at x=4 it crosses."
+        }
+      ]
     },
     {
       "order": 10,
@@ -435,9 +863,59 @@
         "Complex poles"
       ],
       "exitCondition": "Audit one unfamiliar rational function with a cancellation and state its domain, hole and remaining asymptotic features.",
-      "lesson": "A cancellation gives an equivalent formula only on the original domain. A cancelled denominator factor leaves a hole; a denominator zero that remains produces an unbounded vertical feature in these elementary examples. Equal top/bottom degree gives horizontal large-|x| level from leading-coefficient ratio. Worked example: (x²−9)/(x²−x−6) reduces to (x+3)/(x+2), while x=3 remains a hole and x=−2 remains excluded. Guided check: factor (x²+x−6)/(x²−4) and classify its excluded inputs.",
+      "lesson": "A cancellation gives an equivalent formula only on the original domain. A cancelled denominator factor leaves a hole; a denominator zero that remains produces an unbounded vertical feature in these elementary examples. Equal top/bottom degree gives horizontal large-|x| level from the leading-coefficient ratio. The graph therefore records two different kinds of missing input: a removable point versus a nonremovable vertical blow-up. Worked example: (x²−9)/(x²−x−6) reduces to (x+3)/(x+2), while x=3 remains a hole and x=−2 remains excluded as a vertical asymptote. Guided check: factor (x²+x−6)/(x²−4), classify both excluded inputs, and predict what each should look like on a graph.",
       "main": "T22V3::T22E-FND02::S10-M@1",
-      "transfer": "T22V3::T22E-FND02::S10-T@1"
+      "transfer": "T22V3::T22E-FND02::S10-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Hole versus vertical asymptote",
+          "xRange": [
+            -6,
+            6
+          ],
+          "yRange": [
+            -6,
+            6
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "r(x)",
+          "series": [
+            {
+              "family": "rational",
+              "numerator": [
+                1,
+                0,
+                -9
+              ],
+              "denominator": [
+                1,
+                -1,
+                -6
+              ],
+              "holes": [
+                [
+                  3,
+                  1.2
+                ]
+              ]
+            }
+          ],
+          "asymptotes": [
+            {
+              "axis": "x",
+              "value": -2
+            },
+            {
+              "axis": "y",
+              "value": 1
+            }
+          ],
+          "note": "A cancelled factor leaves a missing point; a remaining denominator zero creates the vertical feature."
+        }
+      ]
     },
     {
       "order": 11,
@@ -490,35 +968,62 @@
       "centralCapability": "Interpret and evaluate A·b^t models, linking base b to per-unit multiplicative growth or decay.",
       "principalObstacle": "The base is confused with an additive change and percentages are added across periods instead of compounded.",
       "entryPrerequisites": [
-        "M01 exponents/percent multipliers",
+        "M01 rational exponents and percent multipliers",
         "M02-S01 functions"
       ],
       "requiredOwnership": [
         "Recognize b>1 as growth and 0<b<1 as decay.",
         "Interpret b as the multiplier per one input unit.",
         "Translate a percent growth/decay rate to an exponential base.",
-        "Evaluate an exponential model at integer inputs.",
+        "Use the positive-base real-exponential law b^(x+y)=b^x b^y.",
         "Identify initial value from t=0."
       ],
       "applicationScope": "Elementary real-valued functions and finite quantitative models.",
       "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
       "inScope": [
-        "Discrete exponential models",
+        "Positive-base real exponential functions",
         "Growth/decay factors",
         "Percent bases",
         "Initial value",
-        "Finite evaluation"
+        "Law b^(x+y)=b^x b^y"
       ],
       "outOfScope": [
+        "Real-analysis construction of irrational exponents",
         "Logarithmic solving until S15",
         "Continuous compounding until S16",
         "Limits",
         "Differential equations"
       ],
       "exitCondition": "Build/evaluate one growth or decay model and explain its per-step multiplier and initial value.",
-      "lesson": "In A·b^t, A is the t=0 value and b is the multiplier for each +1 in t. Eight-percent growth uses b=1.08; twelve-percent decay uses b=0.88. Worked example: 200(1.05)^t starts at200 and multiplies by1.05 per period. Guided check: interpret and evaluate 900(0.92)^t at t=0,1,2.",
+      "lesson": "M01 defined rational powers. Here we pass to the standard positive-base real exponential function x↦b^x for b>0: it extends the rational powers to all real inputs. A full construction of irrational exponents is analysis-level and is not hidden inside this course; at this stage we take the standard real-exponential laws as established properties. In particular b^(x+y)=b^x b^y, (b^x)^y=b^(xy), and for positive a,b, (ab)^x=a^x b^x. These laws preserve the multiplicative meaning between arbitrary real inputs and are exactly what later calculus will use. In A·b^t, A is the t=0 value and b is the multiplier for each +1 in t because b^(t+1)=b^t·b. Eight-percent growth uses b=1.08; twelve-percent decay uses b=0.88. Worked example: f(t)=200(1.05)^t has f(t+h)=f(t)(1.05)^h; setting h=1 recovers the one-period multiplier1.05. Guided check: for g(t)=900(0.92)^t, identify g(0), compute g(2), then use b^(x+y)=b^x b^y to rewrite g(t+h) in terms of g(t).",
       "main": "T22V3::T22E-FND02::S12-M@1",
-      "transfer": "T22V3::T22E-FND02::S12-T@1"
+      "transfer": "T22V3::T22E-FND02::S12-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Repeated equal-step multiplication produces exponential shape",
+          "xRange": [
+            0,
+            8
+          ],
+          "yRange": [
+            150,
+            320
+          ],
+          "xTick": 1,
+          "yTick": 40,
+          "xLabel": "t",
+          "yLabel": "value",
+          "series": [
+            {
+              "family": "exp",
+              "A": 200,
+              "base": 1.05
+            }
+          ],
+          "note": "Equal horizontal steps multiply the output by the same factor1.05."
+        }
+      ]
     },
     {
       "order": 13,
@@ -556,9 +1061,70 @@
         "Calculus"
       ],
       "exitCondition": "Convert and evaluate unfamiliar elementary log statements and state a correct log-function domain.",
-      "lesson": "log_b(y) asks: what exponent on b gives y? Thus log_b(y)=x exactly when b^x=y, with b>0,b≠1 and y>0. ln is base e. Worked example: log₂8=3 because2³=8; log₁₀0.01=−2. Guided check: evaluate log₅125 and state the domain of ln(7−x).",
+      "lesson": "log_b(y) asks which exponent on b gives y. Thus log_b(y)=x exactly when b^x=y, with b>0,b≠1 and y>0. ln is base e. Because logarithm is the inverse of an exponential, their domain/range roles swap and their graphs reflect across y=x. Worked example: log₂8=3 because2³=8; the point (3,8) on y=2^x corresponds to (8,3) on y=log₂x. Guided check: evaluate log₅125, state the domain of ln(7−x), and name the reflected point corresponding to (2,25) on y=5^x.",
       "main": "T22V3::T22E-FND02::S13-M@1",
-      "transfer": "T22V3::T22E-FND02::S13-T@1"
+      "transfer": "T22V3::T22E-FND02::S13-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Exponential side",
+          "xRange": [
+            -3,
+            4
+          ],
+          "yRange": [
+            -2,
+            10
+          ],
+          "xTick": 1,
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "y=2^x",
+          "series": [
+            {
+              "family": "exp",
+              "A": 1,
+              "base": 2
+            },
+            {
+              "family": "line",
+              "m": 1,
+              "b": 0
+            }
+          ]
+        },
+        {
+          "kind": "plot",
+          "title": "Inverse logarithm side",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            -3,
+            4
+          ],
+          "xTick": 2,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "y=log₂x",
+          "series": [
+            {
+              "family": "log",
+              "A": 1,
+              "base": 2,
+              "h": 0,
+              "k": 0
+            },
+            {
+              "family": "line",
+              "m": 1,
+              "b": 0
+            }
+          ],
+          "note": "Corresponding points swap coordinates across y=x."
+        }
+      ]
     },
     {
       "order": 14,
@@ -679,7 +1245,13 @@
       "exitCondition": "Given a short positive price path and a growth model, compute both return types and an exact doubling time.",
       "lesson": "For positive prices, simple return is P₁/P₀−1; log return is ln(P₁/P₀). Consecutive log returns add because log ratios telescope. In Ae^(rt), doubling solves e^(rt)=2. Worked example: 50→55 has simple return10% and log return ln1.1. Guided check: for 200→180→198, compute both simple period returns and show the two log returns sum to ln(198/200).",
       "main": "T22V3::T22E-FND02::S16-M@1",
-      "transfer": "T22V3::T22E-FND02::S16-T@1"
+      "transfer": "T22V3::T22E-FND02::S16-T@1",
+      "retrievalPractice": [
+        "For f(x)=1/(x−3), state the domain before composing it with g(x)=x².",
+        "A polynomial has a double zero at2 and simple zero at−1. Predict touch/cross behavior.",
+        "Audit ln((x+1)²)=2ln(x+1) over the reals.",
+        "Build an exponential model for 4% decay per period."
+      ]
     },
     {
       "order": 17,
@@ -717,9 +1289,73 @@
         "Difference equations beyond S20"
       ],
       "exitCondition": "Recover an arithmetic sequence from indexed data and compute an unfamiliar term and finite sum.",
-      "lesson": "An arithmetic sequence adds the same difference d each step. With first term a₁, a_n=a₁+(n−1)d. The finite sum is n(a₁+a_n)/2. Worked example: a₁=5,d=3 gives a₆=20 and S₆=75. Guided check: if a₃=11 and a₇=27, recover d and a₁.",
+      "lesson": "An arithmetic sequence adds the same difference d each step. With first term a₁, a_n=a₁+(n−1)d. Its finite-sum formula comes from pairing rather than memorization. Write S=a₁+a₂+⋯+a_n and again in reverse S=a_n+a_(n−1)+⋯+a₁. Adding termwise gives 2S=(a₁+a_n)+(a₂+a_(n−1))+⋯+(a_n+a₁): there are n equal pairs, each a₁+a_n. Hence 2S=n(a₁+a_n) and S=n(a₁+a_n)/2. Worked example: a₁=5,d=3 gives a₆=20 and S₆=6(5+20)/2=75; forward and reverse lists pair to25 six times. Guided check: if a₃=11 and a₇=27, recover d and a₁, then explain which two terms pair to the same sum as a₁+a₇.",
       "main": "T22V3::T22E-FND02::S17-M@1",
-      "transfer": "T22V3::T22E-FND02::S17-T@1"
+      "transfer": "T22V3::T22E-FND02::S17-T@1",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "A sequence is a function whose legal inputs are indices",
+          "headers": [
+            "n",
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "rows": [
+            [
+              "aₙ",
+              5,
+              8,
+              11,
+              14,
+              17
+            ]
+          ],
+          "note": "The input jumps through integers rather than all real numbers."
+        },
+        {
+          "kind": "table",
+          "title": "Forward + reverse pairing derives the arithmetic-sum formula",
+          "headers": [
+            "position",
+            1,
+            2,
+            "…",
+            "n−1",
+            "n"
+          ],
+          "rows": [
+            [
+              "forward",
+              "a₁",
+              "a₂",
+              "…",
+              "aₙ₋₁",
+              "aₙ"
+            ],
+            [
+              "reverse",
+              "aₙ",
+              "aₙ₋₁",
+              "…",
+              "a₂",
+              "a₁"
+            ],
+            [
+              "pair sum",
+              "a₁+aₙ",
+              "a₁+aₙ",
+              "…",
+              "a₁+aₙ",
+              "a₁+aₙ"
+            ]
+          ],
+          "note": "There are n identical pair sums, so 2S=n(a₁+aₙ)."
+        }
+      ]
     },
     {
       "order": 18,
@@ -878,18 +1514,184 @@
         "Complex exponential form"
       ],
       "exitCondition": "Convert and locate one unfamiliar standard angle and compute one radian arc displacement exactly.",
-      "lesson": "Angles measure rotation. Positive angles turn counterclockwise and negative angles clockwise. In radians, θ=s/r: the signed angle is arc displacement divided by radius, so s=rθ. A full turn is2π radians=360°. On the unit circle the point is(cosθ,sinθ). The standard acute values come from two triangles: splitting an equilateral triangle gives cos60°=1/2, sin60°=√3/2 and therefore cos30°=√3/2, sin30°=1/2; an isosceles right triangle normalized to hypotenuse1 gives cos45°=sin45°=√2/2. For other quadrants, use the acute reference angle and then apply coordinate signs: I(+,+), II(−,+), III(−,−), IV(+,−). Worked example: 210° has reference angle30°, lies in III, and therefore has unit-circle coordinates(−√3/2,−1/2). Guided check: convert 300° to radians, identify its reference angle/quadrant, and find its coordinates.",
+      "lesson": "Angles measure rotation. Positive angles turn counterclockwise and negative angles clockwise. In radians, θ=s/r: signed angle is arc displacement divided by radius, so s=rθ. A full turn is2π radians=360°. On the unit circle the moving point is(cosθ,sinθ). The standard acute values are derived from two right triangles. For45°, start with an isosceles right triangle with legs1,1; Pythagoras gives hypotenuse√2, so after normalizing to hypotenuse1 each leg is1/√2=√2/2. Thus cos45°=sin45°=√2/2. For30°/60°, split an equilateral triangle of side2 in half: the half-base is1, hypotenuse2, and Pythagoras gives altitude√(2²−1²)=√3. Normalizing by hypotenuse2 gives the coordinate magnitudes1/2 and√3/2. Other quadrants reuse these reference-angle magnitudes with coordinate signs I(+,+), II(−,+), III(−,−), IV(+,−). Worked example:210° has reference angle30°, lies in III, and therefore has coordinates(−√3/2,−1/2). Guided check: derive the45° coordinates from the1-1-√2 triangle, then convert300° to radians, identify its30° reference angle/quadrant, and find its coordinates. Keep watching the y-coordinate: S23 will unwrap sinθ against θ into the sine graph.",
       "main": "T22V3::T22E-FND02::S21-M@1",
-      "transfer": "T22V3::T22E-FND02::S21-T@1"
+      "transfer": "T22V3::T22E-FND02::S21-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "45° values from a 1–1–√2 triangle",
+          "xRange": [
+            -0.2,
+            1.4
+          ],
+          "yRange": [
+            -0.2,
+            1.4
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "showGrid": false,
+          "showAxes": false,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "segments": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                0
+              ],
+              "label": "1",
+              "labelAt": [
+                0.5,
+                0
+              ]
+            },
+            {
+              "from": [
+                1,
+                0
+              ],
+              "to": [
+                1,
+                1
+              ],
+              "label": "1",
+              "labelAt": [
+                1,
+                0.5
+              ]
+            },
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                1
+              ],
+              "label": "√2",
+              "labelAt": [
+                0.45,
+                0.55
+              ]
+            }
+          ],
+          "note": "Normalize the hypotenuse √2 to1: both coordinate magnitudes become1/√2=√2/2."
+        },
+        {
+          "kind": "plot",
+          "title": "30°/60° values from half an equilateral triangle",
+          "xRange": [
+            -0.2,
+            2.2
+          ],
+          "yRange": [
+            -0.2,
+            2.1
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "showGrid": false,
+          "showAxes": false,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1.7320508075688772
+            ]
+          ],
+          "segments": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                0
+              ],
+              "label": "1",
+              "labelAt": [
+                0.5,
+                0
+              ]
+            },
+            {
+              "from": [
+                1,
+                0
+              ],
+              "to": [
+                1,
+                1.7320508075688772
+              ],
+              "label": "√3",
+              "labelAt": [
+                1,
+                0.85
+              ]
+            },
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                1.7320508075688772
+              ],
+              "label": "2",
+              "labelAt": [
+                0.45,
+                1
+              ]
+            }
+          ],
+          "note": "With hypotenuse2, the normalized legs are1/2 and√3/2."
+        },
+        {
+          "kind": "unitCircle",
+          "title": "Coordinates on the unit circle",
+          "angleRad": 3.665191429188092,
+          "angleLabel": "210°",
+          "pointLabel": "(−√3/2, −1/2)",
+          "note": "Reference-angle magnitudes come from the triangles; quadrant signs locate them on the unit circle."
+        }
+      ]
     },
     {
       "order": 22,
       "id": "T22V3::T22E-FND02::S22@1",
       "moduleId": "T22E-FND02",
       "title": "Sine, cosine, tangent & core identities",
-      "focus": "Exact standard values, quadrant signs, tan=sin/cos and sin²+cos²=1.",
-      "purpose": "Build the small trig toolkit required for derivatives, periodic models and projections.",
-      "centralCapability": "Compute exact trig values and recover a missing trig ratio from quadrant information using the Pythagorean identity.",
+      "focus": "Exact trig values, Pythagorean/tangent identities, and sine/cosine angle-addition formulas.",
+      "purpose": "Build the trig toolkit later derivatives, periodic models and projections actually consume, including the angle-addition identities used in M10.",
+      "centralCapability": "Compute exact trig values, recover missing ratios with quadrant information, and derive/use the sine/cosine angle-addition formulas.",
       "principalObstacle": "Signs and square roots are chosen without quadrant information, or tan is used where cos=0.",
       "entryPrerequisites": [
         "M02-S21 unit circle",
@@ -900,7 +1702,7 @@
         "Use tanθ=sinθ/cosθ when cosθ≠0.",
         "Use sin²θ+cos²θ=1.",
         "Choose the correct sign from the stated quadrant.",
-        "Simplify a basic identity under its legal denominator condition."
+        "Reconstruct and use sine/cosine angle-addition identities."
       ],
       "applicationScope": "Elementary real-valued functions and finite quantitative models.",
       "transferScope": "A fresh representation or model requiring the same capability without naming the procedure.",
@@ -909,16 +1711,15 @@
         "Quadrant signs",
         "Pythagorean identity",
         "Tangent",
-        "Simple simplification"
+        "Sine/cosine sum and difference identities"
       ],
       "outOfScope": [
-        "Sum/difference formulas",
         "Inverse trig",
-        "General identity proofs",
+        "Product-to-sum and multiple-angle formula catalogues",
         "Calculus"
       ],
-      "exitCondition": "Recover an exact trig triple from partial/quadrant information and simplify one elementary identity legally.",
-      "lesson": "On the unit circle, cos is x-coordinate and sin is y-coordinate; tan=sin/cos where cos≠0. The radius-one equation gives sin²θ+cos²θ=1. Worked example: at 2π/3, sin=√3/2, cos=−1/2, tan=−√3. Guided check: if cosθ=5/13 in quadrant IV, find sinθ and tanθ.",
+      "exitCondition": "Recover an exact trig triple from partial/quadrant information and reconstruct/use one sine/cosine angle-addition identity.",
+      "lesson": "On the unit circle, cos is the x-coordinate and sin is the y-coordinate; tan=sin/cos where cos≠0. The radius-one equation gives sin²θ+cos²θ=1. The angle-addition formulas can be derived from the same coordinate geometry rather than memorized as a catalogue. Let P_A=(cosA,sinA) and P_B=(cosB,sinB) be unit-circle points. Their coordinate distance squared is (cosA−cosB)²+(sinA−sinB)²=2−2(cosA cosB+sinA sinB). Now rotate both points rigidly by angle −B. A rigid rotation preserves Euclidean distance, and it sends P_B to P_0=(1,0) and P_A to P_(A−B). Hence the same chord has squared length (cos(A−B)−1)²+sin²(A−B)=2−2cos(A−B). Equating the two distance expressions gives cos(A−B)=cosA cosB+sinA sinB. Replacing B by−B gives cos(A+B)=cosA cosB−sinA sinB. Using sinθ=cos(π/2−θ) then yields sin(A+B)=sinA cosB+cosA sinB and sin(A−B)=sinA cosB−cosA sinB. Worked example: cos(5π/12)=cos(π/4+π/6)=√6/4−√2/4. Guided check: start from the established sine-addition identity sin(A+B)=sinA cosB+cosA sinB, replace B by−B to derive sin(A−B), then compute sin(π/12)=sin(π/4−π/6) exactly. Do not rehearse the cosine-sum reconstruction used by the fixed Transfer.",
       "main": "T22V3::T22E-FND02::S22-M@1",
       "transfer": "T22V3::T22E-FND02::S22-T@1"
     },
@@ -958,9 +1759,118 @@
         "Calculus"
       ],
       "exitCondition": "Read one transformed trig model and solve one bounded standard-angle equation exactly.",
-      "lesson": "For a nonconstant sinusoid y=A sin(B(x−h))+D or cosine form with A≠0 and B≠0, amplitude=|A|, midline y=D, period=2π/|B| and horizontal shift=h. If A=0 the graph is constant and ordinary amplitude/phase language degenerates; if B=0 there is no nonzero-frequency period formula to apply. Solve bounded trig equations by unit-circle locations. Worked example: y=4cos(3x)+2 has amplitude4, midline2, period2π/3. Guided check: solve sin x=√2/2 on [0,2π).",
+      "lesson": "A trig graph is the history of a unit-circle coordinate as angle changes: plotting θ against the unit-circle y-coordinate produces sinθ; the x-coordinate produces cosθ. That is why the wave repeats every full turn. For a nonconstant sinusoid y=A sin(B(x−h))+D or cosine form with A≠0 and B≠0, amplitude=|A|, midline y=D, period=2π/|B| and horizontal shift=h. If A=0 the graph is constant; if B=0 the ordinary nonzero-frequency period formula does not apply. Worked example: y=4cos(3x)+2 has amplitude4, midline2, period2π/3. Guided check: first read amplitude/midline/period from the rendered base sine wave, then solve sin x=√2/2 on [0,2π).",
       "main": "T22V3::T22E-FND02::S23-M@1",
-      "transfer": "T22V3::T22E-FND02::S23-T@1"
+      "transfer": "T22V3::T22E-FND02::S23-T@1",
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Unwrapping the unit-circle y-coordinate gives sine",
+          "xRange": [
+            0,
+            6.283185307179586
+          ],
+          "yRange": [
+            -1.5,
+            1.5
+          ],
+          "xTicks": [
+            {
+              "value": 0,
+              "label": "0"
+            },
+            {
+              "value": 1.5707963267948966,
+              "label": "π/2"
+            },
+            {
+              "value": 3.141592653589793,
+              "label": "π"
+            },
+            {
+              "value": 4.71238898038469,
+              "label": "3π/2"
+            },
+            {
+              "value": 6.283185307179586,
+              "label": "2π"
+            }
+          ],
+          "yTick": 0.5,
+          "xLabel": "θ",
+          "yLabel": "sin θ",
+          "series": [
+            {
+              "family": "sin",
+              "A": 1,
+              "B": 1,
+              "h": 0,
+              "D": 0
+            }
+          ]
+        },
+        {
+          "kind": "plot",
+          "title": "A transformed periodic model",
+          "xRange": [
+            0,
+            6.283185307179586
+          ],
+          "yRange": [
+            -3,
+            7
+          ],
+          "xTicks": [
+            {
+              "value": 0,
+              "label": "0"
+            },
+            {
+              "value": 1.0471975511965976,
+              "label": "π/3"
+            },
+            {
+              "value": 2.0943951023931953,
+              "label": "2π/3"
+            },
+            {
+              "value": 3.141592653589793,
+              "label": "π"
+            },
+            {
+              "value": 4.1887902047863905,
+              "label": "4π/3"
+            },
+            {
+              "value": 5.235987755982989,
+              "label": "5π/3"
+            },
+            {
+              "value": 6.283185307179586,
+              "label": "2π"
+            }
+          ],
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "4cos(3x)+2",
+          "series": [
+            {
+              "family": "cos",
+              "A": 4,
+              "B": 3,
+              "h": 0,
+              "D": 2
+            }
+          ],
+          "note": "Amplitude, midline and period are geometric features of the rendered curve."
+        }
+      ],
+      "retrievalPractice": [
+        "Treat 4,9,14,19,… as a function on integer indices and find a₁₀.",
+        "Infer the ratio and finite first-five sum of 81,27,9,… .",
+        "Expand Σ(k=0..3)(2k+1) before evaluating.",
+        "For x₀=1, xₙ₊₁=−xₙ, compute four terms and explain why a fixed point alone would not prove convergence."
+      ]
     },
     {
       "order": 24,
@@ -998,7 +1908,7 @@
         "Calculus"
       ],
       "exitCondition": "Complete both an unfamiliar log/geometric synthesis and a periodic-function synthesis with exact checks and no hidden M03+ machinery.",
-      "lesson": "Synthesis starts by naming the object: function, indexed sequence, finite sum or periodic rule. Preserve domains first, then choose algebra. Worked example: if a_n=20(1.1)^n and H(x)=ln(x/20), then H(a_n)=n ln1.1. Guided check: for u_k=30(0.8)^k, write a finite sigma sum and find a log transform that turns multiplicative change into an additive term.",
+      "lesson": "Synthesis starts before algebra: identify what kind of object the data support—continuous function, integer-indexed sequence, finite sum or periodic rule—and reject attractive models whose structural signatures disagree. Preserve domains next, then choose algebra. Worked example: values 20,22,24.2,… have a constant ratio1.1 rather than constant difference, so an exponential/geometric model is supported; if a_n=20(1.1)^n and H(x)=ln(x/20), then H(a_n)=n ln1.1. Guided check: for the samples 2,5,2,−1,2 at quarter-turn angles, decide which of linear/exponential/sinusoidal structure is compatible before writing a formula.",
       "main": "T22V3::T22E-FND02::S24-M@1",
       "transfer": "T22V3::T22E-FND02::S24-T@1"
     }
@@ -1043,8 +1953,34 @@
       "id": "T22V3::T22E-FND02::S03-T@1",
       "order": 3,
       "kind": "transfer",
-      "prompt": "For q(x)=x²−4, tabulate x=−2,−1,0,1,2; give all intercepts; then find the distance and midpoint between the two x-intercepts.",
-      "obligationVersion": 1
+      "prompt": "Read the supplied graph of q. State q(1) and explain what the graph point at x=1 means. Read both x-intercepts and the y-intercept from the axes. Then find the exact distance and midpoint between the two x-intercepts.",
+      "obligationVersion": 2,
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Graph of q",
+          "xRange": [
+            -3,
+            3
+          ],
+          "yRange": [
+            -5,
+            6
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "q(x)",
+          "series": [
+            {
+              "family": "quadratic",
+              "a": 1,
+              "h": 0,
+              "k": -4
+            }
+          ]
+        }
+      ]
     },
     "T22V3::T22E-FND02::S04-M@1": {
       "id": "T22V3::T22E-FND02::S04-M@1",
@@ -1085,8 +2021,60 @@
       "id": "T22V3::T22E-FND02::S06-T@1",
       "order": 6,
       "kind": "transfer",
-      "prompt": "Starting from f(u)=√u, analyze p(x)=√(2−x)+1. Describe the input transformation, give domain/range and endpoint, and compute p(−7).",
-      "obligationVersion": 1
+      "prompt": "The first supplied graph is the parent y=√x. The second is a transformed copy. Infer the sequence of input/output transformations, write a compatible formula p(x), state its domain, range and endpoint, and compute p(−7) from your formula.",
+      "obligationVersion": 2,
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Parent curve",
+          "xRange": [
+            -1,
+            9
+          ],
+          "yRange": [
+            -1,
+            5
+          ],
+          "xTick": 1,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "sqrt",
+              "insideA": 1,
+              "insideB": 0,
+              "a": 1,
+              "k": 0
+            }
+          ]
+        },
+        {
+          "kind": "plot",
+          "title": "Transformed curve",
+          "xRange": [
+            -8,
+            4
+          ],
+          "yRange": [
+            0,
+            6
+          ],
+          "xTick": 2,
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "sqrt",
+              "insideA": -1,
+              "insideB": 2,
+              "a": 1,
+              "k": 1
+            }
+          ]
+        }
+      ]
     },
     "T22V3::T22E-FND02::S07-M@1": {
       "id": "T22V3::T22E-FND02::S07-M@1",
@@ -1127,8 +2115,37 @@
       "id": "T22V3::T22E-FND02::S09-T@1",
       "order": 9,
       "kind": "transfer",
-      "prompt": "For q(x)=−2(x+3)(x−1)², state degree/leading coefficient, zeros/multiplicities, crossing/touching behavior, and left/right end behavior.",
-      "obligationVersion": 1
+      "prompt": "Use the supplied polynomial graph rather than a factored formula. Identify every real zero visible on the axes, decide which zero is crossed and which is only touched, infer the smallest compatible multiplicities, and write a compatible factored structure C(x−r₁)^m(x−r₂)^n including the sign of C. State the left/right end behavior.",
+      "obligationVersion": 2,
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Polynomial graph",
+          "xRange": [
+            -5,
+            3
+          ],
+          "yRange": [
+            -20,
+            20
+          ],
+          "xTick": 1,
+          "yTick": 5,
+          "xLabel": "x",
+          "yLabel": "q(x)",
+          "series": [
+            {
+              "family": "polynomial",
+              "coefficients": [
+                -2,
+                -2,
+                10,
+                -6
+              ]
+            }
+          ]
+        }
+      ]
     },
     "T22V3::T22E-FND02::S10-M@1": {
       "id": "T22V3::T22E-FND02::S10-M@1",
@@ -1141,8 +2158,57 @@
       "id": "T22V3::T22E-FND02::S10-T@1",
       "order": 10,
       "kind": "transfer",
-      "prompt": "Analyze s(x)=(2x²+3x−2)/(x²−4): simplify, give original domain, hole, vertical asymptote and horizontal asymptote.",
-      "obligationVersion": 1
+      "prompt": "Use the supplied rational-function graph. Read the hole, vertical asymptote and horizontal large-|x| level. The original denominator was x²−4; state its excluded inputs. Explain algebraically what kind of factor behavior creates the hole versus the vertical asymptote.",
+      "obligationVersion": 2,
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Rational-function graph",
+          "xRange": [
+            -6,
+            6
+          ],
+          "yRange": [
+            -6,
+            8
+          ],
+          "xTick": 1,
+          "yTick": 2,
+          "xLabel": "x",
+          "yLabel": "s(x)",
+          "series": [
+            {
+              "family": "rational",
+              "numerator": [
+                2,
+                3,
+                -2
+              ],
+              "denominator": [
+                1,
+                0,
+                -4
+              ],
+              "holes": [
+                [
+                  -2,
+                  1.25
+                ]
+              ]
+            }
+          ],
+          "asymptotes": [
+            {
+              "axis": "x",
+              "value": 2
+            },
+            {
+              "axis": "y",
+              "value": 2
+            }
+          ]
+        }
+      ]
     },
     "T22V3::T22E-FND02::S11-M@1": {
       "id": "T22V3::T22E-FND02::S11-M@1",
@@ -1162,8 +2228,8 @@
       "id": "T22V3::T22E-FND02::S12-M@1",
       "order": 12,
       "kind": "main",
-      "prompt": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
-      "obligationVersion": 1
+      "prompt": "A quantity follows f(t)=500(1.08)^t for real t. State the initial value, per-period multiplier and percent growth rate, then compute f(2). Finally use b^(x+y)=b^x b^y to rewrite f(t+h) as f(t) times a factor depending only on h, and state what h=1 recovers.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S12-T@1": {
       "id": "T22V3::T22E-FND02::S12-T@1",
@@ -1295,36 +2361,84 @@
       "id": "T22V3::T22E-FND02::S21-T@1",
       "order": 21,
       "kind": "transfer",
-      "prompt": "Convert −45° to radians, give its unit-circle coordinates, and find the oriented arc displacement for radius10.",
-      "obligationVersion": 1
+      "prompt": "Convert −45° to radians. Separately convert 7π/6 radians to degrees. Give the unit-circle coordinates for −45°, and find the oriented arc displacement for radius10.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S22-M@1": {
       "id": "T22V3::T22E-FND02::S22-M@1",
       "order": 22,
       "kind": "main",
-      "prompt": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
-      "obligationVersion": 1
+      "prompt": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S22-T@1": {
       "id": "T22V3::T22E-FND02::S22-T@1",
       "order": 22,
       "kind": "transfer",
-      "prompt": "For cos x≠0 simplify (1−sin²x)/cos x. Then give sin, cos and tan at x=π/3 exactly.",
-      "obligationVersion": 1
+      "prompt": "Using the S22 chord-distance derivation, state cos(A−B)=cosA cosB+sinA sinB, then derive cos(A+B) by replacing B with −B. Use your result to compute cos(π/12)=cos(π/4−π/6) exactly. Finally state the corresponding sine addition formula sin(A+B).",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S23-M@1": {
       "id": "T22V3::T22E-FND02::S23-M@1",
       "order": 23,
       "kind": "main",
-      "prompt": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
-      "obligationVersion": 1
+      "prompt": "For y=2sin(4(x−π/6))+1, state amplitude and midline, state the phase shift, and compute the period by substituting B into 2π/|B|. Then solve sin x=1/2 on [0,2π).",
+      "obligationVersion": 2
     },
     "T22V3::T22E-FND02::S23-T@1": {
       "id": "T22V3::T22E-FND02::S23-T@1",
       "order": 23,
       "kind": "transfer",
-      "prompt": "For y=−3cos(2x)+4, state amplitude, period and midline. Then solve cos(2x)=0 for x in [0,π).",
-      "obligationVersion": 1
+      "prompt": "Using only the supplied graph, read its amplitude, midline and period. Cite a pair of matching extrema one full cycle apart to justify the period from the graph. Separately solve the unrelated equation cos(4x)=0 for x in [0,π/2).",
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "plot",
+          "title": "Periodic graph",
+          "xRange": [
+            0,
+            3.141592653589793
+          ],
+          "yRange": [
+            0,
+            8
+          ],
+          "xTicks": [
+            {
+              "value": 0,
+              "label": "0"
+            },
+            {
+              "value": 0.7853981633974483,
+              "label": "π/4"
+            },
+            {
+              "value": 1.5707963267948966,
+              "label": "π/2"
+            },
+            {
+              "value": 2.356194490192345,
+              "label": "3π/4"
+            },
+            {
+              "value": 3.141592653589793,
+              "label": "π"
+            }
+          ],
+          "yTick": 1,
+          "xLabel": "x",
+          "yLabel": "y",
+          "series": [
+            {
+              "family": "cos",
+              "A": -3,
+              "B": 2,
+              "h": 0,
+              "D": 4
+            }
+          ]
+        }
+      ]
     },
     "T22V3::T22E-FND02::S24-M@1": {
       "id": "T22V3::T22E-FND02::S24-M@1",
@@ -1337,8 +2451,33 @@
       "id": "T22V3::T22E-FND02::S24-T@1",
       "order": 24,
       "kind": "transfer",
-      "prompt": "Let p(θ)=2+3sinθ for 0≤θ≤2π. Find its range, compute p(π/6), solve p(θ)=3.5 on the interval, then evaluate Σ(k=0..4) p(kπ/2).",
-      "obligationVersion": 1
+      "prompt": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table. State p's natural real domain and separately the restricted solution interval used here, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Unlabeled sampled process",
+          "headers": [
+            "θ",
+            "0",
+            "π/2",
+            "π",
+            "3π/2",
+            "2π"
+          ],
+          "rows": [
+            [
+              "value",
+              2,
+              5,
+              2,
+              -1,
+              2
+            ]
+          ],
+          "note": "Choose the model family before writing a formula."
+        }
+      ]
     }
   },
   "evaluators": {
@@ -1453,23 +2592,27 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S03-T@1": {
-      "reference": "Values 0,−3,−4,−3,0. x-intercepts (−2,0),(2,0); y-intercept (0,−4). Distance between x-intercepts is4 and midpoint is(0,0).",
+      "reference": "The graph gives q(1)=−3, meaning (1,−3) lies on the graph and the output at input1 is−3. The x-intercepts are(−2,0) and(2,0); the y-intercept is(0,−4). The distance between the x-intercepts is4 and their midpoint is(0,0).",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "Correct table."
+          "points": 2,
+          "criterion": "Reads q(1)=−3 and interprets (1,−3) as an input-output graph point."
         },
         {
           "points": 3,
-          "criterion": "Correct intercepts."
+          "criterion": "Reads both x-intercepts and the y-intercept correctly from the supplied graph."
         },
         {
           "points": 2,
-          "criterion": "Distance 4."
+          "criterion": "Distance between the x-intercepts is4."
         },
         {
           "points": 2,
-          "criterion": "Midpoint (0,0)."
+          "criterion": "Midpoint is(0,0)."
+        },
+        {
+          "points": 1,
+          "criterion": "Uses the rendered axes/scale rather than inventing unsupported coordinates."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
@@ -1585,23 +2728,23 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S06-T@1": {
-      "reference": "2−x=−(x−2): reflect the input horizontally and shift the root endpoint to x=2, then shift output up1. Domain x≤2; range y≥1; endpoint(2,1). p(−7)=√9+1=4.",
+      "reference": "The transformed graph is obtained by reflecting y=√x across the y-axis, shifting right2 and up1, giving p(x)=√(2−x)+1. Its endpoint is(2,1), domain x≤2 and range y≥1. p(−7)=√9+1=4.",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "Correct horizontal reflection/shift description."
-        },
-        {
-          "points": 3,
-          "criterion": "Domain x≤2 and range y≥1."
+          "points": 4,
+          "criterion": "Infers the horizontal reflection, right shift2 and upward shift1 and writes p(x)=√(2−x)+1 or an equivalent rule."
         },
         {
           "points": 2,
-          "criterion": "Endpoint(2,1)."
+          "criterion": "Endpoint(2,1) is correct."
         },
         {
           "points": 2,
-          "criterion": "p(−7)=4."
+          "criterion": "Domain x≤2 and range y≥1 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "p(−7)=4 from the inferred formula."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
@@ -1721,23 +2864,23 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S09-T@1": {
-      "reference": "Degree3, leading coefficient−2. Zero−3 simple (cross); zero1 double (touch). Negative-leading cubic: left end up, right end down.",
+      "reference": "The graph has zeros−3 and1. It crosses at−3, so the smallest compatible multiplicity there is odd1; it touches at1, so the smallest compatible multiplicity is even2. A compatible structure is C(x+3)(x−1)² with C<0. This has odd degree with negative leading coefficient, so the graph rises to the left and falls to the right.",
       "rubric": [
         {
-          "points": 2,
-          "criterion": "Degree3 and leading coefficient−2."
-        },
-        {
           "points": 3,
-          "criterion": "Zeros/multiplicities correct."
-        },
-        {
-          "points": 3,
-          "criterion": "Cross/touch behavior correct."
+          "criterion": "Reads zeros−3 and1 and infers compatible multiplicities1 and2."
         },
         {
           "points": 2,
-          "criterion": "End behavior correct."
+          "criterion": "Correctly identifies crossing at−3 and touching at1."
+        },
+        {
+          "points": 3,
+          "criterion": "Writes a compatible factored structure C(x+3)(x−1)² with C<0."
+        },
+        {
+          "points": 2,
+          "criterion": "States left end up and right end down, consistent with odd degree and negative leading sign."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
@@ -1769,27 +2912,27 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S10-T@1": {
-      "reference": "Numerator=(2x−1)(x+2), denominator=(x−2)(x+2). Domain excludes−2,2. Reduced (2x−1)/(x−2). Hole at x=−2 with y=5/4; vertical asymptote x=2; horizontal asymptote y=2.",
+      "reference": "The graph has a hole at(−2,5/4), vertical asymptote x=2 and horizontal level y=2. Since the original denominator x²−4=(x−2)(x+2), the original domain excludes x=−2 and x=2. A numerator factor x+2 must cancel to create the hole at−2, whereas the x−2 denominator factor remains after simplification and creates the vertical asymptote.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "Correct factorization/reduction and domain."
+          "criterion": "Reads the hole as(−2,5/4)."
         },
         {
           "points": 2,
-          "criterion": "Hole (−2,5/4)."
+          "criterion": "Reads the vertical asymptote x=2."
         },
         {
           "points": 2,
-          "criterion": "Vertical asymptote x=2."
-        },
-        {
-          "points": 2,
-          "criterion": "Horizontal asymptote y=2."
+          "criterion": "Reads the horizontal large-|x| level y=2."
         },
         {
           "points": 1,
-          "criterion": "Cancelled input remains excluded."
+          "criterion": "Retains original exclusions x=−2 and x=2 from x²−4."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains cancelled denominator factor→hole and remaining denominator factor→vertical asymptote."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
@@ -1839,26 +2982,30 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S12-M@1": {
-      "reference": "Initial500. Multiplier1.08. Growth rate8% per period. f(2)=500×1.08²=583.2.",
+      "reference": "Initial500. Multiplier1.08 and growth8% per period. f(2)=500·1.08²=583.2. Using the real-exponential law, f(t+h)=500·1.08^(t+h)=500·1.08^t·1.08^h=f(t)·1.08^h. At h=1 this recovers the one-period multiplier1.08.",
       "rubric": [
         {
-          "points": 2,
-          "criterion": "Initial value500."
+          "points": 1,
+          "criterion": "Initial value is500."
         },
         {
           "points": 2,
-          "criterion": "Multiplier1.08."
+          "criterion": "Multiplier1.08 and growth rate8% per period are both identified."
         },
         {
           "points": 2,
-          "criterion": "Growth8%."
+          "criterion": "Computes f(2)=583.2."
         },
         {
-          "points": 4,
-          "criterion": "f(2)=583.2 with compounding."
+          "points": 3,
+          "criterion": "Uses b^(x+y)=b^x b^y to obtain f(t+h)=f(t)·1.08^h."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that h=1 recovers the one-period multiplier1.08."
         }
       ],
-      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+      "marking": "Human/AI review required. Score only observed work; the real-exponential law must be used explicitly for its ownership credit."
     },
     "T22V3::T22E-FND02::S12-T@1": {
       "reference": "For g, 0.85<1 so it decays by15% per period. g(1)=1020 and g(3)=1200×0.85³=736.95. Six-percent growth means multiplier/base1.06, so the separate model is 900(1.06)^t.",
@@ -2261,79 +3408,103 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S21-T@1": {
-      "reference": "−45°=−π/4. Coordinates(√2/2,−√2/2). Oriented arc displacement s=10(−π/4)=−5π/2; geometric arc length magnitude is5π/2.",
+      "reference": "−45°=−π/4. Also 7π/6 radians = 210°. The −45° unit-circle coordinates are(√2/2,−√2/2). Oriented arc displacement s=10(−π/4)=−5π/2; geometric arc-length magnitude is5π/2.",
       "rubric": [
         {
-          "points": 3,
-          "criterion": "−π/4."
+          "points": 2,
+          "criterion": "Converts −45° to −π/4."
         },
         {
-          "points": 4,
-          "criterion": "Correct coordinates."
+          "points": 2,
+          "criterion": "Converts 7π/6 radians back to 210°."
         },
         {
           "points": 3,
-          "criterion": "Oriented displacement −5π/2 with magnitude distinction."
+          "criterion": "Gives coordinates (√2/2,−√2/2) for −45°."
+        },
+        {
+          "points": 3,
+          "criterion": "Gives oriented displacement −5π/2 and distinguishes its magnitude5π/2."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S22-M@1": {
-      "reference": "At5π/4, sin=−√2/2, cos=−√2/2, tan=1. If sin=3/5 in quadrant II, cos is negative: cos=−4/5 and tan=(3/5)/(−4/5)=−3/4.",
-      "rubric": [
-        {
-          "points": 5,
-          "criterion": "Exact triple at5π/4 correct."
-        },
-        {
-          "points": 3,
-          "criterion": "cos=−4/5."
-        },
-        {
-          "points": 2,
-          "criterion": "tan=−3/4 with quadrant sign."
-        }
-      ],
-      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
-    },
-    "T22V3::T22E-FND02::S22-T@1": {
-      "reference": "1−sin²x=cos²x, so quotient=cos x because cos x≠0. Atπ/3: sin=√3/2, cos=1/2, tan=√3.",
+      "reference": "At5π/4, sin=−√2/2, cos=−√2/2, tan=1. If sinθ=3/5 in quadrantII, sin²+cos²=1 gives cos²=16/25. QuadrantII makes cos negative, so cos=−4/5 and tan=(3/5)/(−4/5)=−3/4.",
       "rubric": [
         {
           "points": 4,
-          "criterion": "Simplifies to cos x with condition used."
+          "criterion": "Exact sin/cos/tan triple at5π/4 is correct."
         },
         {
-          "points": 6,
-          "criterion": "Exact trig triple atπ/3 correct."
+          "points": 3,
+          "criterion": "Uses sin²θ+cos²θ=1 to obtain |cosθ|=4/5 and quadrantII to choose cosθ=−4/5."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses tanθ=sinθ/cosθ to obtain −3/4."
         }
       ],
-      "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
+      "marking": "Human/AI review required. Score only observed work; Pythagorean-identity and quadrant-sign ownership require the stated reasoning, not answer inference."
     },
-    "T22V3::T22E-FND02::S23-M@1": {
-      "reference": "Amplitude2, period2π, midline y=1, shift rightπ/2. sin x=1/2 at x=π/6 and5π/6 in [0,2π).",
+    "T22V3::T22E-FND02::S22-T@1": {
+      "reference": "Chord distance gives cos(A−B)=cosA cosB+sinA sinB. Since cos(−B)=cosB and sin(−B)=−sinB, replacing B by−B gives cos(A+B)=cosA cosB−sinA sinB. Then cos(π/12)=cos(π/4−π/6)=(√2/2)(√3/2)+(√2/2)(1/2)=(√6+√2)/4. The sine addition formula is sin(A+B)=sinA cosB+cosA sinB.",
       "rubric": [
         {
-          "points": 5,
-          "criterion": "All four graph parameters correct."
+          "points": 3,
+          "criterion": "States the cosine-difference identity from the chord-distance derivation."
         },
         {
-          "points": 5,
-          "criterion": "Solutions π/6 and5π/6 only."
+          "points": 2,
+          "criterion": "Derives cos(A+B)=cosA cosB−sinA sinB by substituting −B with correct parity signs."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes cos(π/12)=(√6+√2)/4 exactly."
+        },
+        {
+          "points": 2,
+          "criterion": "States sin(A+B)=sinA cosB+cosA sinB."
+        }
+      ],
+      "marking": "Human/AI review required. The addition-identity ownership requires a reconstruction step plus exact use; do not award it for quoting an isolated memorized value."
+    },
+    "T22V3::T22E-FND02::S23-M@1": {
+      "reference": "Amplitude2 and midline y=1. The graph shifts rightπ/6. Here B=4, so period=2π/|4|=π/2. Also sin x=1/2 at x=π/6 and5π/6 in[0,2π).",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Amplitude2 and midline y=1 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Phase shift is right π/6."
+        },
+        {
+          "points": 2,
+          "criterion": "Explicitly computes period as 2π/|4|=π/2."
+        },
+        {
+          "points": 4,
+          "criterion": "Solves sin x=1/2 as π/6 and5π/6 only on [0,2π)."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S23-T@1": {
-      "reference": "Amplitude3, periodπ, midline4. cos(2x)=0 when2x=π/2 or3π/2 in [0,2π), so x=π/4 or3π/4.",
+      "reference": "From the graph, maximum7 and minimum1 give amplitude3 and midline4. Matching minima occur at(0,1) and(π,1), one full cycle apart, so the period isπ. Separately, cos(4x)=0 means4x=π/2 or3π/2 in[0,2π), hence x=π/8 or3π/8 in[0,π/2).",
       "rubric": [
         {
-          "points": 4,
-          "criterion": "Amplitude3, periodπ, midline4."
+          "points": 3,
+          "criterion": "Reads amplitude3 and midline4 from the supplied graph."
         },
         {
-          "points": 6,
-          "criterion": "Solutions π/4,3π/4 with interval handled correctly."
+          "points": 3,
+          "criterion": "Reads periodπ from the graph and justifies it with matching extrema one full cycle apart, such as minima at x=0 and x=π."
+        },
+        {
+          "points": 4,
+          "criterion": "Solves the separate equation cos(4x)=0 as x=π/8,3π/8 on [0,π/2)."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
@@ -2361,23 +3532,31 @@
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
     },
     "T22V3::T22E-FND02::S24-T@1": {
-      "reference": "Range [−1,5]. p(π/6)=2+3/2=3.5. Equation p=3.5 gives sinθ=1/2, so θ=π/6,5π/6. Samples at kπ/2 are2,5,2,−1,2, summing10.",
+      "reference": "The values2,5,2,−1,2 repeat around midline2 with symmetric ±3 variation, so sinusoidal is compatible while neither constant difference nor constant ratio holds. The simplest requested model is p(θ)=2+3sinθ. Its natural real domain is all real θ; this task restricts solving to[0,2π]. Range[−1,5]. p=3.5 means sinθ=1/2, so θ=π/6,5π/6. The five displayed samples sum to10.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Range [−1,5]."
+          "criterion": "Chooses sinusoidal and rejects linear/exponential using structural evidence such as lack of constant difference/ratio plus periodic symmetry."
         },
         {
           "points": 2,
-          "criterion": "p(π/6)=3.5."
+          "criterion": "Writes p(θ)=2+3sinθ."
         },
         {
-          "points": 3,
-          "criterion": "Solutions π/6,5π/6."
+          "points": 1,
+          "criterion": "States the natural real domain θ∈ℝ and distinguishes the task's restricted solution interval [0,2π]."
         },
         {
-          "points": 3,
-          "criterion": "Finite sigma sample sum10."
+          "points": 1,
+          "criterion": "Range is [−1,5]."
+        },
+        {
+          "points": 2,
+          "criterion": "Solutions are π/6 and5π/6 on [0,2π]."
+        },
+        {
+          "points": 2,
+          "criterion": "Displayed finite sample sum is10."
         }
       ],
       "marking": "Human/AI review required. Accept every mathematically valid route consistent with the stated domain. Score only observed work; do not infer unobserved ownership claims."
@@ -2424,7 +3603,6 @@
     ],
     "T22V3::T22E-FND02::S03@1": [
       [
-        "main",
         "transfer"
       ],
       [
@@ -2488,18 +3666,15 @@
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ],
       [
         "main"
       ],
       [
-        "main",
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ]
     ],
@@ -2604,24 +3779,19 @@
     ],
     "T22V3::T22E-FND02::S12@1": [
       [
-        "main",
         "transfer"
       ],
       [
-        "main",
+        "main"
+      ],
+      [
         "transfer"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-FND02::S13@1": [
@@ -2783,7 +3953,6 @@
     ],
     "T22V3::T22E-FND02::S21@1": [
       [
-        "main",
         "transfer"
       ],
       [
@@ -2805,16 +3974,13 @@
     ],
     "T22V3::T22E-FND02::S22@1": [
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
         "main"
@@ -2825,12 +3991,10 @@
     ],
     "T22V3::T22E-FND02::S23@1": [
       [
-        "main",
         "transfer"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ],
       [
         "main"
@@ -2856,7 +4020,6 @@
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ]
     ]
@@ -2896,16 +4059,20 @@
     ],
     "S03": [
       {
-        "item": "ordered-pair graph interpretation",
-        "source": "JIT in S03"
+        "item": "ordered-pair/coordinate-plane interpretation",
+        "source": "JIT explicitly in S03"
       },
       {
-        "item": "distance formula",
-        "source": "JIT in S03 using M01 Pythagorean/root arithmetic"
+        "item": "Pythagorean theorem c²=a²+b² for a right triangle",
+        "source": "JIT geometric fact stated and applied in S03; not attributed to M01"
+      },
+      {
+        "item": "coordinate distance formula",
+        "source": "Derived in S03 from Δx/Δy right triangle + Pythagorean theorem + M01 roots"
       },
       {
         "item": "midpoint formula",
-        "source": "JIT in S03"
+        "source": "Derived JIT in S03 as halfway change in each coordinate"
       }
     ],
     "S04": [
@@ -2916,6 +4083,10 @@
       {
         "item": "line equation from point",
         "source": "JIT in S04 using M01 rearrangement"
+      },
+      {
+        "item": "one/no/infinitely-many elementary system classification",
+        "source": "M01-S13 fixed Transfer v3 owns the algebraic elimination outcomes; S04 retrieves them geometrically as crossing/parallel/coincident lines"
       }
     ],
     "S05": [
@@ -2990,8 +4161,16 @@
     ],
     "S12": [
       {
-        "item": "A·b^t function family",
-        "source": "JIT in S12 from M01 exponents"
+        "item": "rational exponent meaning",
+        "source": "M01-S08"
+      },
+      {
+        "item": "positive-base real exponential extension",
+        "source": "JIT declaration in S12; full irrational-exponent construction explicitly out of scope"
+      },
+      {
+        "item": "real-exponential addition law b^(x+y)=b^x b^y",
+        "source": "Explicitly taught and independently observed in S12"
       },
       {
         "item": "percent-to-base conversion",
@@ -3045,7 +4224,7 @@
       },
       {
         "item": "finite AP sum formula",
-        "source": "JIT derivation/pairing in S17"
+        "source": "Derived explicitly by forward/reverse pairing in S17"
       }
     ],
     "S18": [
@@ -3093,7 +4272,7 @@
       },
       {
         "item": "30°/45°/60° exact unit-circle values",
-        "source": "JIT triangle derivations in S21 before fixed tasks"
+        "source": "Derived explicitly from 1-1-√2 and 1-√3-2 right triangles in S21"
       }
     ],
     "S22": [
@@ -3107,7 +4286,19 @@
       },
       {
         "item": "standard-angle values and quadrant/reflection rules",
-        "source": "M02-S21 explicit triangle/reference-angle bridge"
+        "source": "M02-S21 explicit triangle/reference-angle derivation"
+      },
+      {
+        "item": "coordinate distance on unit-circle points",
+        "source": "M02-S03 Pythagorean distance derivation"
+      },
+      {
+        "item": "rigid rotation preserves Euclidean distance",
+        "source": "JIT one-line geometric fact in S22 to identify the chord with angle difference A−B"
+      },
+      {
+        "item": "cosine difference/sum and sine sum/difference identities",
+        "source": "Derived explicitly in S22 before fixed-task evidence"
       }
     ],
     "S23": [
@@ -3161,8 +4352,8 @@
         "x=−1 and x=2"
       ],
       "transfer": [
-        "q(x)=x²−4",
-        "x=−2,−1,0,1,2"
+        "Read the supplied graph of q",
+        "distance and midpoint between the two x-intercepts"
       ]
     },
     "T22V3::T22E-FND02::S04@1": {
@@ -3192,8 +4383,8 @@
         "g(1)"
       ],
       "transfer": [
-        "√(2−x)+1",
-        "p(−7)"
+        "The first supplied graph is the parent y=√x",
+        "compute p(−7)"
       ]
     },
     "T22V3::T22E-FND02::S07@1": {
@@ -3222,7 +4413,8 @@
         "(x−2)²(x+1)"
       ],
       "transfer": [
-        "−2(x+3)(x−1)²"
+        "Use the supplied polynomial graph",
+        "compatible factored structure"
       ]
     },
     "T22V3::T22E-FND02::S10@1": {
@@ -3230,7 +4422,8 @@
         "(x²−4)/(x²−x−2)"
       ],
       "transfer": [
-        "(2x²+3x−2)/(x²−4)"
+        "Use the supplied rational-function graph",
+        "original denominator was x²−4"
       ]
     },
     "T22V3::T22E-FND02::S11@1": {
@@ -3246,8 +4439,8 @@
     },
     "T22V3::T22E-FND02::S12@1": {
       "main": [
-        "500(1.08)^t",
-        "f(2)"
+        "f(t)=500(1.08)^t for real t",
+        "f(t+h) as f(t) times a factor"
       ],
       "transfer": [
         "1200(0.85)^t",
@@ -3351,27 +4544,27 @@
       ],
       "transfer": [
         "−45°",
-        "radius10"
+        "7π/6 radians"
       ]
     },
     "T22V3::T22E-FND02::S22@1": {
       "main": [
-        "θ=5π/4",
-        "sinθ=3/5"
+        "At θ=5π/4",
+        "sinθ=3/5 and θ lies in quadrant II"
       ],
       "transfer": [
-        "(1−sin²x)/cos x",
-        "x=π/3"
+        "Using the S22 chord-distance derivation",
+        "cos(π/12)=cos(π/4−π/6)"
       ]
     },
     "T22V3::T22E-FND02::S23@1": {
       "main": [
-        "2sin(x−π/2)+1",
+        "2sin(4(x−π/6))+1",
         "sin x=1/2"
       ],
       "transfer": [
-        "−3cos(2x)+4",
-        "cos(2x)=0"
+        "Using only the supplied graph",
+        "cos(4x)=0"
       ]
     },
     "T22V3::T22E-FND02::S24@1": {
@@ -3381,14 +4574,13 @@
         "q_n=86.4"
       ],
       "transfer": [
-        "p(θ)=2+3sinθ",
-        "p(θ)=3.5",
-        "Σ(k=0..4) p(kπ/2)"
+        "unlabeled sample from one of three simple families",
+        "natural real domain"
       ]
     }
   },
-  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation.",
-  "instructionVersion": "m02-instruction-v1.1-astra-repaired",
+  "authoringPolicy": "This JSON is the canonical M02 authored source. All tasks/evaluators are original to this route. Worked examples/guided checks are deliberately separated from fixed assessments and checked by instructionSeparation. v1.2 retrofit: a graph-reading claim requires a rendered graph with usable axes/scale; changed task visuals are fingerprinted assessment content; retrieval remains honestly labeled retrieval rather than being inflated to Transfer. Independent follow-up R01–R08 is bounded to semantic observability, assessed-surface leakage, and representation hardening; no new syllabus or M03+ ownership. Lang-foundation follow-up replaces false/declarative prerequisites with explicit JIT derivations or owned prior capabilities: Pythagorean coordinate distance in S03, real-exponential laws in S12, arithmetic-sum pairing in S17, special-triangle derivations in S21, angle-addition identities in S22, and one/no/infinite system geometry in S04.",
+  "instructionVersion": "m02-instruction-v12-lang-foundation-r5",
   "claimEvidence": {
     "T22V3::T22E-FND02::S01@1": [
       {
@@ -3477,10 +4669,10 @@
     "T22V3::T22E-FND02::S03@1": [
       {
         "claim": "Interpret (x,f(x)) as a graph point.",
-        "task": "main",
-        "publicRequest": "For f(x)=2x−3, make a table at x=−1,0,2,4; give both intercepts; then find the exact distance and midpoint between the graph points corresponding to x=−1 and x=2.",
+        "task": "transfer",
+        "publicRequest": "Read the supplied graph of q. State q(1) and explain what the graph point at x=1 means. Read both x-intercepts and the y-intercept from the axes. Then find the exact distance and midpoint between the two x-intercepts.",
         "rubricEvidence": [
-          "Correct exact distance 3√5."
+          "Reads q(1)=−3 and interprets (1,−3) as an input-output graph point."
         ]
       },
       {
@@ -3613,9 +4805,9 @@
       {
         "claim": "Interpret −f(x) and f(−x) as reflections.",
         "task": "transfer",
-        "publicRequest": "Starting from f(u)=√u, analyze p(x)=√(2−x)+1. Describe the input transformation, give domain/range and endpoint, and compute p(−7).",
+        "publicRequest": "The first supplied graph is the parent y=√x. The second is a transformed copy. Infer the sequence of input/output transformations, write a compatible formula p(x), state its domain, range and endpoint, and compute p(−7) from your formula.",
         "rubricEvidence": [
-          "Correct horizontal reflection/shift description."
+          "Infers the horizontal reflection, right shift2 and upward shift1 and writes p(x)=√(2−x)+1 or an equivalent rule."
         ]
       },
       {
@@ -3629,17 +4821,17 @@
       {
         "claim": "Track domain/range through elementary transformations.",
         "task": "transfer",
-        "publicRequest": "Starting from f(u)=√u, analyze p(x)=√(2−x)+1. Describe the input transformation, give domain/range and endpoint, and compute p(−7).",
+        "publicRequest": "The first supplied graph is the parent y=√x. The second is a transformed copy. Infer the sequence of input/output transformations, write a compatible formula p(x), state its domain, range and endpoint, and compute p(−7) from your formula.",
         "rubricEvidence": [
-          "Domain x≤2 and range y≥1."
+          "Domain x≤2 and range y≥1 are correct."
         ]
       },
       {
         "claim": "Read key geometric features from a transformed standard function.",
-        "task": "main",
-        "publicRequest": "Starting from y=x², analyze g(x)=−2(x−3)²+5. Describe every transformation, give the vertex, domain and range, and compute g(1).",
+        "task": "transfer",
+        "publicRequest": "The first supplied graph is the parent y=√x. The second is a transformed copy. Infer the sequence of input/output transformations, write a compatible formula p(x), state its domain, range and endpoint, and compute p(−7) from your formula.",
         "rubricEvidence": [
-          "Vertex(3,5)."
+          "Endpoint(2,1) is correct."
         ]
       }
     ],
@@ -3869,9 +5061,10 @@
       {
         "claim": "Interpret b as the multiplier per one input unit.",
         "task": "main",
-        "publicRequest": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
+        "publicRequest": "A quantity follows f(t)=500(1.08)^t for real t. State the initial value, per-period multiplier and percent growth rate, then compute f(2). Finally use b^(x+y)=b^x b^y to rewrite f(t+h) as f(t) times a factor depending only on h, and state what h=1 recovers.",
         "rubricEvidence": [
-          "Multiplier1.08."
+          "Multiplier1.08 and growth rate8% per period are both identified.",
+          "Explains that h=1 recovers the one-period multiplier1.08."
         ]
       },
       {
@@ -3883,19 +5076,19 @@
         ]
       },
       {
-        "claim": "Evaluate an exponential model at integer inputs.",
+        "claim": "Use the positive-base real-exponential law b^(x+y)=b^x b^y.",
         "task": "main",
-        "publicRequest": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
+        "publicRequest": "A quantity follows f(t)=500(1.08)^t for real t. State the initial value, per-period multiplier and percent growth rate, then compute f(2). Finally use b^(x+y)=b^x b^y to rewrite f(t+h) as f(t) times a factor depending only on h, and state what h=1 recovers.",
         "rubricEvidence": [
-          "f(2)=583.2 with compounding."
+          "Uses b^(x+y)=b^x b^y to obtain f(t+h)=f(t)·1.08^h."
         ]
       },
       {
         "claim": "Identify initial value from t=0.",
         "task": "main",
-        "publicRequest": "A quantity follows f(t)=500(1.08)^t. State the initial value, per-period multiplier and percent growth rate, then compute f(2).",
+        "publicRequest": "A quantity follows f(t)=500(1.08)^t for real t. State the initial value, per-period multiplier and percent growth rate, then compute f(2). Finally use b^(x+y)=b^x b^y to rewrite f(t+h) as f(t) times a factor depending only on h, and state what h=1 recovers.",
         "rubricEvidence": [
-          "Initial value500."
+          "Initial value is500."
         ]
       }
     ],
@@ -4244,10 +5437,11 @@
     "T22V3::T22E-FND02::S21@1": [
       {
         "claim": "Convert degrees to radians and back.",
-        "task": "main",
-        "publicRequest": "Convert150° to radians, give its unit-circle coordinates, briefly identify the reference angle/quadrant used, state what the resulting radian measure means as signed arc-displacement divided by radius, and find the arc length on a circle of radius4 for that positive angle.",
+        "task": "transfer",
+        "publicRequest": "Convert −45° to radians. Separately convert 7π/6 radians to degrees. Give the unit-circle coordinates for −45°, and find the oriented arc displacement for radius10.",
         "rubricEvidence": [
-          "Converts150° to5π/6."
+          "Converts −45° to −π/4.",
+          "Converts 7π/6 radians back to 210°."
         ]
       },
       {
@@ -4287,83 +5481,85 @@
       {
         "claim": "Compute exact sin/cos/tan at standard unit-circle angles.",
         "task": "main",
-        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
+        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
         "rubricEvidence": [
-          "Exact triple at5π/4 correct."
+          "Exact sin/cos/tan triple at5π/4 is correct."
         ]
       },
       {
         "claim": "Use tanθ=sinθ/cosθ when cosθ≠0.",
         "task": "main",
-        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
+        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
         "rubricEvidence": [
-          "tan=−3/4 with quadrant sign."
+          "Uses tanθ=sinθ/cosθ to obtain −3/4."
         ]
       },
       {
         "claim": "Use sin²θ+cos²θ=1.",
-        "task": "transfer",
-        "publicRequest": "For cos x≠0 simplify (1−sin²x)/cos x. Then give sin, cos and tan at x=π/3 exactly.",
+        "task": "main",
+        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
         "rubricEvidence": [
-          "Simplifies to cos x with condition used."
+          "Uses sin²θ+cos²θ=1 to obtain |cosθ|=4/5 and quadrantII to choose cosθ=−4/5."
         ]
       },
       {
         "claim": "Choose the correct sign from the stated quadrant.",
         "task": "main",
-        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, find cosθ and tanθ.",
+        "publicRequest": "At θ=5π/4 find sinθ, cosθ and tanθ exactly. Separately, if sinθ=3/5 and θ lies in quadrant II, use sin²θ+cos²θ=1 and the quadrant to find cosθ, then find tanθ.",
         "rubricEvidence": [
-          "cos=−4/5."
+          "Uses sin²θ+cos²θ=1 to obtain |cosθ|=4/5 and quadrantII to choose cosθ=−4/5."
         ]
       },
       {
-        "claim": "Simplify a basic identity under its legal denominator condition.",
+        "claim": "Reconstruct and use sine/cosine angle-addition identities.",
         "task": "transfer",
-        "publicRequest": "For cos x≠0 simplify (1−sin²x)/cos x. Then give sin, cos and tan at x=π/3 exactly.",
+        "publicRequest": "Using the S22 chord-distance derivation, state cos(A−B)=cosA cosB+sinA sinB, then derive cos(A+B) by replacing B with −B. Use your result to compute cos(π/12)=cos(π/4−π/6) exactly. Finally state the corresponding sine addition formula sin(A+B).",
         "rubricEvidence": [
-          "Simplifies to cos x with condition used."
+          "States the cosine-difference identity from the chord-distance derivation.",
+          "Derives cos(A+B)=cosA cosB−sinA sinB by substituting −B with correct parity signs.",
+          "States sin(A+B)=sinA cosB+cosA sinB."
         ]
       }
     ],
     "T22V3::T22E-FND02::S23@1": [
       {
         "claim": "Identify amplitude and midline of A sin(B(x−h))+D or cosine form.",
-        "task": "main",
-        "publicRequest": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+        "task": "transfer",
+        "publicRequest": "Using only the supplied graph, read its amplitude, midline and period. Cite a pair of matching extrema one full cycle apart to justify the period from the graph. Separately solve the unrelated equation cos(4x)=0 for x in [0,π/2).",
         "rubricEvidence": [
-          "All four graph parameters correct."
+          "Reads amplitude3 and midline4 from the supplied graph."
         ]
       },
       {
         "claim": "Compute period2π/|B| for sin/cos.",
         "task": "main",
-        "publicRequest": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+        "publicRequest": "For y=2sin(4(x−π/6))+1, state amplitude and midline, state the phase shift, and compute the period by substituting B into 2π/|B|. Then solve sin x=1/2 on [0,2π).",
         "rubricEvidence": [
-          "All four graph parameters correct."
+          "Explicitly computes period as 2π/|4|=π/2."
         ]
       },
       {
         "claim": "Interpret horizontal phase shift h.",
         "task": "main",
-        "publicRequest": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+        "publicRequest": "For y=2sin(4(x−π/6))+1, state amplitude and midline, state the phase shift, and compute the period by substituting B into 2π/|B|. Then solve sin x=1/2 on [0,2π).",
         "rubricEvidence": [
-          "All four graph parameters correct."
+          "Phase shift is right π/6."
         ]
       },
       {
         "claim": "Solve sin x=c at standard values on [0,2π).",
         "task": "main",
-        "publicRequest": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+        "publicRequest": "For y=2sin(4(x−π/6))+1, state amplitude and midline, state the phase shift, and compute the period by substituting B into 2π/|B|. Then solve sin x=1/2 on [0,2π).",
         "rubricEvidence": [
-          "Solutions π/6 and5π/6 only."
+          "Solves sin x=1/2 as π/6 and5π/6 only on [0,2π)."
         ]
       },
       {
         "claim": "Solve cos(Bx)=c at standard values on a stated bounded interval.",
         "task": "transfer",
-        "publicRequest": "For y=−3cos(2x)+4, state amplitude, period and midline. Then solve cos(2x)=0 for x in [0,π).",
+        "publicRequest": "Using only the supplied graph, read its amplitude, midline and period. Cite a pair of matching extrema one full cycle apart to justify the period from the graph. Separately solve the unrelated equation cos(4x)=0 for x in [0,π/2).",
         "rubricEvidence": [
-          "Solutions π/4,3π/4 with interval handled correctly."
+          "Solves the separate equation cos(4x)=0 as x=π/8,3π/8 on [0,π/2)."
         ]
       }
     ],
@@ -4395,26 +5591,319 @@
       {
         "claim": "Use a trig function's range and standard-angle solutions.",
         "task": "transfer",
-        "publicRequest": "Let p(θ)=2+3sinθ for 0≤θ≤2π. Find its range, compute p(π/6), solve p(θ)=3.5 on the interval, then evaluate Σ(k=0..4) p(kπ/2).",
+        "publicRequest": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table. State p's natural real domain and separately the restricted solution interval used here, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
         "rubricEvidence": [
-          "Range [−1,5].",
-          "Solutions π/6,5π/6."
+          "Range is [−1,5].",
+          "Solutions are π/6 and5π/6 on [0,2π]."
         ]
       },
       {
         "claim": "Coordinate exact algebra and domain checks across representations.",
-        "task": "main",
-        "publicRequest": "Let q_n=50(1.2)^n for n=0,…,5 and h(x)=ln(x/50). State h's domain and inverse. Show h(q_n)=n ln1.2. Evaluate Σ(n=0..5) q_n exactly or as a terminating decimal, and find the index n for which q_n=86.4.",
+        "task": "transfer",
+        "publicRequest": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table. State p's natural real domain and separately the restricted solution interval used here, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
         "rubricEvidence": [
-          "Correct h domain and inverse.",
-          "Correct log-linearization h(q_n)=nln1.2."
+          "Chooses sinusoidal and rejects linear/exponential using structural evidence such as lack of constant difference/ratio plus periodic symmetry.",
+          "Writes p(θ)=2+3sinθ.",
+          "States the natural real domain θ∈ℝ and distinguishes the task's restricted solution interval [0,2π]."
         ]
       }
     ]
   },
   "coverageAudit": {
     "version": "m02-observability-review-2026-09-18",
-    "status": "120/120 manually reviewed after M02-03; direction-of-task mismatches repaired before acceptance",
+    "status": "120/120 semantically re-audited through R01–R08 plus Lang-foundation L01–L10; S03 Pythagorean distance, S12 real-exponential law and S22 angle-addition ownership are now explicit downstream prerequisites",
     "policy": "A claim is retained only when a public fixed task explicitly requests behavior that can observe it and at least one rubric criterion scores that behavior. This is observability mapping, not psychometric mastery certification."
+  },
+  "representationProgression": [
+    {
+      "representation": "function as rule/table/graph/verbal object",
+      "introduced": "S01",
+      "connected": "S03 graph definition and S17 discrete-index functions",
+      "publicEvidence": "S01 tasks distinguish rule/input/output; S03 Transfer literally reads a rendered graph",
+      "status": "implemented"
+    },
+    {
+      "representation": "coordinate graph with axes/scale",
+      "introduced": "S03",
+      "connected": "S03 derives coordinate distance from an explicit Δx/Δy right triangle; S04 lines then expose one/no/infinite system geometry before transformations.",
+      "publicEvidence": "S03 Transfer reads graph points/intercepts; S06 Transfer infers a transformation from parent/transformed graphs",
+      "status": "implemented/assessed"
+    },
+    {
+      "representation": "algebraic system ↔ line intersection",
+      "introduced": "S04 from M01 S13",
+      "connected": "later linear models and M13 linear algebra",
+      "publicEvidence": "instructional bridge only; M02 does not claim graphical system-solving ownership",
+      "status": "implemented/bounded"
+    },
+    {
+      "representation": "absolute-value distance ↔ V graph",
+      "introduced": "M01 S15→M02 S05",
+      "connected": "piecewise rules and transformations",
+      "publicEvidence": "S05 fixed tasks retain branch/piecewise ownership",
+      "status": "implemented"
+    },
+    {
+      "representation": "inverse swap ↔ reflection across y=x",
+      "introduced": "S08",
+      "connected": "S13 exponential/log inverses",
+      "publicEvidence": "S08 fixed tasks assess inverse construction/domain; graph is instructional representation",
+      "status": "implemented"
+    },
+    {
+      "representation": "factor/multiplicity ↔ polynomial graph",
+      "introduced": "S09",
+      "connected": "M01 discriminant/x-intercepts",
+      "publicEvidence": "S09 Transfer infers zeros, multiplicity type and factor structure from rendered graph",
+      "status": "implemented/assessed"
+    },
+    {
+      "representation": "cancelled/remaining denominator factor ↔ hole/asymptote",
+      "introduced": "S10",
+      "connected": "M09 punctured-domain/limit work",
+      "publicEvidence": "S10 Transfer reads hole/asymptotes and explains their algebraic causes",
+      "status": "implemented/assessed"
+    },
+    {
+      "representation": "percentage multiplier ↔ exponential graph/table",
+      "introduced": "M01 S05→M02 S12",
+      "connected": "S13 logs and S16 growth time",
+      "publicEvidence": "S12 fixed tasks assess model interpretation; graph/table connection is instructional",
+      "status": "implemented"
+    },
+    {
+      "representation": "exponential ↔ logarithm reflection",
+      "introduced": "S13",
+      "connected": "S15 equations and S16 log returns",
+      "publicEvidence": "S13 tasks assess inverse statements/domain; reflection is instructional support",
+      "status": "implemented"
+    },
+    {
+      "representation": "sequence as integer-domain function",
+      "introduced": "S17",
+      "connected": "S18–S20 finite sums/recurrences and M09 sequences",
+      "publicEvidence": "S17 Main explicitly states index as input and term as output",
+      "status": "implemented/assessed"
+    },
+    {
+      "representation": "unit circle coordinate ↔ trig waveform",
+      "introduced": "S21 and connected in S23",
+      "connected": "S21 derives special-angle coordinates from right triangles; S22 derives angle-addition identities from unit-circle chord distance; S23 unwraps coordinates into waves.",
+      "publicEvidence": "S23 Transfer reads amplitude/midline/period from rendered periodic graph",
+      "status": "implemented/assessed"
+    },
+    {
+      "representation": "unlabeled data representation → model family choice",
+      "introduced": "S24 synthesis",
+      "connected": "later modeling modules",
+      "publicEvidence": "S24 Transfer requires choosing linear/exponential/sinusoidal from a table before writing a formula",
+      "status": "implemented/assessed"
+    }
+  ],
+  "evidenceDistance": {
+    "T22V3::T22E-FND02::S01-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S01-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Moves from a symbolic rule to a verbal cost relationship that the learner must model, label with units and invert."
+    },
+    "T22V3::T22E-FND02::S02-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S02-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S03-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S03-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes formula/table construction into literal reading of a rendered graph with axes and coordinate geometry."
+    },
+    "T22V3::T22E-FND02::S04-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S04-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S05-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S05-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S06-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S06-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes formula→transformation execution into graph→transformation reconstruction from parent and transformed curves."
+    },
+    "T22V3::T22E-FND02::S07-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S07-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Adds domain tracing through a rational composition where order changes both formula and legal-input restrictions."
+    },
+    "T22V3::T22E-FND02::S08-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S08-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Moves from an already one-to-one linear function to diagnosing non-invertibility and choosing a domain restriction."
+    },
+    "T22V3::T22E-FND02::S09-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S09-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes factored-form analysis into graph→zeros/multiplicity/factor-structure reconstruction."
+    },
+    "T22V3::T22E-FND02::S10-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S10-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes algebraic rational simplification into graph→hole/asymptote reading plus reconstruction of the cancelled-versus-remaining factor distinction."
+    },
+    "T22V3::T22E-FND02::S11-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S11-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S12-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S12-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S13-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S13-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S14-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S14-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Audits an identity whose written split form silently narrows the real domain and repairs it with absolute value."
+    },
+    "T22V3::T22E-FND02::S15-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S15-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S16-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S16-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Distinguishes real-valued interpolation of doubling time from the first integer period meeting the threshold."
+    },
+    "T22V3::T22E-FND02::S17-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S17-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S18-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S18-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Infers the geometric ratio from displayed terms, handles the r=1 boundary and supplies an independent finite-sum scale check."
+    },
+    "T22V3::T22E-FND02::S19-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S19-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S20-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S20-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Requires an all-future recurrence invariant rather than extrapolation from a finite prefix."
+    },
+    "T22V3::T22E-FND02::S21-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S21-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S22-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S22-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S23-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S23-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Requires graph-only recovery of amplitude/midline/period with a visible-cycle justification; the separate cosine equation uses different frequency information and cannot disclose the graph parameters."
+    },
+    "T22V3::T22E-FND02::S24-M@1": {
+      "classification": "fresh Main evidence",
+      "reason": "Coordinates domain/inverse, log linearization, finite geometric sigma evaluation and index recovery without a chapter label."
+    },
+    "T22V3::T22E-FND02::S24-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Starts from an unlabeled table, requires model-family selection, reconstruction of the sinusoidal rule, an explicit natural-versus-restricted domain check, and exact consequences."
+    }
+  },
+  "langFoundationAudit": {
+    "L01": "S03 false M01-Pythagorean provenance removed; right-triangle/Pythagorean distance derivation is now JIT and rendered.",
+    "L02": "S22 now derives/owns cosine and sine addition identities consumed by M10-S16.",
+    "L03": "S12 explicitly bridges rational powers to positive-base real exponentials and owns b^(x+y)=b^x b^y; irrational-exponent construction is honestly out of scope.",
+    "L05": "S17 now literally derives the AP sum by forward/reverse pairing.",
+    "L06": "S21 now literally derives 45° and30°/60° values from rendered right triangles.",
+    "L08": "S04 renders one/no/infinite linear-system geometry, completing the M01-S13 algebra bridge.",
+    "L10": "S03 coordinate-plane/distance/midpoint development is now derived rather than formula-only.",
+    "LF_R05": "S22 guided practice now reconstructs sine difference from sine addition; fixed Transfer independently reconstructs cosine sum from cosine difference, removing the ownership-critical immediate replay.",
+    "LF_R06": "S22 now explicitly closes the chord argument by rotating both unit-circle points by −B and stating that rigid rotation preserves Euclidean distance.",
+    "LF_R04": "M02-S04 geometric three-way picture now explicitly cites M01-S13's public algebraic ownership rather than treating the classification as instruction-only background."
   }
 }

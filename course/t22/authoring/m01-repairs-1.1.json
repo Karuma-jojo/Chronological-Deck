@@ -1,23 +1,23 @@
 {
-  "version": "m01-repairs-1.2-a07",
-  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts.",
+  "version": "m01-repairs-1.6-lang-foundation-final-stitch",
+  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts. v1.2 retrofit preserves the 17-session architecture while adding exact claim→public-request→rubric evidence, honest evidence-distance labels, learner-facing representation progression, delayed mixed retrieval, a routing-only readiness diagnostic, and bounded mathematical precision repairs. Assessed visuals are part of the assessment fingerprint. Independent follow-up R01–R08 repairs only semantic observability/representation hardening; no session-count or boundary change. Lang-foundation follow-up deepens structural algebra laws, system-case interpretation and readiness coverage without changing the 17-session architecture or ownership boundary. LF-R04 final stitch upgrades S13 from unique-case-only ownership to explicit one/no/infinitely-many classification from elimination outcomes, with a versioned public Transfer and contract-hash update.",
   "lessons": {
-    "T22V3::T22E-FND01::S01@1": "A signed number has a sign and a magnitude. On the number line, farther left means smaller. Read a numerical expression from its grouping outward: parentheses first, then powers, then multiplication/division, then addition/subtraction. A leading minus outside a power is applied after the power unless the negative base is parenthesized. Worked example: −6−[3−(−2)]+3² = −6−5+9 = −2. Guided check: evaluate −4²+(−4)²−[6−(−2)] and predict the sign before calculating.",
-    "T22V3::T22E-FND01::S02@1": "A fraction a/b is one number, with b≠0. Equivalent fractions come from multiplying numerator and denominator by the same nonzero factor. Addition/subtraction needs a common denominator; multiplication multiplies numerators and denominators; division by a nonzero fraction multiplies by its reciprocal. Worked example: 2/5+7/10=4/10+7/10=11/10; (4/7)(21/10)=6/5; and (5/8)÷(15/16)=(5/8)(16/15)=2/3. Guided check: reduce 21/35, then compute 7/12−1/8 and (4/9)(3/14) exactly.",
+    "T22V3::T22E-FND01::S01@1": "A signed number has a sign and a magnitude. On the number line, farther left means smaller. Arithmetic also has reusable structure: addition and multiplication are commutative (a+b=b+a, ab=ba) and associative ((a+b)+c=a+(b+c), (ab)c=a(bc)); subtraction and division are not. Additive inverses satisfy a+(−a)=0, and nonzero multiplicative inverses satisfy a·(1/a)=1. Read a numerical expression from its grouping outward: parentheses first, then powers, then multiplication/division, then addition/subtraction. A leading minus outside a power is applied after the power unless the negative base is parenthesized. Worked example: −6−[3−(−2)]+3² = −6−5+9 = −2; regrouping 17+83+6 as (17+83)+6 uses associativity, while swapping 17 and83 uses commutativity. Guided check: evaluate −4²+(−4)²−[6−(−2)], predict the sign first, and name which law lets you regroup 25+75+4 without changing its value.",
+    "T22V3::T22E-FND01::S02@1": "A fraction a/b is one number, with b≠0. Equivalent fractions come from multiplying numerator and denominator by the same nonzero factor. Cancellation is not a visual permission to cross out symbols: it is multiplication by a reciprocal inside a product, e.g. (6·5)/(6·7)=(6/6)(5/7)=5/7 because6≠0. Addition/subtraction needs a common denominator; multiplication multiplies numerators and denominators; division by a nonzero fraction multiplies by its reciprocal. Worked example: 2/5+7/10=4/10+7/10=11/10; (4/7)(21/10)=6/5; and (5/8)÷(15/16)=(5/8)(16/15)=2/3. Guided check: reduce 21/35 by identifying the common nonzero factor, then compute 7/12−1/8 and (4/9)(3/14) exactly.",
     "T22V3::T22E-FND01::S03@1": "A ratio compares multiplicatively; order matters. A rate is a ratio with units. Direct proportion means the same scale factor applies to every part. Worked example: a 4:7 mixture with total ₹33,000 has eleven parts, so one part is ₹3,000 and the amounts are ₹12,000 and ₹21,000. Guided check: reduce 15:25:10, then allocate ₹60,000 in that reduced ratio and verify the parts sum to the total.",
     "T22V3::T22E-FND01::S04@1": "Percent means per hundred. Relative percent change uses the original value in the denominator; percentage-point change subtracts displayed percentages. Worked example: 30%→36% is +6 percentage points but a relative increase of 6/30=20%. Guided check: for 55%→44%, report the percentage-point and relative changes, then write 44% as a decimal and 0.625 as a fraction and percentage.",
     "T22V3::T22E-FND01::S05@1": "Sequential percentage changes are multipliers, not labels to add. To reverse a known move, divide by its multiplier. Worked example: ₹2,500 rising 8% and then falling 20% becomes 2500×1.08×0.80=₹2,160, a net −13.6%. Guided check: start from ₹3,000, apply +12% then −7%, compute the final value and net change, and explain why the two labels should not simply be added.",
     "T22V3::T22E-FND01::S06@1": "Treat units like algebraic factors. Conversion factors equal one, so unwanted units cancel. Quantities can be added only when dimensions match, while a pure ratio or percentage is dimensionless unless a definition supplies units. Worked example: 54 km/h×(1000 m/1 km)×(1 h/3600 s)=15 m/s. Guided check: convert 108 km/h to m/s, then explain from units alone why speed×time has the dimension of distance.",
     "T22V3::T22E-FND01::S07@1": "Estimate before exact calculation. Replace awkward numbers by nearby friendly values, track decimal scale separately, and distinguish a rough central estimate from a proved bound. Worked example: 603×48≈600×50=30,000, so an exact answer near thirty thousand is plausible whereas three million is not. Guided check: estimate 4,120,000×0.0019, give a plausible range, then describe a decimal-place error your estimate would catch.",
-    "T22V3::T22E-FND01::S08@1": "Exponent laws apply to multiplicative structure. For a≠0, a^(−n)=1/a^n. Rational exponents encode roots in their real domain: a^(m/n)=(nth root of a)^m where the real root exists. The principal square root is nonnegative, so √(a²)=|a|. Scientific notation is c×10^k with 1≤|c|<10. Worked example: 32^(2/5)=4, 125^(−1/3)=1/5, and (4×10^5)(3×10^−2)=1.2×10^4. Guided check: evaluate 64^(2/3), 16^(−3/4), and normalize 37×10^6.",
-    "T22V3::T22E-FND01::S09@1": "A variable is a placeholder for a complete value. Substitute with parentheses around negatives, distribute to every term, and combine only like terms. Worked example: if x=−3, then 2x²+x=2(−3)²+(−3)=15; also 3(a+2)−2(a−4)=a+14. A numerical check can catch mistakes but does not prove an identity for every input. Guided check: simplify 5(2x−1)−4(x+3), then compare both forms at x=−2.",
+    "T22V3::T22E-FND01::S08@1": "Exponent laws apply to multiplicative structure, not across addition. For a≠0, a^(−n)=1/a^n. For a rational exponent p/q, first reduce p/q to lowest terms. In the real-number setting, a negative base is allowed when the reduced denominator q is odd; an even q requires a nonnegative base. Zero cannot carry a negative exponent. Thus (−8)^(2/3)=4, while (−8)^(1/2) has no real value. The principal square root is nonnegative, so √(a²)=|a|. Scientific notation is c×10^k with 1≤|c|<10. Worked example: 32^(2/5)=4, 125^(−1/3)=1/5, and (4×10^5)(3×10^−2)=1.2×10^4. Guided check: evaluate 64^(2/3), 49^(−1/2), and normalize 37×10^6.",
+    "T22V3::T22E-FND01::S09@1": "A variable is a placeholder for a complete value. Substitute with parentheses around negatives. Distributivity a(b+c)=ab+ac is the structural law behind expansion; factoring reverses it. Commutativity and associativity let you reorder/regroup additive terms so genuinely like terms can be combined, but they do not permit combining unlike terms. Worked example: if x=−3, then 2x²+x=2(−3)²+(−3)=15; also 3(a+2)−2(a−4)=3a+6−2a+8=(3a−2a)+(6+8)=a+14. Every equality in that chain asserts the same value for every legal a. A numerical check can catch mistakes but does not prove an identity for every input. Guided check: simplify 5(2x−1)−4(x+3) with a visible equality chain, name the distributive step and one regrouping step, then compare both forms at x=−2.",
     "T22V3::T22E-FND01::S10@1": "Factoring reverses expansion. First remove a greatest common factor. For a non-monic quadratic ax²+bx+c, one beginner-safe route is the ac method: find two numbers whose product is ac and sum is b, split bx, then factor by grouping. Worked example: 12x²+x−6 has ac=−72; 9 and −8 sum to1, so 12x²+9x−8x−6=3x(4x+3)−2(4x+3)=(3x−2)(4x+3). Difference of squares gives A²−B²=(A−B)(A+B). Guided check: factor 10x²+7x+1 by splitting the middle term and verify by expansion.",
-    "T22V3::T22E-FND01::S11@1": "An equation is a constraint: legal transformations preserve the same solution set. Add/subtract the same quantity on both sides, or multiply/divide both sides by the same known nonzero quantity. Worked example: (x+2)/5−1=3 gives (x+2)/5=4, then x+2=20, so x=18; substitution checks it. Guided check: solve (3x−2)/7+4=5 with a visible reversible chain and verify the candidate.",
+    "T22V3::T22E-FND01::S11@1": "An equation is a constraint: legal transformations preserve the same solution set. The structural reason is inverse operations applied equally to both sides. Adding c and then adding −c cancel; multiplying by a known nonzero c and then by1/c cancel. This is why one may add/subtract the same quantity on both sides, or multiply/divide both sides by the same known nonzero quantity. Worked example: (x+2)/5−1=3 gives (x+2)/5=4, then x+2=20, so x=18; each line is equivalent to the previous one and substitution checks the result. Guided check: solve (3x−2)/7+4=5 with a visible reversible chain, identify the inverse operation used at each step, and verify the candidate.",
     "T22V3::T22E-FND01::S12@1": "Treat a formula as an equation whose requested symbol is the unknown and whose other symbols are parameters. Division introduces a condition, and a rearranged form can exclude a parameter branch that the original equation still admits. Worked example: F=ma gives m=F/a only for a≠0; when a=0 the original relation requires F=0 and m is not determined by division. Guided check: from y=c+dt, solve for d and separately describe the t=0 branch.",
-    "T22V3::T22E-FND01::S13@1": "A system asks for one pair satisfying every constraint simultaneously. Substitution replaces a variable by an equivalent expression; elimination combines equations to remove a variable. Worked example: x+y=11 and 2x−y=7. Adding gives3x=18, so x=6 and y=5; both originals check. Guided check: solve 3x+2y=17 and x−y=3 by elimination, then verify both equations.",
+    "T22V3::T22E-FND01::S13@1": "A system asks for one pair satisfying every constraint simultaneously. Substitution replaces a variable by an equivalent expression; elimination combines equations to remove a variable. Elementary two-equation systems can have three qualitatively different outcomes. If elimination leaves a determinate variable equation such as2x=6, the system has one solution. If elimination collapses to a false statement such as0=2, the constraints are inconsistent and there is no solution. If elimination collapses to a true identity such as0=0, the equations are dependent and there are infinitely many solutions along the same relation. Worked example: x+y=11 and2x−y=7 gives3x=18, so(x,y)=(6,5). By contrast x+y=4 and2x+2y=9 eliminate to a contradiction, while x+y=4 and2x+2y=8 eliminate to an identity. Guided check: without solving a full system, explain what an elimination outcome 0=7 means and what 0=0 means; then invent one simple pair of linear equations that would produce each outcome.",
     "T22V3::T22E-FND01::S14@1": "Inequalities describe sets. Addition/subtraction preserves order; positive scaling preserves order; negative scaling reverses it. Interval notation uses square brackets for included finite endpoints, parentheses for excluded endpoints, and parentheses at infinity. Worked example: −5x≥20 gives x≤−4, written (−∞,−4]. Guided check: solve 4−2x>10, give interval notation, and test one point inside and one outside your solution.",
     "T22V3::T22E-FND01::S15@1": "Absolute value is distance: |x| is distance from0 and |x−a| is distance from a. For c≥0, |u|≤c gives a bounded interval while |u|>c gives two outside rays. Absolute value is always nonnegative, so negative thresholds can make a condition impossible or automatic. Worked example: |x−6|≤3 gives3≤x≤9. Guided check: solve |3x+2|>8, then decide |y+1|<−3 and |y+1|≥−3 immediately from nonnegativity.",
-    "T22V3::T22E-FND01::S16@1": "Put a quadratic in ax²+bx+c=0 form with a≠0. Factoring plus the zero-product property is efficient when factors are visible; when it is inconvenient, use x=(−b±√(b²−4ac))/(2a). The discriminant D=b²−4ac classifies the number of real roots. Worked example: 3x²+x−1=0 has D=13, so x=(−1±√13)/6. Guided check: solve 2x²−5x−2=0 by the formula and classify x²+6x+10=0 by its discriminant.",
+    "T22V3::T22E-FND01::S16@1": "Put a quadratic in ax²+bx+c=0 form with a≠0. Factoring plus the zero-product property is efficient when factors are visible. Completing the square explains the general method rather than making the quadratic formula appear from nowhere: x²−6x+5=0 becomes x²−6x=−5, so adding 9 to both sides gives (x−3)²=4 and x=1 or5. For ax²+bx+c=0, divide by a, move c/a, and add (b/2a)²; solving the resulting square yields x=(−b±√(b²−4ac))/(2a). The discriminant D=b²−4ac therefore controls whether the real square-root step gives two, one or no real roots. Worked example: 2x²+4x−3=0 becomes x²+2x=3/2, so (x+1)²=5/2 and x=−1±√10/2, matching the formula. Guided check: solve x²+4x−5=0 by completing the square, then identify the discriminant before checking with the formula.",
     "T22V3::T22E-FND01::S17@1": "A synthesis problem hides the chapter label. Name quantities and units, estimate scale, translate percentage moves into multipliers, write an equation, solve it, and recompute the process as a check. Worked example: if C×1.08−150=21,450, then 1.08C=21,600 and C=20,000; substitution confirms. Guided check: a value rises7%, falls3%, then pays a fixed fee; write the symbolic final value and a break-even-fee inequality before inserting any numbers."
   },
   "problems": {
@@ -34,8 +34,8 @@
       "obligationVersion": 2
     },
     "T22V3::T22E-FND01::S03-T@1": {
-      "prompt": "A risk-budget ratio is quoted Equity:Bond:Cash = 10:6:4. Reduce it to the simplest whole-number ratio. If the total budget is ₹84,000, allocate each part and state the equity amount as a fraction of the total.",
-      "obligationVersion": 2
+      "prompt": "A risk-budget ratio is quoted Equity:Bond:Cash = 10:6:4. First state what this ratio means as proportional parts, preserving the order. Reduce it to the simplest whole-number ratio. If the total budget is ₹84,000, allocate each part, state the equity amount as a fraction of the total, and verify the allocations sum back to the total.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-FND01::S04-T@1": {
       "prompt": "A fill probability rises from 40% to 46%. Give the percentage-point increase and relative percent increase. Write 46% as a decimal. Then convert 0.375 to both a fraction in lowest terms and a percentage.",
@@ -62,8 +62,8 @@
       "obligationVersion": 2
     },
     "T22V3::T22E-FND01::S13-T@1": {
-      "prompt": "A desk wants positions x and y satisfying x+y=14 and 3x−2y=17. Solve by elimination and verify the pair in both original constraints.",
-      "obligationVersion": 2
+      "prompt": "Classify each system by elimination, without graphing. A: x+y=5 and x−y=1. B: x+y=5 and 2x+2y=12. C: x+y=5 and 2x+2y=10. For each system, show a legal elimination step, state the resulting equation or statement, and classify the system as having one solution, no solution, or infinitely many solutions. Explain what a false statement such as0=2 and a true identity such as0=0 mean.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-FND01::S14-M@1": {
       "prompt": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
@@ -75,6 +75,61 @@
     },
     "T22V3::T22E-FND01::S16-M@1": {
       "prompt": "Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S05-M@1": {
+      "prompt": "₹24,000 increases by12.5% and then decreases by12.5%. Find the final amount and net percentage change from the start, and explain in one sentence why equal up/down percentages do not generally cancel. Separately, an item is ₹960 after a20% reduction; find its original value.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S08-T@1": {
+      "prompt": "Simplify exactly: (5×10^−6)/(2×10^3). Then evaluate 27^(2/3) and 81^(−1/2). State why (−4)^2 and −4^2 differ, and give one quick powers-of-ten scale check for your scientific-notation quotient.",
+      "obligationVersion": 3
+    },
+    "T22V3::T22E-FND01::S11-M@1": {
+      "prompt": "Solve (3x−5)/2 − (x+1)/3 = 4. Show a reversible chain, state what the final solution means in terms of the original equality, and check your answer in the original equation.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S13-M@1": {
+      "prompt": "Solve 2x+3y=19 and x−y=2. Choose substitution or elimination, briefly explain why your choice is convenient here, and verify the pair in both original equations.",
+      "obligationVersion": 2
+    },
+    "T22V3::T22E-FND01::S14-T@1": {
+      "prompt": "Read the supplied number-line figure. For set A, write exact interval notation and a simplest matching inequality. For set B, do the same. Explain why A uses a closed endpoint while B has one open and one closed endpoint.",
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "numberLine",
+          "title": "Two solution sets",
+          "min": -6,
+          "max": 5,
+          "tick": 1,
+          "intervals": [
+            {
+              "from": -6,
+              "to": -3,
+              "closedFrom": false,
+              "closedTo": true,
+              "label": "A",
+              "continueFrom": true
+            },
+            {
+              "from": -1,
+              "to": 3,
+              "closedFrom": false,
+              "closedTo": true,
+              "label": "B"
+            }
+          ],
+          "note": "Set A's blue interval arrow shows continuation toward −∞; the grey axis arrows belong only to the number-line axis."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S16-T@1": {
+      "prompt": "Solve 3x²−12x=−9 exactly, first putting it in standard zero form. Then classify kx²+2x+1=0 for k=0 and k=1, explaining why the quadratic formula is not the right starting point in the k=0 case.",
+      "obligationVersion": 3
+    },
+    "T22V3::T22E-FND01::S09-T@1": {
+      "prompt": "Simplify 4(2x−3)−3(x+5)+2x. Show an equality chain with at least two intermediate equivalent expressions, including the fully distributed line before collecting like terms. Then verify your final simplified form at x=2 by evaluating both the original and simplified expressions.",
       "obligationVersion": 2
     }
   },
@@ -139,15 +194,15 @@
       ]
     },
     "T22V3::T22E-FND01::S03-T@1": {
-      "reference": "10:6:4 reduces by2 to5:3:2. Total ratio parts=10, so one part=₹8,400. Equity=₹42,000, Bond=₹25,200, Cash=₹16,800. Equity is5/10=1/2 of total.",
+      "reference": "The ratio means the three amounts are proportional to 10,6,4 parts respectively; for example Equity/Bond=10/6 and the order labels which part is which. 10:6:4 reduces by2 to5:3:2. Total reduced parts=10, so one part=₹8,400. Equity=₹42,000, Bond=₹25,200, Cash=₹16,800. Equity is5/10=1/2 of total, and the amounts sum to₹84,000.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Reduces10:6:4 to5:3:2 while preserving order."
+          "criterion": "Interprets 10:6:4 as ordered proportional parts rather than differences or unlabeled numbers."
         },
         {
           "points": 2,
-          "criterion": "Recognizes10 total reduced-ratio parts."
+          "criterion": "Reduces 10:6:4 to5:3:2 while preserving order."
         },
         {
           "points": 4,
@@ -302,21 +357,26 @@
       ]
     },
     "T22V3::T22E-FND01::S13-T@1": {
-      "reference": "Eliminate y by doubling x+y=14 to2x+2y=28 and add to3x−2y=17:5x=45, so x=9 and y=5. Checks:9+5=14 and27−10=17.",
+      "reference": "A: adding the equations gives2x=6, a determinate variable equation, so there is one solution (indeed x=3,y=2, though solving the pair is not required for classification). B: doubling the first equation gives2x+2y=10; comparing/subtracting from2x+2y=12 yields0=2, a contradiction, so there is no solution. C: doubling the first gives exactly2x+2y=10; subtraction yields0=0, an identity, so the equations are dependent and there are infinitely many solutions. A false statement means no pair can satisfy both constraints; a true identity after elimination means one equation supplied no independent new constraint.",
       "rubric": [
         {
-          "points": 4,
-          "criterion": "Uses a valid elimination operation."
+          "points": 2,
+          "criterion": "Uses a legal elimination step on system A and classifies it as one solution from a determinate equation such as2x=6."
         },
         {
           "points": 3,
-          "criterion": "Gets x=9,y=5."
+          "criterion": "Eliminates system B to a contradiction such as0=2 and classifies it as no solution."
         },
         {
           "points": 3,
-          "criterion": "Verifies both original constraints."
+          "criterion": "Eliminates system C to an identity0=0 and classifies it as infinitely many solutions."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that a false elimination statement means inconsistency, while0=0 means dependent constraints rather than a unique pair."
         }
-      ]
+      ],
+      "marking": "Human/AI review required. Classification credit requires the elimination outcome to be shown; do not infer one/no/infinite merely from a final label."
     },
     "T22V3::T22E-FND01::S14-M@1": {
       "reference": "First multiply by positive10:2(2x−3)≤5(x+4), so4x−6≤5x+20 and x≥−26, i.e.[−26,∞). For example0 satisfies and−27 fails. Second:−6x+3>9, so−6x>6; divide by−6 and reverse: x<−1, i.e.(−∞,−1). For example−2 satisfies and0 fails.",
@@ -380,6 +440,166 @@
           "criterion": "No valid root is cancelled away and formula assumptions are respected."
         }
       ]
+    },
+    "T22V3::T22E-FND01::S05-M@1": {
+      "reference": "Multiplier=1.125×0.875=0.984375, so final=₹23,625 and net change=−1.5625%. Equal percentage labels do not cancel because the second percentage acts on the already changed base (equivalently (1+p)(1−p)=1−p²). If ₹960 is80% of the original, original=960/0.8=₹1,200.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Final value ₹23,625 is correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Net change −1.5625% is correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why equal up/down percentage changes do not generally cancel."
+        },
+        {
+          "points": 2,
+          "criterion": "Reverse-percentage original ₹1,200 is correct."
+        },
+        {
+          "points": 1,
+          "criterion": "Uses multiplicative reasoning rather than adding percentage labels."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S08-T@1": {
+      "reference": "(5×10^−6)/(2×10^3)=2.5×10^−9. Also27^(2/3)=9 and81^(−1/2)=1/√81=1/9. Parentheses make −4 the base in (−4)^2, giving16; without parentheses the exponent applies to4 first and the external minus gives−16. A scale check: 10^−6/10^3=10^−9, so an answer around a few×10^−9 is plausible.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Scientific-notation quotient2.5×10^−9 is correct."
+        },
+        {
+          "points": 2,
+          "criterion": "27^(2/3)=9."
+        },
+        {
+          "points": 2,
+          "criterion": "81^(−1/2)=1/9 using reciprocal/root reasoning."
+        },
+        {
+          "points": 2,
+          "criterion": "Sign/exponent distinction is explained correctly."
+        },
+        {
+          "points": 1,
+          "criterion": "Gives a valid powers-of-ten scale check for the quotient."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S11-M@1": {
+      "reference": "Multiply both sides by6: 3(3x−5)−2(x+1)=24, so9x−15−2x−2=24, hence7x=41 and x=41/7. The solution is the value that makes the two original sides equal. Substitution into the original equation verifies it.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Clears denominators with a valid reversible operation."
+        },
+        {
+          "points": 3,
+          "criterion": "Solves to x=41/7."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows a coherent equality-preserving algebraic chain."
+        },
+        {
+          "points": 1,
+          "criterion": "States that the solution is the value making the original two sides equal."
+        },
+        {
+          "points": 2,
+          "criterion": "Checks the result in the original equation."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S13-M@1": {
+      "reference": "Either method is valid. For example substitution is convenient because x−y=2 gives x=y+2 immediately. Then2(y+2)+3y=19, so5y=15, y=3 and x=5. Both originals check:10+9=19 and5−3=2.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Chooses a valid method and gives a sensible convenience reason."
+        },
+        {
+          "points": 4,
+          "criterion": "Gets x=5,y=3."
+        },
+        {
+          "points": 3,
+          "criterion": "Checks both original equations."
+        },
+        {
+          "points": 1,
+          "criterion": "States the solution as the common ordered pair/context pair."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S14-T@1": {
+      "reference": "A is (−∞,−3], equivalently x≤−3. B is (−1,3], equivalently −1<x≤3. A includes −3, so its endpoint is closed. B excludes −1 but includes3, hence open at−1 and closed at3.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Reads A as (−∞,−3] and x≤−3."
+        },
+        {
+          "points": 4,
+          "criterion": "Reads B as (−1,3] and −1<x≤3."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly explains open versus closed endpoint inclusion."
+        },
+        {
+          "points": 1,
+          "criterion": "Interprets the left ray of A as continuing toward −∞."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S16-T@1": {
+      "reference": "First rewrite as3x²−12x+9=0=3(x²−4x+3)=3(x−1)(x−3), so x=1,3. If k=0 the equation is linear:2x+1=0, so x=−1/2; the quadratic formula would divide by2k=0. If k=1, discriminant4−4=0, so there is one repeated real root x=−1.",
+      "rubric": [
+        {
+          "points": 1,
+          "criterion": "Rewrites the first equation in standard zero form."
+        },
+        {
+          "points": 3,
+          "criterion": "Gets roots1 and3 using valid zero-product reasoning."
+        },
+        {
+          "points": 3,
+          "criterion": "Handles k=0 as linear with x=−1/2 and explains the division-by-zero issue."
+        },
+        {
+          "points": 3,
+          "criterion": "Handles k=1 as a repeated root−1."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S09-T@1": {
+      "reference": "A valid chain is 4(2x−3)−3(x+5)+2x = 8x−12−3x−15+2x = (8x−3x+2x)+(−12−15) = 7x−27. At x=2, the original is 4(1)−21+4=−13 and the simplified form is14−27=−13. The numerical agreement is a check at one input, not a proof of identity for every x.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Distributes correctly and collects only genuinely like terms to obtain 7x−27."
+        },
+        {
+          "points": 2,
+          "criterion": "Shows a visible equality chain with at least two intermediate expressions, and every displayed step is equivalent to the previous one."
+        },
+        {
+          "points": 3,
+          "criterion": "Original and simplified expressions both evaluate to −13 at x=2."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses the numerical substitution as a check, not as proof of identity for all x."
+        }
+      ],
+      "marking": "Human/AI review required. Accept every mathematically valid route. Score only observed work; do not infer an unshown equality-preserving chain."
     }
   },
   "prerequisiteAudit": {
@@ -668,23 +888,19 @@
     ],
     "T22V3::T22E-FND01::S13@1": [
       [
-        "main",
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ],
       [
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
-      ],
-      [
-        "main",
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-FND01::S14@1": [
@@ -704,8 +920,7 @@
         "transfer"
       ],
       [
-        "main",
-        "transfer"
+        "main"
       ]
     ],
     "T22V3::T22E-FND01::S15@1": [
@@ -765,7 +980,7 @@
       ]
     ]
   },
-  "instructionVersion": "m01-instruction-a07-separated-v1",
+  "instructionVersion": "m01-instruction-v12-lang-foundation-r3",
   "instructionSeparation": {
     "T22V3::T22E-FND01::S01@1": {
       "main": [
@@ -793,7 +1008,7 @@
         "7.5 minutes"
       ],
       "transfer": [
-        "10:6:4",
+        "First state what this ratio means as proportional parts",
         "₹84,000"
       ]
     },
@@ -809,9 +1024,8 @@
     },
     "T22V3::T22E-FND01::S05@1": {
       "main": [
-        "₹24,000",
-        "12.5%",
-        "₹960"
+        "₹24,000 increases by12.5%",
+        "equal up/down percentages do not generally cancel"
       ],
       "transfer": [
         "₹50,000",
@@ -847,9 +1061,8 @@
         "√[(-7)^2]"
       ],
       "transfer": [
-        "(5×10^−6)/(2×10^3)",
-        "27^(2/3)",
-        "(−4)^2 and −4^2"
+        "81^(−1/2)",
+        "powers-of-ten scale check"
       ]
     },
     "T22V3::T22E-FND01::S09@1": {
@@ -858,8 +1071,8 @@
         "(2a−3)(a+4)"
       ],
       "transfer": [
-        "4(2x−3)−3(x+5)+2x",
-        "at x=2"
+        "Show an equality chain with at least two intermediate equivalent expressions",
+        "fully distributed line before collecting like terms"
       ]
     },
     "T22V3::T22E-FND01::S10@1": {
@@ -875,7 +1088,8 @@
     },
     "T22V3::T22E-FND01::S11@1": {
       "main": [
-        "(3x−5)/2 − (x+1)/3 = 4"
+        "(3x−5)/2 − (x+1)/3 = 4",
+        "what the final solution means"
       ],
       "transfer": [
         "5−2(3x−4)=3(x+1)+7",
@@ -894,12 +1108,14 @@
     },
     "T22V3::T22E-FND01::S13@1": {
       "main": [
-        "2x+3y=19",
-        "x−y=2"
+        "Solve 2x+3y=19 and x−y=2",
+        "Choose substitution or elimination"
       ],
       "transfer": [
-        "x+y=14",
-        "3x−2y=17"
+        "Classify each system by elimination",
+        "A: x+y=5 and x−y=1",
+        "B: x+y=5 and 2x+2y=12",
+        "C: x+y=5 and 2x+2y=10"
       ]
     },
     "T22V3::T22E-FND01::S14@1": {
@@ -908,8 +1124,8 @@
         "−3(2x−1)>9"
       ],
       "transfer": [
-        "7−4x≥19",
-        "2<3x+5≤14"
+        "For set A",
+        "For set B"
       ]
     },
     "T22V3::T22E-FND01::S15@1": {
@@ -930,8 +1146,8 @@
         "x²+2x+5=0"
       ],
       "transfer": [
-        "3x²−12x+9=0",
-        "kx²+2x+1=0"
+        "3x²−12x=−9",
+        "k=0 and k=1"
       ]
     },
     "T22V3::T22E-FND01::S17@1": {
@@ -974,5 +1190,1384 @@
         "T22V3::T22E-FND01::S16-M@1"
       ]
     }
+  },
+  "sessionOverrides": {
+    "T22V3::T22E-FND01::S01@1": {
+      "representations": [
+        {
+          "kind": "numberLine",
+          "title": "Signed values are positions, not digit strings",
+          "min": -4,
+          "max": 1,
+          "tick": 1,
+          "points": [
+            {
+              "value": -3.2,
+              "label": "−3.2"
+            },
+            {
+              "value": -2.9,
+              "label": "−2.9"
+            },
+            {
+              "value": -2.4,
+              "label": "−2.4"
+            },
+            {
+              "value": -1.8,
+              "label": "−1.8"
+            }
+          ],
+          "note": "Farther right means larger, even when every value is negative."
+        },
+        {
+          "kind": "table",
+          "title": "Structural laws underneath legal algebra moves",
+          "headers": [
+            "law",
+            "safe move",
+            "not the same"
+          ],
+          "rows": [
+            [
+              "commutative",
+              "a+b=b+a; ab=ba",
+              "a−b≠b−a in general"
+            ],
+            [
+              "associative",
+              "(a+b)+c=a+(b+c)",
+              "(a−b)−c≠a−(b−c) in general"
+            ],
+            [
+              "inverse",
+              "a+(−a)=0; a·(1/a)=1 for a≠0",
+              "division by0 is never licensed"
+            ],
+            [
+              "distributive",
+              "a(b+c)=ab+ac",
+              "a/(b+c) does not split that way"
+            ]
+          ],
+          "note": "Later algebra is easier to audit when you can name the property making a move legal."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S02@1": {
+      "representations": [
+        {
+          "kind": "numberLine",
+          "title": "Fractions are numbers with magnitude",
+          "min": 0,
+          "max": 1,
+          "tick": 0.25,
+          "points": [
+            {
+              "value": 0.3333333333333333,
+              "label": "1/3"
+            },
+            {
+              "value": 0.5,
+              "label": "1/2"
+            },
+            {
+              "value": 0.75,
+              "label": "3/4"
+            }
+          ],
+          "note": "Equivalent fraction notation names the same point; common denominators make the size comparison explicit."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S03@1": {
+      "representations": [
+        {
+          "kind": "table",
+          "title": "A ratio table exposes one scale factor",
+          "headers": [
+            "parts",
+            "A",
+            "B",
+            "total"
+          ],
+          "rows": [
+            [
+              "ratio",
+              5,
+              3,
+              8
+            ],
+            [
+              "× 120",
+              600,
+              360,
+              960
+            ]
+          ],
+          "note": "Every entry in a proportional row uses the same multiplier."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S04@1": {
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Two different questions about a percentage move",
+          "headers": [
+            "measure",
+            "30% → 36%"
+          ],
+          "rows": [
+            [
+              "percentage-point change",
+              "+6 pp"
+            ],
+            [
+              "relative change",
+              "6/30 = 20%"
+            ]
+          ],
+          "note": "The denominator answers 'relative to what?'"
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S05@1": {
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Sequential percentage changes are multiplier composition",
+          "headers": [
+            "step",
+            "multiplier",
+            "running factor"
+          ],
+          "rows": [
+            [
+              "start",
+              "—",
+              "1"
+            ],
+            [
+              "+8%",
+              "1.08",
+              "1.08"
+            ],
+            [
+              "−20%",
+              "0.80",
+              "0.864"
+            ]
+          ],
+          "note": "Multipliers commute when there are no fixed fees or rounding, but equal +p% and −p% do not cancel."
+        }
+      ],
+      "retrievalPractice": [
+        "Without a calculator, order −1.8, −1.75 and −1.705.",
+        "Which is larger: 7/12 or 3/5? Justify exactly.",
+        "A rate rises from 20% to 25%. Give the percentage-point and relative changes."
+      ]
+    },
+    "T22V3::T22E-FND01::S06@1": {
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Units cancel like algebraic factors",
+          "headers": [
+            "quantity",
+            "conversion chain"
+          ],
+          "rows": [
+            [
+              "54 km/h",
+              "54 × (1000 m / 1 km) × (1 h / 3600 s) = 15 m/s"
+            ]
+          ],
+          "note": "The numerical factors and their units travel together."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S10@1": {
+      "retrievalPractice": [
+        "Convert 90 km/h to m/s with units shown.",
+        "Estimate 3980×0.024 before calculating exactly.",
+        "Evaluate 25^(−1/2) and state the nonzero-base condition.",
+        "Simplify 3(2x−5)−2(x+4), then verify at x=1."
+      ]
+    },
+    "T22V3::T22E-FND01::S14@1": {
+      "representations": [
+        {
+          "kind": "numberLine",
+          "title": "Inequality ↔ interval ↔ shaded set",
+          "min": -7,
+          "max": 2,
+          "tick": 1,
+          "intervals": [
+            {
+              "from": -7,
+              "to": -4,
+              "closedFrom": false,
+              "closedTo": true,
+              "label": "x ≤ −4"
+            }
+          ],
+          "note": "The filled endpoint means −4 is included; the ray continues left."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S15@1": {
+      "representations": [
+        {
+          "kind": "numberLine",
+          "title": "Absolute value is distance from a center",
+          "min": 0,
+          "max": 12,
+          "tick": 1,
+          "intervals": [
+            {
+              "from": 3,
+              "to": 9,
+              "closedFrom": true,
+              "closedTo": true,
+              "label": "|x−6| ≤ 3"
+            }
+          ],
+          "points": [
+            {
+              "value": 6,
+              "label": "center 6"
+            }
+          ],
+          "note": "The interval consists exactly of points whose distance from 6 is at most 3."
+        }
+      ]
+    },
+    "T22V3::T22E-FND01::S16@1": {
+      "representations": [
+        {
+          "kind": "table",
+          "title": "The discriminant records what the completed square permits",
+          "headers": [
+            "D=b²−4ac",
+            "real roots"
+          ],
+          "rows": [
+            [
+              "> 0",
+              "two distinct"
+            ],
+            [
+              "= 0",
+              "one repeated"
+            ],
+            [
+              "< 0",
+              "none"
+            ]
+          ],
+          "note": "This is a consequence of the real square-root step, not an unrelated mnemonic."
+        }
+      ],
+      "retrievalPractice": [
+        "Solve 4−3x>10 and give interval notation.",
+        "Rearrange y=a+bt for b, including the t=0 branch.",
+        "Solve x+y=9, x−y=1 and verify both equations.",
+        "Solve |x−2|≤5 as a distance condition."
+      ]
+    },
+    "T22V3::T22E-FND01::S17@1": {
+      "retrievalPractice": [
+        "A quantity is multiplied by 1.12 and then 0.95. Estimate the net direction before calculating.",
+        "A formula result has units metres/second² but the target quantity is metres. Identify the structural problem.",
+        "Choose one independent check—substitution, units or scale—for an algebraic answer and explain what failure it could catch."
+      ]
+    },
+    "T22V3::T22E-FND01::S13@1": {
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Three possible outcomes of two linear constraints",
+          "headers": [
+            "algebra after elimination",
+            "meaning",
+            "geometric picture"
+          ],
+          "rows": [
+            [
+              "x=6",
+              "one ordered pair",
+              "two distinct lines cross once"
+            ],
+            [
+              "0=5",
+              "no ordered pair",
+              "distinct parallel lines"
+            ],
+            [
+              "0=0",
+              "infinitely many pairs",
+              "the same line written twice"
+            ]
+          ],
+          "note": "M02 S04 will render the same three cases geometrically."
+        }
+      ],
+      "centralCapability": "Solve elementary two-equation linear systems by substitution or elimination, classify one/no/infinitely-many solution outcomes from elimination, and verify a unique solution when one exists.",
+      "requiredOwnership": [
+        "Interpret a system as simultaneous constraints.",
+        "Choose substitution or elimination strategically.",
+        "Perform elimination with legal equation operations.",
+        "Classify an elementary two-equation linear system as having one, no, or infinitely many solutions from its elimination outcome.",
+        "Check the final pair in both original equations."
+      ],
+      "applicationScope": "Elementary two-equation linear systems with one, no, or infinitely many solutions; classification stays algebraic and pre-matrix.",
+      "transferScope": "A changed coefficient/context surface requiring elimination to expose either an inconsistency or an identity.",
+      "inScope": [
+        "Substitution",
+        "Elimination",
+        "Constraint intersection",
+        "One/no/infinitely-many classification",
+        "Pair verification"
+      ],
+      "outOfScope": [
+        "Matrix rank/determinants",
+        "Gaussian elimination beyond2×2",
+        "Least squares",
+        "Optimization"
+      ],
+      "exitCondition": "Solve one fresh unique two-unknown system and classify fresh inconsistent/dependent systems from explicit elimination outcomes.",
+      "contractHash": "ee7613d4e0a90042b30fbc8d143aed7e8918b9abff429ac5768f38b7ed34ad74"
+    }
+  },
+  "readinessDiagnostic": {
+    "intro": "Optional routing check. Attempt it cold. It is not a mastery test and never clears a session. A strong result can suggest where to begin, but it does not certify that all of M01 is known.",
+    "items": [
+      {
+        "prompt": "Evaluate −3²+(−3)².",
+        "answer": "0",
+        "route": "S01 signed numbers & operation structure"
+      },
+      {
+        "prompt": "Which is larger, 5/8 or 3/5? Give an exact reason.",
+        "answer": "5/8 because25/40>24/40",
+        "route": "S02 fractions"
+      },
+      {
+        "prompt": "240 km in3 h is what unit rate?",
+        "answer": "80 km/h",
+        "route": "S03 ratios/rates"
+      },
+      {
+        "prompt": "A displayed rate rises from40% to50%. Give the percentage-point and relative increases.",
+        "answer": "+10 percentage points; +25% relative",
+        "route": "S04 percentages"
+      },
+      {
+        "prompt": "₹100 rises10% and then falls10%. Final value?",
+        "answer": "₹99",
+        "route": "S05 sequential percentages"
+      },
+      {
+        "prompt": "Convert72 km/h to m/s.",
+        "answer": "20 m/s",
+        "route": "S06 units/conversions"
+      },
+      {
+        "prompt": "Estimate198×0.051 to one useful significant scale.",
+        "answer": "about10",
+        "route": "S07 estimation/scale"
+      },
+      {
+        "prompt": "Evaluate27^(2/3).",
+        "answer": "9",
+        "route": "S08 powers/roots"
+      },
+      {
+        "prompt": "Simplify3(x+2)−x.",
+        "answer": "2x+6",
+        "route": "S09 algebraic expressions"
+      },
+      {
+        "prompt": "Factor x²−5x+6.",
+        "answer": "(x−2)(x−3)",
+        "route": "S10 factoring"
+      },
+      {
+        "prompt": "Solve(x−1)/3=4.",
+        "answer": "x=13",
+        "route": "S11 equations"
+      },
+      {
+        "prompt": "From y=a+bt, solve for b and state the exceptional t=0 branch.",
+        "answer": "b=(y−a)/t for t≠0; if t=0 the original requires y=a and does not determine b",
+        "route": "S12 formula rearrangement/parameter branches"
+      },
+      {
+        "prompt": "Solve x+y=7 and x−y=1.",
+        "answer": "x=4,y=3",
+        "route": "S13 simultaneous equations"
+      },
+      {
+        "prompt": "Solve −2x>6 and give interval notation.",
+        "answer": "x<−3, i.e. (−∞,−3)",
+        "route": "S14 inequalities"
+      },
+      {
+        "prompt": "Solve |x−2|≤5.",
+        "answer": "−3≤x≤7",
+        "route": "S15 absolute value/distance"
+      },
+      {
+        "prompt": "Solve x²−5x+6=0.",
+        "answer": "x=2 or3",
+        "route": "S16 quadratics"
+      },
+      {
+        "prompt": "A value V rises10%, then falls20%, then pays a fixed fee f. Write the final value symbolically.",
+        "answer": "0.88V−f",
+        "route": "S17 synthesis/model coordination"
+      }
+    ],
+    "routing": "Use this only to choose a starting point or revisit cluster. If you miss an item because the concept itself is unclear, route to the named session; one isolated arithmetic slip is not a reason to restart. Even a perfect score is not independent mastery evidence and does not certify all of M01—it only suggests that fast traversal/retrieval checks may be appropriate."
+  },
+  "representationProgression": [
+    {
+      "representation": "number line/order",
+      "introduced": "S01",
+      "connected": "S14 inequalities and S15 absolute-value distance",
+      "independentEvidence": "S14 Transfer renders and requires reading two solution sets",
+      "status": "implemented"
+    },
+    {
+      "representation": "fraction magnitude on number line",
+      "introduced": "S02",
+      "connected": "exact fraction comparison and later rates",
+      "independentEvidence": "S02 Transfer exact comparison; visual is instructional support, not claimed graph-reading evidence",
+      "status": "implemented/support"
+    },
+    {
+      "representation": "ratio table / common scale factor",
+      "introduced": "S03",
+      "connected": "rates, percentages and proportional allocation",
+      "independentEvidence": "S03 Transfer explicitly interprets ordered proportional parts",
+      "status": "implemented"
+    },
+    {
+      "representation": "multiplier table",
+      "introduced": "S05",
+      "connected": "M02 exponential growth",
+      "independentEvidence": "S05 Main/Transfer require multiplier composition",
+      "status": "implemented"
+    },
+    {
+      "representation": "dimensional cancellation chain",
+      "introduced": "S06",
+      "connected": "rates and later quantitative models",
+      "independentEvidence": "S06 Main requires shown unit cancellation and dimensional audit",
+      "status": "implemented"
+    },
+    {
+      "representation": "inequality ↔ interval ↔ shaded number line",
+      "introduced": "S14",
+      "connected": "S15 distance sets and M02 domains/ranges",
+      "independentEvidence": "S14 Transfer requires reading the rendered number line into interval and inequality forms",
+      "status": "implemented/assessed"
+    },
+    {
+      "representation": "absolute value as distance interval",
+      "introduced": "S15",
+      "connected": "M02 absolute-value graph",
+      "independentEvidence": "S15 tasks require distance interpretation; graphical function representation remains M02",
+      "status": "implemented/bounded"
+    },
+    {
+      "representation": "discriminant table",
+      "introduced": "S16",
+      "connected": "M02 polynomial x-intercepts",
+      "independentEvidence": "S16 Main classifies root count algebraically; M02 owns the graphical reinterpretation",
+      "status": "implemented/bounded"
+    }
+  ],
+  "evidenceDistance": {
+    "T22V3::T22E-FND01::S01-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S01-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S02-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S02-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S03-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S03-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S04-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S04-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S05-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S05-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Adds a structural decision about whether pure percentage multipliers commute rather than only executing the taught calculation."
+    },
+    "T22V3::T22E-FND01::S06-M@1": {
+      "classification": "fresh Main evidence",
+      "reason": "Coordinates conversion, a dimensionless percentage and diagnosis of an invalid formula in one unseen task."
+    },
+    "T22V3::T22E-FND01::S06-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S07-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S07-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S08-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S08-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S09-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S09-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S10-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S10-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Combines GCF, perfect-square structure and diagnosis of illegal cancellation rather than repeating one factoring template."
+    },
+    "T22V3::T22E-FND01::S11-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S11-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S12-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S12-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Reverses a symbolic formula and requires preserving an exceptional original branch created by a solved-form denominator."
+    },
+    "T22V3::T22E-FND01::S13-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S13-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies the explicitly taught elimination-outcome classification to three fresh elementary systems; it is independent public ownership evidence for one/no/infinitely-many cases, not a claim of unfamiliar transfer."
+    },
+    "T22V3::T22E-FND01::S14-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S14-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes algebraic solving into reading a rendered number-line set and reconstructing interval/inequality forms."
+    },
+    "T22V3::T22E-FND01::S15-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S15-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Combines shifted distance, outside rays and negative-threshold boundary cases."
+    },
+    "T22V3::T22E-FND01::S16-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught representation/procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND01::S16-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Adds a nonzero-form equation plus the degenerate k=0 parameter branch where the quadratic method ceases to apply."
+    },
+    "T22V3::T22E-FND01::S17-M@1": {
+      "classification": "fresh Main evidence",
+      "reason": "Removes chapter labels and requires model construction, exact solution, return calculation and independent checks in one unseen situation."
+    },
+    "T22V3::T22E-FND01::S17-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Moves from numerical account data to a symbolic process and derives a general break-even condition with interpretation restrictions."
+    }
+  },
+  "claimEvidence": {
+    "T22V3::T22E-FND01::S01@1": [
+      {
+        "claim": "Evaluate nested parentheses before combining outer operations.",
+        "task": "main",
+        "publicRequest": "Evaluate exactly: −18 − [7 − 3(−4)] + 2^3. Then order from smallest to largest: −3, −2.75, −2.7, −2.6. Give one quick sign/magnitude sanity check for each part.",
+        "rubricEvidence": [
+          "Nested expression is evaluated with correct grouping and sign logic."
+        ]
+      },
+      {
+        "claim": "Distinguish subtraction from adding a negative.",
+        "task": "main",
+        "publicRequest": "Evaluate exactly: −18 − [7 − 3(−4)] + 2^3. Then order from smallest to largest: −3, −2.75, −2.7, −2.6. Give one quick sign/magnitude sanity check for each part.",
+        "rubricEvidence": [
+          "Nested expression is evaluated with correct grouping and sign logic."
+        ]
+      },
+      {
+        "claim": "Apply powers before an external leading negative unless parentheses say otherwise.",
+        "task": "transfer",
+        "publicRequest": "Without a calculator, evaluate −3^2 + (−3)^2 − 2[5−(−1)]. Then decide which is larger: −2.75 or −2.8, and justify using number-line order rather than calculator authority.",
+        "rubricEvidence": [
+          "Correctly distinguishes −3² from (−3)² and gets −12."
+        ]
+      },
+      {
+        "claim": "Compare negative numbers by position on the number line, not by digit size.",
+        "task": "transfer",
+        "publicRequest": "Without a calculator, evaluate −3^2 + (−3)^2 − 2[5−(−1)]. Then decide which is larger: −2.75 or −2.8, and justify using number-line order rather than calculator authority.",
+        "rubricEvidence": [
+          "Correctly identifies −2.75 as larger.",
+          "Justification uses number-line order rather than calculator authority."
+        ]
+      },
+      {
+        "claim": "Perform a quick magnitude/sign sanity check before accepting an answer.",
+        "task": "main",
+        "publicRequest": "Evaluate exactly: −18 − [7 − 3(−4)] + 2^3. Then order from smallest to largest: −3, −2.75, −2.7, −2.6. Give one quick sign/magnitude sanity check for each part.",
+        "rubricEvidence": [
+          "A sensible magnitude/sign sanity check is stated."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S02@1": [
+      {
+        "claim": "Reduce a fraction by a common nonzero factor.",
+        "task": "transfer",
+        "publicRequest": "Which is larger, 17/28 or 5/8? Then compute and reduce (5/6)(3/10) explicitly, and use that result to evaluate 1 − [2/3 − (5/6)(3/10)] exactly.",
+        "rubricEvidence": [
+          "Fraction product is explicitly reduced to1/4."
+        ]
+      },
+      {
+        "claim": "Construct a common denominator deliberately rather than by trial.",
+        "task": "main",
+        "publicRequest": "Compute exactly and reduce fully: 3/8 + 5/12 − 1/6. Then compute (7/9) ÷ (14/15). Do not convert to decimals until after the exact answers.",
+        "rubricEvidence": [
+          "First expression is converted to a valid common denominator and simplified to 5/8."
+        ]
+      },
+      {
+        "claim": "Add/subtract fractions only after expressing like-sized parts.",
+        "task": "main",
+        "publicRequest": "Compute exactly and reduce fully: 3/8 + 5/12 − 1/6. Then compute (7/9) ÷ (14/15). Do not convert to decimals until after the exact answers.",
+        "rubricEvidence": [
+          "First expression is converted to a valid common denominator and simplified to 5/8."
+        ]
+      },
+      {
+        "claim": "Multiply numerators and denominators then reduce cleanly.",
+        "task": "transfer",
+        "publicRequest": "Which is larger, 17/28 or 5/8? Then compute and reduce (5/6)(3/10) explicitly, and use that result to evaluate 1 − [2/3 − (5/6)(3/10)] exactly.",
+        "rubricEvidence": [
+          "Fraction product is explicitly reduced to1/4."
+        ]
+      },
+      {
+        "claim": "Interpret division by a nonzero fraction as multiplication by its reciprocal.",
+        "task": "main",
+        "publicRequest": "Compute exactly and reduce fully: 3/8 + 5/12 − 1/6. Then compute (7/9) ÷ (14/15). Do not convert to decimals until after the exact answers.",
+        "rubricEvidence": [
+          "Division is converted to reciprocal multiplication and simplified to 5/6."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S03@1": [
+      {
+        "claim": "Interpret a:b as a multiplicative comparison.",
+        "task": "transfer",
+        "publicRequest": "A risk-budget ratio is quoted Equity:Bond:Cash = 10:6:4. First state what this ratio means as proportional parts, preserving the order. Reduce it to the simplest whole-number ratio. If the total budget is ₹84,000, allocate each part, state the equity amount as a fraction of the total, and verify the allocations sum back to the total.",
+        "rubricEvidence": [
+          "Interprets 10:6:4 as ordered proportional parts rather than differences or unlabeled numbers."
+        ]
+      },
+      {
+        "claim": "Reduce ratios while preserving order.",
+        "task": "transfer",
+        "publicRequest": "A risk-budget ratio is quoted Equity:Bond:Cash = 10:6:4. First state what this ratio means as proportional parts, preserving the order. Reduce it to the simplest whole-number ratio. If the total budget is ₹84,000, allocate each part, state the equity amount as a fraction of the total, and verify the allocations sum back to the total.",
+        "rubricEvidence": [
+          "Reduces 10:6:4 to5:3:2 while preserving order."
+        ]
+      },
+      {
+        "claim": "Convert a ratio to a unit rate when units are supplied.",
+        "task": "main",
+        "publicRequest": "A toy desk processes 360 orders in 12 minutes at a constant rate. Find the unit rate in orders/minute and orders/second. At that rate, how many orders are processed in 7.5 minutes?",
+        "rubricEvidence": [
+          "Correct unit rate 30 orders/minute.",
+          "Correct conversion to 0.5 order/second."
+        ]
+      },
+      {
+        "claim": "Solve direct proportions using a scale factor or equation.",
+        "task": "main",
+        "publicRequest": "A toy desk processes 360 orders in 12 minutes at a constant rate. Find the unit rate in orders/minute and orders/second. At that rate, how many orders are processed in 7.5 minutes?",
+        "rubricEvidence": [
+          "Correct scaled count 225."
+        ]
+      },
+      {
+        "claim": "Keep compound units attached through calculations.",
+        "task": "main",
+        "publicRequest": "A toy desk processes 360 orders in 12 minutes at a constant rate. Find the unit rate in orders/minute and orders/second. At that rate, how many orders are processed in 7.5 minutes?",
+        "rubricEvidence": [
+          "Units are carried and interpreted correctly."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S04@1": [
+      {
+        "claim": "Convert percent to decimal multiplier and back.",
+        "task": "transfer",
+        "publicRequest": "A fill probability rises from 40% to 46%. Give the percentage-point increase and relative percent increase. Write 46% as a decimal. Then convert 0.375 to both a fraction in lowest terms and a percentage.",
+        "rubricEvidence": [
+          "46% is correctly written as0.46."
+        ]
+      },
+      {
+        "claim": "Find a percentage of a base amount.",
+        "task": "main",
+        "publicRequest": "A model's error rate falls from 8% to 6%. Report (a) the change in percentage points and (b) the relative percent reduction in error. If there were 2,500 cases at each rate, how many fewer errors does 6% imply?",
+        "rubricEvidence": [
+          "Computes 50 fewer errors."
+        ]
+      },
+      {
+        "claim": "Compute relative percent change using the original value as denominator.",
+        "task": "main",
+        "publicRequest": "A model's error rate falls from 8% to 6%. Report (a) the change in percentage points and (b) the relative percent reduction in error. If there were 2,500 cases at each rate, how many fewer errors does 6% imply?",
+        "rubricEvidence": [
+          "Reports a 25% relative reduction using 8% as base."
+        ]
+      },
+      {
+        "claim": "Compute percentage-point change between percentages.",
+        "task": "main",
+        "publicRequest": "A model's error rate falls from 8% to 6%. Report (a) the change in percentage points and (b) the relative percent reduction in error. If there were 2,500 cases at each rate, how many fewer errors does 6% imply?",
+        "rubricEvidence": [
+          "Reports a 2-percentage-point reduction."
+        ]
+      },
+      {
+        "claim": "State explicitly which notion is being reported.",
+        "task": "main",
+        "publicRequest": "A model's error rate falls from 8% to 6%. Report (a) the change in percentage points and (b) the relative percent reduction in error. If there were 2,500 cases at each rate, how many fewer errors does 6% imply?",
+        "rubricEvidence": [
+          "Clearly distinguishes the two change measures."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S05@1": [
+      {
+        "claim": "Translate +p% and −p% into multipliers.",
+        "task": "main",
+        "publicRequest": "₹24,000 increases by12.5% and then decreases by12.5%. Find the final amount and net percentage change from the start, and explain in one sentence why equal up/down percentages do not generally cancel. Separately, an item is ₹960 after a20% reduction; find its original value.",
+        "rubricEvidence": [
+          "Uses multiplicative reasoning rather than adding percentage labels."
+        ]
+      },
+      {
+        "claim": "Compose sequential percentage moves by multiplication.",
+        "task": "main",
+        "publicRequest": "₹24,000 increases by12.5% and then decreases by12.5%. Find the final amount and net percentage change from the start, and explain in one sentence why equal up/down percentages do not generally cancel. Separately, an item is ₹960 after a20% reduction; find its original value.",
+        "rubricEvidence": [
+          "Uses multiplicative reasoning rather than adding percentage labels."
+        ]
+      },
+      {
+        "claim": "Compute final value and net percent change from the original base.",
+        "task": "main",
+        "publicRequest": "₹24,000 increases by12.5% and then decreases by12.5%. Find the final amount and net percentage change from the start, and explain in one sentence why equal up/down percentages do not generally cancel. Separately, an item is ₹960 after a20% reduction; find its original value.",
+        "rubricEvidence": [
+          "Final value ₹23,625 is correct.",
+          "Net change −1.5625% is correct."
+        ]
+      },
+      {
+        "claim": "Explain why +p% then −p% is generally negative for p≠0.",
+        "task": "main",
+        "publicRequest": "₹24,000 increases by12.5% and then decreases by12.5%. Find the final amount and net percentage change from the start, and explain in one sentence why equal up/down percentages do not generally cancel. Separately, an item is ₹960 after a20% reduction; find its original value.",
+        "rubricEvidence": [
+          "Explains why equal up/down percentage changes do not generally cancel."
+        ]
+      },
+      {
+        "claim": "Recover an original value by dividing by the known multiplier.",
+        "task": "main",
+        "publicRequest": "₹24,000 increases by12.5% and then decreases by12.5%. Find the final amount and net percentage change from the start, and explain in one sentence why equal up/down percentages do not generally cancel. Separately, an item is ₹960 after a20% reduction; find its original value.",
+        "rubricEvidence": [
+          "Reverse-percentage original ₹1,200 is correct."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S06@1": [
+      {
+        "claim": "Attach units to every measured quantity.",
+        "task": "main",
+        "publicRequest": "Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.",
+        "rubricEvidence": [
+          "Units are shown rather than stripped early."
+        ]
+      },
+      {
+        "claim": "Use conversion factors equal to one so unwanted units cancel.",
+        "task": "main",
+        "publicRequest": "Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.",
+        "rubricEvidence": [
+          "72 km/h is correctly converted to20 m/s with unit cancellation."
+        ]
+      },
+      {
+        "claim": "Check that terms being added share the same dimension.",
+        "task": "main",
+        "publicRequest": "Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.",
+        "rubricEvidence": [
+          "Dimensional defect in speed+time is correctly identified."
+        ]
+      },
+      {
+        "claim": "Check that both sides of an equation have compatible dimensions.",
+        "task": "main",
+        "publicRequest": "Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.",
+        "rubricEvidence": [
+          "Dimensional defect in speed+time is correctly identified."
+        ]
+      },
+      {
+        "claim": "Distinguish dimensionless percentages/ratios from quantities carrying units.",
+        "task": "main",
+        "publicRequest": "Convert 72 km/h to m/s. A trading fee is 0.25% of ₹80,000; compute the fee and state why 0.25% itself is dimensionless. Finally audit the formula distance = speed + time and explain the defect.",
+        "rubricEvidence": [
+          "Explains that the percentage is dimensionless."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S07@1": [
+      {
+        "claim": "Round quantities deliberately for a rough estimate.",
+        "task": "main",
+        "publicRequest": "Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.",
+        "rubricEvidence": [
+          "Produces a reasonable estimate around6,000."
+        ]
+      },
+      {
+        "claim": "Track powers of ten separately from leading digits.",
+        "task": "main",
+        "publicRequest": "Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.",
+        "rubricEvidence": [
+          "Explains the decimal-scale sanity check."
+        ]
+      },
+      {
+        "claim": "State whether an estimate is upper/lower/central when relevant.",
+        "task": "main",
+        "publicRequest": "Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.",
+        "rubricEvidence": [
+          "Correctly labels the estimate/range as rough rather than a strict proved bound."
+        ]
+      },
+      {
+        "claim": "Compare exact and estimated answers by relative scale.",
+        "task": "main",
+        "publicRequest": "Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.",
+        "rubricEvidence": [
+          "Exact result6,138 is correct.",
+          "Rejects61,380 as about10× too large."
+        ]
+      },
+      {
+        "claim": "Reject results that violate obvious bounds or sign constraints.",
+        "task": "main",
+        "publicRequest": "Estimate 1,980,000 × 0.0031 without exact multiplication, giving a plausible range and saying whether your estimate is a rough central estimate or a strict bound. Then compute it exactly and assess whether 61,380 could be believable.",
+        "rubricEvidence": [
+          "Rejects61,380 as about10× too large."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S08@1": [
+      {
+        "claim": "Use product/quotient/power exponent laws on multiplicative expressions.",
+        "task": "main",
+        "publicRequest": "Compute (3×10^4)(2×10^−3), 16^(3/4), and √[(-7)^2]. Explain the last answer.",
+        "rubricEvidence": [
+          "Scientific-notation product is60.",
+          "16^(3/4)=8 with valid reasoning."
+        ]
+      },
+      {
+        "claim": "Interpret negative exponents as reciprocals for nonzero bases.",
+        "task": "transfer",
+        "publicRequest": "Simplify exactly: (5×10^−6)/(2×10^3). Then evaluate 27^(2/3) and 81^(−1/2). State why (−4)^2 and −4^2 differ, and give one quick powers-of-ten scale check for your scientific-notation quotient.",
+        "rubricEvidence": [
+          "81^(−1/2)=1/9 using reciprocal/root reasoning."
+        ]
+      },
+      {
+        "claim": "Use principal square root as the nonnegative root.",
+        "task": "main",
+        "publicRequest": "Compute (3×10^4)(2×10^−3), 16^(3/4), and √[(-7)^2]. Explain the last answer.",
+        "rubricEvidence": [
+          "Square-root result7 and |a| principle are correct."
+        ]
+      },
+      {
+        "claim": "Write and operate on normalized scientific notation.",
+        "task": "transfer",
+        "publicRequest": "Simplify exactly: (5×10^−6)/(2×10^3). Then evaluate 27^(2/3) and 81^(−1/2). State why (−4)^2 and −4^2 differ, and give one quick powers-of-ten scale check for your scientific-notation quotient.",
+        "rubricEvidence": [
+          "Scientific-notation quotient2.5×10^−9 is correct."
+        ]
+      },
+      {
+        "claim": "Check powers-of-ten scale separately from mantissas.",
+        "task": "transfer",
+        "publicRequest": "Simplify exactly: (5×10^−6)/(2×10^3). Then evaluate 27^(2/3) and 81^(−1/2). State why (−4)^2 and −4^2 differ, and give one quick powers-of-ten scale check for your scientific-notation quotient.",
+        "rubricEvidence": [
+          "Gives a valid powers-of-ten scale check for the quotient."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S09@1": [
+      {
+        "claim": "Substitute the full given value for each variable with parentheses when needed.",
+        "task": "main",
+        "publicRequest": "For E=3x²−2xy+y², evaluate E at x=−2,y=3. Then expand and simplify (2a−3)(a+4).",
+        "rubricEvidence": [
+          "Substitution is correct and gives33."
+        ]
+      },
+      {
+        "claim": "Apply distributivity to every term in a bracket.",
+        "task": "main",
+        "publicRequest": "For E=3x²−2xy+y², evaluate E at x=−2,y=3. Then expand and simplify (2a−3)(a+4).",
+        "rubricEvidence": [
+          "Expansion simplifies to2a²+5a−12."
+        ]
+      },
+      {
+        "claim": "Collect only genuinely like terms.",
+        "task": "transfer",
+        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Show an equality chain with at least two intermediate equivalent expressions, including the fully distributed line before collecting like terms. Then verify your final simplified form at x=2 by evaluating both the original and simplified expressions.",
+        "rubricEvidence": [
+          "Distributes correctly and collects only genuinely like terms to obtain 7x−27."
+        ]
+      },
+      {
+        "claim": "Preserve equality at each simplification step.",
+        "task": "transfer",
+        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Show an equality chain with at least two intermediate equivalent expressions, including the fully distributed line before collecting like terms. Then verify your final simplified form at x=2 by evaluating both the original and simplified expressions.",
+        "rubricEvidence": [
+          "Shows a visible equality chain with at least two intermediate expressions, and every displayed step is equivalent to the previous one."
+        ]
+      },
+      {
+        "claim": "Verify a symbolic simplification by testing one legal numerical input.",
+        "task": "transfer",
+        "publicRequest": "Simplify 4(2x−3)−3(x+5)+2x. Show an equality chain with at least two intermediate equivalent expressions, including the fully distributed line before collecting like terms. Then verify your final simplified form at x=2 by evaluating both the original and simplified expressions.",
+        "rubricEvidence": [
+          "Original and simplified expressions both evaluate to −13 at x=2.",
+          "Uses the numerical substitution as a check, not as proof of identity for all x."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S10@1": [
+      {
+        "claim": "Extract the greatest common factor first.",
+        "task": "transfer",
+        "publicRequest": "Factor completely 12x²−18x, then factor x²+5x+6 and 4a²−12ab+9b². Name the identity used in the last case. Finally, can an x be 'cancelled' from x²+x to leave x+1 without first writing a product? Explain.",
+        "rubricEvidence": [
+          "Extracts GCF:6x(2x−3)."
+        ]
+      },
+      {
+        "claim": "Recognize difference of squares as (a−b)(a+b).",
+        "task": "main",
+        "publicRequest": "Factor completely: 6x²−x−2. Then factor 9y²−25. Verify both by expansion.",
+        "rubricEvidence": [
+          "Correct difference-of-squares factorization."
+        ]
+      },
+      {
+        "claim": "Factor simple monic and non-monic quadratics by matching product and sum.",
+        "task": "main",
+        "publicRequest": "Factor completely: 6x²−x−2. Then factor 9y²−25. Verify both by expansion.",
+        "rubricEvidence": [
+          "Correct factorization (3x−2)(2x+1)."
+        ]
+      },
+      {
+        "claim": "Verify every factorization by expansion.",
+        "task": "main",
+        "publicRequest": "Factor completely: 6x²−x−2. Then factor 9y²−25. Verify both by expansion.",
+        "rubricEvidence": [
+          "Both are verified by valid re-expansion."
+        ]
+      },
+      {
+        "claim": "Distinguish factoring a sum from illegally cancelling terms.",
+        "task": "transfer",
+        "publicRequest": "Factor completely 12x²−18x, then factor x²+5x+6 and 4a²−12ab+9b². Name the identity used in the last case. Finally, can an x be 'cancelled' from x²+x to leave x+1 without first writing a product? Explain.",
+        "rubricEvidence": [
+          "Rejects illegal cancellation across addition and explains factorization/product requirement."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S11@1": [
+      {
+        "claim": "Interpret an equation as a set of values making both sides equal.",
+        "task": "main",
+        "publicRequest": "Solve (3x−5)/2 − (x+1)/3 = 4. Show a reversible chain, state what the final solution means in terms of the original equality, and check your answer in the original equation.",
+        "rubricEvidence": [
+          "States that the solution is the value making the original two sides equal."
+        ]
+      },
+      {
+        "claim": "Add/subtract the same quantity from both sides.",
+        "task": "main",
+        "publicRequest": "Solve (3x−5)/2 − (x+1)/3 = 4. Show a reversible chain, state what the final solution means in terms of the original equality, and check your answer in the original equation.",
+        "rubricEvidence": [
+          "Shows a coherent equality-preserving algebraic chain."
+        ]
+      },
+      {
+        "claim": "Multiply/divide both sides by the same known nonzero quantity.",
+        "task": "transfer",
+        "publicRequest": "Solve 5−2(3x−4)=3(x+1)+7. Then state which single operation would undo the final multiplication by a nonzero constant k in a generic equation kx=b.",
+        "rubricEvidence": [
+          "States division by nonzero k."
+        ]
+      },
+      {
+        "claim": "Clear numerical denominators without changing the solution set.",
+        "task": "main",
+        "publicRequest": "Solve (3x−5)/2 − (x+1)/3 = 4. Show a reversible chain, state what the final solution means in terms of the original equality, and check your answer in the original equation.",
+        "rubricEvidence": [
+          "Clears denominators with a valid reversible operation."
+        ]
+      },
+      {
+        "claim": "Verify the final candidate in the original equation.",
+        "task": "main",
+        "publicRequest": "Solve (3x−5)/2 − (x+1)/3 = 4. Show a reversible chain, state what the final solution means in terms of the original equality, and check your answer in the original equation.",
+        "rubricEvidence": [
+          "Checks the result in the original equation."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S12@1": [
+      {
+        "claim": "Identify the requested unknown and treat other symbols as given parameters.",
+        "task": "main",
+        "publicRequest": "Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.",
+        "rubricEvidence": [
+          "Derives V1=V0(1+r).",
+          "Derives V0=V1/(1+r) for r≠−1."
+        ]
+      },
+      {
+        "claim": "Use reversible algebraic operations symbolically.",
+        "task": "main",
+        "publicRequest": "Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.",
+        "rubricEvidence": [
+          "Derives V1=V0(1+r).",
+          "Derives V0=V1/(1+r) for r≠−1."
+        ]
+      },
+      {
+        "claim": "State conditions for any denominator introduced.",
+        "task": "main",
+        "publicRequest": "Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.",
+        "rubricEvidence": [
+          "Derives V0=V1/(1+r) for r≠−1.",
+          "Retains original V0≠0 condition.",
+          "Correctly describes exceptional r=−1 branch: V1=0, any V0≠0."
+        ]
+      },
+      {
+        "claim": "Keep equivalent forms organized with parentheses.",
+        "task": "main",
+        "publicRequest": "Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.",
+        "rubricEvidence": [
+          "Derives V1=V0(1+r).",
+          "Derives V0=V1/(1+r) for r≠−1."
+        ]
+      },
+      {
+        "claim": "Verify a rearrangement by substitution or recomposition.",
+        "task": "main",
+        "publicRequest": "Return is r=(V1−V0)/V0 with V0≠0. Solve for V1, then solve for V0 in terms of V1 and r. State the extra condition in the second rearrangement, describe the original r=−1 branch separately, and verify the ordinary rearrangement by substitution.",
+        "rubricEvidence": [
+          "Performs a valid substitution/recomposition check."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S13@1": [
+      {
+        "claim": "Interpret a system as simultaneous constraints.",
+        "task": "main",
+        "publicRequest": "Solve 2x+3y=19 and x−y=2. Choose substitution or elimination, briefly explain why your choice is convenient here, and verify the pair in both original equations.",
+        "rubricEvidence": [
+          "Gets x=5,y=3.",
+          "States the solution as the common ordered pair/context pair."
+        ]
+      },
+      {
+        "claim": "Choose substitution or elimination strategically.",
+        "task": "main",
+        "publicRequest": "Solve 2x+3y=19 and x−y=2. Choose substitution or elimination, briefly explain why your choice is convenient here, and verify the pair in both original equations.",
+        "rubricEvidence": [
+          "Chooses a valid method and gives a sensible convenience reason."
+        ]
+      },
+      {
+        "claim": "Perform elimination with legal equation operations.",
+        "task": "transfer",
+        "publicRequest": "Classify each system by elimination, without graphing. A: x+y=5 and x−y=1. B: x+y=5 and 2x+2y=12. C: x+y=5 and 2x+2y=10. For each system, show a legal elimination step, state the resulting equation or statement, and classify the system as having one solution, no solution, or infinitely many solutions. Explain what a false statement such as0=2 and a true identity such as0=0 mean.",
+        "rubricEvidence": [
+          "Uses a legal elimination step on system A and classifies it as one solution from a determinate equation such as2x=6.",
+          "Eliminates system B to a contradiction such as0=2 and classifies it as no solution.",
+          "Eliminates system C to an identity0=0 and classifies it as infinitely many solutions."
+        ]
+      },
+      {
+        "claim": "Classify an elementary two-equation linear system as having one, no, or infinitely many solutions from its elimination outcome.",
+        "task": "transfer",
+        "publicRequest": "Classify each system by elimination, without graphing. A: x+y=5 and x−y=1. B: x+y=5 and 2x+2y=12. C: x+y=5 and 2x+2y=10. For each system, show a legal elimination step, state the resulting equation or statement, and classify the system as having one solution, no solution, or infinitely many solutions. Explain what a false statement such as0=2 and a true identity such as0=0 mean.",
+        "rubricEvidence": [
+          "Uses a legal elimination step on system A and classifies it as one solution from a determinate equation such as2x=6.",
+          "Eliminates system B to a contradiction such as0=2 and classifies it as no solution.",
+          "Eliminates system C to an identity0=0 and classifies it as infinitely many solutions.",
+          "Explains that a false elimination statement means inconsistency, while0=0 means dependent constraints rather than a unique pair."
+        ]
+      },
+      {
+        "claim": "Check the final pair in both original equations.",
+        "task": "main",
+        "publicRequest": "Solve 2x+3y=19 and x−y=2. Choose substitution or elimination, briefly explain why your choice is convenient here, and verify the pair in both original equations.",
+        "rubricEvidence": [
+          "Checks both original equations."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S14@1": [
+      {
+        "claim": "Interpret an inequality as a set of allowed values.",
+        "task": "transfer",
+        "publicRequest": "Read the supplied number-line figure. For set A, write exact interval notation and a simplest matching inequality. For set B, do the same. Explain why A uses a closed endpoint while B has one open and one closed endpoint.",
+        "rubricEvidence": [
+          "Reads A as (−∞,−3] and x≤−3.",
+          "Reads B as (−1,3] and −1<x≤3."
+        ]
+      },
+      {
+        "claim": "Add/subtract the same quantity without changing direction.",
+        "task": "main",
+        "publicRequest": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
+        "rubricEvidence": [
+          "First inequality gives [−26,∞) with correct inclusive boundary."
+        ]
+      },
+      {
+        "claim": "Multiply/divide by a positive quantity without changing direction.",
+        "task": "main",
+        "publicRequest": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
+        "rubricEvidence": [
+          "First inequality gives [−26,∞) with correct inclusive boundary."
+        ]
+      },
+      {
+        "claim": "Reverse the inequality when multiplying/dividing by a negative quantity.",
+        "task": "main",
+        "publicRequest": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
+        "rubricEvidence": [
+          "Second gives (−∞,−1) and correctly reverses direction."
+        ]
+      },
+      {
+        "claim": "Express and test the resulting interval or ray.",
+        "task": "main",
+        "publicRequest": "Solve (2x−3)/5 ≤ (x+4)/2. Then solve −3(2x−1)>9. Give exact interval/ray descriptions and test one point that should satisfy each solution plus one point that should fail.",
+        "rubricEvidence": [
+          "Interval/ray notation is correct.",
+          "Inside/outside test points correctly verify both solution descriptions."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S15@1": [
+      {
+        "claim": "Interpret |x| as distance from0.",
+        "task": "transfer",
+        "publicRequest": "Solve |x+2|>4 and interpret it as a distance from −2. Briefly state what |x| measures. Then decide the solution sets of |3x−1|<−2 and |3x−1|≥−2 without case-heavy algebra.",
+        "rubricEvidence": [
+          "States |x| is distance from0."
+        ]
+      },
+      {
+        "claim": "Interpret |x−a| as distance from a.",
+        "task": "main",
+        "publicRequest": "Solve |2x−5|≤7 and interpret the answer as a distance statement after rewriting the inside as 2(x−2.5).",
+        "rubricEvidence": [
+          "Correctly rewrites/interprets as distance from2.5."
+        ]
+      },
+      {
+        "claim": "Solve |u|≤c for c≥0 as a double inequality.",
+        "task": "main",
+        "publicRequest": "Solve |2x−5|≤7 and interpret the answer as a distance statement after rewriting the inside as 2(x−2.5).",
+        "rubricEvidence": [
+          "Uses valid double-inequality logic."
+        ]
+      },
+      {
+        "claim": "Solve |u|>c for c≥0 as two separated cases.",
+        "task": "transfer",
+        "publicRequest": "Solve |x+2|>4 and interpret it as a distance from −2. Briefly state what |x| measures. Then decide the solution sets of |3x−1|<−2 and |3x−1|≥−2 without case-heavy algebra.",
+        "rubricEvidence": [
+          "Gets x<−6 or x>2 and interprets distance from−2."
+        ]
+      },
+      {
+        "claim": "Handle impossible/automatic cases when c<0.",
+        "task": "transfer",
+        "publicRequest": "Solve |x+2|>4 and interpret it as a distance from −2. Briefly state what |x| measures. Then decide the solution sets of |3x−1|<−2 and |3x−1|≥−2 without case-heavy algebra.",
+        "rubricEvidence": [
+          "Negative-threshold strict inequality is correctly empty.",
+          "Negative-threshold ≥ inequality is correctly all real numbers, justified by nonnegativity."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S16@1": [
+      {
+        "claim": "Put a quadratic equation in standard zero form.",
+        "task": "transfer",
+        "publicRequest": "Solve 3x²−12x=−9 exactly, first putting it in standard zero form. Then classify kx²+2x+1=0 for k=0 and k=1, explaining why the quadratic formula is not the right starting point in the k=0 case.",
+        "rubricEvidence": [
+          "Rewrites the first equation in standard zero form."
+        ]
+      },
+      {
+        "claim": "Use factoring plus the zero-product property without cancelling roots away.",
+        "task": "main",
+        "publicRequest": "Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.",
+        "rubricEvidence": [
+          "First quadratic is factored and solved as3,4 using zero-product logic."
+        ]
+      },
+      {
+        "claim": "Use the quadratic formula when factoring is inconvenient.",
+        "task": "main",
+        "publicRequest": "Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.",
+        "rubricEvidence": [
+          "Second quadratic is solved exactly as(−3±√17)/4 using a valid general method."
+        ]
+      },
+      {
+        "claim": "Compute the discriminant b²−4ac.",
+        "task": "main",
+        "publicRequest": "Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.",
+        "rubricEvidence": [
+          "Third discriminant is−16 and no real roots is concluded."
+        ]
+      },
+      {
+        "claim": "Classify two/one/no real roots from the discriminant.",
+        "task": "main",
+        "publicRequest": "Solve x²−7x+12=0 by factoring. Solve 2x²+3x−1=0 exactly by a justified general method; factoring is not expected. For x²+2x+5=0, state the number of real roots using the discriminant.",
+        "rubricEvidence": [
+          "Third discriminant is−16 and no real roots is concluded."
+        ]
+      }
+    ],
+    "T22V3::T22E-FND01::S17@1": [
+      {
+        "claim": "Translate sequential percent moves into multipliers.",
+        "task": "main",
+        "publicRequest": "A toy account starts with unknown capital C. It rises10%, then falls4%, then pays a fixed ₹240 fee. The final value is ₹52,560. (a) Estimate C before solving. (b) Find C exactly. (c) Compute the final net return relative to C. (d) What is the largest fixed fee that would still leave the account with a nonnegative net return after the same +10%,−4% moves?",
+        "rubricEvidence": [
+          "Models and solves C=₹50,000 exactly."
+        ]
+      },
+      {
+        "claim": "Build an equation from the described final-value constraint.",
+        "task": "main",
+        "publicRequest": "A toy account starts with unknown capital C. It rises10%, then falls4%, then pays a fixed ₹240 fee. The final value is ₹52,560. (a) Estimate C before solving. (b) Find C exactly. (c) Compute the final net return relative to C. (d) What is the largest fixed fee that would still leave the account with a nonnegative net return after the same +10%,−4% moves?",
+        "rubricEvidence": [
+          "Models and solves C=₹50,000 exactly."
+        ]
+      },
+      {
+        "claim": "Solve for an unknown starting value exactly.",
+        "task": "main",
+        "publicRequest": "A toy account starts with unknown capital C. It rises10%, then falls4%, then pays a fixed ₹240 fee. The final value is ₹52,560. (a) Estimate C before solving. (b) Find C exactly. (c) Compute the final net return relative to C. (d) What is the largest fixed fee that would still leave the account with a nonnegative net return after the same +10%,−4% moves?",
+        "rubricEvidence": [
+          "Models and solves C=₹50,000 exactly."
+        ]
+      },
+      {
+        "claim": "Compute a net percentage result and a break-even bound.",
+        "task": "main",
+        "publicRequest": "A toy account starts with unknown capital C. It rises10%, then falls4%, then pays a fixed ₹240 fee. The final value is ₹52,560. (a) Estimate C before solving. (b) Find C exactly. (c) Compute the final net return relative to C. (d) What is the largest fixed fee that would still leave the account with a nonnegative net return after the same +10%,−4% moves?",
+        "rubricEvidence": [
+          "Computes net return5.12%.",
+          "Computes break-even maximum fee₹2,800."
+        ]
+      },
+      {
+        "claim": "Use estimation and substitution as independent checks.",
+        "task": "main",
+        "publicRequest": "A toy account starts with unknown capital C. It rises10%, then falls4%, then pays a fixed ₹240 fee. The final value is ₹52,560. (a) Estimate C before solving. (b) Find C exactly. (c) Compute the final net return relative to C. (d) What is the largest fixed fee that would still leave the account with a nonnegative net return after the same +10%,−4% moves?",
+        "rubricEvidence": [
+          "Produces a sensible pre-solve estimate near₹50,000.",
+          "Verifies by substitution/recomputation and keeps money/percent units straight."
+        ]
+      }
+    ]
+  },
+  "coverageAudit": {
+    "status": "85/85 semantically re-audited through independent follow-up R01–R08; R02/R03/R06 exact observers repaired and S14 assessed ray hardened with its own continuation arrow",
+    "langFoundation": "L07 structural-law spine added instructionally across S01/S02/S09/S11; L08 one/no/infinite system cases added instructionally in S13; L09 readiness broadened to sample S12/S13/S15/S17 while remaining routing-only.",
+    "langFoundationFinal": "LF-R04 repaired: M01-S13 contract claim 4 now owns one/no/infinitely-many classification and fixed Transfer v3 visibly elicits all three elimination outcomes."
   }
 }

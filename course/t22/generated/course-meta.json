@@ -17,9 +17,9 @@
     "order": 1,
     "id": "T22E-FND01",
     "title": "Quantitative Foundations I — Numeracy & Algebra",
-    "status": "authored-v1.2-a07-accepted",
+    "status": "published-v1.6-lang-foundation-accepted",
     "destination": "From a Class-10-ish starting point, become reliable with exact numerical reasoning, ratios/percentages/units, estimation, symbolic algebra, equations, inequalities, absolute value and elementary quadratics—without hidden calculator dependence.",
-    "gate": "M01 is not cleared by page completion. Clearance requires independent evidence across the session ownership claims plus delayed transfer/synthesis evidence. The dedicated course page records study evidence; it does not silently rewrite legacy T22 progress.",
+    "gate": "M01 Lang-foundation and v1.2 retrofit independently reconfirmed; 17-session architecture, readiness routing, exact claim evidence, assessed representations, structural-law spine and one/no/infinite system ownership are frozen for publication.",
     "nextBoundary": "M02 owns functions, domains/ranges, graphs, coordinate geometry, parameters, transformations, exponentials/logarithms, sequences, sigma notation and essential trigonometry. M01 must not pre-teach those as the main capability."
   },
   "assessmentWarning": "This is original practice material, not an official firm interview bank. References are checking aids, not proof certificates. Independent transfer and delayed review matter more than first-pass correctness.",
@@ -44,9 +44,9 @@
         "order": 1,
         "id": "T22E-FND01",
         "title": "Quantitative Foundations I — Numeracy & Algebra",
-        "status": "authored-v1.2-a07-accepted",
+        "status": "published-v1.6-lang-foundation-accepted",
         "destination": "From a Class-10-ish starting point, become reliable with exact numerical reasoning, ratios/percentages/units, estimation, symbolic algebra, equations, inequalities, absolute value and elementary quadratics—without hidden calculator dependence.",
-        "gate": "M01 is not cleared by page completion. Clearance requires independent evidence across the session ownership claims plus delayed transfer/synthesis evidence. The dedicated course page records study evidence; it does not silently rewrite legacy T22 progress.",
+        "gate": "M01 Lang-foundation and v1.2 retrofit independently reconfirmed; 17-session architecture, readiness routing, exact claim evidence, assessed representations, structural-law spine and one/no/infinite system ownership are frozen for publication.",
         "nextBoundary": "M02 owns functions, domains/ranges, graphs, coordinate geometry, parameters, transformations, exponentials/logarithms, sequences, sigma notation and essential trigonometry. M01 must not pre-teach those as the main capability."
       },
       "packs": [

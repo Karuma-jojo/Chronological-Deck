@@ -1,13 +1,13 @@
 {
-  "version": "m10-arc053-authoring-v2-semantic-evidence-repair",
-  "instructionVersion": "m10-arc053-instruction-v2",
+  "version": "m10-arc053-authoring-v3-lang-dependency-repair",
+  "instructionVersion": "m10-arc053-instruction-v3-lang-dependency-repair",
   "module": {
     "order": 10,
     "id": "ARC053",
     "title": "Derivatives & Local Linearity",
-    "status": "published-semantic-repair-verified",
+    "status": "published-semantic-repair-verified-lang-foundation-accepted",
     "destination": "Construct the one-variable derivative from M09 limits; interpret it as tangent/rate and first-order local linearity; derive and audit the core algebraic, trigonometric, inverse/implicit, exponential and logarithmic differentiation machinery without importing M11/M12/later applications.",
-    "gate": "M10 completed builder verification plus the later semantic/evidence repair and is published in the shared learner route through M12. Publication does not claim learner mastery or external independent certification. Earlier M01–M09 evidence identities remain unchanged.",
+    "gate": "Lang-foundation dependency repair independently reconfirmed. M10-S10 consumes M03-S26 general binomial ownership; S16 consumes M02-S22 angle-addition identities; S20 consumes M02-S12 real-exponential law. No M10 assessment ownership changed.",
     "nextBoundary": "M11 owns integration and accumulation. M12 owns higher-order/Taylor/asymptotic structure. Full optimization, multivariable and numerical differentiation remain outside M10."
   },
   "boundary": {
@@ -403,7 +403,8 @@
       "entryPrerequisites": [
         "M10-S02",
         "M09 finite limit laws",
-        "M01 binomial/factorization algebra"
+        "M03-S26 finite binomial theorem/expansion",
+        "M01 factorization algebra"
       ],
       "requiredOwnership": [
         "Reconstruct a positive-integer power derivative from first principles without assuming the power rule.",
@@ -425,7 +426,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "For n a positive integer, [(x+h)^n-x^n]/h can be expanded by the binomial theorem. The term linear in h is n x^(n-1)h; after dividing by h it becomes n x^(n-1). Every remaining nonconstant term still contains a positive power of h and vanishes as h→0. That proves the rule rather than recognizing a pattern.\nWorked example: for n=4, (x+h)^4-x^4=4x³h+6x²h²+4xh³+h⁴. Divide by h and take the limit to obtain 4x³. The coefficient 4 counts the first-order ways exactly one of four factors contributes the perturbation h.\nGuided practice: perform the n=3 expansion and identify which terms survive after division and limiting. Do not invoke product rule, which has not yet been proved.",
+      "lesson": "M03-S26 established the finite binomial theorem (x+h)^n=Σ C(n,k)x^(n−k)h^k for positive integer n. Use that owned expansion inside the derivative difference quotient; M10 does not pretend M01 supplied it. For [(x+h)^n−x^n]/h, the k=0 term cancels x^n and the k=1 term is n x^(n−1)h. After division by h it becomes n x^(n−1); every k≥2 term still contains a positive power of h and vanishes as h→0. That proves the rule rather than recognizing a pattern.\nWorked example: from the M03 binomial coefficients1,4,6,4,1, (x+h)^4−x^4=4x³h+6x²h²+4xh³+h⁴. Divide by h and take the limit to obtain4x³. The coefficient4 counts the first-order choices of exactly one h among four factors.\nGuided practice: use the M03-S26 expansion of (x+h)^3 to identify which terms survive after division and limiting. Do not invoke product rule, which has not yet been proved.",
       "main": "T22V3::ARC053::S10-M@1",
       "transfer": "T22V3::ARC053::S10-T@1"
     },
@@ -631,6 +632,7 @@
       "centralCapability": "Cash in the non-circular trigonometric limits from M09 to derive sine and cosine derivatives in radians.",
       "principalObstacle": "Quoting trig derivatives would sever the dependency on radian limits and can hide circular proofs.",
       "entryPrerequisites": [
+        "M02-S22 sine/cosine angle-addition identities",
         "M09-S21 trigonometric squeeze and normalized limits",
         "M10-S02",
         "M10-S09"
@@ -656,7 +658,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "M09 established in radians that sin h/h→1 and (cos h-1)/h→0. Using sin(x+h)=sin x cos h+cos x sin h, the sine difference quotient becomes sin x[(cos h-1)/h]+cos x[sin h/h], whose limit is cos x. Thus (sin x)'=cos x. This proof shows why the M09 limit matters and why radians matter: the normalized limit sin h/h=1 is a radian statement.\nWorked example: use the established sine derivative plus derivative linearity to differentiate 3sin x+2x², obtaining 3cos x+4x. This is an application after the foundational limit proof, not a replacement for it.\nGuided practice: write the cosine addition identity cos(x+h)=cos x cos h-sin x sin h and split its difference quotient into two terms. Stop after identifying which two M09 limits would finish the proof; do not quote the final derivative as the justification.",
+      "lesson": "M02-S22 already derived the angle-addition identities from unit-circle chord distance, including sin(x+h)=sin x cos h+cos x sin h and cos(x+h)=cos x cos h−sin x sin h. M09 then established in radians that sin h/h→1 and (cos h−1)/h→0. Combining these prior results, the sine difference quotient becomes sin x[(cos h−1)/h]+cos x[sin h/h], whose limit is cos x. Thus (sin x)'=cos x. This proof shows why both earlier dependencies matter and why radians matter: the normalized limit sin h/h=1 is a radian statement.\nWorked example: use the established sine derivative plus derivative linearity to differentiate3sin x+2x², obtaining3cos x+4x. This is an application after the foundational identity+limit proof, not a replacement for it.\nGuided practice: start from the M02-S22 cosine addition identity cos(x+h)=cos x cos h−sin x sin h and split its difference quotient into two terms. Identify which two M09 limits finish the proof; do not quote the final derivative as the justification.",
       "main": "T22V3::ARC053::S16-M@1",
       "transfer": "T22V3::ARC053::S16-T@1"
     },
@@ -787,7 +789,7 @@
       "centralCapability": "Make the normalization assumption for the natural exponential explicit, then propagate it through translation and composition.",
       "principalObstacle": "The famous formula (e^x)'=e^x is often presented as assumption-free magic, obscuring the construction choice that makes e the natural base.",
       "entryPrerequisites": [
-        "M02 exponential functions",
+        "M02-S12 positive-base real exponential law b^(x+y)=b^x b^y",
         "M10-S14 chain rule",
         "M09 limit laws"
       ],
@@ -812,7 +814,7 @@
         "a general inverse-function theorem or implicit-function theorem"
       ],
       "exitCondition": "Solve both fixed public tasks with the requested reasoning; assistance and answer exposure remain part of evidence and do not become independent mastery.",
-      "lesson": "At this level we explicitly adopt the standard natural-exponential construction/normalization lim(h→0)(e^h-1)/h=1. Then [e^(x+h)-e^x]/h=e^x[(e^h-1)/h], so (e^x)'=e^x. The formula is derived from the zero-point local rate plus the exponential law e^(x+h)=e^x e^h.\nThe chain rule then gives d/dx e^{g(x)}=e^{g(x)}g'(x). This makes proportional-rate models transparent: if A(t)=A0 e^{kt}, then A'=kA.\nWorked example: derivative of e^{x²+1} is 2x e^{x²+1}. Guided practice: for B(t)=200e^{-0.1t}, compute B'/B and attach inverse-time units to -0.1.",
+      "lesson": "M02-S12 explicitly extended positive-base exponentiation to real inputs at the precalculus level and owned the law b^(x+y)=b^x b^y; in particular e^(x+h)=e^x e^h. M10 now adds the local normalization needed for the natural base: adopt lim(h→0)(e^h−1)/h=1. Then [e^(x+h)−e^x]/h=e^x[(e^h−1)/h], so (e^x)'=e^x. The derivative proof therefore has two visible dependencies: the prior real-exponential law and the new zero-point normalization.\nThe chain rule gives d/dx e^{g(x)}=e^{g(x)}g'(x), making proportional-rate models transparent: if A(t)=A0e^{kt}, then A'=kA.\nWorked example: derivative of e^{x²+1} is2x e^{x²+1}. Guided practice: for B(t)=200e^{−0.1t}, compute B'/B and attach inverse-time units to−0.1.",
       "main": "T22V3::ARC053::S20-M@1",
       "transfer": "T22V3::ARC053::S20-T@1"
     },
@@ -3251,9 +3253,10 @@
         "entry": [
           "M10-S02",
           "M09 finite limit laws",
-          "M01 binomial/factorization algebra"
+          "M03-S26 finite binomial theorem/expansion",
+          "M01 factorization algebra"
         ],
-        "status": "prerequisites introduced before use; future material not used as a premise"
+        "status": "prerequisites introduced before use; named upstream capability verified by Lang-foundation dependency repair; future material not used as a premise"
       },
       "T22V3::ARC053::S11@1": {
         "entry": [
@@ -3295,11 +3298,12 @@
       },
       "T22V3::ARC053::S16@1": {
         "entry": [
+          "M02-S22 sine/cosine angle-addition identities",
           "M09-S21 trigonometric squeeze and normalized limits",
           "M10-S02",
           "M10-S09"
         ],
-        "status": "prerequisites introduced before use; future material not used as a premise"
+        "status": "prerequisites introduced before use; named upstream capability verified by Lang-foundation dependency repair; future material not used as a premise"
       },
       "T22V3::ARC053::S17@1": {
         "entry": [
@@ -3327,11 +3331,11 @@
       },
       "T22V3::ARC053::S20@1": {
         "entry": [
-          "M02 exponential functions",
+          "M02-S12 positive-base real exponential law b^(x+y)=b^x b^y",
           "M10-S14 chain rule",
           "M09 limit laws"
         ],
-        "status": "prerequisites introduced before use; future material not used as a premise"
+        "status": "prerequisites introduced before use; named upstream capability verified by Lang-foundation dependency repair; future material not used as a premise"
       },
       "T22V3::ARC053::S21@1": {
         "entry": [
@@ -3367,7 +3371,27 @@
       "definition": "r(h)=o(h) as h→0 means exactly r(h)/h→0.",
       "bigOPolicy": "Formal O(h) notation is not used in M10 after this repair. S14 uses the concrete fact that k(h)/h tends to a finite limit and is therefore locally bounded.",
       "downstreamBoundary": "Systematic asymptotic notation remains owned by M12."
-    }
+    },
+    "langFoundationDependencies": [
+      {
+        "consumer": "M10-S10 positive-integer power-rule proof",
+        "requires": "finite binomial expansion (x+h)^n",
+        "owner": "M03-S26",
+        "status": "explicit prior ownership"
+      },
+      {
+        "consumer": "M10-S16 sine/cosine derivative proofs",
+        "requires": "sine/cosine angle-addition identities",
+        "owner": "M02-S22",
+        "status": "explicit prior ownership"
+      },
+      {
+        "consumer": "M10-S20 natural-exponential derivative proof",
+        "requires": "e^(x+h)=e^x e^h as a real-exponential law",
+        "owner": "M02-S12",
+        "status": "explicit prior ownership"
+      }
+    ]
   },
   "semanticSeparationAudit": {
     "version": "m10-semantic-separation-v2-reviewed",
@@ -3641,7 +3665,7 @@
     "semanticRepair": "All 72 original ownership claims were re-audited. Five public tasks were materially changed and have obligationVersion=2: S12 Main, S14 Transfer, S15 Transfer, S20 Main, S21 Main. All other fixed task IDs and obligationVersion=1 are preserved.",
     "asymptoticNotationRepair": "S07 now defines little-o explicitly as the concrete ratio limit. S14 no longer uses big-O; its bounded inner-change argument is written out."
   },
-  "authoringPolicy": "Original lessons and fixed assessments. Equivalent exact forms and mathematically valid alternate proofs earn full credit. Ownership is granted only for actions literally observable in cited public requests and rubric rows. Retrieval and proof reconstruction are labeled honestly and are not promoted to fresh proof evidence. A symbolic derivative without requested domain/hypothesis justification is incomplete. Little-o in M10 is shorthand only for the S07 ratio test; systematic asymptotics remain M12.",
+  "authoringPolicy": "Original lessons and fixed assessments. Equivalent exact forms and mathematically valid alternate proofs earn full credit. Ownership is granted only for actions literally observable in cited public requests and rubric rows. Retrieval and proof reconstruction are labeled honestly and are not promoted to fresh proof evidence. A symbolic derivative without requested domain/hypothesis justification is incomplete. Little-o in M10 is shorthand only for the S07 ratio test; systematic asymptotics remain M12. Lang-foundation dependency repair forbids fictitious prerequisite provenance: every consumed binomial, trig-addition and real-exponential law now names an actual prior owner.",
   "sourceLedger": {
     "checked": "2026-09-24",
     "policy": "MIT/OpenStax/Lebl checked for sequence, definitions, theorem hypotheses and coverage; IES/WWC used as lesson-design constraint. Source material establishes mathematics or pedagogy evidence, not T22 acceptance. All lesson prose and fixed assessments are original.",

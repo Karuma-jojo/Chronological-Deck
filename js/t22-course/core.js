@@ -41,14 +41,16 @@ export async function prepareAssessmentFingerprints(course,keys){
   const evaluator=keys?.[problemId];
   if(!evaluator) throw Error(`Missing evaluator for assessment fingerprint ${problemId}`);
   const session=sessionForProblem(course,problemId);
-  fingerprints[problemId]=await sha256({
+  const fingerprintContract={
    problemId,
    obligationVersion:problem.obligationVersion,
    kind:problem.kind,
-   prompt:problem.prompt,
-   sessionId:session?.id||null,
-   markingContract:{reference:evaluator.reference,rubric:evaluator.rubric,marking:evaluator.marking}
-  });
+   prompt:problem.prompt
+  };
+  if(Array.isArray(problem.representations)&&problem.representations.length) fingerprintContract.representations=problem.representations;
+  fingerprintContract.sessionId=session?.id||null;
+  fingerprintContract.markingContract={reference:evaluator.reference,rubric:evaluator.rubric,marking:evaluator.marking};
+  fingerprints[problemId]=await sha256(fingerprintContract);
  }
  course.assessmentFingerprints=fingerprints;
  course.assessmentEquivalences=course.assessmentEquivalences||{};

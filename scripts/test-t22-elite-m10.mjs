@@ -4,6 +4,8 @@ import { createHash } from 'node:crypto';
 
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const a=read('course/t22/authoring/m10-arc053.json');
+const m02=read('course/t22/authoring/m02.json');
+const m03=read('course/t22/authoring/m03.json');
 const m09=read('course/t22/authoring/m09.json');
 const deps=read('docs/t22-rebuild/m65.dependencies.json');
 const meta=read('course/t22/generated/course-meta.json');
@@ -166,6 +168,34 @@ const allM10=a.sessions.map(s=>s.lesson+'\n'+a.problems[s.main].prompt+'\n'+a.pr
 assert(!/O\([hk]\)/.test(allM10),'formal big-O leaked into M10');
 assert.match(a.sessions[13].lesson,/k\(h\)\/h.*bounded/i);
 assert.match(a.prerequisiteAudit.notationRepair.bigOPolicy,/Formal O\(h\) notation is not used/);
+
+// Lang-foundation dependency guards: every theorem/law consumed in M10 must have a real prior owner.
+const d10=a.sessions.find(s=>s.order===10),d16=a.sessions.find(s=>s.order===16),d20=a.sessions.find(s=>s.order===20);
+const m03s26=m03.sessions.find(s=>s.order===26),m02s22=m02.sessions.find(s=>s.order===22),m02s12=m02.sessions.find(s=>s.order===12);
+assert(d10.entryPrerequisites.includes('M03-S26 finite binomial theorem/expansion'),'L04 M10-S10 must name M03-S26, not fictitious M01 binomial algebra');
+assert(!d10.entryPrerequisites.some(x=>/M01 binomial/i.test(x)),'L04 fictitious M01 binomial prerequisite must stay removed');
+const binomialClaim='State and use the finite binomial theorem for positive integer n, and explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k).';
+assert(m03s26.requiredOwnership.includes(binomialClaim),'LF-R01 M10 may cite M03-S26 only if the upstream ownership itself is general in positive integer n');
+const binomialEvidence=m03.claimEvidence[m03s26.id].find(x=>x.claim===binomialClaim);
+assert(binomialEvidence&&binomialEvidence.task==='main','LF-R01 general binomial ownership must have fixed public evidence');
+const binomialPrompt=m03.problems[m03s26.main].prompt;
+assert(binomialPrompt.includes('finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n'),'LF-R01 upstream public request must state the general theorem, not only a numerical expansion');
+assert(binomialPrompt.includes('why the coefficient of x^(n−k)y^k is C(n,k)'),'LF-R01 upstream public request must require the general combinatorial coefficient argument');
+assert(binomialEvidence.rubricEvidence.includes('States the finite binomial theorem for positive integer n with coefficient C(n,k) on x^(n−k)y^k.'));
+assert(binomialEvidence.rubricEvidence.includes('Explains combinatorially that C(n,k) chooses which k of the n factors contribute y.'));
+assert(m03.problems[m03s26.main].obligationVersion===3,'LF-R01 repaired general theorem surface must be versioned');
+assert(d10.lesson.includes('M03-S26 established the finite binomial theorem'),'L04 power-rule lesson must consume the real upstream owner');
+
+assert(d16.entryPrerequisites.includes('M02-S22 sine/cosine angle-addition identities'),'L02 M10-S16 must name the angle-addition owner');
+assert(m02s22.requiredOwnership.includes('Reconstruct and use sine/cosine angle-addition identities.'),'L02 upstream trig-addition ownership missing');
+assert(d16.lesson.includes('M02-S22 already derived the angle-addition identities'),'L02 derivative proof must make its dependency explicit');
+
+assert(d20.entryPrerequisites.includes('M02-S12 positive-base real exponential law b^(x+y)=b^x b^y'),'L03 M10-S20 must name the real-exponential-law owner');
+assert(m02s12.requiredOwnership.includes('Use the positive-base real-exponential law b^(x+y)=b^x b^y.'),'L03 upstream real-exponential ownership missing');
+assert(d20.lesson.includes('M02-S12 explicitly extended positive-base exponentiation to real inputs'),'L03 exponential derivative proof must consume the real upstream law');
+
+assert.equal(a.prerequisiteAudit.langFoundationDependencies.length,3);
+for(const row of a.prerequisiteAudit.langFoundationDependencies)assert.equal(row.status,'explicit prior ownership');
 
 // High-risk semantic findings are executable guards.
 assert(a.sessions[11].requiredOwnership[0].startsWith('Reconstruct the product rule'));
