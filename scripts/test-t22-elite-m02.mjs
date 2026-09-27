@@ -5,7 +5,7 @@ const a=JSON.parse(fs.readFileSync('course/t22/authoring/m02.json','utf8'));
 assert.equal(a.module.id,'T22E-FND02');assert.equal(a.module.order,2);assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01']);
 assert.equal(a.sessions.length,24);assert.equal(Object.keys(a.problems).length,48);assert.equal(Object.keys(a.evaluators).length,48);
 assert.deepEqual(a.sessions.map(s=>s.order),Array.from({length:24},(_,i)=>i+1));
-assert.equal(new Set(a.sessions.map(s=>s.id)).size,24);assert.equal(Object.keys(a.coverage).length,24);assert.equal(Object.keys(a.instructionSeparation).length,24);assert.equal(Object.keys(a.claimEvidence||{}).length,24);assert.equal(a.coverageAudit?.status,'120/120 semantically re-audited for the v1.2 retrofit; exact claim→public-request→rubric links retained or updated, with rendered-representation directions pinned for S03/S06/S23/S24');assert.equal(Object.keys(a.evidenceDistance||{}).length,48);for(const x of Object.values(a.evidenceDistance))assert(['retrieval','proof reconstruction','fresh Main evidence','changed-surface Transfer'].includes(x.classification)&&x.reason);assert(a.representationProgression?.length>=10);
+assert.equal(new Set(a.sessions.map(s=>s.id)).size,24);assert.equal(Object.keys(a.coverage).length,24);assert.equal(Object.keys(a.instructionSeparation).length,24);assert.equal(Object.keys(a.claimEvidence||{}).length,24);assert.equal(a.coverageAudit?.status,'120/120 semantically re-audited through independent follow-up R01–R08; S21 bidirectional conversion, S23 graph-only reading/period computation and S24 domain coordination are now literal observers');assert.equal(Object.keys(a.evidenceDistance||{}).length,48);for(const x of Object.values(a.evidenceDistance))assert(['retrieval','proof reconstruction','fresh Main evidence','changed-surface Transfer'].includes(x.classification)&&x.reason);assert(a.representationProgression?.length>=10);
 const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 const hashes=new Set();
 for(const s of a.sessions){
@@ -31,6 +31,31 @@ assert(a.problems[s18.transfer].prompt.includes('Infer its constant ratio')&&a.p
 assert(a.evaluators[s20.transfer].reference.includes('forward invariance')&&a.evaluators[s20.transfer].rubric.some(r=>r.criterion.includes('finite prefix alone earns no reasoning points')));
 assert(s21.lesson.includes('cos45°=sin45°=√2/2')&&s21.lesson.includes('I(+,+), II(−,+), III(−,−), IV(+,−)'));assert(s3.representations?.some(x=>x.kind==='plot'));assert(a.problems[s3.transfer].representations?.some(x=>x.kind==='plot'));assert(a.problems[s6.transfer].representations?.length===2);assert(a.problems[s9.transfer].representations?.[0]?.kind==='plot');assert(a.problems[s10.transfer].representations?.[0]?.kind==='plot');assert(a.problems[s23.transfer].representations?.[0]?.kind==='plot');assert(a.problems[s24.transfer].representations?.[0]?.kind==='table');assert.equal(a.claimEvidence[s3.id][0].task,'transfer');assert.equal(a.claimEvidence[s23.id][0].task,'transfer');assert.equal(a.claimEvidence[s24.id][4].task,'transfer');assert(s23.lesson.includes('unit-circle coordinate')&&s24.lesson.includes('identify what kind of object the data support'));
 
+// Independent follow-up R01/R04/R05/R07 semantic-observability pins.
+assert.equal(a.problems[s21.transfer].obligationVersion,2);
+assert(a.problems[s21.transfer].prompt.includes('7π/6 radians to degrees'));
+assert.equal(a.claimEvidence[s21.id][0].task,'transfer');
+assert.deepEqual(a.claimEvidence[s21.id][0].rubricEvidence,['Converts −45° to −π/4.','Converts 7π/6 radians back to 210°.'],'R04 bidirectional conversion must be literally scored in both directions');
+
+assert.equal(a.problems[s23.main].obligationVersion,2);
+assert(a.problems[s23.main].prompt.includes('compute the period by substituting B into 2π/|B|'));
+assert(a.evaluators[s23.main].rubric.some(r=>r.criterion==='Explicitly computes period as 2π/|4|=π/2.'));
+assert.equal(a.claimEvidence[s23.id][1].task,'main','R07 formula-period ownership must map to an explicit 2π/|B| computation');
+assert(a.claimEvidence[s23.id][1].rubricEvidence.includes('Explicitly computes period as 2π/|4|=π/2.'));
+
+assert.equal(a.problems[s23.transfer].obligationVersion,3);
+assert(a.problems[s23.transfer].prompt.startsWith('Using only the supplied graph'));
+assert(!a.problems[s23.transfer].prompt.includes('y=−3cos(2x)+4'),'R01 graph-reading surface must not disclose its underlying formula');
+assert(a.problems[s23.transfer].prompt.includes('unrelated equation cos(4x)=0'),'R01 equation stage must be visibly separate from graph inference');
+assert(a.evaluators[s23.transfer].rubric.some(r=>r.criterion.includes('matching extrema one full cycle apart')),'R01 period reading must require graph evidence');
+assert.equal(a.claimEvidence[s23.id][0].task,'transfer');
+assert.equal(a.claimEvidence[s23.id][4].task,'transfer');
+
+assert.equal(a.problems[s24.transfer].obligationVersion,3);
+assert(a.problems[s24.transfer].prompt.includes("State p's natural real domain and separately the restricted solution interval used here"));
+assert(a.evaluators[s24.transfer].rubric.some(r=>r.criterion.includes('natural real domain θ∈ℝ')),'R05 must literally score the domain check');
+assert(a.claimEvidence[s24.id][4].rubricEvidence.some(x=>x.includes('natural real domain θ∈ℝ')),'R05 exact observer must include the domain criterion');
+
 // Independent mathematics — explicit recalculation across all 24 sessions.
 assert.equal(3*5-4,11);assert.equal(3*(-2)-4,-10); // S01
 assert.equal(Math.min(...[-2,-1,0,1,2,3].map(x=>x*x+1)),1);assert.equal(Math.max(...[-2,-1,0,1,2,3].map(x=>x*x+1)),10); // S02
@@ -52,10 +77,10 @@ assert.equal(7+9*4,43);assert.equal(10*(7+43)/2,250);assert.equal(20*(4+61)/2,65
 assert.equal(3*2**7,384);assert.equal(3*(2**8-1),765);close(160*(1-.5**6)/(1-.5),315); // S18
 assert.equal(Array.from({length:5},(_,i)=>2*(i+1)-1).reduce((u,v)=>u+v,0),25);assert.equal(Array.from({length:5},(_,i)=>3*2**i).reduce((u,v)=>u+v,0),93); // S19
 let x=10;for(let i=0;i<3;i++)x=.5*x+3;close(x,6.5);let y=0;for(let i=0;i<3;i++)y=2*y-1;assert.equal(y,-7); // S20
-close(150*Math.PI/180,5*Math.PI/6);close(4*5*Math.PI/6,10*Math.PI/3); // S21
+close(150*Math.PI/180,5*Math.PI/6);close(7*Math.PI/6*180/Math.PI,210);close(4*5*Math.PI/6,10*Math.PI/3); // S21
 close(Math.sin(5*Math.PI/4),-Math.SQRT1_2);close(Math.tan(5*Math.PI/4),1,1e-8);close((-3/4)**2+(3/5)**2,0.9225); // S22: exact task ratios separately checked below
-close(2*Math.PI/2,Math.PI);assert.deepEqual([Math.PI/6,5*Math.PI/6].map(v=>Math.round(Math.sin(v)*2)),[1,1]);close(Math.cos(2*Math.PI/4),0,1e-8); // S23
+close(2*Math.PI/4,Math.PI/2);assert.deepEqual([Math.PI/6,5*Math.PI/6].map(v=>Math.round(Math.sin(v)*2)),[1,1]);close(Math.cos(4*Math.PI/8),0,1e-8);close(Math.cos(4*3*Math.PI/8),0,1e-8); // S23
 const q=n=>50*1.2**n;close(Array.from({length:6},(_,n)=>q(n)).reduce((u,v)=>u+v,0),496.496);close(q(3),86.4);close([0,1,2,3,4].map(k=>2+3*Math.sin(k*Math.PI/2)).reduce((u,v)=>u+v,0),10,1e-8); // S24
 // S22 task's recovered 3-4-5 triangle: sin=3/5, quadrant II implies cos=-4/5 and tan=-3/4.
 close((3/5)**2+(-4/5)**2,1);close((3/5)/(-4/5),-3/4);
-console.log('PASS: M02 v1.2 retrofit candidate — 24 sessions/48 tasks; 120/120 exact claim evidence; 48-task evidence distance; literal graph/table representation guards; M02-01→04 protections; prerequisite/separation audits and independent math checks.');
+console.log('PASS: M02 v1.2 follow-up — 24 sessions/48 tasks; 120/120 exact claim evidence; R01/R04/R05/R07 semantic observers pinned; graph-only S23 evidence, bidirectional radians/degrees and S24 domain checks guarded.');
