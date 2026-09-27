@@ -1,5 +1,9 @@
 # M02 REVIEW-HANDOFF — Quantitative Foundations II: Functions & Precalculus
 
+> **Current-status supplement — 2026-09-27**  
+> The historical independent M02-01→04 acceptance below remains evidence for the pre-retrofit state. A later user-authorized **T22 v1.2 retrospective retrofit** preserved the 24-session spine but changed representation-heavy instruction, six Transfer contracts, evidence-distance metadata and the shared rendered-representation runtime. The retrofit is **implemented and fully green but awaiting independent confirmation**; the older independent review must not be read as certifying those new task/visual surfaces. Current authority: `docs/t22-course/M01-M02-V12-RETROFIT-RESOLUTION.md`. Green implementation receipt before this documentation pass: head `16e2eb2e4d8863eda10ddc97418bd1f066a06671`, run `36291523103`, job `108542408541`, **SUCCESS**.
+
+
 Date: 2026-09-18  
 Branch: `codex/t22-pedagogical-rebuild`  
 Status: **FINAL ACCEPTED AFTER INDEPENDENT M02-01→04 REPAIR — M03 MAY OPEN ONLY UNDER GATES**  
