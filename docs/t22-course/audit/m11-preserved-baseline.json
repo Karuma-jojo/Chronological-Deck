@@ -5,7 +5,7 @@
   "purpose": "Executable guard for M11-era preservation. It retains the explicitly authorized M07 v1.1 retrofit and M12-era validator-only M10 ledger repair, and now pins the exact M14-era shared CSS wrapping repair discovered by the unpublished M14 Chromium probe. The CSS change only adds overflow wrapping/min-width behavior to learner text/problem surfaces; all preserved M01–M11 curriculum blobs remain pinned.",
   "fileCount": 100,
   "files": {
-    "course/t22/authoring/m01-repairs-1.1.json": "b9f0a0a80df310725e7f9943a8aa11b1777e4481",
+    "course/t22/authoring/m01-repairs-1.1.json": "80f73f6a628897ddbe85bf6f62d388e110b73b33",
     "course/t22/authoring/m02.json": "3189694377249ba5279cac72b4ef4dffd7ad0d2a",
     "course/t22/authoring/m03.json": "a04fbc54e0fc8f910db42ee7874a9930d53b83fe",
     "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
@@ -81,18 +81,18 @@
     "docs/t22-course/audit/m08-independent-oracles.mjs": "4cfabd884f15c9a8519e22ed1421e017c1bef04a",
     "docs/t22-course/audit/m08-semantic-contract.json": "94377eeeeff71e41f3680b9e2efc9dc505728dcc",
     "docs/t22-course/audit/m09-math-checks.mjs": "0884736209393d72c5cc05cc5cc1ceac4eb94b89",
-    "docs/t22-course/audit/m09-preserved-baseline.json": "abaaf6dd289a336eb0665c153daa4bedd50fc4bb",
+    "docs/t22-course/audit/m09-preserved-baseline.json": "236626ee260b4cb92e17e5b8dfe1363ecaf980fe",
     "docs/t22-course/audit/m09-semantic-contract.json": "60d7282b1e8335f90a79d713fe4e8ca8ad7527f6",
     "docs/t22-course/audit/m09-validation-receipt.json": "b161b49568ad2d6c65d44c4d309920d1f5afd16d",
     "docs/t22-course/audit/m10-math-checks.mjs": "0c74b0943d204741019bbd4b2bf2b51d1c2c5c1e",
     "docs/t22-course/audit/m10-ownership-audit.json": "c62b8adec413da5667129bd29f4311adc34d19d7",
-    "docs/t22-course/audit/m10-preserved-baseline.json": "1ddc51de583003cde824c6a27d2e9da1634b44e3",
+    "docs/t22-course/audit/m10-preserved-baseline.json": "ace863d73ab2d12dd7c9af44462dfa849a8b1da0",
     "docs/t22-course/audit/m10-semantic-contract.json": "7dc3965cc3531e6566ea688a359791f0b53cc451",
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
     "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01",
     "scripts/test-t22-elite-m01.mjs": "839c3965e5caa528a6dfcb5e601e6fc7983798bb",
-    "scripts/test-t22-elite-m02.mjs": "ec552eab8b392dc666a8b805ae7e257b4a737459",
+    "scripts/test-t22-elite-m02.mjs": "5801a000a3bc2254bf858507c0d8afd81858742e",
     "scripts/test-t22-elite-m03.mjs": "04a6335cc4480cf37d31a3ebcffba022bb6c4868",
     "scripts/test-t22-elite-m04.mjs": "ebba1d1c2e4d07155af4e3329ddf51ff0465f628",
     "scripts/test-t22-elite-m05-m06-repairs.mjs": "09698eba2aa23c76f5f8bc6d3640bf1e8c277bad",
@@ -154,6 +154,7 @@
     "branch": "codex/t22-lang-foundation-followup",
     "scope": "L01–L10 prerequisite-depth repair; only listed upstream curriculum/test/design hashes re-pinned. Unrelated protected curriculum remains frozen.",
     "baselineChain": "M09/M10 preservation ledgers were re-pinned for the same authorized repair.",
-    "boundaryDocs": "M02/M03 boundary docs updated only to reflect newly explicit real-exponential, angle-addition and binomial-expansion ownership."
+    "boundaryDocs": "M02/M03 boundary docs updated only to reflect newly explicit real-exponential, angle-addition and binomial-expansion ownership.",
+    "latestPins": "M01 readiness wording and M02 independent-law arithmetic guards updated after initial re-pin; no curriculum scope change."
   }
 }
