@@ -9,7 +9,7 @@ const body=src.slice(start,mid)+src.slice(sel,end);
 const elements=new Map();
 const context=vm.createContext({elements,console,Map});
 vm.runInContext(`
-const $=id=>{if(!elements.has(id))elements.set(id,{value:'',hidden:false,disabled:false});return elements.get(id)};
+const $=id=>{if(!elements.has(id))elements.set(id,{value:'',hidden:false,disabled:false,children:[],replaceChildren(...xs){this.children=xs;}});return elements.get(id)};
 const drafts=new Map();let problemId=null,visit=0,lastSaved=null,noteSeen=false,activeModuleId='M01',session=null;
 const course={problems:{m1:{kind:'main',prompt:'one'},m2:{kind:'main',prompt:'two'}},modules:[{id:'M01',order:1,title:'one'},{id:'M02',order:2,title:'two'}],sessions:[]},state={exposures:{}};
 const put=()=>{},expose=()=>{},persist=()=>{},renderHistory=()=>{},renderQueue=()=>{},renderModuleEvidence=()=>{},renderRepresentations=()=>{},taskText=p=>p.prompt;
