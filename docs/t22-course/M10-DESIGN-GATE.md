@@ -38,13 +38,21 @@ Canonical dependency authority gives M10 the prerequisites:
 - `T22E-FND02` — functions, domains, graphs, composition, exponentials/logarithms and trigonometric foundations.
 - `SIDE263` — M09 limits/continuity machinery.
 
-M09 specifically supplies the function-limit definition, algebra of limits, punctured-domain reasoning, one-sided limits, continuity, and the radian trigonometric limits required for the sine/cosine derivative derivations. Quantifier/proof discipline from M03 is inherited transitively through M09; it is refreshed only where a derivative proof needs it.
+M09 specifically supplies the function-limit definition, algebra of limits, punctured-domain reasoning, one-sided limits, continuity, and the radian trigonometric limits required for the sine/cosine derivative derivations. Quantifier/proof discipline from M03 is inherited transitively through M09.
+
+The Lang-foundation prerequisite audit also pins three fragile theorem/law edges that M10 actually consumes:
+
+- **M03-S26** owns the finite binomial theorem/expansion used by M10-S10. M01 supplies ordinary factoring algebra, but is not credited with a binomial theorem it never taught.
+- **M02-S22** owns the sine/cosine angle-addition identities used by M10-S16.
+- **M02-S12** owns the positive-base real-exponential law `b^(x+y)=b^x b^y`, hence `e^(x+h)=e^x e^h`, used by M10-S20.
 
 ### Reuse without reteaching
 
-- Algebra/factoring and function notation from M01–M02.
+- Structural algebra/factoring and function notation from M01–M02.
+- Finite binomial expansion from M03-S26.
 - Composition and domains from M02.
-- Radian trigonometry from M02.
+- Radian trigonometry and angle-addition identities from M02-S21/S22.
+- Positive-base real-exponential laws from M02-S12.
 - Function limits, limit laws, quotient safety, one-sided limits and continuity from M09.
 - `lim(h→0) sin(h)/h=1` and the companion cosine limit from M09.
 - Counterexample and proof-language discipline already exercised by M03/M09.
