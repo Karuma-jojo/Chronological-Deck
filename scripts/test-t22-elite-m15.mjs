@@ -12,7 +12,7 @@ const pilot=fs.readFileSync('docs/t22-course/M15-PILOT-REVIEW.md','utf8');
 
 assert.equal(a.module.order,15);
 assert.equal(a.module.id,'SIDE278');
-assert.equal(a.module.status,'independent-review-repaired-awaiting-followup-unpublished');
+assert.equal(a.module.status,'independent-followup-passed-provenance-confirmation-pending-unpublished');
 assert.equal(a.sessions.length,16);
 assert.equal(Object.keys(a.problems).length,32);
 assert.equal(Object.keys(a.evaluators).length,32);
@@ -198,4 +198,22 @@ assert.match(a.problems['T22V3::SIDE278::S15-T@2'].prompt,/Do not solve normal e
 assert.match(a.problems['T22V3::SIDE278::S15-T@2'].prompt,/residual orthogonality/);
 assert.match(a.followupRepair.supportTheoremOrder,/S09|S10/);
 
+
+// Independent-follow-up provenance correction: claim observers are not all Main.
+{
+  let mainOnly=0,transferOnly=0,both=0;
+  for(const claims of Object.values(a.claimEvidence)) for(const c of claims){
+    const hasM=c.taskIds.some(id=>id.includes('-M@'));
+    const hasT=c.taskIds.some(id=>id.includes('-T@'));
+    if(hasM&&hasT) both++; else if(hasM) mainOnly++; else if(hasT) transferOnly++;
+  }
+  assert.deepEqual({mainOnly,transferOnly,both},{mainOnly:35,transferOnly:11,both:2});
+  for(const n of [14,15]) for(const c of a.claimEvidence[a.sessions[n-1].id]){
+    assert(c.taskIds.some(id=>id.includes('-M@')),'S'+n+' claim lost Main observer');
+    assert(!c.taskIds.some(id=>id.includes('-T@2')),'S'+n+' claim was cosmetically remapped to repaired Transfer');
+  }
+  assert.match(a.versionAudit.unchangedOwnershipClaims,/35 Main-only, 11 Transfer-only, and 2 observed by both/);
+  assert.match(design,/§4\.4 .*pp\.231[–-]243/);
+  assert(!/§4\.4 .*pp\.231[–-]244/.test(design),'stale Strang §4.4 locator');
+}
 console.log('PASS M15 structural/pedagogy/semantic candidate: 16 sessions, 32 fixed tasks, 48 literal ownership claims, 32 separation rows, 17 decision audits, 18 wrong-solver discriminators; publication remains closed.');
