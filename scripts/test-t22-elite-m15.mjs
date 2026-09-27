@@ -12,7 +12,7 @@ const pilot=fs.readFileSync('docs/t22-course/M15-PILOT-REVIEW.md','utf8');
 
 assert.equal(a.module.order,15);
 assert.equal(a.module.id,'SIDE278');
-assert.equal(a.module.status,'repaired-builder-candidate-unpublished');
+assert.equal(a.module.status,'review-candidate-unpublished');
 assert.equal(a.sessions.length,16);
 assert.equal(Object.keys(a.problems).length,32);
 assert.equal(Object.keys(a.evaluators).length,32);

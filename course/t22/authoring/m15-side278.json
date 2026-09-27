@@ -5,9 +5,9 @@
     "order": 15,
     "id": "SIDE278",
     "title": "Orthogonality, Projection & Least Squares Geometry",
-    "status": "repaired-builder-candidate-unpublished",
+    "status": "review-candidate-unpublished",
     "destination": "Work in finite-dimensional real Euclidean coordinate spaces to construct orthonormal coordinates and orthogonal complements, derive orthogonal projections and nearest-point geometry, execute Gram–Schmidt with dependence/order diagnostics, derive the transpose bridge and normal equations, and solve exact Euclidean least-squares problems while separating fitted-vector uniqueness from coefficient uniqueness.",
-    "gate": "Sixteen design-derived sessions are being authored under the v1.2 gated protocol. M15 remains outside the persisted learner registry until independent review and explicit user authorization; page completion is never treated as mastery.",
+    "gate": "Sixteen design-derived sessions and 32 fixed assessments are complete under the T22 v1.2 gated protocol. Publication requires exact-head implementation verification, independent adversarial review, and explicit user authorization; M15 remains outside the persisted learner registry, and page completion is never treated as mastery.",
     "nextBoundary": "M16/SIDE279 owns eigenstructure independently from M14; M17/SIDE280 owns PSD/quadratic forms, named QR/Cholesky/SVD and pseudoinverse; M23 owns numerical conditioning/stable algorithms; M36 owns statistical regression."
   },
   "boundary": {
@@ -40,7 +40,7 @@
     "authoredSessions": 16,
     "ownershipClaimCount": 48,
     "fixedAssessments": 32,
-    "reviewProvenance": "Recovery re-audit in progress under v1.2. Gates 0–3 were revalidated; five cross-session solved-instance collisions were repaired; all 48 claim observers were semantically re-audited; source roles and evidence-distance labels were corrected. Gates 4–8 are being rechecked session-by-session, followed by Gates 9–11. Independent adversarial review has not occurred."
+    "reviewProvenance": "Builder recovery re-audit completed through Gates 0–10: cross-session solved-instance collisions were repaired, all 48 ownership observers were re-audited, theorem dependency order and source roles were corrected, evidence-distance labels were made conservative, and whole-module structural/math/semantic/browser guards were added. Commit/run-specific Gate-11 evidence is externalized in verification/handoff records. Independent adversarial review has not occurred."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. Strang 4e (user-supplied) is the deep first-course comparator; MIT 18.06 is the canonical route comparator; Axler 4e is the rigorous theorem/hypothesis source; Hefferon is the broad developmental/notation comparator; MAA + IES/WWC + domain-specific math-education sources inform pedagogy with population/context limits. All learner tasks are original.",
@@ -3736,10 +3736,10 @@
   "publication": {
     "status": "unpublished",
     "learnerRegistry": "M01–M14 only",
-    "authorization": "not requested; builder verification and independent adversarial review pending"
+    "authorization": "independent adversarial review and explicit publication authorization are required; no learner publication is authorized"
   },
   "followupRepair": {
-    "status": "builder recovery repair in progress",
+    "status": "builder recovery repair complete; independent adversarial review pending",
     "reason": "The first post-stall Gate-8 whole-module scan found cross-session solved-instance reuse that the draft ledger had missed.",
     "repairedTasks": [
       "T22V3::SIDE278::S06-M@1",
