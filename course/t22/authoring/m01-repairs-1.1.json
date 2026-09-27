@@ -1601,7 +1601,7 @@
         "route": "S17 synthesis/model coordination"
       }
     ],
-    "routing": "Use this only to choose a starting point or revisit cluster. Missing one item because of an arithmetic slip is not a reason to restart. Conceptual misses should route to the named session. Even a perfect score is not independent mastery evidence; it only suggests that fast traversal/retrieval checks may be appropriate."
+    "routing": "Use this only to choose a starting point or revisit cluster. If you miss an item because the concept itself is unclear, route to the named session; one isolated arithmetic slip is not a reason to restart. Even a perfect score is not independent mastery evidence and does not certify all of M01—it only suggests that fast traversal/retrieval checks may be appropriate."
   },
   "representationProgression": [
     {
