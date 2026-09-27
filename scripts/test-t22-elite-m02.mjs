@@ -97,7 +97,7 @@ for(const x of [-3,0,5])close(((3*x-7)+7)/3,x);assert.equal(Math.sqrt(9),3); // 
 const p=x=>(x-2)**2*(x+1);assert.equal(p(2),0);assert.equal(p(-1),0);assert(Math.sign(p(-2))!==Math.sign(p(0))); // S09
 for(const x of [-4,0,3])if(x!==-1&&x!==2)close((x*x-4)/(x*x-x-2),(x+2)/(x+1));assert.equal(2*2-4,0);const sr=x=>(2*x*x+3*x-2)/(x*x-4),srr=x=>(2*x-1)/(x-2);for(const v of [-5,0,4])close(sr(v),srr(v));close(srr(-2),5/4); // S10
 assert.equal(Math.sqrt(2*11-6)+1,5);assert.equal(Math.cbrt(-8)**2,4); // S11
-close(500*1.08**2,583.2);close(1200*.85**3,736.95); // S12
+close(500*1.08**2,583.2);close(1200*.85**3,736.95);close(1.08**(1.3+.7),1.08**1.3*1.08**.7); // S12 real-exponential addition law
 close(Math.log(32)/Math.log(2),5);close(Math.log(.001)/Math.log(10),-3); // S13
 for(const v of [0,2,5])close(Math.log((v-1)**2),2*Math.log(Math.abs(v-1))); // S14
 close(3**(2*(Math.log(10)/(2*Math.log(3)))),10);close(100*Math.exp(-.4*(Math.log(5)/.4)),20); // S15
@@ -110,6 +110,7 @@ close(150*Math.PI/180,5*Math.PI/6);close(7*Math.PI/6*180/Math.PI,210);close(4*5*
 close(Math.sin(5*Math.PI/4),-Math.SQRT1_2);close(Math.tan(5*Math.PI/4),1,1e-8);close((-3/4)**2+(3/5)**2,0.9225); // S22: exact task ratios separately checked below
 close(2*Math.PI/4,Math.PI/2);assert.deepEqual([Math.PI/6,5*Math.PI/6].map(v=>Math.round(Math.sin(v)*2)),[1,1]);close(Math.cos(4*Math.PI/8),0,1e-8);close(Math.cos(4*3*Math.PI/8),0,1e-8); // S23
 const q=n=>50*1.2**n;close(Array.from({length:6},(_,n)=>q(n)).reduce((u,v)=>u+v,0),496.496);close(q(3),86.4);close([0,1,2,3,4].map(k=>2+3*Math.sin(k*Math.PI/2)).reduce((u,v)=>u+v,0),10,1e-8); // S24
+close(Math.cos(Math.PI/12),(Math.sqrt(6)+Math.sqrt(2))/4);close(Math.sin(Math.PI/4+Math.PI/6),Math.SQRT1_2*Math.sqrt(3)/2+Math.SQRT1_2*.5); // S22 addition formulas
 // S22 task's recovered 3-4-5 triangle: sin=3/5, quadrant II implies cos=-4/5 and tan=-3/4.
 close((3/5)**2+(-4/5)**2,1);close((3/5)/(-4/5),-3/4);
 console.log('PASS: M02 Lang-foundation follow-up — 24 sessions/48 tasks; Pythagorean coordinate derivation, real-exponential law, AP pairing, special triangles, addition identities and three-way system geometry pinned; R01/R04/R05/R07 protections retained.');
