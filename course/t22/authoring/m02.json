@@ -3238,7 +3238,6 @@
     ],
     "T22V3::T22E-FND02::S03@1": [
       [
-        "main",
         "transfer"
       ],
       [
@@ -3302,18 +3301,15 @@
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ],
       [
         "main"
       ],
       [
-        "main",
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ]
     ],
@@ -3639,11 +3635,9 @@
     ],
     "T22V3::T22E-FND02::S23@1": [
       [
-        "main",
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ],
       [
@@ -3670,7 +3664,6 @@
         "transfer"
       ],
       [
-        "main",
         "transfer"
       ]
     ]
@@ -4292,10 +4285,10 @@
     "T22V3::T22E-FND02::S03@1": [
       {
         "claim": "Interpret (x,f(x)) as a graph point.",
-        "task": "main",
-        "publicRequest": "For f(x)=2x−3, make a table at x=−1,0,2,4; give both intercepts; then find the exact distance and midpoint between the graph points corresponding to x=−1 and x=2.",
+        "task": "transfer",
+        "publicRequest": "Read the supplied graph of q. State q(1) and explain what the graph point at x=1 means. Read both x-intercepts and the y-intercept from the axes. Then find the exact distance and midpoint between the two x-intercepts.",
         "rubricEvidence": [
-          "Correct exact distance 3√5."
+          "Reads q(1)=−3 and interprets (1,−3) as an input-output graph point."
         ]
       },
       {
@@ -4428,9 +4421,9 @@
       {
         "claim": "Interpret −f(x) and f(−x) as reflections.",
         "task": "transfer",
-        "publicRequest": "Starting from f(u)=√u, analyze p(x)=√(2−x)+1. Describe the input transformation, give domain/range and endpoint, and compute p(−7).",
+        "publicRequest": "The first supplied graph is the parent y=√x. The second is a transformed copy. Infer the sequence of input/output transformations, write a compatible formula p(x), state its domain, range and endpoint, and compute p(−7) from your formula.",
         "rubricEvidence": [
-          "Correct horizontal reflection/shift description."
+          "Infers the horizontal reflection, right shift2 and upward shift1 and writes p(x)=√(2−x)+1 or an equivalent rule."
         ]
       },
       {
@@ -4444,17 +4437,17 @@
       {
         "claim": "Track domain/range through elementary transformations.",
         "task": "transfer",
-        "publicRequest": "Starting from f(u)=√u, analyze p(x)=√(2−x)+1. Describe the input transformation, give domain/range and endpoint, and compute p(−7).",
+        "publicRequest": "The first supplied graph is the parent y=√x. The second is a transformed copy. Infer the sequence of input/output transformations, write a compatible formula p(x), state its domain, range and endpoint, and compute p(−7) from your formula.",
         "rubricEvidence": [
-          "Domain x≤2 and range y≥1."
+          "Domain x≤2 and range y≥1 are correct."
         ]
       },
       {
         "claim": "Read key geometric features from a transformed standard function.",
-        "task": "main",
-        "publicRequest": "Starting from y=x², analyze g(x)=−2(x−3)²+5. Describe every transformation, give the vertex, domain and range, and compute g(1).",
+        "task": "transfer",
+        "publicRequest": "The first supplied graph is the parent y=√x. The second is a transformed copy. Infer the sequence of input/output transformations, write a compatible formula p(x), state its domain, range and endpoint, and compute p(−7) from your formula.",
         "rubricEvidence": [
-          "Vertex(3,5)."
+          "Endpoint(2,1) is correct."
         ]
       }
     ],
@@ -5143,18 +5136,18 @@
     "T22V3::T22E-FND02::S23@1": [
       {
         "claim": "Identify amplitude and midline of A sin(B(x−h))+D or cosine form.",
-        "task": "main",
-        "publicRequest": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+        "task": "transfer",
+        "publicRequest": "First use the supplied graph alone to read its amplitude, midline and period. Then use the revealed underlying rule y=−3cos(2x)+4 to solve cos(2x)=0 for x in [0,π).",
         "rubricEvidence": [
-          "All four graph parameters correct."
+          "Reads amplitude3, midline4 and periodπ from the supplied graph."
         ]
       },
       {
         "claim": "Compute period2π/|B| for sin/cos.",
-        "task": "main",
-        "publicRequest": "For y=2sin(x−π/2)+1, state amplitude, period, midline and phase shift. Then solve sin x=1/2 on [0,2π).",
+        "task": "transfer",
+        "publicRequest": "First use the supplied graph alone to read its amplitude, midline and period. Then use the revealed underlying rule y=−3cos(2x)+4 to solve cos(2x)=0 for x in [0,π).",
         "rubricEvidence": [
-          "All four graph parameters correct."
+          "Reads amplitude3, midline4 and periodπ from the supplied graph."
         ]
       },
       {
@@ -5176,9 +5169,9 @@
       {
         "claim": "Solve cos(Bx)=c at standard values on a stated bounded interval.",
         "task": "transfer",
-        "publicRequest": "For y=−3cos(2x)+4, state amplitude, period and midline. Then solve cos(2x)=0 for x in [0,π).",
+        "publicRequest": "First use the supplied graph alone to read its amplitude, midline and period. Then use the revealed underlying rule y=−3cos(2x)+4 to solve cos(2x)=0 for x in [0,π).",
         "rubricEvidence": [
-          "Solutions π/4,3π/4 with interval handled correctly."
+          "Solves cos(2x)=0 as x=π/4,3π/4 on [0,π)."
         ]
       }
     ],
@@ -5210,26 +5203,26 @@
       {
         "claim": "Use a trig function's range and standard-angle solutions.",
         "task": "transfer",
-        "publicRequest": "Let p(θ)=2+3sinθ for 0≤θ≤2π. Find its range, compute p(π/6), solve p(θ)=3.5 on the interval, then evaluate Σ(k=0..4) p(kπ/2).",
+        "publicRequest": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
         "rubricEvidence": [
           "Range [−1,5].",
-          "Solutions π/6,5π/6."
+          "Solutions π/6 and5π/6."
         ]
       },
       {
         "claim": "Coordinate exact algebra and domain checks across representations.",
-        "task": "main",
-        "publicRequest": "Let q_n=50(1.2)^n for n=0,…,5 and h(x)=ln(x/50). State h's domain and inverse. Show h(q_n)=n ln1.2. Evaluate Σ(n=0..5) q_n exactly or as a terminating decimal, and find the index n for which q_n=86.4.",
+        "task": "transfer",
+        "publicRequest": "The supplied table is an unlabeled sample from one of three simple families studied in M02: linear, exponential or sinusoidal. Choose the compatible family and justify the choice from structure rather than appearance. Write the simplest p(θ)=D+A sinθ model matching the table, give its range, solve p(θ)=3.5 for 0≤θ≤2π, and evaluate the sum of the five displayed sample values.",
         "rubricEvidence": [
-          "Correct h domain and inverse.",
-          "Correct log-linearization h(q_n)=nln1.2."
+          "Chooses sinusoidal and rejects linear/exponential using structural evidence such as lack of constant difference/ratio plus periodic symmetry.",
+          "Writes p(θ)=2+3sinθ."
         ]
       }
     ]
   },
   "coverageAudit": {
     "version": "m02-observability-review-2026-09-18",
-    "status": "120/120 manually reviewed after M02-03; direction-of-task mismatches repaired before acceptance",
+    "status": "120/120 semantically re-audited for the v1.2 retrofit; exact claim→public-request→rubric links retained or updated, with rendered-representation directions pinned for S03/S06/S23/S24",
     "policy": "A claim is retained only when a public fixed task explicitly requests behavior that can observe it and at least one rubric criterion scores that behavior. This is observability mapping, not psychometric mastery certification."
   },
   "representationProgression": [
@@ -5317,5 +5310,199 @@
       "publicEvidence": "S24 Transfer requires choosing linear/exponential/sinusoidal from a table before writing a formula",
       "status": "implemented/assessed"
     }
-  ]
+  ],
+  "evidenceDistance": {
+    "T22V3::T22E-FND02::S01-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S01-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Moves from a symbolic rule to a verbal cost relationship that the learner must model, label with units and invert."
+    },
+    "T22V3::T22E-FND02::S02-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S02-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S03-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S03-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes formula/table construction into literal reading of a rendered graph with axes and coordinate geometry."
+    },
+    "T22V3::T22E-FND02::S04-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S04-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S05-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S05-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S06-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S06-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes formula→transformation execution into graph→transformation reconstruction from parent and transformed curves."
+    },
+    "T22V3::T22E-FND02::S07-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S07-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Adds domain tracing through a rational composition where order changes both formula and legal-input restrictions."
+    },
+    "T22V3::T22E-FND02::S08-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S08-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Moves from an already one-to-one linear function to diagnosing non-invertibility and choosing a domain restriction."
+    },
+    "T22V3::T22E-FND02::S09-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S09-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes factored-form analysis into graph→zeros/multiplicity/factor-structure reconstruction."
+    },
+    "T22V3::T22E-FND02::S10-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S10-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Changes algebraic rational simplification into graph→hole/asymptote reading plus reconstruction of the cancelled-versus-remaining factor distinction."
+    },
+    "T22V3::T22E-FND02::S11-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S11-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S12-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S12-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S13-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S13-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S14-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S14-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Audits an identity whose written split form silently narrows the real domain and repairs it with absolute value."
+    },
+    "T22V3::T22E-FND02::S15-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S15-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S16-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S16-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Distinguishes real-valued interpolation of doubling time from the first integer period meeting the threshold."
+    },
+    "T22V3::T22E-FND02::S17-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S17-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S18-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S18-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Infers the geometric ratio from displayed terms, handles the r=1 boundary and supplies an independent finite-sum scale check."
+    },
+    "T22V3::T22E-FND02::S19-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S19-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S20-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S20-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Requires an all-future recurrence invariant rather than extrapolation from a finite prefix."
+    },
+    "T22V3::T22E-FND02::S21-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S21-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S22-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S22-T@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S23-M@1": {
+      "classification": "retrieval",
+      "reason": "Applies a taught fact, representation or procedure on a new instance with essentially the same reasoning structure."
+    },
+    "T22V3::T22E-FND02::S23-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Requires reading amplitude/midline/period from a rendered graph before solving the underlying bounded trig equation."
+    },
+    "T22V3::T22E-FND02::S24-M@1": {
+      "classification": "fresh Main evidence",
+      "reason": "Coordinates domain/inverse, log linearization, finite geometric sigma evaluation and index recovery without a chapter label."
+    },
+    "T22V3::T22E-FND02::S24-T@1": {
+      "classification": "changed-surface Transfer",
+      "reason": "Starts from an unlabeled table, requires model-family selection, then reconstructs the sinusoidal rule and exact consequences."
+    }
+  }
 }
