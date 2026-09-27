@@ -1,7 +1,7 @@
 # M03 REVIEW-HANDOFF — Mathematical Reasoning & Discrete Foundations
 
 > **Lang-foundation continuation — 2026-09-27**  
-> The historical M03 Astra acceptance/re-review state below is preserved as history. A later bounded dependency repair adds **finite binomial expansion ownership to S26** because M10-S10 consumes that theorem. M03 remains 30 sessions / 60 tasks / 150 ownership claims, but its current status is `authored-v1.3-lang-binomial-repair-awaiting-independent-reconfirmation` and instruction version is `m03-instruction-lang-binomial-r2`. Current cross-module repair authority: `docs/t22-course/M01-M03-M10-LANG-FOUNDATION-FOLLOWUP.md`. Do not read the older handoff as independently certifying the new S26 ownership stitch.
+> The historical M03 Astra acceptance/re-review state below is preserved as history. The later Lang repair now gives **general finite binomial theorem ownership to S26** because M10-S10 consumes that general theorem: the public evidence requires the positive-integer-n identity, the general C(n,k) factor-choice argument, and a fresh n=5 expansion. M03 remains 30 sessions / 60 tasks / 150 ownership claims, but its current status is `authored-v1.4-lang-final-stitch-awaiting-independent-reconfirmation` and instruction version is `m03-instruction-lang-binomial-r3`. Current authority: `docs/t22-course/M01-M03-LANG-FOUNDATION-FINAL-STITCH.md`. Do not read the older handoff as independently certifying this stronger S26 contract.
 
 
 Date: 2026-09-18  
