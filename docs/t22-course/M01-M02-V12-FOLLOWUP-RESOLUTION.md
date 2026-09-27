@@ -1,5 +1,9 @@
 # M01 + M02 v1.2 independent-review follow-up — R01–R08 resolution
 
+> **Lang-foundation continuation — 2026-09-27**  
+> R01–R08 remain repaired. A subsequent independent Lang-grounded end-to-end audit found L01–L10: false or too-shallow prerequisite provenance around coordinate/Pythagorean distance, real exponentials, trig addition formulas, binomial expansion, AP pairing, special triangles, algebraic laws, system cases and readiness coverage. Those are handled in `M01-M03-M10-LANG-FOUNDATION-FOLLOWUP.md`. The earlier R01–R08 acceptance question is therefore superseded by this broader prerequisite-depth reconfirmation gate.
+
+
 Date: 2026-09-27  
 Repository: `Karuma-jojo/Chronological-Deck`  
 Repair branch: `codex/t22-m01-m02-v12-followup`  
