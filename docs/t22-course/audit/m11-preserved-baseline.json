@@ -20,11 +20,11 @@
     "docs/t22-course/M01-ACCEPTANCE.md": "43533caa53638b4c584663314485a8459114671b",
     "docs/t22-course/M02-ASTRA-RESOLUTION.md": "c371483a7b40571ef035985bff36f98c59105b36",
     "docs/t22-course/M02-ASTRA-REVIEW.md": "082bb4e41c0fa39a0e3f178a5bdcfc6a1a611a33",
-    "docs/t22-course/M02-BOUNDARY.md": "d9c9ef6969293d85ec0412d32fdee80e0a30f5f8",
+    "docs/t22-course/M02-BOUNDARY.md": "f576faa7a5dd7ae88319d9d798c09d73a98fe72e",
     "docs/t22-course/M02-REVIEW-HANDOFF.md": "296468ebdd948387d306cfa96cd5277233d901a1",
     "docs/t22-course/M03-ASTRA-FOLLOWUP.md": "f88e72381e50679f6238030fce7d3a47831d513b",
     "docs/t22-course/M03-ASTRA-REVIEW.md": "8c3dc68a48e0e65738ed2750df5910c0325c0f1c",
-    "docs/t22-course/M03-BOUNDARY.md": "5c45eeb4c81553443c3bcfab9a148f79ccf511e1",
+    "docs/t22-course/M03-BOUNDARY.md": "7b1d7a5115265c9546248051dc3bc9bb2975626c",
     "docs/t22-course/M03-RESOLUTION.md": "785b918b970dc7d105e08d111560c5cd05695e24",
     "docs/t22-course/M03-REVIEW-HANDOFF.md": "776df14dc3ce95f3143f4603ecc8c2035e2c2a6b",
     "docs/t22-course/M04-ASTRA-FOLLOWUP.md": "82b73045a62c9166e392b79165f06b183a803925",
@@ -153,6 +153,7 @@
     "base": "15e2e54fe1a05c442f008da134048231092f6ff5",
     "branch": "codex/t22-lang-foundation-followup",
     "scope": "L01–L10 prerequisite-depth repair; only listed upstream curriculum/test/design hashes re-pinned. Unrelated protected curriculum remains frozen.",
-    "baselineChain": "M09/M10 preservation ledgers were re-pinned for the same authorized repair."
+    "baselineChain": "M09/M10 preservation ledgers were re-pinned for the same authorized repair.",
+    "boundaryDocs": "M02/M03 boundary docs updated only to reflect newly explicit real-exponential, angle-addition and binomial-expansion ownership."
   }
 }
