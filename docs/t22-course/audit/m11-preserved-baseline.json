@@ -26,7 +26,7 @@
     "docs/t22-course/M03-ASTRA-REVIEW.md": "8c3dc68a48e0e65738ed2750df5910c0325c0f1c",
     "docs/t22-course/M03-BOUNDARY.md": "7b1d7a5115265c9546248051dc3bc9bb2975626c",
     "docs/t22-course/M03-RESOLUTION.md": "785b918b970dc7d105e08d111560c5cd05695e24",
-    "docs/t22-course/M03-REVIEW-HANDOFF.md": "776df14dc3ce95f3143f4603ecc8c2035e2c2a6b",
+    "docs/t22-course/M03-REVIEW-HANDOFF.md": "4a1d2e4aa1e32769352073212ee387f3b22e65e9",
     "docs/t22-course/M04-ASTRA-FOLLOWUP.md": "82b73045a62c9166e392b79165f06b183a803925",
     "docs/t22-course/M04-ASTRA-REVIEW.md": "34faa5cc8819d62c1dafb33de67a6a9c2d27e823",
     "docs/t22-course/M04-BOUNDARY.md": "62d1887ced7ec213112b35d7dc4e414e22be15e2",
@@ -59,7 +59,7 @@
     "docs/t22-course/M10-RESOLUTION.md": "68cca54d58f76de42b2d7095c3450001a3ffd957",
     "docs/t22-course/M10-REVIEW-HANDOFF.md": "42f3c31569c242ba2bc8cb1108e61fe64d18306c",
     "docs/t22-course/audit/m02-review-checks.mjs": "1d2b80b4fded54bd40b738fdd13a9a51dd022d98",
-    "docs/t22-course/audit/m03-handoff-checks.mjs": "bddd8fc633c6438c6de546d871f3de70967580a0",
+    "docs/t22-course/audit/m03-handoff-checks.mjs": "a7cbea1a4e9422e3a6b0f3c2452c77ba6db261c5",
     "docs/t22-course/audit/m03-independent-math.mjs": "af03889cdff59867d1fdb8eff0891439cc9ce7ff",
     "docs/t22-course/audit/m03-repair-checks.mjs": "867aa9c4c9ac1b376969fdfe4b056e6c7e433f41",
     "docs/t22-course/audit/m04-handoff-checks.mjs": "e67e626a71056e3ecb1825e6767deb16a7014c67",
@@ -157,6 +157,7 @@
     "boundaryDocs": "M02/M03 boundary docs updated only to reflect newly explicit real-exponential, angle-addition and binomial-expansion ownership.",
     "latestPins": "M01 readiness wording and M02 independent-law arithmetic guards updated after initial re-pin; no curriculum scope change.",
     "ciRepair": "Run 557 correctly caught loss of the explicit cos45°=sin45°=√2/2 invariant during the deeper triangle derivation. The statement was restored; the standing guard was not weakened.",
-    "ciRepair2": "Run 558 required the explicit phrase 'no solution' in the S04 three-way systems bridge. The lesson was clarified; the semantic guard stayed strict."
+    "ciRepair2": "Run 558 required the explicit phrase 'no solution' in the S04 three-way systems bridge. The lesson was clarified; the semantic guard stayed strict.",
+    "handoffRepair": "Run 559 reached the historical M03 handoff checker; its exact old status/version assertions were updated to preserve old review history while recording the new S26 binomial ownership stitch and pending independent reconfirmation."
   }
 }
