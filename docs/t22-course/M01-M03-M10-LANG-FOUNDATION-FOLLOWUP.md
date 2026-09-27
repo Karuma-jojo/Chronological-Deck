@@ -1,5 +1,9 @@
 # T22 M01–M03 + M10 Lang-foundation follow-up — L01–L10 resolution
 
+> **Final-stitch continuation — 2026-09-27**  
+> Independent follow-up on the green Lang-repair head found LF-R01–LF-R06. The blocker was that M03-S26 taught the general finite binomial theorem but only owned/assessed a rehearsed small-n instance, while M10 consumed the general theorem. The bounded final stitch strengthens S26 to general positive-integer-n ownership + public combinatorial coefficient evidence, restores the permutation↔combination bridge, makes M01-S13 publicly own one/no/infinite classification, and separates/closes the S22 angle-addition derivation. Current authority: `docs/t22-course/M01-M03-LANG-FOUNDATION-FINAL-STITCH.md`. The earlier L01–L10 receipt remains historical context.
+
+
 Date: 2026-09-27  
 Repository: `Karuma-jojo/Chronological-Deck`  
 Repair branch: `codex/t22-lang-foundation-followup`  
