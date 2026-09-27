@@ -7,7 +7,7 @@ Base head: `60d0e9377ca49f5ee43de6c141c4368d557cd3ee`
 
 ## Status
 
-**BOUNDED FINAL-STITCH REPAIR IMPLEMENTED; FULL WORKFLOW + INDEPENDENT RECONFIRMATION PENDING.**
+**BOUNDED FINAL-STITCH REPAIR IMPLEMENTED + FULLY GREEN; INDEPENDENT RECONFIRMATION PENDING.**
 
 This repair closes the remaining failure mode exposed after the first Lang pass: a general idea could appear in instruction, be assessed only on a special case, and then be promoted downstream as if the general capability had been independently owned.
 
@@ -142,10 +142,27 @@ Real Chromium must see:
 - the general coefficient-choice request;
 - the fresh n=5 expansion.
 
+## Exact-head implementation validation
+
+Implementation head: `26ce54a127b9b9fa3aa931f4715f28596221244a`  
+T22 Elite workflow: run `36315456617` (#573), job `108609192895` — **SUCCESS**
+
+Inspected logs confirm:
+
+- **M01 Lang final stitch PASS:** 17 sessions / 34 tasks; S13 one/no/infinite classification is canonical ownership with fixed Transfer v3; structural-law/readiness and prior R02/R03/R06/R08 protections retained.
+- **M02 Lang final stitch PASS:** 24 sessions / 48 tasks; S04 cites owned M01 classification; S22 rigid-rotation lemma and non-cloned Guided sine-difference reconstruction are pinned.
+- **M03 Lang final stitch PASS:** 30 sessions / 60 tasks / 150 claims; S26 general positive-integer-n binomial ownership, combinatorial C(n,k) evidence, fresh n=5 application, and restored `P(n,r)=C(n,r)·r!` bridge are pinned.
+- **M10 dependency receipt PASS:** M10-S10 may consume M03-S26 only if the upstream ownership claim and public evidence are themselves general in positive integer n.
+- **Chromium PASS:** learner-facing M01-S13 classification, S22 proof/guidance separation, M03-S26 general theorem + coefficient argument, M10 owner links, evidence workflows, export/import and mobile-width checks all passed.
+
+One useful red run preceded the green run: run #572 caught a stale literal guard expecting contradiction `0=5`; the repaired lesson consistently uses `0=2`. The guard was updated to the new explicit contradiction without weakening the semantic one/no/infinite requirement.
+
+This is builder-side verification, not independent reconfirmation.
+
 ## Correct status
 
 R01–R08: **closed**  
 Original Lang L01–L10: **substantively repaired**  
-LF-R01–LF-R06: **repaired on isolated branch**  
+LF-R01–LF-R06: **repaired and fully green on the published T22 branch**  
 Architecture: **keep**  
-Freeze: **not self-declared; full workflow + independent reconfirmation still required**
+Freeze: **not self-declared; independent reconfirmation still required**
