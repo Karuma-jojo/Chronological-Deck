@@ -1,6 +1,6 @@
 # T22 Elite M15 / SIDE278 — Resolution
 
-Status: **INDEPENDENT REVIEW REPAIRED · FOLLOW-UP PENDING · UNPUBLISHED**
+Status: **R01–R04 INDEPENDENT FOLLOW-UP PASS · PROVENANCE CONFIRMATION PENDING · UNPUBLISHED**
 
 This file preserves the earlier builder-recovery resolution and records the later independent-review repair. It does not claim independent acceptance.
 
@@ -26,7 +26,7 @@ Full verification: https://github.com/Karuma-jojo/Chronological-Deck/actions/run
 
 ## Claim / evidence treatment
 
-All **48 ownership claims remain unchanged and Main-observed**. The repair does not manufacture new claim ownership merely because two Transfers changed.
+All **48 ownership claims are textually unchanged from the reviewed `aa01b191...` state**. Their actual observer distribution is **35 Main-only, 11 Transfer-only, and 2 observed by both**. The six S14/S15 ownership claims remain Main-observed and were not cosmetically remapped to the new @2 Transfers.
 
 For the two changed Transfers, the following were regenerated:
 - current task IDs/prompts/evaluators;
@@ -64,7 +64,7 @@ Executed successfully:
 
 ## Stop boundary
 
-**Independent follow-up on R01–R04 only.**
+**R01–R04 follow-up is complete and passed. Only the metadata/provenance diff requires final read-back confirmation.**
 
 Do not publish M15, merge to main, open M16, or claim independent acceptance until that follow-up explicitly accepts the repairs.
 
