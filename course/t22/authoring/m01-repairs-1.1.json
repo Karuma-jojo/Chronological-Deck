@@ -1,20 +1,20 @@
 {
-  "version": "m01-repairs-1.4-v12-followup-r01-r08",
-  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts. v1.2 retrofit preserves the 17-session architecture while adding exact claim→public-request→rubric evidence, honest evidence-distance labels, learner-facing representation progression, delayed mixed retrieval, a routing-only readiness diagnostic, and bounded mathematical precision repairs. Assessed visuals are part of the assessment fingerprint. Independent follow-up R01–R08 repairs only semantic observability/representation hardening; no session-count or boundary change.",
+  "version": "m01-repairs-1.5-lang-foundation",
+  "authoringPolicy": "For M01, the checked-in base JSON packs plus this repair overlay are the canonical authored source. Runtime and validators must apply this overlay before assessment fingerprinting. Later modules should be authored with the same explicit source/override provenance rather than hand-editing opaque runtime state. A-07 adds an explicit instruction/assessment-separation audit: worked examples and guided checks must use distinct data from both fixed assessments. Historical exact-answer lesson exposures are migrated conservatively without deleting attempts. v1.2 retrofit preserves the 17-session architecture while adding exact claim→public-request→rubric evidence, honest evidence-distance labels, learner-facing representation progression, delayed mixed retrieval, a routing-only readiness diagnostic, and bounded mathematical precision repairs. Assessed visuals are part of the assessment fingerprint. Independent follow-up R01–R08 repairs only semantic observability/representation hardening; no session-count or boundary change. Lang-foundation follow-up deepens structural algebra laws, system-case interpretation and readiness coverage without changing the 17-session architecture or ownership boundary.",
   "lessons": {
-    "T22V3::T22E-FND01::S01@1": "A signed number has a sign and a magnitude. On the number line, farther left means smaller. Read a numerical expression from its grouping outward: parentheses first, then powers, then multiplication/division, then addition/subtraction. A leading minus outside a power is applied after the power unless the negative base is parenthesized. Worked example: −6−[3−(−2)]+3² = −6−5+9 = −2. Guided check: evaluate −4²+(−4)²−[6−(−2)] and predict the sign before calculating.",
-    "T22V3::T22E-FND01::S02@1": "A fraction a/b is one number, with b≠0. Equivalent fractions come from multiplying numerator and denominator by the same nonzero factor. Addition/subtraction needs a common denominator; multiplication multiplies numerators and denominators; division by a nonzero fraction multiplies by its reciprocal. Worked example: 2/5+7/10=4/10+7/10=11/10; (4/7)(21/10)=6/5; and (5/8)÷(15/16)=(5/8)(16/15)=2/3. Guided check: reduce 21/35, then compute 7/12−1/8 and (4/9)(3/14) exactly.",
+    "T22V3::T22E-FND01::S01@1": "A signed number has a sign and a magnitude. On the number line, farther left means smaller. Arithmetic also has reusable structure: addition and multiplication are commutative (a+b=b+a, ab=ba) and associative ((a+b)+c=a+(b+c), (ab)c=a(bc)); subtraction and division are not. Additive inverses satisfy a+(−a)=0, and nonzero multiplicative inverses satisfy a·(1/a)=1. Read a numerical expression from its grouping outward: parentheses first, then powers, then multiplication/division, then addition/subtraction. A leading minus outside a power is applied after the power unless the negative base is parenthesized. Worked example: −6−[3−(−2)]+3² = −6−5+9 = −2; regrouping 17+83+6 as (17+83)+6 uses associativity, while swapping 17 and83 uses commutativity. Guided check: evaluate −4²+(−4)²−[6−(−2)], predict the sign first, and name which law lets you regroup 25+75+4 without changing its value.",
+    "T22V3::T22E-FND01::S02@1": "A fraction a/b is one number, with b≠0. Equivalent fractions come from multiplying numerator and denominator by the same nonzero factor. Cancellation is not a visual permission to cross out symbols: it is multiplication by a reciprocal inside a product, e.g. (6·5)/(6·7)=(6/6)(5/7)=5/7 because6≠0. Addition/subtraction needs a common denominator; multiplication multiplies numerators and denominators; division by a nonzero fraction multiplies by its reciprocal. Worked example: 2/5+7/10=4/10+7/10=11/10; (4/7)(21/10)=6/5; and (5/8)÷(15/16)=(5/8)(16/15)=2/3. Guided check: reduce 21/35 by identifying the common nonzero factor, then compute 7/12−1/8 and (4/9)(3/14) exactly.",
     "T22V3::T22E-FND01::S03@1": "A ratio compares multiplicatively; order matters. A rate is a ratio with units. Direct proportion means the same scale factor applies to every part. Worked example: a 4:7 mixture with total ₹33,000 has eleven parts, so one part is ₹3,000 and the amounts are ₹12,000 and ₹21,000. Guided check: reduce 15:25:10, then allocate ₹60,000 in that reduced ratio and verify the parts sum to the total.",
     "T22V3::T22E-FND01::S04@1": "Percent means per hundred. Relative percent change uses the original value in the denominator; percentage-point change subtracts displayed percentages. Worked example: 30%→36% is +6 percentage points but a relative increase of 6/30=20%. Guided check: for 55%→44%, report the percentage-point and relative changes, then write 44% as a decimal and 0.625 as a fraction and percentage.",
     "T22V3::T22E-FND01::S05@1": "Sequential percentage changes are multipliers, not labels to add. To reverse a known move, divide by its multiplier. Worked example: ₹2,500 rising 8% and then falling 20% becomes 2500×1.08×0.80=₹2,160, a net −13.6%. Guided check: start from ₹3,000, apply +12% then −7%, compute the final value and net change, and explain why the two labels should not simply be added.",
     "T22V3::T22E-FND01::S06@1": "Treat units like algebraic factors. Conversion factors equal one, so unwanted units cancel. Quantities can be added only when dimensions match, while a pure ratio or percentage is dimensionless unless a definition supplies units. Worked example: 54 km/h×(1000 m/1 km)×(1 h/3600 s)=15 m/s. Guided check: convert 108 km/h to m/s, then explain from units alone why speed×time has the dimension of distance.",
     "T22V3::T22E-FND01::S07@1": "Estimate before exact calculation. Replace awkward numbers by nearby friendly values, track decimal scale separately, and distinguish a rough central estimate from a proved bound. Worked example: 603×48≈600×50=30,000, so an exact answer near thirty thousand is plausible whereas three million is not. Guided check: estimate 4,120,000×0.0019, give a plausible range, then describe a decimal-place error your estimate would catch.",
     "T22V3::T22E-FND01::S08@1": "Exponent laws apply to multiplicative structure, not across addition. For a≠0, a^(−n)=1/a^n. For a rational exponent p/q, first reduce p/q to lowest terms. In the real-number setting, a negative base is allowed when the reduced denominator q is odd; an even q requires a nonnegative base. Zero cannot carry a negative exponent. Thus (−8)^(2/3)=4, while (−8)^(1/2) has no real value. The principal square root is nonnegative, so √(a²)=|a|. Scientific notation is c×10^k with 1≤|c|<10. Worked example: 32^(2/5)=4, 125^(−1/3)=1/5, and (4×10^5)(3×10^−2)=1.2×10^4. Guided check: evaluate 64^(2/3), 49^(−1/2), and normalize 37×10^6.",
-    "T22V3::T22E-FND01::S09@1": "A variable is a placeholder for a complete value. Substitute with parentheses around negatives, distribute to every term, and combine only like terms. Worked example: if x=−3, then 2x²+x=2(−3)²+(−3)=15; also 3(a+2)−2(a−4)=a+14. A numerical check can catch mistakes but does not prove an identity for every input. Guided check: simplify 5(2x−1)−4(x+3), then compare both forms at x=−2.",
+    "T22V3::T22E-FND01::S09@1": "A variable is a placeholder for a complete value. Substitute with parentheses around negatives. Distributivity a(b+c)=ab+ac is the structural law behind expansion; factoring reverses it. Commutativity and associativity let you reorder/regroup additive terms so genuinely like terms can be combined, but they do not permit combining unlike terms. Worked example: if x=−3, then 2x²+x=2(−3)²+(−3)=15; also 3(a+2)−2(a−4)=3a+6−2a+8=(3a−2a)+(6+8)=a+14. Every equality in that chain asserts the same value for every legal a. A numerical check can catch mistakes but does not prove an identity for every input. Guided check: simplify 5(2x−1)−4(x+3) with a visible equality chain, name the distributive step and one regrouping step, then compare both forms at x=−2.",
     "T22V3::T22E-FND01::S10@1": "Factoring reverses expansion. First remove a greatest common factor. For a non-monic quadratic ax²+bx+c, one beginner-safe route is the ac method: find two numbers whose product is ac and sum is b, split bx, then factor by grouping. Worked example: 12x²+x−6 has ac=−72; 9 and −8 sum to1, so 12x²+9x−8x−6=3x(4x+3)−2(4x+3)=(3x−2)(4x+3). Difference of squares gives A²−B²=(A−B)(A+B). Guided check: factor 10x²+7x+1 by splitting the middle term and verify by expansion.",
-    "T22V3::T22E-FND01::S11@1": "An equation is a constraint: legal transformations preserve the same solution set. Add/subtract the same quantity on both sides, or multiply/divide both sides by the same known nonzero quantity. Worked example: (x+2)/5−1=3 gives (x+2)/5=4, then x+2=20, so x=18; substitution checks it. Guided check: solve (3x−2)/7+4=5 with a visible reversible chain and verify the candidate.",
+    "T22V3::T22E-FND01::S11@1": "An equation is a constraint: legal transformations preserve the same solution set. The structural reason is inverse operations applied equally to both sides. Adding c and then adding −c cancel; multiplying by a known nonzero c and then by1/c cancel. This is why one may add/subtract the same quantity on both sides, or multiply/divide both sides by the same known nonzero quantity. Worked example: (x+2)/5−1=3 gives (x+2)/5=4, then x+2=20, so x=18; each line is equivalent to the previous one and substitution checks the result. Guided check: solve (3x−2)/7+4=5 with a visible reversible chain, identify the inverse operation used at each step, and verify the candidate.",
     "T22V3::T22E-FND01::S12@1": "Treat a formula as an equation whose requested symbol is the unknown and whose other symbols are parameters. Division introduces a condition, and a rearranged form can exclude a parameter branch that the original equation still admits. Worked example: F=ma gives m=F/a only for a≠0; when a=0 the original relation requires F=0 and m is not determined by division. Guided check: from y=c+dt, solve for d and separately describe the t=0 branch.",
-    "T22V3::T22E-FND01::S13@1": "A system asks for one pair satisfying every constraint simultaneously. Substitution replaces a variable by an equivalent expression; elimination combines equations to remove a variable. Worked example: x+y=11 and 2x−y=7. Adding gives3x=18, so x=6 and y=5; both originals check. Guided check: solve 3x+2y=17 and x−y=3 by elimination, then verify both equations.",
+    "T22V3::T22E-FND01::S13@1": "A system asks for one pair satisfying every constraint simultaneously. Substitution replaces a variable by an equivalent expression; elimination combines equations to remove a variable. Ordinary systems can have three qualitatively different outcomes. If elimination leaves one variable value, there is one solution. If it collapses to a false statement such as0=5, the constraints are inconsistent and there is no solution. If it collapses to a true identity such as0=0, the equations are dependent and there are infinitely many solutions along the same relation. Worked example: x+y=11 and2x−y=7 gives3x=18, so(x,y)=(6,5). By contrast x+y=4 and2x+2y=9 are inconsistent, while x+y=4 and2x+2y=8 describe the same constraint. Guided check: classify the three pairs {x+y=5, x−y=1}, {x+y=5, 2x+2y=12}, and {x+y=5, 2x+2y=10} as one/no/infinitely-many solutions before solving the unique case.",
     "T22V3::T22E-FND01::S14@1": "Inequalities describe sets. Addition/subtraction preserves order; positive scaling preserves order; negative scaling reverses it. Interval notation uses square brackets for included finite endpoints, parentheses for excluded endpoints, and parentheses at infinity. Worked example: −5x≥20 gives x≤−4, written (−∞,−4]. Guided check: solve 4−2x>10, give interval notation, and test one point inside and one outside your solution.",
     "T22V3::T22E-FND01::S15@1": "Absolute value is distance: |x| is distance from0 and |x−a| is distance from a. For c≥0, |u|≤c gives a bounded interval while |u|>c gives two outside rays. Absolute value is always nonnegative, so negative thresholds can make a condition impossible or automatic. Worked example: |x−6|≤3 gives3≤x≤9. Guided check: solve |3x+2|>8, then decide |y+1|<−3 and |y+1|≥−3 immediately from nonnegativity.",
     "T22V3::T22E-FND01::S16@1": "Put a quadratic in ax²+bx+c=0 form with a≠0. Factoring plus the zero-product property is efficient when factors are visible. Completing the square explains the general method rather than making the quadratic formula appear from nowhere: x²−6x+5=0 becomes x²−6x=−5, so adding 9 to both sides gives (x−3)²=4 and x=1 or5. For ax²+bx+c=0, divide by a, move c/a, and add (b/2a)²; solving the resulting square yields x=(−b±√(b²−4ac))/(2a). The discriminant D=b²−4ac therefore controls whether the real square-root step gives two, one or no real roots. Worked example: 2x²+4x−3=0 becomes x²+2x=3/2, so (x+1)²=5/2 and x=−1±√10/2, matching the formula. Guided check: solve x²+4x−5=0 by completing the square, then identify the discriminant before checking with the formula.",
@@ -979,7 +979,7 @@
       ]
     ]
   },
-  "instructionVersion": "m01-instruction-v12-representation-r1",
+  "instructionVersion": "m01-instruction-v12-lang-foundation-r2",
   "instructionSeparation": {
     "T22V3::T22E-FND01::S01@1": {
       "main": [
@@ -1216,6 +1216,38 @@
             }
           ],
           "note": "Farther right means larger, even when every value is negative."
+        },
+        {
+          "kind": "table",
+          "title": "Structural laws underneath legal algebra moves",
+          "headers": [
+            "law",
+            "safe move",
+            "not the same"
+          ],
+          "rows": [
+            [
+              "commutative",
+              "a+b=b+a; ab=ba",
+              "a−b≠b−a in general"
+            ],
+            [
+              "associative",
+              "(a+b)+c=a+(b+c)",
+              "(a−b)−c≠a−(b−c) in general"
+            ],
+            [
+              "inverse",
+              "a+(−a)=0; a·(1/a)=1 for a≠0",
+              "division by0 is never licensed"
+            ],
+            [
+              "distributive",
+              "a(b+c)=ab+ac",
+              "a/(b+c) does not split that way"
+            ]
+          ],
+          "note": "Later algebra is easier to audit when you can name the property making a move legal."
         }
       ]
     },
@@ -1447,10 +1479,41 @@
         "A formula result has units metres/second² but the target quantity is metres. Identify the structural problem.",
         "Choose one independent check—substitution, units or scale—for an algebraic answer and explain what failure it could catch."
       ]
+    },
+    "T22V3::T22E-FND01::S13@1": {
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Three possible outcomes of two linear constraints",
+          "headers": [
+            "algebra after elimination",
+            "meaning",
+            "geometric picture"
+          ],
+          "rows": [
+            [
+              "x=6",
+              "one ordered pair",
+              "two distinct lines cross once"
+            ],
+            [
+              "0=5",
+              "no ordered pair",
+              "distinct parallel lines"
+            ],
+            [
+              "0=0",
+              "infinitely many pairs",
+              "the same line written twice"
+            ]
+          ],
+          "note": "M02 S04 will render the same three cases geometrically."
+        }
+      ]
     }
   },
   "readinessDiagnostic": {
-    "intro": "Optional 10–15 minute routing check. Attempt it cold. It is not a mastery test and never clears a session; use misses only to decide where to begin or what to revisit.",
+    "intro": "Optional routing check. Attempt it cold. It is not a mastery test and never clears a session. A strong result can suggest where to begin, but it does not certify that all of M01 is known.",
     "items": [
       {
         "prompt": "Evaluate −3²+(−3)².",
@@ -1459,41 +1522,41 @@
       },
       {
         "prompt": "Which is larger, 5/8 or 3/5? Give an exact reason.",
-        "answer": "5/8 because 25/40 > 24/40",
+        "answer": "5/8 because25/40>24/40",
         "route": "S02 fractions"
       },
       {
-        "prompt": "240 km in 3 h is what unit rate?",
+        "prompt": "240 km in3 h is what unit rate?",
         "answer": "80 km/h",
         "route": "S03 ratios/rates"
       },
       {
-        "prompt": "A displayed rate rises from 40% to 50%. Give the percentage-point and relative increases.",
+        "prompt": "A displayed rate rises from40% to50%. Give the percentage-point and relative increases.",
         "answer": "+10 percentage points; +25% relative",
         "route": "S04 percentages"
       },
       {
-        "prompt": "₹100 rises 10% and then falls 10%. Final value?",
+        "prompt": "₹100 rises10% and then falls10%. Final value?",
         "answer": "₹99",
         "route": "S05 sequential percentages"
       },
       {
-        "prompt": "Convert 72 km/h to m/s.",
+        "prompt": "Convert72 km/h to m/s.",
         "answer": "20 m/s",
         "route": "S06 units/conversions"
       },
       {
-        "prompt": "Estimate 198×0.051 to one useful significant scale.",
-        "answer": "about 10",
+        "prompt": "Estimate198×0.051 to one useful significant scale.",
+        "answer": "about10",
         "route": "S07 estimation/scale"
       },
       {
-        "prompt": "Evaluate 27^(2/3).",
+        "prompt": "Evaluate27^(2/3).",
         "answer": "9",
         "route": "S08 powers/roots"
       },
       {
-        "prompt": "Simplify 3(x+2)−x.",
+        "prompt": "Simplify3(x+2)−x.",
         "answer": "2x+6",
         "route": "S09 algebraic expressions"
       },
@@ -1503,9 +1566,19 @@
         "route": "S10 factoring"
       },
       {
-        "prompt": "Solve (x−1)/3=4.",
+        "prompt": "Solve(x−1)/3=4.",
         "answer": "x=13",
         "route": "S11 equations"
+      },
+      {
+        "prompt": "From y=a+bt, solve for b and state the exceptional t=0 branch.",
+        "answer": "b=(y−a)/t for t≠0; if t=0 the original requires y=a and does not determine b",
+        "route": "S12 formula rearrangement/parameter branches"
+      },
+      {
+        "prompt": "Solve x+y=7 and x−y=1.",
+        "answer": "x=4,y=3",
+        "route": "S13 simultaneous equations"
       },
       {
         "prompt": "Solve −2x>6 and give interval notation.",
@@ -1513,12 +1586,22 @@
         "route": "S14 inequalities"
       },
       {
+        "prompt": "Solve |x−2|≤5.",
+        "answer": "−3≤x≤7",
+        "route": "S15 absolute value/distance"
+      },
+      {
         "prompt": "Solve x²−5x+6=0.",
         "answer": "x=2 or3",
         "route": "S16 quadratics"
+      },
+      {
+        "prompt": "A value V rises10%, then falls20%, then pays a fixed fee f. Write the final value symbolically.",
+        "answer": "0.88V−f",
+        "route": "S17 synthesis/model coordination"
       }
     ],
-    "routing": "If you miss an item because the concept itself is unclear, begin at that routed session. One isolated arithmetic slip is not a reason to restart the module. Three or more conceptual misses across different clusters means use M01 in order rather than bypassing it."
+    "routing": "Use this only to choose a starting point or revisit cluster. Missing one item because of an arithmetic slip is not a reason to restart. Conceptual misses should route to the named session. Even a perfect score is not independent mastery evidence; it only suggests that fast traversal/retrieval checks may be appropriate."
   },
   "representationProgression": [
     {
@@ -2450,6 +2533,7 @@
     ]
   },
   "coverageAudit": {
-    "status": "85/85 semantically re-audited through independent follow-up R01–R08; R02/R03/R06 exact observers repaired and S14 assessed ray hardened with its own continuation arrow"
+    "status": "85/85 semantically re-audited through independent follow-up R01–R08; R02/R03/R06 exact observers repaired and S14 assessed ray hardened with its own continuation arrow",
+    "langFoundation": "L07 structural-law spine added instructionally across S01/S02/S09/S11; L08 one/no/infinite system cases added instructionally in S13; L09 readiness broadened to sample S12/S13/S15/S17 while remaining routing-only."
   }
 }
