@@ -156,16 +156,17 @@ const tref=n=>a.evaluators[a.sessions[n-1].transfer].reference;
 }
 
 // References for repaired high-risk items must match the independently recomputed results.
-for(const [n,tokens] of new Map([
- [6,['p=(2,1,2)','r=(2,0,-2)']],
- [7,['14=8+6']],
- [9,['(1,1,1)','(2,-1,-1)','(0,1,-1)']],
- [10,['(-2,1,1)']],
- [12,['5/6','-1/6','1/3']],
- [13,['(5/9,17/9)','4/9']],
- [16,['(2/3,2/3)','(4/3,4/3,2/3)']]
-])){
-  const text=ref(n); for(const tok of tokens)assert(text.includes(tok),`S${n} reference missing independently checked token ${tok}`);
+for(const [n,kind,tokens] of [
+ [6,'main',['p=(2,1,2)','r=(2,0,-2)']],
+ [7,'main',['14=8+6']],
+ [9,'main',['(1,1,1)','(2,-1,-1)','(0,1,-1)']],
+ [10,'transfer',['(-2,1,1)']],
+ [12,'main',['5/6','-1/6','1/3']],
+ [13,'main',['(5/9,17/9)','4/9']],
+ [16,'main',['(2/3,2/3)','(4/3,4/3,2/3)']]
+]){
+  const text=kind==='main'?ref(n):tref(n);
+  for(const tok of tokens)assert(text.includes(tok),`S${n} ${kind} reference missing independently checked token ${tok}`);
 }
 
 console.log('PASS M15 independent math oracles: all 16 sessions have numerical/theorem-boundary checks; repaired projection, Gram–Schmidt, transpose, projector, least-squares and synthesis instances recompute correctly.');
