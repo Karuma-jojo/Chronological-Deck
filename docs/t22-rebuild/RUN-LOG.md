@@ -1,3 +1,11 @@
+# Current Lang-foundation prerequisite-depth follow-up — 2026-09-27
+
+After R01–R08 were repaired, independent review compared the actual foundation and downstream dependency graph against Serge Lang's *Basic Mathematics*. It found L01–L10: several prerequisites were stated or misattributed rather than truly taught, including a fictitious M01 Pythagorean source, missing trig addition identities before M10, an unowned real-exponential law before the exponential derivative, and a fictitious M01 binomial prerequisite.
+
+A bounded repair is isolated on `codex/t22-lang-foundation-followup` from exact green head `15e2e54fe1a05c442f008da134048231092f6ff5`. M01 remains17 sessions, M02 remains24, M03 remains30 and M10 remains24. Current authority: `docs/t22-course/M01-M03-M10-LANG-FOUNDATION-FOLLOWUP.md`. Status: **repair implemented on isolated branch; full workflow and independent reconfirmation pending**.
+
+---
+
 # Current M01 + M02 v1.2 independent-review follow-up — 2026-09-27
 
 Independent adversarial review of green retrofit head `cb4240fb34c28826182e838aae9943d1bd406f15` found R01–R08. The architecture remains **M01 17 / M02 24**; findings are bounded to semantic observability, graph-formula leakage, bidirectional conversion, explicit period computation, S24 domain checking, exponent-law observer metadata and interval-ray rendering.
