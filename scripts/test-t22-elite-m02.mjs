@@ -5,7 +5,7 @@ const a=JSON.parse(fs.readFileSync('course/t22/authoring/m02.json','utf8'));
 assert.equal(a.module.id,'T22E-FND02');assert.equal(a.module.order,2);assert.deepEqual(a.boundary.prerequisiteModules,['T22E-FND01']);
 assert.equal(a.sessions.length,24);assert.equal(Object.keys(a.problems).length,48);assert.equal(Object.keys(a.evaluators).length,48);
 assert.deepEqual(a.sessions.map(s=>s.order),Array.from({length:24},(_,i)=>i+1));
-assert.equal(new Set(a.sessions.map(s=>s.id)).size,24);assert.equal(Object.keys(a.coverage).length,24);assert.equal(Object.keys(a.instructionSeparation).length,24);assert.equal(Object.keys(a.claimEvidence||{}).length,24);assert.equal(a.coverageAudit?.status,'120/120 manually reviewed after M02-03; direction-of-task mismatches repaired before acceptance');
+assert.equal(new Set(a.sessions.map(s=>s.id)).size,24);assert.equal(Object.keys(a.coverage).length,24);assert.equal(Object.keys(a.instructionSeparation).length,24);assert.equal(Object.keys(a.claimEvidence||{}).length,24);assert.equal(a.coverageAudit?.status,'120/120 semantically re-audited for the v1.2 retrofit; exact claim→public-request→rubric links retained or updated, with rendered-representation directions pinned for S03/S06/S23/S24');assert.equal(Object.keys(a.evidenceDistance||{}).length,48);for(const x of Object.values(a.evidenceDistance))assert(['retrieval','proof reconstruction','fresh Main evidence','changed-surface Transfer'].includes(x.classification)&&x.reason);assert(a.representationProgression?.length>=10);
 const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 const hashes=new Set();
 for(const s of a.sessions){
@@ -22,14 +22,14 @@ assert.equal([...hashes].length,24);assert.equal(Object.values(a.coverage).flat(
 const close=(x,y,t=1e-9)=>assert(Math.abs(x-y)<=t*Math.max(1,Math.abs(x),Math.abs(y)),x+' != '+y);
 
 // M02-01..04 semantic acceptance guards.
-const s2=a.sessions.find(s=>s.order===2),s8=a.sessions.find(s=>s.order===8),s12=a.sessions.find(s=>s.order===12),s13=a.sessions.find(s=>s.order===13),s18=a.sessions.find(s=>s.order===18),s20=a.sessions.find(s=>s.order===20),s21=a.sessions.find(s=>s.order===21);
+const s2=a.sessions.find(s=>s.order===2),s3=a.sessions.find(s=>s.order===3),s6=a.sessions.find(s=>s.order===6),s8=a.sessions.find(s=>s.order===8),s9=a.sessions.find(s=>s.order===9),s10=a.sessions.find(s=>s.order===10),s12=a.sessions.find(s=>s.order===12),s13=a.sessions.find(s=>s.order===13),s18=a.sessions.find(s=>s.order===18),s20=a.sessions.find(s=>s.order===20),s21=a.sessions.find(s=>s.order===21),s23=a.sessions.find(s=>s.order===23),s24=a.sessions.find(s=>s.order===24);
 assert(s2.lesson.includes('range is the set of outputs')&&s2.lesson.includes('∪ means union'));
 assert(a.problems[s8.main].prompt.includes('reciprocal 1/f(y)'));
 assert(a.problems[s12.transfer].prompt.includes('grows 6% per period'));
 assert(a.problems[s13.main].prompt.includes('allowed real logarithm-base conditions'));
 assert(a.problems[s18.transfer].prompt.includes('Infer its constant ratio')&&a.problems[s18.transfer].prompt.includes('sanity check'));
 assert(a.evaluators[s20.transfer].reference.includes('forward invariance')&&a.evaluators[s20.transfer].rubric.some(r=>r.criterion.includes('finite prefix alone earns no reasoning points')));
-assert(s21.lesson.includes('cos45°=sin45°=√2/2')&&s21.lesson.includes('I(+,+), II(−,+), III(−,−), IV(+,−)'));
+assert(s21.lesson.includes('cos45°=sin45°=√2/2')&&s21.lesson.includes('I(+,+), II(−,+), III(−,−), IV(+,−)'));assert(s3.representations?.some(x=>x.kind==='plot'));assert(a.problems[s3.transfer].representations?.some(x=>x.kind==='plot'));assert(a.problems[s6.transfer].representations?.length===2);assert(a.problems[s9.transfer].representations?.[0]?.kind==='plot');assert(a.problems[s10.transfer].representations?.[0]?.kind==='plot');assert(a.problems[s23.transfer].representations?.[0]?.kind==='plot');assert(a.problems[s24.transfer].representations?.[0]?.kind==='table');assert.equal(a.claimEvidence[s3.id][0].task,'transfer');assert.equal(a.claimEvidence[s23.id][0].task,'transfer');assert.equal(a.claimEvidence[s24.id][4].task,'transfer');assert(s23.lesson.includes('unit-circle coordinate')&&s24.lesson.includes('identify what kind of object the data support'));
 
 // Independent mathematics — explicit recalculation across all 24 sessions.
 assert.equal(3*5-4,11);assert.equal(3*(-2)-4,-10); // S01
@@ -58,4 +58,4 @@ close(2*Math.PI/2,Math.PI);assert.deepEqual([Math.PI/6,5*Math.PI/6].map(v=>Math.
 const q=n=>50*1.2**n;close(Array.from({length:6},(_,n)=>q(n)).reduce((u,v)=>u+v,0),496.496);close(q(3),86.4);close([0,1,2,3,4].map(k=>2+3*Math.sin(k*Math.PI/2)).reduce((u,v)=>u+v,0),10,1e-8); // S24
 // S22 task's recovered 3-4-5 triangle: sin=3/5, quadrant II implies cos=-4/5 and tan=-3/4.
 close((3/5)**2+(-4/5)**2,1);close((3/5)/(-4/5),-3/4);
-console.log('PASS: M02 repaired review candidate; 24 sessions/48 tasks; 120/120 claim-level public-request/rubric evidence mappings; M02-01/03/04 content guards; all-session prerequisite/separation audits; independent math checks.');
+console.log('PASS: M02 v1.2 retrofit candidate — 24 sessions/48 tasks; 120/120 exact claim evidence; 48-task evidence distance; literal graph/table representation guards; M02-01→04 protections; prerequisite/separation audits and independent math checks.');
