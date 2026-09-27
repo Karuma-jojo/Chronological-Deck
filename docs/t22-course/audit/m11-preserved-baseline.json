@@ -91,7 +91,7 @@
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
     "js/t22-course/ui.js": "6b8498ee17dca9b3c64e836c412209132ab8cc01",
-    "scripts/test-t22-elite-m01.mjs": "b80e2d3cc2f3d0dc75de44b37b4c9206ae2774ef",
+    "scripts/test-t22-elite-m01.mjs": "fc826630789ddd7469492f7c16b0b9071a33472f",
     "scripts/test-t22-elite-m02.mjs": "3422e3c392126d016a2be335cf78a251da755b73",
     "scripts/test-t22-elite-m03.mjs": "ca16105659142c2e31df55717e259c5e6ecd82fd",
     "scripts/test-t22-elite-m04.mjs": "ebba1d1c2e4d07155af4e3329ddf51ff0465f628",
@@ -165,6 +165,7 @@
     "base": "60d0e9377ca49f5ee43de6c141c4368d557cd3ee",
     "branch": "codex/t22-lang-foundation-final-stitch",
     "scope": "LF-R01–R06 only. Re-pin exact M01/M02/M03 authoring blobs, strengthened semantic validators, M03 historical gate supplements, and same authorized M09/M10 baseline-chain updates. No unrelated curriculum change.",
-    "reviewerIntent": "Prevent general-theorem ownership from being inferred from special-case assessment; require public general theorem/coefficient evidence before M10 consumes M03-S26."
+    "reviewerIntent": "Prevent general-theorem ownership from being inferred from special-case assessment; require public general theorem/coefficient evidence before M10 consumes M03-S26.",
+    "ciRepair": "Run 572 reached the M01 Lang guard; only the stale literal contradiction 0=5 differed from the repaired 0=2 example. The guard was updated to the new explicit contradiction while preserving the three-way semantic requirement."
   }
 }
