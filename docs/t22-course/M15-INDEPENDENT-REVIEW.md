@@ -4,7 +4,7 @@ Reviewed head: `aa01b1914fd69709919651f14e27487cef7fbbe6`
 Branch: `codex/t22-m15-review-candidate`  
 Disposition at reviewed head: **REPAIRS REQUIRED · BOUNDED REPAIR ONLY · UNPUBLISHED**
 
-Current repair status: **R01–R04 implemented at `3d0cade34f3c43df5927a808fb82d77c189c89ee`; full run #552 / `36303833184` SUCCESS; independent follow-up pending.**
+Current repair status: **R01–R04 independently confirmed PASS at final reviewed head `3eb72ede248eed619f48d054bfb9328733094e8f`; mathematical/pedagogical follow-up is closed. A metadata-only provenance/canonical correction remains pending final read-back confirmation; M15 remains unpublished.**
 
 The independent reviewer preserved the 16-session architecture and mathematical spine and found four material issues. No fixed reference answer was found wrong; no core least-squares mathematics failed; no publication leak was found; M14 does not reopen.
 
@@ -84,4 +84,4 @@ Exact repaired implementation verification:
 - run #552 · job `108576459161` · **SUCCESS**
 - real Chromium M15 candidate browser: **304 learner surfaces**
 
-**Next action: bounded independent follow-up on R01–R04 only.**
+**Next action: metadata/provenance diff read-back only; no further mathematical audit is requested unless this correction changes learner content.**
