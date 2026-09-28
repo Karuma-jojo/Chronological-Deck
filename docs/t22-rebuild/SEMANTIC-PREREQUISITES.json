@@ -189,8 +189,18 @@
       "order": 15,
       "id": "SIDE278",
       "mode": "reused",
-      "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "semanticStatus": "accepted",
+      "bridges": [
+        {
+          "id": "M15-B01",
+          "owner": "SIDE278",
+          "title": "Real transpose as the column-orthogonality bridge",
+          "before": "M15-S11 normal equations",
+          "content": "Define transpose entrywise in M15-S10, track rectangular shape, and prove (A^T y)_j equals the dot product of column j of A with y. M14 did not own transpose, so M15 supplies this bounded bridge locally before using A^T r=0.",
+          "implementedBy": "M15-S10"
+        }
+      ],
+      "note": "M15/SIDE278 independently accepted after adversarial review, bounded R01–R04 repair/follow-up, provenance confirmation and exact accepted-head validation. User authorized publication on 2026-09-28. Publication registers M15 as module 15; 16 sessions / 32 current fixed tasks / 48 ownership claims; S14-T/S15-T remain versioned @2. The local transpose bridge is retained explicitly. M16+ remain closed."
     },
     {
       "order": 16,
