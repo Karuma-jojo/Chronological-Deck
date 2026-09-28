@@ -1,5 +1,11 @@
 # M15 publication closure — 2026-09-28
 
+M15 / `SIDE278` was independently accepted at `94de6d26587854765e65d46615f2a4063f721bfa` after bounded R01–R04 repair, follow-up PASS and final provenance confirmation. User explicitly authorized publication. A fresh publication branch was created from current main `d2ef0be29ff5e5ab5b9347a9e7751cbf659f79c7` so accepted M15 content could be transplanted without overwriting newer attempt-save UX fixes. Published-state candidate `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed full T22 Elite run #578 / `36373130210`, job `108773384688`: syntax, structural/pedagogy/semantic/evidence regressions, independent M15 math, M14 preservation, Chromium, persisted M14 browser (355 surfaces) and persisted M15 browser (304 surfaces). Registry is M01–M15; SIDE278 roadmap is authored; semantic status is accepted; M16 remains closed.
+
+---
+
+# M15 publication closure — 2026-09-28
+
 M15 / `SIDE278` is independently accepted and explicitly user-authorized for publication. The published-state implementation on `codex/t22-m15-publication` at `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed full T22 Elite run [36373130210](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36373130210), run #578, job `108773384688`, **SUCCESS**. The shared learner registry now contains M01–M15; SIDE278 is roadmap `authored` and semantic `accepted`; the direct persisted M15 browser exercised 304 surfaces. Final publication documentation head must pass the same workflow before `main` fast-forward. M16 remains closed.
 
 ---
