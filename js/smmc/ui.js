@@ -223,6 +223,7 @@ function updateNextExercise(){
   const route=currentUnit.kind==='foundation'?FOUNDATION_UNITS:SMMC_UNITS_V1.filter(u=>u.kind!=='foundation');
   const last=route.at(-1).id===currentUnit.id;
   $('nextExercise').disabled=!saved;
+  put('taskHelp',saved?'Attempt recorded. Continue when ready, or compare your reasoning with the optional help.':'Save your attempt to unlock help and the next problem. Incomplete work is welcome.');
   $('nextExercise').textContent=currentTaskId===currentUnit.mainTaskId?'Next problem →':last?'Return to your path':'Next lesson →';
   put('questionPosition',`Problem ${currentTaskId===currentUnit.mainTaskId?1:2} of 2 · ${currentUnit.title}`);
   $('mainTask').setAttribute('aria-pressed',String(currentTaskId===currentUnit.mainTaskId));
@@ -477,12 +478,12 @@ async function init(){
       ? 'Research metadata shown for planning only. Nothing was written to your exposure record.'
       : 'Research metadata hidden. Nothing was written to your exposure record.');
   };
-  $('export').onclick=()=>download('smmc-study-record.json',{historical:histState,neutralStudy:studyState});
+  $('export').onclick=()=>{download('smmc-study-record.json',{historical:histState,neutralStudy:studyState});$('toolsMenu').open=false;};
   $('import').onchange=async e=>{
     const file=e.target.files[0];if(!file)return;try{
       if(file.size>10000000)throw Error('Record is too large');const incoming=JSON.parse(await file.text());
       histState=validateSmmcState(incoming.historical,ledger,moduleIds,allUnitIds);studyState=validateSmmcStudy(incoming.neutralStudy,Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
-      persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();tell('SMMC record imported.');
+      persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();$('toolsMenu').open=false;tell('SMMC record imported.');
     }catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}
   };
   if(!navReconciled)void (navReconcilePromise||reconcileWorkspaceNavCloud()).finally(enableWorkspaceNavCloud);
@@ -498,6 +499,7 @@ async function init(){
   const focus=params.get('focus');
   const rememberedAfter=readWorkspaceNav();
   restoreViewport({focusId:focus,scrollY:rememberedAfter.smmc.scroll[currentTab]});
+  document.addEventListener('pointerdown',e=>{if(!$('toolsMenu').contains(e.target))$('toolsMenu').open=false;});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')$('toolsMenu').open=false;});
   if(storageOK)tell('Ready: '+(pathVisible?'Choose your next step.':currentTab==='map'?'Browse official past papers.':currentUnit.title+'. Choose Learn or Practise.'));
 }

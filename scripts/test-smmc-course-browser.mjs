@@ -177,7 +177,7 @@ try{
   if(!await learn.locator('#browseLessons').evaluate(el=>el.open))await learn.locator('#browseLessons > summary').click();
   await learn.selectOption('#unitSelect','S-FOUNDATION-ALG1-U01');
   assert.equal(await learn.locator('#guidedAnswer').inputValue(),'The product is zero if either factor is zero.');
-  await learn.locator('#toolsMenu > summary').click();
+  assert(!await learn.locator('#toolsMenu').evaluate(el=>el.open),'Backup menu stayed open after download');
   await learn.click('#showPractice');
   await learn.click('#mainTask');
   assert(!(await learn.locator('#nextExercise').isDisabled()),'Saved task did not restore next action');
