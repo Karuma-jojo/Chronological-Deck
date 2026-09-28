@@ -24,15 +24,12 @@ try{
   const context=await browser.newContext({viewport:{width:390,height:844}});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 
-  // Publication boundary: persisted route must remain exactly M01-M14.
-  await page.goto(base+'/t22-course.html?module=14&session=1');
-  await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
-  assert.equal(await page.locator('#module option').count(),14,'persisted learner registry must remain through M14');
-  assert.equal(await page.locator('#module').inputValue(),'SIDE276');
-  assert(!(await page.locator('#module').allTextContents()).join(' ').includes('Orthogonality, Projection & Least Squares Geometry'));
-  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
+  // M15 is published: load the persisted learner registry directly.
+  const publishedMeta=JSON.parse(await readFile('course/t22/generated/course-meta.json','utf8'));
+  assert.equal(publishedMeta.moduleSources.length,15,'published registry must contain M01-M15');
+  assert(publishedMeta.moduleSources.some(x=>x.order===15&&x.id==='SIDE278'&&x.source==='course/t22/authoring/m15-side278.json'),'published registry missing SIDE278');
 
-  // Build runtime contracts for the candidate independently of publication.
+  // Build runtime contracts from the canonical published pack.
   const runtime=await page.evaluate(async()=>{
     const r=await fetch('/course/t22/authoring/m15-side278.json',{cache:'no-store'});
     const json=await r.json();
@@ -40,26 +37,12 @@ try{
     const course={version:json.version,module:json.module,modules:[json.module],sessions:structuredClone(json.sessions),problems:structuredClone(json.problems),assessmentEquivalences:{}};
     await core.prepareContractHashes(course);
     await core.prepareAssessmentFingerprints(course,json.evaluators);
-    return {
-      ok:r.ok,status:r.status,id:json.module.id,order:json.module.order,moduleStatus:json.module.status,
-      sessions:json.sessions.length,tasks:Object.keys(json.problems).length,
-      hashes:course.sessions.every(s=>/^[0-9a-f]{64}$/.test(s.contractHash)),
-      fingerprints:Object.keys(course.assessmentFingerprints).length
-    };
+    return {ok:r.ok,status:r.status,id:json.module.id,order:json.module.order,moduleStatus:json.module.status,sessions:json.sessions.length,tasks:Object.keys(json.problems).length,hashes:course.sessions.every(s=>/^[0-9a-f]{64}$/.test(s.contractHash)),fingerprints:Object.keys(course.assessmentFingerprints).length};
   });
   assert.equal(runtime.ok,true);assert.equal(runtime.status,200);
   assert.equal(runtime.id,'SIDE278');assert.equal(runtime.order,15);
-  assert.equal(runtime.moduleStatus,'independent-followup-passed-provenance-confirmation-pending-unpublished');
+  assert.equal(runtime.moduleStatus,'published-user-authorized-independent-accepted');
   assert.equal(runtime.sessions,16);assert.equal(runtime.tasks,32);assert.equal(runtime.hashes,true);assert.equal(runtime.fingerprints,32);
-
-  // Mount M15 through the real learner UI in this browser only. Persisted
-  // metadata is never written or published.
-  await page.route('**/course/t22/generated/course-meta.json',async route=>{
-    const response=await route.fetch(),meta=await response.json();
-    assert.equal(meta.moduleSources.length,14,'test interception must begin from published M01-M14 metadata');
-    meta.moduleSources.push({order:15,id:'SIDE278',sourceType:'authoring-pack',source:'course/t22/authoring/m15-side278.json'});
-    await route.fulfill({response,json:meta});
-  });
 
   await page.goto(base+'/t22-course.html?module=15&session=1');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
@@ -134,7 +117,7 @@ try{
   assert.deepEqual(errors,[]);
   await context.close();
 
-  console.log(`PASS M15 candidate browser: persisted learner registry stayed M01-M14; test-only M15 rendered all 16 lessons/guided states and 32 prompt/reference/rubric paths, saved/revealed/exported/imported/reloaded without text corruption or overflow. Surfaces checked: ${renderedSurfaces}.`);
+  console.log(`PASS M15 published learner browser: persisted M01-M15 registry loaded SIDE278; M15 rendered all 16 lessons/guided states and 32 prompt/reference/rubric paths, saved/revealed/exported/imported/reloaded without text corruption or overflow. Surfaces checked: ${renderedSurfaces}.`);
 }finally{
   if(browser)await browser.close();
   await new Promise(r=>server.close(r));
