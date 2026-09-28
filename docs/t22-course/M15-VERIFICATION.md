@@ -1,3 +1,5 @@
+> **Current publication state (2026-09-28): PUBLISHED-STATE VERIFIED.** Independent acceptance is recorded at `94de6d26587854765e65d46615f2a4063f721bfa`; the user authorized publication; implementation head `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed full T22 Elite run #578 / `36373130210`, job `108773384688`. SIDE278 is registered as learner module 15, roadmap `authored`, semantic status `accepted`. The repaired-candidate verification below is retained as historical provenance.
+
 # T22 Elite M15 / SIDE278 — Repaired Verification Receipt
 
 Status: **INDEPENDENT-REVIEW REPAIRED · BUILDER/CI VERIFIED · INDEPENDENT FOLLOW-UP PENDING · UNPUBLISHED**  
