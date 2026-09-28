@@ -42,11 +42,11 @@ try{
   assert.equal(await home.locator('#openSMMC').getAttribute('href'),'smmc-course.html');
   await home.close();
 
-  await page.goto(base+'/smmc-course.html');
+  await page.goto(base+'/smmc-course.html?unit=S-METHOD-B1-U01');
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
 
-  assert.equal(await page.locator('#unitSelect option').count(),8);
-  assert((await page.locator('#status').textContent()).includes('16 neutral tasks'));
+  assert.equal(await page.locator('#unitSelect option').count(),14);
+  assert((await page.locator('#status').textContent()).includes('28 neutral tasks'));
   await page.click('#tabMap');
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat strong').allTextContents(),['39','27','22','30','24','18']);
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat span').allTextContents(),['GREEN','AMBER','RED','GREEN','AMBER','RED']);
@@ -105,8 +105,76 @@ try{
   assert(await page.locator('#researchInfo').isHidden());
   assert((await page.locator('#histExposure').textContent()).includes('sealed'));
 
+  // A fresh learner starts on the foundation route without changing old deep links.
+  const learner=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
+  const learn=await learner.newPage();
+  learn.on('pageerror',e=>errors.push(e.message));
+  const learningRequests=[];learn.on('request',r=>learningRequests.push(r.url()));
+  await learn.goto(base+'/smmc-course.html');
+  await learn.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  assert.equal(await learn.locator('#unitSelect').inputValue(),'S-FOUNDATION-ALG1-U01');
+  assert.equal(await learn.locator('#foundationPath button').count(),6);
+  assert(await learn.locator('#prevUnit').isDisabled());
+  assert(await learn.locator('#unitConnections').isHidden());
+  assert(!learningRequests.some(x=>/foundation-references|evaluator-v1/.test(x)),'References fetched before help');
+  assert(await learn.locator('#revealHint').isDisabled());
+  await learn.click('#guidedFeedbackButton');
+  assert(await learn.locator('#guidedFeedback').isHidden(),'Blank work revealed guided feedback');
+  await learn.fill('#guidedAnswer','The product is zero if either factor is zero.');
+  await learn.click('#guidedFeedbackButton');
+  await learn.waitForSelector('#guidedFeedback:not([hidden])');
+  assert((await learn.locator('#guidedFeedback').textContent()).includes('−2'));
+  assert(await learn.locator('#reference').isHidden());
+  for(let i=1;i<=6;i++){
+    const id=`S-FOUNDATION-ALG1-U0${i}`;
+    await learn.selectOption('#unitSelect',id);
+    assert.equal(await learn.locator('#guidedPanel').isVisible(),i<=4);
+    for(const button of ['mainTask','transferTask']){
+      await learn.click('#'+button);
+      assert(await learn.locator('#reference').isHidden());
+      assert(await learn.locator('#revealRef').isDisabled());
+      await learn.fill('#answer','Saved reasoning for browser workflow verification.');
+      await learn.click('#saveAttempt');
+      await learn.click('#revealHint');
+      await learn.waitForSelector('#hint:not([hidden])');
+      assert.equal(await learn.locator('#assistance').inputValue(),'hint');
+      await learn.click('#revealRef');
+      await learn.waitForSelector('#reference:not([hidden])');
+      assert((await learn.locator('#referenceText').textContent()).length>100);
+      await learn.selectOption('#assistance','independent');
+      await learn.click('#saveAttempt');
+    }
+  }
+  assert((await learn.locator('#foundationProgress').textContent()).startsWith('12 of 12'));
+  assert(await learn.locator('#nextUnit').isDisabled());
+  const saved=await learn.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_neutral_study_v1')));
+  assert.equal(saved.attempts.length,24);
+  assert(saved.attempts.filter((_,i)=>i%2===1).every(a=>a.referenceSeenBefore&&a.assistance==='revealed'),'Prior exposure was lost');
+  const history=await learn.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert.deepEqual(history.exposures,{},'Foundation tasks changed historical exposure');
+  await learn.reload();
+  await learn.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  assert.equal(await learn.locator('#unitSelect').inputValue(),'S-FOUNDATION-ALG1-U06');
+  assert((await learn.locator('#foundationProgress').textContent()).startsWith('12 of 12'));
+  const downloadPromise=learn.waitForEvent('download');await learn.click('#export');
+  const download=await downloadPromise;const exported=JSON.parse(await readFile(await download.path(),'utf8'));
+  assert.deepEqual(exported.neutralStudy,saved);
+  const imported=await browser.newContext();const importPage=await imported.newPage();
+  await importPage.goto(base+'/smmc-course.html');
+  await importPage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  await importPage.setInputFiles('#import',{name:'smmc-record.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exported))});
+  await importPage.waitForFunction(()=>document.querySelector('#status').textContent==='SMMC record imported.');
+  assert((await importPage.locator('#foundationProgress').textContent()).startsWith('12 of 12'));
+  await learn.selectOption('#unitSelect','S-FOUNDATION-ALG1-U01');
+  assert.equal(await learn.locator('#guidedAnswer').inputValue(),'The product is zero if either factor is zero.');
+  await learn.evaluate(()=>window.scrollTo(0,0));
+  assert(await learn.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'Mobile horizontal overflow');
+  await learn.screenshot({path:'/tmp/smmc-foundation-mobile.png',fullPage:true});
+  await importPage.setViewportSize({width:1280,height:900});
+  await importPage.screenshot({path:'/tmp/smmc-foundation-desktop.png',fullPage:true});
+  await learner.close();await imported.close();
   assert.deepEqual(errors,[]);
-  console.log('PASS: SMMC page loads 8 units/16 tasks/88 historical rows; official problem papers are linked; neutral attempts stay separate; self-report does not certify; research metadata and paper viewing are reversible and do not write contamination state.');
+  console.log('PASS: All 12 foundation tasks, guided attempt gate, lazy help, exposure persistence, mobile layout, reload and export/import; SMMC page loads 14 units/28 tasks/88 historical rows; official problem papers are linked; neutral attempts stay separate; self-report does not certify; research metadata and paper viewing are reversible and do not write contamination state.');
 } finally {
   if(browser)await browser.close();
   server.close();

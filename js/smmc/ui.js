@@ -1,3 +1,4 @@
+import { FOUNDATION_UNITS } from '../../course/smmc/authoring/foundation-ladder.mjs';
 import ledger from '../../course/smmc/ledger.mjs';
 import { SMMC_UNITS_V1 } from '../../course/smmc/authoring/units-v1.mjs';
 import { SMMC_PUBLIC_PROBLEMS_V1 } from '../../course/smmc/authoring/public-problems-v1.mjs';
@@ -131,6 +132,7 @@ function renderWorkspaceNav(){
     : `Study · ${currentUnit?.id||'last unit remembered'}`);
 }
 function renderT25Connections(targetCodes,containerId){
+  if(!targetCodes.length){$(containerId).replaceChildren();return;}
   const steps=routeStepsForT25Targets(targetCodes);
   const unique=[...new Map(steps.map(step=>[step.routeOrder,step])).values()];
   const box=$(containerId);box.className='connection-list';
@@ -173,21 +175,50 @@ function switchTab(which,updateUrl=true,restore=true,saveCurrent=true){
     restoreViewport({scrollY:remembered.smmc.scroll[currentTab]});
   }
 }
-function unitLabel(u){return (u.kind==='bridge'?'Bridge':'Method')+' · '+u.id+' · '+u.title;}
+function unitLabel(u){return (u.kind==='foundation'?'Foundation':u.kind==='bridge'?'Bridge':'Method')+' · '+u.id+' · '+u.title;}
 function renderUnitList(){
   const q=$('unitSearch').value.trim().toLowerCase();
   const list=SMMC_UNITS_V1.filter(u=>(u.id+' '+u.moduleId+' '+u.title+' '+u.learningNote).toLowerCase().includes(q));
   opts($('unitSelect'),list.map(u=>[u.id,unitLabel(u)]));
   if(currentUnit&&list.some(u=>u.id===currentUnit.id))$('unitSelect').value=currentUnit.id;
 }
+function renderFoundationPath(){
+  const attempted=new Set(studyState.attempts.map(a=>a.taskId));
+  const ids=FOUNDATION_UNITS.flatMap(u=>[u.mainTaskId,u.transferTaskId]);
+  put('foundationProgress',`${ids.filter(id=>attempted.has(id)).length} of ${ids.length} exercises have a saved attempt. Attempts and self-reports do not certify mastery.`);
+  $('continueFoundation').textContent=ids.every(id=>attempted.has(id))?'Review mixed practice':'Next unattempted exercise';
+  $('foundationPath').replaceChildren(...FOUNDATION_UNITS.map((u,i)=>{
+    const b=document.createElement('button');b.type='button';
+    b.setAttribute('aria-current',currentUnit?.id===u.id?'step':'false');
+    const title=document.createElement('strong');title.textContent=`${i+1}. ${u.title}`;
+    const detail=document.createElement('small');detail.textContent=`${u.stage} · ${[u.mainTaskId,u.transferTaskId].filter(id=>attempted.has(id)).length}/2 attempted`;
+    b.append(title,detail);b.onclick=()=>{renderUnit(u.id);$('unitTitle').scrollIntoView({block:'start'});};return b;
+  }));
+}
+function saveGuidedDraft(){
+  if(currentUnit?.guided)writeWorkspaceDraft('smmc',currentUnit.id+'-guided',$('guidedAnswer').value);
+}
 function renderUnit(id,preferredTask=null){
   const idx=SMMC_UNITS_V1.findIndex(u=>u.id===id);if(idx<0)return;
+  saveGuidedDraft();
   currentUnit=SMMC_UNITS_V1[idx];$('unitSelect').value=id;
   put('unitMeta',currentUnit.kind.toUpperCase()+' · '+currentUnit.moduleId+' · unit '+currentUnit.orderWithinModule);
   put('unitTitle',currentUnit.title);put('learningNote',currentUnit.learningNote);
+  const foundation=currentUnit.kind==='foundation';
+  $('unitConnections').hidden=foundation;$('foundationEntry').hidden=!foundation;
+  put('foundationEntry',foundation?currentUnit.entry+' '+(currentUnit.prerequisiteUnits.length?'Builds on the preceding chapter step.':''):'');
+  $('mainTask').textContent=currentUnit.taskLabels?.[0]||'Main task';
+  $('transferTask').textContent=currentUnit.taskLabels?.[1]||'Transfer task';
+  $('guidedPanel').hidden=!currentUnit.guided;
+  put('guidedPrompt',currentUnit.guided?.prompt||'');
+  $('guidedAnswer').value=currentUnit.guided?readWorkspaceDraft('smmc',id+'-guided'):'';
+  $('guidedFeedback').hidden=true;put('guidedFeedback','');
+  renderFoundationPath();
   const us=histState.units[id]||{};
   put('unitProgress',us.certifiedAt?'Certified externally at '+us.certifiedAt+'.':us.selfReportedComplete?'Self-reported complete; not certified.':'Not yet self-reported complete.');
-  $('prevUnit').disabled=idx===0;$('nextUnit').disabled=idx===SMMC_UNITS_V1.length-1;
+  const route=foundation?FOUNDATION_UNITS:SMMC_UNITS_V1.filter(u=>u.kind!=='foundation');
+  const position=route.findIndex(u=>u.id===id);
+  $('prevUnit').disabled=position===0;$('nextUnit').disabled=position===route.length-1;
   renderT25Connections(currentUnit.t25Targets,'unitT25Connections');
   const task=[currentUnit.mainTaskId,currentUnit.transferTaskId].includes(preferredTask)?preferredTask:currentUnit.mainTaskId;
   showTask(task);
@@ -197,8 +228,13 @@ function renderUnit(id,preferredTask=null){
 function showTask(id){
   if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);
   currentTaskId=id;const p=SMMC_PUBLIC_PROBLEMS_V1[id];
-  put('taskMeta',p.role.toUpperCase()+' · '+id);put('problemText',p.prompt);
+  put('taskMeta',p.evidence||p.role.toUpperCase()+' · '+id);put('problemText',p.prompt);
   $('answer').value=readWorkspaceDraft('smmc',id);$('assistance').value='independent';$('minutes').value='0';$('revealRef').disabled=true;$('reference').hidden=true;put('referenceText','');
+  $('revealHint').hidden=!id.startsWith('S-FOUND-ALG-');$('revealHint').disabled=true;
+  $('hint').hidden=true;put('hintText','');
+  const earlier=studyState.attempts.filter(a=>a.taskId===id);
+  if(earlier.some(a=>a.referenceOpenedAt))$('assistance').value='revealed';
+  else if(earlier.some(a=>a.assistance==='hint'))$('assistance').value='hint';
   renderHistory();
   if(currentUnit){rememberSmmcLocation({unitId:currentUnit.id,taskId:id});if(currentTab==='study')replaceSmmcUrl();}
   renderWorkspaceNav();
@@ -314,28 +350,58 @@ async function init(){
   const params=initialParams,remembered=readWorkspaceNav();
   const requestedTab=params.get('tab')==='map'?'map':params.get('tab')==='study'?'study':remembered.smmc.tab;
   const requestedUnit=params.get('unit')||remembered.smmc.unitId;
-  const unit=SMMC_UNITS_V1.find(x=>x.id===requestedUnit)||SMMC_UNITS_V1[0];
+  const unit=SMMC_UNITS_V1.find(x=>x.id===requestedUnit)||FOUNDATION_UNITS[0];
   const requestedTask=params.get('task')||remembered.smmc.taskId;
   const requestedProblem=params.get('problem')||remembered.smmc.problemId;
   const problem=ledger.find(x=>x.id===requestedProblem)||ledger[0];
   renderUnitList();renderUnit(unit.id,requestedTask);renderProblemList();renderOverlapSummary();renderHistorical(problem.id);switchTab(requestedTab,false,false,false);replaceSmmcUrl();
+  $('continueFoundation').onclick=()=>{
+    const attempted=new Set(studyState.attempts.map(a=>a.taskId));
+    const u=FOUNDATION_UNITS.find(u=>!attempted.has(u.mainTaskId)||!attempted.has(u.transferTaskId))||FOUNDATION_UNITS[4];
+    renderUnit(u.id,!attempted.has(u.mainTaskId)?u.mainTaskId:u.transferTaskId);
+    $('unitTitle').scrollIntoView({block:'start'});
+  };
+  $('guidedAnswer').addEventListener('input',saveGuidedDraft);
+  $('guidedFeedbackButton').onclick=async()=>{
+    if(!$('guidedAnswer').value.trim()){tell('Try the guided step before comparing with feedback.');return;}
+    const id=currentUnit.id;saveGuidedDraft();
+    try{
+      const {FOUNDATION_GUIDED_FEEDBACK}=await import('../../course/smmc/authoring/foundation-references.mjs');
+      if(currentUnit.id!==id)return;
+      put('guidedFeedback',FOUNDATION_GUIDED_FEEDBACK[id]);$('guidedFeedback').hidden=false;
+    }catch{tell('Could not load feedback. Your draft is still available.');}
+  };
+  $('revealHint').onclick=async()=>{
+    const id=currentTaskId;
+    const latest=[...studyState.attempts].reverse().find(a=>a.taskId===id);
+    if(!latest)return;
+    try{
+      const bank=await evaluatorBank();if(currentTaskId!==id)return;
+      if(!bank[id].hint)return;
+      latest.assistance='hint';persist();$('assistance').value='hint';
+      put('hintText',bank[id].hint);$('hint').hidden=false;renderHistory();
+      tell('Hint opened. This problem is now assisted practice.');
+    }catch{tell('Could not load the hint.');}
+  };
   $('unitSearch').oninput=renderUnitList;$('unitSelect').onchange=()=>renderUnit($('unitSelect').value);
   $('answer').addEventListener('input',()=>{if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);});
-  $('prevUnit').onclick=()=>{const i=SMMC_UNITS_V1.findIndex(x=>x.id===currentUnit.id);if(i>0)renderUnit(SMMC_UNITS_V1[i-1].id);};
-  $('nextUnit').onclick=()=>{const i=SMMC_UNITS_V1.findIndex(x=>x.id===currentUnit.id);if(i<SMMC_UNITS_V1.length-1)renderUnit(SMMC_UNITS_V1[i+1].id);};
+  const moveUnit=offset=>{const route=currentUnit.kind==='foundation'?FOUNDATION_UNITS:SMMC_UNITS_V1.filter(u=>u.kind!=='foundation');const i=route.findIndex(x=>x.id===currentUnit.id);if(route[i+offset])renderUnit(route[i+offset].id);};
+  $('prevUnit').onclick=()=>moveUnit(-1);$('nextUnit').onclick=()=>moveUnit(1);
   $('mainTask').onclick=()=>showTask(currentUnit.mainTaskId);$('transferTask').onclick=()=>showTask(currentUnit.transferTaskId);
   $('saveAttempt').onclick=()=>{
     const answer=$('answer').value.trim(),minutes=Number($('minutes').value);if(!answer){tell('Record your working before saving.');return;}
     if(answer.length>100000||!Number.isFinite(minutes)||minutes<0||minutes>100000){tell('Check answer length and minutes.');return;}
     const hadReference=studyState.attempts.some(a=>a.taskId===currentTaskId&&a.referenceOpenedAt);
-    studyState.attempts.push({id:uuid(),taskId:currentTaskId,at:new Date().toISOString(),answer,assistance:$('assistance').value,minutes,referenceSeenBefore:hadReference});
-    clearWorkspaceDraft('smmc',currentTaskId);$('revealRef').disabled=false;persist();renderHistory();tell('Neutral training attempt saved. Historical PYQ exposure unchanged.');
+    studyState.attempts.push({id:uuid(),taskId:currentTaskId,at:new Date().toISOString(),answer,assistance:hadReference?'revealed':studyState.attempts.some(a=>a.taskId===currentTaskId&&a.assistance==='hint')?'hint':$('assistance').value,minutes,referenceSeenBefore:hadReference});
+    clearWorkspaceDraft('smmc',currentTaskId);$('revealRef').disabled=false;$('revealHint').disabled=false;persist();renderHistory();renderFoundationPath();tell('Neutral training attempt saved. Historical PYQ exposure unchanged.');
   };
   $('revealRef').onclick=async()=>{
+    const id=currentTaskId;
+    const latest=[...studyState.attempts].reverse().find(a=>a.taskId===id);if(!latest)return;
     try{
-      const bank=await evaluatorBank(),r=bank[currentTaskId];
+      const bank=await evaluatorBank();if(currentTaskId!==id)return;const r=bank[id];
       put('referenceText',r.reference+'\n\n'+r.rubric.map(x=>'• '+x).join('\n'));$('reference').hidden=false;
-      const latest=[...studyState.attempts].reverse().find(a=>a.taskId===currentTaskId);if(latest)latest.referenceOpenedAt=latest.referenceOpenedAt||new Date().toISOString();
+      if(latest)latest.referenceOpenedAt=latest.referenceOpenedAt||new Date().toISOString();
       persist();tell('Evaluator reference opened for this neutral task.');
     }catch(err){tell('Could not load evaluator reference: '+err.message);}
   };
@@ -373,7 +439,7 @@ async function init(){
   document.addEventListener('visibilitychange',()=>{if(!document.hidden&&cloudReady&&workspaceCloudState().signedIn)void reconcileSmmcCloud();});
   window.addEventListener('pagehide',()=>{
     if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);
-    saveViewport();
+    saveGuidedDraft();saveViewport();
   });
   const focus=params.get('focus');
   const rememberedAfter=readWorkspaceNav();

@@ -1,3 +1,4 @@
+import { FOUNDATION_UNITS } from './foundation-ladder.mjs';
 // First SMMC authoring units.
 // These are neutral training units: they do not quote, paraphrase, or identify historical SMMC PYQs.
 
@@ -181,7 +182,8 @@ export const SMMC_UNITS_V1 = Object.freeze([
       "chooses enough base cases for the strengthened statement",
       "shows the stronger statement reproduces itself under the recurrence or shift"
     ]
-  }
+  },
+  ...FOUNDATION_UNITS,
 ]);
 
 export default SMMC_UNITS_V1;

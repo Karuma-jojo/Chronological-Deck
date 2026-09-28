@@ -31,6 +31,13 @@ jobs:
 
       - name: Validate SMMC browser workflow
         run: node scripts/test-smmc-course-browser.mjs
+      - name: Save foundation chapter visual checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smmc-foundation-visuals
+          path: /tmp/smmc-foundation-*.png
+          if-no-files-found: ignore
       - name: Validate T25 Aster SMMC workspace navigation
         run: node scripts/test-math-workspace-browser.mjs
 
