@@ -1,3 +1,5 @@
+> **Publication supersession — 2026-09-28.** The design record below is preserved, but M15 is now independently accepted and user-authorized for publication. SIDE278 is registered as module 15 on the publication branch; published-state implementation `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed full run #578 / `36373130210`. M16 remains closed.
+
 # T22 Elite M15 / SIDE278 — pre-authoring design gate
 
 Status: **Independent follow-up R01–R04 PASS; mathematical/pedagogical repair is closed. Provenance correction awaits final read-back confirmation. M15 remains unpublished and outside the learner route.**  
