@@ -7,7 +7,7 @@
     "title": "Orthogonality, Projection & Least Squares Geometry",
     "status": "published-user-authorized-independent-accepted",
     "destination": "Work in finite-dimensional real Euclidean coordinate spaces to construct orthonormal coordinates and orthogonal complements, derive orthogonal projections and nearest-point geometry, execute Gram–Schmidt with dependence/order diagnostics, derive the transpose bridge and normal equations, and solve exact Euclidean least-squares problems while separating fitted-vector uniqueness from coefficient uniqueness.",
-    "gate": "Sixteen sessions and 32 fixed assessments are published in the shared fifteen-module learner route after independent adversarial acceptance, bounded follow-up, final provenance confirmation and explicit user authorization. Publication-branch exact-head CI must remain green before main is advanced. Page completion is not mastery; independent attempts, changed-surface Transfer and delayed review evidence remain required.",
+    "gate": "Sixteen sessions and 32 fixed assessments are published in the shared fifteen-module learner route after independent adversarial acceptance, bounded follow-up, final provenance confirmation and explicit user authorization. The publication-state implementation passed full exact-head CI before closure documentation; future changes must preserve the accepted contract or reopen the affected v1.2 gates. Page completion is not mastery; independent attempts, changed-surface Transfer and delayed review evidence remain required.",
     "nextBoundary": "M16/SIDE279 owns eigenstructure independently from M14; M17/SIDE280 owns PSD/quadratic forms, named QR/Cholesky/SVD and pseudoinverse; M23 owns numerical conditioning/stable algorithms; M36 owns statistical regression."
   },
   "boundary": {
@@ -40,7 +40,7 @@
     "authoredSessions": 16,
     "ownershipClaimCount": 48,
     "fixedAssessments": 32,
-    "reviewProvenance": "Independent adversarial review and bounded follow-up are the controlling provenance. R01–R04 were closed; final provenance confirmation independently accepted M15 at 94de6d26587854765e65d46615f2a4063f721bfa. The accepted contract preserves 16 sessions, 32 fixed assessments, 48 ownership claims, 32 semantic-separation rows, 17 decision audits, 18 wrong-solver discriminators, versioned S14-T@2/S15-T@2 obligations and the real-browser 304-surface candidate workflow. User explicitly authorized publication on 2026-09-28. Publication registers SIDE278 as module 15, advances roadmap availability to authored and marks the semantic-prerequisite row accepted; exact publication-branch CI is required before main fast-forward."
+    "reviewProvenance": "Independent adversarial review and bounded follow-up are controlling. R01–R04 were closed; final provenance confirmation independently accepted M15 at 94de6d26587854765e65d46615f2a4063f721bfa. User explicitly authorized publication on 2026-09-28. Publication registers SIDE278 as module 15, advances roadmap availability to authored and marks the semantic-prerequisite row accepted. Publication-state implementation head b48de4fc1689f421fd7901d8bbbc77660aeb44b0 passed full T22 Elite run #578 / 36373130210, job 108773384688, including structural/semantic/math regressions, Chromium and the persisted M01–M15 M15 browser workflow."
   },
   "sourceLedger": {
     "policy": "Repository ownership is authoritative. Strang 4e (user-supplied) is the deep first-course comparator; MIT 18.06 is the canonical route comparator; Axler 4e is the rigorous theorem/hypothesis source; Hefferon is the broad developmental/notation comparator; MAA + IES/WWC + domain-specific math-education sources inform pedagogy with population/context limits. All learner tasks are original.",
@@ -3762,10 +3762,17 @@
       "id": 36313956336,
       "number": 571,
       "conclusion": "success"
+    },
+    "publicationBranchImplementationHead": "b48de4fc1689f421fd7901d8bbbc77660aeb44b0",
+    "publicationBranchRun": {
+      "id": 36373130210,
+      "number": 578,
+      "job": 108773384688,
+      "conclusion": "success"
     }
   },
   "followupRepair": {
-    "status": "R01–R04 independently confirmed repaired; final provenance confirmation PASS; independently accepted; user-authorized publication state; exact publication-branch CI required before main fast-forward",
+    "status": "independently accepted; user-authorized; published-state implementation verified by full run #578; publication closure documentation/main fast-forward are provenance-only",
     "reason": "The first post-stall Gate-8 whole-module scan found cross-session solved-instance reuse that the draft ledger had missed.",
     "repairedTasks": [
       "T22V3::SIDE278::S06-M@1",
