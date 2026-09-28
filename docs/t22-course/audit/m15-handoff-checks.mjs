@@ -76,8 +76,13 @@ assert(verification.includes('run #578'));
 assert(verification.includes('36373130210'));
 assert(handoff.includes('M15 is now registered as the fifteenth learner module'));
 assert(handoff.includes('M16 / SIDE279 — planned and closed'));
-assert(resolution.startsWith('> **Current status (2026-09-28): PUBLISHED ON PUBLICATION CANDIDATE.**'));
-assert(review.startsWith('> **Current status (2026-09-28): INDEPENDENTLY ACCEPTED AND USER-AUTHORIZED FOR PUBLICATION.**'));
+assert.match(resolution.split('\n')[0],/Current status \(2026-09-28\): PUBLISHED-STATE VERIFIED/);
+assert(resolution.split('\n')[0].includes('run #578'));
+assert(resolution.split('\n')[0].includes('M16 remains closed'));
+assert.match(review.split('\n')[0],/Current status \(2026-09-28\): INDEPENDENTLY ACCEPTED \/ USER-AUTHORIZED FOR PUBLICATION/);
+assert(review.split('\n')[0].includes('94de6d26587854765e65d46615f2a4063f721bfa'));
+assert(review.split('\n')[0].includes('run #578'));
+assert(review.split('\n')[0].includes('M16 remains closed'));
 
 const m16Meta=meta.moduleSources.find(x=>x.id==='SIDE279');
 assert.equal(m16Meta,undefined,'M16 must not be in learner registry');
