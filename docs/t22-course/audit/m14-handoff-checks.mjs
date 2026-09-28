@@ -29,12 +29,12 @@ assert(dep,'SIDE276 missing from dependency authority');
 assert.deepEqual(a.boundary.prerequisiteModules,dep.prerequisites);
 assert.deepEqual(a.boundary.prerequisiteModules,['ARC511']);
 
-// Published learner frontier must be exactly M14.
-assert.equal(meta.moduleSources.length,14,'published registry must contain M01-M14');
-assert.equal(meta.moduleSources.at(-1)?.order,14);
-assert.equal(meta.moduleSources.at(-1)?.id,'SIDE276');
-assert.equal(meta.moduleSources.at(-1)?.source,'course/t22/authoring/m14-side276.json');
-assert.equal(meta.version,'T22E-course-0.14.0-through-m14-publication');
+// M14 publication invariants must survive legitimate later-module publication.
+assert(meta.moduleSources.length>=14,'published registry must retain M01-M14 or later');
+const m14Source=meta.moduleSources.find(x=>x.order===14&&x.id==='SIDE276');
+assert(m14Source,'published registry lost M14/SIDE276');
+assert.equal(m14Source.source,'course/t22/authoring/m14-side276.json');
+assert.match(meta.version,/^T22E-course-0\.(?:1[4-9]|[2-9]\d)\./,'course version must be M14 publication or later');
 
 const road=roadmap.modules.find(x=>x.id==='SIDE276');
 assert(road,'SIDE276 missing from roadmap');
@@ -83,10 +83,16 @@ assert.equal(a.publication?.roadmapAvailability,'authored');
 assert.equal(a.publication?.semanticStatus,'accepted');
 
 const authoringNames=fs.readdirSync('course/t22/authoring');
-assert(!authoringNames.some(x=>/^m15(?:[-.])/i.test(x)),'M15 authoring opened during M14 publication');
+if(authoringNames.some(x=>/^m15(?:[-.])/i.test(x))){
+  const later=read('course/t22/authoring/m15-side278.json');
+  assert.equal(later.module?.order,15,'later M15 pack has unexpected order');
+  assert.equal(later.module?.id,'SIDE278','later M15 pack has unexpected id');
+  const registered=meta.moduleSources.find(x=>x.order===15&&x.id==='SIDE278');
+  if(registered) assert.equal(registered.source,'course/t22/authoring/m15-side278.json','later published M15 source mismatch');
+}
 
 assert(fs.existsSync('docs/t22-course/audit/m14-pre-v12-repair-version-receipt.json'));
 assert(fs.existsSync('docs/t22-course/audit/m14-followup-pre-fu-repair-version-receipt.json'));
 assert(fs.existsSync('scripts/test-t22-elite-m14-browser.mjs'));
 
-console.log('PASS M14 publication state: SIDE276 is the authored/accepted module-14 learner frontier; 19 sessions, 38 tasks, 60 claims, 38 separation rows, 21 decision audits and 16/16 misconception coverage are preserved; M15 remains closed.');
+console.log('PASS M14 publication state: SIDE276 remains the authored/accepted module-14 contract; 19 sessions, 38 tasks, 60 claims, 38 separation rows, 21 decision audits and 16/16 misconception coverage are preserved across later-module publication.');
