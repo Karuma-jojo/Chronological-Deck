@@ -1,97 +1,91 @@
-> **Current publication state (2026-09-28): PUBLISHED-STATE VERIFIED.** Independent acceptance is recorded at `94de6d26587854765e65d46615f2a4063f721bfa`; the user authorized publication; implementation head `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed full T22 Elite run #578 / `36373130210`, job `108773384688`. SIDE278 is registered as learner module 15, roadmap `authored`, semantic status `accepted`. The repaired-candidate verification below is retained as historical provenance.
+# T22 Elite — M15 Verification & Publication Receipt
 
-# T22 Elite M15 / SIDE278 — Repaired Verification Receipt
+Date: 2026-09-28  
+Module: **M15 · SIDE278 · Orthogonality, Projection & Least Squares Geometry**  
+Publication branch: `codex/t22-m15-publication`
 
-Status: **INDEPENDENT-REVIEW REPAIRED · BUILDER/CI VERIFIED · INDEPENDENT FOLLOW-UP PENDING · UNPUBLISHED**  
-Branch: `codex/t22-m15-review-candidate`
+## Current authoritative state
 
-## Exact tested implementation
+M15 is **published on the publication candidate branch** and user-authorized for the shared T22 learner route.
 
-- Repair content head: `6a662c4e2564b2890dc9d952c9ba30c983494959`
-- Exact tested implementation head after oracle-alignment-only fix: `3d0cade34f3c43df5927a808fb82d77c189c89ee`
-- Full T22 Elite Actions: https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36303833184
-- Run: **#552**
-- Job: `108576459161`
-- Result: **SUCCESS**
+- learner registry: **M01–M15**
+- current learner frontier: **M15 / SIDE278**
+- roadmap availability: **authored**
+- semantic prerequisite status: **accepted**
+- M16: **closed / planned**
+- M15 architecture: **16 sessions**
+- current fixed assessments: **32**
+- ownership claims: **48**
 
-The difference from `6a662c4...` to `3d0cade...` changes only the independent math-oracle string to match the already-correct expanded S15 reference equation. Learner content is unchanged between those two SHAs.
+Independent adversarial acceptance was given at:
 
-This receipt is a later documentation artifact and must not be confused with the tested implementation SHA.
+`94de6d26587854765e65d46615f2a4063f721bfa`
 
-## Repair contract tested
+Accepted-head workflow:
+- run #571
+- run ID: `36313956336`
+- job: `108605016022`
+- conclusion: **SUCCESS**
 
-Independent review at `aa01b191...` opened R01–R04.
+The user explicitly authorized publication on 2026-09-28.
 
-### R01
-S10 no longer uses row-rank = column-rank. It proves `Q^T(Qc)=c`, hence surjectivity of `Q^T`, then uses M14 rank/rank-nullity.
+## Publication-state exact-head verification
 
-### R02
-S11 derives the Gram scalar identity from the S10 column-dot bridge rather than product-transpose algebra. S12 proves product transpose entrywise and inverse transpose before use.
+The publication candidate head after route/runtime conversion is:
 
-### R03
-Current Transfer is `T22V3::SIDE278::S14-T@2` / obligationVersion 2. It uses nonduplicate dependence `c3=c1+c2` and a false-report audit.
+`b48de4fc1689f421fd7901d8bbbc77660aeb44b0`
 
-### R04
-Current Transfer is `T22V3::SIDE278::S15-T@2` / obligationVersion 2. It runs least-squares reasoning backward from orthogonality constraints to reconstruct a missing observation and audit a supplied line.
+Full T22 Elite publication-state workflow:
+- run #578
+- run ID: `36373130210`
+- job: `108773384688`
+- conclusion: **SUCCESS**
 
-## Structural / semantic / evidence results
+That run verified:
+- syntax;
+- inherited structural/pedagogy/semantic/evidence regressions;
+- M15 structural/version/provenance contract;
+- independent M15 math oracles;
+- M14 publication invariants across later-module publication;
+- Chromium;
+- shared learner route with 15 modules;
+- M14 persisted browser workflow across 355 surfaces;
+- M15 **persisted** learner browser workflow across 304 surfaces.
 
-PASS on exact tested head:
-- 16 sessions;
-- 32 current fixed assessments;
-- 48 literal ownership claims;
+The M15 browser no longer injects test metadata. It loads SIDE278 from the real persisted `course-meta.json`.
+
+## Publication changes
+
+Publication advances route/canonical state only:
+
+- `course/t22/generated/course-meta.json` registers SIDE278 as module 15;
+- `course/t22/generated/roadmap.json` marks SIDE278 `authored`;
+- `docs/t22-rebuild/SEMANTIC-PREREQUISITES.json` marks SIDE278 `accepted` and retains the local transpose bridge;
+- `course/t22/authoring/m15-side278.json` records user-authorized / independently accepted publication;
+- M15 structural/browser tests validate the persisted learner registry;
+- M14 historical publication guards were made publication-extensible without weakening M14's own 19-session/38-task/60-claim contract.
+
+No M15 lesson, fixed task, rubric, reference answer, ownership claim or obligation version was changed by publication wiring.
+
+## Accepted M15 evidence contract
+
+The published package preserves:
+- 16 design-derived sessions;
+- 32 current Main/Transfer assessments;
+- 48 ownership claims;
+- 35 Main-only / 11 Transfer-only / 2 both observer distribution;
 - 32 semantic-separation rows;
 - 17 decision audits;
 - 18 wrong-solver discriminators;
-- correct @2 task/version guards for S14-T/S15-T;
-- retired @1 tasks absent from the current problem/evaluator maps;
-- exact pre-repair fingerprints preserved separately;
-- all Transfers retain the `changed-surface Transfer` label only after the two disputed surfaces were replaced.
+- R01–R04 independently closed;
+- S14-T@2 and S15-T@2 version history;
+- pre-repair SHA-256 provenance receipt;
+- Strang §4.4 locator pp.231–243.
 
-## Independent mathematics
+## Closure rule
 
-`docs/t22-course/audit/m15-math-checks.mjs` passed.
+This documentation is written after successful publication-state run #578. The final documentation/handoff head must itself pass the complete workflow before `main` is advanced.
 
-New repair-specific oracles verify:
-- S14-T@2 plane projection `p=(2,-1,0)`, residual `(0,0,3)`, coefficient family `(2-t,-1-t,t)`, and null direction `(-1,-1,1)`;
-- S15-T@2 `Y=6`, residual `(2,-3,1)`, and `A^Tr=0`;
-- all previous high-risk projection, Gram–Schmidt, projector, least-squares and S16 synthesis oracles remain green.
+After the non-force fast-forward to `main`, the normal `main` workflow must also pass on the exact published main SHA.
 
-## Browser / provenance
-
-Chromium workflow PASS on exact tested head.
-
-The M15 candidate browser:
-- confirmed persisted learner registry still M01–M14;
-- injected M15 only in the test browser;
-- rendered all 16 lessons/guided states;
-- exercised all 32 current prompt/reference/rubric paths, including the @2 Transfers;
-- saved attempts;
-- revealed references;
-- exported/imported/reloaded evidence;
-- found no text corruption or horizontal overflow;
-- checked **304 learner surfaces**.
-
-## Version / evidence disposition
-
-Pre-repair receipt:
-`docs/t22-course/audit/m15-pre-independent-repair-version-receipt.json`
-
-Instruction:
-`m15-side278-instruction-v1` → `m15-side278-instruction-v2-independent-repair`.
-
-Changed reviewed assessment obligations:
-- `S14-T@1` → `S14-T@2`;
-- `S15-T@1` → `S15-T@2`.
-
-M15 is unpublished; no real M15 learner evidence exists. The version bumps are still deliberate because the @1 tasks were independently reviewed artifacts and must not be silently rewritten.
-
-## Limits
-
-Green CI does not itself establish independent pedagogical acceptance. R03/R04's semantic Transfer quality and R01/R02's support-theorem closure require the requested human follow-up.
-
-## Disposition
-
-**PASS for bounded independent follow-up.**
-
-No publication, main merge, M16 opening or independent-acceptance claim is authorized.
+M16 remains closed until separately authorized.
