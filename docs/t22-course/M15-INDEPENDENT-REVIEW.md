@@ -1,3 +1,5 @@
+> **Current status (2026-09-28): INDEPENDENTLY ACCEPTED / USER-AUTHORIZED FOR PUBLICATION.** The review findings below remain immutable provenance. R01–R04 were repaired and independently confirmed; final provenance confirmation passed at `94de6d26587854765e65d46615f2a4063f721bfa`. Published-state implementation `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed full run #578 / `36373130210`. M16 remains closed.
+
 # T22 Elite M15 / SIDE278 — Independent Adversarial Review
 
 Reviewed head: `aa01b1914fd69709919651f14e27487cef7fbbe6`  
