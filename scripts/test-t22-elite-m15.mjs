@@ -12,7 +12,7 @@ const pilot=fs.readFileSync('docs/t22-course/M15-PILOT-REVIEW.md','utf8');
 
 assert.equal(a.module.order,15);
 assert.equal(a.module.id,'SIDE278');
-assert.equal(a.module.status,'independent-followup-passed-provenance-confirmation-pending-unpublished');
+assert.equal(a.module.status,'published-user-authorized-independent-accepted');
 assert.equal(a.sessions.length,16);
 assert.equal(Object.keys(a.problems).length,32);
 assert.equal(Object.keys(a.evaluators).length,32);
@@ -25,16 +25,24 @@ assert.equal(a.coverageAudit.ownershipClaimCount,48);
 // Boundary and publication hygiene.
 assert.deepEqual(a.boundary.prerequisiteModules,['SIDE276']);
 assert.deepEqual(deps.modules.find(x=>x.id==='SIDE278').prerequisites,['SIDE276']);
-assert.equal(meta.moduleSources.length,14,'M15 must not be persisted in learner registry before review/publication');
-assert(!meta.moduleSources.some(x=>x.id==='SIDE278'),'M15 leaked into persisted learner registry');
-assert.equal(road.modules.find(x=>x.id==='SIDE278').availability,'planned');
+assert.equal(meta.moduleSources.length,15,'published registry must contain M01-M15');
+const publishedM15=meta.moduleSources.find(x=>x.order===15&&x.id==='SIDE278');
+assert(publishedM15,'M15 missing from published learner registry');
+assert.equal(publishedM15.sourceType,'authoring-pack');
+assert.equal(publishedM15.source,'course/t22/authoring/m15-side278.json');
+assert.equal(meta.version,'T22E-course-0.15.0-through-m15-publication');
+assert.equal(road.modules.find(x=>x.id==='SIDE278').availability,'authored');
 const semRow=sem.entries.find(x=>x.id==='SIDE278');
-assert.equal(semRow.semanticStatus,'boundary-accepted-content-candidate');
+assert.equal(semRow.semanticStatus,'accepted');
 assert.equal(semRow.bridges.length,1);
 assert.equal(semRow.bridges[0].id,'M15-B01');
 assert.match(semRow.bridges[0].content,/transpose|column/i);
-assert.equal(a.publication.status,'unpublished');
-assert.equal(a.publication.learnerRegistry,'M01–M14 only');
+assert.equal(a.publication.status,'published');
+assert.equal(a.publication.authorizedBy,'user');
+assert.equal(a.publication.authorizedDate,'2026-09-28');
+assert.equal(a.publication.learnerRegistry,'course/t22/generated/course-meta.json');
+assert.equal(a.publication.roadmapAvailability,'authored');
+assert.equal(a.publication.semanticStatus,'accepted');
 
 // Gates 0–3 / source-role stack.
 for(const term of [
@@ -216,4 +224,4 @@ assert.match(a.followupRepair.supportTheoremOrder,/S09|S10/);
   assert.match(design,/§4\.4 .*pp\.231[–-]243/);
   assert(!/§4\.4 .*pp\.231[–-]244/.test(design),'stale Strang §4.4 locator');
 }
-console.log('PASS M15 structural/pedagogy/semantic candidate: 16 sessions, 32 fixed tasks, 48 literal ownership claims, 32 separation rows, 17 decision audits, 18 wrong-solver discriminators; publication remains closed.');
+console.log('PASS M15 structural/pedagogy/semantic candidate: 16 sessions, 32 fixed tasks, 48 literal ownership claims, 32 separation rows, 17 decision audits, 18 wrong-solver discriminators; M15 is published; M16 remains closed.');
