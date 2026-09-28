@@ -29,6 +29,9 @@ try{
   assert.equal(publishedMeta.moduleSources.length,15,'published registry must contain M01-M15');
   assert(publishedMeta.moduleSources.some(x=>x.order===15&&x.id==='SIDE278'&&x.source==='course/t22/authoring/m15-side278.json'),'published registry missing SIDE278');
 
+  await page.goto(base+'/t22-course.html?module=15&session=1');
+  await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+
   // Build runtime contracts from the canonical published pack.
   const runtime=await page.evaluate(async()=>{
     const r=await fetch('/course/t22/authoring/m15-side278.json',{cache:'no-store'});
@@ -44,8 +47,6 @@ try{
   assert.equal(runtime.moduleStatus,'published-user-authorized-independent-accepted');
   assert.equal(runtime.sessions,16);assert.equal(runtime.tasks,32);assert.equal(runtime.hashes,true);assert.equal(runtime.fingerprints,32);
 
-  await page.goto(base+'/t22-course.html?module=15&session=1');
-  await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
   assert.equal(await page.locator('#module option').count(),15);
   assert.equal(await page.locator('#module').inputValue(),'SIDE278');
   assert((await page.locator('#module').allTextContents()).join(' ').includes('Orthogonality, Projection & Least Squares Geometry'));
