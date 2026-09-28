@@ -1,3 +1,9 @@
+# M15 publication transition — 2026-09-28
+
+Independently accepted M15 / SIDE278 is being published from a fresh current-main branch rather than merging the diverged review branch. Exact accepted head: `94de6d26587854765e65d46615f2a4063f721bfa`; accepted workflow #571 / `36313956336` SUCCESS. Published-state candidate `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed workflow #578 / `36373130210` SUCCESS with the persisted fifteen-module learner registry. Publication changes only route/canonical/test state; M15 lessons/tasks/rubrics/claims/versions remain the independently accepted artifacts. M16+ stay closed.
+
+---
+
 # M15 published-state verification — 2026-09-28
 
 Independent acceptance at `94de6d...` and explicit user publication authorization are now applied on current-main-derived publication branch `codex/t22-m15-publication`. SIDE278 is registered as learner module 15, roadmap `authored`, semantic `accepted`, with audited transpose bridge retained. Exact implementation `b48de4fc1689f421fd7901d8bbbc77660aeb44b0`; T22 Elite run `36373130210` / #578 / job `108773384688`: **SUCCESS**, including Chromium and persisted M01–M15 learner-route validation. Publication closure docs are being exact-head revalidated before main fast-forward. M16 remains closed.
