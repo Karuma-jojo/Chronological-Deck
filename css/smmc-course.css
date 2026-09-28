@@ -88,3 +88,58 @@ footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var
 .foundation-path strong,.foundation-path small{display:block}.foundation-path small{color:var(--muted)}
 @media(max-width:650px){.foundation-path{grid-template-columns:1fr 1fr}}
 @media(max-width:390px){.foundation-path{grid-template-columns:1fr}}
+
+/* Focused navigation: the path and the lesson are separate destinations. */
+.compact-header{padding:18px max(18px,calc((100vw - 1160px)/2));background:var(--panel2)}
+.compact-header>a{margin-bottom:8px;font-size:.86rem}
+.compact-header h1{font-size:clamp(1.7rem,4vw,2.3rem);margin:6px 0}
+.compact-header>p{margin:6px 0 14px;color:var(--muted)}
+.header-tools{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start;font-size:.88rem}
+#toolsMenu{max-width:560px}summary{cursor:pointer;color:var(--accent);padding:8px 0}
+#toolsMenu[open]{padding:0 12px 12px;border:1px solid var(--line);border-radius:8px}
+.tabs{position:sticky;top:0;z-index:40;max-width:none;padding:10px max(18px,calc((100vw - 1160px)/2));background:rgba(14,20,32,.98);border-bottom:1px solid var(--line)}
+.tabs button{padding:9px 13px}
+.context-bar{display:flex;align-items:center;gap:10px;max-width:1196px;margin:10px auto 0;padding:0 18px;color:var(--muted);font-size:.82rem}
+.context-bar #workspaceCloud{margin-left:auto}
+#status{max-width:1196px;margin:6px auto;padding:0 18px;font-size:.82rem}
+.layout{max-width:1196px;grid-template-columns:220px minmax(0,1fr);gap:24px;padding:10px 18px 40px}
+.layout[data-view="path"]{grid-template-columns:minmax(0,860px);justify-content:center}
+.layout[data-view="path"]>aside{display:none}
+#studyView,#pathView,#mapView{padding:0;border:0;background:transparent;margin:6px 0}
+#studyNav>details{padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+#unitTitle{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:6px}
+#unitMeta{font-size:.72rem;letter-spacing:.06em}
+#unitProgress{margin:6px 0}
+.lesson-switch{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.lesson-switch button[aria-pressed="true"],.question-switch button[aria-pressed="true"]{background:var(--accent);color:#10231d;font-weight:700}
+#learnPanel,#practicePanel,#attemptHistory,#unitTitle{scroll-margin-top:78px}
+#taskMeta{font-size:.82rem;letter-spacing:0;text-transform:none;color:var(--muted)}
+#questionPosition{margin:8px 0}.question-switch{margin:8px 0}
+#practicePanel>.task{margin-top:10px}#practicePanel .fields{margin-top:8px}
+#beginPractice{margin:8px 0 20px}#nextExercise{border-color:var(--accent)}
+#guidedPanel{border-left:3px solid var(--accent)}
+.learning-route{margin-top:0;padding:24px}.learning-route h2{margin-bottom:12px}
+.next-route{background:var(--panel2);margin-bottom:0}.next-route h3{margin-bottom:8px}
+.stuck-help{margin:14px 0;padding:0 12px 12px;border:1px solid var(--line);border-radius:8px}
+.stuck-help button{margin-right:8px}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--warm);outline-offset:3px}
+@media(max-width:800px){
+  .layout{grid-template-columns:1fr;gap:10px;padding:8px 14px 30px}
+  .layout[data-view="path"]{grid-template-columns:1fr}
+  .compact-header{padding:16px 14px}.compact-header>p{font-size:.9rem}
+  .header-tools{gap:6px}.tabs{padding:8px 12px;gap:6px;justify-content:center}
+  .tabs button{flex:1;font-size:.86rem;padding:10px 5px}
+  .context-bar{padding:0 14px}.context-bar #workspacePosition{min-width:0;overflow-wrap:anywhere}
+  #status{padding:0 14px}.learning-route{padding:18px}.learning-route p{font-size:.94rem}
+  #studyNav>details{padding:4px 12px}.lesson-switch{gap:6px}
+  .lesson-switch button{font-size:.88rem;padding:10px}.foundation-path{grid-template-columns:1fr}
+  section{padding:16px}.fields{gap:4px}
+}
+
+/* Secondary tools remain reachable without scrolling away from the problem. */
+.tabs #toolsMenu{position:relative;flex:0 0 auto;margin-left:auto;align-self:center;font-size:.86rem}
+.tabs #toolsMenu[open]{padding:0;border:0}
+.tabs #toolsMenu>summary{padding:8px;white-space:nowrap}
+.tools-popover{position:absolute;right:0;top:100%;width:min(380px,calc(100vw - 24px));padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 35px #0008;max-height:70vh;overflow:auto}
+.tools-popover .workspace-nav{margin:10px 0}.tools-popover .actions{margin-top:0}
+@media(max-width:800px){.tabs{gap:4px}.tabs button{font-size:.8rem}.tabs #toolsMenu{font-size:.8rem;margin-left:0}.tabs #toolsMenu>summary{padding:8px 4px}}

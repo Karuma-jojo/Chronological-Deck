@@ -104,6 +104,7 @@ try{
   assert.equal(rows.get('workspace_nav')?.payload?.t25?.session,7);
   assert.equal(rows.get('workspace_nav')?.payload?.t25?.task,'transfer');
 
+  if(await pa.locator('#toolsMenu').count()&&!await pa.locator('#toolsMenu').evaluate(el=>el.open))await pa.locator('#toolsMenu > summary').click();
   await pa.click('#workspaceSMMC');
   await pa.waitForFunction(()=>document.querySelector('#status')?.textContent.startsWith('Ready:'));
   await pa.click('#tabStudy');
@@ -111,6 +112,7 @@ try{
   await pa.click('#transferTask');
   await pa.fill('#answer','Device A durable SMMC transfer attempt.');
   await pa.click('#saveAttempt');
+  await pa.getByText('Mark this lesson reviewed',{exact:true}).click();
   await pa.click('#selfReport');
   await pa.waitForTimeout(1250);
   assert(rows.get('smmc_study')?.payload?.attempts?.some(x=>x.answer==='Device A durable SMMC transfer attempt.'));
@@ -132,6 +134,7 @@ try{
   assert((await pb.locator('#taskMeta').textContent()).includes('007-T'));
   assert.equal(await pb.locator('#workspaceCloud').textContent(),'Synced ☁');
 
+  if(await pb.locator('#toolsMenu').count()&&!await pb.locator('#toolsMenu').evaluate(el=>el.open))await pb.locator('#toolsMenu > summary').click();
   await pb.click('#workspaceSMMC');
   await pb.waitForFunction(()=>document.querySelector('#status')?.textContent.startsWith('Ready:'));
   await pb.waitForFunction(()=>document.querySelector('#history')?.textContent.includes('Device A durable SMMC transfer attempt.'));

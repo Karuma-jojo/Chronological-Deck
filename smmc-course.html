@@ -7,61 +7,63 @@
   <link rel="stylesheet" href="css/smmc-course.css">
 </head>
 <body>
-<header>
-  <a href="index.html">← Chronological Deck</a>
-  <span class="eyebrow">T22 → SMMC</span>
-  <h1>Simon Marais Companion</h1>
-  <p>Learn an idea. Combine it with others. Choose your own approach. Then meet the past papers.</p>
-  
-  <div class="actions">
-    <button id="export">Export SMMC record</button>
-    <label class="button">Import record<input id="import" type="file" accept="application/json" hidden></label>
-    <a href="docs/smmc/FINAL-SYNTHESIS-2017-2025.md">Architecture</a>
-    <a href="docs/smmc/AUTHORING-V1-RUN-LOG.md">Build log</a>
+<header class="compact-header">
+  <a href="index.html">← My courses</a>
+  <h1>SMMC companion</h1>
+  <p>A clear next step, from foundations to unfamiliar problems.</p>
+  <div class="header-tools">
+    <a href="t22-course.html?module=2&amp;session=9">T22 foundations · M02 S09 ↗</a>
+
   </div>
 </header>
-
-<p id="status" role="status" aria-live="polite">Loading SMMC companion…</p>
-<nav class="workspace-nav workspace-dock" aria-label="Mathematics workspace">
-    <a id="workspaceT25" class="workspace-link" href="t25-course.html">T25 plain</a>
-    <a id="workspaceAster" class="workspace-link" href="t25-course.html?presentation=anime">Aster</a>
-    <a id="workspaceSMMC" class="workspace-link active" href="smmc-course.html">SMMC companion</a>
-    <span id="workspacePosition" class="workspace-position"></span><a id="workspaceCloud" class="workspace-cloud" href="index.html#cloudSyncPanel" title="Cross-device save settings">Local</a>
-  </nav>
-
 <nav class="tabs" aria-label="SMMC views">
-  <button id="tabStudy" class="active">Study units</button>
-  <button id="tabMap">Historical map</button>
+  <button id="tabPath">Your path</button>
+  <button id="tabStudy">Learn &amp; practise</button>
+  <button id="tabMap">Past papers</button>
+    <details id="toolsMenu"><summary aria-label="More options">More</summary><div class="tools-popover">
+      <div class="actions">
+        <button id="export">Download progress backup</button>
+        <label class="button">Restore backup<input id="import" type="file" accept="application/json" hidden></label>
+      </div>
+      <nav class="workspace-nav" aria-label="Other mathematics courses">
+        <a id="workspaceT25" class="workspace-link" href="t25-course.html">T25</a>
+        <a id="workspaceAster" class="workspace-link" href="t25-course.html?presentation=anime">T25 · Aster view</a>
+        <a id="workspaceSMMC" class="workspace-link" href="smmc-course.html">Resume SMMC</a>
+      </nav>
+      <details><summary>Builder notes</summary><a href="docs/smmc/FINAL-SYNTHESIS-2017-2025.md">Curriculum architecture</a> · <a href="docs/smmc/AUTHORING-V1-RUN-LOG.md">Build log</a></details>
+    </div></details>
 </nav>
+<div class="context-bar"><span id="workspacePosition"></span><a id="workspaceCloud" class="workspace-cloud" href="index.html#cloudSyncPanel" title="Cross-device save settings">Local</a></div>
+<p id="status" role="status" aria-live="polite">Loading your companion…</p>
 
 <div class="layout">
   <aside>
-    <section id="studyNav">
-      <label for="unitSearch">Find a unit</label>
-      <input id="unitSearch" type="search" placeholder="Bridge, method, topic">
-      <label for="unitSelect">Unit</label>
+    <section id="studyNav"><details id="browseLessons"><summary>Browse lessons</summary>
+      <label for="unitSearch">Search by topic</label>
+      <input id="unitSearch" type="search" placeholder="For example: squares or counting">
+      <label for="unitSelect">Choose a lesson</label>
       <select id="unitSelect"></select>
       <div class="actions">
         <button id="prevUnit">← Previous</button>
         <button id="nextUnit">Next →</button>
       </div>
-      <p class="small">Neutral tasks do not consume historical SMMC PYQs.</p>
-    </section>
+      <p class="small">The foundation chapter comes first. Other lessons need their listed prerequisites.</p>
+    </details></section>
 
     <section id="mapNav" hidden>
       <label for="problemSearch">Find a historical problem</label>
       <input id="problemSearch" type="search" placeholder="Year, A/B/C, synopsis">
       <label for="problemSelect">Problem</label>
       <select id="problemSelect"></select>
-      <label for="t25Input">Cleared T25 targets</label>
+      <details id="mappingTools"><summary>Advanced prerequisite mapping</summary><label for="t25Input">Cleared T25 targets</label>
       <input id="t25Input" placeholder="Example: F4,P2,A5">
       <button id="applyTargets">Apply T25 target list</button>
-      <p class="small">This page does not read T25 clearance automatically yet. Enter target codes only if you want the historical unlock preview.</p>
+      <p class="small">This page does not read T25 clearance automatically yet. Enter target codes only if you want the historical unlock preview.</p></details>
     </section>
   </aside>
 
   <main>
-    <section id="studyView">
+    <section id="pathView" hidden>
       <section class="learning-route" aria-labelledby="routeTitle">
         <div class="eyebrow">Start here · chapter 1</div>
         <h2 id="routeTitle">Algebra into problem solving</h2>
@@ -69,9 +71,13 @@
         <p class="small">Practise choosing and combining familiar ideas. These are foundation exercises, not a claim to match SMMC difficulty.</p>
         <div class="actions"><a class="button" href="t22-course.html?module=2&amp;session=9">T22 · M02 S09</a><button id="continueFoundation" class="primary">Next unattempted exercise</button></div>
         <p id="foundationProgress" class="small"></p>
-        <div id="foundationPath" class="foundation-path"></div>
-        <details><summary>Where the route goes next</summary><p>Continue M02, then M03 proof and counting. Later chapters will add number theory, graphs, inequalities, analysis and linear algebra before mixed past-paper practice. Those new chapters are planned; the eight existing bridge/method units remain available below with their own prerequisites.</p></details>
+        <details id="chapterSteps"><summary>Browse the six chapter steps</summary><div id="foundationPath" class="foundation-path"></div></details>
+        <details><summary>How to use this chapter</summary><p>Learn an idea, try the guided check, then save your reasoning on the practice problems. When the support fades, choose your own approach. If a definition or calculation is missing, revisit the lesson; if you know the tools but cannot see a route, try small cases and write what you notice before requesting a hint.</p><p>The mixed sets ask you to recombine familiar mathematics without a method label. Getting stuck is expected. The target is increasingly independent reasoning, not a perfect streak or finishing every question quickly.</p><p>These steps describe the intended progression, not a guarantee that every next problem will feel harder or easier to you.</p></details>
+        <section class="next-route"><h3>After this chapter</h3><p>Finish M02, then build proof and counting with M03. The later contest chapters will connect that foundation to suitable past papers. Completing twelve algebra exercises alone does not establish PYQ readiness.</p></section>
+
       </section>
+    </section>
+    <section id="studyView">
       <div id="unitMeta" class="eyebrow"></div>
       <h2 id="unitTitle"></h2>
       <p id="unitProgress" class="small"></p>
@@ -81,14 +87,20 @@
         <div id="unitT25Connections"></div>
       </section>
       <p id="foundationEntry" class="small" hidden></p>
-      <section class="note"><h3>Learning note</h3><div id="learningNote" class="text"></div></section>
+      <nav class="lesson-switch" aria-label="Lesson activity"><button id="showLearn">1 · Learn</button><button id="showPractice">2 · Practise</button><button id="showReview">My attempts</button></nav>
+      <div id="learnPanel">
+      <section class="note"><h3>Understand the idea</h3><div id="learningNote" class="text"></div></section>
       <section id="guidedPanel" hidden>
         <h3>Try a step before practice</h3><p id="guidedPrompt" class="text"></p>
         <label for="guidedAnswer">Your reasoning</label><textarea id="guidedAnswer" rows="3"></textarea>
         <button id="guidedFeedbackButton">Compare with feedback</button><p id="guidedFeedback" class="text" hidden></p>
         <p class="small">This is guided practice. Your draft is kept on this device; it is not an assessed task or a mastery record.</p>
       </section>
-      <div class="actions">
+      <button id="beginPractice" class="primary">Try the practice problems →</button>
+      </div>
+      <div id="practicePanel">
+      <p id="questionPosition" class="small"></p>
+      <div class="actions question-switch">
         <button id="mainTask">Main task</button>
         <button id="transferTask">Transfer task</button>
       </div>
@@ -97,7 +109,7 @@
         <div id="problemText" class="text problem"></div>
       </section>
       <label for="answer">Your working</label>
-      <textarea id="answer" rows="10" placeholder="Record your reasoning. Incomplete work is fine."></textarea>
+      <textarea id="answer" rows="7" placeholder="Record your reasoning. Incomplete work is fine."></textarea>
       <div class="fields">
         <label>Assistance
           <select id="assistance">
@@ -113,25 +125,28 @@
       <div class="actions">
         <button id="saveAttempt" class="primary">Save attempt</button>
         <button id="revealHint" disabled hidden>Open one hint</button>
-        <button id="revealRef" disabled>Open evaluator reference</button>
-        <button id="selfReport">Self-report unit complete</button>
+        <button id="revealRef" disabled>Read worked solution</button>
+        <button id="nextExercise" disabled>Next problem →</button>
       </div>
-      <p class="small">Self-report is only your progress note. It does not certify the unit and cannot unlock historical PYQs.</p>
+      <p id="taskHelp" class="small">Save your attempt to unlock a hint, a worked solution, and the next problem. Incomplete work is welcome.</p>
+      <details class="stuck-help"><summary>I'm stuck — what should I do?</summary><p>If the notation or a basic calculation is unfamiliar, return to the lesson. If you understand the question, try a small case, record a failed approach, or identify what your argument still needs. You can then save that work and request a hint.</p><button id="returnToLesson">Revisit this lesson</button><button id="chooseRefresher">Choose another refresher</button></details>
       <section id="hint" hidden><h3>Hint</h3><div id="hintText" class="text"></div></section>
-      <section id="reference" hidden><h3>Evaluator reference</h3><div id="referenceText" class="text"></div></section>
-      <details><summary>Saved attempts for this task</summary><div id="history"></div></details>
+      <section id="reference" hidden><h3>Worked solution &amp; what to check</h3><div id="referenceText" class="text"></div></section>
+      <details id="attemptHistory"><summary>My saved attempts for this problem</summary><div id="history"></div></details>
+      <details><summary>Mark this lesson reviewed</summary><p class="small">This is your own progress note. It does not certify mastery or unlock past papers.</p><button id="selfReport">Mark reviewed</button></details>
+      </div>
     </section>
 
     <section id="mapView" hidden>
       <div class="map-head">
         <div>
-          <div class="eyebrow">Historical corpus</div>
+          <div class="eyebrow">Official archive · 2017–2025</div>
           <h2 id="histTitle">Choose a problem</h2>
         </div>
         <span id="unlockBadge" class="badge neutral">Locked</span>
       </div>
-      <div id="overlapSummary" class="overlap-summary" aria-label="Historical overlap totals"></div>
-      <p class="small">Aggregate totals are safe planning metadata. Individual problem colors remain hidden until you explicitly reveal them.</p>
+      <details><summary>Research overview</summary><div id="overlapSummary" class="overlap-summary" aria-label="Historical overlap totals"></div>
+      <p class="small">Aggregate totals are safe planning metadata. Individual problem colors remain hidden until you explicitly reveal them.</p></details>
       <p id="histExposure" class="small"></p>
 
       <section class="paper-panel">
@@ -151,7 +166,7 @@
       </section>
 
       <section id="safeInfo">
-        <h3>Unseen-safe information</h3>
+        <h3>Prerequisite guidance</h3>
         <div id="unlockText" class="text"></div>
       </section>
       <section class="workspace-connections">
@@ -172,7 +187,7 @@
   </main>
 </div>
 
-<footer>SMMC companion evidence is separate from T25 academic clearance. Metadata visibility is reversible; solutions/material hints remain a separate evidence concern.</footer>
+<footer>Saved attempts record your learning, not a certified score. Use Tools to download a progress backup.</footer>
 <script type="module" src="js/smmc/ui.js"></script>
 </body>
 </html>

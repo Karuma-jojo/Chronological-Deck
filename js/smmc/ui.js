@@ -57,7 +57,7 @@ let studyState=emptySmmcStudy();
 let evaluatorPromise=null;
 const evaluatorBank=()=>evaluatorPromise??=import('../../course/smmc/authoring/evaluator-v1.mjs').then(m=>m.SMMC_EVALUATOR_V1);
 let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study',cloudReady=false,cloudApplying=false,cloudReconciling=false;
-let researchVisible=false,paperVisible=false;
+let researchVisible=false,paperVisible=false,pathVisible=false,lessonMode='learn';
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
 const moduleIds=[...new Set(SMMC_UNITS_V1.map(x=>x.moduleId))];
 
@@ -127,9 +127,9 @@ function renderWorkspaceNav(){
   });
   $('resumeT25FromUnit').href=t25Href();
   $('resumeT25FromProblem').href=t25Href();
-  put('workspacePosition',currentTab==='map'
-    ? `Historical map · ${currentProblem?problemLabel(currentProblem):'last problem remembered'}`
-    : `Study · ${currentUnit?.id||'last unit remembered'}`);
+  put('workspacePosition',pathVisible?'Your learning path':currentTab==='map'
+    ? `Past papers · ${currentProblem?problemLabel(currentProblem):'choose a paper'}`
+    : `${currentUnit?.title||'Choose a lesson'}`);
 }
 function renderT25Connections(targetCodes,containerId){
   if(!targetCodes.length){$(containerId).replaceChildren();return;}
@@ -147,14 +147,17 @@ function renderT25Connections(targetCodes,containerId){
   }));
 }
 function replaceSmmcUrl(){
-  window.history.replaceState(null,'',smmcHref({
+  const href=smmcHref({
     tab:currentTab,
     unitId:currentUnit?.id||null,
     taskId:currentTaskId||null,
     problemId:currentProblem?.id||null,
-  }));
+  });
+  const url=new URL(href,location.href);if(pathVisible)url.searchParams.set('view','path');url.searchParams.set('activity',lessonMode);
+  window.history.replaceState(null,'',url);
 }
 function saveViewport(){
+  if(pathVisible)return;
   rememberSmmcLocation({
     tab:currentTab,
     unitId:currentUnit?.id||null,
@@ -165,20 +168,25 @@ function saveViewport(){
 }
 function switchTab(which,updateUrl=true,restore=true,saveCurrent=true){
   if(saveCurrent)saveViewport();
-  const study=which==='study';currentTab=study?'study':'map';
-  $('studyView').hidden=!study;$('studyNav').hidden=!study;$('mapView').hidden=study;$('mapNav').hidden=study;
-  $('tabStudy').classList.toggle('active',study);$('tabMap').classList.toggle('active',!study);
+  pathVisible=which==='path';const study=which!=='map';currentTab=study?'study':'map';
+  $('pathView').hidden=!pathVisible;$('studyView').hidden=!study||pathVisible;
+  $('studyNav').hidden=!study||pathVisible;$('mapView').hidden=study;$('mapNav').hidden=study;
+  document.querySelector('.layout').dataset.view=pathVisible?'path':currentTab;
+  $('tabPath').classList.toggle('active',pathVisible);
+  $('tabStudy').classList.toggle('active',study&&!pathVisible);$('tabMap').classList.toggle('active',!study);
+  for(const id of ['tabPath','tabStudy','tabMap'])$(id).setAttribute('aria-pressed',String($(id).classList.contains('active')));
   rememberSmmcLocation({tab:currentTab,unitId:currentUnit?.id||null,taskId:currentTaskId||null,problemId:currentProblem?.id||null});
   renderWorkspaceNav();if(updateUrl)replaceSmmcUrl();
-  if(restore){
+  if(restore&&pathVisible){window.scrollTo(0,0);}
+  else if(restore){
     const remembered=readWorkspaceNav();
     restoreViewport({scrollY:remembered.smmc.scroll[currentTab]});
   }
 }
-function unitLabel(u){return (u.kind==='foundation'?'Foundation':u.kind==='bridge'?'Bridge':'Method')+' · '+u.id+' · '+u.title;}
+function unitLabel(u){return (u.kind==='foundation'?'Chapter 1 · Step '+u.orderWithinModule:u.kind==='bridge'?'Bridge':'Method')+' · '+u.title;}
 function renderUnitList(){
   const q=$('unitSearch').value.trim().toLowerCase();
-  const list=SMMC_UNITS_V1.filter(u=>(u.id+' '+u.moduleId+' '+u.title+' '+u.learningNote).toLowerCase().includes(q));
+  const list=[...FOUNDATION_UNITS,...SMMC_UNITS_V1.filter(u=>u.kind!=='foundation')].filter(u=>(u.id+' '+u.moduleId+' '+u.title+' '+u.learningNote).toLowerCase().includes(q));
   opts($('unitSelect'),list.map(u=>[u.id,unitLabel(u)]));
   if(currentUnit&&list.some(u=>u.id===currentUnit.id))$('unitSelect').value=currentUnit.id;
 }
@@ -186,23 +194,51 @@ function renderFoundationPath(){
   const attempted=new Set(studyState.attempts.map(a=>a.taskId));
   const ids=FOUNDATION_UNITS.flatMap(u=>[u.mainTaskId,u.transferTaskId]);
   put('foundationProgress',`${ids.filter(id=>attempted.has(id)).length} of ${ids.length} exercises have a saved attempt. Attempts and self-reports do not certify mastery.`);
-  $('continueFoundation').textContent=ids.every(id=>attempted.has(id))?'Review mixed practice':'Next unattempted exercise';
+  $('continueFoundation').textContent=ids.every(id=>attempted.has(id))?'Return to mixed practice':attempted.size?'Continue chapter →':'Start chapter →';
   $('foundationPath').replaceChildren(...FOUNDATION_UNITS.map((u,i)=>{
     const b=document.createElement('button');b.type='button';
     b.setAttribute('aria-current',currentUnit?.id===u.id?'step':'false');
     const title=document.createElement('strong');title.textContent=`${i+1}. ${u.title}`;
     const detail=document.createElement('small');detail.textContent=`${u.stage} · ${[u.mainTaskId,u.transferTaskId].filter(id=>attempted.has(id)).length}/2 attempted`;
-    b.append(title,detail);b.onclick=()=>{renderUnit(u.id);$('unitTitle').scrollIntoView({block:'start'});};return b;
+    b.append(title,detail);b.onclick=()=>{openLesson(u.id);};return b;
   }));
+}
+function showLessonMode(mode,scroll=false){
+  lessonMode=mode==='learn'?'learn':'practice';
+  $('learnPanel').hidden=lessonMode!=='learn';$('practicePanel').hidden=lessonMode!=='practice';
+  $('showLearn').setAttribute('aria-pressed',String(lessonMode==='learn'));
+  $('showPractice').setAttribute('aria-pressed',String(lessonMode==='practice'));
+  if(mode==='review'){$('attemptHistory').open=true;}
+  if(currentUnit)replaceSmmcUrl();
+  if(scroll)$(mode==='review'?'attemptHistory':lessonMode==='learn'?'learnPanel':'practicePanel').scrollIntoView({block:'start'});
+}
+function openLesson(id,task=null){
+  $('unitSearch').value='';renderUnitList();renderUnit(id,task);
+  switchTab('study',true,false);
+  if(window.innerWidth<=800)$('browseLessons').open=false;
+  $('unitTitle').scrollIntoView({block:'start'});
+}
+function updateNextExercise(){
+  const saved=studyState.attempts.some(a=>a.taskId===currentTaskId);
+  const route=currentUnit.kind==='foundation'?FOUNDATION_UNITS:SMMC_UNITS_V1.filter(u=>u.kind!=='foundation');
+  const last=route.at(-1).id===currentUnit.id;
+  $('nextExercise').disabled=!saved;
+  put('taskHelp',saved?'Attempt recorded. Continue when ready, or compare your reasoning with the optional help.':'Save your attempt to unlock help and the next problem. Incomplete work is welcome.');
+  $('nextExercise').textContent=currentTaskId===currentUnit.mainTaskId?'Next problem →':last?'Return to your path':'Next lesson →';
+  put('questionPosition',`Problem ${currentTaskId===currentUnit.mainTaskId?1:2} of 2 · ${currentUnit.title}`);
+  $('mainTask').setAttribute('aria-pressed',String(currentTaskId===currentUnit.mainTaskId));
+  $('transferTask').setAttribute('aria-pressed',String(currentTaskId===currentUnit.transferTaskId));
+  $('revealRef').disabled=!saved;$('revealHint').disabled=!saved;
 }
 function saveGuidedDraft(){
   if(currentUnit?.guided)writeWorkspaceDraft('smmc',currentUnit.id+'-guided',$('guidedAnswer').value);
 }
 function renderUnit(id,preferredTask=null){
   const idx=SMMC_UNITS_V1.findIndex(u=>u.id===id);if(idx<0)return;
+  const changed=currentUnit?.id!==id;
   saveGuidedDraft();
   currentUnit=SMMC_UNITS_V1[idx];$('unitSelect').value=id;
-  put('unitMeta',currentUnit.kind.toUpperCase()+' · '+currentUnit.moduleId+' · unit '+currentUnit.orderWithinModule);
+  put('unitMeta',currentUnit.kind==='foundation'?`Chapter 1 · Step ${currentUnit.orderWithinModule} of ${FOUNDATION_UNITS.length} · ${currentUnit.stage}`:currentUnit.kind==='bridge'?'Build a missing tool':'Practise a problem-solving method');
   put('unitTitle',currentUnit.title);put('learningNote',currentUnit.learningNote);
   const foundation=currentUnit.kind==='foundation';
   $('unitConnections').hidden=foundation;$('foundationEntry').hidden=!foundation;
@@ -222,6 +258,7 @@ function renderUnit(id,preferredTask=null){
   renderT25Connections(currentUnit.t25Targets,'unitT25Connections');
   const task=[currentUnit.mainTaskId,currentUnit.transferTaskId].includes(preferredTask)?preferredTask:currentUnit.mainTaskId;
   showTask(task);
+  showLessonMode(changed?(foundation&&currentUnit.orderWithinModule<5?'learn':'practice'):lessonMode);
   rememberSmmcLocation({unitId:currentUnit.id,taskId:task});
   renderWorkspaceNav();
 }
@@ -235,7 +272,7 @@ function showTask(id){
   const earlier=studyState.attempts.filter(a=>a.taskId===id);
   if(earlier.some(a=>a.referenceOpenedAt))$('assistance').value='revealed';
   else if(earlier.some(a=>a.assistance==='hint'))$('assistance').value='hint';
-  renderHistory();
+  renderHistory();updateNextExercise();
   if(currentUnit){rememberSmmcLocation({unitId:currentUnit.id,taskId:id});if(currentTab==='study')replaceSmmcUrl();}
   renderWorkspaceNav();
 }
@@ -334,7 +371,7 @@ function renderResearch(show){
 }
 async function init(){
   const initialParams=new URLSearchParams(location.search);
-  const explicitWorkspace=initialParams.has('tab')||initialParams.has('unit')||initialParams.has('task')||initialParams.has('problem');
+  const explicitWorkspace=initialParams.has('tab')||initialParams.has('unit')||initialParams.has('task')||initialParams.has('problem')||initialParams.has('view');
   let navReconciled=false,navReconcilePromise=null;
   if(!explicitWorkspace&&!hasStoredWorkspaceNav()&&workspaceCloudState().signedIn){
     navReconcilePromise=reconcileWorkspaceNavCloud().then(()=>{navReconciled=true;});
@@ -354,13 +391,31 @@ async function init(){
   const requestedTask=params.get('task')||remembered.smmc.taskId;
   const requestedProblem=params.get('problem')||remembered.smmc.problemId;
   const problem=ledger.find(x=>x.id===requestedProblem)||ledger[0];
-  renderUnitList();renderUnit(unit.id,requestedTask);renderProblemList();renderOverlapSummary();renderHistorical(problem.id);switchTab(requestedTab,false,false,false);replaceSmmcUrl();
+  renderUnitList();renderUnit(unit.id,requestedTask);renderProblemList();renderOverlapSummary();renderHistorical(problem.id);switchTab(params.get('view')==='path'||(!requestedUnit&&!explicitWorkspace)?'path':requestedTab,false,false,false);replaceSmmcUrl();
+  showLessonMode(params.get('activity')==='practice'||(!params.has('activity')&&params.has('task'))?'practice':params.get('activity')==='learn'?'learn':lessonMode);
+  $('browseLessons').open=window.innerWidth>800;
   $('continueFoundation').onclick=()=>{
     const attempted=new Set(studyState.attempts.map(a=>a.taskId));
     const u=FOUNDATION_UNITS.find(u=>!attempted.has(u.mainTaskId)||!attempted.has(u.transferTaskId))||FOUNDATION_UNITS[4];
-    renderUnit(u.id,!attempted.has(u.mainTaskId)?u.mainTaskId:u.transferTaskId);
-    $('unitTitle').scrollIntoView({block:'start'});
+    openLesson(u.id,!attempted.has(u.mainTaskId)?u.mainTaskId:u.transferTaskId);
   };
+  $('showLearn').onclick=()=>showLessonMode('learn');
+  $('showPractice').onclick=()=>showLessonMode('practice');
+  $('showReview').onclick=()=>showLessonMode('review',true);
+  $('beginPractice').onclick=()=>showLessonMode('practice',true);
+  $('returnToLesson').onclick=()=>{
+    if($('assistance').value==='independent')$('assistance').value='neutral-tool';
+    showLessonMode('learn',true);
+  };
+  $('chooseRefresher').onclick=()=>{switchTab('path');$('chapterSteps').open=true;};
+  $('nextExercise').onclick=()=>{
+    if(!studyState.attempts.some(a=>a.taskId===currentTaskId))return;
+    if(currentTaskId===currentUnit.mainTaskId){showTask(currentUnit.transferTaskId);showLessonMode('practice',true);return;}
+    const route=currentUnit.kind==='foundation'?FOUNDATION_UNITS:SMMC_UNITS_V1.filter(u=>u.kind!=='foundation');
+    const idx=route.findIndex(u=>u.id===currentUnit.id);
+    if(route[idx+1])openLesson(route[idx+1].id);else switchTab('path');
+  };
+  $('tabPath').onclick=()=>switchTab('path');
   $('guidedAnswer').addEventListener('input',saveGuidedDraft);
   $('guidedFeedbackButton').onclick=async()=>{
     if(!$('guidedAnswer').value.trim()){tell('Try the guided step before comparing with feedback.');return;}
@@ -383,17 +438,17 @@ async function init(){
       tell('Hint opened. This problem is now assisted practice.');
     }catch{tell('Could not load the hint.');}
   };
-  $('unitSearch').oninput=renderUnitList;$('unitSelect').onchange=()=>renderUnit($('unitSelect').value);
+  $('unitSearch').oninput=renderUnitList;$('unitSelect').onchange=()=>openLesson($('unitSelect').value);
   $('answer').addEventListener('input',()=>{if(currentTaskId)writeWorkspaceDraft('smmc',currentTaskId,$('answer').value);});
   const moveUnit=offset=>{const route=currentUnit.kind==='foundation'?FOUNDATION_UNITS:SMMC_UNITS_V1.filter(u=>u.kind!=='foundation');const i=route.findIndex(x=>x.id===currentUnit.id);if(route[i+offset])renderUnit(route[i+offset].id);};
   $('prevUnit').onclick=()=>moveUnit(-1);$('nextUnit').onclick=()=>moveUnit(1);
-  $('mainTask').onclick=()=>showTask(currentUnit.mainTaskId);$('transferTask').onclick=()=>showTask(currentUnit.transferTaskId);
+  $('mainTask').onclick=()=>{showTask(currentUnit.mainTaskId);showLessonMode('practice');};$('transferTask').onclick=()=>{showTask(currentUnit.transferTaskId);showLessonMode('practice');};
   $('saveAttempt').onclick=()=>{
     const answer=$('answer').value.trim(),minutes=Number($('minutes').value);if(!answer){tell('Record your working before saving.');return;}
     if(answer.length>100000||!Number.isFinite(minutes)||minutes<0||minutes>100000){tell('Check answer length and minutes.');return;}
     const hadReference=studyState.attempts.some(a=>a.taskId===currentTaskId&&a.referenceOpenedAt);
     studyState.attempts.push({id:uuid(),taskId:currentTaskId,at:new Date().toISOString(),answer,assistance:hadReference?'revealed':studyState.attempts.some(a=>a.taskId===currentTaskId&&a.assistance==='hint')?'hint':$('assistance').value,minutes,referenceSeenBefore:hadReference});
-    clearWorkspaceDraft('smmc',currentTaskId);$('revealRef').disabled=false;$('revealHint').disabled=false;persist();renderHistory();renderFoundationPath();tell('Neutral training attempt saved. Historical PYQ exposure unchanged.');
+    clearWorkspaceDraft('smmc',currentTaskId);$('revealRef').disabled=false;$('revealHint').disabled=false;persist();renderHistory();renderFoundationPath();updateNextExercise();tell('Neutral training attempt saved. Historical PYQ exposure unchanged.');
   };
   $('revealRef').onclick=async()=>{
     const id=currentTaskId;
@@ -423,12 +478,12 @@ async function init(){
       ? 'Research metadata shown for planning only. Nothing was written to your exposure record.'
       : 'Research metadata hidden. Nothing was written to your exposure record.');
   };
-  $('export').onclick=()=>download('smmc-study-record.json',{historical:histState,neutralStudy:studyState});
+  $('export').onclick=()=>{download('smmc-study-record.json',{historical:histState,neutralStudy:studyState});$('toolsMenu').open=false;};
   $('import').onchange=async e=>{
     const file=e.target.files[0];if(!file)return;try{
       if(file.size>10000000)throw Error('Record is too large');const incoming=JSON.parse(await file.text());
       histState=validateSmmcState(incoming.historical,ledger,moduleIds,allUnitIds);studyState=validateSmmcStudy(incoming.neutralStudy,Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
-      persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();tell('SMMC record imported.');
+      persist();renderUnit(currentUnit.id);renderHistorical(currentProblem.id);renderHistory();$('toolsMenu').open=false;tell('SMMC record imported.');
     }catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}
   };
   if(!navReconciled)void (navReconcilePromise||reconcileWorkspaceNavCloud()).finally(enableWorkspaceNavCloud);
@@ -444,6 +499,8 @@ async function init(){
   const focus=params.get('focus');
   const rememberedAfter=readWorkspaceNav();
   restoreViewport({focusId:focus,scrollY:rememberedAfter.smmc.scroll[currentTab]});
-  if(storageOK)tell('Ready: '+SMMC_UNITS_V1.length+' authored units, '+Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length+' neutral tasks, and '+ledger.length+' historical problem records. Resumed '+(currentTab==='map'?problemLabel(currentProblem):currentUnit.id+' · '+currentTaskId)+'.');
+  document.addEventListener('pointerdown',e=>{if(!$('toolsMenu').contains(e.target))$('toolsMenu').open=false;});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')$('toolsMenu').open=false;});
+  if(storageOK)tell('Ready: '+(pathVisible?'Choose your next step.':currentTab==='map'?'Browse official past papers.':currentUnit.title+'. Choose Learn or Practise.'));
 }
 init().catch(e=>tell('SMMC companion could not start: '+e.message));
