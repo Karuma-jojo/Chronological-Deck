@@ -1,3 +1,9 @@
+# M15 published-state verification — 2026-09-28
+
+Independent acceptance at `94de6d...` and explicit user publication authorization are now applied on current-main-derived publication branch `codex/t22-m15-publication`. SIDE278 is registered as learner module 15, roadmap `authored`, semantic `accepted`, with audited transpose bridge retained. Exact implementation `b48de4fc1689f421fd7901d8bbbc77660aeb44b0`; T22 Elite run `36373130210` / #578 / job `108773384688`: **SUCCESS**, including Chromium and persisted M01–M15 learner-route validation. Publication closure docs are being exact-head revalidated before main fast-forward. M16 remains closed.
+
+---
+
 # Foundation freeze and main publication — 2026-09-27
 
 Independent reconfirmation on exact review head `c6003be2f18d3f904898483a422a9a356dc5bc54` closed LF-R01–LF-R06. Combined status: R01–R08 CLOSED; original Lang L01–L10 CLOSED at the repaired foundation level; LF-R01–LF-R06 INDEPENDENTLY CONFIRMED. M01=17, M02=24, M03=30 and M10=24 are frozen. This bounded publication updates the existing module content and required shared representation/runtime/tests on `main` while deliberately excluding unrelated M15 candidate work from the long-lived review branch.
