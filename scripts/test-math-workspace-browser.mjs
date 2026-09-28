@@ -47,9 +47,11 @@ try{
   await page.evaluate(()=>window.scrollTo(0,1000));
   const t25Scroll=await page.evaluate(()=>window.scrollY);
   assert(t25Scroll>300);
+  if(await page.locator('#toolsMenu').count()&&!await page.locator('#toolsMenu').evaluate(el=>el.open))await page.locator('#toolsMenu > summary').click();
   await page.click('#workspaceSMMC');
   await waitReady(page);
   assert(page.url().includes('/smmc-course.html'));
+  if(await page.locator('#toolsMenu').count()&&!await page.locator('#toolsMenu').evaluate(el=>el.open))await page.locator('#toolsMenu > summary').click();
   await page.click('#workspaceT25');
   await waitReady(page);
   assert.equal(await page.locator('#session').inputValue(),'7');
@@ -74,6 +76,7 @@ try{
   // T25 and Aster are the same exact session/task with different presentation.
   assert((await page.locator('#workspaceT25').getAttribute('href')).includes('session=7'));
   assert((await page.locator('#workspaceT25').getAttribute('href')).includes('task=transfer'));
+  if(await page.locator('#toolsMenu').count()&&!await page.locator('#toolsMenu').evaluate(el=>el.open))await page.locator('#toolsMenu > summary').click();
   await page.click('#workspaceAster');
   await waitReady(page);
   assert.equal(await page.locator('#session').inputValue(),'7');
@@ -82,6 +85,7 @@ try{
   assert(await page.locator('#scene').isVisible());
 
   // SMMC resumes the historical problem we left.
+  if(await page.locator('#toolsMenu').count()&&!await page.locator('#toolsMenu').evaluate(el=>el.open))await page.locator('#toolsMenu > summary').click();
   await page.click('#workspaceSMMC');
   await waitReady(page);
   assert.equal(await page.locator('#problemSelect').inputValue(),mappedProblem);
@@ -97,11 +101,13 @@ try{
   const smmcScroll=await page.evaluate(()=>window.scrollY);
   assert(smmcScroll>300);
 
+  if(await page.locator('#toolsMenu').count()&&!await page.locator('#toolsMenu').evaluate(el=>el.open))await page.locator('#toolsMenu > summary').click();
   await page.click('#workspaceT25');
   await waitReady(page);
   assert.equal(await page.locator('#session').inputValue(),'7');
   assert((await page.locator('#taskMeta').textContent()).includes('007-T'));
 
+  if(await page.locator('#toolsMenu').count()&&!await page.locator('#toolsMenu').evaluate(el=>el.open))await page.locator('#toolsMenu > summary').click();
   await page.click('#workspaceSMMC');
   await waitReady(page);
   assert(await page.locator('#tabStudy').evaluate(el=>el.classList.contains('active')));
@@ -118,8 +124,8 @@ try{
   assert((await plainLink.getAttribute('href')).includes('task=main'));
   assert((await asterLink.getAttribute('href')).includes('presentation=anime'));
 
-  // Sticky workspace switcher remains available away from the page header.
-  const position=await page.locator('.workspace-dock').evaluate(el=>getComputedStyle(el).position);
+  // Primary navigation and secondary course tools remain reachable while studying.
+  const position=await page.locator('.tabs').evaluate(el=>getComputedStyle(el).position);
   assert.equal(position,'sticky');
 
   assert.deepEqual(errors,[]);

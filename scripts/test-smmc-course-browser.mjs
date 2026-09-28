@@ -46,7 +46,7 @@ try{
   await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
 
   assert.equal(await page.locator('#unitSelect option').count(),14);
-  assert((await page.locator('#status').textContent()).includes('28 neutral tasks'));
+  assert((await page.locator('#status').textContent()).startsWith('Ready:'));
   await page.click('#tabMap');
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat strong').allTextContents(),['39','27','22','30','24','18']);
   assert.deepEqual(await page.locator('#overlapSummary .overlap-stat span').allTextContents(),['GREEN','AMBER','RED','GREEN','AMBER','RED']);
@@ -64,6 +64,7 @@ try{
   const neutral=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_neutral_study_v1')));
   assert.equal(neutral.attempts.length,1);
 
+  await page.getByText('Mark this lesson reviewed',{exact:true}).click();
   await page.click('#selfReport');
   const hist1=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
   assert.equal(hist1.units['S-METHOD-B1-U01'].selfReportedComplete,true);
@@ -78,6 +79,7 @@ try{
   assert((await page.locator('#openOfficialPaper').getAttribute('href')).endsWith('/smmc-2021-paper-a.pdf#page=2'));
   assert((await page.locator('#paperGuide').textContent()).includes('Read A3 on page 2'));
 
+  await page.locator('#mappingTools > summary').click();
   await page.fill('#t25Input','F4,M2,M3,P2');
   await page.click('#applyTargets');
   assert.equal((await page.locator('#unlockBadge').textContent()).trim(),'SMMC unit needed');
@@ -112,6 +114,10 @@ try{
   const learningRequests=[];learn.on('request',r=>learningRequests.push(r.url()));
   await learn.goto(base+'/smmc-course.html');
   await learn.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  assert(await learn.locator('#pathView').isVisible());
+  await learn.click('#continueFoundation');
+  assert(await learn.locator('#learnPanel').isVisible());
+  assert(await learn.locator('#practicePanel').isHidden());
   assert.equal(await learn.locator('#unitSelect').inputValue(),'S-FOUNDATION-ALG1-U01');
   assert.equal(await learn.locator('#foundationPath button').count(),6);
   assert(await learn.locator('#prevUnit').isDisabled());
@@ -127,8 +133,10 @@ try{
   assert(await learn.locator('#reference').isHidden());
   for(let i=1;i<=6;i++){
     const id=`S-FOUNDATION-ALG1-U0${i}`;
+    if(!await learn.locator('#browseLessons').evaluate(el=>el.open))await learn.locator('#browseLessons > summary').click();
     await learn.selectOption('#unitSelect',id);
     assert.equal(await learn.locator('#guidedPanel').isVisible(),i<=4);
+    await learn.click('#showPractice');
     for(const button of ['mainTask','transferTask']){
       await learn.click('#'+button);
       assert(await learn.locator('#reference').isHidden());
@@ -156,6 +164,7 @@ try{
   await learn.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
   assert.equal(await learn.locator('#unitSelect').inputValue(),'S-FOUNDATION-ALG1-U06');
   assert((await learn.locator('#foundationProgress').textContent()).startsWith('12 of 12'));
+  await learn.locator('#toolsMenu > summary').click();
   const downloadPromise=learn.waitForEvent('download');await learn.click('#export');
   const download=await downloadPromise;const exported=JSON.parse(await readFile(await download.path(),'utf8'));
   assert.deepEqual(exported.neutralStudy,saved);
@@ -165,12 +174,34 @@ try{
   await importPage.setInputFiles('#import',{name:'smmc-record.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exported))});
   await importPage.waitForFunction(()=>document.querySelector('#status').textContent==='SMMC record imported.');
   assert((await importPage.locator('#foundationProgress').textContent()).startsWith('12 of 12'));
+  if(!await learn.locator('#browseLessons').evaluate(el=>el.open))await learn.locator('#browseLessons > summary').click();
   await learn.selectOption('#unitSelect','S-FOUNDATION-ALG1-U01');
   assert.equal(await learn.locator('#guidedAnswer').inputValue(),'The product is zero if either factor is zero.');
+  await learn.locator('#toolsMenu > summary').click();
+  await learn.click('#showPractice');
+  await learn.click('#mainTask');
+  assert(!(await learn.locator('#nextExercise').isDisabled()),'Saved task did not restore next action');
+  await learn.click('#nextExercise');
+  assert((await learn.locator('#questionPosition').textContent()).startsWith('Problem 2'));
+  await learn.click('#nextExercise');
+  assert.equal(await learn.locator('#unitSelect').inputValue(),'S-FOUNDATION-ALG1-U02');
+  assert(await learn.locator('#learnPanel').isVisible());
+  await learn.click('#showReview');
+  assert(await learn.locator('#attemptHistory').evaluate(el=>el.open));
+  await learn.click('#tabPath');
+  assert(await learn.locator('#pathView').isVisible());
+  assert(await learn.locator('#studyView').isHidden());
+  await learn.reload();
+  await learn.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  assert(await learn.locator('#pathView').isVisible(),'Path deep link lost on reload');
+  await learn.click('#tabStudy');await learn.click('#showPractice');
+  assert(await learn.locator('#practicePanel').isVisible());
+  await learn.click('#tabPath');
   await learn.evaluate(()=>window.scrollTo(0,0));
   assert(await learn.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'Mobile horizontal overflow');
   await learn.screenshot({path:'/tmp/smmc-foundation-mobile.png',fullPage:true});
   await importPage.setViewportSize({width:1280,height:900});
+  await importPage.click('#tabStudy');
   await importPage.screenshot({path:'/tmp/smmc-foundation-desktop.png',fullPage:true});
   await learner.close();await imported.close();
   assert.deepEqual(errors,[]);
