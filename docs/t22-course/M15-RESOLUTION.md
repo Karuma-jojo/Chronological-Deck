@@ -1,3 +1,5 @@
+> **Current status (2026-09-28): PUBLISHED-STATE VERIFIED.** R01–R04 passed independent follow-up, final provenance confirmation independently accepted M15, the user authorized publication, and SIDE278 is now wired as learner module 15 on the publication branch. Exact published-state implementation `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed run #578 / `36373130210`, job `108773384688`. Historical follow-up/provenance-pending statements below are retained as process evidence. M16 remains closed.
+
 # T22 Elite M15 / SIDE278 — Resolution
 
 Status: **R01–R04 INDEPENDENT FOLLOW-UP PASS · PROVENANCE CONFIRMATION PENDING · UNPUBLISHED**
