@@ -23,7 +23,7 @@ assert.equal(a.coverageAudit.fixedAssessments,38);
 assert.equal(a.coverageAudit.ownershipClaimCount,60);
 
 // Published M14 must be present in the shared learner registry and accepted route metadata.
-assert.equal(meta.moduleSources.length,14);
+assert(meta.moduleSources.length>=14,'published registry must retain M01-M14 or later');
 const publishedSource=meta.moduleSources.find(x=>x.order===14&&x.id==='SIDE276');
 assert(publishedSource,'M14 missing from published learner registry');
 assert.equal(publishedSource.sourceType,'authoring-pack');
