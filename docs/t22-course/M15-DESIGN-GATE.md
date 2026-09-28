@@ -2,7 +2,7 @@
 
 # T22 Elite M15 / SIDE278 — pre-authoring design gate
 
-Status: **Independent follow-up R01–R04 PASS; mathematical/pedagogical repair is closed. Provenance correction awaits final read-back confirmation. M15 remains unpublished and outside the learner route.**  
+Status: **Independently accepted and user-authorized for publication; SIDE278 is registered as module 15 on the publication candidate. M16 remains closed.**  
 Date: 2026-09-26  
 Recovered authoritative base: `bcb86a1a6ee6ab141a884c819cde07f5e41491c5`.
 Review branch: `codex/t22-m15-review-candidate`; current repaired implementation head: `3d0cade34f3c43df5927a808fb82d77c189c89ee`; full run #552 / `36303833184` SUCCESS.
