@@ -1,3 +1,4 @@
+import { FOUNDATION_MODULE, FOUNDATION_UNITS } from '../course/smmc/authoring/foundation-ladder.mjs';
 import ledger from "../course/smmc/ledger.mjs";
 import {
   SMMC_CONTENT_MODULES,
@@ -22,6 +23,7 @@ function expect(condition, message) {
 
 const problemIds = new Set(ledger.map(x => x.id));
 const moduleIds = new Set([
+  FOUNDATION_MODULE.id,
   ...SMMC_CONTENT_MODULES.map(x => x.id),
   ...SMMC_METHOD_MODULES.map(x => x.id),
 ]);
@@ -34,12 +36,12 @@ for (const problem of ledger) {
 }
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
-expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 16, "Expected sixteen authored public problems.");
-expect(Object.keys(SMMC_EVALUATOR_V1).length === 16, "Expected sixteen authored evaluator references.");
+expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 28, "Expected twenty-eight authored public problems.");
+expect(Object.keys(SMMC_EVALUATOR_V1).length === 28, "Expected twenty-eight authored evaluator references.");
 
 for (const unit of SMMC_UNITS_V1) {
   expect(moduleIds.has(unit.moduleId), `Unknown module for ${unit.id}`);
-  expect(["method", "bridge"].includes(unit.kind), `Bad unit kind for ${unit.id}`);
+  expect(["method", "bridge", "foundation"].includes(unit.kind), `Bad unit kind for ${unit.id}`);
   expect(Array.isArray(unit.t25Targets), `Missing T25 prerequisites for ${unit.id}`);
   expect(typeof unit.learningNote === "string" && unit.learningNote.length > 120, `Weak learning note for ${unit.id}`);
   expect(SMMC_PUBLIC_PROBLEMS_V1[unit.mainTaskId], `Missing main problem for ${unit.id}`);

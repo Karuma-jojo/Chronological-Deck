@@ -80,3 +80,11 @@ footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var
 .workspace-cloud.syncing{color:var(--warm);border-color:var(--warm)}
 .workspace-cloud.synced{color:var(--accent);border-color:var(--accent)}
 .workspace-cloud.error{color:#f07f84;border-color:#f07f84}
+
+.learning-route{border-color:var(--accent);background:linear-gradient(140deg,#1b3036,var(--panel2))}
+.foundation-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.foundation-path button{text-align:left;min-width:0;white-space:normal}
+.foundation-path button[aria-current="step"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.foundation-path strong,.foundation-path small{display:block}.foundation-path small{color:var(--muted)}
+@media(max-width:650px){.foundation-path{grid-template-columns:1fr 1fr}}
+@media(max-width:390px){.foundation-path{grid-template-columns:1fr}}

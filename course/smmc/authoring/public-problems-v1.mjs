@@ -1,7 +1,9 @@
+import { FOUNDATION_PROBLEMS } from './foundation-ladder.mjs';
 // Learner-visible neutral SMMC training prompts.
 // Historical SMMC statements are intentionally absent.
 
 export const SMMC_PUBLIC_PROBLEMS_V1 = Object.freeze({
+  ...FOUNDATION_PROBLEMS,
   "S-NEUTRAL-MB1-01": {
     id: "S-NEUTRAL-MB1-01",
     unitId: "S-METHOD-B1-U01",

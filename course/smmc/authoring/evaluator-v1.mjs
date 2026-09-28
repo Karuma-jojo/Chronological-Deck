@@ -1,7 +1,9 @@
+import { FOUNDATION_REFERENCES } from './foundation-references.mjs';
 // Engine/evaluator references for neutral SMMC training.
 // Not learner-facing under WALL. These are valid routes, not mandatory proof styles.
 
 export const SMMC_EVALUATOR_V1 = Object.freeze({
+  ...FOUNDATION_REFERENCES,
   "S-NEUTRAL-MB1-01": {
     reference: [
       "Since x+y=1, the left side is (2+x+y)/((1+x)(1+y)) = 3/(2+xy).",
