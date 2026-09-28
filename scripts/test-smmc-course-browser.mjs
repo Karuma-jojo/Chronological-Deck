@@ -70,7 +70,7 @@ try{
   assert.equal(hist1.units['S-METHOD-B1-U01'].certifiedAt,undefined);
 
   await page.click('#tabMap');
-  assert.equal(await page.locator('#problemSelect option').count(),148);
+  assert.equal(await page.locator('#problemSelect option').count(),88);
 
   await page.selectOption('#problemSelect','SMMC-2021-A3');
   assert(await page.locator('#researchInfo').isHidden());
