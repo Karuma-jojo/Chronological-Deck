@@ -1,3 +1,9 @@
+# T22 Elite M15 / SIDE278 — Publication Closure Handoff
+
+**Current status (2026-09-28): independently accepted, user-authorized, publication-state implementation verified.** SIDE278 is now wired as learner module 15 on the publication branch. Implementation head `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed run #578 / `36373130210`, job `108773384688`. The review-era follow-up handoff below is retained as historical evidence and its unpublished/stop statements are superseded by this closure. **M16 remains closed.**
+
+---
+
 # T22 Elite M15 / SIDE278 — Independent Follow-up Handoff
 
 ## Exact target
