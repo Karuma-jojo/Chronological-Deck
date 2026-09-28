@@ -1,3 +1,9 @@
+# M15 publication closure — 2026-09-28
+
+M15 / `SIDE278` is independently accepted and explicitly user-authorized for publication. The published-state implementation on `codex/t22-m15-publication` at `b48de4fc1689f421fd7901d8bbbc77660aeb44b0` passed full T22 Elite run [36373130210](https://github.com/Karuma-jojo/Chronological-Deck/actions/runs/36373130210), run #578, job `108773384688`, **SUCCESS**. The shared learner registry now contains M01–M15; SIDE278 is roadmap `authored` and semantic `accepted`; the direct persisted M15 browser exercised 304 surfaces. Final publication documentation head must pass the same workflow before `main` fast-forward. M16 remains closed.
+
+---
+
 # M09 publication — current receipt
 
 See `M09-BOUNDARY.md`, `M09-VERIFICATION.md`, `M09-REVIEW-HANDOFF.md` and the authoritative recovery entry in `docs/t22-rebuild/RUN-LOG.md`.
