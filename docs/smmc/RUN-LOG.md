@@ -524,3 +524,28 @@ Passed:
 - Aster optional/anti-leak contract remains present.
 
 No canonical T25/Aster/compiler/runtime file was modified by this companion build.
+
+
+## Arsenal Gate 0 — historical corpus protection candidate (2026-09-30)
+
+Branch: `codex/smmc-arsenal-gate0-corpus-protection`.
+
+This bounded gate repairs the mismatch between the frozen exposure policy and the learner UI before Arsenal ontology research begins.
+
+Implemented:
+
+- additive paper/session exposure state on top of the existing problem exposure ledger;
+- backward-compatible validation for pre-paper-ledger v1 records;
+- persistent paper states: pristine, breached, opened, attempted and arena-consumed;
+- isolated ledger-summary reveal as statement exposure for one problem only;
+- GREEN/AMBER/RED method/research reveal as material-hint exposure for one problem only;
+- full official session-paper opening as statement exposure for every problem in that session;
+- pristine East A/B paper inventory;
+- earliest-timestamp merge semantics for paper exposure;
+- preservation of optional historical attempt score and reattempt-eligibility fields;
+- browser export/import coverage for the new exposure state;
+- source-level and Chromium assertions that exposure does not spill into sibling sessions.
+
+The previous UI claim that research metadata and official-paper viewing were reversible/no-contamination actions has been removed.
+
+**Stop:** this is an implementation candidate, not a self-accepted gate. Gate 1 (Arsenal Research Contract) remains closed until exact-head CI passes and an independent reviewer accepts Gate 0.
