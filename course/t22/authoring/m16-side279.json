@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 5,
-    "ownershipClaimCount": 15,
-    "fixedAssessments": 10,
+    "authoredSessions": 6,
+    "ownershipClaimCount": 18,
+    "fixedAssessments": 12,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -287,6 +287,44 @@
       "guidedFeedback": "Check after attempting. Bv=(1,-1)=v and Bw=(3,3)=3w. Apply B to av+bw=0 and subtract 3 times the original relation: a(1-3)v=0, so a=0, then b=0. Meanwhile v+w=(2,0), and B(2,0)=(4,2), not proportional to (2,0), so it is not an eigenvector.",
       "main": "T22V3::SIDE279::S05-M@1",
       "transfer": "T22V3::SIDE279::S05-T@1"
+    },
+    {
+      "order": 6,
+      "id": "T22V3::SIDE279::S06@1",
+      "moduleId": "SIDE279",
+      "title": "Repeated roots are not repeated directions",
+      "focus": "Separate algebraic multiplicity of a characteristic root from geometric multiplicity as eigenspace dimension, and use examples to diagnose repeated-eigenvalue overclaims.",
+      "purpose": "S07 will decide whether enough eigenvectors exist to form a basis. Before that decision, the learner must stop treating polynomial repetition as a count of independent eigenvectors.",
+      "centralCapability": "Compute algebraic and geometric multiplicities for exact small matrices and explain why the same characteristic polynomial can hide different eigenspace dimensions.",
+      "principalObstacle": "A repeated factor (λ0-t)^k is read as 'k eigenvectors' without examining Null(A-λ0I).",
+      "entryPrerequisites": [
+        "S03 characteristic polynomial/eigenspaces",
+        "S05 independence distinctions",
+        "M13 dimension"
+      ],
+      "requiredOwnership": [
+        "Compute algebraic multiplicity from the multiplicity of an eigenvalue as a characteristic-polynomial root.",
+        "Compute geometric multiplicity as dim E_λ from an eigenspace basis.",
+        "Use concrete matrices to refute the inference that a repeated eigenvalue automatically supplies the same number of independent eigenvectors."
+      ],
+      "applicationScope": "Exact 2×2/3×3 matrices with factorable characteristic polynomials.",
+      "transferScope": "Audit a report that turns a double characteristic root into two independent directions without computing the eigenspace.",
+      "inScope": [
+        "algebraic multiplicity",
+        "geometric multiplicity",
+        "eigenspace dimension",
+        "repeated-root diagnosis"
+      ],
+      "outOfScope": [
+        "diagonalizability criterion",
+        "Jordan/generalized eigenvectors",
+        "perturbation of repeated eigenvalues"
+      ],
+      "exitCondition": "For each repeated eigenvalue of a small matrix, report both multiplicities and state what the polynomial does and does not imply about eigendirections.",
+      "lesson": "Orient. The characteristic polynomial can repeat a root. That repetition lives in a polynomial. Independent eigen-directions live in a vector space. We need two different numbers.\n\nDefine. The algebraic multiplicity a_λ is the multiplicity of λ as a root of the characteristic polynomial. The geometric multiplicity g_λ is dim(E_λ)=dim Null(A-λI). Because λ is an eigenvalue, g_λ≥1.\n\nSupport theorem. In finite dimensions, 1≤g_λ≤a_λ. We record this as a bounded standard support theorem here; S06 does not make its general proof an assessment obligation. The important immediate lesson is that equality need not hold.\n\nWorked contrast. Let J=[[4,1],[0,4]]. Its characteristic polynomial is (4-t)^2, so a_4=2. But J-4I=[[0,1],[0,0]] has E_4=span{(1,0)}, so g_4=1. By contrast, K=4I_2 has the same characteristic polynomial (4-t)^2 but E_4=R^2, so g_4=2. Same polynomial; different eigenspace structure.\n\nConnect. S03 tells us how many times a root appears. S02 tells us the dimension of the corresponding null space. Do both calculations before making a statement about independent eigenvectors.\n\nGuided practice. Let B=diag(5,5,1). Compute p_B(t), a_5, E_5 and g_5. Then compare with J above: what does a_λ alone fail to tell you?\n\nFade. Main compares two fresh matrices with the same repeated root. Transfer gives a 3×3 report that explicitly converts a double root into 'two eigenvectors' and asks for the missing eigenspace calculation.\n\nDistinction check. Algebraic multiplicity counts root repetition in p_A. Geometric multiplicity counts independent directions in E_λ. Never substitute one count for the other.",
+      "guidedFeedback": "Check after attempting. p_B(t)=(5-t)^2(1-t), so a_5=2. Since B-5I=diag(0,0,-4), E_5=span{(1,0,0),(0,1,0)} and g_5=2. The same algebraic multiplicity 2 can therefore accompany g=1 or g=2.",
+      "main": "T22V3::SIDE279::S06-M@1",
+      "transfer": "T22V3::SIDE279::S06-T@1"
     }
   ],
   "problems": {
@@ -358,6 +396,20 @@
       "order": 5,
       "kind": "transfer",
       "prompt": "For A=5I_2, a report says: “Any two eigenvectors of the same matrix are linearly independent because eigenvectors point in special directions.” Audit the claim using u=(1,1), w=(3,3), and z=(1,-1). Identify which pairs are dependent or independent, state their eigenvalues, and give the correct theorem involving distinct eigenvalues.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S06-M@1": {
+      "id": "T22V3::SIDE279::S06-M@1",
+      "order": 6,
+      "kind": "main",
+      "prompt": "Compare A=2I_2 with B=[[2,1],[0,2]]. For each matrix: (a) compute/factor the characteristic polynomial and state the algebraic multiplicity of λ=2; (b) compute E_2 and its dimension, hence the geometric multiplicity; (c) explain in one sentence what the comparison proves about repeated eigenvalues and independent eigenvectors.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S06-T@1": {
+      "id": "T22V3::SIDE279::S06-T@1",
+      "order": 6,
+      "kind": "transfer",
+      "prompt": "Let C=[[3,1,0],[0,3,0],[0,0,1]]. A report factors p_C(t)=(3-t)^2(1-t) and says: “Because 3 has algebraic multiplicity 2, C has two independent eigenvectors with eigenvalue 3.” Audit that sentence by computing E_3 and its dimension. State a_3 and g_3 separately and identify the failed inference.",
       "obligationVersion": 1
     }
   },
@@ -549,6 +601,42 @@
         }
       ],
       "marking": "Any correct dependence witness w=2u and correct distinct-eigenvalue theorem earns the relevant credit."
+    },
+    "T22V3::SIDE279::S06-M@1": {
+      "reference": "Both matrices have characteristic polynomial (2-t)^2, so a_2=2 for each. For A=2I_2, E_2=R^2 and g_2=2. For B, B-2I=[[0,1],[0,0]], so E_2=span{(1,0)} and g_2=1. Thus a repeated root does not by itself determine the number of independent eigenvectors.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Shows both characteristic polynomials are (2-t)^2 and reports algebraic multiplicity a_2=2 for each."
+        },
+        {
+          "points": 4,
+          "criterion": "Computes E_2=R^2 with g_2=2 for A and E_2=span{(1,0)} with g_2=1 for B."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that algebraic multiplicity alone does not determine eigenspace dimension or the number of independent eigenvectors."
+        }
+      ],
+      "marking": "Equivalent basis descriptions are accepted; do not require diagonalizability terminology yet."
+    },
+    "T22V3::SIDE279::S06-T@1": {
+      "reference": "The factor (3-t)^2 gives a_3=2. But C-3I=[[0,1,0],[0,0,0],[0,0,-2]], so y=z=0 and E_3=span{(1,0,0)}. Hence g_3=1. The failed inference is treating algebraic multiplicity 2 as if it guaranteed geometric multiplicity 2.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Reports algebraic multiplicity a_3=2 from the repeated characteristic root."
+        },
+        {
+          "points": 4,
+          "criterion": "Computes E_3=span{(1,0,0)} and geometric multiplicity g_3=1."
+        },
+        {
+          "points": 3,
+          "criterion": "Identifies the failed inference a_3=2⇒g_3=2 / two independent eigenvectors."
+        }
+      ],
+      "marking": "No Jordan-form language is required or rewarded."
     }
   },
   "coverage": {
@@ -576,6 +664,11 @@
       "Use linearity to show that a linear combination of vectors from the same E_λ remains in E_λ, with nonzero combinations giving eigenvectors for λ.",
       "Reconstruct a proof that three nonzero eigenvectors associated with pairwise distinct eigenvalues are linearly independent.",
       "Reject the claim that arbitrary eigenvectors must be independent, distinguishing the same-eigenvalue case from the distinct-eigenvalue theorem."
+    ],
+    "T22V3::SIDE279::S06@1": [
+      "Compute algebraic multiplicity from the multiplicity of an eigenvalue as a characteristic-polynomial root.",
+      "Compute geometric multiplicity as dim E_λ from an eigenspace basis.",
+      "Use concrete matrices to refute the inference that a repeated eigenvalue automatically supplies the same number of independent eigenvectors."
     ]
   },
   "claimEvidence": {
@@ -865,6 +958,68 @@
         "escapeAttempt": "Saying 'same eigenvalue means dependent' also fails because u,z are independent.",
         "generalizationDistance": "Exact misconception family is publicly audited."
       }
+    ],
+    "T22V3::SIDE279::S06@1": [
+      {
+        "claim": "Compute algebraic multiplicity from the multiplicity of an eigenvalue as a characteristic-polynomial root.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S06-M@1",
+          "T22V3::SIDE279::S06-T@1"
+        ],
+        "publicRequestExact": [
+          "state the algebraic multiplicity of λ=2",
+          "State a_3 ... separately"
+        ],
+        "rubricEvidence": [
+          "Shows both characteristic polynomials are (2-t)^2 and reports algebraic multiplicity a_2=2 for each.",
+          "Reports algebraic multiplicity a_3=2 from the repeated characteristic root."
+        ],
+        "disposition": "adequate",
+        "why": "Both tasks literally read root multiplicity from a factored characteristic polynomial.",
+        "escapeAttempt": "Eigenspace dimension alone cannot earn algebraic-multiplicity points.",
+        "generalizationDistance": "Exact small factorable polynomials only."
+      },
+      {
+        "claim": "Compute geometric multiplicity as dim E_λ from an eigenspace basis.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S06-M@1",
+          "T22V3::SIDE279::S06-T@1"
+        ],
+        "publicRequestExact": [
+          "compute E_2 and its dimension, hence the geometric multiplicity",
+          "computing E_3 and its dimension"
+        ],
+        "rubricEvidence": [
+          "Computes E_2=R^2 with g_2=2 for A and E_2=span{(1,0)} with g_2=1 for B.",
+          "Computes E_3=span{(1,0,0)} and geometric multiplicity g_3=1."
+        ],
+        "disposition": "adequate",
+        "why": "The learner computes eigenspace bases and dimensions explicitly.",
+        "escapeAttempt": "Root multiplicity cannot earn geometric-multiplicity points.",
+        "generalizationDistance": "Literal dim(E_λ) capability."
+      },
+      {
+        "claim": "Use concrete matrices to refute the inference that a repeated eigenvalue automatically supplies the same number of independent eigenvectors.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S06-M@1",
+          "T22V3::SIDE279::S06-T@1"
+        ],
+        "publicRequestExact": [
+          "explain ... what the comparison proves about repeated eigenvalues and independent eigenvectors",
+          "identify the failed inference"
+        ],
+        "rubricEvidence": [
+          "Explains that algebraic multiplicity alone does not determine eigenspace dimension or the number of independent eigenvectors.",
+          "Identifies the failed inference a_3=2⇒g_3=2 / two independent eigenvectors."
+        ],
+        "disposition": "adequate",
+        "why": "Two surfaces explicitly require rejection of root-count→direction-count reasoning.",
+        "escapeAttempt": "Reporting a_λ and g_λ without interpreting their mismatch loses the diagnosis row.",
+        "generalizationDistance": "Claim is diagnostic, not a general proof of g≤a."
+      }
     ]
   },
   "evidenceDistance": {
@@ -916,6 +1071,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "A universal verbal claim is attacked with one eigenspace containing both dependent and independent pairs, forcing hypothesis repair."
+      }
+    },
+    "T22V3::SIDE279::S06@1": {
+      "main": {
+        "classification": "retrieval",
+        "mechanism": "The worked contrast teaches the multiplicity comparison; Main repeats the conceptual structure on fresh matrices/eigenvalue."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "A factored polynomial is already supplied inside a false report; the learner must locate the missing eigenspace dimension and repair the inference."
       }
     }
   },
@@ -1018,6 +1183,25 @@
         ],
         "mathematicalDifference": "Transfer changes matrix/eigenvalue and all vectors: 5I with u=(1,1), w=(3,3), z=(1,-1). It preserves only the misconception pattern, not the solved instance.",
         "exposureDisposition": "CLEAR — no fixed vectors, eigenvalue 5, or pair classifications are solved visibly."
+      },
+      "T22V3::SIDE279::S06-M@1": {
+        "sessionId": "T22V3::SIDE279::S06@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S06 worked J=[[4,1],[0,4]] vs K=4I",
+          "S06 guided diag(5,5,1)"
+        ],
+        "mathematicalDifference": "Main shifts the repeated eigenvalue to 2 and compares 2I with a new Jordan-style matrix.",
+        "exposureDisposition": "CLEAR — same conceptual contrast, distinct solved data; retrieval label is honest."
+      },
+      "T22V3::SIDE279::S06-T@1": {
+        "sessionId": "T22V3::SIDE279::S06@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S06 repeated-root warning"
+        ],
+        "mathematicalDifference": "Transfer uses a new 3x3 matrix with an additional eigenvalue and asks for audit of a supplied a_3=2 claim.",
+        "exposureDisposition": "CLEAR — E_3 and g_3 are not solved visibly."
       }
     }
   },
@@ -1099,6 +1283,15 @@
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
         "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S06@1": {
+        "lessonSolvedInstances": [
+          "J=[[4,1],[0,4]] vs K=4I",
+          "guided B=diag(5,5,1)"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
       }
     }
   },
@@ -1169,6 +1362,18 @@
         "alreadySuppliedByPrompt": "Flawed claim and test vectors supplied.",
         "decisivelyRehearsedInVisibleInstruction": "NO — the misconception family is taught, but the 5I/vector instance and its pair classifications are fresh.",
         "learnerActionActuallyScored": "Would be dependence/independence classification and theorem repair after task replacement."
+      },
+      "T22V3::SIDE279::S06-M@1": {
+        "claimedLearnerDecision": "Keep polynomial root count and eigenspace dimension separate across two matrices.",
+        "alreadySuppliedByPrompt": "Matrices and λ supplied; multiplicities/results not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — retrieval by design.",
+        "learnerActionActuallyScored": "a_2 computation, g_2 computation and interpretation."
+      },
+      "T22V3::SIDE279::S06-T@1": {
+        "claimedLearnerDecision": "Decide whether a_3=2 supports two independent eigenvectors.",
+        "alreadySuppliedByPrompt": "False inference supplied; verdict/eigenspace not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO exact matrix/report.",
+        "learnerActionActuallyScored": "Compute E_3/g_3 and identify the invalid inference."
       }
     }
   },
@@ -1224,6 +1429,11 @@
         "failureMode": "all eigenvectors assumed independent regardless of eigenvalue",
         "where": "S05 Transfer",
         "discriminator": "fresh 5I eigenspace contains both dependent and independent pairs, so same-eigenvalue status alone decides neither"
+      },
+      {
+        "failureMode": "algebraic multiplicity treated as number of independent eigenvectors",
+        "where": "S06 Main+Transfer",
+        "discriminator": "same a=2 appears with g=2 and g=1; Transfer forces explicit mismatch"
       }
     ],
     "designGateCoverage": [
