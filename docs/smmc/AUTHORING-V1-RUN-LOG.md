@@ -415,3 +415,18 @@ The browser regression `scripts/test-math-workspace-browser.mjs` now checks:
 - SMMC scroll restoration;
 - sticky workspace dock;
 - SMMC -> T25 deep links focus the task area.
+
+
+## Arsenal Gate 0 supersession note — 2026-09-30
+
+The historical **“reversible metadata + official problem papers”** access-fix checkpoint above records the behavior of that earlier implementation and is now superseded by \`ARSENAL-GATE0-CORPUS-PROTECTION.md\`.
+
+Current Gate-0 candidate semantics are intentionally stricter:
+
+- ledger summaries are hidden by default and revealing one records isolated \`statementSeenAt\`;
+- individual GREEN/AMBER/RED/method/audit metadata is hint-bearing and records \`materialHintSeenAt\`;
+- a full official session-paper open records \`paperOpenedAt\` and \`statementSeenAt\` for all four problems in that session;
+- the external paper URL is no longer exposed as a normal bypassable anchor; learner opening goes through the same confirmation/recording path as the in-page preview;
+- aggregate research totals and non-hint planning metadata remain non-contaminating.
+
+This note does not retroactively rewrite the historical run log; it states which semantics govern the Gate-0 candidate.
