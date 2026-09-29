@@ -342,7 +342,7 @@ function renderHistorical(id){
   const pristineEast=pristinePaperKeys(histState,ledger,{eastOnly:true});
   put('paperExposure','Session '+paperKey+' vault state: '+paperExposure.class+'. '+paperExposure.reason+'.');
   put('pristineInventory','Pristine East A/B sessions: '+pristineEast.length+' / '+eastPaperKeys.length+'.');
-  $('openOfficialPaper').href=paper||'#';
+  $('openOfficialPaper').disabled=!paper;
   $('openOfficialPaper').hidden=!paper;
   $('togglePaper').disabled=!paper;
   $('togglePaper').textContent=paperVisible?'Hide official paper':'Show official paper here';
@@ -516,11 +516,12 @@ async function init(){
     renderHistorical(currentProblem.id);
     tell(paperVisible?'Official SMMC session paper opened; every statement in this session is now marked seen.':'Official paper hidden. The exposure record is intentionally retained.');
   };
-  $('openOfficialPaper').onclick=e=>{
+  $('openOfficialPaper').onclick=()=>{
     const paper=officialPaperUrl(currentProblem);
-    if(!paper){e.preventDefault();return;}
-    if(!confirmAndMarkPaperOpened()){e.preventDefault();return;}
+    if(!paper)return;
+    if(!confirmAndMarkPaperOpened())return;
     renderHistorical(currentProblem.id);
+    window.open(paper,'_blank','noopener,noreferrer');
     tell('Official SMMC session paper opened in a new tab; every statement in this session is now marked seen.');
   };
   $('revealResearch').onclick=()=>{
