@@ -347,31 +347,32 @@ A15 integrated method-choice / theorem-hypothesis synthesis
 - A05 and A06 remain separate: “vectors from different eigenvalues are independent” and “repeated root does not imply repeated directions” are different misconceptions and require different evidence.
 - A07 and A08 remain separate: deciding whether an eigenbasis exists precedes constructing/using a diagonalization.
 - A09 is separate because failure/defectiveness must be learned as a positive diagnostic capability, not a footnote after success cases.
-- A10 is separate because similarity is inherited from M14 and needs explicit reconciliation with eigenstructure.
+- A10 is separate because similarity is inherited from M14 and needs explicit reconciliation with eigenstructure. **Therefore A09 and A10 receive separate S10/S11 sessions; the earlier merged sketch was discarded.**
 - A11 is a bounded bridge with a domain change from real to minimal complex language; it should not be buried inside another session.
 - A12 and A13 are separated: local symmetry consequences precede the global spectral theorem / orthogonal diagonalization.
 - A14 and A15 are separated because dynamics is an application of the module while final synthesis must force method/hypothesis choice across arbitrary/symmetric/defective/nonreal cases.
 
 ## 14. Candidate Session Architecture
 
-Current justified candidate: **16 sessions**. This count is derived from the atom/dependency split above, not copied from M15 or the legacy seven arcs.
+Current justified candidate: **17 sessions**. The initial 16-session sketch was rejected during the pre-S02 consistency check because it compressed defectiveness and similarity despite the atom map identifying distinct learner capabilities. The count is derived from the atom/dependency split, not copied from M15 or the legacy seven arcs.
 
-1. **S01 — Directions a matrix does not turn**: invariant lines, (Av=\lambda v), fixed vs scaled direction.
-2. **S02 — Eigenspaces are kernels**: ((A-\lambda I)v=0), eigenspace basis and zero-vector distinction.
+1. **S01 — Directions a matrix does not turn**: invariant lines, \(Av=\\lambda v\), fixed vs scaled direction.
+2. **S02 — Eigenspaces are kernels**: \((A-\\lambda I)v=0\), eigenspace basis and zero-vector distinction.
 3. **S03 — Why the characteristic equation appears**: singularity → determinant zero → exact 2×2 / manageable 3×3 roots.
 4. **S04 — Structural eigenvalue checks**: triangular/diagonal cases, trace/determinant only as consistency checks.
 5. **S05 — Eigenspace algebra**: same-eigenvalue linear combinations; distinct-eigenvalue independence.
 6. **S06 — Repeated roots are not repeated directions**: algebraic vs geometric multiplicity.
 7. **S07 — When eigenvectors form a basis**: diagonalizable iff eigenbasis; distinct eigenvalues corollary.
-8. **S08 — Build the diagonal coordinates**: (AP=PD), (A=PDP^{-1}), order discipline.
-9. **S09 — Powers without brute force**: (A^k=PD^kP^{-1}), finite repeated action.
-10. **S10 — Defective matrices and similarity**: diagnose failure; same operator in different coordinates; spectral invariants.
-11. **S11 — Real matrix, nonreal modes**: minimal complex bridge, conjugate pairs, planar rotation/oscillation meaning.
-12. **S12 — Symmetry changes the game**: (A^T=A), self-adjoint identity, real eigenvalues, orthogonality of distinct eigenspaces.
-13. **S13 — Spectral theorem**: orthonormal eigenbasis and (A=QDQ^T), repeated eigenspace handling using M15.
-14. **S14 — Spectral coordinates for discrete dynamics**: (x_k=A^k x_0), modal coefficients, growth/decay/sign alternation.
-15. **S15 — Dominant modes with caveats**: initial-condition dependence, tied magnitudes, complex/defective limitations.
-16. **S16 — Eigenstructure synthesis**: choose and defend the valid theorem/method on mixed unfamiliar matrices; explicit M17/M20/M23 boundary check.
+8. **S08 — Build the diagonal coordinates**: \(AP=PD\), \(A=PDP^{-1}\), order discipline.
+9. **S09 — Powers without brute force**: \(A^k=PD^kP^{-1}\), finite repeated action.
+10. **S10 — Defective matrices**: diagnose missing eigen-directions and reject fake/duplicate columns in \(P\).
+11. **S11 — Similarity preserves spectrum, not coordinate lists**: connect M14 coordinate change to M16 eigenstructure.
+12. **S12 — Real matrix, nonreal modes**: minimal complex bridge, conjugate pairs, rotation/oscillation meaning.
+13. **S13 — Symmetry changes the game**: \(A^T=A\), real eigenvalues and orthogonality of distinct eigenspaces.
+14. **S14 — Spectral theorem**: orthonormal eigenbasis and \(A=QDQ^T\), repeated eigenspace handling using M15.
+15. **S15 — Spectral coordinates for discrete dynamics**: \(x_k=A^k x_0\), modal coefficients, growth/decay/sign alternation.
+16. **S16 — Dominant modes with caveats**: initial-condition dependence, tied magnitudes and scope limits.
+17. **S17 — Eigenstructure synthesis**: choose and defend the valid theorem/method on mixed unfamiliar matrices; explicit M17/M20/M23 boundary check.
 
 ### Representative pilot
 
