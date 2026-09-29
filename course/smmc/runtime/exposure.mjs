@@ -311,14 +311,19 @@ export function markPaperExposure(
   state.papers[paperKey] ??= {};
   state.papers[paperKey][kind] ??= at;
 
-  if (kind === "paperOpenedAt" || kind === "arenaConsumedAt") {
+  if (kind === "paperOpenedAt" || kind === "attemptedAt" || kind === "arenaConsumedAt") {
     for (const problem of problems) markExposure(state, problem.id, "statementSeenAt", at);
   }
   if (kind === "solutionOpenedAt") {
-    for (const problem of problems) markExposure(state, problem.id, "solutionSeenAt", at);
+    for (const problem of problems) {
+      markExposure(state, problem.id, "statementSeenAt", at);
+      markExposure(state, problem.id, "solutionSeenAt", at);
+    }
+  }
+  if (kind === "attemptedAt" || kind === "arenaConsumedAt") {
+    state.papers[paperKey].paperOpenedAt ??= at;
   }
   if (kind === "arenaConsumedAt") {
-    state.papers[paperKey].paperOpenedAt ??= at;
     state.papers[paperKey].attemptedAt ??= at;
   }
   return state.papers[paperKey];
