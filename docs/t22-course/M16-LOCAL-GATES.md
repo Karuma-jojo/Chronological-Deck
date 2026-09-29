@@ -279,3 +279,23 @@ PASS. The proof claim is deliberately “proof architecture / key invariant-comp
 PASS. Main/Transfer matrices are distinct from prior fixed or answer-bearing instructional instances. No PSD/quadratic-form/SVD content leaks forward.
 
 **S14 local disposition: PASS. S15 may open.**
+
+
+## S15 — A trajectory is a mixture of modes
+
+### Gate 4 — teaching
+PASS. The discrete modal formula follows directly from x0 decomposition and S09 powers. Continuous-time/Markov interpretations are explicitly excluded. Initial-condition coefficients are treated as part of the mathematics, not an afterthought.
+
+### Gate 5 — evidence
+Main is **retrieval** on a new nondiagonal matrix. Transfer is **changed-surface Transfer** from formula construction to audit of a false convergence rule driven by an active λ=-1 mode.
+
+### Gate 6 — reconstruction/fairness
+For A=[[2,-1],[-1,2]], x0=(4,2)=3(1,1)+(1,-1), hence x_k=3(1,1)+3^k(1,-1) and x3=(30,-24). For the swap matrix, x0=(1,-1) is exactly the λ=-1 mode, so x_k=(-1)^k(1,-1) and does not converge.
+
+### Gate 7 — claims
+A first draft claimed all real mode types from evidence that directly observed only persistent/growing/alternating cases. It was narrowed before clearance. Current claims match the public observations; decay/extinction remain taught support cases.
+
+### Gate 8 — separation
+PASS. Fixed matrices/states are distinct from worked/guided and earlier fixed tasks. The general λ=-1 concept is taught, but the swap-matrix report and trajectory are not solved in advance.
+
+**S15 local disposition: PASS after claim narrowing. S16 may open.**
