@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 3,
-    "ownershipClaimCount": 9,
-    "fixedAssessments": 6,
+    "authoredSessions": 4,
+    "ownershipClaimCount": 12,
+    "fixedAssessments": 8,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -212,6 +212,44 @@
       "guidedFeedback": "Check after attempting. p_B(t)=(2-t)(3-t)-2=t^2-5t+4=(t-1)(t-4), so λ=1,4. For λ=4, B-4I=[[-2,2],[1,-1]], giving x=y and E_4=span{(1,1)}. Indeed B(1,1)=(4,4).",
       "main": "T22V3::SIDE279::S03-M@1",
       "transfer": "T22V3::SIDE279::S03-T@1"
+    },
+    {
+      "order": 4,
+      "id": "T22V3::SIDE279::S04@1",
+      "moduleId": "SIDE279",
+      "title": "Structure before expansion",
+      "focus": "Read eigenvalues from diagonal/triangular structure through the characteristic determinant and use trace/determinant only as consistency checks, not as eigenspace information.",
+      "purpose": "S03 established the general determinant route. S04 teaches when matrix structure simplifies that route and prevents useful scalar invariants from becoming counterfeit definitions or eigenvector recipes.",
+      "centralCapability": "Exploit triangular structure to obtain eigenvalues without unnecessary expansion, then use trace/determinant checks within justified scope while still computing eigenspaces separately when directions are requested.",
+      "principalObstacle": "Off-diagonal entries are assumed to change triangular eigenvalues, or matching trace/determinant values are treated as if they identify eigenvectors.",
+      "entryPrerequisites": [
+        "S03 characteristic equation",
+        "M14 determinant of triangular matrices and trace/determinant computation",
+        "S02 eigenspace calculation"
+      ],
+      "requiredOwnership": [
+        "Derive that the eigenvalues of an exact triangular matrix are its diagonal entries by factoring det(A-λI).",
+        "Use trace and determinant as consistency checks on computed eigenvalues in the concrete small-matrix cases justified by the characteristic polynomial, without treating them as the definition of eigenvalues.",
+        "Reject the inference that correct eigenvalue checks determine eigenvectors; compute eigenspaces from A-λI when directional information is required."
+      ],
+      "applicationScope": "Exact diagonal/triangular small matrices and 2×2 characteristic-polynomial checks.",
+      "transferScope": "Audit a report whose eigenvalues pass trace/determinant checks but whose claimed coordinate-axis eigenvectors are false.",
+      "inScope": [
+        "triangular characteristic factorization",
+        "diagonal entries as eigenvalues",
+        "trace/determinant checks",
+        "eigenvalue-vs-eigenvector information"
+      ],
+      "outOfScope": [
+        "general spectral invariants under similarity",
+        "algebraic multiplicity terminology",
+        "Schur/Jordan form"
+      ],
+      "exitCondition": "Recognize triangular eigenvalues structurally, check them economically, and refuse to infer eigendirections from scalar checks.",
+      "lesson": "Orient. S03 gives a universal small-matrix workflow, but expanding every determinant can hide structure. For triangular matrices the shifted matrix A-tI is still triangular, and M14 tells us its determinant is the product of its diagonal entries.\n\nDerive. If U is upper triangular with diagonal d1,...,dn, then det(U-tI)=(d1-t)...(dn-t). Therefore the roots are exactly the diagonal values. The off-diagonal entries can change eigenspaces dramatically, but they do not change these triangular eigenvalues.\n\nWorked example. Let U=[[2,7,0],[0,-1,4],[0,0,5]]. Then p_U(t)=(2-t)(-1-t)(5-t), so the eigenvalues are 2,-1,5. We did not ignore the off-diagonal entries by guesswork; the triangular determinant theorem made them irrelevant to this determinant.\n\nChecks, not definitions. For a 2×2 matrix [[a,b],[c,d]], det(A-tI)=t^2-(a+d)t+(ad-bc). Thus after finding roots λ1,λ2, their sum should equal tr(A)=a+d and their product should equal det(A)=ad-bc. These are useful error checks in this scope. They do not tell us the eigenspace bases.\n\nWorked check. For M=[[4,1],[2,3]], p_M(t)=t^2-7t+10=(t-5)(t-2). The roots sum to 7=tr(M) and multiply to 10=det(M). To get directions we would still solve Null(M-5I) and Null(M-2I).\n\nGuided practice. Let B=[[3,10,-2],[0,4,9],[0,0,-2]]. Write p_B(t) directly from triangular structure, list its eigenvalues, and use the diagonal entries to check the trace and determinant numerically.\n\nFade. Main uses a new triangular 3×3 matrix. Transfer gives correct eigenvalues/checks but false eigenvectors, so scalar invariants cannot carry the answer.\n\nDistinction check. A shortcut is legitimate when it follows from structure. A check can detect some arithmetic mistakes; it is not a substitute for the object you are trying to compute.",
+      "guidedFeedback": "Check after attempting. p_B(t)=(3-t)(4-t)(-2-t), so the eigenvalues are 3,4,-2. Their sum is 5, matching tr(B)=5, and their product is -24, matching the triangular determinant 3·4·(-2)=-24.",
+      "main": "T22V3::SIDE279::S04-M@1",
+      "transfer": "T22V3::SIDE279::S04-T@1"
     }
   ],
   "problems": {
@@ -255,6 +293,20 @@
       "order": 3,
       "kind": "transfer",
       "prompt": "Let T=[[2,1],[0,3]]. A report says: “det(T)=6, therefore 6 is the eigenvalue.” Audit the inference. Write the correct characteristic equation, find all real eigenvalues, and give a basis for each eigenspace.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S04-M@1": {
+      "id": "T22V3::SIDE279::S04-M@1",
+      "order": 4,
+      "kind": "main",
+      "prompt": "Let U=[[6,4,1],[0,2,5],[0,0,-3]]. (a) Without cofactor expansion, derive p_U(λ)=det(U-λI) from triangular structure and list all eigenvalues. (b) Check the result against tr(U) and det(U), stating what those checks do and do not establish.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S04-T@1": {
+      "id": "T22V3::SIDE279::S04-T@1",
+      "order": 4,
+      "kind": "transfer",
+      "prompt": "Let A=[[0,2],[-3,5]]. A report correctly notes tr(A)=5 and det(A)=6, obtains eigenvalues 2 and 3, and then says: “Those checks confirm the eigenvectors are e1 and e2.” Audit only the last inference. Compute the actual eigenspace for each eigenvalue and explain why trace/determinant checks cannot identify eigenvector directions.",
       "obligationVersion": 1
     }
   },
@@ -370,6 +422,46 @@
         }
       ],
       "marking": "A correct explanation that det(T)=6 is not the characteristic equation is sufficient; no product-of-eigenvalues theorem is required."
+    },
+    "T22V3::SIDE279::S04-M@1": {
+      "reference": "Because U-λI is upper triangular, p_U(λ)=(6-λ)(2-λ)(-3-λ), so the eigenvalues are 6,2,-3. Their sum is 5=tr(U), and their product is -36=det(U) (also immediate from the triangular diagonal product). These checks are consistent with the roots but do not determine eigenspace directions.",
+      "rubric": [
+        {
+          "points": 5,
+          "criterion": "Uses triangular determinant structure to obtain p_U(λ)=(6-λ)(2-λ)(-3-λ) and eigenvalues 6,2,-3 without unnecessary expansion."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly checks sum 5 against tr(U)=5 and product -36 against det(U)=-36."
+        },
+        {
+          "points": 2,
+          "criterion": "States that the scalar checks support arithmetic consistency but do not determine eigenspaces/eigenvectors."
+        }
+      ],
+      "marking": "Equivalent factored sign convention is accepted. No expanded cubic is required."
+    },
+    "T22V3::SIDE279::S04-T@1": {
+      "reference": "The eigenvalues 2 and 3 are correct, but trace/determinant checks contain no eigenvector-coordinate information. For λ=2, A-2I=[[-2,2],[-3,3]], so E_2=span{(1,1)}. For λ=3, A-3I=[[-3,2],[-3,2]], so E_3=span{(2,3)}. Neither eigenspace is a coordinate axis, so the final inference is false.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Rejects the inference from scalar trace/determinant checks to coordinate-axis eigenvectors."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes E_2=span{(1,1)}."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes E_3=span{(2,3)} or an equivalent nonzero rescaling."
+        },
+        {
+          "points": 1,
+          "criterion": "Explains that eigenvector directions come from Null(A-λI), not from trace/determinant checks."
+        }
+      ],
+      "marking": "The report's eigenvalues are given as correct; do not deduct for not re-deriving them unless the learner changes them incorrectly."
     }
   },
   "coverage": {
@@ -387,6 +479,11 @@
       "Derive det(A-λI)=0 from the requirement that (A-λI)v=0 have a nonzero solution.",
       "Compute the characteristic polynomial/equation for an exact 2×2 or manageable triangular 3×3 matrix and solve for its real eigenvalues.",
       "For each computed eigenvalue, return to Null(A-λI) to construct an eigenspace rather than treating a polynomial root alone as the full eigenpair result."
+    ],
+    "T22V3::SIDE279::S04@1": [
+      "Derive that the eigenvalues of an exact triangular matrix are its diagonal entries by factoring det(A-λI).",
+      "Use trace and determinant as consistency checks on computed eigenvalues in the concrete small-matrix cases justified by the characteristic polynomial, without treating them as the definition of eigenvalues.",
+      "Reject the inference that correct eigenvalue checks determine eigenvectors; compute eigenspaces from A-λI when directional information is required."
     ]
   },
   "claimEvidence": {
@@ -564,6 +661,63 @@
         "escapeAttempt": "Correct eigenvalues alone earn none of the eigenspace rows.",
         "generalizationDistance": "Exactly the direction tested."
       }
+    ],
+    "T22V3::SIDE279::S04@1": [
+      {
+        "claim": "Derive that the eigenvalues of an exact triangular matrix are its diagonal entries by factoring det(A-λI).",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S04-M@1"
+        ],
+        "publicRequestExact": [
+          "Without cofactor expansion, derive p_U(λ)=det(U-λI) from triangular structure and list all eigenvalues."
+        ],
+        "rubricEvidence": [
+          "Uses triangular determinant structure to obtain p_U(λ)=(6-λ)(2-λ)(-3-λ) and eigenvalues 6,2,-3 without unnecessary expansion."
+        ],
+        "disposition": "adequate",
+        "why": "The learner must invoke the triangular shifted determinant and read its roots.",
+        "escapeAttempt": "Merely listing diagonal entries without the requested determinant derivation loses the row.",
+        "generalizationDistance": "Bounded to exact triangular matrices."
+      },
+      {
+        "claim": "Use trace and determinant as consistency checks on computed eigenvalues in the concrete small-matrix cases justified by the characteristic polynomial, without treating them as the definition of eigenvalues.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S04-M@1"
+        ],
+        "publicRequestExact": [
+          "Check the result against tr(U) and det(U), stating what those checks do and do not establish."
+        ],
+        "rubricEvidence": [
+          "Correctly checks sum 5 against tr(U)=5 and product -36 against det(U)=-36.",
+          "States that the scalar checks support arithmetic consistency but do not determine eigenspaces/eigenvectors."
+        ],
+        "disposition": "adequate",
+        "why": "The public request explicitly requires both numerical checks and their epistemic limitation.",
+        "escapeAttempt": "Matching numbers without stating the limitation cannot earn all cited evidence.",
+        "generalizationDistance": "Claim is restricted to justified concrete small-matrix checks."
+      },
+      {
+        "claim": "Reject the inference that correct eigenvalue checks determine eigenvectors; compute eigenspaces from A-λI when directional information is required.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S04-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit only the last inference. Compute the actual eigenspace for each eigenvalue and explain why trace/determinant checks cannot identify eigenvector directions."
+        ],
+        "rubricEvidence": [
+          "Rejects the inference from scalar trace/determinant checks to coordinate-axis eigenvectors.",
+          "Computes E_2=span{(1,1)}.",
+          "Computes E_3=span{(2,3)} or an equivalent nonzero rescaling.",
+          "Explains that eigenvector directions come from Null(A-λI), not from trace/determinant checks."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer directly tests rejection of scalar-to-direction inference and forces actual shifted-kernel calculations.",
+        "escapeAttempt": "Accepting e1/e2 from the checks fails three rows.",
+        "generalizationDistance": "Exactly the audit direction claimed."
+      }
     ]
   },
   "evidenceDistance": {
@@ -595,6 +749,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "A wrong matrix-invariant claim is supplied; the learner must diagnose the missing shift and repair the full analysis."
+      }
+    },
+    "T22V3::SIDE279::S04@1": {
+      "main": {
+        "classification": "retrieval",
+        "mechanism": "Triangular factorization and scalar checks are taught, then applied to a fresh triangular matrix."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Correct scalar invariants are embedded in a false directional conclusion; the learner must diagnose the information mismatch and reconstruct eigenspaces."
       }
     }
   },
@@ -658,6 +822,25 @@
         ],
         "mathematicalDifference": "Transfer starts from a false report on an upper-triangular matrix and requires diagnosis and repair.",
         "exposureDisposition": "CLEAR — no det(T)=6 report or T eigenspaces are solved in instruction."
+      },
+      "T22V3::SIDE279::S04-M@1": {
+        "sessionId": "T22V3::SIDE279::S04@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S04 worked U=[[2,7,0],[0,-1,4],[0,0,5]]",
+          "S04 guided B=[[3,10,-2],[0,4,9],[0,0,-2]]"
+        ],
+        "mathematicalDifference": "Main uses distinct diagonal values/off-diagonals and asks for the limitations of checks.",
+        "exposureDisposition": "CLEAR — no fixed factorization or check totals are solved visibly."
+      },
+      "T22V3::SIDE279::S04-T@1": {
+        "sessionId": "T22V3::SIDE279::S04@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S04 statement that checks do not determine eigenspaces"
+        ],
+        "mathematicalDifference": "Transfer supplies a nontriangular 2x2 matrix and a false e1/e2 conclusion, then requires actual eigenspace recovery.",
+        "exposureDisposition": "CLEAR — no fixed matrix/eigenspaces appear in instruction."
       }
     }
   },
@@ -720,6 +903,16 @@
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
         "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S04@1": {
+        "lessonSolvedInstances": [
+          "triangular U=[[2,7,0],[0,-1,4],[0,0,5]]",
+          "2x2 M=[[4,1],[2,3]] check",
+          "guided triangular B"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
       }
     }
   },
@@ -766,6 +959,18 @@
         "alreadySuppliedByPrompt": "Flawed inference supplied; repair is not.",
         "decisivelyRehearsedInVisibleInstruction": "NO exact report; the general distinction is taught.",
         "learnerActionActuallyScored": "Error diagnosis plus corrected characteristic/eigenspace analysis."
+      },
+      "T22V3::SIDE279::S04-M@1": {
+        "claimedLearnerDecision": "Recognize triangular structure as the economical route and interpret trace/determinant as checks.",
+        "alreadySuppliedByPrompt": "Prompt says use triangular structure; this is intentionally retrieval, not method-choice evidence.",
+        "decisivelyRehearsedInVisibleInstruction": "YES.",
+        "learnerActionActuallyScored": "Correct structural factorization, roots, checks and stated limitation."
+      },
+      "T22V3::SIDE279::S04-T@1": {
+        "claimedLearnerDecision": "Decide whether correct scalar checks justify claimed eigenvector directions.",
+        "alreadySuppliedByPrompt": "Claim supplied; validity is not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO solved audit of this matrix.",
+        "learnerActionActuallyScored": "Rejects inference and computes actual eigenspaces."
       }
     }
   },
@@ -811,6 +1016,11 @@
         "failureMode": "det(A) mistaken for an eigenvalue or characteristic equation",
         "where": "S03 Transfer",
         "discriminator": "report's det(T)=6 conflicts with required det(T-λI)=0 and λ=2,3"
+      },
+      {
+        "failureMode": "trace/determinant checks treated as eigenvector information",
+        "where": "S04 Transfer",
+        "discriminator": "given correct eigenvalues still lead to non-coordinate eigenspaces"
       }
     ],
     "designGateCoverage": [
