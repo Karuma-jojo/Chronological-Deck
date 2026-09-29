@@ -7,6 +7,7 @@ export const emptySmmcState = () => ({
   version: SMMC_STATE_VERSION,
   attempts: [],
   exposures: {},
+  papers: {},
   modules: {},
   units: {},
 });
@@ -44,6 +45,10 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
   if (!value.exposures || typeof value.exposures !== "object" || Array.isArray(value.exposures)) {
     throw new Error("Invalid SMMC exposures");
   }
+  const rawPapers = value.papers ?? {};
+  if (!rawPapers || typeof rawPapers !== "object" || Array.isArray(rawPapers)) {
+    throw new Error("Invalid SMMC paper exposure state");
+  }
   if (!value.modules || typeof value.modules !== "object" || Array.isArray(value.modules)) {
     throw new Error("Invalid SMMC module state");
   }
@@ -52,6 +57,7 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
   }
 
   const problemIds = new Set(ledger.map(x => x.id));
+  const paperKeys = new Set(ledger.map(x => `${x.year}-${x.session}`));
   const moduleIds = new Set(knownModuleIds);
   const unitIds = new Set(knownUnitIds);
   const seenAttempts = new Set();
@@ -73,6 +79,12 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
       !Number.isFinite(attempt.minutes) ||
       attempt.minutes < 0 ||
       attempt.minutes > 100000 ||
+      (attempt.attemptScore !== undefined && (
+        !Number.isFinite(attempt.attemptScore) ||
+        attempt.attemptScore < 0 ||
+        attempt.attemptScore > 7
+      )) ||
+      (attempt.reattemptEligibleAt !== undefined && !stamp(attempt.reattemptEligibleAt)) ||
       typeof attempt.statementSeenBefore !== "boolean" ||
       typeof attempt.domainMetadataSeenBefore !== "boolean" ||
       typeof attempt.materialHintSeenBefore !== "boolean" ||
@@ -90,6 +102,8 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
       assistance: attempt.assistance,
       result: attempt.result,
       minutes: attempt.minutes,
+      ...(attempt.attemptScore !== undefined ? { attemptScore: attempt.attemptScore } : {}),
+      ...(attempt.reattemptEligibleAt !== undefined ? { reattemptEligibleAt: attempt.reattemptEligibleAt } : {}),
       statementSeenBefore: attempt.statementSeenBefore,
       domainMetadataSeenBefore: attempt.domainMetadataSeenBefore,
       materialHintSeenBefore: attempt.materialHintSeenBefore,
@@ -116,6 +130,20 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
       }
     }
     out.exposures[problemId] = safe;
+  }
+
+  for (const [paperKey, paperState] of Object.entries(rawPapers)) {
+    if (!paperKeys.has(paperKey) || !paperState || typeof paperState !== "object" || Array.isArray(paperState)) {
+      throw new Error("Invalid SMMC paper exposure");
+    }
+    const safe = {};
+    for (const key of ["paperOpenedAt", "solutionOpenedAt", "attemptedAt", "arenaConsumedAt"]) {
+      if (paperState[key] !== undefined) {
+        if (!stamp(paperState[key])) throw new Error("Invalid SMMC paper exposure timestamp");
+        safe[key] = paperState[key];
+      }
+    }
+    out.papers[paperKey] = safe;
   }
 
   for (const [moduleId, moduleState] of Object.entries(value.modules)) {
@@ -177,6 +205,16 @@ export function mergeSmmcState(local, remote, ledger, knownModuleIds = [], known
     exposures[problemId]=joined;
   }
 
+  const papers = {};
+  for (const id of new Set([...Object.keys(a.papers),...Object.keys(b.papers)])) {
+    const x=a.papers[id]||{}, y=b.papers[id]||{}, joined={};
+    for (const key of ["paperOpenedAt","solutionOpenedAt","attemptedAt","arenaConsumedAt"]) {
+      const value=earliest(x[key],y[key]);
+      if(value)joined[key]=value;
+    }
+    papers[id]=joined;
+  }
+
   const modules = {};
   for (const id of new Set([...Object.keys(a.modules),...Object.keys(b.modules)])) {
     const x=a.modules[id]||{}, y=b.modules[id]||{};
@@ -200,6 +238,7 @@ export function mergeSmmcState(local, remote, ledger, knownModuleIds = [], known
     version:SMMC_STATE_VERSION,
     attempts:[...attempts.values()].sort((x,y)=>x.at.localeCompare(y.at)),
     exposures,
+    papers,
     modules,
     units,
   }, ledger, knownModuleIds, knownUnitIds);
@@ -248,6 +287,82 @@ export function exposureClass(state, problemId) {
     transferEligible: true,
     reason: "unexposed",
   };
+}
+
+export const paperKeyForProblem = problem => `${problem.year}-${problem.session}`;
+
+export function problemsForPaper(ledger, paperKey) {
+  return ledger.filter(problem => paperKeyForProblem(problem) === paperKey);
+}
+
+export function markPaperExposure(
+  state,
+  ledger,
+  paperKey,
+  kind,
+  at = new Date().toISOString()
+) {
+  const allowed = new Set(["paperOpenedAt", "solutionOpenedAt", "attemptedAt", "arenaConsumedAt"]);
+  if (!allowed.has(kind)) throw new Error(`Unknown SMMC paper exposure kind ${kind}`);
+  const problems = problemsForPaper(ledger, paperKey);
+  if (!problems.length) throw new Error(`Unknown SMMC paper ${paperKey}`);
+
+  state.papers ??= {};
+  state.papers[paperKey] ??= {};
+  state.papers[paperKey][kind] ??= at;
+
+  if (kind === "paperOpenedAt" || kind === "arenaConsumedAt") {
+    for (const problem of problems) markExposure(state, problem.id, "statementSeenAt", at);
+  }
+  if (kind === "solutionOpenedAt") {
+    for (const problem of problems) markExposure(state, problem.id, "solutionSeenAt", at);
+  }
+  if (kind === "arenaConsumedAt") {
+    state.papers[paperKey].paperOpenedAt ??= at;
+    state.papers[paperKey].attemptedAt ??= at;
+  }
+  return state.papers[paperKey];
+}
+
+export function paperExposureClass(state, ledger, paperKey) {
+  const problems = problemsForPaper(ledger, paperKey);
+  if (!problems.length) throw new Error(`Unknown SMMC paper ${paperKey}`);
+  const paper = state.papers?.[paperKey] || {};
+  if (paper.arenaConsumedAt) {
+    return { class: "arena-consumed", pristine: false, reason: "arena-consumed", problemIds: problems.map(x => x.id) };
+  }
+
+  const ids = new Set(problems.map(x => x.id));
+  if (paper.attemptedAt || state.attempts.some(attempt => ids.has(attempt.problemId))) {
+    return { class: "attempted", pristine: false, reason: "historical-attempt", problemIds: [...ids] };
+  }
+  if (paper.paperOpenedAt || paper.solutionOpenedAt) {
+    return {
+      class: "opened",
+      pristine: false,
+      reason: paper.solutionOpenedAt ? "full-solution-paper-opened" : "full-problem-paper-opened",
+      problemIds: [...ids],
+    };
+  }
+
+  const breached = problems.some(problem => {
+    const e = state.exposures?.[problem.id] || {};
+    return Boolean(e.statementSeenAt || e.materialHintSeenAt || e.evaluatorSeenAt || e.solutionSeenAt);
+  });
+  if (breached) {
+    return { class: "breached", pristine: false, reason: "one-or-more-problems-exposed", problemIds: [...ids] };
+  }
+  return { class: "pristine", pristine: true, reason: "no-problem-exposure", problemIds: [...ids] };
+}
+
+export function paperKeysForLedger(ledger, { eastOnly = false } = {}) {
+  const rows = eastOnly ? ledger.filter(problem => problem.eastRelevant) : ledger;
+  return [...new Set(rows.map(paperKeyForProblem))].sort();
+}
+
+export function pristinePaperKeys(state, ledger, { eastOnly = false } = {}) {
+  return paperKeysForLedger(ledger, { eastOnly })
+    .filter(key => paperExposureClass(state, ledger, key).pristine);
 }
 
 export function selfReportModuleComplete(state, moduleId, at = new Date().toISOString()) {
