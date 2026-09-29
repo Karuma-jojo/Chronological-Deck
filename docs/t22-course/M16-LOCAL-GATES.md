@@ -53,3 +53,25 @@ PASS. The three claims are literally observed: general determinant derivation, e
 PASS. Worked/guided matrices differ from both fixed tasks. Transfer reuses only the general distinction between `det(A)` and the shifted determinant, not a solved instance. No S01/S02 fixed matrix or answer is reused.
 
 **S03 local disposition: PASS. S04 may open.**
+
+
+## S04 — Structure before expansion
+
+### Gate 4 — teaching
+PASS. Triangular eigenvalues are derived from the shifted triangular determinant, not guessed from the diagonal. The 2×2 trace/determinant relationships are derived from the characteristic polynomial and labelled checks rather than definitions. Eigenspace information remains a separate null-space computation.
+
+### Gate 5 — evidence
+Main is **retrieval**: triangular factorization plus scalar checks on a fresh matrix. Transfer is **changed-surface Transfer**: correct eigenvalues/checks are embedded in a false eigenvector conclusion, forcing the learner to diagnose an information mismatch. Wrong solver “trace/det confirm e1,e2” fails the eigenspace rows.
+
+### Gate 6 — reconstruction/fairness
+For (U=[[6,4,1],[0,2,5],[0,0,-3]]), (p_U(\lambda)=(6-\lambda)(2-\lambda)(-3-\lambda)), giving 6,2,-3; sum 5 matches trace and product -36 matches determinant.
+
+For (A=[[0,2],[-3,5]]), (E_2=\mathrm{span}\{(1,1)\}) and (E_3=\mathrm{span}\{(2,3)\}). Thus the supplied scalar checks do not identify coordinate-axis directions. All rubric requirements are explicitly requested.
+
+### Gate 7 — claims
+PASS. Structural triangular factorization, bounded consistency-check use and scalar-to-direction audit are each directly observed. No general n×n coefficient theorem or multiplicity claim is made.
+
+### Gate 8 — separation
+PASS. Worked/guided triangular instances and the 2×2 check example are distinct from Main and Transfer. No prior fixed task is reused; only the general method/limitation transfers.
+
+**S04 local disposition: PASS. S05 may open.**
