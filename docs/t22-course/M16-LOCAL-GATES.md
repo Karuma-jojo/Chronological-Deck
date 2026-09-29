@@ -75,3 +75,25 @@ PASS. Structural triangular factorization, bounded consistency-check use and sca
 PASS. Worked/guided triangular instances and the 2×2 check example are distinct from Main and Transfer. No prior fixed task is reused; only the general method/limitation transfers.
 
 **S04 local disposition: PASS. S05 may open.**
+
+
+## S05 — Same eigenspace, different theorem
+
+### Gate 4 — teaching
+PASS. Equal-eigenvalue closure is derived directly from linearity; distinct-eigenvalue independence is proved first for two vectors and then extended by the ((A-\lambda_n I)) induction architecture. The lesson explicitly states that same-eigenvalue status alone implies neither dependence nor independence.
+
+### Gate 5 — evidence
+Main is **proof reconstruction**: it asks for the general equal-eigenvalue closure argument and a three-vector distinct-eigenvalue independence reconstruction. Transfer is **changed-surface Transfer** after repair: a universal verbal claim is tested inside the fresh eigenspace of (5I_2), which contains both a dependent pair and an independent pair. Wrong solver “all eigenvectors are independent” fails on (w=3u); wrong solver “same eigenvalue means dependent” fails on (u=(1,1),z=(1,-1)).
+
+### Gate 6 — reconstruction/fairness
+Main proof is valid: applying (A-\lambda_3I) to (c_1v_1+c_2v_2+c_3v_3=0) removes the third term; the two-vector distinct-eigenvalue theorem forces (c_1=c_2=0), then (c_3=0). Same-eigenvalue closure follows by one linearity calculation.
+
+For Transfer, every nonzero vector under (5I_2) has λ=5; (w=(3,3)=3u) is dependent with (u=(1,1)), while (u,z=(1,-1)) are independent. All scoring requirements are explicitly public.
+
+### Gate 7 — claims
+PASS. The public Main literally observes arbitrary two-vector equal-eigenvalue closure and a three-vector distinct-eigenvalue proof; Transfer literally observes rejection of universal eigenvector independence. The claim is intentionally three-vector bounded rather than falsely claiming the learner publicly proved the full finite theorem.
+
+### Gate 8 — separation
+The first Transfer draft was **BLOCKED** because it reused the exact (2I,e_1,2e_1,e_2) worked contrast. Before advancing, it was replaced by (5I_2) with (u=(1,1),w=(3,3),z=(1,-1)). The repaired task preserves the misconception but not the solved mathematical instance. Re-audit: CLEAR.
+
+**S05 local disposition: PASS after Gate-8 repair. S06 may open.**
