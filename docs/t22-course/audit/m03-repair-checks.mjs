@@ -1,6 +1,6 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';import {migrateHistoricalLessonAnswerExposure} from '../../../js/t22-course/core.js';
 const a=JSON.parse(fs.readFileSync('course/t22/authoring/m03.json','utf8'));const by=n=>a.sessions.find(s=>s.order===n);
-assert.equal(a.instructionVersion,'m03-instruction-lang-binomial-r3');assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,30);
+assert.equal(a.instructionVersion,'m03-instruction-spire-separation-r1');assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,30);assert.equal(a.version,'m03-authoring-v1.5-spire-bounded-repair-r1');for(const n of [25,28,29,30])assert.equal(a.problems[by(n).main].obligationVersion,2);
 for(const s of a.sessions){assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'reviewed-separated');assert(s.lesson.includes('Worked example:'));assert(s.lesson.includes('Guided check:'));}
 const worked=n=>by(n).lesson.split('Worked example:')[1].split('Guided check:')[0].trim();
 for(const n of [10,11,12,13,14,17,18,19,20,21,22,23,24,27,28,29,30])assert(worked(n).length>=90,'S'+n+' worked reasoning too thin');
