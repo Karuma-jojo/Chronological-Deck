@@ -653,7 +653,7 @@
       ],
       "requiredOwnership": [
         "For a supplied real eigenbasis, decompose x0 and derive the corresponding finite/discrete modal formula x_k=Σc_iλ_i^kv_i.",
-        "Classify real scalar modes: |λ|<1 decay, |λ|>1 growth, λ=1 persistence, λ=-1 sign alternation, and λ=0 extinction after one step.",
+        "Classify the publicly tested real modes as persistent (λ=1), growing (|λ|>1 with nonzero coefficient), or sign-alternating (λ=-1), and distinguish sign alternation from convergence.",
         "Use the actual modal coefficients to audit a convergence claim for a discrete linear system."
       ],
       "applicationScope": "Finite-dimensional real diagonalizable discrete updates; no probability or continuous-time model is assumed.",
@@ -1519,7 +1519,7 @@
     ],
     "T22V3::SIDE279::S15@1": [
       "For a supplied real eigenbasis, decompose x0 and derive the corresponding finite/discrete modal formula x_k=Σc_iλ_i^kv_i.",
-      "Classify real scalar modes: |λ|<1 decay, |λ|>1 growth, λ=1 persistence, λ=-1 sign alternation, and λ=0 extinction after one step.",
+      "Classify the publicly tested real modes as persistent (λ=1), growing (|λ|>1 with nonzero coefficient), or sign-alternating (λ=-1), and distinguish sign alternation from convergence.",
       "Use the actual modal coefficients to audit a convergence claim for a discrete linear system."
     ]
   },
@@ -2357,7 +2357,7 @@
         "generalizationDistance": "Supplied real eigenbasis and one fresh x0."
       },
       {
-        "claim": "Classify real scalar modes: |λ|<1 decay, |λ|>1 growth, λ=1 persistence, λ=-1 sign alternation, and λ=0 extinction after one step.",
+        "claim": "Classify the publicly tested real modes as persistent (λ=1), growing (|λ|>1 with nonzero coefficient), or sign-alternating (λ=-1), and distinguish sign alternation from convergence.",
         "task": "main+transfer",
         "taskIds": [
           "T22V3::SIDE279::S15-M@1",
@@ -2372,9 +2372,9 @@
           "Explains the sign alternation and concludes the trajectory does not converge."
         ],
         "disposition": "adequate",
-        "why": "Persistent, growing and alternating cases are publicly observed; decay/extinction are taught support cases rather than overclaimed public mastery.",
-        "escapeAttempt": "Magnitude-only language fails λ=-1 Transfer.",
-        "generalizationDistance": "Claim text is broader than observed if it asserts all five cases; narrow before clearance."
+        "why": "Main directly observes persistent/growing modes and Transfer directly observes sign alternation/nonconvergence.",
+        "escapeAttempt": "Magnitude-only language fails the λ=-1 case.",
+        "generalizationDistance": "Decay and λ=0 extinction remain instructional support, not claimed public mastery in S15."
       },
       {
         "claim": "Use the actual modal coefficients to audit a convergence claim for a discrete linear system.",
