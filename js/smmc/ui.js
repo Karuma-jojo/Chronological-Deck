@@ -4,6 +4,7 @@ import { SMMC_UNITS_V1 } from '../../course/smmc/authoring/units-v1.mjs';
 import { SMMC_PUBLIC_PROBLEMS_V1 } from '../../course/smmc/authoring/public-problems-v1.mjs';
 import {
   emptySmmcState, validateSmmcState, mergeSmmcState, markExposure, exposureClass,
+  markPaperExposure, paperExposureClass, paperKeyForProblem, pristinePaperKeys,
   selfReportUnitComplete, certifiedUnitIds,
 } from '../../course/smmc/runtime/exposure.mjs';
 import { emptySmmcStudy, validateSmmcStudy, mergeSmmcStudy } from '../../course/smmc/runtime/study.mjs';
@@ -57,7 +58,7 @@ let studyState=emptySmmcStudy();
 let evaluatorPromise=null;
 const evaluatorBank=()=>evaluatorPromise??=import('../../course/smmc/authoring/evaluator-v1.mjs').then(m=>m.SMMC_EVALUATOR_V1);
 let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study',cloudReady=false,cloudApplying=false,cloudReconciling=false;
-let researchVisible=false,paperVisible=false,pathVisible=false,lessonMode='learn';
+let researchVisible=false,paperVisible=false,synopsisVisible=false,pathVisible=false,lessonMode='learn';
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
 const moduleIds=[...new Set(SMMC_UNITS_V1.map(x=>x.moduleId))];
 
@@ -321,22 +322,32 @@ function statusText(status){return ({
 function renderHistorical(id){
   const changed=!currentProblem||currentProblem.id!==id;
   currentProblem=ledger.find(p=>p.id===id);if(!currentProblem)return;
-  if(changed){researchVisible=false;paperVisible=false;}
+  if(changed){researchVisible=false;paperVisible=false;synopsisVisible=false;}
   $('problemSelect').value=id;put('histTitle',problemLabel(currentProblem));
-  const exposure=exposureClass(histState,id);put('histExposure','Exposure record: '+exposure.class+'. '+exposure.reason+'. Metadata viewing is not counted as contamination.');
+  const exposure=exposureClass(histState,id);
+  put('histExposure','Problem exposure: '+exposure.class+'. '+exposure.reason+'. Statement/summary exposure is persistent; hint-bearing research metadata moves this problem to development.');
+  $('histSynopsis').hidden=!synopsisVisible;
   put('histSynopsis',currentProblem.synopsis);
+  $('revealSynopsis').textContent=synopsisVisible?'Hide ledger summary':'Show ledger summary · marks this problem statement-seen';
   renderT25Connections(currentProblem.t25Targets,'problemT25Connections');
   rememberSmmcLocation({problemId:id});
   renderWorkspaceNav();
   if(currentTab==='map')replaceSmmcUrl();
 
   const paper=officialPaperUrl(currentProblem);
+  const paperKey=paperKeyForProblem(currentProblem);
+  const paperExposure=paperExposureClass(histState,ledger,paperKey);
+  const sessionProblems=ledger.filter(problem=>paperKeyForProblem(problem)===paperKey);
+  const eastPaperKeys=[...new Set(ledger.filter(problem=>problem.eastRelevant).map(paperKeyForProblem))];
+  const pristineEast=pristinePaperKeys(histState,ledger,{eastOnly:true});
+  put('paperExposure','Session '+paperKey+' vault state: '+paperExposure.class+'. '+paperExposure.reason+'.');
+  put('pristineInventory','Pristine East A/B sessions: '+pristineEast.length+' / '+eastPaperKeys.length+'.');
   $('openOfficialPaper').href=paper||'#';
   $('openOfficialPaper').hidden=!paper;
   $('togglePaper').disabled=!paper;
   $('togglePaper').textContent=paperVisible?'Hide official paper':'Show official paper here';
   put('paperGuide',paper
-    ? `Read ${currentProblem.session}${currentProblem.problem} on page 2 of the official ${currentProblem.year} session ${currentProblem.session} paper.`
+    ? `Warning: this PDF contains all ${sessionProblems.length} problems in session ${paperKey}. Opening it marks every statement in that session as seen. Use isolated problem access when you want to preserve the rest of a paper.`
     : 'No official paper URL is mapped yet for this record.');
   const frame=$('officialPaperFrame');
   frame.hidden=!paperVisible;
@@ -351,6 +362,22 @@ function renderHistorical(id){
   put('unlockText',parts.join('\n\n'));
   renderResearch(researchVisible);
 }
+function confirmAndMarkPaperOpened(){
+  if(!currentProblem)return false;
+  const paperKey=paperKeyForProblem(currentProblem);
+  const paperState=histState.papers?.[paperKey]||{};
+  if(!paperState.paperOpenedAt){
+    const count=ledger.filter(problem=>paperKeyForProblem(problem)===paperKey).length;
+    const ok=window.confirm(
+      `Open official ${paperKey} session paper? This reveals all ${count} problem statements and permanently marks that full paper as opened for corpus-preservation purposes.`
+    );
+    if(!ok)return false;
+    markPaperExposure(histState,ledger,paperKey,'paperOpenedAt');
+    persist();
+  }
+  return true;
+}
+
 function renderResearch(show){
   $('researchInfo').hidden=!show;
   $('revealResearch').textContent=show?'Hide GREEN / AMBER / RED research metadata':'Show GREEN / AMBER / RED research metadata';
@@ -464,19 +491,56 @@ async function init(){
   $('tabStudy').onclick=()=>switchTab('study');$('tabMap').onclick=()=>switchTab('map');
   $('problemSearch').oninput=renderProblemList;$('problemSelect').onchange=()=>renderHistorical($('problemSelect').value);
   $('applyTargets').onclick=()=>{renderHistorical(currentProblem.id);tell('T25 target preview updated locally. No T25 clearance record was changed.');};
+  $('revealSynopsis').onclick=()=>{
+    if(!currentProblem)return;
+    if(!synopsisVisible){
+      const exposure=histState.exposures?.[currentProblem.id]||{};
+      if(!exposure.statementSeenAt){
+        const ok=window.confirm(
+          `Show the ledger summary for ${currentProblem.id}? This is isolated exposure: only this problem will be marked statement-seen; the other problems in its session remain protected.`
+        );
+        if(!ok)return;
+        markExposure(histState,currentProblem.id,'statementSeenAt');
+        persist();
+      }
+      synopsisVisible=true;
+    }else synopsisVisible=false;
+    renderHistorical(currentProblem.id);
+    tell(synopsisVisible?'Ledger summary shown; this problem is now statement-seen. Other problems in the session were not changed.':'Ledger summary hidden. Exposure history is retained.');
+  };
   $('togglePaper').onclick=()=>{
     const paper=officialPaperUrl(currentProblem);
     if(!paper)return;
+    if(!paperVisible&&!confirmAndMarkPaperOpened())return;
     paperVisible=!paperVisible;
     renderHistorical(currentProblem.id);
-    tell(paperVisible?'Official SMMC session paper opened. No exposure status was changed.':'Official paper hidden. No exposure status was changed.');
+    tell(paperVisible?'Official SMMC session paper opened; every statement in this session is now marked seen.':'Official paper hidden. The exposure record is intentionally retained.');
+  };
+  $('openOfficialPaper').onclick=e=>{
+    const paper=officialPaperUrl(currentProblem);
+    if(!paper){e.preventDefault();return;}
+    if(!confirmAndMarkPaperOpened()){e.preventDefault();return;}
+    renderHistorical(currentProblem.id);
+    tell('Official SMMC session paper opened in a new tab; every statement in this session is now marked seen.');
   };
   $('revealResearch').onclick=()=>{
-    researchVisible=!researchVisible;
-    renderResearch(researchVisible);
+    if(!currentProblem)return;
+    if(!researchVisible){
+      const exposure=histState.exposures?.[currentProblem.id]||{};
+      if(!exposure.materialHintSeenAt){
+        const ok=window.confirm(
+          `Reveal method/color/research metadata for ${currentProblem.id}? This can suggest a route, so this problem will be permanently marked material-hint-seen and development-only.`
+        );
+        if(!ok)return;
+        markExposure(histState,currentProblem.id,'materialHintSeenAt');
+        persist();
+      }
+      researchVisible=true;
+    }else researchVisible=false;
+    renderHistorical(currentProblem.id);
     tell(researchVisible
-      ? 'Research metadata shown for planning only. Nothing was written to your exposure record.'
-      : 'Research metadata hidden. Nothing was written to your exposure record.');
+      ? 'Hint-bearing research metadata shown. This problem is now development-only; other problems were not changed.'
+      : 'Research metadata hidden. The exposure record is intentionally retained.');
   };
   $('export').onclick=()=>{download('smmc-study-record.json',{historical:histState,neutralStudy:studyState});$('toolsMenu').open=false;};
   $('import').onchange=async e=>{
