@@ -5,9 +5,9 @@
     "order": 3,
     "id": "T22E-DISC01",
     "title": "Mathematical Reasoning & Discrete Foundations",
-    "status": "bounded-repair-candidate-v1.5",
+    "status": "published-v1.4-lang-final-stitch-accepted",
     "destination": "State claims precisely, prove/refute them, reason with sets/maps, and execute deterministic finite counting before probability.",
-    "gate": "Independent hostile Spire audit found bounded instruction-separation and evaluator-alignment defects. Repair candidate preserves 30 sessions / 60 fixed task IDs / 150 ownership claims; M04 remains closed pending independent follow-up.",
+    "gate": "Lang-foundation gate CLOSED after independent reconfirmation. S26 owns the general finite binomial theorem with combinatorial C(n,k) evidence; M03 remains 30 sessions / 60 tasks / 150 ownership claims and is frozen for publication.",
     "nextBoundary": "M04 owns probability, conditional probability, independence and expectation. M03 stops at deterministic finite counting."
   },
   "boundary": {
@@ -5640,6 +5640,7 @@
       "T22V3::T22E-DISC01::S30@1"
     ],
     "preservedFixedTaskPrompts": true,
-    "policy": "Stable task IDs are retained. Lesson-side semantic-separation repairs use a new instructionVersion. The four Main evaluator contracts materially changed, so their obligationVersion is incremented and prior fingerprints become stale. Transfer-owned claims remain Transfer-owned; no old evidence is silently recertified."
+    "policy": "Stable task IDs are retained. Lesson-side semantic-separation repairs use a new instructionVersion. The four Main evaluator contracts materially changed, so their obligationVersion is incremented and prior fingerprints become stale. Transfer-owned claims remain Transfer-owned; no old evidence is silently recertified.",
+    "reviewStatus": "awaiting-independent-followup"
   }
 }
