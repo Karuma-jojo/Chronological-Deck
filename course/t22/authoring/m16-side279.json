@@ -357,7 +357,7 @@
       "id": "T22V3::SIDE279::S05-T@1",
       "order": 5,
       "kind": "transfer",
-      "prompt": "For A=2I_2, a report says: “Any two eigenvectors of the same matrix are linearly independent because eigenvectors point in special directions.” Audit the claim using u=(1,0), w=(2,0), and z=(0,1). Identify which pairs are dependent or independent, state their eigenvalues, and give the correct theorem involving distinct eigenvalues.",
+      "prompt": "For A=5I_2, a report says: “Any two eigenvectors of the same matrix are linearly independent because eigenvectors point in special directions.” Audit the claim using u=(1,1), w=(3,3), and z=(1,-1). Identify which pairs are dependent or independent, state their eigenvalues, and give the correct theorem involving distinct eigenvalues.",
       "obligationVersion": 1
     }
   },
@@ -533,11 +533,11 @@
       "marking": "Accept the induction theorem, repeated two-vector elimination, or another correct eigenvalue-equation proof."
     },
     "T22V3::SIDE279::S05-T@1": {
-      "reference": "For A=2I_2, every nonzero vector has eigenvalue 2. u=(1,0) and w=(2,0)=2u are dependent; u and z=(0,1) are independent; w and z are also independent. Therefore sharing the same eigenvalue neither forces independence nor dependence. The correct theorem is that eigenvectors associated with distinct eigenvalues are linearly independent.",
+      "reference": "For A=5I_2, every nonzero vector has eigenvalue 5. w=3u, so u,w are dependent. The vectors u=(1,1) and z=(1,-1) are independent (and w,z are also independent). Thus sharing the same eigenvalue neither forces independence nor dependence. The correct theorem is that eigenvectors associated with distinct eigenvalues are linearly independent.",
       "rubric": [
         {
           "points": 3,
-          "criterion": "States that u,w,z are all eigenvectors with eigenvalue 2."
+          "criterion": "States that u,w,z are all eigenvectors with eigenvalue 5."
         },
         {
           "points": 3,
@@ -854,14 +854,14 @@
           "T22V3::SIDE279::S05-T@1"
         ],
         "publicRequestExact": [
-          "Audit the claim using u=(1,0), w=(2,0), and z=(0,1)... give the correct theorem involving distinct eigenvalues."
+          "Audit the claim using u=(1,1), w=(3,3), and z=(1,-1)... give the correct theorem involving distinct eigenvalues."
         ],
         "rubricEvidence": [
           "Correctly identifies u,w as dependent and u,z (and equivalently w,z) as independent.",
           "Rejects the universal claim and states the correct distinct-eigenvalue independence theorem without claiming a converse."
         ],
         "disposition": "adequate",
-        "why": "Transfer constructs both dependent and independent same-eigenvalue pairs and requires the correct theorem.",
+        "why": "Transfer uses a fresh scalar-matrix eigenspace containing both a dependent pair and an independent pair, then requires the correct distinct-eigenvalue theorem.",
         "escapeAttempt": "Saying 'same eigenvalue means dependent' also fails because u,z are independent.",
         "generalizationDistance": "Exact misconception family is publicly audited."
       }
@@ -1014,10 +1014,10 @@
         "sessionId": "T22V3::SIDE279::S05@1",
         "kind": "transfer",
         "closestInstructionalExamples": [
-          "S05 worked A=2I mentions e1,2e1 and e1,e2"
+          "S05 worked A=2I with e1,2e1 and e1,e2"
         ],
-        "mathematicalDifference": "Transfer reuses the same conceptual family but unfortunately uses u=(1,0), w=(2,0), z=(0,1), which overlaps the worked contrast exactly.",
-        "exposureDisposition": "BLOCKED — exact decisive pairs are answer-bearing in visible instruction; Transfer must be changed before Gate 8 can pass."
+        "mathematicalDifference": "Transfer changes matrix/eigenvalue and all vectors: 5I with u=(1,1), w=(3,3), z=(1,-1). It preserves only the misconception pattern, not the solved instance.",
+        "exposureDisposition": "CLEAR — no fixed vectors, eigenvalue 5, or pair classifications are solved visibly."
       }
     }
   },
@@ -1097,7 +1097,7 @@
           "B=[[2,1],[1,2]] guided"
         ],
         "fixedMainSolvedInInstruction": false,
-        "fixedTransferSolvedInInstruction": true,
+        "fixedTransferSolvedInInstruction": false,
         "guidedFeedbackRevealAfterAttempt": true
       }
     }
@@ -1167,7 +1167,7 @@
       "T22V3::SIDE279::S05-T@1": {
         "claimedLearnerDecision": "Audit universal independence and identify the missing distinct-eigenvalue hypothesis.",
         "alreadySuppliedByPrompt": "Flawed claim and test vectors supplied.",
-        "decisivelyRehearsedInVisibleInstruction": "YES — exact vector pairs currently appear in worked contrast; must repair.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — the misconception family is taught, but the 5I/vector instance and its pair classifications are fresh.",
         "learnerActionActuallyScored": "Would be dependence/independence classification and theorem repair after task replacement."
       }
     }
@@ -1223,7 +1223,7 @@
       {
         "failureMode": "all eigenvectors assumed independent regardless of eigenvalue",
         "where": "S05 Transfer",
-        "discriminator": "requires same-eigenvalue dependent and independent pairs; exact instance currently blocked pending Gate-8 repair"
+        "discriminator": "fresh 5I eigenspace contains both dependent and independent pairs, so same-eigenvalue status alone decides neither"
       }
     ],
     "designGateCoverage": [
