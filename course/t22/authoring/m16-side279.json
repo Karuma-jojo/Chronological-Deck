@@ -1048,7 +1048,7 @@
       "marking": "A determinant-zero check for the proposed P may verify dependence but does not replace the eigendirection explanation."
     },
     "T22V3::SIDE279::S11-M@1": {
-      "reference": "S^-1=[[1,-2],[0,1]] and B=[[4,10],[0,-1]]. From B-tI=S^-1(A-tI)S, det(B-tI)=det(S^-1)det(A-tI)det(S)=det(A-tI), so the eigenvalues remain 4 and -1. S^-1e1=(1,0), and B(1,0)=4(1,0). S^-1e2=(-2,1), and B(-2,1)=(8? no) actually (-8+10,-1)=(2,-1)=-1(-2,1), so λ=-1 is preserved.",
+      "reference": "S^-1=[[1,-2],[0,1]] and B=[[4,10],[0,-1]]. From B-tI=S^-1(A-tI)S, det(B-tI)=det(S^-1)det(A-tI)det(S)=det(A-tI), so the eigenvalues remain 4 and -1. S^-1e1=(1,0), and B(1,0)=4(1,0). S^-1e2=(-2,1), and B(-2,1)=(2,-1)=-1(-2,1), so λ=-1 is preserved.",
       "rubric": [
         {
           "points": 3,
