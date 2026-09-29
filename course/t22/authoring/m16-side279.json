@@ -354,7 +354,7 @@
       "marking": "Accept the opposite characteristic-polynomial sign convention if roots and subsequent eigenspaces are correct."
     },
     "T22V3::SIDE279::S03-T@1": {
-      "reference": "det(T)=6 is the product of the two eigenvalues here, not itself an eigenvalue. The correct equation is det(T-λI)=(2-λ)(3-λ)=0, so λ=2,3. E_2=span{(1,0)}. E_3=span{(1,1)}. Thus the report confuses a matrix invariant with the shifted singularity equation.",
+      "reference": "det(T)=6 is a determinant value of T; it is not the eigenvalue condition. The correct equation is det(T-λI)=(2-λ)(3-λ)=0, so λ=2,3. E_2=span{(1,0)}. E_3=span{(1,1)}. Thus the report uses the wrong mathematical object in place of the shifted singularity equation.",
       "rubric": [
         {
           "points": 3,
@@ -369,7 +369,7 @@
           "criterion": "Computes E_2=span{(1,0)} and E_3=span{(1,1)} (up to nonzero rescaling)."
         }
       ],
-      "marking": "A correct explanation that det(T)=6 is not the characteristic equation is sufficient; naming the product-of-eigenvalues fact is optional."
+      "marking": "A correct explanation that det(T)=6 is not the characteristic equation is sufficient; no product-of-eigenvalues theorem is required."
     }
   },
   "coverage": {
