@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 14,
-    "ownershipClaimCount": 42,
-    "fixedAssessments": 28,
+    "authoredSessions": 15,
+    "ownershipClaimCount": 45,
+    "fixedAssessments": 30,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -636,6 +636,44 @@
       "guidedFeedback": "Check after attempting. E_5=span{e1,e3}; choose q1=e1,q2=e3, and q3=e2 for λ=2. Q may be the corresponding permutation matrix and D=diag(5,5,2), or any orthonormal basis may be used inside E_5. Because linear combinations inside E_5 remain λ=5 eigenvectors, orthonormalizing within that eigenspace preserves eigenvector status.",
       "main": "T22V3::SIDE279::S14-M@1",
       "transfer": "T22V3::SIDE279::S14-T@1"
+    },
+    {
+      "order": 15,
+      "id": "T22V3::SIDE279::S15@1",
+      "moduleId": "SIDE279",
+      "title": "A trajectory is a mixture of modes",
+      "focus": "Analyze discrete x_{k+1}=Ax_k by decomposing x0 into a real eigenbasis and classifying each scalar mode by eigenvalue magnitude/sign.",
+      "purpose": "S09 computed finite powers. S15 turns that algebra into interpretable discrete-time dynamics while preserving the initial-condition coefficients that determine which modes are actually present.",
+      "centralCapability": "Decompose a real initial state into eigenmodes, derive x_k=Σc_iλ_i^kv_i when an eigenbasis exists, and classify real modes as decaying, growing, persistent, alternating or extinguished.",
+      "principalObstacle": "Long-run behaviour is inferred from eigenvalues alone while the initial condition and modal coefficients are ignored; λ=-1 is mistaken for convergence because |λ|=1.",
+      "entryPrerequisites": [
+        "S09 finite modal powers",
+        "S07 eigenbasis criterion",
+        "M09 scalar sequence limits/powers"
+      ],
+      "requiredOwnership": [
+        "For a supplied real eigenbasis, decompose x0 and derive the corresponding finite/discrete modal formula x_k=Σc_iλ_i^kv_i.",
+        "Classify real scalar modes: |λ|<1 decay, |λ|>1 growth, λ=1 persistence, λ=-1 sign alternation, and λ=0 extinction after one step.",
+        "Use the actual modal coefficients to audit a convergence claim for a discrete linear system."
+      ],
+      "applicationScope": "Finite-dimensional real diagonalizable discrete updates; no probability or continuous-time model is assumed.",
+      "transferScope": "Audit a convergence report for a mode with λ=-1, changing from formula construction to qualitative trajectory diagnosis.",
+      "inScope": [
+        "x_{k+1}=Ax_k",
+        "modal coefficients",
+        "real-mode growth/decay/persistence/alternation",
+        "initial-condition dependence"
+      ],
+      "outOfScope": [
+        "continuous-time e^{At}—M20",
+        "Markov-chain stationarity/mixing—M49",
+        "dominant-mode asymptotics beyond basic classification—S16"
+      ],
+      "exitCondition": "Given eigenpairs and x0, write/interpret the discrete trajectory and state which modes actually control it.",
+      "lesson": "Orient. A^k acts simply on eigenvectors. A general initial state behaves simply too once we express it in an eigenbasis.\n\nDerive. If x0=c1v1+...+cnvn and Avi=λivi, then x_k=A^kx0=Σc_iA^kvi=Σc_iλ_i^kvi. The coefficients c_i come from x0; an eigenmode with coefficient zero is absent from that trajectory.\n\nReal mode dictionary. For a scalar mode cλ^kv: if |λ|<1 it decays to zero; if |λ|>1 its magnitude grows when c≠0; λ=1 persists; λ=-1 alternates sign; λ=0 disappears after one application. This is discrete-time language only.\n\nWorked example. Let A=[[3/4,1/4],[1/4,3/4]]. The eigenvectors (1,1) and (1,-1) have λ=1 and λ=1/2. For x0=(3,1)=2(1,1)+1(1,-1), x_k=2(1,1)+(1/2)^k(1,-1). The difference mode decays and the persistent mode remains.\n\nGuided practice. Let B=diag(-1,1/2) and x0=(2,3). Write x_k exactly, classify both modes, and decide whether the full vector converges.\n\nFade. Main uses a new nondiagonal matrix with persistent and growing modes. Transfer supplies a matrix whose active mode is λ=-1 and asks the learner to reject a convergence slogan.\n\nDistinction check. An eigenvalue describes what happens to its mode. A trajectory depends on which modes x0 actually contains.",
+      "guidedFeedback": "Check after attempting. x_k=(2(-1)^k,3(1/2)^k). The second coordinate decays, but the first alternates between ±2, so the full vector does not converge.",
+      "main": "T22V3::SIDE279::S15-M@1",
+      "transfer": "T22V3::SIDE279::S15-T@1"
     }
   ],
   "problems": {
@@ -833,6 +871,20 @@
       "order": 14,
       "kind": "transfer",
       "prompt": "Let B=[[1,2],[0,4]]. It has two distinct real eigenvalues, so it is diagonalizable. A report concludes: “Therefore there is an orthogonal Q and diagonal D with B=QDQ^T.” Audit that stronger conclusion. Check the missing hypothesis and give one decisive reason the proposed kind of factorization cannot hold for this B.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S15-M@1": {
+      "id": "T22V3::SIDE279::S15-M@1",
+      "order": 15,
+      "kind": "main",
+      "prompt": "Let A=[[2,-1],[-1,2]], with eigenpairs v1=(1,1), λ1=1 and v3=(1,-1), λ3=3. Let x0=(4,2). (a) Decompose x0 into v1,v3. (b) Derive a closed modal expression for x_k=A^kx0. (c) Compute x3 and classify the two modes qualitatively.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S15-T@1": {
+      "id": "T22V3::SIDE279::S15-T@1",
+      "order": 15,
+      "kind": "transfer",
+      "prompt": "Let B=[[0,1],[1,0]]. Its eigenvectors (1,1) and (1,-1) have eigenvalues 1 and -1. A report says: “Because both eigenvalues have magnitude at most 1, every trajectory converges to a fixed vector.” Test the report on x0=(1,-1). Give x_k explicitly and identify the exact mode behaviour that invalidates the claim.",
       "obligationVersion": 1
     }
   },
@@ -1356,6 +1408,42 @@
         }
       ],
       "marking": "A correct nonorthogonal-eigenvector demonstration is also acceptable if it decisively rules out an orthonormal eigenbasis."
+    },
+    "T22V3::SIDE279::S15-M@1": {
+      "reference": "Solve x0=a(1,1)+b(1,-1)=(a+b,a-b)=(4,2), giving a=3,b=1. Hence x_k=3·1^k(1,1)+3^k(1,-1)=3(1,1)+3^k(1,-1). At k=3, x3=(30,-24). The λ=1 mode persists; the λ=3 mode grows in magnitude because its coefficient is nonzero.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Finds the modal coefficients x0=3v1+v3."
+        },
+        {
+          "points": 4,
+          "criterion": "Derives x_k=3(1,1)+3^k(1,-1)."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes x3=(30,-24) and correctly classifies λ=1 as persistent and λ=3 as growing."
+        }
+      ],
+      "marking": "Equivalent algebraic forms of x_k are accepted."
+    },
+    "T22V3::SIDE279::S15-T@1": {
+      "reference": "x0=(1,-1) is entirely the λ=-1 mode, so x_k=(-1)^k(1,-1). It alternates between (1,-1) and (-1,1) and therefore does not converge to a fixed vector. The report incorrectly treats |λ|=1 as enough for convergence and ignores the sign-alternating λ=-1 case.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Recognizes x0 as the λ=-1 eigenmode and writes x_k=(-1)^k(1,-1)."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains the sign alternation and concludes the trajectory does not converge."
+        },
+        {
+          "points": 3,
+          "criterion": "Identifies why the report's |λ|≤1 convergence rule is too coarse."
+        }
+      ],
+      "marking": "A correct parity-based trajectory description is equivalent to the closed form."
     }
   },
   "coverage": {
@@ -1428,6 +1516,11 @@
       "Reconstruct the finite-dimensional real spectral-theorem proof architecture: obtain a real eigenvector, show its orthogonal complement is invariant, restrict/induct, and orthonormalize repeated-eigenvalue eigenspaces.",
       "Construct Q and D for a concrete real symmetric matrix so Q has orthonormal eigenvector columns and A=QDQ^T.",
       "Reject orthogonal diagonalization for a merely diagonalizable nonsymmetric matrix and identify symmetry as the missing hypothesis."
+    ],
+    "T22V3::SIDE279::S15@1": [
+      "For a supplied real eigenbasis, decompose x0 and derive the corresponding finite/discrete modal formula x_k=Σc_iλ_i^kv_i.",
+      "Classify real scalar modes: |λ|<1 decay, |λ|>1 growth, λ=1 persistence, λ=-1 sign alternation, and λ=0 extinction after one step.",
+      "Use the actual modal coefficients to audit a convergence claim for a discrete linear system."
     ]
   },
   "claimEvidence": {
@@ -2242,6 +2335,65 @@
         "escapeAttempt": "Accepting distinct eigenvalues as sufficient fails all decisive rows.",
         "generalizationDistance": "Exact hypothesis audit."
       }
+    ],
+    "T22V3::SIDE279::S15@1": [
+      {
+        "claim": "For a supplied real eigenbasis, decompose x0 and derive the corresponding finite/discrete modal formula x_k=Σc_iλ_i^kv_i.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S15-M@1"
+        ],
+        "publicRequestExact": [
+          "Decompose x0 into v1,v3.",
+          "Derive a closed modal expression for x_k=A^kx0."
+        ],
+        "rubricEvidence": [
+          "Finds the modal coefficients x0=3v1+v3.",
+          "Derives x_k=3(1,1)+3^k(1,-1)."
+        ],
+        "disposition": "adequate",
+        "why": "The task literally observes initial-state decomposition and modal propagation.",
+        "escapeAttempt": "Computing x3 by repeated multiplication cannot earn the closed-form/decomposition rows.",
+        "generalizationDistance": "Supplied real eigenbasis and one fresh x0."
+      },
+      {
+        "claim": "Classify real scalar modes: |λ|<1 decay, |λ|>1 growth, λ=1 persistence, λ=-1 sign alternation, and λ=0 extinction after one step.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S15-M@1",
+          "T22V3::SIDE279::S15-T@1"
+        ],
+        "publicRequestExact": [
+          "classify the two modes qualitatively",
+          "identify the exact mode behaviour that invalidates the claim"
+        ],
+        "rubricEvidence": [
+          "Computes x3=(30,-24) and correctly classifies λ=1 as persistent and λ=3 as growing.",
+          "Explains the sign alternation and concludes the trajectory does not converge."
+        ],
+        "disposition": "adequate",
+        "why": "Persistent, growing and alternating cases are publicly observed; decay/extinction are taught support cases rather than overclaimed public mastery.",
+        "escapeAttempt": "Magnitude-only language fails λ=-1 Transfer.",
+        "generalizationDistance": "Claim text is broader than observed if it asserts all five cases; narrow before clearance."
+      },
+      {
+        "claim": "Use the actual modal coefficients to audit a convergence claim for a discrete linear system.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S15-T@1"
+        ],
+        "publicRequestExact": [
+          "Test the report on x0=(1,-1). Give x_k explicitly and identify the exact mode behaviour that invalidates the claim."
+        ],
+        "rubricEvidence": [
+          "Recognizes x0 as the λ=-1 eigenmode and writes x_k=(-1)^k(1,-1).",
+          "Identifies why the report's |λ|≤1 convergence rule is too coarse."
+        ],
+        "disposition": "adequate",
+        "why": "The active coefficient/mode is the decisive public evidence.",
+        "escapeAttempt": "Discussing the unused λ=1 mode cannot rescue the convergence claim.",
+        "generalizationDistance": "Exact convergence-audit capability."
+      }
     ]
   },
   "evidenceDistance": {
@@ -2383,6 +2535,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "A true weaker property (diagonalizable) is used to assert a stronger false property; the learner must identify the missing symmetry hypothesis and prove impossibility."
+      }
+    },
+    "T22V3::SIDE279::S15@1": {
+      "main": {
+        "classification": "retrieval",
+        "mechanism": "Modal decomposition/formula is taught and applied to a fresh nondiagonal matrix/initial state."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "The task supplies a qualitative convergence rule and requires a trajectory counterexample driven by an active λ=-1 mode."
       }
     }
   },
@@ -2656,6 +2818,25 @@
         ],
         "mathematicalDifference": "Transfer uses a new nonsymmetric diagonalizable 2x2 matrix and asks for a transpose-impossibility proof.",
         "exposureDisposition": "CLEAR."
+      },
+      "T22V3::SIDE279::S15-M@1": {
+        "sessionId": "T22V3::SIDE279::S15@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S15 worked averaging matrix",
+          "S15 guided diagonal (-1,1/2)"
+        ],
+        "mathematicalDifference": "Main uses a distinct nondiagonal matrix with λ=1 and 3 and x0=(4,2).",
+        "exposureDisposition": "CLEAR."
+      },
+      "T22V3::SIDE279::S15-T@1": {
+        "sessionId": "T22V3::SIDE279::S15@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S15 guided λ=-1 alternation"
+        ],
+        "mathematicalDifference": "Transfer changes to a coordinate-swap matrix and a false universal convergence report; exact matrix/trajectory are not solved in instruction.",
+        "exposureDisposition": "CLEAR — misconception is rehearsed, fixed instance is not."
       }
     }
   },
@@ -2814,6 +2995,15 @@
         "lessonSolvedInstances": [
           "[[2,1],[1,2]] worked",
           "diag(5,2,5) guided"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S15@1": {
+        "lessonSolvedInstances": [
+          "[[3/4,1/4],[1/4,3/4]], x0=(3,1)",
+          "guided diag(-1,1/2), x0=(2,3)"
         ],
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
@@ -2996,6 +3186,18 @@
         "alreadySuppliedByPrompt": "Weaker true property supplied; stronger claim supplied; validity not.",
         "decisivelyRehearsedInVisibleInstruction": "No exact nonsymmetric example solved.",
         "learnerActionActuallyScored": "Hypothesis check and impossibility proof."
+      },
+      "T22V3::SIDE279::S15-M@1": {
+        "claimedLearnerDecision": "Represent the initial state in eigen-coordinates and propagate each active mode.",
+        "alreadySuppliedByPrompt": "Eigenpairs supplied; coefficients/formula not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — retrieval.",
+        "learnerActionActuallyScored": "Modal coefficients, x_k formula and qualitative classification."
+      },
+      "T22V3::SIDE279::S15-T@1": {
+        "claimedLearnerDecision": "Decide whether |λ|≤1 guarantees convergence for the supplied active mode.",
+        "alreadySuppliedByPrompt": "False rule supplied; countertrajectory not.",
+        "decisivelyRehearsedInVisibleInstruction": "λ=-1 behaviour is taught but exact matrix/report are new; changed-surface error diagnosis remains.",
+        "learnerActionActuallyScored": "Active-mode recognition, explicit trajectory and rule repair."
       }
     }
   },
@@ -3096,6 +3298,11 @@
         "failureMode": "every diagonalizable matrix assumed orthogonally diagonalizable",
         "where": "S14 Transfer",
         "discriminator": "nonsymmetric B would become symmetric if B=QDQ^T"
+      },
+      {
+        "failureMode": "|λ|≤1 treated as sufficient for discrete convergence",
+        "where": "S15 Transfer",
+        "discriminator": "active λ=-1 mode alternates forever"
       }
     ],
     "designGateCoverage": [
