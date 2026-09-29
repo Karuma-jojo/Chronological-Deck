@@ -239,3 +239,23 @@ PASS. Simple complex roots, direct complex eigenvector verification and R-versus
 PASS. Worked, guided, Main and Transfer use distinct scaled rotation-like matrices. S01's exact 90-degree rotation fixed task is not reused; only the general real-versus-complex principle advances.
 
 **S12 local disposition: PASS. S13 may open.**
+
+
+## S13 — Symmetry changes the game
+
+### Gate 4 — teaching
+PASS. The self-adjoint dot identity is derived from A^T=A. Real spectrum is proved via a bounded real/imaginary decomposition, avoiding undeclared general complex-inner-product machinery. Distinct-eigenvalue orthogonality follows from the same identity. PSD/quadratic-form claims remain absent.
+
+### Gate 5 — evidence
+Main is **proof reconstruction** for all two structural arguments plus a fresh symmetric numerical check. Transfer is **changed-surface Transfer**: it deliberately applies the theorem to the wrong object class, so the learner must type-check symmetry before using orthogonality.
+
+### Gate 6 — reconstruction/fairness
+The real/imaginary proof yields b(||x||^2+||y||^2)=0 and hence b=0. The orthogonality proof yields (λ-μ)(v·w)=0. For S=[[1,2],[2,4]], supplied v5=(1,2), v0=(2,-1) verify λ=5,0 and dot 0. Transfer B=[[2,1],[0,3]] is nonsymmetric; e1 and (1,1) have λ=2,3 but dot product 1.
+
+### Gate 7 — claims
+PASS. Symmetry identity, real-spectrum/orthogonality proofs and hypothesis audit are directly observed.
+
+### Gate 8 — separation
+PASS. Numerical matrices are distinct from instruction/fixed tasks elsewhere, and the symbolic proof architecture is intentionally proof reconstruction rather than hidden fresh evidence.
+
+**S13 local disposition: PASS. S14 may open.**
