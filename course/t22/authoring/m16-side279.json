@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 7,
-    "ownershipClaimCount": 21,
-    "fixedAssessments": 14,
+    "authoredSessions": 8,
+    "ownershipClaimCount": 24,
+    "fixedAssessments": 16,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -364,6 +364,44 @@
       "guidedFeedback": "Check after attempting. The 2×2 block has eigenvalues 3 and 1, while the third coordinate contributes another λ=3. E_3=span{(1,1,0),(0,0,1)} has dimension 2 and E_1=span{(1,-1,0)} has dimension 1. Together they supply three independent eigenvectors, so B is diagonalizable.",
       "main": "T22V3::SIDE279::S07-M@1",
       "transfer": "T22V3::SIDE279::S07-T@1"
+    },
+    {
+      "order": 8,
+      "id": "T22V3::SIDE279::S08@1",
+      "moduleId": "SIDE279",
+      "title": "Build the diagonal coordinates",
+      "focus": "Construct P and D from an ordered eigenbasis, derive AP=PD and A=PDP^-1, and enforce column/eigenvalue order consistency.",
+      "purpose": "S07 decides whether an eigenbasis exists. S08 turns that basis into an explicit similarity transformation and makes the algebraic identity follow from column action rather than memorization.",
+      "centralCapability": "Given an ordered eigenbasis and matching eigenvalues, build and verify a diagonalization with correct column/eigenvalue correspondence.",
+      "principalObstacle": "P and D are assembled independently, so eigenvalue order is mismatched to eigenvector columns; or A=PDP^-1 is quoted without understanding AP=PD.",
+      "entryPrerequisites": [
+        "S07 eigenbasis/diagonalizable criterion",
+        "M14 matrix multiplication, inverse and similarity",
+        "S01 eigenpair equations"
+      ],
+      "requiredOwnership": [
+        "Construct P from ordered eigenvector columns and D from the corresponding eigenvalues in the same order.",
+        "Derive AP=PD columnwise and hence A=PDP^-1 using invertibility of the eigenbasis matrix P.",
+        "Detect and repair a diagonalization whose P-column order and D-diagonal order do not match."
+      ],
+      "applicationScope": "Exact small real diagonalizable matrices with explicitly computable eigenbases.",
+      "transferScope": "Audit a mismatched P,D pair on a different matrix by comparing AP and PD rather than trusting the symbols.",
+      "inScope": [
+        "AP=PD",
+        "P invertible from eigenbasis",
+        "A=PDP^-1",
+        "order matching"
+      ],
+      "outOfScope": [
+        "matrix powers—S09",
+        "orthogonal diagonalization—S14",
+        "defective fallback—S10"
+      ],
+      "exitCondition": "Construct a correct diagonalization and diagnose an order mismatch from the defining column relations.",
+      "lesson": "Orient. S07 says an eigenbasis exists. Put those basis vectors into a matrix so the basis change becomes explicit.\n\nDefine. Let v1,...,vn be an ordered eigenbasis with Avi=λivi. Form P=[v1 ... vn] and D=diag(λ1,...,λn) in the same order. Because the columns of P are a basis, P is invertible.\n\nDerive columnwise. The j-th column of AP is Avj=λjvj. The j-th column of PD is also λjvj because D scales column j of P by λj. Hence AP=PD. Right-multiplying by P^-1 gives A=PDP^-1.\n\nWorked example. For A=[[4,1],[0,2]], v4=(1,0) and v2=(-1,2). Thus P=[[1,-1],[0,2]], D=diag(4,2). Direct multiplication gives AP=PD; since P^-1=[[1,1/2],[0,1/2]], PDP^-1=A.\n\nOrder warning. If the columns of P are swapped, the diagonal entries of D must be swapped too. The equation AP=PD is the quickest audit because it checks each column-eigenvalue pairing.\n\nGuided practice. Let B=[[3,1],[0,2]]. Use v3=(1,0) and v2=(-1,1) to build P,D, derive AP=PD for B, compute P^-1 and verify B=PDP^-1.\n\nFade. Main uses a new matrix and requires the full construction. Transfer provides a plausible mismatched pair and asks the learner to locate exactly which columns/eigenvalues are paired incorrectly.\n\nDistinction check. Diagonalization is a basis-change statement. D does not belong to A independently of the ordered eigenbasis used to build P.",
+      "guidedFeedback": "Check after attempting. P=[[1,-1],[0,1]], D=diag(3,2), P^-1=[[1,1],[0,1]]. BP=PD=[[3,-2],[0,2]], and PDP^-1=[[3,1],[0,2]]=B.",
+      "main": "T22V3::SIDE279::S08-M@1",
+      "transfer": "T22V3::SIDE279::S08-T@1"
     }
   ],
   "problems": {
@@ -463,6 +501,20 @@
       "order": 7,
       "kind": "transfer",
       "prompt": "A 3×3 matrix M is reported to have p_M(t)=(5-t)^2(-1-t), E_5=span{(1,0,0),(0,1,0)}, and E_-1=span{(0,0,1)}. Someone concludes: “M cannot be diagonalizable because 5 is repeated.” Audit that conclusion using only the supplied eigenspace data; do not invent or reconstruct M.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S08-M@1": {
+      "id": "T22V3::SIDE279::S08-M@1",
+      "order": 8,
+      "kind": "main",
+      "prompt": "Let A=[[5,2],[0,1]]. Eigenvectors v5=(1,0) for λ=5 and v1=(1,-2) for λ=1 are given. (a) Build P and D in that order. (b) Verify AP=PD columnwise/algebraically. (c) Compute P^-1 and verify A=PDP^-1. (d) Explain why P is invertible without using its determinant as the primary reason.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S08-T@1": {
+      "id": "T22V3::SIDE279::S08-T@1",
+      "order": 8,
+      "kind": "transfer",
+      "prompt": "Let B=[[2,0],[1,4]], with v2=(-2,1) for λ=2 and v4=(0,1) for λ=4. A report sets P=[v2 v4] but D=diag(4,2) and claims B=PDP^-1. Audit the proposed order by comparing BP with PD, repair D, and state the general ordering rule.",
       "obligationVersion": 1
     }
   },
@@ -726,6 +778,46 @@
         }
       ],
       "marking": "The supplied eigenspace data are authoritative givens for this task; no matrix computation is required."
+    },
+    "T22V3::SIDE279::S08-M@1": {
+      "reference": "P=[[1,1],[0,-2]] and D=diag(5,1). AP=[[5,1],[0,-2]]=PD. P^-1=[[1,1/2],[0,-1/2]], and PDP^-1=[[5,2],[0,1]]=A. P is invertible because its columns v5,v1 are an eigenbasis / linearly independent basis vectors; the determinant is a check, not the conceptual reason.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Builds P=[[1,1],[0,-2]] and D=diag(5,1) with matching column/eigenvalue order."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies AP=PD from the supplied eigenpairs."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes P^-1=[[1,1/2],[0,-1/2]] and verifies PDP^-1=A."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains P is invertible because its eigenvector columns form a basis / are independent."
+        }
+      ],
+      "marking": "Equivalent exact inverse notation is accepted. Determinant computation may accompany but not replace the requested basis reason."
+    },
+    "T22V3::SIDE279::S08-T@1": {
+      "reference": "With P=[v2 v4]=[[-2,0],[1,1]], BP=[[-4,0],[2,4]]. Using the proposed D=diag(4,2) gives PD=[[-8,0],[4,2]], so BP≠PD. The correct D is diag(2,4), for which PD=[[-4,0],[2,4]]=BP. General rule: the j-th diagonal entry of D must be the eigenvalue belonging to the j-th eigenvector column of P.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Computes/compares BP and the proposed PD and detects the order mismatch."
+        },
+        {
+          "points": 3,
+          "criterion": "Repairs the diagonal matrix to D=diag(2,4)."
+        },
+        {
+          "points": 3,
+          "criterion": "States the general column/eigenvalue correspondence rule."
+        }
+      ],
+      "marking": "No inverse computation is required in Transfer once BP≠PD decisively disproves the proposed diagonalization."
     }
   },
   "coverage": {
@@ -763,6 +855,11 @@
       "State and use the criterion that an n×n matrix is diagonalizable exactly when R^n has a basis of eigenvectors.",
       "Use eigenspace bases/dimensions to decide whether enough independent eigenvectors exist, including a repeated-eigenvalue case that still diagonalizes.",
       "Derive that n distinct real eigenvalues of an n×n real matrix guarantee diagonalizability by combining S05 independence with the basis-size criterion."
+    ],
+    "T22V3::SIDE279::S08@1": [
+      "Construct P from ordered eigenvector columns and D from the corresponding eigenvalues in the same order.",
+      "Derive AP=PD columnwise and hence A=PDP^-1 using invertibility of the eigenbasis matrix P.",
+      "Detect and repair a diagonalization whose P-column order and D-diagonal order do not match."
     ]
   },
   "claimEvidence": {
@@ -1174,6 +1271,65 @@
         "escapeAttempt": "Stating the result without S05 independence/basis reasoning loses the row.",
         "generalizationDistance": "General finite real n×n statement is publicly proved."
       }
+    ],
+    "T22V3::SIDE279::S08@1": [
+      {
+        "claim": "Construct P from ordered eigenvector columns and D from the corresponding eigenvalues in the same order.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S08-M@1"
+        ],
+        "publicRequestExact": [
+          "Build P and D in that order."
+        ],
+        "rubricEvidence": [
+          "Builds P=[[1,1],[0,-2]] and D=diag(5,1) with matching column/eigenvalue order."
+        ],
+        "disposition": "adequate",
+        "why": "The learner constructs both objects with an explicitly scored order.",
+        "escapeAttempt": "Correct sets of vectors/eigenvalues in mismatched order lose the row.",
+        "generalizationDistance": "Exact small matrix construction."
+      },
+      {
+        "claim": "Derive AP=PD columnwise and hence A=PDP^-1 using invertibility of the eigenbasis matrix P.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S08-M@1"
+        ],
+        "publicRequestExact": [
+          "Verify AP=PD columnwise/algebraically.",
+          "Compute P^-1 and verify A=PDP^-1.",
+          "Explain why P is invertible without using its determinant as the primary reason."
+        ],
+        "rubricEvidence": [
+          "Verifies AP=PD from the supplied eigenpairs.",
+          "Computes P^-1=[[1,1/2],[0,-1/2]] and verifies PDP^-1=A.",
+          "Explains P is invertible because its eigenvector columns form a basis / are independent."
+        ],
+        "disposition": "adequate",
+        "why": "The task observes the column identity, inverse step and eigenbasis reason for invertibility.",
+        "escapeAttempt": "Quoting A=PDP^-1 without AP=PD or the basis reason cannot earn full evidence.",
+        "generalizationDistance": "Derivation is instantiated but structural reason is explicit."
+      },
+      {
+        "claim": "Detect and repair a diagonalization whose P-column order and D-diagonal order do not match.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S08-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit the proposed order by comparing BP with PD, repair D, and state the general ordering rule."
+        ],
+        "rubricEvidence": [
+          "Computes/compares BP and the proposed PD and detects the order mismatch.",
+          "Repairs the diagonal matrix to D=diag(2,4).",
+          "States the general column/eigenvalue correspondence rule."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer directly observes detection, repair and generalization of order matching.",
+        "escapeAttempt": "Blindly inverting P cannot hide BP≠PD.",
+        "generalizationDistance": "General ordering rule is explicitly requested."
+      }
     ]
   },
   "evidenceDistance": {
@@ -1245,6 +1401,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "Matrix arithmetic disappears; the learner must reason directly from supplied polynomial/eigenspace data and reject a root-repetition slogan."
+      }
+    },
+    "T22V3::SIDE279::S08@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "The AP=PD→PDP^-1 derivation is taught and reconstructed on a fresh eigenbasis."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "A complete-looking but order-corrupted decomposition is supplied; the learner must use the defining column identity as a diagnostic."
       }
     }
   },
@@ -1385,6 +1551,25 @@
         ],
         "mathematicalDifference": "Transfer supplies eigenspaces abstractly and forbids reconstructing the matrix; the decision is made from representation-free dimension data.",
         "exposureDisposition": "CLEAR — no supplied M data set appears in instruction."
+      },
+      "T22V3::SIDE279::S08-M@1": {
+        "sessionId": "T22V3::SIDE279::S08@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S08 worked A=[[4,1],[0,2]]",
+          "S08 guided B=[[3,1],[0,2]]"
+        ],
+        "mathematicalDifference": "Main uses new eigenvalues/vectors and explicitly requests the conceptual invertibility reason.",
+        "exposureDisposition": "CLEAR — fixed P,D,inverse are not solved visibly."
+      },
+      "T22V3::SIDE279::S08-T@1": {
+        "sessionId": "T22V3::SIDE279::S08@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S08 generic order warning"
+        ],
+        "mathematicalDifference": "Transfer uses a lower-triangular different matrix and a deliberately mismatched D requiring BP versus PD audit.",
+        "exposureDisposition": "CLEAR — no fixed mismatch or products appear in instruction."
       }
     }
   },
@@ -1484,6 +1669,15 @@
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
         "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S08@1": {
+        "lessonSolvedInstances": [
+          "A=[[4,1],[0,2]] worked",
+          "B=[[3,1],[0,2]] guided"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
       }
     }
   },
@@ -1578,6 +1772,18 @@
         "alreadySuppliedByPrompt": "Data and flawed conclusion supplied; correct decision not.",
         "decisivelyRehearsedInVisibleInstruction": "No exact data-only audit solved.",
         "learnerActionActuallyScored": "Dimension-based rejection and diagonalizability conclusion."
+      },
+      "T22V3::SIDE279::S08-M@1": {
+        "claimedLearnerDecision": "Assemble the ordered eigenbasis coordinates and reconstruct the similarity relation.",
+        "alreadySuppliedByPrompt": "Eigenpairs supplied; P,D/inverse/reason not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — proof reconstruction.",
+        "learnerActionActuallyScored": "Ordered construction, AP=PD, inverse verification and basis reason."
+      },
+      "T22V3::SIDE279::S08-T@1": {
+        "claimedLearnerDecision": "Decide whether a proposed P,D ordering is coherent and repair it.",
+        "alreadySuppliedByPrompt": "Corrupted decomposition supplied; location/repair not.",
+        "decisivelyRehearsedInVisibleInstruction": "Only generic warning; no solved mismatch.",
+        "learnerActionActuallyScored": "BP/PD diagnostic, corrected D and general rule."
       }
     }
   },
@@ -1643,6 +1849,11 @@
         "failureMode": "repeated eigenvalue treated as automatic non-diagonalizability",
         "where": "S07 Main+Transfer",
         "discriminator": "repeated eigenspace supplies full dimension/eigenbasis"
+      },
+      {
+        "failureMode": "P columns and D diagonal entries treated as independently reorderable",
+        "where": "S08 Transfer",
+        "discriminator": "mismatched proposed D makes BP≠PD until repaired"
       }
     ],
     "designGateCoverage": [
