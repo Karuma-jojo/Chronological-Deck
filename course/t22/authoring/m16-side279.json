@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 11,
-    "ownershipClaimCount": 33,
-    "fixedAssessments": 22,
+    "authoredSessions": 12,
+    "ownershipClaimCount": 36,
+    "fixedAssessments": 24,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -516,6 +516,46 @@
       "guidedFeedback": "Check after attempting. S^-1=[[1,0],[-1,1]], B=[[1,0],[3,4]]. e1 (λ=1) becomes (1,-1), and e2 (λ=4) stays (0,1). Direct multiplication verifies both. The determinant identity gives the same characteristic polynomial automatically.",
       "main": "T22V3::SIDE279::S11-M@1",
       "transfer": "T22V3::SIDE279::S11-T@1"
+    },
+    {
+      "order": 12,
+      "id": "T22V3::SIDE279::S12@1",
+      "moduleId": "SIDE279",
+      "title": "A real matrix can have nonreal modes",
+      "focus": "Introduce only the complex-number language needed to interpret nonreal eigenvalues of real matrices, conjugate pairs, and the distinction between real and complex eigendirections.",
+      "purpose": "S13 will prove that real symmetric matrices avoid nonreal eigenvalues. Before that contrast is meaningful, the learner needs a bounded bridge showing that an arbitrary real matrix may have no real eigenvector even though it has complex eigenpairs.",
+      "centralCapability": "Solve a simple characteristic equation with negative discriminant using i, verify a complex eigenpair for a real matrix, and state the scalar field when saying whether eigenvalues/eigenvectors exist.",
+      "principalObstacle": "'No real roots' is inflated into 'no eigenvalues', or complex eigenvalues are treated as evidence that the original matrix entries must be complex.",
+      "entryPrerequisites": [
+        "S03 characteristic polynomial",
+        "M02 quadratic algebra over the reals",
+        "S01 distinction between real eigendirection and fixed vector"
+      ],
+      "requiredOwnership": [
+        "Use i^2=-1 to solve a simple quadratic characteristic equation with negative real discriminant and identify the conjugate eigenvalue pair.",
+        "Verify a supplied/constructed complex eigenvector for a real matrix by direct matrix-vector multiplication.",
+        "Distinguish 'no real eigenvalue/eigenvector' from 'no eigenvalue over C' and state the scalar field explicitly."
+      ],
+      "applicationScope": "2×2 real matrices with simple conjugate imaginary eigenvalues; only minimal complex arithmetic.",
+      "transferScope": "Audit a report that mistakes absence of real characteristic roots for absence of eigenvalues over the complex numbers.",
+      "inScope": [
+        "i^2=-1",
+        "a+bi",
+        "complex conjugate roots for real polynomials",
+        "complex eigenpair verification",
+        "field qualification"
+      ],
+      "outOfScope": [
+        "general complex inner-product spaces",
+        "Hermitian matrices",
+        "full complex diagonalization",
+        "complex Jordan theory"
+      ],
+      "exitCondition": "Handle a simple nonreal eigenpair honestly and qualify eigenvalue statements by R versus C.",
+      "lesson": "Orient. S01 showed that a real linear map can fail to preserve any nonzero real direction. The characteristic equation now tells us what may still exist if we enlarge the scalar field.\n\nMinimal bridge. Define i by i^2=-1. A complex number is a+bi with real a,b. For a polynomial with real coefficients, nonreal roots occur in conjugate pairs: if p(z)=0, then p(conj(z))=conj(p(z))=0. We use only this amount of complex arithmetic here.\n\nWorked example. Let A=[[0,-4],[1,0]]. Then p_A(t)=det(A-tI)=t^2+4, so over R there are no eigenvalues. Over C, t=±2i. For λ=2i, v=(2i,1) is nonzero and A v=(-4,2i)=2i(2i,1), so it is a complex eigenvector. The conjugate vector (-2i,1) works for -2i.\n\nInterpret carefully. The matrix A is still real. The complex pair describes structure that cannot be represented by a real invariant line. For real two-dimensional dynamics such pairs are associated with rotational/oscillatory behaviour, but M16 does not build a full complex dynamical theory here.\n\nGuided practice. Let B=[[0,-1],[4,0]]. Compute p_B(t), solve its roots over C, and verify one complex eigenvector. State separately what is true over R and over C.\n\nFade. Main uses a different scale and asks for both roots and one verified complex eigenvector. Transfer begins with a false domain conclusion and requires field-qualified repair.\n\nDistinction check. 'A is a real matrix' describes its entries. 'A has only real eigenvalues' is an additional property and is false for arbitrary real matrices.",
+      "guidedFeedback": "Check after attempting. p_B(t)=t^2+4, so the roots are ±2i. For λ=2i, v=(1,-2i) works because Bv=(2i,4)=2i(1,-2i). Over R there is no eigenvalue/eigenvector; over C there are two eigenvalues with complex eigenvectors.",
+      "main": "T22V3::SIDE279::S12-M@1",
+      "transfer": "T22V3::SIDE279::S12-T@1"
     }
   ],
   "problems": {
@@ -671,6 +711,20 @@
       "order": 11,
       "kind": "transfer",
       "prompt": "Let C=diag(3,5), R=[[1,0],[2,1]], and D=R^-1CR=[[3,0],[4,5]]. A report says: “C and D are similar, so they have the same eigenvalues and the same eigenvectors e1,e2.” Audit the second half only. Test e1 for D, compute R^-1e1 and R^-1e2, and state the correct similarity rule for eigenvector coordinates.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S12-M@1": {
+      "id": "T22V3::SIDE279::S12-M@1",
+      "order": 12,
+      "kind": "main",
+      "prompt": "Let A=[[0,-9],[1,0]]. (a) Compute p_A(t) and solve the characteristic equation over C. (b) Verify directly that v=(3i,1) is an eigenvector for one root, including the scalar multiplication. (c) State precisely what can be said about eigenvalues/eigenvectors over R versus over C.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S12-T@1": {
+      "id": "T22V3::SIDE279::S12-T@1",
+      "order": 12,
+      "kind": "transfer",
+      "prompt": "Let M=[[0,-16],[1,0]]. A report computes p_M(t)=t^2+16 and concludes: “M has no eigenvalues.” Audit the statement. Give the correct conclusion over R and over C, list the complex eigenvalues, and verify one complex eigenvector.",
       "obligationVersion": 1
     }
   },
@@ -1082,6 +1136,42 @@
         }
       ],
       "marking": "The prompt asks to audit only the eigenvector-coordinate half; do not deduct for accepting the supplied same-eigenvalues statement."
+    },
+    "T22V3::SIDE279::S12-M@1": {
+      "reference": "p_A(t)=t^2+9. Over C the roots are λ=3i and λ=-3i. For v=(3i,1), Av=(-9,3i) and 3i v=(9i^2,3i)=(-9,3i), so Av=3iv. Over R, A has no real eigenvalue and therefore no nonzero real eigenvector; over C it has the conjugate eigenvalues ±3i and corresponding complex eigenvectors.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes p_A(t)=t^2+9 and roots ±3i over C."
+        },
+        {
+          "points": 4,
+          "criterion": "Directly verifies A(3i,1)=3i(3i,1)=(-9,3i) using i^2=-1."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly distinguishes absence of real eigenvalues/eigenvectors from existence of complex eigenpairs."
+        }
+      ],
+      "marking": "Equivalent nonzero complex rescaling of the eigenvector is accepted."
+    },
+    "T22V3::SIDE279::S12-T@1": {
+      "reference": "The unqualified conclusion is false. Over R, t^2+16 has no root, so M has no real eigenvalue/eigenvector. Over C, the eigenvalues are ±4i. For λ=4i, v=(4i,1) satisfies Mv=(-16,4i)=4i(4i,1), so M does have complex eigenpairs.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Repairs the statement by distinguishing the real and complex scalar fields."
+        },
+        {
+          "points": 2,
+          "criterion": "Finds complex eigenvalues ±4i."
+        },
+        {
+          "points": 4,
+          "criterion": "Provides and verifies a valid complex eigenvector for one eigenvalue, such as (4i,1) for 4i."
+        }
+      ],
+      "marking": "A conjugate eigenvector for -4i is equally valid."
     }
   },
   "coverage": {
@@ -1139,6 +1229,11 @@
       "Prove det(B-tI)=det(A-tI) when B=S^-1AS, hence similar matrices have the same characteristic polynomial and eigenvalues.",
       "Transform an eigenvector coordinate vector v of A into S^-1v for B and verify the corresponding eigenvalue is unchanged.",
       "Reject the claim that similar matrices must have identical eigenvector coordinate lists."
+    ],
+    "T22V3::SIDE279::S12@1": [
+      "Use i^2=-1 to solve a simple quadratic characteristic equation with negative real discriminant and identify the conjugate eigenvalue pair.",
+      "Verify a supplied/constructed complex eigenvector for a real matrix by direct matrix-vector multiplication.",
+      "Distinguish 'no real eigenvalue/eigenvector' from 'no eigenvalue over C' and state the scalar field explicitly."
     ]
   },
   "claimEvidence": {
@@ -1779,6 +1874,68 @@
         "escapeAttempt": "Saying only 'similar matrices have same eigenvalues' does not address the scored false claim.",
         "generalizationDistance": "Exactly the misconception direction."
       }
+    ],
+    "T22V3::SIDE279::S12@1": [
+      {
+        "claim": "Use i^2=-1 to solve a simple quadratic characteristic equation with negative real discriminant and identify the conjugate eigenvalue pair.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S12-M@1",
+          "T22V3::SIDE279::S12-T@1"
+        ],
+        "publicRequestExact": [
+          "solve the characteristic equation over C",
+          "list the complex eigenvalues"
+        ],
+        "rubricEvidence": [
+          "Computes p_A(t)=t^2+9 and roots ±3i over C.",
+          "Finds complex eigenvalues ±4i."
+        ],
+        "disposition": "adequate",
+        "why": "Both tasks explicitly solve negative-discriminant quadratics via i and produce conjugate pairs.",
+        "escapeAttempt": "Saying 'no real roots' without complex roots loses the rows.",
+        "generalizationDistance": "Simple quadratic complex bridge only."
+      },
+      {
+        "claim": "Verify a supplied/constructed complex eigenvector for a real matrix by direct matrix-vector multiplication.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S12-M@1",
+          "T22V3::SIDE279::S12-T@1"
+        ],
+        "publicRequestExact": [
+          "Verify directly that v=(3i,1) is an eigenvector",
+          "verify one complex eigenvector"
+        ],
+        "rubricEvidence": [
+          "Directly verifies A(3i,1)=3i(3i,1)=(-9,3i) using i^2=-1.",
+          "Provides and verifies a valid complex eigenvector for one eigenvalue, such as (4i,1) for 4i."
+        ],
+        "disposition": "adequate",
+        "why": "Direct complex matrix-vector verification is scored twice on distinct matrices.",
+        "escapeAttempt": "Roots without vector verification cannot earn these rows.",
+        "generalizationDistance": "Supplied/constructed 2D complex eigenvectors only."
+      },
+      {
+        "claim": "Distinguish 'no real eigenvalue/eigenvector' from 'no eigenvalue over C' and state the scalar field explicitly.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S12-M@1",
+          "T22V3::SIDE279::S12-T@1"
+        ],
+        "publicRequestExact": [
+          "State precisely what can be said ... over R versus over C.",
+          "Give the correct conclusion over R and over C"
+        ],
+        "rubricEvidence": [
+          "Correctly distinguishes absence of real eigenvalues/eigenvectors from existence of complex eigenpairs.",
+          "Repairs the statement by distinguishing the real and complex scalar fields."
+        ],
+        "disposition": "adequate",
+        "why": "Field qualification is literally requested and scored.",
+        "escapeAttempt": "Unqualified 'no eigenvalues' fails.",
+        "generalizationDistance": "Exactly the R-versus-C distinction."
+      }
     ]
   },
   "evidenceDistance": {
@@ -1890,6 +2047,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "A partially true report must be surgically audited: eigenvalues remain accepted while identical eigenvector coordinates are disproved and repaired."
+      }
+    },
+    "T22V3::SIDE279::S12@1": {
+      "main": {
+        "classification": "retrieval",
+        "mechanism": "Minimal complex bridge and verification workflow are taught, then applied to a fresh scaled matrix."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "A false domain-wide statement is supplied; the learner must preserve the correct real conclusion while repairing the complex one."
       }
     }
   },
@@ -2105,6 +2272,25 @@
         ],
         "mathematicalDifference": "Transfer uses a distinct lower shear and asks to audit only one half of a mixed true/false report.",
         "exposureDisposition": "CLEAR — no fixed D/eigenvectors appear in instruction."
+      },
+      "T22V3::SIDE279::S12-M@1": {
+        "sessionId": "T22V3::SIDE279::S12@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S12 worked [[0,-4],[1,0]]",
+          "S12 guided [[0,-1],[4,0]]"
+        ],
+        "mathematicalDifference": "Main uses scale 9 and eigenvector (3i,1), not any solved pair.",
+        "exposureDisposition": "CLEAR."
+      },
+      "T22V3::SIDE279::S12-T@1": {
+        "sessionId": "T22V3::SIDE279::S12@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S12 general field-qualification warning"
+        ],
+        "mathematicalDifference": "Transfer uses scale 16 and an unqualified report; eigenvalues/eigenvector differ from worked/guided/Main.",
+        "exposureDisposition": "CLEAR."
       }
     }
   },
@@ -2236,6 +2422,15 @@
         "lessonSolvedInstances": [
           "A=diag(2,3), S shear",
           "guided A=diag(1,4), different shear"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S12@1": {
+        "lessonSolvedInstances": [
+          "[[0,-4],[1,0]] worked",
+          "[[0,-1],[4,0]] guided"
         ],
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
@@ -2382,6 +2577,18 @@
         "alreadySuppliedByPrompt": "Mixed report supplied; which half fails is cued ('audit second half only'), so task tests diagnosis/repair not discovery.",
         "decisivelyRehearsedInVisibleInstruction": "No exact pair solved.",
         "learnerActionActuallyScored": "Countercheck and transformed coordinates/rule."
+      },
+      "T22V3::SIDE279::S12-M@1": {
+        "claimedLearnerDecision": "Carry the eigenproblem into C and qualify conclusions by field.",
+        "alreadySuppliedByPrompt": "Matrix supplied; roots/vector verification/domain conclusions not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — retrieval.",
+        "learnerActionActuallyScored": "Complex roots, eigenvector verification and field distinction."
+      },
+      "T22V3::SIDE279::S12-T@1": {
+        "claimedLearnerDecision": "Decide which part of 'no eigenvalues' is true over R and false over C.",
+        "alreadySuppliedByPrompt": "False unqualified claim supplied; repair not.",
+        "decisivelyRehearsedInVisibleInstruction": "No exact matrix/report.",
+        "learnerActionActuallyScored": "Field-qualified audit plus complex pair."
       }
     }
   },
@@ -2467,6 +2674,11 @@
         "failureMode": "similar matrices assumed to have identical eigenvector coordinate lists",
         "where": "S11 Transfer",
         "discriminator": "e1 fails directly while R^-1e1 succeeds"
+      },
+      {
+        "failureMode": "no real characteristic roots inflated into no eigenvalues at all",
+        "where": "S12 Transfer",
+        "discriminator": "same real matrix has ±4i over C and verified complex eigenvector"
       }
     ],
     "designGateCoverage": [
