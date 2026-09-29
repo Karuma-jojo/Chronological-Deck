@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 1,
-    "ownershipClaimCount": 3,
-    "fixedAssessments": 2,
+    "authoredSessions": 2,
+    "ownershipClaimCount": 6,
+    "fixedAssessments": 4,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -133,6 +133,45 @@
       "guidedFeedback": "Check after attempting. Cu=(3,3)=3u, so u has λ=3 and invariant line span(1,1). Cv=(0,1)=v, so v has λ=1 and invariant line span(0,1). Cr=(3,2) is not proportional to r, so r is not an eigenvector. Therefore C^4u=3^4u=81(1,1)=(81,81).",
       "main": "T22V3::SIDE279::S01-M@1",
       "transfer": "T22V3::SIDE279::S01-T@1"
+    },
+    {
+      "order": 2,
+      "id": "T22V3::SIDE279::S02@1",
+      "moduleId": "SIDE279",
+      "title": "An eigenspace is a kernel",
+      "focus": "Rewrite Av=λv as (A-λI)v=0, identify E_λ as a null space, and separate the eigenspace subspace from its nonzero eigenvectors.",
+      "purpose": "S01 identified special directions one candidate at a time. S02 turns one verified eigenvalue into the full family of vectors sharing it, using M14 null-space structure before any characteristic-polynomial machinery appears.",
+      "centralCapability": "For a supplied real λ, form A-λI, solve its homogeneous system, report a basis/span for E_λ, and distinguish the zero vector's membership in the eigenspace from the nonzero requirement for eigenvectors.",
+      "principalObstacle": "The equation Av=λv is treated as a one-vector check rather than a homogeneous system; alternatively the zero vector is either wrongly excluded from E_λ or wrongly promoted to an eigenvector.",
+      "entryPrerequisites": [
+        "S01 eigenpair definition and invariant line",
+        "M14 homogeneous systems and null spaces",
+        "M13 span/subspace/basis language"
+      ],
+      "requiredOwnership": [
+        "For a supplied real λ, rewrite Av=λv as (A-λI)v=0 and compute E_λ=Null(A-λI) as a span/basis.",
+        "Distinguish the eigenspace E_λ, which is a subspace containing 0, from the set of eigenvectors for λ, which consists of the nonzero vectors in E_λ.",
+        "Audit whether a proposed set of eigenvectors is itself an eigenspace by checking subspace requirements and the zero-vector boundary."
+      ],
+      "applicationScope": "Exact finite real square matrices with λ supplied; systematic discovery of λ remains S03.",
+      "transferScope": "Audit a report that removes zero from a correct eigenline and then incorrectly calls the resulting set an eigenspace.",
+      "inScope": [
+        "(A-λI)v=0",
+        "eigenspace as null space",
+        "basis/span description",
+        "zero-vector distinction",
+        "subspace audit"
+      ],
+      "outOfScope": [
+        "characteristic polynomial",
+        "finding unknown eigenvalues",
+        "algebraic/geometric multiplicity"
+      ],
+      "exitCondition": "Given A and a supplied λ, compute the entire eigenspace and state exactly which members are eigenvectors.",
+      "lesson": "Orient. S01 let us test one candidate v. But once λ is known, we want every vector with that eigenvalue. Start from Av=λv and move all terms to one side: (A-λI)v=0. M14 already taught how to solve a homogeneous system, so the new object is built from an old one.\n\nDefine. For a fixed scalar λ, the eigenspace is E_λ={v:Av=λv}=Null(A-λI). Because every null space is a subspace, E_λ contains 0 and is closed under linear combinations. Eigenvectors for λ are the nonzero members of E_λ. So “eigenspace” and “set of eigenvectors” are not literally the same set.\n\nWorked example. Let A=[[2,1],[0,2]] and suppose λ=2 is supplied. Then A-2I=[[0,1],[0,0]]. Solving (A-2I)(x,y)^T=0 gives y=0 and x free, so E_2=span{(1,0)}. Every nonzero (t,0) is an eigenvector with λ=2; (0,0) belongs to E_2 but is not an eigenvector. If instead λ=1 is supplied, A-I=[[1,1],[0,1]] has only the zero solution, so E_1={0}; therefore 1 is not an eigenvalue.\n\nConnect. This uses no new elimination theorem. The only new move is recognizing the eigenvector equation as a null-space problem for the shifted matrix A-λI.\n\nGuided practice. Let B=[[3,0,0],[0,3,1],[0,0,1]] and take λ=3. Form B-3I, solve the homogeneous system, give a basis for E_3, and state which vectors in that eigenspace are eigenvectors.\n\nFade. Main supplies a new 3x3 matrix and two λ values. Transfer stops being a calculation and instead asks whether a proposed punctured line is an eigenspace.\n\nDistinction check. E_λ must include zero because it is a null space. The zero vector is nevertheless never called an eigenvector. If Null(A-λI)={0}, then there is no eigenvector for that λ.",
+      "guidedFeedback": "Check after attempting. B-3I=[[0,0,0],[0,0,1],[0,0,-2]], so z=0 while x,y are free. Thus E_3=span{(1,0,0),(0,1,0)}. Every nonzero vector in this plane is an eigenvector with λ=3; the zero vector is in E_3 but is not an eigenvector.",
+      "main": "T22V3::SIDE279::S02-M@1",
+      "transfer": "T22V3::SIDE279::S02-T@1"
     }
   ],
   "problems": {
@@ -148,6 +187,20 @@
       "order": 1,
       "kind": "transfer",
       "prompt": "Let R=[[0,-1],[1,0]]. A report says: “R preserves the length of every vector, so every nonzero vector is an eigenvector with eigenvalue 1; in particular e1=(1,0) is fixed.” Audit the report. Give a decisive geometric or algebraic reason that the length claim does not imply the eigenvector claim, test e1 directly, and determine whether R has any nonzero real eigenvector.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S02-M@1": {
+      "id": "T22V3::SIDE279::S02-M@1",
+      "order": 2,
+      "kind": "main",
+      "prompt": "Let A=[[4,1,0],[0,4,0],[0,0,2]]. (a) With λ=4 supplied, form A-4I, solve (A-4I)v=0, and give a basis/span description of E_4. (b) Repeat for the supplied λ=2. (c) For each eigenspace, state whether 0 belongs to it and which members are actually eigenvectors.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S02-T@1": {
+      "id": "T22V3::SIDE279::S02-T@1",
+      "order": 2,
+      "kind": "transfer",
+      "prompt": "Let C=[[5,0],[0,1]]. A report writes E_5={t(1,0): t≠0} and says: “This is the eigenspace for 5 because every vector in the set is an eigenvector; the zero vector should be excluded because it is not an eigenvector.” Audit the report. Give the actual E_5, explain whether the reported set is a subspace, and reconcile the role of 0.",
       "obligationVersion": 1
     }
   },
@@ -187,6 +240,42 @@
         }
       ],
       "marking": "Do not require complex-number notation. A correct geometric 90-degree-rotation proof or the real equation λ^2=-1 is sufficient."
+    },
+    "T22V3::SIDE279::S02-M@1": {
+      "reference": "For λ=4, A-4I=[[0,1,0],[0,0,0],[0,0,-2]], so y=0,z=0,x is free and E_4=span{(1,0,0)}. For λ=2, A-2I=[[2,1,0],[0,2,0],[0,0,0]], so y=0,x=0,z is free and E_2=span{(0,0,1)}. The zero vector belongs to both eigenspaces because each is a null space, but the eigenvectors are precisely the nonzero members of the corresponding eigenspace.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Correctly forms A-4I, solves the homogeneous system and reports E_4=span{(1,0,0)}."
+        },
+        {
+          "points": 4,
+          "criterion": "Correctly forms A-2I, solves the homogeneous system and reports E_2=span{(0,0,1)}."
+        },
+        {
+          "points": 2,
+          "criterion": "States that 0 belongs to each eigenspace but is not an eigenvector, so only nonzero members are eigenvectors."
+        }
+      ],
+      "marking": "Accept equivalent parametrizations/bases. Score the zero-vector distinction only if both membership in the eigenspace and exclusion from eigenvectors are correct."
+    },
+    "T22V3::SIDE279::S02-T@1": {
+      "reference": "The actual eigenspace is E_5=Null(C-5I)=span{(1,0)}={t(1,0):t∈R}. The reported punctured line contains only eigenvectors, but it is not a subspace because it omits 0 (and thus cannot be a null space). Zero must be included in E_5 even though zero itself is not an eigenvector. Hence the set of eigenvectors for 5 is E_5\\{0}, not E_5 itself.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Gives E_5=span{(1,0)} with all real scalar multiples, including 0."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that the punctured line is not a subspace because it omits 0."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly distinguishes the eigenspace from its nonzero eigenvectors and reconciles why 0 belongs to one but not the other."
+        }
+      ],
+      "marking": "Accept any correct subspace argument; omission of zero is already decisive."
     }
   },
   "coverage": {
@@ -194,6 +283,11 @@
       "Verify eigenpair status Av=λv for supplied nonzero real candidates by exact proportionality, recovering λ when it exists.",
       "Use linearity to justify that a nonzero scalar rescaling of a verified eigenvector represents the same eigendirection and retains the same eigenvalue.",
       "Distinguish preserved direction from fixed-vector or preserved-length claims and use a verified eigenpair to justify a specified repeated action A^k v=λ^k v."
+    ],
+    "T22V3::SIDE279::S02@1": [
+      "For a supplied real λ, rewrite Av=λv as (A-λI)v=0 and compute E_λ=Null(A-λI) as a span/basis.",
+      "Distinguish the eigenspace E_λ, which is a subspace containing 0, from the set of eigenvectors for λ, which consists of the nonzero vectors in E_λ.",
+      "Audit whether a proposed set of eigenvectors is itself an eigenspace by checking subspace requirements and the zero-vector boundary."
     ]
   },
   "claimEvidence": {
@@ -252,6 +346,65 @@
         "escapeAttempt": "Brute-force multiplication without eigenpair reasoning loses the Main reasoning criterion; norm preservation alone cannot satisfy Transfer.",
         "generalizationDistance": "Claim is bounded to using a verified eigenpair for a specified power, not proving a theorem for all k."
       }
+    ],
+    "T22V3::SIDE279::S02@1": [
+      {
+        "claim": "For a supplied real λ, rewrite Av=λv as (A-λI)v=0 and compute E_λ=Null(A-λI) as a span/basis.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S02-M@1"
+        ],
+        "publicRequestExact": [
+          "With λ=4 supplied, form A-4I, solve (A-4I)v=0, and give a basis/span description of E_4.",
+          "Repeat for the supplied λ=2."
+        ],
+        "rubricEvidence": [
+          "Correctly forms A-4I, solves the homogeneous system and reports E_4=span{(1,0,0)}.",
+          "Correctly forms A-2I, solves the homogeneous system and reports E_2=span{(0,0,1)}."
+        ],
+        "disposition": "adequate",
+        "why": "Both supplied λ values require the full shift→homogeneous solve→span workflow.",
+        "escapeAttempt": "Stating an eigenvector without forming/solving the shifted system cannot earn both rows.",
+        "generalizationDistance": "Claim is bounded to supplied λ and exact finite matrices."
+      },
+      {
+        "claim": "Distinguish the eigenspace E_λ, which is a subspace containing 0, from the set of eigenvectors for λ, which consists of the nonzero vectors in E_λ.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S02-M@1",
+          "T22V3::SIDE279::S02-T@1"
+        ],
+        "publicRequestExact": [
+          "For each eigenspace, state whether 0 belongs to it and which members are actually eigenvectors.",
+          "reconcile the role of 0."
+        ],
+        "rubricEvidence": [
+          "States that 0 belongs to each eigenspace but is not an eigenvector, so only nonzero members are eigenvectors.",
+          "Correctly distinguishes the eigenspace from its nonzero eigenvectors and reconciles why 0 belongs to one but not the other."
+        ],
+        "disposition": "adequate",
+        "why": "Both construction and audit surfaces explicitly score the zero-in-space/nonzero-eigenvector distinction.",
+        "escapeAttempt": "Calling E_λ the set of eigenvectors loses the zero-vector criteria.",
+        "generalizationDistance": "Literal set distinction is directly requested."
+      },
+      {
+        "claim": "Audit whether a proposed set of eigenvectors is itself an eigenspace by checking subspace requirements and the zero-vector boundary.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S02-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit the report. Give the actual E_5, explain whether the reported set is a subspace, and reconcile the role of 0."
+        ],
+        "rubricEvidence": [
+          "Explains that the punctured line is not a subspace because it omits 0.",
+          "Correctly distinguishes the eigenspace from its nonzero eigenvectors and reconciles why 0 belongs to one but not the other."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer supplies the punctured-line error and requires a subspace audit plus repair.",
+        "escapeAttempt": "Merely saying all listed vectors are eigenvectors does not establish eigenspace status.",
+        "generalizationDistance": "Claim is an audit capability, exactly matching the task direction."
+      }
     ]
   },
   "evidenceDistance": {
@@ -263,6 +416,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "The task reverses direction into error diagnosis on a 90-degree rotation, contrasts norm preservation with direction preservation, and requires a global no-real-eigendirection conclusion."
+      }
+    },
+    "T22V3::SIDE279::S02@1": {
+      "main": {
+        "classification": "retrieval",
+        "mechanism": "Same eigenspace-as-kernel workflow as instruction on a fresh 3x3 matrix and two supplied eigenvalues."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Calculation is reversed into a set/subspace audit where the mathematically decisive issue is the missing zero vector."
       }
     }
   },
@@ -288,6 +451,25 @@
         ],
         "mathematicalDifference": "Transfer supplies a 90-degree rotation, requires audit of a false preserved-length inference, direct e1 refutation and a global no-real-eigenvector conclusion.",
         "exposureDisposition": "CLEAR — the rotation matrix and λ^2=-1/no-real-eigenvector result are not solved in visible instruction."
+      },
+      "T22V3::SIDE279::S02-M@1": {
+        "sessionId": "T22V3::SIDE279::S02@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S02 worked A=[[2,1],[0,2]], λ=2/1",
+          "S02 guided B=[[3,0,0],[0,3,1],[0,0,1]], λ=3"
+        ],
+        "mathematicalDifference": "Main uses a new block-triangular 3x3 matrix and computes two distinct one-dimensional eigenspaces.",
+        "exposureDisposition": "CLEAR — neither fixed eigenspace calculation is solved visibly."
+      },
+      "T22V3::SIDE279::S02-T@1": {
+        "sessionId": "T22V3::SIDE279::S02@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S02 distinction that eigenspace contains 0 while eigenvectors exclude it"
+        ],
+        "mathematicalDifference": "Transfer presents a punctured eigenline as a claimed eigenspace and requires subspace/error diagnosis rather than forward null-space computation.",
+        "exposureDisposition": "CLEAR — no punctured-line report or C matrix is solved in instruction."
       }
     }
   },
@@ -332,6 +514,15 @@
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
         "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S02@1": {
+        "lessonSolvedInstances": [
+          "A=[[2,1],[0,2]], λ=2/1",
+          "B=[[3,0,0],[0,3,1],[0,0,1]], λ=3 guided"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
       }
     }
   },
@@ -354,6 +545,18 @@
         "alreadySuppliedByPrompt": "PARTLY — false report supplied, verdict/proof not.",
         "decisivelyRehearsedInVisibleInstruction": "NO — distinction named, but rotation audit/global impossibility not solved.",
         "learnerActionActuallyScored": "Rejects the inference, refutes e1 and proves no real eigendirection exists."
+      },
+      "T22V3::SIDE279::S02-M@1": {
+        "claimedLearnerDecision": "Solve two supplied shifted homogeneous systems and classify which members are eigenvectors.",
+        "alreadySuppliedByPrompt": "λ values are supplied; eigenspaces/solutions are not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — workflow is taught; Main is retrieval.",
+        "learnerActionActuallyScored": "Shift, solve, span and zero/eigenvector distinction."
+      },
+      "T22V3::SIDE279::S02-T@1": {
+        "claimedLearnerDecision": "Decide whether a punctured eigenline qualifies as an eigenspace and repair the set.",
+        "alreadySuppliedByPrompt": "The flawed set/report is supplied; diagnosis is not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — zero distinction is taught, but no solved punctured-set subspace audit appears.",
+        "learnerActionActuallyScored": "Subspace failure diagnosis, actual eigenspace and reconciliation of zero."
       }
     }
   },
@@ -384,6 +587,16 @@
         "failureMode": "matrix powers computed before structure",
         "where": "Main part c",
         "discriminator": "rubric rewards λ^k reasoning"
+      },
+      {
+        "failureMode": "eigenspace treated as only the nonzero eigenvectors",
+        "where": "S02 Transfer",
+        "discriminator": "punctured eigenline fails the subspace/zero test"
+      },
+      {
+        "failureMode": "zero vector promoted to eigenvector because it lies in every eigenspace",
+        "where": "S02 Main+Transfer",
+        "discriminator": "rubrics separately score membership in E_λ and nonzero eigenvector requirement"
       }
     ],
     "designGateCoverage": [
