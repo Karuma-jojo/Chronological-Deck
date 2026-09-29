@@ -1,0 +1,409 @@
+{
+  "version": "m16-side279-v1-pilot-builder-candidate",
+  "instructionVersion": "m16-side279-instruction-v1-pilot",
+  "module": {
+    "order": 16,
+    "id": "SIDE279",
+    "title": "Eigenvalues, Eigenvectors & Spectral Structure",
+    "status": "pilot-builder-candidate-unpublished",
+    "destination": "Interpret and compute finite-dimensional eigenstructure, reason about multiplicity and diagonalizability, prove/use the finite real symmetric spectral structure owned by M16, and apply eigenmodes to repeated discrete linear action without importing M17 factorization/PSD, M20 ODE, M23 numerical-eigensolver or later statistical machinery.",
+    "gate": "Only S01 is authored. This pack is a Gate-3 pilot vertical slice and must not enter the learner route. Gates 4–8 are documented in M16-PILOT-REVIEW.md; scaling is permitted only if the pilot survives those checks.",
+    "nextBoundary": "M17/SIDE280 owns quadratic forms/PSD, QR, Cholesky, SVD and pseudoinverse; M20 owns continuous-time ODE dynamics; M23 owns numerical eigen-computation and conditioning."
+  },
+  "boundary": {
+    "prerequisiteModules": [
+      "SIDE276",
+      "SIDE278"
+    ],
+    "owns": [
+      "eigenvalues, eigenvectors and eigenspaces as invariant-direction structure",
+      "characteristic equation and exact finite eigenspace computation",
+      "algebraic/geometric multiplicity, diagonalizability and defective diagnosis",
+      "similarity invariants of eigenstructure",
+      "bounded complex-eigenvalue interpretation needed for real matrices",
+      "finite real symmetric spectral theorem and orthogonal diagonalization",
+      "discrete repeated linear dynamics through eigenmodes"
+    ],
+    "excludes": [
+      "M17 quadratic forms, PSD, QR, Cholesky, SVD, pseudoinverse and low-rank approximation",
+      "M20 differential-equation systems, matrix exponentials as an ODE method and continuous-time stability",
+      "M23 numerical eigensolvers, conditioning and floating-point stability",
+      "M41 PCA/statistical covariance workflow",
+      "M48 state-space estimation and M49 Markov-chain theory",
+      "Jordan canonical form/generalized eigenvectors as core mastery"
+    ],
+    "decisiveProhibition": "Do not use PSD/SVD/QR numerical algorithms, ODE stability, PCA, Markov-chain theory, Jordan chains or floating-point conditioning as premises for M16 claims."
+  },
+  "coverageAudit": {
+    "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
+    "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
+    "pedagogicalAtoms": 15,
+    "authoredSessions": 1,
+    "ownershipClaimCount": 3,
+    "fixedAssessments": 2,
+    "reviewProvenance": "Builder pilot only. No independent acceptance claim."
+  },
+  "sourceLedger": {
+    "policy": "Repository ownership is authoritative. User-supplied Strang 4e is the deep first-course comparator; MIT 18.06 is the canonical route comparator; Axler 4e is the rigorous theorem/hypothesis source; Hefferon is the broad developmental comparator; MAA + IES/WWC + domain-specific eigentheory education sources inform pedagogy with explicit population limits. All learner tasks are original.",
+    "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
+    "sources": [
+      {
+        "id": "REPO-M16",
+        "role": "curriculum authority",
+        "locator": "Current T22 M65 skeleton/dependencies, semantic ledger, roadmap, accepted M14/M15 packs and downstream legacy contracts",
+        "supports": "M16 entry, ownership, downstream boundaries and publication stop",
+        "limitations": "legacy SIDE279 arc count is comparator only"
+      },
+      {
+        "id": "STRANG-4E",
+        "role": "user-supplied deep first-course comparator",
+        "locator": "Introduction to Linear Algebra 4e Ch.6, especially §6.1, §6.2, §6.4, selected §6.6",
+        "supports": "preserved-direction motivation, eigenpair computation, diagonalization, symmetric structure and similarity",
+        "limitations": "M17 PSD/SVD and M20 ODE material are not imported"
+      },
+      {
+        "id": "MIT-1806",
+        "role": "canonical university route comparator",
+        "locator": "MIT OCW 18.06 Spring 2010 lectures/readings 21–22 and symmetric-matrix lecture 25",
+        "supports": "conventional progression, representations and problem types",
+        "limitations": "nearby Markov/ODE/PD/SVD topics do not override T22 boundaries"
+      },
+      {
+        "id": "AXLER-4E",
+        "role": "rigorous theorem/hypothesis source",
+        "locator": "Linear Algebra Done Right 4e Ch.5 §5A/§5D and Ch.7 §7A/§7B",
+        "supports": "operator-first definitions, diagonalizability hypotheses and finite real spectral theorem",
+        "limitations": "minimal polynomial, generalized eigenvectors, positive operators and SVD not imported"
+      },
+      {
+        "id": "HEFFERON",
+        "role": "broad developmental comparator",
+        "locator": "Linear Algebra, Ch.5 Similarity — definition/examples, diagonalizability, eigenvalues/eigenvectors",
+        "supports": "developmental exposition and standard notation",
+        "limitations": "Jordan and method-of-powers depth deferred"
+      },
+      {
+        "id": "PED-EIGEN",
+        "role": "domain-specific math-education evidence",
+        "locator": "Wawro, Watson & Zandieh 2019; Tabaghi & Sinclair 2013; Tabaghi 2014; JMB APOS/model study 2015",
+        "supports": "eigenspace linear-combination misconceptions and value of geometric/dynamic meaning before pure procedure",
+        "limitations": "specific undergraduate/technology/course contexts; no universal-effect claim"
+      }
+    ]
+  },
+  "sessions": [
+    {
+      "order": 1,
+      "id": "T22V3::SIDE279::S01@1",
+      "moduleId": "SIDE279",
+      "title": "A direction the map does not turn away",
+      "focus": "Define eigenvectors/eigenvalues from invariant one-dimensional directions, distinguish direction preservation from fixed vectors or preserved length, and derive repeated action along one eigenvector.",
+      "purpose": "M14 taught what a linear map does to arbitrary vectors. M16 begins by asking whether any nonzero directions are special enough that the map only rescales them; the concept must exist before the characteristic-polynomial recipe.",
+      "centralCapability": "Given a finite real linear map and fresh candidate vectors, verify or refute eigenvector status from Av=λv, interpret the invariant line, and use λ to predict repeated action along that direction.",
+      "principalObstacle": "A learner may confuse Av=v with Av=λv, preserved norm with preserved direction, or allow v=0 because A0=λ0 for every λ.",
+      "entryPrerequisites": [
+        "M13 nonzero vectors, scalar multiples and span(v)",
+        "M14 matrix-vector action and finite linear maps",
+        "M02/M09 scalar powers for repeated action"
+      ],
+      "requiredOwnership": [
+        "Define and verify an eigenpair Av=λv with v nonzero, allowing λ to be positive, negative or zero.",
+        "Interpret an eigenvector as an invariant one-dimensional subspace span(v) and prove that every nonzero scalar multiple of v has the same eigenvalue.",
+        "Distinguish preserved direction from fixed-vector or preserved-length claims and derive A^k v=λ^k v for integer k≥0."
+      ],
+      "applicationScope": "Exact finite real 2D/3D linear maps; candidate directions are checked directly without characteristic polynomials.",
+      "transferScope": "Audit an orthogonal rotation that preserves length but has no nonzero real eigenvector, forcing the learner to reject preserved-length reasoning.",
+      "inScope": [
+        "invariant line/direction",
+        "eigenvalue and eigenvector definition",
+        "zero-vector exclusion",
+        "nonzero scalar multiples",
+        "λ=0/negative/positive meaning",
+        "repeated action on a verified eigenvector"
+      ],
+      "outOfScope": [
+        "characteristic polynomial",
+        "systematic eigenvalue computation",
+        "multiplicity",
+        "diagonalization",
+        "complex eigenvalues"
+      ],
+      "exitCondition": "On a fresh linear map, verify/refute candidate eigenvectors, identify λ when it exists, explain the invariant line and use the verified eigenpair to predict repeated action without matrix-power brute force.",
+      "lesson": "Orient. M14 taught us to apply a linear map to any vector. Now ask a more structural question: is there a nonzero direction that the map does not turn away from itself? If A sends a nonzero vector v to a scalar multiple of itself, Av=λv, then v is an eigenvector and λ is its eigenvalue. The line span(v) is invariant because every point cv on that line is sent to A(cv)=cAv=cλv, which is still on the same line.\n\nDefinition discipline. The vector must be nonzero. If v=0 were admitted, A0=λ0 would hold for every λ and the word eigenvalue would stop identifying anything. The scalar λ is allowed to be zero: for P=diag(1,0), e2=(0,1) is nonzero and Pe2=0=0e2. A negative λ reverses orientation along the same line; |λ|>1 stretches and |λ|<1 shrinks. Only λ=1 makes every eigenvector on that line a fixed vector.\n\nWorked example. Let A=[[2,1],[0,1]]. For e1=(1,0), Ae1=(2,0)=2e1, so e1 is an eigenvector with λ=2. For w=(1,-1), Aw=(1,-1)=w, so w is an eigenvector with λ=1. But e2=(0,1) maps to (1,1), which is not a scalar multiple of e2, so e2 is not an eigenvector. The decisive test is exact proportionality, not whether the image merely looks similar.\n\nConnect. If Av=λv and c≠0, then A(cv)=cAv=cλv=λ(cv), so all nonzero vectors on the same invariant line share the same eigenvalue. This is about a direction/subspace, even though we represent it by particular nonzero vectors.\n\nRepeated action. Once Av=λv, apply A again: A²v=A(λv)=λAv=λ²v. Induction gives A^k v=λ^k v for every integer k≥0. This conclusion is earned only after the eigenpair is verified.\n\nGuided practice. Let C=[[3,0],[2,1]]. Test u=(1,1), v=(0,1), and r=(1,0). For every eigenvector, identify λ and the invariant line. Then predict C^4u without multiplying four matrices.\n\nFade. The fixed Main changes both the matrix and candidate directions; the Transfer changes the representation entirely to a rotation audit. No fixed answer is solved in the lesson.\n\nDistinction check. Fixed vector means λ=1. Preserved length says ||Av||=||v||. Eigenvector says Av is exactly a real scalar multiple of the nonzero v. These are different properties.",
+      "guidedFeedback": "Check after attempting. Cu=(3,3)=3u, so u has λ=3 and invariant line span(1,1). Cv=(0,1)=v, so v has λ=1 and invariant line span(0,1). Cr=(3,2) is not proportional to r, so r is not an eigenvector. Therefore C^4u=3^4u=81(1,1)=(81,81).",
+      "main": "T22V3::SIDE279::S01-M@1",
+      "transfer": "T22V3::SIDE279::S01-T@1"
+    }
+  ],
+  "problems": {
+    "T22V3::SIDE279::S01-M@1": {
+      "id": "T22V3::SIDE279::S01-M@1",
+      "order": 1,
+      "kind": "main",
+      "prompt": "Let A=[[1,2],[2,1]]. Consider p=(1,1), q=(2,-2), and r=(1,0). (a) For each candidate, compute Av and decide whether it is an eigenvector over R; when it is, state λ. (b) Explain why q and (1,-1) represent the same eigendirection and must have the same eigenvalue. (c) Without multiplying A by itself five times, compute A^5 p and justify the shortcut from the definition.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S01-T@1": {
+      "id": "T22V3::SIDE279::S01-T@1",
+      "order": 1,
+      "kind": "transfer",
+      "prompt": "Let R=[[0,-1],[1,0]]. A report says: “R preserves the length of every vector, so every nonzero vector is an eigenvector with eigenvalue 1; in particular e1=(1,0) is fixed.” Audit the report. Give a decisive geometric or algebraic reason that the length claim does not imply the eigenvector claim, test e1 directly, and determine whether R has any nonzero real eigenvector.",
+      "obligationVersion": 1
+    }
+  },
+  "evaluators": {
+    "T22V3::SIDE279::S01-M@1": {
+      "reference": "Ap=(3,3)=3p, so p is an eigenvector with λ=3. Aq=(-2,2)=-q, so q is an eigenvector with λ=-1. Ar=(1,2), not a scalar multiple of r, so r is not an eigenvector. Since q=2(1,-1), both nonzero vectors lie on the same invariant line; if Av=λv then A(cv)=λ(cv) for c≠0, so they share λ=-1. Finally A^5p=3^5p=243(1,1)=(243,243).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes all three images and correctly classifies p, q and r, including λ=3 and λ=-1 for the eigenvectors."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains the invariant-line/scalar-multiple reason q and (1,-1) share the same eigenvalue, rather than merely observing their coordinates."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses Av=λv to justify A^5p=3^5p=(243,243) without brute-force matrix powers."
+        }
+      ],
+      "marking": "Score only public obligations. Accept any exact proportionality argument and any valid derivation of the repeated-action result."
+    },
+    "T22V3::SIDE279::S01-T@1": {
+      "reference": "R is a 90-degree rotation, so it preserves Euclidean length but changes every nonzero real direction. Re1=(0,1)≠e1 and is not a scalar multiple of e1. Algebraically, if R(a,b)=λ(a,b) with real λ and (a,b)≠(0,0), then -b=λa and a=λb. Substitution gives (1+λ^2)a=0; if a=0 then b=0, contradiction, so λ^2=-1, impossible for real λ. Thus R has no nonzero real eigenvector. Preserved norm is not preserved direction.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Separates length preservation from eigenvector direction preservation and rejects the report's inference."
+        },
+        {
+          "points": 2,
+          "criterion": "Tests e1 directly and shows Re1=(0,1) is not a scalar multiple of e1."
+        },
+        {
+          "points": 5,
+          "criterion": "Correctly concludes there is no nonzero real eigenvector, with a decisive geometric rotation argument or equivalent real algebraic derivation."
+        }
+      ],
+      "marking": "Do not require complex-number notation. A correct geometric 90-degree-rotation proof or the real equation λ^2=-1 is sufficient."
+    }
+  },
+  "coverage": {
+    "T22V3::SIDE279::S01@1": [
+      "Define and verify an eigenpair Av=λv with v nonzero, allowing λ to be positive, negative or zero.",
+      "Interpret an eigenvector as an invariant one-dimensional subspace span(v) and prove that every nonzero scalar multiple of v has the same eigenvalue.",
+      "Distinguish preserved direction from fixed-vector or preserved-length claims and derive A^k v=λ^k v for integer k≥0."
+    ]
+  },
+  "claimEvidence": {
+    "T22V3::SIDE279::S01@1": [
+      {
+        "claim": "Define and verify an eigenpair Av=λv with v nonzero, allowing λ to be positive, negative or zero.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S01-M@1"
+        ],
+        "publicRequestExact": [
+          "For each candidate, compute Av and decide whether it is an eigenvector over R; when it is, state λ."
+        ],
+        "rubricEvidence": [
+          "Computes all three images and correctly classifies p, q and r, including λ=3 and λ=-1 for the eigenvectors."
+        ],
+        "disposition": "adequate",
+        "why": "The Main requires direct proportionality checks and observes both positive and negative eigenvalues on a fresh matrix.",
+        "escapeAttempt": "A learner who only names eigenvectors without computing images or λ cannot earn the row.",
+        "generalizationDistance": "Fresh symmetric matrix and three candidates, none used in instruction."
+      },
+      {
+        "claim": "Interpret an eigenvector as an invariant one-dimensional subspace span(v) and prove that every nonzero scalar multiple of v has the same eigenvalue.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S01-M@1"
+        ],
+        "publicRequestExact": [
+          "Explain why q and (1,-1) represent the same eigendirection and must have the same eigenvalue."
+        ],
+        "rubricEvidence": [
+          "Explains the invariant-line/scalar-multiple reason q and (1,-1) share the same eigenvalue, rather than merely observing their coordinates."
+        ],
+        "disposition": "adequate",
+        "why": "The learner must supply the linearity/scalar-multiple argument on a changed representative.",
+        "escapeAttempt": "Saying 'they point the same way' without connecting A(cv)=λ(cv) is incomplete.",
+        "generalizationDistance": "Representation changes from one vector to the line it spans."
+      },
+      {
+        "claim": "Distinguish preserved direction from fixed-vector or preserved-length claims and derive A^k v=λ^k v for integer k≥0.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S01-M@1",
+          "T22V3::SIDE279::S01-T@1"
+        ],
+        "publicRequestExact": [
+          "Without multiplying A by itself five times, compute A^5 p and justify the shortcut from the definition.",
+          "Audit the report... Give a decisive geometric or algebraic reason that the length claim does not imply the eigenvector claim..."
+        ],
+        "rubricEvidence": [
+          "Uses Av=λv to justify A^5p=3^5p=(243,243) without brute-force matrix powers.",
+          "Separates length preservation from eigenvector direction preservation and rejects the report's inference."
+        ],
+        "disposition": "adequate",
+        "why": "Main observes the repeated-action consequence; Transfer independently attacks the preserved-length false model.",
+        "escapeAttempt": "A brute-force power with no eigenpair reasoning loses the Main reasoning row; length preservation alone cannot pass Transfer.",
+        "generalizationDistance": "Two different surfaces: repeated action on a symmetric matrix and theorem/report audit on a rotation."
+      }
+    ]
+  },
+  "evidenceDistance": {
+    "T22V3::SIDE279::S01@1": {
+      "main": {
+        "classification": "near transfer + derivation",
+        "mechanism": "Fresh matrix/candidates; learner must verify eigenpairs, change representatives on the same eigendirection and derive a power consequence."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Rotation audit tests preserved-length versus preserved-direction reasoning and asks for global absence of real eigenvectors."
+      }
+    }
+  },
+  "semanticSeparationAudit": {
+    "status": "pilot-audited-builder",
+    "method": "Compare each fixed task with every visible S01 worked/guided instance at the level of mathematical objects, numbers and requested decisions.",
+    "tasks": {
+      "T22V3::SIDE279::S01-M@1": {
+        "sessionId": "T22V3::SIDE279::S01@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "worked A=[[2,1],[0,1]] with e1,w,e2",
+          "guided C=[[3,0],[2,1]] with u,v,r"
+        ],
+        "mathematicalDifference": "Main uses a symmetric off-diagonal matrix, a negative eigenvalue, a rescaled representative of an eigendirection and a fifth power.",
+        "exposureDisposition": "CLEAR — no Main matrix/candidate triple or final values are solved visibly."
+      },
+      "T22V3::SIDE279::S01-T@1": {
+        "sessionId": "T22V3::SIDE279::S01@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "distinction check: preserved length is not the eigenvector condition"
+        ],
+        "mathematicalDifference": "Transfer supplies a 90-degree rotation, requires audit of a false preserved-length inference, direct e1 refutation and a global no-real-eigenvector conclusion.",
+        "exposureDisposition": "CLEAR — the rotation matrix and λ^2=-1/no-real-eigenvector result are not solved in visible instruction."
+      }
+    }
+  },
+  "prerequisiteAudit": {
+    "status": "pilot-clear",
+    "checks": [
+      {
+        "item": "matrix-vector multiplication",
+        "source": "M14",
+        "decision": "reuse"
+      },
+      {
+        "item": "scalar multiples/span(v)",
+        "source": "M13",
+        "decision": "reuse"
+      },
+      {
+        "item": "scalar powers and induction idea",
+        "source": "M02/M03/M09",
+        "decision": "reuse"
+      },
+      {
+        "item": "no real λ satisfies λ^2=-1",
+        "source": "real-number algebra",
+        "decision": "reuse; complex numbers deliberately not required in S01"
+      },
+      {
+        "item": "characteristic polynomial/determinant",
+        "source": "future M16 S03",
+        "decision": "not consumed by S01"
+      }
+    ]
+  },
+  "instructionSeparation": {
+    "status": "pilot-clear",
+    "sessions": {
+      "T22V3::SIDE279::S01@1": {
+        "lessonSolvedInstances": [
+          "A=[[2,1],[0,1]] candidate checks",
+          "C=[[3,0],[2,1]] guided checks"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
+      }
+    }
+  },
+  "initialVersionAudit": {
+    "status": "new-module-no-prior-canonical-pack",
+    "priorCanonicalPack": null
+  },
+  "authoringPolicy": "S01 only until its Gate-4–8 vertical slice is reviewed. Do not scale the remaining candidate architecture merely because this file parses.",
+  "decisionAudit": {
+    "status": "pilot-audited-builder",
+    "tasks": {
+      "T22V3::SIDE279::S01-M@1": {
+        "claimedLearnerDecision": "Decide which candidate directions are eigenvectors and justify repeated action from the verified eigenpair.",
+        "alreadySuppliedByPrompt": "NO — candidates are supplied; status/λ/reasoning are not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — matrix and values differ; negative λ and rescaled representative are new together.",
+        "learnerActionActuallyScored": "Direct proportionality decisions, invariant-line explanation and eigenvalue-power reasoning."
+      },
+      "T22V3::SIDE279::S01-T@1": {
+        "claimedLearnerDecision": "Decide whether preserved norm implies eigenvector status and whether the rotation has any nonzero real eigendirection.",
+        "alreadySuppliedByPrompt": "PARTLY — false report supplied, verdict/proof not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO — distinction named, but rotation audit/global impossibility not solved.",
+        "learnerActionActuallyScored": "Rejects the inference, refutes e1 and proves no real eigendirection exists."
+      }
+    }
+  },
+  "misconceptionDiscriminatorAudit": {
+    "status": "pilot-covered",
+    "cases": [
+      {
+        "failureMode": "fixed vector confused with eigenvector",
+        "where": "lesson + Main",
+        "discriminator": "q has λ=-1 but is still an eigenvector"
+      },
+      {
+        "failureMode": "preserved length confused with preserved direction",
+        "where": "Transfer",
+        "discriminator": "90-degree rotation preserves norm yet has no real eigendirection"
+      },
+      {
+        "failureMode": "zero vector allowed as eigenvector",
+        "where": "lesson definition discipline",
+        "discriminator": "explicit reason A0=λ0 is non-informative"
+      },
+      {
+        "failureMode": "all scalar multiples treated as different eigendirections",
+        "where": "Main part b",
+        "discriminator": "q=2(1,-1) and same λ through linearity"
+      },
+      {
+        "failureMode": "matrix powers computed before structure",
+        "where": "Main part c",
+        "discriminator": "rubric rewards λ^k reasoning"
+      }
+    ],
+    "designGateCoverage": [
+      "invariant direction vs fixed vector",
+      "preserved length vs preserved direction",
+      "representative vector vs eigendirection"
+    ]
+  },
+  "versionAudit": {
+    "priorReceipt": null,
+    "reviewedHead": null,
+    "instructionChange": "new S01 pilot",
+    "changedAssessments": [
+      "T22V3::SIDE279::S01-M@1",
+      "T22V3::SIDE279::S01-T@1"
+    ],
+    "unchangedOwnershipClaims": [],
+    "learnerEvidenceDisposition": "No learner-facing publication; no prior attempts exist."
+  },
+  "publication": {
+    "status": "not-authorized-pilot-only"
+  }
+}
