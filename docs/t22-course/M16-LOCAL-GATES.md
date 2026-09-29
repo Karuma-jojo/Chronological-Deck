@@ -197,3 +197,25 @@ PASS. Defective diagnosis, noninvertible-P consequence and duplicate-direction r
 PASS. Worked 2×2, guided upper-triangular 3×3, Main lower-triangular 3×3 and data-only Transfer are distinct. No earlier fixed defective instance is reused.
 
 **S10 local disposition: PASS. S11 may open.**
+
+
+## S11 — Same operator, different coordinates
+
+### Gate 4 — teaching
+PASS. Similarity is reconnected to M14 coordinate change. Characteristic-polynomial invariance is proved through (B-tI=S^{-1}(A-tI)S), and eigenvector coordinates are transformed by (S^{-1}). No Jordan machinery is imported.
+
+### Gate 5 — evidence
+Main is **proof reconstruction**. Transfer is **changed-surface Transfer** because it contains a mixed true/false report: same eigenvalues are retained, while identical coordinate eigenvectors must be rejected and repaired. This prevents a blanket “everything changes/everything stays” response.
+
+### Gate 6 — reconstruction/fairness
+For A=diag(4,-1), S=[[1,2],[0,1]], S^-1=[[1,-2],[0,1]] and B=[[4,10],[0,-1]]. e2 transforms to (-2,1), and B(-2,1)=(2,-1)=-1(-2,1). A scratch-text defect in the first stored reference was caught and removed before clearance.
+
+For Transfer D=[[3,0],[4,5]], De1=(3,4) is not proportional to e1; R^-1e1=(1,-2) has λ=3 and R^-1e2=e2 has λ=5.
+
+### Gate 7 — claims
+PASS. Characteristic-polynomial invariance, transformed eigenvector coordinates and rejection of identical coordinate lists are directly observed.
+
+### Gate 8 — separation
+PASS. Three different change-of-basis matrices are used across worked/guided/Main/Transfer, and no fixed similar pair is solved in instruction.
+
+**S11 local disposition: PASS after reference cleanup. S12 may open.**
