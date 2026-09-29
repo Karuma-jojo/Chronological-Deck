@@ -74,6 +74,28 @@ const scale = (c,x) => x.map(v=>c*v);
   }
 }
 
+// Gate-7 ledger guard: cited criteria must exist on the cited public task evaluator.
+// A wrong-but-existing criterion substituted into a claim mapping must be rejected.
+{
+  const criteriaFor = taskId => new Set((a.evaluators[taskId]?.rubric || []).map(row=>row.criterion));
+  const validateLink = link => {
+    for (const criterion of link.rubricEvidence || []) {
+      const appears = (link.taskIds || []).some(taskId => criteriaFor(taskId).has(criterion));
+      assert(appears, `Claim ledger cites non-observer criterion: ${criterion}`);
+    }
+  };
+  for (const link of a.claimEvidence[s.id]) validateLink(link);
+
+  const mutated = structuredClone(a.claimEvidence[s.id][0]);
+  mutated.rubricEvidence = [a.evaluators[s.main].rubric[2].criterion]; // real criterion, wrong observer for claim 1.
+  assert.throws(() => {
+    const expected = new Set(a.claimEvidence[s.id][0].rubricEvidence);
+    for (const criterion of mutated.rubricEvidence) {
+      assert(expected.has(criterion), `Mutated mapping changed reviewed observer to: ${criterion}`);
+    }
+  });
+}
+
 // Known-bad controls for the distinctions the pilot claims to observe.
 {
   // Wrong model: "only fixed vectors are eigenvectors" would reject q, contradicting Aq=-q.
