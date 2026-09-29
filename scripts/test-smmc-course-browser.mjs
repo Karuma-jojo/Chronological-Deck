@@ -251,7 +251,7 @@ try{
   await importPage.screenshot({path:'/tmp/smmc-foundation-desktop.png',fullPage:true});
   await learner.close();await imported.close();
   assert.deepEqual(errors,[]);
-  console.log('PASS: All 12 foundation tasks, guided attempt gate, lazy help, exposure persistence, mobile layout, reload and export/import; SMMC page loads 14 units/28 tasks/88 historical rows; official problem papers are linked; neutral attempts stay separate; self-report does not certify; research metadata and paper viewing are reversible and do not write contamination state.');
+  console.log('PASS: All 12 foundation tasks, guided attempt gate, lazy help, exposure persistence, mobile layout, reload and export/import; SMMC page loads 14 units/28 tasks/88 historical rows; isolated summaries breach only one problem; hint-bearing research is persistent development exposure; whole-paper opening marks the full session; pristine-paper inventory and vault state survive export/import.');
 } finally {
   if(browser)await browser.close();
   server.close();
