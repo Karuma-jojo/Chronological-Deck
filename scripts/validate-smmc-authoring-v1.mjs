@@ -117,6 +117,15 @@ for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2022-A")) {
   expect(exposureClass(wholePaper, problem.id).class === "development", `Full-solution exposure failed for ${problem.id}.`);
 }
 
+const paperProgress = emptySmmcState();
+markPaperExposure(paperProgress, ledger, "2023-B", "attemptedAt", "2026-09-23T14:00:00.000Z");
+expect(paperExposureClass(paperProgress, ledger, "2023-B").class === "attempted", "Paper attempt must outrank opened state.");
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2023-B")) {
+  expect(Boolean(paperProgress.exposures[problem.id]?.statementSeenAt), `Paper attempt failed to mark ${problem.id} statement seen.`);
+}
+markPaperExposure(paperProgress, ledger, "2023-B", "arenaConsumedAt", "2026-09-23T14:05:00.000Z");
+expect(paperExposureClass(paperProgress, ledger, "2023-B").class === "arena-consumed", "Arena use must be the terminal paper vault state.");
+
 const legacyShape = JSON.parse(JSON.stringify(wholePaper));
 delete legacyShape.papers;
 const legacyValidated = validateSmmcState(legacyShape, ledger, [...moduleIds], [...unitIds]);
