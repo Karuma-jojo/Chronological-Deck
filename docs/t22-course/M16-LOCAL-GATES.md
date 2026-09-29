@@ -117,3 +117,23 @@ PASS. Claims are concrete multiplicity computations and misconception diagnosis.
 PASS. Worked contrast uses eigenvalue 4, guided example uses diagonal eigenvalue 5, Main uses eigenvalue 2, and Transfer uses a distinct 3×3 eigenvalue-3 instance. No fixed answer is exposed.
 
 **S06 local disposition: PASS. S07 may open.**
+
+
+## S07 — When eigenvectors form a basis
+
+### Gate 4 — teaching
+PASS. Diagonalizability is introduced as the existence of an eigenbasis, with actual P/D construction deferred to S08. Repeated eigenvalues are handled through eigenspace dimensions, and the n-distinct-real-eigenvalues corollary is derived from S05 independence plus the basis-size theorem.
+
+### Gate 5 — evidence
+Main is **proof reconstruction**: fresh eigenspace calculations plus the general distinct-root corollary. Transfer is **changed-surface Transfer**: the matrix disappears and only polynomial/eigenspace data remain, so the learner must decide from dimension rather than elimination.
+
+### Gate 6 — reconstruction/fairness
+For (A=[[4,2,0],[2,4,0],[0,0,6]]), (p_A=(6-t)^2(2-t)), (E_6=\mathrm{span}\{(1,1,0),(0,0,1)\}), (E_2=\mathrm{span}\{(-1,1,0)\}). The three directions form an eigenbasis. The general corollary proof is valid by S05. The Transfer's supplied dimensions 2+1=3 likewise give an eigenbasis.
+
+### Gate 7 — claims
+PASS. Eigenbasis criterion, dimension decision and n-distinct-real-eigenvalue corollary are all publicly observed.
+
+### Gate 8 — separation
+PASS. Worked diagonal, guided symmetric block, Main different symmetric block, and data-only Transfer are mathematically distinct. No fixed answer is exposed.
+
+**S07 local disposition: PASS. S08 may open.**
