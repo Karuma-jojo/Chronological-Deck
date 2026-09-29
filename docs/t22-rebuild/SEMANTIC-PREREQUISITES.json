@@ -207,7 +207,8 @@
       "id": "SIDE279",
       "mode": "reused",
       "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "bridges": [],
+      "note": "M16 Gate-1 boundary audit on 2026-09-30 found that the finite real spectral-theorem route consumes accepted M15/SIDE278 orthonormal-basis, Gram-Schmidt and orthogonal-complement capability in addition to SIDE276. The candidate branch therefore declares SIDE278 explicitly rather than relying on topological position. M16 remains unpublished pending Gates 2-12 and independent review."
     },
     {
       "order": 17,
