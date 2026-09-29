@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 10,
-    "ownershipClaimCount": 30,
-    "fixedAssessments": 20,
+    "authoredSessions": 11,
+    "ownershipClaimCount": 33,
+    "fixedAssessments": 22,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -479,6 +479,43 @@
       "guidedFeedback": "Check after attempting. E_5=span{(1,0,0)} has dimension 1 and E_-1=span{(0,0,1)} has dimension 1, so only two independent eigendirections are available in R^3. C is defective. Any third column chosen from those same one-dimensional spaces is dependent on an existing column, so P is singular.",
       "main": "T22V3::SIDE279::S10-M@1",
       "transfer": "T22V3::SIDE279::S10-T@1"
+    },
+    {
+      "order": 11,
+      "id": "T22V3::SIDE279::S11@1",
+      "moduleId": "SIDE279",
+      "title": "Same operator, different coordinates",
+      "focus": "Prove that similarity preserves the characteristic polynomial/eigenvalues while eigenvector coordinate lists transform with the basis change.",
+      "purpose": "M14 introduced similar matrices as different coordinate representations of one linear operator. M16 now identifies which spectral data survive that representation change and which coordinate objects change.",
+      "centralCapability": "Given B=S^-1AS, prove spectral invariance and correctly transform eigenvector coordinates instead of claiming similar matrices have identical eigenvector lists.",
+      "principalObstacle": "Similarity is misread as elementwise sameness: if eigenvalues are preserved, learners often assume the same coordinate vector is an eigenvector of both matrices.",
+      "entryPrerequisites": [
+        "M14 similar matrices/change of basis and determinant multiplicativity",
+        "S03 characteristic polynomial",
+        "S08 eigenpair column reasoning"
+      ],
+      "requiredOwnership": [
+        "Prove det(B-tI)=det(A-tI) when B=S^-1AS, hence similar matrices have the same characteristic polynomial and eigenvalues.",
+        "Transform an eigenvector coordinate vector v of A into S^-1v for B and verify the corresponding eigenvalue is unchanged.",
+        "Reject the claim that similar matrices must have identical eigenvector coordinate lists."
+      ],
+      "applicationScope": "Exact finite real similar matrices with an explicitly supplied invertible change-of-basis matrix.",
+      "transferScope": "Audit a same-eigenvector-coordinate claim on a different similar pair and repair it by transforming coordinates.",
+      "inScope": [
+        "similarity spectral invariance",
+        "characteristic polynomial invariance",
+        "eigenvector coordinate transformation"
+      ],
+      "outOfScope": [
+        "Jordan canonical form",
+        "orthogonal similarity special case—S14",
+        "numerical similarity transformations"
+      ],
+      "exitCondition": "Distinguish operator-level spectral invariants from basis-dependent eigenvector coordinates and prove the transformation law.",
+      "lesson": "Orient. M14 taught that B=S^-1AS can represent the same linear operator in different coordinates. What does eigentheory keep, and what changes?\n\nCharacteristic polynomial. Since I=S^-1S, B-tI=S^-1AS-tS^-1S=S^-1(A-tI)S. Taking determinants and using M14 multiplicativity gives det(B-tI)=det(S^-1)det(A-tI)det(S)=det(A-tI). Thus similar matrices have the same characteristic polynomial and the same eigenvalues with the same root multiplicities.\n\nEigenvector coordinates. If Av=λv, define w=S^-1v. Then Bw=S^-1AS(S^-1v)=S^-1Av=λS^-1v=λw. So the same operator-level eigendirection is represented by transformed coordinates; the coordinate list generally changes.\n\nWorked example. Let A=diag(2,3) and S=[[1,1],[0,1]]. Then S^-1=[[1,-1],[0,1]] and B=S^-1AS=[[2,-1],[0,3]]. The A-eigenvector e2 for λ=3 becomes S^-1e2=(-1,1), and indeed B(-1,1)=3(-1,1). The eigenvalue stayed 3; the coordinate vector changed.\n\nGuided practice. Let A=diag(1,4), S=[[1,0],[1,1]], and B=S^-1AS. Compute B, transform e1 and e2 using S^-1, and verify both B-eigenpairs. Then confirm the characteristic polynomials agree without expanding both from scratch.\n\nFade. Main requires both invariance proofs and transformed eigenvectors on fresh data. Transfer starts from a false “same eigenvectors” report and asks for one direct countercheck plus the correct transformed coordinates.\n\nDistinction check. Similarity preserves operator-level spectral data such as characteristic polynomial/eigenvalues. A coordinate column vector is representation-dependent.",
+      "guidedFeedback": "Check after attempting. S^-1=[[1,0],[-1,1]], B=[[1,0],[3,4]]. e1 (λ=1) becomes (1,-1), and e2 (λ=4) stays (0,1). Direct multiplication verifies both. The determinant identity gives the same characteristic polynomial automatically.",
+      "main": "T22V3::SIDE279::S11-M@1",
+      "transfer": "T22V3::SIDE279::S11-T@1"
     }
   ],
   "problems": {
@@ -620,6 +657,20 @@
       "order": 10,
       "kind": "transfer",
       "prompt": "A 3×3 matrix M is known to have E_7=span{(1,0,0)} and E_-2=span{(0,0,1)}, with algebraic multiplicities 2 and 1 respectively. A report proposes P=[(1,0,0),(2,0,0),(0,0,1)] and says: “Now P has three eigenvector columns, so M is diagonalizable.” Audit the proposal without reconstructing M.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S11-M@1": {
+      "id": "T22V3::SIDE279::S11-M@1",
+      "order": 11,
+      "kind": "main",
+      "prompt": "Let A=diag(4,-1), S=[[1,2],[0,1]], and B=S^-1AS. (a) Compute S^-1 and B. (b) Starting from B-tI=S^-1(A-tI)S, prove det(B-tI)=det(A-tI) and state the eigenvalues. (c) Transform the A-eigenvectors e1,e2 with S^-1 and verify the resulting B-eigenpairs.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S11-T@1": {
+      "id": "T22V3::SIDE279::S11-T@1",
+      "order": 11,
+      "kind": "transfer",
+      "prompt": "Let C=diag(3,5), R=[[1,0],[2,1]], and D=R^-1CR=[[3,0],[4,5]]. A report says: “C and D are similar, so they have the same eigenvalues and the same eigenvectors e1,e2.” Audit the second half only. Test e1 for D, compute R^-1e1 and R^-1e2, and state the correct similarity rule for eigenvector coordinates.",
       "obligationVersion": 1
     }
   },
@@ -995,6 +1046,42 @@
         }
       ],
       "marking": "A determinant-zero check for the proposed P may verify dependence but does not replace the eigendirection explanation."
+    },
+    "T22V3::SIDE279::S11-M@1": {
+      "reference": "S^-1=[[1,-2],[0,1]] and B=[[4,10],[0,-1]]. From B-tI=S^-1(A-tI)S, det(B-tI)=det(S^-1)det(A-tI)det(S)=det(A-tI), so the eigenvalues remain 4 and -1. S^-1e1=(1,0), and B(1,0)=4(1,0). S^-1e2=(-2,1), and B(-2,1)=(8? no) actually (-8+10,-1)=(2,-1)=-1(-2,1), so λ=-1 is preserved.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Computes S^-1=[[1,-2],[0,1]] and B=[[4,10],[0,-1]]."
+        },
+        {
+          "points": 3,
+          "criterion": "Proves characteristic-polynomial invariance using B-tI=S^-1(A-tI)S and determinant multiplicativity, then reports eigenvalues 4 and -1."
+        },
+        {
+          "points": 4,
+          "criterion": "Transforms e1,e2 by S^-1 and correctly verifies the resulting B-eigenpairs with unchanged eigenvalues."
+        }
+      ],
+      "marking": "Equivalent determinant notation is accepted. Arithmetic verification for (-2,1) must conclude B(-2,1)=(2,-1)=-1(-2,1)."
+    },
+    "T22V3::SIDE279::S11-T@1": {
+      "reference": "The eigenvalue claim is true, but identical coordinate eigenvectors need not persist. D e1=(3,4), not a scalar multiple of e1, so e1 is not a D-eigenvector. R^-1=[[1,0],[-2,1]], so R^-1e1=(1,-2), which is a D-eigenvector with λ=3, and R^-1e2=(0,1), a D-eigenvector with λ=5. Correct rule: if Cv=λv and D=R^-1CR, then R^-1v is a D-eigenvector with the same λ.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Directly shows e1 is not a D-eigenvector because De1=(3,4) is not proportional to e1."
+        },
+        {
+          "points": 4,
+          "criterion": "Computes R^-1e1=(1,-2), R^-1e2=(0,1) and verifies/identifies eigenvalues 3 and 5."
+        },
+        {
+          "points": 3,
+          "criterion": "States the correct coordinate transformation rule v↦R^-1v for similar representations."
+        }
+      ],
+      "marking": "The prompt asks to audit only the eigenvector-coordinate half; do not deduct for accepting the supplied same-eigenvalues statement."
     }
   },
   "coverage": {
@@ -1047,6 +1134,11 @@
       "Diagnose a finite real matrix as defective when its eigenspaces supply fewer than n independent eigenvectors.",
       "Explain why defectiveness prevents an invertible eigenvector matrix P and therefore ordinary A=PDP^-1 diagonalization.",
       "Reject attempts to fill a missing eigendirection by duplicating an eigenvector or inserting a scalar multiple of an existing one."
+    ],
+    "T22V3::SIDE279::S11@1": [
+      "Prove det(B-tI)=det(A-tI) when B=S^-1AS, hence similar matrices have the same characteristic polynomial and eigenvalues.",
+      "Transform an eigenvector coordinate vector v of A into S^-1v for B and verify the corresponding eigenvalue is unchanged.",
+      "Reject the claim that similar matrices must have identical eigenvector coordinate lists."
     ]
   },
   "claimEvidence": {
@@ -1630,6 +1722,63 @@
         "escapeAttempt": "Counting three columns without checking independence fails.",
         "generalizationDistance": "Exact repair-attempt diagnosis."
       }
+    ],
+    "T22V3::SIDE279::S11@1": [
+      {
+        "claim": "Prove det(B-tI)=det(A-tI) when B=S^-1AS, hence similar matrices have the same characteristic polynomial and eigenvalues.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S11-M@1"
+        ],
+        "publicRequestExact": [
+          "Starting from B-tI=S^-1(A-tI)S, prove det(B-tI)=det(A-tI) and state the eigenvalues."
+        ],
+        "rubricEvidence": [
+          "Proves characteristic-polynomial invariance using B-tI=S^-1(A-tI)S and determinant multiplicativity, then reports eigenvalues 4 and -1."
+        ],
+        "disposition": "adequate",
+        "why": "The public task explicitly requires the determinant proof and invariant conclusion.",
+        "escapeAttempt": "Merely observing triangular diagonals cannot earn the proof row.",
+        "generalizationDistance": "General supplied-similarity proof is requested."
+      },
+      {
+        "claim": "Transform an eigenvector coordinate vector v of A into S^-1v for B and verify the corresponding eigenvalue is unchanged.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S11-M@1",
+          "T22V3::SIDE279::S11-T@1"
+        ],
+        "publicRequestExact": [
+          "Transform the A-eigenvectors e1,e2 with S^-1 and verify the resulting B-eigenpairs.",
+          "compute R^-1e1 and R^-1e2"
+        ],
+        "rubricEvidence": [
+          "Transforms e1,e2 by S^-1 and correctly verifies the resulting B-eigenpairs with unchanged eigenvalues.",
+          "Computes R^-1e1=(1,-2), R^-1e2=(0,1) and verifies/identifies eigenvalues 3 and 5."
+        ],
+        "disposition": "adequate",
+        "why": "Two similar pairs directly observe the coordinate transformation law.",
+        "escapeAttempt": "Reusing the original coordinate vectors fails Transfer.",
+        "generalizationDistance": "Exact finite similarity transformations."
+      },
+      {
+        "claim": "Reject the claim that similar matrices must have identical eigenvector coordinate lists.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S11-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit the second half only. Test e1 for D ... state the correct similarity rule for eigenvector coordinates."
+        ],
+        "rubricEvidence": [
+          "Directly shows e1 is not a D-eigenvector because De1=(3,4) is not proportional to e1.",
+          "States the correct coordinate transformation rule v↦R^-1v for similar representations."
+        ],
+        "disposition": "adequate",
+        "why": "The learner must refute same-coordinate-vector preservation with a direct countercheck and replace it with the correct rule.",
+        "escapeAttempt": "Saying only 'similar matrices have same eigenvalues' does not address the scored false claim.",
+        "generalizationDistance": "Exactly the misconception direction."
+      }
     ]
   },
   "evidenceDistance": {
@@ -1731,6 +1880,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "No matrix is given; a fake eigenvector-basis artifact must be audited from eigenspace data and column dependence."
+      }
+    },
+    "T22V3::SIDE279::S11@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Characteristic-polynomial and eigenvector-coordinate transformation proofs are taught then reconstructed on fresh A,S."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "A partially true report must be surgically audited: eigenvalues remain accepted while identical eigenvector coordinates are disproved and repaired."
       }
     }
   },
@@ -1927,6 +2086,25 @@
         ],
         "mathematicalDifference": "Transfer supplies abstract eigenspaces and a concrete fake P with a new repeated direction.",
         "exposureDisposition": "CLEAR — fixed P/eigenspace data are not solved visibly."
+      },
+      "T22V3::SIDE279::S11-M@1": {
+        "sessionId": "T22V3::SIDE279::S11@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S11 worked A=diag(2,3), S=[[1,1],[0,1]]",
+          "S11 guided A=diag(1,4), S=[[1,0],[1,1]]"
+        ],
+        "mathematicalDifference": "Main uses new eigenvalues and a shear with factor 2; both proof forms are reconstructed.",
+        "exposureDisposition": "CLEAR."
+      },
+      "T22V3::SIDE279::S11-T@1": {
+        "sessionId": "T22V3::SIDE279::S11@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S11 general warning that coordinate vectors change"
+        ],
+        "mathematicalDifference": "Transfer uses a distinct lower shear and asks to audit only one half of a mixed true/false report.",
+        "exposureDisposition": "CLEAR — no fixed D/eigenvectors appear in instruction."
       }
     }
   },
@@ -2049,6 +2227,15 @@
         "lessonSolvedInstances": [
           "J=[[2,1],[0,2]]",
           "guided C=[[5,2,0],[0,5,0],[0,0,-1]]"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S11@1": {
+        "lessonSolvedInstances": [
+          "A=diag(2,3), S shear",
+          "guided A=diag(1,4), different shear"
         ],
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
@@ -2183,6 +2370,18 @@
         "alreadySuppliedByPrompt": "Proposed P supplied; independence/validity not.",
         "decisivelyRehearsedInVisibleInstruction": "No exact P/data solved.",
         "learnerActionActuallyScored": "Dependence proof, dimension count and repair explanation."
+      },
+      "T22V3::SIDE279::S11-M@1": {
+        "claimedLearnerDecision": "Reconstruct what similarity preserves and how eigenvector coordinates transform.",
+        "alreadySuppliedByPrompt": "A,S supplied; B/proofs/results not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — proof reconstruction.",
+        "learnerActionActuallyScored": "B computation, determinant proof and transformed eigenpair verification."
+      },
+      "T22V3::SIDE279::S11-T@1": {
+        "claimedLearnerDecision": "Separate the true eigenvalue claim from the false same-coordinate-eigenvector claim.",
+        "alreadySuppliedByPrompt": "Mixed report supplied; which half fails is cued ('audit second half only'), so task tests diagnosis/repair not discovery.",
+        "decisivelyRehearsedInVisibleInstruction": "No exact pair solved.",
+        "learnerActionActuallyScored": "Countercheck and transformed coordinates/rule."
       }
     }
   },
@@ -2263,6 +2462,11 @@
         "failureMode": "duplicate/scalar-multiple eigenvectors used to manufacture a square eigenvector matrix",
         "where": "S10 Transfer",
         "discriminator": "proposed P has dependent columns despite three entries"
+      },
+      {
+        "failureMode": "similar matrices assumed to have identical eigenvector coordinate lists",
+        "where": "S11 Transfer",
+        "discriminator": "e1 fails directly while R^-1e1 succeeds"
       }
     ],
     "designGateCoverage": [
