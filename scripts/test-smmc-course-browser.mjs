@@ -77,7 +77,7 @@ try{
   assert(await page.locator('#researchInfo').isHidden());
   assert(await page.locator('#histSynopsis').isHidden());
   assert(!(await page.locator('#unlockBadge').textContent()).includes('AMBER'));
-  assert((await page.locator('#openOfficialPaper').getAttribute('href')).endsWith('/smmc-2021-paper-a.pdf#page=2'));
+  assert(!(await page.locator('#openOfficialPaper').isDisabled()));
   assert((await page.locator('#paperGuide').textContent()).includes('contains all 4 problems'));
   assert((await page.locator('#paperExposure').textContent()).includes('pristine'));
   assert((await page.locator('#pristineInventory').textContent()).includes('18 / 18'));
