@@ -157,3 +157,23 @@ PASS. Ordered construction, columnwise derivation/invertibility and order-mismat
 PASS. Worked/guided/Main/Transfer use four distinct matrices/eigenbases; only the general AP=PD method is shared.
 
 **S08 local disposition: PASS. S09 may open.**
+
+
+## S09 — Powers without brute force
+
+### Gate 4 — teaching
+PASS. A^k=PD^kP^-1 is derived by adjacent P^-1P cancellations and explicitly conditioned on a valid diagonalization. The finite recurrence bridge is shown through eigen-coordinates; asymptotic claims remain deferred.
+
+### Gate 5 — evidence
+Main is **proof reconstruction**; Transfer is **changed-surface Transfer** from a matrix-power request to a recurrence/initial-state decomposition. Brute-force multiplication cannot earn the modal-decomposition rows.
+
+### Gate 6 — reconstruction/fairness
+For A=[[3,2],[2,3]], the supplied eigenbasis gives D=diag(5,1) and A^4=[[313,312],[312,313]]. For B=[[2,0],[1,3]], x0=(2,1)=2(1,-1)+3(0,1), hence x4=(32,211). Independent direct matrix-power computation matches both results.
+
+### Gate 7 — claims
+The first draft overclaimed the general all-k theorem from a k=4 public proof. It was narrowed before clearance to the observed capability: justify the power formula for a specified finite exponent using the cancellation mechanism. Exact matrix-power and finite-recurrence claims are directly scored.
+
+### Gate 8 — separation
+PASS. Worked, guided, Main and Transfer matrices/states are distinct. No earlier fixed power/state problem is reused.
+
+**S09 local disposition: PASS after claim narrowing. S10 may open.**
