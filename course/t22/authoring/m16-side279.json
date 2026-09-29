@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 4,
-    "ownershipClaimCount": 12,
-    "fixedAssessments": 8,
+    "authoredSessions": 5,
+    "ownershipClaimCount": 15,
+    "fixedAssessments": 10,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -250,6 +250,43 @@
       "guidedFeedback": "Check after attempting. p_B(t)=(3-t)(4-t)(-2-t), so the eigenvalues are 3,4,-2. Their sum is 5, matching tr(B)=5, and their product is -24, matching the triangular determinant 3·4·(-2)=-24.",
       "main": "T22V3::SIDE279::S04-M@1",
       "transfer": "T22V3::SIDE279::S04-T@1"
+    },
+    {
+      "order": 5,
+      "id": "T22V3::SIDE279::S05@1",
+      "moduleId": "SIDE279",
+      "title": "Same eigenspace, different theorem",
+      "focus": "Use eigenspace closure for equal eigenvalues and prove independence for eigenvectors carrying distinct eigenvalues.",
+      "purpose": "Multiplicity and diagonalization will fail if the learner treats every collection of eigenvectors as automatically independent or treats linear combinations of different eigenmodes as one eigenmode.",
+      "centralCapability": "Reason algebraically about linear combinations of eigenvectors, distinguishing closure inside one eigenspace from independence across distinct eigenvalues.",
+      "principalObstacle": "Two true slogans are overgeneralized: 'eigenvectors form special directions' becomes 'all eigenvectors are independent', while 'linear combinations stay in a subspace' becomes 'any sum of eigenvectors is an eigenvector'.",
+      "entryPrerequisites": [
+        "S02 eigenspaces are subspaces",
+        "S01 Av=λv and linearity",
+        "M13 linear independence and induction/proof habits from M03"
+      ],
+      "requiredOwnership": [
+        "Use linearity to show that a linear combination of vectors from the same E_λ remains in E_λ, with nonzero combinations giving eigenvectors for λ.",
+        "Reconstruct a proof that three nonzero eigenvectors associated with pairwise distinct eigenvalues are linearly independent.",
+        "Reject the claim that arbitrary eigenvectors must be independent, distinguishing the same-eigenvalue case from the distinct-eigenvalue theorem."
+      ],
+      "applicationScope": "Finite real eigenvectors/eigenspaces; no multiplicity counts are yet named.",
+      "transferScope": "Audit a dependence claim inside one eigenspace using a scalar-multiple counterexample and contrast it with the distinct-eigenvalue theorem.",
+      "inScope": [
+        "eigenspace closure",
+        "distinct-eigenvalue independence",
+        "same-vs-different eigenvalue distinction"
+      ],
+      "outOfScope": [
+        "algebraic/geometric multiplicity",
+        "diagonalization criterion",
+        "Jordan chains"
+      ],
+      "exitCondition": "Given eigenvectors and their eigenvalues, determine which linear-combination and independence conclusions are justified and prove the relevant one.",
+      "lesson": "Orient. S02 says E_λ is a subspace. That immediately gives one kind of linear-combination theorem. A different theorem applies when eigenvalues are distinct. Mixing the two is dangerous.\n\nSame eigenvalue. If Au=λu and Aw=λw, then for any scalars a,b, A(au+bw)=aAu+bAw=λ(au+bw). Thus au+bw lies in E_λ. If that combination is nonzero, it is itself an eigenvector for λ; if it is zero, it is still in the eigenspace but is not an eigenvector.\n\nDistinct eigenvalues: two-vector proof. Suppose Av=λv, Aw=μw with λ≠μ and av+bw=0. Apply A: aλv+bμw=0. Subtract μ(av+bw)=0 to get a(λ-μ)v=0. Since v≠0 and λ-μ≠0, a=0, then b=0. So v,w are independent.\n\nFinite extension. The same idea proves that eigenvectors associated with pairwise distinct eigenvalues are linearly independent. For an induction step, start with c1v1+...+cnvn=0, apply A-λ_n I, and the vn term disappears. The remaining n-1 vectors still have distinct eigenvalues, so induction forces their coefficients to vanish, then cn=0.\n\nWorked contrast. For A=2I, every nonzero vector is an eigenvector with λ=2. The pair e1 and 2e1 are both eigenvectors but dependent. The pair e1,e2 are both eigenvectors with the same λ and are independent. Same eigenvalue alone forces neither dependence nor independence; it says only that the vectors lie in one eigenspace.\n\nGuided practice. Let B=[[2,1],[1,2]]. Verify v=(1,-1) has λ=1 and w=(1,1) has λ=3. Starting from av+bw=0, use the distinct-eigenvalue argument rather than a determinant to prove a=b=0. Then explain why v+w is not automatically an eigenvector.\n\nFade. Main moves to a symbolic three-vector proof plus a same-eigenvalue closure argument. Transfer gives a false universal-independence report and asks for the exact failed hypothesis.\n\nDistinction check. 'Same eigenvalue' gives a subspace. 'Distinct eigenvalues' gives independence. Neither statement can be reversed without extra information.",
+      "guidedFeedback": "Check after attempting. Bv=(1,-1)=v and Bw=(3,3)=3w. Apply B to av+bw=0 and subtract 3 times the original relation: a(1-3)v=0, so a=0, then b=0. Meanwhile v+w=(2,0), and B(2,0)=(4,2), not proportional to (2,0), so it is not an eigenvector.",
+      "main": "T22V3::SIDE279::S05-M@1",
+      "transfer": "T22V3::SIDE279::S05-T@1"
     }
   ],
   "problems": {
@@ -307,6 +344,20 @@
       "order": 4,
       "kind": "transfer",
       "prompt": "Let A=[[0,2],[-3,5]]. A report correctly notes tr(A)=5 and det(A)=6, obtains eigenvalues 2 and 3, and then says: “Those checks confirm the eigenvectors are e1 and e2.” Audit only the last inference. Compute the actual eigenspace for each eigenvalue and explain why trace/determinant checks cannot identify eigenvector directions.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S05-M@1": {
+      "id": "T22V3::SIDE279::S05-M@1",
+      "order": 5,
+      "kind": "main",
+      "prompt": "(a) Suppose Au=λu and Aw=λw. Prove directly from linearity that for arbitrary scalars α,β, the vector αu+βw lies in E_λ; state the extra condition for it to be called an eigenvector. (b) Now suppose v1,v2,v3 are nonzero eigenvectors with pairwise distinct eigenvalues λ1,λ2,λ3. Starting from c1v1+c2v2+c3v3=0, reconstruct a proof that c1=c2=c3=0. Your proof must use the eigenvalue equations, not a coordinate determinant.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S05-T@1": {
+      "id": "T22V3::SIDE279::S05-T@1",
+      "order": 5,
+      "kind": "transfer",
+      "prompt": "For A=2I_2, a report says: “Any two eigenvectors of the same matrix are linearly independent because eigenvectors point in special directions.” Audit the claim using u=(1,0), w=(2,0), and z=(0,1). Identify which pairs are dependent or independent, state their eigenvalues, and give the correct theorem involving distinct eigenvalues.",
       "obligationVersion": 1
     }
   },
@@ -462,6 +513,42 @@
         }
       ],
       "marking": "The report's eigenvalues are given as correct; do not deduct for not re-deriving them unless the learner changes them incorrectly."
+    },
+    "T22V3::SIDE279::S05-M@1": {
+      "reference": "(a) A(αu+βw)=αAu+βAw=αλu+βλw=λ(αu+βw), so the combination lies in E_λ. It is an eigenvector exactly when αu+βw≠0. (b) From c1v1+c2v2+c3v3=0, apply A-λ3I to get c1(λ1-λ3)v1+c2(λ2-λ3)v2=0. Because v1,v2 have distinct eigenvalues, the two-vector theorem gives c1(λ1-λ3)=c2(λ2-λ3)=0; the differences are nonzero, so c1=c2=0, then c3=0. Equivalent induction-style reconstructions are valid.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Uses linearity to prove same-eigenvalue closure and states that a nonzero combination is an eigenvector while the zero combination is only an eigenspace member."
+        },
+        {
+          "points": 5,
+          "criterion": "Reconstructs a valid distinct-eigenvalue argument for v1,v2,v3 and concludes all three coefficients vanish."
+        },
+        {
+          "points": 1,
+          "criterion": "Uses the eigenvalue relations structurally rather than substituting unrelated coordinate/determinant machinery."
+        }
+      ],
+      "marking": "Accept the induction theorem, repeated two-vector elimination, or another correct eigenvalue-equation proof."
+    },
+    "T22V3::SIDE279::S05-T@1": {
+      "reference": "For A=2I_2, every nonzero vector has eigenvalue 2. u=(1,0) and w=(2,0)=2u are dependent; u and z=(0,1) are independent; w and z are also independent. Therefore sharing the same eigenvalue neither forces independence nor dependence. The correct theorem is that eigenvectors associated with distinct eigenvalues are linearly independent.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "States that u,w,z are all eigenvectors with eigenvalue 2."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly identifies u,w as dependent and u,z (and equivalently w,z) as independent."
+        },
+        {
+          "points": 4,
+          "criterion": "Rejects the universal claim and states the correct distinct-eigenvalue independence theorem without claiming a converse."
+        }
+      ],
+      "marking": "Any correct dependence witness w=2u and correct distinct-eigenvalue theorem earns the relevant credit."
     }
   },
   "coverage": {
@@ -484,6 +571,11 @@
       "Derive that the eigenvalues of an exact triangular matrix are its diagonal entries by factoring det(A-λI).",
       "Use trace and determinant as consistency checks on computed eigenvalues in the concrete small-matrix cases justified by the characteristic polynomial, without treating them as the definition of eigenvalues.",
       "Reject the inference that correct eigenvalue checks determine eigenvectors; compute eigenspaces from A-λI when directional information is required."
+    ],
+    "T22V3::SIDE279::S05@1": [
+      "Use linearity to show that a linear combination of vectors from the same E_λ remains in E_λ, with nonzero combinations giving eigenvectors for λ.",
+      "Reconstruct a proof that three nonzero eigenvectors associated with pairwise distinct eigenvalues are linearly independent.",
+      "Reject the claim that arbitrary eigenvectors must be independent, distinguishing the same-eigenvalue case from the distinct-eigenvalue theorem."
     ]
   },
   "claimEvidence": {
@@ -718,6 +810,61 @@
         "escapeAttempt": "Accepting e1/e2 from the checks fails three rows.",
         "generalizationDistance": "Exactly the audit direction claimed."
       }
+    ],
+    "T22V3::SIDE279::S05@1": [
+      {
+        "claim": "Use linearity to show that a linear combination of vectors from the same E_λ remains in E_λ, with nonzero combinations giving eigenvectors for λ.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S05-M@1"
+        ],
+        "publicRequestExact": [
+          "Prove directly from linearity that for arbitrary scalars α,β, the vector αu+βw lies in E_λ; state the extra condition for it to be called an eigenvector."
+        ],
+        "rubricEvidence": [
+          "Uses linearity to prove same-eigenvalue closure and states that a nonzero combination is an eigenvector while the zero combination is only an eigenspace member."
+        ],
+        "disposition": "adequate",
+        "why": "The public task requests the general same-eigenvalue linear-combination argument and zero/nonzero boundary.",
+        "escapeAttempt": "Testing one numerical combination does not satisfy the arbitrary α,β proof row.",
+        "generalizationDistance": "General two-vector linearity statement is explicitly requested."
+      },
+      {
+        "claim": "Reconstruct a proof that three nonzero eigenvectors associated with pairwise distinct eigenvalues are linearly independent.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S05-M@1"
+        ],
+        "publicRequestExact": [
+          "Starting from c1v1+c2v2+c3v3=0, reconstruct a proof that c1=c2=c3=0."
+        ],
+        "rubricEvidence": [
+          "Reconstructs a valid distinct-eigenvalue argument for v1,v2,v3 and concludes all three coefficients vanish.",
+          "Uses the eigenvalue relations structurally rather than substituting unrelated coordinate/determinant machinery."
+        ],
+        "disposition": "adequate",
+        "why": "The learner must perform an eigenvalue-equation proof on three distinct modes.",
+        "escapeAttempt": "Citing the theorem without reconstruction loses the proof row.",
+        "generalizationDistance": "Claim is deliberately bounded to three vectors; the finite theorem is taught as support."
+      },
+      {
+        "claim": "Reject the claim that arbitrary eigenvectors must be independent, distinguishing the same-eigenvalue case from the distinct-eigenvalue theorem.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S05-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit the claim using u=(1,0), w=(2,0), and z=(0,1)... give the correct theorem involving distinct eigenvalues."
+        ],
+        "rubricEvidence": [
+          "Correctly identifies u,w as dependent and u,z (and equivalently w,z) as independent.",
+          "Rejects the universal claim and states the correct distinct-eigenvalue independence theorem without claiming a converse."
+        ],
+        "disposition": "adequate",
+        "why": "Transfer constructs both dependent and independent same-eigenvalue pairs and requires the correct theorem.",
+        "escapeAttempt": "Saying 'same eigenvalue means dependent' also fails because u,z are independent.",
+        "generalizationDistance": "Exact misconception family is publicly audited."
+      }
     ]
   },
   "evidenceDistance": {
@@ -759,6 +906,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "Correct scalar invariants are embedded in a false directional conclusion; the learner must diagnose the information mismatch and reconstruct eigenspaces."
+      }
+    },
+    "T22V3::SIDE279::S05@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Both linearity arguments are taught; Main reconstructs them symbolically with no coordinate crutch."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "A universal verbal claim is attacked with one eigenspace containing both dependent and independent pairs, forcing hypothesis repair."
       }
     }
   },
@@ -841,6 +998,26 @@
         ],
         "mathematicalDifference": "Transfer supplies a nontriangular 2x2 matrix and a false e1/e2 conclusion, then requires actual eigenspace recovery.",
         "exposureDisposition": "CLEAR — no fixed matrix/eigenspaces appear in instruction."
+      },
+      "T22V3::SIDE279::S05-M@1": {
+        "sessionId": "T22V3::SIDE279::S05@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S05 two-vector distinct-eigenvalue proof",
+          "S05 finite induction architecture",
+          "S05 A=2I contrast"
+        ],
+        "mathematicalDifference": "Main requires symbolic arbitrary coefficients and a three-vector reconstruction rather than the solved two-vector instance.",
+        "exposureDisposition": "CLEAR — proof architecture is deliberately taught; no fixed coefficient derivation is prewritten."
+      },
+      "T22V3::SIDE279::S05-T@1": {
+        "sessionId": "T22V3::SIDE279::S05@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S05 worked A=2I mentions e1,2e1 and e1,e2"
+        ],
+        "mathematicalDifference": "Transfer reuses the same conceptual family but unfortunately uses u=(1,0), w=(2,0), z=(0,1), which overlaps the worked contrast exactly.",
+        "exposureDisposition": "BLOCKED — exact decisive pairs are answer-bearing in visible instruction; Transfer must be changed before Gate 8 can pass."
       }
     }
   },
@@ -913,6 +1090,15 @@
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
         "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S05@1": {
+        "lessonSolvedInstances": [
+          "A=2I with e1,2e1 and e1,e2 contrast",
+          "B=[[2,1],[1,2]] guided"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": true,
+        "guidedFeedbackRevealAfterAttempt": true
       }
     }
   },
@@ -971,6 +1157,18 @@
         "alreadySuppliedByPrompt": "Claim supplied; validity is not.",
         "decisivelyRehearsedInVisibleInstruction": "NO solved audit of this matrix.",
         "learnerActionActuallyScored": "Rejects inference and computes actual eigenspaces."
+      },
+      "T22V3::SIDE279::S05-M@1": {
+        "claimedLearnerDecision": "Reconstruct the correct linear-combination theorem under equal versus distinct eigenvalues.",
+        "alreadySuppliedByPrompt": "Hypotheses supplied; proof is not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — proof architecture taught; proof reconstruction label.",
+        "learnerActionActuallyScored": "Symbolic same-eigenvalue closure and three-vector independence proof."
+      },
+      "T22V3::SIDE279::S05-T@1": {
+        "claimedLearnerDecision": "Audit universal independence and identify the missing distinct-eigenvalue hypothesis.",
+        "alreadySuppliedByPrompt": "Flawed claim and test vectors supplied.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — exact vector pairs currently appear in worked contrast; must repair.",
+        "learnerActionActuallyScored": "Would be dependence/independence classification and theorem repair after task replacement."
       }
     }
   },
@@ -1021,6 +1219,11 @@
         "failureMode": "trace/determinant checks treated as eigenvector information",
         "where": "S04 Transfer",
         "discriminator": "given correct eigenvalues still lead to non-coordinate eigenspaces"
+      },
+      {
+        "failureMode": "all eigenvectors assumed independent regardless of eigenvalue",
+        "where": "S05 Transfer",
+        "discriminator": "requires same-eigenvalue dependent and independent pairs; exact instance currently blocked pending Gate-8 repair"
       }
     ],
     "designGateCoverage": [
