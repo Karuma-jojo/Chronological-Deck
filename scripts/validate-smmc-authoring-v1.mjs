@@ -12,6 +12,12 @@ import {
   emptySmmcState,
   markExposure,
   exposureClass,
+  markPaperExposure,
+  paperExposureClass,
+  paperKeyForProblem,
+  paperKeysForLedger,
+  pristinePaperKeys,
+  mergeSmmcState,
   validateSmmcState,
 } from "../course/smmc/runtime/exposure.mjs";
 import { unlockStatus } from "../course/smmc/runtime/unlock.mjs";
@@ -77,14 +83,51 @@ for (const [problemId, required] of Object.entries(SMMC_REQUIREMENTS_V1)) {
 
 // Exposure semantics.
 const state = emptySmmcState();
+const eastPaperKeys = paperKeysForLedger(ledger, { eastOnly: true });
+expect(eastPaperKeys.length === 18, "Expected eighteen East A/B historical sessions.");
+expect(pristinePaperKeys(state, ledger, { eastOnly: true }).length === 18, "Fresh corpus must begin with eighteen pristine East papers.");
+expect(paperExposureClass(state, ledger, "2022-A").class === "pristine", "Fresh paper must be pristine.");
 expect(exposureClass(state, "SMMC-2022-A1").class === "sealed", "Fresh problem must be sealed.");
+
 markExposure(state, "SMMC-2022-A1", "domainMetadataSeenAt", "2026-09-23T12:00:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "sealed", "Planning metadata must not contaminate exposure status.");
+expect(paperExposureClass(state, ledger, "2022-A").class === "pristine", "Non-hint planning metadata must not breach a paper.");
+
 markExposure(state, "SMMC-2022-A1", "statementSeenAt", "2026-09-23T12:01:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "transfer", "Statement-only exposure should remain transfer-eligible.");
+expect(exposureClass(state, "SMMC-2022-A2").class === "sealed", "Isolated statement access must not expose a sibling problem.");
+expect(exposureClass(state, "SMMC-2022-B1").class === "sealed", "Isolated statement access must not spill into another paper.");
+expect(paperExposureClass(state, ledger, "2022-A").class === "breached", "One isolated statement must breach, not open, its paper.");
+expect(pristinePaperKeys(state, ledger, { eastOnly: true }).length === 17, "One breached East paper must leave seventeen pristine sessions.");
+
 markExposure(state, "SMMC-2022-A1", "materialHintSeenAt", "2026-09-23T12:05:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "development", "Material hint must contaminate unseen transfer.");
+
+const wholePaper = emptySmmcState();
+markPaperExposure(wholePaper, ledger, "2022-A", "paperOpenedAt", "2026-09-23T13:00:00.000Z");
+expect(paperExposureClass(wholePaper, ledger, "2022-A").class === "opened", "Opening a full paper must persist an opened paper state.");
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2022-A")) {
+  expect(Boolean(wholePaper.exposures[problem.id]?.statementSeenAt), `Full-paper opening failed to mark ${problem.id} statement seen.`);
+}
+expect(exposureClass(wholePaper, "SMMC-2022-B1").class === "sealed", "Opening 2022-A must not expose 2022-B.");
+expect(pristinePaperKeys(wholePaper, ledger, { eastOnly: true }).length === 17, "One opened East paper must leave seventeen pristine sessions.");
+
+markPaperExposure(wholePaper, ledger, "2022-A", "solutionOpenedAt", "2026-09-23T13:05:00.000Z");
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2022-A")) {
+  expect(exposureClass(wholePaper, problem.id).class === "development", `Full-solution exposure failed for ${problem.id}.`);
+}
+
+const legacyShape = JSON.parse(JSON.stringify(wholePaper));
+delete legacyShape.papers;
+const legacyValidated = validateSmmcState(legacyShape, ledger, [...moduleIds], [...unitIds]);
+expect(Object.keys(legacyValidated.papers).length === 0, "Legacy v1 state without paper ledger must remain import-compatible.");
+
+const remotePaper = emptySmmcState();
+markPaperExposure(remotePaper, ledger, "2022-A", "paperOpenedAt", "2026-09-23T12:55:00.000Z");
+const mergedPaper = mergeSmmcState(wholePaper, remotePaper, ledger, [...moduleIds], [...unitIds]);
+expect(mergedPaper.papers["2022-A"].paperOpenedAt === "2026-09-23T12:55:00.000Z", "Cloud merge must preserve earliest paper exposure.");
 validateSmmcState(state, ledger, [...moduleIds], [...unitIds]);
+validateSmmcState(wholePaper, ledger, [...moduleIds], [...unitIds]);
 
 // Unlock semantics.
 const green = ledger.find(x => x.id === "SMMC-2022-A1");
