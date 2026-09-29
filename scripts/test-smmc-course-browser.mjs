@@ -75,37 +75,83 @@ try{
 
   await page.selectOption('#problemSelect','SMMC-2021-A3');
   assert(await page.locator('#researchInfo').isHidden());
+  assert(await page.locator('#histSynopsis').isHidden());
   assert(!(await page.locator('#unlockBadge').textContent()).includes('AMBER'));
   assert((await page.locator('#openOfficialPaper').getAttribute('href')).endsWith('/smmc-2021-paper-a.pdf#page=2'));
-  assert((await page.locator('#paperGuide').textContent()).includes('Read A3 on page 2'));
+  assert((await page.locator('#paperGuide').textContent()).includes('contains all 4 problems'));
+  assert((await page.locator('#paperExposure').textContent()).includes('pristine'));
+  assert((await page.locator('#pristineInventory').textContent()).includes('18 / 18'));
+
+  page.once('dialog',dialog=>dialog.accept());
+  await page.click('#revealSynopsis');
+  assert(await page.locator('#histSynopsis').isVisible());
+  assert((await page.locator('#histExposure').textContent()).includes('transfer'));
+  assert((await page.locator('#paperExposure').textContent()).includes('breached'));
+  assert((await page.locator('#pristineInventory').textContent()).includes('17 / 18'));
+  let hist2=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(hist2.exposures['SMMC-2021-A3'].statementSeenAt);
+  assert.equal(hist2.exposures['SMMC-2021-A2'],undefined,'Isolated summary exposure spilled to sibling problem');
+  assert.equal(hist2.exposures['SMMC-2022-C2'],undefined);
 
   await page.locator('#mappingTools > summary').click();
   await page.fill('#t25Input','F4,M2,M3,P2');
   await page.click('#applyTargets');
   assert.equal((await page.locator('#unlockBadge').textContent()).trim(),'SMMC unit needed');
 
+  page.once('dialog',dialog=>dialog.accept());
   await page.click('#revealResearch');
   assert(await page.locator('#researchInfo').isVisible());
   assert.equal((await page.locator('#researchColor').textContent()).trim(),'AMBER');
+  assert((await page.locator('#histExposure').textContent()).includes('development'));
 
-  const hist2=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
-  assert.equal(hist2.exposures['SMMC-2021-A3'],undefined);
+  hist2=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(hist2.exposures['SMMC-2021-A3'].materialHintSeenAt);
+  assert.equal(hist2.exposures['SMMC-2021-A2'],undefined,'Research metadata exposure spilled to sibling problem');
   assert.equal(hist2.exposures['SMMC-2022-C2'],undefined);
 
   await page.click('#revealResearch');
   assert(await page.locator('#researchInfo').isHidden());
 
+  page.once('dialog',dialog=>dialog.accept());
   await page.click('#togglePaper');
   assert(await page.locator('#officialPaperFrame').isVisible());
   assert((await page.locator('#officialPaperFrame').getAttribute('src')).endsWith('/smmc-2021-paper-a.pdf#page=2'));
   const histAfterPaper=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
-  assert.equal(histAfterPaper.exposures['SMMC-2021-A3'],undefined);
+  assert(histAfterPaper.papers['2021-A'].paperOpenedAt,'Full paper open did not persist paperOpenedAt');
+  for(const id of ['SMMC-2021-A1','SMMC-2021-A2','SMMC-2021-A3','SMMC-2021-A4']){
+    assert(histAfterPaper.exposures[id].statementSeenAt,`Full paper open failed to mark ${id} statement seen`);
+  }
+  assert(histAfterPaper.exposures['SMMC-2021-A3'].materialHintSeenAt,'Existing hint exposure was lost');
+  assert.equal(histAfterPaper.exposures['SMMC-2021-B1'],undefined,'A-paper open spilled into B paper');
+  assert((await page.locator('#paperExposure').textContent()).includes('opened'));
+  assert((await page.locator('#pristineInventory').textContent()).includes('17 / 18'));
   await page.click('#togglePaper');
   assert(await page.locator('#officialPaperFrame').isHidden());
 
   await page.selectOption('#problemSelect','SMMC-2022-C2');
   assert(await page.locator('#researchInfo').isHidden());
+  assert(await page.locator('#histSynopsis').isHidden());
   assert((await page.locator('#histExposure').textContent()).includes('sealed'));
+
+  // Export/import must preserve the irreversible paper/problem exposure ledger.
+  await page.locator('#toolsMenu > summary').click();
+  const vaultDownloadPromise=page.waitForEvent('download');
+  await page.click('#export');
+  const vaultDownload=await vaultDownloadPromise;
+  const vaultExport=JSON.parse(await readFile(await vaultDownload.path(),'utf8'));
+  assert(vaultExport.historical.papers['2021-A'].paperOpenedAt);
+  assert(vaultExport.historical.exposures['SMMC-2021-A3'].materialHintSeenAt);
+  const vaultImport=await browser.newContext();
+  const vaultImportPage=await vaultImport.newPage();
+  await vaultImportPage.goto(base+'/smmc-course.html?tab=map&problem=SMMC-2021-A3');
+  await vaultImportPage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  await vaultImportPage.setInputFiles('#import',{name:'smmc-vault-record.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(vaultExport))});
+  await vaultImportPage.waitForFunction(()=>document.querySelector('#status').textContent==='SMMC record imported.');
+  const importedVault=await vaultImportPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(importedVault.papers['2021-A'].paperOpenedAt);
+  assert(importedVault.exposures['SMMC-2021-A3'].materialHintSeenAt);
+  assert((await vaultImportPage.locator('#paperExposure').textContent()).includes('opened'));
+  await vaultImport.close();
 
   // A fresh learner starts on the foundation route without changing old deep links.
   const learner=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
