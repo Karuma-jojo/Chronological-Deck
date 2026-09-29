@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 12,
-    "ownershipClaimCount": 36,
-    "fixedAssessments": 24,
+    "authoredSessions": 13,
+    "ownershipClaimCount": 39,
+    "fixedAssessments": 26,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -556,6 +556,45 @@
       "guidedFeedback": "Check after attempting. p_B(t)=t^2+4, so the roots are ±2i. For λ=2i, v=(1,-2i) works because Bv=(2i,4)=2i(1,-2i). Over R there is no eigenvalue/eigenvector; over C there are two eigenvalues with complex eigenvectors.",
       "main": "T22V3::SIDE279::S12-M@1",
       "transfer": "T22V3::SIDE279::S12-T@1"
+    },
+    {
+      "order": 13,
+      "id": "T22V3::SIDE279::S13@1",
+      "moduleId": "SIDE279",
+      "title": "Symmetry changes the game",
+      "focus": "Use A^T=A to derive the inner-product symmetry identity, prove real eigenvalues, and prove orthogonality for eigenvectors with distinct eigenvalues.",
+      "purpose": "S14's spectral theorem needs more than ordinary diagonalizability. S13 establishes the exact structural consequences that make real symmetric matrices special, while keeping positive-definite consequences deferred.",
+      "centralCapability": "Verify the symmetry hypothesis and reconstruct the finite real proofs that symmetric matrices have real eigenvalues and orthogonal eigendirections for distinct eigenvalues.",
+      "principalObstacle": "The learner either applies orthogonality to arbitrary matrices or treats 'real matrix' as enough to guarantee real eigenvalues.",
+      "entryPrerequisites": [
+        "M15 transpose, dot product and orthogonality",
+        "S12 minimal complex bridge",
+        "S05 distinct-eigenvalue structure"
+      ],
+      "requiredOwnership": [
+        "Use A^T=A to derive x·Ay=(Ax)·y for real vectors x,y and apply that identity in eigenstructure proofs.",
+        "Reconstruct a bounded proof that every eigenvalue of a real symmetric matrix is real and that eigenvectors for distinct eigenvalues are orthogonal.",
+        "Check the symmetry hypothesis before invoking these guarantees and reject their use for a nonsymmetric real matrix."
+      ],
+      "applicationScope": "Finite real symmetric matrices; complex vectors appear only inside the real-eigenvalue proof bridge.",
+      "transferScope": "Audit an orthogonality claim for a real but nonsymmetric matrix using a direct counterexample.",
+      "inScope": [
+        "real symmetric matrices",
+        "self-adjoint dot identity",
+        "real spectrum",
+        "orthogonal distinct eigenspaces"
+      ],
+      "outOfScope": [
+        "positive definiteness",
+        "quadratic forms",
+        "orthogonal diagonalization existence proof—S14",
+        "complex Hermitian theorem"
+      ],
+      "exitCondition": "Given a matrix, verify symmetry and invoke/prove only the spectral consequences whose hypotheses are met.",
+      "lesson": "Orient. S12 showed that a real matrix can have nonreal eigenvalues. A real symmetric matrix A^T=A is a special class with stronger geometry.\n\nIdentity from symmetry. For real x,y, x·Ay=x^T Ay. Because this is a scalar, it equals its transpose: y^T A^T x. If A^T=A, this is y^T Ax=(Ax)·y. We will use this exact identity twice.\n\nReal-eigenvalue proof without general complex inner products. Suppose Az=λz where z=x+iy is a nonzero complex vector with real x,y, and λ=a+ib. Since A is real, equating real and imaginary parts gives Ax=ax-by and Ay=bx+ay. Symmetry gives x·Ay=(Ax)·y. Substitution yields b||x||^2+a x·y=a x·y-b||y||^2, hence b(||x||^2+||y||^2)=0. Because z≠0, x,y are not both zero, so b=0. Thus λ is real.\n\nOrthogonality proof. Let Av=λv and Aw=μw with λ≠μ. Then λ(v·w)=(Av)·w=v·(Aw)=μ(v·w). Therefore (λ-μ)(v·w)=0, so v·w=0.\n\nWorked example. A=[[4,2],[2,1]] is symmetric. Its eigenvalues are 5 and 0, with eigenvectors (2,1) and (1,-2). Their dot product is 0, exactly as the theorem predicts.\n\nGuided practice. Let B=[[3,0,1],[0,2,0],[1,0,3]]. Verify symmetry. Check that (1,0,1) has λ=4 and that (1,0,-1) and (0,1,0) have λ=2. Confirm every λ=4 eigenvector is orthogonal to the supplied λ=2 basis vectors; explain why the two λ=2 vectors need not be orthogonal merely because they share an eigenvalue.\n\nFade. Main reconstructs both theorem arguments symbolically and checks them on a fresh symmetric matrix. Transfer deliberately removes symmetry while keeping real entries and distinct real eigenvalues.\n\nDistinction check. 'Real matrix' does not imply real spectrum or orthogonal eigenvectors. 'Real symmetric matrix' supplies the stronger theorem hypotheses.",
+      "guidedFeedback": "Check after attempting. B^T=B. B(1,0,1)=4(1,0,1); B(1,0,-1)=2(1,0,-1); B(0,1,0)=2(0,1,0). The λ=4 vector has dot product 0 with both λ=2 vectors. Vectors inside the same repeated-eigenvalue eigenspace are not forced orthogonal by the distinct-eigenvalue theorem, though here the chosen basis happens to be orthogonal.",
+      "main": "T22V3::SIDE279::S13-M@1",
+      "transfer": "T22V3::SIDE279::S13-T@1"
     }
   ],
   "problems": {
@@ -725,6 +764,20 @@
       "order": 12,
       "kind": "transfer",
       "prompt": "Let M=[[0,-16],[1,0]]. A report computes p_M(t)=t^2+16 and concludes: “M has no eigenvalues.” Audit the statement. Give the correct conclusion over R and over C, list the complex eigenvalues, and verify one complex eigenvector.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S13-M@1": {
+      "id": "T22V3::SIDE279::S13-M@1",
+      "order": 13,
+      "kind": "main",
+      "prompt": "(a) For a real symmetric A, derive x·Ay=(Ax)·y from A^T=A. (b) Suppose Az=(a+ib)z for nonzero z=x+iy with real x,y. Using only the real/imaginary equations and the identity from (a), prove b=0. (c) If Av=λv and Aw=μw with distinct real λ,μ, prove v·w=0. (d) For S=[[1,2],[2,4]], verify symmetry and check that v5=(1,2), v0=(2,-1) are eigenvectors with eigenvalues 5 and 0 and are orthogonal.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S13-T@1": {
+      "id": "T22V3::SIDE279::S13-T@1",
+      "order": 13,
+      "kind": "transfer",
+      "prompt": "Let B=[[2,1],[0,3]]. A report says: “B is real and has distinct real eigenvalues 2 and 3, so its eigenvectors must be orthogonal.” Audit the theorem hypothesis. Verify e1 is a λ=2 eigenvector and (1,1) is a λ=3 eigenvector, compute their dot product, and state the missing condition.",
       "obligationVersion": 1
     }
   },
@@ -1172,6 +1225,46 @@
         }
       ],
       "marking": "A conjugate eigenvector for -4i is equally valid."
+    },
+    "T22V3::SIDE279::S13-M@1": {
+      "reference": "(a) x·Ay=x^TAy=(x^TAy)^T=y^TA^Tx=y^TAx=(Ax)·y. (b) From Az=(a+ib)z with z=x+iy, Ax=ax-by and Ay=bx+ay. Symmetry gives x·Ay=(Ax)·y, hence b||x||^2+a x·y=a x·y-b||y||^2, so b(||x||^2+||y||^2)=0. Since z≠0, b=0. (c) λ(v·w)=(Av)·w=v·(Aw)=μ(v·w); λ≠μ implies v·w=0. (d) S^T=S, S(1,2)=(5,10)=5(1,2), S(2,-1)=(0,0), and (1,2)·(2,-1)=0.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Derives x·Ay=(Ax)·y from A^T=A with correct scalar/transpose reasoning."
+        },
+        {
+          "points": 3,
+          "criterion": "Completes the real/imaginary proof and concludes every eigenvalue of a real symmetric matrix is real."
+        },
+        {
+          "points": 2,
+          "criterion": "Proves distinct-eigenvalue eigenvectors are orthogonal using the symmetry identity."
+        },
+        {
+          "points": 3,
+          "criterion": "Correctly verifies the supplied symmetric-matrix eigenpairs and their zero dot product."
+        }
+      ],
+      "marking": "Equivalent real/imaginary notation is accepted; do not require Hermitian-inner-product terminology."
+    },
+    "T22V3::SIDE279::S13-T@1": {
+      "reference": "The missing hypothesis is symmetry. B is not symmetric because B^T=[[2,0],[1,3]]≠B. Be1=(2,0)=2e1, while B(1,1)=(3,3)=3(1,1). Their dot product is e1·(1,1)=1, not 0. Thus distinct eigenvalues alone do not force orthogonality for an arbitrary real matrix.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Identifies that B is not symmetric and names symmetry as the missing theorem hypothesis."
+        },
+        {
+          "points": 4,
+          "criterion": "Verifies the two stated eigenpairs and computes their dot product as 1."
+        },
+        {
+          "points": 3,
+          "criterion": "Rejects the orthogonality conclusion for arbitrary real/nonsymmetric matrices."
+        }
+      ],
+      "marking": "A direct B^T≠B check or equivalent entry comparison is accepted."
     }
   },
   "coverage": {
@@ -1234,6 +1327,11 @@
       "Use i^2=-1 to solve a simple quadratic characteristic equation with negative real discriminant and identify the conjugate eigenvalue pair.",
       "Verify a supplied/constructed complex eigenvector for a real matrix by direct matrix-vector multiplication.",
       "Distinguish 'no real eigenvalue/eigenvector' from 'no eigenvalue over C' and state the scalar field explicitly."
+    ],
+    "T22V3::SIDE279::S13@1": [
+      "Use A^T=A to derive x·Ay=(Ax)·y for real vectors x,y and apply that identity in eigenstructure proofs.",
+      "Reconstruct a bounded proof that every eigenvalue of a real symmetric matrix is real and that eigenvectors for distinct eigenvalues are orthogonal.",
+      "Check the symmetry hypothesis before invoking these guarantees and reject their use for a nonsymmetric real matrix."
     ]
   },
   "claimEvidence": {
@@ -1936,6 +2034,62 @@
         "escapeAttempt": "Unqualified 'no eigenvalues' fails.",
         "generalizationDistance": "Exactly the R-versus-C distinction."
       }
+    ],
+    "T22V3::SIDE279::S13@1": [
+      {
+        "claim": "Use A^T=A to derive x·Ay=(Ax)·y for real vectors x,y and apply that identity in eigenstructure proofs.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S13-M@1"
+        ],
+        "publicRequestExact": [
+          "derive x·Ay=(Ax)·y from A^T=A"
+        ],
+        "rubricEvidence": [
+          "Derives x·Ay=(Ax)·y from A^T=A with correct scalar/transpose reasoning."
+        ],
+        "disposition": "adequate",
+        "why": "The exact symmetry identity and its derivation are public.",
+        "escapeAttempt": "Quoting orthogonality without the identity loses this row.",
+        "generalizationDistance": "General real symmetric finite-matrix identity."
+      },
+      {
+        "claim": "Reconstruct a bounded proof that every eigenvalue of a real symmetric matrix is real and that eigenvectors for distinct eigenvalues are orthogonal.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S13-M@1"
+        ],
+        "publicRequestExact": [
+          "prove b=0",
+          "prove v·w=0"
+        ],
+        "rubricEvidence": [
+          "Completes the real/imaginary proof and concludes every eigenvalue of a real symmetric matrix is real.",
+          "Proves distinct-eigenvalue eigenvectors are orthogonal using the symmetry identity."
+        ],
+        "disposition": "adequate",
+        "why": "Both structural proofs are reconstructed from the permitted identity.",
+        "escapeAttempt": "Citing 'spectral theorem' would not satisfy the requested derivations.",
+        "generalizationDistance": "General finite real symmetric statements are explicitly proved."
+      },
+      {
+        "claim": "Check the symmetry hypothesis before invoking these guarantees and reject their use for a nonsymmetric real matrix.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S13-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit the theorem hypothesis... state the missing condition."
+        ],
+        "rubricEvidence": [
+          "Identifies that B is not symmetric and names symmetry as the missing theorem hypothesis.",
+          "Rejects the orthogonality conclusion for arbitrary real/nonsymmetric matrices."
+        ],
+        "disposition": "adequate",
+        "why": "The learner must test symmetry before accepting orthogonality.",
+        "escapeAttempt": "Real entries + distinct eigenvalues still fail on the supplied example.",
+        "generalizationDistance": "Exact hypothesis-audit direction."
+      }
     ]
   },
   "evidenceDistance": {
@@ -2057,6 +2211,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "A false domain-wide statement is supplied; the learner must preserve the correct real conclusion while repairing the complex one."
+      }
+    },
+    "T22V3::SIDE279::S13@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Both symmetry proofs are taught and reconstructed symbolically, then checked on fresh numerical data."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "A theorem is applied to an object of the wrong class; the learner must type-check the matrix before using the conclusion."
       }
     }
   },
@@ -2291,6 +2455,26 @@
         ],
         "mathematicalDifference": "Transfer uses scale 16 and an unqualified report; eigenvalues/eigenvector differ from worked/guided/Main.",
         "exposureDisposition": "CLEAR."
+      },
+      "T22V3::SIDE279::S13-M@1": {
+        "sessionId": "T22V3::SIDE279::S13@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S13 symbolic proofs",
+          "S13 worked [[4,2],[2,1]]",
+          "S13 guided 3x3 symmetric matrix"
+        ],
+        "mathematicalDifference": "Main uses a new rank-one symmetric matrix for verification while reconstructing the general proofs.",
+        "exposureDisposition": "CLEAR — proof architecture is intentionally shared; fixed numerical verification is distinct."
+      },
+      "T22V3::SIDE279::S13-T@1": {
+        "sessionId": "T22V3::SIDE279::S13@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S13 distinction real vs real symmetric"
+        ],
+        "mathematicalDifference": "Transfer uses a new nonsymmetric upper-triangular matrix with explicitly nonorthogonal eigenvectors.",
+        "exposureDisposition": "CLEAR."
       }
     }
   },
@@ -2431,6 +2615,15 @@
         "lessonSolvedInstances": [
           "[[0,-4],[1,0]] worked",
           "[[0,-1],[4,0]] guided"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S13@1": {
+        "lessonSolvedInstances": [
+          "[[4,2],[2,1]] worked",
+          "3x3 symmetric B guided"
         ],
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
@@ -2589,6 +2782,18 @@
         "alreadySuppliedByPrompt": "False unqualified claim supplied; repair not.",
         "decisivelyRehearsedInVisibleInstruction": "No exact matrix/report.",
         "learnerActionActuallyScored": "Field-qualified audit plus complex pair."
+      },
+      "T22V3::SIDE279::S13-M@1": {
+        "claimedLearnerDecision": "Reconstruct the exact theorem hypotheses/arguments and apply them.",
+        "alreadySuppliedByPrompt": "Proof targets supplied; derivations not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — proof reconstruction.",
+        "learnerActionActuallyScored": "Identity proof, real-spectrum proof, orthogonality proof, numerical check."
+      },
+      "T22V3::SIDE279::S13-T@1": {
+        "claimedLearnerDecision": "Decide whether the theorem applies to a real but nonsymmetric matrix.",
+        "alreadySuppliedByPrompt": "False report supplied; missing hypothesis not.",
+        "decisivelyRehearsedInVisibleInstruction": "No exact counterexample solved.",
+        "learnerActionActuallyScored": "Symmetry check, eigenpair/dot computation, rejection."
       }
     }
   },
@@ -2679,6 +2884,11 @@
         "failureMode": "no real characteristic roots inflated into no eigenvalues at all",
         "where": "S12 Transfer",
         "discriminator": "same real matrix has ±4i over C and verified complex eigenvector"
+      },
+      {
+        "failureMode": "real or distinct-eigenvalue matrix assumed to have orthogonal eigenvectors without symmetry",
+        "where": "S13 Transfer",
+        "discriminator": "nonsymmetric B has distinct real eigenvalues but dot product 1"
       }
     ],
     "designGateCoverage": [
