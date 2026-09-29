@@ -137,3 +137,23 @@ PASS. Eigenbasis criterion, dimension decision and n-distinct-real-eigenvalue co
 PASS. Worked diagonal, guided symmetric block, Main different symmetric block, and data-only Transfer are mathematically distinct. No fixed answer is exposed.
 
 **S07 local disposition: PASS. S08 may open.**
+
+
+## S08 — Build the diagonal coordinates
+
+### Gate 4 — teaching
+PASS. P and D are defined from an ordered eigenbasis; AP=PD is derived columnwise before A=PDP^-1. P's invertibility is tied to the basis property, not merely a determinant calculation. Column/eigenvalue order is an explicit distinction.
+
+### Gate 5 — evidence
+Main is **proof reconstruction** on a fresh eigenbasis. Transfer is **changed-surface Transfer**: a complete-looking but corrupted P,D pair is supplied and must be diagnosed by BP versus PD. Wrong solver that treats D as freely reorderable fails immediately.
+
+### Gate 6 — reconstruction/fairness
+For A=[[5,2],[0,1]], P=[[1,1],[0,-2]], D=diag(5,1), P^-1=[[1,1/2],[0,-1/2]], AP=PD and PDP^-1=A. For Transfer B=[[2,0],[1,4]], P=[(-2,1),(0,1)] gives BP=[[-4,0],[2,4]]; proposed diag(4,2) gives a different PD, while diag(2,4) matches. Every rubric row is publicly requested.
+
+### Gate 7 — claims
+PASS. Ordered construction, columnwise derivation/invertibility and order-mismatch diagnosis are each literally observed.
+
+### Gate 8 — separation
+PASS. Worked/guided/Main/Transfer use four distinct matrices/eigenbases; only the general AP=PD method is shared.
+
+**S08 local disposition: PASS. S09 may open.**
