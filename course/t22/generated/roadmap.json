@@ -150,7 +150,8 @@
       "id": "SIDE279",
       "title": "Eigenvalues, Eigenvectors & Spectral Structure",
       "prerequisites": [
-        "SIDE276"
+        "SIDE276",
+        "SIDE278"
       ],
       "availability": "planned"
     },
