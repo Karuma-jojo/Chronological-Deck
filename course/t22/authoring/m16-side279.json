@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 2,
-    "ownershipClaimCount": 6,
-    "fixedAssessments": 4,
+    "authoredSessions": 3,
+    "ownershipClaimCount": 9,
+    "fixedAssessments": 6,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -172,6 +172,46 @@
       "guidedFeedback": "Check after attempting. B-3I=[[0,0,0],[0,0,1],[0,0,-2]], so z=0 while x,y are free. Thus E_3=span{(1,0,0),(0,1,0)}. Every nonzero vector in this plane is an eigenvector with λ=3; the zero vector is in E_3 but is not an eigenvector.",
       "main": "T22V3::SIDE279::S02-M@1",
       "transfer": "T22V3::SIDE279::S02-T@1"
+    },
+    {
+      "order": 3,
+      "id": "T22V3::SIDE279::S03@1",
+      "moduleId": "SIDE279",
+      "title": "Why the characteristic equation appears",
+      "focus": "Derive det(A-λI)=0 from the need for a nonzero null-space solution, solve exact low-degree characteristic equations, and return to eigenspaces rather than stopping at roots.",
+      "purpose": "S02 can recover E_λ once λ is supplied. S03 earns a systematic way to discover candidate λ values from M14 singularity/determinant structure without turning the determinant equation into the definition of eigenvalue.",
+      "centralCapability": "Derive the characteristic equation from Av=λv and singularity, solve it for a small exact matrix, and compute the corresponding eigenspaces.",
+      "principalObstacle": "The learner may memorize det(A-λI)=0 as a magic recipe, confuse det(A) with an eigenvalue, or stop after roots without verifying nonzero eigenspaces.",
+      "entryPrerequisites": [
+        "S01 eigenpair definition",
+        "S02 eigenspace-as-kernel",
+        "M14 determinant/singularity equivalence",
+        "M02 exact quadratic/polynomial algebra"
+      ],
+      "requiredOwnership": [
+        "Derive det(A-λI)=0 from the requirement that (A-λI)v=0 have a nonzero solution.",
+        "Compute the characteristic polynomial/equation for an exact 2×2 or manageable triangular 3×3 matrix and solve for its real eigenvalues.",
+        "For each computed eigenvalue, return to Null(A-λI) to construct an eigenspace rather than treating a polynomial root alone as the full eigenpair result."
+      ],
+      "applicationScope": "Exact small real square matrices whose characteristic polynomial is readily factorable or otherwise solvable with earlier algebra.",
+      "transferScope": "Audit a report that mistakes det(A) itself for an eigenvalue and repair the complete eigenvalue/eigenspace analysis.",
+      "inScope": [
+        "characteristic polynomial/equation",
+        "singularity derivation",
+        "exact roots",
+        "eigenspace follow-through"
+      ],
+      "outOfScope": [
+        "high-degree polynomial formulas",
+        "numerical root/eigensolvers",
+        "multiplicity theory",
+        "diagonalization"
+      ],
+      "exitCondition": "From a fresh small matrix, justify the determinant equation, solve the eigenvalues and recover every corresponding eigenspace.",
+      "lesson": "Orient. S02 answered: if λ is known, solve Null(A-λI). Now reverse the question. Which λ make that null space contain something besides 0?\n\nConnect. M14 says a square matrix B has a nonzero solution to Bv=0 exactly when B is singular, and B is singular exactly when det(B)=0. Apply that theorem to the same object B=A-λI. Therefore Av=λv with v≠0 is possible exactly when det(A-λI)=0. This determinant equation is a consequence of the eigenvector definition plus M14 singularity; it is not the definition.\n\nDefine. Using the convention p_A(t)=det(A-tI), p_A is the characteristic polynomial. Its roots are the eigenvalues. Some books use det(tI-A); for an n×n matrix that differs by the factor (-1)^n and has the same roots.\n\nWorked example. Let A=[[3,1],[1,3]]. Then A-tI=[[3-t,1],[1,3-t]], so p_A(t)=(3-t)^2-1=t^2-6t+8=(t-2)(t-4). Thus λ=2,4. For λ=4, A-4I=[[-1,1],[1,-1]], whose null space is span{(1,1)}. For λ=2, A-2I=[[1,1],[1,1]], whose null space is span{(1,-1)}. Direct multiplication verifies both eigenpairs.\n\nExplain the logic chain. Nonzero eigenvector → nontrivial kernel of A-λI → shifted matrix singular → determinant zero. Solving the determinant only produces candidate λ values; the eigenspace calculation tells us the actual directions.\n\nGuided practice. Let B=[[2,2],[1,3]]. Form p_B(t), factor it, find its real eigenvalues, and compute a basis for the eigenspace of the larger eigenvalue. Finish with a direct Bv=λv check.\n\nFade. Main requires the whole derivation/computation on a new matrix. Transfer supplies a plausible but invalid det(A)=λ shortcut and asks for diagnosis plus repair.\n\nDistinction check. det(A) is one scalar attached to A. The eigenvalue condition uses det(A-λI)=0, an equation in the unknown λ. Never replace one with the other.",
+      "guidedFeedback": "Check after attempting. p_B(t)=(2-t)(3-t)-2=t^2-5t+4=(t-1)(t-4), so λ=1,4. For λ=4, B-4I=[[-2,2],[1,-1]], giving x=y and E_4=span{(1,1)}. Indeed B(1,1)=(4,4).",
+      "main": "T22V3::SIDE279::S03-M@1",
+      "transfer": "T22V3::SIDE279::S03-T@1"
     }
   ],
   "problems": {
@@ -201,6 +241,20 @@
       "order": 2,
       "kind": "transfer",
       "prompt": "Let C=[[5,0],[0,1]]. A report writes E_5={t(1,0): t≠0} and says: “This is the eigenspace for 5 because every vector in the set is an eigenvector; the zero vector should be excluded because it is not an eigenvector.” Audit the report. Give the actual E_5, explain whether the reported set is a subspace, and reconcile the role of 0.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S03-M@1": {
+      "id": "T22V3::SIDE279::S03-M@1",
+      "order": 3,
+      "kind": "main",
+      "prompt": "Let A=[[4,2],[1,3]]. Starting from Av=λv with v≠0: (a) state the shifted homogeneous system and explain why a nonzero solution forces det(A-λI)=0; (b) compute and factor p_A(λ)=det(A-λI), then find all real eigenvalues; (c) compute a basis for each eigenspace and verify one eigenpair directly.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S03-T@1": {
+      "id": "T22V3::SIDE279::S03-T@1",
+      "order": 3,
+      "kind": "transfer",
+      "prompt": "Let T=[[2,1],[0,3]]. A report says: “det(T)=6, therefore 6 is the eigenvalue.” Audit the inference. Write the correct characteristic equation, find all real eigenvalues, and give a basis for each eigenspace.",
       "obligationVersion": 1
     }
   },
@@ -276,6 +330,46 @@
         }
       ],
       "marking": "Accept any correct subspace argument; omission of zero is already decisive."
+    },
+    "T22V3::SIDE279::S03-M@1": {
+      "reference": "From Av=λv, (A-λI)v=0. Because v≠0, A-λI has a nontrivial null space, hence is singular, so det(A-λI)=0. Here det(A-λI)=(4-λ)(3-λ)-2=λ^2-7λ+10=(λ-5)(λ-2), so λ=5,2. For λ=5, Null(A-5I)=span{(2,1)}. For λ=2, Null(A-2I)=span{(-1,1)} (equivalently span{(1,-1)}). For example A(2,1)=(10,5)=5(2,1).",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Derives the determinant condition through the nontrivial-kernel/singularity chain rather than presenting it as the eigenvector definition."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes p_A(λ)=λ^2-7λ+10=(λ-5)(λ-2) and finds eigenvalues 5 and 2."
+        },
+        {
+          "points": 3,
+          "criterion": "Computes correct bases E_5=span{(2,1)} and E_2=span{(-1,1)} or equivalent nonzero rescalings."
+        },
+        {
+          "points": 1,
+          "criterion": "Directly verifies at least one resulting eigenpair in Av=λv."
+        }
+      ],
+      "marking": "Accept the opposite characteristic-polynomial sign convention if roots and subsequent eigenspaces are correct."
+    },
+    "T22V3::SIDE279::S03-T@1": {
+      "reference": "det(T)=6 is the product of the two eigenvalues here, not itself an eigenvalue. The correct equation is det(T-λI)=(2-λ)(3-λ)=0, so λ=2,3. E_2=span{(1,0)}. E_3=span{(1,1)}. Thus the report confuses a matrix invariant with the shifted singularity equation.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Rejects det(T)=6⇒λ=6 and identifies the missing shifted determinant det(T-λI)."
+        },
+        {
+          "points": 3,
+          "criterion": "Writes/factors (2-λ)(3-λ)=0 and finds λ=2,3."
+        },
+        {
+          "points": 4,
+          "criterion": "Computes E_2=span{(1,0)} and E_3=span{(1,1)} (up to nonzero rescaling)."
+        }
+      ],
+      "marking": "A correct explanation that det(T)=6 is not the characteristic equation is sufficient; naming the product-of-eigenvalues fact is optional."
     }
   },
   "coverage": {
@@ -288,6 +382,11 @@
       "For a supplied real λ, rewrite Av=λv as (A-λI)v=0 and compute E_λ=Null(A-λI) as a span/basis.",
       "Distinguish the eigenspace E_λ, which is a subspace containing 0, from the set of eigenvectors for λ, which consists of the nonzero vectors in E_λ.",
       "Audit whether a proposed set of eigenvectors is itself an eigenspace by checking subspace requirements and the zero-vector boundary."
+    ],
+    "T22V3::SIDE279::S03@1": [
+      "Derive det(A-λI)=0 from the requirement that (A-λI)v=0 have a nonzero solution.",
+      "Compute the characteristic polynomial/equation for an exact 2×2 or manageable triangular 3×3 matrix and solve for its real eigenvalues.",
+      "For each computed eigenvalue, return to Null(A-λI) to construct an eigenspace rather than treating a polynomial root alone as the full eigenpair result."
     ]
   },
   "claimEvidence": {
@@ -405,6 +504,66 @@
         "escapeAttempt": "Merely saying all listed vectors are eigenvectors does not establish eigenspace status.",
         "generalizationDistance": "Claim is an audit capability, exactly matching the task direction."
       }
+    ],
+    "T22V3::SIDE279::S03@1": [
+      {
+        "claim": "Derive det(A-λI)=0 from the requirement that (A-λI)v=0 have a nonzero solution.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S03-M@1"
+        ],
+        "publicRequestExact": [
+          "state the shifted homogeneous system and explain why a nonzero solution forces det(A-λI)=0"
+        ],
+        "rubricEvidence": [
+          "Derives the determinant condition through the nontrivial-kernel/singularity chain rather than presenting it as the eigenvector definition."
+        ],
+        "disposition": "adequate",
+        "why": "The public task requests the exact kernel→singular→determinant reasoning chain.",
+        "escapeAttempt": "Quoting det(A-λI)=0 with no derivation loses the criterion.",
+        "generalizationDistance": "Claim is the general derivation explicitly requested."
+      },
+      {
+        "claim": "Compute the characteristic polynomial/equation for an exact 2×2 or manageable triangular 3×3 matrix and solve for its real eigenvalues.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S03-M@1",
+          "T22V3::SIDE279::S03-T@1"
+        ],
+        "publicRequestExact": [
+          "compute and factor p_A(λ)=det(A-λI), then find all real eigenvalues",
+          "Write the correct characteristic equation, find all real eigenvalues"
+        ],
+        "rubricEvidence": [
+          "Computes p_A(λ)=λ^2-7λ+10=(λ-5)(λ-2) and finds eigenvalues 5 and 2.",
+          "Writes/factors (2-λ)(3-λ)=0 and finds λ=2,3."
+        ],
+        "disposition": "adequate",
+        "why": "Two fresh small matrices directly observe characteristic-polynomial construction and exact root solving.",
+        "escapeAttempt": "Using det(A) alone cannot satisfy either shifted-equation row.",
+        "generalizationDistance": "Bounded to exact 2×2/triangular small matrices."
+      },
+      {
+        "claim": "For each computed eigenvalue, return to Null(A-λI) to construct an eigenspace rather than treating a polynomial root alone as the full eigenpair result.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S03-M@1",
+          "T22V3::SIDE279::S03-T@1"
+        ],
+        "publicRequestExact": [
+          "compute a basis for each eigenspace and verify one eigenpair directly",
+          "give a basis for each eigenspace"
+        ],
+        "rubricEvidence": [
+          "Computes correct bases E_5=span{(2,1)} and E_2=span{(-1,1)} or equivalent nonzero rescalings.",
+          "Directly verifies at least one resulting eigenpair in Av=λv.",
+          "Computes E_2=span{(1,0)} and E_3=span{(1,1)} (up to nonzero rescaling)."
+        ],
+        "disposition": "adequate",
+        "why": "Both tasks continue past polynomial roots into shifted null spaces.",
+        "escapeAttempt": "Correct eigenvalues alone earn none of the eigenspace rows.",
+        "generalizationDistance": "Exactly the direction tested."
+      }
     ]
   },
   "evidenceDistance": {
@@ -426,6 +585,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "Calculation is reversed into a set/subspace audit where the mathematically decisive issue is the missing zero vector."
+      }
+    },
+    "T22V3::SIDE279::S03@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "The kernel→singularity→determinant architecture is taught and must be reconstructed while completing a fresh eigenanalysis."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "A wrong matrix-invariant claim is supplied; the learner must diagnose the missing shift and repair the full analysis."
       }
     }
   },
@@ -470,6 +639,25 @@
         ],
         "mathematicalDifference": "Transfer presents a punctured eigenline as a claimed eigenspace and requires subspace/error diagnosis rather than forward null-space computation.",
         "exposureDisposition": "CLEAR — no punctured-line report or C matrix is solved in instruction."
+      },
+      "T22V3::SIDE279::S03-M@1": {
+        "sessionId": "T22V3::SIDE279::S03@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S03 worked A=[[3,1],[1,3]]",
+          "S03 guided B=[[2,2],[1,3]]"
+        ],
+        "mathematicalDifference": "Main uses a distinct nonsymmetric matrix with eigenvalues 5 and 2 and asks for the derivation chain explicitly.",
+        "exposureDisposition": "CLEAR — no fixed polynomial/eigenspace is solved visibly."
+      },
+      "T22V3::SIDE279::S03-T@1": {
+        "sessionId": "T22V3::SIDE279::S03@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S03 distinction det(A) versus det(A-λI)"
+        ],
+        "mathematicalDifference": "Transfer starts from a false report on an upper-triangular matrix and requires diagnosis and repair.",
+        "exposureDisposition": "CLEAR — no det(T)=6 report or T eigenspaces are solved in instruction."
       }
     }
   },
@@ -523,6 +711,15 @@
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
         "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S03@1": {
+        "lessonSolvedInstances": [
+          "A=[[3,1],[1,3]] full eigenanalysis",
+          "B=[[2,2],[1,3]] guided"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
       }
     }
   },
@@ -557,6 +754,18 @@
         "alreadySuppliedByPrompt": "The flawed set/report is supplied; diagnosis is not.",
         "decisivelyRehearsedInVisibleInstruction": "NO — zero distinction is taught, but no solved punctured-set subspace audit appears.",
         "learnerActionActuallyScored": "Subspace failure diagnosis, actual eigenspace and reconciliation of zero."
+      },
+      "T22V3::SIDE279::S03-M@1": {
+        "claimedLearnerDecision": "Reconstruct why the determinant equation is legal and complete the eigenanalysis.",
+        "alreadySuppliedByPrompt": "Matrix supplied; determinant chain/results not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — proof architecture is taught; classification is proof reconstruction.",
+        "learnerActionActuallyScored": "Kernel/singularity explanation, polynomial roots, eigenspaces and direct check."
+      },
+      "T22V3::SIDE279::S03-T@1": {
+        "claimedLearnerDecision": "Identify why det(T)=6 is the wrong object and replace it with the shifted singularity equation.",
+        "alreadySuppliedByPrompt": "Flawed inference supplied; repair is not.",
+        "decisivelyRehearsedInVisibleInstruction": "NO exact report; the general distinction is taught.",
+        "learnerActionActuallyScored": "Error diagnosis plus corrected characteristic/eigenspace analysis."
       }
     }
   },
@@ -597,6 +806,11 @@
         "failureMode": "zero vector promoted to eigenvector because it lies in every eigenspace",
         "where": "S02 Main+Transfer",
         "discriminator": "rubrics separately score membership in E_λ and nonzero eigenvector requirement"
+      },
+      {
+        "failureMode": "det(A) mistaken for an eigenvalue or characteristic equation",
+        "where": "S03 Transfer",
+        "discriminator": "report's det(T)=6 conflicts with required det(T-λI)=0 and λ=2,3"
       }
     ],
     "designGateCoverage": [
