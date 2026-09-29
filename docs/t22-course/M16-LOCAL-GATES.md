@@ -259,3 +259,23 @@ PASS. Symmetry identity, real-spectrum/orthogonality proofs and hypothesis audit
 PASS. Numerical matrices are distinct from instruction/fixed tasks elsewhere, and the symbolic proof architecture is intentionally proof reconstruction rather than hidden fresh evidence.
 
 **S13 local disposition: PASS. S14 may open.**
+
+
+## S14 — The finite real spectral theorem
+
+### Gate 4 — teaching
+PASS. The proof route is explicit: FTA as a sourced support theorem supplies an eigenvalue over C; S13 makes it real; a normalized eigenvector's orthogonal complement is invariant; the restricted map remains symmetric; induction plus M15 orthonormalization closes the basis. Repeated-eigenvalue eigenspaces are handled without importing PSD/SVD.
+
+### Gate 5 — evidence
+Main is **proof reconstruction**: the decisive invariant-complement step is proved and a repeated-eigenvalue QDQ^T is constructed. Transfer is **changed-surface Transfer**: a true weaker statement (diagonalizable) is used to claim orthogonal diagonalization, forcing a hypothesis-strength audit.
+
+### Gate 6 — reconstruction/fairness
+For A=[[3,1,0],[1,3,0],[0,0,4]], λ=4 has ON directions (1,1,0)/sqrt(2) and e3; λ=2 has (1,-1,0)/sqrt(2). Matching Q,D satisfy Q^TQ=I and A=QDQ^T. Transfer B=[[1,2],[0,4]] is nonsymmetric; if B=QDQ^T with real orthogonal Q and diagonal D, then B^T=B, contradiction.
+
+### Gate 7 — claims
+PASS. The proof claim is deliberately “proof architecture / key invariant-complement step,” not an inflated claim that the public task reproduces every induction line. Concrete ON-eigenbasis construction and nonsymmetric rejection are directly observed.
+
+### Gate 8 — separation
+PASS. Main/Transfer matrices are distinct from prior fixed or answer-bearing instructional instances. No PSD/quadratic-form/SVD content leaks forward.
+
+**S14 local disposition: PASS. S15 may open.**
