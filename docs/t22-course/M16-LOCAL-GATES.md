@@ -97,3 +97,23 @@ PASS. The public Main literally observes arbitrary two-vector equal-eigenvalue c
 The first Transfer draft was **BLOCKED** because it reused the exact (2I,e_1,2e_1,e_2) worked contrast. Before advancing, it was replaced by (5I_2) with (u=(1,1),w=(3,3),z=(1,-1)). The repaired task preserves the misconception but not the solved mathematical instance. Re-audit: CLEAR.
 
 **S05 local disposition: PASS after Gate-8 repair. S06 may open.**
+
+
+## S06 — Repeated roots are not repeated directions
+
+### Gate 4 — teaching
+PASS. Algebraic multiplicity is defined as root multiplicity; geometric multiplicity as (\dim E_\lambda). The general finite-dimensional bound (1\le g_\lambda\le a_\lambda) is labelled a sourced support theorem, not falsely presented as a proof obligation before the similarity machinery needed for the clean structural proof. The session owns the distinction and concrete calculations.
+
+### Gate 5 — evidence
+Main is **retrieval** through a fresh same-polynomial/different-eigenspace comparison. Transfer is **changed-surface Transfer**: a factored polynomial is embedded in a report that has already made the invalid inference (a_3=2\Rightarrow g_3=2). Wrong solver equating the two counts fails the eigenspace and diagnosis rows.
+
+### Gate 6 — reconstruction/fairness
+Both (2I_2) and ([[2,1],[0,2]]) have ((2-t)^2), hence (a_2=2); their eigenspace dimensions are respectively 2 and 1. For (C=[[3,1,0],[0,3,0],[0,0,1]]), (p_C=(3-t)^2(1-t)) while (E_3=\mathrm{span}\{e_1\}), so (a_3=2,g_3=1). Rubrics request no Jordan terminology or proof of the general inequality.
+
+### Gate 7 — claims
+PASS. Claims are concrete multiplicity computations and misconception diagnosis. None claims the learner publicly proved (g\le a) in general.
+
+### Gate 8 — separation
+PASS. Worked contrast uses eigenvalue 4, guided example uses diagonal eigenvalue 5, Main uses eigenvalue 2, and Transfer uses a distinct 3×3 eigenvalue-3 instance. No fixed answer is exposed.
+
+**S06 local disposition: PASS. S07 may open.**
