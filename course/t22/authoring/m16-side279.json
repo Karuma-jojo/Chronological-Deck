@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 6,
-    "ownershipClaimCount": 18,
-    "fixedAssessments": 12,
+    "authoredSessions": 7,
+    "ownershipClaimCount": 21,
+    "fixedAssessments": 14,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -325,6 +325,45 @@
       "guidedFeedback": "Check after attempting. p_B(t)=(5-t)^2(1-t), so a_5=2. Since B-5I=diag(0,0,-4), E_5=span{(1,0,0),(0,1,0)} and g_5=2. The same algebraic multiplicity 2 can therefore accompany g=1 or g=2.",
       "main": "T22V3::SIDE279::S06-M@1",
       "transfer": "T22V3::SIDE279::S06-T@1"
+    },
+    {
+      "order": 7,
+      "id": "T22V3::SIDE279::S07@1",
+      "moduleId": "SIDE279",
+      "title": "When eigenvectors form a basis",
+      "focus": "Characterize diagonalizability through an eigenbasis, use eigenspace dimensions to count available independent directions, and derive the distinct-eigenvalues corollary.",
+      "purpose": "S08 will build diagonal coordinates only after S07 establishes when such coordinates exist. The learner must decide existence before manipulating P and D.",
+      "centralCapability": "Determine whether a finite real matrix has enough independent eigenvectors to form a basis and justify diagonalizability without treating repeated eigenvalues as automatic success or failure.",
+      "principalObstacle": "Repeated eigenvalues are used as a yes/no shortcut, or algebraic multiplicity is counted instead of actual eigenspace dimensions.",
+      "entryPrerequisites": [
+        "S05 distinct-eigenvalue independence",
+        "S06 algebraic/geometric multiplicity",
+        "M13 basis/dimension",
+        "M14 similarity/change of coordinates"
+      ],
+      "requiredOwnership": [
+        "State and use the criterion that an n×n matrix is diagonalizable exactly when R^n has a basis of eigenvectors.",
+        "Use eigenspace bases/dimensions to decide whether enough independent eigenvectors exist, including a repeated-eigenvalue case that still diagonalizes.",
+        "Derive that n distinct real eigenvalues of an n×n real matrix guarantee diagonalizability by combining S05 independence with the basis-size criterion."
+      ],
+      "applicationScope": "Exact finite real matrices whose real eigenspaces are computable from prior sessions.",
+      "transferScope": "Audit a repeated-root non-diagonalizability claim when eigenspace data are supplied directly rather than through a matrix.",
+      "inScope": [
+        "eigenbasis",
+        "diagonalizable criterion",
+        "dimension count",
+        "distinct-eigenvalue sufficient condition"
+      ],
+      "outOfScope": [
+        "constructing P,D in detail",
+        "defective terminology and fallback",
+        "complex diagonalization"
+      ],
+      "exitCondition": "Given eigenvalue/eigenspace data, decide diagonalizability and defend the decision by basis/dimension rather than root-count folklore.",
+      "lesson": "Orient. We want coordinates in which A acts independently along coordinate axes. That is possible exactly when the space has a basis made of eigenvectors.\n\nDefine. An n×n real matrix A is diagonalizable over R when there is a basis of R^n consisting of real eigenvectors of A. Equivalently, A is similar to a diagonal matrix. S08 will construct the actual change-of-basis matrices; S07 owns the existence decision.\n\nCount directions, not roots. Eigenspaces for distinct eigenvalues intersect only at 0 and their eigenvector bases combine independently. So the practical question is whether the dimensions of the distinct eigenspaces supply n independent directions. Repeated eigenvalues are allowed if their eigenspaces are large enough.\n\nWorked example. D=diag(4,4,1) has λ=4 with E_4=span{e1,e2} and λ=1 with E_1=span{e3}. These three eigenvectors form a basis, so D is diagonalizable despite a repeated eigenvalue.\n\nDistinct-eigenvalue corollary. If an n×n matrix has n distinct real eigenvalues, choose one nonzero eigenvector for each. S05 says those n vectors are independent; in R^n, n independent vectors form a basis. Therefore the matrix is diagonalizable.\n\nGuided practice. Let B=[[2,1,0],[1,2,0],[0,0,3]]. Find the eigenvalues/eigenspace dimensions and decide whether B is diagonalizable. Pay attention to the repeated eigenvalue.\n\nFade. Main uses a different repeated-eigenvalue matrix and asks for the general distinct-root corollary. Transfer removes the matrix entirely and gives only characteristic/eigenspace data, so the learner must reason from the capability contract rather than repeat an elimination pattern.\n\nDistinction check. Algebraic multiplicity counts roots. Diagonalizability asks for a basis of actual eigenvectors. A repeated root is compatible with either outcome.",
+      "guidedFeedback": "Check after attempting. The 2×2 block has eigenvalues 3 and 1, while the third coordinate contributes another λ=3. E_3=span{(1,1,0),(0,0,1)} has dimension 2 and E_1=span{(1,-1,0)} has dimension 1. Together they supply three independent eigenvectors, so B is diagonalizable.",
+      "main": "T22V3::SIDE279::S07-M@1",
+      "transfer": "T22V3::SIDE279::S07-T@1"
     }
   ],
   "problems": {
@@ -410,6 +449,20 @@
       "order": 6,
       "kind": "transfer",
       "prompt": "Let C=[[3,1,0],[0,3,0],[0,0,1]]. A report factors p_C(t)=(3-t)^2(1-t) and says: “Because 3 has algebraic multiplicity 2, C has two independent eigenvectors with eigenvalue 3.” Audit that sentence by computing E_3 and its dimension. State a_3 and g_3 separately and identify the failed inference.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S07-M@1": {
+      "id": "T22V3::SIDE279::S07-M@1",
+      "order": 7,
+      "kind": "main",
+      "prompt": "Let A=[[4,2,0],[2,4,0],[0,0,6]]. (a) Compute/factor the characteristic polynomial and find E_6 and E_2 with their dimensions. (b) Decide whether A is diagonalizable over R and justify the decision by an eigenbasis/dimension argument. (c) Separately prove the corollary: if an n×n real matrix has n distinct real eigenvalues, then it is diagonalizable.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S07-T@1": {
+      "id": "T22V3::SIDE279::S07-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "A 3×3 matrix M is reported to have p_M(t)=(5-t)^2(-1-t), E_5=span{(1,0,0),(0,1,0)}, and E_-1=span{(0,0,1)}. Someone concludes: “M cannot be diagonalizable because 5 is repeated.” Audit that conclusion using only the supplied eigenspace data; do not invent or reconstruct M.",
       "obligationVersion": 1
     }
   },
@@ -637,6 +690,42 @@
         }
       ],
       "marking": "No Jordan-form language is required or rewarded."
+    },
+    "T22V3::SIDE279::S07-M@1": {
+      "reference": "p_A(t)=(6-t)^2(2-t). For λ=6, E_6=span{(1,1,0),(0,0,1)} has dimension 2. For λ=2, E_2=span{(-1,1,0)} has dimension 1. These bases provide three independent eigenvectors in R^3, hence an eigenbasis, so A is diagonalizable. For the corollary, choose one nonzero eigenvector from each of n distinct real eigenvalues; S05 gives n independent vectors, and n independent vectors in R^n form a basis, so A is diagonalizable.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Correctly finds p_A(t)=(6-t)^2(2-t), dim E_6=2 with a valid basis, and dim E_2=1 with a valid basis."
+        },
+        {
+          "points": 3,
+          "criterion": "Concludes A is diagonalizable because the eigenspaces supply three independent eigenvectors / an eigenbasis."
+        },
+        {
+          "points": 3,
+          "criterion": "Proves the n-distinct-real-eigenvalues corollary using distinct-eigenvalue independence plus the n-vector basis criterion."
+        }
+      ],
+      "marking": "Equivalent bases/rescalings are accepted. Do not require construction of P or D yet."
+    },
+    "T22V3::SIDE279::S07-T@1": {
+      "reference": "The conclusion is false. The supplied E_5 has dimension 2 and E_-1 has dimension 1. Bases from distinct eigenspaces combine independently, giving three independent eigenvectors in R^3, hence an eigenbasis. Therefore M is diagonalizable despite the repeated eigenvalue 5.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Rejects the claim that repetition of eigenvalue 5 by itself prevents diagonalizability."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses the supplied dimensions 2+1=3 and distinct-eigenspace independence to identify an eigenbasis."
+        },
+        {
+          "points": 3,
+          "criterion": "Concludes M is diagonalizable without reconstructing an unnecessary matrix."
+        }
+      ],
+      "marking": "The supplied eigenspace data are authoritative givens for this task; no matrix computation is required."
     }
   },
   "coverage": {
@@ -669,6 +758,11 @@
       "Compute algebraic multiplicity from the multiplicity of an eigenvalue as a characteristic-polynomial root.",
       "Compute geometric multiplicity as dim E_λ from an eigenspace basis.",
       "Use concrete matrices to refute the inference that a repeated eigenvalue automatically supplies the same number of independent eigenvectors."
+    ],
+    "T22V3::SIDE279::S07@1": [
+      "State and use the criterion that an n×n matrix is diagonalizable exactly when R^n has a basis of eigenvectors.",
+      "Use eigenspace bases/dimensions to decide whether enough independent eigenvectors exist, including a repeated-eigenvalue case that still diagonalizes.",
+      "Derive that n distinct real eigenvalues of an n×n real matrix guarantee diagonalizability by combining S05 independence with the basis-size criterion."
     ]
   },
   "claimEvidence": {
@@ -1020,6 +1114,66 @@
         "escapeAttempt": "Reporting a_λ and g_λ without interpreting their mismatch loses the diagnosis row.",
         "generalizationDistance": "Claim is diagnostic, not a general proof of g≤a."
       }
+    ],
+    "T22V3::SIDE279::S07@1": [
+      {
+        "claim": "State and use the criterion that an n×n matrix is diagonalizable exactly when R^n has a basis of eigenvectors.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S07-M@1",
+          "T22V3::SIDE279::S07-T@1"
+        ],
+        "publicRequestExact": [
+          "Decide whether A is diagonalizable over R and justify the decision by an eigenbasis/dimension argument.",
+          "Audit that conclusion using only the supplied eigenspace data"
+        ],
+        "rubricEvidence": [
+          "Concludes A is diagonalizable because the eigenspaces supply three independent eigenvectors / an eigenbasis.",
+          "Concludes M is diagonalizable without reconstructing an unnecessary matrix."
+        ],
+        "disposition": "adequate",
+        "why": "Both tasks require the eigenbasis criterion as the decisive reason.",
+        "escapeAttempt": "Root repetition or characteristic polynomial alone cannot earn the rows.",
+        "generalizationDistance": "Finite real n×n criterion as stated."
+      },
+      {
+        "claim": "Use eigenspace bases/dimensions to decide whether enough independent eigenvectors exist, including a repeated-eigenvalue case that still diagonalizes.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S07-M@1",
+          "T22V3::SIDE279::S07-T@1"
+        ],
+        "publicRequestExact": [
+          "find E_6 and E_2 with their dimensions",
+          "using only the supplied eigenspace data"
+        ],
+        "rubricEvidence": [
+          "Correctly finds p_A(t)=(6-t)^2(2-t), dim E_6=2 with a valid basis, and dim E_2=1 with a valid basis.",
+          "Concludes A is diagonalizable because the eigenspaces supply three independent eigenvectors / an eigenbasis.",
+          "Uses the supplied dimensions 2+1=3 and distinct-eigenspace independence to identify an eigenbasis."
+        ],
+        "disposition": "adequate",
+        "why": "Main computes and Transfer consumes eigenspace dimensions in repeated-root positive cases.",
+        "escapeAttempt": "Using algebraic multiplicity 2 instead of dim E_6=2 does not satisfy Main.",
+        "generalizationDistance": "Repeated-eigenvalue success is directly observed."
+      },
+      {
+        "claim": "Derive that n distinct real eigenvalues of an n×n real matrix guarantee diagonalizability by combining S05 independence with the basis-size criterion.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S07-M@1"
+        ],
+        "publicRequestExact": [
+          "prove the corollary: if an n×n real matrix has n distinct real eigenvalues, then it is diagonalizable"
+        ],
+        "rubricEvidence": [
+          "Proves the n-distinct-real-eigenvalues corollary using distinct-eigenvalue independence plus the n-vector basis criterion."
+        ],
+        "disposition": "adequate",
+        "why": "The public task explicitly requests the general corollary and names no proof shortcut.",
+        "escapeAttempt": "Stating the result without S05 independence/basis reasoning loses the row.",
+        "generalizationDistance": "General finite real n×n statement is publicly proved."
+      }
     ]
   },
   "evidenceDistance": {
@@ -1081,6 +1235,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "A factored polynomial is already supplied inside a false report; the learner must locate the missing eigenspace dimension and repair the inference."
+      }
+    },
+    "T22V3::SIDE279::S07@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "Main combines fresh eigenspace computations with a taught eigenbasis criterion and reconstructs the distinct-eigenvalue corollary."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "Matrix arithmetic disappears; the learner must reason directly from supplied polynomial/eigenspace data and reject a root-repetition slogan."
       }
     }
   },
@@ -1202,6 +1366,25 @@
         ],
         "mathematicalDifference": "Transfer uses a new 3x3 matrix with an additional eigenvalue and asks for audit of a supplied a_3=2 claim.",
         "exposureDisposition": "CLEAR — E_3 and g_3 are not solved visibly."
+      },
+      "T22V3::SIDE279::S07-M@1": {
+        "sessionId": "T22V3::SIDE279::S07@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S07 D=diag(4,4,1) worked",
+          "S07 guided B=[[2,1,0],[1,2,0],[0,0,3]]"
+        ],
+        "mathematicalDifference": "Main uses a distinct non-diagonal symmetric block with repeated λ=6 and explicitly requests the n-distinct corollary.",
+        "exposureDisposition": "CLEAR — no fixed eigenspaces or polynomial are solved visibly."
+      },
+      "T22V3::SIDE279::S07-T@1": {
+        "sessionId": "T22V3::SIDE279::S07@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S07 repeated-root can still diagonalize"
+        ],
+        "mathematicalDifference": "Transfer supplies eigenspaces abstractly and forbids reconstructing the matrix; the decision is made from representation-free dimension data.",
+        "exposureDisposition": "CLEAR — no supplied M data set appears in instruction."
       }
     }
   },
@@ -1292,6 +1475,15 @@
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
         "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S07@1": {
+        "lessonSolvedInstances": [
+          "D=diag(4,4,1)",
+          "guided B=[[2,1,0],[1,2,0],[0,0,3]]"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
       }
     }
   },
@@ -1374,6 +1566,18 @@
         "alreadySuppliedByPrompt": "False inference supplied; verdict/eigenspace not.",
         "decisivelyRehearsedInVisibleInstruction": "NO exact matrix/report.",
         "learnerActionActuallyScored": "Compute E_3/g_3 and identify the invalid inference."
+      },
+      "T22V3::SIDE279::S07-M@1": {
+        "claimedLearnerDecision": "Decide diagonalizability from computed eigenspaces and reconstruct a general sufficient-condition proof.",
+        "alreadySuppliedByPrompt": "Matrix supplied; decision/results not.",
+        "decisivelyRehearsedInVisibleInstruction": "Criterion and corollary architecture taught; proof reconstruction label is honest.",
+        "learnerActionActuallyScored": "Eigenspace dimensions, eigenbasis decision and general corollary proof."
+      },
+      "T22V3::SIDE279::S07-T@1": {
+        "claimedLearnerDecision": "Decide whether repeated root blocks diagonalizability from supplied eigenspace data.",
+        "alreadySuppliedByPrompt": "Data and flawed conclusion supplied; correct decision not.",
+        "decisivelyRehearsedInVisibleInstruction": "No exact data-only audit solved.",
+        "learnerActionActuallyScored": "Dimension-based rejection and diagonalizability conclusion."
       }
     }
   },
@@ -1434,6 +1638,11 @@
         "failureMode": "algebraic multiplicity treated as number of independent eigenvectors",
         "where": "S06 Main+Transfer",
         "discriminator": "same a=2 appears with g=2 and g=1; Transfer forces explicit mismatch"
+      },
+      {
+        "failureMode": "repeated eigenvalue treated as automatic non-diagonalizability",
+        "where": "S07 Main+Transfer",
+        "discriminator": "repeated eigenspace supplies full dimension/eigenbasis"
       }
     ],
     "designGateCoverage": [
