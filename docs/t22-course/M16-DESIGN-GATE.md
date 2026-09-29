@@ -383,5 +383,6 @@ Current justified candidate: **16 sessions**. This count is derived from the ato
 - Gate 1: **builder boundary candidate complete**, with one required dependency reconciliation: SIDE279 must explicitly consume SIDE278 before publication.
 - Gate 2: **source-role stack covered for pre-authoring**, with source limitations/non-imports recorded.
 - Gate 3 planning artifacts: **all twelve present at candidate granularity**.
-- Next permitted work under v1.2: **author S01 only**, then run its complete local Gates 4–8 before multiplying the pattern.
+- Representative vertical slice: **S01 passed builder-local Gates 4–8** in `docs/t22-course/M16-PILOT-REVIEW.md` after evidence-label/claim-scope repair. This is not independent acceptance.
+- Next permitted work under v1.2: **author S02**, then require its own Gates 4–8 before S03.
 - M17 remains closed.
