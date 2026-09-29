@@ -1,13 +1,13 @@
 {
-  "version": "m03-authoring-v1.4-lang-foundation-final-stitch",
-  "instructionVersion": "m03-instruction-lang-binomial-r3",
+  "version": "m03-authoring-v1.5-spire-bounded-repair-r1",
+  "instructionVersion": "m03-instruction-spire-separation-r1",
   "module": {
     "order": 3,
     "id": "T22E-DISC01",
     "title": "Mathematical Reasoning & Discrete Foundations",
-    "status": "published-v1.4-lang-final-stitch-accepted",
+    "status": "bounded-repair-candidate-v1.5",
     "destination": "State claims precisely, prove/refute them, reason with sets/maps, and execute deterministic finite counting before probability.",
-    "gate": "Lang-foundation gate CLOSED after independent reconfirmation. S26 owns the general finite binomial theorem with combinatorial C(n,k) evidence; M03 remains 30 sessions / 60 tasks / 150 ownership claims and is frozen for publication.",
+    "gate": "Independent hostile Spire audit found bounded instruction-separation and evaluator-alignment defects. Repair candidate preserves 30 sessions / 60 fixed task IDs / 150 ownership claims; M04 remains closed pending independent follow-up.",
     "nextBoundary": "M04 owns probability, conditional probability, independence and expectation. M03 stops at deterministic finite counting."
   },
   "boundary": {
@@ -167,7 +167,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Biconditionals; necessary & sufficient conditions.",
-      "lesson": "P↔Q means both P→Q and Q→P. If P→Q, P is sufficient for Q and Q necessary for P; the reverse needs separate proof. Worked example: x=5 is sufficient for x²=25, but x²=25 is not sufficient for x=5 because x=−5 also works. Guided check: Compare x=0 with |x|=0.",
+      "lesson": "P↔Q means both P→Q and Q→P. If P→Q, then P is sufficient for Q and Q is necessary for P; the reverse direction must be checked separately. Worked example: over integers, 4|n implies n is even, so divisibility by4 is sufficient for evenness and evenness is necessary for divisibility by4. The reverse fails, for example at n=6. Guided check: compare “n is divisible by6” with “n is divisible by3”; check both arrows and give a counterexample to any failed direction.",
       "main": "T22V3::T22E-DISC01::S04-M@1",
       "transfer": "T22V3::T22E-DISC01::S04-T@1"
     },
@@ -201,7 +201,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Universal & existential quantifiers.",
-      "lesson": "∀ requires every legal value; ∃ requires at least one. A witness establishes an existential; one legal counterexample refutes a universal. Worked example: Over integers, ∃n(n²=9) has witness3, while ∀n(n>−100) is false. Guided check: Decide ∀n(n²≥0) and ∃n(n²=16) over integers.",
+      "lesson": "∀ requires every legal value in the stated domain; ∃ requires at least one. A witness establishes an existential; one legal counterexample refutes a universal. Worked example: over integers, ∃n(n²=25) is true because n=5 is a witness, while ∀n(n+1>n) is true because adding1 increases every integer. Guided check: on the domain {0,1,2,3}, decide ∀m(m<4) and ∃m(m²=4), explicitly naming the domain before deciding.",
       "main": "T22V3::T22E-DISC01::S05-M@1",
       "transfer": "T22V3::T22E-DISC01::S05-T@1"
     },
@@ -270,7 +270,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Counterexamples, boundary cases & claim debugging.",
-      "lesson": "A valid counterexample is legal, satisfies the hypothesis, and falsifies the conclusion. One refutes a universal; confirmations do not prove one. Worked example: The claim x<2⇒x²<4 fails at x=−3. Guided check: Test ab>0⇒a>0 and b>0 using negative factors.",
+      "lesson": "A valid counterexample is legal, satisfies the hypothesis, and falsifies the conclusion. One refutes a universal; confirmations do not prove one. Worked example: over reals, the claim a+b>0⇒(a>0 and b>0) fails at a=2,b=−1: the hypothesis is true but one conclusion component is false. Guided check: audit the claim x²=x⇒x=1 by testing the boundary value x=0 and explicitly checking hypothesis and conclusion.",
       "main": "T22V3::T22E-DISC01::S07-M@1",
       "transfer": "T22V3::T22E-DISC01::S07-T@1"
     },
@@ -337,7 +337,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Direct proof architecture.",
-      "lesson": "A direct proof starts with arbitrary objects, expands definitions, derives symbolically, and finishes by matching the conclusion definition. Worked example: If a=4r and b=4s then a+b=4(r+s), so sums of multiples of4 remain multiples of4. Guided check: Prove a multiple of3 times any integer is divisible by3.",
+      "lesson": "A direct proof of a universal implication starts with arbitrary legal objects satisfying the hypotheses, unpacks definitions, derives symbolically, and finishes by matching the conclusion definition. Worked example: if n is odd, then n+2 is odd. Write n=2k+1 for some integer k; then n+2=2(k+1)+1, which has the required odd form. Guided check: if 6|n, unpack the divisibility witness and show directly that n is even, naming the integer witness that matches the even definition.",
       "main": "T22V3::T22E-DISC01::S09-M@1",
       "transfer": "T22V3::T22E-DISC01::S09-T@1"
     },
@@ -475,7 +475,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Mathematical induction.",
-      "lesson": "Ordinary induction proves an integer-indexed claim by verifying the first case, assuming the claim for an arbitrary k, and using that exact hypothesis to derive k+1. Worked example: Prove 1+2+⋯+n=n(n+1)/2 for n≥1. Base n=1 gives 1=1·2/2. Assume 1+⋯+k=k(k+1)/2; adding k+1 gives (k+1)(k+2)/2, exactly the formula at k+1. Guided check: Set up the base, hypothesis and k+1 target for 3^n≥1+2n for n≥0.",
+      "lesson": "Ordinary induction proves an integer-indexed claim by verifying the first case, assuming the claim for an arbitrary k, and using that exact hypothesis to derive the k+1 case. Worked example: prove 7|(8^n−1) for n≥1. The base n=1 gives 8−1=7. Assume 8^k−1=7q for some integer q; then 8^(k+1)−1=8(8^k−1)+7=7(8q+1), so the next case follows. Guided check: for 1+2+⋯+n=n(n+1)/2, state the base case, induction hypothesis, and exact k+1 target, but do not finish the algebra.",
       "main": "T22V3::T22E-DISC01::S13-M@1",
       "transfer": "T22V3::T22E-DISC01::S13-T@1"
     },
@@ -509,7 +509,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Strong induction & recursive claims.",
-      "lesson": "Strong induction assumes every earlier case from the starting index through k, which is useful when the next case reduces by more than one step or depends on several earlier values. Worked example: Every integer n≥12 can be written n=4a+5b with a,b≥0 integers. Bases: 12=3·4, 13=2·4+5, 14=4+2·5, 15=3·5. Assume every integer from 12 through k (k≥15) has such a form. Then k+1−4=k−3 lies between 12 and k, so k−3=4a+5b; hence k+1=4(a+1)+5b. Therefore all n≥12 have the form. Guided check: For a recurrence whose next term depends on the two previous terms, explain why two base cases are needed and which earlier cases the strong hypothesis supplies.",
+      "lesson": "Strong induction assumes every earlier case from the starting index through k, which is useful when the next case reduces to more than one possible earlier value. Worked example: every integer n≥2 is either prime or a product of primes. Base n=2 is prime. Assume the statement holds for every integer from2 through k. For k+1, if it is prime we are done; if it is composite, write k+1=ab with 2≤a,b≤k, apply the all-prior hypothesis to a and b, and combine their prime factorizations. Guided check: if a future target P(n) naturally reduces to a case P(m) with m<n but not necessarily m=n−1, explain why an all-prior hypothesis is useful and what must be true of the base range.",
       "main": "T22V3::T22E-DISC01::S14-M@1",
       "transfer": "T22V3::T22E-DISC01::S14-T@1"
     },
@@ -816,7 +816,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Addition & product counting principles.",
-      "lesson": "Use addition for disjoint alternative branches and multiplication for sequential stages. If alternative branches overlap, direct addition double-counts and needs a correction. Worked example: Choosing one of 2 hats and then one of 3 scarves gives 2·3=6 outfits. Choosing exactly one route from 4 bus routes or 2 ferry routes gives 4+2=6 routes when the categories are disjoint. Guided check: A snack has 3 drink choices and 2 sandwich choices; separately, a prize is chosen from 5 books or 3 disjoint puzzles. Identify the rule and count each situation.",
+      "lesson": "Use addition for disjoint alternative branches and multiplication for sequential stages. If alternative branches overlap, direct addition double-counts and needs correction. Worked example: choosing the first coordinate from {α,β} and the second coordinate from {1,2,3,4,5} gives 2·5 ordered pairs by the product rule. Separately, if E={2,4,6,8} and O={1,3,5} are disjoint, then |E∪O|=4+3=7 by the addition rule. Guided check: a path chooses one of3 gates and then one of4 rooms; separately, two disjoint boxes contain5 and2 objects. Identify which count is sequential and which is alternative before calculating.",
       "main": "T22V3::T22E-DISC01::S23-M@1",
       "transfer": "T22V3::T22E-DISC01::S23-T@1"
     },
@@ -849,7 +849,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Permutations, factorials & ordered selections.",
-      "lesson": "For n distinct objects, n!=n(n−1)⋯1 counts all orderings. Filling r labeled positions without replacement gives P(n,r)=n!/(n−r)! because the available choices decrease at every stage. Worked example: Four distinct books can be ordered in 4!=24 ways. President and vice-president chosen from 5 people can be assigned in 5·4=20=P(5,2) ways because swapping the offices changes the outcome. Guided check: Count the ordered two-letter strings made without repetition from 6 distinct letters, both sequentially and with permutation notation.",
+      "lesson": "For n distinct objects, n!=n(n−1)⋯1 counts all orderings. Filling r labeled positions without replacement gives P(n,r)=n!/(n−r)! because the available choices decrease at every stage. Worked example: the number of bijections from {1,2,3,4} to {a,b,c,d} is 4·3·2·1=4!, since each successive input must receive a previously unused output. Guided check: count injective maps from a 3-element domain to a 7-element codomain sequentially, then express the same count as P(7,3).",
       "main": "T22V3::T22E-DISC01::S24-M@1",
       "transfer": "T22V3::T22E-DISC01::S24-T@1"
     },
@@ -883,7 +883,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Permutations with repeated objects & multinomial grouping.",
-      "lesson": "If swapping identical copies changes nothing visible, n! overcounts and internal repeat factorials must be divided out. The same idea assigns distinct people to labeled groups. Worked example: AABC has4!/2!=12 distinct strings. Guided check: Count AABB arrangements.",
+      "lesson": "If swapping identical copies changes nothing visible, n! overcounts and internal repeat factorials must be divided out. Worked example: AABC has4!/2!=12 distinct strings. Guided check: count AABB arrangements. Labeled-group bridge: if n distinct objects are split into labeled groups of fixed sizes n1,…,nk with n1+⋯+nk=n, choose the first group, then the second from what remains, and so on. The product C(n,n1)C(n−n1,n2)⋯ simplifies to n!/(n1!⋯nk!). The group labels remain distinct, but order inside each group is irrelevant. For example, assigning6 distinct cards to labeled boxes A(2),B(1),C(3) gives 6!/(2!1!3!) assignments.",
       "main": "T22V3::T22E-DISC01::S25-M@1",
       "transfer": "T22V3::T22E-DISC01::S25-T@1"
     },
@@ -992,7 +992,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Complement counting & inclusion-exclusion.",
-      "lesson": "For two finite sets, |A∪B|=|A|+|B|−|A∩B| because intersection elements were counted twice. Complement counting then gives “neither,” and removing the overlap from both sides gives “exactly one.” Worked example: Among 50 users, 28 use X, 20 use Y and 8 use both. Then |X∪Y|=28+20−8=40, so 10 use neither, and exactly one is (28−8)+(20−8)=32. Guided check: In a group of 40, 22 use P, 17 use Q and 6 use both; compute union, neither and exactly one. Bridge for later synthesis: derive the three-set rule by adding C to A∪B. Since |(A∪B)∩C|=|A∩C|+|B∩C|−|A∩B∩C|, substitution gives |A∪B∪C|=|A|+|B|+|C|−|A∩B|−|A∩C|−|B∩C|+|A∩B∩C|.",
+      "lesson": "For two finite sets, |A∪B|=|A|+|B|−|A∩B| because naive addition counts each overlap element twice. Worked example: let A={1,2,3,4} and B={3,4,5}. Listing gives A∪B={1,2,3,4,5}; the count 4+3 overcounts the two shared elements, so 4+3−2=5. Guided check: with X={a,b,c} and Y={c,d}, list X∪Y and explain exactly which element naive addition counts twice; then, in a six-element universe where |X∪Y|=4, determine how many elements lie outside the union. Bridge for later synthesis: derive the three-set rule by adding C to A∪B. Since |(A∪B)∩C|=|A∩C|+|B∩C|−|A∩B∩C|, substitution gives |A∪B∪C|=|A|+|B|+|C|−|A∩B|−|A∩C|−|B∩C|+|A∩B∩C|.",
       "main": "T22V3::T22E-DISC01::S28-M@1",
       "transfer": "T22V3::T22E-DISC01::S28-T@1"
     },
@@ -1063,7 +1063,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for M03 synthesis — claims, proof, sets & finite counting.",
-      "lesson": "A synthesis problem may combine proof and counting tools, so first identify the mathematical objects and ask which earlier invariant each subproblem needs. Worked example: Any map from a 5-element domain to a 4-element codomain is noninjective by pigeonhole; independently, the number of 2-element subsets of a 7-element set is C(7,2)=21. These conclusions use different tools even if they appear in one investigation. Guided check: For a claim involving a finite map plus an overlap count, name which part would call for pigeonhole and which part would call for inclusion-exclusion before doing arithmetic. For three “bad-event” sets, use the S28 bridge: singles minus pairwise intersections plus the triple intersection.",
+      "lesson": "A synthesis problem may combine proof and counting tools, so first identify the mathematical objects and decide which earlier capability each subproblem appears to need. Finite-function bridge: if a domain has m elements and a codomain has r available values, each domain element independently has r output choices, so there are r^m total functions. If one specified codomain value is forbidden, only r−1 outputs remain for each input, giving (r−1)^m functions. Worked example: from a 3-element domain to a 4-element codomain there are 4^3 total functions; if one specified output value is forbidden there are 3^3. Guided check: for a separate finite-map problem, identify which quantities are determined by domain size, codomain size, and a forbidden-output restriction before choosing any counting formula.",
       "main": "T22V3::T22E-DISC01::S30-M@1",
       "transfer": "T22V3::T22E-DISC01::S30-T@1"
     }
@@ -1410,7 +1410,7 @@
       "order": 25,
       "kind": "main",
       "prompt": "How many distinct strings can be formed from BALLOON? Identify repeats, write the corrected factorial formula, explain the overcounting divided out, and validate on AAB by listing its distinct strings.",
-      "obligationVersion": 1
+      "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S25-T@1": {
       "id": "T22V3::T22E-DISC01::S25-T@1",
@@ -1452,7 +1452,7 @@
       "order": 28,
       "kind": "main",
       "prompt": "Among100 users,60 use A,45 use B,25 use both. Find union, explain the correction, find neither, find exactly one, and write the set logic.",
-      "obligationVersion": 1
+      "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S28-T@1": {
       "id": "T22V3::T22E-DISC01::S28-T@1",
@@ -1466,7 +1466,7 @@
       "order": 29,
       "kind": "main",
       "prompt": "Twenty-five records are assigned to6 categories. Identify pigeons/holes, compute the guaranteed minimum occupancy, prove the ceiling bound, explain existence-not-identity, and state the simpler collision for13 people assigned to12 birth months.",
-      "obligationVersion": 1
+      "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S29-T@1": {
       "id": "T22V3::T22E-DISC01::S29-T@1",
@@ -1480,7 +1480,7 @@
       "order": 30,
       "kind": "main",
       "prompt": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
-      "obligationVersion": 1
+      "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S30-T@1": {
       "id": "T22V3::T22E-DISC01::S30-T@1",
@@ -2740,23 +2740,19 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "Demonstrates: Recognize indistinguishable objects."
+          "criterion": "Identifies the repeated letters in BALLOON and treats identical copies as indistinguishable."
+        },
+        {
+          "points": 3,
+          "criterion": "Uses the repeated-object factorial quotient 7!/(2!2!) and obtains1260."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why permutations among identical copies are overcounted and divided out."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Use repeated-object factorial quotient."
-        },
-        {
-          "points": 2,
-          "criterion": "Demonstrates: Use multinomial count for labeled groups."
-        },
-        {
-          "points": 2,
-          "criterion": "Demonstrates: Explain internal-permutation division."
-        },
-        {
-          "points": 2,
-          "criterion": "Demonstrates: Validate on a small repeated-object example."
+          "criterion": "Validates the correction on AAB by listing exactly AAB, ABA and BAA."
         }
       ],
       "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
@@ -2904,23 +2900,23 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "Demonstrates: Use two-set inclusion-exclusion."
+          "criterion": "Applies two-set inclusion-exclusion to obtain |A∪B|=60+45−25=80."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Explain overlap subtraction."
+          "criterion": "Explains that the25 users in A∩B were counted twice before the subtraction."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Use complement to count neither."
+          "criterion": "Uses the complement in the100-user universe to obtain20 users in neither set."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Compute exactly-one counts."
+          "criterion": "Computes exactly-one users as (60−25)+(45−25)=55."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Apply inclusion-exclusion to divisibility counting."
+          "criterion": "Writes correct set logic connecting A∪B, A∩B, neither and exactly-one classes."
         }
       ],
       "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
@@ -2956,23 +2952,23 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "Demonstrates: Identify pigeons and holes."
+          "criterion": "Identifies the25 records as pigeons and the6 categories as holes."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Force collision with more pigeons than holes."
+          "criterion": "Uses the generalized ceiling bound to obtain a guaranteed occupancy of⌈25/6⌉=5."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Use generalized ceiling bound."
+          "criterion": "Justifies the bound by showing that six categories with at most4 records each could hold only24."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Design non-obvious holes."
+          "criterion": "Explains that the theorem guarantees existence of some crowded category without identifying which category."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Explain existence-not-identity."
+          "criterion": "Correctly states that13 people assigned to12 birth months force at least two people to share a month."
         }
       ],
       "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
@@ -3008,23 +3004,23 @@
       "rubric": [
         {
           "points": 2,
-          "criterion": "Demonstrates: Prove a universal finite claim with the correct principle."
+          "criterion": "Proves that every3-element subset of A contains two elements of the same parity using the two parity classes."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Count fixed-size subsets."
+          "criterion": "Counts all3-element subsets as C(8,3)=56."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Use complement counting for a subset class."
+          "criterion": "Counts all-same-parity3-subsets as 2C(4,3)=8."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Use pigeonhole to prove noninjectivity."
+          "criterion": "Uses complement counting to obtain56−8=48 subsets containing both parities."
         },
         {
           "points": 2,
-          "criterion": "Demonstrates: Count surjective finite functions by inclusion-exclusion."
+          "criterion": "Keeps the proof claim and the three counting classes logically consistent and clearly interpreted."
         }
       ],
       "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
@@ -4583,7 +4579,7 @@
         "task": "main",
         "publicRequest": "How many distinct strings can be formed from BALLOON? Identify repeats, write the corrected factorial formula, explain the overcounting divided out, and validate on AAB by listing its distinct strings.",
         "rubricEvidence": [
-          "Demonstrates: Recognize indistinguishable objects."
+          "Identifies the repeated letters in BALLOON and treats identical copies as indistinguishable."
         ]
       },
       {
@@ -4591,7 +4587,7 @@
         "task": "main",
         "publicRequest": "How many distinct strings can be formed from BALLOON? Identify repeats, write the corrected factorial formula, explain the overcounting divided out, and validate on AAB by listing its distinct strings.",
         "rubricEvidence": [
-          "Demonstrates: Use repeated-object factorial quotient."
+          "Uses the repeated-object factorial quotient 7!/(2!2!) and obtains1260."
         ]
       },
       {
@@ -4607,7 +4603,7 @@
         "task": "main",
         "publicRequest": "How many distinct strings can be formed from BALLOON? Identify repeats, write the corrected factorial formula, explain the overcounting divided out, and validate on AAB by listing its distinct strings.",
         "rubricEvidence": [
-          "Demonstrates: Explain internal-permutation division."
+          "Explains why permutations among identical copies are overcounted and divided out."
         ]
       },
       {
@@ -4615,7 +4611,7 @@
         "task": "main",
         "publicRequest": "How many distinct strings can be formed from BALLOON? Identify repeats, write the corrected factorial formula, explain the overcounting divided out, and validate on AAB by listing its distinct strings.",
         "rubricEvidence": [
-          "Demonstrates: Validate on a small repeated-object example."
+          "Validates the correction on AAB by listing exactly AAB, ABA and BAA."
         ]
       }
     ],
@@ -4711,7 +4707,7 @@
         "task": "main",
         "publicRequest": "Among100 users,60 use A,45 use B,25 use both. Find union, explain the correction, find neither, find exactly one, and write the set logic.",
         "rubricEvidence": [
-          "Demonstrates: Use two-set inclusion-exclusion."
+          "Applies two-set inclusion-exclusion to obtain |A∪B|=60+45−25=80."
         ]
       },
       {
@@ -4719,7 +4715,7 @@
         "task": "main",
         "publicRequest": "Among100 users,60 use A,45 use B,25 use both. Find union, explain the correction, find neither, find exactly one, and write the set logic.",
         "rubricEvidence": [
-          "Demonstrates: Explain overlap subtraction."
+          "Explains that the25 users in A∩B were counted twice before the subtraction."
         ]
       },
       {
@@ -4727,7 +4723,7 @@
         "task": "main",
         "publicRequest": "Among100 users,60 use A,45 use B,25 use both. Find union, explain the correction, find neither, find exactly one, and write the set logic.",
         "rubricEvidence": [
-          "Demonstrates: Use complement to count neither."
+          "Uses the complement in the100-user universe to obtain20 users in neither set."
         ]
       },
       {
@@ -4735,7 +4731,7 @@
         "task": "main",
         "publicRequest": "Among100 users,60 use A,45 use B,25 use both. Find union, explain the correction, find neither, find exactly one, and write the set logic.",
         "rubricEvidence": [
-          "Demonstrates: Compute exactly-one counts."
+          "Computes exactly-one users as (60−25)+(45−25)=55."
         ]
       },
       {
@@ -4753,7 +4749,7 @@
         "task": "main",
         "publicRequest": "Twenty-five records are assigned to6 categories. Identify pigeons/holes, compute the guaranteed minimum occupancy, prove the ceiling bound, explain existence-not-identity, and state the simpler collision for13 people assigned to12 birth months.",
         "rubricEvidence": [
-          "Demonstrates: Identify pigeons and holes."
+          "Identifies the25 records as pigeons and the6 categories as holes."
         ]
       },
       {
@@ -4761,7 +4757,7 @@
         "task": "main",
         "publicRequest": "Twenty-five records are assigned to6 categories. Identify pigeons/holes, compute the guaranteed minimum occupancy, prove the ceiling bound, explain existence-not-identity, and state the simpler collision for13 people assigned to12 birth months.",
         "rubricEvidence": [
-          "Demonstrates: Force collision with more pigeons than holes."
+          "Correctly states that13 people assigned to12 birth months force at least two people to share a month."
         ]
       },
       {
@@ -4769,7 +4765,8 @@
         "task": "main",
         "publicRequest": "Twenty-five records are assigned to6 categories. Identify pigeons/holes, compute the guaranteed minimum occupancy, prove the ceiling bound, explain existence-not-identity, and state the simpler collision for13 people assigned to12 birth months.",
         "rubricEvidence": [
-          "Demonstrates: Use generalized ceiling bound."
+          "Uses the generalized ceiling bound to obtain a guaranteed occupancy of⌈25/6⌉=5.",
+          "Justifies the bound by showing that six categories with at most4 records each could hold only24."
         ]
       },
       {
@@ -4785,7 +4782,7 @@
         "task": "main",
         "publicRequest": "Twenty-five records are assigned to6 categories. Identify pigeons/holes, compute the guaranteed minimum occupancy, prove the ceiling bound, explain existence-not-identity, and state the simpler collision for13 people assigned to12 birth months.",
         "rubricEvidence": [
-          "Demonstrates: Explain existence-not-identity."
+          "Explains that the theorem guarantees existence of some crowded category without identifying which category."
         ]
       }
     ],
@@ -4795,7 +4792,7 @@
         "task": "main",
         "publicRequest": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
         "rubricEvidence": [
-          "Demonstrates: Prove a universal finite claim with the correct principle."
+          "Proves that every3-element subset of A contains two elements of the same parity using the two parity classes."
         ]
       },
       {
@@ -4803,7 +4800,8 @@
         "task": "main",
         "publicRequest": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
         "rubricEvidence": [
-          "Demonstrates: Count fixed-size subsets."
+          "Counts all3-element subsets as C(8,3)=56.",
+          "Counts all-same-parity3-subsets as 2C(4,3)=8."
         ]
       },
       {
@@ -4811,7 +4809,7 @@
         "task": "main",
         "publicRequest": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
         "rubricEvidence": [
-          "Demonstrates: Use complement counting for a subset class."
+          "Uses complement counting to obtain56−8=48 subsets containing both parities."
         ]
       },
       {
@@ -5590,7 +5588,7 @@
       },
       "T22V3::T22E-DISC01::S25@1": {
         "status": "reviewed-separated",
-        "note": "Repeated-object AABC/AABB examples differ from BALLOON and labeled-team Transfer."
+        "note": "Spire repair: repeated-string instruction now includes an explicit labeled-group multinomial bridge on different data; Main and Transfer retain distinct surfaces and ownership."
       },
       "T22V3::T22E-DISC01::S26@1": {
         "status": "reviewed-separated",
@@ -5602,15 +5600,15 @@
       },
       "T22V3::T22E-DISC01::S28@1": {
         "status": "reviewed-separated",
-        "note": "Repaired: two-set worked numbers differ; three-set bridge is generic and contains no S30 function counts."
+        "note": "Spire repair: instruction derives two-set inclusion-exclusion on explicit small sets rather than the population-count template used by Main; divisibility remains Transfer-owned."
       },
       "T22V3::T22E-DISC01::S29@1": {
         "status": "reviewed-separated",
-        "note": "Repaired: ceiling/capacity proof uses 17 files/4 folders, distinct from both fixed tasks."
+        "note": "Spire repair: capacity example remains distinct from both fixed tasks; non-obvious-hole design is scored only on Transfer, not Main."
       },
       "T22V3::T22E-DISC01::S30@1": {
         "status": "reviewed-separated",
-        "note": "Repaired: synthesis example names method selection only; no fixed counts/data are supplied."
+        "note": "Spire repair: finite-function counting is bridged on different cardinalities; method recognition is supplied by staged Spire disclosure rather than falsely claiming the fixed prompts are unlabelled."
       }
     }
   },
@@ -5619,5 +5617,29 @@
     "LF_R01": "S26 general ownership now matches M10: positive-integer-n theorem statement + general C(n,k) factor-choice argument + fresh n=5 application.",
     "LF_R02": "Guided coefficient-only n=6 reasoning is separated from Main's general theorem + full n=5 expansion.",
     "LF_R03": "P(n,r)=C(n,r)·r! and its choose-then-order explanation restored instructionally without consuming a sixth ownership slot."
+  },
+  "repairVersionAudit": {
+    "baselineCommit": "1524ff9d8ab622afa9f5b1fe3ce006a64e0352d9",
+    "changedAssessmentIds": [
+      "T22V3::T22E-DISC01::S25-M@1",
+      "T22V3::T22E-DISC01::S28-M@1",
+      "T22V3::T22E-DISC01::S29-M@1",
+      "T22V3::T22E-DISC01::S30-M@1"
+    ],
+    "changedInstructionSessionIds": [
+      "T22V3::T22E-DISC01::S04@1",
+      "T22V3::T22E-DISC01::S05@1",
+      "T22V3::T22E-DISC01::S07@1",
+      "T22V3::T22E-DISC01::S09@1",
+      "T22V3::T22E-DISC01::S13@1",
+      "T22V3::T22E-DISC01::S14@1",
+      "T22V3::T22E-DISC01::S23@1",
+      "T22V3::T22E-DISC01::S24@1",
+      "T22V3::T22E-DISC01::S25@1",
+      "T22V3::T22E-DISC01::S28@1",
+      "T22V3::T22E-DISC01::S30@1"
+    ],
+    "preservedFixedTaskPrompts": true,
+    "policy": "Stable task IDs are retained. Lesson-side semantic-separation repairs use a new instructionVersion. The four Main evaluator contracts materially changed, so their obligationVersion is incremented and prior fingerprints become stale. Transfer-owned claims remain Transfer-owned; no old evidence is silently recertified."
   }
 }
