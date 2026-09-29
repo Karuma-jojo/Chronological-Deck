@@ -219,3 +219,23 @@ PASS. Characteristic-polynomial invariance, transformed eigenvector coordinates 
 PASS. Three different change-of-basis matrices are used across worked/guided/Main/Transfer, and no fixed similar pair is solved in instruction.
 
 **S11 local disposition: PASS after reference cleanup. S12 may open.**
+
+
+## S12 — A real matrix can have nonreal modes
+
+### Gate 4 — teaching
+PASS. The complex bridge is explicitly minimal: i^2=-1, a+bi, conjugate roots for real polynomials, and direct complex eigenpair verification. It does not import complex inner-product theory. Every statement is field-qualified.
+
+### Gate 5 — evidence
+Main is **retrieval** on a fresh scaled 2×2 matrix. Transfer is **changed-surface Transfer**: an unqualified “no eigenvalues” report must be split into a true statement over R and a false one over C.
+
+### Gate 6 — reconstruction/fairness
+For [[0,-9],[1,0]], p=t^2+9 gives ±3i and (3i,1) verifies λ=3i. For [[0,-16],[1,0]], p=t^2+16 gives ±4i and (4i,1) verifies λ=4i. All complex arithmetic is explicit and exact.
+
+### Gate 7 — claims
+PASS. Simple complex roots, direct complex eigenvector verification and R-versus-C field qualification are all publicly observed. No general complex diagonalization is claimed.
+
+### Gate 8 — separation
+PASS. Worked, guided, Main and Transfer use distinct scaled rotation-like matrices. S01's exact 90-degree rotation fixed task is not reused; only the general real-versus-complex principle advances.
+
+**S12 local disposition: PASS. S13 may open.**
