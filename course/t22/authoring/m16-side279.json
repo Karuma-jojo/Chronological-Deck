@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 13,
-    "ownershipClaimCount": 39,
-    "fixedAssessments": 26,
+    "authoredSessions": 14,
+    "ownershipClaimCount": 42,
+    "fixedAssessments": 28,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -595,6 +595,47 @@
       "guidedFeedback": "Check after attempting. B^T=B. B(1,0,1)=4(1,0,1); B(1,0,-1)=2(1,0,-1); B(0,1,0)=2(0,1,0). The λ=4 vector has dot product 0 with both λ=2 vectors. Vectors inside the same repeated-eigenvalue eigenspace are not forced orthogonal by the distinct-eigenvalue theorem, though here the chosen basis happens to be orthogonal.",
       "main": "T22V3::SIDE279::S13-M@1",
       "transfer": "T22V3::SIDE279::S13-T@1"
+    },
+    {
+      "order": 14,
+      "id": "T22V3::SIDE279::S14@1",
+      "moduleId": "SIDE279",
+      "title": "The finite real spectral theorem",
+      "focus": "Prove that a real symmetric matrix has an orthonormal eigenbasis and derive orthogonal diagonalization A=QDQ^T, including repeated-eigenvalue eigenspaces.",
+      "purpose": "M17 will use spectral coordinates for PSD/quadratic-form structure. M16 must supply the theorem itself, not merely examples or a slogan.",
+      "centralCapability": "Reconstruct the finite-dimensional spectral-theorem proof architecture, build an orthonormal eigenbasis for a concrete symmetric matrix, and distinguish orthogonal diagonalization from ordinary diagonalization.",
+      "principalObstacle": "The learner knows symmetric eigenvectors can be orthogonal for distinct eigenvalues but has no existence argument for a complete eigenbasis, or assumes every diagonalizable matrix admits QDQ^T.",
+      "entryPrerequisites": [
+        "S13 real eigenvalues and distinct-eigenspace orthogonality",
+        "M15 orthogonal complements, ON bases and Gram–Schmidt",
+        "S05 eigenspace closure",
+        "S08 diagonalization",
+        "FTA as a sourced support theorem"
+      ],
+      "requiredOwnership": [
+        "Reconstruct the finite-dimensional real spectral-theorem proof architecture: obtain a real eigenvector, show its orthogonal complement is invariant, restrict/induct, and orthonormalize repeated-eigenvalue eigenspaces.",
+        "Construct Q and D for a concrete real symmetric matrix so Q has orthonormal eigenvector columns and A=QDQ^T.",
+        "Reject orthogonal diagonalization for a merely diagonalizable nonsymmetric matrix and identify symmetry as the missing hypothesis."
+      ],
+      "applicationScope": "Finite real symmetric matrices; exact small examples with manageable eigenvectors.",
+      "transferScope": "Audit a QDQ^T claim for a new diagonalizable but nonsymmetric matrix.",
+      "inScope": [
+        "spectral theorem",
+        "orthonormal eigenbasis",
+        "orthogonal diagonalization",
+        "repeated-eigenspace ON basis"
+      ],
+      "outOfScope": [
+        "positive definiteness",
+        "quadratic forms",
+        "SVD",
+        "numerical symmetric eigensolvers"
+      ],
+      "exitCondition": "Prove/justify the ON-eigenbasis guarantee for real symmetric matrices and apply it without exporting the guarantee to nonsymmetric matrices.",
+      "lesson": "Orient. S13 proves two local consequences of symmetry: eigenvalues are real and distinct eigenspaces are orthogonal. The spectral theorem says these local facts extend all the way to a complete orthonormal eigenbasis.\n\nExistence seed. A real n×n characteristic polynomial has a complex root by the Fundamental Theorem of Algebra. That root is an eigenvalue over C; S13 proves any eigenvalue of a real symmetric matrix is real. Therefore a real symmetric matrix has at least one real eigenvalue λ1 and nonzero real eigenvector. Normalize it to q1.\n\nInvariant orthogonal complement. If x⊥q1, then q1·Ax=(Aq1)·x=λ1(q1·x)=0, using symmetry. So Ax also lies in q1^⊥: the orthogonal complement is invariant under A. The restriction of A to q1^⊥ is again symmetric with respect to the inherited dot product.\n\nInduct. q1^⊥ has dimension n-1. Apply the same argument to the restricted map; induction gives an orthonormal eigenbasis of q1^⊥. Together with q1 this gives an orthonormal eigenbasis of R^n. If an eigenvalue repeats, S05 says its eigenspace is a subspace and M15 Gram–Schmidt can choose an orthonormal basis inside that eigenspace without changing the eigenvalue.\n\nMatrix form. Put the orthonormal eigenvectors into Q. Then AQ=QD as in S08, but now Q^-1=Q^T by M15. Hence A=QDQ^T.\n\nWorked example. Let A=[[2,1],[1,2]]. The normalized eigenvectors q3=(1/sqrt(2))(1,1), q1=(1/sqrt(2))(1,-1) form an orthonormal Q and give D=diag(3,1). Then A=QDQ^T.\n\nGuided practice. Let B=[[5,0,0],[0,2,0],[0,0,5]]. Build an orthonormal eigenbasis when λ=5 is repeated, form Q,D, and explain why rotating the λ=5 eigenspace basis by any 2×2 orthogonal change still gives a valid Q.\n\nFade. Main uses a non-diagonal symmetric matrix with a repeated eigenvalue and asks both for the proof's invariant-complement step and an actual QDQ^T construction. Transfer keeps diagonalizability but removes symmetry.\n\nDistinction check. Diagonalizable means some invertible P works. Real symmetric means an orthogonal Q can be chosen. QDQ^T is a stronger conclusion with a stronger hypothesis.",
+      "guidedFeedback": "Check after attempting. E_5=span{e1,e3}; choose q1=e1,q2=e3, and q3=e2 for λ=2. Q may be the corresponding permutation matrix and D=diag(5,5,2), or any orthonormal basis may be used inside E_5. Because linear combinations inside E_5 remain λ=5 eigenvectors, orthonormalizing within that eigenspace preserves eigenvector status.",
+      "main": "T22V3::SIDE279::S14-M@1",
+      "transfer": "T22V3::SIDE279::S14-T@1"
     }
   ],
   "problems": {
@@ -778,6 +819,20 @@
       "order": 13,
       "kind": "transfer",
       "prompt": "Let B=[[2,1],[0,3]]. A report says: “B is real and has distinct real eigenvalues 2 and 3, so its eigenvectors must be orthogonal.” Audit the theorem hypothesis. Verify e1 is a λ=2 eigenvector and (1,1) is a λ=3 eigenvector, compute their dot product, and state the missing condition.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S14-M@1": {
+      "id": "T22V3::SIDE279::S14-M@1",
+      "order": 14,
+      "kind": "main",
+      "prompt": "Let A=[[3,1,0],[1,3,0],[0,0,4]]. (a) Before computing Q, prove the key induction step: if q is a unit eigenvector of a real symmetric A and x⊥q, then Ax⊥q. Explain how this makes q^⊥ an invariant symmetric subproblem. (b) Find an orthonormal eigenbasis for the given A, including the repeated eigenvalue. (c) Build Q,D and verify Q^TQ=I and A=QDQ^T.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S14-T@1": {
+      "id": "T22V3::SIDE279::S14-T@1",
+      "order": 14,
+      "kind": "transfer",
+      "prompt": "Let B=[[1,2],[0,4]]. It has two distinct real eigenvalues, so it is diagonalizable. A report concludes: “Therefore there is an orthogonal Q and diagonal D with B=QDQ^T.” Audit that stronger conclusion. Check the missing hypothesis and give one decisive reason the proposed kind of factorization cannot hold for this B.",
       "obligationVersion": 1
     }
   },
@@ -1265,6 +1320,42 @@
         }
       ],
       "marking": "A direct B^T≠B check or equivalent entry comparison is accepted."
+    },
+    "T22V3::SIDE279::S14-M@1": {
+      "reference": "(a) If Aq=λq and x·q=0, then q·Ax=(Aq)·x=λ(q·x)=0, so Ax∈q^⊥. The restriction remains symmetric, enabling induction on dimension; repeated eigenspaces can be orthonormalized internally. (b) Eigenvalues are 4 (multiplicity 2) and 2. An ON eigenbasis is q1=(1/sqrt(2))(1,1,0), q2=(0,0,1) for λ=4, and q3=(1/sqrt(2))(1,-1,0) for λ=2. (c) Q=[q1 q2 q3], D=diag(4,4,2). Q^TQ=I, so Q^-1=Q^T, and AQ=QD implies A=QDQ^T.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Proves q^⊥ is invariant using the symmetry identity and explains the restriction/induction role."
+        },
+        {
+          "points": 3,
+          "criterion": "Finds a valid orthonormal eigenbasis with two independent λ=4 vectors and one λ=2 vector."
+        },
+        {
+          "points": 4,
+          "criterion": "Constructs matching Q,D, verifies orthonormality Q^TQ=I, and establishes A=QDQ^T."
+        }
+      ],
+      "marking": "Any ON basis of the repeated λ=4 eigenspace is valid if D order matches Q."
+    },
+    "T22V3::SIDE279::S14-T@1": {
+      "reference": "The conclusion is invalid because B is not symmetric: B^T=[[1,0],[2,4]]≠B. If B=QDQ^T with Q orthogonal and D real diagonal, then B^T=(QDQ^T)^T=QD^TQ^T=QDQ^T=B, so B would have to be symmetric. Therefore ordinary diagonalizability does not imply orthogonal diagonalizability.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Checks that B is not symmetric and identifies symmetry as the missing spectral-theorem hypothesis."
+        },
+        {
+          "points": 5,
+          "criterion": "Gives a decisive reason QDQ^T would force B^T=B (or an equivalent proof that orthogonal diagonalization is impossible)."
+        },
+        {
+          "points": 2,
+          "criterion": "Distinguishes ordinary diagonalizability from orthogonal diagonalizability."
+        }
+      ],
+      "marking": "A correct nonorthogonal-eigenvector demonstration is also acceptable if it decisively rules out an orthonormal eigenbasis."
     }
   },
   "coverage": {
@@ -1332,6 +1423,11 @@
       "Use A^T=A to derive x·Ay=(Ax)·y for real vectors x,y and apply that identity in eigenstructure proofs.",
       "Reconstruct a bounded proof that every eigenvalue of a real symmetric matrix is real and that eigenvectors for distinct eigenvalues are orthogonal.",
       "Check the symmetry hypothesis before invoking these guarantees and reject their use for a nonsymmetric real matrix."
+    ],
+    "T22V3::SIDE279::S14@1": [
+      "Reconstruct the finite-dimensional real spectral-theorem proof architecture: obtain a real eigenvector, show its orthogonal complement is invariant, restrict/induct, and orthonormalize repeated-eigenvalue eigenspaces.",
+      "Construct Q and D for a concrete real symmetric matrix so Q has orthonormal eigenvector columns and A=QDQ^T.",
+      "Reject orthogonal diagonalization for a merely diagonalizable nonsymmetric matrix and identify symmetry as the missing hypothesis."
     ]
   },
   "claimEvidence": {
@@ -2090,6 +2186,62 @@
         "escapeAttempt": "Real entries + distinct eigenvalues still fail on the supplied example.",
         "generalizationDistance": "Exact hypothesis-audit direction."
       }
+    ],
+    "T22V3::SIDE279::S14@1": [
+      {
+        "claim": "Reconstruct the finite-dimensional real spectral-theorem proof architecture: obtain a real eigenvector, show its orthogonal complement is invariant, restrict/induct, and orthonormalize repeated-eigenvalue eigenspaces.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S14-M@1"
+        ],
+        "publicRequestExact": [
+          "prove the key induction step... Explain how this makes q^⊥ an invariant symmetric subproblem."
+        ],
+        "rubricEvidence": [
+          "Proves q^⊥ is invariant using the symmetry identity and explains the restriction/induction role."
+        ],
+        "disposition": "adequate",
+        "why": "The public task observes the decisive invariant-complement proof step and induction architecture; FTA existence is supplied as an allowed support theorem in instruction.",
+        "escapeAttempt": "Quoting 'spectral theorem' without the invariant-complement argument loses the row.",
+        "generalizationDistance": "The claim names proof architecture, not a line-by-line full induction proof."
+      },
+      {
+        "claim": "Construct Q and D for a concrete real symmetric matrix so Q has orthonormal eigenvector columns and A=QDQ^T.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S14-M@1"
+        ],
+        "publicRequestExact": [
+          "Find an orthonormal eigenbasis... Build Q,D and verify Q^TQ=I and A=QDQ^T."
+        ],
+        "rubricEvidence": [
+          "Finds a valid orthonormal eigenbasis with two independent λ=4 vectors and one λ=2 vector.",
+          "Constructs matching Q,D, verifies orthonormality Q^TQ=I, and establishes A=QDQ^T."
+        ],
+        "disposition": "adequate",
+        "why": "Concrete ON eigenbasis construction includes a repeated eigenspace and the final orthogonal diagonalization.",
+        "escapeAttempt": "A merely invertible nonorthogonal P cannot earn Q^TQ=I evidence.",
+        "generalizationDistance": "Exact concrete symmetric matrix."
+      },
+      {
+        "claim": "Reject orthogonal diagonalization for a merely diagonalizable nonsymmetric matrix and identify symmetry as the missing hypothesis.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S14-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit that stronger conclusion. Check the missing hypothesis and give one decisive reason the proposed kind of factorization cannot hold"
+        ],
+        "rubricEvidence": [
+          "Checks that B is not symmetric and identifies symmetry as the missing spectral-theorem hypothesis.",
+          "Gives a decisive reason QDQ^T would force B^T=B (or an equivalent proof that orthogonal diagonalization is impossible).",
+          "Distinguishes ordinary diagonalizability from orthogonal diagonalizability."
+        ],
+        "disposition": "adequate",
+        "why": "The task directly distinguishes diagonalizable from orthogonally diagonalizable and requires a theorem-hypothesis proof.",
+        "escapeAttempt": "Accepting distinct eigenvalues as sufficient fails all decisive rows.",
+        "generalizationDistance": "Exact hypothesis audit."
+      }
     ]
   },
   "evidenceDistance": {
@@ -2221,6 +2373,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "A theorem is applied to an object of the wrong class; the learner must type-check the matrix before using the conclusion."
+      }
+    },
+    "T22V3::SIDE279::S14@1": {
+      "main": {
+        "classification": "proof reconstruction",
+        "mechanism": "The spectral-theorem architecture is taught and the invariant-complement step plus concrete orthogonal diagonalization are reconstructed."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "A true weaker property (diagonalizable) is used to assert a stronger false property; the learner must identify the missing symmetry hypothesis and prove impossibility."
       }
     }
   },
@@ -2475,6 +2637,25 @@
         ],
         "mathematicalDifference": "Transfer uses a new nonsymmetric upper-triangular matrix with explicitly nonorthogonal eigenvectors.",
         "exposureDisposition": "CLEAR."
+      },
+      "T22V3::SIDE279::S14-M@1": {
+        "sessionId": "T22V3::SIDE279::S14@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S14 worked [[2,1],[1,2]]",
+          "S14 guided diagonal repeated-eigenvalue matrix"
+        ],
+        "mathematicalDifference": "Main uses a distinct nondiagonal 3x3 symmetric matrix with repeated λ=4 and asks for invariant-complement proof plus QDQ^T.",
+        "exposureDisposition": "CLEAR."
+      },
+      "T22V3::SIDE279::S14-T@1": {
+        "sessionId": "T22V3::SIDE279::S14@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S14 distinction ordinary vs orthogonal diagonalization"
+        ],
+        "mathematicalDifference": "Transfer uses a new nonsymmetric diagonalizable 2x2 matrix and asks for a transpose-impossibility proof.",
+        "exposureDisposition": "CLEAR."
       }
     }
   },
@@ -2624,6 +2805,15 @@
         "lessonSolvedInstances": [
           "[[4,2],[2,1]] worked",
           "3x3 symmetric B guided"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S14@1": {
+        "lessonSolvedInstances": [
+          "[[2,1],[1,2]] worked",
+          "diag(5,2,5) guided"
         ],
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
@@ -2794,6 +2984,18 @@
         "alreadySuppliedByPrompt": "False report supplied; missing hypothesis not.",
         "decisivelyRehearsedInVisibleInstruction": "No exact counterexample solved.",
         "learnerActionActuallyScored": "Symmetry check, eigenpair/dot computation, rejection."
+      },
+      "T22V3::SIDE279::S14-M@1": {
+        "claimedLearnerDecision": "Organize the spectral-theorem proof step and construct a matching ON eigenbasis/Q,D.",
+        "alreadySuppliedByPrompt": "Matrix/proof target supplied; basis/decomposition not.",
+        "decisivelyRehearsedInVisibleInstruction": "Proof architecture taught; classification is proof reconstruction.",
+        "learnerActionActuallyScored": "Invariant-complement proof, ON basis and QDQ^T."
+      },
+      "T22V3::SIDE279::S14-T@1": {
+        "claimedLearnerDecision": "Decide whether ordinary diagonalizability licenses orthogonal diagonalization.",
+        "alreadySuppliedByPrompt": "Weaker true property supplied; stronger claim supplied; validity not.",
+        "decisivelyRehearsedInVisibleInstruction": "No exact nonsymmetric example solved.",
+        "learnerActionActuallyScored": "Hypothesis check and impossibility proof."
       }
     }
   },
@@ -2889,6 +3091,11 @@
         "failureMode": "real or distinct-eigenvalue matrix assumed to have orthogonal eigenvectors without symmetry",
         "where": "S13 Transfer",
         "discriminator": "nonsymmetric B has distinct real eigenvalues but dot product 1"
+      },
+      {
+        "failureMode": "every diagonalizable matrix assumed orthogonally diagonalizable",
+        "where": "S14 Transfer",
+        "discriminator": "nonsymmetric B would become symmetric if B=QDQ^T"
       }
     ],
     "designGateCoverage": [
