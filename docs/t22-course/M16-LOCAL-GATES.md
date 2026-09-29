@@ -29,3 +29,27 @@ PASS after literal audit. Claim 1 is bounded to supplied λ values; it does not 
 PASS. Worked example: 2×2 Jordan-style matrix with λ=2/1. Guided: different 3×3 matrix with a two-dimensional (E_3). Main: different 3×3 matrix with two one-dimensional eigenspaces. Transfer: distinct diagonal matrix and a punctured-set report. No S01 task or answer is reused. General null-space method is shared instruction, not answer exposure.
 
 **S02 local disposition: PASS. S03 may open.**
+
+
+## S03 — Why the characteristic equation appears
+
+### Gate 4 — teaching
+PASS. The determinant equation is derived through the exact M14 object chain ((A-\lambda I)v=0\) → nontrivial kernel → singular shifted matrix → zero determinant. The lesson explicitly says this is a consequence, not the definition. One full 2×2 example and a distinct guided matrix are solved; λ discovery is now in scope, while multiplicity/diagonalization remain deferred.
+
+### Gate 5 — evidence
+Main is **proof reconstruction** because the determinant derivation architecture is taught and reconstructed on a fresh matrix. Transfer is **changed-surface Transfer** because it begins from the false report `det(T)=6 ⇒ λ=6` and requires identifying the wrong object before repairing the calculation. Wrong solver: using `det(A)` instead of `det(A-λI)` cannot earn the derivation or eigenvalue rows. Opposite characteristic-polynomial sign convention is explicitly accepted.
+
+### Gate 6 — reconstruction/fairness
+For (A=[[4,2],[1,3]]), (\det(A-\lambda I)=\lambda^2-7\lambda+10=(\lambda-5)(\lambda-2)). The eigenspaces are (E_5=\mathrm{span}\{(2,1)\}) and (E_2=\mathrm{span}\{(-1,1)\}). Direct multiplication verifies (A(2,1)=5(2,1)).
+
+For (T=[[2,1],[0,3]]), (\det(T-\lambda I)=(2-\lambda)(3-\lambda)), so λ=2,3 with (E_2=\mathrm{span}\{(1,0)\}), (E_3=\mathrm{span}\{(1,1)\}). A draft reference sentence invoking the future product-of-eigenvalues invariant was removed before clearance; the evaluator now uses only owned machinery.
+
+Every scoring row is publicly requested and every public subpart is scored.
+
+### Gate 7 — claims
+PASS. The three claims are literally observed: general determinant derivation, exact small-matrix characteristic computation, and eigenspace follow-through. None claims high-degree polynomial solving, multiplicity theory or numerical eigenvalue computation.
+
+### Gate 8 — separation
+PASS. Worked/guided matrices differ from both fixed tasks. Transfer reuses only the general distinction between `det(A)` and the shifted determinant, not a solved instance. No S01/S02 fixed matrix or answer is reused.
+
+**S03 local disposition: PASS. S04 may open.**
