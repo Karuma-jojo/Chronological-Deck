@@ -418,7 +418,7 @@
         "earlier scalar powers"
       ],
       "requiredOwnership": [
-        "Derive A^k=PD^kP^-1 for nonnegative integer k from a valid diagonalization by cancelling adjacent P^-1P factors.",
+        "Use the P^-1P cancellation mechanism to justify A^m=PD^mP^-1 for a specified nonnegative integer exponent m from a valid diagonalization.",
         "Compute an exact finite matrix power from a supplied/constructed diagonalization.",
         "Translate a finite recurrence x_{k+1}=Ax_k into eigen-coordinates and compute a requested state without step-by-step iteration."
       ],
@@ -950,7 +950,7 @@
       "Detect and repair a diagonalization whose P-column order and D-diagonal order do not match."
     ],
     "T22V3::SIDE279::S09@1": [
-      "Derive A^k=PD^kP^-1 for nonnegative integer k from a valid diagonalization by cancelling adjacent P^-1P factors.",
+      "Use the P^-1P cancellation mechanism to justify A^m=PD^mP^-1 for a specified nonnegative integer exponent m from a valid diagonalization.",
       "Compute an exact finite matrix power from a supplied/constructed diagonalization.",
       "Translate a finite recurrence x_{k+1}=Ax_k into eigen-coordinates and compute a requested state without step-by-step iteration."
     ]
@@ -1426,7 +1426,7 @@
     ],
     "T22V3::SIDE279::S09@1": [
       {
-        "claim": "Derive A^k=PD^kP^-1 for nonnegative integer k from a valid diagonalization by cancelling adjacent P^-1P factors.",
+        "claim": "Use the P^-1P cancellation mechanism to justify A^m=PD^mP^-1 for a specified nonnegative integer exponent m from a valid diagonalization.",
         "task": "main",
         "taskIds": [
           "T22V3::SIDE279::S09-M@1"
@@ -1438,9 +1438,9 @@
           "Shows the P^-1P cancellations that justify A^4=PD^4P^-1."
         ],
         "disposition": "adequate",
-        "why": "The public task requires the cancellation mechanism, not only the final formula.",
-        "escapeAttempt": "Quoting the power formula without P^-1P cancellation loses the row.",
-        "generalizationDistance": "Claim states nonnegative integer k from the taught derivation; public task reconstructs k=4. General proof is instructional support, so ownership is conservatively tied to the derivation mechanism."
+        "why": "The public task literally observes the cancellation mechanism for the specified exponent 4; the lesson's all-k theorem remains instructional support rather than an overbroad evidence claim.",
+        "escapeAttempt": "Quoting the formula without showing the cancellation loses the row.",
+        "generalizationDistance": "Bounded to a specified finite exponent, matching public evidence."
       },
       {
         "claim": "Compute an exact finite matrix power from a supplied/constructed diagonalization.",
