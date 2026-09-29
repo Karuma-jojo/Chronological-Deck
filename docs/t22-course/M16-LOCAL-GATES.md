@@ -177,3 +177,23 @@ The first draft overclaimed the general all-k theorem from a k=4 public proof. I
 PASS. Worked, guided, Main and Transfer matrices/states are distinct. No earlier fixed power/state problem is reused.
 
 **S09 local disposition: PASS after claim narrowing. S10 may open.**
+
+
+## S10 — When the eigenvectors are not enough
+
+### Gate 4 — teaching
+PASS. Defectiveness is defined as failure to obtain an eigenbasis, with duplicate/scalar-multiple columns tied to basis dependence and noninvertible P. Jordan/generalized eigenvectors remain explicitly deferred.
+
+### Gate 5 — evidence
+Main is **retrieval** on a fresh lower-triangular defective matrix. Transfer is **changed-surface Transfer**: matrix arithmetic is removed and a fake three-column eigenvector matrix must be audited from abstract eigenspace data. Wrong solver counting columns rather than directions fails immediately.
+
+### Gate 6 — reconstruction/fairness
+For A=[[4,0,0],[1,4,0],[0,0,1]], E_4=span{(0,1,0)}, E_1=span{(0,0,1)}; only two independent eigenvectors are available in R^3, so A is defective. In Transfer, (2,0,0)=2(1,0,0), so the proposed P is dependent/singular; supplied eigenspace dimensions also total only 2.
+
+### Gate 7 — claims
+PASS. Defective diagnosis, noninvertible-P consequence and duplicate-direction rejection are each directly requested/scored.
+
+### Gate 8 — separation
+PASS. Worked 2×2, guided upper-triangular 3×3, Main lower-triangular 3×3 and data-only Transfer are distinct. No earlier fixed defective instance is reused.
+
+**S10 local disposition: PASS. S11 may open.**
