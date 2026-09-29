@@ -38,9 +38,9 @@
     "designGate": "docs/t22-course/M16-DESIGN-GATE.md",
     "pilot": "docs/t22-course/M16-PILOT-REVIEW.md",
     "pedagogicalAtoms": 15,
-    "authoredSessions": 9,
-    "ownershipClaimCount": 27,
-    "fixedAssessments": 18,
+    "authoredSessions": 10,
+    "ownershipClaimCount": 30,
+    "fixedAssessments": 20,
     "reviewProvenance": "Builder pilot only. No independent acceptance claim."
   },
   "sourceLedger": {
@@ -440,6 +440,45 @@
       "guidedFeedback": "Check after attempting. x0=2(1,1)+1(0,1), so x3=2·4^3(1,1)+1·3^3(0,1)=(128,155).",
       "main": "T22V3::SIDE279::S09-M@1",
       "transfer": "T22V3::SIDE279::S09-T@1"
+    },
+    {
+      "order": 10,
+      "id": "T22V3::SIDE279::S10@1",
+      "moduleId": "SIDE279",
+      "title": "When the eigenvectors are not enough",
+      "focus": "Diagnose defective matrices from insufficient eigenspace dimension and explain why no invertible eigenvector matrix can be manufactured by duplicating directions.",
+      "purpose": "S07/S08 describe successful diagonalization. S10 makes failure a positive structural diagnosis rather than a computational accident and closes the door to fake P matrices.",
+      "centralCapability": "Determine that a matrix is defective because its eigenspaces do not supply a full basis, and explain why ordinary diagonalization cannot be repaired by repeating dependent eigenvectors.",
+      "principalObstacle": "Known eigenvalues are mistaken for a guarantee of enough eigenvectors; when a direction is missing, the learner duplicates a vector or chooses a scalar multiple to fill P.",
+      "entryPrerequisites": [
+        "S06 multiplicities",
+        "S07 eigenbasis criterion",
+        "S08 P invertible iff its eigenvector columns form a basis"
+      ],
+      "requiredOwnership": [
+        "Diagnose a finite real matrix as defective when its eigenspaces supply fewer than n independent eigenvectors.",
+        "Explain why defectiveness prevents an invertible eigenvector matrix P and therefore ordinary A=PDP^-1 diagonalization.",
+        "Reject attempts to fill a missing eigendirection by duplicating an eigenvector or inserting a scalar multiple of an existing one."
+      ],
+      "applicationScope": "Exact small real matrices with computed/supplied eigenspaces; no generalized eigenvectors.",
+      "transferScope": "Audit an abstract data-only proposal that duplicates an eigendirection to manufacture a square P.",
+      "inScope": [
+        "defective terminology",
+        "total independent eigenvector count",
+        "singular/incomplete P",
+        "duplicate-direction failure"
+      ],
+      "outOfScope": [
+        "Jordan form",
+        "generalized eigenvectors",
+        "defective-matrix power formulas",
+        "perturbation theory"
+      ],
+      "exitCondition": "Recognize and prove ordinary diagonalization failure from eigenspace dimension, without inventing missing modes.",
+      "lesson": "Orient. A matrix can have all of its eigenvalues known and still fail to have enough eigenvectors for an eigenbasis. That failure is structural, not a bad choice of arithmetic.\n\nDefine. An n×n matrix is defective when it is not diagonalizable because it lacks n linearly independent eigenvectors. Equivalently, the combined eigenspaces do not supply a basis of the whole space.\n\nWorked example. J=[[2,1],[0,2]] has p_J(t)=(2-t)^2, but E_2=span{(1,0)} has dimension 1. R^2 needs two independent basis vectors, so J is defective. Trying P=[e1,2e1] gives two columns but only one direction; P is singular and cannot be inverted.\n\nContrast. 2I_2 has the same characteristic polynomial but E_2=R^2, so it is not defective. Eigenvalues alone do not determine diagonalizability.\n\nWhy duplication cannot help. P must implement a basis change. Repeating a vector or inserting a scalar multiple leaves the columns dependent, so the map from eigen-coordinates back to the original coordinates is not invertible. The missing direction is mathematical information we do not possess.\n\nGuided practice. Let C=[[5,2,0],[0,5,0],[0,0,-1]]. Compute E_5 and E_-1, total their dimensions, decide whether C is defective, and explain what goes wrong with any 3-column P built only from those eigenspaces.\n\nFade. Main uses a lower-triangular defective matrix. Transfer removes matrix arithmetic entirely and presents only eigenspace data plus a fake duplicated-column P.\n\nDistinction check. 'Three eigenvalues counted with multiplicity' is not 'three independent eigenvectors.' A square array of eigenvector columns is not automatically a basis matrix.",
+      "guidedFeedback": "Check after attempting. E_5=span{(1,0,0)} has dimension 1 and E_-1=span{(0,0,1)} has dimension 1, so only two independent eigendirections are available in R^3. C is defective. Any third column chosen from those same one-dimensional spaces is dependent on an existing column, so P is singular.",
+      "main": "T22V3::SIDE279::S10-M@1",
+      "transfer": "T22V3::SIDE279::S10-T@1"
     }
   ],
   "problems": {
@@ -567,6 +606,20 @@
       "order": 9,
       "kind": "transfer",
       "prompt": "A state evolves by x_{k+1}=Bx_k with B=[[2,0],[1,3]] and x0=(2,1). The eigenpairs v2=(1,-1), λ=2 and v3=(0,1), λ=3 are supplied. Decompose x0 into the two eigenvectors and compute x4 without iterating four matrix multiplications.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S10-M@1": {
+      "id": "T22V3::SIDE279::S10-M@1",
+      "order": 10,
+      "kind": "main",
+      "prompt": "Let A=[[4,0,0],[1,4,0],[0,0,1]]. (a) Compute the eigenvalues and bases for E_4 and E_1. (b) Count the maximum number of independent eigenvectors available and decide whether A is defective. (c) Explain why no 3×3 matrix P made only from ordinary eigenvectors of A can be invertible.",
+      "obligationVersion": 1
+    },
+    "T22V3::SIDE279::S10-T@1": {
+      "id": "T22V3::SIDE279::S10-T@1",
+      "order": 10,
+      "kind": "transfer",
+      "prompt": "A 3×3 matrix M is known to have E_7=span{(1,0,0)} and E_-2=span{(0,0,1)}, with algebraic multiplicities 2 and 1 respectively. A report proposes P=[(1,0,0),(2,0,0),(0,0,1)] and says: “Now P has three eigenvector columns, so M is diagonalizable.” Audit the proposal without reconstructing M.",
       "obligationVersion": 1
     }
   },
@@ -906,6 +959,42 @@
         }
       ],
       "marking": "A direct matrix-power verification may accompany the modal solution but cannot replace the requested eigen-coordinate decomposition."
+    },
+    "T22V3::SIDE279::S10-M@1": {
+      "reference": "The characteristic polynomial is (4-t)^2(1-t). For λ=4, A-4I=[[0,0,0],[1,0,0],[0,0,-3]], so E_4=span{(0,1,0)}. For λ=1, E_1=span{(0,0,1)}. At most two independent eigenvectors are available in R^3, so A is defective. Any P made only from ordinary eigenvectors must choose its first two columns from these two one-dimensional spaces; a third column is dependent on one of them, so P cannot have three independent columns and is not invertible.",
+      "rubric": [
+        {
+          "points": 4,
+          "criterion": "Finds eigenvalues 4 (repeated) and 1 with E_4=span{(0,1,0)} and E_1=span{(0,0,1)}."
+        },
+        {
+          "points": 3,
+          "criterion": "Counts only two independent eigenvector directions and correctly labels A defective/not diagonalizable."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains that any 3-column eigenvector P must contain dependent columns and therefore cannot be invertible."
+        }
+      ],
+      "marking": "Equivalent eigenspace bases/rescalings are accepted. No generalized eigenvector construction is in scope."
+    },
+    "T22V3::SIDE279::S10-T@1": {
+      "reference": "The proposed second column (2,0,0) is just 2 times the first. Therefore the three columns are dependent and P is singular. The supplied eigenspaces have dimensions 1 and 1, so M has only two independent ordinary eigenvectors available in R^3 and is defective. Repeating a vector does not create a new eigendirection or an eigenbasis.",
+      "rubric": [
+        {
+          "points": 3,
+          "criterion": "Identifies the duplicated/scalar-multiple direction and proves the proposed P has dependent columns."
+        },
+        {
+          "points": 4,
+          "criterion": "Uses dim E_7+dim E_-2=2<3 to conclude M lacks an eigenbasis / is defective."
+        },
+        {
+          "points": 3,
+          "criterion": "Explains why adding another copy of an eigenvector cannot repair ordinary diagonalization."
+        }
+      ],
+      "marking": "A determinant-zero check for the proposed P may verify dependence but does not replace the eigendirection explanation."
     }
   },
   "coverage": {
@@ -953,6 +1042,11 @@
       "Use the P^-1P cancellation mechanism to justify A^m=PD^mP^-1 for a specified nonnegative integer exponent m from a valid diagonalization.",
       "Compute an exact finite matrix power from a supplied/constructed diagonalization.",
       "Translate a finite recurrence x_{k+1}=Ax_k into eigen-coordinates and compute a requested state without step-by-step iteration."
+    ],
+    "T22V3::SIDE279::S10@1": [
+      "Diagnose a finite real matrix as defective when its eigenspaces supply fewer than n independent eigenvectors.",
+      "Explain why defectiveness prevents an invertible eigenvector matrix P and therefore ordinary A=PDP^-1 diagonalization.",
+      "Reject attempts to fill a missing eigendirection by duplicating an eigenvector or inserting a scalar multiple of an existing one."
     ]
   },
   "claimEvidence": {
@@ -1479,6 +1573,63 @@
         "escapeAttempt": "Four manual updates cannot earn the decomposition/modal rows.",
         "generalizationDistance": "Finite recurrence state, not asymptotic dynamics."
       }
+    ],
+    "T22V3::SIDE279::S10@1": [
+      {
+        "claim": "Diagnose a finite real matrix as defective when its eigenspaces supply fewer than n independent eigenvectors.",
+        "task": "main+transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S10-M@1",
+          "T22V3::SIDE279::S10-T@1"
+        ],
+        "publicRequestExact": [
+          "Count the maximum number of independent eigenvectors available and decide whether A is defective.",
+          "Use ... supplied eigenspaces ... Audit the proposal"
+        ],
+        "rubricEvidence": [
+          "Counts only two independent eigenvector directions and correctly labels A defective/not diagonalizable.",
+          "Uses dim E_7+dim E_-2=2<3 to conclude M lacks an eigenbasis / is defective."
+        ],
+        "disposition": "adequate",
+        "why": "Both tasks force total eigenspace dimension versus ambient dimension.",
+        "escapeAttempt": "Algebraic multiplicity counts cannot satisfy the rows.",
+        "generalizationDistance": "Exact finite matrices/data only."
+      },
+      {
+        "claim": "Explain why defectiveness prevents an invertible eigenvector matrix P and therefore ordinary A=PDP^-1 diagonalization.",
+        "task": "main",
+        "taskIds": [
+          "T22V3::SIDE279::S10-M@1"
+        ],
+        "publicRequestExact": [
+          "Explain why no 3×3 matrix P made only from ordinary eigenvectors of A can be invertible."
+        ],
+        "rubricEvidence": [
+          "Explains that any 3-column eigenvector P must contain dependent columns and therefore cannot be invertible."
+        ],
+        "disposition": "adequate",
+        "why": "The public task explicitly connects missing independent directions to noninvertibility of P.",
+        "escapeAttempt": "Saying 'not diagonalizable' without the P/basis reason loses the row.",
+        "generalizationDistance": "Ordinary eigenvector diagonalization only."
+      },
+      {
+        "claim": "Reject attempts to fill a missing eigendirection by duplicating an eigenvector or inserting a scalar multiple of an existing one.",
+        "task": "transfer",
+        "taskIds": [
+          "T22V3::SIDE279::S10-T@1"
+        ],
+        "publicRequestExact": [
+          "Audit the proposal ... P=[(1,0,0),(2,0,0),(0,0,1)]"
+        ],
+        "rubricEvidence": [
+          "Identifies the duplicated/scalar-multiple direction and proves the proposed P has dependent columns.",
+          "Explains why adding another copy of an eigenvector cannot repair ordinary diagonalization."
+        ],
+        "disposition": "adequate",
+        "why": "The learner must identify a scalar-multiple duplicate and explain why it cannot create a new mode.",
+        "escapeAttempt": "Counting three columns without checking independence fails.",
+        "generalizationDistance": "Exact repair-attempt diagnosis."
+      }
     ]
   },
   "evidenceDistance": {
@@ -1570,6 +1721,16 @@
       "transfer": {
         "classification": "changed-surface Transfer",
         "mechanism": "The request changes from a matrix power to a state recurrence with an initial condition that must be represented in eigen-coordinates."
+      }
+    },
+    "T22V3::SIDE279::S10@1": {
+      "main": {
+        "classification": "retrieval",
+        "mechanism": "Defective diagnosis repeats the taught eigenspace-dimension criterion on a fresh lower-triangular matrix."
+      },
+      "transfer": {
+        "classification": "changed-surface Transfer",
+        "mechanism": "No matrix is given; a fake eigenvector-basis artifact must be audited from eigenspace data and column dependence."
       }
     }
   },
@@ -1747,6 +1908,25 @@
         ],
         "mathematicalDifference": "Transfer uses a distinct lower-triangular B, supplied eigenpairs and x0=(2,1), asking x4.",
         "exposureDisposition": "CLEAR — no fixed coefficients/state are solved in instruction."
+      },
+      "T22V3::SIDE279::S10-M@1": {
+        "sessionId": "T22V3::SIDE279::S10@1",
+        "kind": "main",
+        "closestInstructionalExamples": [
+          "S10 J=[[2,1],[0,2]] worked",
+          "S10 guided C=[[5,2,0],[0,5,0],[0,0,-1]]"
+        ],
+        "mathematicalDifference": "Main uses a distinct lower-triangular 3x3 matrix and different eigenspaces.",
+        "exposureDisposition": "CLEAR."
+      },
+      "T22V3::SIDE279::S10-T@1": {
+        "sessionId": "T22V3::SIDE279::S10@1",
+        "kind": "transfer",
+        "closestInstructionalExamples": [
+          "S10 generic warning against duplicate/scalar-multiple columns"
+        ],
+        "mathematicalDifference": "Transfer supplies abstract eigenspaces and a concrete fake P with a new repeated direction.",
+        "exposureDisposition": "CLEAR — fixed P/eigenspace data are not solved visibly."
       }
     }
   },
@@ -1860,6 +2040,15 @@
         "lessonSolvedInstances": [
           "A=[[2,1],[1,2]] general power formula",
           "guided C=[[4,0],[1,3]], x0=(2,3)"
+        ],
+        "fixedMainSolvedInInstruction": false,
+        "fixedTransferSolvedInInstruction": false,
+        "guidedFeedbackRevealAfterAttempt": true
+      },
+      "T22V3::SIDE279::S10@1": {
+        "lessonSolvedInstances": [
+          "J=[[2,1],[0,2]]",
+          "guided C=[[5,2,0],[0,5,0],[0,0,-1]]"
         ],
         "fixedMainSolvedInInstruction": false,
         "fixedTransferSolvedInInstruction": false,
@@ -1982,6 +2171,18 @@
         "alreadySuppliedByPrompt": "Eigenpairs supplied; modal coefficients not.",
         "decisivelyRehearsedInVisibleInstruction": "No exact recurrence/data solved.",
         "learnerActionActuallyScored": "Initial-state decomposition and modal propagation."
+      },
+      "T22V3::SIDE279::S10-M@1": {
+        "claimedLearnerDecision": "Diagnose structural failure and connect it to impossibility of invertible P.",
+        "alreadySuppliedByPrompt": "Matrix supplied; eigenspaces/decision not.",
+        "decisivelyRehearsedInVisibleInstruction": "YES — retrieval.",
+        "learnerActionActuallyScored": "Eigenspaces, direction count, defective decision, P explanation."
+      },
+      "T22V3::SIDE279::S10-T@1": {
+        "claimedLearnerDecision": "Decide whether three listed eigenvector columns really form a basis.",
+        "alreadySuppliedByPrompt": "Proposed P supplied; independence/validity not.",
+        "decisivelyRehearsedInVisibleInstruction": "No exact P/data solved.",
+        "learnerActionActuallyScored": "Dependence proof, dimension count and repair explanation."
       }
     }
   },
@@ -2057,6 +2258,11 @@
         "failureMode": "P and P^-1 incorrectly powered or power formula used without cancellation/diagonalizability",
         "where": "S09 Main",
         "discriminator": "rubric requires explicit P^-1P cancellation and valid diagonalization"
+      },
+      {
+        "failureMode": "duplicate/scalar-multiple eigenvectors used to manufacture a square eigenvector matrix",
+        "where": "S10 Transfer",
+        "discriminator": "proposed P has dependent columns despite three entries"
       }
     ],
     "designGateCoverage": [
