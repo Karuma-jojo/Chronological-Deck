@@ -579,3 +579,15 @@ Regression additions:
 - Chromium imports an intentionally incoherent paper-open record and verifies all session statements are normalized before the already-opened paper path is usable.
 
 **Gate 1 remains CLOSED pending independent final confirmation of the repaired exact head.**
+
+
+### Gate 0 final repair — G01
+
+Final independent attack confirmed R01–R04 and F01–F02, then found one surgical timestamp-ordering defect.
+
+- **G01 timestamp ordering:** evidence timestamps are now required to include an explicit timezone, canonicalized to UTC during validation, and compared by absolute instant rather than lexicographic string order.
+- Timezone-less historical timestamps are rejected.
+- Cross-offset regressions cover both validation/normalization and \`mergeSmmcState()\`.
+- The concrete counterexample \`2026-09-20T09:00:00+05:30\` versus \`2026-09-20T04:00:00.000Z\` must retain the former instant, canonically \`2026-09-20T03:30:00.000Z\`.
+
+**Gate 1 remains CLOSED until the exact repaired head passes complete CI and receives independent closure confirmation.**
