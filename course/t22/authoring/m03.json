@@ -178,7 +178,7 @@
       "title": "Universal & existential quantifiers",
       "focus": "Universal & existential quantifiers",
       "purpose": "Build universal & existential quantifiers as an independently observable capability before later probability/research modules.",
-      "centralCapability": "State the quantifier domain. Interpret universal quantification. Interpret existential quantification. Use a witness for an existential. Use a counterexample against a universal.",
+      "centralCapability": "Track and explain the stated quantifier domain. Interpret universal quantification. Interpret existential quantification. Use a witness for an existential. Use a counterexample against a universal.",
       "principalObstacle": "Avoid the characteristic shortcut/category error for universal & existential quantifiers.",
       "entryPrerequisites": [
         "M03-S01",
@@ -621,7 +621,7 @@
       "title": "Set identities & De Morgan laws",
       "focus": "Set identities & De Morgan laws",
       "purpose": "Build set identities & de morgan laws as an independently observable capability before later probability/research modules.",
-      "centralCapability": "State a De Morgan identity. Rewrite difference as intersection with complement. Prove equality elementwise. Use iff to establish both containments. Distinguish finite check from universal proof.",
+      "centralCapability": "Translate a supplied De Morgan identity into elementwise membership logic. Rewrite difference as intersection with complement. Prove equality elementwise. Use iff to establish both containments. Distinguish finite check from universal proof.",
       "principalObstacle": "Avoid the characteristic shortcut/category error for set identities & de morgan laws.",
       "entryPrerequisites": [
         "M03-S17 set operations",
@@ -1038,7 +1038,7 @@
       "title": "M03 synthesis — claims, proof, sets & finite counting",
       "focus": "M03 synthesis — claims, proof, sets & finite counting",
       "purpose": "Build m03 synthesis — claims, proof, sets & finite counting as an independently observable capability before later probability/research modules.",
-      "centralCapability": "Prove a universal finite claim with the correct principle. Count fixed-size subsets. Use complement counting for a subset class. Use pigeonhole to prove noninjectivity. Count surjective finite functions by inclusion-exclusion.",
+      "centralCapability": "Execute a correct pigeonhole proof of a universal finite claim. Count fixed-size subsets. Use complement counting for a subset class. Use pigeonhole to prove noninjectivity. Count surjective finite functions by inclusion-exclusion.",
       "principalObstacle": "Avoid the characteristic shortcut/category error for m03 synthesis — claims, proof, sets & finite counting.",
       "entryPrerequisites": [
         "M03-S21 finite mappings",
