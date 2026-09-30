@@ -58,6 +58,12 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
 
   const problemIds = new Set(ledger.map(x => x.id));
   const paperKeys = new Set(ledger.map(x => `${x.year}-${x.session}`));
+  const problemsByPaper = new Map();
+  for (const problem of ledger) {
+    const key = `${problem.year}-${problem.session}`;
+    if (!problemsByPaper.has(key)) problemsByPaper.set(key, []);
+    problemsByPaper.get(key).push(problem.id);
+  }
   const moduleIds = new Set(knownModuleIds);
   const unitIds = new Set(knownUnitIds);
   const seenAttempts = new Set();
@@ -144,6 +150,59 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
       }
     }
     out.papers[paperKey] = safe;
+  }
+
+  // Normalize semantically stronger evidence into the weaker exposure facts it necessarily implies.
+  // This is intentionally conservative: malformed/legacy/imported/cloud state is repaired rather
+  // than allowed to create a route around corpus-protection checks.
+  const ensureProblemExposure = (problemId, key, at) => {
+    out.exposures[problemId] ??= {};
+    out.exposures[problemId][key] = earliest(out.exposures[problemId][key], at);
+  };
+  const ensurePaperState = (paperKey, key, at) => {
+    out.papers[paperKey] ??= {};
+    out.papers[paperKey][key] = earliest(out.papers[paperKey][key], at);
+  };
+
+  // Seeing an individual solution necessarily means the corresponding statement was seen.
+  for (const [problemId, exposure] of Object.entries(out.exposures)) {
+    if (exposure.solutionSeenAt) {
+      ensureProblemExposure(problemId, "statementSeenAt", exposure.solutionSeenAt);
+    }
+  }
+
+  // A recorded historical attempt necessarily exposed that problem statement by attempt time.
+  for (const attempt of out.attempts) {
+    ensureProblemExposure(attempt.problemId, "statementSeenAt", attempt.at);
+  }
+
+  for (const [paperKey, paper] of Object.entries(out.papers)) {
+    // Arena consumption implies a paper attempt; a paper attempt or solution-paper view implies
+    // the paper's statements were available. Keep the earliest applicable timestamp at every layer.
+    if (paper.arenaConsumedAt) {
+      ensurePaperState(paperKey, "attemptedAt", paper.arenaConsumedAt);
+      ensurePaperState(paperKey, "paperOpenedAt", paper.arenaConsumedAt);
+    }
+    if (paper.attemptedAt) {
+      ensurePaperState(paperKey, "paperOpenedAt", paper.attemptedAt);
+    }
+    if (paper.solutionOpenedAt) {
+      ensurePaperState(paperKey, "paperOpenedAt", paper.solutionOpenedAt);
+    }
+
+    const normalizedPaper = out.papers[paperKey];
+    const problemIdsForPaper = problemsByPaper.get(paperKey) || [];
+    if (normalizedPaper.paperOpenedAt) {
+      for (const problemId of problemIdsForPaper) {
+        ensureProblemExposure(problemId, "statementSeenAt", normalizedPaper.paperOpenedAt);
+      }
+    }
+    if (normalizedPaper.solutionOpenedAt) {
+      for (const problemId of problemIdsForPaper) {
+        ensureProblemExposure(problemId, "statementSeenAt", normalizedPaper.solutionOpenedAt);
+        ensureProblemExposure(problemId, "solutionSeenAt", normalizedPaper.solutionOpenedAt);
+      }
+    }
   }
 
   for (const [moduleId, moduleState] of Object.entries(value.modules)) {
