@@ -53,7 +53,7 @@ The earlier session-local method-recognition gates were rejected because they ex
 
 Fresh interleaved proof-choice practice now occurs only **after S14**, and fresh counting-choice practice only **after S30**. These labs use new statements/situations, hide method labels, and are diagnostic/practice rather than canonical ownership evidence.
 
-The v1.2 retrofit also replaces weak Transfers in S17, S23, S24, S25 and S27, rebuilds all generic Transfer evaluators, removes S26 theorem leakage, records explicit evidence-distance/decision/wrong-solver audits, and fixes the S27 stars-and-bars rendering.
+The v1.2 retrofit also replaces weak Transfers in S17, S23, S24 and S25 and supersedes the rejected S27 complement-counting candidate with a monomial-exponent Transfer, rebuilds all generic Transfer evaluators, removes S26 theorem leakage, records explicit evidence-distance/decision/wrong-solver audits, and fixes the S27 stars-and-bars rendering.
 
 See `docs/t22-course/M03-V12-EVIDENCE-RETROFIT.md`.
 

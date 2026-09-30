@@ -1444,8 +1444,8 @@
       "id": "T22V3::T22E-DISC01::S27-T@1",
       "order": 27,
       "kind": "transfer",
-      "prompt": "Twelve identical tokens are distributed among three labeled boxes A,B,C, with box A receiving at most4 tokens. Count the valid distributions. Start from the unrestricted stars-and-bars count and correct for the forbidden cases A≥5.",
-      "obligationVersion": 2
+      "prompt": "For a monomial x^a y^b z^c w^d, define its total degree as a+b+c+d, where a,b,c,d are nonnegative integers. How many such monomials have total degree10? How many have all four exponents positive? Explain the exponent-vector ↔ stars-and-bars correspondence.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S28-M@1": {
       "id": "T22V3::T22E-DISC01::S28-M@1",
@@ -2870,30 +2870,30 @@
       "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
     },
     "T22V3::T22E-DISC01::S27-T@1": {
-      "reference": "Unrestricted: C(14,2)=91. Forbidden A≥5: write A'=A−5≥0, so A'+B+C=7 gives C(9,2)=36. Valid=91−36=55.",
+      "reference": "Total degree10 corresponds to a+b+c+d=10 with nonnegative exponents, so C(13,3)=286. If all exponents are positive, set a'=a−1,b'=b−1,c'=c−1,d'=d−1; then a'+b'+c'+d'=6, so C(9,3)=84.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Computes the unrestricted stars-and-bars count C(14,2)=91."
+          "criterion": "Translates total degree10 into the nonnegative integer equation a+b+c+d=10."
         },
         {
           "points": 2,
-          "criterion": "Models the forbidden condition A≥5 by setting A'=A−5≥0."
+          "criterion": "Uses stars-and-bars to obtain C(13,3)=286 total-degree10 monomials."
         },
         {
           "points": 2,
-          "criterion": "Counts forbidden solutions of A'+B+C=7 as C(9,2)=36."
+          "criterion": "Handles positive exponents by shifting each exponent down by1."
         },
         {
           "points": 2,
-          "criterion": "Subtracts forbidden from unrestricted to obtain55 valid distributions."
+          "criterion": "Counts the positive-exponent case as C(9,3)=84."
         },
         {
           "points": 2,
-          "criterion": "Explains why the upper bound requires a correction rather than the plain stars-and-bars formula alone."
+          "criterion": "Explains the bijection between exponent vectors and stars-and-bars distributions."
         }
       ],
-      "marking": "Award only for the public obligations above. Accept mathematically equivalent reasoning, but do not award a criterion that the response does not actually demonstrate."
+      "marking": "Accept equivalent exponent-vector counting. Do not introduce complement counting or upper-bound correction here; S28 owns complement/inclusion-exclusion."
     },
     "T22V3::T22E-DISC01::S28-M@1": {
       "reference": "Union80; neither20; exactly-one55.",
@@ -5379,7 +5379,7 @@
         "Count nonnegative integer solutions to x1+x2+x3=7. Then count positive solutions y1+y2+y3=8 by"
       ],
       "transfer": [
-        "Twelve identical tokens are distributed among three labeled boxes A,B,C, with box"
+        "For a monomial x^a y^b z^c w^d"
       ]
     },
     "T22V3::T22E-DISC01::S28@1": {
@@ -5536,7 +5536,7 @@
       },
       "T22V3::T22E-DISC01::S27@1": {
         "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'changed-surface Transfer'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed. S27 instruction uses a rendered-safe ★★|★|★★ stars-and-bars representation; Transfer v2 adds an upper-bound correction."
+        "note": "Current v1.2 re-audit: S27 Main is retrieval/application; Transfer v3 is changed-surface algebraic reconstruction via monomial exponent vectors. Complement counting is deliberately deferred to S28. Instruction uses the rendered-safe ★★|★|★★ representation."
       },
       "T22V3::T22E-DISC01::S28@1": {
         "status": "reviewed-separated",
@@ -5605,7 +5605,7 @@
       "T22V3::T22E-DISC01::S26-T@1"
     ],
     "priorAttemptsPolicy": "Prior attempts remain attached to their historical obligation fingerprints. Any task whose obligationVersion increased is not silently recertified from an older attempt. Exact-answer exposure remains historical; independent recertification uses fresh solution-free probes.",
-    "taskReplacementPolicy": "Stable task IDs are retained with incremented obligationVersion. Substantively changed prompts (S17/S23/S24/S25/S27 Transfer and selected Main observers) are new evidence obligations; older attempts do not auto-satisfy them.",
+    "taskReplacementPolicy": "Stable task IDs are retained with incremented obligationVersion. Substantively changed prompts (S17/S23/S24/S25/S27 Transfer and selected Main observers) are new evidence obligations; older attempts do not auto-satisfy them. S27-T v3 supersedes the rejected upper-bound/complement v2 candidate so S28 retains first ownership of complement counting.",
     "strategyLabPolicy": "Method-selection diagnostics are removed from pre-assessment session gates. Fresh mixed strategy labs run only after S14 and after S30 and are practice/diagnostic evidence, not automatic canonical ownership credit."
   },
   "evidenceDistance": {
@@ -5825,7 +5825,7 @@
       },
       "T22V3::T22E-DISC01::S27-T@1": {
         "class": "changed-surface Transfer",
-        "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S27; storage in the Transfer slot is not treated as proof of transfer."
+        "note": "Transfer changes from token/box distributions to algebraic monomial exponent vectors while preserving stars-and-bars structure; it does not use S28 complement counting."
       },
       "T22V3::T22E-DISC01::S28-M@1": {
         "class": "fresh Main evidence",
@@ -5913,8 +5913,8 @@
       },
       "T22V3::T22E-DISC01::S27-T@1": {
         "status": "reviewed",
-        "decision": "Correct a stars-and-bars count for an upper bound by defining/counting forbidden solutions.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decision": "Recast a monomial's exponent vector as a nonnegative composition of total degree, then handle strict positivity by a lower-bound shift.",
+        "whyNotSupplied": "The task defines total degree but does not provide the stars-and-bars encoding or the positive-shift count."
       },
       "T22V3::T22E-DISC01::S28-T@1": {
         "status": "reviewed",
@@ -6041,8 +6041,8 @@
         "requiredDiscrimination": "General theorem production, combinatorial coefficient reason and fresh expansion are independently scored."
       },
       "T22V3::T22E-DISC01::S27@1": {
-        "wrongApproach": "Apply plain stars-and-bars and ignore A≤4.",
-        "requiredDiscrimination": "Rubric requires counting/subtracting the forbidden A≥5 solutions."
+        "wrongApproach": "Count ordered strings of variables or treat the exponents as distinguishable tokens instead of an exponent vector satisfying one sum constraint.",
+        "requiredDiscrimination": "Rubric requires the exponent equation, stars-and-bars count, positive shift and explicit exponent-vector bijection."
       },
       "T22V3::T22E-DISC01::S28@1": {
         "wrongApproach": "Add |A|+|B| without subtracting the overlap.",

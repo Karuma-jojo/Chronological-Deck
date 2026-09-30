@@ -49,7 +49,7 @@ Stable task IDs are retained with obligationVersion 2:
 - S23-T: two disjoint formats require product inside branches and addition across branches.
 - S24-T: ordered selections are reconstructed as injective finite maps.
 - S25-T: labeled-group multinomial counting now includes a fixed-member constraint.
-- S27-T: stars-and-bars now requires an upper-bound correction.
+- S27-T v3: stars-and-bars is reconstructed on a monomial-exponent surface; the rejected upper-bound/complement v2 candidate is superseded so S28 retains complement-counting ownership.
 
 S30-T is obligationVersion 3: it now honestly **uses** the three-set inclusion-exclusion rule owned by S28 rather than claiming that rule is unintroduced.
 
