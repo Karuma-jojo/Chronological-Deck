@@ -363,8 +363,10 @@ function renderProblemList(){
   const q=$('problemSearch').value.trim().toLowerCase();
   const list=ledger.filter(p=>{
     const base=problemLabel(p)+' '+p.id;
-    const exposed=exposureClass(histState,p.id).class!=='sealed';
-    const searchable=exposed?base+' '+p.synopsis:base;
+    // F01: material-hint/development exposure does not imply the statement/synopsis was seen.
+    // Synopsis search is enabled only after statement exposure itself has been recorded.
+    const statementSeen=Boolean(histState.exposures?.[p.id]?.statementSeenAt);
+    const searchable=statementSeen?base+' '+p.synopsis:base;
     return searchable.toLowerCase().includes(q);
   });
   opts($('problemSelect'),list.map(p=>[p.id,problemLabel(p)]));
