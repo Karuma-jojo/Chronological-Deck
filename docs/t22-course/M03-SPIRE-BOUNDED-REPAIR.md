@@ -1,4 +1,4 @@
-# M03 Spire bounded repair
+> **Historical receipt — superseded for current-state claims by `M03-V17-FINAL-EVIDENCE-PROVENANCE-REPAIR.md`.** Stable task IDs were preserved, but several public prompts/evaluators were deliberately versioned later; statements below about unchanged prompts or older obligation versions are historical only.\n\n# M03 Spire bounded repair
 
 Status: **repair candidate — awaiting independent follow-up**
 
