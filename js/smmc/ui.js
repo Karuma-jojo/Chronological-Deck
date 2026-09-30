@@ -32,16 +32,25 @@ function renderCloudBadge(){
 }
 function refreshSmmcViews(){
   renderUnit(currentUnit?.id||SMMC_UNITS_V1[0].id,currentTaskId);
+  renderProblemList();
   if(currentProblem)renderHistorical(currentProblem.id);
   renderHistory();
 }
 function applySmmcCloudResult(kind,result){
   if(result.status==='error'){cloudBadge('error','Saved locally');return;}
   if(result.status==='local-only'){cloudBadge('local','Local');return;}
+  let needsResync=false;
   if(result.payload){
     cloudApplying=true;
-    if(kind==='historical')histState=result.payload;
-    else studyState=result.payload;
+    if(kind==='historical'){
+      const merged=mergeSmmcState(histState,result.payload,ledger,moduleIds,allUnitIds);
+      needsResync=JSON.stringify(merged)!==JSON.stringify(result.payload);
+      histState=merged;
+    }else{
+      const merged=mergeSmmcStudy(studyState,result.payload,Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
+      needsResync=JSON.stringify(merged)!==JSON.stringify(result.payload);
+      studyState=merged;
+    }
     if(storageOK){
       try{
         localStorage.setItem(HIST_KEY,JSON.stringify(histState));
@@ -52,6 +61,10 @@ function applySmmcCloudResult(kind,result){
     cloudApplying=false;
   }
   cloudBadge('synced','Synced ☁');
+  if(needsResync){
+    if(kind==='historical')scheduleHistoricalSync(0);
+    else scheduleStudySync(0);
+  }
 }
 let histState=emptySmmcState();
 let studyState=emptySmmcStudy();
@@ -61,6 +74,56 @@ let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,curre
 let researchVisible=false,paperVisible=false,synopsisVisible=false,pathVisible=false,lessonMode='learn';
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
 const moduleIds=[...new Set(SMMC_UNITS_V1.map(x=>x.moduleId))];
+const cloneJson=value=>JSON.parse(JSON.stringify(value));
+
+function scheduleHistoricalSync(delay=900){
+  if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
+  scheduleWorkspaceScopeSync(
+    'smmc_historical',
+    ()=>histState,
+    (local,remote)=>mergeSmmcState(local,remote,ledger,moduleIds,allUnitIds),
+    result=>applySmmcCloudResult('historical',result),
+    delay
+  );
+}
+function scheduleStudySync(delay=900){
+  if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
+  scheduleWorkspaceScopeSync(
+    'smmc_study',
+    ()=>studyState,
+    (local,remote)=>mergeSmmcStudy(local,remote,Object.keys(SMMC_PUBLIC_PROBLEMS_V1)),
+    result=>applySmmcCloudResult('study',result),
+    delay
+  );
+}
+function persistHistoricalCandidate(candidate){
+  if(!storageOK){
+    tell('Protected archive locked: durable browser storage is unavailable, so historical material was not revealed.');
+    return false;
+  }
+  let checked;
+  try{
+    checked=validateSmmcState(candidate,ledger,moduleIds,allUnitIds);
+  }catch(error){
+    tell('Protected archive locked: the exposure record could not be validated.');
+    return false;
+  }
+  try{
+    localStorage.setItem(HIST_KEY,JSON.stringify(checked));
+  }catch{
+    storageOK=false;
+    tell('Protected archive locked: exposure could not be durably recorded, so historical material was not revealed.');
+    return false;
+  }
+  histState=checked;
+  if(cloudReady&&!cloudApplying)scheduleHistoricalSync();
+  return true;
+}
+function commitHistoricalMutation(mutator){
+  const candidate=cloneJson(histState);
+  mutator(candidate);
+  return persistHistoricalCandidate(candidate);
+}
 
 function persist(){
   if(!storageOK)return false;
@@ -73,19 +136,8 @@ function persist(){
     return false;
   }
   if(cloudReady&&!cloudApplying){
-    if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
-    scheduleWorkspaceScopeSync(
-      'smmc_historical',
-      ()=>histState,
-      (local,remote)=>mergeSmmcState(local,remote,ledger,moduleIds,allUnitIds),
-      result=>applySmmcCloudResult('historical',result)
-    );
-    scheduleWorkspaceScopeSync(
-      'smmc_study',
-      ()=>studyState,
-      (local,remote)=>mergeSmmcStudy(local,remote,Object.keys(SMMC_PUBLIC_PROBLEMS_V1)),
-      result=>applySmmcCloudResult('study',result)
-    );
+    scheduleHistoricalSync();
+    scheduleStudySync();
   }
   return true;
 }
@@ -309,7 +361,12 @@ function renderOverlapSummary(){
 function problemLabel(p){return p.year+' '+p.session+p.problem+' · '+(p.eastRelevant?'East':'C supplementary');}
 function renderProblemList(){
   const q=$('problemSearch').value.trim().toLowerCase();
-  const list=ledger.filter(p=>(problemLabel(p)+' '+p.synopsis).toLowerCase().includes(q));
+  const list=ledger.filter(p=>{
+    const base=problemLabel(p)+' '+p.id;
+    const exposed=exposureClass(histState,p.id).class!=='sealed';
+    const searchable=exposed?base+' '+p.synopsis:base;
+    return searchable.toLowerCase().includes(q);
+  });
   opts($('problemSelect'),list.map(p=>[p.id,problemLabel(p)]));
   if(currentProblem&&list.some(p=>p.id===currentProblem.id))$('problemSelect').value=currentProblem.id;
 }
@@ -327,9 +384,13 @@ function renderHistorical(id){
   const exposure=exposureClass(histState,id);
   put('histExposure','Problem exposure: '+exposure.class+'. '+exposure.reason+'. Statement/summary exposure is persistent; hint-bearing research metadata moves this problem to development.');
   $('histSynopsis').hidden=!synopsisVisible;
-  put('histSynopsis',currentProblem.synopsis);
+  put('histSynopsis',synopsisVisible?currentProblem.synopsis:'');
   $('revealSynopsis').textContent=synopsisVisible?'Hide ledger summary':'Show ledger summary · marks this problem statement-seen';
-  renderT25Connections(currentProblem.t25Targets,'problemT25Connections');
+  const routeHintsVisible=exposure.class==='development';
+  $('mappingTools').hidden=!routeHintsVisible;
+  $('problemConnections').hidden=!routeHintsVisible;
+  if(routeHintsVisible)renderT25Connections(currentProblem.t25Targets,'problemT25Connections');
+  else $('problemT25Connections').replaceChildren();
   rememberSmmcLocation({problemId:id});
   renderWorkspaceNav();
   if(currentTab==='map')replaceSmmcUrl();
@@ -352,14 +413,20 @@ function renderHistorical(id){
   const frame=$('officialPaperFrame');
   frame.hidden=!paperVisible;
   if(paperVisible&&paper&&frame.src!==paper)frame.src=paper;
-  const unlock=unlockStatus(currentProblem,{clearedT25Targets:clearedTargets(),certifiedUnits:certifiedUnitIds(histState)});
-  const b=$('unlockBadge');b.className='badge '+statusClass(unlock.status);b.textContent=statusText(unlock.status);
-  const parts=['Status: '+statusText(unlock.status)+'.'];
-  if(unlock.missingT25&&unlock.missingT25.length)parts.push('Missing T25 targets: '+unlock.missingT25.join(', ')+'.');
-  if(unlock.missingUnits&&unlock.missingUnits.length)parts.push('Missing certified SMMC units: '+unlock.missingUnits.join(', ')+'.');
-  if(unlock.status==='requirement-map-pending')parts.push('This non-GREEN problem stays locked until its exact authored-unit requirements are mapped.');
-  if(currentProblem.overlap==='green'&&unlock.status==='ready-transfer')parts.push('No extra SMMC content unit is required after the mapped T25 prerequisites.');
-  put('unlockText',parts.join('\n\n'));
+  const b=$('unlockBadge');
+  if(!routeHintsVisible){
+    b.className='badge neutral';b.textContent='Protected';
+    put('unlockText','Protected unfamiliar-transfer material. Exact T25 mappings, bridge identity, GREEN/AMBER/RED-distinguishing readiness, and method-specific prerequisite guidance are hidden until you explicitly reveal hint-bearing research metadata.');
+  }else{
+    const unlock=unlockStatus(currentProblem,{clearedT25Targets:clearedTargets(),certifiedUnits:certifiedUnitIds(histState)});
+    b.className='badge '+statusClass(unlock.status);b.textContent=statusText(unlock.status);
+    const parts=['Status: '+statusText(unlock.status)+'.'];
+    if(unlock.missingT25&&unlock.missingT25.length)parts.push('Missing T25 targets: '+unlock.missingT25.join(', ')+'.');
+    if(unlock.missingUnits&&unlock.missingUnits.length)parts.push('Missing certified SMMC units: '+unlock.missingUnits.join(', ')+'.');
+    if(unlock.status==='requirement-map-pending')parts.push('This non-GREEN problem stays locked until its exact authored-unit requirements are mapped.');
+    if(currentProblem.overlap==='green'&&unlock.status==='ready-transfer')parts.push('No extra SMMC content unit is required after the mapped T25 prerequisites.');
+    put('unlockText',parts.join('\n\n'));
+  }
   renderResearch(researchVisible);
 }
 function confirmAndMarkPaperOpened(){
@@ -372,8 +439,8 @@ function confirmAndMarkPaperOpened(){
       `Open official ${paperKey} session paper? This reveals all ${count} problem statements and permanently marks that full paper as opened for corpus-preservation purposes.`
     );
     if(!ok)return false;
-    markPaperExposure(histState,ledger,paperKey,'paperOpenedAt');
-    persist();
+    if(!commitHistoricalMutation(candidate=>markPaperExposure(candidate,ledger,paperKey,'paperOpenedAt')))return false;
+    renderProblemList();
   }
   return true;
 }
@@ -500,8 +567,8 @@ async function init(){
           `Show the ledger summary for ${currentProblem.id}? This is isolated exposure: only this problem will be marked statement-seen; the other problems in its session remain protected.`
         );
         if(!ok)return;
-        markExposure(histState,currentProblem.id,'statementSeenAt');
-        persist();
+        if(!commitHistoricalMutation(candidate=>markExposure(candidate,currentProblem.id,'statementSeenAt')))return;
+        renderProblemList();
       }
       synopsisVisible=true;
     }else synopsisVisible=false;
@@ -533,8 +600,8 @@ async function init(){
           `Reveal method/color/research metadata for ${currentProblem.id}? This can suggest a route, so this problem will be permanently marked material-hint-seen and development-only.`
         );
         if(!ok)return;
-        markExposure(histState,currentProblem.id,'materialHintSeenAt');
-        persist();
+        if(!commitHistoricalMutation(candidate=>markExposure(candidate,currentProblem.id,'materialHintSeenAt')))return;
+        renderProblemList();
       }
       researchVisible=true;
     }else researchVisible=false;
