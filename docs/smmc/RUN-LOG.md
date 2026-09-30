@@ -564,3 +564,18 @@ Bounded repairs on the same branch:
 The Chromium gate now includes explicit regressions for all four findings, including forced \`localStorage.setItem()\` failure and a delayed stale cloud response.
 
 **Status remains STOP / Gate 1 CLOSED until independent follow-up accepts the repaired exact head.**
+
+
+### Gate 0 follow-up repair — F01–F02
+
+Independent follow-up confirmed R01–R04 but found two narrower holes.
+
+- **F01 research-first search oracle:** synopsis search now requires \`statementSeenAt\` specifically. Material-hint/development exposure by itself does not make hidden synopsis text searchable.
+- **F02 state coherence/import bypass:** \`validateSmmcState()\` now normalizes stronger evidence into necessary weaker exposure facts, preserving earliest timestamps. This covers individual solution exposure, historical attempts, paper opened, solution paper opened, paper attempted and Arena consumed states; cloud merge inherits the same normalization.
+
+Regression additions:
+- Chromium research-first path verifies no synopsis-keyword search result until explicit statement exposure.
+- Source validator exercises every stronger→weaker implication plus earliest-timestamp preservation and malformed remote merge.
+- Chromium imports an intentionally incoherent paper-open record and verifies all session statements are normalized before the already-opened paper path is usable.
+
+**Gate 1 remains CLOSED pending independent final confirmation of the repaired exact head.**
