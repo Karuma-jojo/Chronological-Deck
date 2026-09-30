@@ -4,6 +4,7 @@ import { SMMC_UNITS_V1 } from '../../course/smmc/authoring/units-v1.mjs';
 import { SMMC_PUBLIC_PROBLEMS_V1 } from '../../course/smmc/authoring/public-problems-v1.mjs';
 import {
   emptySmmcState, validateSmmcState, mergeSmmcState, markExposure, exposureClass,
+  markPaperExposure, paperExposureClass, paperKeyForProblem, pristinePaperKeys,
   selfReportUnitComplete, certifiedUnitIds,
 } from '../../course/smmc/runtime/exposure.mjs';
 import { emptySmmcStudy, validateSmmcStudy, mergeSmmcStudy } from '../../course/smmc/runtime/study.mjs';
@@ -31,16 +32,25 @@ function renderCloudBadge(){
 }
 function refreshSmmcViews(){
   renderUnit(currentUnit?.id||SMMC_UNITS_V1[0].id,currentTaskId);
+  renderProblemList();
   if(currentProblem)renderHistorical(currentProblem.id);
   renderHistory();
 }
 function applySmmcCloudResult(kind,result){
   if(result.status==='error'){cloudBadge('error','Saved locally');return;}
   if(result.status==='local-only'){cloudBadge('local','Local');return;}
+  let needsResync=false;
   if(result.payload){
     cloudApplying=true;
-    if(kind==='historical')histState=result.payload;
-    else studyState=result.payload;
+    if(kind==='historical'){
+      const merged=mergeSmmcState(histState,result.payload,ledger,moduleIds,allUnitIds);
+      needsResync=JSON.stringify(merged)!==JSON.stringify(result.payload);
+      histState=merged;
+    }else{
+      const merged=mergeSmmcStudy(studyState,result.payload,Object.keys(SMMC_PUBLIC_PROBLEMS_V1));
+      needsResync=JSON.stringify(merged)!==JSON.stringify(result.payload);
+      studyState=merged;
+    }
     if(storageOK){
       try{
         localStorage.setItem(HIST_KEY,JSON.stringify(histState));
@@ -51,15 +61,69 @@ function applySmmcCloudResult(kind,result){
     cloudApplying=false;
   }
   cloudBadge('synced','Synced ☁');
+  if(needsResync){
+    if(kind==='historical')scheduleHistoricalSync(0);
+    else scheduleStudySync(0);
+  }
 }
 let histState=emptySmmcState();
 let studyState=emptySmmcStudy();
 let evaluatorPromise=null;
 const evaluatorBank=()=>evaluatorPromise??=import('../../course/smmc/authoring/evaluator-v1.mjs').then(m=>m.SMMC_EVALUATOR_V1);
 let currentUnit=null,currentTaskId=null,currentProblem=null,storageOK=true,currentTab='study',cloudReady=false,cloudApplying=false,cloudReconciling=false;
-let researchVisible=false,paperVisible=false,pathVisible=false,lessonMode='learn';
+let researchVisible=false,paperVisible=false,synopsisVisible=false,pathVisible=false,lessonMode='learn';
 const allUnitIds=SMMC_UNITS_V1.map(x=>x.id);
 const moduleIds=[...new Set(SMMC_UNITS_V1.map(x=>x.moduleId))];
+const cloneJson=value=>JSON.parse(JSON.stringify(value));
+
+function scheduleHistoricalSync(delay=900){
+  if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
+  scheduleWorkspaceScopeSync(
+    'smmc_historical',
+    ()=>histState,
+    (local,remote)=>mergeSmmcState(local,remote,ledger,moduleIds,allUnitIds),
+    result=>applySmmcCloudResult('historical',result),
+    delay
+  );
+}
+function scheduleStudySync(delay=900){
+  if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
+  scheduleWorkspaceScopeSync(
+    'smmc_study',
+    ()=>studyState,
+    (local,remote)=>mergeSmmcStudy(local,remote,Object.keys(SMMC_PUBLIC_PROBLEMS_V1)),
+    result=>applySmmcCloudResult('study',result),
+    delay
+  );
+}
+function persistHistoricalCandidate(candidate){
+  if(!storageOK){
+    tell('Protected archive locked: durable browser storage is unavailable, so historical material was not revealed.');
+    return false;
+  }
+  let checked;
+  try{
+    checked=validateSmmcState(candidate,ledger,moduleIds,allUnitIds);
+  }catch(error){
+    tell('Protected archive locked: the exposure record could not be validated.');
+    return false;
+  }
+  try{
+    localStorage.setItem(HIST_KEY,JSON.stringify(checked));
+  }catch{
+    storageOK=false;
+    tell('Protected archive locked: exposure could not be durably recorded, so historical material was not revealed.');
+    return false;
+  }
+  histState=checked;
+  if(cloudReady&&!cloudApplying)scheduleHistoricalSync();
+  return true;
+}
+function commitHistoricalMutation(mutator){
+  const candidate=cloneJson(histState);
+  mutator(candidate);
+  return persistHistoricalCandidate(candidate);
+}
 
 function persist(){
   if(!storageOK)return false;
@@ -72,19 +136,8 @@ function persist(){
     return false;
   }
   if(cloudReady&&!cloudApplying){
-    if(workspaceCloudState().signedIn)cloudBadge('syncing','Saving…');
-    scheduleWorkspaceScopeSync(
-      'smmc_historical',
-      ()=>histState,
-      (local,remote)=>mergeSmmcState(local,remote,ledger,moduleIds,allUnitIds),
-      result=>applySmmcCloudResult('historical',result)
-    );
-    scheduleWorkspaceScopeSync(
-      'smmc_study',
-      ()=>studyState,
-      (local,remote)=>mergeSmmcStudy(local,remote,Object.keys(SMMC_PUBLIC_PROBLEMS_V1)),
-      result=>applySmmcCloudResult('study',result)
-    );
+    scheduleHistoricalSync();
+    scheduleStudySync();
   }
   return true;
 }
@@ -308,7 +361,14 @@ function renderOverlapSummary(){
 function problemLabel(p){return p.year+' '+p.session+p.problem+' · '+(p.eastRelevant?'East':'C supplementary');}
 function renderProblemList(){
   const q=$('problemSearch').value.trim().toLowerCase();
-  const list=ledger.filter(p=>(problemLabel(p)+' '+p.synopsis).toLowerCase().includes(q));
+  const list=ledger.filter(p=>{
+    const base=problemLabel(p)+' '+p.id;
+    // F01: material-hint/development exposure does not imply the statement/synopsis was seen.
+    // Synopsis search is enabled only after statement exposure itself has been recorded.
+    const statementSeen=Boolean(histState.exposures?.[p.id]?.statementSeenAt);
+    const searchable=statementSeen?base+' '+p.synopsis:base;
+    return searchable.toLowerCase().includes(q);
+  });
   opts($('problemSelect'),list.map(p=>[p.id,problemLabel(p)]));
   if(currentProblem&&list.some(p=>p.id===currentProblem.id))$('problemSelect').value=currentProblem.id;
 }
@@ -321,40 +381,80 @@ function statusText(status){return ({
 function renderHistorical(id){
   const changed=!currentProblem||currentProblem.id!==id;
   currentProblem=ledger.find(p=>p.id===id);if(!currentProblem)return;
-  if(changed){researchVisible=false;paperVisible=false;}
+  if(changed){researchVisible=false;paperVisible=false;synopsisVisible=false;}
   $('problemSelect').value=id;put('histTitle',problemLabel(currentProblem));
-  const exposure=exposureClass(histState,id);put('histExposure','Exposure record: '+exposure.class+'. '+exposure.reason+'. Metadata viewing is not counted as contamination.');
-  put('histSynopsis',currentProblem.synopsis);
-  renderT25Connections(currentProblem.t25Targets,'problemT25Connections');
+  const exposure=exposureClass(histState,id);
+  put('histExposure','Problem exposure: '+exposure.class+'. '+exposure.reason+'. Statement/summary exposure is persistent; hint-bearing research metadata moves this problem to development.');
+  $('histSynopsis').hidden=!synopsisVisible;
+  put('histSynopsis',synopsisVisible?currentProblem.synopsis:'');
+  $('revealSynopsis').textContent=synopsisVisible?'Hide ledger summary':'Show ledger summary · marks this problem statement-seen';
+  const routeHintsVisible=exposure.class==='development';
+  $('mappingTools').hidden=!routeHintsVisible;
+  $('problemConnections').hidden=!routeHintsVisible;
+  if(routeHintsVisible)renderT25Connections(currentProblem.t25Targets,'problemT25Connections');
+  else $('problemT25Connections').replaceChildren();
   rememberSmmcLocation({problemId:id});
   renderWorkspaceNav();
   if(currentTab==='map')replaceSmmcUrl();
 
   const paper=officialPaperUrl(currentProblem);
-  $('openOfficialPaper').href=paper||'#';
+  const paperKey=paperKeyForProblem(currentProblem);
+  const paperExposure=paperExposureClass(histState,ledger,paperKey);
+  const sessionProblems=ledger.filter(problem=>paperKeyForProblem(problem)===paperKey);
+  const eastPaperKeys=[...new Set(ledger.filter(problem=>problem.eastRelevant).map(paperKeyForProblem))];
+  const pristineEast=pristinePaperKeys(histState,ledger,{eastOnly:true});
+  put('paperExposure','Session '+paperKey+' vault state: '+paperExposure.class+'. '+paperExposure.reason+'.');
+  put('pristineInventory','Pristine East A/B sessions: '+pristineEast.length+' / '+eastPaperKeys.length+'.');
+  $('openOfficialPaper').disabled=!paper;
   $('openOfficialPaper').hidden=!paper;
   $('togglePaper').disabled=!paper;
   $('togglePaper').textContent=paperVisible?'Hide official paper':'Show official paper here';
   put('paperGuide',paper
-    ? `Read ${currentProblem.session}${currentProblem.problem} on page 2 of the official ${currentProblem.year} session ${currentProblem.session} paper.`
+    ? `Warning: this PDF contains all ${sessionProblems.length} problems in session ${paperKey}. Opening it marks every statement in that session as seen. Use isolated problem access when you want to preserve the rest of a paper.`
     : 'No official paper URL is mapped yet for this record.');
   const frame=$('officialPaperFrame');
   frame.hidden=!paperVisible;
   if(paperVisible&&paper&&frame.src!==paper)frame.src=paper;
-  const unlock=unlockStatus(currentProblem,{clearedT25Targets:clearedTargets(),certifiedUnits:certifiedUnitIds(histState)});
-  const b=$('unlockBadge');b.className='badge '+statusClass(unlock.status);b.textContent=statusText(unlock.status);
-  const parts=['Status: '+statusText(unlock.status)+'.'];
-  if(unlock.missingT25&&unlock.missingT25.length)parts.push('Missing T25 targets: '+unlock.missingT25.join(', ')+'.');
-  if(unlock.missingUnits&&unlock.missingUnits.length)parts.push('Missing certified SMMC units: '+unlock.missingUnits.join(', ')+'.');
-  if(unlock.status==='requirement-map-pending')parts.push('This non-GREEN problem stays locked until its exact authored-unit requirements are mapped.');
-  if(currentProblem.overlap==='green'&&unlock.status==='ready-transfer')parts.push('No extra SMMC content unit is required after the mapped T25 prerequisites.');
-  put('unlockText',parts.join('\n\n'));
+  const b=$('unlockBadge');
+  if(!routeHintsVisible){
+    b.className='badge neutral';b.textContent='Protected';
+    put('unlockText','Protected unfamiliar-transfer material. Exact T25 mappings, bridge identity, GREEN/AMBER/RED-distinguishing readiness, and method-specific prerequisite guidance are hidden until you explicitly reveal hint-bearing research metadata.');
+  }else{
+    const unlock=unlockStatus(currentProblem,{clearedT25Targets:clearedTargets(),certifiedUnits:certifiedUnitIds(histState)});
+    b.className='badge '+statusClass(unlock.status);b.textContent=statusText(unlock.status);
+    const parts=['Status: '+statusText(unlock.status)+'.'];
+    if(unlock.missingT25&&unlock.missingT25.length)parts.push('Missing T25 targets: '+unlock.missingT25.join(', ')+'.');
+    if(unlock.missingUnits&&unlock.missingUnits.length)parts.push('Missing certified SMMC units: '+unlock.missingUnits.join(', ')+'.');
+    if(unlock.status==='requirement-map-pending')parts.push('This non-GREEN problem stays locked until its exact authored-unit requirements are mapped.');
+    if(currentProblem.overlap==='green'&&unlock.status==='ready-transfer')parts.push('No extra SMMC content unit is required after the mapped T25 prerequisites.');
+    put('unlockText',parts.join('\n\n'));
+  }
   renderResearch(researchVisible);
 }
+function confirmAndMarkPaperOpened(){
+  if(!currentProblem)return false;
+  const paperKey=paperKeyForProblem(currentProblem);
+  const paperState=histState.papers?.[paperKey]||{};
+  if(!paperState.paperOpenedAt){
+    const count=ledger.filter(problem=>paperKeyForProblem(problem)===paperKey).length;
+    const ok=window.confirm(
+      `Open official ${paperKey} session paper? This reveals all ${count} problem statements and permanently marks that full paper as opened for corpus-preservation purposes.`
+    );
+    if(!ok)return false;
+    if(!commitHistoricalMutation(candidate=>markPaperExposure(candidate,ledger,paperKey,'paperOpenedAt')))return false;
+    renderProblemList();
+  }
+  return true;
+}
+
 function renderResearch(show){
   $('researchInfo').hidden=!show;
   $('revealResearch').textContent=show?'Hide GREEN / AMBER / RED research metadata':'Show GREEN / AMBER / RED research metadata';
-  if(!show)return;
+  if(!show){
+    $('researchColor').replaceChildren();
+    put('researchDetails','');
+    return;
+  }
   const p=currentProblem,row=$('researchColor');row.replaceChildren();
   const dot=document.createElement('span');dot.className='dot '+p.overlap;
   const label=document.createElement('span');label.textContent=p.overlap.toUpperCase();row.append(dot,label);
@@ -464,19 +564,57 @@ async function init(){
   $('tabStudy').onclick=()=>switchTab('study');$('tabMap').onclick=()=>switchTab('map');
   $('problemSearch').oninput=renderProblemList;$('problemSelect').onchange=()=>renderHistorical($('problemSelect').value);
   $('applyTargets').onclick=()=>{renderHistorical(currentProblem.id);tell('T25 target preview updated locally. No T25 clearance record was changed.');};
+  $('revealSynopsis').onclick=()=>{
+    if(!currentProblem)return;
+    if(!synopsisVisible){
+      const exposure=histState.exposures?.[currentProblem.id]||{};
+      if(!exposure.statementSeenAt){
+        const ok=window.confirm(
+          `Show the ledger summary for ${currentProblem.id}? This is isolated exposure: only this problem will be marked statement-seen; the other problems in its session remain protected.`
+        );
+        if(!ok)return;
+        if(!commitHistoricalMutation(candidate=>markExposure(candidate,currentProblem.id,'statementSeenAt')))return;
+        renderProblemList();
+      }
+      synopsisVisible=true;
+    }else synopsisVisible=false;
+    renderHistorical(currentProblem.id);
+    tell(synopsisVisible?'Ledger summary shown; this problem is now statement-seen. Other problems in the session were not changed.':'Ledger summary hidden. Exposure history is retained.');
+  };
   $('togglePaper').onclick=()=>{
     const paper=officialPaperUrl(currentProblem);
     if(!paper)return;
+    if(!paperVisible&&!confirmAndMarkPaperOpened())return;
     paperVisible=!paperVisible;
     renderHistorical(currentProblem.id);
-    tell(paperVisible?'Official SMMC session paper opened. No exposure status was changed.':'Official paper hidden. No exposure status was changed.');
+    tell(paperVisible?'Official SMMC session paper opened; every statement in this session is now marked seen.':'Official paper hidden. The exposure record is intentionally retained.');
+  };
+  $('openOfficialPaper').onclick=()=>{
+    const paper=officialPaperUrl(currentProblem);
+    if(!paper)return;
+    if(!confirmAndMarkPaperOpened())return;
+    renderHistorical(currentProblem.id);
+    window.open(paper,'_blank','noopener,noreferrer');
+    tell('Official SMMC session paper opened in a new tab; every statement in this session is now marked seen.');
   };
   $('revealResearch').onclick=()=>{
-    researchVisible=!researchVisible;
-    renderResearch(researchVisible);
+    if(!currentProblem)return;
+    if(!researchVisible){
+      const exposure=histState.exposures?.[currentProblem.id]||{};
+      if(!exposure.materialHintSeenAt){
+        const ok=window.confirm(
+          `Reveal method/color/research metadata for ${currentProblem.id}? This can suggest a route, so this problem will be permanently marked material-hint-seen and development-only.`
+        );
+        if(!ok)return;
+        if(!commitHistoricalMutation(candidate=>markExposure(candidate,currentProblem.id,'materialHintSeenAt')))return;
+        renderProblemList();
+      }
+      researchVisible=true;
+    }else researchVisible=false;
+    renderHistorical(currentProblem.id);
     tell(researchVisible
-      ? 'Research metadata shown for planning only. Nothing was written to your exposure record.'
-      : 'Research metadata hidden. Nothing was written to your exposure record.');
+      ? 'Hint-bearing research metadata shown. This problem is now development-only; other problems were not changed.'
+      : 'Research metadata hidden. The exposure record is intentionally retained.');
   };
   $('export').onclick=()=>{download('smmc-study-record.json',{historical:histState,neutralStudy:studyState});$('toolsMenu').open=false;};
   $('import').onchange=async e=>{

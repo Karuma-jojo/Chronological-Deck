@@ -12,6 +12,12 @@ import {
   emptySmmcState,
   markExposure,
   exposureClass,
+  markPaperExposure,
+  paperExposureClass,
+  paperKeyForProblem,
+  paperKeysForLedger,
+  pristinePaperKeys,
+  mergeSmmcState,
   validateSmmcState,
 } from "../course/smmc/runtime/exposure.mjs";
 import { unlockStatus } from "../course/smmc/runtime/unlock.mjs";
@@ -77,14 +83,253 @@ for (const [problemId, required] of Object.entries(SMMC_REQUIREMENTS_V1)) {
 
 // Exposure semantics.
 const state = emptySmmcState();
+const eastPaperKeys = paperKeysForLedger(ledger, { eastOnly: true });
+expect(eastPaperKeys.length === 18, "Expected eighteen East A/B historical sessions.");
+expect(pristinePaperKeys(state, ledger, { eastOnly: true }).length === 18, "Fresh corpus must begin with eighteen pristine East papers.");
+expect(paperExposureClass(state, ledger, "2022-A").class === "pristine", "Fresh paper must be pristine.");
 expect(exposureClass(state, "SMMC-2022-A1").class === "sealed", "Fresh problem must be sealed.");
+
 markExposure(state, "SMMC-2022-A1", "domainMetadataSeenAt", "2026-09-23T12:00:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "sealed", "Planning metadata must not contaminate exposure status.");
+expect(paperExposureClass(state, ledger, "2022-A").class === "pristine", "Non-hint planning metadata must not breach a paper.");
+
 markExposure(state, "SMMC-2022-A1", "statementSeenAt", "2026-09-23T12:01:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "transfer", "Statement-only exposure should remain transfer-eligible.");
+expect(exposureClass(state, "SMMC-2022-A2").class === "sealed", "Isolated statement access must not expose a sibling problem.");
+expect(exposureClass(state, "SMMC-2022-B1").class === "sealed", "Isolated statement access must not spill into another paper.");
+expect(paperExposureClass(state, ledger, "2022-A").class === "breached", "One isolated statement must breach, not open, its paper.");
+expect(pristinePaperKeys(state, ledger, { eastOnly: true }).length === 17, "One breached East paper must leave seventeen pristine sessions.");
+
 markExposure(state, "SMMC-2022-A1", "materialHintSeenAt", "2026-09-23T12:05:00.000Z");
 expect(exposureClass(state, "SMMC-2022-A1").class === "development", "Material hint must contaminate unseen transfer.");
+
+const wholePaper = emptySmmcState();
+markPaperExposure(wholePaper, ledger, "2022-A", "paperOpenedAt", "2026-09-23T13:00:00.000Z");
+expect(paperExposureClass(wholePaper, ledger, "2022-A").class === "opened", "Opening a full paper must persist an opened paper state.");
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2022-A")) {
+  expect(Boolean(wholePaper.exposures[problem.id]?.statementSeenAt), `Full-paper opening failed to mark ${problem.id} statement seen.`);
+}
+expect(exposureClass(wholePaper, "SMMC-2022-B1").class === "sealed", "Opening 2022-A must not expose 2022-B.");
+expect(pristinePaperKeys(wholePaper, ledger, { eastOnly: true }).length === 17, "One opened East paper must leave seventeen pristine sessions.");
+
+markPaperExposure(wholePaper, ledger, "2022-A", "solutionOpenedAt", "2026-09-23T13:05:00.000Z");
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2022-A")) {
+  expect(exposureClass(wholePaper, problem.id).class === "development", `Full-solution exposure failed for ${problem.id}.`);
+}
+
+const paperProgress = emptySmmcState();
+markPaperExposure(paperProgress, ledger, "2023-B", "attemptedAt", "2026-09-23T14:00:00.000Z");
+expect(paperExposureClass(paperProgress, ledger, "2023-B").class === "attempted", "Paper attempt must outrank opened state.");
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2023-B")) {
+  expect(Boolean(paperProgress.exposures[problem.id]?.statementSeenAt), `Paper attempt failed to mark ${problem.id} statement seen.`);
+}
+markPaperExposure(paperProgress, ledger, "2023-B", "arenaConsumedAt", "2026-09-23T14:05:00.000Z");
+expect(paperExposureClass(paperProgress, ledger, "2023-B").class === "arena-consumed", "Arena use must be the terminal paper vault state.");
+
+// F02: validator/merge normalization must repair semantically impossible imported/cloud states.
+const openedOnly = validateSmmcState({
+  version: 1,
+  attempts: [],
+  exposures: {
+    "SMMC-2021-A1": { statementSeenAt: "2026-09-20T09:00:00.000Z" },
+  },
+  papers: {
+    "2021-A": { paperOpenedAt: "2026-09-20T10:00:00.000Z" },
+  },
+  modules: {},
+  units: {},
+}, ledger, [...moduleIds], [...unitIds]);
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2021-A")) {
+  expect(Boolean(openedOnly.exposures[problem.id]?.statementSeenAt), `paperOpenedAt did not imply statement exposure for ${problem.id}`);
+}
+expect(
+  openedOnly.exposures["SMMC-2021-A1"].statementSeenAt === "2026-09-20T09:00:00.000Z",
+  "Normalization failed to preserve an earlier existing statement timestamp."
+);
+
+const solutionOnly = validateSmmcState({
+  version: 1,
+  attempts: [],
+  exposures: {},
+  papers: {
+    "2021-B": { solutionOpenedAt: "2026-09-20T11:00:00.000Z" },
+  },
+  modules: {},
+  units: {},
+}, ledger, [...moduleIds], [...unitIds]);
+expect(
+  solutionOnly.papers["2021-B"].paperOpenedAt === "2026-09-20T11:00:00.000Z",
+  "solutionOpenedAt must imply paperOpenedAt."
+);
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2021-B")) {
+  expect(solutionOnly.exposures[problem.id]?.statementSeenAt === "2026-09-20T11:00:00.000Z", `solution paper did not imply statement exposure for ${problem.id}`);
+  expect(solutionOnly.exposures[problem.id]?.solutionSeenAt === "2026-09-20T11:00:00.000Z", `solution paper did not imply solution exposure for ${problem.id}`);
+}
+
+const attemptedOnly = validateSmmcState({
+  version: 1,
+  attempts: [],
+  exposures: {},
+  papers: {
+    "2022-A": { attemptedAt: "2026-09-20T12:00:00.000Z" },
+  },
+  modules: {},
+  units: {},
+}, ledger, [...moduleIds], [...unitIds]);
+expect(attemptedOnly.papers["2022-A"].paperOpenedAt === "2026-09-20T12:00:00.000Z", "attemptedAt must imply paperOpenedAt.");
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2022-A")) {
+  expect(attemptedOnly.exposures[problem.id]?.statementSeenAt === "2026-09-20T12:00:00.000Z", `paper attempt did not imply statement exposure for ${problem.id}`);
+}
+
+const arenaOnly = validateSmmcState({
+  version: 1,
+  attempts: [],
+  exposures: {},
+  papers: {
+    "2022-B": { arenaConsumedAt: "2026-09-20T13:00:00.000Z" },
+  },
+  modules: {},
+  units: {},
+}, ledger, [...moduleIds], [...unitIds]);
+expect(arenaOnly.papers["2022-B"].attemptedAt === "2026-09-20T13:00:00.000Z", "arenaConsumedAt must imply attemptedAt.");
+expect(arenaOnly.papers["2022-B"].paperOpenedAt === "2026-09-20T13:00:00.000Z", "arenaConsumedAt must imply paperOpenedAt.");
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2022-B")) {
+  expect(arenaOnly.exposures[problem.id]?.statementSeenAt === "2026-09-20T13:00:00.000Z", `arena consumption did not imply statement exposure for ${problem.id}`);
+}
+
+const historicalAttemptOnly = validateSmmcState({
+  version: 1,
+  attempts: [{
+    id: "normalization-attempt-1",
+    problemId: "SMMC-2023-A2",
+    at: "2026-09-20T14:00:00.000Z",
+    answer: "Historical attempt evidence.",
+    assistance: "independent",
+    result: "unreviewed",
+    minutes: 20,
+    statementSeenBefore: false,
+    domainMetadataSeenBefore: false,
+    materialHintSeenBefore: false,
+    evaluatorSeenBefore: false,
+    solutionSeenBefore: false,
+  }],
+  exposures: {},
+  papers: {},
+  modules: {},
+  units: {},
+}, ledger, [...moduleIds], [...unitIds]);
+expect(
+  historicalAttemptOnly.exposures["SMMC-2023-A2"].statementSeenAt === "2026-09-20T14:00:00.000Z",
+  "Historical attempt evidence must imply that problem statement was seen by attempt time."
+);
+
+const individualSolutionOnly = validateSmmcState({
+  version: 1,
+  attempts: [],
+  exposures: {
+    "SMMC-2024-A1": { solutionSeenAt: "2026-09-20T15:00:00.000Z" },
+  },
+  papers: {},
+  modules: {},
+  units: {},
+}, ledger, [...moduleIds], [...unitIds]);
+expect(
+  individualSolutionOnly.exposures["SMMC-2024-A1"].statementSeenAt === "2026-09-20T15:00:00.000Z",
+  "Individual solution exposure must imply statement exposure."
+);
+
+// Merge must normalize malformed remote evidence before joining it with local state.
+const normalizedRemoteMerge = mergeSmmcState(
+  emptySmmcState(),
+  {
+    version: 1,
+    attempts: [],
+    exposures: {},
+    papers: { "2024-B": { paperOpenedAt: "2026-09-20T16:00:00.000Z" } },
+    modules: {},
+    units: {},
+  },
+  ledger,
+  [...moduleIds],
+  [...unitIds]
+);
+for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2024-B")) {
+  expect(Boolean(normalizedRemoteMerge.exposures[problem.id]?.statementSeenAt), `Merged remote paper-open evidence did not normalize ${problem.id}`);
+}
+
+// G01: timestamp ordering is by absolute instant, not lexicographic ISO text.
+const offsetNormalized = validateSmmcState({
+  version: 1,
+  attempts: [],
+  exposures: {
+    "SMMC-2021-A1": { statementSeenAt: "2026-09-20T09:00:00+05:30" },
+  },
+  papers: {
+    "2021-A": { paperOpenedAt: "2026-09-20T04:00:00.000Z" },
+  },
+  modules: {},
+  units: {},
+}, ledger, [...moduleIds], [...unitIds]);
+expect(
+  offsetNormalized.exposures["SMMC-2021-A1"].statementSeenAt === "2026-09-20T03:30:00.000Z",
+  "Validation/normalization must keep the earlier absolute instant across timezone offsets."
+);
+expect(
+  offsetNormalized.papers["2021-A"].paperOpenedAt === "2026-09-20T04:00:00.000Z",
+  "Paper timestamp canonicalization changed the represented instant."
+);
+
+const offsetMergeLocal = emptySmmcState();
+offsetMergeLocal.exposures["SMMC-2022-A1"] = {
+  statementSeenAt: "2026-09-20T09:00:00+05:30",
+};
+const offsetMergeRemote = emptySmmcState();
+offsetMergeRemote.exposures["SMMC-2022-A1"] = {
+  statementSeenAt: "2026-09-20T04:00:00.000Z",
+};
+const offsetMerged = mergeSmmcState(
+  offsetMergeLocal,
+  offsetMergeRemote,
+  ledger,
+  [...moduleIds],
+  [...unitIds]
+);
+expect(
+  offsetMerged.exposures["SMMC-2022-A1"].statementSeenAt === "2026-09-20T03:30:00.000Z",
+  "Cloud merge must choose the earlier absolute instant, not the lexicographically smaller timestamp string."
+);
+
+let timezoneLessRejected = false;
+try {
+  validateSmmcState({
+    version: 1,
+    attempts: [],
+    exposures: {
+      "SMMC-2022-A1": { statementSeenAt: "2026-09-20T03:30:00" },
+    },
+    papers: {},
+    modules: {},
+    units: {},
+  }, ledger, [...moduleIds], [...unitIds]);
+} catch {
+  timezoneLessRejected = true;
+}
+expect(
+  timezoneLessRejected,
+  "Timezone-less historical timestamps must be rejected so cross-device ordering is unambiguous."
+);
+
+const legacyShape = JSON.parse(JSON.stringify(wholePaper));
+delete legacyShape.papers;
+const legacyValidated = validateSmmcState(legacyShape, ledger, [...moduleIds], [...unitIds]);
+expect(Object.keys(legacyValidated.papers).length === 0, "Legacy v1 state without paper ledger must remain import-compatible.");
+
+const remotePaper = emptySmmcState();
+markPaperExposure(remotePaper, ledger, "2022-A", "paperOpenedAt", "2026-09-23T12:55:00.000Z");
+const mergedPaper = mergeSmmcState(wholePaper, remotePaper, ledger, [...moduleIds], [...unitIds]);
+expect(mergedPaper.papers["2022-A"].paperOpenedAt === "2026-09-23T12:55:00.000Z", "Cloud merge must preserve earliest paper exposure.");
 validateSmmcState(state, ledger, [...moduleIds], [...unitIds]);
+validateSmmcState(wholePaper, ledger, [...moduleIds], [...unitIds]);
 
 // Unlock semantics.
 const green = ledger.find(x => x.id === "SMMC-2022-A1");

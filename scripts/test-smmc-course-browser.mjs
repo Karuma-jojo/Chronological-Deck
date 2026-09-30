@@ -73,39 +73,283 @@ try{
   await page.click('#tabMap');
   assert.equal(await page.locator('#problemSelect option').count(),88);
 
+  // R01: pristine problems must not be discoverable through hidden synopsis terms.
+  await page.fill('#problemSearch','cycle');
+  assert.equal(await page.locator('#problemSelect option').count(),0,'Pristine synopsis leaked through historical search');
+  await page.fill('#problemSearch','');
+  assert.equal(await page.locator('#problemSelect option').count(),88);
+
   await page.selectOption('#problemSelect','SMMC-2021-A3');
   assert(await page.locator('#researchInfo').isHidden());
-  assert(!(await page.locator('#unlockBadge').textContent()).includes('AMBER'));
-  assert((await page.locator('#openOfficialPaper').getAttribute('href')).endsWith('/smmc-2021-paper-a.pdf#page=2'));
-  assert((await page.locator('#paperGuide').textContent()).includes('Read A3 on page 2'));
+  assert.equal((await page.locator('#researchDetails').textContent()).trim(),'','Protected research metadata should not remain in the hidden DOM');
+  assert(await page.locator('#histSynopsis').isHidden());
+  assert.equal((await page.locator('#histSynopsis').textContent()).trim(),'','Protected synopsis should not be present in the hidden DOM');
+  assert.equal((await page.locator('#unlockBadge').textContent()).trim(),'Protected');
+  assert(await page.locator('#mappingTools').isHidden(),'Exact prerequisite mapping leaked before hint-bearing exposure');
+  assert(await page.locator('#problemConnections').isHidden(),'Exact T25 connections leaked before hint-bearing exposure');
+  assert(!(await page.locator('#unlockText').textContent()).includes('S-BRIDGE-GR1-U01'));
+  assert(!(await page.locator('#unlockText').textContent()).includes('SMMC unit needed'));
+  assert(!(await page.locator('#openOfficialPaper').isDisabled()));
+  assert((await page.locator('#paperGuide').textContent()).includes('contains all 4 problems'));
+  assert((await page.locator('#paperExposure').textContent()).includes('pristine'));
+  assert((await page.locator('#pristineInventory').textContent()).includes('18 / 18'));
+
+  page.once('dialog',dialog=>dialog.accept());
+  await page.click('#revealSynopsis');
+  assert(await page.locator('#histSynopsis').isVisible());
+  assert((await page.locator('#histExposure').textContent()).includes('transfer'));
+  assert((await page.locator('#paperExposure').textContent()).includes('breached'));
+  assert((await page.locator('#pristineInventory').textContent()).includes('17 / 18'));
+  let hist2=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(hist2.exposures['SMMC-2021-A3'].statementSeenAt);
+  assert.equal(hist2.exposures['SMMC-2021-A2'],undefined,'Isolated summary exposure spilled to sibling problem');
+  assert.equal(hist2.exposures['SMMC-2022-C2'],undefined);
+  assert.equal((await page.locator('#unlockBadge').textContent()).trim(),'Protected','Statement-only transfer exposure must not reveal route class');
+  assert(await page.locator('#mappingTools').isHidden());
+  assert(await page.locator('#problemConnections').isHidden());
+
+  // Once A3 alone is exposed, its synopsis may become searchable without exposing siblings.
+  await page.fill('#problemSearch','cycle');
+  assert.equal(await page.locator('#problemSelect option').count(),1);
+  assert.equal(await page.locator('#problemSelect option').first().getAttribute('value'),'SMMC-2021-A3');
+  await page.fill('#problemSearch','');
+
+  page.once('dialog',dialog=>dialog.accept());
+  await page.click('#revealResearch');
+  assert(await page.locator('#researchInfo').isVisible());
+  assert.equal((await page.locator('#researchColor').textContent()).trim(),'AMBER');
+  assert((await page.locator('#histExposure').textContent()).includes('development'));
+  assert(!(await page.locator('#mappingTools').isHidden()),'Hint-bearing prerequisite mapper did not unlock after development exposure');
+  assert(!(await page.locator('#problemConnections').isHidden()),'Hint-bearing T25 connections did not unlock after development exposure');
+  assert((await page.locator('#problemT25Connections').textContent()).includes('F4'),'Exact T25 target mappings did not appear after development exposure');
 
   await page.locator('#mappingTools > summary').click();
   await page.fill('#t25Input','F4,M2,M3,P2');
   await page.click('#applyTargets');
   assert.equal((await page.locator('#unlockBadge').textContent()).trim(),'SMMC unit needed');
+  assert((await page.locator('#unlockText').textContent()).includes('S-BRIDGE-GR1-U01'));
 
-  await page.click('#revealResearch');
-  assert(await page.locator('#researchInfo').isVisible());
-  assert.equal((await page.locator('#researchColor').textContent()).trim(),'AMBER');
-
-  const hist2=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
-  assert.equal(hist2.exposures['SMMC-2021-A3'],undefined);
+  hist2=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(hist2.exposures['SMMC-2021-A3'].materialHintSeenAt);
+  assert.equal(hist2.exposures['SMMC-2021-A2'],undefined,'Research metadata exposure spilled to sibling problem');
   assert.equal(hist2.exposures['SMMC-2022-C2'],undefined);
 
   await page.click('#revealResearch');
   assert(await page.locator('#researchInfo').isHidden());
 
+  page.once('dialog',dialog=>dialog.accept());
   await page.click('#togglePaper');
   assert(await page.locator('#officialPaperFrame').isVisible());
   assert((await page.locator('#officialPaperFrame').getAttribute('src')).endsWith('/smmc-2021-paper-a.pdf#page=2'));
   const histAfterPaper=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
-  assert.equal(histAfterPaper.exposures['SMMC-2021-A3'],undefined);
+  assert(histAfterPaper.papers['2021-A'].paperOpenedAt,'Full paper open did not persist paperOpenedAt');
+  for(const id of ['SMMC-2021-A1','SMMC-2021-A2','SMMC-2021-A3','SMMC-2021-A4']){
+    assert(histAfterPaper.exposures[id].statementSeenAt,`Full paper open failed to mark ${id} statement seen`);
+  }
+  assert(histAfterPaper.exposures['SMMC-2021-A3'].materialHintSeenAt,'Existing hint exposure was lost');
+  assert.equal(histAfterPaper.exposures['SMMC-2021-B1'],undefined,'A-paper open spilled into B paper');
+  assert((await page.locator('#paperExposure').textContent()).includes('opened'));
+  assert((await page.locator('#pristineInventory').textContent()).includes('17 / 18'));
   await page.click('#togglePaper');
   assert(await page.locator('#officialPaperFrame').isHidden());
 
   await page.selectOption('#problemSelect','SMMC-2022-C2');
   assert(await page.locator('#researchInfo').isHidden());
+  assert(await page.locator('#histSynopsis').isHidden());
   assert((await page.locator('#histExposure').textContent()).includes('sealed'));
+
+  // Export/import must preserve the irreversible paper/problem exposure ledger.
+  await page.locator('#toolsMenu > summary').click();
+  const vaultDownloadPromise=page.waitForEvent('download');
+  await page.click('#export');
+  const vaultDownload=await vaultDownloadPromise;
+  const vaultExport=JSON.parse(await readFile(await vaultDownload.path(),'utf8'));
+  assert(vaultExport.historical.papers['2021-A'].paperOpenedAt);
+  assert(vaultExport.historical.exposures['SMMC-2021-A3'].materialHintSeenAt);
+  const vaultImport=await browser.newContext();
+  const vaultImportPage=await vaultImport.newPage();
+  await vaultImportPage.goto(base+'/smmc-course.html?tab=map&problem=SMMC-2021-A3');
+  await vaultImportPage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  await vaultImportPage.setInputFiles('#import',{name:'smmc-vault-record.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(vaultExport))});
+  await vaultImportPage.waitForFunction(()=>document.querySelector('#status').textContent==='SMMC record imported.');
+  const importedVault=await vaultImportPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(importedVault.papers['2021-A'].paperOpenedAt);
+  assert(importedVault.exposures['SMMC-2021-A3'].materialHintSeenAt);
+  assert((await vaultImportPage.locator('#paperExposure').textContent()).includes('opened'));
+  await vaultImport.close();
+
+  // F01: research-first development exposure must NOT make an unrevealed synopsis searchable.
+  const researchFirstContext=await browser.newContext({viewport:{width:1280,height:900}});
+  const researchFirstPage=await researchFirstContext.newPage();
+  researchFirstPage.on('pageerror',e=>errors.push(e.message));
+  await researchFirstPage.goto(base+'/smmc-course.html?tab=map&problem=SMMC-2021-A3');
+  await researchFirstPage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  researchFirstPage.once('dialog',dialog=>dialog.accept());
+  await researchFirstPage.click('#revealResearch');
+  const researchFirstState=await researchFirstPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(researchFirstState.exposures['SMMC-2021-A3'].materialHintSeenAt);
+  assert.equal(researchFirstState.exposures['SMMC-2021-A3'].statementSeenAt,undefined,'Research-first exposure incorrectly synthesized statementSeenAt');
+  await researchFirstPage.fill('#problemSearch','cycle');
+  assert.equal(await researchFirstPage.locator('#problemSelect option').count(),0,'Research-first development exposure leaked unrevealed synopsis through search');
+  await researchFirstPage.fill('#problemSearch','');
+  researchFirstPage.once('dialog',dialog=>dialog.accept());
+  await researchFirstPage.click('#revealSynopsis');
+  const researchThenStatement=await researchFirstPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(researchThenStatement.exposures['SMMC-2021-A3'].statementSeenAt);
+  await researchFirstPage.fill('#problemSearch','cycle');
+  assert.equal(await researchFirstPage.locator('#problemSelect option').count(),1,'Synopsis search did not unlock after actual statement exposure');
+  assert.equal(await researchFirstPage.locator('#problemSelect option').first().getAttribute('value'),'SMMC-2021-A3');
+  await researchFirstContext.close();
+
+  // F02: incoherent imported paper evidence must normalize before it can bypass the paper gate.
+  const coherenceImportContext=await browser.newContext({viewport:{width:1280,height:900}});
+  const coherenceImportPage=await coherenceImportContext.newPage();
+  coherenceImportPage.on('pageerror',e=>errors.push(e.message));
+  await coherenceImportPage.goto(base+'/smmc-course.html?tab=map&problem=SMMC-2021-A3');
+  await coherenceImportPage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  const incoherentRecord={
+    historical:{
+      version:1,
+      attempts:[],
+      exposures:{},
+      papers:{'2021-A':{paperOpenedAt:'2026-09-30T01:00:00.000Z'}},
+      modules:{},
+      units:{}
+    },
+    neutralStudy:vaultExport.neutralStudy
+  };
+  await coherenceImportPage.setInputFiles('#import',{
+    name:'smmc-incoherent-opened-paper.json',
+    mimeType:'application/json',
+    buffer:Buffer.from(JSON.stringify(incoherentRecord))
+  });
+  await coherenceImportPage.waitForFunction(()=>document.querySelector('#status').textContent==='SMMC record imported.');
+  const normalizedImported=await coherenceImportPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert.equal(normalizedImported.papers['2021-A'].paperOpenedAt,'2026-09-30T01:00:00.000Z');
+  for(const id of ['SMMC-2021-A1','SMMC-2021-A2','SMMC-2021-A3','SMMC-2021-A4']){
+    assert.equal(
+      normalizedImported.exposures[id]?.statementSeenAt,
+      '2026-09-30T01:00:00.000Z',
+      `Imported paperOpenedAt did not normalize ${id} statement exposure`
+    );
+  }
+  assert((await coherenceImportPage.locator('#paperExposure').textContent()).includes('opened'));
+  assert((await coherenceImportPage.locator('#histExposure').textContent()).includes('transfer'));
+  await coherenceImportPage.click('#togglePaper');
+  assert(await coherenceImportPage.locator('#officialPaperFrame').isVisible(),'Normalized opened paper did not open');
+  const afterNormalizedOpen=await coherenceImportPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  for(const id of ['SMMC-2021-A1','SMMC-2021-A2','SMMC-2021-A3','SMMC-2021-A4']){
+    assert(afterNormalizedOpen.exposures[id]?.statementSeenAt,`Normalized paper gate lost ${id} statement exposure`);
+  }
+  await coherenceImportContext.close();
+
+  // R02: historical reveals fail closed when durable local persistence fails.
+  const storageFailContext=await browser.newContext({viewport:{width:1280,height:900}});
+  const storageFailPage=await storageFailContext.newPage();
+  storageFailPage.on('pageerror',e=>errors.push(e.message));
+  await storageFailPage.goto(base+'/smmc-course.html?tab=map&problem=SMMC-2021-A3');
+  await storageFailPage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  await storageFailPage.evaluate(()=>{
+    const original=Storage.prototype.setItem;
+    globalThis.__chronoOriginalSetItem=original;
+    Storage.prototype.setItem=function(key,value){
+      if(key==='chrono_smmc_historical_evidence_v1')throw new DOMException('forced storage failure','QuotaExceededError');
+      return original.call(this,key,value);
+    };
+  });
+  storageFailPage.once('dialog',dialog=>dialog.accept());
+  await storageFailPage.click('#revealSynopsis');
+  assert(await storageFailPage.locator('#histSynopsis').isHidden(),'Synopsis revealed after exposure persistence failed');
+  assert.equal((await storageFailPage.locator('#histSynopsis').textContent()).trim(),'');
+  assert((await storageFailPage.locator('#status').textContent()).includes('Protected archive locked'));
+  storageFailPage.once('dialog',dialog=>dialog.accept());
+  await storageFailPage.click('#revealResearch');
+  assert(await storageFailPage.locator('#researchInfo').isHidden(),'Research metadata revealed after exposure persistence failed');
+  storageFailPage.once('dialog',dialog=>dialog.accept());
+  await storageFailPage.click('#togglePaper');
+  assert(await storageFailPage.locator('#officialPaperFrame').isHidden(),'Full paper revealed after exposure persistence failed');
+  const failedDurableState=await storageFailPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')||'null'));
+  assert(!failedDurableState?.exposures?.['SMMC-2021-A3'],'Failed persistence still created durable A3 exposure');
+  await storageFailContext.close();
+
+  // R03: an older in-flight cloud result must merge with, never overwrite, a newer live exposure.
+  let releaseHistoricalGet;
+  const historicalGetGate=new Promise(resolve=>{releaseHistoricalGet=resolve;});
+  let historicalGetCount=0;
+  let resolveHistoricalPatch;
+  const historicalPatchSeen=new Promise(resolve=>{resolveHistoricalPatch=resolve;});
+  let patchedHistoricalPayload=null;
+  let remoteHistorical={
+    version:1,attempts:[],exposures:{},papers:{},modules:{},units:{}
+  };
+  const cloudRows=new Map();
+  const raceContext=await browser.newContext({viewport:{width:1280,height:900}});
+  await raceContext.addInitScript(()=>{
+    localStorage.setItem('chrono_mastery_sync_config_v1',JSON.stringify({url:'https://cloud.test',key:'test-key'}));
+    localStorage.setItem('chrono_mastery_sync_session_v1',JSON.stringify({
+      access_token:'test-token',refresh_token:'refresh-token',expires_at:4102444800,
+      user:{id:'user-1',email:'learner@example.test'}
+    }));
+  });
+  await raceContext.route('https://cloud.test/**',async route=>{
+    const request=route.request(),url=new URL(request.url()),method=request.method();
+    if(!url.pathname.includes('/rest/v1/chrono_workspace_state')){
+      await route.fulfill({status:404,contentType:'application/json',body:'{}'});return;
+    }
+    const scope=(url.searchParams.get('scope')||'').replace(/^eq\./,'');
+    if(method==='GET'){
+      if(scope==='smmc_historical'){
+        historicalGetCount+=1;
+        if(historicalGetCount===1)await historicalGetGate;
+        await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{
+          scope,payload:remoteHistorical,lock_version:1,updated_at:'2026-09-30T00:00:00.000Z'
+        }])});
+        return;
+      }
+      const row=cloudRows.get(scope);
+      await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(row?[row]:[])});
+      return;
+    }
+    const body=JSON.parse(request.postData()||'{}');
+    if(method==='POST'){
+      const row={scope:body.scope,payload:body.payload,lock_version:1,updated_at:'2026-09-30T00:00:01.000Z'};
+      cloudRows.set(body.scope,row);
+      await route.fulfill({status:201,contentType:'application/json',body:JSON.stringify([row])});
+      return;
+    }
+    if(method==='PATCH'){
+      if(scope==='smmc_historical'){
+        remoteHistorical=body.payload;
+        patchedHistoricalPayload=body.payload;
+        resolveHistoricalPatch();
+      }else{
+        cloudRows.set(scope,{scope,payload:body.payload,lock_version:body.lock_version,updated_at:'2026-09-30T00:00:02.000Z'});
+      }
+      await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{
+        scope,payload:body.payload,lock_version:body.lock_version,updated_at:'2026-09-30T00:00:02.000Z'
+      }])});
+      return;
+    }
+    await route.fulfill({status:405,contentType:'application/json',body:'{}'});
+  });
+  const racePage=await raceContext.newPage();
+  racePage.on('pageerror',e=>errors.push(e.message));
+  await racePage.goto(base+'/smmc-course.html?tab=map&problem=SMMC-2021-A3');
+  await racePage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  racePage.once('dialog',dialog=>dialog.accept());
+  await racePage.click('#revealSynopsis');
+  const beforeStaleCloud=await racePage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(beforeStaleCloud.exposures['SMMC-2021-A3'].statementSeenAt);
+  releaseHistoricalGet();
+  await Promise.race([
+    historicalPatchSeen,
+    new Promise((_,reject)=>setTimeout(()=>reject(new Error('Stale cloud result was not re-synced')),5000))
+  ]);
+  await racePage.waitForFunction(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')).exposures['SMMC-2021-A3']?.statementSeenAt);
+  const afterStaleCloud=await racePage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(afterStaleCloud.exposures['SMMC-2021-A3'].statementSeenAt,'Older cloud result erased newer local exposure');
+  assert(patchedHistoricalPayload?.exposures?.['SMMC-2021-A3']?.statementSeenAt,'Newer local exposure was not pushed back after stale cloud merge');
+  await raceContext.close();
 
   // A fresh learner starts on the foundation route without changing old deep links.
   const learner=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
@@ -205,7 +449,7 @@ try{
   await importPage.screenshot({path:'/tmp/smmc-foundation-desktop.png',fullPage:true});
   await learner.close();await imported.close();
   assert.deepEqual(errors,[]);
-  console.log('PASS: All 12 foundation tasks, guided attempt gate, lazy help, exposure persistence, mobile layout, reload and export/import; SMMC page loads 14 units/28 tasks/88 historical rows; official problem papers are linked; neutral attempts stay separate; self-report does not certify; research metadata and paper viewing are reversible and do not write contamination state.');
+  console.log('PASS: SMMC Gate 0 browser coverage includes 14 units/28 neutral tasks/88 historical rows; pristine and research-first synopsis-search isolation; protected coarse readiness; transactional fail-closed historical reveals under localStorage failure; stale in-flight cloud merge preservation and re-sync; incoherent import normalization before paper access; isolated summary exposure; hint-bearing research exposure; whole-session paper marking; pristine inventory; export/import; foundation and workspace regressions.');
 } finally {
   if(browser)await browser.close();
   server.close();

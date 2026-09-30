@@ -52,10 +52,10 @@
 
     <section id="mapNav" hidden>
       <label for="problemSearch">Find a historical problem</label>
-      <input id="problemSearch" type="search" placeholder="Year, A/B/C, synopsis">
+      <input id="problemSearch" type="search" placeholder="Year or A/B/C; exposed summaries become searchable">
       <label for="problemSelect">Problem</label>
       <select id="problemSelect"></select>
-      <details id="mappingTools"><summary>Advanced prerequisite mapping</summary><label for="t25Input">Cleared T25 targets</label>
+      <details id="mappingTools" hidden><summary>Advanced prerequisite mapping · hint-bearing</summary><label for="t25Input">Cleared T25 targets</label>
       <input id="t25Input" placeholder="Example: F4,P2,A5">
       <button id="applyTargets">Apply T25 target list</button>
       <p class="small">This page does not read T25 clearance automatically yet. Enter target codes only if you want the historical unlock preview.</p></details>
@@ -148,30 +148,34 @@
       <details><summary>Research overview</summary><div id="overlapSummary" class="overlap-summary" aria-label="Historical overlap totals"></div>
       <p class="small">Aggregate totals are safe planning metadata. Individual problem colors remain hidden until you explicitly reveal them.</p></details>
       <p id="histExposure" class="small"></p>
+      <p id="paperExposure" class="small"></p>
+      <p id="pristineInventory" class="small"></p>
 
       <section class="paper-panel">
         <h3>Official problem paper</h3>
-        <p class="small">The ledger summary below is not the full question. Use the official session paper to read the actual problem. Opening or closing the paper does not change your exposure status.</p>
+        <p class="warning">Corpus protection is active. An official session PDF contains all problems from that session. Opening it records the whole paper as opened and marks every statement in that session as seen.</p>
         <div class="actions">
           <button id="togglePaper">Show official paper here</button>
-          <a id="openOfficialPaper" class="button" href="#" target="_blank" rel="noopener noreferrer">Open official paper ↗</a>
+          <button id="openOfficialPaper" type="button">Open official paper ↗</button>
         </div>
         <p id="paperGuide" class="small"></p>
         <iframe id="officialPaperFrame" class="paper-frame" title="Official Simon Marais problem paper" hidden></iframe>
       </section>
 
       <section class="note">
-        <h3>Ledger summary · not the full problem statement</h3>
-        <p id="histSynopsis" class="text"></p>
+        <h3>Ledger summary · isolated exposure</h3>
+        <p class="small">Even a synopsis can reveal structure. It is hidden by default. Showing it marks only this problem statement-seen, preserving the other problems in the same session.</p>
+        <button id="revealSynopsis">Show ledger summary · marks this problem statement-seen</button>
+        <p id="histSynopsis" class="text" hidden></p>
       </section>
 
       <section id="safeInfo">
-        <h3>Prerequisite guidance</h3>
+        <h3>Protected readiness</h3>
         <div id="unlockText" class="text"></div>
       </section>
-      <section class="workspace-connections">
-        <div class="connection-head"><h3>T25 connections</h3><a id="resumeT25FromProblem" class="button" href="t25-course.html">Resume T25</a></div>
-        <p class="small">These are prerequisite/map connections only. They do not reveal GREEN/AMBER/RED or method metadata.</p>
+      <section id="problemConnections" class="workspace-connections" hidden>
+        <div class="connection-head"><h3>T25 connections · hint-bearing</h3><a id="resumeT25FromProblem" class="button" href="t25-course.html">Resume T25</a></div>
+        <p class="small">Exact per-problem target mappings can reveal solution architecture. They are shown only after this problem is already development material.</p>
         <div id="problemT25Connections"></div>
       </section>
       <section id="researchInfo" hidden>
@@ -182,7 +186,7 @@
       <div class="actions">
         <button id="revealResearch">Show GREEN / AMBER / RED research metadata</button>
       </div>
-      <p class="warning">Planning warning only: domain/color/method metadata can make a problem easier by suggesting what to try. You may show or hide it freely; this page does not permanently mark the problem as contaminated just because you looked.</p>
+      <p class="warning">Method/color/research metadata is hint-bearing. Revealing it permanently marks this problem material-hint-seen and development-only. Hiding it later does not undo that exposure.</p>
     </section>
   </main>
 </div>

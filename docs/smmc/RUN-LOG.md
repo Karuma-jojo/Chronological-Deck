@@ -524,3 +524,70 @@ Passed:
 - Aster optional/anti-leak contract remains present.
 
 No canonical T25/Aster/compiler/runtime file was modified by this companion build.
+
+
+## Arsenal Gate 0 — historical corpus protection candidate (2026-09-30)
+
+Branch: `codex/smmc-arsenal-gate0-corpus-protection`.
+
+This bounded gate repairs the mismatch between the frozen exposure policy and the learner UI before Arsenal ontology research begins.
+
+Implemented:
+
+- additive paper/session exposure state on top of the existing problem exposure ledger;
+- backward-compatible validation for pre-paper-ledger v1 records;
+- persistent paper states: pristine, breached, opened, attempted and arena-consumed;
+- isolated ledger-summary reveal as statement exposure for one problem only;
+- GREEN/AMBER/RED method/research reveal as material-hint exposure for one problem only;
+- full official session-paper opening as statement exposure for every problem in that session;
+- pristine East A/B paper inventory;
+- earliest-timestamp merge semantics for paper exposure;
+- preservation of optional historical attempt score and reattempt-eligibility fields;
+- browser export/import coverage for the new exposure state;
+- source-level and Chromium assertions that exposure does not spill into sibling sessions.
+
+The previous UI claim that research metadata and official-paper viewing were reversible/no-contamination actions has been removed.
+
+**Stop:** this is an implementation candidate, not a self-accepted gate. Gate 1 (Arsenal Research Contract) remains closed until exact-head CI passes and an independent reviewer accepts Gate 0.
+
+
+### Gate 0 adversarial repair — R01–R04
+
+Independent review of the first Gate-0 candidate returned CHANGES REQUIRED.
+
+Bounded repairs on the same branch:
+- **R01 search oracle:** pristine problem search no longer indexes synopsis text; exposed summaries may become searchable after exposure.
+- **R02 fail-open persistence:** historical reveals are now transactional, record-first/reveal-second, and fail closed if the historical local-storage write fails.
+- **R03 stale cloud race:** returned cloud state is merged with current live state before application; newer local evidence triggers a follow-up sync rather than being overwritten.
+- **R04 route side channel:** protected problems expose only coarse readiness; exact T25 mappings, bridge identity and class-distinguishing unlock labels stay hidden until the problem is already development material.
+
+The Chromium gate now includes explicit regressions for all four findings, including forced \`localStorage.setItem()\` failure and a delayed stale cloud response.
+
+**Status remains STOP / Gate 1 CLOSED until independent follow-up accepts the repaired exact head.**
+
+
+### Gate 0 follow-up repair — F01–F02
+
+Independent follow-up confirmed R01–R04 but found two narrower holes.
+
+- **F01 research-first search oracle:** synopsis search now requires \`statementSeenAt\` specifically. Material-hint/development exposure by itself does not make hidden synopsis text searchable.
+- **F02 state coherence/import bypass:** \`validateSmmcState()\` now normalizes stronger evidence into necessary weaker exposure facts, preserving earliest timestamps. This covers individual solution exposure, historical attempts, paper opened, solution paper opened, paper attempted and Arena consumed states; cloud merge inherits the same normalization.
+
+Regression additions:
+- Chromium research-first path verifies no synopsis-keyword search result until explicit statement exposure.
+- Source validator exercises every stronger→weaker implication plus earliest-timestamp preservation and malformed remote merge.
+- Chromium imports an intentionally incoherent paper-open record and verifies all session statements are normalized before the already-opened paper path is usable.
+
+**Gate 1 remains CLOSED pending independent final confirmation of the repaired exact head.**
+
+
+### Gate 0 final repair — G01
+
+Final independent attack confirmed R01–R04 and F01–F02, then found one surgical timestamp-ordering defect.
+
+- **G01 timestamp ordering:** evidence timestamps are now required to include an explicit timezone, canonicalized to UTC during validation, and compared by absolute instant rather than lexicographic string order.
+- Timezone-less historical timestamps are rejected.
+- Cross-offset regressions cover both validation/normalization and \`mergeSmmcState()\`.
+- The concrete counterexample \`2026-09-20T09:00:00+05:30\` versus \`2026-09-20T04:00:00.000Z\` must retain the former instant, canonically \`2026-09-20T03:30:00.000Z\`.
+
+**Gate 1 remains CLOSED until the exact repaired head passes complete CI and receives independent closure confirmation.**
