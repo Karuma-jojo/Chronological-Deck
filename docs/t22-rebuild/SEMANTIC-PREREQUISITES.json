@@ -24,7 +24,10 @@
       "mode": "new",
       "semanticStatus": "accepted",
       "bridges": [],
-      "note": "M03 semantic boundary remains accepted. Astra findings M03-01→M03-04 were repaired and fully validated at implementation head 439e0bc55ff694d9d188f8b76bfb8dabca4b7adb / run 35329318149. Repair includes semantic lesson/task separation, novice worked reasoning, S21 claim-5 Transfer observability, three-event inclusion-exclusion bridge/derivation, and timestamp-aware M03 historical lesson exposure. Independent bounded repair review is still required before opening M04."
+      "note": "Historical M03 semantic boundary acceptance remains valid for downstream prerequisite routing and is not revoked. The current v1.7 evidence/provenance candidate is separately awaiting independent confirmation. v1.7 repairs S24 historical contamination and lesson→Transfer separation, removes pre-S26 combination notation from S25, repairs S26 public-request/rubric ownership, and makes evidence-distance/decision metadata honest. Current repair status must not be inferred from semanticStatus='accepted'.",
+      "historicalSemanticStatus": "accepted",
+      "currentEvidenceStatus": "awaiting-independent-confirmation",
+      "currentEvidenceVersion": "m03-authoring-v1.7-final-evidence-provenance-candidate-r1"
     },
     {
       "order": 4,
