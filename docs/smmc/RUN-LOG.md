@@ -591,3 +591,23 @@ Final independent attack confirmed R01–R04 and F01–F02, then found one surgi
 - The concrete counterexample \`2026-09-20T09:00:00+05:30\` versus \`2026-09-20T04:00:00.000Z\` must retain the former instant, canonically \`2026-09-20T03:30:00.000Z\`.
 
 **Gate 1 remains CLOSED until the exact repaired head passes complete CI and receives independent closure confirmation.**
+
+
+## Arsenal Gate 0 closure / Gate 1 start — 2026-09-30
+
+Gate 0 was independently accepted on exact reviewed head \`37cd46553ebccc6f5fa47b45beb2bf4ad3381251\` after the full R01–R04, F01–F02 and G01 review chain. PR #181 was merged to \`main\` as \`761023355678bc9088236e79bc12e68aa5107cb6\`.
+
+Gate 1 has begun on branch \`codex/smmc-arsenal-gate1-research-contract\`.
+
+Gate-1 scope is evidence discipline only:
+- canonical source register;
+- claim-specific source roles;
+- HISTORICAL_BATTLE / SOURCE_HEURISTIC / PROOF_STRUCTURE / PREREQUISITE_MATHEMATICS / PROJECT_SYNTHESIS evidence classes;
+- Battle / Discovery / Transfer separation;
+- provenance requirements;
+- conflict rules and forbidden shortcuts;
+- Gate-0 inheritance.
+
+No Arsenal ability has been accepted, typed, merged, split, ranked or ordered.
+
+**STOP:** Gate 2 raw-candidate harvesting remains closed until independent review accepts the Gate-1 research contract.
