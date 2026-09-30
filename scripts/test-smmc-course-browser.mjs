@@ -120,7 +120,7 @@ try{
   assert((await page.locator('#histExposure').textContent()).includes('development'));
   assert(!(await page.locator('#mappingTools').isHidden()),'Hint-bearing prerequisite mapper did not unlock after development exposure');
   assert(!(await page.locator('#problemConnections').isHidden()),'Hint-bearing T25 connections did not unlock after development exposure');
-  assert((await page.locator('#problemT25Connections').textContent()).includes('Rank and solution existence'));
+  assert((await page.locator('#problemT25Connections').textContent()).includes('F4'),'Exact T25 target mappings did not appear after development exposure');
 
   await page.locator('#mappingTools > summary').click();
   await page.fill('#t25Input','F4,M2,M3,P2');
