@@ -1,4 +1,4 @@
-# M03 v1.2 evidence retrofit
+> **Historical receipt — superseded for current-state claims by `M03-V17-FINAL-EVIDENCE-PROVENANCE-REPAIR.md`.** This file records the v1.2/v1.6 repair state and must not be read as the current freeze/status/version authority.\n\n# M03 v1.2 evidence retrofit
 
 Status: **repair candidate — independent follow-up required**
 
