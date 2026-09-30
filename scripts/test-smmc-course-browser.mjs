@@ -178,6 +178,71 @@ try{
   assert((await vaultImportPage.locator('#paperExposure').textContent()).includes('opened'));
   await vaultImport.close();
 
+  // F01: research-first development exposure must NOT make an unrevealed synopsis searchable.
+  const researchFirstContext=await browser.newContext({viewport:{width:1280,height:900}});
+  const researchFirstPage=await researchFirstContext.newPage();
+  researchFirstPage.on('pageerror',e=>errors.push(e.message));
+  await researchFirstPage.goto(base+'/smmc-course.html?tab=map&problem=SMMC-2021-A3');
+  await researchFirstPage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  researchFirstPage.once('dialog',dialog=>dialog.accept());
+  await researchFirstPage.click('#revealResearch');
+  const researchFirstState=await researchFirstPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(researchFirstState.exposures['SMMC-2021-A3'].materialHintSeenAt);
+  assert.equal(researchFirstState.exposures['SMMC-2021-A3'].statementSeenAt,undefined,'Research-first exposure incorrectly synthesized statementSeenAt');
+  await researchFirstPage.fill('#problemSearch','cycle');
+  assert.equal(await researchFirstPage.locator('#problemSelect option').count(),0,'Research-first development exposure leaked unrevealed synopsis through search');
+  await researchFirstPage.fill('#problemSearch','');
+  researchFirstPage.once('dialog',dialog=>dialog.accept());
+  await researchFirstPage.click('#revealSynopsis');
+  const researchThenStatement=await researchFirstPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert(researchThenStatement.exposures['SMMC-2021-A3'].statementSeenAt);
+  await researchFirstPage.fill('#problemSearch','cycle');
+  assert.equal(await researchFirstPage.locator('#problemSelect option').count(),1,'Synopsis search did not unlock after actual statement exposure');
+  assert.equal(await researchFirstPage.locator('#problemSelect option').first().getAttribute('value'),'SMMC-2021-A3');
+  await researchFirstContext.close();
+
+  // F02: incoherent imported paper evidence must normalize before it can bypass the paper gate.
+  const coherenceImportContext=await browser.newContext({viewport:{width:1280,height:900}});
+  const coherenceImportPage=await coherenceImportContext.newPage();
+  coherenceImportPage.on('pageerror',e=>errors.push(e.message));
+  await coherenceImportPage.goto(base+'/smmc-course.html?tab=map&problem=SMMC-2021-A3');
+  await coherenceImportPage.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
+  const incoherentRecord={
+    historical:{
+      version:1,
+      attempts:[],
+      exposures:{},
+      papers:{'2021-A':{paperOpenedAt:'2026-09-30T01:00:00.000Z'}},
+      modules:{},
+      units:{}
+    },
+    neutralStudy:vaultExport.neutralStudy
+  };
+  await coherenceImportPage.setInputFiles('#import',{
+    name:'smmc-incoherent-opened-paper.json',
+    mimeType:'application/json',
+    buffer:Buffer.from(JSON.stringify(incoherentRecord))
+  });
+  await coherenceImportPage.waitForFunction(()=>document.querySelector('#status').textContent==='SMMC record imported.');
+  const normalizedImported=await coherenceImportPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  assert.equal(normalizedImported.papers['2021-A'].paperOpenedAt,'2026-09-30T01:00:00.000Z');
+  for(const id of ['SMMC-2021-A1','SMMC-2021-A2','SMMC-2021-A3','SMMC-2021-A4']){
+    assert.equal(
+      normalizedImported.exposures[id]?.statementSeenAt,
+      '2026-09-30T01:00:00.000Z',
+      `Imported paperOpenedAt did not normalize ${id} statement exposure`
+    );
+  }
+  assert((await coherenceImportPage.locator('#paperExposure').textContent()).includes('opened'));
+  assert((await coherenceImportPage.locator('#histExposure').textContent()).includes('transfer'));
+  await coherenceImportPage.click('#togglePaper');
+  assert(await coherenceImportPage.locator('#officialPaperFrame').isVisible(),'Normalized opened paper did not open');
+  const afterNormalizedOpen=await coherenceImportPage.evaluate(()=>JSON.parse(localStorage.getItem('chrono_smmc_historical_evidence_v1')));
+  for(const id of ['SMMC-2021-A1','SMMC-2021-A2','SMMC-2021-A3','SMMC-2021-A4']){
+    assert(afterNormalizedOpen.exposures[id]?.statementSeenAt,`Normalized paper gate lost ${id} statement exposure`);
+  }
+  await coherenceImportContext.close();
+
   // R02: historical reveals fail closed when durable local persistence fails.
   const storageFailContext=await browser.newContext({viewport:{width:1280,height:900}});
   const storageFailPage=await storageFailContext.newPage();
@@ -384,7 +449,7 @@ try{
   await importPage.screenshot({path:'/tmp/smmc-foundation-desktop.png',fullPage:true});
   await learner.close();await imported.close();
   assert.deepEqual(errors,[]);
-  console.log('PASS: SMMC Gate 0 browser coverage includes 14 units/28 neutral tasks/88 historical rows; pristine synopsis search isolation; protected coarse readiness; transactional fail-closed historical reveals under localStorage failure; stale in-flight cloud merge preservation and re-sync; isolated summary exposure; hint-bearing research exposure; whole-session paper marking; pristine inventory; export/import; foundation and workspace regressions.');
+  console.log('PASS: SMMC Gate 0 browser coverage includes 14 units/28 neutral tasks/88 historical rows; pristine and research-first synopsis-search isolation; protected coarse readiness; transactional fail-closed historical reveals under localStorage failure; stale in-flight cloud merge preservation and re-sync; incoherent import normalization before paper access; isolated summary exposure; hint-bearing research exposure; whole-session paper marking; pristine inventory; export/import; foundation and workspace regressions.');
 } finally {
   if(browser)await browser.close();
   server.close();
