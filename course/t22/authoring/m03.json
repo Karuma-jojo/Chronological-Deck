@@ -1486,8 +1486,8 @@
       "id": "T22V3::T22E-DISC01::S30-T@1",
       "order": 30,
       "kind": "transfer",
-      "prompt": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective. Count all functions. Next define Ei as the set of functions that miss ci. Derive the three-event inclusion-exclusion correction from the two-set rule (or justify it by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
-      "obligationVersion": 2
+      "prompt": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective and count all functions. Next define Ei as the set of functions that miss ci. Use the three-set inclusion-exclusion rule from S28 (or justify the same correction by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
+      "obligationVersion": 3
     }
   },
   "evaluators": {
@@ -3034,7 +3034,7 @@
         },
         {
           "points": 2,
-          "criterion": "Defines the missing-output event sets Ei and derives/justifies the three-event inclusion-exclusion signs rather than assuming an unintroduced formula."
+          "criterion": "Defines the missing-output sets Ei and applies the three-set inclusion-exclusion correction with the correct alternating signs."
         },
         {
           "points": 2,
@@ -3049,7 +3049,7 @@
           "criterion": "Obtains |E1∪E2∪E3|=45 and hence 81−45=36 surjective functions."
         }
       ],
-      "marking": "Accept a derivation from the two-set rule or an equivalent membership-multiplicity derivation. The learner must identify missing-output events as sets of functions and account for singles, pairwise intersections and the triple intersection; merely quoting 36 is insufficient."
+      "marking": "Accept the S28 three-set inclusion-exclusion rule or an equivalent membership-multiplicity justification. The learner must identify missing-output events as sets of functions and account for singles, pairwise intersections and the triple intersection; merely quoting36 is insufficient."
     }
   },
   "coverage": {
@@ -4816,7 +4816,7 @@
       {
         "claim": "Use pigeonhole to prove noninjectivity.",
         "task": "transfer",
-        "publicRequest": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective. Count all functions. Next define Ei as the set of functions that miss ci. Derive the three-event inclusion-exclusion correction from the two-set rule (or justify it by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
+        "publicRequest": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective and count all functions. Next define Ei as the set of functions that miss ci. Use the three-set inclusion-exclusion rule from S28 (or justify the same correction by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
         "rubricEvidence": [
           "Uses pigeonhole correctly to prove no map D→C can be injective and counts all functions as3^4=81."
         ]
@@ -4824,7 +4824,7 @@
       {
         "claim": "Count surjective finite functions by inclusion-exclusion.",
         "task": "transfer",
-        "publicRequest": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective. Count all functions. Next define Ei as the set of functions that miss ci. Derive the three-event inclusion-exclusion correction from the two-set rule (or justify it by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
+        "publicRequest": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective and count all functions. Next define Ei as the set of functions that miss ci. Use the three-set inclusion-exclusion rule from S28 (or justify the same correction by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
         "rubricEvidence": [
           "Obtains |E1∪E2∪E3|=45 and hence 81−45=36 surjective functions."
         ]
@@ -5403,7 +5403,7 @@
         "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same"
       ],
       "transfer": [
-        "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be"
+        "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can "
       ]
     }
   },
@@ -5548,7 +5548,7 @@
       },
       "T22V3::T22E-DISC01::S30@1": {
         "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'proof reconstruction' and lesson/Main→Transfer is classified 'changed-surface Transfer'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed. S30 fixed tasks are treated as reconstruction/integration rather than uncued method-selection evidence; separate Spire strategy labs occur only after canonical assessment."
+        "note": "Current v1.2 re-audit: S30 Main is proof reconstruction/integration; Transfer is changed-surface function-space integration. S28 already owns the three-set inclusion-exclusion rule, so S30 applies/reconstructs that rule rather than claiming a fresh derivation. Separate Spire strategy labs occur only after canonical assessment."
       }
     }
   },
@@ -5575,7 +5575,8 @@
       "T22V3::T22E-DISC01::S23-T@1",
       "T22V3::T22E-DISC01::S24-T@1",
       "T22V3::T22E-DISC01::S25-T@1",
-      "T22V3::T22E-DISC01::S27-T@1"
+      "T22V3::T22E-DISC01::S27-T@1",
+      "T22V3::T22E-DISC01::S30-T@1"
     ],
     "rubricOrClaimChangedAssessmentIds": [
       "T22V3::T22E-DISC01::S05-M@1",
