@@ -179,11 +179,11 @@ assert(m03s26.requiredOwnership.includes(binomialClaim),'LF-R01 M10 may cite M03
 const binomialEvidence=m03.claimEvidence[m03s26.id].find(x=>x.claim===binomialClaim);
 assert(binomialEvidence&&binomialEvidence.task==='main','LF-R01 general binomial ownership must have fixed public evidence');
 const binomialPrompt=m03.problems[m03s26.main].prompt;
-assert(binomialPrompt.includes('finite binomial theorem (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k for positive integer n'),'LF-R01 upstream public request must state the general theorem, not only a numerical expansion');
+assert(binomialPrompt.includes('State the finite binomial theorem for positive integer n'),'LF-R01 upstream public request must require learner production of the general theorem');assert(!binomialPrompt.includes('(x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k'),'LF-R01 upstream public request must not supply the theorem formula it assesses');
 assert(binomialPrompt.includes('why the coefficient of x^(n−k)y^k is C(n,k)'),'LF-R01 upstream public request must require the general combinatorial coefficient argument');
-assert(binomialEvidence.rubricEvidence.includes('States the finite binomial theorem for positive integer n with coefficient C(n,k) on x^(n−k)y^k.'));
+assert(binomialEvidence.rubricEvidence.some(x=>x.includes('without the formula being supplied')));
 assert(binomialEvidence.rubricEvidence.includes('Explains combinatorially that C(n,k) chooses which k of the n factors contribute y.'));
-assert(m03.problems[m03s26.main].obligationVersion===3,'LF-R01 repaired general theorem surface must be versioned');
+assert(m03.problems[m03s26.main].obligationVersion===4,'LF-R01 non-leaking general theorem surface must be versioned');
 assert(d10.lesson.includes('M03-S26 established the finite binomial theorem'),'L04 power-rule lesson must consume the real upstream owner');
 
 assert(d16.entryPrerequisites.includes('M02-S22 sine/cosine angle-addition identities'),'L02 M10-S16 must name the angle-addition owner');

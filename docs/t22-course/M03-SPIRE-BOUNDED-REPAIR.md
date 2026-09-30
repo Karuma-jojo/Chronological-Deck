@@ -32,7 +32,7 @@ S25 now includes an explicit novice bridge from repeated-object counting to labe
 
 S30 now includes a finite-function-counting bridge on different data: a map from an (m)-element domain to an (r)-element codomain has (r^m) possibilities; forbidding one specified output leaves ((r-1)^m).
 
-Instruction version is now `m03-instruction-spire-separation-r1`.
+Instruction version is now `m03-instruction-v12-evidence-retrofit-r1`.
 
 ## Evaluator-alignment repairs
 
@@ -45,15 +45,17 @@ The independent review found four Main evaluators scoring Transfer-owned claims.
 
 Each changed Main rubric still totals 10 points and now scores only what its public task requests.
 
-Authoring version is now `m03-authoring-v1.5-spire-bounded-repair-r1`.
+Authoring version is now `m03-authoring-v1.6-v12-evidence-retrofit-r1`.
 
 ## Learner-pack runtime repair
 
-The learner-safe Spire pack adds a method-recognition gate before S09–S14, S18, S22, S29 and S30. The learner first sees a method-blind formulation and must identify the objects, logical form and plausible route before the canonical method-labelled task is released.
+The earlier session-local method-recognition gates were rejected because they exposed the exact canonical task surface before independent assessment. They are removed.
 
-This gate is **diagnostic/practice evidence**, not a replacement fixed assessment and not automatic ownership credit.
+Fresh interleaved proof-choice practice now occurs only **after S14**, and fresh counting-choice practice only **after S30**. These labs use new statements/situations, hide method labels, and are diagnostic/practice rather than canonical ownership evidence.
 
-The pack also labels close-surface Transfers honestly; S17, S19 and S24 remain canonical fixed Transfers but are not described as unfamiliar-method evidence.
+The v1.2 retrofit also replaces weak Transfers in S17, S23, S24, S25 and S27, rebuilds all generic Transfer evaluators, removes S26 theorem leakage, records explicit evidence-distance/decision/wrong-solver audits, and fixes the S27 stars-and-bars rendering.
+
+See `docs/t22-course/M03-V12-EVIDENCE-RETROFIT.md`.
 
 ## Follow-up gate
 
