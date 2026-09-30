@@ -14,8 +14,10 @@ export const emptySmmcState = () => ({
 
 const stamp = value =>
   typeof value === "string" &&
-  /^\d{4}-\d\d-\d\dT/.test(value) &&
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(value) &&
   Number.isFinite(Date.parse(value));
+
+const canonicalStamp = value => new Date(Date.parse(value)).toISOString();
 
 const assistanceLevels = new Set([
   "independent",
@@ -103,13 +105,13 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
     out.attempts.push({
       id: attempt.id,
       problemId: attempt.problemId,
-      at: attempt.at,
+      at: canonicalStamp(attempt.at),
       answer: attempt.answer,
       assistance: attempt.assistance,
       result: attempt.result,
       minutes: attempt.minutes,
       ...(attempt.attemptScore !== undefined ? { attemptScore: attempt.attemptScore } : {}),
-      ...(attempt.reattemptEligibleAt !== undefined ? { reattemptEligibleAt: attempt.reattemptEligibleAt } : {}),
+      ...(attempt.reattemptEligibleAt !== undefined ? { reattemptEligibleAt: canonicalStamp(attempt.reattemptEligibleAt) } : {}),
       statementSeenBefore: attempt.statementSeenBefore,
       domainMetadataSeenBefore: attempt.domainMetadataSeenBefore,
       materialHintSeenBefore: attempt.materialHintSeenBefore,
@@ -132,7 +134,7 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
     ]) {
       if (exposure[key] !== undefined) {
         if (!stamp(exposure[key])) throw new Error("Invalid SMMC exposure timestamp");
-        safe[key] = exposure[key];
+        safe[key] = canonicalStamp(exposure[key]);
       }
     }
     out.exposures[problemId] = safe;
@@ -146,7 +148,7 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
     for (const key of ["paperOpenedAt", "solutionOpenedAt", "attemptedAt", "arenaConsumedAt"]) {
       if (paperState[key] !== undefined) {
         if (!stamp(paperState[key])) throw new Error("Invalid SMMC paper exposure timestamp");
-        safe[key] = paperState[key];
+        safe[key] = canonicalStamp(paperState[key]);
       }
     }
     out.papers[paperKey] = safe;
@@ -211,7 +213,7 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
     const safe = { selfReportedComplete: Boolean(moduleState.selfReportedComplete) };
     if (moduleState.selfReportedAt !== undefined) {
       if (!stamp(moduleState.selfReportedAt)) throw new Error("Invalid module self-report timestamp");
-      safe.selfReportedAt = moduleState.selfReportedAt;
+      safe.selfReportedAt = canonicalStamp(moduleState.selfReportedAt);
     }
     out.modules[moduleId] = safe;
   }
@@ -222,11 +224,11 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
     const safe = { selfReportedComplete: Boolean(unitState.selfReportedComplete) };
     if (unitState.selfReportedAt !== undefined) {
       if (!stamp(unitState.selfReportedAt)) throw new Error("Invalid unit self-report timestamp");
-      safe.selfReportedAt = unitState.selfReportedAt;
+      safe.selfReportedAt = canonicalStamp(unitState.selfReportedAt);
     }
     if (unitState.certifiedAt !== undefined) {
       if (!stamp(unitState.certifiedAt)) throw new Error("Invalid unit certification timestamp");
-      safe.certifiedAt = unitState.certifiedAt;
+      safe.certifiedAt = canonicalStamp(unitState.certifiedAt);
     }
     out.units[unitId] = safe;
   }
@@ -236,7 +238,10 @@ export function validateSmmcState(value, ledger, knownModuleIds = [], knownUnitI
 
 
 function earliest(a,b) {
-  return [a,b].filter(Boolean).sort()[0];
+  const values = [a,b].filter(Boolean);
+  if (!values.length) return undefined;
+  const earliestMs = Math.min(...values.map(value => Date.parse(value)));
+  return new Date(earliestMs).toISOString();
 }
 
 export function mergeSmmcState(local, remote, ledger, knownModuleIds = [], knownUnitIds = []) {
