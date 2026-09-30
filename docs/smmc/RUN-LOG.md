@@ -549,3 +549,18 @@ Implemented:
 The previous UI claim that research metadata and official-paper viewing were reversible/no-contamination actions has been removed.
 
 **Stop:** this is an implementation candidate, not a self-accepted gate. Gate 1 (Arsenal Research Contract) remains closed until exact-head CI passes and an independent reviewer accepts Gate 0.
+
+
+### Gate 0 adversarial repair — R01–R04
+
+Independent review of the first Gate-0 candidate returned CHANGES REQUIRED.
+
+Bounded repairs on the same branch:
+- **R01 search oracle:** pristine problem search no longer indexes synopsis text; exposed summaries may become searchable after exposure.
+- **R02 fail-open persistence:** historical reveals are now transactional, record-first/reveal-second, and fail closed if the historical local-storage write fails.
+- **R03 stale cloud race:** returned cloud state is merged with current live state before application; newer local evidence triggers a follow-up sync rather than being overwritten.
+- **R04 route side channel:** protected problems expose only coarse readiness; exact T25 mappings, bridge identity and class-distinguishing unlock labels stay hidden until the problem is already development material.
+
+The Chromium gate now includes explicit regressions for all four findings, including forced \`localStorage.setItem()\` failure and a delayed stale cloud response.
+
+**Status remains STOP / Gate 1 CLOSED until independent follow-up accepts the repaired exact head.**
