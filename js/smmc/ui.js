@@ -448,7 +448,11 @@ function confirmAndMarkPaperOpened(){
 function renderResearch(show){
   $('researchInfo').hidden=!show;
   $('revealResearch').textContent=show?'Hide GREEN / AMBER / RED research metadata':'Show GREEN / AMBER / RED research metadata';
-  if(!show)return;
+  if(!show){
+    $('researchColor').replaceChildren();
+    put('researchDetails','');
+    return;
+  }
   const p=currentProblem,row=$('researchColor');row.replaceChildren();
   const dot=document.createElement('span');dot.className='dot '+p.overlap;
   const label=document.createElement('span');label.textContent=p.overlap.toUpperCase();row.append(dot,label);
