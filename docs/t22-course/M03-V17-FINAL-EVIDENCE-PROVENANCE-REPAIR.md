@@ -1,4 +1,4 @@
-# M03 v1.7 final evidence/provenance repair
+> **Superseded for current-state claims by `M03-V171-EVIDENCE-HARNESS-CLEANUP.md`.** The v1.7 content repair remains historical truth; v1.7.1 changes only evidence/provenance harness metadata/tests and adds no mathematics.\n\n# M03 v1.7 final evidence/provenance repair
 
 Status: **candidate — independent confirmation required**
 
