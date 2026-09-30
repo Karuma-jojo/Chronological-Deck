@@ -81,6 +81,7 @@ try{
 
   await page.selectOption('#problemSelect','SMMC-2021-A3');
   assert(await page.locator('#researchInfo').isHidden());
+  assert.equal((await page.locator('#researchDetails').textContent()).trim(),'','Protected research metadata should not remain in the hidden DOM');
   assert(await page.locator('#histSynopsis').isHidden());
   assert.equal((await page.locator('#histSynopsis').textContent()).trim(),'','Protected synopsis should not be present in the hidden DOM');
   assert.equal((await page.locator('#unlockBadge').textContent()).trim(),'Protected');
