@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 0 corpus protection
 
-Status: **R01–R04 + follow-up F01–F02 repaired; independent final confirmation required before Gate 1**  
+Status: **R01–R04 + F01–F02 + final G01 repaired; independent closure confirmation required before Gate 1**  
 Scope: historical SMMC exposure semantics only. This gate does **not** freeze the Arsenal ontology, author Forge content, change T25, or claim SMMC mastery.
 
 ## Why this gate exists
@@ -165,6 +165,30 @@ The follow-up review of repaired head `d69f67e5bed14abbf3e9aad8a2d570101a45f2d9`
 Normalization runs during validation, so it applies to local import, legacy load and each side of cloud merge before states are joined.
 
 Source-level regressions cover every implication above, including preservation of an earlier pre-existing timestamp and malformed remote-state normalization. Chromium imports a deliberately incoherent `2021-A paperOpenedAt` record and verifies A1–A4 are normalized to statement-seen before the already-opened paper path can display the PDF.
+
+## Final adversarial finding — G01 timestamp ordering
+
+The final attack on head `6417758831b05b9648c7403df44002c660fc6ddb` confirmed R01–R04 and F01–F02, but found one remaining timestamp-ordering defect.
+
+### G01 — lexicographic timestamps were not chronological across offsets
+
+**Finding:** the old `earliest(a,b)` selected `[a,b].sort()[0]`, while the timestamp validator accepted ISO strings with timezone offsets. Lexicographic order does not necessarily equal chronological order. For example, `2026-09-20T09:00:00+05:30` represents 03:30 UTC and is earlier than `2026-09-20T04:00:00.000Z`, despite its text sorting later.
+
+The validator also accepted timezone-less parseable date-times, which make cross-device ordering dependent on implicit interpretation.
+
+**Repair:**
+- historical evidence timestamps must now carry an explicit timezone: `Z` or `±HH:MM`;
+- timezone-less historical timestamps are rejected;
+- every accepted timestamp is canonicalized to UTC `toISOString()` during validation;
+- `earliest()` compares absolute instants with `Date.parse()` and returns the canonical UTC instant;
+- attempt times, delayed-reattempt times, problem exposures, paper exposures, module self-reports, unit self-reports and unit certification timestamps are all canonicalized.
+
+**Regression:**
+- validation receives an earlier `+05:30` exposure and a later `Z` paper timestamp and must retain the true earlier instant as `2026-09-20T03:30:00.000Z`;
+- `mergeSmmcState()` receives the same cross-offset ordering conflict on local/remote problem exposure and must select the same true earlier instant;
+- timezone-less exposure input is explicitly rejected.
+
+This repair is deliberately confined to evidence-time representation and ordering. It does not widen Gate 0 into Arsenal, Boss, Arena or curriculum work.
 
 ## Stop boundary
 
