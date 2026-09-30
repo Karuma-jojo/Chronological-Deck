@@ -1,14 +1,18 @@
 {
-  "version": "m03-authoring-v1.6-v12-evidence-retrofit-r1",
+  "version": "m03-authoring-v1.7-final-evidence-provenance-candidate-r1",
   "instructionVersion": "m03-instruction-v12-evidence-retrofit-r1",
   "module": {
     "order": 3,
     "id": "T22E-DISC01",
     "title": "Mathematical Reasoning & Discrete Foundations",
-    "status": "published-v1.4-lang-final-stitch-accepted",
+    "status": "repair-v1.7-awaiting-independent-confirmation",
     "destination": "State claims precisely, prove/refute them, reason with sets/maps, and execute deterministic finite counting before probability.",
-    "gate": "Lang-foundation gate CLOSED after independent reconfirmation. S26 owns the general finite binomial theorem with combinatorial C(n,k) evidence; M03 remains 30 sessions / 60 tasks / 150 ownership claims and is frozen for publication.",
-    "nextBoundary": "M04 owns probability, conditional probability, independence and expectation. M03 stops at deterministic finite counting."
+    "gate": "Historical v1.4 Lang-foundation boundary acceptance is preserved. Current v1.7 evidence/provenance repair is NOT frozen and awaits independent confirmation, live runtime pilot, and an exact-SHA T22 Elite + Chromium workflow pass.",
+    "nextBoundary": "M04 owns probability, conditional probability, independence and expectation. M03 stops at deterministic finite counting.",
+    "historicalAcceptance": {
+      "status": "published-v1.4-lang-final-stitch-accepted",
+      "note": "Historical v1.4 Lang-foundation publication acceptance remains part of the audit trail; it does not certify the current v1.7 evidence/provenance repair."
+    }
   },
   "boundary": {
     "prerequisiteModules": [
@@ -32,8 +36,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m03-observability-v1.6-v12-retrofit-2026-09-30",
-    "status": "v1.2 evidence retrofit implemented for all 150 ownership claims; mechanical mappings complete, independent semantic reconfirmation pending before freeze.",
+    "version": "m03-observability-v1.7-final-evidence-provenance-2026-09-30",
+    "status": "v1.7 final bounded evidence/provenance repair implemented; mechanical mappings complete, independent semantic confirmation and live runtime pilot pending before freeze.",
     "policy": "Every retained ownership claim must be literally requested and supported by exact rubric evidence. Different data or a Transfer storage slot is not sufficient. Builder self-report does not certify semantic observability."
   },
   "sessions": [
@@ -58,7 +62,7 @@
         "Evaluate a predicate at a supplied input."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Mathematical statements, truth values & predicates"
       ],
@@ -91,7 +95,7 @@
         "Construct all four two-variable truth rows."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "AND, OR, NOT & truth tables"
       ],
@@ -125,7 +129,7 @@
         "Recognize original/contrapositive equivalence."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method is already explicit in instruction.",
       "inScope": [
         "Implication, converse, inverse & contrapositive"
       ],
@@ -158,7 +162,7 @@
         "Establish/refute iff by checking both directions."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Biconditionals; necessary & sufficient conditions"
       ],
@@ -192,7 +196,7 @@
         "Use a counterexample against a universal."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method is already explicit in instruction.",
       "inScope": [
         "Universal & existential quantifiers"
       ],
@@ -226,7 +230,7 @@
         "Translate the exact negation to ordinary language."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Negating quantified claims correctly"
       ],
@@ -261,7 +265,7 @@
         "Search strategically near sign/zero/boundaries."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Counterexamples, boundary cases & claim debugging"
       ],
@@ -294,7 +298,7 @@
         "Handle negative divisors with the same definition."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method is already explicit in instruction.",
       "inScope": [
         "Integers, divisibility & parity language"
       ],
@@ -328,7 +332,7 @@
         "Explain why examples are not universal proof."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Direct proof architecture"
       ],
@@ -363,7 +367,7 @@
         "Reconnect to the original implication."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Proof by contraposition"
       ],
@@ -398,7 +402,7 @@
         "Distinguish contradiction from failed search."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Proof by contradiction"
       ],
@@ -432,7 +436,7 @@
         "Distinguish exhaustive proof from finite examples."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Remainder classes & exhaustive proof cases"
       ],
@@ -466,7 +470,7 @@
         "Conclude by induction."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Mathematical induction"
       ],
@@ -500,7 +504,7 @@
         "Explain why strong induction fits."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Strong induction & recursive claims"
       ],
@@ -533,7 +537,7 @@
         "Distinguish x∈A from {x}⊆A."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method is already explicit in instruction.",
       "inScope": [
         "Sets, membership, subsets & equality"
       ],
@@ -567,7 +571,7 @@
         "List a small power set without omissions."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Power sets & finite cardinality"
       ],
@@ -601,7 +605,7 @@
         "Explain complement depends on U."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Union, intersection, difference & complement"
       ],
@@ -636,7 +640,7 @@
         "Distinguish finite check from universal proof."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Set identities & De Morgan laws"
       ],
@@ -670,7 +674,7 @@
         "Recognize two outputs for one input violates function condition."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method is already explicit in instruction.",
       "inScope": [
         "Cartesian products & relations"
       ],
@@ -704,7 +708,7 @@
         "Recognize codomain may exceed range."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Functions as mappings; domain, codomain, image & preimage"
       ],
@@ -738,7 +742,7 @@
         "Explain non-bijection lacks a two-sided inverse."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Injective, surjective, bijective & inverse claims"
       ],
@@ -773,7 +777,7 @@
         "Identify classes/partition."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Proof reconstruction on a related instance; the proof architecture is taught and must be executed correctly.",
       "inScope": [
         "Equivalence relations & partitions"
       ],
@@ -807,7 +811,7 @@
         "State direct addition needs disjointness or correction."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Addition & product counting principles"
       ],
@@ -830,7 +834,8 @@
       "centralCapability": "Use n! for distinct arrangements. Interpret factorial as descending product. Use nPr for ordered selection without replacement. Explain why labels/ranks make order matter. Check with sequential-choice factors.",
       "principalObstacle": "Avoid the characteristic shortcut/category error for permutations, factorials & ordered selections.",
       "entryPrerequisites": [
-        "M03-S23"
+        "M03-S23",
+        "M03-S21"
       ],
       "requiredOwnership": [
         "Use n! for distinct arrangements.",
@@ -840,7 +845,7 @@
         "Check with sequential-choice factors."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Permutations, factorials & ordered selections"
       ],
@@ -849,9 +854,10 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Permutations, factorials & ordered selections.",
-      "lesson": "For n distinct objects, n!=n(n−1)⋯1 counts all orderings. Filling r labeled positions without replacement gives P(n,r)=n!/(n−r)! because the available choices decrease at every stage. Worked example: the number of bijections from {1,2,3,4} to {a,b,c,d} is 4·3·2·1=4!, since each successive input must receive a previously unused output. Guided check: count injective maps from a 3-element domain to a 7-element codomain sequentially, then express the same count as P(7,3).",
+      "lesson": "For n distinct objects, n!=n(n−1)⋯1 counts all orderings. Filling r labeled positions without replacement gives P(n,r)=n!/(n−r)! because the available choices decrease at every stage. Worked example: five runners can receive gold, silver and bronze in 5·4·3=P(5,3)=60 ways; the medal labels make the order matter. Guided check: from eight candidates, count the ordered choices for captain and deputy as 8·7=P(8,2), and explain why reversing the two people gives a different assignment.",
       "main": "T22V3::T22E-DISC01::S24-M@1",
-      "transfer": "T22V3::T22E-DISC01::S24-T@1"
+      "transfer": "T22V3::T22E-DISC01::S24-T@1",
+      "instructionVersion": "m03-s24-instruction-v17-separation-r1"
     },
     {
       "order": 25,
@@ -874,7 +880,7 @@
         "Validate on a small repeated-object example."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Permutations with repeated objects & multinomial grouping"
       ],
@@ -883,7 +889,7 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Permutations with repeated objects & multinomial grouping.",
-      "lesson": "If swapping identical copies changes nothing visible, n! overcounts and internal repeat factorials must be divided out. Worked example: AABC has4!/2!=12 distinct strings. Guided check: count AABB arrangements. Labeled-group bridge: if n distinct objects are split into labeled groups of fixed sizes n1,…,nk with n1+⋯+nk=n, choose the first group, then the second from what remains, and so on. The product C(n,n1)C(n−n1,n2)⋯ simplifies to n!/(n1!⋯nk!). The group labels remain distinct, but order inside each group is irrelevant. For example, assigning6 distinct cards to labeled boxes A(2),B(1),C(3) gives 6!/(2!1!3!) assignments.",
+      "lesson": "If swapping identical copies changes nothing visible, n! overcounts and internal repeat factorials must be divided out. Worked example: AABC has4!/2!=12 distinct strings. Guided check: count AABB arrangements. Labeled-group bridge: if n distinct objects are split into labeled groups of fixed sizes n1,…,nk with n1+⋯+nk=n, first imagine a temporary ordering of all n objects. There are n! such orders. Within each labeled group, however, its n_i! internal rearrangements do not change the assignment, so divide them out. Therefore the number of labeled-group assignments is n!/(n1!⋯nk!). The group labels remain distinct and are not divided out. For example, assigning6 distinct cards to labeled boxes A(2),B(1),C(3) gives6!/(2!1!3!) assignments.",
       "main": "T22V3::T22E-DISC01::S25-M@1",
       "transfer": "T22V3::T22E-DISC01::S25-T@1"
     },
@@ -908,7 +914,7 @@
         "State and use the finite binomial theorem for positive integer n, and explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k)."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method is already explicit in instruction.",
       "inScope": [
         "Combinations",
         "Binomial coefficients",
@@ -949,7 +955,7 @@
         "Recognize upper bounds require correction."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Stars-and-bars: combinations with repetition"
       ],
@@ -983,7 +989,7 @@
         "Apply inclusion-exclusion to divisibility counting."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Complement counting & inclusion-exclusion"
       ],
@@ -1018,7 +1024,7 @@
         "Explain existence-not-identity."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "Pigeonhole principle"
       ],
@@ -1054,7 +1060,7 @@
         "Count surjective finite functions by inclusion-exclusion."
       ],
       "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed surface requiring the same capability without naming the method.",
+      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
       "inScope": [
         "M03 synthesis — claims, proof, sets & finite counting"
       ],
@@ -1417,21 +1423,21 @@
       "order": 25,
       "kind": "transfer",
       "prompt": "Nine distinct students are assigned to labeled shifts Morning(4), Afternoon(3), Night(2), and student A must be in Morning. Count the valid assignments. Explain what is fixed first, why internal order within each shift is irrelevant, and why the shift labels remain distinct.",
-      "obligationVersion": 2
+      "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S26-M@1": {
       "id": "T22V3::T22E-DISC01::S26-M@1",
       "order": 26,
       "kind": "main",
-      "prompt": "For a committee of4 chosen from10 distinct people, compute the number of committees and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
-      "obligationVersion": 4
+      "prompt": "For a committee of4 chosen from10 distinct people, compute the number of committees using combination notation and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
+      "obligationVersion": 5
     },
     "T22V3::T22E-DISC01::S26-T@1": {
       "id": "T22V3::T22E-DISC01::S26-T@1",
       "order": 26,
       "kind": "transfer",
-      "prompt": "How many 3-element subsets does an8-element set have? State complementary-subset symmetry and count ordered triples after ordering each subset.",
-      "obligationVersion": 2
+      "prompt": "For an 8-element set, count its 3-element subsets using C(8,3), explain why this is an unordered subset count, explain the complementary-subset symmetry C(8,3)=C(8,5), then count the ordered triples obtained by ordering each selected subset.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S27-M@1": {
       "id": "T22V3::T22E-DISC01::S27-M@1",
@@ -2758,7 +2764,7 @@
       "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
     },
     "T22V3::T22E-DISC01::S25-T@1": {
-      "reference": "Fix A in Morning. Split the remaining8 students into labeled groups of sizes3,3,2: C(8,3)C(5,3)=8!/(3!3!2!)=560. Internal order is irrelevant but shift labels are not.",
+      "reference": "Fix A in Morning. The remaining8 students fill labeled groups of sizes3,3,2. Temporarily order all8, then divide out internal permutations within Morning, Afternoon and Night: 8!/(3!3!2!)=560. Internal order is irrelevant but shift labels are not.",
       "rubric": [
         {
           "points": 2,
@@ -2766,7 +2772,7 @@
         },
         {
           "points": 2,
-          "criterion": "Uses the remaining labeled group sizes3,3,2 to obtain C(8,3)C(5,3)=8!/(3!3!2!)."
+          "criterion": "Uses the remaining labeled group sizes3,3,2 to obtain the factorial quotient 8!/(3!3!2!)."
         },
         {
           "points": 2,
@@ -2774,33 +2780,25 @@
         },
         {
           "points": 2,
-          "criterion": "Explains why internal order within each shift does not create a new assignment."
+          "criterion": "Explains why internal order within each shift does not create a new assignment and is divided out."
         },
         {
           "points": 2,
           "criterion": "Explains why Morning, Afternoon and Night remain distinct labels and are not divided out."
         }
       ],
-      "marking": "Accept valid alternate reasoning; preserve domains, assumptions and proof/counting distinctions."
+      "marking": "Accept equivalent factorial-quotient reasoning. Do not require or award combination notation here; S26 owns combinations."
     },
     "T22V3::T22E-DISC01::S26-M@1": {
-      "reference": "C(10,4)=210. Internal order does not create a new subset, and complementary choice gives C(10,6)=210. A committee is a4-element subset. For positive integer n, (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k. The coefficient C(n,k) counts the choices of which k among the n factors contribute y (the remaining n−k contribute x). For n=5, coefficients1,5,10,10,5,1 give (u+v)^5=u^5+5u^4v+10u^3v^2+10u^2v^3+5uv^4+v^5.",
+      "reference": "C(10,4)=210; internal order does not create a different committee. For positive integer n, (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k. The coefficient C(n,k) counts the choices of which k among the n factors contribute y. For n=5, (u+v)^5=u^5+5u^4v+10u^3v^2+10u^2v^3+5uv^4+v^5.",
       "rubric": [
         {
-          "points": 1,
-          "criterion": "Computes C(10,4)=210 using a valid combination formula or equivalent counting."
+          "points": 2,
+          "criterion": "Computes the committee count as C(10,4)=210 using combination notation."
         },
         {
-          "points": 1,
+          "points": 2,
           "criterion": "Explains why internal order does not create a different committee."
-        },
-        {
-          "points": 1,
-          "criterion": "Uses complementary-subset symmetry C(10,4)=C(10,6)."
-        },
-        {
-          "points": 1,
-          "criterion": "Interprets the committee as a4-element subset."
         },
         {
           "points": 2,
@@ -2815,10 +2813,10 @@
           "criterion": "Uses the theorem to expand (u+v)^5 with coefficients1,5,10,10,5,1."
         }
       ],
-      "marking": "Accept any logically valid route meeting the public request. General-theorem ownership requires the symbolic positive-integer-n statement plus the factor-choice argument; a memorized n=5 expansion alone is insufficient."
+      "marking": "Award only the five public obligations above. General-theorem ownership requires the symbolic positive-integer-n statement plus the factor-choice argument; a memorized n=5 expansion alone is insufficient."
     },
     "T22V3::T22E-DISC01::S26-T@1": {
-      "reference": "56=C(8,3)=C(8,5); ordered336.",
+      "reference": "C(8,3)=56 unordered 3-element subsets. Choosing the included3 elements is equivalent to choosing the excluded5, so C(8,3)=C(8,5). Each selected subset has3!=6 orderings, giving56·6=336 ordered triples.",
       "rubric": [
         {
           "points": 2,
@@ -2826,11 +2824,11 @@
         },
         {
           "points": 2,
-          "criterion": "States complementary-subset symmetry C(8,3)=C(8,5)."
+          "criterion": "Explains that C(8,3) counts unordered 3-element subsets rather than ordered triples."
         },
         {
           "points": 2,
-          "criterion": "Explains the symmetry by choosing included versus excluded elements."
+          "criterion": "Explains complementary-subset symmetry C(8,3)=C(8,5) by choosing included versus excluded elements."
         },
         {
           "points": 2,
@@ -2841,7 +2839,7 @@
           "criterion": "Multiplies56·6 to obtain336 ordered triples with distinct entries from the8-element set."
         }
       ],
-      "marking": "Award only for the public obligations above. Accept mathematically equivalent reasoning, but do not award a criterion that the response does not actually demonstrate."
+      "marking": "Award only the public obligations above. The subset interpretation and complementary-subset symmetry are Transfer-owned in v1.7; Main does not score them."
     },
     "T22V3::T22E-DISC01::S27-M@1": {
       "reference": "C(9,2)=36; positive shift gives C(7,2)=21; labeled boxes/identical units; cap needs correction.",
@@ -3486,10 +3484,10 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
         "main"
@@ -4596,7 +4594,7 @@
         "task": "transfer",
         "publicRequest": "Nine distinct students are assigned to labeled shifts Morning(4), Afternoon(3), Night(2), and student A must be in Morning. Count the valid assignments. Explain what is fixed first, why internal order within each shift is irrelevant, and why the shift labels remain distinct.",
         "rubricEvidence": [
-          "Uses the remaining labeled group sizes3,3,2 to obtain C(8,3)C(5,3)=8!/(3!3!2!)."
+          "Uses the remaining labeled group sizes3,3,2 to obtain the factorial quotient 8!/(3!3!2!)."
         ]
       },
       {
@@ -4620,39 +4618,40 @@
       {
         "claim": "Use nCr formula.",
         "task": "main",
-        "publicRequest": "For a committee of4 chosen from10 distinct people, compute the number of committees and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
+        "publicRequest": "For a committee of4 chosen from10 distinct people, compute the number of committees using combination notation and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
         "rubricEvidence": [
-          "Computes C(10,4)=210 using a valid combination formula or equivalent counting."
+          "Computes the committee count as C(10,4)=210 using combination notation."
         ]
       },
       {
         "claim": "Explain order irrelevance.",
         "task": "main",
-        "publicRequest": "For a committee of4 chosen from10 distinct people, compute the number of committees and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
+        "publicRequest": "For a committee of4 chosen from10 distinct people, compute the number of committees using combination notation and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
         "rubricEvidence": [
           "Explains why internal order does not create a different committee."
         ]
       },
       {
         "claim": "Use nCr symmetry.",
-        "task": "main",
-        "publicRequest": "For a committee of4 chosen from10 distinct people, compute the number of committees and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
+        "task": "transfer",
+        "publicRequest": "For an 8-element set, count its 3-element subsets using C(8,3), explain why this is an unordered subset count, explain the complementary-subset symmetry C(8,3)=C(8,5), then count the ordered triples obtained by ordering each selected subset.",
         "rubricEvidence": [
-          "Uses complementary-subset symmetry C(10,4)=C(10,6)."
+          "Explains complementary-subset symmetry C(8,3)=C(8,5) by choosing included versus excluded elements."
         ]
       },
       {
         "claim": "Connect combinations to subsets.",
-        "task": "main",
-        "publicRequest": "For a committee of4 chosen from10 distinct people, compute the number of committees and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
+        "task": "transfer",
+        "publicRequest": "For an 8-element set, count its 3-element subsets using C(8,3), explain why this is an unordered subset count, explain the complementary-subset symmetry C(8,3)=C(8,5), then count the ordered triples obtained by ordering each selected subset.",
         "rubricEvidence": [
-          "Interprets the committee as a4-element subset."
+          "Computes the number of3-element subsets as C(8,3)=56.",
+          "Explains that C(8,3) counts unordered 3-element subsets rather than ordered triples."
         ]
       },
       {
         "claim": "State and use the finite binomial theorem for positive integer n, and explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k).",
         "task": "main",
-        "publicRequest": "For a committee of4 chosen from10 distinct people, compute the number of committees and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
+        "publicRequest": "For a committee of4 chosen from10 distinct people, compute the number of committees using combination notation and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
         "rubricEvidence": [
           "States the finite binomial theorem for positive integer n with general term C(n,k)x^(n−k)y^k, without the formula being supplied in the task.",
           "Explains combinatorially that C(n,k) chooses which k of the n factors contribute y.",
@@ -5078,6 +5077,10 @@
       {
         "item": "M03-S23",
         "source": "Prior authored M03-S23"
+      },
+      {
+        "item": "M03-S21 injective finite mappings",
+        "source": "Prior authored M03-S21; required for the function-map Transfer surface"
       }
     ],
     "S25": [
@@ -5156,8 +5159,8 @@
         "source": "M03-S26"
       },
       {
-        "item": "two-set and derived three-set inclusion-exclusion",
-        "source": "M03-S28 bridge"
+        "item": "two-set inclusion-exclusion plus the three-set bridge taught/derived in S28",
+        "source": "M03-S28 instruction; S30 is the first fixed synthesis assessment that applies the three-set bridge"
       },
       {
         "item": "pigeonhole",
@@ -5409,8 +5412,8 @@
   },
   "authoringPolicy": "T22 v1.2 evidence policy: novice instruction precedes assessment, but different numbers/data alone do not establish semantic separation. Evidence distance is classified explicitly; public requests and exact rubrics must literally observe retained ownership; strategy-choice evidence uses fresh solution-free probes rather than exposed fixed tasks.",
   "historicalLessonAnswerOverlap": {
-    "version": "m03-pre-astra-repair-v1",
-    "rationale": "Before m03-instruction-astra-r1, these sessions rehearsed or revealed decisive content of the listed still-current fixed task. Legacy lesson exposures are timestamp-migrated to answer exposure only for those tasks; pre-exposure attempts remain preserved. S18-T and S30-T are materially new obligationVersion=2 tasks, so old lesson exposure is not projected onto their new content.",
+    "version": "m03-v17-session-provenance-r1",
+    "rationale": "Historical answer-bearing lesson exposure is migrated only when the recorded lessonContentVersion differs from that session's current instructionVersion. Existing S11/S12/S22/S29 mappings remain; S24 is added because the v1.6 lesson rehearsed the same 3-element-domain→7-element-codomain injective-map/P(7,3) Transfer instance. S24 now has its own session-level instructionVersion, so old S24 exposure migrates without globally reclassifying clean v1.6 exposure in unchanged sessions. Pre-exposure work is preserved; later work remains contaminated.",
     "sessions": {
       "T22V3::T22E-DISC01::S11@1": [
         "T22V3::T22E-DISC01::S11-T@1"
@@ -5423,11 +5426,14 @@
       ],
       "T22V3::T22E-DISC01::S29@1": [
         "T22V3::T22E-DISC01::S29-M@1"
+      ],
+      "T22V3::T22E-DISC01::S24@1": [
+        "T22V3::T22E-DISC01::S24-T@1"
       ]
     }
   },
   "semanticSeparationAudit": {
-    "version": "m03-semantic-separation-v12-r1",
+    "version": "m03-semantic-separation-v17-r1",
     "reviewedAt": "2026-09-30",
     "sessions": {
       "T22V3::T22E-DISC01::S01@1": {
@@ -5523,16 +5529,16 @@
         "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'changed-surface Transfer'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
       },
       "T22V3::T22E-DISC01::S24@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'changed-surface Transfer'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "m03-s24-instruction-v17-separation-r1 removes all injective-function worked/guided examples. Instruction uses medals/roles with different sizes; fixed Transfer retains the 3→7 injective-map recast. Historical v1.6 S24 lesson exposure is separately migrated onto S24-T and is not retroactively cleaned."
       },
       "T22V3::T22E-DISC01::S25@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'changed-surface Transfer'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed. S25 instruction intentionally teaches the base labeled-group multinomial formula; the v2 Transfer adds a fixed-member constraint before the grouping step."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "m03-instruction-v12-evidence-retrofit-r1 with v1.7 S25 repair: multinomial/labeled-group bridge is derived only from temporary n! orderings and division by within-group factorials. No C(n,r) notation appears before S26. Transfer keeps the fixed-member constraint and now scores only the factorial quotient."
       },
       "T22V3::T22E-DISC01::S26@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'fresh Main evidence' and lesson/Main→Transfer is classified 'retrieval'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed. S26 Main v4 no longer prints the general theorem formula; learner must state it, give the general C(n,k) factor-choice argument and complete the fresh n=5 expansion."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "m03-instruction-v12-evidence-retrofit-r1 with v1.7 observer repair: Main v5 explicitly requests combination notation and scores only committee count/order irrelevance + general binomial theorem/coefficient argument + n=5 expansion. Symmetry and subset interpretation move to explicitly observable Transfer v3."
       },
       "T22V3::T22E-DISC01::S27@1": {
         "status": "reviewed-separated",
@@ -5559,9 +5565,9 @@
     "LF_R03": "P(n,r)=C(n,r)·r! and its choose-then-order explanation restored instructionally without consuming a sixth ownership slot."
   },
   "repairVersionAudit": {
-    "baselineCommit": "1524ff9d8ab622afa9f5b1fe3ce006a64e0352d9",
+    "baselineCommit": "b8f96ce54b99aa8102a9a2ca618c7a1294f9f744",
     "previousRepairBranch": "codex/m03-spire-bounded-repair",
-    "reviewStatus": "awaiting-independent-followup",
+    "reviewStatus": "awaiting-independent-confirmation",
     "preservedSessionCount": 30,
     "preservedTaskIds": 60,
     "preservedOwnershipCount": 150,
@@ -5606,7 +5612,24 @@
     ],
     "priorAttemptsPolicy": "Prior attempts remain attached to their historical obligation fingerprints. Any task whose obligationVersion increased is not silently recertified from an older attempt. Exact-answer exposure remains historical; independent recertification uses fresh solution-free probes.",
     "taskReplacementPolicy": "Stable task IDs are retained with incremented obligationVersion. Substantively changed prompts (S17/S23/S24/S25/S27 Transfer and selected Main observers) are new evidence obligations; older attempts do not auto-satisfy them. S27-T v3 supersedes the rejected upper-bound/complement v2 candidate so S28 retains first ownership of complement counting.",
-    "strategyLabPolicy": "Method-selection diagnostics are removed from pre-assessment session gates. Fresh mixed strategy labs run only after S14 and after S30 and are practice/diagnostic evidence, not automatic canonical ownership credit."
+    "strategyLabPolicy": "Method-selection diagnostics are removed from pre-assessment session gates. Fresh mixed strategy labs run only after S14 and after S30 and are practice/diagnostic evidence, not automatic canonical ownership credit.",
+    "historicalAcceptedStatus": "published-v1.4-lang-final-stitch-accepted",
+    "currentCandidateStatus": "repair-v1.7-awaiting-independent-confirmation",
+    "v17ChangedAssessmentIds": [
+      "T22V3::T22E-DISC01::S25-T@1",
+      "T22V3::T22E-DISC01::S26-M@1",
+      "T22V3::T22E-DISC01::S26-T@1"
+    ],
+    "v17InstructionChangedSessions": [
+      "T22V3::T22E-DISC01::S24@1",
+      "T22V3::T22E-DISC01::S25@1"
+    ],
+    "v17ProvenanceAddedTargets": {
+      "T22V3::T22E-DISC01::S24@1": [
+        "T22V3::T22E-DISC01::S24-T@1"
+      ]
+    },
+    "v17Policy": "No redesign or scope expansion. Final bounded repair addresses S24 historical contamination, S24 lesson→Transfer separation, S25 pre-S26 combination leakage, S26 request↔rubric observability, status truth, evidence labels/decision audits, and documentation/runtime provenance only."
   },
   "evidenceDistance": {
     "version": "m03-evidence-distance-v12-r1",
@@ -5661,7 +5684,7 @@
       },
       "T22V3::T22E-DISC01::S07-M@1": {
         "class": "fresh Main evidence",
-        "note": "Main classified from the actual current lesson→task reasoning distance for S07; label is descriptive, not a prestige score."
+        "note": "Main requires the learner to choose and report a counterexample-search family before producing a valid counterexample; the decisive search choice is not supplied by visible instruction."
       },
       "T22V3::T22E-DISC01::S07-T@1": {
         "class": "changed-surface Transfer",
@@ -5772,8 +5795,8 @@
         "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S20; storage in the Transfer slot is not treated as proof of transfer."
       },
       "T22V3::T22E-DISC01::S21-M@1": {
-        "class": "fresh Main evidence",
-        "note": "Main classified from the actual current lesson→task reasoning distance for S21; label is descriptive, not a prestige score."
+        "class": "retrieval",
+        "note": "Main closely rehearses finite bijection/inverse classification; it is strong execution/retrieval evidence, not fresh invention."
       },
       "T22V3::T22E-DISC01::S21-T@1": {
         "class": "changed-surface Transfer",
@@ -5812,8 +5835,8 @@
         "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S25; storage in the Transfer slot is not treated as proof of transfer."
       },
       "T22V3::T22E-DISC01::S26-M@1": {
-        "class": "fresh Main evidence",
-        "note": "Main classified from the actual current lesson→task reasoning distance for S26; label is descriptive, not a prestige score."
+        "class": "retrieval",
+        "note": "Main requires learner production of the general theorem and coefficient argument without printing the formula, but those structures are explicitly taught; classify as retrieval/production rather than fresh invention."
       },
       "T22V3::T22E-DISC01::S26-T@1": {
         "class": "retrieval",
@@ -5828,16 +5851,16 @@
         "note": "Transfer changes from token/box distributions to algebraic monomial exponent vectors while preserving stars-and-bars structure; it does not use S28 complement counting."
       },
       "T22V3::T22E-DISC01::S28-M@1": {
-        "class": "fresh Main evidence",
-        "note": "Main classified from the actual current lesson→task reasoning distance for S28; label is descriptive, not a prestige score."
+        "class": "retrieval",
+        "note": "Main directly applies the two-set inclusion-exclusion/complement structures taught immediately beforehand; strong retrieval/application evidence, not fresh invention."
       },
       "T22V3::T22E-DISC01::S28-T@1": {
         "class": "changed-surface Transfer",
         "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S28; storage in the Transfer slot is not treated as proof of transfer."
       },
       "T22V3::T22E-DISC01::S29-M@1": {
-        "class": "fresh Main evidence",
-        "note": "Main classified from the actual current lesson→task reasoning distance for S29; label is descriptive, not a prestige score."
+        "class": "proof reconstruction",
+        "note": "Main reconstructs the taught generalized pigeonhole ceiling/capacity proof on new numbers; the proof architecture is visible in instruction."
       },
       "T22V3::T22E-DISC01::S29-T@1": {
         "class": "changed-surface Transfer",
@@ -5854,82 +5877,152 @@
     }
   },
   "decisionAudit": {
-    "version": "m03-decision-audit-v12-r1",
+    "version": "m03-decision-audit-v17-r1",
+    "policy": "Every assessment labeled fresh Main evidence or changed-surface Transfer has an explicit decision audit. A changed surface may still name a method; the ledger separately records prompt supply, visible rehearsal and the exact scored learner action.",
     "items": {
       "T22V3::T22E-DISC01::S01-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Switch from closed truth-value exercises to diagnosing an open model predicate and its free variable.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Explains that R(r):r<0 is an open predicate because r is free and no truth value is fixed until r is assigned. | Identifies r as the free variable. | Evaluates R(−0.02) as true. | Evaluates R(0.01) as false. | Translates R(r) correctly as 'the return r is negative' or equivalent plain language.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S02-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Parse a nested real-world Boolean rule and evaluate three states without a prebuilt truth table.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Parses access as A∧(B∨C), with the parenthesized OR evaluated before the AND. | Evaluates (T,F,T) as true. | Evaluates (T,F,F) as false. | Evaluates (F,T,T) as false. | Explains that inclusive OR allows B∨C to be true when one or both of B,C are true.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S06-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Translate natural-language quantified claims into exact negations while preserving scope and inequality complements.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Negates 'Every sampled day has loss at most2' as existence of a sampled day with loss greater than2. | Negates 'There exists a sampled day with positive return' as every sampled day having return at most0. | Switches ∀ to ∃ and ∃ to ∀ correctly. | Complements the inequalities ≤2 and >0 correctly. | Preserves the original scope 'sampled day' rather than changing the universe of discourse.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
+      },
+      "T22V3::T22E-DISC01::S07-M@1": {
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "fresh Main evidence",
+        "decision": "Choose a productive counterexample-search family before presenting the counterexample.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Names a plausible sign/zero/boundary search family before presenting the counterexample and connects it to the chosen test value. | Gives a legal real counterexample such as x=−3 and verifies x²>4. | Verifies that the conclusion x>2 fails for the same counterexample. | Explains why one legal hypothesis-true/conclusion-false case refutes the universal implication. | Explains why checking only positive examples such as 3,4,5 cannot prove a claim over all real numbers.",
+        "classificationJustification": "The prompt names possible search families but does not supply the successful counterexample; the learner must choose a route, produce a legal falsifier, and explain why it defeats the universal."
       },
       "T22V3::T22E-DISC01::S07-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Find a legal counterexample and repair the failed AND conclusion to OR.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Gives a legal counterexample such as a=0,b=1 with ab=0. | Shows that the original conclusion a=0 and b=0 fails on the same pair. | Explains that one legal counterexample refutes the universal implication. | Repairs the conclusion to a=0 or b=0. | Keeps the repaired claim over real a,b and distinguishes inclusive OR from AND.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S16-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Distinguish ∅ from {∅}; nested empty-set structure changes the object being counted.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Computes P(∅)={∅}. | States |P(∅)|=1. | Computes P({∅})={∅,{∅}}. | States |P({∅})|=2. | Explicitly distinguishes the empty set ∅ from the one-element set {∅}.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S17-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Reconstruct set operations from property-defined sets rather than two explicitly listed operand sets.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Uses the verbal definitions to identify the union A∪B and lists {2,3,4,6,8,9,10,12}. | Identifies A∩B={6,12}. | Identifies A\\B={2,4,8,10}. | Identifies A^c={1,3,5,7,9,11} relative to U. | Gives the corresponding cardinalities 8,2,4,6 and ties them to the defining membership conditions.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S20-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Move from an explicitly tabulated mapping to a formula-defined map and reconstruct image/preimage/range.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Finds the range {0,1,4}. | Computes g({−2,1})={4,1}. | Computes g⁻¹({1,4})={−2,−1,1,2}. | Identifies 9 as the unused codomain element. | Keeps image, preimage, range and codomain roles distinct.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S21-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Move from bijection/inverse construction to collision + surjection and infer impossibility of a two-sided inverse.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Identifies the collision g(1)=g(2)=a and correctly concludes g is not injective. | Shows both codomain values a and b are hit, so g is surjective. | Explains concretely why one inverse value at a cannot recover both original inputs 1 and 2. | Concludes that g is not bijective and has no two-sided inverse function.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S23-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Choose product within two branches and addition across disjoint branches; the task no longer supplies the rule names.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Counts Visitor badges as3·4=12 using sequential choices within that format. | Counts Staff badges as2·5=10 using sequential choices within that format. | Recognizes the two formats as disjoint alternatives rather than sequential stages. | Adds the branch totals to obtain22 badges. | Explains why multiplication applies within each format while addition combines the two disjoint formats.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S24-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Recast ordered selection as counting injective functions from a labeled domain.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Counts injective assignments sequentially as7·6·5. | Obtains the correct total210. | Expresses the same count as P(7,3). | Explains why previously used codomain values cannot be reused under injectivity. | Explains why the labeled domain elements a,b,c make the assignments ordered.",
+        "classificationJustification": "After the v1.7 lesson repair, injective maps/functions do not appear in visible S24 instruction. The public task supplies 'injective' and P(7,3), so method naming is supplied, but the representation shift from ordered roles to a finite map is no longer rehearsed."
       },
       "T22V3::T22E-DISC01::S25-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Handle a fixed-member constraint before applying labeled-group multinomial counting.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Fixes student A in Morning before counting the remaining assignments. | Uses the remaining labeled group sizes3,3,2 to obtain the factorial quotient 8!/(3!3!2!). | Obtains the correct count560. | Explains why internal order within each shift does not create a new assignment and is divided out. | Explains why Morning, Afternoon and Night remain distinct labels and are not divided out.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S27-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Recast a monomial's exponent vector as a nonnegative composition of total degree, then handle strict positivity by a lower-bound shift.",
-        "whyNotSupplied": "The task defines total degree but does not provide the stars-and-bars encoding or the positive-shift count."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Translates total degree10 into the nonnegative integer equation a+b+c+d=10. | Uses stars-and-bars to obtain C(13,3)=286 total-degree10 monomials. | Handles positive exponents by shifting each exponent down by1. | Counts the positive-exponent case as C(9,3)=84. | Explains the bijection between exponent vectors and stars-and-bars distributions.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S28-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Recast two-set inclusion-exclusion from population categories to divisibility sets over integers.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Counts multiples of 2 in 1..100 correctly. | Counts multiples of 5 in 1..100 correctly. | Identifies the overlap as multiples of 10. | Applies inclusion-exclusion to the divisibility-by-2-or-5 count. | Obtains the final union count 60.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S29-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Invent the ten consecutive-pair holes; the decisive grouping is not supplied.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Uses the eleven selected integers as pigeons. | Designs the ten consecutive-pair pigeonholes {1,2},{3,4},...,{19,20}. | Applies pigeonhole correctly to force two selected integers into one pair. | Concludes those two selected integers are consecutive. | Does not claim a particular pair is forced.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       },
       "T22V3::T22E-DISC01::S30-T@1": {
-        "status": "reviewed",
+        "status": "builder-reviewed-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
         "decision": "Integrate pigeonhole, finite-function counting and inclusion-exclusion on a function-space surface distinct from Main, while acknowledging that the public task still scaffolds the event sets.",
-        "whyNotSupplied": "The decisive mathematical reconstruction described above is not fully completed by the instructional example or by a mere change of numbers. Where the public prompt still supplies structure, the note says so and the evidence class is bounded accordingly."
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Uses pigeonhole correctly to prove no map D→C can be injective and counts all functions as3^4=81. | Defines the missing-output sets Ei and applies the three-set inclusion-exclusion correction with the correct alternating signs. | Computes each |Ei|=2^4=16 and explains the two available codomain values. | Computes each pair intersection as1 and the triple intersection as0 with correct set-of-functions reasoning. | Obtains |E1∪E2∪E3|=45 and hence 81−45=36 surjective functions.",
+        "classificationJustification": "Changed-surface status is based on representation/context reconstruction, not on the Transfer slot or on method-name concealment. The booleans above explicitly record prompt supply and visible rehearsal."
       }
     }
   },
