@@ -257,6 +257,68 @@ for (const problem of ledger.filter(x => paperKeyForProblem(x) === "2024-B")) {
   expect(Boolean(normalizedRemoteMerge.exposures[problem.id]?.statementSeenAt), `Merged remote paper-open evidence did not normalize ${problem.id}`);
 }
 
+// G01: timestamp ordering is by absolute instant, not lexicographic ISO text.
+const offsetNormalized = validateSmmcState({
+  version: 1,
+  attempts: [],
+  exposures: {
+    "SMMC-2021-A1": { statementSeenAt: "2026-09-20T09:00:00+05:30" },
+  },
+  papers: {
+    "2021-A": { paperOpenedAt: "2026-09-20T04:00:00.000Z" },
+  },
+  modules: {},
+  units: {},
+}, ledger, [...moduleIds], [...unitIds]);
+expect(
+  offsetNormalized.exposures["SMMC-2021-A1"].statementSeenAt === "2026-09-20T03:30:00.000Z",
+  "Validation/normalization must keep the earlier absolute instant across timezone offsets."
+);
+expect(
+  offsetNormalized.papers["2021-A"].paperOpenedAt === "2026-09-20T04:00:00.000Z",
+  "Paper timestamp canonicalization changed the represented instant."
+);
+
+const offsetMergeLocal = emptySmmcState();
+offsetMergeLocal.exposures["SMMC-2022-A1"] = {
+  statementSeenAt: "2026-09-20T09:00:00+05:30",
+};
+const offsetMergeRemote = emptySmmcState();
+offsetMergeRemote.exposures["SMMC-2022-A1"] = {
+  statementSeenAt: "2026-09-20T04:00:00.000Z",
+};
+const offsetMerged = mergeSmmcState(
+  offsetMergeLocal,
+  offsetMergeRemote,
+  ledger,
+  [...moduleIds],
+  [...unitIds]
+);
+expect(
+  offsetMerged.exposures["SMMC-2022-A1"].statementSeenAt === "2026-09-20T03:30:00.000Z",
+  "Cloud merge must choose the earlier absolute instant, not the lexicographically smaller timestamp string."
+);
+
+let timezoneLessRejected = false;
+try {
+  validateSmmcState({
+    version: 1,
+    attempts: [],
+    exposures: {
+      "SMMC-2022-A1": { statementSeenAt: "2026-09-20T03:30:00" },
+    },
+    papers: {},
+    modules: {},
+    units: {},
+  }, ledger, [...moduleIds], [...unitIds]);
+} catch {
+  timezoneLessRejected = true;
+}
+expect(
+  timezoneLessRejected,
+  "Timezone-less historical timestamps must be rejected so cross-device ordering is unambiguous."
+);
+
 const legacyShape = JSON.parse(JSON.stringify(wholePaper));
 delete legacyShape.papers;
 const legacyValidated = validateSmmcState(legacyShape, ledger, [...moduleIds], [...unitIds]);
