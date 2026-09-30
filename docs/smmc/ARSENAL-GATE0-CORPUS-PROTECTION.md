@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 0 corpus protection
 
-Status: **R01–R04 repaired; independent follow-up review required before Gate 1**  
+Status: **R01–R04 + follow-up F01–F02 repaired; independent final confirmation required before Gate 1**  
 Scope: historical SMMC exposure semantics only. This gate does **not** freeze the Arsenal ontology, author Forge content, change T25, or claim SMMC mastery.
 
 ## Why this gate exists
@@ -136,6 +136,35 @@ The first independent review of PR #181 on head `e5de7fdd0dbdc98d2bb6d3506b40bc0
 - Chromium verifies the protected surface contains neither the exact bridge ID nor the old class-distinguishing status, and verifies the exact mappings appear after deliberate research exposure.
 
 These repairs preserve the original Gate-0 boundary: no Arsenal ontology, Forge curriculum, Boss scorer or Arena implementation is introduced here.
+
+## Independent follow-up — F01 and F02
+
+The follow-up review of repaired head `d69f67e5bed14abbf3e9aad8a2d570101a45f2d9` confirmed the original R01–R04 repairs, but found two narrower coherence holes.
+
+### F01 — research-first development exposure still unlocked synopsis search
+
+**Finding:** synopsis search was enabled whenever `exposureClass !== sealed`. A learner could reveal research metadata first, producing `materialHintSeenAt` without `statementSeenAt`, and then query the still-unrevealed synopsis through search.
+
+**Repair:**
+- synopsis search eligibility now depends specifically on recorded `statementSeenAt`;
+- material-hint/development exposure alone does not make synopsis text searchable;
+- Chromium now executes the research-first path, verifies `materialHintSeenAt` exists while `statementSeenAt` does not, confirms a synopsis keyword returns no result, then verifies search unlocks only after explicit synopsis/statement exposure.
+
+### F02 — imported/remote stronger evidence could be semantically incoherent
+
+**Finding:** validation accepted states such as `paperOpenedAt` with no corresponding per-problem `statementSeenAt`. Because the UI trusted `paperOpenedAt` to skip a new exposure transaction, an incoherent import could open a paper while its problems remained sealed. The same invariant issue applied to solution-paper, paper-attempt, arena-consumed, individual solution and historical-attempt evidence.
+
+**Repair:** validation now conservatively normalizes stronger evidence into all weaker facts it necessarily implies, preserving the earliest applicable timestamp:
+- individual `solutionSeenAt` → that problem's `statementSeenAt`;
+- historical attempt → that problem's `statementSeenAt` no later than attempt time;
+- paper `paperOpenedAt` → every problem statement in that session seen;
+- paper `solutionOpenedAt` → `paperOpenedAt` plus every problem statement and solution seen;
+- paper `attemptedAt` → `paperOpenedAt` plus every problem statement seen;
+- `arenaConsumedAt` → `attemptedAt` + `paperOpenedAt` + every problem statement seen.
+
+Normalization runs during validation, so it applies to local import, legacy load and each side of cloud merge before states are joined.
+
+Source-level regressions cover every implication above, including preservation of an earlier pre-existing timestamp and malformed remote-state normalization. Chromium imports a deliberately incoherent `2021-A paperOpenedAt` record and verifies A1–A4 are normalized to statement-seen before the already-opened paper path can display the PDF.
 
 ## Stop boundary
 
