@@ -28,12 +28,16 @@ Canonical working file:
 
 `course/smmc/arsenal/candidates-v0.mjs`
 
-Current Batch-1 inventory:
+Current expanded harvest inventory:
 
 - **44** current `SMMC_METHOD_TAGS`, each preserved verbatim as a separate `PROJECT_DERIVED + NONE + INDEX_SIGNAL` retrieval lead;
-- **55** source-specific book candidates from the five Gate-1 canonical books;
-- **99 total raw candidates**;
-- **99 evidence records**;
+- **39** current `SMMC_SECONDARY_TAGS`, preserved separately so tool/topic/specialist possibilities are not lost;
+- **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
+- **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
+- **102** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
+- **348 total raw candidates**;
+- **348 evidence records**;
+- **9 currently reported normalized duplicate-name groups**, deliberately unresolved;
 - **0 typed candidates**;
 - **0 alias merges**;
 - **0 adjudications**;
@@ -42,7 +46,7 @@ Current Batch-1 inventory:
 
 The metadata intentionally says `RAW-HARVEST-IN-PROGRESS`. This is not a self-declared Gate-2 pass.
 
-## 3. Batch-1 source inspection
+## 3. Source inspection completed so far
 
 The initial source harvest inspected actual passages/contents in all five canonical books.
 
@@ -78,20 +82,29 @@ Inspected:
 - physical PDF page 5: contents with Invariance, Coloring, Extremal, Box, Induction and other major chapters;
 - physical PDF page 377: §14.3 Working Backwards, including Engel's explicit low-branching description and relation to descent.
 
-Current raw source-specific candidates:
+Current raw source-specific candidates include:
 - Invariance Principle;
 - Coloring Proofs;
 - Extremal Principle;
 - Box Principle;
 - Induction Principle;
-- Working Backwards.
+- Working Backwards;
+- Greedy Algorithm;
+- Divide and Conquer;
+- Sum Rule;
+- Product Rule;
+- Product-Sum Rule;
+- Counting by Bijection;
+- Count the Same Objects in Two Different Ways;
+- Infinite Descent;
+- Conjugate Numbers.
 
 ### Hammack
 
 Inspected:
 - physical PDF page 5: proof-structure contents for Direct, Cases, Contrapositive, Contradiction, iff, existence/uniqueness, constructive/non-constructive proof, induction, strong induction, and smallest counterexample.
 
-Current raw source-specific candidates preserve those labels independently.
+Current raw source-specific candidates preserve those labels independently and also retain Combinatorial Proof, Counterexample, Disproving Existence Statements, Disproof by Contradiction, and Treating Similar Cases.
 
 ### Velleman
 
@@ -110,7 +123,12 @@ Current raw source-specific candidates include:
 - Arbitrary Object for a Universal Goal;
 - Existence Witness;
 - Mathematical Induction;
-- Strong Induction.
+- Strong Induction;
+- Modus Ponens;
+- Modus Tollens;
+- Existential Instantiation;
+- Universal Instantiation;
+- Disjunctive Syllogism.
 
 ### Putnam and Beyond
 
@@ -126,9 +144,41 @@ Inspected the frozen PDF contents and chapter-start material. The current Batch-
 - AM–GM;
 - Viète's Relations.
 
-These are raw candidate leads only. A named theorem/inequality may later fail the Gate-3 granularity test; Gate 2 intentionally does not decide that.
+The Putnam harvest has also expanded into Search for a Pattern, telescoping, convex functions, functional equations, trigonometric substitution, infinite descent, factorization/divisibility, CRT, generating functions, counting strategies, inclusion–exclusion, and probability-relation methods.
 
-## 4. Batch-1 invariants
+These are raw candidate leads only. A named theorem/inequality/topic may later fail the Gate-3 granularity test; Gate 2 intentionally does not decide that.
+
+## 4. Corpus-wide structured harvest
+
+The full 88-row project ledger has now been swept in three independent structured ways:
+
+1. all 44 method tags;
+2. all 39 secondary tags;
+3. all 129 nonempty `bridgeNeeds`.
+
+A separate manual pass over all 88 `auditNote` fields added 34 route leads that risk disappearing in a tag-only harvest, including examples such as adjacent-swap optimality, subset encoding, membership-bit encoding, half-total vector centering, information-state counting, invariance under squaring, first-step decomposition, polynomial identity from infinitely many values, roots-of-unity/cosine parametrization, and mod-2 normal-form reduction.
+
+All of those remain `PROJECT_DERIVED + NONE + INDEX_SIGNAL`. They are **not** claimed as verified historical Battle occurrences.
+
+## 5. Non-adjudicating duplicate/orphan audit
+
+`course/smmc/arsenal/raw-harvest-audit-v0.mjs` now reports:
+
+- normalized duplicate-name groups without merging them;
+- orphan evidence;
+- candidates missing evidence;
+- SOURCE_FACT records whose Source ID is outside the canonical registry;
+- candidate counts by origin.
+
+At the current 348-candidate checkpoint there are **9 duplicate-name groups**. That is expected and desirable at Gate 2.
+
+The validator requires:
+- zero orphan evidence;
+- zero candidates with missing evidence;
+- zero unknown canonical SOURCE_FACT IDs;
+- duplicate groups to remain visible rather than silently collapsed.
+
+## 6. Gate-2 invariants
 
 The authoring validator must enforce:
 
@@ -141,21 +191,20 @@ The authoring validator must enforce:
 - every candidate evidence reference resolves;
 - harvest metadata stays `RAW-HARVEST-IN-PROGRESS`.
 
-## 5. What remains before Gate 2 can be reviewed for acceptance
+## 7. What remains before Gate 2 can be reviewed for acceptance
 
 Batch 1 is deliberately not the full harvest.
 
 Still required:
 
-1. inspect deeper relevant sections/index material across all five books for plausible candidates not captured by the first contents/summary pass;
-2. harvest additional source-specific aliases/names without merging them;
-3. audit the complete 88-row ledger for candidate concepts that may be present in solution descriptions or current project metadata but absent from `SMMC_METHOD_TAGS`;
-4. confirm every current legacy method tag has at least one research lead and no tag vanished through prettification;
-5. run a duplicate-name report **without resolving the duplicates**;
-6. run a missing-source / orphan-evidence report;
-7. independent adversarial review of the finished raw pool.
+1. continue the deeper book/index pass until each canonical source has had an explicit method/tool/strategy sweep rather than only selected-section harvesting;
+2. inspect the official solution-route material for candidate *leads* that are absent even from method tags, secondary tags, bridge needs, and audit notes, while keeping any unverified occurrence as an index lead;
+3. confirm every current legacy method and secondary tag has at least one research lead and no tag vanished through prettification;
+4. produce a final source-by-source harvest coverage table;
+5. run exact-head CI on the finished pool;
+6. independent adversarial review of the finished raw pool.
 
-## 6. Gate boundary
+## 8. Gate boundary
 
 Gate 2 must not answer:
 
