@@ -35,8 +35,8 @@ Current expanded harvest inventory:
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
 - **255** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **627 total raw candidates**;
-- **627 evidence records**;
+- **628 total raw candidates**;
+- **628 evidence records**;
 - **0 typed candidates**;
 - **0 alias merges**;
 - **0 adjudications**;
@@ -215,7 +215,7 @@ The exact frozen 2017–2025 solution booklets were also parsed structurally.
 
 This is intentionally not treated as “132 methods.” A single labelled solution may contain several moves, and multiple labelled solutions may share most of their mathematics.
 
-The direct official-solution concept pass now contains **126** SOURCE_FACT/NONE raw leads. It includes the earlier winding-number/perturbation/deformation ideas plus named tools and routes such as Vandermonde-matrix invertibility, Newton polygons, CRT, generating functions, recurrence relations, projective-plane methods, Gaussian integers, p-adic valuations, rational-root arguments, convex envelopes/hulls, alternating/comparison/subseries arguments, IVT, triangle-inequality sharpness, AM-GM, eigenvector reduction, bijective counting, compact-space subsequences, and geometric-series summation.
+The direct official-solution concept pass now contains **127** SOURCE_FACT/NONE raw leads. It includes the earlier winding-number/perturbation/deformation ideas plus named tools and routes such as Vandermonde-matrix invertibility, Newton polygons, CRT, generating functions, recurrence relations, projective-plane methods, Gaussian integers, p-adic valuations, rational-root arguments, convex envelopes/hulls, alternating/comparison/subseries arguments, IVT, triangle-inequality sharpness, AM-GM, eigenvector reduction, bijective counting, compact-space subsequences, and geometric-series summation.
 
 These direct source observations still do **not** build the later Battle matrix.
 
@@ -238,6 +238,14 @@ A third bounded pass concentrated on historical problems that still had no direc
 The pass deliberately targeted source-specific moves that were not adequately represented by broad method tags alone: forcing forks in finite games, reciprocal self-bounds for divergent partial sums, alternating subset-sign cancellation, determinant-preserving row replacement, local-replacement closure of constructions, discriminant-robust strategies, concavity and infimum/tangent contradictions in an ODE route, radical approximation from rational density, graph-distance pursuit phases, graph-core reduction by Laplace elimination, cycle-block determinant factorization, elementwise membership-pattern factorization, inverse-graph area symmetry, attracting invariant strips for discrete maps, conditional hitting-probability bounds, cyclic order reduction, root-orbit factorization, interval divisibility collisions, and four-step balancing induction.
 
 A problem-by-problem coverage check now finds direct official-source leads on **75 of the 88** frozen historical problems. The remaining uncovered problems are not being force-filled merely to reach 88/88: they are dominated by ordinary applications already represented elsewhere in the raw pool or by the two historical open-problem slots whose frozen booklets do not contain a labelled full solution. This is a coverage observation only, not a Gate-3 merge/granularity decision.
+
+
+
+### Final one-row gap repair
+
+The stabilization review then identified one remaining official move worth preserving independently rather than leaving implicit under generic parity/number-theory tags: the **modulo-4 square obstruction for two odd primes** in 2017-B2. That exact source lead was added as one further SOURCE_FACT + NONE row.
+
+The current review candidate therefore contains **127 direct official-solution rows** and **628 total candidates / 628 evidence records**. Direct official-source candidate coverage now reaches **76 of 88** frozen historical problems. The remaining 12 were inspected but are not being force-filled merely to manufacture 88/88 symmetry; two are the historical open-problem slots without labelled full solutions, while the others do not currently expose a materially new reusable move beyond raw candidates already harvested elsewhere.
 
 ## 5. Non-adjudicating duplicate/orphan audit
 
@@ -278,7 +286,7 @@ The reviewer should attack at least these questions:
 
 1. **Coverage:** did any current method tag, secondary tag, ledger bridge need, or recurring problem-specific route disappear?
 2. **Book blind spots:** do Zeitz/Engel/Hammack/Velleman/Putnam contain clearly reusable named problem-solving ideas that the current source sweeps missed?
-3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 627-row raw pool?
+3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 628-row raw pool?
 4. **Premature merging:** were any same-looking source terms silently collapsed instead of preserved separately?
 5. **Premature ontology:** is any candidate typed, ranked, parented, prerequisite-linked, or adjudicated?
 6. **Evidence honesty:** does every row use the Gate-1 basis/channel/claim-kind contract correctly?
