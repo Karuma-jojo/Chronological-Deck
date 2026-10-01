@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 1 research contract
 
-Status: **G1-R01–R05 + F1–F3 + C01–C03 + D01–D02 REPAIRED — independent closure review required; ontology and representation remain unfrozen**  
+Status: **ACCEPTED — Gate 1 closed after independent adversarial review; ontology and representation remain unfrozen**  
 Scope: evidence discipline only. Gate 1 does **not** accept, merge, split, type, rank, order, prerequisite-link, or choose a data representation for any Arsenal candidate.
 
 ## 1. Purpose
@@ -736,6 +736,18 @@ Gate 1 passes only when all of the following survive independent review:
 
 Gate 1 produces **no accepted Arsenal abilities**.
 
+## Gate 1 closure record
+
+Gate 1 was independently accepted on exact reviewed head:
+
+`3052b8c53dd9e8bd598f51bc8423470086776625`
+
+The accepted PR was merged to `main` as:
+
+`1a485cf7a2c495ab717cadee60a7762d96994f34`
+
+All later gates inherit this evidence contract. In particular, Gate 2 must keep `ontologyType: null`, preserve source terminology without merging it, and use the executable evidence validator for every harvested evidence record.
+
 ## 17. Handoff to Gate 2
 
 Only after independent Gate-1 acceptance may Gate 2 create the raw candidate ledger.
@@ -754,4 +766,4 @@ Gate 2 must:
 - keep `ontologyType: null`;
 - make no final merge/split/type/prerequisite/ranking decision.
 
-**STOP:** Gate 2 remains closed until independent review accepts this repaired Gate-1 contract.
+Gate 1 is closed. Gate 2 may proceed only within the raw-harvest boundary defined above.
