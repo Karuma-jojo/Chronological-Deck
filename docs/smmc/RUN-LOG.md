@@ -805,3 +805,36 @@ Current raw pool: **428 candidates / 428 evidence records**.
 No Battle matrix, merge/split decision, type, rank, prerequisite relation, or combo decision was created.
 
 **STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 broad official-solution sweep — 450 raw candidates (2026-10-02)
+
+The direct official-solution harvest expanded from 8 to 30 SOURCE_FACT + NONE concept leads across the exact frozen solution booklets.
+
+Current raw pool:
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 distinct bridge-need leads;
+- 34 auditNote route leads;
+- 30 direct official-solution source leads;
+- 174 canonical-book source leads;
+- **450 candidates / 450 evidence records**.
+
+Book-source coverage:
+- Zeitz 62;
+- Engel 36;
+- Hammack 17;
+- Velleman 19;
+- Putnam and Beyond 40.
+
+Current normalized duplicate-name report: **11 groups**, deliberately unresolved.
+
+Official solution structural lower bound remains:
+- 88 historical problems;
+- 132 explicitly labelled solution sections;
+- 32 multi-route problems;
+- 2017-B4 and 2018-B4 have no labelled solution section in the frozen booklet.
+
+No Battle matrix or Gate-3 adjudication was created.
+
+**STOP:** Gate 3 remains CLOSED.
