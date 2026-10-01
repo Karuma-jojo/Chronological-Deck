@@ -35,8 +35,8 @@ Current expanded harvest inventory:
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
 - **174** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **428 total raw candidates**;
-- **428 evidence records**;
+- **450 total raw candidates**;
+- **450 evidence records**;
 - **9 currently reported normalized duplicate-name groups**, deliberately unresolved;
 - **0 typed candidates**;
 - **0 alias merges**;
@@ -158,6 +158,21 @@ The deeper pass also preserves terms that are easy to lose if the harvest only l
 
 These are especially important because Gate 1 deliberately refused to pre-decide whether such concepts become ontology classes, cards, events, annotations, or are rejected later. Gate 2 therefore keeps them as raw candidates with `ontologyType: null`.
 
+### Source-specific book coverage
+
+Current raw book harvest, still without adjudication:
+
+| Canonical source | Raw source-specific candidates |
+|---|---:|
+| Zeitz | 62 |
+| Engel | 36 |
+| Hammack | 17 |
+| Velleman | 19 |
+| Putnam and Beyond | 40 |
+| **Total** | **174** |
+
+The counts are deliberately not interpreted as source importance. They reflect the current harvest granularity and how explicitly each source names techniques.
+
 ## 4. Corpus-wide structured harvest
 
 The full 88-row project ledger has now been swept in three independent structured ways:
@@ -183,7 +198,7 @@ The exact frozen 2017–2025 solution booklets were also parsed structurally.
 
 This is intentionally not treated as “132 methods.” A single labelled solution may contain several moves, and multiple labelled solutions may share most of their mathematics.
 
-A first direct official-solution concept pass added **8** SOURCE_FACT/NONE raw leads that were not safely represented by the earlier tag-only view, including winding-number parity coloring, perturbing away degeneracies, parity under continuous deformation, Taylor-series expansion, an MVT contradiction route, dense-set Riemann-sum approximation, a finite-group Lagrange-theorem counting route, and upper-Riemann-sum bounding.
+The direct official-solution concept pass now contains **30** SOURCE_FACT/NONE raw leads. It includes the earlier winding-number/perturbation/deformation ideas plus named tools and routes such as Vandermonde-matrix invertibility, Newton polygons, CRT, generating functions, recurrence relations, projective-plane methods, Gaussian integers, p-adic valuations, rational-root arguments, convex envelopes/hulls, alternating/comparison/subseries arguments, IVT, triangle-inequality sharpness, AM-GM, eigenvector reduction, bijective counting, compact-space subsequences, and geometric-series summation.
 
 These direct source observations still do **not** build the later Battle matrix.
 
@@ -197,7 +212,7 @@ These direct source observations still do **not** build the later Battle matrix.
 - SOURCE_FACT records whose Source ID is outside the canonical registry;
 - candidate counts by origin.
 
-At the current 428-candidate checkpoint there are **10 duplicate-name groups**. That is expected and desirable at Gate 2.
+At the current 450-candidate checkpoint there are **11 duplicate-name groups**. That is expected and desirable at Gate 2.
 
 The validator requires:
 - zero orphan evidence;
