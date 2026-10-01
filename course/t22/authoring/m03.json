@@ -5375,7 +5375,7 @@
         "For a committee of4 chosen from10 distinct people, compute the number of"
       ],
       "transfer": [
-        "How many 3-element subsets does an8-element set have? State complementary-subset symmetry and"
+        "For an 8-element set, count its 3-element subsets using C(8,3), explain why this is an unordered subset count"
       ]
     },
     "T22V3::T22E-DISC01::S27@1": {
@@ -5640,7 +5640,8 @@
         "version evidenceDistance as v17",
         "re-adjudicate all 16 decision-audit booleans against their named decision",
         "give S25 session-specific instruction provenance without historical contamination",
-        "add end-to-end Chromium S24 historical-exposure regression"
+        "add end-to-end Chromium S24 historical-exposure regression",
+        "refresh S26-T instruction-separation fingerprint after workflow #599 exposed the stale pre-v1.7 prompt fragment"
       ]
     }
   },
