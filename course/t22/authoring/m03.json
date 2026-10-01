@@ -5542,8 +5542,8 @@
         "note": "m03-instruction-v12-evidence-retrofit-r1 with v1.7 observer repair: Main v5 explicitly requests combination notation and scores only committee count/order irrelevance + general binomial theorem/coefficient argument + n=5 expansion. Symmetry and subset interpretation move to explicitly observable Transfer v3."
       },
       "T22V3::T22E-DISC01::S27@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit: S27 Main is retrieval/application; Transfer v3 is changed-surface algebraic reconstruction via monomial exponent vectors. Complement counting is deliberately deferred to S28. Instruction uses the rendered-safe ★★|★|★★ representation."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "Current v1.7.1 receipt on instructionVersion m03-instruction-v12-evidence-retrofit-r1: S27 Main is retrieval/application; Transfer v3 is changed-surface algebraic reconstruction via monomial exponent vectors. Complement counting is deliberately deferred to S28. Instruction uses the rendered-safe ★★|★|★★ representation."
       },
       "T22V3::T22E-DISC01::S28@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
