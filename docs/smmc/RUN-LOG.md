@@ -878,3 +878,21 @@ Independent review contract now explicitly attacks coverage, book/solution blind
 Any repair changes the review SHA and requires a fresh exact-head review.
 
 **STOP:** Gate 3 remains CLOSED until independent Gate-2 acceptance.
+
+## Arsenal Gate 2 independent coverage repair — 531 raw candidates (2026-10-02)
+
+Independent review of the first 477-row candidate found substantive source-specific omissions while preserving the Gate-2 boundary.
+
+Added **54** canonical-book raw candidates only:
+- Zeitz +17;
+- Engel +6;
+- Hammack +8;
+- Velleman +6;
+- Putnam and Beyond +17.
+
+The book-source harvest is now **255** rows and the complete raw pool is **531 candidates / 531 evidence records**.
+
+The additions are source-specific raw ore only. No aliases were merged; no candidate was typed, ranked, prerequisite-linked, parented, related, or adjudicated. Project-derived ledger evidence remains NONE channel, and the direct official-solution rows remain SOURCE_FACT + NONE.
+
+The previous 477-row review SHA is therefore superseded. Gate 2 remains **REVIEW CANDIDATE**, Gate 3 remains closed, and the repaired exact head requires fresh CI plus independent exact-head review before any merge.
+
