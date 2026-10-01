@@ -373,6 +373,8 @@ A Transfer record requires all three learner-context facts:
 - `methodPrompting: UNPROMPTED`;
 - `routeExposure: UNSEEN`.
 
+For this contract, `FRESH` means the learner is making the **first substantive attempt on this exact task** with no prior route/solution, material-hint, method-cue, or rehearsal exposure. Statement-only prior exposure may still be compatible with `FRESH` when Gate-0 semantics still classify the problem as transfer-eligible.
+
 Same-task delayed reconstruction is **retention**, not transfer, even if no new hint is given.
 
 Reading a source, seeing a worked solution, completing a labeled execution drill, or reconstructing the same task later cannot alone create Transfer evidence.
@@ -461,7 +463,7 @@ Rules:
 - `LEARNER_EMPIRICAL` records must identify learner attempt/task evidence and exposure/assistance context.
 - a canonical `SOURCE_FACT` must use a CANONICAL source ID from the frozen register.
 - a `SOURCE_LEAD` must use a provisional/noncanonical source identity, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`.
-- any VERIFIED SMMC solution-backed Battle record must carry the exact frozen `sourceArtifactSha256`.
+- any VERIFIED SMMC solution-backed Battle record must carry the exact frozen `sourceArtifactSha256`, and that hash must equal the canonical hash for its `S0-SMMC-SOLUTION-<year>` Source ID rather than merely matching SHA-256 syntax.
 - `sourceLocator` is a structured object, never a free-text page reference.
 - Transfer learner records must satisfy the fresh/unprompted/unseen rules above.
 - delayed same-task reconstruction uses `claimKind: RETENTION` and `recordChannel: NONE`.
