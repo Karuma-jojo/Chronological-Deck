@@ -51,6 +51,10 @@ import {
   ARSENAL_GATE2_UNKNOWN_CANONICAL_SOURCE_FACTS,
   ARSENAL_GATE2_RAW_AUDIT_META,
 } from "../course/smmc/arsenal/raw-harvest-audit-v0.mjs";
+import {
+  ARSENAL_GATE2_OFFICIAL_ROUTE_INDEX,
+  ARSENAL_GATE2_OFFICIAL_ROUTE_META,
+} from "../course/smmc/arsenal/official-solution-route-index-v0.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -571,6 +575,22 @@ expect(
   ARSENAL_GATE2_RAW_AUDIT_META.evidenceCount === ARSENAL_GATE2_RAW_EVIDENCE.length,
   "Gate-2 audit metadata count drift."
 );
+expect(ARSENAL_GATE2_OFFICIAL_ROUTE_META.historicalProblems === 88, "Official solution-route index must cover all 88 historical problem IDs.");
+expect(ARSENAL_GATE2_OFFICIAL_ROUTE_META.labeledSolutionSections === 132, "Expected 132 explicitly labelled solution sections in frozen 2017-2025 booklets.");
+expect(ARSENAL_GATE2_OFFICIAL_ROUTE_META.multiRouteProblems === 32, "Expected 32 historical problems with multiple explicitly labelled solution routes.");
+expect(
+  JSON.stringify([...ARSENAL_GATE2_OFFICIAL_ROUTE_META.zeroLabelledRouteProblems].sort()) === JSON.stringify(["SMMC-2017-B4","SMMC-2018-B4"]),
+  "Unexpected zero-labelled-route problem set."
+);
+expect(
+  new Set(ARSENAL_GATE2_OFFICIAL_ROUTE_INDEX.map(x => x.problemId)).size === 88,
+  "Official solution-route index contains duplicate problem IDs."
+);
+for (const row of ARSENAL_GATE2_OFFICIAL_ROUTE_INDEX) {
+  expect(canonicalArsenalSource(row.sourceId)?.sha256 === row.sourceArtifactSha256, `Route-index source/hash mismatch for ${row.problemId}`);
+  expect(row.routeLabels.length === row.labeledRouteCount, `Route-label count mismatch for ${row.problemId}`);
+}
+
 expect(
   ARSENAL_GATE2_DUPLICATE_NAME_GROUPS.length > 0,
   "Gate-2 duplicate-name report unexpectedly empty; duplicates should be reported, not silently collapsed."
