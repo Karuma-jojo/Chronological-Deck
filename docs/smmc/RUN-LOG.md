@@ -591,3 +591,116 @@ Final independent attack confirmed R01–R04 and F01–F02, then found one surgi
 - The concrete counterexample \`2026-09-20T09:00:00+05:30\` versus \`2026-09-20T04:00:00.000Z\` must retain the former instant, canonically \`2026-09-20T03:30:00.000Z\`.
 
 **Gate 1 remains CLOSED until the exact repaired head passes complete CI and receives independent closure confirmation.**
+
+
+## Arsenal Gate 0 closure / Gate 1 start — 2026-09-30
+
+Gate 0 was independently accepted on exact reviewed head \`37cd46553ebccc6f5fa47b45beb2bf4ad3381251\` after the full R01–R04, F01–F02 and G01 review chain. PR #181 was merged to \`main\` as \`761023355678bc9088236e79bc12e68aa5107cb6\`.
+
+Gate 1 has begun on branch \`codex/smmc-arsenal-gate1-research-contract\`.
+
+Gate-1 scope is evidence discipline only:
+- canonical source register;
+- claim-specific source roles;
+- HISTORICAL_BATTLE / SOURCE_HEURISTIC / PROOF_STRUCTURE / PREREQUISITE_MATHEMATICS / PROJECT_SYNTHESIS evidence classes;
+- Battle / Discovery / Transfer separation;
+- provenance requirements;
+- conflict rules and forbidden shortcuts;
+- Gate-0 inheritance.
+
+No Arsenal ability has been accepted, typed, merged, split, ranked or ordered.
+
+**STOP:** Gate 2 raw-candidate harvesting remains closed until independent review accepts the Gate-1 research contract.
+
+
+## Arsenal Gate 1 adversarial repair — G1-R01–G1-R05 (2026-10-01)
+
+Independent review of Gate-1 candidate head \`594e80420ad12b77980974c4e24e9b65b4e3d76a\` returned **CHANGES REQUIRED**. The source research was confirmed, but the contract itself had five structural problems.
+
+Accepted findings and bounded repairs:
+
+- **G1-R01 hidden ontology freeze:** removed Gate-1 mandates that Proof Form/Foundation must be separate or that Crux must be an event/non-card. Strategy/Tactic/Tool, Proof Form, Foundation, Specialist and every Crux representation are now explicitly research hypotheses only. Gate 1 cannot reject a later representation because it differs from the current hypothesis.
+- **G1-R02 mixed evidence dimensions:** replaced the old five “evidence classes” with orthogonal axes:
+  - \`evidenceBasis = SOURCE_FACT | PROJECT_DERIVED | LEARNER_EMPIRICAL | PROJECT_SYNTHESIS\`;
+  - \`recordChannel = BATTLE | DISCOVERY | TRANSFER | NONE\`;
+  - controlled \`claimKind\`;
+  - independent \`verificationStatus\`;
+  - future \`ontologyType\`, explicitly null/unset through Gate 2.
+  Learner scratch-work / Forge / Boss / Arena observations now have an honest \`LEARNER_EMPIRICAL\` basis.
+- **G1-R03 permissive Battle evidence:** “compatible with” is no longer Battle evidence. A ledger tag is an \`INDEX_LEAD\` until the move is traced to exact audited official evidence. Verified Battle occurrence requires problem ID + official source locator + an actual productive occurrence.
+- **G1-R04 non-reproducible source set:** added \`docs/smmc/ARSENAL-SOURCE-REGISTER-v1.md\` with exact edition/version identities and SHA-256 fingerprints for the five canonical book artifacts, plus the frozen S0 repository snapshot. New sources require a reviewed source-register amendment; otherwise they remain \`UNVERIFIED_SOURCE_LEAD\`.
+- **G1-R05 over-generalized source claims:** narrowed claims to what each edition actually establishes. Hammack's dependency tree is explicitly the dependency structure of his book, Velleman's sequence is evidence about his pedagogy rather than a universal prerequisite order, and Putnam/Engel study advice is source training evidence rather than automatic project law.
+
+No raw candidate harvest, merge/split decision, ontology typing, ranking, prerequisite DAG, Forge, Boss or Arena build was started.
+
+**STOP:** Gate 2 remains CLOSED pending independent follow-up acceptance of the repaired Gate-1 exact head.
+
+
+## Arsenal Gate 1 follow-up repair — F1–F3 (2026-10-01)
+
+Independent follow-up on \`71dcfd4f82411548313bfaec51f57138d44d5c5b\` confirmed the major G1-R01–R05 repair, then found three bounded provenance/schema holes.
+
+Accepted repairs:
+
+- **F1 S0 solution provenance:** added authoring-only \`course/smmc/official-solution-sources-v1.mjs\` with exact official year page, solution URL, page count and SHA-256 for every 2017–2025 solution booklet. VERIFIED solution-backed Battle evidence now requires the frozen artifact hash. \`sources-v1.mjs\` remains learner-safe and contains only problem-paper links.
+- **F2 Battle co-occurrence loophole:** raw ledger-tag co-occurrence is now explicitly \`PROJECT_DERIVED + recordChannel:NONE + HISTORICAL_COOCCURRENCE\`. A BATTLE co-occurrence requires two linked VERIFIED official HISTORICAL_OCCURRENCE records for the same problem, each independently traceable to frozen official evidence.
+- **F3 noncanonical source leads:** added \`SOURCE_LEAD\` as an explicit \`evidenceBasis\`. Noncanonical sources may be inspected and logged honestly, but must remain \`SOURCE_LEAD + NONE + UNVERIFIED_SOURCE_LEAD\` until a reviewed source-register amendment admits them.
+
+The official solution registry is source-validated in \`validate-smmc-authoring-v1.mjs\` for complete 2017–2025 coverage, organiser-domain URLs, positive page counts and 64-hex SHA-256 fingerprints.
+
+A 2025 source-version drift was discovered while repairing F1: the older 2026-09-28 inventory recorded a 26-page 2025 booklet, while the current official-linked revision is 25 pages. Gate 1 freezes the current 25-page artifact exactly and records the older revision as provenance history rather than treating the two as interchangeable.
+
+No Gate-2 candidate harvest or ontology work was started.
+
+**STOP:** Gate 2 remains CLOSED pending independent closure review of the repaired Gate-1 exact head.
+
+
+## Arsenal Gate 1 closure-cycle repair — C01–C03 (2026-10-01)
+
+Independent closure attack on \`6485f06bc35413bc2661cc7f61c45963fb77093f\` confirmed G1-R01–R05 and F1–F3, then found three narrower contract holes.
+
+Accepted repairs:
+
+- **C01 delayed reconstruction ≠ Transfer:** same-task delayed reconstruction is now explicitly \`LEARNER_EMPIRICAL + NONE + RETENTION\`. Transfer requires a fresh task, unprompted method selection, and unseen route/solution exposure. The executable validator rejects \`SAME_TASK_DELAYED\` Transfer records.
+- **C02 complete axis admissibility:** added \`course/smmc/arsenal/evidence-contract-v1.mjs\` as an explicit allow-list for every \`evidenceBasis × recordChannel × claimKind\` combination and for basis × verification-status combinations. Unlisted combinations are forbidden. In particular SOURCE_FACT+TRANSFER, PROJECT_DERIVED+DISCOVERY, LEARNER_EMPIRICAL+BATTLE, and SOURCE_LEAD with any non-NONE channel are rejected.
+- **C03 sourceLocator grammar:** source locators are now structured tagged objects. PDF locators use a 1-based physical \`pdfPage\` plus optional printed-page label/section/anchor; repository locators use exact path and inclusive 1-based line range with commit stored separately; web locators use URL plus optional heading/retrieval time. Free text such as “page 3” is invalid.
+
+The SMMC authoring validator now regression-tests:
+- allowed and forbidden basis/channel/claim combinations;
+- basis/status restrictions;
+- SOURCE_LEAD isolation;
+- raw co-occurrence remaining channel NONE;
+- fresh/unprompted/unseen Transfer;
+- delayed same-task retention;
+- rejection of delayed Transfer;
+- rejection of SOURCE_FACT+TRANSFER;
+- structured PDF/REPO/WEB locators;
+- rejection of ambiguous scalar locators;
+- same-problem requirement for verified Battle co-occurrence.
+
+No Gate-2 candidate harvesting or ontology decisions were started.
+
+**STOP:** Gate 2 remains CLOSED pending independent closure review of the new exact head.
+
+
+## Arsenal Gate 1 final implementation repair — D01–D02 (2026-10-01)
+
+Independent closure attack on \`76b6008bc11dc48b14b7b9975e81d164c9ea08f5\` found two concrete validator bypasses after C01–C03 otherwise held.
+
+Accepted repairs:
+
+- **D01 canonical source identity:** added \`course/smmc/arsenal/canonical-sources-v1.mjs\` as the machine-readable canonical Source-ID allow-list. It contains the five canonical book artifacts, all 22 official SMMC problem papers, and all nine official SMMC solution artifacts with exact page counts and SHA-256 values. Every \`SOURCE_FACT\` must now resolve to this registry, match the exact registered hash, and use an in-bounds PDF locator. Battle additionally requires the registered source kind to be official SMMC paper/solution evidence. Invented book IDs and invented \`S0-SMMC-*\` prefixes therefore fail closed.
+- **D02 duplicate co-occurrence:** Battle co-occurrence now requires exactly two distinct linked occurrence record IDs and, after collection resolution, two distinct candidate/move IDs. Both linked occurrences must still be VERIFIED official occurrences for the same historical problem. \`["occ-a","occ-a"]\` and two records representing the same candidate are rejected.
+
+Regression additions include:
+- canonical registry integrity and expected 5 + 22 + 9 source count;
+- accepted canonical Zeitz Discovery source fact;
+- invented canonical-book SOURCE_FACT rejection;
+- invented \`S0-SMMC-NOT-REGISTERED\` Battle rejection;
+- wrong canonical hash rejection;
+- duplicate linked occurrence rejection;
+- duplicate candidate/move co-occurrence rejection.
+
+No Gate-2 candidate harvesting, typing, ranking, prerequisite work, Forge, Boss or Arena work was started.
+
+**STOP:** Gate 2 remains CLOSED pending independent closure acceptance of the repaired exact head.

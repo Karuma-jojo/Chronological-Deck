@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 0 corpus protection
 
-Status: **R01–R04 + F01–F02 + final G01 repaired; independent closure confirmation required before Gate 1**  
+Status: **ACCEPTED — Gate 0 closed after independent adversarial review**  
 Scope: historical SMMC exposure semantics only. This gate does **not** freeze the Arsenal ontology, author Forge content, change T25, or claim SMMC mastery.
 
 ## Why this gate exists
@@ -190,13 +190,24 @@ The validator also accepted timezone-less parseable date-times, which make cross
 
 This repair is deliberately confined to evidence-time representation and ordering. It does not widen Gate 0 into Arsenal, Boss, Arena or curriculum work.
 
+## Closure record
+
+Gate 0 was independently accepted on exact reviewed head:
+
+`37cd46553ebccc6f5fa47b45beb2bf4ad3381251`
+
+The closure review re-attacked R01–R04, F01–F02 and G01 and reported no remaining blocker within Gate-0 scope. Exact-head verification was green for SMMC authoring/Chromium, frontend integrity and T22 atomic checks.
+
+PR #181 was subsequently merged to `main` as merge commit:
+
+`761023355678bc9088236e79bc12e68aa5107cb6`
+
+Gate 0 is therefore closed. Its corpus-protection invariants are now prerequisites for every later Arsenal gate and must not be weakened casually.
+
 ## Stop boundary
 
 Do **not** begin Arsenal ontology authoring merely because this implementation exists.
 
-Gate 0 closes only after:
+Gate 0 closure conditions have been satisfied.
 
-1. the complete SMMC CI workflow passes on the exact implementation head; and
-2. an independent reviewer checks the semantics for leakage, accidental contamination, migration hazards and browser bypasses.
-
-Only then proceed to **Gate 1 — Arsenal Research Contract**.
+Later Arsenal work must preserve this gate's exposure semantics. Any change that weakens corpus isolation, transactional exposure recording, state coherence, cloud monotonicity, route-hint protection or chronological timestamp ordering requires a new Gate-0 regression review.

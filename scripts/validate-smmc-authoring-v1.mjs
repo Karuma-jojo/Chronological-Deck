@@ -22,6 +22,20 @@ import {
 } from "../course/smmc/runtime/exposure.mjs";
 import { unlockStatus } from "../course/smmc/runtime/unlock.mjs";
 import { officialPaperUrl } from "../course/smmc/sources-v1.mjs";
+import { SMMC_OFFICIAL_SOLUTION_SOURCES_V1 } from "../course/smmc/official-solution-sources-v1.mjs";
+import {
+  ARSENAL_CANONICAL_SOURCES_V1,
+  canonicalArsenalSource,
+  isOfficialSmmcCanonicalSource,
+} from "../course/smmc/arsenal/canonical-sources-v1.mjs";
+import {
+  ARSENAL_EVIDENCE_ADMISSIBILITY,
+  ARSENAL_BASIS_STATUS_ADMISSIBILITY,
+  isAdmissibleEvidenceCombination,
+  validateGate1EvidenceRecord,
+  validateGate1EvidenceCollection,
+  validateSourceLocator,
+} from "../course/smmc/arsenal/evidence-contract-v1.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -40,6 +54,432 @@ for (const problem of ledger) {
   expect(typeof paper === "string" && paper.startsWith("https://www.simonmarais.org/"), `Missing official paper URL for ${problem.id}`);
   expect(paper.endsWith("#page=2"), `Official paper should open on problem page for ${problem.id}`);
 }
+
+const solutionYears = Object.keys(SMMC_OFFICIAL_SOLUTION_SOURCES_V1).map(Number).sort((a,b)=>a-b);
+expect(
+  JSON.stringify(solutionYears) === JSON.stringify([2017,2018,2019,2020,2021,2022,2023,2024,2025]),
+  "Official solution provenance must cover every 2017–2025 year exactly once."
+);
+for (const year of solutionYears) {
+  const source = SMMC_OFFICIAL_SOLUTION_SOURCES_V1[year];
+  expect(source && typeof source === "object", `Missing solution source row for ${year}`);
+  expect(source.sourceId === `S0-SMMC-SOLUTION-${year}`, `Bad official solution sourceId for ${year}`);
+  expect(/^https:\/\/www\.simonmarais\.org\//.test(source.yearPage), `Bad official year page for ${year}`);
+  expect(/^https:\/\/www\.simonmarais\.org\/uploads\//.test(source.url), `Bad official solution URL for ${year}`);
+  expect(Number.isInteger(source.pages) && source.pages > 0, `Bad official solution page count for ${year}`);
+  expect(/^[0-9a-f]{64}$/.test(source.sha256), `Bad official solution SHA-256 for ${year}`);
+  expect(typeof source.label === "string" && source.label.includes(String(year)), `Bad official solution label for ${year}`);
+}
+
+const canonicalSourceIds = Object.keys(ARSENAL_CANONICAL_SOURCES_V1);
+expect(canonicalSourceIds.length === 36, "Expected 5 books + 22 official papers + 9 official solution artifacts in canonical source registry.");
+for (const [sourceId, source] of Object.entries(ARSENAL_CANONICAL_SOURCES_V1)) {
+  expect(source.sourceId === sourceId, `Canonical source key/id mismatch for ${sourceId}`);
+  expect(Number.isInteger(source.pages) && source.pages > 0, `Canonical source missing positive page count: ${sourceId}`);
+  expect(/^[0-9a-f]{64}$/.test(source.sha256), `Canonical source missing SHA-256: ${sourceId}`);
+}
+expect(Boolean(canonicalArsenalSource("S1-ZEITZ-2007-2E")), "Canonical Zeitz source missing from machine-readable registry.");
+expect(Boolean(canonicalArsenalSource("S0-SMMC-PAPER-2021-A")), "Canonical 2021-A paper source missing from machine-readable registry.");
+expect(Boolean(canonicalArsenalSource("S0-SMMC-SOLUTION-2021")), "Canonical 2021 solution source missing from machine-readable registry.");
+expect(isOfficialSmmcCanonicalSource("S0-SMMC-PAPER-2021-A"), "Official paper source must be recognized as SMMC canonical.");
+expect(isOfficialSmmcCanonicalSource("S0-SMMC-SOLUTION-2021"), "Official solution source must be recognized as SMMC canonical.");
+expect(!isOfficialSmmcCanonicalSource("S1-ZEITZ-2007-2E"), "Book source must not be recognized as SMMC Battle provenance.");
+expect(canonicalArsenalSource("S0-SMMC-NOT-REGISTERED") === null, "Invented S0 prefix source must not resolve canonically.");
+
+// Gate-1 research-evidence contract: complete allow-list, freshness and locator semantics.
+expect(
+  isAdmissibleEvidenceCombination("SOURCE_FACT", "BATTLE", "HISTORICAL_OCCURRENCE"),
+  "Verified official historical occurrence must be admissible."
+);
+expect(
+  !isAdmissibleEvidenceCombination("SOURCE_FACT", "TRANSFER", "LEARNER_PERFORMANCE"),
+  "SOURCE_FACT must never certify learner Transfer."
+);
+expect(
+  !isAdmissibleEvidenceCombination("PROJECT_DERIVED", "DISCOVERY", "DISCOVERY_HEURISTIC"),
+  "PROJECT_DERIVED must never become Discovery evidence."
+);
+expect(
+  !isAdmissibleEvidenceCombination("LEARNER_EMPIRICAL", "BATTLE", "HISTORICAL_OCCURRENCE"),
+  "Learner evidence must never become historical Battle evidence."
+);
+expect(
+  !isAdmissibleEvidenceCombination("SOURCE_LEAD", "DISCOVERY", "DISCOVERY_HEURISTIC"),
+  "Noncanonical source leads must remain channel NONE."
+);
+expect(
+  ARSENAL_EVIDENCE_ADMISSIBILITY.PROJECT_DERIVED.NONE.includes("HISTORICAL_COOCCURRENCE"),
+  "Raw project co-occurrence must live in PROJECT_DERIVED + NONE."
+);
+expect(
+  JSON.stringify(ARSENAL_BASIS_STATUS_ADMISSIBILITY.SOURCE_FACT) === JSON.stringify(["VERIFIED"]),
+  "SOURCE_FACT status matrix drifted."
+);
+expect(
+  JSON.stringify(ARSENAL_BASIS_STATUS_ADMISSIBILITY.SOURCE_LEAD) === JSON.stringify(["UNVERIFIED_SOURCE_LEAD"]),
+  "SOURCE_LEAD status matrix drifted."
+);
+
+validateSourceLocator({ kind: "PDF", pdfPage: 20, printedPage: "12", section: "1.2" });
+validateSourceLocator({ kind: "REPO", path: "course/smmc/ledger-2021.mjs", lineStart: 10, lineEnd: 20 });
+validateSourceLocator({ kind: "WEB", url: "https://www.simonmarais.org/2025.html", retrievedAt: "2026-10-01T09:39:00+05:30" });
+let ambiguousLocatorRejected = false;
+try {
+  validateSourceLocator("page 3");
+} catch {
+  ambiguousLocatorRejected = true;
+}
+expect(ambiguousLocatorRejected, "Ambiguous scalar page locators must be rejected.");
+
+const baseEvidence = {
+  candidateId: "candidate-test",
+  candidateName: "Test candidate",
+  ontologyType: null,
+  claim: "test",
+  sourceTerminology: null,
+  supports: [],
+  doesNotEstablish: [],
+  confidence: "test-only",
+  researcherNote: "validator fixture",
+};
+
+validateGate1EvidenceRecord({
+  ...baseEvidence,
+  recordId: "source-battle-1",
+  evidenceBasis: "SOURCE_FACT",
+  recordChannel: "BATTLE",
+  claimKind: "HISTORICAL_OCCURRENCE",
+  verificationStatus: "VERIFIED",
+  sourceId: "S0-SMMC-SOLUTION-2021",
+  sourceVersionOrCommit: "c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00",
+  sourceLocator: { kind: "PDF", pdfPage: 8, section: "A1" },
+  sourceArtifactSha256: "c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00",
+  historicalProblemIds: ["SMMC-2021-A1"],
+  learnerAttemptIds: [],
+  linkedRecordIds: [],
+});
+
+let wrongFrozenHashRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-frozen-hash",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "BATTLE",
+    claimKind: "HISTORICAL_OCCURRENCE",
+    verificationStatus: "VERIFIED",
+    sourceId: "S0-SMMC-SOLUTION-2021",
+    sourceVersionOrCommit: "bad-hash-fixture",
+    sourceLocator: { kind: "PDF", pdfPage: 8, section: "A1" },
+    sourceArtifactSha256: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    historicalProblemIds: ["SMMC-2021-A1"],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  wrongFrozenHashRejected = true;
+}
+expect(wrongFrozenHashRejected, "Solution-backed Battle hash must equal the frozen registry hash, not merely look like SHA-256.");
+
+let outOfRangeSolutionPageRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-solution-page",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "BATTLE",
+    claimKind: "HISTORICAL_OCCURRENCE",
+    verificationStatus: "VERIFIED",
+    sourceId: "S0-SMMC-SOLUTION-2021",
+    sourceVersionOrCommit: "canonical",
+    sourceLocator: { kind: "PDF", pdfPage: 999, section: "A1" },
+    sourceArtifactSha256: "c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00",
+    historicalProblemIds: ["SMMC-2021-A1"],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  outOfRangeSolutionPageRejected = true;
+}
+expect(outOfRangeSolutionPageRejected, "Solution-backed Battle PDF locator must stay inside the frozen artifact.");
+
+validateGate1EvidenceRecord({
+  ...baseEvidence,
+  recordId: "canonical-book-discovery",
+  evidenceBasis: "SOURCE_FACT",
+  recordChannel: "DISCOVERY",
+  claimKind: "DISCOVERY_HEURISTIC",
+  verificationStatus: "VERIFIED",
+  sourceId: "S1-ZEITZ-2007-2E",
+  sourceVersionOrCommit: "2007-2E",
+  sourceLocator: { kind: "PDF", pdfPage: 20, section: "1.2" },
+  sourceArtifactSha256: "be9d5f2bd96e3010fc30b3d9dee191a787ad4624fffe20aa28cf7a3e73382565",
+  historicalProblemIds: [],
+  learnerAttemptIds: [],
+  linkedRecordIds: [],
+});
+
+let inventedBookSourceRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-invented-book-source",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "DISCOVERY",
+    claimKind: "DISCOVERY_HEURISTIC",
+    verificationStatus: "VERIFIED",
+    sourceId: "S9-INVENTED-BOOK-2099",
+    sourceVersionOrCommit: "invented",
+    sourceLocator: { kind: "PDF", pdfPage: 1, section: "Invented" },
+    sourceArtifactSha256: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    historicalProblemIds: [],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  inventedBookSourceRejected = true;
+}
+expect(inventedBookSourceRejected, "Invented book sourceId must not pass as canonical SOURCE_FACT.");
+
+let inventedS0BattleRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-invented-s0-battle",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "BATTLE",
+    claimKind: "HISTORICAL_OCCURRENCE",
+    verificationStatus: "VERIFIED",
+    sourceId: "S0-SMMC-NOT-REGISTERED",
+    sourceVersionOrCommit: "invented",
+    sourceLocator: { kind: "PDF", pdfPage: 1, section: "A1" },
+    sourceArtifactSha256: "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    historicalProblemIds: ["SMMC-2021-A1"],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  inventedS0BattleRejected = true;
+}
+expect(inventedS0BattleRejected, "Invented S0-SMMC-* prefix must not bypass canonical Battle provenance.");
+
+validateGate1EvidenceRecord({
+  ...baseEvidence,
+  recordId: "source-lead-1",
+  evidenceBasis: "SOURCE_LEAD",
+  recordChannel: "NONE",
+  claimKind: "DISCOVERY_HEURISTIC",
+  verificationStatus: "UNVERIFIED_SOURCE_LEAD",
+  sourceId: "LEAD-BOOK-X",
+  sourceVersionOrCommit: "unregistered-edition",
+  sourceLocator: { kind: "PDF", pdfPage: 17, section: "Candidate chapter" },
+  sourceArtifactSha256: null,
+  historicalProblemIds: [],
+  learnerAttemptIds: [],
+  linkedRecordIds: [],
+});
+
+validateGate1EvidenceRecord({
+  ...baseEvidence,
+  recordId: "raw-cooccurrence-1",
+  evidenceBasis: "PROJECT_DERIVED",
+  recordChannel: "NONE",
+  claimKind: "HISTORICAL_COOCCURRENCE",
+  verificationStatus: "VERIFIED",
+  sourceId: "S0-project-ledger",
+  sourceVersionOrCommit: "761023355678bc9088236e79bc12e68aa5107cb6",
+  sourceLocator: { kind: "REPO", path: "course/smmc/ledger.mjs", lineStart: 1, lineEnd: 20 },
+  sourceArtifactSha256: null,
+  historicalProblemIds: ["SMMC-2021-A1"],
+  learnerAttemptIds: [],
+  linkedRecordIds: [],
+});
+
+validateGate1EvidenceRecord({
+  ...baseEvidence,
+  recordId: "fresh-transfer-1",
+  evidenceBasis: "LEARNER_EMPIRICAL",
+  recordChannel: "TRANSFER",
+  claimKind: "LEARNER_PERFORMANCE",
+  verificationStatus: "VERIFIED",
+  sourceId: null,
+  sourceVersionOrCommit: null,
+  sourceLocator: null,
+  sourceArtifactSha256: null,
+  historicalProblemIds: [],
+  learnerAttemptIds: ["attempt-fresh-1"],
+  linkedRecordIds: [],
+  learnerContext: {
+    taskFreshness: "FRESH",
+    methodPrompting: "UNPROMPTED",
+    routeExposure: "UNSEEN",
+  },
+});
+
+validateGate1EvidenceRecord({
+  ...baseEvidence,
+  recordId: "delayed-retention-1",
+  evidenceBasis: "LEARNER_EMPIRICAL",
+  recordChannel: "NONE",
+  claimKind: "RETENTION",
+  verificationStatus: "VERIFIED",
+  sourceId: null,
+  sourceVersionOrCommit: null,
+  sourceLocator: null,
+  sourceArtifactSha256: null,
+  historicalProblemIds: [],
+  learnerAttemptIds: ["attempt-retention-1"],
+  linkedRecordIds: [],
+  learnerContext: {
+    taskFreshness: "SAME_TASK_DELAYED",
+    methodPrompting: "UNPROMPTED",
+    routeExposure: "SEEN",
+  },
+});
+
+let delayedTransferRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-delayed-transfer",
+    evidenceBasis: "LEARNER_EMPIRICAL",
+    recordChannel: "TRANSFER",
+    claimKind: "LEARNER_PERFORMANCE",
+    verificationStatus: "VERIFIED",
+    sourceId: null,
+    sourceVersionOrCommit: null,
+    sourceLocator: null,
+    sourceArtifactSha256: null,
+    historicalProblemIds: [],
+    learnerAttemptIds: ["attempt-delayed-1"],
+    linkedRecordIds: [],
+    learnerContext: {
+      taskFreshness: "SAME_TASK_DELAYED",
+      methodPrompting: "UNPROMPTED",
+      routeExposure: "UNSEEN",
+    },
+  });
+} catch {
+  delayedTransferRejected = true;
+}
+expect(delayedTransferRejected, "Same-task delayed reconstruction must not count as Transfer.");
+
+let sourceFactTransferRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-source-transfer",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "TRANSFER",
+    claimKind: "LEARNER_PERFORMANCE",
+    verificationStatus: "VERIFIED",
+    sourceId: "S1-ZEITZ-2007-2E",
+    sourceVersionOrCommit: "canonical",
+    sourceLocator: { kind: "PDF", pdfPage: 20, section: "1.2" },
+    sourceArtifactSha256: "be9d5f2bd96e3010fc30b3d9dee191a787ad4624fffe20aa28cf7a3e73382565",
+    historicalProblemIds: [],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  sourceFactTransferRejected = true;
+}
+expect(sourceFactTransferRejected, "SOURCE_FACT + TRANSFER must be rejected globally.");
+
+let bookBattleRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-book-battle",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "BATTLE",
+    claimKind: "HISTORICAL_OCCURRENCE",
+    verificationStatus: "VERIFIED",
+    sourceId: "S1-ZEITZ-2007-2E",
+    sourceVersionOrCommit: "canonical",
+    sourceLocator: { kind: "PDF", pdfPage: 20, section: "1.2" },
+    sourceArtifactSha256: "be9d5f2bd96e3010fc30b3d9dee191a787ad4624fffe20aa28cf7a3e73382565",
+    historicalProblemIds: ["SMMC-2021-A1"],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  bookBattleRejected = true;
+}
+expect(bookBattleRejected, "Battle channel must require frozen official SMMC provenance, not a canonical book source.");
+
+const battleOccurrenceA = {
+  ...baseEvidence,
+  recordId: "occ-a",
+  evidenceBasis: "SOURCE_FACT",
+  recordChannel: "BATTLE",
+  claimKind: "HISTORICAL_OCCURRENCE",
+  verificationStatus: "VERIFIED",
+  sourceId: "S0-SMMC-SOLUTION-2021",
+  sourceVersionOrCommit: "c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00",
+  sourceLocator: { kind: "PDF", pdfPage: 8, section: "A1" },
+  sourceArtifactSha256: "c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00",
+  historicalProblemIds: ["SMMC-2021-A1"],
+  learnerAttemptIds: [],
+  linkedRecordIds: [],
+};
+const battleOccurrenceB = {
+  ...battleOccurrenceA,
+  recordId: "occ-b",
+  candidateId: "candidate-test-b",
+  candidateName: "Test candidate B",
+};
+const battleCooccurrence = {
+  ...baseEvidence,
+  recordId: "co-battle",
+  evidenceBasis: "SOURCE_FACT",
+  recordChannel: "BATTLE",
+  claimKind: "HISTORICAL_COOCCURRENCE",
+  verificationStatus: "VERIFIED",
+  sourceId: "S0-SMMC-SOLUTION-2021",
+  sourceVersionOrCommit: "c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00",
+  sourceLocator: { kind: "PDF", pdfPage: 8, section: "A1" },
+  sourceArtifactSha256: "c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00",
+  historicalProblemIds: ["SMMC-2021-A1"],
+  learnerAttemptIds: [],
+  linkedRecordIds: ["occ-a", "occ-b"],
+};
+validateGate1EvidenceCollection([battleOccurrenceA, battleOccurrenceB, battleCooccurrence]);
+
+let crossProblemCooccurrenceRejected = false;
+try {
+  validateGate1EvidenceCollection([
+    battleOccurrenceA,
+    { ...battleOccurrenceB, historicalProblemIds: ["SMMC-2021-A2"] },
+    battleCooccurrence,
+  ]);
+} catch {
+  crossProblemCooccurrenceRejected = true;
+}
+expect(crossProblemCooccurrenceRejected, "Battle co-occurrence must not link occurrences from different problems.");
+
+let duplicateLinkedOccurrenceRejected = false;
+try {
+  validateGate1EvidenceCollection([
+    battleOccurrenceA,
+    { ...battleCooccurrence, linkedRecordIds: ["occ-a", "occ-a"] },
+  ]);
+} catch {
+  duplicateLinkedOccurrenceRejected = true;
+}
+expect(duplicateLinkedOccurrenceRejected, "Battle co-occurrence must reject the same linked occurrence ID twice.");
+
+let duplicateCandidateMoveRejected = false;
+try {
+  validateGate1EvidenceCollection([
+    battleOccurrenceA,
+    { ...battleOccurrenceB, candidateId: battleOccurrenceA.candidateId, candidateName: battleOccurrenceA.candidateName },
+    battleCooccurrence,
+  ]);
+} catch {
+  duplicateCandidateMoveRejected = true;
+}
+expect(duplicateCandidateMoveRejected, "Battle co-occurrence must require two distinct candidate/move IDs.");
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
 expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 28, "Expected twenty-eight authored public problems.");
