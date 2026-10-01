@@ -280,6 +280,13 @@ export function validateGate1EvidenceRecord(record) {
     throw new Error("SOURCE_LEAD must use recordChannel NONE.");
   }
 
+  if (
+    record.recordChannel === "BATTLE" &&
+    (record.evidenceBasis !== "SOURCE_FACT" || typeof record.sourceId !== "string" || !record.sourceId.startsWith("S0-SMMC-"))
+  ) {
+    throw new Error("BATTLE records require frozen official SMMC SOURCE_FACT provenance.");
+  }
+
   const needsSourceLocator = ["SOURCE_FACT", "SOURCE_LEAD", "PROJECT_DERIVED"].includes(record.evidenceBasis);
   if (needsSourceLocator && (record.sourceLocator === null || record.sourceLocator === undefined)) {
     throw new Error("Source-backed/project-derived records require a structured sourceLocator.");
