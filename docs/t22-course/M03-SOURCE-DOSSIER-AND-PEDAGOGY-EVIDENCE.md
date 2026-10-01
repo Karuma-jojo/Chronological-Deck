@@ -47,6 +47,7 @@ Probability machinery; limits/convergence; calculus; generating functions; abstr
 
 **Specific material inspected**
 
+- 2nd ed., especially Chapter 3 proof strategies (conditionals, contraposition and contradiction), plus the surrounding quantifier/set/function proof-development chapters;
 - proof strategies for conditionals, contraposition and contradiction;
 - givens/goal transformations;
 - separation between scratch work / strategic search and final proof;
@@ -72,6 +73,7 @@ Later material or exercises that would enlarge M03's boundary.
 
 **Specific material inspected**
 
+- Chapter 2 logic and Chapter 3 counting, together with the later direct/contrapositive/contradiction/induction/set/function proof sequence;
 - logic as background language for proof;
 - counting with sets/lists;
 - direct/contrapositive/contradiction proof progression;
@@ -97,6 +99,7 @@ Topics beyond the current deterministic finite boundary.
 
 **Specific material inspected**
 
+- MIT *Mathematics for Computer Science* proof-method/induction material and the finite sets, mappings and cardinality/counting chapters (including the cardinality-rules chapter used for combinatorial-proof comparison);
 - proof methods and induction;
 - sets, relations and functions;
 - cardinality rules and combinatorial proofs;
@@ -123,6 +126,7 @@ Generating functions, graph theory, infinite-cardinality development and other l
 
 **Specific material inspected**
 
+- Chapters 1–3 (exercise vs problem; orientation; strategy/tactics/tools) and the combinatorics/problem-solving material used only as a transfer/strategy comparator;
 - exercise versus problem distinction;
 - orientation before tactics;
 - strategy / tactics / tools separation;
@@ -148,6 +152,8 @@ Advanced contest topics that belong to the separate SMMC Companion rather than M
 
 ### Mathematical Association of America — *Instructional Practices Guide* (2017)
 
+Locator: https://maa.org/resource/instructional-practices-guide/
+
 **Type** — undergraduate-mathematics instructional-practices guide.
 
 **Epistemic role**
@@ -171,6 +177,8 @@ Undergraduate mathematics instruction broadly.
 A general practice guide. It does not establish that this exact M03 implementation, Spire runtime or learner population will produce a measured learning gain.
 
 ### IES / What Works Clearinghouse — *Organizing Instruction and Study to Improve Student Learning* (2007)
+
+Locator: https://ies.ed.gov/ncee/wwc/PracticeGuide/1
 
 **Type** — evidence-rated general learning / instructional practice guide.
 
@@ -201,6 +209,8 @@ Recommendation evidence strengths differ. These principles are design inputs, no
 ## 4. Domain-specific mathematics-education evidence
 
 ### Keith Weber (2001), “Student Difficulty in Constructing Proofs: The Need for Strategic Knowledge,” *Educational Studies in Mathematics* 48(1), 101–119. DOI: 10.1023/A:1015535614355
+
+Locators: https://eric.ed.gov/?id=EJ649521 and DOI 10.1023/A:1015535614355
 
 **Type** — peer-reviewed mathematics-education research.
 
