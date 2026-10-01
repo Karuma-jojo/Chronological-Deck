@@ -55,6 +55,9 @@ import {
   ARSENAL_GATE2_OFFICIAL_ROUTE_INDEX,
   ARSENAL_GATE2_OFFICIAL_ROUTE_META,
 } from "../course/smmc/arsenal/official-solution-route-index-v0.mjs";
+import {
+  ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE,
+} from "../course/smmc/arsenal/official-solution-candidates-v0.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -529,9 +532,18 @@ expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteCandidates === 34, "Gate-2 ledger r
 expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteEvidenceRecords === 34, "Gate-2 ledger route evidence count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.officialSolutionCandidates === 127, "Gate-2 direct official-solution candidate count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.officialSolutionEvidenceRecords === 127, "Gate-2 direct official-solution evidence count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 255, "Gate-2 book-source harvest count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 628, "Gate-2 raw candidate total drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 628, "Gate-2 raw evidence total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 258, "Gate-2 book-source harvest count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 631, "Gate-2 raw candidate total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 631, "Gate-2 raw evidence total drifted.");
+
+expect(ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE.length === 127, "Expected 127 direct official-solution occurrence records.");
+for (const record of ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE) {
+  expect(record.evidenceBasis === "SOURCE_FACT", `Official-solution evidence must remain SOURCE_FACT: ${record.recordId}`);
+  expect(record.recordChannel === "BATTLE", `Verified official occurrence must use BATTLE channel: ${record.recordId}`);
+  expect(record.claimKind === "HISTORICAL_OCCURRENCE", `Verified official occurrence must use HISTORICAL_OCCURRENCE: ${record.recordId}`);
+  expect(record.verificationStatus === "VERIFIED", `Verified official occurrence status drifted: ${record.recordId}`);
+  expect(Array.isArray(record.historicalProblemIds) && record.historicalProblemIds.length === 1, `Official occurrence must bind exactly one historical problem: ${record.recordId}`);
+}
 
 const rawCandidateIds = new Set();
 for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
