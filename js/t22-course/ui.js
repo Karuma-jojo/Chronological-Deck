@@ -105,13 +105,13 @@ async function loadCourse(meta){
    const [packs,evalParts,repair]=await Promise.all([Promise.all(spec.packs.map(json)),Promise.all(spec.evaluatorPacks.map(json)),spec.repairPack?json(spec.repairPack):Promise.resolve(null)]);
    const localKeys=Object.assign({},...evalParts),local={...meta,module:spec.module,sessions:packs.flatMap(p=>p.sessions).sort((a,b)=>a.order-b.order),problems:Object.assign({},...packs.map(p=>p.problems))};
    applyCourseOverrides(local,localKeys,repair);
-   for(const s of local.sessions)s.instructionVersion=local.instructionVersion||meta.version;
+   for(const s of local.sessions)s.instructionVersion=s.instructionVersion||local.instructionVersion||meta.version;
    allSessions.push(...local.sessions);Object.assign(allProblems,local.problems);Object.assign(allKeys,localKeys);allModules.push(spec.module);
    Object.assign(historicalOverlapSessions,local.historicalLessonAnswerOverlap?.sessions||{});
    legacyPolicy={instructionVersion:local.instructionVersion,instructionSeparation:local.instructionSeparation};
   }else if(spec.sourceType==='authoring-pack'){
    const a=await json(spec.source);
-   for(const s of a.sessions)s.instructionVersion=a.instructionVersion||a.version;
+   for(const s of a.sessions)s.instructionVersion=s.instructionVersion||a.instructionVersion||a.version;
    Object.assign(historicalOverlapSessions,a.historicalLessonAnswerOverlap?.sessions||{});
    allSessions.push(...a.sessions);Object.assign(allProblems,a.problems);Object.assign(allKeys,a.evaluators);allModules.push(a.module);
   }else throw Error(`Unknown module source type ${spec.sourceType}`);

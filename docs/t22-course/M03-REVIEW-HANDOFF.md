@@ -1,3 +1,5 @@
+> **Current-state note (2026-10-02):** M03 canonical mathematics/content/evidence is closed. Current authoring state is `m03-authoring-v1.7.2-publication-state-r1`, status `published-v1.7.2-builder-validated-same-model-review-passed`. Exact-SHA T22 Elite + Chromium workflow #604 (run `36921555847`, job `110568597589`) passed on implementation SHA `1da2268efe0b284c2c54cdccb563a315f565bf31`. Final closeout repaired only the non-canonical Spire Strategy Labs and added the permanent Source/Pedagogy dossier. External/formal independent review of the v1.7.x closeout was not performed. See `M03-FINAL-PUBLICATION.md`.
+
 # M03 REVIEW-HANDOFF — Mathematical Reasoning & Discrete Foundations
 
 > **Foundation freeze — 2026-09-27**  
