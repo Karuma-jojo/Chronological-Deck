@@ -611,3 +611,26 @@ Gate-1 scope is evidence discipline only:
 No Arsenal ability has been accepted, typed, merged, split, ranked or ordered.
 
 **STOP:** Gate 2 raw-candidate harvesting remains closed until independent review accepts the Gate-1 research contract.
+
+
+## Arsenal Gate 1 adversarial repair — G1-R01–G1-R05 (2026-10-01)
+
+Independent review of Gate-1 candidate head \`594e80420ad12b77980974c4e24e9b65b4e3d76a\` returned **CHANGES REQUIRED**. The source research was confirmed, but the contract itself had five structural problems.
+
+Accepted findings and bounded repairs:
+
+- **G1-R01 hidden ontology freeze:** removed Gate-1 mandates that Proof Form/Foundation must be separate or that Crux must be an event/non-card. Strategy/Tactic/Tool, Proof Form, Foundation, Specialist and every Crux representation are now explicitly research hypotheses only. Gate 1 cannot reject a later representation because it differs from the current hypothesis.
+- **G1-R02 mixed evidence dimensions:** replaced the old five “evidence classes” with orthogonal axes:
+  - \`evidenceBasis = SOURCE_FACT | PROJECT_DERIVED | LEARNER_EMPIRICAL | PROJECT_SYNTHESIS\`;
+  - \`recordChannel = BATTLE | DISCOVERY | TRANSFER | NONE\`;
+  - controlled \`claimKind\`;
+  - independent \`verificationStatus\`;
+  - future \`ontologyType\`, explicitly null/unset through Gate 2.
+  Learner scratch-work / Forge / Boss / Arena observations now have an honest \`LEARNER_EMPIRICAL\` basis.
+- **G1-R03 permissive Battle evidence:** “compatible with” is no longer Battle evidence. A ledger tag is an \`INDEX_LEAD\` until the move is traced to exact audited official evidence. Verified Battle occurrence requires problem ID + official source locator + an actual productive occurrence.
+- **G1-R04 non-reproducible source set:** added \`docs/smmc/ARSENAL-SOURCE-REGISTER-v1.md\` with exact edition/version identities and SHA-256 fingerprints for the five canonical book artifacts, plus the frozen S0 repository snapshot. New sources require a reviewed source-register amendment; otherwise they remain \`UNVERIFIED_SOURCE_LEAD\`.
+- **G1-R05 over-generalized source claims:** narrowed claims to what each edition actually establishes. Hammack's dependency tree is explicitly the dependency structure of his book, Velleman's sequence is evidence about his pedagogy rather than a universal prerequisite order, and Putnam/Engel study advice is source training evidence rather than automatic project law.
+
+No raw candidate harvest, merge/split decision, ontology typing, ranking, prerequisite DAG, Forge, Boss or Arena build was started.
+
+**STOP:** Gate 2 remains CLOSED pending independent follow-up acceptance of the repaired Gate-1 exact head.
