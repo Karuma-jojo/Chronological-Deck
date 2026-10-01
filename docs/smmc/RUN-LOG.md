@@ -653,3 +653,31 @@ A 2025 source-version drift was discovered while repairing F1: the older 2026-09
 No Gate-2 candidate harvest or ontology work was started.
 
 **STOP:** Gate 2 remains CLOSED pending independent closure review of the repaired Gate-1 exact head.
+
+
+## Arsenal Gate 1 closure-cycle repair — C01–C03 (2026-10-01)
+
+Independent closure attack on \`6485f06bc35413bc2661cc7f61c45963fb77093f\` confirmed G1-R01–R05 and F1–F3, then found three narrower contract holes.
+
+Accepted repairs:
+
+- **C01 delayed reconstruction ≠ Transfer:** same-task delayed reconstruction is now explicitly \`LEARNER_EMPIRICAL + NONE + RETENTION\`. Transfer requires a fresh task, unprompted method selection, and unseen route/solution exposure. The executable validator rejects \`SAME_TASK_DELAYED\` Transfer records.
+- **C02 complete axis admissibility:** added \`course/smmc/arsenal/evidence-contract-v1.mjs\` as an explicit allow-list for every \`evidenceBasis × recordChannel × claimKind\` combination and for basis × verification-status combinations. Unlisted combinations are forbidden. In particular SOURCE_FACT+TRANSFER, PROJECT_DERIVED+DISCOVERY, LEARNER_EMPIRICAL+BATTLE, and SOURCE_LEAD with any non-NONE channel are rejected.
+- **C03 sourceLocator grammar:** source locators are now structured tagged objects. PDF locators use a 1-based physical \`pdfPage\` plus optional printed-page label/section/anchor; repository locators use exact path and inclusive 1-based line range with commit stored separately; web locators use URL plus optional heading/retrieval time. Free text such as “page 3” is invalid.
+
+The SMMC authoring validator now regression-tests:
+- allowed and forbidden basis/channel/claim combinations;
+- basis/status restrictions;
+- SOURCE_LEAD isolation;
+- raw co-occurrence remaining channel NONE;
+- fresh/unprompted/unseen Transfer;
+- delayed same-task retention;
+- rejection of delayed Transfer;
+- rejection of SOURCE_FACT+TRANSFER;
+- structured PDF/REPO/WEB locators;
+- rejection of ambiguous scalar locators;
+- same-problem requirement for verified Battle co-occurrence.
+
+No Gate-2 candidate harvesting or ontology decisions were started.
+
+**STOP:** Gate 2 remains CLOSED pending independent closure review of the new exact head.
