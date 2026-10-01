@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 1 research contract
 
-Status: **G1-R01–R05 + F1–F3 REPAIRED — independent closure review required; ontology and representation remain unfrozen**  
+Status: **G1-R01–R05 + F1–F3 + C01–C03 REPAIRED — independent closure review required; ontology and representation remain unfrozen**  
 Scope: evidence discipline only. Gate 1 does **not** accept, merge, split, type, rank, order, prerequisite-link, or choose a data representation for any Arsenal candidate.
 
 ## 1. Purpose
@@ -205,13 +205,15 @@ An observation from actual learner work.
 Examples:
 
 - scratch-work route chosen before any hint;
-- Forge transfer performance;
+- Forge performance;
 - Boss loadout prediction;
 - Arena deployment;
 - assistance level;
-- delayed reconstruction.
+- delayed same-task reconstruction as **retention** evidence.
 
 Learner evidence must identify the task/attempt and exposure state.
+
+Same-task delayed reconstruction is never Transfer. It is retained as useful learner evidence under `recordChannel: NONE` + `claimKind: RETENTION`.
 
 #### `PROJECT_SYNTHESIS`
 
@@ -254,8 +256,12 @@ Controlled initial vocabulary:
 - `PREREQUISITE_MATHEMATICS`
 - `TRAINING_DESIGN`
 - `LEARNER_PERFORMANCE`
+- `RETENTION`
+- `INDEX_SIGNAL`
+- `CORPUS_MEASUREMENT`
 - `ONTOLOGY_PROPOSAL`
 - `REPRESENTATION_PROPOSAL`
+- `RELATION_PROPOSAL`
 - `OTHER`
 
 Gate 1 freezes this research vocabulary only. It does not freeze any future candidate type.
@@ -267,6 +273,45 @@ This axis is intentionally **unset** during Gate 1 and raw Gate-2 harvesting.
 A record may mention source terminology such as “strategy” or “method,” but that wording does not populate `ontologyType`.
 
 Later gates may define an ontology-type vocabulary. Gate 1 has no authority to do so.
+
+### Complete admissibility matrix
+
+The orthogonal axes are not freely combinable.
+
+The executable allow-list lives in:
+
+`course/smmc/arsenal/evidence-contract-v1.mjs`
+
+**Every basis × channel × claim-kind combination not explicitly listed below is forbidden.**
+
+| evidenceBasis | BATTLE | DISCOVERY | TRANSFER | NONE |
+|---|---|---|---|---|
+| `SOURCE_FACT` | `HISTORICAL_OCCURRENCE`, `HISTORICAL_COOCCURRENCE` | `DISCOVERY_HEURISTIC` | **forbidden** | `SOURCE_TERMINOLOGY`, `PROOF_STRUCTURE`, `PREREQUISITE_MATHEMATICS`, `TRAINING_DESIGN`, `OTHER` |
+| `SOURCE_LEAD` | **forbidden** | **forbidden** | **forbidden** | `SOURCE_TERMINOLOGY`, `HISTORICAL_OCCURRENCE`, `HISTORICAL_COOCCURRENCE`, `DISCOVERY_HEURISTIC`, `PROOF_STRUCTURE`, `PREREQUISITE_MATHEMATICS`, `TRAINING_DESIGN`, `OTHER` |
+| `PROJECT_DERIVED` | **forbidden** | **forbidden** | **forbidden** | `INDEX_SIGNAL`, `CORPUS_MEASUREMENT`, `HISTORICAL_COOCCURRENCE`, `OTHER` |
+| `LEARNER_EMPIRICAL` | **forbidden** | `LEARNER_PERFORMANCE` | `LEARNER_PERFORMANCE` | `LEARNER_PERFORMANCE`, `RETENTION`, `OTHER` |
+| `PROJECT_SYNTHESIS` | **forbidden** | **forbidden** | **forbidden** | `PREREQUISITE_MATHEMATICS`, `TRAINING_DESIGN`, `ONTOLOGY_PROPOSAL`, `REPRESENTATION_PROPOSAL`, `RELATION_PROPOSAL`, `OTHER` |
+
+Verification status is also basis-constrained:
+
+| evidenceBasis | allowed verificationStatus |
+|---|---|
+| `SOURCE_FACT` | `VERIFIED` |
+| `SOURCE_LEAD` | `UNVERIFIED_SOURCE_LEAD` |
+| `PROJECT_DERIVED` | `VERIFIED` or `INDEX_LEAD` |
+| `LEARNER_EMPIRICAL` | `VERIFIED` |
+| `PROJECT_SYNTHESIS` | `SYNTHESIS_PROPOSAL` |
+
+Consequences:
+
+- `SOURCE_FACT + TRANSFER` is impossible;
+- `PROJECT_DERIVED + DISCOVERY` is impossible;
+- `LEARNER_EMPIRICAL + BATTLE` is impossible;
+- `SOURCE_LEAD` can never directly enter Battle/Discovery/Transfer;
+- raw ledger tags/counts/co-occurrences remain `PROJECT_DERIVED + NONE`;
+- project synthesis cannot self-certify any Battle/Discovery/Transfer channel.
+
+Gate-2 evidence records must pass the executable validator. The matrix is an allow-list, not guidance.
 
 ### Verification status
 
@@ -318,12 +363,19 @@ Question:
 
 Possible evidence:
 
-- unlabeled Forge transfer;
+- unlabeled Forge transfer on a fresh task;
 - fresh Boss attempts;
-- Arena attempts;
-- delayed reconstruction under defined assistance rules.
+- fresh Arena material.
 
-Reading a source, seeing a worked solution, or completing a labeled execution drill cannot alone create Transfer evidence.
+A Transfer record requires all three learner-context facts:
+
+- `taskFreshness: FRESH`;
+- `methodPrompting: UNPROMPTED`;
+- `routeExposure: UNSEEN`.
+
+Same-task delayed reconstruction is **retention**, not transfer, even if no new hint is given.
+
+Reading a source, seeing a worked solution, completing a labeled execution drill, or reconstructing the same task later cannot alone create Transfer evidence.
 
 ## 6. Strict historical-evidence rule
 
@@ -390,6 +442,7 @@ sourceLocator
 sourceArtifactSha256
 historicalProblemIds
 learnerAttemptIds
+learnerContext
 
 claim
 sourceTerminology
@@ -409,8 +462,73 @@ Rules:
 - a canonical `SOURCE_FACT` must use a CANONICAL source ID from the frozen register.
 - a `SOURCE_LEAD` must use a provisional/noncanonical source identity, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`.
 - any VERIFIED SMMC solution-backed Battle record must carry the exact frozen `sourceArtifactSha256`.
+- `sourceLocator` is a structured object, never a free-text page reference.
+- Transfer learner records must satisfy the fresh/unprompted/unseen rules above.
+- delayed same-task reconstruction uses `claimKind: RETENTION` and `recordChannel: NONE`.
 
-## 8. Source inspection rule
+## 8. Canonical sourceLocator grammar
+
+`sourceLocator` is a tagged structured object. Free text such as “page 3” is invalid.
+
+The executable grammar lives in `course/smmc/arsenal/evidence-contract-v1.mjs`.
+
+### PDF locator
+
+Use for canonical book PDFs and SMMC paper/solution PDFs:
+
+```text
+{
+  kind: "PDF",
+  pdfPage: <positive integer>,
+  printedPage: <optional string>,
+  section: <optional string>,
+  anchor: <optional short identifying label>
+}
+```
+
+Rules:
+
+- `pdfPage` is always the **1-based physical page index in the exact frozen PDF artifact**.
+- `printedPage` is optional and records the page number/label printed on the page itself.
+- If PDF page 20 displays printed page 12, record `pdfPage: 20, printedPage: "12"`.
+- `section` may hold a chapter/section/problem label such as `"1.2"` or `"2021 A3"`.
+- `anchor` may hold a short identifying heading/phrase; it is not a substitute for `pdfPage`.
+
+### Repository locator
+
+Use for project files:
+
+```text
+{
+  kind: "REPO",
+  path: "course/smmc/ledger-2021.mjs",
+  lineStart: 10,
+  lineEnd: 20
+}
+```
+
+Rules:
+
+- path is repository-relative;
+- line numbers are 1-based and inclusive;
+- `sourceVersionOrCommit` separately records the exact commit being cited.
+
+### Web locator
+
+Use only where the evidence object itself is a web page rather than a frozen PDF/repository artifact:
+
+```text
+{
+  kind: "WEB",
+  url: "https://...",
+  heading: <optional string>,
+  retrievedAt: <optional explicit-timezone ISO timestamp>
+}
+```
+
+For canonical PDF evidence, the PDF locator and frozen artifact hash take precedence over a browser page URL.
+
+## 9. Source inspection rule
 
 No canonical Arsenal item may be authored solely from model memory.
 
@@ -428,7 +546,7 @@ If the exact artifact is unavailable or its hash/version does not match, the rec
 
 A noncanonical source may still be inspected, but its record remains `SOURCE_LEAD + NONE + UNVERIFIED_SOURCE_LEAD` until a reviewed source-register amendment accepts that source.
 
-## 9. Ontology and representation remain completely unfrozen
+## 10. Ontology and representation remain completely unfrozen
 
 Gate 1 records evidence. It does not decide representation.
 
@@ -446,7 +564,7 @@ Zeitz supplies source evidence about his three levels and his use of “crux mov
 
 No Gate-1 rule may reject a future representation merely because it differs from the current working hypothesis.
 
-## 10. Conflict and reconciliation rules
+## 11. Conflict and reconciliation rules
 
 When records disagree, preserve the disagreement.
 
@@ -472,7 +590,7 @@ Authority is claim-specific:
 
 A later tribunal may resolve ontology questions, but it must cite the records and explain the disposition.
 
-## 11. Frequency, difficulty, importance and combos
+## 12. Frequency, difficulty, importance and combos
 
 Historical counts are descriptive measurements only.
 
@@ -514,7 +632,7 @@ Battle co-occurrence requires two linked VERIFIED official historical-occurrence
 
 Until mathematical interaction is independently justified, call the pair a **recorded method partner** only.
 
-## 12. Prerequisite research rule
+## 13. Prerequisite research rule
 
 “Hard” and “soft” are research labels for later prerequisite proposals, not ontology levels.
 
@@ -536,7 +654,7 @@ A prerequisite proposal is initially `PROJECT_SYNTHESIS` + `claimKind: PREREQUIS
 
 A source's training recommendation is evidence to consider, not automatic project law.
 
-## 13. Forbidden shortcuts
+## 14. Forbidden shortcuts
 
 Reject any later research pass that:
 
@@ -556,11 +674,14 @@ Reject any later research pass that:
 - uses an unregistered source to settle a canonical claim;
 - uses an LLM explanation as provenance;
 - leaks private historical metadata into a protected learner attempt;
-- silently converts learner process evidence into Battle evidence, or Battle evidence into Transfer evidence.
+- silently converts learner process evidence into Battle evidence, or Battle evidence into Transfer evidence;
+- counts same-task delayed reconstruction as Transfer;
+- creates a record using a basis × channel × claim-kind combination outside the executable allow-list;
+- uses an ambiguous free-text locator such as “page 3” instead of the structured locator grammar.
 
 There is deliberately **no** Gate-1 ban on representing Crux as a card/event/tag/etc.; that is a later ontology/representation question.
 
-## 14. Gate-0 inheritance
+## 15. Gate-0 inheritance
 
 Every later gate inherits accepted Gate-0 corpus protection.
 
@@ -577,7 +698,7 @@ Research tooling may inspect private authoring evidence, but learner-facing hist
 
 No ontology, research UI, or learner UI change may weaken those guarantees without reopening the relevant Gate-0 regression review.
 
-## 15. Gate-1 deliverables
+## 16. Gate-1 deliverables
 
 Gate 1 passes only when all of the following survive independent review:
 
@@ -587,16 +708,19 @@ Gate 1 passes only when all of the following survive independent review:
 4. claim-specific source roles with explicit limitations;
 5. orthogonal `evidenceBasis`, `recordChannel`, `claimKind`, verification status, and future `ontologyType` axes;
 6. explicit `LEARNER_EMPIRICAL` and `SOURCE_LEAD` support;
-7. strict verified-Battle occurrence and co-occurrence rules;
-8. provenance schema;
-9. conflict/reconciliation rules;
-10. frequency/difficulty/co-occurrence safeguards;
-11. Gate-0 inheritance;
-12. explicit statement that ontology and representation remain unfrozen.
+7. complete executable basis × channel × claim-kind admissibility matrix;
+8. explicit fresh/unprompted/unseen Transfer semantics and separate same-task retention semantics;
+9. strict verified-Battle occurrence and co-occurrence rules;
+10. structured sourceLocator grammar for PDFs, repository files, and web pages;
+11. provenance schema;
+12. conflict/reconciliation rules;
+13. frequency/difficulty/co-occurrence safeguards;
+14. Gate-0 inheritance;
+15. explicit statement that ontology and representation remain unfrozen.
 
 Gate 1 produces **no accepted Arsenal abilities**.
 
-## 16. Handoff to Gate 2
+## 17. Handoff to Gate 2
 
 Only after independent Gate-1 acceptance may Gate 2 create the raw candidate ledger.
 
@@ -607,7 +731,9 @@ Gate 2 must:
 - represent every current SMMC method tag as at least a retrieval lead;
 - inspect the canonical book sources for additional plausible candidates;
 - preserve source terminology without treating it as ontology type;
-- attach evidence records using the orthogonal schema above;
+- attach evidence records using the orthogonal schema above and pass `validateGate1EvidenceRecord()`;
+- use only the structured sourceLocator grammar above;
+- count same-task delayed reconstruction as retention, never Transfer;
 - keep noncanonical source material as `SOURCE_LEAD + NONE + UNVERIFIED_SOURCE_LEAD` until separately admitted;
 - keep `ontologyType: null`;
 - make no final merge/split/type/prerequisite/ranking decision.
