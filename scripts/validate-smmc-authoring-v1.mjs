@@ -536,6 +536,51 @@ expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 258, "Gate-2 book-sou
 expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 631, "Gate-2 raw candidate total drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 631, "Gate-2 raw evidence total drifted.");
 
+const gate2SourceTerms = new Map();
+for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
+  if (typeof candidate.origin !== "string" || !candidate.origin.startsWith("S")) continue;
+  if (!gate2SourceTerms.has(candidate.origin)) gate2SourceTerms.set(candidate.origin, new Set());
+  gate2SourceTerms.get(candidate.origin).add(candidate.sourceTerminology);
+}
+const gate2SourceSaturationSentinels = Object.freeze({
+  "S1-ZEITZ-2007-2E": Object.freeze([
+    "Strategy", "Tactic", "Tool", "Crux Move", "Average Principle", "Symmetry-Product Principle",
+    "Algorithmic Proof", "Euclidean Algorithm", "Repeated Bisection Method", "Well-Ordering Principle",
+    "Draw a Picture", "Recast the Problem in Other Ways", "Monotonize", "Method of Weights",
+  ]),
+  "S2-ENGEL-1998": Object.freeze([
+    "Invariance Principle", "Coloring Proofs", "Extremal Principle", "Box Principle", "Induction Principle",
+    "Working Backwards", "Greedy Algorithm", "Divide and Conquer", "Counting by Bijection",
+    "Heuristic Principle", "Reflection Principle", "Involution", "Prüfer Code", "Great Ideas",
+  ]),
+  "S3-HAMMACK-BOOK-OF-PROOF-3.4": Object.freeze([
+    "Direct Proof", "Using Cases", "Contrapositive Proof", "Proof by Contradiction", "If-and-Only-If Proof",
+    "Existence Proof", "Uniqueness Proof", "Constructive Proof", "Non-Constructive Proof",
+    "Proof by Strong Induction", "Proof by Smallest Counterexample", "Counterexample", "Logical Inference",
+  ]),
+  "S4-VELLEMAN-2006-2E": Object.freeze([
+    "Direct Conditional Proof", "Contrapositive Proof", "Proof by Cases", "Biconditional Proof",
+    "Arbitrary Object for a Universal Goal", "Existence Witness", "Modus Ponens", "Modus Tollens",
+    "Existential Instantiation", "Universal Instantiation", "Analyze the Logical Form of the Goal",
+    "Expand Definitions to Expose Logical Form", "Existence-and-Uniqueness Goal",
+  ]),
+  "S5-GELCA-ANDREESCU-2007": Object.freeze([
+    "Argument by Contradiction", "Pigeonhole Principle", "Ordered Sets and Extremal Elements",
+    "Invariants and Semi-Invariants", "Search for a Pattern", "Fermat's Infinite Descent Principle",
+    "Chinese Remainder Theorem", "Generating Functions", "Counting Strategies",
+    "Linear Recursive Sequences", "Determinants", "Linear Transformations, Eigenvalues, Eigenvectors",
+    "Sturm's Principle", "Cayley–Hamilton Theorem", "Perron–Frobenius Theorem",
+    "Riemann Sums", "Euler's Formula for Planar Graphs", "Combinatorial Geometry",
+  ]),
+});
+for (const [sourceId, terms] of Object.entries(gate2SourceSaturationSentinels)) {
+  const harvested = gate2SourceTerms.get(sourceId);
+  expect(harvested instanceof Set, `Missing Gate-2 source harvest for ${sourceId}`);
+  for (const term of terms) {
+    expect(harvested.has(term), `Gate-2 source saturation sentinel missing ${sourceId}: ${term}`);
+  }
+}
+
 expect(ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE.length === 127, "Expected 127 direct official-solution occurrence records.");
 for (const record of ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE) {
   expect(record.evidenceBasis === "SOURCE_FACT", `Official-solution evidence must remain SOURCE_FACT: ${record.recordId}`);
