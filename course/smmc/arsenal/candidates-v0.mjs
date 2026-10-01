@@ -10,7 +10,7 @@
 //
 // Gate 3+ is responsible for granularity/adjudication.
 
-import { SMMC_METHOD_TAGS } from "../schema.mjs";
+import { SMMC_METHOD_TAGS, SMMC_SECONDARY_TAGS } from "../schema.mjs";
 
 const slug = value => value
   .toLowerCase()
@@ -123,6 +123,44 @@ export const ARSENAL_GATE2_LEGACY_TAG_EVIDENCE = Object.freeze(
     claim: `${candidate.sourceTerminology} is present in the frozen SMMC_METHOD_TAGS vocabulary.`,
     sourceTerminology: candidate.sourceTerminology,
     doesNotEstablish: "Does not establish official historical occurrence, importance, difficulty, granularity, ontology type, or learning order.",
+  }))
+);
+
+export const ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES = Object.freeze(
+  SMMC_SECONDARY_TAGS.map(tag => {
+    const id = `RAW-SECONDARY-${slug(tag)}`;
+    return rawCandidate({
+      id,
+      name: tag,
+      origin: "SMMC_SECONDARY_TAG",
+      sourceTerminology: tag,
+      evidenceRecordIds: [`E-${id}-schema`],
+      note: "Current secondary/content tag preserved verbatim as a raw tool/topic/specialist lead. Gate 2 does not decide whether it belongs in the final Arsenal.",
+    });
+  })
+);
+
+export const ARSENAL_GATE2_SECONDARY_TAG_EVIDENCE = Object.freeze(
+  ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES.map(candidate => evidence({
+    recordId: `E-${candidate.candidateId}-schema`,
+    candidateId: candidate.candidateId,
+    candidateName: candidate.candidateName,
+    evidenceBasis: "PROJECT_DERIVED",
+    recordChannel: "NONE",
+    claimKind: "INDEX_SIGNAL",
+    verificationStatus: "INDEX_LEAD",
+    sourceId: "S0-PROJECT-SCHEMA",
+    sourceVersionOrCommit: LEGACY_SCHEMA_COMMIT,
+    sourceLocator: Object.freeze({
+      kind: "REPO",
+      path: "course/smmc/schema.mjs",
+      lineStart: 14,
+      lineEnd: 25,
+    }),
+    sourceArtifactSha256: null,
+    claim: `${candidate.sourceTerminology} is present in the frozen SMMC_SECONDARY_TAGS vocabulary.`,
+    sourceTerminology: candidate.sourceTerminology,
+    doesNotEstablish: "Does not establish that this topic/tool is a distinct Arsenal ability, its ontology type, historical use, importance, prerequisite status, or rank.",
   }))
 );
 
@@ -245,11 +283,13 @@ export const ARSENAL_GATE2_BOOK_EVIDENCE = Object.freeze(
 
 export const ARSENAL_GATE2_RAW_CANDIDATES = Object.freeze([
   ...ARSENAL_GATE2_LEGACY_TAG_CANDIDATES,
+  ...ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES,
   ...ARSENAL_GATE2_BOOK_CANDIDATES,
 ]);
 
 export const ARSENAL_GATE2_RAW_EVIDENCE = Object.freeze([
   ...ARSENAL_GATE2_LEGACY_TAG_EVIDENCE,
+  ...ARSENAL_GATE2_SECONDARY_TAG_EVIDENCE,
   ...ARSENAL_GATE2_BOOK_EVIDENCE,
 ]);
 
@@ -258,6 +298,7 @@ export const ARSENAL_GATE2_HARVEST_META = Object.freeze({
   status: "RAW-HARVEST-IN-PROGRESS",
   legacyMethodTagCount: SMMC_METHOD_TAGS.length,
   legacyCandidates: ARSENAL_GATE2_LEGACY_TAG_CANDIDATES.length,
+  secondaryTagCandidates: ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES.length,
   bookSourceCandidates: ARSENAL_GATE2_BOOK_CANDIDATES.length,
   totalCandidates: ARSENAL_GATE2_RAW_CANDIDATES.length,
   totalEvidenceRecords: ARSENAL_GATE2_RAW_EVIDENCE.length,
