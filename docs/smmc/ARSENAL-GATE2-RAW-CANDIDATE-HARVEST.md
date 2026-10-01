@@ -34,10 +34,9 @@ Current expanded harvest inventory:
 - **39** current `SMMC_SECONDARY_TAGS`, preserved separately so tool/topic/specialist possibilities are not lost;
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
-- **201** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **477 total raw candidates**;
-- **477 evidence records**;
-- **9 currently reported normalized duplicate-name groups**, deliberately unresolved;
+- **255** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
+- **531 total raw candidates**;
+- **531 evidence records**;
 - **0 typed candidates**;
 - **0 alias merges**;
 - **0 adjudications**;
@@ -57,7 +56,7 @@ Inspected:
 - physical PDF page 20: §1.2 terminology around Strategy / Tactics / Tools;
 - physical PDF page 42: §2.2, which explicitly names the penultimate-step, get-your-hands-dirty, wishful-thinking, and make-it-easier strategies.
 
-Raw source-specific candidates currently include:
+Representative raw source-specific candidates include:
 - Orientation;
 - Penultimate Step;
 - Get Your Hands Dirty;
@@ -82,7 +81,7 @@ Inspected:
 - physical PDF page 5: contents with Invariance, Coloring, Extremal, Box, Induction and other major chapters;
 - physical PDF page 377: §14.3 Working Backwards, including Engel's explicit low-branching description and relation to descent.
 
-Current raw source-specific candidates include:
+Representative raw source-specific candidates include:
 - Invariance Principle;
 - Coloring Proofs;
 - Extremal Principle;
@@ -104,14 +103,14 @@ Current raw source-specific candidates include:
 Inspected:
 - physical PDF page 5: proof-structure contents for Direct, Cases, Contrapositive, Contradiction, iff, existence/uniqueness, constructive/non-constructive proof, induction, strong induction, and smallest counterexample.
 
-Current raw source-specific candidates preserve those labels independently and also retain Combinatorial Proof, Counterexample, Disproving Existence Statements, Disproof by Contradiction, and Treating Similar Cases.
+The source-specific harvest preserves those labels independently and also retains Combinatorial Proof, Counterexample, Disproving Existence Statements, Disproof by Contradiction, Treating Similar Cases, explicit set-proof structures, and counting principles.
 
 ### Velleman
 
 Inspected:
 - physical PDF page 390: Summary of Proof Techniques.
 
-Current raw source-specific candidates include:
+Representative raw source-specific candidates include:
 - Reexpress a Negative Goal;
 - Proof by Contradiction;
 - Direct Conditional Proof;
@@ -158,22 +157,34 @@ The deeper pass also preserves terms that are easy to lose if the harvest only l
 
 These are especially important because Gate 1 deliberately refused to pre-decide whether such concepts become ontology classes, cards, events, annotations, or are rejected later. Gate 2 therefore keeps them as raw candidates with `ontologyType: null`.
 
+### Independent coverage repair after the first review candidate
+
+An independent Gate-2 coverage attack found that the 477-row review candidate was still missing explicit source-specific leads. The repair added **54** raw book rows without changing any Gate-2 semantics:
+
+- **17 Zeitz** index-level discovery/proof/specialist leads, including Look for Patterns, Brainstorming, Restating a Problem, Backward Induction, Area as a Proof Tactic, Euclidean Algorithm, Möbius Inversion, Pick's Theorem, Well-Ordering, Homothety, and Inversion;
+- **6 Engel** indexed algorithm/encoding/recurrence leads, including Euclidean Algorithm, Involution, Prüfer Code, Difference Equations, Cayley's Formula, and Binet's Formula;
+- **8 Hammack** explicit proof/counting headings, including logical inference, counting principles, and the source's set-membership/subset/set-equality proof structures;
+- **6 Velleman** explicit goal/given transformations from the Summary of Proof Techniques, including unique-existence handling and splitting conjunction/biconditional givens;
+- **17 Putnam and Beyond** substantive named TOC sections omitted by the first broad sweep, including matrix operations, groups/rings, series/continuity/integration, differential-equation techniques, conics, higher-dimensional coordinate geometry, prime numbers, set combinatorics, and binomial/counting methods.
+
+These additions are **coverage repairs only**. They do not decide whether any of the new rows survive Gate 3, merge with existing rows, become prerequisites, or receive any ontology type.
+
 ### Source-specific book coverage
 
 Current raw book harvest, still without adjudication:
 
 | Canonical source | Raw source-specific candidates |
 |---|---:|
-| Zeitz | 62 |
-| Engel | 36 |
-| Hammack | 17 |
-| Velleman | 19 |
-| Putnam and Beyond | 67 |
-| **Total** | **201** |
+| Zeitz | 79 |
+| Engel | 42 |
+| Hammack | 25 |
+| Velleman | 25 |
+| Putnam and Beyond | 84 |
+| **Total** | **255** |
 
 The counts are deliberately not interpreted as source importance. They reflect the current harvest granularity and how explicitly each source names techniques.
 
-### Complete Putnam TOC sweep
+### Complete Putnam TOC inspection
 
 The Putnam-and-Beyond harvest now also preserves named candidates from the full table of contents where they plausibly represent reusable contest tools or specialist methods: Sturm's Principle, polynomial-derivative and irreducibility methods, Chebyshev polynomials, matrix inversion, linear systems and bases, Cayley-Hamilton, Perron-Frobenius, Mean Value Theorem, Riemann sums, integral inequalities, Stokes-type methods, higher-order ODEs, vector/coordinate geometry, Fermat/Wilson, linear Diophantine equations, planar-graph Euler formula, and related items.
 
@@ -218,7 +229,7 @@ These direct source observations still do **not** build the later Battle matrix.
 - SOURCE_FACT records whose Source ID is outside the canonical registry;
 - candidate counts by origin.
 
-At the current 477-candidate checkpoint there are **11 duplicate-name groups**. That is expected and desirable at Gate 2.
+The audit reports normalized duplicate-name groups dynamically. Their exact count is not frozen as a quality target; collisions are expected and desirable at Gate 2, and they must remain unresolved.
 
 The validator requires:
 - zero orphan evidence;
@@ -237,7 +248,7 @@ The authoring validator must enforce:
 - adjudication/rank/rarity/prerequisite/relation fields remain null;
 - candidate IDs and evidence IDs are unique;
 - every candidate evidence reference resolves;
-- harvest metadata stays `RAW-HARVEST-IN-PROGRESS`.
+- harvest metadata stays `RAW-HARVEST-REVIEW-CANDIDATE`.
 
 ## 7. Independent review contract
 
@@ -247,7 +258,7 @@ The reviewer should attack at least these questions:
 
 1. **Coverage:** did any current method tag, secondary tag, ledger bridge need, or recurring problem-specific route disappear?
 2. **Book blind spots:** do Zeitz/Engel/Hammack/Velleman/Putnam contain clearly reusable named problem-solving ideas that the current source sweeps missed?
-3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 477-row raw pool?
+3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 531-row raw pool?
 4. **Premature merging:** were any same-looking source terms silently collapsed instead of preserved separately?
 5. **Premature ontology:** is any candidate typed, ranked, parented, prerequisite-linked, or adjudicated?
 6. **Evidence honesty:** does every row use the Gate-1 basis/channel/claim-kind contract correctly?
