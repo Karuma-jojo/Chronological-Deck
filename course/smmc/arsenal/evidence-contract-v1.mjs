@@ -1,3 +1,5 @@
+import { SMMC_OFFICIAL_SOLUTION_SOURCES_V1 } from "../official-solution-sources-v1.mjs";
+
 // SMMC Arsenal Gate-1 evidence contract.
 //
 // This module freezes research-record admissibility only.
@@ -126,6 +128,11 @@ export const ARSENAL_EVIDENCE_ADMISSIBILITY = Object.freeze({
   }),
 });
 
+// FRESH means first substantive attempt on this exact task with no prior route/solution,
+ // material-hint, method-cue, or rehearsal exposure. Statement-only prior exposure may
+ // still be compatible with FRESH when Gate-0 exposure semantics still classify the
+ // problem as transfer-eligible. SAME_TASK_DELAYED is a reattempt/reconstruction and
+ // therefore retention, never Transfer.
 export const ARSENAL_TASK_FRESHNESS = Object.freeze([
   "FRESH",
   "SAME_TASK_DELAYED",
@@ -296,17 +303,29 @@ export function validateGate1EvidenceRecord(record) {
   if (
     record.evidenceBasis === "SOURCE_FACT" &&
     record.recordChannel === "BATTLE" &&
+    typeof record.sourceId === "string" &&
+    record.sourceId.startsWith("S0-SMMC-SOLUTION-")
+  ) {
+    const year = Number(record.sourceId.slice("S0-SMMC-SOLUTION-".length));
+    const frozen = SMMC_OFFICIAL_SOLUTION_SOURCES_V1[year];
+    if (!frozen || frozen.sourceId !== record.sourceId) {
+      throw new Error("Unknown frozen official solution sourceId.");
+    }
+    if (record.sourceArtifactSha256 !== frozen.sha256) {
+      throw new Error("Solution-backed Battle record hash does not match frozen canonical artifact.");
+    }
+    if (record.sourceLocator?.kind !== "PDF" || record.sourceLocator.pdfPage > frozen.pages) {
+      throw new Error("Solution-backed Battle locator must point inside the frozen canonical PDF.");
+    }
+  }
+
+  if (
+    record.evidenceBasis === "SOURCE_FACT" &&
+    record.recordChannel === "BATTLE" &&
     record.claimKind === "HISTORICAL_OCCURRENCE"
   ) {
     if (!Array.isArray(record.historicalProblemIds) || record.historicalProblemIds.length !== 1) {
       throw new Error("Verified historical occurrence requires exactly one historicalProblemId.");
-    }
-    if (
-      typeof record.sourceId === "string" &&
-      record.sourceId.startsWith("S0-SMMC-SOLUTION-") &&
-      !/^[0-9a-f]{64}$/.test(record.sourceArtifactSha256 || "")
-    ) {
-      throw new Error("Solution-backed Battle occurrence requires frozen sourceArtifactSha256.");
     }
   }
 
