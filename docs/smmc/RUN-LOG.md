@@ -704,3 +704,24 @@ Regression additions include:
 No Gate-2 candidate harvesting, typing, ranking, prerequisite work, Forge, Boss or Arena work was started.
 
 **STOP:** Gate 2 remains CLOSED pending independent closure acceptance of the repaired exact head.
+
+
+## Arsenal Gate 1 closure / Gate 2 start — 2026-10-02
+
+Gate 1 was independently accepted on exact head \`3052b8c53dd9e8bd598f51bc8423470086776625\` and merged to \`main\` as \`1a485cf7a2c495ab717cadee60a7762d96994f34\`.
+
+Gate 2 began on branch \`codex/smmc-arsenal-gate2-raw-candidate-harvest\`.
+
+Batch 1 created \`course/smmc/arsenal/candidates-v0.mjs\`:
+- 44/44 current SMMC method tags preserved verbatim as index leads;
+- 55 source-specific candidate rows harvested from inspected passages in Zeitz, Engel, Hammack, Velleman, and Putnam and Beyond;
+- 99 raw candidates / 99 evidence records total;
+- ontologyType remains null;
+- no aliases merged;
+- no adjudication, ranking, prerequisite graph, parent/child relation, or combo work started.
+
+The authoring validator now checks Gate-2 boundary invariants and exact legacy-tag coverage.
+
+This is an **initial harvest batch**, not Gate-2 completion.
+
+**STOP:** Gate 3 remains CLOSED.
