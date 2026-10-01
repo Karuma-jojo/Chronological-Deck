@@ -35,8 +35,8 @@ Current expanded harvest inventory:
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
 - **174** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **420 total raw candidates**;
-- **420 evidence records**;
+- **428 total raw candidates**;
+- **428 evidence records**;
 - **9 currently reported normalized duplicate-name groups**, deliberately unresolved;
 - **0 typed candidates**;
 - **0 alias merges**;
@@ -170,6 +170,23 @@ A separate manual pass over all 88 `auditNote` fields added 34 route leads that 
 
 All of those remain `PROJECT_DERIVED + NONE + INDEX_SIGNAL`. They are **not** claimed as verified historical Battle occurrences.
 
+## 5. Official-solution route-diversity sweep
+
+The exact frozen 2017–2025 solution booklets were also parsed structurally.
+
+`course/smmc/arsenal/official-solution-route-index-v0.mjs` records a **lower bound** on route diversity from explicit `Solution`, `Solution N`, and `Solution via ...` headings:
+
+- **88** historical problems indexed;
+- **132** explicitly labelled solution sections;
+- **32** problems with more than one explicitly labelled route;
+- **2** problems with no labelled solution section in the booklet: 2017 B4 and 2018 B4.
+
+This is intentionally not treated as “132 methods.” A single labelled solution may contain several moves, and multiple labelled solutions may share most of their mathematics.
+
+A first direct official-solution concept pass added **8** SOURCE_FACT/NONE raw leads that were not safely represented by the earlier tag-only view, including winding-number parity coloring, perturbing away degeneracies, parity under continuous deformation, Taylor-series expansion, an MVT contradiction route, dense-set Riemann-sum approximation, a finite-group Lagrange-theorem counting route, and upper-Riemann-sum bounding.
+
+These direct source observations still do **not** build the later Battle matrix.
+
 ## 5. Non-adjudicating duplicate/orphan audit
 
 `course/smmc/arsenal/raw-harvest-audit-v0.mjs` now reports:
@@ -180,7 +197,7 @@ All of those remain `PROJECT_DERIVED + NONE + INDEX_SIGNAL`. They are **not** cl
 - SOURCE_FACT records whose Source ID is outside the canonical registry;
 - candidate counts by origin.
 
-At the current 420-candidate checkpoint there are **10 duplicate-name groups**. That is expected and desirable at Gate 2.
+At the current 428-candidate checkpoint there are **10 duplicate-name groups**. That is expected and desirable at Gate 2.
 
 The validator requires:
 - zero orphan evidence;
