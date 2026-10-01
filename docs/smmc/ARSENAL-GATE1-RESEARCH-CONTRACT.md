@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 1 research contract
 
-Status: **G1-R01–R05 + F1–F3 + C01–C03 REPAIRED — independent closure review required; ontology and representation remain unfrozen**  
+Status: **G1-R01–R05 + F1–F3 + C01–C03 + D01–D02 REPAIRED — independent closure review required; ontology and representation remain unfrozen**  
 Scope: evidence discipline only. Gate 1 does **not** accept, merge, split, type, rank, order, prerequisite-link, or choose a data representation for any Arsenal candidate.
 
 ## 1. Purpose
@@ -27,11 +27,15 @@ The existing 88-problem method tags are research input, not a finished learner o
 
 ## 2. Frozen canonical source register
 
-The exact canonical source identities are frozen in:
+The human-readable source register is:
 
 `docs/smmc/ARSENAL-SOURCE-REGISTER-v1.md`
 
-A title alone is not a source identity.
+The machine-readable identity allow-list enforced by the validator is:
+
+`course/smmc/arsenal/canonical-sources-v1.mjs`
+
+A title, familiar-looking prefix, or plausible hash is not a source identity. A canonical `SOURCE_FACT` must resolve to an exact machine-registered Source ID and match that source's frozen SHA-256/page bounds.
 
 For books, a canonical source is identified by bibliographic edition plus the SHA-256 of the exact artifact used for Gate-1 research.
 
@@ -52,7 +56,10 @@ Before it can support canonical evidence, a source-register amendment must recor
 3. the claim kinds it is allowed to support;
 4. what it does not establish;
 5. why the existing canonical set is insufficient;
-6. an independent review of the amendment.
+6. the exact new/changed entry in `course/smmc/arsenal/canonical-sources-v1.mjs`;
+7. an independent review of the amendment.
+
+A documentation-only amendment is insufficient: until the machine-readable registry contains the accepted Source ID, `SOURCE_FACT` validation must fail.
 
 Until that amendment is accepted, material from the source may be logged only with `evidenceBasis: SOURCE_LEAD`, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`. It may be inspected, located, hashed, and paraphrased as a lead, but it may not settle a candidate, prerequisite, ranking, combo, Battle/Discovery/Transfer claim, or ontology decision.
 
@@ -170,7 +177,7 @@ Examples:
 - a frozen official SMMC solution actually uses an invariant;
 - Hammack calls direct/contrapositive/contradiction three main techniques for conditional statements.
 
-A source fact must be inspected, paraphrased, locatable, and tied to the canonical source identity. If the evidence is a frozen official solution artifact, its canonical SHA-256 is mandatory.
+A source fact must be inspected, paraphrased, locatable, and tied to a Source ID present in the machine-readable canonical registry. Its `sourceArtifactSha256` must equal the exact registered hash and its PDF locator must fall inside the registered page count. Invented IDs—including IDs that merely begin with `S0-SMMC-`—are invalid.
 
 #### `SOURCE_LEAD`
 
@@ -332,7 +339,7 @@ Question:
 
 > Is there verified historical evidence that this move actually appears productively in SMMC mathematics?
 
-A verified Battle occurrence requires traceable official evidence.
+A verified Battle occurrence requires traceable official SMMC evidence whose Source ID is present in the machine-readable canonical registry as an official SMMC problem paper or solution artifact. Prefix matching is never enough.
 
 A current ledger method tag may help locate the problem, but until the tagged move is traced to the audited official statement/solution evidence it remains an `INDEX_LEAD`.
 
@@ -416,10 +423,14 @@ Its `verificationStatus` may be `VERIFIED` only in the narrow sense that the pro
 
 A `recordChannel: BATTLE` + `claimKind: HISTORICAL_COOCCURRENCE` record is permitted only when:
 
-1. there are two linked `SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE + VERIFIED` records;
-2. both linked records refer to the same SMMC problem ID;
-3. each occurrence is independently traceable to frozen official evidence;
-4. any solution evidence carries the frozen canonical artifact SHA-256.
+1. there are **exactly two distinct linked record IDs**;
+2. both linked records are `SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE + VERIFIED`;
+3. the linked occurrence records have **two distinct candidate/move IDs**;
+4. both linked records refer to the same SMMC problem ID;
+5. each occurrence is independently traceable to a machine-registered frozen official SMMC source;
+6. every source hash matches its canonical registry entry.
+
+Linking the same occurrence twice—or two occurrence records for the same candidate/move—does not establish co-occurrence.
 
 If either move is only an `INDEX_LEAD`, the pair cannot become Battle co-occurrence.
 
@@ -461,7 +472,7 @@ Rules:
 - Fields that do not apply are null/empty; they are not silently repurposed.
 - `PROJECT_SYNTHESIS` records must point to supporting `linkedRecordIds`.
 - `LEARNER_EMPIRICAL` records must identify learner attempt/task evidence and exposure/assistance context.
-- a canonical `SOURCE_FACT` must use a CANONICAL source ID from the frozen register.
+- a canonical `SOURCE_FACT` must use a Source ID present in `course/smmc/arsenal/canonical-sources-v1.mjs`, with exact registered hash and in-bounds PDF locator; human-readable documentation alone cannot make a Source ID canonical.
 - a `SOURCE_LEAD` must use a provisional/noncanonical source identity, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`.
 - any VERIFIED SMMC solution-backed Battle record must carry the exact frozen `sourceArtifactSha256`, and that hash must equal the canonical hash for its `S0-SMMC-SOLUTION-<year>` Source ID rather than merely matching SHA-256 syntax.
 - `sourceLocator` is a structured object, never a free-text page reference.
@@ -674,6 +685,9 @@ Reject any later research pass that:
 - treats source terminology as an already-frozen ontology type;
 - lets model memory substitute for source inspection;
 - uses an unregistered source to settle a canonical claim;
+- treats a plausible-looking or `S0-SMMC-`-prefixed Source ID as canonical without exact registry membership;
+- treats a well-formed but wrong SHA-256 as canonical;
+- constructs Battle co-occurrence by linking the same occurrence record twice or by linking two records for the same candidate/move;
 - uses an LLM explanation as provenance;
 - leaks private historical metadata into a protected learner attempt;
 - silently converts learner process evidence into Battle evidence, or Battle evidence into Transfer evidence;
@@ -704,7 +718,7 @@ No ontology, research UI, or learner UI change may weaken those guarantees witho
 
 Gate 1 passes only when all of the following survive independent review:
 
-1. exact canonical source register;
+1. exact human-readable source register plus machine-readable canonical Source-ID/hash/page allow-list;
 2. exact frozen 2017–2025 official solution-artifact registry with mandatory hashes for solution-backed Battle evidence;
 3. source-amendment rule;
 4. claim-specific source roles with explicit limitations;
