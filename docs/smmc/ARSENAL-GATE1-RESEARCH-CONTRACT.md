@@ -1,405 +1,564 @@
 # SMMC Arsenal — Gate 1 research contract
 
-Status: **REVIEW CANDIDATE — ontology remains unfrozen**  
-Scope: evidence discipline for Arsenal research. This gate does **not** accept, merge, split, rank or order any candidate ability.
+Status: **G1-R01–R05 REPAIRED — independent follow-up required; ontology and representation remain unfrozen**  
+Scope: evidence discipline only. Gate 1 does **not** accept, merge, split, type, rank, order, prerequisite-link, or choose a data representation for any Arsenal candidate.
 
 ## 1. Purpose
 
-Gate 1 defines how every later Arsenal claim must be researched before the project begins candidate harvesting.
+Gate 1 defines the epistemic contract for every later Arsenal research claim.
 
-The research problem is unusually easy to corrupt:
+It deliberately answers:
 
-- the 88-problem SMMC ledger records successful mathematics but not every discovery move that happened in scratch work;
-- the existing method tags were designed as a useful historical annotation vocabulary, not as a finished learner ontology;
-- source books use overlapping terminology at different levels of granularity;
-- a frequently tagged method is not automatically important to learn first;
-- a rare method is not automatically difficult;
-- two methods appearing together are not automatically a genuine combo;
-- polished official solutions systematically hide some search behavior;
-- the finite historical corpus must remain protected under Gate 0.
+- what source or observation a claim came from;
+- what kind of claim it is;
+- which evidence channel it can support;
+- how strongly it has been verified;
+- what the evidence does **not** establish.
 
-Therefore the Arsenal may not be authored from model memory, vibes, tag frequency, or one book's table of contents.
+It deliberately does **not** answer:
 
-## 2. Canonical evidence set
+- what the final ontology levels are;
+- whether a candidate is a Strategy, Proof Form, Tactic, Tool, Foundation, Specialist, event, tag, relation, card, or something else;
+- whether two names merge or split;
+- where an item belongs in a prerequisite graph;
+- how an item should be ranked, displayed, or gamified.
 
-Every Gate-2+ research pass must inspect the relevant material from this set before making a canonical claim.
+The existing 88-problem method tags are research input, not a finished learner ontology.
 
-### S0 — official SMMC corpus and project ledger
+## 2. Frozen canonical source register
 
-Canonical project sources:
+The exact canonical source identities are frozen in:
 
-- `course/smmc/ledger-2017.mjs` through `ledger-2025.mjs`;
-- `course/smmc/ledger.mjs`;
-- official SMMC problem/solution evidence already used to audit those rows;
-- `course/smmc/schema.mjs`;
-- `docs/smmc/FINAL-SYNTHESIS-2017-2025.md`;
-- Gate-0 corpus-protection contract and runtime semantics.
+`docs/smmc/ARSENAL-SOURCE-REGISTER-v1.md`
 
-Role:
+A title alone is not a source identity.
 
-- establishes what mathematics appears in the historical SMMC corpus;
-- supports **Battle Record** evidence;
-- supports historical method co-presence and domain breadth;
-- does **not** by itself establish how a human discovered a route;
-- does **not** establish pedagogical learning order or difficulty.
+For books, a canonical source is identified by bibliographic edition plus the SHA-256 of the exact artifact used for Gate-1 research.
 
-The current ledger contains 88 official problems, including 72 East A/B problems and 16 supplementary C problems. Existing method tags are research input, not a frozen Arsenal ontology.
+For the SMMC corpus, the project snapshot is pinned to the Gate-0 merge commit and official source registry. Individual historical Battle claims must additionally identify the exact official problem/solution source used to verify the occurrence.
 
-### S1 — Paul Zeitz, *The Art and Craft of Problem Solving*
+Only sources listed as **CANONICAL** in the source register may directly support a canonical Gate-2+ source claim.
 
-Required anchors:
+### Source-register amendment rule
 
-- Chapter 1, especially §1.2 **The Three Levels of Problem Solving**;
-- Chapter 2, **Strategies for Investigating Problems**;
-- Chapter 3, **Tactics for Solving Problems**;
-- later topic chapters when a candidate technique needs exact source evidence.
+A new or replacement source does not become canonical because a builder finds it useful.
 
-What this source establishes for Gate 1:
+Before it can support canonical evidence, a source-register amendment must record:
 
-- **Strategy** = broad mathematical/psychological ideas for starting and pursuing problems;
-- **Tactic** = broadly reusable mathematical methods;
-- **Tool** = narrowly focused techniques for specific situations;
-- a **crux move** may occur at strategy, tactic or tool level and is therefore an event in a solution history, not automatically a fourth level;
-- investigation and polished argument are distinct objects.
+1. exact bibliographic/version identity;
+2. stable source URL or exact artifact filename plus SHA-256, as applicable;
+3. the claim kinds it is allowed to support;
+4. what it does not establish;
+5. why the existing canonical set is insufficient;
+6. an independent review of the amendment.
 
-Project rule:
+Until that amendment is accepted, material from the source may be logged only as an `UNVERIFIED_SOURCE_LEAD`. It may not settle a candidate, prerequisite, ranking, combo, or ontology decision.
 
-Zeitz's labels are strong evidence about problem-solving granularity, but they are not mechanically binding. If the Arsenal later classifies a source-named tactic differently for learner reasons, the source wording and the project rationale must both be preserved.
+## 3. Claim-specific source roles
 
-### S2 — Arthur Engel, *Problem-Solving Strategies*
+Source roles are descriptive. They do not create ontology decisions.
 
-Required anchors:
+### S0 — official SMMC evidence + frozen project corpus
 
-- Preface;
-- chapters corresponding to any candidate under review;
-- Chapter 14 for additional/further strategies when relevant.
+The official SMMC problem/solution documents are primary historical evidence for what actually appeared in a competition problem or successful official route.
 
-What this source establishes for Gate 1:
+The repository ledger/schema/synthesis at the frozen S0 commit are **project-derived indices and summaries**. They are valuable for retrieval, counts, and cross-checking, but a method tag by itself is not proof that the tagged move appears in the official solution.
 
-- contest training can be organized around recurring **Great Ideas**, not topics alone;
-- worked examples and large problem families are used to train those ideas;
-- difficulty is unstable under prior exposure/training;
-- a related training problem can radically change how difficult a later problem feels.
+S0 can support:
 
-Project rule:
+- historical occurrence;
+- historical co-presence;
+- domain/year/population measurements;
+- project-derived overlap/bridge metadata.
 
-Never use historical rarity, source ordering or a numeric difficulty label as a proxy for pedagogical importance.
+S0 does not by itself establish:
 
-### S3 — Richard Hammack, *Book of Proof*
+- how a human discovered the route;
+- general pedagogical importance;
+- difficulty;
+- learning order;
+- learner transfer.
 
-Required anchors:
+### S1 — Zeitz
 
-- Introduction and dependency tree;
-- Chapters 4–6: direct, contrapositive and contradiction;
-- Chapter 7: non-conditional forms, existence and uniqueness;
-- Chapter 9: disproof/counterexample;
-- Chapter 10: induction, strong induction and smallest counterexample.
+In the frozen second edition, Zeitz explicitly introduces his terminology of **Strategy**, **Tactics**, and **Tools** as three problem-solving levels, while noting that these are not standard definitions. He also describes a mathematical **crux move** and says a crux can occur at strategic, tactical, or tool level.
 
-What this source establishes for Gate 1:
+This can support:
 
-- proof architectures have a dependency structure that is different from topic taxonomy;
-- direct, contrapositive and contradiction are distinct proof forms;
-- cases, existence/uniqueness, disproof, induction, strong induction and smallest-counterexample reasoning deserve explicit proof-structure treatment.
+- source terminology;
+- source-authored granularity distinctions;
+- discovery/search heuristics;
+- investigation-versus-final-argument observations.
 
-Project rule:
+It does **not** force the Arsenal to use those levels, nor does it determine how the Arsenal must represent a crux.
 
-A **Proof Form** is not to be collapsed into the Strategy/Tactic/Tool ladder merely because it can also function tactically in a contest solution.
+### S2 — Engel
 
-### S4 — Daniel J. Velleman, *How To Prove It: A Structured Approach*
+In the frozen artifact, Engel describes his compact contest training as organized around recurring **Great Ideas**, with many problems chosen to illustrate them. He also explicitly warns that problem difficulty is unstable under prior training and that a related training problem can make a later problem dramatically easier.
 
-Required anchors:
+This can support:
 
-- Preface;
-- Chapters 1–2 for logic/quantifiers;
-- Chapter 3 for structured proving;
-- Chapter 6 for induction/strong induction.
+- source terminology;
+- training-design evidence;
+- discovery/method-family leads;
+- caution against treating rarity or historical difficulty as stable learner difficulty.
 
-What this source establishes for Gate 1:
+It does **not** make Engel's chapter structure, ordering, or named principles the project ontology.
 
-- proofs are built from reusable structures that can be combined and nested;
-- logical form guides the choice of proof structure;
-- foundational logic/quantifier competence precedes many proof-form decisions;
-- scratch work and final proof have different purposes.
+### S3 — Hammack
 
-Project rule:
+In the frozen Book of Proof artifact, Hammack:
 
-This is evidence for keeping **Foundation** and **Proof Form** conceptually separate from discovery heuristics.
+- organizes **his book's chapters** with an explicit dependency tree;
+- treats direct proof, contrapositive proof, and contradiction as three main techniques for conditional statements;
+- separately covers cases, non-conditional forms, existence/uniqueness, disproof/counterexample, induction, strong induction, and smallest counterexample.
 
-### S5 — Titu Andreescu and Razvan Gelca, *Putnam and Beyond*
+This can support:
 
-Required anchors:
+- source terminology;
+- proof-structure distinctions;
+- evidence that this text teaches some proof techniques separately;
+- evidence about **the dependency organization of this edition of this book**.
 
-- **A Study Guide**;
-- Chapter 1, **Methods of Proof**;
-- later topic sections only when a candidate technique requires them.
+It does **not** establish a universal proof-architecture dependency DAG, nor does it force those techniques to occupy a separate top-level Arsenal class.
 
-What this source establishes for Gate 1:
+### S4 — Velleman
 
-- theory/examples should precede targeted problem work;
-- serious independent attempts should precede solution reading;
-- even solved problems should be reviewed for additional insight;
-- competitors should use authentic competition problems to identify weaknesses and should write full solutions for comparison;
-- contradiction, induction, pigeonhole, ordering and invariance are treated as fundamental/universal proof methods.
+In the frozen second edition, Velleman develops a structured-proving approach in which proof structures can be combined and nested, and in his examples the logical form of the statement guides choice of proof structure. His book orders logic/quantifiers before the systematic proof-strategy chapter and later induction.
 
-Project rule:
+This can support:
 
-This source primarily informs training/evidence design and broad method significance; it does not license copying its chapter structure as the Arsenal ontology.
+- source terminology;
+- proof-structure evidence;
+- logical-form-guided proof planning;
+- evidence about Velleman's own pedagogical sequence.
 
-## 3. Required evidence classes
+It does **not** establish a universal prerequisite order, and it does not force the Arsenal to separate “Foundation” from any future proof-form category.
 
-Every canonical research claim must be tagged with exactly one primary evidence class. Multiple evidence records may support the same candidate.
+### S5 — *Putnam and Beyond*
 
-### `HISTORICAL_BATTLE`
+In the frozen 2007 artifact, the Study Guide recommends a training pattern that includes theory/examples, serious independent problem attempts, delayed solution reading, review even after success, authentic Putnam problems to diagnose weaknesses, and writing full solutions for comparison. Chapter 1 separately presents contradiction, induction, pigeonhole, ordering/extremal elements, and invariance as methods of proof and describes their basic/universal use.
 
-Evidence that a move appears in, is compatible with, or is productive in successful SMMC mathematics.
+This can support:
 
-Examples:
-- ledger tag on a specific problem;
-- official solution uses an invariant;
-- official route performs a graph reformulation.
+- source training advice;
+- source terminology;
+- broad method significance inside that text;
+- later project synthesis about training design.
 
-This supports Battle Record. It does **not** prove discovery value.
+It does **not** automatically become project law, a universal learning sequence, or an Arsenal ontology.
 
-### `SOURCE_HEURISTIC`
+## 4. Orthogonal evidence axes
 
-Evidence from Zeitz, Engel, Putnam-style training sources or another approved problem-solving source about how solvers search, recognize, simplify, transform or combine ideas.
+The first Gate-1 candidate mixed source type, claim type, channel, and inference status into one “evidence class.” That is forbidden now.
 
-This primarily supports Discovery Record and training design.
+Every research record uses separate axes.
 
-### `PROOF_STRUCTURE`
+### Axis A — `evidenceBasis`
 
-Evidence from Hammack, Velleman or another approved proof source about logical/proof architecture.
+What kind of epistemic object is this record?
 
-This supports Proof Form definitions and proof prerequisites.
+#### `SOURCE_FACT`
 
-### `PREREQUISITE_MATHEMATICS`
-
-Evidence that a candidate is unintelligible or unusable without a mathematical concept, definition or theorem family.
-
-This supports hard/soft prerequisite edges, not importance ranking.
-
-### `PROJECT_SYNTHESIS`
-
-A conclusion produced by reconciling several sources or by designing a learner-facing abstraction.
+A claim directly supported by a frozen canonical source passage or exact official SMMC source.
 
 Examples:
-- deciding that legacy `GRAPH-REFORMULATION` should become a child under a broader Recasting family;
-- deciding that a card should be split because it contains two independently trainable operations.
 
-A synthesis record must cite the underlying evidence it reconciles. It may never masquerade as a quotation or source fact.
+- Zeitz defines “tool” narrowly in his own terminology;
+- an official SMMC solution actually uses an invariant;
+- Hammack calls direct/contrapositive/contradiction three main techniques for conditional statements.
 
-## 4. Three records that must never be conflated
+A source fact must be paraphrased and locatable.
 
-The Arsenal must preserve three separate evidence channels:
+#### `PROJECT_DERIVED`
 
-### Battle Record
+A mechanically derived fact from frozen project data.
 
-Question answered:
+Examples:
 
-> Has this move appeared productively in successful SMMC mathematics?
+- count of current ledger tags;
+- number of distinct years/domains containing a tag;
+- a co-occurrence count from the 88-row ledger.
 
-Typical evidence: official problems, official solutions, ledger tags.
+This basis is descriptive. It does not convert a ledger tag into verified official-solution occurrence.
 
-### Discovery Record
+#### `LEARNER_EMPIRICAL`
 
-Question answered:
+An observation from actual learner work.
+
+Examples:
+
+- scratch-work route chosen before any hint;
+- Forge transfer performance;
+- Boss loadout prediction;
+- Arena deployment;
+- assistance level;
+- delayed reconstruction.
+
+Learner evidence must identify the task/attempt and exposure state.
+
+#### `PROJECT_SYNTHESIS`
+
+A project inference or design proposal derived from other records.
+
+Examples:
+
+- proposing that two source terms may be aliases;
+- proposing that one concept may be a parent of another;
+- proposing a hard/soft prerequisite;
+- proposing a UI representation for crux;
+- arguing that a historical pair reflects genuine synergy.
+
+Synthesis must cite the records it reconciles. It may never masquerade as a source fact.
+
+### Axis B — `recordChannel`
+
+What evidence question can this record answer?
+
+Exactly one of:
+
+- `BATTLE` — what actually appears productively in historical SMMC mathematics;
+- `DISCOVERY` — what helps a solver find a route before the route is known;
+- `TRANSFER` — what a learner can recognize/deploy on fresh material without being told;
+- `NONE` — useful research evidence that does not itself answer one of those three questions.
+
+If one observation genuinely supports two channels, create two linked records rather than blurring the channels.
+
+### Axis C — `claimKind`
+
+What proposition is the record making?
+
+Controlled initial vocabulary:
+
+- `SOURCE_TERMINOLOGY`
+- `HISTORICAL_OCCURRENCE`
+- `HISTORICAL_COOCCURRENCE`
+- `DISCOVERY_HEURISTIC`
+- `PROOF_STRUCTURE`
+- `PREREQUISITE_MATHEMATICS`
+- `TRAINING_DESIGN`
+- `LEARNER_PERFORMANCE`
+- `ONTOLOGY_PROPOSAL`
+- `REPRESENTATION_PROPOSAL`
+- `OTHER`
+
+Gate 1 freezes this research vocabulary only. It does not freeze any future candidate type.
+
+### Axis D — future `ontologyType`
+
+This axis is intentionally **unset** during Gate 1 and raw Gate-2 harvesting.
+
+A record may mention source terminology such as “strategy” or “method,” but that wording does not populate `ontologyType`.
+
+Later gates may define an ontology-type vocabulary. Gate 1 has no authority to do so.
+
+### Verification status
+
+Each record also carries one of:
+
+- `VERIFIED`
+- `INDEX_LEAD`
+- `UNVERIFIED_SOURCE_LEAD`
+- `SYNTHESIS_PROPOSAL`
+
+Verification status is not an evidence channel or ontology type.
+
+## 5. Battle / Discovery / Transfer are not interchangeable
+
+### Battle
+
+Question:
+
+> Is there verified historical evidence that this move actually appears productively in SMMC mathematics?
+
+A verified Battle occurrence requires traceable official evidence.
+
+A current ledger method tag may help locate the problem, but until the tagged move is traced to the audited official statement/solution evidence it remains an `INDEX_LEAD`.
+
+“Compatible with this solution” is not Battle evidence.
+
+If compatibility is worth recording, it is a `PROJECT_SYNTHESIS` with channel `NONE`, unless later evidence shows actual use.
+
+### Discovery
+
+Question:
 
 > Does this move help a solver find a route before the solution is known?
 
-Typical evidence: problem-solving sources, scratch-work commentary, training examples, learner process evidence.
+Possible evidence:
 
-Official polished solutions may under-report this channel.
+- source-authored investigation heuristics;
+- source scratch-work commentary;
+- learner scratch work before route exposure;
+- repeated learner process observations.
 
-### Transfer Record
+A polished official solution can occasionally contain explicit discovery commentary, but absence from a polished solution is not evidence of absence from discovery.
 
-Question answered:
+### Transfer
 
-> Can this learner recognize and deploy the move without being told to use it on fresh material?
+Question:
 
-Typical evidence: future Forge transfer tasks, Boss attempts and Arena evidence.
+> Can this learner recognize and deploy the move on fresh material without being told to use it?
 
-Reading a source, seeing a solution, or completing a labeled drill cannot create Transfer Record by itself.
+Possible evidence:
 
-## 5. Source-inspection rule
+- unlabeled Forge transfer;
+- fresh Boss attempts;
+- Arena attempts;
+- delayed reconstruction under defined assistance rules.
 
-No canonical Arsenal item may be authored solely from model memory.
+Reading a source, seeing a worked solution, or completing a labeled execution drill cannot alone create Transfer evidence.
 
-Before a candidate can enter the Gate-2 raw harvest, the researcher must:
+## 6. Strict historical-evidence rule
 
-1. inspect the relevant source passage(s), not merely remember the book;
-2. record source ID plus chapter/section or exact project path/problem ID;
-3. paraphrase the supported claim in project language;
-4. state what the source does **not** establish;
-5. separate source wording from project synthesis;
-6. avoid storing long copyrighted excerpts in the repository.
+For `recordChannel: BATTLE` + `claimKind: HISTORICAL_OCCURRENCE`:
 
-If a source cannot currently be inspected, the candidate may be logged as `UNVERIFIED_SOURCE_LEAD` but may not become canonical.
+Required:
 
-## 6. Granularity is not decided in Gate 1
+1. exact SMMC problem ID;
+2. exact official source identity/locator;
+3. concise statement of what move actually occurs;
+4. whether it occurs in the problem statement, official solution, or both;
+5. verification status `VERIFIED`.
 
-Gate 1 deliberately does not answer whether any specific item is a Strategy, Proof Form, Tactic, Tool or Specialist.
+Not sufficient by itself:
 
-The working hypothesis for later testing is:
+- existing ledger method tag;
+- model judgment that a move could work;
+- another book solving a similar problem;
+- co-occurrence statistics;
+- a plausible alternative solution not documented as historical evidence.
 
-- Foundation;
-- Strategy / Scoutcraft;
-- Proof Form;
-- Tactic;
-- Tool;
-- Specialist / Relic;
-- Crux as an event annotation outside the hierarchy.
+Alternative valid solutions may be useful project research, but unless they are part of the frozen official evidence they must be labeled as synthesis/alternative mathematics rather than historical occurrence.
 
-This is **not frozen**.
+## 7. Provenance schema for Gate 2+
 
-The existing `SMMC_METHOD_TAGS` vocabulary is likewise not frozen as learner-facing Arsenal abilities.
-
-Gate 2 must harvest raw candidates before Gate 3 defines and applies the granularity test.
-
-## 7. Required provenance record for Gate 2+
-
-Every research evidence record should be able to answer:
+Every evidence record must be able to answer:
 
 ```text
+recordId
 candidateId
 candidateName
+
+evidenceBasis
+recordChannel
+claimKind
+verificationStatus
+ontologyType: null
+
 sourceId
+sourceVersionOrCommit
 sourceLocator
-evidenceClass
+sourceArtifactSha256
+historicalProblemIds
+learnerAttemptIds
+
 claim
 sourceTerminology
-historicalProblemIds
 supports
 doesNotEstablish
 confidence
+linkedRecordIds
 researcherNote
 ```
 
-The future candidate object may add aliases, type, trigger, operation, failure modes, prerequisites and relations, but those ontology fields are intentionally deferred.
+Rules:
 
-## 8. Conflict and reconciliation rules
+- `ontologyType` remains null until a later ontology gate explicitly authorizes values.
+- Fields that do not apply are null/empty; they are not silently repurposed.
+- `PROJECT_SYNTHESIS` records must point to supporting `linkedRecordIds`.
+- `LEARNER_EMPIRICAL` records must identify learner attempt/task evidence and exposure/assistance context.
+- a canonical `SOURCE_FACT` must use a CANONICAL source ID from the frozen register.
 
-When sources disagree, do not silently choose one.
+## 8. Source inspection rule
 
-Record the disagreement and ask what each source is classifying.
+No canonical Arsenal item may be authored solely from model memory.
 
-Common causes:
+Before a source-backed record can become `VERIFIED`, the researcher must:
 
-- one source names a broad family while another names an executable subtechnique;
-- one source classifies by proof architecture while another classifies by discovery behavior;
-- the project ledger tags a move for historical retrieval rather than pedagogy;
-- a source calls something a “method” in ordinary English without making an ontology claim.
+1. inspect the relevant canonical source passage;
+2. confirm the exact source identity against the source register;
+3. record an auditable locator;
+4. paraphrase only what the source supports;
+5. record a meaningful `doesNotEstablish` boundary;
+6. separate source fact from project synthesis;
+7. avoid storing long copyrighted excerpts in the repository.
 
-Resolution belongs to the later tribunal, with an explicit disposition and rationale.
+If the exact artifact is unavailable or its hash/version does not match, the record cannot be verified against that canonical source.
 
-Source authority is **claim-specific**, not a total ranking. For example:
+## 9. Ontology and representation remain completely unfrozen
 
-- official SMMC evidence outranks a textbook for what happened in an SMMC solution;
-- Zeitz/Engel are stronger than a polished official solution for general discovery heuristics;
-- Hammack/Velleman are stronger for proof-form structure;
-- learner Transfer Record is stronger than any book for whether this learner can independently deploy an ability.
+Gate 1 records evidence. It does not decide representation.
 
-## 9. Forbidden shortcuts
+The following are **research hypotheses only**, inherited from earlier discussion and explicitly open to later rejection:
 
-Later builders/reviewers must reject any research pass that does one of the following:
+- a Strategy / Tactic / Tool ladder;
+- a separate Proof Form class;
+- a Foundation class;
+- a Specialist/Relic class;
+- modeling Crux as an event annotation;
+- modeling Crux as a card, relation, tag, event, or another representation;
+- any parent/child hierarchy among current method tags.
 
-- treats tag frequency as importance, difficulty or learning order;
-- treats co-occurrence as proof of causal synergy;
-- treats rarity as difficulty;
-- treats GREEN/AMBER/RED as ability strength;
-- treats a polished solution as a full record of discovery;
-- treats a chapter heading as sufficient evidence for an Arsenal card;
-- creates a “god card” so broad that it has no reproducible operation;
-- creates a narrow card solely because one algebraic identity has a name;
-- merges two candidates merely because they often appear together;
-- splits candidates merely to make the skill tree visually richer;
-- turns the crux into a level/card class;
-- lets fantasy rarity, XP, damage or other UI metaphors decide mathematical mastery;
-- leaks private historical metadata into a protected learner attempt;
-- uses an LLM-generated explanation as provenance for a canonical mathematical claim.
+Zeitz supplies source evidence about his three levels and his use of “crux move.” Hammack and Velleman supply proof-structure evidence. Those facts constrain honest source attribution; they do **not** settle the Arsenal data model.
 
-## 10. Historical-frequency and combo rules
+No Gate-1 rule may reject a future representation merely because it differs from the current working hypothesis.
 
-Counts may be recomputed from the 88-row ledger, but they are descriptive only.
+## 10. Conflict and reconciliation rules
 
-For any frequency claim record:
+When records disagree, preserve the disagreement.
+
+Ask first whether they are making the same kind of claim.
+
+Common non-conflicts:
+
+- broad source family vs executable subtechnique;
+- proof structure vs discovery heuristic;
+- historical retrieval tag vs learner-facing ability;
+- source terminology vs project ontology;
+- source training order vs mathematical prerequisite;
+- official occurrence vs learner transfer.
+
+No total source ranking exists.
+
+Authority is claim-specific:
+
+- exact official SMMC evidence is authoritative for what appears in that official problem/solution;
+- a book is authoritative for what that edition says and how it organizes its own pedagogy;
+- learner empirical evidence is authoritative for the recorded learner event, subject to exposure/assistance validity;
+- project synthesis is never upgraded into source fact by repetition.
+
+A later tribunal may resolve ontology questions, but it must cite the records and explain the disposition.
+
+## 11. Frequency, difficulty, importance and combos
+
+Historical counts are descriptive measurements only.
+
+A frequency record must state:
 
 - population: all 88, East 72, or supplementary 16;
 - exact tag/query;
 - count;
-- number of distinct years;
-- number of distinct primary domains;
-- limitations of the tag.
+- distinct years;
+- distinct primary domains;
+- whether the count is based on ledger tags or verified official occurrences;
+- known limitations.
 
-For any pair/co-occurrence claim record:
+Never infer from frequency alone:
+
+- importance;
+- difficulty;
+- learning order;
+- mastery;
+- prerequisite status.
+
+Rarity is not difficulty.
+
+A co-occurrence record is not a combo.
+
+For a pair, record:
 
 - pair;
-- co-occurrence count;
+- count;
 - problem IDs;
-- domains/years;
-- whether a source explains an actual mathematical interaction.
+- years/domains;
+- evidence basis;
+- whether actual mathematical interaction has been independently justified.
 
-Until that final interaction is established, call the pair a **recorded method partner**, not a combo.
+Until interaction is justified, call it a **recorded method partner** only.
 
-## 11. Prerequisite research rule
+## 12. Prerequisite research rule
 
-Later prerequisite work must distinguish:
+“Hard” and “soft” are research labels for later prerequisite proposals, not ontology levels.
 
-### Hard prerequisite
+### Hard prerequisite proposal
 
-Without it, the learner cannot meaningfully understand or execute the candidate.
+Claim:
 
-### Soft prerequisite
+> Without this mathematics, the candidate cannot be meaningfully understood or executed.
 
-The candidate is mathematically intelligible without it, but learning it first materially improves pedagogy, efficiency or reliability.
+### Soft prerequisite proposal
 
-Recommended-before is not the same as required-before.
+Claim:
 
-A prerequisite edge needs a reason. “This appears earlier in the book” is not enough.
+> The candidate remains intelligible without it, but prior study plausibly improves pedagogy, efficiency, or reliability.
 
-## 12. Gate-0 inheritance
+A prerequisite proposal is initially `PROJECT_SYNTHESIS` + `claimKind: PREREQUISITE_MATHEMATICS` unless the source is merely being quoted about its own ordering.
 
-Gate 1 and every later gate inherit the accepted Gate-0 corpus-protection semantics.
+“This chapter comes earlier in the book” is not enough to establish a project prerequisite.
 
-Research tooling may inspect private evaluator/ledger evidence for authoring, but learner-facing historical attempts must continue to obey:
+A source's training recommendation is evidence to consider, not automatic project law.
+
+## 13. Forbidden shortcuts
+
+Reject any later research pass that:
+
+- treats ledger frequency as importance, difficulty, learning order, or mastery;
+- treats co-occurrence as causal synergy;
+- treats rarity as difficulty;
+- treats GREEN/AMBER/RED as ability strength;
+- treats a polished solution as a complete discovery record;
+- treats a ledger tag as verified Battle occurrence without official traceability;
+- treats “compatible with” as “historically used”;
+- treats a chapter dependency/order as a universal prerequisite DAG;
+- treats source training advice as automatic project law;
+- treats source terminology as an already-frozen ontology type;
+- lets model memory substitute for source inspection;
+- uses an unregistered source to settle a canonical claim;
+- uses an LLM explanation as provenance;
+- leaks private historical metadata into a protected learner attempt;
+- silently converts learner process evidence into Battle evidence, or Battle evidence into Transfer evidence.
+
+There is deliberately **no** Gate-1 ban on representing Crux as a card/event/tag/etc.; that is a later ontology/representation question.
+
+## 14. Gate-0 inheritance
+
+Every later gate inherits accepted Gate-0 corpus protection.
+
+Research tooling may inspect private authoring evidence, but learner-facing historical work must preserve:
 
 - protected synopsis/search semantics;
 - record-first/reveal-second persistence;
 - monotone exposure evidence;
 - cloud merge without evidence loss;
 - stronger→weaker state normalization;
-- exact route/classification anti-leak protections;
+- route/classification anti-leak protections;
 - absolute-time timestamp ordering;
 - paper/session isolation.
 
-No ontology or UI improvement may weaken these guarantees.
+No ontology, research UI, or learner UI change may weaken those guarantees without reopening the relevant Gate-0 regression review.
 
-## 13. Gate-1 deliverables
+## 15. Gate-1 deliverables
 
-Gate 1 is complete only when the repository contains:
+Gate 1 passes only when all of the following survive independent review:
 
-1. this research contract;
-2. the canonical source register and claim-specific source roles above;
-3. the five evidence classes;
-4. the Battle / Discovery / Transfer separation;
-5. provenance requirements for later candidate records;
-6. conflict-resolution and forbidden-shortcut rules;
-7. explicit inheritance of Gate 0;
-8. a bounded independent review confirming that a fresh builder can follow the contract without inventing ontology decisions.
+1. exact canonical source register;
+2. source-amendment rule;
+3. claim-specific source roles with explicit limitations;
+4. orthogonal `evidenceBasis`, `recordChannel`, `claimKind`, verification status, and future `ontologyType` axes;
+5. explicit `LEARNER_EMPIRICAL` support;
+6. strict verified-Battle rule;
+7. provenance schema;
+8. conflict/reconciliation rules;
+9. frequency/difficulty/co-occurrence safeguards;
+10. Gate-0 inheritance;
+11. explicit statement that ontology and representation remain unfrozen.
 
 Gate 1 produces **no accepted Arsenal abilities**.
 
-## 14. Handoff to Gate 2
+## 16. Handoff to Gate 2
 
-If Gate 1 is independently accepted, Gate 2 may create the raw candidate research ledger.
+Only after independent Gate-1 acceptance may Gate 2 create the raw candidate ledger.
 
 Gate 2 must:
 
 - harvest before merging;
 - preserve aliases separately;
-- represent every current SMMC method tag;
-- inspect all five book sources for additional plausible candidates;
-- preserve source terminology even when two names may later merge;
-- record why each candidate entered the pool;
-- make no final type/granularity decision.
+- represent every current SMMC method tag as at least a retrieval lead;
+- inspect the canonical book sources for additional plausible candidates;
+- preserve source terminology without treating it as ontology type;
+- attach evidence records using the orthogonal schema above;
+- keep `ontologyType: null`;
+- make no final merge/split/type/prerequisite/ranking decision.
 
-**STOP:** do not begin Gate 2 until this contract receives independent adversarial acceptance.
+**STOP:** Gate 2 remains closed until independent review accepts this repaired Gate-1 contract.
