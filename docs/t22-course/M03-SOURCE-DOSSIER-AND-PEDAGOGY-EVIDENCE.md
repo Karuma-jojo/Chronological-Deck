@@ -150,7 +150,7 @@ Advanced contest topics that belong to the separate SMMC Companion rather than M
 
 ## 3. General pedagogy comparators
 
-### Mathematical Association of America — *Instructional Practices Guide* (2018)
+### Mathematical Association of America — *Instructional Practices Guide* (2017)
 
 Locator: https://maa.org/resource/instructional-practices-guide/
 
@@ -263,8 +263,8 @@ The v1.7.2 Spire pack keeps both labs **post-assessment and unscored**. The fina
 Final publication probes use these distinct surfaces:
 
 - **A1:** parity of a sum — an odd sum forces opposite parity;
-- **A5:** all-prior reasoning on representation as a sum of distinct powers of (2);
-- **B2:** count 4-element subsets of ({1,\ldots,10}) with no consecutive elements;
+- **A5:** all-prior reasoning on representation as a sum of distinct powers of \(2\);
+- **B2:** count 4-element subsets of \(\{1,\ldots,10\}\) with no consecutive elements;
 - **B4:** pigeonhole on coordinate-parity classes to force an integer midpoint among five lattice points;
 - **B5:** inclusion–exclusion on fixed points of permutations.
 

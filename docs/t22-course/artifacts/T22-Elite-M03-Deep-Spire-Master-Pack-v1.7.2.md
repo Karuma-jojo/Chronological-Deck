@@ -800,23 +800,23 @@ Run this only **after S14 Main and Transfer have been attempted**. Hide session 
 Only after commitment may Spire discuss alternative routes. Do not map success here backward into a fixed-task pass.
 
 ### Fresh diagnostic probe A1
-Let (a,b\in\mathbb Z). Prove that if (a+b) is odd, then exactly one of (a,b) is odd.
+Let \(a,b\in\mathbb Z\). Prove that if \(a+b\) is odd, then exactly one of \(a,b\) is odd.
 
 ### Fresh diagnostic probe A2
-Prove that (n^3-n) is divisible by (3) for every integer (n).
+Prove that \(n^3-n\) is divisible by \(3\) for every integer \(n\).
 
 ### Fresh diagnostic probe A3
-Prove that there is no integer (n) satisfying (n^2=2).
+Prove that there is no integer \(n\) satisfying \(n^2=2\).
 
 ### Fresh diagnostic probe A4
 Prove
-[
+\[
 1+2+4+\cdots+2^n=2^{n+1}-1
-]
-for every integer (n\ge0).
+\]
+for every integer \(n\ge0\).
 
 ### Fresh diagnostic probe A5
-Prove that every positive integer can be written as a sum of distinct powers of (2).
+Prove that every positive integer can be written as a sum of distinct powers of \(2\).
 
 **Diagnostic target:** can the learner choose among parity/cases, contradiction, ordinary induction and all-prior reasoning without being told which named method to use? These probes were clone-audited against S01–S14 so the decisive route is not merely the same assessed archetype with changed constants.
 
@@ -1706,23 +1706,23 @@ Run this only **after S30 Main and Transfer have been attempted**. Do not announ
 For each probe, require a short orientation note before calculation: **what are the objects, what would be overcounted, what is the natural universe, and what structural choice seems decisive?**
 
 ### Fresh diagnostic probe B1
-How many length-5 strings over ({0,1,2,3}) contain at least one (0)?
+How many length-5 strings over \(\{0,1,2,3\}\) contain at least one \(0\)?
 
 ### Fresh diagnostic probe B2
-How many 4-element subsets of ({1,2,\ldots,10}) contain no two consecutive integers?
+How many 4-element subsets of \(\{1,2,\ldots,10\}\) contain no two consecutive integers?
 
 ### Fresh diagnostic probe B3
 Count the nonnegative integer solutions of
-[
+\[
 x+y+z=12
-]
-subject to (x\le4).
+\]
+subject to \(x\le4\).
 
 ### Fresh diagnostic probe B4
 Five points with integer coordinates are placed in the plane. Prove that two of them have a midpoint whose coordinates are both integers.
 
 ### Fresh diagnostic probe B5
-How many permutations of ({1,2,3,4,5}) fix neither (1) nor (2)?
+How many permutations of \(\{1,2,3,4,5\}\) fix neither \(1\) nor \(2\)?
 
 **Diagnostic target:** can the learner recognize and reconstruct a finite-counting model when the procedure is not named? These probes deliberately avoid replaying the fixed S23–S30 task archetypes with only changed constants or nouns. Success is diagnostic/practice evidence only and does not recertify a canonical task.
 
