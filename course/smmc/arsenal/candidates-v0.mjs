@@ -412,6 +412,75 @@ const SOURCE_SEEDS = Object.freeze([
   ["P-PERMUTATIONS","Permutations","S5-GELCA-ANDREESCU-2007",9,"6.1.2 Permutations","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives permutations a dedicated subsection."],
   ["P-PLANAR-EULER","Euler's Formula for Planar Graphs","S5-GELCA-ANDREESCU-2007",9,"6.1.4 Euler's Formula for Planar Graphs","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Euler's planar-graph formula a dedicated subsection."],
   ["P-COMBINATORIAL-GEOMETRY","Combinatorial Geometry","S5-GELCA-ANDREESCU-2007",9,"6.1.3 Combinatorial Geometry","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives combinatorial geometry a dedicated subsection."],
+
+  // Independent Gate-2 coverage repair: explicit source-specific leads missed by the
+  // first review candidate. These remain raw ore: no merge, type, rank, prerequisite,
+  // relation, or granularity disposition is implied by their inclusion.
+
+  // Zeitz — additional indexed discovery/proof tactics and specialist tools.
+  ["Z-LOOK-PATTERNS","Look for Patterns","S1-ZEITZ-2007-2E",380,"Index — patterns, look for","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly points to looking for patterns as a recurring problem-investigation move."],
+  ["Z-BRAINSTORMING","Brainstorming","S1-ZEITZ-2007-2E",377,"Index","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly lists brainstorming in the problem-solving discussion."],
+  ["Z-BACKBURNER","Backburner Problems","S1-ZEITZ-2007-2E",377,"Index","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly lists backburner problems as part of his problem-solving practice."],
+  ["Z-BREAK-RULES","Breaking Rules","S1-ZEITZ-2007-2E",377,"Index","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly lists breaking rules in the creativity/problem-solving discussion."],
+  ["Z-RESTATE","Restating a Problem","S1-ZEITZ-2007-2E",381,"Index","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly lists restating a problem as a recurring move."],
+  ["Z-STEAL-IDEAS","Stealing Ideas","S1-ZEITZ-2007-2E",382,"Index","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly lists stealing ideas in his problem-solving discussion."],
+  ["Z-BACKWARD-INDUCTION","Backward Induction","S1-ZEITZ-2007-2E",377,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists backward induction."],
+  ["Z-AREA-PROOF","Area as a Proof Tactic","S1-ZEITZ-2007-2E",377,"Index — area","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists area as a proof tactic."],
+  ["Z-BISECTION","Bisection Method","S1-ZEITZ-2007-2E",377,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists the bisection method."],
+  ["Z-EUCLIDEAN-ALGORITHM","Euclidean Algorithm","S1-ZEITZ-2007-2E",379,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists the Euclidean algorithm."],
+  ["Z-MOBIUS-INVERSION","Möbius Inversion Formula","S1-ZEITZ-2007-2E",380,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists the Möbius inversion formula."],
+  ["Z-PICK-THEOREM","Pick's Theorem","S1-ZEITZ-2007-2E",381,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists Pick's theorem."],
+  ["Z-WELL-ORDERING","Well-Ordering Principle","S1-ZEITZ-2007-2E",383,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists the well-ordering principle."],
+  ["Z-SYMMETRY-PRODUCT","Symmetry-Product Principle","S1-ZEITZ-2007-2E",382,"Index — symmetry","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists the symmetry-product principle."],
+  ["Z-HOMOTHETY","Homothety","S1-ZEITZ-2007-2E",383,"Index — transformations","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists homothety among transformations."],
+  ["Z-INVERSION","Inversion","S1-ZEITZ-2007-2E",383,"Index — transformations","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists inversion among transformations."],
+  ["Z-ORDER-FROM-CHAOS","Create Order out of Chaos","S1-ZEITZ-2007-2E",377,"Index — chaos, creating order out of","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly points to creating order out of chaos in the invariants discussion."],
+
+  // Engel — additional indexed algorithms/encodings/recurrence tools.
+  ["E-EUCLIDEAN-ALGORITHM","Euclidean Algorithm","S2-ENGEL-1998",399,"Index — Algorithm","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists the Euclidean algorithm."],
+  ["E-DIFFERENCE-EQUATIONS","Difference Equations","S2-ENGEL-1998",399,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists difference equations."],
+  ["E-INVOLUTION","Involution","S2-ENGEL-1998",400,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists involution."],
+  ["E-PRUFER-CODE","Prüfer Code","S2-ENGEL-1998",400,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists Prüfer code."],
+  ["E-CAYLEY-FORMULA","Cayley's Formula","S2-ENGEL-1998",399,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists Cayley's formula."],
+  ["E-BINET-FORMULA","Binet's Formula","S2-ENGEL-1998",399,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists Binet's formula."],
+
+  // Hammack — proof/counting structures that are explicit source headings.
+  ["H-MULTIPLICATION-PRINCIPLE","Multiplication Principle","S3-HAMMACK-BOOK-OF-PROOF-3.4",4,"3.2 The Multiplication Principle","SOURCE_TERMINOLOGY","NONE","Hammack gives the Multiplication Principle its own section."],
+  ["H-ADDITION-SUBTRACTION","Addition and Subtraction Principles","S3-HAMMACK-BOOK-OF-PROOF-3.4",4,"3.3 The Addition and Subtraction Principles","SOURCE_TERMINOLOGY","NONE","Hammack gives the Addition and Subtraction Principles their own section."],
+  ["H-INCLUSION-EXCLUSION","Inclusion–Exclusion Principle","S3-HAMMACK-BOOK-OF-PROOF-3.4",4,"3.7 The Inclusion-Exclusion Principle","SOURCE_TERMINOLOGY","NONE","Hammack gives the Inclusion-Exclusion Principle its own section."],
+  ["H-DIVISION-PIGEONHOLE","Division and Pigeonhole Principles","S3-HAMMACK-BOOK-OF-PROOF-3.4",4,"3.9 The Division and Pigeonhole Principles","SOURCE_TERMINOLOGY","NONE","Hammack gives the Division and Pigeonhole Principles a dedicated section."],
+  ["H-LOGICAL-INFERENCE","Logical Inference","S3-HAMMACK-BOOK-OF-PROOF-3.4",4,"2.11 Logical Inference","PROOF_STRUCTURE","NONE","Hammack explicitly gives Logical Inference a dedicated section."],
+  ["H-PROVE-MEMBERSHIP","How to Prove Membership","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"8.1 How to Prove a ∈ A","PROOF_STRUCTURE","NONE","Hammack gives proving set membership an explicit proof-structure section."],
+  ["H-PROVE-SUBSET","How to Prove a Subset Relation","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"8.2 How to Prove A ⊆ B","PROOF_STRUCTURE","NONE","Hammack gives proving a subset relation an explicit proof-structure section."],
+  ["H-PROVE-SET-EQUALITY","How to Prove Set Equality","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"8.3 How to Prove A = B","PROOF_STRUCTURE","NONE","Hammack gives proving set equality an explicit proof-structure section."],
+
+  // Velleman — explicit goal/given transformations from the summary of proof techniques.
+  ["V-UNIQUE-EXISTENCE","Existence-and-Uniqueness Goal","S4-VELLEMAN-2006-2E",391,"Summary of Proof Techniques — ∃!x P(x)","PROOF_STRUCTURE","NONE","Velleman explicitly instructs splitting a unique-existence goal into existence and uniqueness obligations."],
+  ["V-REEXPRESS-UNIQUE-EXISTENCE","Reexpress a Unique-Existence Goal","S4-VELLEMAN-2006-2E",391,"Summary of Proof Techniques — ∃!x P(x)","PROOF_STRUCTURE","NONE","Velleman explicitly gives an equivalent reexpression of a unique-existence goal."],
+  ["V-REEXPRESS-NEGATIVE-GIVEN","Reexpress a Negative Given","S4-VELLEMAN-2006-2E",392,"Summary of Proof Techniques — given ¬P","PROOF_STRUCTURE","NONE","Velleman explicitly recommends reexpressing a negative given as a positive statement."],
+  ["V-SPLIT-CONJUNCTION-GIVEN","Split a Conjunction Given","S4-VELLEMAN-2006-2E",392,"Summary of Proof Techniques — given P ∧ Q","PROOF_STRUCTURE","NONE","Velleman explicitly instructs treating a conjunction given as two givens."],
+  ["V-DISJUNCTION-CASES-GIVEN","Use a Disjunction Given for Cases","S4-VELLEMAN-2006-2E",392,"Summary of Proof Techniques — given P ∨ Q","PROOF_STRUCTURE","NONE","Velleman explicitly instructs using a disjunction given to split the proof into cases."],
+  ["V-SPLIT-BICONDITIONAL-GIVEN","Split a Biconditional Given","S4-VELLEMAN-2006-2E",392,"Summary of Proof Techniques — given P ↔ Q","PROOF_STRUCTURE","NONE","Velleman explicitly instructs treating a biconditional given as the two conditional givens P→Q and Q→P."],
+
+  // Putnam and Beyond — substantive named TOC subsections omitted from the first
+  // broad sweep. Generic 'other problems' continuation headings remain unharvested.
+  ["P-POSITIVITY-SQUARES","Positivity of Squares (x² ≥ 0)","S5-GELCA-ANDREESCU-2007",6,"2.1.2 x² ≥ 0","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives x² ≥ 0 a dedicated inequalities subsection."],
+  ["P-MATRIX-OPERATIONS","Operations with Matrices","S5-GELCA-ANDREESCU-2007",7,"2.3.1 Operations with Matrices","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives operations with matrices a dedicated subsection."],
+  ["P-BINARY-OPERATIONS","Binary Operations","S5-GELCA-ANDREESCU-2007",7,"2.4.1 Binary Operations","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives binary operations a dedicated abstract-algebra subsection."],
+  ["P-GROUPS","Groups","S5-GELCA-ANDREESCU-2007",7,"2.4.2 Groups","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives groups a dedicated subsection."],
+  ["P-RINGS","Rings","S5-GELCA-ANDREESCU-2007",7,"2.4.3 Rings","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives rings a dedicated subsection."],
+  ["P-SERIES","Series","S5-GELCA-ANDREESCU-2007",7,"3.1.5 Series","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives series a dedicated subsection."],
+  ["P-LIMITS-FUNCTIONS","Limits of Functions","S5-GELCA-ANDREESCU-2007",7,"3.2.1 Limits of Functions","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives limits of functions a dedicated subsection."],
+  ["P-CONTINUOUS-FUNCTIONS","Continuous Functions","S5-GELCA-ANDREESCU-2007",7,"3.2.2 Continuous Functions","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives continuous functions a dedicated subsection."],
+  ["P-DERIVATIVES-APPLICATIONS","Derivatives and Their Applications","S5-GELCA-ANDREESCU-2007",7,"3.2.4 Derivatives and Their Applications","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives derivatives and their applications a dedicated subsection."],
+  ["P-INDEFINITE-INTEGRALS","Indefinite Integrals","S5-GELCA-ANDREESCU-2007",7,"3.2.7 Indefinite Integrals","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives indefinite integrals a dedicated subsection."],
+  ["P-DEFINITE-INTEGRALS","Definite Integrals","S5-GELCA-ANDREESCU-2007",7,"3.2.8 Definite Integrals","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives definite integrals a dedicated subsection."],
+  ["P-ODE-TECHNIQUES","Problems Solved with Techniques of Differential Equations","S5-GELCA-ANDREESCU-2007",8,"3.4.4 Problems Solved with Techniques of Differential Equations","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives problems solved with differential-equation techniques a dedicated subsection."],
+  ["P-CONICS-CURVES","Conics and Other Curves in the Plane","S5-GELCA-ANDREESCU-2007",8,"4.1.3 Conics and Other Curves in the Plane","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives conics and other plane curves a dedicated geometry subsection."],
+  ["P-HIGHER-DIM-COORD-GEOMETRY","Coordinate Geometry in Three and More Dimensions","S5-GELCA-ANDREESCU-2007",8,"4.1.4 Coordinate Geometry in Three and More Dimensions","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives higher-dimensional coordinate geometry a dedicated subsection."],
+  ["P-PRIME-NUMBERS","Prime Numbers","S5-GELCA-ANDREESCU-2007",8,"5.2.2 Prime Numbers","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives prime numbers a dedicated number-theory subsection."],
+  ["P-SET-COMBINATORICS","Set Theory and Combinatorics of Sets","S5-GELCA-ANDREESCU-2007",9,"6.1.1 Set Theory and Combinatorics of Sets","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives set theory and combinatorics of sets a dedicated subsection."],
+  ["P-BINOMIAL-COUNTING","Binomial Coefficients and Counting Methods","S5-GELCA-ANDREESCU-2007",9,"6.2 Binomial Coefficients and Counting Methods","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives binomial coefficients and counting methods a named section."],
 ]);
 
 const SOURCE_HASH = Object.freeze({
