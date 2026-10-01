@@ -236,6 +236,63 @@ const SOURCE_SEEDS = Object.freeze([
   ["P-TRIANGLE-INEQUALITY","Triangle Inequality","S5-GELCA-ANDREESCU-2007",6,"2.1.4 The Triangle Inequality","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives the Triangle Inequality a dedicated subsection."],
   ["P-AM-GM","Arithmetic Mean–Geometric Mean Inequality","S5-GELCA-ANDREESCU-2007",6,"2.1.5 The Arithmetic Mean–Geometric Mean Inequality","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives AM-GM a dedicated subsection."],
   ["P-VIETE","Viète's Relations","S5-GELCA-ANDREESCU-2007",6,"2.2.2 Viète's Relations","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Viète's relations a dedicated subsection."],
+
+  // Deeper Zeitz tool/tactic harvest.
+  ["Z-FACTOR-TACTIC","Factor Tactic","S1-ZEITZ-2007-2E",165,"5.2 The Factor Tactic","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly names and develops the Factor Tactic."],
+  ["Z-MANIPULATING-SQUARES","Manipulating Squares","S1-ZEITZ-2007-2E",15,"5.2 Algebraic Manipulation Revisited","SOURCE_TERMINOLOGY","NONE","Zeitz gives Manipulating Squares a named subsection."],
+  ["Z-SUBSTITUTIONS-SIMPLIFICATIONS","Substitutions and Simplifications","S1-ZEITZ-2007-2E",15,"5.2 Algebraic Manipulation Revisited","SOURCE_TERMINOLOGY","NONE","Zeitz gives Substitutions and Simplifications a named subsection."],
+  ["Z-GAUSSIAN-PAIRING","Gaussian Pairing Tool","S1-ZEITZ-2007-2E",84,"3.1 Symmetry — Gaussian Pairing Tool","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly names the Gaussian Pairing Tool."],
+  ["Z-TELESCOPE-TOOL","Telescope Tool","S1-ZEITZ-2007-2E",175,"5.3 Geometric Series and the Telescope Tool","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly names the Telescope Tool."],
+  ["Z-PIE-INDICATOR","Inclusion–Exclusion with Indicator Functions","S1-ZEITZ-2007-2E",229,"6.3 PIE with Indicator Functions","SOURCE_TERMINOLOGY","NONE","Zeitz gives a dedicated treatment of inclusion–exclusion using indicator functions."],
+  ["Z-ROOTS-UNITY-FILTER","Roots of Unity Filter","S1-ZEITZ-2007-2E",382,"Index — tools","SOURCE_TERMINOLOGY","NONE","Zeitz's tool index explicitly lists a roots-of-unity filter."],
+  ["Z-ADD-ZERO","Add Zero Creatively","S1-ZEITZ-2007-2E",382,"Index — tools","SOURCE_TERMINOLOGY","NONE","Zeitz's tool index explicitly lists adding zero creatively."],
+  ["Z-COMPLETE-SQUARE","Completing the Square","S1-ZEITZ-2007-2E",382,"Index — tools","SOURCE_TERMINOLOGY","NONE","Zeitz's tool index explicitly lists completing the square."],
+  ["Z-EXTRACT-SQUARES","Extracting Squares","S1-ZEITZ-2007-2E",382,"Index — tools","SOURCE_TERMINOLOGY","NONE","Zeitz's tool index explicitly lists extracting squares."],
+  ["Z-CATALYST","Catalyst Tool","S1-ZEITZ-2007-2E",382,"Index — tools","SOURCE_TERMINOLOGY","NONE","Zeitz's tool index explicitly lists the catalyst tool."],
+  ["Z-REFLECTION","Reflection Tool","S1-ZEITZ-2007-2E",382,"Index — tools","SOURCE_TERMINOLOGY","NONE","Zeitz's tool index explicitly lists reflection as a tool."],
+  ["Z-DEFINE-FUNCTION","Define a Function","S1-ZEITZ-2007-2E",382,"Index — tools","SOURCE_TERMINOLOGY","NONE","Zeitz's tool index explicitly lists defining a function."],
+  ["Z-PARTIAL-FRACTIONS","Partial Fractions","S1-ZEITZ-2007-2E",382,"Index — tools","SOURCE_TERMINOLOGY","NONE","Zeitz's tool index explicitly lists partial fractions."],
+  ["Z-MODULO-FILTER","Filter the Problem Modulo n","S1-ZEITZ-2007-2E",258,"7.4 Diophantine Equations","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz explicitly recommends filtering a Diophantine problem modulo a suitable n to constrain solutions."],
+
+  // Deeper Engel strategy/counting harvest.
+  ["E-GREEDY","Greedy Algorithm","S2-ENGEL-1998",52,"3 The Extremal Principle","DISCOVERY_HEURISTIC","DISCOVERY","Engel introduces the greedy algorithm as a construction principle arising from an extremal search."],
+  ["E-DIVIDE-CONQUER","Divide and Conquer","S2-ENGEL-1998",91,"5 Enumerative Combinatorics","DISCOVERY_HEURISTIC","DISCOVERY","Engel explicitly calls Divide and Conquer a general combinatorial problem-solving strategy."],
+  ["E-SUM-RULE","Sum Rule","S2-ENGEL-1998",91,"5 Enumerative Combinatorics","SOURCE_TERMINOLOGY","NONE","Engel names the Sum Rule within his Divide-and-Conquer counting toolkit."],
+  ["E-PRODUCT-RULE","Product Rule","S2-ENGEL-1998",91,"5 Enumerative Combinatorics","SOURCE_TERMINOLOGY","NONE","Engel names the Product Rule within his counting toolkit."],
+  ["E-PRODUCT-SUM-RULE","Product-Sum Rule","S2-ENGEL-1998",91,"5 Enumerative Combinatorics","SOURCE_TERMINOLOGY","NONE","Engel names the Product-Sum Rule within his counting toolkit."],
+  ["E-COUNT-BIJECTION","Counting by Bijection","S2-ENGEL-1998",91,"5 Enumerative Combinatorics","SOURCE_TERMINOLOGY","NONE","Engel explicitly names Counting by Bijection."],
+  ["E-COUNT-TWO-WAYS","Count the Same Objects in Two Different Ways","S2-ENGEL-1998",91,"5 Enumerative Combinatorics","SOURCE_TERMINOLOGY","NONE","Engel explicitly lists counting the same objects in two different ways as a counting paradigm."],
+  ["E-INFINITE-DESCENT","Infinite Descent","S2-ENGEL-1998",129,"6 Number Theory","SOURCE_TERMINOLOGY","NONE","Engel explicitly presents a solution by infinite descent."],
+  ["E-CONJUGATE-NUMBERS","Conjugate Numbers","S2-ENGEL-1998",378,"14.4 Conjugate Numbers","SOURCE_TERMINOLOGY","NONE","Engel gives conjugate-number switching its own Further Strategies subsection."],
+
+  // Deeper Hammack proof/disproof harvest.
+  ["H-COMBINATORIAL-PROOF","Combinatorial Proof","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"3.10 Combinatorial Proof","PROOF_STRUCTURE","NONE","Hammack explicitly gives Combinatorial Proof its own section."],
+  ["H-COUNTEREXAMPLE","Counterexample","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"9.1 Counterexamples","PROOF_STRUCTURE","NONE","Hammack explicitly treats counterexamples as a disproof technique."],
+  ["H-DISPROVE-EXISTENCE","Disproving Existence Statements","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"9.2 Disproving Existence Statements","PROOF_STRUCTURE","NONE","Hammack explicitly treats disproving existence statements."],
+  ["H-DISPROOF-CONTRADICTION","Disproof by Contradiction","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"9.3 Disproof by Contradiction","PROOF_STRUCTURE","NONE","Hammack explicitly treats disproof by contradiction."],
+  ["H-TREAT-SIMILAR-CASES","Treating Similar Cases","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"4.5 Treating Similar Cases","PROOF_STRUCTURE","NONE","Hammack explicitly separates treating similar cases."],
+
+  // Deeper Velleman rules-of-inference harvest.
+  ["V-MODUS-PONENS","Modus Ponens","S4-VELLEMAN-2006-2E",117,"3.2 Proofs Involving Negations and Conditionals","PROOF_STRUCTURE","NONE","Velleman explicitly names and explains modus ponens as a rule of inference."],
+  ["V-MODUS-TOLLENS","Modus Tollens","S4-VELLEMAN-2006-2E",117,"3.2 Proofs Involving Negations and Conditionals","PROOF_STRUCTURE","NONE","Velleman explicitly names and explains modus tollens as a rule of inference."],
+  ["V-EXISTENTIAL-INSTANTIATION","Existential Instantiation","S4-VELLEMAN-2006-2E",129,"3.3 Proofs Involving Quantifiers","PROOF_STRUCTURE","NONE","Velleman explicitly names existential instantiation."],
+  ["V-UNIVERSAL-INSTANTIATION","Universal Instantiation","S4-VELLEMAN-2006-2E",129,"3.3 Proofs Involving Quantifiers","PROOF_STRUCTURE","NONE","Velleman explicitly names universal instantiation."],
+  ["V-DISJUNCTIVE-SYLLOGISM","Disjunctive Syllogism","S4-VELLEMAN-2006-2E",156,"3.5 Proofs Involving Disjunctions","PROOF_STRUCTURE","NONE","Velleman explicitly names disjunctive syllogism as a rule of inference."],
+
+  // Broader Putnam-and-Beyond raw tool/topic harvest from the exact frozen TOC.
+  ["P-SEARCH-PATTERN","Search for a Pattern","S5-GELCA-ANDREESCU-2007",7,"3.1.1 Search for a Pattern","DISCOVERY_HEURISTIC","DISCOVERY","Putnam and Beyond gives Search for a Pattern a dedicated subsection."],
+  ["P-TELESCOPIC","Telescopic Series and Products","S5-GELCA-ANDREESCU-2007",7,"3.1.6 Telescopic Series and Products","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives telescopic series and products a dedicated subsection."],
+  ["P-IVP","Intermediate Value Property","S5-GELCA-ANDREESCU-2007",7,"3.2.3 The Intermediate Value Property","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives the Intermediate Value Property a dedicated subsection."],
+  ["P-CONVEX-FUNCTIONS","Convex Functions","S5-GELCA-ANDREESCU-2007",7,"3.2.6 Convex Functions","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Convex Functions a dedicated subsection."],
+  ["P-FUNCTIONAL-EQUATIONS","Functional Equations","S5-GELCA-ANDREESCU-2007",7,"3.4.1 Functional Equations","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Functional Equations a dedicated subsection."],
+  ["P-TRIG-SUBSTITUTION","Trigonometric Substitutions","S5-GELCA-ANDREESCU-2007",8,"4.2.3 Trigonometric Substitutions","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Trigonometric Substitutions a dedicated subsection."],
+  ["P-INFINITE-DESCENT","Fermat's Infinite Descent Principle","S5-GELCA-ANDREESCU-2007",8,"5.1.2 Fermat's Infinite Descent Principle","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Fermat's Infinite Descent Principle a dedicated subsection."],
+  ["P-FACTORIZATION-DIVISIBILITY","Factorization and Divisibility","S5-GELCA-ANDREESCU-2007",8,"5.2.1 Factorization and Divisibility","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Factorization and Divisibility a dedicated subsection."],
+  ["P-CRT","Chinese Remainder Theorem","S5-GELCA-ANDREESCU-2007",8,"5.2.7 The Chinese Remainder Theorem","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives the Chinese Remainder Theorem a dedicated subsection."],
+  ["P-GENERATING-FUNCTIONS","Generating Functions","S5-GELCA-ANDREESCU-2007",9,"6.2.2 Generating Functions","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Generating Functions a dedicated subsection."],
+  ["P-COUNTING-STRATEGIES","Counting Strategies","S5-GELCA-ANDREESCU-2007",9,"6.2.3 Counting Strategies","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Counting Strategies a dedicated subsection."],
+  ["P-INCLUSION-EXCLUSION","Inclusion–Exclusion Principle","S5-GELCA-ANDREESCU-2007",9,"6.2.4 The Inclusion–Exclusion Principle","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives Inclusion–Exclusion a dedicated subsection."],
+  ["P-PROBABILITY-RELATIONS","Establishing Relations Among Probabilities","S5-GELCA-ANDREESCU-2007",9,"6.3.2 Establishing Relations Among Probabilities","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives establishing relations among probabilities a dedicated subsection."],
 ]);
 
 const SOURCE_HASH = Object.freeze({
