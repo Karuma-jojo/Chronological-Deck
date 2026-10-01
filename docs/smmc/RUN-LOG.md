@@ -776,3 +776,32 @@ No Gate-3 decision has been made:
 - project metadata remains index evidence, not Battle evidence.
 
 **STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 official-solution route checkpoint — 428 raw candidates (2026-10-02)
+
+The exact frozen official solution booklets were parsed for explicit solution-route structure.
+
+Structural lower bound:
+- 88 historical problem IDs;
+- 132 explicitly labelled Solution / Solution N / Solution via ... sections;
+- 32 problems with multiple explicitly labelled routes;
+- 2 problems with no labelled solution section in the booklet (2017-B4, 2018-B4).
+
+This route count is not an ability count and is recorded only as a lower bound on mathematical-route diversity.
+
+A first direct official-solution concept pass added 8 SOURCE_FACT + NONE raw leads:
+- winding-number parity coloring;
+- perturb-away-degeneracies;
+- parity tracking under continuous deformation;
+- Taylor-series expansion;
+- Mean Value Theorem as a contradiction tool;
+- dense-set Riemann-sum approximation;
+- Lagrange's theorem in a finite-group counting route;
+- upper-Riemann-sum bounding.
+
+Current raw pool: **428 candidates / 428 evidence records**.
+
+No Battle matrix, merge/split decision, type, rank, prerequisite relation, or combo decision was created.
+
+**STOP:** Gate 3 remains CLOSED.
