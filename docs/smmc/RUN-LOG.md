@@ -858,3 +858,23 @@ The extra Putnam rows deliberately include named reusable or specialist techniqu
 No merge/split/type/rank/prerequisite/combo decision was made.
 
 **STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 review candidate frozen — 477 raw candidates (2026-10-02)
+
+The raw harvest is now marked \`RAW-HARVEST-REVIEW-CANDIDATE\`, not accepted.
+
+Review-candidate inventory:
+- 44 legacy method-tag leads;
+- 39 secondary-tag leads;
+- 129 ledger bridge-need leads;
+- 34 auditNote route leads;
+- 30 direct official-solution SOURCE_FACT/NONE leads;
+- 201 canonical-book source leads;
+- **477 candidates / 477 evidence records**.
+
+Independent review contract now explicitly attacks coverage, book/solution blind spots, accidental merging, ontology leakage, evidence/channel misuse, Battle leakage, source integrity, duplicate preservation, route-count misinterpretation, and any Gate-3+ leakage.
+
+Any repair changes the review SHA and requires a fresh exact-head review.
+
+**STOP:** Gate 3 remains CLOSED until independent Gate-2 acceptance.
