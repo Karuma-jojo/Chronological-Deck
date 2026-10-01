@@ -915,3 +915,22 @@ No Gate-3 adjudication was introduced. All candidate ontology types remain null;
 
 The previous 531-row review target is superseded. Gate 2 remains REVIEW CANDIDATE and requires fresh exact-head CI plus independent exact-head review before it can close.
 
+## Arsenal Gate 2 official-solution stabilization pass — 627 raw candidates (2026-10-02)
+
+A bounded third official-solution pass targeted historical problems still lacking any direct source lead after the 603-row checkpoint.
+
+Added **24** further SOURCE_FACT + NONE candidates, taking the direct official-solution harvest from 102 to **126**. A subsequent coverage check matches all 126 official rows to registered historical problem IDs, with no duplicate or missing RAW-OFFICIAL IDs, and finds direct official-source candidate coverage on **75 / 88** frozen historical problems.
+
+The remaining uncovered historical problems were inspected against the project ledger/audit notes rather than force-filled for symmetry. Their routes are either ordinary applications already represented elsewhere in the raw pool or the historical open-problem cases without a labelled full solution in the frozen booklet. No 88/88 quota is being imposed at Gate 2.
+
+Current Gate-2 pool:
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 126 direct official-solution SOURCE_FACT + NONE leads;
+- 255 canonical-book source leads;
+- **627 candidates / 627 evidence records**.
+
+This is still a REVIEW CANDIDATE. No ontology, merge/split, ranking, prerequisite, relation, or learning-order decision has been made. The exact head must pass fresh CI and then receive independent exact-head review before Gate 2 can close.
+
