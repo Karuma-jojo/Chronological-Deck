@@ -44,6 +44,14 @@ export const ARSENAL_VERIFICATION_STATUSES = Object.freeze([
   "SYNTHESIS_PROPOSAL",
 ]);
 
+export const ARSENAL_BASIS_STATUS_ADMISSIBILITY = Object.freeze({
+  SOURCE_FACT: Object.freeze(["VERIFIED"]),
+  SOURCE_LEAD: Object.freeze(["UNVERIFIED_SOURCE_LEAD"]),
+  PROJECT_DERIVED: Object.freeze(["VERIFIED", "INDEX_LEAD"]),
+  LEARNER_EMPIRICAL: Object.freeze(["VERIFIED"]),
+  PROJECT_SYNTHESIS: Object.freeze(["SYNTHESIS_PROPOSAL"]),
+});
+
 // Allow-list. Every combination not listed here is forbidden.
 export const ARSENAL_EVIDENCE_ADMISSIBILITY = Object.freeze({
   SOURCE_FACT: Object.freeze({
@@ -251,6 +259,9 @@ export function validateGate1EvidenceRecord(record) {
   if (!ARSENAL_VERIFICATION_STATUSES.includes(record.verificationStatus)) {
     throw new Error("Unknown verificationStatus.");
   }
+  if (!ARSENAL_BASIS_STATUS_ADMISSIBILITY[record.evidenceBasis]?.includes(record.verificationStatus)) {
+    throw new Error("Forbidden evidenceBasis × verificationStatus combination.");
+  }
   if (!isAdmissibleEvidenceCombination(record.evidenceBasis, record.recordChannel, record.claimKind)) {
     throw new Error("Forbidden evidenceBasis × recordChannel × claimKind combination.");
   }
@@ -258,24 +269,58 @@ export function validateGate1EvidenceRecord(record) {
     throw new Error("ontologyType must remain null through Gate 2.");
   }
 
-  if (record.evidenceBasis === "SOURCE_FACT" && record.verificationStatus !== "VERIFIED") {
-    throw new Error("SOURCE_FACT must be VERIFIED.");
-  }
-  if (
-    record.evidenceBasis === "SOURCE_LEAD" &&
-    (record.recordChannel !== "NONE" || record.verificationStatus !== "UNVERIFIED_SOURCE_LEAD")
-  ) {
-    throw new Error("SOURCE_LEAD must be NONE + UNVERIFIED_SOURCE_LEAD.");
-  }
-  if (
-    record.evidenceBasis === "PROJECT_SYNTHESIS" &&
-    record.verificationStatus !== "SYNTHESIS_PROPOSAL"
-  ) {
-    throw new Error("PROJECT_SYNTHESIS must be SYNTHESIS_PROPOSAL.");
+  if (record.evidenceBasis === "SOURCE_LEAD" && record.recordChannel !== "NONE") {
+    throw new Error("SOURCE_LEAD must use recordChannel NONE.");
   }
 
+  const needsSourceLocator = ["SOURCE_FACT", "SOURCE_LEAD", "PROJECT_DERIVED"].includes(record.evidenceBasis);
+  if (needsSourceLocator && (record.sourceLocator === null || record.sourceLocator === undefined)) {
+    throw new Error("Source-backed/project-derived records require a structured sourceLocator.");
+  }
   if (record.sourceLocator !== null && record.sourceLocator !== undefined) {
     validateSourceLocator(record.sourceLocator);
+  }
+
+  if (["SOURCE_FACT", "SOURCE_LEAD"].includes(record.evidenceBasis)) {
+    if (typeof record.sourceId !== "string" || !record.sourceId) {
+      throw new Error("SOURCE_FACT/SOURCE_LEAD records require sourceId.");
+    }
+  }
+
+  if (record.evidenceBasis === "PROJECT_DERIVED") {
+    if (typeof record.sourceVersionOrCommit !== "string" || !record.sourceVersionOrCommit) {
+      throw new Error("PROJECT_DERIVED records require sourceVersionOrCommit.");
+    }
+  }
+
+  if (
+    record.evidenceBasis === "SOURCE_FACT" &&
+    record.recordChannel === "BATTLE" &&
+    record.claimKind === "HISTORICAL_OCCURRENCE"
+  ) {
+    if (!Array.isArray(record.historicalProblemIds) || record.historicalProblemIds.length !== 1) {
+      throw new Error("Verified historical occurrence requires exactly one historicalProblemId.");
+    }
+    if (
+      typeof record.sourceId === "string" &&
+      record.sourceId.startsWith("S0-SMMC-SOLUTION-") &&
+      !/^[0-9a-f]{64}$/.test(record.sourceArtifactSha256 || "")
+    ) {
+      throw new Error("Solution-backed Battle occurrence requires frozen sourceArtifactSha256.");
+    }
+  }
+
+  if (
+    record.evidenceBasis === "SOURCE_FACT" &&
+    record.recordChannel === "BATTLE" &&
+    record.claimKind === "HISTORICAL_COOCCURRENCE"
+  ) {
+    if (!Array.isArray(record.linkedRecordIds) || record.linkedRecordIds.length < 2) {
+      throw new Error("Battle co-occurrence requires at least two linked occurrence records.");
+    }
+    if (!Array.isArray(record.historicalProblemIds) || record.historicalProblemIds.length !== 1) {
+      throw new Error("Battle co-occurrence requires exactly one shared historicalProblemId.");
+    }
   }
 
   if (record.recordChannel === "TRANSFER") {
@@ -299,8 +344,66 @@ export function validateGate1EvidenceRecord(record) {
     }
   }
 
-  if (record.claimKind === "RETENTION" && record.recordChannel !== "NONE") {
-    throw new Error("RETENTION is not Battle/Discovery/Transfer evidence.");
+  if (record.evidenceBasis === "LEARNER_EMPIRICAL") {
+    if (!Array.isArray(record.learnerAttemptIds) || record.learnerAttemptIds.length < 1) {
+      throw new Error("LEARNER_EMPIRICAL records require learnerAttemptIds.");
+    }
+  }
+
+  if (record.claimKind === "RETENTION") {
+    if (record.recordChannel !== "NONE") {
+      throw new Error("RETENTION is not Battle/Discovery/Transfer evidence.");
+    }
+    if (
+      record.evidenceBasis === "LEARNER_EMPIRICAL" &&
+      record.learnerContext?.taskFreshness !== "SAME_TASK_DELAYED"
+    ) {
+      throw new Error("Learner RETENTION uses SAME_TASK_DELAYED freshness.");
+    }
+  }
+
+  return true;
+}
+
+export function validateGate1EvidenceCollection(records) {
+  if (!Array.isArray(records)) throw new Error("Evidence collection must be an array.");
+  const byId = new Map();
+  for (const record of records) {
+    validateGate1EvidenceRecord(record);
+    if (typeof record.recordId !== "string" || !record.recordId) {
+      throw new Error("Every evidence record requires recordId.");
+    }
+    if (byId.has(record.recordId)) throw new Error("Duplicate evidence recordId.");
+    byId.set(record.recordId, record);
+  }
+
+  for (const record of records) {
+    if (
+      record.evidenceBasis === "SOURCE_FACT" &&
+      record.recordChannel === "BATTLE" &&
+      record.claimKind === "HISTORICAL_COOCCURRENCE"
+    ) {
+      const sharedProblemId = record.historicalProblemIds[0];
+      for (const linkedId of record.linkedRecordIds) {
+        const linked = byId.get(linkedId);
+        if (!linked) throw new Error("Battle co-occurrence links unknown record.");
+        if (
+          linked.evidenceBasis !== "SOURCE_FACT" ||
+          linked.recordChannel !== "BATTLE" ||
+          linked.claimKind !== "HISTORICAL_OCCURRENCE" ||
+          linked.verificationStatus !== "VERIFIED"
+        ) {
+          throw new Error("Battle co-occurrence may link only VERIFIED official occurrence records.");
+        }
+        if (
+          !Array.isArray(linked.historicalProblemIds) ||
+          linked.historicalProblemIds.length !== 1 ||
+          linked.historicalProblemIds[0] !== sharedProblemId
+        ) {
+          throw new Error("Battle co-occurrence linked occurrences must share the same historical problem.");
+        }
+      }
+    }
   }
 
   return true;
