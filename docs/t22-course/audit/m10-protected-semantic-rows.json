@@ -24,10 +24,11 @@
       "mode": "new",
       "semanticStatus": "accepted",
       "bridges": [],
-      "note": "Historical M03 semantic boundary acceptance remains valid for downstream prerequisite routing and is not revoked. The mathematical/content design is closed. The current v1.7.1 evidence-harness candidate is separately awaiting independent confirmation; it repairs static-test truth, current semantic receipts, decision-audit adjudication, S25 lesson provenance, and S24 end-to-end provenance coverage without changing M03 mathematics or ownership.",
+      "note": "Historical M03 semantic boundary acceptance remains valid for downstream prerequisite routing. Canonical mathematics/content/evidence is closed. The v1.7.2 publication-state closeout records successful exact-SHA workflow #604 and a hostile same-model follow-up with no canonical math defect, plus non-canonical Strategy-Lab/source-dossier repairs. External/formal independent review of the v1.7.x closeout was not performed.",
       "historicalSemanticStatus": "accepted",
-      "currentEvidenceStatus": "awaiting-independent-confirmation",
-      "currentEvidenceVersion": "m03-authoring-v1.7.1-evidence-harness-candidate-r1"
+      "currentEvidenceStatus": "published-builder-validated-same-model-review-passed",
+      "currentEvidenceVersion": "m03-authoring-v1.7.2-publication-state-r1",
+      "externalIndependentReview": "not-performed"
     },
     {
       "order": 4,
