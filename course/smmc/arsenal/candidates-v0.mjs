@@ -427,6 +427,9 @@ const SOURCE_SEEDS = Object.freeze([
   ["Z-BACKWARD-INDUCTION","Backward Induction","S1-ZEITZ-2007-2E",377,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists backward induction."],
   ["Z-AREA-PROOF","Area as a Proof Tactic","S1-ZEITZ-2007-2E",377,"Index — area","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists area as a proof tactic."],
   ["Z-BISECTION","Bisection Method","S1-ZEITZ-2007-2E",377,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists the bisection method."],
+  ["Z-REPEATED-BISECTION","Repeated Bisection Method","S1-ZEITZ-2007-2E",344,"Repeated-bisection discussion","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly describes the repeated bisection method as a strategy in the worked discussion."],
+  ["Z-AVERAGE-PRINCIPLE","Average Principle","S1-ZEITZ-2007-2E",193,"5.5.12 The average principle","SOURCE_TERMINOLOGY","NONE","Zeitz gives the Average Principle an explicitly named subsection."],
+  ["Z-ALGORITHMIC-PROOF","Algorithmic Proof","S1-ZEITZ-2007-2E",369,"Solution 2: Algorithmic Proof","PROOF_STRUCTURE","NONE","Zeitz explicitly labels an alternative argument as an Algorithmic Proof."]
   ["Z-EUCLIDEAN-ALGORITHM","Euclidean Algorithm","S1-ZEITZ-2007-2E",379,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists the Euclidean algorithm."],
   ["Z-MOBIUS-INVERSION","Möbius Inversion Formula","S1-ZEITZ-2007-2E",380,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists the Möbius inversion formula."],
   ["Z-PICK-THEOREM","Pick's Theorem","S1-ZEITZ-2007-2E",381,"Index","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists Pick's theorem."],
