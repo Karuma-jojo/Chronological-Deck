@@ -17,17 +17,44 @@ Frozen project paths include:
 - `course/smmc/ledger-2017.mjs` through `course/smmc/ledger-2025.mjs`
 - `course/smmc/ledger.mjs`
 - `course/smmc/schema.mjs`
-- `course/smmc/sources-v1.mjs`
+- `course/smmc/sources-v1.mjs` — learner-safe official problem-paper links only
+- `course/smmc/official-solution-sources-v1.mjs` — authoring-only frozen official solution identities
 - `docs/smmc/FINAL-SYNTHESIS-2017-2025.md`
 - `docs/smmc/ARSENAL-GATE0-CORPUS-PROTECTION.md`
 
+### Frozen official solution artifacts
+
+A VERIFIED historical Battle occurrence that relies on an official solution must use one of these exact artifacts, or a later independently reviewed source-register amendment.
+
+| Year | Official solution artifact | Pages | SHA-256 |
+|---|---|---:|---|
+| 2017 | `smmc-2017-solutions-preliminary_1.pdf` | 12 | `c272a72239ef4c2ccd54df0702140179e0a9b85f5a9028c87d485841eb1a2c12` |
+| 2018 | `smmc-2018-solutions_1.pdf` | 17 | `b19562352d09bf6fbb43974339b82c2a59c0d2276eb69f357a752772ce0f83cb` |
+| 2019 | `smmc-2019-solutions_1.pdf` | 12 | `a865c3f68e9082e3cce457cb5f10a9df5f33feed16ae63c16a70f885fe59199e` |
+| 2020 | `smmc-2020-solutions_1.pdf` | 28 | `d77ecfa277a693f57992ca2286c01e95f50821c02abc6ff63a41966f578f09b3` |
+| 2021 | `smmc-2021-solutions.pdf` | 22 | `c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00` |
+| 2022 | `smmc-2022-solutions.pdf` | 30 | `3e1670aef22b83cd2be13d027728ebed119072011e4150d7c3aa8dba3101295f` |
+| 2023 | `smmc2023solutions.pdf` | 23 | `446d9d19f962e9bbc727422be6a5c1de62fcf0fc3d0cf424494861d7eb7d832c` |
+| 2024 | `smmc_2024_solutions.pdf` | 24 | `1566dc8c2088cbbc851f7c91d357f9c453f2d28578df7694aa9a13584a80eed2` |
+| 2025 | `smmc2025_solutions.pdf` | 25 | `0fcacace7c3c9f3a34b7c368abdbc9436e35215e7e406158b25bfd9437940345` |
+
+The exact official URLs and year-page identities are machine-readable in `course/smmc/official-solution-sources-v1.mjs`.
+
+**2025 revision note:** a source inventory checked on 2026-09-28 recorded a previous 26-page official-linked 2025 booklet under a different filename/hash. Gate 1 freezes the 25-page revision currently linked by the official source at the time of this repair. The older revision is provenance history only and is not treated as byte-identical.
+
 ### Role
 
-The official SMMC problem/solution documents referenced by the frozen source registry are primary historical sources.
+The frozen official SMMC problem/solution documents are primary historical sources for what actually appears in those documents.
 
 The ledgers, tags, counts, overlap labels and synthesis documents are project-derived records.
 
-For a verified historical Battle occurrence, the evidence record must identify the exact official problem/solution source and locator used. If a PDF/file is downloaded for verification, record its SHA-256 in that evidence record when practical.
+For a VERIFIED historical Battle occurrence that relies on a solution booklet, the evidence record must identify:
+- exact year/problem ID;
+- exact canonical solution source/registry row;
+- exact source locator;
+- the canonical SHA-256 above.
+
+The SHA-256 is mandatory, not “when practical.”
 
 A ledger method tag alone is an index lead, not verified official occurrence.
 
