@@ -34,9 +34,9 @@ Current expanded harvest inventory:
 - **39** current `SMMC_SECONDARY_TAGS`, preserved separately so tool/topic/specialist possibilities are not lost;
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
-- **255** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **628 total raw candidates**;
-- **628 evidence records**;
+- **258** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
+- **631 total raw candidates**;
+- **631 evidence records**;
 - **0 typed candidates**;
 - **0 alias merges**;
 - **0 adjudications**;
@@ -175,12 +175,12 @@ Current raw book harvest, still without adjudication:
 
 | Canonical source | Raw source-specific candidates |
 |---|---:|
-| Zeitz | 79 |
+| Zeitz | 82 |
 | Engel | 42 |
 | Hammack | 25 |
 | Velleman | 25 |
 | Putnam and Beyond | 84 |
-| **Total** | **255** |
+| **Total** | **258** |
 
 The counts are deliberately not interpreted as source importance. They reflect the current harvest granularity and how explicitly each source names techniques.
 
@@ -215,15 +215,15 @@ The exact frozen 2017–2025 solution booklets were also parsed structurally.
 
 This is intentionally not treated as “132 methods.” A single labelled solution may contain several moves, and multiple labelled solutions may share most of their mathematics.
 
-The direct official-solution concept pass now contains **127** SOURCE_FACT/NONE raw leads. It includes the earlier winding-number/perturbation/deformation ideas plus named tools and routes such as Vandermonde-matrix invertibility, Newton polygons, CRT, generating functions, recurrence relations, projective-plane methods, Gaussian integers, p-adic valuations, rational-root arguments, convex envelopes/hulls, alternating/comparison/subseries arguments, IVT, triangle-inequality sharpness, AM-GM, eigenvector reduction, bijective counting, compact-space subsequences, and geometric-series summation.
+The direct official-solution concept pass now contains **127** SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE raw leads. It includes the earlier winding-number/perturbation/deformation ideas plus named tools and routes such as Vandermonde-matrix invertibility, Newton polygons, CRT, generating functions, recurrence relations, projective-plane methods, Gaussian integers, p-adic valuations, rational-root arguments, convex envelopes/hulls, alternating/comparison/subseries arguments, IVT, triangle-inequality sharpness, AM-GM, eigenvector reduction, bijective counting, compact-space subsequences, and geometric-series summation.
 
-These direct source observations still do **not** build the later Battle matrix.
+These direct source observations are verified historical Battle occurrences under the Gate-1 contract. They still do **not** constitute the later completed Battle matrix: Gate 2 does not create co-occurrence edges, frequencies, rankings, ontology types, or learning-order conclusions.
 
 
 
 ### Deep official-solution coverage repair
 
-A second independent pass over the frozen official 2017–2025 solution booklets found that the first 30 direct source rows were still far too selective for a raw-ore gate. It added **72** additional SOURCE_FACT + NONE candidates, bringing the direct official-solution harvest to **102**.
+A second independent pass over the frozen official 2017–2025 solution booklets found that the first 30 direct source rows were still far too selective for a raw-ore gate. It added **72** additional verified official-occurrence candidates, bringing the direct official-solution harvest to **102**.
 
 The new source-grounded rows preserve reusable moves that were explicit in the official prose but easy to lose in a tag/bridge-only sweep. Examples include potential-function/gradient reformulation, hidden sum-of-squares and covariance representations, adjacent-swap improvement, support compression to a clique, recoverability and subset encoding, recursive-infimum reasoning, finite-field quotient/difference-set constructions, prime-divisibility recurrence invariants, nested compact sets, moving-average regularity, multiplicative orders modulo prime powers, unique-lowest-valuation arguments, P/N and Sprague–Grundy game reductions, roots-of-unity filters, direct-sum basis construction, ternary forced-pair recursion, Frobenius/UFD finite-field moves, binary no-carry counting, first-step decomposition, finite-field rank-nullity counting, root interlacing, Jordan-form dilation arguments, Vandermonde-factor forcing, and piecewise-linear parity induction.
 
@@ -233,7 +233,7 @@ These 72 additions are still raw candidates only. They do not establish final gr
 
 ### Official-solution stabilization pass
 
-A third bounded pass concentrated on historical problems that still had no direct official-solution raw lead after the 603-row checkpoint. It added **24** further SOURCE_FACT + NONE rows, bringing the official-solution harvest to **126** and the complete Gate-2 pool to **627 candidates / 627 evidence records**.
+A third bounded pass concentrated on historical problems that still had no direct official-solution raw lead after the 603-row checkpoint. It added **24** further verified official-occurrence rows, bringing the official-solution harvest to **126** and the complete Gate-2 pool to **627 candidates / 627 evidence records**.
 
 The pass deliberately targeted source-specific moves that were not adequately represented by broad method tags alone: forcing forks in finite games, reciprocal self-bounds for divergent partial sums, alternating subset-sign cancellation, determinant-preserving row replacement, local-replacement closure of constructions, discriminant-robust strategies, concavity and infimum/tangent contradictions in an ODE route, radical approximation from rational density, graph-distance pursuit phases, graph-core reduction by Laplace elimination, cycle-block determinant factorization, elementwise membership-pattern factorization, inverse-graph area symmetry, attracting invariant strips for discrete maps, conditional hitting-probability bounds, cyclic order reduction, root-orbit factorization, interval divisibility collisions, and four-step balancing induction.
 
@@ -243,9 +243,23 @@ A problem-by-problem coverage check now finds direct official-source leads on **
 
 ### Final one-row gap repair
 
-The stabilization review then identified one remaining official move worth preserving independently rather than leaving implicit under generic parity/number-theory tags: the **modulo-4 square obstruction for two odd primes** in 2017-B2. That exact source lead was added as one further SOURCE_FACT + NONE row.
+The stabilization review then identified one remaining official move worth preserving independently rather than leaving implicit under generic parity/number-theory tags: the **modulo-4 square obstruction for two odd primes** in 2017-B2. That exact verified historical occurrence was added as one further official-source row.
 
-The current review candidate therefore contains **127 direct official-solution rows** and **628 total candidates / 628 evidence records**. Direct official-source candidate coverage now reaches **76 of 88** frozen historical problems. The remaining 12 were inspected but are not being force-filled merely to manufacture 88/88 symmetry; two are the historical open-problem slots without labelled full solutions, while the others do not currently expose a materially new reusable move beyond raw candidates already harvested elsewhere.
+The official-solution stabilization checkpoint therefore contained **127 direct official-solution rows** and **628 total candidates / 628 evidence records** before the final Zeitz source repair described below. Direct official-source candidate coverage now reaches **76 of 88** frozen historical problems. The remaining 12 were inspected but are not being force-filled merely to manufacture 88/88 symmetry; two are the historical open-problem slots without labelled full solutions, while the others do not currently expose a materially new reusable move beyond raw candidates already harvested elsewhere.
+
+
+
+### Independent-review repairs G2-R01–G2-R03
+
+The first independent review of the old 477-row head identified three real defects. The repaired Gate-2 candidate now resolves them as follows:
+
+- **G2-R01 — evidence semantics:** direct official-solution rows no longer park verified historical-use claims under SOURCE_FACT + NONE + OTHER. All **127** direct solution observations are now SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE, each bound to exactly one historical problem and exact frozen official source/hash/page locator. The authoring validator now asserts this tuple for every direct official-solution evidence record. This records verified occurrence only; it does not build co-occurrence, ranking, ontology, prerequisites, or the later completed Battle matrix.
+- **G2-R02 — book-source omissions:** the follow-up source pass added the reviewer's missing Zeitz terms and continued through the source's explicit strategy/tactic/tool/index vocabulary. The final bounded repair adds **Average Principle**, **Algorithmic Proof**, and **Repeated Bisection Method**; earlier repair commits had already added **Symmetry-Product Principle**, **Euclidean Algorithm**, **Bisection Method**, and **Well-Ordering Principle**. Zeitz now contributes **82** source-specific rows, and the five-book total is **258**.
+- **G2-R03 — documentation drift:** the Gate-2 invariant is synchronized to RAW-HARVEST-REVIEW-CANDIDATE; the obsolete RAW-HARVEST-IN-PROGRESS wording is gone.
+
+For source-saturation purposes, the bounded inclusion rule used in the final book pass is: preserve source-specific terms explicitly presented by the source as a strategy, tactic, tool, principle, method, algorithm/proof style, or structured proof move; also preserve named specialist methods from the canonical TOC/index when they are plausible contest-solving machinery. Same-looking terms remain separate. This is a raw-harvest rule only, not a claim that every preserved term deserves a final Arsenal card.
+
+After these review repairs the current pool is **631 candidates / 631 evidence records**: 44 method tags, 39 secondary tags, 129 bridgeNeeds, 34 audit-note route leads, 127 verified official historical occurrences, and 258 canonical-book source leads.
 
 ## 5. Non-adjudicating duplicate/orphan audit
 
@@ -286,7 +300,7 @@ The reviewer should attack at least these questions:
 
 1. **Coverage:** did any current method tag, secondary tag, ledger bridge need, or recurring problem-specific route disappear?
 2. **Book blind spots:** do Zeitz/Engel/Hammack/Velleman/Putnam contain clearly reusable named problem-solving ideas that the current source sweeps missed?
-3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 628-row raw pool?
+3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 631-row raw pool?
 4. **Premature merging:** were any same-looking source terms silently collapsed instead of preserved separately?
 5. **Premature ontology:** is any candidate typed, ranked, parented, prerequisite-linked, or adjudicated?
 6. **Evidence honesty:** does every row use the Gate-1 basis/channel/claim-kind contract correctly?
