@@ -26,17 +26,17 @@ Frozen project paths include:
 
 A VERIFIED historical Battle occurrence that relies on an official solution must use one of these exact artifacts, or a later independently reviewed source-register amendment.
 
-| Year | Official solution artifact | Pages | SHA-256 |
-|---|---|---:|---|
-| 2017 | `smmc-2017-solutions-preliminary_1.pdf` | 12 | `c272a72239ef4c2ccd54df0702140179e0a9b85f5a9028c87d485841eb1a2c12` |
-| 2018 | `smmc-2018-solutions_1.pdf` | 17 | `b19562352d09bf6fbb43974339b82c2a59c0d2276eb69f357a752772ce0f83cb` |
-| 2019 | `smmc-2019-solutions_1.pdf` | 12 | `a865c3f68e9082e3cce457cb5f10a9df5f33feed16ae63c16a70f885fe59199e` |
-| 2020 | `smmc-2020-solutions_1.pdf` | 28 | `d77ecfa277a693f57992ca2286c01e95f50821c02abc6ff63a41966f578f09b3` |
-| 2021 | `smmc-2021-solutions.pdf` | 22 | `c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00` |
-| 2022 | `smmc-2022-solutions.pdf` | 30 | `3e1670aef22b83cd2be13d027728ebed119072011e4150d7c3aa8dba3101295f` |
-| 2023 | `smmc2023solutions.pdf` | 23 | `446d9d19f962e9bbc727422be6a5c1de62fcf0fc3d0cf424494861d7eb7d832c` |
-| 2024 | `smmc_2024_solutions.pdf` | 24 | `1566dc8c2088cbbc851f7c91d357f9c453f2d28578df7694aa9a13584a80eed2` |
-| 2025 | `smmc2025_solutions.pdf` | 25 | `0fcacace7c3c9f3a34b7c368abdbc9436e35215e7e406158b25bfd9437940345` |
+| Year | Source ID | Official solution artifact | Pages | SHA-256 |
+|---|---|---|---:|---|
+| 2017 | `S0-SMMC-SOLUTION-2017` | `smmc-2017-solutions-preliminary_1.pdf` | 12 | `c272a72239ef4c2ccd54df0702140179e0a9b85f5a9028c87d485841eb1a2c12` |
+| 2018 | `S0-SMMC-SOLUTION-2018` | `smmc-2018-solutions_1.pdf` | 17 | `b19562352d09bf6fbb43974339b82c2a59c0d2276eb69f357a752772ce0f83cb` |
+| 2019 | `S0-SMMC-SOLUTION-2019` | `smmc-2019-solutions_1.pdf` | 12 | `a865c3f68e9082e3cce457cb5f10a9df5f33feed16ae63c16a70f885fe59199e` |
+| 2020 | `S0-SMMC-SOLUTION-2020` | `smmc-2020-solutions_1.pdf` | 28 | `d77ecfa277a693f57992ca2286c01e95f50821c02abc6ff63a41966f578f09b3` |
+| 2021 | `S0-SMMC-SOLUTION-2021` | `smmc-2021-solutions.pdf` | 22 | `c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00` |
+| 2022 | `S0-SMMC-SOLUTION-2022` | `smmc-2022-solutions.pdf` | 30 | `3e1670aef22b83cd2be13d027728ebed119072011e4150d7c3aa8dba3101295f` |
+| 2023 | `S0-SMMC-SOLUTION-2023` | `smmc2023solutions.pdf` | 23 | `446d9d19f962e9bbc727422be6a5c1de62fcf0fc3d0cf424494861d7eb7d832c` |
+| 2024 | `S0-SMMC-SOLUTION-2024` | `smmc_2024_solutions.pdf` | 24 | `1566dc8c2088cbbc851f7c91d357f9c453f2d28578df7694aa9a13584a80eed2` |
+| 2025 | `S0-SMMC-SOLUTION-2025` | `smmc2025_solutions.pdf` | 25 | `0fcacace7c3c9f3a34b7c368abdbc9436e35215e7e406158b25bfd9437940345` |
 
 The exact official URLs and year-page identities are machine-readable in `course/smmc/official-solution-sources-v1.mjs`.
 
