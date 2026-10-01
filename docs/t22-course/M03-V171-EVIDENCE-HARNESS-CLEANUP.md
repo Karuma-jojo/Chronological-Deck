@@ -1,4 +1,4 @@
-# M03 v1.7.1 evidence-harness cleanup
+> **Superseded for current-state claims by `M03-FINAL-PUBLICATION.md`.** v1.7.1 remains the tested evidence-harness history; the v1.7.2 closeout adds no S01–S30 mathematics and records final source/pedagogy documentation plus clone-audited Spire labs.\n\n# M03 v1.7.1 evidence-harness cleanup
 
 Status: **candidate — independent confirmation required**
 
