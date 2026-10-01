@@ -838,3 +838,23 @@ Official solution structural lower bound remains:
 No Battle matrix or Gate-3 adjudication was created.
 
 **STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 full canonical-book TOC/index sweep — 477 raw candidates (2026-10-02)
+
+The canonical-book harvest was expanded from 174 to **201** source-specific rows after completing the broad Putnam-and-Beyond TOC sweep.
+
+Current source counts:
+- Zeitz 62;
+- Engel 36;
+- Hammack 17;
+- Velleman 19;
+- Putnam and Beyond 67.
+
+Overall raw pool is now **477 candidates / 477 evidence records**.
+
+The extra Putnam rows deliberately include named reusable or specialist techniques that may later be rejected by the granularity tribunal; Gate 2 does not pre-prune them.
+
+No merge/split/type/rank/prerequisite/combo decision was made.
+
+**STOP:** Gate 3 remains CLOSED.
