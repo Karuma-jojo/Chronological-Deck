@@ -2,9 +2,13 @@
 
 Status: **Gate-1 canonical source identity register — review candidate**
 
-This file freezes the exact evidence sources used by the Gate-1 research contract. It freezes **source identity**, not the Arsenal ontology.
+This file is the human-readable register for the exact evidence sources used by the Gate-1 research contract. It freezes **source identity**, not the Arsenal ontology.
 
-A same-title but different edition/file is not silently interchangeable with the artifact listed here.
+The validator's machine-readable canonical allow-list is:
+
+`course/smmc/arsenal/canonical-sources-v1.mjs`
+
+A source is canonical only when its exact Source ID is present there and its frozen hash/page metadata match. A same-title file, an invented ID, or a familiar-looking prefix is not silently interchangeable with a registered artifact.
 
 ## S0 — SMMC corpus snapshot
 
@@ -19,6 +23,7 @@ Frozen project paths include:
 - `course/smmc/schema.mjs`
 - `course/smmc/sources-v1.mjs` — learner-safe official problem-paper links only
 - `course/smmc/official-solution-sources-v1.mjs` — authoring-only frozen official solution identities
+- `course/smmc/arsenal/canonical-sources-v1.mjs` — machine-readable canonical Source IDs/hashes/page bounds for S0 + S1–S5
 - `docs/smmc/FINAL-SYNTHESIS-2017-2025.md`
 - `docs/smmc/ARSENAL-GATE0-CORPUS-PROTECTION.md`
 
@@ -237,13 +242,16 @@ A ledger method tag alone is an index lead, not verified official occurrence.
 
 # Source integrity rule
 
-Before a future builder claims to have verified a canonical book source:
+Before a future builder claims to have verified a canonical source:
 
-1. match the Source ID;
-2. match the bibliographic edition;
-3. match the artifact SHA-256 when working from the canonical PDF;
-4. inspect the relevant passage;
-5. record a locator.
+1. match the exact Source ID against `course/smmc/arsenal/canonical-sources-v1.mjs`;
+2. match the bibliographic/artifact identity;
+3. match the registered artifact SHA-256;
+4. ensure the PDF locator falls inside the registered page count;
+5. inspect the relevant passage;
+6. record the structured locator.
+
+The validator must reject `SOURCE_FACT` when any of those machine-checkable identity conditions fail.
 
 If the hash differs, the source may still be a legitimate edition, but it is **not automatically the canonical Gate-1 artifact**.
 
@@ -265,9 +273,10 @@ The amendment must include:
 - permitted claim roles;
 - explicit limitations;
 - rationale for addition/replacement;
+- exact machine-readable registry entry/change;
 - independent review.
 
-Until accepted, evidence from the new source must use `evidenceBasis: SOURCE_LEAD`, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`.
+Until accepted **and added to the machine-readable registry**, evidence from the new source must use `evidenceBasis: SOURCE_LEAD`, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`.
 
 # Copyright hygiene
 
