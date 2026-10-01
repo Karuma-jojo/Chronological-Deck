@@ -482,7 +482,7 @@ export const ARSENAL_GATE2_RAW_EVIDENCE = Object.freeze([
 
 export const ARSENAL_GATE2_HARVEST_META = Object.freeze({
   gate: 2,
-  status: "RAW-HARVEST-IN-PROGRESS",
+  status: "RAW-HARVEST-REVIEW-CANDIDATE",
   legacyMethodTagCount: SMMC_METHOD_TAGS.length,
   legacyCandidates: ARSENAL_GATE2_LEGACY_TAG_CANDIDATES.length,
   secondaryTagCandidates: ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES.length,
