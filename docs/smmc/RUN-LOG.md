@@ -934,3 +934,20 @@ Current Gate-2 pool:
 
 This is still a REVIEW CANDIDATE. No ontology, merge/split, ranking, prerequisite, relation, or learning-order decision has been made. The exact head must pass fresh CI and then receive independent exact-head review before Gate 2 can close.
 
+## Arsenal Gate 2 final one-row gap repair — 628 raw candidates (2026-10-02)
+
+A final bounded historical-gap check preserved one additional official-source move from 2017-B2: **Modulo-4 Square Obstruction for Odd Primes**.
+
+This adds one SOURCE_FACT + NONE row and moves the direct official-solution harvest from 126 to **127**, with direct official-source candidate coverage on **76 / 88** frozen historical problems.
+
+Current Gate-2 pool:
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 127 direct official-solution SOURCE_FACT + NONE leads;
+- 255 canonical-book source leads;
+- **628 candidates / 628 evidence records**.
+
+The remaining 12 historical problems were inspected rather than force-filled to an artificial 88/88 quota. Gate 2 remains REVIEW CANDIDATE; Gate 3 remains closed. Any acceptance must bind to the final exact head after fresh CI.
+
