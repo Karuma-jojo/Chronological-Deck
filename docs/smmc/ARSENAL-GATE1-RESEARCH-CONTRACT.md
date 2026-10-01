@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 1 research contract
 
-Status: **G1-R01–R05 REPAIRED — independent follow-up required; ontology and representation remain unfrozen**  
+Status: **G1-R01–R05 + F1–F3 REPAIRED — independent closure review required; ontology and representation remain unfrozen**  
 Scope: evidence discipline only. Gate 1 does **not** accept, merge, split, type, rank, order, prerequisite-link, or choose a data representation for any Arsenal candidate.
 
 ## 1. Purpose
@@ -35,7 +35,9 @@ A title alone is not a source identity.
 
 For books, a canonical source is identified by bibliographic edition plus the SHA-256 of the exact artifact used for Gate-1 research.
 
-For the SMMC corpus, the project snapshot is pinned to the Gate-0 merge commit and official source registry. Individual historical Battle claims must additionally identify the exact official problem/solution source used to verify the occurrence.
+For the SMMC corpus, the project snapshot is pinned to the Gate-0 merge commit. Problem-paper links remain in the learner-safe paper registry, while official solution booklets are frozen separately in the authoring-only `course/smmc/official-solution-sources-v1.mjs` with exact URLs, page counts, and SHA-256 fingerprints.
+
+A VERIFIED historical Battle claim that relies on an official solution must identify the exact frozen solution artifact and its SHA-256. “Official site” or a year alone is not sufficient provenance.
 
 Only sources listed as **CANONICAL** in the source register may directly support a canonical Gate-2+ source claim.
 
@@ -52,7 +54,7 @@ Before it can support canonical evidence, a source-register amendment must recor
 5. why the existing canonical set is insufficient;
 6. an independent review of the amendment.
 
-Until that amendment is accepted, material from the source may be logged only as an `UNVERIFIED_SOURCE_LEAD`. It may not settle a candidate, prerequisite, ranking, combo, or ontology decision.
+Until that amendment is accepted, material from the source may be logged only with `evidenceBasis: SOURCE_LEAD`, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`. It may be inspected, located, hashed, and paraphrased as a lead, but it may not settle a candidate, prerequisite, ranking, combo, Battle/Discovery/Transfer claim, or ontology decision.
 
 ## 3. Claim-specific source roles
 
@@ -160,15 +162,29 @@ What kind of epistemic object is this record?
 
 #### `SOURCE_FACT`
 
-A claim directly supported by a frozen canonical source passage or exact official SMMC source.
+A claim directly supported by a **frozen canonical** source passage or exact frozen official SMMC artifact.
 
 Examples:
 
 - Zeitz defines “tool” narrowly in his own terminology;
-- an official SMMC solution actually uses an invariant;
+- a frozen official SMMC solution actually uses an invariant;
 - Hammack calls direct/contrapositive/contradiction three main techniques for conditional statements.
 
-A source fact must be paraphrased and locatable.
+A source fact must be inspected, paraphrased, locatable, and tied to the canonical source identity. If the evidence is a frozen official solution artifact, its canonical SHA-256 is mandatory.
+
+#### `SOURCE_LEAD`
+
+A claim or potentially useful observation from a source that is **not yet canonical** under the source register.
+
+Examples:
+
+- an inspected chapter from a newly suggested problem-solving book awaiting source-register review;
+- a newly discovered article or alternative official revision not yet admitted to the canonical set;
+- a bibliographic lead that may matter at a later gate.
+
+A `SOURCE_LEAD` is the honest home for noncanonical source material. It must use `recordChannel: NONE` and `verificationStatus: UNVERIFIED_SOURCE_LEAD`.
+
+Inspection can establish what that source says, but it does not grant canonical evidentiary authority. If a later source-register amendment accepts the source, create a linked canonical `SOURCE_FACT` record; do not silently reinterpret the old lead.
 
 #### `PROJECT_DERIVED`
 
@@ -316,10 +332,11 @@ For `recordChannel: BATTLE` + `claimKind: HISTORICAL_OCCURRENCE`:
 Required:
 
 1. exact SMMC problem ID;
-2. exact official source identity/locator;
-3. concise statement of what move actually occurs;
-4. whether it occurs in the problem statement, official solution, or both;
-5. verification status `VERIFIED`.
+2. exact frozen official source identity/locator;
+3. if an official solution booklet is used, the exact canonical solution-artifact SHA-256;
+4. concise statement of what move actually occurs;
+5. whether it occurs in the problem statement, official solution, or both;
+6. verification status `VERIFIED`.
 
 Not sufficient by itself:
 
@@ -327,9 +344,30 @@ Not sufficient by itself:
 - model judgment that a move could work;
 - another book solving a similar problem;
 - co-occurrence statistics;
-- a plausible alternative solution not documented as historical evidence.
+- a plausible alternative solution not documented in the frozen official evidence.
 
 Alternative valid solutions may be useful project research, but unless they are part of the frozen official evidence they must be labeled as synthesis/alternative mathematics rather than historical occurrence.
+
+### Strict historical co-occurrence rule
+
+Raw ledger-tag co-occurrence is **not Battle evidence**.
+
+A mechanically recomputed pair from current ledger tags must be recorded as:
+
+- `evidenceBasis: PROJECT_DERIVED`;
+- `recordChannel: NONE`;
+- `claimKind: HISTORICAL_COOCCURRENCE`.
+
+Its `verificationStatus` may be `VERIFIED` only in the narrow sense that the project-data computation was reproduced. That does not upgrade either tag to verified historical occurrence.
+
+A `recordChannel: BATTLE` + `claimKind: HISTORICAL_COOCCURRENCE` record is permitted only when:
+
+1. there are two linked `SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE + VERIFIED` records;
+2. both linked records refer to the same SMMC problem ID;
+3. each occurrence is independently traceable to frozen official evidence;
+4. any solution evidence carries the frozen canonical artifact SHA-256.
+
+If either move is only an `INDEX_LEAD`, the pair cannot become Battle co-occurrence.
 
 ## 7. Provenance schema for Gate 2+
 
@@ -369,6 +407,8 @@ Rules:
 - `PROJECT_SYNTHESIS` records must point to supporting `linkedRecordIds`.
 - `LEARNER_EMPIRICAL` records must identify learner attempt/task evidence and exposure/assistance context.
 - a canonical `SOURCE_FACT` must use a CANONICAL source ID from the frozen register.
+- a `SOURCE_LEAD` must use a provisional/noncanonical source identity, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`.
+- any VERIFIED SMMC solution-backed Battle record must carry the exact frozen `sourceArtifactSha256`.
 
 ## 8. Source inspection rule
 
@@ -385,6 +425,8 @@ Before a source-backed record can become `VERIFIED`, the researcher must:
 7. avoid storing long copyrighted excerpts in the repository.
 
 If the exact artifact is unavailable or its hash/version does not match, the record cannot be verified against that canonical source.
+
+A noncanonical source may still be inspected, but its record remains `SOURCE_LEAD + NONE + UNVERIFIED_SOURCE_LEAD` until a reviewed source-register amendment accepts that source.
 
 ## 9. Ontology and representation remain completely unfrozen
 
@@ -463,9 +505,14 @@ For a pair, record:
 - problem IDs;
 - years/domains;
 - evidence basis;
+- whether the pair is raw ledger-tag co-occurrence or linked verified official occurrences;
 - whether actual mathematical interaction has been independently justified.
 
-Until interaction is justified, call it a **recorded method partner** only.
+Raw ledger-tag pairs always use `recordChannel: NONE`, even when the count itself is mechanically VERIFIED.
+
+Battle co-occurrence requires two linked VERIFIED official historical-occurrence records for the same problem, as specified in §6.
+
+Until mathematical interaction is independently justified, call the pair a **recorded method partner** only.
 
 ## 12. Prerequisite research rule
 
@@ -495,6 +542,8 @@ Reject any later research pass that:
 
 - treats ledger frequency as importance, difficulty, learning order, or mastery;
 - treats co-occurrence as causal synergy;
+- labels raw ledger-tag co-occurrence as Battle evidence;
+- upgrades Battle co-occurrence without two linked VERIFIED official occurrences for the same problem;
 - treats rarity as difficulty;
 - treats GREEN/AMBER/RED as ability strength;
 - treats a polished solution as a complete discovery record;
@@ -533,16 +582,17 @@ No ontology, research UI, or learner UI change may weaken those guarantees witho
 Gate 1 passes only when all of the following survive independent review:
 
 1. exact canonical source register;
-2. source-amendment rule;
-3. claim-specific source roles with explicit limitations;
-4. orthogonal `evidenceBasis`, `recordChannel`, `claimKind`, verification status, and future `ontologyType` axes;
-5. explicit `LEARNER_EMPIRICAL` support;
-6. strict verified-Battle rule;
-7. provenance schema;
-8. conflict/reconciliation rules;
-9. frequency/difficulty/co-occurrence safeguards;
-10. Gate-0 inheritance;
-11. explicit statement that ontology and representation remain unfrozen.
+2. exact frozen 2017–2025 official solution-artifact registry with mandatory hashes for solution-backed Battle evidence;
+3. source-amendment rule;
+4. claim-specific source roles with explicit limitations;
+5. orthogonal `evidenceBasis`, `recordChannel`, `claimKind`, verification status, and future `ontologyType` axes;
+6. explicit `LEARNER_EMPIRICAL` and `SOURCE_LEAD` support;
+7. strict verified-Battle occurrence and co-occurrence rules;
+8. provenance schema;
+9. conflict/reconciliation rules;
+10. frequency/difficulty/co-occurrence safeguards;
+11. Gate-0 inheritance;
+12. explicit statement that ontology and representation remain unfrozen.
 
 Gate 1 produces **no accepted Arsenal abilities**.
 
@@ -558,6 +608,7 @@ Gate 2 must:
 - inspect the canonical book sources for additional plausible candidates;
 - preserve source terminology without treating it as ontology type;
 - attach evidence records using the orthogonal schema above;
+- keep noncanonical source material as `SOURCE_LEAD + NONE + UNVERIFIED_SOURCE_LEAD` until separately admitted;
 - keep `ontologyType: null`;
 - make no final merge/split/type/prerequisite/ranking decision.
 
