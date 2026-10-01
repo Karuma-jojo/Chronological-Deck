@@ -951,3 +951,30 @@ Current Gate-2 pool:
 
 The remaining 12 historical problems were inspected rather than force-filled to an artificial 88/88 quota. Gate 2 remains REVIEW CANDIDATE; Gate 3 remains closed. Any acceptance must bind to the final exact head after fresh CI.
 
+## Arsenal Gate 2 independent-review repair G2-R01–R03 — 631 raw candidates (2026-10-02)
+
+Independent review of the old 477-row head found three substantive issues. This repair addresses them without opening Gate 3.
+
+**G2-R01 — direct official evidence semantics**
+- All **127** direct official-solution evidence records now use SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE.
+- Each remains tied to one historical problem and the exact frozen official source/hash/page locator.
+- The authoring validator now asserts the occurrence tuple for every direct official-solution row.
+- This is occurrence evidence only; no co-occurrence matrix, ranking, ontology, prerequisite graph, or learning order is created.
+
+**G2-R02 — Zeitz source omissions**
+- Added **Average Principle** from physical PDF page 193.
+- Added **Repeated Bisection Method** from physical PDF page 344.
+- Added **Algorithmic Proof** from physical PDF page 369.
+- Earlier coverage repair had already added the reviewer's other named examples: Symmetry-Product Principle, Euclidean Algorithm, Bisection Method, and Well-Ordering Principle.
+- Zeitz source rows move from 79 to **82**; five-book source rows move from 255 to **258**.
+
+The final bounded book-pass rule is to preserve source-specific terms explicitly presented as strategies, tactics, tools, principles, methods, algorithm/proof styles, or structured proof moves, plus named specialist methods in the canonical TOC/index when they are plausible contest-solving machinery. Same-looking terms remain separate.
+
+**G2-R03 — documentation drift**
+- Current Gate-2 state is consistently RAW-HARVEST-REVIEW-CANDIDATE.
+- Obsolete RAW-HARVEST-IN-PROGRESS wording is not used as the current invariant.
+
+Current pool: **631 candidates / 631 evidence records** = 44 method tags + 39 secondary tags + 129 bridgeNeeds + 34 project-derived audit-note route leads + 127 verified official historical occurrences + 258 canonical-book source leads.
+
+The prior review SHA is superseded. Fresh exact-head CI and independent follow-up are required. Gate 3 remains CLOSED.
+
