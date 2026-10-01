@@ -34,9 +34,9 @@ Current expanded harvest inventory:
 - **39** current `SMMC_SECONDARY_TAGS`, preserved separately so tool/topic/specialist possibilities are not lost;
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
-- **102** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **348 total raw candidates**;
-- **348 evidence records**;
+- **174** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
+- **420 total raw candidates**;
+- **420 evidence records**;
 - **9 currently reported normalized duplicate-name groups**, deliberately unresolved;
 - **0 typed candidates**;
 - **0 alias merges**;
@@ -148,6 +148,16 @@ The Putnam harvest has also expanded into Search for a Pattern, telescoping, con
 
 These are raw candidate leads only. A named theorem/inequality/topic may later fail the Gate-3 granularity test; Gate 2 intentionally does not decide that.
 
+### Explicit meta / discovery terms retained
+
+The deeper pass also preserves terms that are easy to lose if the harvest only looks for named techniques:
+
+- Zeitz: `Strategy`, `Tactic`, `Tool`, `Crux Move`, `Problem Investigation`, `Numerical Experimentation`;
+- Velleman: `Analyze the Logical Form of the Goal`, `Expand Definitions to Expose Logical Form`;
+- Engel: `Great Ideas`.
+
+These are especially important because Gate 1 deliberately refused to pre-decide whether such concepts become ontology classes, cards, events, annotations, or are rejected later. Gate 2 therefore keeps them as raw candidates with `ontologyType: null`.
+
 ## 4. Corpus-wide structured harvest
 
 The full 88-row project ledger has now been swept in three independent structured ways:
@@ -170,7 +180,7 @@ All of those remain `PROJECT_DERIVED + NONE + INDEX_SIGNAL`. They are **not** cl
 - SOURCE_FACT records whose Source ID is outside the canonical registry;
 - candidate counts by origin.
 
-At the current 348-candidate checkpoint there are **9 duplicate-name groups**. That is expected and desirable at Gate 2.
+At the current 420-candidate checkpoint there are **10 duplicate-name groups**. That is expected and desirable at Gate 2.
 
 The validator requires:
 - zero orphan evidence;
