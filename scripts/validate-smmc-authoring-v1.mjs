@@ -1,5 +1,6 @@
 import { FOUNDATION_MODULE, FOUNDATION_UNITS } from '../course/smmc/authoring/foundation-ladder.mjs';
 import ledger from "../course/smmc/ledger.mjs";
+import { SMMC_METHOD_TAGS } from "../course/smmc/schema.mjs";
 import {
   SMMC_CONTENT_MODULES,
   SMMC_METHOD_MODULES,
