@@ -1,4 +1,7 @@
-import { SMMC_OFFICIAL_SOLUTION_SOURCES_V1 } from "../official-solution-sources-v1.mjs";
+import {
+  canonicalArsenalSource,
+  isOfficialSmmcCanonicalSource,
+} from "./canonical-sources-v1.mjs";
 
 // SMMC Arsenal Gate-1 evidence contract.
 //
@@ -282,9 +285,9 @@ export function validateGate1EvidenceRecord(record) {
 
   if (
     record.recordChannel === "BATTLE" &&
-    (record.evidenceBasis !== "SOURCE_FACT" || typeof record.sourceId !== "string" || !record.sourceId.startsWith("S0-SMMC-"))
+    (record.evidenceBasis !== "SOURCE_FACT" || !isOfficialSmmcCanonicalSource(record.sourceId))
   ) {
-    throw new Error("BATTLE records require frozen official SMMC SOURCE_FACT provenance.");
+    throw new Error("BATTLE records require a registered frozen official SMMC SOURCE_FACT source.");
   }
 
   const needsSourceLocator = ["SOURCE_FACT", "SOURCE_LEAD", "PROJECT_DERIVED"].includes(record.evidenceBasis);
@@ -301,28 +304,25 @@ export function validateGate1EvidenceRecord(record) {
     }
   }
 
-  if (record.evidenceBasis === "PROJECT_DERIVED") {
-    if (typeof record.sourceVersionOrCommit !== "string" || !record.sourceVersionOrCommit) {
-      throw new Error("PROJECT_DERIVED records require sourceVersionOrCommit.");
+  if (record.evidenceBasis === "SOURCE_FACT") {
+    const canonical = canonicalArsenalSource(record.sourceId);
+    if (!canonical) {
+      throw new Error("SOURCE_FACT sourceId is not present in the machine-readable canonical source registry.");
+    }
+    if (record.sourceArtifactSha256 !== canonical.sha256) {
+      throw new Error("SOURCE_FACT sourceArtifactSha256 does not match the canonical source registry.");
+    }
+    if (record.sourceLocator?.kind !== "PDF") {
+      throw new Error("Canonical SOURCE_FACT records require a PDF sourceLocator.");
+    }
+    if (record.sourceLocator.pdfPage > canonical.pages) {
+      throw new Error("SOURCE_FACT PDF locator exceeds the canonical artifact page count.");
     }
   }
 
-  if (
-    record.evidenceBasis === "SOURCE_FACT" &&
-    record.recordChannel === "BATTLE" &&
-    typeof record.sourceId === "string" &&
-    record.sourceId.startsWith("S0-SMMC-SOLUTION-")
-  ) {
-    const year = Number(record.sourceId.slice("S0-SMMC-SOLUTION-".length));
-    const frozen = SMMC_OFFICIAL_SOLUTION_SOURCES_V1[year];
-    if (!frozen || frozen.sourceId !== record.sourceId) {
-      throw new Error("Unknown frozen official solution sourceId.");
-    }
-    if (record.sourceArtifactSha256 !== frozen.sha256) {
-      throw new Error("Solution-backed Battle record hash does not match frozen canonical artifact.");
-    }
-    if (record.sourceLocator?.kind !== "PDF" || record.sourceLocator.pdfPage > frozen.pages) {
-      throw new Error("Solution-backed Battle locator must point inside the frozen canonical PDF.");
+  if (record.evidenceBasis === "PROJECT_DERIVED") {
+    if (typeof record.sourceVersionOrCommit !== "string" || !record.sourceVersionOrCommit) {
+      throw new Error("PROJECT_DERIVED records require sourceVersionOrCommit.");
     }
   }
 
@@ -341,8 +341,11 @@ export function validateGate1EvidenceRecord(record) {
     record.recordChannel === "BATTLE" &&
     record.claimKind === "HISTORICAL_COOCCURRENCE"
   ) {
-    if (!Array.isArray(record.linkedRecordIds) || record.linkedRecordIds.length < 2) {
-      throw new Error("Battle co-occurrence requires at least two linked occurrence records.");
+    if (!Array.isArray(record.linkedRecordIds) || record.linkedRecordIds.length !== 2) {
+      throw new Error("Battle co-occurrence requires exactly two linked occurrence records.");
+    }
+    if (new Set(record.linkedRecordIds).size !== 2) {
+      throw new Error("Battle co-occurrence linked occurrence IDs must be distinct.");
     }
     if (!Array.isArray(record.historicalProblemIds) || record.historicalProblemIds.length !== 1) {
       throw new Error("Battle co-occurrence requires exactly one shared historicalProblemId.");
@@ -410,6 +413,7 @@ export function validateGate1EvidenceCollection(records) {
       record.claimKind === "HISTORICAL_COOCCURRENCE"
     ) {
       const sharedProblemId = record.historicalProblemIds[0];
+      const linkedCandidates = new Set();
       for (const linkedId of record.linkedRecordIds) {
         const linked = byId.get(linkedId);
         if (!linked) throw new Error("Battle co-occurrence links unknown record.");
@@ -428,6 +432,13 @@ export function validateGate1EvidenceCollection(records) {
         ) {
           throw new Error("Battle co-occurrence linked occurrences must share the same historical problem.");
         }
+        if (typeof linked.candidateId !== "string" || !linked.candidateId) {
+          throw new Error("Battle occurrence records require candidateId for co-occurrence validation.");
+        }
+        linkedCandidates.add(linked.candidateId);
+      }
+      if (linkedCandidates.size !== 2) {
+        throw new Error("Battle co-occurrence requires two distinct candidate/move IDs.");
       }
     }
   }
