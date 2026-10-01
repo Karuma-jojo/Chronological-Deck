@@ -22,6 +22,7 @@ import {
 } from "../course/smmc/runtime/exposure.mjs";
 import { unlockStatus } from "../course/smmc/runtime/unlock.mjs";
 import { officialPaperUrl } from "../course/smmc/sources-v1.mjs";
+import { SMMC_OFFICIAL_SOLUTION_SOURCES_V1 } from "../course/smmc/official-solution-sources-v1.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -39,6 +40,21 @@ for (const problem of ledger) {
   const paper = officialPaperUrl(problem);
   expect(typeof paper === "string" && paper.startsWith("https://www.simonmarais.org/"), `Missing official paper URL for ${problem.id}`);
   expect(paper.endsWith("#page=2"), `Official paper should open on problem page for ${problem.id}`);
+}
+
+const solutionYears = Object.keys(SMMC_OFFICIAL_SOLUTION_SOURCES_V1).map(Number).sort((a,b)=>a-b);
+expect(
+  JSON.stringify(solutionYears) === JSON.stringify([2017,2018,2019,2020,2021,2022,2023,2024,2025]),
+  "Official solution provenance must cover every 2017–2025 year exactly once."
+);
+for (const year of solutionYears) {
+  const source = SMMC_OFFICIAL_SOLUTION_SOURCES_V1[year];
+  expect(source && typeof source === "object", `Missing solution source row for ${year}`);
+  expect(/^https:\/\/www\.simonmarais\.org\//.test(source.yearPage), `Bad official year page for ${year}`);
+  expect(/^https:\/\/www\.simonmarais\.org\/uploads\//.test(source.url), `Bad official solution URL for ${year}`);
+  expect(Number.isInteger(source.pages) && source.pages > 0, `Bad official solution page count for ${year}`);
+  expect(/^[0-9a-f]{64}$/.test(source.sha256), `Bad official solution SHA-256 for ${year}`);
+  expect(typeof source.label === "string" && source.label.includes(String(year)), `Bad official solution label for ${year}`);
 }
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
