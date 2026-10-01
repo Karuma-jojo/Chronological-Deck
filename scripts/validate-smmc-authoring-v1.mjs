@@ -563,7 +563,7 @@ for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
 }
 
 expect(ARSENAL_GATE2_HARVEST_META.gate === 2, "Raw harvest metadata must remain Gate 2.");
-expect(ARSENAL_GATE2_HARVEST_META.status === "RAW-HARVEST-IN-PROGRESS", "Gate 2 must not self-declare complete.");
+expect(ARSENAL_GATE2_HARVEST_META.status === "RAW-HARVEST-REVIEW-CANDIDATE", "Gate 2 harvest must remain an unaccepted review candidate.");
 expect(ARSENAL_GATE2_HARVEST_META.ontologyFrozen === false, "Gate 2 cannot freeze ontology.");
 expect(ARSENAL_GATE2_HARVEST_META.adjudicationStarted === false, "Gate 2 cannot start adjudication.");
 expect(ARSENAL_GATE2_HARVEST_META.rankingStarted === false, "Gate 2 cannot rank candidates.");
