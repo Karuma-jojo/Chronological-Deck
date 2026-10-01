@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 2 raw candidate harvest
 
-Status: **IN PROGRESS — no merge/split/type/rank/adjudication decisions permitted**
+Status: **REVIEW CANDIDATE — independent acceptance required; no merge/split/type/rank/adjudication decisions permitted**
 
 Accepted predecessor:
 - Gate 0 merged;
@@ -44,7 +44,7 @@ Current expanded harvest inventory:
 - **0 prerequisite edges**;
 - **0 rankings**.
 
-The metadata intentionally says `RAW-HARVEST-IN-PROGRESS`. This is not a self-declared Gate-2 pass.
+The metadata says `RAW-HARVEST-REVIEW-CANDIDATE`. This means the harvest is ready to be attacked; it is **not** a self-declared Gate-2 pass.
 
 ## 3. Source inspection completed so far
 
@@ -239,18 +239,25 @@ The authoring validator must enforce:
 - every candidate evidence reference resolves;
 - harvest metadata stays `RAW-HARVEST-IN-PROGRESS`.
 
-## 7. What remains before Gate 2 can be reviewed for acceptance
+## 7. Independent review contract
 
-Batch 1 is deliberately not the full harvest.
+The raw pool is now a review candidate, not an accepted ontology.
 
-Still required:
+The reviewer should attack at least these questions:
 
-1. continue the deeper book/index pass until each canonical source has had an explicit method/tool/strategy sweep rather than only selected-section harvesting;
-2. inspect the official solution-route material for candidate *leads* that are absent even from method tags, secondary tags, bridge needs, and audit notes, while keeping any unverified occurrence as an index lead;
-3. confirm every current legacy method and secondary tag has at least one research lead and no tag vanished through prettification;
-4. produce a final source-by-source harvest coverage table;
-5. run exact-head CI on the finished pool;
-6. independent adversarial review of the finished raw pool.
+1. **Coverage:** did any current method tag, secondary tag, ledger bridge need, or recurring problem-specific route disappear?
+2. **Book blind spots:** do Zeitz/Engel/Hammack/Velleman/Putnam contain clearly reusable named problem-solving ideas that the current source sweeps missed?
+3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 477-row raw pool?
+4. **Premature merging:** were any same-looking source terms silently collapsed instead of preserved separately?
+5. **Premature ontology:** is any candidate typed, ranked, parented, prerequisite-linked, or adjudicated?
+6. **Evidence honesty:** does every row use the Gate-1 basis/channel/claim-kind contract correctly?
+7. **Battle leakage:** did project tags, bridge notes, or audit notes become historical Battle evidence without exact official verification?
+8. **Source integrity:** do all SOURCE_FACT rows resolve to canonical Source IDs, hashes and in-bounds locators?
+9. **Duplicate preservation:** does the duplicate report surface collisions without resolving them?
+10. **Route diversity:** does the structural 88-problem/132-labelled-solution index remain a lower bound rather than being misread as a method count?
+11. **Gate leakage:** did any Gate-3 granularity rule, candidate tribunal, ontology decision, ranking, prerequisite DAG, combo graph, Forge, Boss or Arena work sneak in?
+
+Any accepted review must bind to an exact SHA. Any repair changes that SHA and requires re-review.
 
 ## 8. Gate boundary
 
