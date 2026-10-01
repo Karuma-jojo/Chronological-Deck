@@ -896,3 +896,22 @@ The additions are source-specific raw ore only. No aliases were merged; no candi
 
 The previous 477-row review SHA is therefore superseded. Gate 2 remains **REVIEW CANDIDATE**, Gate 3 remains closed, and the repaired exact head requires fresh CI plus independent exact-head review before any merge.
 
+## Arsenal Gate 2 deep official-solution coverage repair — 603 raw candidates (2026-10-02)
+
+A second independent pass over the exact frozen 2017–2025 official solution booklets found that the existing 30 direct source rows were still materially under-harvested.
+
+Added **72** direct official-solution raw candidates as SOURCE_FACT + NONE, increasing that source channel from 30 to **102**. The new rows include source-specific discovery/proof moves across every competition year, from potential functions and hidden sum-of-squares identities through finite-field, valuation, game, compactness, convexity, recurrence/generating-function, linear-algebra, and parity/encoding constructions.
+
+Current complete Gate-2 pool:
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 102 direct official-solution SOURCE_FACT + NONE leads;
+- 255 canonical-book source leads;
+- **603 candidates / 603 evidence records**.
+
+No Gate-3 adjudication was introduced. All candidate ontology types remain null; aliases remain empty; rank, rarity, prerequisites, candidate relations, and adjudication fields remain null. Project-derived historical indexes remain NONE-channel evidence.
+
+The previous 531-row review target is superseded. Gate 2 remains REVIEW CANDIDATE and requires fresh exact-head CI plus independent exact-head review before it can close.
+
