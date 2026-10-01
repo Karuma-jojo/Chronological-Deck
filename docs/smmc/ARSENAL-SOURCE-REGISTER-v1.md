@@ -267,7 +267,7 @@ The amendment must include:
 - rationale for addition/replacement;
 - independent review.
 
-Until accepted, the new source is `UNVERIFIED_SOURCE_LEAD` only.
+Until accepted, evidence from the new source must use `evidenceBasis: SOURCE_LEAD`, `recordChannel: NONE`, and `verificationStatus: UNVERIFIED_SOURCE_LEAD`.
 
 # Copyright hygiene
 
