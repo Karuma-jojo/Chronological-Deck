@@ -36,6 +36,12 @@ import {
   validateGate1EvidenceCollection,
   validateSourceLocator,
 } from "../course/smmc/arsenal/evidence-contract-v1.mjs";
+import {
+  ARSENAL_GATE2_RAW_CANDIDATES,
+  ARSENAL_GATE2_RAW_EVIDENCE,
+  ARSENAL_GATE2_LEGACY_TAG_CANDIDATES,
+  ARSENAL_GATE2_HARVEST_META,
+} from "../course/smmc/arsenal/candidates-v0.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -480,6 +486,54 @@ try {
   duplicateCandidateMoveRejected = true;
 }
 expect(duplicateCandidateMoveRejected, "Battle co-occurrence must require two distinct candidate/move IDs.");
+
+// Gate 2 raw candidate harvest: coverage without ontology/adjudication leakage.
+expect(SMMC_METHOD_TAGS.length === 44, "Expected frozen current SMMC method-tag vocabulary to contain 44 tags.");
+expect(
+  ARSENAL_GATE2_LEGACY_TAG_CANDIDATES.length === SMMC_METHOD_TAGS.length,
+  "Gate-2 raw harvest must preserve every current SMMC method tag exactly once."
+);
+const legacyTerms = ARSENAL_GATE2_LEGACY_TAG_CANDIDATES.map(x => x.sourceTerminology);
+expect(
+  JSON.stringify([...legacyTerms].sort()) === JSON.stringify([...SMMC_METHOD_TAGS].sort()),
+  "Gate-2 legacy harvest does not exactly cover SMMC_METHOD_TAGS."
+);
+
+const rawCandidateIds = new Set();
+for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
+  expect(typeof candidate.candidateId === "string" && candidate.candidateId.length > 0, "Raw candidate missing candidateId.");
+  expect(!rawCandidateIds.has(candidate.candidateId), `Duplicate Gate-2 raw candidate ID ${candidate.candidateId}`);
+  rawCandidateIds.add(candidate.candidateId);
+  expect(candidate.ontologyType === null, `Gate 2 must not type ${candidate.candidateId}`);
+  expect(Array.isArray(candidate.aliases) && candidate.aliases.length === 0, `Gate 2 must not merge aliases for ${candidate.candidateId}`);
+  expect(candidate.adjudication === null, `Gate 2 must not adjudicate ${candidate.candidateId}`);
+  expect(candidate.adjudicationRationale === null, `Gate 2 must not adjudicate rationale for ${candidate.candidateId}`);
+  expect(candidate.rank === null && candidate.rarity === null, `Gate 2 must not rank/gamify ${candidate.candidateId}`);
+  expect(candidate.hardPrerequisites === null && candidate.softPrerequisites === null, `Gate 2 must not build prerequisites for ${candidate.candidateId}`);
+  expect(candidate.candidateRelations === null, `Gate 2 must not build candidate relations for ${candidate.candidateId}`);
+}
+
+const rawEvidenceIds = new Set();
+for (const record of ARSENAL_GATE2_RAW_EVIDENCE) {
+  validateGate1EvidenceRecord(record);
+  expect(rawCandidateIds.has(record.candidateId), `Gate-2 evidence references unknown candidate ${record.candidateId}`);
+  expect(!rawEvidenceIds.has(record.recordId), `Duplicate Gate-2 evidence record ID ${record.recordId}`);
+  rawEvidenceIds.add(record.recordId);
+  expect(record.ontologyType === null, `Gate-2 evidence typed candidate ${record.candidateId}`);
+}
+
+for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
+  for (const evidenceId of candidate.evidenceRecordIds) {
+    expect(rawEvidenceIds.has(evidenceId), `Candidate ${candidate.candidateId} references missing evidence ${evidenceId}`);
+  }
+}
+
+expect(ARSENAL_GATE2_HARVEST_META.gate === 2, "Raw harvest metadata must remain Gate 2.");
+expect(ARSENAL_GATE2_HARVEST_META.status === "RAW-HARVEST-IN-PROGRESS", "Gate 2 must not self-declare complete.");
+expect(ARSENAL_GATE2_HARVEST_META.ontologyFrozen === false, "Gate 2 cannot freeze ontology.");
+expect(ARSENAL_GATE2_HARVEST_META.adjudicationStarted === false, "Gate 2 cannot start adjudication.");
+expect(ARSENAL_GATE2_HARVEST_META.rankingStarted === false, "Gate 2 cannot rank candidates.");
+expect(ARSENAL_GATE2_HARVEST_META.prerequisiteGraphStarted === false, "Gate 2 cannot start prerequisite graph.");
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
 expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 28, "Expected twenty-eight authored public problems.");
