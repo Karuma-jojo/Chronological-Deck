@@ -681,3 +681,26 @@ The SMMC authoring validator now regression-tests:
 No Gate-2 candidate harvesting or ontology decisions were started.
 
 **STOP:** Gate 2 remains CLOSED pending independent closure review of the new exact head.
+
+
+## Arsenal Gate 1 final implementation repair — D01–D02 (2026-10-01)
+
+Independent closure attack on \`76b6008bc11dc48b14b7b9975e81d164c9ea08f5\` found two concrete validator bypasses after C01–C03 otherwise held.
+
+Accepted repairs:
+
+- **D01 canonical source identity:** added \`course/smmc/arsenal/canonical-sources-v1.mjs\` as the machine-readable canonical Source-ID allow-list. It contains the five canonical book artifacts, all 22 official SMMC problem papers, and all nine official SMMC solution artifacts with exact page counts and SHA-256 values. Every \`SOURCE_FACT\` must now resolve to this registry, match the exact registered hash, and use an in-bounds PDF locator. Battle additionally requires the registered source kind to be official SMMC paper/solution evidence. Invented book IDs and invented \`S0-SMMC-*\` prefixes therefore fail closed.
+- **D02 duplicate co-occurrence:** Battle co-occurrence now requires exactly two distinct linked occurrence record IDs and, after collection resolution, two distinct candidate/move IDs. Both linked occurrences must still be VERIFIED official occurrences for the same historical problem. \`["occ-a","occ-a"]\` and two records representing the same candidate are rejected.
+
+Regression additions include:
+- canonical registry integrity and expected 5 + 22 + 9 source count;
+- accepted canonical Zeitz Discovery source fact;
+- invented canonical-book SOURCE_FACT rejection;
+- invented \`S0-SMMC-NOT-REGISTERED\` Battle rejection;
+- wrong canonical hash rejection;
+- duplicate linked occurrence rejection;
+- duplicate candidate/move co-occurrence rejection.
+
+No Gate-2 candidate harvesting, typing, ranking, prerequisite work, Forge, Boss or Arena work was started.
+
+**STOP:** Gate 2 remains CLOSED pending independent closure acceptance of the repaired exact head.
