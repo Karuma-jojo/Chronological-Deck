@@ -367,6 +367,17 @@ const SOURCE_SEEDS = Object.freeze([
   ["P-COMBINATORIAL-IDENTITIES","Combinatorial Identities","S5-GELCA-ANDREESCU-2007",9,"6.2.1 Combinatorial Identities","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives combinatorial identities a dedicated subsection."],
   ["P-EQUALLY-LIKELY","Equally Likely Cases","S5-GELCA-ANDREESCU-2007",9,"6.3.1 Equally Likely Cases","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives equally likely cases a dedicated probability subsection."],
   ["P-GEOMETRIC-PROB","Geometric Probabilities","S5-GELCA-ANDREESCU-2007",9,"6.3.3 Geometric Probabilities","SOURCE_TERMINOLOGY","NONE","Putnam and Beyond gives geometric probabilities a dedicated subsection."],
+
+  // Meta/problem-investigation vocabulary that Gate 1 deliberately refused to pre-type.
+  ["Z-STRATEGY-TERM","Strategy","S1-ZEITZ-2007-2E",20,"1.2 The Three Levels of Problem Solving","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly defines Strategy as his broad level for ideas used to start and pursue problems; Gate 2 records the term without adopting it as an ontology type."],
+  ["Z-TACTIC-TERM","Tactic","S1-ZEITZ-2007-2E",20,"1.2 The Three Levels of Problem Solving","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly defines Tactics as broadly useful mathematical methods; Gate 2 records the term without adopting it as an ontology type."],
+  ["Z-TOOL-TERM","Tool","S1-ZEITZ-2007-2E",20,"1.2 The Three Levels of Problem Solving","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly defines Tools as narrowly focused techniques; Gate 2 records the term without adopting it as an ontology type."],
+  ["Z-CRUX-MOVE","Crux Move","S1-ZEITZ-2007-2E",20,"1.2 The Three Levels of Problem Solving","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly names a crux move as a key obstacle-clearing move and notes that it can occur at strategic, tactical, or tool level; representation remains unresolved."],
+  ["Z-INVESTIGATION","Problem Investigation","S1-ZEITZ-2007-2E",20,"1.2 From Mountaineering to Mathematics","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz distinguishes the investigation process from merely having a polished answer and recommends an organized strategic investigation."],
+  ["Z-NUMERICAL-EXPERIMENT","Numerical Experimentation","S1-ZEITZ-2007-2E",23,"1.2 Worked example analysis","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's worked-example analysis explicitly identifies numerical experimentation as the strategy that led to the useful conjecture."],
+  ["V-LOGICAL-FORM-GOAL","Analyze the Logical Form of the Goal","S4-VELLEMAN-2006-2E",126,"3 Proofs — scratch-work strategy","DISCOVERY_HEURISTIC","DISCOVERY","Velleman repeatedly uses analysis of the goal's logical form to choose the next proof transformation."],
+  ["V-EXPAND-DEFINITION","Expand Definitions to Expose Logical Form","S4-VELLEMAN-2006-2E",117,"3.2 Proofs Involving Negations and Conditionals","DISCOVERY_HEURISTIC","DISCOVERY","Velleman explicitly notes that writing out a mathematical definition can reveal a statement's logical form and unlock proof strategy."],
+  ["E-GREAT-IDEAS","Great Ideas","S2-ENGEL-1998",4,"Preface","SOURCE_TERMINOLOGY","NONE","Engel explicitly says Great Ideas were the leading principles of his compact contest training and a means of classifying problems."],
 ]);
 
 const SOURCE_HASH = Object.freeze({
