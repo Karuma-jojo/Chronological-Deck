@@ -139,6 +139,50 @@ validateGate1EvidenceRecord({
   linkedRecordIds: [],
 });
 
+let wrongFrozenHashRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-frozen-hash",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "BATTLE",
+    claimKind: "HISTORICAL_OCCURRENCE",
+    verificationStatus: "VERIFIED",
+    sourceId: "S0-SMMC-SOLUTION-2021",
+    sourceVersionOrCommit: "bad-hash-fixture",
+    sourceLocator: { kind: "PDF", pdfPage: 8, section: "A1" },
+    sourceArtifactSha256: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    historicalProblemIds: ["SMMC-2021-A1"],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  wrongFrozenHashRejected = true;
+}
+expect(wrongFrozenHashRejected, "Solution-backed Battle hash must equal the frozen registry hash, not merely look like SHA-256.");
+
+let outOfRangeSolutionPageRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-solution-page",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "BATTLE",
+    claimKind: "HISTORICAL_OCCURRENCE",
+    verificationStatus: "VERIFIED",
+    sourceId: "S0-SMMC-SOLUTION-2021",
+    sourceVersionOrCommit: "canonical",
+    sourceLocator: { kind: "PDF", pdfPage: 999, section: "A1" },
+    sourceArtifactSha256: "c994c0cf8ab9364a672da4c303411a9bfe58a650f1b6adc5b4eefb55a30ffd00",
+    historicalProblemIds: ["SMMC-2021-A1"],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  outOfRangeSolutionPageRejected = true;
+}
+expect(outOfRangeSolutionPageRejected, "Solution-backed Battle PDF locator must stay inside the frozen artifact.");
+
 validateGate1EvidenceRecord({
   ...baseEvidence,
   recordId: "source-lead-1",
