@@ -35,8 +35,8 @@ Current expanded harvest inventory:
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
 - **255** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **531 total raw candidates**;
-- **531 evidence records**;
+- **603 total raw candidates**;
+- **603 evidence records**;
 - **0 typed candidates**;
 - **0 alias merges**;
 - **0 adjudications**;
@@ -215,9 +215,19 @@ The exact frozen 2017–2025 solution booklets were also parsed structurally.
 
 This is intentionally not treated as “132 methods.” A single labelled solution may contain several moves, and multiple labelled solutions may share most of their mathematics.
 
-The direct official-solution concept pass now contains **30** SOURCE_FACT/NONE raw leads. It includes the earlier winding-number/perturbation/deformation ideas plus named tools and routes such as Vandermonde-matrix invertibility, Newton polygons, CRT, generating functions, recurrence relations, projective-plane methods, Gaussian integers, p-adic valuations, rational-root arguments, convex envelopes/hulls, alternating/comparison/subseries arguments, IVT, triangle-inequality sharpness, AM-GM, eigenvector reduction, bijective counting, compact-space subsequences, and geometric-series summation.
+The direct official-solution concept pass now contains **102** SOURCE_FACT/NONE raw leads. It includes the earlier winding-number/perturbation/deformation ideas plus named tools and routes such as Vandermonde-matrix invertibility, Newton polygons, CRT, generating functions, recurrence relations, projective-plane methods, Gaussian integers, p-adic valuations, rational-root arguments, convex envelopes/hulls, alternating/comparison/subseries arguments, IVT, triangle-inequality sharpness, AM-GM, eigenvector reduction, bijective counting, compact-space subsequences, and geometric-series summation.
 
 These direct source observations still do **not** build the later Battle matrix.
+
+
+
+### Deep official-solution coverage repair
+
+A second independent pass over the frozen official 2017–2025 solution booklets found that the first 30 direct source rows were still far too selective for a raw-ore gate. It added **72** additional SOURCE_FACT + NONE candidates, bringing the direct official-solution harvest to **102**.
+
+The new source-grounded rows preserve reusable moves that were explicit in the official prose but easy to lose in a tag/bridge-only sweep. Examples include potential-function/gradient reformulation, hidden sum-of-squares and covariance representations, adjacent-swap improvement, support compression to a clique, recoverability and subset encoding, recursive-infimum reasoning, finite-field quotient/difference-set constructions, prime-divisibility recurrence invariants, nested compact sets, moving-average regularity, multiplicative orders modulo prime powers, unique-lowest-valuation arguments, P/N and Sprague–Grundy game reductions, roots-of-unity filters, direct-sum basis construction, ternary forced-pair recursion, Frobenius/UFD finite-field moves, binary no-carry counting, first-step decomposition, finite-field rank-nullity counting, root interlacing, Jordan-form dilation arguments, Vandermonde-factor forcing, and piecewise-linear parity induction.
+
+These 72 additions are still raw candidates only. They do not establish final granularity, type, importance, prerequisite status, historical Battle annotations, or learning order. The earlier 531-row checkpoint is superseded; this repaired checkpoint contains **603 candidates / 603 evidence records**.
 
 ## 5. Non-adjudicating duplicate/orphan audit
 
@@ -258,7 +268,7 @@ The reviewer should attack at least these questions:
 
 1. **Coverage:** did any current method tag, secondary tag, ledger bridge need, or recurring problem-specific route disappear?
 2. **Book blind spots:** do Zeitz/Engel/Hammack/Velleman/Putnam contain clearly reusable named problem-solving ideas that the current source sweeps missed?
-3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 531-row raw pool?
+3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 603-row raw pool?
 4. **Premature merging:** were any same-looking source terms silently collapsed instead of preserved separately?
 5. **Premature ontology:** is any candidate typed, ranked, parented, prerequisite-linked, or adjudicated?
 6. **Evidence honesty:** does every row use the Gate-1 basis/channel/claim-kind contract correctly?
