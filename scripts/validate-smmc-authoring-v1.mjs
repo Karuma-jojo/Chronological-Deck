@@ -1,6 +1,6 @@
 import { FOUNDATION_MODULE, FOUNDATION_UNITS } from '../course/smmc/authoring/foundation-ladder.mjs';
 import ledger from "../course/smmc/ledger.mjs";
-import { SMMC_METHOD_TAGS } from "../course/smmc/schema.mjs";
+import { SMMC_METHOD_TAGS, SMMC_SECONDARY_TAGS } from "../course/smmc/schema.mjs";
 import {
   SMMC_CONTENT_MODULES,
   SMMC_METHOD_MODULES,
@@ -41,6 +41,7 @@ import {
   ARSENAL_GATE2_RAW_CANDIDATES,
   ARSENAL_GATE2_RAW_EVIDENCE,
   ARSENAL_GATE2_LEGACY_TAG_CANDIDATES,
+  ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES,
   ARSENAL_GATE2_HARVEST_META,
 } from "../course/smmc/arsenal/candidates-v0.mjs";
 
@@ -499,6 +500,23 @@ expect(
   JSON.stringify([...legacyTerms].sort()) === JSON.stringify([...SMMC_METHOD_TAGS].sort()),
   "Gate-2 legacy harvest does not exactly cover SMMC_METHOD_TAGS."
 );
+
+expect(
+  ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES.length === SMMC_SECONDARY_TAGS.length,
+  "Gate-2 raw harvest must preserve every current SMMC secondary tag exactly once."
+);
+const secondaryTerms = ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES.map(x => x.sourceTerminology);
+expect(
+  JSON.stringify([...secondaryTerms].sort()) === JSON.stringify([...SMMC_SECONDARY_TAGS].sort()),
+  "Gate-2 secondary harvest does not exactly cover SMMC_SECONDARY_TAGS."
+);
+expect(ARSENAL_GATE2_HARVEST_META.legacyMethodTagCount === 44, "Gate-2 legacy tag metadata drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.secondaryTagCandidates === 39, "Gate-2 secondary-tag metadata drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.ledgerBridgeCandidates === 129, "Gate-2 ledger bridge harvest count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.ledgerBridgeEvidenceRecords === 129, "Gate-2 ledger bridge evidence count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 102, "Gate-2 book-source harvest count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 314, "Gate-2 raw candidate total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 314, "Gate-2 raw evidence total drifted.");
 
 const rawCandidateIds = new Set();
 for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
