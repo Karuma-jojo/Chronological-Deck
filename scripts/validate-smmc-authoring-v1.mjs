@@ -306,6 +306,28 @@ try {
 }
 expect(sourceFactTransferRejected, "SOURCE_FACT + TRANSFER must be rejected globally.");
 
+let bookBattleRejected = false;
+try {
+  validateGate1EvidenceRecord({
+    ...baseEvidence,
+    recordId: "bad-book-battle",
+    evidenceBasis: "SOURCE_FACT",
+    recordChannel: "BATTLE",
+    claimKind: "HISTORICAL_OCCURRENCE",
+    verificationStatus: "VERIFIED",
+    sourceId: "S1-ZEITZ-2007-2E",
+    sourceVersionOrCommit: "canonical",
+    sourceLocator: { kind: "PDF", pdfPage: 20, section: "1.2" },
+    sourceArtifactSha256: "be9d5f2bd96e3010fc30b3d9dee191a787ad4624fffe20aa28cf7a3e73382565",
+    historicalProblemIds: ["SMMC-2021-A1"],
+    learnerAttemptIds: [],
+    linkedRecordIds: [],
+  });
+} catch {
+  bookBattleRejected = true;
+}
+expect(bookBattleRejected, "Battle channel must require frozen official SMMC provenance, not a canonical book source.");
+
 const battleOccurrenceA = {
   ...baseEvidence,
   recordId: "occ-a",
