@@ -9,6 +9,7 @@
 
 export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
   2017: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2017",
     yearPage: "https://www.simonmarais.org/20171.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc-2017-solutions-preliminary_1.pdf",
     pages: 12,
@@ -16,6 +17,7 @@ export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
     label: "2017 SOLUTIONS (PRELIMINARY VERSION)",
   }),
   2018: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2018",
     yearPage: "https://www.simonmarais.org/2018.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc-2018-solutions_1.pdf",
     pages: 17,
@@ -23,6 +25,7 @@ export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
     label: "2018 SOLUTIONS",
   }),
   2019: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2019",
     yearPage: "https://www.simonmarais.org/20191.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc-2019-solutions_1.pdf",
     pages: 12,
@@ -30,6 +33,7 @@ export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
     label: "2019 SOLUTIONS",
   }),
   2020: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2020",
     yearPage: "https://www.simonmarais.org/20201.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc-2020-solutions_1.pdf",
     pages: 28,
@@ -37,6 +41,7 @@ export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
     label: "2020 SOLUTIONS",
   }),
   2021: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2021",
     yearPage: "https://www.simonmarais.org/20211.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc-2021-solutions.pdf",
     pages: 22,
@@ -44,6 +49,7 @@ export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
     label: "2021 SOLUTIONS",
   }),
   2022: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2022",
     yearPage: "https://www.simonmarais.org/2022.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc-2022-solutions.pdf",
     pages: 30,
@@ -51,6 +57,7 @@ export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
     label: "2022 SOLUTIONS",
   }),
   2023: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2023",
     yearPage: "https://www.simonmarais.org/20231.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc2023solutions.pdf",
     pages: 23,
@@ -58,6 +65,7 @@ export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
     label: "2023 SOLUTIONS",
   }),
   2024: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2024",
     yearPage: "https://www.simonmarais.org/20241.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc_2024_solutions.pdf",
     pages: 24,
@@ -65,6 +73,7 @@ export const SMMC_OFFICIAL_SOLUTION_SOURCES_V1 = Object.freeze({
     label: "2024 SOLUTIONS",
   }),
   2025: Object.freeze({
+    sourceId: "S0-SMMC-SOLUTION-2025",
     yearPage: "https://www.simonmarais.org/2025.html",
     url: "https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc2025_solutions.pdf",
     pages: 25,
