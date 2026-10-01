@@ -751,3 +751,28 @@ Still unchanged:
 The remaining Gate-2 work is deeper source coverage plus a final official-solution-route lead sweep and independent review.
 
 **STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 deep-source checkpoint — 420 raw candidates (2026-10-02)
+
+The raw harvest was expanded again after the 348-candidate checkpoint.
+
+Current pool:
+- 44 frozen legacy method-tag leads;
+- 39 frozen secondary-tag leads;
+- 129 distinct ledger bridge-need leads from all 88 historical rows;
+- 34 problem-specific route leads from the complete auditNote pass;
+- 174 source-specific candidates from the five canonical books;
+- **420 raw candidates / 420 evidence records** total.
+
+The deeper source pass explicitly added material that a contents-only harvest would miss, including Zeitz's indexed strategies/tactics/tools, fine-grained tools, Crux Move, Problem Investigation and Numerical Experimentation; Engel's index-level algorithm/counting/strategy vocabulary and Great Ideas; Velleman's logical-form/definition-expansion proof-planning heuristics; and a wider Putnam-and-Beyond technique/topic sweep.
+
+Current normalized duplicate-name report: **10 groups**, deliberately unresolved.
+
+No Gate-3 decision has been made:
+- ontologyType remains null;
+- aliases remain empty;
+- rank/rarity/prerequisite/relation/adjudication fields remain null;
+- project metadata remains index evidence, not Battle evidence.
+
+**STOP:** Gate 3 remains CLOSED.
