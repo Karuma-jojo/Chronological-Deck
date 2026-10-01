@@ -527,11 +527,11 @@ expect(ARSENAL_GATE2_HARVEST_META.ledgerBridgeCandidates === 129, "Gate-2 ledger
 expect(ARSENAL_GATE2_HARVEST_META.ledgerBridgeEvidenceRecords === 129, "Gate-2 ledger bridge evidence count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteCandidates === 34, "Gate-2 ledger route harvest count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteEvidenceRecords === 34, "Gate-2 ledger route evidence count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.officialSolutionCandidates === 30, "Gate-2 direct official-solution candidate count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.officialSolutionEvidenceRecords === 30, "Gate-2 direct official-solution evidence count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.officialSolutionCandidates === 102, "Gate-2 direct official-solution candidate count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.officialSolutionEvidenceRecords === 102, "Gate-2 direct official-solution evidence count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 255, "Gate-2 book-source harvest count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 531, "Gate-2 raw candidate total drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 531, "Gate-2 raw evidence total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 603, "Gate-2 raw candidate total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 603, "Gate-2 raw evidence total drifted.");
 
 const rawCandidateIds = new Set();
 for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
