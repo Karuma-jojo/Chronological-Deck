@@ -44,6 +44,13 @@ import {
   ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES,
   ARSENAL_GATE2_HARVEST_META,
 } from "../course/smmc/arsenal/candidates-v0.mjs";
+import {
+  ARSENAL_GATE2_DUPLICATE_NAME_GROUPS,
+  ARSENAL_GATE2_ORPHAN_EVIDENCE_IDS,
+  ARSENAL_GATE2_CANDIDATES_WITHOUT_EVIDENCE,
+  ARSENAL_GATE2_UNKNOWN_CANONICAL_SOURCE_FACTS,
+  ARSENAL_GATE2_RAW_AUDIT_META,
+} from "../course/smmc/arsenal/raw-harvest-audit-v0.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -553,6 +560,23 @@ expect(ARSENAL_GATE2_HARVEST_META.ontologyFrozen === false, "Gate 2 cannot freez
 expect(ARSENAL_GATE2_HARVEST_META.adjudicationStarted === false, "Gate 2 cannot start adjudication.");
 expect(ARSENAL_GATE2_HARVEST_META.rankingStarted === false, "Gate 2 cannot rank candidates.");
 expect(ARSENAL_GATE2_HARVEST_META.prerequisiteGraphStarted === false, "Gate 2 cannot start prerequisite graph.");
+
+expect(ARSENAL_GATE2_ORPHAN_EVIDENCE_IDS.length === 0, "Gate-2 raw harvest has orphan evidence records.");
+expect(ARSENAL_GATE2_CANDIDATES_WITHOUT_EVIDENCE.length === 0, "Gate-2 raw harvest has candidates with missing evidence.");
+expect(ARSENAL_GATE2_UNKNOWN_CANONICAL_SOURCE_FACTS.length === 0, "Gate-2 raw harvest has SOURCE_FACT records outside the canonical registry.");
+expect(
+  ARSENAL_GATE2_RAW_AUDIT_META.candidateCount === ARSENAL_GATE2_RAW_CANDIDATES.length &&
+  ARSENAL_GATE2_RAW_AUDIT_META.evidenceCount === ARSENAL_GATE2_RAW_EVIDENCE.length,
+  "Gate-2 audit metadata count drift."
+);
+expect(
+  ARSENAL_GATE2_DUPLICATE_NAME_GROUPS.length > 0,
+  "Gate-2 duplicate-name report unexpectedly empty; duplicates should be reported, not silently collapsed."
+);
+for (const group of ARSENAL_GATE2_DUPLICATE_NAME_GROUPS) {
+  expect(group.candidateIds.length > 1, "Duplicate-name report contains singleton.");
+  expect(new Set(group.candidateIds).size === group.candidateIds.length, "Duplicate-name report repeated the same candidate ID.");
+}
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
 expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 28, "Expected twenty-eight authored public problems.");
