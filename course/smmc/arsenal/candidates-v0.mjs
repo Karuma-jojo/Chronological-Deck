@@ -11,6 +11,11 @@
 // Gate 3+ is responsible for granularity/adjudication.
 
 import { SMMC_METHOD_TAGS, SMMC_SECONDARY_TAGS } from "../schema.mjs";
+import {
+  ARSENAL_GATE2_LEDGER_BRIDGE_CANDIDATES,
+  ARSENAL_GATE2_LEDGER_BRIDGE_EVIDENCE,
+  ARSENAL_GATE2_LEDGER_BRIDGE_META,
+} from "./ledger-bridge-candidates-v0.mjs";
 
 const slug = value => value
   .toLowerCase()
@@ -284,12 +289,14 @@ export const ARSENAL_GATE2_BOOK_EVIDENCE = Object.freeze(
 export const ARSENAL_GATE2_RAW_CANDIDATES = Object.freeze([
   ...ARSENAL_GATE2_LEGACY_TAG_CANDIDATES,
   ...ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES,
+  ...ARSENAL_GATE2_LEDGER_BRIDGE_CANDIDATES,
   ...ARSENAL_GATE2_BOOK_CANDIDATES,
 ]);
 
 export const ARSENAL_GATE2_RAW_EVIDENCE = Object.freeze([
   ...ARSENAL_GATE2_LEGACY_TAG_EVIDENCE,
   ...ARSENAL_GATE2_SECONDARY_TAG_EVIDENCE,
+  ...ARSENAL_GATE2_LEDGER_BRIDGE_EVIDENCE,
   ...ARSENAL_GATE2_BOOK_EVIDENCE,
 ]);
 
@@ -299,6 +306,8 @@ export const ARSENAL_GATE2_HARVEST_META = Object.freeze({
   legacyMethodTagCount: SMMC_METHOD_TAGS.length,
   legacyCandidates: ARSENAL_GATE2_LEGACY_TAG_CANDIDATES.length,
   secondaryTagCandidates: ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES.length,
+  ledgerBridgeCandidates: ARSENAL_GATE2_LEDGER_BRIDGE_CANDIDATES.length,
+  ledgerBridgeEvidenceRecords: ARSENAL_GATE2_LEDGER_BRIDGE_META.evidenceRecords,
   bookSourceCandidates: ARSENAL_GATE2_BOOK_CANDIDATES.length,
   totalCandidates: ARSENAL_GATE2_RAW_CANDIDATES.length,
   totalEvidenceRecords: ARSENAL_GATE2_RAW_EVIDENCE.length,
