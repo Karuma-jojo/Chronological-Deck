@@ -4,7 +4,7 @@ assert(s26.lesson.includes('P(n,r)=C(n,r)·r!'),'LF-R03 ordered↔unordered brid
 assert(s26.lesson.includes('coefficient of p^4q^2 is C(6,2)=15'),'LF-R02 guided practice must use coefficient reasoning rather than clone the fixed full expansion');
 assert.equal(a.problems[s26.main].obligationVersion,5);
 assert(a.problems[s26.main].prompt.includes('State the finite binomial theorem for positive integer n'),'LF-R01 public evidence must ask learner to produce the general theorem');assert(!a.problems[s26.main].prompt.includes('(x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k'),'LF-R01 public prompt must not print the theorem it claims to assess');
-assert(a.problems[s26.main].prompt.includes('why the coefficient of x^(n−k)y^k is C(n,k)'),'LF-R01 public evidence must ask for the general coefficient argument');
+assert(a.problems[s26.main].prompt.includes('coefficient of x^(n−k)y^k')&&a.problems[s26.main].prompt.includes('why that coefficient is C(n,k)'),'LF-R01 public evidence must ask for the general coefficient and its combinatorial C(n,k) explanation');
 assert(a.problems[s26.main].prompt.includes('expand (u+v)^5 completely'),'LF-R02 fixed numerical application must be fresh relative to guided practice');
 assert(a.evaluators[s26.main].rubric.some(r=>r.criterion.includes('States the finite binomial theorem for positive integer n')&&r.criterion.includes('without the formula being supplied')));
 assert(a.evaluators[s26.main].rubric.some(r=>r.criterion==='Explains combinatorially that C(n,k) chooses which k of the n factors contribute y.'));
