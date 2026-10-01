@@ -634,3 +634,22 @@ Accepted findings and bounded repairs:
 No raw candidate harvest, merge/split decision, ontology typing, ranking, prerequisite DAG, Forge, Boss or Arena build was started.
 
 **STOP:** Gate 2 remains CLOSED pending independent follow-up acceptance of the repaired Gate-1 exact head.
+
+
+## Arsenal Gate 1 follow-up repair — F1–F3 (2026-10-01)
+
+Independent follow-up on \`71dcfd4f82411548313bfaec51f57138d44d5c5b\` confirmed the major G1-R01–R05 repair, then found three bounded provenance/schema holes.
+
+Accepted repairs:
+
+- **F1 S0 solution provenance:** added authoring-only \`course/smmc/official-solution-sources-v1.mjs\` with exact official year page, solution URL, page count and SHA-256 for every 2017–2025 solution booklet. VERIFIED solution-backed Battle evidence now requires the frozen artifact hash. \`sources-v1.mjs\` remains learner-safe and contains only problem-paper links.
+- **F2 Battle co-occurrence loophole:** raw ledger-tag co-occurrence is now explicitly \`PROJECT_DERIVED + recordChannel:NONE + HISTORICAL_COOCCURRENCE\`. A BATTLE co-occurrence requires two linked VERIFIED official HISTORICAL_OCCURRENCE records for the same problem, each independently traceable to frozen official evidence.
+- **F3 noncanonical source leads:** added \`SOURCE_LEAD\` as an explicit \`evidenceBasis\`. Noncanonical sources may be inspected and logged honestly, but must remain \`SOURCE_LEAD + NONE + UNVERIFIED_SOURCE_LEAD\` until a reviewed source-register amendment admits them.
+
+The official solution registry is source-validated in \`validate-smmc-authoring-v1.mjs\` for complete 2017–2025 coverage, organiser-domain URLs, positive page counts and 64-hex SHA-256 fingerprints.
+
+A 2025 source-version drift was discovered while repairing F1: the older 2026-09-28 inventory recorded a 26-page 2025 booklet, while the current official-linked revision is 25 pages. Gate 1 freezes the current 25-page artifact exactly and records the older revision as provenance history rather than treating the two as interchangeable.
+
+No Gate-2 candidate harvest or ontology work was started.
+
+**STOP:** Gate 2 remains CLOSED pending independent closure review of the repaired Gate-1 exact head.
