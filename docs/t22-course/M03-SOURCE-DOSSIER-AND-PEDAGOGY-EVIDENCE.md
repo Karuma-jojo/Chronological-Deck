@@ -150,7 +150,7 @@ Advanced contest topics that belong to the separate SMMC Companion rather than M
 
 ## 3. General pedagogy comparators
 
-### Mathematical Association of America — *Instructional Practices Guide* (2017)
+### Mathematical Association of America — *Instructional Practices Guide* (2018)
 
 Locator: https://maa.org/resource/instructional-practices-guide/
 
@@ -258,15 +258,19 @@ Canonical fixed tasks may honestly be retrieval/proof reconstruction. Method-sel
 
 ## 6. Final strategy-lab clone audit
 
-The v1.7.2 Spire pack keeps both labs **post-assessment and unscored**. The following close-clone probes were replaced:
+The v1.7.2 Spire pack keeps both labs **post-assessment and unscored**. The final hostile review rejected several near-clone probes even though the canonical S01–S30 core passed.
 
-- A1: square-divisibility clone → odd-product proof surface;
-- A5: linear-combination strong-induction clone → prime-factorization strong-induction surface;
-- B2: repeated-letter string clone → shortest-grid-path surface;
-- B4: consecutive-pair pigeonhole clone → congruence-class difference surface;
-- B5: explicit onto-function clone → nonempty labeled-team assignment surface.
+Final publication probes use these distinct surfaces:
 
-These changes do not alter S01–S30, task IDs, ownership, evaluators, historical evidence or downstream prerequisites.
+- **A1:** parity of a sum — an odd sum forces opposite parity;
+- **A5:** all-prior reasoning on representation as a sum of distinct powers of (2);
+- **B2:** count 4-element subsets of ({1,\ldots,10}) with no consecutive elements;
+- **B4:** pigeonhole on coordinate-parity classes to force an integer midpoint among five lattice points;
+- **B5:** inclusion–exclusion on fixed points of permutations.
+
+Removed near-clones included the square-divisibility implication, linear-combination strong-induction replay, repeated-word permutation, consecutive-pair pigeonhole replay and onto-function replay.
+
+These Strategy Labs remain non-canonical. Conceptual overlap with owned M03 tools is intentional; replaying the same decisive archetype with changed constants or nouns is not. Success or failure in a lab does not rewrite canonical ownership or historical attempt evidence.
 
 ## 7. Sources deliberately not treated as validation
 

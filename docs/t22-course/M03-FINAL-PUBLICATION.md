@@ -72,11 +72,12 @@ The labs remain:
 
 Clone-audit replacements:
 
-- A1: `3|n² → 3|n` clone replaced by odd-product proof;
-- A5: `4a+7b` linear-combination strong-induction clone replaced by prime-factorization proof;
-- B2: MISSISSIPPI repeated-letter clone replaced by shortest-grid-path counting;
-- B4: consecutive-pair pigeonhole clone replaced by congruence-class difference;
-- B5: explicit onto-function clone replaced by nonempty labeled-team assignment.
+- A1: square-divisibility near-clone replaced by odd-sum parity proof;
+- A5: linear-combination strong-induction near-clone replaced by distinct-powers-of-two representation;
+- B2: repeated-letter permutation near-clone replaced by a no-consecutive-subsets counting problem;
+- B4: consecutive-pair pigeonhole near-clone replaced by a lattice-point parity-class pigeonhole problem;
+- B5: onto-function near-clone replaced by fixed-point inclusion–exclusion on permutations.
+
 
 ## Source / pedagogy closure
 

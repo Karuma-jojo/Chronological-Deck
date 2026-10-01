@@ -799,26 +799,26 @@ Run this only **after S14 Main and Transfer have been attempted**. Hide session 
 
 Only after commitment may Spire discuss alternative routes. Do not map success here backward into a fixed-task pass.
 
-### Fresh probe A1
-For integers \(a,b\), prove that if \(ab\) is odd, then both \(a\) and \(b\) are odd.
+### Fresh diagnostic probe A1
+Let (a,b\in\mathbb Z). Prove that if (a+b) is odd, then exactly one of (a,b) is odd.
 
-### Fresh probe A2
-Prove that \(n^3-n\) is divisible by \(3\) for every integer \(n\).
+### Fresh diagnostic probe A2
+Prove that (n^3-n) is divisible by (3) for every integer (n).
 
-### Fresh probe A3
-Prove that there is no integer \(n\) with \(n^2=2\).
+### Fresh diagnostic probe A3
+Prove that there is no integer (n) satisfying (n^2=2).
 
-### Fresh probe A4
+### Fresh diagnostic probe A4
 Prove
-\[
+[
 1+2+4+\cdots+2^n=2^{n+1}-1
-\]
-for every integer \(n\ge0\).
+]
+for every integer (n\ge0).
 
-### Fresh probe A5
-Call an integer \(p>1\) **prime** when its only positive divisors are \(1\) and \(p\). Prove that every integer \(n\ge2\) can be written as a product of primes. Do not name a proof method before you have written the first useful reduction.
+### Fresh diagnostic probe A5
+Prove that every positive integer can be written as a sum of distinct powers of (2).
 
-**Diagnostic target:** can the learner distinguish direct/contrapositive reasoning, remainder/case reasoning, contradiction, ordinary induction and all-prior reasoning without being told which named method to use? These probes were clone-audited against S01–S14 so the decisive route is not merely the same assessed archetype with changed constants.
+**Diagnostic target:** can the learner choose among parity/cases, contradiction, ordinary induction and all-prior reasoning without being told which named method to use? These probes were clone-audited against S01–S14 so the decisive route is not merely the same assessed archetype with changed constants.
 
 ---
 
@@ -1701,30 +1701,30 @@ Clear only when the learner independently satisfies all five ownership claims in
 
 **Status:** unscored diagnostic/practice; **not** canonical M03 ownership evidence.
 
-Run this only **after S30 Main and Transfer have been attempted**. Do not announce “product rule,” “complement,” “multinomial,” “stars-and-bars,” “inclusion–exclusion,” or “pigeonhole” before the learner commits to an organizing plan.
+Run this only **after S30 Main and Transfer have been attempted**. Do not announce “product rule,” “complement,” “permutation,” “combination,” “stars-and-bars,” “inclusion–exclusion,” or “pigeonhole” before the learner commits to an organizing plan.
 
-For each probe, require a short orientation note before calculation: **what are the objects, what would be overcounted, what is the natural universe, and what single structural choice seems decisive?**
+For each probe, require a short orientation note before calculation: **what are the objects, what would be overcounted, what is the natural universe, and what structural choice seems decisive?**
 
-### Fresh probe B1
-How many length-5 strings over \(\{0,1,2,3\}\) contain at least one \(0\)?
+### Fresh diagnostic probe B1
+How many length-5 strings over ({0,1,2,3}) contain at least one (0)?
 
-### Fresh probe B2
-A robot moves from \((0,0)\) to \((4,3)\) using only one-unit East and one-unit North moves. How many shortest paths are possible? Explain what makes two paths different.
+### Fresh diagnostic probe B2
+How many 4-element subsets of ({1,2,\ldots,10}) contain no two consecutive integers?
 
-### Fresh probe B3
+### Fresh diagnostic probe B3
 Count the nonnegative integer solutions of
-\[
+[
 x+y+z=12
-\]
-subject to \(x\le4\).
+]
+subject to (x\le4).
 
-### Fresh probe B4
-Thirteen distinct integers are chosen. Prove that two of them differ by a nonzero multiple of \(12\). Do not name the organizing principle until you have identified the structural classes you would use.
+### Fresh diagnostic probe B4
+Five points with integer coordinates are placed in the plane. Prove that two of them have a midpoint whose coordinates are both integers.
 
-### Fresh probe B5
-Five distinct researchers are assigned to three labeled teams A, B and C, with every team required to receive at least one researcher. How many assignments are possible? Give an organizing plan before calculating; more than one valid route is allowed.
+### Fresh diagnostic probe B5
+How many permutations of ({1,2,3,4,5}) fix neither (1) nor (2)?
 
-**Diagnostic target:** can the learner recognize and reconstruct the relevant finite-counting structure when the procedure is not named? These probes deliberately change mathematical surface rather than merely changing coefficients or nouns from S23–S30.
+**Diagnostic target:** can the learner recognize and reconstruct a finite-counting model when the procedure is not named? These probes deliberately avoid replaying the fixed S23–S30 task archetypes with only changed constants or nouns. Success is diagnostic/practice evidence only and does not recertify a canonical task.
 
 ---
 
