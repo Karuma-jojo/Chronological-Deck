@@ -180,7 +180,7 @@ const binomialEvidence=m03.claimEvidence[m03s26.id].find(x=>x.claim===binomialCl
 assert(binomialEvidence&&binomialEvidence.task==='main','LF-R01 general binomial ownership must have fixed public evidence');
 const binomialPrompt=m03.problems[m03s26.main].prompt;
 assert(binomialPrompt.includes('State the finite binomial theorem for positive integer n'),'LF-R01 upstream public request must require learner production of the general theorem');assert(!binomialPrompt.includes('(x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k'),'LF-R01 upstream public request must not supply the theorem formula it assesses');
-assert(binomialPrompt.includes('why the coefficient of x^(n−k)y^k is C(n,k)'),'LF-R01 upstream public request must require the general combinatorial coefficient argument');
+assert(binomialPrompt.includes('coefficient of x^(n−k)y^k')&&binomialPrompt.includes('why that coefficient is C(n,k)'),'LF-R01 upstream public request must require the general coefficient and its combinatorial C(n,k) explanation');
 assert(binomialEvidence.rubricEvidence.some(x=>x.includes('without the formula being supplied')));
 assert(binomialEvidence.rubricEvidence.includes('Explains combinatorially that C(n,k) chooses which k of the n factors contribute y.'));
 assert(m03.problems[m03s26.main].obligationVersion===5,'LF-R01 current general theorem surface must be v5 after observer-alignment repair');
