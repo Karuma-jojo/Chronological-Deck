@@ -1,6 +1,8 @@
 // Gate 2 raw candidate leads taken directly from inspected official SMMC solution
-// passages. These are SOURCE_FACT + NONE observations, deliberately NOT Battle-channel
-// records: Gate 2 harvests the concepts without constructing the later Battle matrix.
+// passages. Because these records assert that a move actually occurs in an exact frozen
+// official SMMC solution, Gate-1 semantics require SOURCE_FACT + BATTLE +
+// HISTORICAL_OCCURRENCE. Gate 2 still does not build co-occurrence, ranking, ontology,
+// prerequisites, or the later completed Battle matrix.
 
 const RAW = Object.freeze([
   [
@@ -233,8 +235,8 @@ export const ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE = Object.freeze(
     candidateId,
     candidateName,
     evidenceBasis: "SOURCE_FACT",
-    recordChannel: "NONE",
-    claimKind: "OTHER",
+    recordChannel: "BATTLE",
+    claimKind: "HISTORICAL_OCCURRENCE",
     verificationStatus: "VERIFIED",
     ontologyType: null,
     sourceId,
@@ -247,7 +249,7 @@ export const ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE = Object.freeze(
     claim,
     sourceTerminology: candidateName,
     supports: Object.freeze(["RAW_CANDIDATE_HARVEST"]),
-    doesNotEstablish: "Does not establish final candidate granularity/type, importance, prerequisite status, rank, learner Transfer, or a completed Battle matrix.",
+    doesNotEstablish: "Establishes only this verified historical occurrence; it does not establish final candidate granularity/type, importance, prerequisite status, rank, learner Transfer, co-occurrence, or a completed Battle matrix.",
     confidence: "verified source observation; candidate status intentionally unresolved",
     linkedRecordIds: Object.freeze([]),
     researcherNote: "Directly inspected in the exact frozen official solution artifact.",
