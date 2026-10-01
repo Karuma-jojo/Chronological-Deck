@@ -725,3 +725,29 @@ The authoring validator now checks Gate-2 boundary invariants and exact legacy-t
 This is an **initial harvest batch**, not Gate-2 completion.
 
 **STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 expanded harvest checkpoint — 2026-10-02
+
+The initial 99-candidate batch was deliberately expanded rather than treated as exhaustive.
+
+Current raw pool:
+- 44 legacy method-tag leads;
+- 39 secondary-tag leads;
+- 129 distinct \`bridgeNeeds\` harvested from all 88 ledger rows;
+- 34 curated route leads from a complete pass over all 88 \`auditNote\` fields;
+- 102 source-specific candidates from the five canonical books;
+- **348 raw candidates / 348 evidence records total**.
+
+A non-adjudicating audit module now reports duplicate names and orphan/missing evidence. Current normalized duplicate-name groups: **9**. No duplicate has been merged.
+
+Still unchanged:
+- \`ontologyType: null\`;
+- aliases empty;
+- adjudication/rank/rarity/prerequisite/relation fields null;
+- no Gate-3 granularity decision;
+- no Battle occurrence claim created from project metadata.
+
+The remaining Gate-2 work is deeper source coverage plus a final official-solution-route lead sweep and independent review.
+
+**STOP:** Gate 3 remains CLOSED.
