@@ -34,9 +34,9 @@ Current expanded harvest inventory:
 - **39** current `SMMC_SECONDARY_TAGS`, preserved separately so tool/topic/specialist possibilities are not lost;
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
-- **174** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **450 total raw candidates**;
-- **450 evidence records**;
+- **201** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
+- **477 total raw candidates**;
+- **477 evidence records**;
 - **9 currently reported normalized duplicate-name groups**, deliberately unresolved;
 - **0 typed candidates**;
 - **0 alias merges**;
@@ -168,10 +168,16 @@ Current raw book harvest, still without adjudication:
 | Engel | 36 |
 | Hammack | 17 |
 | Velleman | 19 |
-| Putnam and Beyond | 40 |
-| **Total** | **174** |
+| Putnam and Beyond | 67 |
+| **Total** | **201** |
 
 The counts are deliberately not interpreted as source importance. They reflect the current harvest granularity and how explicitly each source names techniques.
+
+### Complete Putnam TOC sweep
+
+The Putnam-and-Beyond harvest now also preserves named candidates from the full table of contents where they plausibly represent reusable contest tools or specialist methods: Sturm's Principle, polynomial-derivative and irreducibility methods, Chebyshev polynomials, matrix inversion, linear systems and bases, Cayley-Hamilton, Perron-Frobenius, Mean Value Theorem, Riemann sums, integral inequalities, Stokes-type methods, higher-order ODEs, vector/coordinate geometry, Fermat/Wilson, linear Diophantine equations, planar-graph Euler formula, and related items.
+
+These remain raw candidates. Their inclusion does not claim that every named theorem deserves a final Arsenal card.
 
 ## 4. Corpus-wide structured harvest
 
@@ -212,7 +218,7 @@ These direct source observations still do **not** build the later Battle matrix.
 - SOURCE_FACT records whose Source ID is outside the canonical registry;
 - candidate counts by origin.
 
-At the current 450-candidate checkpoint there are **11 duplicate-name groups**. That is expected and desirable at Gate 2.
+At the current 477-candidate checkpoint there are **11 duplicate-name groups**. That is expected and desirable at Gate 2.
 
 The validator requires:
 - zero orphan evidence;
