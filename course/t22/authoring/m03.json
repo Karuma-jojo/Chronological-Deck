@@ -1,13 +1,13 @@
 {
-  "version": "m03-authoring-v1.7.1-evidence-harness-candidate-r1",
+  "version": "m03-authoring-v1.7.2-publication-state-r1",
   "instructionVersion": "m03-instruction-v12-evidence-retrofit-r1",
   "module": {
     "order": 3,
     "id": "T22E-DISC01",
     "title": "Mathematical Reasoning & Discrete Foundations",
-    "status": "repair-v1.7.1-awaiting-independent-confirmation",
+    "status": "published-v1.7.2-builder-validated-same-model-review-passed",
     "destination": "State claims precisely, prove/refute them, reason with sets/maps, and execute deterministic finite counting before probability.",
-    "gate": "Historical v1.4 Lang-foundation boundary acceptance is preserved. M03 mathematical/content design is closed. Current v1.7.1 evidence-harness candidate is NOT frozen and awaits static confirmation, live runtime pilot, and an exact-SHA T22 Elite + Chromium workflow pass.",
+    "gate": "Canonical M03 mathematics/content/evidence core is closed. Exact-SHA T22 Elite workflow #604 (run 36921555847, job 110568597589) passed static, semantic, provenance and Chromium/browser checks on implementation SHA 1da2268efe0b284c2c54cdccb563a315f565bf31. Final v1.7.2 closeout repaired only non-canonical Spire strategy probes and the Source/Pedagogy dossier. External/formal independent review of the v1.7.x closeout was not performed; publication to main is user-authorized.",
     "nextBoundary": "M04 owns probability, conditional probability, independence and expectation. M03 stops at deterministic finite counting.",
     "historicalAcceptance": {
       "status": "published-v1.4-lang-final-stitch-accepted",
@@ -36,8 +36,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m03-observability-v1.7.1-evidence-harness-2026-09-30",
-    "status": "v1.7.1 evidence-harness cleanup implemented on the closed M03 content contract; static semantic/provenance metadata awaits independent confirmation before workflow dispatch/freeze.",
+    "version": "m03-observability-v1.7.2-final-2026-10-02",
+    "status": "Canonical 30/60/150 M03 content/evidence contract closed; hostile same-model follow-up found no canonical math/evidence defect; exact-SHA T22 Elite + Chromium run #604 passed. Final v1.7.2 closeout adds source/pedagogy documentation and clone-audited post-assessment Strategy Labs only. External independent review is not claimed.",
     "policy": "Every retained ownership claim must be literally requested and supported by exact rubric evidence. Different data or a Transfer storage slot is not sufficient. Builder self-report does not certify semantic observability."
   },
   "sessions": [
@@ -5568,7 +5568,7 @@
   "repairVersionAudit": {
     "baselineCommit": "b8f96ce54b99aa8102a9a2ca618c7a1294f9f744",
     "previousRepairBranch": "codex/m03-spire-bounded-repair",
-    "reviewStatus": "awaiting-independent-confirmation",
+    "reviewStatus": "same-model-hostile-followup-passed-external-independent-review-not-performed",
     "preservedSessionCount": 30,
     "preservedTaskIds": 60,
     "preservedOwnershipCount": 150,
@@ -5613,9 +5613,9 @@
     ],
     "priorAttemptsPolicy": "Prior attempts remain attached to their historical obligation fingerprints. Any task whose obligationVersion increased is not silently recertified from an older attempt. Exact-answer exposure remains historical; independent recertification uses fresh solution-free probes.",
     "taskReplacementPolicy": "Stable task IDs are retained with incremented obligationVersion. Substantively changed prompts (S17/S23/S24/S25/S27 Transfer and selected Main observers) are new evidence obligations; older attempts do not auto-satisfy them. S27-T v3 supersedes the rejected upper-bound/complement v2 candidate so S28 retains first ownership of complement counting.",
-    "strategyLabPolicy": "Method-selection diagnostics are removed from pre-assessment session gates. Fresh mixed strategy labs run only after S14 and after S30 and are practice/diagnostic evidence, not automatic canonical ownership credit.",
+    "strategyLabPolicy": "Method-selection diagnostics remain post-assessment, unscored practice/diagnostic evidence and never auto-grant canonical ownership. Final Spire pack v1.7.2 clone-audits the strategy probes against S01–S30 and replaces close archetype clones with changed mathematical surfaces before publication.",
     "historicalAcceptedStatus": "published-v1.4-lang-final-stitch-accepted",
-    "currentCandidateStatus": "repair-v1.7.1-awaiting-independent-confirmation",
+    "currentCandidateStatus": "published-v1.7.2-builder-validated-same-model-review-passed",
     "v17ChangedAssessmentIds": [
       "T22V3::T22E-DISC01::S25-T@1",
       "T22V3::T22E-DISC01::S26-M@1",
@@ -5643,6 +5643,22 @@
         "add end-to-end Chromium S24 historical-exposure regression",
         "refresh S26-T instruction-separation fingerprint after workflow #599 exposed the stale pre-v1.7 prompt fragment"
       ]
+    },
+    "finalPublicationAudit": {
+      "date": "2026-10-02",
+      "canonicalImplementationSha": "1da2268efe0b284c2c54cdccb563a315f565bf31",
+      "t22EliteWorkflowRunNumber": 604,
+      "t22EliteWorkflowRunId": "36921555847",
+      "t22EliteJobId": "110568597589",
+      "t22EliteConclusion": "success",
+      "chromiumBrowserEvidence": "success",
+      "canonicalHostileReview": "same-model-pass-no-new-math-defect",
+      "externalIndependentReview": "not-performed",
+      "sourceDossier": "docs/t22-course/M03-SOURCE-DOSSIER-AND-PEDAGOGY-EVIDENCE.md",
+      "learnerPack": "docs/t22-course/artifacts/T22-Elite-M03-Deep-Spire-Master-Pack-v1.7.2.md",
+      "finalPublicationRecord": "docs/t22-course/M03-FINAL-PUBLICATION.md",
+      "userAuthorizedMainPublication": true,
+      "contentChange": "none-to-S01-S30"
     }
   },
   "evidenceDistance": {
