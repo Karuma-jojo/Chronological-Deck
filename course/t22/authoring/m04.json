@@ -1,11 +1,11 @@
 {
-  "version": "m04-authoring-v1.2-astra-r1",
+  "version": "m04-authoring-v2.0-pilot-s07-r1",
   "instructionVersion": "m04-instruction-astra-r1",
   "module": {
     "order": 4,
     "id": "ARC048",
     "title": "Finite Probability, Conditional Probability, Independence & Expectation",
-    "status": "authored-v1.2-astra-repaired",
+    "status": "v2-deep-reconstruction-pilot-s07",
     "destination": "Model finite uncertainty rigorously, condition correctly, distinguish dependence from independence, and compute finite expectations without prematurely using Bayes, decision theory or formal distribution machinery.",
     "gate": "Page completion is not clearance. Every ownership claim must be observable in a public fixed task, references stay locked until save, and current instruction must remain semantically distinct from fixed assessment content.",
     "nextBoundary": "M05 owns trading-game decisions and risk preferences; M06 owns Bayes/posterior updating. M04 stops at forward finite probability and expectation."
@@ -35,8 +35,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m04-observability-astra-r1-2026-09-18",
-    "status": "120/120 semantically re-audited exact fixed-task → rubric mappings; S05 claim 3 and S13 claim 5 intentionally map to Transfer; 24/24 semantic separation retained",
+    "version": "m04-observability-v2-pilot-s07-2026-10-02",
+    "status": "S07 v2 conditioning/representation pilot implemented; full 24-session v2 retrofit pending. Historical v1.2 Astra acceptance remains provenance, not current v2 acceptance.",
     "policy": "Every ownership claim is manually pinned to the exact fixed public task and one or more evaluator criteria that actually observe it. Cross-task mappings are allowed when the Transfer is the genuine observer. S05-T and S21-M are obligationVersion=2 because their assessment contracts materially changed during Astra repair."
   },
   "sessions": [
@@ -264,13 +264,14 @@
       "order": 7,
       "id": "T22V3::ARC048::S07@1",
       "moduleId": "ARC048",
-      "title": "Conditional probability as a restricted universe",
-      "focus": "P(A|B) and denominator discipline.",
-      "purpose": "Make conditioning a change of reference population rather than a formula trick.",
-      "centralCapability": "Compute and interpret P(A|B)=P(A∩B)/P(B) when P(B)>0.",
-      "principalObstacle": "The denominator remains the original sample space or conditioning on probability-zero events is ignored.",
+      "title": "Conditional probability: restricted mass, tables & direction",
+      "focus": "Conditioning as reference-population restriction and renormalization, not causal reversal.",
+      "purpose": "Make the denominator, direction and information meaning of conditioning visible across atom-ledger and two-way-table representations.",
+      "centralCapability": "Interpret and compute finite P(A|B)=P(A∩B)/P(B) for P(B)>0, including nonuniform mass and reverse-direction comparisons.",
+      "principalObstacle": "The learner keeps the original denominator, treats favourable/total as universal, reverses the bar, or thinks later information cannot condition an earlier event.",
       "entryPrerequisites": [
-        "M04-S05/S06",
+        "M04-S05/S06 event algebra",
+        "M04-S02 finite probability mass",
         "M01 fractions"
       ],
       "requiredOwnership": [
@@ -280,8 +281,8 @@
         "Distinguish P(A|B) from P(B|A).",
         "State the P(B)>0 requirement."
       ],
-      "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "A changed finite uncertainty surface requiring the same reasoning without naming the method.",
+      "applicationScope": "Finite probability models represented as explicit atomic mass ledgers, restricted outcome lists or complete two-way count tables.",
+      "transferScope": "Changed-surface transfer: read a two-way table, reverse the conditioning direction, and diagnose a chronological-information misconception without invoking Bayes' rule.",
       "inScope": [
         "Finite conditional probability"
       ],
@@ -292,10 +293,12 @@
         "Formal random-variable distributions/variance/covariance until M26",
         "Trading decision/fair-price policy until M05"
       ],
-      "exitCondition": "Compute and explain a conditional probability with the right restricted universe and zero-denominator caveat.",
-      "lesson": "Conditioning on B means we now reason only among outcomes in B and renormalize their probability to1. For P(B)>0, P(A|B)=P(A∩B)/P(B). Reversing the bar changes the denominator and usually changes the value. Worked example: A uniform card numbered1–10 is chosen. Given that it is even (five possibilities), the chance it is above6 is2/5 because the restricted universe is {2,4,6,8,10}. Guided check: On a uniform die, compute P(result is even | result>2) by listing the restricted outcomes first.",
+      "exitCondition": "Restrict to the conditioning event, renormalize its mass, track direction/denominator, and explain why information timing is not the same as physical causation.",
+      "lesson": "Orient. Two analysts can use the same joint data and get different conditional probabilities because the bar changes the reference population. The question is not “which event caused the other?” but “after I am told B occurred, what probability mass is still eligible?”\n\nDefine. For finite events A and B with P(B)>0,\nP(A|B)=P(A∩B)/P(B).\nConditioning on B discards outcomes outside B and rescales the mass inside B to total 1. This definition works for unequal atomic probabilities too; favourable-count/total-count is only the special case where the surviving atomic outcomes are equiprobable. Reversing the bar changes the denominator: P(A|B) and P(B|A) generally answer different questions.\n\nConnect. From S02, event probability is the sum of its atomic masses. From S05, A∩B is the part satisfying both conditions. Therefore the conditional numerator is the surviving mass that also satisfies A, and the denominator is all surviving B-mass.\n\nExplain. Suppose Ω={u,v,w,x} with masses .10,.20,.30,.40. Let A={u,x} and B={v,w,x}. Then P(B)=.90 and P(A∩B)=.40, so P(A|B)=.40/.90=4/9. In the reverse direction P(A)=.50, so P(B|A)=.40/.50=4/5. The same overlap .40 appears in both numerators, but the reference populations differ. If P(B)=0, the finite ratio is undefined.\n\nWorked example: A complete count table can encode the same restriction idea:\n            F   not F   total\nX          12      8      20\nnot X       3     17      20\ntotal      15     25      40\nFor P(F|X), keep only the X row: 12 of 20, so 3/5. For P(X|F), keep only the F column: 12 of 15, so 4/5. The table is not a new formula; it is a compact picture of the joint counts and the restricted denominator.\n\nGuided check: A finite model has masses P(a)=.15,P(b)=.25,P(c)=.10,P(d)=.20,P(e)=.30. Let C={b,d,e} and D={a,d,e}. Without counting outcomes, compute P(C|D) and name the exact denominator mass you used. Then say whether P(D|C) must be the same number.\n\nFade. On an independent task, first identify the conditioning event and its total mass/count before writing any ratio. Do not assume the atoms are uniform unless the model says so.\n\nDistinction check. Information can arrive after the underlying event without “changing the past.” If a sealed record was generated earlier and a later report tells you that the record lies in B, the physical record is unchanged but your reference set is now B. Conditional probability is information restriction, not backward causation.",
       "main": "T22V3::ARC048::S07-M@1",
-      "transfer": "T22V3::ARC048::S07-T@1"
+      "transfer": "T22V3::ARC048::S07-T@1",
+      "instructionVersion": "m04-s07-instruction-v2-conditioning-representation-r1",
+      "guidedFeedback": "Check after attempting. D={a,d,e} has mass .15+.20+.30=.65. C∩D={d,e} has mass .50, so P(C|D)=.50/.65=10/13. The reverse uses denominator P(C)=.25+.20+.30=.75, so it need not match."
     },
     {
       "order": 8,
@@ -997,15 +1000,15 @@
       "id": "T22V3::ARC048::S07-M@1",
       "order": 7,
       "kind": "main",
-      "prompt": "A uniform integer is chosen from1 through12. Let A='multiple of3' and B='even'. Compute P(A|B) by explicitly listing the B-restricted universe, compute P(B|A), explain why the denominators differ, and state why P(A|C) is undefined if C=∅.",
-      "obligationVersion": 1
+      "prompt": "A finite model has Ω={a,b,c,d,e} with P(a)=0.05,P(b)=0.15,P(c)=0.20,P(d)=0.25,P(e)=0.35. Let A={a,c,e} and B={c,d,e}. Without treating the five outcomes as equally likely, compute P(A|B) and P(B|A), identify the reference mass used in each denominator, explain why learning after the outcome was generated that 'the outcome lies in B' can legitimately change the probability you assign to A without changing the past, and state the condition under which P(A|B) is undefined.",
+      "obligationVersion": 2
     },
     "T22V3::ARC048::S07-T@1": {
       "id": "T22V3::ARC048::S07-T@1",
       "order": 7,
       "kind": "transfer",
-      "prompt": "A table has 40 records: 24 are category X, 16 are not X; among the 24 X records, 9 have flag F, and among the 16 non-X records, 4 have flag F. Compute P(F|X) and P(X|F), identify each denominator, and state the condition required for each conditional probability to be defined.",
-      "obligationVersion": 1
+      "prompt": "A completed archive is summarized by this two-way table:\n                 signal S   not S   total\nearly source E        18       12      30\nlate source L          6       24      30\ntotal                  24       36      60\n\n(a) Compute P(E|S) and P(S|E), explicitly naming the denominator/reference group in each direction.\n(b) A reviewer says: “Signal S was recorded after the source label, so observing S cannot change the probability that the archived record came from E.” Diagnose the statement using the table and the meaning of conditioning.\n(c) State when each conditional ratio would be undefined.",
+      "obligationVersion": 2
     },
     "T22V3::ARC048::S08-M@1": {
       "id": "T22V3::ARC048::S08-M@1",
@@ -1560,56 +1563,56 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S07-M@1": {
-      "reference": "B={2,4,6,8,10,12};A∩B={6,12}, so P(A|B)=2/6=1/3. A={3,6,9,12}; P(B|A)=2/4=1/2. Conditioning reverses the reference set. Conditioning on ∅ has denominator0.",
+      "reference": "P(B)=0.20+0.25+0.35=0.80. A∩B={c,e} has mass0.55, so P(A|B)=0.55/0.80=11/16. P(A)=0.05+0.20+0.35=0.60, so P(B|A)=0.55/0.60=11/12. The denominators are the masses of the conditioning events B and A respectively. A later report can restrict the information set/reference population even though it cannot causally alter the already-generated outcome. P(A|B) is undefined in this finite definition when P(B)=0.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "B-restricted universe is listed correctly."
+          "criterion": "Computes P(A|B)=11/16 from intersection mass0.55 over conditioning mass P(B)=0.80, without using a uniform count ratio."
         },
         {
           "points": 2,
-          "criterion": "P(A|B)=1/3."
+          "criterion": "Computes P(B|A)=11/12 from the same intersection mass0.55 over conditioning mass P(A)=0.60."
         },
         {
           "points": 2,
-          "criterion": "P(B|A)=1/2."
+          "criterion": "Identifies the denominator/reference mass as the probability of the event after the conditioning bar in each direction."
         },
         {
           "points": 2,
-          "criterion": "Different denominators/reference populations are explained."
+          "criterion": "Explains that later information can restrict the reference set without physically or causally changing the earlier-generated outcome."
         },
         {
           "points": 2,
-          "criterion": "Zero-probability conditioning caveat is stated."
+          "criterion": "States that the finite ratio P(A|B) requires P(B)>0 and is undefined here when P(B)=0."
         }
       ],
-      "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
+      "marking": "Score the public obligations only. Equivalent exact fractions/decimals and any correct mass-based route are acceptable. Do not require Bayes' rule or causal language beyond the requested information-versus-causation distinction."
     },
     "T22V3::ARC048::S07-T@1": {
-      "reference": "P(F|X)=9/24=3/8. Total F=13, so P(X|F)=9/13. Denominators are24/40 and13/40 respectively; conditioning events must have positive probability.",
+      "reference": "Among the 24 signal-S records,18 are early, so P(E|S)=18/24=3/4; the reference group is the S column. Among the30 early-source records,18 have S, so P(S|E)=18/30=3/5; the reference group is the E row. The reviewer's causal argument is wrong: observing a later field does not change the historical source, but it can restrict the archive to records with S and therefore change the conditional probability assigned to E. The respective conditioning groups must have positive probability/count; a zero S column makes P(E|S) undefined, and a zero E row makes P(S|E) undefined.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "P(F|X)=3/8."
+          "criterion": "Reads the S column as the reference group and computes P(E|S)=18/24=3/4."
         },
         {
           "points": 2,
-          "criterion": "Its denominator is X count24."
+          "criterion": "Reads the E row as the reference group and computes P(S|E)=18/30=3/5."
         },
         {
           "points": 2,
-          "criterion": "P(X|F)=9/13."
+          "criterion": "Explicitly distinguishes the two denominators/reference populations rather than reversing the conditional mechanically."
         },
         {
           "points": 2,
-          "criterion": "Its denominator is F count13."
+          "criterion": "Rejects the time-axis/causal misconception: later information can restrict the reference set without changing the earlier source."
         },
         {
           "points": 2,
-          "criterion": "Positive-conditioning-probability requirement stated."
+          "criterion": "States the positive-conditioning-count/probability requirement for each conditional ratio."
         }
       ],
-      "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
+      "marking": "Accept any correct table-reading explanation. Do not require or award Bayes-formula manipulation; the complete joint table is sufficient."
     },
     "T22V3::ARC048::S08-M@1": {
       "reference": "Joint=.48×.35=.168. P(B|A)=.168/.42=.4. Then .42×.4=.168. Joint≤.42 and≤.48.",
@@ -2607,10 +2610,10 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
         "main"
@@ -3167,43 +3170,43 @@
       {
         "claim": "Interpret conditioning as restricting to B.",
         "task": "main",
-        "publicRequest": "A uniform integer is chosen from1 through12. Let A='multiple of3' and B='even'. Compute P(A|B) by explicitly listing the B-restricted universe, compute P(B|A), explain why the denominators differ, and state why P(A|C) is undefined if C=∅.",
+        "publicRequest": "A finite model has Ω={a,b,c,d,e} with P(a)=0.05,P(b)=0.15,P(c)=0.20,P(d)=0.25,P(e)=0.35. Let A={a,c,e} and B={c,d,e}. Without treating the five outcomes as equally likely, compute P(A|B) and P(B|A), identify the reference mass used in each denominator, explain why learning after the outcome was generated that 'the outcome lies in B' can legitimately change the probability you assign to A without changing the past, and state the condition under which P(A|B) is undefined.",
         "rubricEvidence": [
-          "B-restricted universe is listed correctly."
+          "Identifies the denominator/reference mass as the probability of the event after the conditioning bar in each direction.",
+          "Explains that later information can restrict the reference set without physically or causally changing the earlier-generated outcome."
         ]
       },
       {
         "claim": "Use P(A|B)=P(A∩B)/P(B).",
         "task": "main",
-        "publicRequest": "A uniform integer is chosen from1 through12. Let A='multiple of3' and B='even'. Compute P(A|B) by explicitly listing the B-restricted universe, compute P(B|A), explain why the denominators differ, and state why P(A|C) is undefined if C=∅.",
+        "publicRequest": "A finite model has Ω={a,b,c,d,e} with P(a)=0.05,P(b)=0.15,P(c)=0.20,P(d)=0.25,P(e)=0.35. Let A={a,c,e} and B={c,d,e}. Without treating the five outcomes as equally likely, compute P(A|B) and P(B|A), identify the reference mass used in each denominator, explain why learning after the outcome was generated that 'the outcome lies in B' can legitimately change the probability you assign to A without changing the past, and state the condition under which P(A|B) is undefined.",
         "rubricEvidence": [
-          "P(A|B)=1/3."
+          "Computes P(A|B)=11/16 from intersection mass0.55 over conditioning mass P(B)=0.80, without using a uniform count ratio."
         ]
       },
       {
         "claim": "Use the correct denominator P(B).",
-        "task": "main",
-        "publicRequest": "A uniform integer is chosen from1 through12. Let A='multiple of3' and B='even'. Compute P(A|B) by explicitly listing the B-restricted universe, compute P(B|A), explain why the denominators differ, and state why P(A|C) is undefined if C=∅.",
+        "task": "transfer",
+        "publicRequest": "A completed archive is summarized by this two-way table:\n                 signal S   not S   total\nearly source E        18       12      30\nlate source L          6       24      30\ntotal                  24       36      60\n\n(a) Compute P(E|S) and P(S|E), explicitly naming the denominator/reference group in each direction.\n(b) A reviewer says: “Signal S was recorded after the source label, so observing S cannot change the probability that the archived record came from E.” Diagnose the statement using the table and the meaning of conditioning.\n(c) State when each conditional ratio would be undefined.",
         "rubricEvidence": [
-          "B-restricted universe is listed correctly.",
-          "Different denominators/reference populations are explained."
+          "Explicitly distinguishes the two denominators/reference populations rather than reversing the conditional mechanically."
         ]
       },
       {
         "claim": "Distinguish P(A|B) from P(B|A).",
-        "task": "main",
-        "publicRequest": "A uniform integer is chosen from1 through12. Let A='multiple of3' and B='even'. Compute P(A|B) by explicitly listing the B-restricted universe, compute P(B|A), explain why the denominators differ, and state why P(A|C) is undefined if C=∅.",
+        "task": "transfer",
+        "publicRequest": "A completed archive is summarized by this two-way table:\n                 signal S   not S   total\nearly source E        18       12      30\nlate source L          6       24      30\ntotal                  24       36      60\n\n(a) Compute P(E|S) and P(S|E), explicitly naming the denominator/reference group in each direction.\n(b) A reviewer says: “Signal S was recorded after the source label, so observing S cannot change the probability that the archived record came from E.” Diagnose the statement using the table and the meaning of conditioning.\n(c) State when each conditional ratio would be undefined.",
         "rubricEvidence": [
-          "P(B|A)=1/2.",
-          "Different denominators/reference populations are explained."
+          "Reads the S column as the reference group and computes P(E|S)=18/24=3/4.",
+          "Reads the E row as the reference group and computes P(S|E)=18/30=3/5."
         ]
       },
       {
         "claim": "State the P(B)>0 requirement.",
         "task": "main",
-        "publicRequest": "A uniform integer is chosen from1 through12. Let A='multiple of3' and B='even'. Compute P(A|B) by explicitly listing the B-restricted universe, compute P(B|A), explain why the denominators differ, and state why P(A|C) is undefined if C=∅.",
+        "publicRequest": "A finite model has Ω={a,b,c,d,e} with P(a)=0.05,P(b)=0.15,P(c)=0.20,P(d)=0.25,P(e)=0.35. Let A={a,c,e} and B={c,d,e}. Without treating the five outcomes as equally likely, compute P(A|B) and P(B|A), identify the reference mass used in each denominator, explain why learning after the outcome was generated that 'the outcome lies in B' can legitimately change the probability you assign to A without changing the past, and state the condition under which P(A|B) is undefined.",
         "rubricEvidence": [
-          "Zero-probability conditioning caveat is stated."
+          "States that the finite ratio P(A|B) requires P(B)>0 and is undefined here when P(B)=0."
         ]
       }
     ],
@@ -4012,14 +4015,18 @@
     "S07": [
       {
         "item": "intersection/event algebra",
-        "source": "M04-S05"
+        "source": "M04-S05/S06"
       },
       {
-        "item": "fractions",
+        "item": "finite nonuniform event probability",
+        "source": "M04-S02"
+      },
+      {
+        "item": "fractions/algebra",
         "source": "M01"
       },
       {
-        "item": "conditional notation",
+        "item": "conditional notation and information-restriction interpretation",
         "source": "Defined JIT in S07"
       }
     ],
@@ -4297,12 +4304,12 @@
     },
     "T22V3::ARC048::S07@1": {
       "main": [
-        "A uniform integer is chosen from1 through12. Let",
-        "uniform integer is chosen from1 through12. Let A='multiple"
+        "A finite model has Ω={a,b,c,d,e} with P(a)=0.05",
+        "learning after the outcome was generated"
       ],
       "transfer": [
-        "A table has 40 records: 24 are category",
-        "table has 40 records: 24 are category X,"
+        "A completed archive is summarized by this two-way table",
+        "Signal S was recorded after the source label"
       ]
     },
     "T22V3::ARC048::S08@1": {
@@ -4505,8 +4512,8 @@
         "note": "Lesson uses .45/.35/.15 and guided .7/.4/.5; fixed tasks use distinct decimal triples."
       },
       "T22V3::ARC048::S07@1": {
-        "status": "reviewed-separated",
-        "note": "Lesson uses numbers1–10 and a die; Main uses1–12 and Transfer uses a 40-record contingency table."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "m04-s07-instruction-v2-conditioning-representation-r1 uses a four-atom nonuniform mass example, an X/F instructional table and a distinct five-atom guided model. Main v2 uses different five-atom masses and explicitly tests information-versus-causation; Transfer v2 uses a 60-record early/late×signal table and a time-axis misconception. Neither fixed numerical answer is solved in visible instruction."
       },
       "T22V3::ARC048::S08@1": {
         "status": "reviewed-separated",
