@@ -1,5 +1,6 @@
 import { FOUNDATION_MODULE, FOUNDATION_UNITS } from '../course/smmc/authoring/foundation-ladder.mjs';
 import ledger from "../course/smmc/ledger.mjs";
+import { SMMC_METHOD_TAGS, SMMC_SECONDARY_TAGS } from "../course/smmc/schema.mjs";
 import {
   SMMC_CONTENT_MODULES,
   SMMC_METHOD_MODULES,
@@ -36,6 +37,36 @@ import {
   validateGate1EvidenceCollection,
   validateSourceLocator,
 } from "../course/smmc/arsenal/evidence-contract-v1.mjs";
+import {
+  ARSENAL_GATE2_RAW_CANDIDATES,
+  ARSENAL_GATE2_RAW_EVIDENCE,
+  ARSENAL_GATE2_LEGACY_TAG_CANDIDATES,
+  ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES,
+  ARSENAL_GATE2_BOOK_CANDIDATES,
+  ARSENAL_GATE2_HARVEST_META,
+} from "../course/smmc/arsenal/candidates-v0.mjs";
+import {
+  ARSENAL_GATE2_DUPLICATE_NAME_GROUPS,
+  ARSENAL_GATE2_ORPHAN_EVIDENCE_IDS,
+  ARSENAL_GATE2_CANDIDATES_WITHOUT_EVIDENCE,
+  ARSENAL_GATE2_UNKNOWN_CANONICAL_SOURCE_FACTS,
+  ARSENAL_GATE2_RAW_AUDIT_META,
+} from "../course/smmc/arsenal/raw-harvest-audit-v0.mjs";
+import {
+  ARSENAL_GATE2_OFFICIAL_ROUTE_INDEX,
+  ARSENAL_GATE2_OFFICIAL_ROUTE_META,
+} from "../course/smmc/arsenal/official-solution-route-index-v0.mjs";
+import {
+  ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE,
+} from "../course/smmc/arsenal/official-solution-candidates-v0.mjs";
+import {
+  ARSENAL_GATE2_SOURCE_CLOSURE_RULE,
+  ARSENAL_GATE2_SOURCE_CLOSURE_ZONES,
+  ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS,
+  ARSENAL_GATE2_SOURCE_CLOSURE_HARVEST_IDS,
+  ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS,
+  ARSENAL_GATE2_SOURCE_CLOSURE_META,
+} from "../course/smmc/arsenal/source-closure-manifest-v0.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -480,6 +511,332 @@ try {
   duplicateCandidateMoveRejected = true;
 }
 expect(duplicateCandidateMoveRejected, "Battle co-occurrence must require two distinct candidate/move IDs.");
+
+// Gate 2 raw candidate harvest: coverage without ontology/adjudication leakage.
+expect(SMMC_METHOD_TAGS.length === 44, "Expected frozen current SMMC method-tag vocabulary to contain 44 tags.");
+expect(
+  ARSENAL_GATE2_LEGACY_TAG_CANDIDATES.length === SMMC_METHOD_TAGS.length,
+  "Gate-2 raw harvest must preserve every current SMMC method tag exactly once."
+);
+const legacyTerms = ARSENAL_GATE2_LEGACY_TAG_CANDIDATES.map(x => x.sourceTerminology);
+expect(
+  JSON.stringify([...legacyTerms].sort()) === JSON.stringify([...SMMC_METHOD_TAGS].sort()),
+  "Gate-2 legacy harvest does not exactly cover SMMC_METHOD_TAGS."
+);
+
+expect(
+  ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES.length === SMMC_SECONDARY_TAGS.length,
+  "Gate-2 raw harvest must preserve every current SMMC secondary tag exactly once."
+);
+const secondaryTerms = ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES.map(x => x.sourceTerminology);
+expect(
+  JSON.stringify([...secondaryTerms].sort()) === JSON.stringify([...SMMC_SECONDARY_TAGS].sort()),
+  "Gate-2 secondary harvest does not exactly cover SMMC_SECONDARY_TAGS."
+);
+expect(ARSENAL_GATE2_HARVEST_META.legacyMethodTagCount === 44, "Gate-2 legacy tag metadata drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.secondaryTagCandidates === 39, "Gate-2 secondary-tag metadata drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.ledgerBridgeCandidates === 129, "Gate-2 ledger bridge harvest count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.ledgerBridgeEvidenceRecords === 129, "Gate-2 ledger bridge evidence count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteCandidates === 34, "Gate-2 ledger route harvest count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteEvidenceRecords === 34, "Gate-2 ledger route evidence count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.officialSolutionCandidates === 127, "Gate-2 direct official-solution candidate count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.officialSolutionEvidenceRecords === 127, "Gate-2 direct official-solution evidence count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 288, "Gate-2 book-source harvest count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 661, "Gate-2 raw candidate total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 661, "Gate-2 raw evidence total drifted.");
+
+// Gate-2 canonical-source closure is protected by a complete item-level
+// reviewed decision partition, not merely by equality with a positive HARVEST set.
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_RULE.gate3StillClosed === true, "Source-closure certificate must not open Gate 3.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.canonicalSourcesReviewed === 5, "Source-closure certificate must cover all five canonical books.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.reviewedItems === 458, "Source-closure reviewed-item inventory count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestDecisions === 375, "Source-closure HARVEST decision count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestedCandidates === 288, "Source-closure unique harvested-candidate count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.exclusions === 83, "Source-closure EXCLUDE decision count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.everyReviewedItemHasPdfPage === true, "Every reviewed source item must carry an explicit physical PDF page.");
+expect(
+  typeof ARSENAL_GATE2_SOURCE_CLOSURE_RULE.closureClaim === "string" &&
+  ARSENAL_GATE2_SOURCE_CLOSURE_RULE.closureClaim.includes("complete decision partition"),
+  "Source-closure rule must explicitly claim an item-level decision partition."
+);
+
+const gate2BookIds = ARSENAL_GATE2_BOOK_CANDIDATES.map(x => x.candidateId);
+const gate2BookById = new Map(ARSENAL_GATE2_BOOK_CANDIDATES.map(x => [x.candidateId, x]));
+const closureHarvestIds = [...ARSENAL_GATE2_SOURCE_CLOSURE_HARVEST_IDS];
+expect(new Set(gate2BookIds).size === gate2BookIds.length, "Book-source candidate IDs must be unique.");
+expect(new Set(closureHarvestIds).size === closureHarvestIds.length, "Source-closure HARVEST candidate IDs must be unique after deduplication.");
+expect(
+  JSON.stringify([...gate2BookIds].sort()) === JSON.stringify([...closureHarvestIds].sort()),
+  "Gate-2 canonical-book candidates must exactly equal the HARVEST side of the reviewed source-item partition."
+);
+
+// Validate bounded source zones and their frozen canonical artifacts.
+const closureZones = new Map();
+const closureSourceIds = new Set();
+for (const zone of ARSENAL_GATE2_SOURCE_CLOSURE_ZONES) {
+  const source = canonicalArsenalSource(zone.sourceId);
+  expect(source && source.kind === "BOOK_PDF", `Source-closure zone uses noncanonical/nonbook source: ${zone.zoneId}`);
+  expect(typeof zone.zoneId === "string" && zone.zoneId.length > 0, "Source-closure zone missing zoneId.");
+  expect(!closureZones.has(zone.zoneId), `Duplicate source-closure zoneId: ${zone.zoneId}`);
+  expect(typeof zone.selector === "string" && zone.selector.length > 120, `Source-closure zone needs an explicit bounded selector: ${zone.zoneId}`);
+  expect(
+    typeof zone.locatorSemantics === "string" &&
+    zone.locatorSemantics.includes("enumerationSegments define the exhaustive"),
+    `Source-closure zone must distinguish exhaustive enumeration surfaces from locator-only verification pages: ${zone.zoneId}`
+  );
+  for (const [kind,segments] of [["enumeration",zone.enumerationSegments],["verification",zone.verificationSegments]]) {
+    expect(Array.isArray(segments), `Source-closure ${kind} segments missing: ${zone.zoneId}`);
+    for (const seg of segments) {
+      expect(Number.isInteger(seg.startPage) && Number.isInteger(seg.endPage) && seg.startPage >= 1 && seg.endPage >= seg.startPage, `Invalid ${kind} segment for ${zone.zoneId}`);
+      expect(seg.endPage <= source.pages, `Source-closure ${kind} segment exceeds frozen PDF bounds: ${zone.zoneId}`);
+      expect(typeof seg.label === "string" && seg.label.length > 12, `Source-closure segment needs a label: ${zone.zoneId}`);
+    }
+  }
+  expect(zone.enumerationSegments.length > 0, `Every source must have at least one enumeration segment: ${zone.zoneId}`);
+  closureZones.set(zone.zoneId, zone);
+  closureSourceIds.add(zone.sourceId);
+}
+expect(closureSourceIds.size === 5, "Source-closure zones must cover every canonical book.");
+
+const pageInsideZone = (zone,page) =>
+  [...zone.enumerationSegments, ...zone.verificationSegments]
+    .some(seg => page >= seg.startPage && page <= seg.endPage);
+
+// Validate the reviewed-item inventory as a true partition.
+const reviewIds = new Set();
+const reviewedKeys = new Set();
+const harvestDecisionCandidateIds = [];
+let harvestDecisionCount = 0;
+let excludeDecisionCount = 0;
+
+for (const item of ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS) {
+  expect(typeof item.reviewItemId === "string" && item.reviewItemId.length > 8, "Reviewed source item missing reviewItemId.");
+  expect(!reviewIds.has(item.reviewItemId), `Duplicate reviewed source item ID: ${item.reviewItemId}`);
+  reviewIds.add(item.reviewItemId);
+
+  const source = canonicalArsenalSource(item.sourceId);
+  expect(source && source.kind === "BOOK_PDF", `Reviewed source item uses noncanonical/nonbook source: ${item.reviewItemId}`);
+  const zone = closureZones.get(item.zoneId);
+  expect(zone && zone.sourceId === item.sourceId, `Reviewed source item has missing/mismatched closure zone: ${item.reviewItemId}`);
+  expect(typeof item.sourceLabel === "string" && item.sourceLabel.trim().length > 0, `Reviewed source item missing sourceLabel: ${item.reviewItemId}`);
+  expect(typeof item.section === "string" && item.section.trim().length > 0, `Reviewed source item missing section/context: ${item.reviewItemId}`);
+  expect(Number.isInteger(item.pdfPage) && item.pdfPage >= 1 && item.pdfPage <= source.pages, `Reviewed source item missing/out-of-bounds physical PDF page: ${item.reviewItemId}`);
+  expect(pageInsideZone(zone,item.pdfPage), `Reviewed source item locator lies outside its declared bounded source zone: ${item.reviewItemId}`);
+
+  const reviewedKey = `${item.sourceId}|${item.zoneId}|${item.sourceLabel.trim().toLowerCase()}|${item.section.trim().toLowerCase()}`;
+  expect(!reviewedKeys.has(reviewedKey), `Same reviewed source item was decisioned twice: ${reviewedKey}`);
+  reviewedKeys.add(reviewedKey);
+
+  expect(item.disposition === "HARVEST" || item.disposition === "EXCLUDE", `Reviewed source item has invalid disposition: ${item.reviewItemId}`);
+
+  if (item.disposition === "HARVEST") {
+    harvestDecisionCount += 1;
+    expect(typeof item.candidateId === "string" && item.candidateId.length > 0, `HARVEST item missing candidateId: ${item.reviewItemId}`);
+    expect(item.reason === undefined, `HARVEST item must not also carry an EXCLUDE reason: ${item.reviewItemId}`);
+    expect(typeof item.rationale === "string" && item.rationale.length > 45, `HARVEST item needs source-qualification rationale: ${item.reviewItemId}`);
+    const candidate = gate2BookById.get(item.candidateId);
+    expect(candidate, `HARVEST item points to missing canonical-book candidate: ${item.reviewItemId} -> ${item.candidateId}`);
+    expect(candidate.origin === item.sourceId, `HARVEST item crosses canonical sources: ${item.reviewItemId}`);
+    harvestDecisionCandidateIds.push(item.candidateId);
+  } else {
+    excludeDecisionCount += 1;
+    expect(item.candidateId === undefined, `EXCLUDE item must not also point to a candidate: ${item.reviewItemId}`);
+    expect(typeof item.reason === "string" && item.reason.length > 35, `EXCLUDE item needs a substantive bounded-rule reason: ${item.reviewItemId}`);
+  }
+}
+
+expect(reviewIds.size === ARSENAL_GATE2_SOURCE_CLOSURE_META.reviewedItems, "Reviewed source-item inventory metadata drifted.");
+expect(harvestDecisionCount === ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestDecisions, "HARVEST decision metadata drifted.");
+expect(excludeDecisionCount === ARSENAL_GATE2_SOURCE_CLOSURE_META.exclusions, "EXCLUDE decision metadata drifted.");
+expect(
+  JSON.stringify([...new Set(harvestDecisionCandidateIds)].sort()) === JSON.stringify([...gate2BookIds].sort()),
+  "Every canonical-book candidate must be justified by at least one reviewed HARVEST item, and no HARVEST item may point outside the candidate set."
+);
+
+// Derived compatibility exports must be exact projections of the item-level inventory.
+expect(
+  JSON.stringify([...new Set(harvestDecisionCandidateIds)].sort()) === JSON.stringify([...closureHarvestIds].sort()),
+  "Derived source-closure HARVEST_IDS must equal the reviewed HARVEST projection."
+);
+expect(
+  ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS.length === excludeDecisionCount,
+  "Derived source-closure EXCLUSIONS must equal the reviewed EXCLUDE projection."
+);
+const exclusionReviewIds = ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS.map(x => x.reviewItemId);
+expect(new Set(exclusionReviewIds).size === exclusionReviewIds.length, "Derived EXCLUDE projection contains duplicate reviewed-item IDs.");
+
+// Reviewed per-source candidate counts are protected independently of total size.
+const closureExpectedCounts = ARSENAL_GATE2_SOURCE_CLOSURE_META.expectedHarvestBySource;
+for (const [sourceId, expected] of Object.entries(closureExpectedCounts)) {
+  const actual = ARSENAL_GATE2_BOOK_CANDIDATES.filter(x => x.origin === sourceId).length;
+  expect(actual === expected, `Reviewed source-closure count drift for ${sourceId}: expected ${expected}, got ${actual}`);
+}
+
+// Regression checks for every independently reported closure-integrity example.
+for (const candidateId of [
+  "RAW-SOURCE-e-graph-theory",
+  "RAW-SOURCE-e-eliminate-floor-ceiling",
+  "RAW-SOURCE-h-combining-techniques",
+  "RAW-SOURCE-h-equivalent-statements",
+  "RAW-SOURCE-z-algebraic-proof",
+  "RAW-SOURCE-z-geometric-proof",
+  "RAW-SOURCE-z-algorithmic-construction",
+  "RAW-SOURCE-z-dissection",
+  "RAW-SOURCE-z-similar-triangles",
+]) {
+  expect(closureHarvestIds.includes(candidateId), `Independent-review HARVEST regression: missing ${candidateId}`);
+  expect(gate2BookIds.includes(candidateId), `Independent-review candidate missing from canonical-book harvest: ${candidateId}`);
+}
+for (const sourceLabel of [
+  "AM-GM inequality — Cauchy's proof",
+  "Cauchy-Schwarz inequality — proof",
+  "Prime infinitude — classical proof",
+  "Prime infinitude — Euler's proof",
+  "Theorem — centroid proof",
+  "Theorem — power-of-a-point proof",
+]) {
+  expect(
+    ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS.some(x => x.sourceId === "S1-ZEITZ-2007-2E" && x.sourceLabel === sourceLabel && x.disposition === "EXCLUDE"),
+    `Independent-review EXCLUDE regression: missing decision for ${sourceLabel}`
+  );
+}
+// Literal Zeitz family-child partition required by review 5393058455.
+for (const sourceLabel of [
+  "Strategies → defined",
+  "Strategies → angle chasing → limitations of",
+  "Tactics → defined",
+  "Tactics → factoring",
+  "Tactics → generating functions",
+  "Tactics → graph theory",
+  "Tactics → modular arithmetic",
+  "Tactics → modulo m filter",
+  "Tools → defined",
+  "Tools → weights → and Ceva's theorem",
+  "Transformations → and Felix Klein",
+  "Transformations → and Henri Poincare",
+  "Transformations → homothety → and concurrence",
+]) {
+  expect(
+    ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS.some(
+      x => x.sourceId === "S1-ZEITZ-2007-2E" &&
+           x.sourceLabel === sourceLabel &&
+           Number.isInteger(x.pdfPage) &&
+           (x.pdfPage === 382 || x.pdfPage === 383)
+    ),
+    `Independent-review Zeitz family-child regression: missing decision/locator for ${sourceLabel}`
+  );
+}
+for (const familyPrefix of [
+  "Combinatorial Strategies and Tactics →",
+  "Strategies →",
+  "Tactics →",
+  "Tools →",
+  "Transformations →",
+]) {
+  expect(
+    ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS.some(
+      x => x.sourceId === "S1-ZEITZ-2007-2E" && x.sourceLabel.startsWith(familyPrefix)
+    ),
+    `Zeitz family-child partition missing family ${familyPrefix}`
+  );
+}
+
+for (const sourceLabel of [
+  "Congruence theorems — induction proof",
+  "Fermat's little theorem — induction proof",
+  "Theorem — proof using area",
+  "Theorem — proof using trigonometry",
+  "Theorem — proof with auxiliary line",
+  "Ptolemy's theorem — proof using auxiliary construction",
+  "Ptolemy's theorem — proof using complex numbers",
+  "Ptolemy's theorem — proof using inversion",
+  "Pythagorean theorem — proof using dissection",
+  "Pythagorean theorem — proof using shearing",
+  "Pythagorean theorem — proof using similar triangles",
+]) {
+  expect(
+    ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS.some(x => x.sourceId === "S1-ZEITZ-2007-2E" && x.sourceLabel === sourceLabel && x.disposition === "HARVEST"),
+    `Independent-review mapped-HARVEST regression: missing decision for ${sourceLabel}`
+  );
+}
+
+expect(ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE.length === 127, "Expected 127 direct official-solution occurrence records.");
+for (const record of ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE) {
+  expect(record.evidenceBasis === "SOURCE_FACT", `Official-solution evidence must remain SOURCE_FACT: ${record.recordId}`);
+  expect(record.recordChannel === "BATTLE", `Verified official occurrence must use BATTLE channel: ${record.recordId}`);
+  expect(record.claimKind === "HISTORICAL_OCCURRENCE", `Verified official occurrence must use HISTORICAL_OCCURRENCE: ${record.recordId}`);
+  expect(record.verificationStatus === "VERIFIED", `Verified official occurrence status drifted: ${record.recordId}`);
+  expect(Array.isArray(record.historicalProblemIds) && record.historicalProblemIds.length === 1, `Official occurrence must bind exactly one historical problem: ${record.recordId}`);
+}
+
+const rawCandidateIds = new Set();
+for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
+  expect(typeof candidate.candidateId === "string" && candidate.candidateId.length > 0, "Raw candidate missing candidateId.");
+  expect(!rawCandidateIds.has(candidate.candidateId), `Duplicate Gate-2 raw candidate ID ${candidate.candidateId}`);
+  rawCandidateIds.add(candidate.candidateId);
+  expect(candidate.ontologyType === null, `Gate 2 must not type ${candidate.candidateId}`);
+  expect(Array.isArray(candidate.aliases) && candidate.aliases.length === 0, `Gate 2 must not merge aliases for ${candidate.candidateId}`);
+  expect(candidate.adjudication === null, `Gate 2 must not adjudicate ${candidate.candidateId}`);
+  expect(candidate.adjudicationRationale === null, `Gate 2 must not adjudicate rationale for ${candidate.candidateId}`);
+  expect(candidate.rank === null && candidate.rarity === null, `Gate 2 must not rank/gamify ${candidate.candidateId}`);
+  expect(candidate.hardPrerequisites === null && candidate.softPrerequisites === null, `Gate 2 must not build prerequisites for ${candidate.candidateId}`);
+  expect(candidate.candidateRelations === null, `Gate 2 must not build candidate relations for ${candidate.candidateId}`);
+}
+
+const rawEvidenceIds = new Set();
+for (const record of ARSENAL_GATE2_RAW_EVIDENCE) {
+  validateGate1EvidenceRecord(record);
+  expect(rawCandidateIds.has(record.candidateId), `Gate-2 evidence references unknown candidate ${record.candidateId}`);
+  expect(!rawEvidenceIds.has(record.recordId), `Duplicate Gate-2 evidence record ID ${record.recordId}`);
+  rawEvidenceIds.add(record.recordId);
+  expect(record.ontologyType === null, `Gate-2 evidence typed candidate ${record.candidateId}`);
+}
+
+for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
+  for (const evidenceId of candidate.evidenceRecordIds) {
+    expect(rawEvidenceIds.has(evidenceId), `Candidate ${candidate.candidateId} references missing evidence ${evidenceId}`);
+  }
+}
+
+expect(ARSENAL_GATE2_HARVEST_META.gate === 2, "Raw harvest metadata must remain Gate 2.");
+expect(ARSENAL_GATE2_HARVEST_META.status === "RAW-HARVEST-REVIEW-CANDIDATE", "Gate 2 harvest must remain an unaccepted review candidate.");
+expect(ARSENAL_GATE2_HARVEST_META.ontologyFrozen === false, "Gate 2 cannot freeze ontology.");
+expect(ARSENAL_GATE2_HARVEST_META.adjudicationStarted === false, "Gate 2 cannot start adjudication.");
+expect(ARSENAL_GATE2_HARVEST_META.rankingStarted === false, "Gate 2 cannot rank candidates.");
+expect(ARSENAL_GATE2_HARVEST_META.prerequisiteGraphStarted === false, "Gate 2 cannot start prerequisite graph.");
+
+expect(ARSENAL_GATE2_ORPHAN_EVIDENCE_IDS.length === 0, "Gate-2 raw harvest has orphan evidence records.");
+expect(ARSENAL_GATE2_CANDIDATES_WITHOUT_EVIDENCE.length === 0, "Gate-2 raw harvest has candidates with missing evidence.");
+expect(ARSENAL_GATE2_UNKNOWN_CANONICAL_SOURCE_FACTS.length === 0, "Gate-2 raw harvest has SOURCE_FACT records outside the canonical registry.");
+expect(
+  ARSENAL_GATE2_RAW_AUDIT_META.candidateCount === ARSENAL_GATE2_RAW_CANDIDATES.length &&
+  ARSENAL_GATE2_RAW_AUDIT_META.evidenceCount === ARSENAL_GATE2_RAW_EVIDENCE.length,
+  "Gate-2 audit metadata count drift."
+);
+expect(ARSENAL_GATE2_OFFICIAL_ROUTE_META.historicalProblems === 88, "Official solution-route index must cover all 88 historical problem IDs.");
+expect(ARSENAL_GATE2_OFFICIAL_ROUTE_META.labeledSolutionSections === 132, "Expected 132 explicitly labelled solution sections in frozen 2017-2025 booklets.");
+expect(ARSENAL_GATE2_OFFICIAL_ROUTE_META.multiRouteProblems === 32, "Expected 32 historical problems with multiple explicitly labelled solution routes.");
+expect(
+  JSON.stringify([...ARSENAL_GATE2_OFFICIAL_ROUTE_META.zeroLabelledRouteProblems].sort()) === JSON.stringify(["SMMC-2017-B4","SMMC-2018-B4"]),
+  "Unexpected zero-labelled-route problem set."
+);
+expect(
+  new Set(ARSENAL_GATE2_OFFICIAL_ROUTE_INDEX.map(x => x.problemId)).size === 88,
+  "Official solution-route index contains duplicate problem IDs."
+);
+for (const row of ARSENAL_GATE2_OFFICIAL_ROUTE_INDEX) {
+  expect(canonicalArsenalSource(row.sourceId)?.sha256 === row.sourceArtifactSha256, `Route-index source/hash mismatch for ${row.problemId}`);
+  expect(row.routeLabels.length === row.labeledRouteCount, `Route-label count mismatch for ${row.problemId}`);
+}
+
+expect(
+  ARSENAL_GATE2_DUPLICATE_NAME_GROUPS.length > 0,
+  "Gate-2 duplicate-name report unexpectedly empty; duplicates should be reported, not silently collapsed."
+);
+for (const group of ARSENAL_GATE2_DUPLICATE_NAME_GROUPS) {
+  expect(group.candidateIds.length > 1, "Duplicate-name report contains singleton.");
+  expect(new Set(group.candidateIds).size === group.candidateIds.length, "Duplicate-name report repeated the same candidate ID.");
+}
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
 expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 28, "Expected twenty-eight authored public problems.");

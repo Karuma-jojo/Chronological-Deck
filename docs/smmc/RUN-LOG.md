@@ -704,3 +704,443 @@ Regression additions include:
 No Gate-2 candidate harvesting, typing, ranking, prerequisite work, Forge, Boss or Arena work was started.
 
 **STOP:** Gate 2 remains CLOSED pending independent closure acceptance of the repaired exact head.
+
+
+## Arsenal Gate 1 closure / Gate 2 start — 2026-10-02
+
+Gate 1 was independently accepted on exact head \`3052b8c53dd9e8bd598f51bc8423470086776625\` and merged to \`main\` as \`1a485cf7a2c495ab717cadee60a7762d96994f34\`.
+
+Gate 2 began on branch \`codex/smmc-arsenal-gate2-raw-candidate-harvest\`.
+
+Batch 1 created \`course/smmc/arsenal/candidates-v0.mjs\`:
+- 44/44 current SMMC method tags preserved verbatim as index leads;
+- 55 source-specific candidate rows harvested from inspected passages in Zeitz, Engel, Hammack, Velleman, and Putnam and Beyond;
+- 99 raw candidates / 99 evidence records total;
+- ontologyType remains null;
+- no aliases merged;
+- no adjudication, ranking, prerequisite graph, parent/child relation, or combo work started.
+
+The authoring validator now checks Gate-2 boundary invariants and exact legacy-tag coverage.
+
+This is an **initial harvest batch**, not Gate-2 completion.
+
+**STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 expanded harvest checkpoint — 2026-10-02
+
+The initial 99-candidate batch was deliberately expanded rather than treated as exhaustive.
+
+Current raw pool:
+- 44 legacy method-tag leads;
+- 39 secondary-tag leads;
+- 129 distinct \`bridgeNeeds\` harvested from all 88 ledger rows;
+- 34 curated route leads from a complete pass over all 88 \`auditNote\` fields;
+- 102 source-specific candidates from the five canonical books;
+- **348 raw candidates / 348 evidence records total**.
+
+A non-adjudicating audit module now reports duplicate names and orphan/missing evidence. Current normalized duplicate-name groups: **9**. No duplicate has been merged.
+
+Still unchanged:
+- \`ontologyType: null\`;
+- aliases empty;
+- adjudication/rank/rarity/prerequisite/relation fields null;
+- no Gate-3 granularity decision;
+- no Battle occurrence claim created from project metadata.
+
+The remaining Gate-2 work is deeper source coverage plus a final official-solution-route lead sweep and independent review.
+
+**STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 deep-source checkpoint — 420 raw candidates (2026-10-02)
+
+The raw harvest was expanded again after the 348-candidate checkpoint.
+
+Current pool:
+- 44 frozen legacy method-tag leads;
+- 39 frozen secondary-tag leads;
+- 129 distinct ledger bridge-need leads from all 88 historical rows;
+- 34 problem-specific route leads from the complete auditNote pass;
+- 174 source-specific candidates from the five canonical books;
+- **420 raw candidates / 420 evidence records** total.
+
+The deeper source pass explicitly added material that a contents-only harvest would miss, including Zeitz's indexed strategies/tactics/tools, fine-grained tools, Crux Move, Problem Investigation and Numerical Experimentation; Engel's index-level algorithm/counting/strategy vocabulary and Great Ideas; Velleman's logical-form/definition-expansion proof-planning heuristics; and a wider Putnam-and-Beyond technique/topic sweep.
+
+Current normalized duplicate-name report: **10 groups**, deliberately unresolved.
+
+No Gate-3 decision has been made:
+- ontologyType remains null;
+- aliases remain empty;
+- rank/rarity/prerequisite/relation/adjudication fields remain null;
+- project metadata remains index evidence, not Battle evidence.
+
+**STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 official-solution route checkpoint — 428 raw candidates (2026-10-02)
+
+The exact frozen official solution booklets were parsed for explicit solution-route structure.
+
+Structural lower bound:
+- 88 historical problem IDs;
+- 132 explicitly labelled Solution / Solution N / Solution via ... sections;
+- 32 problems with multiple explicitly labelled routes;
+- 2 problems with no labelled solution section in the booklet (2017-B4, 2018-B4).
+
+This route count is not an ability count and is recorded only as a lower bound on mathematical-route diversity.
+
+A first direct official-solution concept pass added 8 SOURCE_FACT + NONE raw leads:
+- winding-number parity coloring;
+- perturb-away-degeneracies;
+- parity tracking under continuous deformation;
+- Taylor-series expansion;
+- Mean Value Theorem as a contradiction tool;
+- dense-set Riemann-sum approximation;
+- Lagrange's theorem in a finite-group counting route;
+- upper-Riemann-sum bounding.
+
+Current raw pool: **428 candidates / 428 evidence records**.
+
+No Battle matrix, merge/split decision, type, rank, prerequisite relation, or combo decision was created.
+
+**STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 broad official-solution sweep — 450 raw candidates (2026-10-02)
+
+The direct official-solution harvest expanded from 8 to 30 SOURCE_FACT + NONE concept leads across the exact frozen solution booklets.
+
+Current raw pool:
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 distinct bridge-need leads;
+- 34 auditNote route leads;
+- 30 direct official-solution source leads;
+- 174 canonical-book source leads;
+- **450 candidates / 450 evidence records**.
+
+Book-source coverage:
+- Zeitz 62;
+- Engel 36;
+- Hammack 17;
+- Velleman 19;
+- Putnam and Beyond 40.
+
+Current normalized duplicate-name report: **11 groups**, deliberately unresolved.
+
+Official solution structural lower bound remains:
+- 88 historical problems;
+- 132 explicitly labelled solution sections;
+- 32 multi-route problems;
+- 2017-B4 and 2018-B4 have no labelled solution section in the frozen booklet.
+
+No Battle matrix or Gate-3 adjudication was created.
+
+**STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 full canonical-book TOC/index sweep — 477 raw candidates (2026-10-02)
+
+The canonical-book harvest was expanded from 174 to **201** source-specific rows after completing the broad Putnam-and-Beyond TOC sweep.
+
+Current source counts:
+- Zeitz 62;
+- Engel 36;
+- Hammack 17;
+- Velleman 19;
+- Putnam and Beyond 67.
+
+Overall raw pool is now **477 candidates / 477 evidence records**.
+
+The extra Putnam rows deliberately include named reusable or specialist techniques that may later be rejected by the granularity tribunal; Gate 2 does not pre-prune them.
+
+No merge/split/type/rank/prerequisite/combo decision was made.
+
+**STOP:** Gate 3 remains CLOSED.
+
+
+## Arsenal Gate 2 review candidate frozen — 477 raw candidates (2026-10-02)
+
+The raw harvest is now marked \`RAW-HARVEST-REVIEW-CANDIDATE\`, not accepted.
+
+Review-candidate inventory:
+- 44 legacy method-tag leads;
+- 39 secondary-tag leads;
+- 129 ledger bridge-need leads;
+- 34 auditNote route leads;
+- 30 direct official-solution SOURCE_FACT/NONE leads;
+- 201 canonical-book source leads;
+- **477 candidates / 477 evidence records**.
+
+Independent review contract now explicitly attacks coverage, book/solution blind spots, accidental merging, ontology leakage, evidence/channel misuse, Battle leakage, source integrity, duplicate preservation, route-count misinterpretation, and any Gate-3+ leakage.
+
+Any repair changes the review SHA and requires a fresh exact-head review.
+
+**STOP:** Gate 3 remains CLOSED until independent Gate-2 acceptance.
+
+## Arsenal Gate 2 independent coverage repair — 531 raw candidates (2026-10-02)
+
+Independent review of the first 477-row candidate found substantive source-specific omissions while preserving the Gate-2 boundary.
+
+Added **54** canonical-book raw candidates only:
+- Zeitz +17;
+- Engel +6;
+- Hammack +8;
+- Velleman +6;
+- Putnam and Beyond +17.
+
+The book-source harvest is now **255** rows and the complete raw pool is **531 candidates / 531 evidence records**.
+
+The additions are source-specific raw ore only. No aliases were merged; no candidate was typed, ranked, prerequisite-linked, parented, related, or adjudicated. Project-derived ledger evidence remains NONE channel, and the direct official-solution rows remain SOURCE_FACT + NONE.
+
+The previous 477-row review SHA is therefore superseded. Gate 2 remains **REVIEW CANDIDATE**, Gate 3 remains closed, and the repaired exact head requires fresh CI plus independent exact-head review before any merge.
+
+## Arsenal Gate 2 deep official-solution coverage repair — 603 raw candidates (2026-10-02)
+
+A second independent pass over the exact frozen 2017–2025 official solution booklets found that the existing 30 direct source rows were still materially under-harvested.
+
+Added **72** direct official-solution raw candidates as SOURCE_FACT + NONE, increasing that source channel from 30 to **102**. The new rows include source-specific discovery/proof moves across every competition year, from potential functions and hidden sum-of-squares identities through finite-field, valuation, game, compactness, convexity, recurrence/generating-function, linear-algebra, and parity/encoding constructions.
+
+Current complete Gate-2 pool:
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 102 direct official-solution SOURCE_FACT + NONE leads;
+- 255 canonical-book source leads;
+- **603 candidates / 603 evidence records**.
+
+No Gate-3 adjudication was introduced. All candidate ontology types remain null; aliases remain empty; rank, rarity, prerequisites, candidate relations, and adjudication fields remain null. Project-derived historical indexes remain NONE-channel evidence.
+
+The previous 531-row review target is superseded. Gate 2 remains REVIEW CANDIDATE and requires fresh exact-head CI plus independent exact-head review before it can close.
+
+## Arsenal Gate 2 official-solution stabilization pass — 627 raw candidates (2026-10-02)
+
+A bounded third official-solution pass targeted historical problems still lacking any direct source lead after the 603-row checkpoint.
+
+Added **24** further SOURCE_FACT + NONE candidates, taking the direct official-solution harvest from 102 to **126**. A subsequent coverage check matches all 126 official rows to registered historical problem IDs, with no duplicate or missing RAW-OFFICIAL IDs, and finds direct official-source candidate coverage on **75 / 88** frozen historical problems.
+
+The remaining uncovered historical problems were inspected against the project ledger/audit notes rather than force-filled for symmetry. Their routes are either ordinary applications already represented elsewhere in the raw pool or the historical open-problem cases without a labelled full solution in the frozen booklet. No 88/88 quota is being imposed at Gate 2.
+
+Current Gate-2 pool:
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 126 direct official-solution SOURCE_FACT + NONE leads;
+- 255 canonical-book source leads;
+- **627 candidates / 627 evidence records**.
+
+This is still a REVIEW CANDIDATE. No ontology, merge/split, ranking, prerequisite, relation, or learning-order decision has been made. The exact head must pass fresh CI and then receive independent exact-head review before Gate 2 can close.
+
+## Arsenal Gate 2 final one-row gap repair — 628 raw candidates (2026-10-02)
+
+A final bounded historical-gap check preserved one additional official-source move from 2017-B2: **Modulo-4 Square Obstruction for Odd Primes**.
+
+This adds one SOURCE_FACT + NONE row and moves the direct official-solution harvest from 126 to **127**, with direct official-source candidate coverage on **76 / 88** frozen historical problems.
+
+Current Gate-2 pool:
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 127 direct official-solution SOURCE_FACT + NONE leads;
+- 255 canonical-book source leads;
+- **628 candidates / 628 evidence records**.
+
+The remaining 12 historical problems were inspected rather than force-filled to an artificial 88/88 quota. Gate 2 remains REVIEW CANDIDATE; Gate 3 remains closed. Any acceptance must bind to the final exact head after fresh CI.
+
+## Arsenal Gate 2 independent-review repair G2-R01–R03 — 631 raw candidates (2026-10-02)
+
+Independent review of the old 477-row head found three substantive issues. This repair addresses them without opening Gate 3.
+
+**G2-R01 — direct official evidence semantics**
+- All **127** direct official-solution evidence records now use SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE.
+- Each remains tied to one historical problem and the exact frozen official source/hash/page locator.
+- The authoring validator now asserts the occurrence tuple for every direct official-solution row.
+- This is occurrence evidence only; no co-occurrence matrix, ranking, ontology, prerequisite graph, or learning order is created.
+
+**G2-R02 — Zeitz source omissions**
+- Added **Average Principle** from physical PDF page 193.
+- Added **Repeated Bisection Method** from physical PDF page 344.
+- Added **Algorithmic Proof** from physical PDF page 369.
+- Earlier coverage repair had already added the reviewer's other named examples: Symmetry-Product Principle, Euclidean Algorithm, Bisection Method, and Well-Ordering Principle.
+- Zeitz source rows move from 79 to **82**; five-book source rows move from 255 to **258**.
+
+The final bounded book-pass rule is to preserve source-specific terms explicitly presented as strategies, tactics, tools, principles, methods, algorithm/proof styles, or structured proof moves, plus named specialist methods in the canonical TOC/index when they are plausible contest-solving machinery. Same-looking terms remain separate.
+
+**G2-R03 — documentation drift**
+- Current Gate-2 state is consistently RAW-HARVEST-REVIEW-CANDIDATE.
+- Obsolete RAW-HARVEST-IN-PROGRESS wording is not used as the current invariant.
+
+Current pool: **631 candidates / 631 evidence records** = 44 method tags + 39 secondary tags + 129 bridgeNeeds + 34 project-derived audit-note route leads + 127 verified official historical occurrences + 258 canonical-book source leads.
+
+The prior review SHA is superseded. Fresh exact-head CI and independent follow-up are required. Gate 3 remains CLOSED.
+
+## Arsenal Gate 2 systematic source-closure repair — 653 raw candidates (2026-10-02)
+
+The independent exact-head follow-up on `5f4ffc2d4bc93f960ac32ce358267283bf8f709b` accepted the G2-R01 evidence-semantics repair and G2-R03 status repair, but correctly kept **G2-R02** open because the positive source-saturation sentinels did not prove exhaustion of the declared inclusion rule.
+
+A single bounded closure pass was therefore run across designated TOC/index/summary/strategy zones for all five canonical books.
+
+### Auditable closure artifact
+
+Added:
+
+`course/smmc/arsenal/source-closure-manifest-v0.mjs`
+
+The manifest records:
+- the exact source zones reviewed;
+- the exact canonical-book HARVEST candidate-ID set;
+- explicit EXCLUDE decisions with physical PDF page, section, and reason.
+
+The validator now requires exact set equality between the canonical-book candidate IDs and the manifest HARVEST set. It also validates source-zone and exclusion page bounds against the canonical source registry, uniqueness of decisions, substantive exclusion reasons, and HARVEST/EXCLUDE disjointness.
+
+### New raw source rows from the closure pass
+
+The source-book pool moved from **258 to 280**.
+
+Zeitz moved 82 → **94** with:
+- Mental Toughness;
+- Creativity;
+- Argument by Contradiction;
+- Mathematical Induction;
+- Crossover Tactic;
+- Division Algorithm;
+- Combinatorial Proof;
+- Rigid Motions and Vectors;
+- Translation;
+- Glide Reflection;
+- Rotation;
+- Logarithmic Differentiation.
+
+Engel moved 42 → **46** with:
+- Graph Theory;
+- Equations, Functions, and Iterations;
+- Integer Functions;
+- Get Rid of Floor and Ceiling Brackets.
+
+Hammack moved 25 → **30** with:
+- Proving Statements with Contradiction;
+- Proving Conditional Statements by Contradiction;
+- Combining Techniques;
+- Equivalent Statements;
+- Existence-and-Uniqueness Proof.
+
+Velleman moved 25 → **26** with:
+- Instantiate a Unique-Existence Given.
+
+Putnam and Beyond remains **84** after its complete TOC closure; generic organizational/problem-bucket headings are recorded as explicit exclusions rather than silently ignored.
+
+### Current Gate-2 pool
+
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 127 direct official-solution SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE leads;
+- 280 canonical-book source leads;
+- **653 candidates / 653 evidence records**.
+
+No aliases were merged. No ontology type, granularity disposition, rank, rarity, prerequisite, parent/child relation, candidate relation, learning order, Forge, Boss, or Arena work was introduced.
+
+Gate 2 remains **REVIEW CANDIDATE** and Gate 3 remains CLOSED. A fresh exact-head CI pass and fresh bounded independent follow-up are required before Gate 2 can close.
+
+## Arsenal Gate 2 final closure-integrity repair — 661 raw candidates (2026-10-02)
+
+Independent review **5389173535** on exact SHA `4505699b92899e21e87559b1e0c696fd220fc59c` confirmed G2-R01 and G2-R03 remain closed, confirmed green exact-head CI and no Gate-3 leakage, but kept G2-R02 narrowly open for one architectural reason:
+
+the 280-candidate HARVEST set and 62 EXCLUDE records were internally validated, but there was no complete reviewed-item inventory proving that every candidate-like source item encountered in the declared bounded zones had received a disposition.
+
+### Repair
+
+`course/smmc/arsenal/source-closure-manifest-v0.mjs` is now an **item-level closure certificate**.
+
+It contains a single reviewed decision inventory with:
+- **386 reviewed source items**;
+- **311 HARVEST decisions**;
+- **288 unique harvested canonical-book candidates**;
+- **75 EXCLUDE decisions**.
+
+Every reviewed item has exactly one disposition:
+- HARVEST → an existing same-source raw candidate ID; or
+- EXCLUDE → a substantive Gate-2 source-qualification reason.
+
+The validator now enforces:
+- unique reviewed-item IDs;
+- unique item identity within source/zone/label/context;
+- exactly one valid disposition;
+- HARVEST/EXCLUDE field exclusivity;
+- same-source HARVEST mappings;
+- exact equality between the unique HARVEST candidate-ID projection and the actual canonical-book candidate set;
+- at least one reviewed HARVEST justification for every canonical-book candidate;
+- valid bounded source zones/selectors and frozen-PDF page bounds;
+- EXCLUDE locators inside their declared source zones;
+- exact compatibility projections for the derived HARVEST and EXCLUDE exports.
+
+### Final Zeitz source additions from the reviewed-item partition
+
+Added 8 raw candidates:
+- Algebraic Proof;
+- Geometric Proof;
+- Deductive Argument (Direct Proof);
+- Contrapositive;
+- Algorithmic Construction;
+- Dissection;
+- Similar Triangles;
+- Composition of Transformations.
+
+The reviewer's remaining proof/index examples are now explicitly decisioned. Items such as induction proof, combinatorial proof, proof using area/trigonometry/auxiliary construction/complex numbers/inversion/shearing map to already preserved same-source candidates; local attributions/descriptions such as Cauchy's proof, classical/Euler proof of infinitude of primes, and generic theorem-proof cross-references carry explicit EXCLUDE reasons.
+
+### Current Gate-2 pool
+
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 127 direct official-solution SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE leads;
+- 288 canonical-book source leads:
+  - Zeitz 102;
+  - Engel 46;
+  - Hammack 30;
+  - Velleman 26;
+  - Putnam and Beyond 84;
+- **661 candidates / 661 evidence records**.
+
+No alias merge, ontology type, granularity disposition, rank, rarity, prerequisite, parent/child relation, combo graph, learning order, Forge, Boss, or Arena work was introduced.
+
+Gate 2 remains **REVIEW CANDIDATE** and Gate 3 remains CLOSED. The repaired exact head requires fresh exact-head CI and one fresh independent adversarial follow-up before closure.
+
+## Arsenal Gate 2 literal family-child + locator hardening — 661 raw candidates (2026-10-02)
+
+Independent review **5393058455** on exact SHA `8f004a237fcb09c386138cd5abdf7580fdb081a8` accepted the item-level closure-certificate architecture but found two narrow R02 integrity holes:
+
+1. Zeitz's selector explicitly promised every child of the Strategies / Tactics / Tools / Transformations / Combinatorial Strategies and Tactics index families, but some literal child entries still lacked a reviewed-item disposition.
+2. HARVEST reviewed items lacked their own physical `pdfPage` locator, so the validator could not prove that the reviewed source occurrence itself lay inside the declared bounded source zone.
+
+### Repair
+
+No new raw candidates were added. The Gate-2 pool remains **661 candidates / 661 evidence records**, including **288 canonical-book candidates**.
+
+The closure certificate now contains:
+- **458 reviewed source items**;
+- **375 HARVEST decisions**;
+- **288 unique harvested book candidates**;
+- **83 EXCLUDE decisions**.
+
+Added **72** literal Zeitz family-child reviewed items, covering every child on the declared index families. Existing same-source methods are mapped with HARVEST; contextual/application-only children receive EXCLUDE reasons. Examples include Strategy/Tactic/Tool `defined` children, all named tactic children, all named tool children, every concrete transformation child, the Felix Klein / Henri Poincare contextual entries, the Homothety/concurrence application entry, and all four Combinatorial Strategies and Tactics children.
+
+Every reviewed item now carries:
+- an explicit physical PDF page;
+- section/context;
+- exactly one disposition.
+
+The source-zone model now distinguishes:
+- **enumerationSegments** — surfaces that carry the exhaustiveness claim;
+- **verificationSegments** — exact point pages used only to validate reviewed-item locators for already-admitted source items.
+
+The validator now rejects any reviewed item whose page is missing, outside the frozen canonical artifact, or outside its declared source zone. Existing partition checks remain in force: unique review identities, one disposition, HARVEST/EXCLUDE exclusivity, same-source candidate mappings, exact unique-HARVEST projection, and substantive EXCLUDE reasons.
+
+Gate 2 remains **REVIEW CANDIDATE**. Gate 3 remains CLOSED. Fresh exact-head CI and one fresh independent attack are required.
+
