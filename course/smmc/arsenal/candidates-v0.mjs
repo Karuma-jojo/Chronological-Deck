@@ -430,6 +430,14 @@ const SOURCE_SEEDS = Object.freeze([
   ["Z-GLIDE-REFLECTION","Glide Reflection","S1-ZEITZ-2007-2E",318,"8.5 Glide Reflections","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly treats glide reflection as a rigid motion."],
   ["Z-ROTATION","Rotation","S1-ZEITZ-2007-2E",319,"8.5 Rotations","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly treats rotations as rigid motions."],
   ["Z-LOG-DIFFERENTIATION","Logarithmic Differentiation","S1-ZEITZ-2007-2E",352,"9.3 A Useful Tool / Example 9.3.6","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly presents logarithmic differentiation as a useful tool and part of a broader function-of-a-function recognition idea."],
+  ["Z-ALGEBRAIC-PROOF","Algebraic Proof","S1-ZEITZ-2007-2E",377,"Index — AM-GM inequality, algebraic proof","PROOF_STRUCTURE","NONE","Zeitz's index explicitly labels an algebraic proof as a proof style under AM-GM."],
+  ["Z-GEOMETRIC-PROOF","Geometric Proof","S1-ZEITZ-2007-2E",377,"Index — AM-GM inequality, geometric proof","PROOF_STRUCTURE","NONE","Zeitz's index explicitly labels a geometric proof as a proof style under AM-GM."],
+  ["Z-DEDUCTIVE-ARGUMENT","Deductive Argument (Direct Proof)","S1-ZEITZ-2007-2E",58,"2.3 Methods of Argument — Deduction / Direct Proof","PROOF_STRUCTURE","NONE","Zeitz explicitly describes deduction as direct proof, the simplest logical form of argument."],
+  ["Z-CONTRAPOSITIVE","Contrapositive","S1-ZEITZ-2007-2E",58,"2.3 Methods of Argument — contrapositive","PROOF_STRUCTURE","NONE","Zeitz explicitly presents the contrapositive as an alternate logical form used in proof."],
+  ["Z-ALGORITHMIC-CONSTRUCTION","Algorithmic Construction","S1-ZEITZ-2007-2E",379,"Index — Eulerian path, algorithmic construction","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly labels an algorithmic construction for an Eulerian path."],
+  ["Z-DISSECTION","Dissection","S1-ZEITZ-2007-2E",378,"Index — dissection","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists dissection, and later proof entries use dissection as a geometric proof method."],
+  ["Z-SIMILAR-TRIANGLES","Similar Triangles","S1-ZEITZ-2007-2E",382,"Index — similar triangles","SOURCE_TERMINOLOGY","NONE","Zeitz's index treats similar triangles as a reusable geometry method and explicitly cross-references proofs using similar triangles."],
+  ["Z-COMPOSE-TRANSFORMATIONS","Composition of Transformations","S1-ZEITZ-2007-2E",383,"Index — transformations, composition","SOURCE_TERMINOLOGY","NONE","Zeitz's transformation index explicitly lists composition as a reusable transformation operation."],
 
   // Zeitz — additional indexed discovery/proof tactics and specialist tools.
   ["Z-LOOK-PATTERNS","Look for Patterns","S1-ZEITZ-2007-2E",380,"Index — patterns, look for","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly points to looking for patterns as a recurring problem-investigation move."],
