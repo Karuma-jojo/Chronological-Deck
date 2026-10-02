@@ -36,7 +36,7 @@
   },
   "coverageAudit": {
     "version": "m04-observability-v13-source-modernization-r1-2026-10-02",
-    "status": "Historical 120/120 claim→task→rubric audit retained as provenance; source-driven v1.3 instruction repairs applied to S07/S13/S15/S18. Full post-M03-v1.7.2 evidence-distance, decision-audit, wrong-solver and semantic-separation reconfirmation remains required before re-freeze.",
+    "status": "Historical 120/120 claim→task→rubric audit retained as provenance; source-driven v1.3 instruction repairs applied to S07/S13/S15/S18 and S24 Main/Transfer are materially versioned to obligationVersion2. A current 48-task evidence-distance ledger, 11 decision audits and 24-session wrong-solver ledger are now present as builder readjudications; independent follow-up and exact-head CI/Chromium remain required before re-freeze.",
     "policy": "Historical exact claim observers remain unchanged because no fixed assessment contract changes in this patch. Current-standard publication additionally requires explicit evidence-distance classification, decision audits where freshness/transfer is claimed, wrong-solver discrimination, current-instruction semantic separation, source/pedagogy dossier, deterministic math checks and Chromium evidence."
   },
   "sessions": [
@@ -4481,104 +4481,104 @@
     }
   },
   "semanticSeparationAudit": {
-    "version": "m04-semantic-separation-v13-source-repair-r1",
+    "version": "m04-semantic-separation-v13-current-standard-r1",
     "reviewedAt": "2026-10-02",
     "sessions": {
       "T22V3::ARC048::S01@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses spinner colours and coin-digit tuples; fixed tasks use die-label and quality-check spaces."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S02@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses 3-outcome .2/.5/.3 model; fixed tasks use five- and four-outcome nonuniform models."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S03@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses uniform tuple/code spaces; Main uses dice sums and Transfer uses labelled cards."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'changed-surface Transfer'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S04@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses an 8-sided spinner and a 3-bit guided space; Main uses 4-bit strings and Transfer uses integers1–20."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S05@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses different die subsets and an abstract 10-outcome check; Main diagnoses an overlapping die pair, while obligationVersion=2 Transfer uses disjoint multiples-of-3 versus {10,11} so the disjoint addition rule is genuinely observed."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S06@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses .45/.35/.15 and guided .7/.4/.5; fixed tasks use distinct decimal triples."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S07@1": {
         "status": "reviewed-separated",
-        "note": "v1.3 lesson uses a nonuniform four-atom weighted model plus a die guided check; Main uses uniform 1–12 and Transfer uses a 40-record contingency table. The lesson teaches denominator/direction principles without solving either fixed instance."
+        "note": "v1.3 lesson uses a nonuniform four-atom weighted model plus a die guided check; Main uses uniform 1–12 and Transfer uses a 40-record contingency table. The lesson teaches denominator/direction principles without solving either fixed instance. Evidence classes: Main='retrieval', Transfer='changed-surface Transfer'."
       },
       "T22V3::ARC048::S08@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses .40/.25/.50; fixed tasks use different numeric models and surfaces."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S09@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses L/R success; fixed tasks use production lines and server routing."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S10@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses3R/2B and guided4G/1B; fixed tasks use5G/3Y and6R/4B."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S11@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses first-roll-even/second-roll-6 plus a symbolic derivation of complement-independence. Main uses first-even/second>4; Transfer uses even/multiple-of-3 on one die. The theorem is now explicitly taught without revealing either fixed numerical answer."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S12@1": {
         "status": "reviewed-separated",
-        "note": "Lesson derives the marginal on a 2R/2B bag; Main uses 4W/2B and explicitly requires forward-branch derivation, avoiding an unproved symmetry shortcut."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'changed-surface Transfer'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S13@1": {
         "status": "reviewed-separated",
-        "note": "v1.3 lesson strengthens product/conditional contrast on die subsets {1,2}/{5,6}; Main uses a different 8-point positive-probability disjoint pair and zero-event edge case; Transfer additionally requires constructing a non-disjoint independent pair on two dice."
+        "note": "v1.3 lesson strengthens product/conditional contrast on die subsets {1,2}/{5,6}; Main uses a different 8-point positive-probability disjoint pair and zero-event edge case; Transfer additionally requires constructing a non-disjoint independent pair on two dice. Evidence classes: Main='proof reconstruction', Transfer='changed-surface Transfer'."
       },
       "T22V3::ARC048::S14@1": {
         "status": "reviewed-separated",
-        "note": "Instruction now demonstrates a genuinely mutually independent triple plus a simple dependent pair; the pairwise-but-not-mutual phenomenon is left for the fixed Main/Transfer to discover."
+        "note": "v1.3 builder re-audit: lesson→Main is 'fresh Main evidence' and lesson/Main→Transfer is 'changed-surface Transfer'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S15@1": {
         "status": "reviewed-separated",
-        "note": "v1.3 lesson contrasts exact paths under p=.6/.7 and explicitly defers aggregated exactly-k counting to S16; Main uses p=.8 four-test paths and Transfer uses p=.3 five-observation paths. No fixed numeric answer is exposed."
+        "note": "v1.3 lesson contrasts exact paths under p=.6/.7 and explicitly defers aggregated exactly-k counting to S16; Main uses p=.8 four-test paths and Transfer uses p=.3 five-observation paths. No fixed numeric answer is exposed. Evidence classes: Main='retrieval', Transfer='changed-surface Transfer'."
       },
       "T22V3::ARC048::S16@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses n=4,p=.5 and guided n=3,p=.4; fixed tasks use n=5,p=.6 and n=6 failure p=.2."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S17@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses three alarms p=.1 and guided four messages p=.8; fixed tasks use sensors p=.25 and attempts p=.4."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S18@1": {
         "status": "reviewed-separated",
-        "note": "v1.3 lesson uses two sources with weights .7/.3 and explicitly refutes unweighted averaging; Main uses three machines .50/.30/.20 and Transfer uses three classes .2/.5/.3. No posterior or fixed answer is exposed."
+        "note": "v1.3 lesson uses two sources with weights .7/.3 and explicitly refutes unweighted averaging; Main uses three machines .50/.30/.20 and Transfer uses three classes .2/.5/.3. No posterior or fixed answer is exposed. Evidence classes: Main='retrieval', Transfer='retrieval'."
       },
       "T22V3::ARC048::S19@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses −2/1/5; fixed tasks use −3/1/7 and0/2/9."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S20@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses fair die and {2,6,10,14}; fixed tasks use a six-number progression and duplicated labels."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'changed-surface Transfer'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S21@1": {
         "status": "reviewed-separated",
-        "note": "Lesson derives finite linearity conceptually on a distinct two-outcome X,Y example and blocks nonlinear misuse. obligationVersion=2 Main now explicitly asks for the weighted-sum derivation on different three-outcome data; Transfer remains symbolic. No E[XY] rule is introduced."
+        "note": "v1.3 builder re-audit: lesson→Main is 'proof reconstruction' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S22@1": {
         "status": "reviewed-separated",
-        "note": "Lesson derives positional marginals using labelled ordered samples on2 draws from3R/2B and uses a 2-person committee guided check; fixed tasks use3 draws from10 cards and a 5-of-12 committee."
+        "note": "v1.3 builder re-audit: lesson→Main is 'proof reconstruction' and lesson/Main→Transfer is 'changed-surface Transfer'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S23@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses 0/10 versus sure5 and a separate .9/.1 example; fixed tasks use 0/12 versus sure3 and −5/5 versus sure3."
+        "note": "v1.3 builder re-audit: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Classification is based on actual reasoning/representation distance; different numbers or the Transfer slot alone are not treated as evidence of freshness."
       },
       "T22V3::ARC048::S24@1": {
         "status": "reviewed-separated",
-        "note": "v1.3 fixed synthesis contracts remove the old formula-by-formula scaffold. Lesson uses a two-source North/South damage model; Main requires an independently organized three-route six-leaf analysis with weighted marginal, independence diagnosis and expectation; Transfer changes representation again to raw 100-case counts before the probability model is built."
+        "note": "v1.3 fixed synthesis contracts remove the old formula-by-formula scaffold. Lesson uses a two-source North/South damage model; Main requires an independently organized three-route six-leaf analysis with weighted marginal, independence diagnosis and expectation; Transfer changes representation again to raw 100-case counts before the probability model is built. Evidence classes: Main='fresh Main evidence', Transfer='changed-surface Transfer'."
       }
     }
   },
@@ -4693,5 +4693,409 @@
     ],
     "unchangedFixedAssessmentCount": 46,
     "historicalAttempts": "retained but stale for current S24 Main/Transfer mastery until redone under obligationVersion2"
+  },
+  "evidenceDistance": {
+    "version": "m04-evidence-distance-v13-r1",
+    "policy": "Classes are descriptive, not prestige scores. A Transfer storage slot is not evidence of transfer and changed numbers/context alone do not establish freshness. Current classes are builder readjudications pending independent follow-up.",
+    "items": {
+      "T22V3::ARC048::S01-M@1": {
+        "class": "retrieval",
+        "note": "Main directly applies the taught outcome/sample-space/event distinctions to a compound recorded experiment."
+      },
+      "T22V3::ARC048::S01-T@1": {
+        "class": "retrieval",
+        "note": "Transfer changes context but still explicitly asks the same ordered-pair/event construction; it is not promoted to genuine transfer merely because of the slot name."
+      },
+      "T22V3::ARC048::S02-M@1": {
+        "class": "retrieval",
+        "note": "Main repeats legal-weight normalization and event-mass summation on a larger finite model."
+      },
+      "T22V3::ARC048::S02-T@1": {
+        "class": "retrieval",
+        "note": "Transfer is another direct missing-mass/model-validity application and is classified retrieval."
+      },
+      "T22V3::ARC048::S03-M@1": {
+        "class": "retrieval",
+        "note": "Main applies equiprobable counting but must also reject the tempting non-atomic '11 sums' denominator."
+      },
+      "T22V3::ARC048::S03-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer moves from a uniform labelled-card count to a perturbation where one atom is twice as likely, forcing rejection of favourable/total when equiprobability disappears."
+      },
+      "T22V3::ARC048::S04-M@1": {
+        "class": "retrieval",
+        "note": "Main directly retrieves complement, certainty/impossibility and at-least-one structure."
+      },
+      "T22V3::ARC048::S04-T@1": {
+        "class": "retrieval",
+        "note": "Transfer repeats complement reasoning on divisibility with no hidden organizing decision."
+      },
+      "T22V3::ARC048::S05-M@1": {
+        "class": "retrieval",
+        "note": "Main directly applies union/intersection and overlap correction awareness."
+      },
+      "T22V3::ARC048::S05-T@1": {
+        "class": "retrieval",
+        "note": "Transfer explicitly establishes disjointness and then uses the disjoint addition rule; method choice is supplied."
+      },
+      "T22V3::ARC048::S06-M@1": {
+        "class": "retrieval",
+        "note": "Main reconstructs the two-event inclusion–exclusion correction and rearranges it."
+      },
+      "T22V3::ARC048::S06-T@1": {
+        "class": "retrieval",
+        "note": "Transfer directly applies the same identity plus complement of the union."
+      },
+      "T22V3::ARC048::S07-M@1": {
+        "class": "retrieval",
+        "note": "Main applies the restricted-universe definition in a finite uniform model and computes both conditioning directions."
+      },
+      "T22V3::ARC048::S07-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer changes representation from listed outcomes to a 40-record contingency surface; the correct reference population must be recovered from counts."
+      },
+      "T22V3::ARC048::S08-M@1": {
+        "class": "retrieval",
+        "note": "Main directly moves between conditional and joint probability using the multiplication rule."
+      },
+      "T22V3::ARC048::S08-T@1": {
+        "class": "retrieval",
+        "note": "Transfer is the same calculation in a service-request story; the required operations are explicitly named."
+      },
+      "T22V3::ARC048::S09-M@1": {
+        "class": "retrieval",
+        "note": "Main builds a two-stage tree with all branches and normalization exactly as taught."
+      },
+      "T22V3::ARC048::S09-T@1": {
+        "class": "retrieval",
+        "note": "Transfer repeats the same tree architecture with different labels/rates."
+      },
+      "T22V3::ARC048::S10-M@1": {
+        "class": "retrieval",
+        "note": "Main directly compares replacement and nonreplacement state updates."
+      },
+      "T22V3::ARC048::S10-T@1": {
+        "class": "retrieval",
+        "note": "Transfer repeats the same protocol comparison on a card deck."
+      },
+      "T22V3::ARC048::S11-M@1": {
+        "class": "retrieval",
+        "note": "Main retrieves the product criterion on a repeated-dice setting closely related to instruction and then reuses the established factorization."
+      },
+      "T22V3::ARC048::S11-T@1": {
+        "class": "retrieval",
+        "note": "Transfer directly applies the same criterion and complemented-event consequence."
+      },
+      "T22V3::ARC048::S12-M@1": {
+        "class": "retrieval",
+        "note": "Main reconstructs the conditional/product dependence diagnosis in another without-replacement urn."
+      },
+      "T22V3::ARC048::S12-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer removes the sequential story and gives only marginal/joint probabilities, requiring the same dependence concept on a static probability surface."
+      },
+      "T22V3::ARC048::S13-M@1": {
+        "class": "proof reconstruction",
+        "note": "Main reconstructs the taught argument that positive-probability disjoint events cannot be independent, including the zero-probability edge."
+      },
+      "T22V3::ARC048::S13-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer first classifies a simple disjoint pair and then requires constructing and numerically justifying an independent non-disjoint pair on a two-die experiment."
+      },
+      "T22V3::ARC048::S14-M@1": {
+        "class": "fresh Main evidence",
+        "note": "Main receives only the XOR-defined events and must discover by calculation that all pairs factor while the triple fails; the pairwise-but-not-mutual phenomenon is not solved in visible instruction."
+      },
+      "T22V3::ARC048::S14-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer changes to a set-system representation on four equiprobable atoms and requires the same higher-order diagnosis."
+      },
+      "T22V3::ARC048::S15-M@1": {
+        "class": "retrieval",
+        "note": "Main directly applies exact-path multiplication to two constant-p sequences with the same counts."
+      },
+      "T22V3::ARC048::S15-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer changes to binary-signal notation and explicitly tests whether equal exact-path probabilities are confused with identical events or visual representativeness."
+      },
+      "T22V3::ARC048::S16-M@1": {
+        "class": "retrieval",
+        "note": "Main directly derives exactly-k probability from the taught count-times-one-path structure."
+      },
+      "T22V3::ARC048::S16-T@1": {
+        "class": "retrieval",
+        "note": "Transfer is another direct exactly-one-failure derivation."
+      },
+      "T22V3::ARC048::S17-M@1": {
+        "class": "retrieval",
+        "note": "Main directly applies none/all/complement formulas after independence is supplied."
+      },
+      "T22V3::ARC048::S17-T@1": {
+        "class": "retrieval",
+        "note": "Transfer repeats the same complement structure and explicitly asks what dependence would break."
+      },
+      "T22V3::ARC048::S18-M@1": {
+        "class": "retrieval",
+        "note": "Main directly applies a stated three-branch partition and forward weighting."
+      },
+      "T22V3::ARC048::S18-T@1": {
+        "class": "retrieval",
+        "note": "Transfer is another stated three-class partition; it is honest retrieval rather than being called transfer merely for context change."
+      },
+      "T22V3::ARC048::S19-M@1": {
+        "class": "retrieval",
+        "note": "Main directly computes a finite weighted average and interprets nonattainability."
+      },
+      "T22V3::ARC048::S19-T@1": {
+        "class": "retrieval",
+        "note": "Transfer repeats weighted-average computation on a score model."
+      },
+      "T22V3::ARC048::S20-M@1": {
+        "class": "retrieval",
+        "note": "Main applies uniform atomic averaging and symmetry while explaining multiplicity."
+      },
+      "T22V3::ARC048::S20-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer changes the surface to repeated value labels on eight atomic outcomes and requires distinguishing atomic weights from distinct labels."
+      },
+      "T22V3::ARC048::S21-M@1": {
+        "class": "proof reconstruction",
+        "note": "Main explicitly derives finite linearity from the weighted-sum definition before applying it, so it is proof/reasoning reconstruction rather than fresh discovery."
+      },
+      "T22V3::ARC048::S21-T@1": {
+        "class": "retrieval",
+        "note": "Transfer directly applies already-established linearity and the nonlinear boundary."
+      },
+      "T22V3::ARC048::S22-M@1": {
+        "class": "proof reconstruction",
+        "note": "Main reconstructs the labelled-position marginal argument and indicator linearity on a larger without-replacement sample."
+      },
+      "T22V3::ARC048::S22-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer changes from draw positions to specialist-membership indicators in a uniformly chosen committee."
+      },
+      "T22V3::ARC048::S23-M@1": {
+        "class": "retrieval",
+        "note": "Main directly contrasts expectation with mode, attainability, guarantee and preference."
+      },
+      "T22V3::ARC048::S23-T@1": {
+        "class": "retrieval",
+        "note": "Transfer repeats the interpretation boundary with a different payoff model."
+      },
+      "T22V3::ARC048::S24-M@1": {
+        "class": "fresh Main evidence",
+        "note": "v1.3 Main no longer supplies a formula sequence: the learner must organize a three-route six-leaf model, choose valid branch/marginal/independence/expectation operations and justify them."
+      },
+      "T22V3::ARC048::S24-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "v1.3 Transfer changes the representation from supplied probabilities to raw category/flag counts before the same integrated reasoning can begin."
+      }
+    }
+  },
+  "wrongSolverAudit": {
+    "version": "m04-wrong-solver-v13-r1",
+    "sessions": {
+      "T22V3::ARC048::S01@1": {
+        "wrongApproach": "Treat the event label 'odd' or 'fail' as if it were one atomic outcome.",
+        "requiredDiscrimination": "Require explicit Ω plus event subsets and an outcome/event distinction."
+      },
+      "T22V3::ARC048::S02@1": {
+        "wrongApproach": "Assume all atoms are equally likely or accept weights without checking total mass1.",
+        "requiredDiscrimination": "Require nonnegativity, normalization and event probability from the actual atomic weights."
+      },
+      "T22V3::ARC048::S03@1": {
+        "wrongApproach": "Use favourable/total even after equiprobability is removed, or treat possible sums of two dice as equally likely atomic outcomes.",
+        "requiredDiscrimination": "Require justification of equiprobable atoms and rejection of an invalid denominator/model."
+      },
+      "T22V3::ARC048::S04@1": {
+        "wrongApproach": "Call 'all bits are1' the complement of 'at least one1'.",
+        "requiredDiscrimination": "Require the exact complement 'no 1s' and use P(A^c)=1−P(A)."
+      },
+      "T22V3::ARC048::S05@1": {
+        "wrongApproach": "Add P(A)+P(B) automatically even when A∩B is nonempty.",
+        "requiredDiscrimination": "Require an overlap/disjointness decision before the addition rule."
+      },
+      "T22V3::ARC048::S06@1": {
+        "wrongApproach": "Omit the intersection correction, subtract it with the wrong sign, or accept an impossible intersection.",
+        "requiredDiscrimination": "Require the overlap argument plus bound check on P(A∩B)."
+      },
+      "T22V3::ARC048::S07@1": {
+        "wrongApproach": "Keep the original sample-space denominator after conditioning or silently swap P(A|B) with P(B|A).",
+        "requiredDiscrimination": "Require the conditioning reference population/denominator for both directions and the P(B)>0 condition."
+      },
+      "T22V3::ARC048::S08@1": {
+        "wrongApproach": "Treat P(A|B) as the joint probability, or multiply P(A)P(B) without an independence premise.",
+        "requiredDiscrimination": "Require derivation from P(A∩B)=P(B)P(A|B) and joint≤marginal sanity checks."
+      },
+      "T22V3::ARC048::S09@1": {
+        "wrongApproach": "Add conditional branch rates directly or forget to multiply by first-stage branch probabilities.",
+        "requiredDiscrimination": "Require all leaf products, normalization and disjoint-leaf addition."
+      },
+      "T22V3::ARC048::S10@1": {
+        "wrongApproach": "Use the original denominator on the second draw even without replacement.",
+        "requiredDiscrimination": "Require explicit state update and separate with/without-replacement conditional denominators."
+      },
+      "T22V3::ARC048::S11@1": {
+        "wrongApproach": "Declare independence because events look physically separate, without testing P(A∩B)=P(A)P(B).",
+        "requiredDiscrimination": "Require both sides of the product criterion and a definition-based conclusion."
+      },
+      "T22V3::ARC048::S12@1": {
+        "wrongApproach": "Infer independence from equal-looking marginals or ignore that conditioning changed the probability.",
+        "requiredDiscrimination": "Require P(A|B) versus P(A), plus the product criterion and P(B)>0."
+      },
+      "T22V3::ARC048::S13@1": {
+        "wrongApproach": "Equate 'cannot happen together' with 'unrelated/independent'.",
+        "requiredDiscrimination": "Require empty intersection versus product equality, with the positive-probability contradiction and zero-probability edge case."
+      },
+      "T22V3::ARC048::S14@1": {
+        "wrongApproach": "Check all three pairs and conclude mutual independence without testing the triple intersection.",
+        "requiredDiscrimination": "Require all pair products and the additional triple product condition."
+      },
+      "T22V3::ARC048::S15@1": {
+        "wrongApproach": "Judge a mixed-looking exact sequence more likely than a clustered sequence with the same success/failure counts, or answer 'equally likely' only because either could happen.",
+        "requiredDiscrimination": "Require the constant-p independent path product and an explanation separating exact-path probability from visual representativeness/possibility."
+      },
+      "T22V3::ARC048::S16@1": {
+        "wrongApproach": "Compute one exact path and forget the number of success-position patterns, or multiply by the count twice.",
+        "requiredDiscrimination": "Require C(n,k), one path probability, disjointness and count×path reasoning."
+      },
+      "T22V3::ARC048::S17@1": {
+        "wrongApproach": "Sum overlapping 'at least one' cases directly or use powers without an independence premise.",
+        "requiredDiscrimination": "Require the exact complement 'none' and state the independence factorization."
+      },
+      "T22V3::ARC048::S18@1": {
+        "wrongApproach": "Take the simple average of conditional branch rates when partition branches have unequal prevalence, or reverse into a posterior.",
+        "requiredDiscrimination": "Require branch weights, disjoint/exhaustive partition logic and forward marginalization only."
+      },
+      "T22V3::ARC048::S19@1": {
+        "wrongApproach": "Interpret the weighted average as the most likely, guaranteed or necessarily attainable payoff.",
+        "requiredDiscrimination": "Require term-by-term expectation plus a separate interpretation statement."
+      },
+      "T22V3::ARC048::S20@1": {
+        "wrongApproach": "Average distinct value labels once each even when their atomic multiplicities/weights differ.",
+        "requiredDiscrimination": "Require averaging over equally likely atomic outcomes and an explicit multiplicity explanation."
+      },
+      "T22V3::ARC048::S21@1": {
+        "wrongApproach": "Assume linearity needs independence or extend linearity to squaring/products.",
+        "requiredDiscrimination": "Require the finite-sum derivation and a nonlinear counterexample."
+      },
+      "T22V3::ARC048::S22@1": {
+        "wrongApproach": "Refuse to add indicator expectations because the indicators are dependent, or assert fixed-position marginals 'by symmetry' without justification.",
+        "requiredDiscrimination": "Require the labelled ordered-sample positional marginal argument and linearity without independence."
+      },
+      "T22V3::ARC048::S23@1": {
+        "wrongApproach": "Treat larger/equal expectation as automatically safer, more likely or universally preferable.",
+        "requiredDiscrimination": "Require separate mode/guarantee/attainability facts and defer preference criteria to M05."
+      },
+      "T22V3::ARC048::S24@1": {
+        "wrongApproach": "Follow a memorized formula checklist without constructing the staged model, replace unequal route weights by equal weights, or compute a forbidden posterior instead of the requested forward quantities.",
+        "requiredDiscrimination": "Require a coherent model, justified operations, independence test, expectation and explicit no-posterior boundary."
+      }
+    }
+  },
+  "decisionAudit": {
+    "version": "m04-decision-audit-v13-r1",
+    "policy": "Every assessment currently classified fresh Main evidence or changed-surface Transfer records the specific organizing decision, whether the public prompt effectively supplies it, whether visible instruction decisively rehearses it, and the exact scored learner actions. These booleans describe evidence distance; they do not award quality points.",
+    "items": {
+      "T22V3::ARC048::S03-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Recognize that favourable/total is valid only for equiprobable atomic outcomes and reject it after one card is made twice as likely.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Uniformity recognized. | Total12. | Favourable four. | Probability1/3. | Nonuniform counterfactual correctly rejects count ratio.",
+        "classificationJustification": "The perturbation is supplied by the prompt and S02–S03 visibly establish weighted atoms versus the equiprobable special case; the changed surface tests whether that condition is actually carried over."
+      },
+      "T22V3::ARC048::S07-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Recover the correct conditional reference population from a contingency-count surface for both P(F|X) and P(X|F).",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "P(F|X)=3/8. | Its denominator is X count24. | P(X|F)=9/13. | Its denominator is F count13. | Positive-conditioning-probability requirement stated.",
+        "classificationJustification": "The prompt names both conditionals but does not hand the denominators; visible S07 instruction uses weighted atoms/listed outcomes rather than a contingency table."
+      },
+      "T22V3::ARC048::S12-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Translate a static marginal/joint probability description into the conditional-invariance and product tests for dependence.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Conditional.24. | Compared with marginal.30. | Dependence conclusion. | Product benchmark.15. | Criteria linked consistently.",
+        "classificationJustification": "The prompt asks the diagnosis but the visible S12 example is a sequential without-replacement process, so the representation changes materially."
+      },
+      "T22V3::ARC048::S13-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Construct a valid pair of independent but non-disjoint events on a two-die experiment and justify it numerically.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "C,D disjoint. | Product test shows dependence. | Reason not based on intuition. | Valid non-disjoint independent pair supplied. | Pair justified numerically.",
+        "classificationJustification": "The prompt requires construction but supplies no successful event pair; visible instruction gives only disjoint/dependent and empty-set edge examples."
+      },
+      "T22V3::ARC048::S14-M@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "fresh Main evidence",
+        "decision": "Discover that the XOR event construction is pairwise independent but fails the triple condition.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "All three marginals1/2. | Each pair intersection1/4. | Pairwise independence correctly concluded. | Triple intersection0 computed. | Mutual independence correctly rejected because0≠1/8.",
+        "classificationJustification": "The prompt supplies A,B,C but not the diagnosis; visible instruction shows mutually independent separate coin events and an ordinary dependent pair, not the XOR construction."
+      },
+      "T22V3::ARC048::S14-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Audit the four-atom set system at both pair and triple levels instead of stopping after pairwise products.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Marginals correct. | Pair intersections correct. | Pairwise independence established. | Triple probability1/4. | Mutual independence rejected against1/8.",
+        "classificationJustification": "The prompt explicitly says to verify pairwise and test mutual independence, while the exact set-system representation is not rehearsed."
+      },
+      "T22V3::ARC048::S15-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Separate equality of exact-path probabilities from identity of events and from visual 'random-looking' judgments.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Correct p/q assignment. | First path power product. | Numeric probability.03087. | Second path same probability. | Equal probability versus identical event distinguished.",
+        "classificationJustification": "The prompt explicitly asks the distinction; v1.3 instruction deliberately rehearses the representativeness trap, so this is changed-surface conceptual transfer rather than hidden method selection."
+      },
+      "T22V3::ARC048::S20-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Choose atomic-outcome averaging rather than distinct-label averaging and explain when the latter happens to coincide.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Eight atomic outcomes respected. | Expectation5. | Symmetry/pairing valid. | Why label-average works here explained. | Unequal-multiplicity failure condition stated.",
+        "classificationJustification": "The prompt explicitly asks both calculations/interpretation and S20 visibly teaches atomic multiplicity; the changed surface is repeated labels with equal total multiplicities."
+      },
+      "T22V3::ARC048::S22-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Recast committee membership as a sum of person-specific specialist indicators and use marginal inclusion probabilities despite dependence.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Three indicators defined. | Each selection probability5/12. | Count sum stated. | Expectation1.25. | Dependence-versus-linearity explanation correct.",
+        "classificationJustification": "The prompt names J1,J2,J3, while visible instruction uses draw-position indicators and a committee guided check; changed surface is modest and openly scaffolded."
+      },
+      "T22V3::ARC048::S24-M@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "fresh Main evidence",
+        "decision": "Organize an integrated three-route problem into leaf products, a weighted marginal, an independence test and expectation without a supplied formula sequence.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Builds the six leaf probabilities .16,.04,.20,.30,.18,.12 and checks that they sum to1. | Computes P(B∩success)=.20 and justifies the branch product from route probability times conditional success rate. | Computes overall success=.54 from the disjoint weighted route branches and does not replace the route weights by an equal average. | Diagnoses dependence numerically from P(success|A)=.80 versus P(success)=.54. | Computes expected score 1.78 and keeps route-given-success posterior inversion out of the solution.",
+        "classificationJustification": "The v1.3 prompt names desired outputs but not the sequence of probability rules; visible instruction uses a two-route worked synthesis and does not solve the three-route instance."
+      },
+      "T22V3::ARC048::S24-T@1": {
+        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Convert raw category/flag counts into a staged probability model before carrying out the integrated forward analysis.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Converts the counts into the six correct leaf probabilities .10,.40,.15,.15,.02,.18 and checks normalization. | Computes P(Y∩flag)=.15 from the Y-and-flag count/leaf. | Computes overall flag probability .27 by adding the disjoint flagged leaves or equivalently using the correct count denominator. | Diagnoses dependence from P(flag|X)=.20 versus P(flag)=.27, with the denominator 50 for the conditional made clear. | Computes expected value .35 and does not perform the forbidden posterior P(X|flag).",
+        "classificationJustification": "The Transfer starts from counts rather than supplied branch probabilities; the model-construction representation change is not present in the S24 worked example."
+      }
+    }
   }
 }
