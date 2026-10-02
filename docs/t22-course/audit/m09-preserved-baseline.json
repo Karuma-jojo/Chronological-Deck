@@ -13,7 +13,7 @@
     "course/t22/authoring/m05.json": "117751c09d0b0d32528674740cb79227fa4b5db57df530f58095c86dc0e6f513",
     "course/t22/authoring/m03.json": "6dc985b23bbbf47c4946e3ec3ace72e55a8a1afc99e2ce1126b965d83e2ed635",
     "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
-    "course/t22/authoring/m04.json": "56c0352b072761323b51e0857fefa46cb703468229fdb4cabb09e401556527e2",
+    "course/t22/authoring/m04.json": "69ab0e03b246bb5e4a0d4836ef2bc335380580cc",
     "course/t22/authoring/m02.json": "d54530eb493dfa75e4d03c9e8ee201f50a84303a51c71e148337e3aeffbc433a",
     "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
     "course/t22/authoring/m01-repairs-1.1.json": "a2efe7697dc4bbaf163ac81ef40f2c69d25831cda9c5c07a994f8d61d326cc19"
@@ -51,5 +51,13 @@
     "sourceReviewHead": "c6003be2f18d3f904898483a422a9a356dc5bc54",
     "scope": "Independently confirmed M01/M02/M03 foundation publication; M15 excluded.",
     "status": "frozen"
+  },
+  "authorizedM04V21IndependentReviewRepair": {
+    "branch": "codex/t22-m04-v2-review-repair",
+    "reviewedHead": "d89444017bed13dbcb6f336b6ae36c86971805f4",
+    "review": "docs/t22-course/M04-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md",
+    "scope": "Bounded repair of independent findings R01–R06 only: evidence-distance honesty, S14 declassification, S24 fresh synthesis redesign, exact S18/S24 direct-conditioning-vs-Bayes boundary, S19→S20 ownership ordering and S20 multiplicity wrong-solver discrimination. M05/M06/M26 curriculum content unchanged.",
+    "currentM04Blob": "69ab0e03b246bb5e4a0d4836ef2bc335380580cc",
+    "reviewState": "repair candidate awaiting exact-head validation and independent confirmation"
   }
 }
