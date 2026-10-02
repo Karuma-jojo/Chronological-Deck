@@ -310,7 +310,40 @@
       "main": "T22V3::ARC048::S07-M@1",
       "transfer": "T22V3::ARC048::S07-T@1",
       "instructionVersion": "m04-s07-instruction-v2-conditioning-representation-r1",
-      "guidedFeedback": "Check after attempting. D={a,d,e} has mass .15+.20+.30=.65. C∩D={d,e} has mass .50, so P(C|D)=.50/.65=10/13. The reverse uses denominator P(C)=.25+.20+.30=.75, so it need not match."
+      "guidedFeedback": "Check after attempting. D={a,d,e} has mass .15+.20+.30=.65. C∩D={d,e} has mass .50, so P(C|D)=.50/.65=10/13. The reverse uses denominator P(C)=.25+.20+.30=.75, so it need not match.",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Conditioning changes the reference row or column",
+          "headers": [
+            "",
+            "F",
+            "not F",
+            "total"
+          ],
+          "rows": [
+            [
+              "X",
+              12,
+              8,
+              20
+            ],
+            [
+              "not X",
+              3,
+              17,
+              20
+            ],
+            [
+              "total",
+              15,
+              25,
+              40
+            ]
+          ],
+          "note": "Read P(F|X) inside the X row; read P(X|F) inside the F column. The overlap cell is the same, but the denominator changes."
+        }
+      ]
     },
     {
       "order": 8,
@@ -385,7 +418,49 @@
       "main": "T22V3::ARC048::S09-M@1",
       "transfer": "T22V3::ARC048::S09-T@1",
       "guidedFeedback": "Check after attempting. Leaves: X∩alarm=.15, X∩no=.10, Y∩alarm=.15, Y∩no=.60. They sum1 and total alarm=.30.",
-      "instructionVersion": "m04-s09-instruction-v2-r1"
+      "instructionVersion": "m04-s09-instruction-v2-r1",
+      "representations": [
+        {
+          "kind": "probabilityTree",
+          "title": "Two-stage probability tree",
+          "root": "Start",
+          "branches": [
+            {
+              "label": "L",
+              "prob": ".60",
+              "children": [
+                {
+                  "label": "success",
+                  "prob": ".50",
+                  "leaf": ".30"
+                },
+                {
+                  "label": "fail",
+                  "prob": ".50",
+                  "leaf": ".30"
+                }
+              ]
+            },
+            {
+              "label": "R",
+              "prob": ".40",
+              "children": [
+                {
+                  "label": "success",
+                  "prob": ".25",
+                  "leaf": ".10"
+                },
+                {
+                  "label": "fail",
+                  "prob": ".75",
+                  "leaf": ".30"
+                }
+              ]
+            }
+          ],
+          "note": "Multiply along one branch-to-leaf path; add disjoint leaves for a multi-leaf event."
+        }
+      ]
     },
     {
       "order": 10,
@@ -724,7 +799,40 @@
       "main": "T22V3::ARC048::S18-M@1",
       "transfer": "T22V3::ARC048::S18-T@1",
       "guidedFeedback": "Check after attempting. Contributions are .08,.05,.075, totaling .205. The unweighted average (.40+.10+.25)/3=.25 is different because the branch shares are unequal.",
-      "instructionVersion": "m04-s18-instruction-v2-r1"
+      "instructionVersion": "m04-s18-instruction-v2-r1",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Partition contributions",
+          "headers": [
+            "branch",
+            "P(branch)",
+            "P(error | branch)",
+            "joint contribution"
+          ],
+          "rows": [
+            [
+              "source1",
+              ".70",
+              ".02",
+              ".014"
+            ],
+            [
+              "source2",
+              ".30",
+              ".05",
+              ".015"
+            ],
+            [
+              "overall error",
+              "",
+              "",
+              ".029"
+            ]
+          ],
+          "note": "The overall rate is a weighted sum of branch rates, not the unweighted mean of the conditional rates."
+        }
+      ]
     },
     {
       "order": 19,
@@ -1054,7 +1162,40 @@
       "order": 7,
       "kind": "transfer",
       "prompt": "A completed archive is summarized by this two-way table:\n                 signal S   not S   total\nearly source E        18       12      30\nlate source L          6       24      30\ntotal                  24       36      60\n\n(a) Compute P(E|S) and P(S|E), explicitly naming the denominator/reference group in each direction.\n(b) A reviewer says: “Signal S was recorded after the source label, so observing S cannot change the probability that the archived record came from E.” Diagnose the statement using the table and the meaning of conditioning.\n(c) State when each conditional ratio would be undefined.",
-      "obligationVersion": 2
+      "obligationVersion": 2,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Archived source × signal counts",
+          "headers": [
+            "",
+            "signal S",
+            "not S",
+            "total"
+          ],
+          "rows": [
+            [
+              "early source E",
+              18,
+              12,
+              30
+            ],
+            [
+              "late source L",
+              6,
+              24,
+              30
+            ],
+            [
+              "total",
+              24,
+              36,
+              60
+            ]
+          ],
+          "note": "Use the column or row named after the event following the conditioning bar."
+        }
+      ]
     },
     "T22V3::ARC048::S08-M@1": {
       "id": "T22V3::ARC048::S08-M@1",
@@ -1082,7 +1223,49 @@
       "order": 9,
       "kind": "transfer",
       "prompt": "A routing tree is reported as:\nStart\n├─ A (.40)\n│  ├─ timeout (.10) → leaf .50\n│  └─ no-timeout (?) \n└─ B (.60)\n   ├─ timeout (.25)\n   └─ no-timeout (.75)\n\nAudit and repair the tree: fill every missing branch probability, replace the incorrect A-timeout leaf with the correct path product, compute all four leaf probabilities, verify the leaf total is1, and find the overall timeout probability.",
-      "obligationVersion": 2
+      "obligationVersion": 2,
+      "representations": [
+        {
+          "kind": "probabilityTree",
+          "title": "Reported routing tree — audit it",
+          "root": "Start",
+          "branches": [
+            {
+              "label": "A",
+              "prob": ".40",
+              "children": [
+                {
+                  "label": "timeout",
+                  "prob": ".10",
+                  "leaf": ".50"
+                },
+                {
+                  "label": "no-timeout",
+                  "prob": "?",
+                  "leaf": "?"
+                }
+              ]
+            },
+            {
+              "label": "B",
+              "prob": ".60",
+              "children": [
+                {
+                  "label": "timeout",
+                  "prob": ".25",
+                  "leaf": "?"
+                },
+                {
+                  "label": "no-timeout",
+                  "prob": ".75",
+                  "leaf": "?"
+                }
+              ]
+            }
+          ],
+          "note": "Some entries are wrong or missing. Repair branches before trusting any leaf."
+        }
+      ]
     },
     "T22V3::ARC048::S10-M@1": {
       "id": "T22V3::ARC048::S10-M@1",
@@ -1201,7 +1384,34 @@
       "order": 18,
       "kind": "main",
       "prompt": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
-      "obligationVersion": 2
+      "obligationVersion": 2,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Source branch data",
+          "headers": [
+            "source",
+            "M1",
+            "M2",
+            "M3"
+          ],
+          "rows": [
+            [
+              "P(source)",
+              ".50",
+              ".30",
+              ".20"
+            ],
+            [
+              "P(defect | source)",
+              ".01",
+              ".03",
+              ".06"
+            ]
+          ],
+          "note": "Construct the joint defect contributions before taking the overall marginal."
+        }
+      ]
     },
     "T22V3::ARC048::S18-T@1": {
       "id": "T22V3::ARC048::S18-T@1",
@@ -5193,13 +5403,13 @@
     },
     {
       "representation": "Two-way table",
-      "teachingArtifact": "S07 X/F worked table with row-versus-column restriction.",
+      "teachingArtifact": "S07 uses an actual rendered table artifact plus a text derivation; the fixed Transfer renders a distinct 60-record table.",
       "laterPublicEvidence": "S07 Transfer early/late×signal table; S18 reuses branch/table weighting.",
       "rubricDisposition": "Reading denominator direction is explicitly scored."
     },
     {
       "representation": "Probability tree",
-      "teachingArtifact": "S09 rendered branch tree with branch, leaf and marginal calculations.",
+      "teachingArtifact": "S09 uses an actual rendered probability-tree artifact plus the text derivation; fixed Transfer renders a malformed tree to audit.",
       "laterPublicEvidence": "S09 Main constructs a tree; S09 Transfer repairs a malformed tree; S10 reuses branch states.",
       "rubricDisposition": "Construction/repair, path products and leaf sum are scored."
     },
@@ -5211,7 +5421,7 @@
     },
     {
       "representation": "Partition contribution table",
-      "teachingArtifact": "S18 branch/probability/conditional/joint contribution table.",
+      "teachingArtifact": "S18 uses an actual rendered contribution table and its Main renders a distinct source branch table.",
       "laterPublicEvidence": "S18 Main branch table and Transfer error audit.",
       "rubricDisposition": "Weights, contributions and total are scored."
     },
