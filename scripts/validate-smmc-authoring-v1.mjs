@@ -67,6 +67,16 @@ import {
   ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS,
   ARSENAL_GATE2_SOURCE_CLOSURE_META,
 } from "../course/smmc/arsenal/source-closure-manifest-v0.mjs";
+import {
+  ARSENAL_GATE3_ACCEPTED_GATE2_SHA,
+  ARSENAL_GATE3_GATE2_MERGE_SHA,
+  ARSENAL_GATE3_CONTRACT_META,
+  validateGate3GranularityRecord,
+} from "../course/smmc/arsenal/granularity-contract-v1.mjs";
+import {
+  ARSENAL_GATE3_GRANULARITY_RECORDS,
+  ARSENAL_GATE3_GRANULARITY_META,
+} from "../course/smmc/arsenal/granularity-ledger-v0.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -836,6 +846,95 @@ expect(
 for (const group of ARSENAL_GATE2_DUPLICATE_NAME_GROUPS) {
   expect(group.candidateIds.length > 1, "Duplicate-name report contains singleton.");
   expect(new Set(group.candidateIds).size === group.candidateIds.length, "Duplicate-name report repeated the same candidate ID.");
+}
+
+// Gate 3 granularity calibration: exact overlay on the independently accepted Gate-2 pool.
+expect(
+  ARSENAL_GATE3_ACCEPTED_GATE2_SHA === "ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7",
+  "Gate 3 must remain anchored to the independently accepted Gate-2 exact SHA."
+);
+expect(
+  ARSENAL_GATE3_GATE2_MERGE_SHA === "7600dd377192aafe6ca777636d94474736ea4e4f",
+  "Gate 3 must remain anchored to the merge commit that preserves the accepted Gate-2 SHA."
+);
+expect(ARSENAL_GATE3_CONTRACT_META.gate === 3, "Granularity contract must identify Gate 3.");
+expect(ARSENAL_GATE3_CONTRACT_META.purpose === "GRANULARITY_MEASUREMENT_ONLY", "Gate 3 purpose drifted.");
+for (const [field, value] of Object.entries({
+  referenceUnitIsFinalOntology: false,
+  mergeSplitDecisionsAllowed: false,
+  ontologyAllowed: false,
+  prerequisiteGraphAllowed: false,
+  rankingAllowed: false,
+  candidateRelationsAllowed: false,
+  learnerGamificationAllowed: false,
+  gate2RawPoolImmutable: true,
+})) {
+  expect(
+    ARSENAL_GATE3_CONTRACT_META[field] === value,
+    `Gate-3 boundary flag drifted: ${field}`
+  );
+}
+
+expect(
+  ARSENAL_GATE3_GRANULARITY_RECORDS.length === ARSENAL_GATE2_RAW_CANDIDATES.length,
+  "Gate-3 granularity overlay must contain exactly one row per accepted Gate-2 raw candidate."
+);
+expect(ARSENAL_GATE3_GRANULARITY_RECORDS.length === 661, "Gate-3 population must remain the accepted 661-candidate Gate-2 pool.");
+
+const gate3Ids = ARSENAL_GATE3_GRANULARITY_RECORDS.map(x => x.candidateId);
+expect(new Set(gate3Ids).size === gate3Ids.length, "Duplicate Gate-3 candidate row.");
+expect(
+  JSON.stringify([...gate3Ids].sort()) === JSON.stringify([...rawCandidateIds].sort()),
+  "Gate-3 candidate IDs must exactly equal the accepted Gate-2 raw candidate IDs."
+);
+
+const rawCandidateById = new Map(ARSENAL_GATE2_RAW_CANDIDATES.map(x => [x.candidateId, x]));
+let gate3Reviewed = 0;
+let gate3Unreviewed = 0;
+for (const row of ARSENAL_GATE3_GRANULARITY_RECORDS) {
+  validateGate3GranularityRecord(row);
+  const raw = rawCandidateById.get(row.candidateId);
+  expect(raw, `Gate-3 row references unknown raw candidate ${row.candidateId}`);
+  expect(row.candidateName === raw.candidateName, `Gate-3 candidate-name snapshot drifted for ${row.candidateId}`);
+  expect(row.origin === raw.origin, `Gate-3 origin snapshot drifted for ${row.candidateId}`);
+  for (const evidenceId of row.supportingEvidenceRecordIds) {
+    expect(
+      raw.evidenceRecordIds.includes(evidenceId),
+      `Gate-3 row cites evidence not owned by candidate ${row.candidateId}: ${evidenceId}`
+    );
+  }
+  if (row.status === "REVIEWED") gate3Reviewed += 1;
+  if (row.status === "UNREVIEWED") gate3Unreviewed += 1;
+}
+expect(gate3Reviewed === 43, "Gate-3 calibration reviewed-count drifted.");
+expect(gate3Unreviewed === 618, "Gate-3 calibration must leave the remaining 618 candidates explicitly UNREVIEWED.");
+expect(
+  ARSENAL_GATE3_GRANULARITY_META.reviewed === gate3Reviewed &&
+  ARSENAL_GATE3_GRANULARITY_META.unreviewed === gate3Unreviewed,
+  "Gate-3 granularity metadata does not match the actual reviewed/unreviewed partition."
+);
+expect(ARSENAL_GATE3_GRANULARITY_META.status === "CALIBRATION-IN-PROGRESS", "Gate 3 must not self-declare completion during calibration.");
+expect(ARSENAL_GATE3_GRANULARITY_META.gate2CandidateCount === 661, "Gate-3 metadata must preserve the 661-candidate Gate-2 population.");
+expect(ARSENAL_GATE3_GRANULARITY_META.ontologyStarted === false, "Gate 3 must not start ontology.");
+expect(ARSENAL_GATE3_GRANULARITY_META.mergeSplitStarted === false, "Gate 3 must not start merge/split adjudication.");
+expect(ARSENAL_GATE3_GRANULARITY_META.prerequisiteGraphStarted === false, "Gate 3 must not start prerequisites.");
+expect(ARSENAL_GATE3_GRANULARITY_META.rankingStarted === false, "Gate 3 must not rank candidates.");
+expect(ARSENAL_GATE3_GRANULARITY_META.candidateRelationsStarted === false, "Gate 3 must not build candidate relations.");
+expect(ARSENAL_GATE3_GRANULARITY_META.learnerGamificationStarted === false, "Gate 3 must not start Forge/Boss/Arena representation.");
+
+// Calibration must exercise every reference-scale outcome and the major orthogonal dimensions.
+const gate3ReviewedRows = ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "REVIEWED");
+for (const scale of ["MICRO","DEPLOYABLE","MACRO","CROSS_SCALE","UNRESOLVED"]) {
+  expect(gate3ReviewedRows.some(x => x.referenceScale === scale), `Gate-3 calibration does not exercise referenceScale=${scale}`);
+}
+for (const bundle of ["SINGLE_PRIMARY_MOVE","BUNDLED_MOVES","UNRESOLVED"]) {
+  expect(gate3ReviewedRows.some(x => x.bundleStructure === bundle), `Gate-3 calibration does not exercise bundleStructure=${bundle}`);
+}
+for (const shape of ["EXPLICIT_ACTION","IMPLICIT_ACTION","LABEL_ONLY","UNRESOLVED"]) {
+  expect(gate3ReviewedRows.some(x => x.actionShape === shape), `Gate-3 calibration does not exercise actionShape=${shape}`);
+}
+for (const reach of ["GENERAL","SOURCE_LOCAL","PROBLEM_LOCAL","UNRESOLVED"]) {
+  expect(gate3ReviewedRows.some(x => x.contextReach === reach), `Gate-3 calibration does not exercise contextReach=${reach}`);
 }
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
