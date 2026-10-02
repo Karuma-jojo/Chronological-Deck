@@ -81,6 +81,19 @@ for(const [k,v] of Object.entries(versions)){
   assert.equal(a.problems[by(n)[kind]].obligationVersion,v,`${k} version`);
 }
 
+// Exact semantic observers for materially changed Main contracts.
+const observerPlan={
+  1:[[0],[1],[2],[4],[3]],
+  15:[[4],[1,4],[0],[1],[1,2]],
+  17:[[2],[0,4],[1,4],[2],[3]],
+  18:[[0],[0],[1],[2],[3,4]],
+  24:[[0],[1],[2],[3],[4]]
+};
+for(const [nstr,plan] of Object.entries(observerPlan)){
+  const s=by(Number(nstr)),rub=a.evaluators[s.main].rubric;
+  a.claimEvidence[s.id].forEach((e,i)=>assert.deepEqual(e.rubricEvidence,plan[i].map(j=>rub[j].criterion),`S${nstr} claim ${i+1} semantic observer drift`));
+}
+
 // Historical repairs remain closed.
 assert.equal(a.claimEvidence[by(5).id][2].task,'transfer');
 assert.equal(a.claimEvidence[by(13).id][4].task,'transfer');
