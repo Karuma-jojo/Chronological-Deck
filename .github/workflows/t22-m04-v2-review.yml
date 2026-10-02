@@ -1,0 +1,46 @@
+name: T22 M04 v2 review
+
+on:
+  push:
+    branches: [codex/t22-m04-godlike-v2]
+    paths:
+      - 'course/t22/authoring/m04.json'
+      - 'js/t22-course/**'
+      - 'css/t22-course.css'
+      - 't22-course.html'
+      - 'scripts/test-t22-elite-m04.mjs'
+      - 'scripts/test-t22-elite-m04-browser.mjs'
+      - 'docs/t22-course/M04-*.md'
+      - 'docs/t22-course/audit/m04-*.mjs'
+      - '.github/workflows/t22-m04-v2-review.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-m04-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax checks
+        run: |
+          node --check js/t22-course/core.js
+          node --check js/t22-course/representations.js
+          node --check js/t22-course/ui.js
+          node --check scripts/test-t22-elite-m04.mjs
+          node --check scripts/test-t22-elite-m04-browser.mjs
+          node --check docs/t22-course/audit/m04-independent-math.mjs
+          node --check docs/t22-course/audit/m04-handoff-checks.mjs
+      - name: M04 structural, semantic and math checks
+        run: |
+          node scripts/test-t22-elite-m04.mjs
+          node docs/t22-course/audit/m04-independent-math.mjs
+          node docs/t22-course/audit/m04-handoff-checks.mjs
+      - name: Install browser-test dependency
+        run: npm ci --prefix scripts/review-tests
+      - name: Install Chromium
+        run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - name: M04 real learner browser workflow
+        run: node scripts/test-t22-elite-m04-browser.mjs
