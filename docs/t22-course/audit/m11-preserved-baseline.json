@@ -81,12 +81,12 @@
     "docs/t22-course/audit/m08-independent-oracles.mjs": "4cfabd884f15c9a8519e22ed1421e017c1bef04a",
     "docs/t22-course/audit/m08-semantic-contract.json": "94377eeeeff71e41f3680b9e2efc9dc505728dcc",
     "docs/t22-course/audit/m09-math-checks.mjs": "0884736209393d72c5cc05cc5cc1ceac4eb94b89",
-    "docs/t22-course/audit/m09-preserved-baseline.json": "642aa0f6869f5d31f55b4b56f7b3075b1e07040c",
+    "docs/t22-course/audit/m09-preserved-baseline.json": "1d59a2849e91e2836e7acda3bbbbd1db466535ea",
     "docs/t22-course/audit/m09-semantic-contract.json": "60d7282b1e8335f90a79d713fe4e8ca8ad7527f6",
     "docs/t22-course/audit/m09-validation-receipt.json": "b161b49568ad2d6c65d44c4d309920d1f5afd16d",
     "docs/t22-course/audit/m10-math-checks.mjs": "0c74b0943d204741019bbd4b2bf2b51d1c2c5c1e",
     "docs/t22-course/audit/m10-ownership-audit.json": "c62b8adec413da5667129bd29f4311adc34d19d7",
-    "docs/t22-course/audit/m10-preserved-baseline.json": "d736e932f2bfceb72a9bee7774c6c40e551e114b",
+    "docs/t22-course/audit/m10-preserved-baseline.json": "51b97f8f9b3b18b72db82367fd33c46ee15af3fb",
     "docs/t22-course/audit/m10-semantic-contract.json": "7dc3965cc3531e6566ea688a359791f0b53cc451",
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
@@ -196,6 +196,10 @@
       "docs/t22-course/audit/m04-handoff-checks.mjs": "1fa244763497925c1e35d801055794416527998d",
       "docs/t22-course/audit/m04-independent-math.mjs": "8ef2c3d4917e8c3567628612529becd2fa32c4ce",
       "scripts/test-t22-elite-m04.mjs": "ec966cc2cee78d061fa94997d0ddf823c4c87516"
+    },
+    "nestedBaselineManifests": {
+      "docs/t22-course/audit/m09-preserved-baseline.json": "1d59a2849e91e2836e7acda3bbbbd1db466535ea",
+      "docs/t22-course/audit/m10-preserved-baseline.json": "51b97f8f9b3b18b72db82367fd33c46ee15af3fb"
     }
   }
 }
