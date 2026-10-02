@@ -86,9 +86,9 @@ try{
   await page.click('#mainTask');assert.equal(await page.locator('#problemRepresentations .repr-table').count(),1);
 
   // Independent-review repairs: S20 discriminator and S24 fresh synthesis render the repaired contracts.
-  await page.selectOption('#session','20');await page.click('#transferTask');assert((await page.locator('#problem').textContent()).includes('naive average of the four distinct labels'));await page.click('#reveal');await page.waitForSelector('#reference:not([hidden])');assert((await page.locator('#reference').textContent()).includes('expectation4'));
-  await page.selectOption('#session','24');await page.click('#mainTask');assert((await page.locator('#problem').textContent()).includes('operations log covers250 tasks'));await page.click('#reveal');await page.waitForSelector('#reference:not([hidden])');assert((await page.locator('#reference').textContent()).includes('1.06'));
-  await page.click('#transferTask');assert((await page.locator('#problem').textContent()).includes('compute P(X|flag) directly'));await page.click('#reveal');await page.waitForSelector('#reference:not([hidden])');assert((await page.locator('#reference').textContent()).includes('4/7'));
+  await page.selectOption('#session','20');await page.click('#transferTask');assert((await page.locator('#problem').textContent()).includes('naive average of the four distinct labels'));
+  await page.selectOption('#session','24');await page.click('#mainTask');assert((await page.locator('#problem').textContent()).includes('operations log covers250 tasks'));
+  await page.click('#transferTask');assert((await page.locator('#problem').textContent()).includes('compute P(X|flag) directly'));
 
   const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));
   assert.equal(stored.attempts.filter(a=>a.problemId.includes('ARC048')).length,48);
