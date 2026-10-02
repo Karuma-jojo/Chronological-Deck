@@ -59,7 +59,9 @@ for(const s of a.sessions){
     }
   }
   assert(a.prerequisiteAudit['S'+String(s.order).padStart(2,'0')]?.length,`S${s.order} prereq audit`);
-  assert(a.transferScope.startsWith('Changed-surface transfer:'),`S${s.order} transferScope not honest`);
+  const tClass=a.evidenceDistance.items[s.transfer].class;
+  if(tClass==='changed-surface Transfer')assert(s.transferScope.startsWith('Changed-surface transfer:'),`S${s.order} changed-surface scope not honest`);
+  else assert(s.transferScope.startsWith('Retrieval/fluency'),`S${s.order} retrieval scope not honest`);
 }
 assert.deepEqual(Object.keys(a.decisionAudit.items).sort(),decisionTargets.sort());
 for(const id of decisionTargets){
