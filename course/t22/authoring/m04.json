@@ -1,11 +1,11 @@
 {
-  "version": "m04-authoring-v2.0-deep-reconstruction-r1",
-  "instructionVersion": "m04-instruction-v2-deep-reconstruction-r1",
+  "version": "m04-authoring-v2.1-independent-review-repair-r1",
+  "instructionVersion": "m04-instruction-v2.1-independent-review-repair-r1",
   "module": {
     "order": 4,
     "id": "ARC048",
     "title": "Finite Probability, Conditional Probability, Independence & Expectation",
-    "status": "v2-deep-reconstruction-builder-candidate",
+    "status": "v2.1-independent-review-repair-candidate",
     "destination": "Model finite uncertainty rigorously, condition correctly, distinguish dependence from independence, and compute finite expectations without prematurely using Bayes, decision theory or formal distribution machinery.",
     "gate": "M04 v2 candidate preserves the 24-session/48-task/120-claim identity but reopens current-standard source, representation, evidence-distance, decision, wrong-solver and rendered-surface gates. Builder completion is not independent acceptance.",
     "nextBoundary": "M05 owns trading-game decisions and risk preferences; M06 owns Bayes/posterior updating. M04 stops at forward finite probability and expectation."
@@ -35,8 +35,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m04-observability-v2-r1-2026-10-02",
-    "status": "24-session v2 deep reconstruction candidate: modernized novice instruction, explicit representation progression, selected versioned assessment repairs, 48 honest evidence-distance labels, 23 decision audits and 24 wrong-solver attacks are pinned; independent follow-up and exact-head CI/browser remain required.",
+    "version": "m04-observability-v2.1-review-repair-r1-2026-10-02",
+    "status": "Independent follow-up R01–R06 repaired: honest evidence-distance labels, S14 declassified from fresh, S24 fresh synthesis rebuilt, S18/S24 forward-vs-reverse boundary corrected, S19/S20 ownership/multiplicity defects repaired. Exact-head CI/browser and independent confirmation still required.",
     "policy": "Every retained claim must be literally requested and scored. Different numbers/contexts do not establish transfer; representation, decision or obstacle changes must be stated."
   },
   "sessions": [
@@ -61,7 +61,7 @@
         "Form event intersection/union from stated conditions."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Invalid overlapping label list → learner repairs a common recording rule and atomic representation.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Finite experiments",
         "Outcomes",
@@ -101,7 +101,7 @@
         "Compute an event probability by summing atomic weights."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Forward normalization exercise → audit an illegal probability ledger and repair one mass while preserving the others.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Finite probability models",
         "Normalization",
@@ -140,7 +140,7 @@
         "Reject favourable/total when equiprobability is absent."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Atomic fair outcomes → aggregated dashboard labels with unequal multiplicities.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Classical finite probability",
         "Counting probability"
@@ -178,7 +178,7 @@
         "Use a complement to compute an at-least-one event in a finite model."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Direct complement calculation → diagnose a linguistically plausible but set-theoretically wrong complement.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Complement probability",
         "Certain/impossible events"
@@ -216,7 +216,7 @@
         "Compute simple union/intersection probabilities from an explicit finite model."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Explicit sets → region-count ledger; disjointness and addition must be inferred from the overlap cell.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Union/intersection probability",
         "Disjoint addition"
@@ -255,7 +255,7 @@
         "Check probability bounds/consistency."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Forward inclusion–exclusion → infer the missing overlap and neither region from aggregate counts.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Two-event probability inclusion-exclusion"
       ],
@@ -294,7 +294,7 @@
         "State the P(B)>0 requirement."
       ],
       "applicationScope": "Finite probability models represented as explicit atomic mass ledgers, restricted outcome lists or complete two-way count tables.",
-      "transferScope": "Changed-surface transfer: Nonuniform atom ledger → two-way table plus chronological-information misconception.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Finite conditional probability"
       ],
@@ -365,7 +365,7 @@
         "Check that a joint probability cannot exceed either marginal."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Joint-from-conditional execution → diagnose illegal marginal multiplication and repair the model.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Multiplication rule",
         "Joint probability"
@@ -403,7 +403,7 @@
         "Check all leaf probabilities sum to1."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Construct a correct tree → audit a malformed partially labelled tree and repair a wrong leaf.",
+      "transferScope": "Changed-surface transfer: Instruction constructs a valid tree; Transfer instead requires auditing and repairing a malformed tree with a wrong leaf and missing branch.",
       "inScope": [
         "Finite probability trees"
       ],
@@ -483,7 +483,7 @@
         "Compare the resulting dependence structures qualitatively."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Compute two protocols from wording → infer which candidate second-stage branch belongs to which protocol.",
+      "transferScope": "Changed-surface transfer: Instruction computes named replacement protocols; Transfer requires inferring which protocol produced each candidate conditional branch before computing paths.",
       "inScope": [
         "Finite sampling protocols"
       ],
@@ -520,7 +520,7 @@
         "Use product factorization to recompute a joint probability after independence is established."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Retrieval/fluency on a new instance; the underlying method and representation are already explicit in instruction.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Pairwise event independence"
       ],
@@ -558,7 +558,7 @@
         "Respect the positive-denominator condition."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Sequential without-replacement story → static marginal/joint probability data requiring conditional/product cross-check.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Conditional independence test for events"
       ],
@@ -595,7 +595,7 @@
         "Give or diagnose examples of each relationship."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Given disjoint sets → construct a valid independent non-disjoint pair on a different two-die surface.",
+      "transferScope": "Changed-surface transfer: Instruction classifies supplied disjoint/dependent examples; Transfer additionally requires constructing and justifying an independent non-disjoint event pair.",
       "inScope": [
         "Disjointness versus independence"
       ],
@@ -632,7 +632,7 @@
         "Construct/diagnose a pairwise-but-not-mutually-independent example."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: XOR bit construction → four-atom set system with the same higher-order phenomenon in a different representation.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Three-event pairwise/mutual independence"
       ],
@@ -670,7 +670,7 @@
         "Explain why a different ordering has the same probability when p is constant."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Direct exact paths → audit a written representativeness/gambler's-fallacy explanation.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Repeated Bernoulli-style finite trials without distribution naming"
       ],
@@ -708,7 +708,7 @@
         "Avoid naming/using unintroduced distribution machinery."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Derive exactly-k correctly → repair a one-path-only solution that omits arrangement count.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Exactly-k probability from counting"
       ],
@@ -746,7 +746,7 @@
         "Compare direct case counting versus complement efficiency."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Choose complement route → diagnose an impossible blind-addition result and separate overlap from complement.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Repeated-trial complement strategies"
       ],
@@ -784,7 +784,7 @@
         "State the finite law of total probability without posterior inversion."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Build weighted total → audit unweighted rate averaging and an illegal conditional reversal.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Finite total probability"
       ],
@@ -795,11 +795,11 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Compute a forward marginal probability by partitioning the sample space.",
-      "lesson": "Orient. Overall rates are weighted by how often each branch occurs. A simple average of subgroup rates is usually wrong when subgroup sizes differ.\n\nDefine. A finite partition B1,...,Bk is disjoint and exhaustive. Because A is split into the disjoint pieces A∩Bi,\nP(A)=Σ P(Bi)P(A|Bi).\nThis is the law of total probability: a forward marginalization rule.\n\nConnect. S09 already added disjoint tree leaves for a two-branch case; S08 supplies each joint contribution P(Bi)P(A|Bi). Here we generalize the pattern and connect three representations.\n\nExplain. Contribution table:\nbranch       P(Bi)   P(error|Bi)   joint contribution\nsource1      .70         .02             .014\nsource2      .30         .05             .015\noverall error                              .029\nA simple average (.02+.05)/2=.035 ignores that source1 occurs more often. The same information can be drawn as a tree; the algebra is the sum of the error leaves.\n\nWorked example: Weekday=.80, weekend=.20; purchase rates .10,.25. Contributions .08 and .05 give overall purchase .13. This computes P(purchase), not P(weekend|purchase).\n\nGuided check: A request is class A=.20,B=.50,C=.30 with escalation rates .40,.10,.25. Compute the three joint contributions and overall escalation. Compare with the unweighted average of the three rates.\n\nFade. Before summing conditional rates, attach each rate to its branch probability. If the question asks “which branch given the outcome?”, stop: that reverse question belongs to M06 unless a complete joint table already supplies it directly.\n\nDistinction check. Total probability moves from branch probabilities/conditionals to an overall marginal. It is not Bayes' rule.",
+      "lesson": "Orient. Overall rates are weighted by how often each branch occurs. A simple average of subgroup rates is usually wrong when subgroup sizes differ.\n\nDefine. A finite partition B1,...,Bk is disjoint and exhaustive. Because A is split into the disjoint pieces A∩Bi,\nP(A)=Σ P(Bi)P(A|Bi).\nThis is the law of total probability: a forward marginalization rule.\n\nConnect. S09 already added disjoint tree leaves for a two-branch case; S08 supplies each joint contribution P(Bi)P(A|Bi). Here we generalize the pattern and connect three representations.\n\nExplain. Contribution table:\nbranch       P(Bi)   P(error|Bi)   joint contribution\nsource1      .70         .02             .014\nsource2      .30         .05             .015\noverall error                              .029\nA simple average (.02+.05)/2=.035 ignores that source1 occurs more often. The same information can be drawn as a tree; the algebra is the sum of the error leaves.\n\nWorked example: Weekday=.80, weekend=.20; purchase rates .10,.25. Contributions .08 and .05 give overall purchase .13. This computes P(purchase), not P(weekend|purchase).\n\nGuided check: A request is class A=.20,B=.50,C=.30 with escalation rates .40,.10,.25. Compute the three joint contributions and overall escalation. Compare with the unweighted average of the three rates.\n\nFade. Before summing conditional rates, attach each rate to its branch probability. If the question asks “which branch given the outcome?”, do not swap the conditional bar. If a complete finite joint model is already available, S07's direct conditional definition can still be used; M06 later owns Bayes as a general inversion/update rule.\n\nDistinction check. Total probability moves from branch probabilities/conditionals to an overall marginal. It does not reverse a conditional. Direct conditioning from a completed joint model remains an S07 operation; Bayes as a reusable inversion rule is deferred to M06.",
       "main": "T22V3::ARC048::S18-M@1",
       "transfer": "T22V3::ARC048::S18-T@1",
       "guidedFeedback": "Check after attempting. Contributions are .08,.05,.075, totaling .205. The unweighted average (.40+.10+.25)/3=.25 is different because the branch shares are unequal.",
-      "instructionVersion": "m04-s18-instruction-v2-r1",
+      "instructionVersion": "m04-s18-instruction-v2.1-forward-reverse-boundary-r1",
       "representations": [
         {
           "kind": "table",
@@ -855,7 +855,7 @@
         "Interpret expectation as a probability-weighted average, not a guaranteed outcome."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Outcome-value prose → four-leaf payoff table with repeated value labels.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Finite expectation",
         "Finite payoff functions"
@@ -895,7 +895,7 @@
         "Reject simple averaging for nonuniform probabilities."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Retrieval/fluency on a new instance; the underlying method and representation are already explicit in instruction.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Uniform finite expectation",
         "Symmetry"
@@ -906,11 +906,11 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Compute uniform finite expectation efficiently and know when simple averaging is invalid.",
-      "lesson": "Orient. Equal atomic probabilities let expectation simplify to an arithmetic mean, but multiplicity still belongs to the atoms.\n\nDefine. If N atoms are equally likely, E[X]=(1/N)ΣX(ω). Symmetry can simplify the sum. Averaging distinct value labels is valid only when those labels carry equal total probability.\n\nConnect. S03 distinguishes atoms from aggregated labels; S19 supplies expectation.\n\nExplain. A fair die averages1,...,6 to3.5. Pair1 with6,2 with5,3 with4: each pair sums7, making the symmetry visible. If values repeat on different atoms, repeat them in the atomic average.\n\nWorked example: Uniform values {2,6,10,14} pair to16, so expectation8.\n\nGuided check: Eight equally likely atoms have values {0,0,0,4,4,8,8,8}. Compute the atomic mean. Then compare it with the naive mean of the distinct labels {0,4,8}.\n\nFade. Ask “equal probability of what?” before replacing a weighted sum with an ordinary mean.\n\nDistinction check. A value label can inherit more mass simply because more atomic outcomes map to it.",
+      "lesson": "Orient. Equal atomic probabilities let expectation simplify to an arithmetic mean, but multiplicity still belongs to the atoms.\n\nDefine. If N atoms are equally likely, E[X]=(1/N)ΣX(ω). Symmetry can simplify the sum. Averaging distinct value labels is valid only when those labels carry equal total probability.\n\nConnect. S03 distinguishes atoms from aggregated labels; S19 supplies expectation.\n\nExplain. A fair die averages1,...,6 to3.5. Pair1 with6,2 with5,3 with4: each pair sums7, making the symmetry visible. If values repeat on different atoms, repeat them in the atomic average.\n\nWorked example: Uniform values {2,6,10,14} pair to16, so expectation8.\n\nGuided check: Eight equally likely atoms have values {0,0,0,0,2,6,6,10}. Compute the atomic mean. Then compare it with the naive mean of the distinct labels {0,2,6,10} and explain the mismatch.\n\nFade. Ask “equal probability of what?” before replacing a weighted sum with an ordinary mean.\n\nDistinction check. A value label can inherit more mass simply because more atomic outcomes map to it.",
       "main": "T22V3::ARC048::S20-M@1",
       "transfer": "T22V3::ARC048::S20-T@1",
-      "guidedFeedback": "Check after attempting. Atomic mean=(0+0+0+4+4+8+8+8)/8=4. The distinct-label mean is also4 here by coincidence; equal numerical results do not make the methods generally interchangeable.",
-      "instructionVersion": "m04-s20-instruction-v2-r1"
+      "guidedFeedback": "Check after attempting. The atomic mean is (0+0+0+0+2+6+6+10)/8=24/8=3. The distinct-label mean is (0+2+6+10)/4=4.5. They differ because the four value labels have multiplicities4,1,2,1 rather than equal total probability.",
+      "instructionVersion": "m04-s20-instruction-v2.1-multiplicity-discriminator-r1"
     },
     {
       "order": 21,
@@ -933,7 +933,7 @@
         "Reject extending linearity to nonlinear operations such as squaring."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Explicit outcome proof/application → expectation-only summary data where linearity is usable but nonlinear moments are not recoverable.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Finite expectation linearity"
       ],
@@ -971,7 +971,7 @@
         "Explain independence is unnecessary for the expectation sum."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Retrieval/fluency on a new instance; the underlying method and representation are already explicit in instruction.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Indicators",
         "Expected counts"
@@ -1010,7 +1010,7 @@
         "State that expectation alone does not encode risk preference or choose a decision."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Direct model comparison → audit an overreaching decision memo from equal expectation.",
+      "transferScope": "Retrieval/fluency or error-diagnosis on a new instance; the central method/distinction is already explicit in visible instruction.",
       "inScope": [
         "Expectation interpretation",
         "Counterexamples"
@@ -1048,7 +1048,7 @@
         "Compute the expectation of a numerical outcome on the resulting leaves."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Construct a model → audit another solver's unweighted marginal, independence, expectation and conditional-direction errors.",
+      "transferScope": "Changed-surface transfer: Main constructs a coherent staged model; Transfer instead audits a multi-error proposed analysis and then uses the completed joint model for direct reverse conditioning.",
       "inScope": [
         "Integrated M04 reasoning"
       ],
@@ -1058,11 +1058,11 @@
         "Formal random-variable distribution machinery"
       ],
       "exitCondition": "Solve a multi-step finite uncertainty problem and defend each selected rule.",
-      "lesson": "Orient. Real probability problems rarely announce which formula should be used. The final skill is to construct an auditable model and choose representations that expose the needed quantities.\n\nDefine. A synthesis solution should identify the atoms/branches or table cells, distinguish joint/conditional/marginal quantities, justify any independence claim, and attach numerical values only after the probability model is coherent.\n\nConnect. S07–S18 supply conditioning, trees, independence and total probability; S19–S23 supply expectation. No Bayes inversion or decision theory is needed.\n\nExplain. A useful workflow is not a mandatory recipe: first ask what is given and what is being requested; choose a list, table, tree or algebraic partition that makes the information visible; then apply only relationships whose hypotheses are established. An answer should make its representation and denominator choices inspectable.\n\nWorked example: A shipment comes North=.20/South=.80; damage rates .10/.30. A tree gives damage leaves .02,.24, overall .26. Because .10 differs from .26, source and damage are dependent. With value -5 for damage and +1 otherwise, E=-5(.26)+1(.74)=-.56. No posterior source|damage was computed.\n\nGuided check: Mode L=.30/R=.70; alarm rates .20/.40; value2 for alarm and0 otherwise. Choose either a tree or partition table, find overall alarm, test mode/alarm independence, and compute expectation.\n\nFade. In independent synthesis, no representation or method is named for you. Make the model choice explicit and let the requested quantities determine the calculations.\n\nDistinction check. A complete solution may legitimately stop when asked for an unavailable reverse conditional or decision preference. Refusing unsupported inference is part of correct modeling.",
+      "lesson": "Orient. Real probability problems rarely announce one formula. The final skill is to build an auditable finite model, choose a useful representation, and refuse conclusions that the model does not support.\n\nDefine. A synthesis certificate names the finite states/branches or cells, records which probabilities are marginal/conditional/joint, applies only relationships whose hypotheses are established, and separates probability facts from later decision rules.\n\nConnect. S07–S18 provide conditioning, joints, trees, independence, repeated-trial structure and total probability. S19–S23 provide finite expectation and its interpretation limits.\n\nExplain. Representation choice should follow the givens. Explicit outcome lists are useful when atomic states are small; two-way tables expose joint/conditional denominators; trees expose staged conditionals; partition algebra can be shortest once the branches are already known. None of these formats is automatically best.\n\nWorked example: Four independent messages are delivered with probability0.60 each. A score is +3 if at least one is delivered and -2 if none are delivered. The efficient representation is the two-event partition {none, at least one}. Independence gives P(none)=.4^4=.0256, so P(at least one)=.9744. The expected score is 3(.9744)-2(.0256)=2.872. This synthesis uses repeated-trial complement plus expectation; it does not involve staged conditional branches or an independence test between route and outcome.\n\nGuided check: A fair die is rolled once. Score +4 if the result is a multiple of3 and -1 otherwise. Choose either an explicit event/complement representation or direct counting, compute the event probability and expected score, and say why no tree is needed.\n\nFade. On an independent synthesis task, do not imitate the surface form of the worked example. Let the givens determine whether a table, tree, partition or explicit atoms make the structure easiest to audit.\n\nDistinction check. Never reverse a conditional merely by swapping the bar. If a complete joint model is already available, direct S07 conditioning remains legal. Bayes as a general inversion/update rule is M06; preference/optimal-policy criteria are M05.",
       "main": "T22V3::ARC048::S24-M@1",
       "transfer": "T22V3::ARC048::S24-T@1",
-      "guidedFeedback": "Check after attempting. One route: alarm=.30(.20)+.70(.40)=.34. Because P(alarm|L)=.20≠.34, mode and alarm are dependent. Expected value=2(.34)=.68. A posterior such as P(L|alarm) was not requested or needed.",
-      "instructionVersion": "m04-s24-instruction-v2-r1"
+      "guidedFeedback": "Check after attempting. Multiples of3 are {3,6}, so probability2/6=1/3 and complement2/3. Expected score=4(1/3)-1(2/3)=2/3. An explicit finite event split is sufficient; there is no staged conditional structure requiring a tree.",
+      "instructionVersion": "m04-s24-instruction-v2.1-fresh-synthesis-r1"
     }
   ],
   "problems": {
@@ -1383,8 +1383,8 @@
       "id": "T22V3::ARC048::S18-M@1",
       "order": 18,
       "kind": "main",
-      "prompt": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
-      "obligationVersion": 2,
+      "prompt": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and explain the forward/reverse boundary precisely: total probability gives P(defect) but does not obtain P(M3|defect) by swapping the conditional bar. State what would make a direct S07 conditional calculation possible without introducing Bayes' theorem as a new rule.",
+      "obligationVersion": 3,
       "representations": [
         {
           "kind": "table",
@@ -1417,8 +1417,8 @@
       "id": "T22V3::ARC048::S18-T@1",
       "order": 18,
       "kind": "transfer",
-      "prompt": "A request stream is A with probability0.2, B with0.5, C with0.3. Conditional escalation rates are0.4,0.1,0.25. An analyst reports overall escalation=(0.4+0.1+0.25)/3=0.25 and then says P(B|escalation)=0.1. Audit both claims: compute the correct weighted overall escalation from branch contributions, explain the averaging error, and explain why the supplied information plus total probability does not make 0.1 equal to P(B|escalation).",
-      "obligationVersion": 2
+      "prompt": "A request stream is A with probability0.2, B with0.5, C with0.3. Conditional escalation rates are0.4,0.1,0.25. An analyst reports overall escalation=(0.4+0.1+0.25)/3=0.25 and then says P(B|escalation)=0.1. Audit both claims: compute the correct weighted overall escalation from branch contributions, explain the averaging error, explain why0.1 is P(escalation|B) rather than P(B|escalation), and state the precise boundary: total probability does not perform conditional reversal, though a completed joint model could be conditioned directly by the S07 definition. Do not introduce Bayes' theorem as a new rule.",
+      "obligationVersion": 3
     },
     "T22V3::ARC048::S19-M@1": {
       "id": "T22V3::ARC048::S19-M@1",
@@ -1431,8 +1431,8 @@
       "id": "T22V3::ARC048::S19-T@1",
       "order": 19,
       "kind": "transfer",
-      "prompt": "A four-leaf finite model is already normalized:\nleaf      1     2     3     4\nprob.    .10   .20   .30   .40\nvalue     8     8     1    -2\nCompute the expectation by weighting the four atomic leaves, state whether the expected value must equal one of the displayed leaf values, and explain why averaging the three distinct labels {-2,1,8} would be the wrong operation here.",
-      "obligationVersion": 2
+      "prompt": "A four-leaf finite payoff model is already normalized:\nleaf      1     2     3     4\nprob.    .10   .20   .30   .40\nvalue     8     4     1    -2\nCompute the expectation by weighting all four leaves, state whether the expected value must equal one of the displayed leaf values, and explain why the unweighted arithmetic mean of the four payoff values would be the wrong operation when the leaf probabilities are unequal.",
+      "obligationVersion": 3
     },
     "T22V3::ARC048::S20-M@1": {
       "id": "T22V3::ARC048::S20-M@1",
@@ -1445,8 +1445,8 @@
       "id": "T22V3::ARC048::S20-T@1",
       "order": 20,
       "kind": "transfer",
-      "prompt": "One of the eight equally likely ordered outcomes has numerical values {1,1,3,3,7,7,9,9}. Compute expectation using atomic averaging and symmetry. Then explain why averaging the four distinct labels 1,3,7,9 happens to work here and when it would fail.",
-      "obligationVersion": 1
+      "prompt": "Eight atomic outcomes are equally likely and have numerical values {1,1,1,1,3,7,9,9}. Compute the expectation by averaging all eight atomic values. Then compute the naive average of the four distinct labels {1,3,7,9}, compare the two numbers, and explain exactly why the distinct-label method fails here.",
+      "obligationVersion": 2
     },
     "T22V3::ARC048::S21-M@1": {
       "id": "T22V3::ARC048::S21-M@1",
@@ -1494,15 +1494,15 @@
       "id": "T22V3::ARC048::S24-M@1",
       "order": 24,
       "kind": "main",
-      "prompt": "A task is routed to system L with probability0.35 and otherwise to system R. Success probability is0.80 on L and0.40 on R. A success has numerical score+5 and a failure score-2. Produce one compact auditable finite-probability analysis using a representation of your choice. It must determine P(L∩success), the overall success probability, whether route and success are independent (with a numerical justification), and the expected score. Also state one reverse/posterior or decision conclusion that is not licensed by these calculations alone.",
-      "obligationVersion": 2
+      "prompt": "An operations log covers250 tasks:100 were routed through system L and150 through R. Conditional success rate is0.70 on L and0.50 on R. A success scores+4 and a failure scores−3. A note claims (i) route and success are independent because both routes sometimes succeed, and (ii) the positive overall expected score proves the current routing policy is optimal. Produce one compact auditable analysis using a representation of your choice. Reconstruct the staged probability model, compute P(L∩success), obtain the overall success probability by the branch partition, decide the independence claim numerically, compute the expected score, and decide whether the 'optimal policy' conclusion follows from these M04 facts.",
+      "obligationVersion": 3
     },
     "T22V3::ARC048::S24-T@1": {
       "id": "T22V3::ARC048::S24-T@1",
       "order": 24,
       "kind": "transfer",
-      "prompt": "Audit this proposed analysis. A case comes from channel X with probability0.25 or Y with0.75. Conditional flag probabilities are0.80 and0.20; value is+6 for flag and0 otherwise. Proposal: “Overall flag=(.80+.20)/2=.50; therefore channel and flag are independent; expected value=6(.50)=3; and P(X|flag)=.80 because the X flag rate is.80.” Identify and repair every probability/expectation claim that M04 can settle, using any auditable representation. Do not use Bayes' rule.",
-      "obligationVersion": 2
+      "prompt": "Audit this proposed analysis. A case comes from channel X with probability0.25 or Y with0.75. Conditional flag probabilities are0.80 and0.20; value is+6 for flag and0 otherwise. Proposal: “Overall flag=(.80+.20)/2=.50; therefore channel and flag are independent; expected value=6(.50)=3; and P(X|flag)=.80 because the X flag rate is.80.” Identify and repair every probability/expectation claim M04 can settle using an auditable representation. Once you have the completed joint model, compute P(X|flag) directly from the S07 conditional definition; do not introduce Bayes' theorem as a new inversion rule.",
+      "obligationVersion": 3
     }
   },
   "evaluators": {
@@ -2391,7 +2391,7 @@
       "marking": "Do not accept clipping an impossible result as a valid probability method."
     },
     "T22V3::ARC048::S18-M@1": {
-      "reference": "The source categories are mutually exclusive and exhaustive and their probabilities sum1. Contributions are .50(.01)=.005,.30(.03)=.009,.20(.06)=.012; total defect=.026. The simple average .0333... ignores unequal source shares. In general P(A)=Σ_i P(B_i)P(A|B_i) for a finite partition. This does not compute P(M_i|defect), e.g. P(M3|defect).",
+      "reference": "The source events are disjoint/exhaustive and their probabilities sum1. Contributions are .50(.01)=.005,.30(.03)=.009,.20(.06)=.012, giving P(defect)=.026. The simple average ignores unequal source weights. In general P(A)=Σ_i P(B_i)P(A|B_i) for a finite partition. This forward sum does not justify swapping to P(M3|defect). If a complete joint model is available, S07 allows direct conditioning from P(M3∩defect)/P(defect); M06 later owns Bayes as a general inversion/update rule.",
       "rubric": [
         {
           "points": 2,
@@ -2411,13 +2411,13 @@
         },
         {
           "points": 2,
-          "criterion": "Identifies a reverse quantity such as P(M3|defect) as not answered by this forward calculation."
+          "criterion": "States that total probability does not reverse the conditional, while a completed joint model can support direct S07 conditioning; Bayes as a general inversion rule remains deferred."
         }
       ],
-      "marking": "Do not require Bayes' rule. The task is forward marginalization plus branch-weight reasoning."
+      "marking": "Score forward marginalization and the precise scope boundary. Do not require evaluation of P(M3|defect)."
     },
     "T22V3::ARC048::S18-T@1": {
-      "reference": "Joint escalation contributions are .08,.05,.075, totaling .205. The .25 simple average ignores branch prevalence. The number .1 is P(escalation|B), not P(B|escalation); reversing the bar changes the denominator. M04's total-probability calculation provides P(escalation), not a license to swap conditionals.",
+      "reference": "Contributions are .08,.05,.075, totaling .205. The .25 simple average ignores branch prevalence. The number .1 is P(escalation|B), not P(B|escalation). Total probability supplies the forward marginal P(escalation); it does not license swapping the conditional. Once the joint contribution P(B∩escalation)=.05 and P(escalation)=.205 are available, S07's direct definition could in principle condition the completed joint model, while Bayes as a general inversion rule remains outside M04.",
       "rubric": [
         {
           "points": 2,
@@ -2433,14 +2433,14 @@
         },
         {
           "points": 2,
-          "criterion": "Distinguishes P(escalation|B)=0.1 from P(B|escalation)."
+          "criterion": "Distinguishes P(escalation|B)=0.1 from P(B|escalation) without swapping the conditional bar."
         },
         {
           "points": 2,
-          "criterion": "Explains that total probability is a forward marginalization rule and does not justify reversing the conditional."
+          "criterion": "States that total probability is forward marginalization while direct S07 conditioning is legal once a complete joint model is available; Bayes as a general inversion rule is not introduced."
         }
       ],
-      "marking": "The learner need not compute the posterior P(B|escalation); diagnosing the unavailable/incorrect reversal is the intended boundary evidence."
+      "marking": "Do not require the numerical reverse conditional. Score the direction/boundary distinction."
     },
     "T22V3::ARC048::S19-M@1": {
       "reference": "Probabilities sum1. E=−.6+.5+2.1=2.0. The payoff2 never occurs; expectation is a weighted average.",
@@ -2469,19 +2469,19 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S19-T@1": {
-      "reference": "E=8(.10)+8(.20)+1(.30)-2(.40)=.8+1.6+.3-.8=1.9. Expectation need not be an attainable leaf value;1.9 is not. Averaging distinct labels ignores their unequal total probability/multiplicity.",
+      "reference": "E=8(.10)+4(.20)+1(.30)-2(.40)=.8+.8+.3-.8=1.1. Expectation need not be an attainable leaf value;1.1 is not displayed. The arithmetic mean of the four values would silently assign equal probability1/4 to each leaf, contradicting the stated unequal probabilities.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Uses all four atomic probabilities rather than collapsing repeated value8."
+          "criterion": "Uses all four stated leaf probabilities as weights."
         },
         {
           "points": 2,
-          "criterion": "Forms the four weighted terms correctly."
+          "criterion": "Forms the four weighted terms0.8,0.8,0.3,-0.8 correctly."
         },
         {
           "points": 2,
-          "criterion": "Computes expectation1.9."
+          "criterion": "Computes expectation1.1."
         },
         {
           "points": 2,
@@ -2489,10 +2489,10 @@
         },
         {
           "points": 2,
-          "criterion": "Explains why an unweighted average of distinct value labels is invalid."
+          "criterion": "Explains that an unweighted arithmetic mean would replace the stated unequal probabilities by false equal weights."
         }
       ],
-      "marking": "Atomic weighting is the scored method; equivalent regrouping by total mass at value8 is valid if shown correctly."
+      "marking": "This task remains inside S19 weighted expectation; repeated-label multiplicity is reserved for S20."
     },
     "T22V3::ARC048::S20-M@1": {
       "reference": "Mean=(57)/6=9.5. Pairs(2,17),(5,14),(8,11) each average9.5. Equal atomic weights justify both. Distinct labels cannot be averaged blindly if multiplicities/probabilities differ.",
@@ -2521,30 +2521,30 @@
       "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S20-T@1": {
-      "reference": "Atomic mean=5. Each distinct label occurs twice, so label-average also5 here; it fails if multiplicities differ.",
+      "reference": "Atomic expectation=(1+1+1+1+3+7+9+9)/8=32/8=4. The distinct-label mean=(1+3+7+9)/4=5. It fails because the labels have unequal atomic multiplicities:1 occurs4 times,3 once,7 once,9 twice, so the labels do not carry equal probability.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Eight atomic outcomes respected."
+          "criterion": "Treats the eight equiprobable atoms, including repeated values, as the averaging units."
         },
         {
           "points": 2,
-          "criterion": "Expectation5."
+          "criterion": "Computes the correct atomic expectation4."
         },
         {
           "points": 2,
-          "criterion": "Symmetry/pairing valid."
+          "criterion": "Computes the naive distinct-label average5."
         },
         {
           "points": 2,
-          "criterion": "Why label-average works here explained."
+          "criterion": "Identifies unequal multiplicities4,1,1,2 for values1,3,7,9 (equivalent probability explanation accepted)."
         },
         {
           "points": 2,
-          "criterion": "Unequal-multiplicity failure condition stated."
+          "criterion": "Explains why unequal label probabilities make the distinct-label average invalid here."
         }
       ],
-      "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
+      "marking": "The numerical disagreement is intentional: a solver that averages distinct labels blindly must be distinguishable."
     },
     "T22V3::ARC048::S21-M@1": {
       "reference": "From E[Z]=Σω Z(ω)P(ω), E[aX+bY+c]=Σω[aX(ω)+bY(ω)+c]P(ω)=aΣωX(ω)P(ω)+bΣωY(ω)P(ω)+cΣωP(ω)=aE[X]+bE[Y]+c because ΣωP(ω)=1. Here E[X]=2 and E[Y]=3, so E[3X−2Y+5]=3·2−2·3+5=5. Direct combined values are3,9,3, whose mean is5. No independence is needed. E[X²]=(0+4+16)/3=20/3 whereas(E[X])²=4, so expectation does not commute with squaring.",
@@ -2703,33 +2703,33 @@
       "marking": "Score factual distinctions; do not require the learner to choose a preferred model."
     },
     "T22V3::ARC048::S24-M@1": {
-      "reference": "One valid tree/partition model: L=.35,R=.65. Leaves: L-success=.28,L-fail=.07,R-success=.26,R-fail=.39; total1. P(L∩success)=.28 and P(success)=.54. Route/success are dependent because P(success|L)=.80 differs from .54 (equivalently .28≠.35×.54). Expected score=5(.54)-2(.46)=1.78. The analysis does not by itself compute a posterior such as P(L|success) via an unprovided updating rule, nor does it choose a preferred policy.",
+      "reference": "P(L)=100/250=.40 and P(R)=.60. A coherent staged model has leaves L-S=.40(.70)=.28,L-F=.12,R-S=.60(.50)=.30,R-F=.30, which sum1. Thus P(L∩S)=.28 and P(S)=.28+.30=.58 by the route partition. Route and success are dependent because P(S|L)=.70≠.58 (equivalently .28≠.40×.58). Expected score=4(.58)-3(.42)=1.06. A positive expectation describes this model; it does not prove the routing policy is optimal without alternatives/decision criteria, which belong to M05.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Constructs a coherent tree/partition/table model with route probabilities0.35/0.65 and normalized success/failure leaves."
+          "criterion": "Constructs an auditable staged model with route probabilities0.40/0.60 and leaves0.28,0.12,0.30,0.30 (or an equivalent table/tree/partition)."
         },
         {
           "points": 2,
-          "criterion": "Computes P(L∩success)=0.28."
+          "criterion": "Computes P(L∩success)=0.28 from the route marginal and conditional success rate."
         },
         {
           "points": 2,
-          "criterion": "Computes overall success probability0.54 from the finite model."
+          "criterion": "Computes overall success probability0.58 by summing the weighted route contributions0.28+0.30."
         },
         {
           "points": 2,
-          "criterion": "Diagnoses dependence with a valid numerical criterion such as0.80≠0.54 or0.28≠0.35×0.54."
+          "criterion": "Rejects independence using a valid numerical criterion such as0.70≠0.58 or0.28≠0.40×0.58."
         },
         {
           "points": 2,
-          "criterion": "Computes expected score1.78 and states a posterior/decision conclusion not licensed by the analysis alone."
+          "criterion": "Computes expected score1.06 and rejects the claim that positive expectation alone proves the routing policy optimal."
         }
       ],
-      "marking": "Accept tree, partition table, explicit leaf list or equivalent algebra. The learner must organize the model; do not require a particular representation."
+      "marking": "Accept any coherent finite representation. The learner must organize the mixed count/conditional data rather than copy a prescribed representation."
     },
     "T22V3::ARC048::S24-T@1": {
-      "reference": "Correct leaves: X-flag=.20,X-no=.05,Y-flag=.15,Y-no=.60. Overall flag=.35, not .50, because the branch rates require weights. Channel and flag are dependent since P(flag|X)=.80≠.35 (or .20≠.25×.35). Expected value=6(.35)=2.1. The statement P(X|flag)=.80 reverses the conditional; .80 is P(flag|X). With the complete joint leaves one could directly restrict to flag leaves and get .20/.35=4/7, but the point is that reversal is not justified by equality of conditionals and Bayes' formula is unnecessary.",
+      "reference": "Joint leaves are X-flag=.20,X-no=.05,Y-flag=.15,Y-no=.60. Overall flag=.35, not.50, because branch rates require weights. Channel and flag are dependent since P(flag|X)=.80≠.35 (or .20≠.25×.35). Expected value=6(.35)=2.1. The number .80 is P(flag|X), not P(X|flag). From the completed joint model, direct S07 conditioning gives P(X|flag)=.20/.35=4/7. This uses the conditional definition, not Bayes as a new general inversion rule.",
       "rubric": [
         {
           "points": 2,
@@ -2749,10 +2749,10 @@
         },
         {
           "points": 2,
-          "criterion": "Diagnoses .80 as P(flag|X), not P(X|flag), and does not justify reversal by Bayes-like swapping."
+          "criterion": "Diagnoses .80 as P(flag|X), not P(X|flag), and computes P(X|flag)=4/7 directly from the completed joint model using the S07 definition rather than conditional swapping."
         }
       ],
-      "marking": "Direct restriction to the fully reconstructed joint leaves is acceptable if the learner chooses to compute P(X|flag); Bayes' formula is neither required nor awarded."
+      "marking": "Direct finite conditioning is already owned in S07. Do not require Bayes' theorem or posterior-odds machinery."
     }
   },
   "coverage": {
@@ -3908,7 +3908,7 @@
       {
         "claim": "Identify a finite partition.",
         "task": "main",
-        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
+        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and explain the forward/reverse boundary precisely: total probability gives P(defect) but does not obtain P(M3|defect) by swapping the conditional bar. State what would make a direct S07 conditional calculation possible without introducing Bayes' theorem as a new rule.",
         "rubricEvidence": [
           "Verifies the three source events are disjoint/exhaustive as stated and their probabilities sum to1."
         ]
@@ -3916,7 +3916,7 @@
       {
         "claim": "Verify partition events are disjoint and exhaustive.",
         "task": "main",
-        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
+        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and explain the forward/reverse boundary precisely: total probability gives P(defect) but does not obtain P(M3|defect) by swapping the conditional bar. State what would make a direct S07 conditional calculation possible without introducing Bayes' theorem as a new rule.",
         "rubricEvidence": [
           "Verifies the three source events are disjoint/exhaustive as stated and their probabilities sum to1."
         ]
@@ -3924,7 +3924,7 @@
       {
         "claim": "Compute branch joint probabilities.",
         "task": "main",
-        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
+        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and explain the forward/reverse boundary precisely: total probability gives P(defect) but does not obtain P(M3|defect) by swapping the conditional bar. State what would make a direct S07 conditional calculation possible without introducing Bayes' theorem as a new rule.",
         "rubricEvidence": [
           "Computes the three joint defect contributions0.005,0.009,0.012."
         ]
@@ -3932,7 +3932,7 @@
       {
         "claim": "Sum branch contributions to a target event.",
         "task": "main",
-        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
+        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and explain the forward/reverse boundary precisely: total probability gives P(defect) but does not obtain P(M3|defect) by swapping the conditional bar. State what would make a direct S07 conditional calculation possible without introducing Bayes' theorem as a new rule.",
         "rubricEvidence": [
           "Sums the weighted contributions to overall defect probability0.026 and rejects the unweighted rate average."
         ]
@@ -3940,10 +3940,10 @@
       {
         "claim": "State the finite law of total probability without posterior inversion.",
         "task": "main",
-        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
+        "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and explain the forward/reverse boundary precisely: total probability gives P(defect) but does not obtain P(M3|defect) by swapping the conditional bar. State what would make a direct S07 conditional calculation possible without introducing Bayes' theorem as a new rule.",
         "rubricEvidence": [
           "States the finite law P(A)=Σ_i P(B_i)P(A|B_i) for a partition (equivalent notation accepted).",
-          "Identifies a reverse quantity such as P(M3|defect) as not answered by this forward calculation."
+          "States that total probability does not reverse the conditional, while a completed joint model can support direct S07 conditioning; Bayes as a general inversion rule remains deferred."
         ]
       }
     ],
@@ -4165,41 +4165,41 @@
       {
         "claim": "Construct the finite staged probability model.",
         "task": "main",
-        "publicRequest": "A task is routed to system L with probability0.35 and otherwise to system R. Success probability is0.80 on L and0.40 on R. A success has numerical score+5 and a failure score-2. Produce one compact auditable finite-probability analysis using a representation of your choice. It must determine P(L∩success), the overall success probability, whether route and success are independent (with a numerical justification), and the expected score. Also state one reverse/posterior or decision conclusion that is not licensed by these calculations alone.",
+        "publicRequest": "An operations log covers250 tasks:100 were routed through system L and150 through R. Conditional success rate is0.70 on L and0.50 on R. A success scores+4 and a failure scores−3. A note claims (i) route and success are independent because both routes sometimes succeed, and (ii) the positive overall expected score proves the current routing policy is optimal. Produce one compact auditable analysis using a representation of your choice. Reconstruct the staged probability model, compute P(L∩success), obtain the overall success probability by the branch partition, decide the independence claim numerically, compute the expected score, and decide whether the 'optimal policy' conclusion follows from these M04 facts.",
         "rubricEvidence": [
-          "Constructs a coherent tree/partition/table model with route probabilities0.35/0.65 and normalized success/failure leaves."
+          "Constructs an auditable staged model with route probabilities0.40/0.60 and leaves0.28,0.12,0.30,0.30 (or an equivalent table/tree/partition)."
         ]
       },
       {
         "claim": "Compute a joint probability from conditionals.",
         "task": "main",
-        "publicRequest": "A task is routed to system L with probability0.35 and otherwise to system R. Success probability is0.80 on L and0.40 on R. A success has numerical score+5 and a failure score-2. Produce one compact auditable finite-probability analysis using a representation of your choice. It must determine P(L∩success), the overall success probability, whether route and success are independent (with a numerical justification), and the expected score. Also state one reverse/posterior or decision conclusion that is not licensed by these calculations alone.",
+        "publicRequest": "An operations log covers250 tasks:100 were routed through system L and150 through R. Conditional success rate is0.70 on L and0.50 on R. A success scores+4 and a failure scores−3. A note claims (i) route and success are independent because both routes sometimes succeed, and (ii) the positive overall expected score proves the current routing policy is optimal. Produce one compact auditable analysis using a representation of your choice. Reconstruct the staged probability model, compute P(L∩success), obtain the overall success probability by the branch partition, decide the independence claim numerically, compute the expected score, and decide whether the 'optimal policy' conclusion follows from these M04 facts.",
         "rubricEvidence": [
-          "Computes P(L∩success)=0.28."
+          "Computes P(L∩success)=0.28 from the route marginal and conditional success rate."
         ]
       },
       {
         "claim": "Compute a marginal by total probability.",
         "task": "main",
-        "publicRequest": "A task is routed to system L with probability0.35 and otherwise to system R. Success probability is0.80 on L and0.40 on R. A success has numerical score+5 and a failure score-2. Produce one compact auditable finite-probability analysis using a representation of your choice. It must determine P(L∩success), the overall success probability, whether route and success are independent (with a numerical justification), and the expected score. Also state one reverse/posterior or decision conclusion that is not licensed by these calculations alone.",
+        "publicRequest": "An operations log covers250 tasks:100 were routed through system L and150 through R. Conditional success rate is0.70 on L and0.50 on R. A success scores+4 and a failure scores−3. A note claims (i) route and success are independent because both routes sometimes succeed, and (ii) the positive overall expected score proves the current routing policy is optimal. Produce one compact auditable analysis using a representation of your choice. Reconstruct the staged probability model, compute P(L∩success), obtain the overall success probability by the branch partition, decide the independence claim numerically, compute the expected score, and decide whether the 'optimal policy' conclusion follows from these M04 facts.",
         "rubricEvidence": [
-          "Computes overall success probability0.54 from the finite model."
+          "Computes overall success probability0.58 by summing the weighted route contributions0.28+0.30."
         ]
       },
       {
         "claim": "Diagnose independence from conditional/marginal comparison.",
         "task": "main",
-        "publicRequest": "A task is routed to system L with probability0.35 and otherwise to system R. Success probability is0.80 on L and0.40 on R. A success has numerical score+5 and a failure score-2. Produce one compact auditable finite-probability analysis using a representation of your choice. It must determine P(L∩success), the overall success probability, whether route and success are independent (with a numerical justification), and the expected score. Also state one reverse/posterior or decision conclusion that is not licensed by these calculations alone.",
+        "publicRequest": "An operations log covers250 tasks:100 were routed through system L and150 through R. Conditional success rate is0.70 on L and0.50 on R. A success scores+4 and a failure scores−3. A note claims (i) route and success are independent because both routes sometimes succeed, and (ii) the positive overall expected score proves the current routing policy is optimal. Produce one compact auditable analysis using a representation of your choice. Reconstruct the staged probability model, compute P(L∩success), obtain the overall success probability by the branch partition, decide the independence claim numerically, compute the expected score, and decide whether the 'optimal policy' conclusion follows from these M04 facts.",
         "rubricEvidence": [
-          "Diagnoses dependence with a valid numerical criterion such as0.80≠0.54 or0.28≠0.35×0.54."
+          "Rejects independence using a valid numerical criterion such as0.70≠0.58 or0.28≠0.40×0.58."
         ]
       },
       {
         "claim": "Compute the expectation of a numerical outcome on the resulting leaves.",
         "task": "main",
-        "publicRequest": "A task is routed to system L with probability0.35 and otherwise to system R. Success probability is0.80 on L and0.40 on R. A success has numerical score+5 and a failure score-2. Produce one compact auditable finite-probability analysis using a representation of your choice. It must determine P(L∩success), the overall success probability, whether route and success are independent (with a numerical justification), and the expected score. Also state one reverse/posterior or decision conclusion that is not licensed by these calculations alone.",
+        "publicRequest": "An operations log covers250 tasks:100 were routed through system L and150 through R. Conditional success rate is0.70 on L and0.50 on R. A success scores+4 and a failure scores−3. A note claims (i) route and success are independent because both routes sometimes succeed, and (ii) the positive overall expected score proves the current routing policy is optimal. Produce one compact auditable analysis using a representation of your choice. Reconstruct the staged probability model, compute P(L∩success), obtain the overall success probability by the branch partition, decide the independence claim numerically, compute the expected score, and decide whether the 'optimal policy' conclusion follows from these M04 facts.",
         "rubricEvidence": [
-          "Computes expected score1.78 and states a posterior/decision conclusion not licensed by the analysis alone."
+          "Computes expected score1.06 and rejects the claim that positive expectation alone proves the routing policy optimal."
         ]
       }
     ]
@@ -4692,11 +4692,11 @@
     "T22V3::ARC048::S18@1": {
       "main": [
         "A component source has this finite branch table",
-        "simply averaging .01,.03,.06"
+        "what would make a direct S07 conditional calculation possible"
       ],
       "transfer": [
         "An analyst reports overall escalation",
-        "P(B|escalation)=0.1"
+        "completed joint model could be conditioned directly"
       ]
     },
     "T22V3::ARC048::S19@1": {
@@ -4705,8 +4705,8 @@
         "finite outcome has numerical payoff −3 with probability0.20,"
       ],
       "transfer": [
-        "A four-leaf finite model is already normalized",
-        "averaging the three distinct labels"
+        "A four-leaf finite payoff model is already normalized",
+        "unweighted arithmetic mean of the four payoff values"
       ]
     },
     "T22V3::ARC048::S20@1": {
@@ -4715,8 +4715,8 @@
         "number is chosen uniformly from {2,5,8,11,14,17}. Compute the"
       ],
       "transfer": [
-        "One of the eight equally likely ordered outcomes",
-        "of the eight equally likely ordered outcomes has"
+        "Eight atomic outcomes are equally likely",
+        "naive average of the four distinct labels"
       ]
     },
     "T22V3::ARC048::S21@1": {
@@ -4751,12 +4751,12 @@
     },
     "T22V3::ARC048::S24@1": {
       "main": [
-        "A task is routed to system L",
-        "representation of your choice"
+        "An operations log covers250 tasks",
+        "positive overall expected score proves the current routing policy is optimal"
       ],
       "transfer": [
         "Audit this proposed analysis",
-        "Overall flag=(.80+.20)/2=.50"
+        "compute P(X|flag) directly from the S07 conditional definition"
       ]
     }
   },
@@ -4765,100 +4765,100 @@
     "reviewedAt": "2026-09-18",
     "sessions": {
       "T22V3::ARC048::S01@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s01-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S02@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s02-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S03@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s03-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S04@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s04-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S05@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s05-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S06@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s06-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S07@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s07-instruction-v2-conditioning-representation-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S08@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s08-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S09@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s09-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'changed-surface Transfer'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S10@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s10-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'changed-surface Transfer'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S11@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s11-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer retrieval; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S12@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s12-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S13@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s13-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main proof reconstruction and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'proof reconstruction' and lesson/Main→Transfer is 'changed-surface Transfer'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S14@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s14-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main fresh Main evidence and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S15@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s15-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S16@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s16-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S17@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s17-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S18@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s18-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S19@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s19-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S20@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s20-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer retrieval; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S21@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s21-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main proof reconstruction and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'proof reconstruction' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S22@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s22-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main proof reconstruction and lesson/Main→Transfer retrieval; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'proof reconstruction' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S23@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s23-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       },
       "T22V3::ARC048::S24@1": {
-        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s24-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main fresh Main evidence and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
+        "status": "builder-repaired-awaiting-independent-confirmation",
+        "note": "Post-review repair: lesson→Main is 'fresh Main evidence' and lesson/Main→Transfer is 'changed-surface Transfer'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
       }
     }
   },
@@ -4881,64 +4881,64 @@
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S01-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Invalid overlapping label list → learner repairs a common recording rule and atomic representation."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S02-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S02-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Forward normalization exercise → audit an illegal probability ledger and repair one mass while preserving the others."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S03-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S03-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Atomic fair outcomes → aggregated dashboard labels with unequal multiplicities."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S04-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S04-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Direct complement calculation → diagnose a linguistically plausible but set-theoretically wrong complement."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S05-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S05-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Explicit sets → region-count ledger; disjointness and addition must be inferred from the overlap cell."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S06-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S06-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Forward inclusion–exclusion → infer the missing overlap and neither region from aggregate counts."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S07-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S07-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Nonuniform atom ledger → two-way table plus chronological-information misconception."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S08-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S08-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Joint-from-conditional execution → diagnose illegal marginal multiplication and repair the model."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S09-M@1": {
         "class": "retrieval",
@@ -4946,7 +4946,7 @@
       },
       "T22V3::ARC048::S09-T@1": {
         "class": "changed-surface Transfer",
-        "reason": "Construct a correct tree → audit a malformed partially labelled tree and repair a wrong leaf."
+        "reason": "Instruction constructs a valid tree; Transfer instead requires auditing and repairing a malformed tree with a wrong leaf and missing branch."
       },
       "T22V3::ARC048::S10-M@1": {
         "class": "retrieval",
@@ -4954,7 +4954,7 @@
       },
       "T22V3::ARC048::S10-T@1": {
         "class": "changed-surface Transfer",
-        "reason": "Compute two protocols from wording → infer which candidate second-stage branch belongs to which protocol."
+        "reason": "Instruction computes named replacement protocols; Transfer requires inferring which protocol produced each candidate conditional branch before computing paths."
       },
       "T22V3::ARC048::S11-M@1": {
         "class": "retrieval",
@@ -4962,15 +4962,15 @@
       },
       "T22V3::ARC048::S11-T@1": {
         "class": "retrieval",
-        "reason": "S11 Transfer reuses the explicitly taught product test and complemented-event factorization on another one-die event pair; the theorem/method is visible, so this is retrieval rather than claimed transfer."
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S12-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S12-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Sequential without-replacement story → static marginal/joint probability data requiring conditional/product cross-check."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S13-M@1": {
         "class": "proof reconstruction",
@@ -4978,55 +4978,55 @@
       },
       "T22V3::ARC048::S13-T@1": {
         "class": "changed-surface Transfer",
-        "reason": "Given disjoint sets → construct a valid independent non-disjoint pair on a different two-die surface."
+        "reason": "Instruction classifies supplied disjoint/dependent examples; Transfer additionally requires constructing and justifying an independent non-disjoint event pair."
       },
       "T22V3::ARC048::S14-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Instruction deliberately does not exhibit pairwise-but-not-mutual independence; Main's XOR system requires discovering the higher-order failure."
+        "class": "retrieval",
+        "reason": "Visible instruction explicitly states that pairwise checks are insufficient, gives the triple condition, and the public Main explicitly commands all pair and triple checks; the XOR data are valuable but the method is supplied/rehearsed."
       },
       "T22V3::ARC048::S14-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "XOR bit construction → four-atom set system with the same higher-order phenomenon in a different representation."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S15-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S15-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Direct exact paths → audit a written representativeness/gambler's-fallacy explanation."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S16-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S16-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Derive exactly-k correctly → repair a one-path-only solution that omits arrangement count."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S17-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S17-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Choose complement route → diagnose an impossible blind-addition result and separate overlap from complement."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S18-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S18-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Build weighted total → audit unweighted rate averaging and an illegal conditional reversal."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S19-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S19-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Outcome-value prose → four-leaf payoff table with repeated value labels."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S20-M@1": {
         "class": "retrieval",
@@ -5034,15 +5034,15 @@
       },
       "T22V3::ARC048::S20-T@1": {
         "class": "retrieval",
-        "reason": "S20 Transfer repeats atomic averaging/symmetry with duplicated labels after the guided practice already uses duplicated labels; this is valuable retrieval but not changed-surface transfer."
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S21-M@1": {
         "class": "proof reconstruction",
         "reason": "Main reconstructs the finite weighted-sum derivation of linearity before applying it and checking the nonlinear boundary."
       },
       "T22V3::ARC048::S21-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Explicit outcome proof/application → expectation-only summary data where linearity is usable but nonlinear moments are not recoverable."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S22-M@1": {
         "class": "proof reconstruction",
@@ -5050,190 +5050,64 @@
       },
       "T22V3::ARC048::S22-T@1": {
         "class": "retrieval",
-        "reason": "S22 Transfer is another uniform committee-indicator expected-count problem after both the worked and guided instruction already use committee/person-selection indicators; it is retrieval."
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S23-M@1": {
         "class": "retrieval",
         "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S23-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Direct model comparison → audit an overreaching decision memo from equal expectation."
+        "class": "retrieval",
+        "reason": "The exact central decision/procedure or misconception targeted here is already visibly rehearsed in this session's lesson/guided/distinction surfaces; the task remains valuable retrieval/error diagnosis but is not claimed as transfer."
       },
       "T22V3::ARC048::S24-M@1": {
         "class": "fresh Main evidence",
-        "reason": "Main supplies data and target quantities but no required representation or calculation pipeline; the learner must choose an auditable model/representation and a valid independence criterion."
+        "reason": "Repaired S24 instruction synthesizes repeated-trial complement plus expectation, while Main requires a different mixed count/conditional staged model, weighted marginal, independence diagnosis and decision-boundary audit with no prescribed representation."
       },
       "T22V3::ARC048::S24-T@1": {
         "class": "changed-surface Transfer",
-        "reason": "Construct a model → audit another solver's unweighted marginal, independence, expectation and conditional-direction errors."
+        "reason": "Main constructs a coherent staged model; Transfer instead audits a multi-error proposed analysis and then uses the completed joint model for direct reverse conditioning."
       }
     }
   },
   "decisionAudit": {
-    "version": "m04-decision-audit-v2.1-r1",
+    "version": "m04-decision-audit-v2.2-independent-repair-r1",
     "reviewedAt": "2026-10-02",
     "items": {
-      "T22V3::ARC048::S01-T@1": {
-        "claimedLearnerDecision": "Invalid overlapping label list → learner repairs a common recording rule and atomic representation.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Diagnoses that the proposed labels are overlapping/incomplete rather than mutually exclusive complete records. | Constructs the valid four ordered atomic outcomes. | Represents the blue event correctly. | Represents the alarm event correctly. | Gives their intersection as the single blue-and-on atom.",
-        "classificationJustification": "Invalid overlapping label list → learner repairs a common recording rule and atomic representation."
-      },
-      "T22V3::ARC048::S02-T@1": {
-        "claimedLearnerDecision": "Forward normalization exercise → audit an illegal probability ledger and repair one mass while preserving the others.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Detects total mass1.05 and rejects the proposed model. | Repairs W to0.25 by normalization while leaving the other masses fixed. | Checks the repaired masses are nonnegative and total1. | Computes P({W,E})=0.37 in the repaired model. | Explains that individual bounds do not replace the normalization requirement.",
-        "classificationJustification": "Forward normalization exercise → audit an illegal probability ledger and repair one mass while preserving the others."
-      },
-      "T22V3::ARC048::S03-T@1": {
-        "claimedLearnerDecision": "Atomic fair outcomes → aggregated dashboard labels with unequal multiplicities.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Identifies HH,HT,TH,TT as the four equiprobable atomic outcomes. | Builds multiplicities 1,2,1 for 0,1,2 heads. | Computes P(exactly1 head)=1/2. | Rejects probability1/3 for each aggregate label because multiplicities differ. | Explicitly distinguishes atomic equiprobability from equiprobability of derived labels.",
-        "classificationJustification": "Atomic fair outcomes → aggregated dashboard labels with unequal multiplicities."
-      },
-      "T22V3::ARC048::S04-T@1": {
-        "claimedLearnerDecision": "Direct complement calculation → diagnose a linguistically plausible but set-theoretically wrong complement.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "States B^c exactly as 'not divisible by4' (or lists the 15 matching integers). | Computes P(B^c)=3/4. | Identifies Ω as certain and ∅ as impossible. | Explains that the proposed wording can include members of B and therefore is not a complement. | Uses exact set membership rather than an 'opposite-looking' description.",
-        "classificationJustification": "Direct complement calculation → diagnose a linguistically plausible but set-theoretically wrong complement."
-      },
-      "T22V3::ARC048::S05-T@1": {
-        "claimedLearnerDecision": "Explicit sets → region-count ledger; disjointness and addition must be inferred from the overlap cell.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Uses the zero overlap region to establish C∩D=∅ and disjointness. | Computes P(C)=7/30. | Computes P(D)=5/30. | Explicitly invokes the disjoint addition rule after establishing disjointness. | Computes P(C∪D)=12/30=2/5 from the region ledger.",
-        "classificationJustification": "Explicit sets → region-count ledger; disjointness and addition must be inferred from the overlap cell."
-      },
-      "T22V3::ARC048::S06-T@1": {
-        "claimedLearnerDecision": "Forward inclusion–exclusion → infer the missing overlap and neither region from aggregate counts.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Rearranges inclusion–exclusion to infer |C∩D|=20. | Computes P(C∩D)=1/4. | Computes neither count20 (probability1/4). | Explains the double-counted overlap in region terms. | Keeps counts/probabilities consistent with the 80-record universe.",
-        "classificationJustification": "Forward inclusion–exclusion → infer the missing overlap and neither region from aggregate counts."
-      },
-      "T22V3::ARC048::S07-T@1": {
-        "claimedLearnerDecision": "Nonuniform atom ledger → two-way table plus chronological-information misconception.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Reads the S column as the reference group and computes P(E|S)=18/24=3/4. | Reads the E row as the reference group and computes P(S|E)=18/30=3/5. | Explicitly distinguishes the two denominators/reference populations rather than reversing the conditional mechanically. | Rejects the time-axis/causal misconception: later information can restrict the reference set without changing the earlier source. | States the positive-conditioning-count/probability requirement for each conditional ratio.",
-        "classificationJustification": "Nonuniform atom ledger → two-way table plus chronological-information misconception."
-      },
-      "T22V3::ARC048::S08-T@1": {
-        "claimedLearnerDecision": "Joint-from-conditional execution → diagnose illegal marginal multiplication and repair the model.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Diagnoses that multiplying the two marginals is unjustified because independence was not established. | Uses P(urgent)P(escalated|urgent) to compute the joint0.21. | Computes P(urgent|escalated)=0.525 using denominator0.40. | Tracks the conditional direction correctly. | Checks0.21 is no larger than either marginal.",
-        "classificationJustification": "Joint-from-conditional execution → diagnose illegal marginal multiplication and repair the model."
-      },
       "T22V3::ARC048::S09-T@1": {
-        "claimedLearnerDecision": "Construct a correct tree → audit a malformed partially labelled tree and repair a wrong leaf.",
+        "claimedLearnerDecision": "Instruction constructs a valid tree; Transfer instead requires auditing and repairing a malformed tree with a wrong leaf and missing branch.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Repairs the missing A no-timeout branch to0.90 and preserves valid branch complements. | Replaces the incorrect A-timeout leaf with0.40×0.10=0.04. | Computes all four leaves0.04,0.36,0.15,0.45 by path multiplication. | Verifies the leaf probabilities sum to1. | Adds the two timeout leaves to obtain overall timeout0.19.",
-        "classificationJustification": "Construct a correct tree → audit a malformed partially labelled tree and repair a wrong leaf."
+        "classificationJustification": "Instruction constructs a valid tree; Transfer instead requires auditing and repairing a malformed tree with a wrong leaf and missing branch."
       },
       "T22V3::ARC048::S10-T@1": {
-        "claimedLearnerDecision": "Compute two protocols from wording → infer which candidate second-stage branch belongs to which protocol.",
+        "claimedLearnerDecision": "Instruction computes named replacement protocols; Transfer requires inferring which protocol produced each candidate conditional branch before computing paths.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Identifies Model I (4/10) as with replacement. | Identifies Model II (3/9) as without replacement. | Computes with-replacement P(BB)=0.16. | Computes without-replacement P(BB)=2/15. | Explains the numerator/denominator state update after removing a B card.",
-        "classificationJustification": "Compute two protocols from wording → infer which candidate second-stage branch belongs to which protocol."
-      },
-      "T22V3::ARC048::S12-T@1": {
-        "claimedLearnerDecision": "Sequential without-replacement story → static marginal/joint probability data requiring conditional/product cross-check.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Conditional.24. | Compared with marginal.30. | Dependence conclusion. | Product benchmark.15. | Criteria linked consistently.",
-        "classificationJustification": "Sequential without-replacement story → static marginal/joint probability data requiring conditional/product cross-check."
+        "classificationJustification": "Instruction computes named replacement protocols; Transfer requires inferring which protocol produced each candidate conditional branch before computing paths."
       },
       "T22V3::ARC048::S13-T@1": {
-        "claimedLearnerDecision": "Given disjoint sets → construct a valid independent non-disjoint pair on a different two-die surface.",
+        "claimedLearnerDecision": "Instruction classifies supplied disjoint/dependent examples; Transfer additionally requires constructing and justifying an independent non-disjoint event pair.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "C,D disjoint. | Product test shows dependence. | Reason not based on intuition. | Valid non-disjoint independent pair supplied. | Pair justified numerically.",
-        "classificationJustification": "Given disjoint sets → construct a valid independent non-disjoint pair on a different two-die surface."
-      },
-      "T22V3::ARC048::S14-M@1": {
-        "claimedLearnerDecision": "Determine whether pairwise factorization is sufficient and decide to inspect the triple intersection.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "All three marginals1/2. | Each pair intersection1/4. | Pairwise independence correctly concluded. | Triple intersection0 computed. | Mutual independence correctly rejected because0≠1/8.",
-        "classificationJustification": "Instruction deliberately does not exhibit pairwise-but-not-mutual independence; Main's XOR system requires discovering the higher-order failure."
-      },
-      "T22V3::ARC048::S14-T@1": {
-        "claimedLearnerDecision": "XOR bit construction → four-atom set system with the same higher-order phenomenon in a different representation.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Marginals correct. | Pair intersections correct. | Pairwise independence established. | Triple probability1/4. | Mutual independence rejected against1/8.",
-        "classificationJustification": "XOR bit construction → four-atom set system with the same higher-order phenomenon in a different representation."
-      },
-      "T22V3::ARC048::S15-T@1": {
-        "claimedLearnerDecision": "Direct exact paths → audit a written representativeness/gambler's-fallacy explanation.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Computes the first exact path as0.3^3·0.7^2=0.01323. | Computes the second exact path as the same0.01323. | Explains that alternation/visual representativeness does not alter exact path probability. | States P(next positive|+++)=0.30 under independence (and negative0.70). | Explicitly rejects a run-induced balancing/'due' effect.",
-        "classificationJustification": "Direct exact paths → audit a written representativeness/gambler's-fallacy explanation."
-      },
-      "T22V3::ARC048::S16-T@1": {
-        "claimedLearnerDecision": "Derive exactly-k correctly → repair a one-path-only solution that omits arrangement count.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Identifies that one exact path is not the whole exactly-one-failure event. | Counts six possible failure positions. | Computes one-path probability0.2·0.8^5=0.065536. | Uses disjoint equal-probability path addition to multiply by6. | Obtains total probability0.393216.",
-        "classificationJustification": "Derive exactly-k correctly → repair a one-path-only solution that omits arrangement count."
-      },
-      "T22V3::ARC048::S17-T@1": {
-        "claimedLearnerDecision": "Choose complement route → diagnose an impossible blind-addition result and separate overlap from complement.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Diagnoses overlapping success events and rejects the clipped blind-addition method. | Computes P(none)=0.6^5=0.07776 using independence. | Computes P(at least one)=0.92224 by complement. | Computes P(all)=0.4^5=0.01024. | Correctly separates the independence product assumption from the complement rule.",
-        "classificationJustification": "Choose complement route → diagnose an impossible blind-addition result and separate overlap from complement."
-      },
-      "T22V3::ARC048::S18-T@1": {
-        "claimedLearnerDecision": "Build weighted total → audit unweighted rate averaging and an illegal conditional reversal.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Computes branch contributions0.08,0.05,0.075. | Computes overall escalation0.205. | Explains why the unweighted average0.25 is invalid with unequal branch probabilities. | Distinguishes P(escalation|B)=0.1 from P(B|escalation). | Explains that total probability is a forward marginalization rule and does not justify reversing the conditional.",
-        "classificationJustification": "Build weighted total → audit unweighted rate averaging and an illegal conditional reversal."
-      },
-      "T22V3::ARC048::S19-T@1": {
-        "claimedLearnerDecision": "Outcome-value prose → four-leaf payoff table with repeated value labels.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Uses all four atomic probabilities rather than collapsing repeated value8. | Forms the four weighted terms correctly. | Computes expectation1.9. | States that the expectation need not equal a displayed leaf value. | Explains why an unweighted average of distinct value labels is invalid.",
-        "classificationJustification": "Outcome-value prose → four-leaf payoff table with repeated value labels."
-      },
-      "T22V3::ARC048::S21-T@1": {
-        "claimedLearnerDecision": "Explicit outcome proof/application → expectation-only summary data where linearity is usable but nonlinear moments are not recoverable.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Computes expectation27. | Applies linearity with the coefficients/signs correctly. | States that dependence between U and V is irrelevant for this linear combination. | States that E[U²] is not determined by E[U] alone. | Attributes the limitation to nonlinearity rather than to a missing independence assumption.",
-        "classificationJustification": "Explicit outcome proof/application → expectation-only summary data where linearity is usable but nonlinear moments are not recoverable."
-      },
-      "T22V3::ARC048::S23-T@1": {
-        "claimedLearnerDecision": "Direct model comparison → audit an overreaching decision memo from equal expectation.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Computes both expectations as3. | Identifies A's most likely outcome as+5 and B's only/most likely outcome as+3. | Distinguishes A's possible loss from B's guaranteed+3. | Rejects the claim that equal expectation implies equal risk/outcome structure. | Rejects a universal preference/indifference conclusion from expectation alone and leaves preference criteria to later decision theory.",
-        "classificationJustification": "Direct model comparison → audit an overreaching decision memo from equal expectation."
+        "classificationJustification": "Instruction classifies supplied disjoint/dependent examples; Transfer additionally requires constructing and justifying an independent non-disjoint event pair."
       },
       "T22V3::ARC048::S24-M@1": {
-        "claimedLearnerDecision": "Choose an auditable representation and valid probability relationships for the requested joint, marginal, dependence and expectation quantities.",
+        "claimedLearnerDecision": "Choose and construct an auditable representation from mixed count/conditional givens, then select valid marginal/independence/expectation relationships.",
         "decisionSuppliedByPrompt": false,
         "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Constructs a coherent tree/partition/table model with route probabilities0.35/0.65 and normalized success/failure leaves. | Computes P(L∩success)=0.28. | Computes overall success probability0.54 from the finite model. | Diagnoses dependence with a valid numerical criterion such as0.80≠0.54 or0.28≠0.35×0.54. | Computes expected score1.78 and states a posterior/decision conclusion not licensed by the analysis alone.",
-        "classificationJustification": "Main supplies data and target quantities but no required representation or calculation pipeline; the learner must choose an auditable model/representation and a valid independence criterion."
+        "scoredLearnerAction": "Constructs an auditable staged model with route probabilities0.40/0.60 and leaves0.28,0.12,0.30,0.30 (or an equivalent table/tree/partition). | Computes P(L∩success)=0.28 from the route marginal and conditional success rate. | Computes overall success probability0.58 by summing the weighted route contributions0.28+0.30. | Rejects independence using a valid numerical criterion such as0.70≠0.58 or0.28≠0.40×0.58. | Computes expected score1.06 and rejects the claim that positive expectation alone proves the routing policy optimal.",
+        "classificationJustification": "Repaired S24 instruction synthesizes repeated-trial complement plus expectation, while Main requires a different mixed count/conditional staged model, weighted marginal, independence diagnosis and decision-boundary audit with no prescribed representation."
       },
       "T22V3::ARC048::S24-T@1": {
-        "claimedLearnerDecision": "Construct a model → audit another solver's unweighted marginal, independence, expectation and conditional-direction errors.",
+        "claimedLearnerDecision": "Main constructs a coherent staged model; Transfer instead audits a multi-error proposed analysis and then uses the completed joint model for direct reverse conditioning.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Builds/recovers the four joint leaves0.20,0.05,0.15,0.60 or an equivalent auditable partition. | Repairs overall flag probability to0.35 and explains the branch-weighting error. | Repairs the independence claim and shows channel/flag are dependent with a numerical criterion. | Repairs expected value to2.1. | Diagnoses .80 as P(flag|X), not P(X|flag), and does not justify reversal by Bayes-like swapping.",
-        "classificationJustification": "Construct a model → audit another solver's unweighted marginal, independence, expectation and conditional-direction errors."
+        "scoredLearnerAction": "Builds/recovers the four joint leaves0.20,0.05,0.15,0.60 or an equivalent auditable partition. | Repairs overall flag probability to0.35 and explains the branch-weighting error. | Repairs the independence claim and shows channel/flag are dependent with a numerical criterion. | Repairs expected value to2.1. | Diagnoses .80 as P(flag|X), not P(X|flag), and computes P(X|flag)=4/7 directly from the completed joint model using the S07 definition rather than conditional swapping.",
+        "classificationJustification": "Main constructs a coherent staged model; Transfer instead audits a multi-error proposed analysis and then uses the completed joint model for direct reverse conditioning."
       }
     }
   },
@@ -5344,10 +5218,10 @@
         "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
       },
       "T22V3::ARC048::S18@1": {
-        "plausibleWrongSolver": "Take an unweighted mean of subgroup rates and swap a conditional direction.",
+        "plausibleWrongSolver": "Average subgroup rates without branch weights, then swap P(escalation|B) into P(B|escalation).",
         "targetedTask": "T22V3::ARC048::S18-T@1",
-        "discriminatingCriterion": "Explains why the unweighted average0.25 is invalid with unequal branch probabilities.",
-        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+        "discriminatingCriterion": "Distinguishes P(escalation|B)=0.1 from P(B|escalation) without swapping the conditional bar.",
+        "expectedFailure": "The solver loses direction/boundary credit even if some forward arithmetic is correct."
       },
       "T22V3::ARC048::S19@1": {
         "plausibleWrongSolver": "Average distinct payoff labels rather than atomic probability mass.",
@@ -5356,10 +5230,10 @@
         "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
       },
       "T22V3::ARC048::S20@1": {
-        "plausibleWrongSolver": "Ignore atomic multiplicity when averaging duplicated labels.",
+        "plausibleWrongSolver": "Average each distinct value label once and ignore that the labels have unequal atomic multiplicities.",
         "targetedTask": "T22V3::ARC048::S20-T@1",
-        "discriminatingCriterion": "Unequal-multiplicity failure condition stated.",
-        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+        "discriminatingCriterion": "Computes the naive distinct-label average5.",
+        "expectedFailure": "The wrong method gives5 rather than the correct atomic expectation4, so accidental numerical success is impossible on this discriminator."
       },
       "T22V3::ARC048::S21@1": {
         "plausibleWrongSolver": "Require independence for linearity or push expectation through squaring.",
@@ -5380,10 +5254,10 @@
         "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
       },
       "T22V3::ARC048::S24@1": {
-        "plausibleWrongSolver": "Use an unweighted conditional-rate average, infer independence, and reverse the conditional.",
+        "plausibleWrongSolver": "Use an unweighted conditional-rate average, infer independence from co-occurrence, overclaim policy optimality, or reverse a conditional by swapping the bar.",
         "targetedTask": "T22V3::ARC048::S24-T@1",
-        "discriminatingCriterion": "Repairs overall flag probability to0.35 and explains the branch-weighting error.",
-        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+        "discriminatingCriterion": "Diagnoses .80 as P(flag|X), not P(X|flag), and computes P(X|flag)=4/7 directly from the completed joint model using the S07 definition rather than conditional swapping.",
+        "expectedFailure": "A conditional-swap solver cannot receive the final conceptual credit even if other repaired quantities are correct."
       }
     }
   },
@@ -5460,5 +5334,26 @@
     "version": "m04-historical-exposure-v2-r1",
     "sessions": {},
     "note": "Fresh v2 lesson examples were deliberately chosen away from current fixed numerical instances. Materially changed fixed tasks are versioned by obligationVersion/fingerprint; no historical exact-answer lesson exposure has been newly identified in this builder pass."
+  },
+  "independentReviewRepair": {
+    "review": "docs/t22-course/M04-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md",
+    "reviewedHead": "d89444017bed13dbcb6f336b6ae36c86971805f4",
+    "findings": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06"
+    ],
+    "disposition": "bounded repair implemented; awaiting exact-head validation and independent confirmation",
+    "changedFixedContracts": {
+      "S18-M": 3,
+      "S18-T": 3,
+      "S19-T": 3,
+      "S20-T": 2,
+      "S24-M": 3,
+      "S24-T": 3
+    }
   }
 }
