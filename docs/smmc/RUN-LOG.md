@@ -1144,3 +1144,27 @@ The validator now rejects any reviewed item whose page is missing, outside the f
 
 Gate 2 remains **REVIEW CANDIDATE**. Gate 3 remains CLOSED. Fresh exact-head CI and one fresh independent attack are required.
 
+## Arsenal Gate 3 opened — granularity calibration (2026-10-03)
+
+Gate 2 is frozen and accepted at exact SHA `ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7`, preserved on `main` by merge commit `7600dd377192aafe6ca777636d94474736ea4e4f`.
+
+Gate 3 begins as a **granularity-measurement overlay** on the immutable 661-candidate raw pool. It does not reopen harvest and does not permit merge/split, ontology, ranking, prerequisites, candidate relations, learning order, or Forge/Boss/Arena work.
+
+Added:
+- `course/smmc/arsenal/granularity-contract-v1.mjs`
+- `course/smmc/arsenal/granularity-ledger-v0.mjs`
+- `docs/smmc/ARSENAL-GATE3-GRANULARITY-CONTRACT.md`
+- executable Gate-3 checks in `scripts/validate-smmc-authoring-v1.mjs`
+
+The diagnostic ruler measures each candidate independently on:
+- reference scale: MICRO / DEPLOYABLE / MACRO / CROSS_SCALE / UNRESOLVED;
+- bundle structure;
+- action shape;
+- semantic context reach;
+- trigger / operation / output boundary clarity;
+- confidence.
+
+The initial calibration deliberately reviews **43** mixed candidates across all Gate-2 origin families and leaves **618** explicitly UNREVIEWED. The calibration includes broad content labels, source category terms, clean deployable moves, problem-local micro expressions, explicit bundles, theorem labels, proof structures, and an unresolved legacy shorthand.
+
+No raw candidate/evidence record was mutated.
+
