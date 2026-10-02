@@ -1,11 +1,11 @@
 {
-  "version": "m04-authoring-v1.2-astra-r1",
+  "version": "m04-authoring-v1.3-source-modernization-r1",
   "instructionVersion": "m04-instruction-astra-r1",
   "module": {
     "order": 4,
     "id": "ARC048",
     "title": "Finite Probability, Conditional Probability, Independence & Expectation",
-    "status": "authored-v1.2-astra-repaired",
+    "status": "modernization-v1.3-source-driven-candidate",
     "destination": "Model finite uncertainty rigorously, condition correctly, distinguish dependence from independence, and compute finite expectations without prematurely using Bayes, decision theory or formal distribution machinery.",
     "gate": "Page completion is not clearance. Every ownership claim must be observable in a public fixed task, references stay locked until save, and current instruction must remain semantically distinct from fixed assessment content.",
     "nextBoundary": "M05 owns trading-game decisions and risk preferences; M06 owns Bayes/posterior updating. M04 stops at forward finite probability and expectation."
@@ -35,9 +35,9 @@
     ]
   },
   "coverageAudit": {
-    "version": "m04-observability-astra-r1-2026-09-18",
-    "status": "120/120 semantically re-audited exact fixed-task → rubric mappings; S05 claim 3 and S13 claim 5 intentionally map to Transfer; 24/24 semantic separation retained",
-    "policy": "Every ownership claim is manually pinned to the exact fixed public task and one or more evaluator criteria that actually observe it. Cross-task mappings are allowed when the Transfer is the genuine observer. S05-T and S21-M are obligationVersion=2 because their assessment contracts materially changed during Astra repair."
+    "version": "m04-observability-v13-source-modernization-r1-2026-10-02",
+    "status": "Historical 120/120 claim→task→rubric audit retained as provenance; source-driven v1.3 instruction repairs applied to S07/S13/S15/S18. Full post-M03-v1.7.2 evidence-distance, decision-audit, wrong-solver and semantic-separation reconfirmation remains required before re-freeze.",
+    "policy": "Historical exact claim observers remain unchanged because no fixed assessment contract changes in this patch. Current-standard publication additionally requires explicit evidence-distance classification, decision audits where freshness/transfer is claimed, wrong-solver discrimination, current-instruction semantic separation, source/pedagogy dossier, deterministic math checks and Chromium evidence."
   },
   "sessions": [
     {
@@ -293,9 +293,10 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Compute and explain a conditional probability with the right restricted universe and zero-denominator caveat.",
-      "lesson": "Conditioning on B means we now reason only among outcomes in B and renormalize their probability to1. For P(B)>0, P(A|B)=P(A∩B)/P(B). Reversing the bar changes the denominator and usually changes the value. Worked example: A uniform card numbered1–10 is chosen. Given that it is even (five possibilities), the chance it is above6 is2/5 because the restricted universe is {2,4,6,8,10}. Guided check: On a uniform die, compute P(result is even | result>2) by listing the restricted outcomes first.",
+      "lesson": "Conditioning on B changes the reference universe: keep only probability mass inside B and renormalize that mass to1. For P(B)>0, P(A|B)=P(A∩B)/P(B). In an equiprobable model this can look like favourable-over-restricted-total counting, but in a nonuniform model the restricted outcomes keep their original relative weights. Reversing the bar asks a different question because the denominator becomes P(A), so P(A|B) and P(B|A) are not interchangeable. Worked example: On Ω={a,b,c,d}, let the atomic probabilities be .10,.20,.30,.40. Take A={c,d} and B={b,c,d}. Then P(A∩B)=.70 and P(B)=.90, so P(A|B)=.70/.90=7/9. In the reverse direction P(B|A)=.70/.70=1. The same intersection appears, but the reference population changes. This is direct finite conditioning, not posterior inversion by Bayes' rule. Guided check: On a uniform die, compute P(result is even | result>2) by listing the restricted outcomes first, identify the denominator explicitly, then say what denominator would be used for the reversed conditional. If the conditioning event had probability0, explain why the ratio would be undefined.",
       "main": "T22V3::ARC048::S07-M@1",
-      "transfer": "T22V3::ARC048::S07-T@1"
+      "transfer": "T22V3::ARC048::S07-T@1",
+      "instructionVersion": "m04-s07-instruction-v13-conditional-denominator-r1"
     },
     {
       "order": 8,
@@ -505,9 +506,10 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Classify event pairs without conflating structural disjointness and probabilistic independence.",
-      "lesson": "Mutually exclusive events satisfy A∩B=∅. Independent events satisfy P(A∩B)=P(A)P(B). If both events have positive probability and are disjoint, then0=P(A∩B)<P(A)P(B), so they cannot be independent. A zero-probability event is the edge case. Worked example: On a fair die, A={1,2},B={5,6} are disjoint with probabilities1/3 each. Their joint is0 but product1/9, so they are not independent. Guided check: Explain why ∅ is disjoint from every event and also independent of every event under the product definition.",
+      "lesson": "Mutually exclusive events satisfy A∩B=∅. Independent events satisfy P(A∩B)=P(A)P(B). These are different kinds of statements: disjointness is about whether events can occur together; independence is about whether probability factorizes, equivalently whether conditioning on a positive-probability event leaves the other probability unchanged. If P(A)>0 and P(B)>0 and A,B are disjoint, then P(B|A)=0 while P(B)>0, so learning A occurred makes B impossible rather than leaving B unchanged. Thus positive-probability disjoint events are necessarily dependent. A zero-probability event is the product-definition edge case. Worked example: On a fair die, A={1,2},B={5,6} are disjoint with probabilities1/3 each. Their joint is0 but product1/9, so they are not independent; equivalently P(B|A)=0≠1/3. Guided check: Explain why ∅ is disjoint from every event and also independent of every event under the product definition. Then state why the conditional criterion is not the right way to analyze conditioning on ∅.",
       "main": "T22V3::ARC048::S13-M@1",
-      "transfer": "T22V3::ARC048::S13-T@1"
+      "transfer": "T22V3::ARC048::S13-T@1",
+      "instructionVersion": "m04-s13-instruction-v13-exclusivity-independence-r1"
     },
     {
       "order": 14,
@@ -577,9 +579,10 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Compute exact ordered success/failure path probabilities and justify the multiplication.",
-      "lesson": "For independent repeated trials with constant success probability p, an exact path with s successes and f failures has probability p^s(1−p)^f. The order changes the path identity but not its probability when every trial uses the same p. Worked example: A shot succeeds independently with p=0.6. The exact path S,F,S has probability .6·.4·.6=.144. F,S,S has the same .144 because it has two successes and one failure. Guided check: With independent success probability0.7, compute the probability of S,S,F,F.",
+      "lesson": "For independent repeated trials with constant success probability p, one exact ordered path with s successes and f failures has probability p^s(1−p)^f. Independence justifies multiplying trial probabilities; constant p means two exact paths with the same numbers of successes and failures have the same probability even when one looks more regular, clustered or 'random'. Visual representativeness is not a probability rule. Also distinguish one exact path from an event that collects many paths: 'S,F,S,F' names one path, while 'exactly two successes in four trials' contains several paths and will be counted in S16. Worked example: A shot succeeds independently with p=0.6. The exact paths S,F,S and F,S,S each have probability .6·.4·.6=.144. Their different visual order does not change the product because each contains two successes and one failure. Guided check: With independent success probability0.7, compare the exact paths S,S,F,F and S,F,S,F. Compute each probability, say why neither path becomes more likely merely by looking more mixed, and do not yet aggregate all paths with two successes.",
       "main": "T22V3::ARC048::S15-M@1",
-      "transfer": "T22V3::ARC048::S15-T@1"
+      "transfer": "T22V3::ARC048::S15-T@1",
+      "instructionVersion": "m04-s15-instruction-v13-exact-path-representativeness-r1"
     },
     {
       "order": 16,
@@ -685,9 +688,10 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Compute a forward marginal probability by partitioning the sample space.",
-      "lesson": "If B1,…,Bk are disjoint and cover Ω, then A is split into disjoint pieces A∩Bi. Therefore P(A)=ΣP(Bi)P(A|Bi). This is a forward marginalization rule; solving backward for P(Bi|A) is Bayes territory and comes later. Worked example: A job comes from source1 with.7 or source2 with.3. Error probabilities are.02 and.05. Total error=.7·.02+.3·.05=.029. Guided check: A customer is weekday with.8 or weekend with.2; purchase rates are.1 and.25. Compute the overall purchase probability only.",
+      "lesson": "If B1,…,Bk are disjoint and cover Ω, then A is split into the disjoint pieces A∩Bi. Therefore P(A)=ΣP(Bi)P(A|Bi). The branch probabilities P(Bi) are weights: conditional rates from unequally common branches cannot normally be averaged as though the branches were equally likely. This is a forward marginalization rule; solving backward for P(Bi|A) is Bayes territory and comes later. Worked example: A job comes from source1 with probability.7 or source2 with.3. Error probabilities are.02 and.05. The branch contributions are .7·.02=.014 and .3·.05=.015, so total error=.029. The tempting plain average (.02+.05)/2=.035 is wrong because it silently pretends the two sources occur equally often. Guided check: A customer is weekday with.8 or weekend with.2; purchase rates are.1 and.25. Verify the two time classes form a partition, compute the weighted overall purchase probability, and explain why the unweighted average of .1 and .25 is not the requested overall rate.",
       "main": "T22V3::ARC048::S18-M@1",
-      "transfer": "T22V3::ARC048::S18-T@1"
+      "transfer": "T22V3::ARC048::S18-T@1",
+      "instructionVersion": "m04-s18-instruction-v13-weighted-partition-r1"
     },
     {
       "order": 19,
@@ -4477,8 +4481,8 @@
     }
   },
   "semanticSeparationAudit": {
-    "version": "m04-semantic-separation-v1",
-    "reviewedAt": "2026-09-18",
+    "version": "m04-semantic-separation-v13-source-repair-r1",
+    "reviewedAt": "2026-10-02",
     "sessions": {
       "T22V3::ARC048::S01@1": {
         "status": "reviewed-separated",
@@ -4506,7 +4510,7 @@
       },
       "T22V3::ARC048::S07@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses numbers1–10 and a die; Main uses1–12 and Transfer uses a 40-record contingency table."
+        "note": "v1.3 lesson uses a nonuniform four-atom weighted model plus a die guided check; Main uses uniform 1–12 and Transfer uses a 40-record contingency table. The lesson teaches denominator/direction principles without solving either fixed instance."
       },
       "T22V3::ARC048::S08@1": {
         "status": "reviewed-separated",
@@ -4530,7 +4534,7 @@
       },
       "T22V3::ARC048::S13@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses die subsets {1,2}/{5,6}; fixed tasks use different finite sets and a separate two-die construction."
+        "note": "v1.3 lesson strengthens product/conditional contrast on die subsets {1,2}/{5,6}; Main uses a different 8-point positive-probability disjoint pair and zero-event edge case; Transfer additionally requires constructing a non-disjoint independent pair on two dice."
       },
       "T22V3::ARC048::S14@1": {
         "status": "reviewed-separated",
@@ -4538,7 +4542,7 @@
       },
       "T22V3::ARC048::S15@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses p=.6 and guided p=.7; fixed tasks use .8 and .3."
+        "note": "v1.3 lesson contrasts exact paths under p=.6/.7 and explicitly defers aggregated exactly-k counting to S16; Main uses p=.8 four-test paths and Transfer uses p=.3 five-observation paths. No fixed numeric answer is exposed."
       },
       "T22V3::ARC048::S16@1": {
         "status": "reviewed-separated",
@@ -4550,7 +4554,7 @@
       },
       "T22V3::ARC048::S18@1": {
         "status": "reviewed-separated",
-        "note": "Lesson uses two job sources; fixed tasks use three machines and three request classes with different rates."
+        "note": "v1.3 lesson uses two sources with weights .7/.3 and explicitly refutes unweighted averaging; Main uses three machines .50/.30/.20 and Transfer uses three classes .2/.5/.3. No posterior or fixed answer is exposed."
       },
       "T22V3::ARC048::S19@1": {
         "status": "reviewed-separated",
@@ -4578,7 +4582,7 @@
       }
     }
   },
-  "authoringPolicy": "Original T22 Elite M04 material, repaired under M04 Astra findings. Every session teaches before testing with surface-distinct examples; claim observability is manually task/rubric pinned rather than positionally inferred. Conditional denominators, independence assumptions and expectation interpretation are explicit. M05/M06/M26 boundaries remain closed.",
+  "authoringPolicy": "T22 v1.2 source-driven modernization candidate. Repository ownership remains authoritative. Mature probability texts and probability-education research may strengthen instruction but may not steal M05 decision theory, M06 Bayes/posterior inversion or M26 formal distribution/variance machinery. Different numbers/data alone do not certify freshness or transfer. Historical fixed-task contracts and prior attempts are preserved unless a later repair materially changes a public prompt/evaluator; instruction-only repairs use session-specific instruction versions.",
   "crossModulePrerequisiteCleanup": {
     "version": "m01-m08-prerequisite-cleanup-2026-09-24",
     "scope": "Cross-module prerequisite/JIT micro-repairs only; no fixed assessment prompt, rubric, obligationVersion or stable task/session ID changed.",
@@ -4587,5 +4591,83 @@
     ],
     "lessonOnlySessionIds": [],
     "fixedAssessmentChanges": []
+  },
+  "sourceLedger": {
+    "version": "m04-source-ledger-v13-r1",
+    "dossier": "docs/t22-course/M04-SOURCE-DOSSIER-AND-PEDAGOGY-EVIDENCE.md",
+    "policy": "Repository ownership is authoritative. Blitzstein & Hwang and Grinstead & Snell are independent mathematical comparators; MAA/IES shape undergraduate learning and assessment design; Batanero/Álvarez-Arroyo, Díaz/Batanero and Konold et al. shape misconception and wrong-solver attacks. All T22 tasks remain independently authored.",
+    "sources": [
+      {
+        "id": "REPO-M04",
+        "role": "curriculum authority",
+        "sections": "current m04.json, M04 boundary/review/repair/follow-up records, M03 v1.7.2 evidence standard and T22 v1.2 protocol",
+        "supports": "exact M04 ownership, prerequisites, M05/M06/M26 exclusions, evidence/provenance requirements",
+        "notImported": "legacy acceptance as immunity from fresh review"
+      },
+      {
+        "id": "BLITZSTEIN-HWANG-2E",
+        "role": "primary conceptual probability comparator",
+        "sections": "Ch.1 sample spaces/finite probability/counting; Ch.2 conditional probability/independence/pitfalls; Ch.4 expectation/linearity/indicators",
+        "supports": "object-first probability, equiprobability conditions, conditioning intuition, definition-based independence, expectation strategies",
+        "notImported": "Bayes/posterior updating, variance, formal distribution development, later stochastic machinery"
+      },
+      {
+        "id": "GRINSTEAD-SNELL",
+        "role": "independent classical probability comparator",
+        "sections": "Ch.1 discrete probability; Ch.3 counting comparator; Ch.4 discrete conditional probability; Ch.6.1 expected value",
+        "supports": "unequal finite weights, discrete conditioning, expectation and nonintuitive finite examples",
+        "notImported": "early random-variable formalism, simulation ownership, continuous probability, LLN/CLT"
+      },
+      {
+        "id": "MAA-IPG",
+        "role": "undergraduate mathematics pedagogy baseline",
+        "sections": "Classroom Practices; Assessment Practices; Design Practices",
+        "supports": "active mathematical reasoning, outcome-aligned assessment, eliciting actual learner reasoning and purposeful task design",
+        "limitations": "general undergraduate guidance; not a T22 efficacy study"
+      },
+      {
+        "id": "IES-NCER-2007",
+        "role": "evidence-graded general learning guidance",
+        "sections": "Recommendations 1–7, especially worked examples/problem solving, representations, quizzing and deep questions",
+        "supports": "worked-example fading, retrieval, explanatory prompts and representation connections",
+        "limitations": "heterogeneous populations/evidence levels; explicitly not a cookbook and not direct T22 validation"
+      },
+      {
+        "id": "PED-BATANERO-ALVAREZ",
+        "role": "recent probability-education synthesis",
+        "sections": "probability meanings; intuitions/learning difficulties; visualization and conditional-probability research",
+        "supports": "equiprobability boundary, persistent biases, independence/sample-space/representativeness misconception attacks",
+        "limitations": "research synthesis across varied populations; no unique optimal T22 sequence claim"
+      },
+      {
+        "id": "PED-DIAZ-BATANERO-2009",
+        "role": "university conditional-probability misconception study",
+        "sections": "conditional probability biases; restricted sample space; transposed conditional; time-axis; independence vs exclusivity; open-ended responses",
+        "supports": "S07 denominator/direction repair, S13 exclusivity contrast, S18 weighted-partition wrong-solver attack",
+        "limitations": "psychology-major introductory-statistics populations; observed frequencies not generalized to this learner"
+      },
+      {
+        "id": "PED-KONOLD-1993",
+        "role": "probabilistic-reasoning and assessment study",
+        "sections": "coin-sequence studies, outcome approach, representativeness, conclusions for conceptual assessment",
+        "supports": "S15 exact-path versus representativeness repair and requirement that correct answers be discriminated from nonnormative reasoning",
+        "limitations": "historical secondary/college-age study contexts; used for adversarial task design, not learner diagnosis"
+      }
+    ]
+  },
+  "modernizationAudit": {
+    "version": "m04-source-modernization-audit-v1.0",
+    "document": "docs/t22-course/M04-SOURCE-MODERNIZATION-AUDIT-v1.0.md",
+    "disposition": "BOUNDED REPAIR REQUIRED",
+    "architecture": "retain 24 sessions",
+    "instructionOnlyRepairSessions": [
+      "T22V3::ARC048::S07@1",
+      "T22V3::ARC048::S13@1",
+      "T22V3::ARC048::S15@1",
+      "T22V3::ARC048::S18@1"
+    ],
+    "fixedAssessmentContractsChanged": [],
+    "evidenceStore": "chrono_t22_elite_course_evidence_v1 unchanged",
+    "publicationState": "candidate-only; no re-freeze claim until current-standard evidence harness and exact-head CI/Chromium/follow-up pass"
   }
 }
