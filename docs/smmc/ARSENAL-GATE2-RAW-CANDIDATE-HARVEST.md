@@ -34,9 +34,9 @@ Current expanded harvest inventory:
 - **39** current `SMMC_SECONDARY_TAGS`, preserved separately so tool/topic/specialist possibilities are not lost;
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
-- **280** source-specific book candidates from the five Gate-1 canonical books after the systematic closure pass;
-- **653 total raw candidates**;
-- **653 evidence records**;
+- **288** source-specific book candidates from the five Gate-1 canonical books after the final item-level closure-integrity repair;
+- **661 total raw candidates**;
+- **661 evidence records**;
 - **0 typed candidates**;
 - **0 alias merges**;
 - **0 adjudications**;
@@ -175,12 +175,12 @@ Current raw book harvest, still without adjudication:
 
 | Canonical source | Raw source-specific candidates |
 |---|---:|
-| Zeitz | 94 |
+| Zeitz | 102 |
 | Engel | 46 |
 | Hammack | 30 |
 | Velleman | 26 |
 | Putnam and Beyond | 84 |
-| **Total** | **280** |
+| **Total** | **288** |
 
 The counts are deliberately not interpreted as source importance. They reflect the current harvest granularity and how explicitly each source names techniques.
 
@@ -276,7 +276,7 @@ The manifest has three auditable parts:
 2. the exact **HARVEST** candidate-ID set;
 3. explicit **EXCLUDE** decisions with PDF page, section, and a short reason.
 
-The validator now requires exact set equality between the **280 canonical-book raw candidates** and the manifest HARVEST set. It also checks every closure zone and exclusion against the canonical frozen PDF page bounds, rejects duplicate decisions, requires substantive exclusion reasons, and guards against a term being both HARVEST and EXCLUDE.
+The validator initially required exact equality between the **280 canonical-book raw candidates** and a positive HARVEST set. Independent review of exact SHA `4505699b92899e21e87559b1e0c696fd220fc59c` showed that this was still not a true closure certificate: an encountered source item could be absent from both HARVEST and EXCLUDE while all assertions stayed green. The final repair below replaces that architecture with an item-level reviewed decision partition.
 
 This closure pass naturally recovered the independent reviewer's four examples:
 
@@ -305,16 +305,84 @@ Current source counts after closure:
 | Putnam and Beyond | 84 |
 | **Total** | **280** |
 
-Current complete Gate-2 pool after this closure pass is **653 candidates / 653 evidence records**:
+That systematic-closure checkpoint contained **653 candidates / 653 evidence records** and was not accepted; the final closure-integrity repair below supersedes it:
 
 - 44 method-tag leads;
 - 39 secondary-tag leads;
 - 129 bridgeNeed leads;
 - 34 project-derived audit-note route leads;
 - 127 verified official historical occurrences;
-- 280 canonical-book source leads.
+- 280 canonical-book source leads at that checkpoint.
 
 Gate 2 remains **REVIEW CANDIDATE** until a fresh independent reviewer accepts the new exact head. Gate 3 remains closed.
+
+
+### Final item-level closure-integrity repair after review 5389173535
+
+Independent review of exact SHA `4505699b92899e21e87559b1e0c696fd220fc59c` confirmed that G2-R01 and G2-R03 remained closed and that the substantive book harvest was much stronger, but found one final architectural hole in G2-R02:
+
+> exact equality between the book candidates and a positive HARVEST set does not prove that every candidate-like item encountered in a declared source zone received a decision.
+
+The closure artifact has therefore been upgraded from a positive set plus selected negatives into a **single item-level reviewed decision inventory**.
+
+`course/smmc/arsenal/source-closure-manifest-v0.mjs` now exports:
+
+- bounded source zones and selectors for all five canonical books;
+- `ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS`, the complete reviewed candidate-like item inventory for those selectors;
+- exactly one disposition per reviewed item:
+  - `HARVEST -> candidateId`, or
+  - `EXCLUDE -> bounded-rule reason`;
+- derived HARVEST and EXCLUDE projections for compatibility;
+- metadata distinguishing **reviewed items**, **HARVEST decisions**, **unique harvested candidates**, and **EXCLUDE decisions**.
+
+The current certificate contains:
+
+- **386 reviewed source items**;
+- **311 HARVEST decisions**;
+- **288 unique canonical-book raw candidates**;
+- **75 EXCLUDE decisions**.
+
+Multiple reviewed source items may legitimately map to the same raw candidate. For example, Zeitz's index item “induction proof” maps to the already preserved Zeitz Mathematical Induction candidate. That is a source-qualification mapping, not an alias merge or Gate-3 granularity decision.
+
+The validator now proves all of the following:
+
+1. every reviewed item has a unique reviewed-item ID and one valid disposition;
+2. no reviewed item can be both HARVEST and EXCLUDE;
+3. every HARVEST decision points to an existing canonical-book raw candidate from the **same source**;
+4. every canonical-book raw candidate is justified by at least one reviewed HARVEST item;
+5. the unique HARVEST candidate-ID projection is **exactly equal** to the actual canonical-book candidate set;
+6. every EXCLUDE item carries a substantive reason;
+7. every explicit EXCLUDE page locator lies inside its canonical frozen PDF and its declared bounded source zone;
+8. all five canonical sources have bounded selectors and valid enumeration/verification segments;
+9. the derived HARVEST/EXCLUDE compatibility exports are exact projections of the item-level inventory.
+
+The exact Zeitz items raised by the final reviewer are no longer silent. They now receive explicit decisions. Examples include:
+
+- **HARVEST as independent raw candidates:** Algebraic Proof, Geometric Proof, Deductive Argument (Direct Proof), Contrapositive, Algorithmic Construction, Dissection, Similar Triangles, Composition of Transformations;
+- **HARVEST mapped to an already preserved same-source candidate:** induction proof, combinatorial proof, proof using area, proof using trigonometry, proof with an auxiliary line/construction, proof using complex numbers, proof using inversion, proof using shearing;
+- **EXCLUDE with an explicit source-qualification reason:** Cauchy's proof of AM-GM, the generic Cauchy-Schwarz proof subentry, the classical/Euler proof attributions for infinitude of primes, generic theorem-proof cross-references, and other local proof descriptions that are not independently framed reusable methods.
+
+This repair adds **8** Zeitz raw candidates. Current canonical-book counts are:
+
+| Canonical book | Raw source candidates |
+| --- | ---: |
+| Zeitz | 102 |
+| Engel | 46 |
+| Hammack | 30 |
+| Velleman | 26 |
+| Putnam and Beyond | 84 |
+| **Total** | **288** |
+
+The complete Gate-2 pool is now **661 candidates / 661 evidence records**:
+
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 127 verified official historical occurrences;
+- 288 canonical-book source leads.
+
+This is still a **REVIEW CANDIDATE**, not an accepted gate. The new exact head must pass fresh exact-head CI and then survive one new independent adversarial review. Gate 3 remains closed.
 
 ## 5. Non-adjudicating duplicate/orphan audit
 
@@ -354,8 +422,8 @@ The raw pool is now a review candidate, not an accepted ontology.
 The reviewer should attack at least these questions:
 
 1. **Coverage:** did any current method tag, secondary tag, ledger bridge need, or recurring problem-specific route disappear?
-2. **Book blind spots:** does the reviewed source-closure manifest still omit an obvious item satisfying its own bounded inclusion rule?
-3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 653-row raw pool?
+2. **Book blind spots:** does the item-level closure certificate omit any candidate-like source item that satisfies its declared bounded selector, or double-decision any reviewed item?
+3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 661-row raw pool?
 4. **Premature merging:** were any same-looking source terms silently collapsed instead of preserved separately?
 5. **Premature ontology:** is any candidate typed, ranked, parented, prerequisite-linked, or adjudicated?
 6. **Evidence honesty:** does every row use the Gate-1 basis/channel/claim-kind contract correctly?
