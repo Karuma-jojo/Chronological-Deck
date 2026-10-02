@@ -62,6 +62,7 @@ import {
 import {
   ARSENAL_GATE2_SOURCE_CLOSURE_RULE,
   ARSENAL_GATE2_SOURCE_CLOSURE_ZONES,
+  ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS,
   ARSENAL_GATE2_SOURCE_CLOSURE_HARVEST_IDS,
   ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS,
   ARSENAL_GATE2_SOURCE_CLOSURE_META,
@@ -540,69 +541,178 @@ expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteCandidates === 34, "Gate-2 ledger r
 expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteEvidenceRecords === 34, "Gate-2 ledger route evidence count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.officialSolutionCandidates === 127, "Gate-2 direct official-solution candidate count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.officialSolutionEvidenceRecords === 127, "Gate-2 direct official-solution evidence count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 280, "Gate-2 book-source harvest count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 653, "Gate-2 raw candidate total drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 653, "Gate-2 raw evidence total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 288, "Gate-2 book-source harvest count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 661, "Gate-2 raw candidate total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 661, "Gate-2 raw evidence total drifted.");
 
-// Gate-2 canonical-source closure is protected by an exact reviewed decision manifest,
-// not merely by a hand-picked positive sentinel subset.
-expect(ARSENAL_GATE2_SOURCE_CLOSURE_RULE.gate3StillClosed === true, "Source-closure manifest must not open Gate 3.");
-expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.canonicalSourcesReviewed === 5, "Source-closure manifest must cover all five canonical books.");
-expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestedCandidates === 280, "Source-closure harvested count drifted.");
-expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.exclusions === 62, "Source-closure exclusion count drifted.");
-
-const gate2BookIds = ARSENAL_GATE2_BOOK_CANDIDATES.map(x => x.candidateId);
-const closureHarvestIds = [...ARSENAL_GATE2_SOURCE_CLOSURE_HARVEST_IDS];
-expect(new Set(gate2BookIds).size === gate2BookIds.length, "Book-source candidate IDs must be unique.");
-expect(new Set(closureHarvestIds).size === closureHarvestIds.length, "Source-closure manifest harvest IDs must be unique.");
+// Gate-2 canonical-source closure is protected by a complete item-level
+// reviewed decision partition, not merely by equality with a positive HARVEST set.
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_RULE.gate3StillClosed === true, "Source-closure certificate must not open Gate 3.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.canonicalSourcesReviewed === 5, "Source-closure certificate must cover all five canonical books.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.reviewedItems === 386, "Source-closure reviewed-item inventory count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestDecisions === 311, "Source-closure HARVEST decision count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestedCandidates === 288, "Source-closure unique harvested-candidate count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.exclusions === 75, "Source-closure EXCLUDE decision count drifted.");
 expect(
-  JSON.stringify([...gate2BookIds].sort()) === JSON.stringify([...closureHarvestIds].sort()),
-  "Gate-2 canonical-book candidates must exactly equal the reviewed source-closure HARVEST decision set."
+  typeof ARSENAL_GATE2_SOURCE_CLOSURE_RULE.closureClaim === "string" &&
+  ARSENAL_GATE2_SOURCE_CLOSURE_RULE.closureClaim.includes("complete decision partition"),
+  "Source-closure rule must explicitly claim an item-level decision partition."
 );
 
+const gate2BookIds = ARSENAL_GATE2_BOOK_CANDIDATES.map(x => x.candidateId);
+const gate2BookById = new Map(ARSENAL_GATE2_BOOK_CANDIDATES.map(x => [x.candidateId, x]));
+const closureHarvestIds = [...ARSENAL_GATE2_SOURCE_CLOSURE_HARVEST_IDS];
+expect(new Set(gate2BookIds).size === gate2BookIds.length, "Book-source candidate IDs must be unique.");
+expect(new Set(closureHarvestIds).size === closureHarvestIds.length, "Source-closure HARVEST candidate IDs must be unique after deduplication.");
+expect(
+  JSON.stringify([...gate2BookIds].sort()) === JSON.stringify([...closureHarvestIds].sort()),
+  "Gate-2 canonical-book candidates must exactly equal the HARVEST side of the reviewed source-item partition."
+);
+
+// Validate bounded source zones and their frozen canonical artifacts.
+const closureZones = new Map();
 const closureSourceIds = new Set();
 for (const zone of ARSENAL_GATE2_SOURCE_CLOSURE_ZONES) {
   const source = canonicalArsenalSource(zone.sourceId);
   expect(source && source.kind === "BOOK_PDF", `Source-closure zone uses noncanonical/nonbook source: ${zone.zoneId}`);
-  expect(Number.isInteger(zone.startPage) && Number.isInteger(zone.endPage) && zone.startPage >= 1 && zone.endPage >= zone.startPage, `Invalid closure-zone page range: ${zone.zoneId}`);
-  expect(zone.endPage <= source.pages, `Source-closure zone exceeds frozen PDF bounds: ${zone.zoneId}`);
-  expect(typeof zone.note === "string" && zone.note.length > 40, `Source-closure zone needs an auditable note: ${zone.zoneId}`);
+  expect(typeof zone.zoneId === "string" && zone.zoneId.length > 0, "Source-closure zone missing zoneId.");
+  expect(!closureZones.has(zone.zoneId), `Duplicate source-closure zoneId: ${zone.zoneId}`);
+  expect(typeof zone.selector === "string" && zone.selector.length > 120, `Source-closure zone needs an explicit bounded selector: ${zone.zoneId}`);
+  for (const [kind,segments] of [["enumeration",zone.enumerationSegments],["verification",zone.verificationSegments]]) {
+    expect(Array.isArray(segments), `Source-closure ${kind} segments missing: ${zone.zoneId}`);
+    for (const seg of segments) {
+      expect(Number.isInteger(seg.startPage) && Number.isInteger(seg.endPage) && seg.startPage >= 1 && seg.endPage >= seg.startPage, `Invalid ${kind} segment for ${zone.zoneId}`);
+      expect(seg.endPage <= source.pages, `Source-closure ${kind} segment exceeds frozen PDF bounds: ${zone.zoneId}`);
+      expect(typeof seg.label === "string" && seg.label.length > 12, `Source-closure segment needs a label: ${zone.zoneId}`);
+    }
+  }
+  expect(zone.enumerationSegments.length > 0, `Every source must have at least one enumeration segment: ${zone.zoneId}`);
+  closureZones.set(zone.zoneId, zone);
   closureSourceIds.add(zone.sourceId);
 }
 expect(closureSourceIds.size === 5, "Source-closure zones must cover every canonical book.");
 
-const closureExclusionKeys = new Set();
-for (const decision of ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS) {
-  const source = canonicalArsenalSource(decision.sourceId);
-  expect(source && source.kind === "BOOK_PDF", `Closure exclusion uses noncanonical/nonbook source: ${decision.term}`);
-  expect(Number.isInteger(decision.pdfPage) && decision.pdfPage >= 1 && decision.pdfPage <= source.pages, `Closure exclusion page out of bounds: ${decision.term}`);
-  expect(typeof decision.term === "string" && decision.term.trim().length > 0, "Closure exclusion missing term.");
-  expect(typeof decision.section === "string" && decision.section.length > 0, `Closure exclusion missing section: ${decision.term}`);
-  expect(typeof decision.reason === "string" && decision.reason.length > 35, `Closure exclusion needs a substantive reason: ${decision.term}`);
-  const key = `${decision.sourceId}|${decision.term}|${decision.pdfPage}|${decision.section}`;
-  expect(!closureExclusionKeys.has(key), `Duplicate source-closure exclusion: ${key}`);
-  closureExclusionKeys.add(key);
-  expect(
-    !ARSENAL_GATE2_BOOK_CANDIDATES.some(x => x.origin === decision.sourceId && x.sourceTerminology === decision.term),
-    `Source-closure term is simultaneously HARVEST and EXCLUDE: ${decision.sourceId} / ${decision.term}`
-  );
+const pageInsideZone = (zone,page) =>
+  [...zone.enumerationSegments, ...zone.verificationSegments]
+    .some(seg => page >= seg.startPage && page <= seg.endPage);
+
+// Validate the reviewed-item inventory as a true partition.
+const reviewIds = new Set();
+const reviewedKeys = new Set();
+const harvestDecisionCandidateIds = [];
+let harvestDecisionCount = 0;
+let excludeDecisionCount = 0;
+
+for (const item of ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS) {
+  expect(typeof item.reviewItemId === "string" && item.reviewItemId.length > 8, "Reviewed source item missing reviewItemId.");
+  expect(!reviewIds.has(item.reviewItemId), `Duplicate reviewed source item ID: ${item.reviewItemId}`);
+  reviewIds.add(item.reviewItemId);
+
+  const source = canonicalArsenalSource(item.sourceId);
+  expect(source && source.kind === "BOOK_PDF", `Reviewed source item uses noncanonical/nonbook source: ${item.reviewItemId}`);
+  const zone = closureZones.get(item.zoneId);
+  expect(zone && zone.sourceId === item.sourceId, `Reviewed source item has missing/mismatched closure zone: ${item.reviewItemId}`);
+  expect(typeof item.sourceLabel === "string" && item.sourceLabel.trim().length > 0, `Reviewed source item missing sourceLabel: ${item.reviewItemId}`);
+  expect(typeof item.section === "string" && item.section.trim().length > 0, `Reviewed source item missing section/context: ${item.reviewItemId}`);
+
+  const reviewedKey = `${item.sourceId}|${item.zoneId}|${item.sourceLabel.trim().toLowerCase()}|${item.section.trim().toLowerCase()}`;
+  expect(!reviewedKeys.has(reviewedKey), `Same reviewed source item was decisioned twice: ${reviewedKey}`);
+  reviewedKeys.add(reviewedKey);
+
+  expect(item.disposition === "HARVEST" || item.disposition === "EXCLUDE", `Reviewed source item has invalid disposition: ${item.reviewItemId}`);
+
+  if (item.disposition === "HARVEST") {
+    harvestDecisionCount += 1;
+    expect(typeof item.candidateId === "string" && item.candidateId.length > 0, `HARVEST item missing candidateId: ${item.reviewItemId}`);
+    expect(item.reason === undefined, `HARVEST item must not also carry an EXCLUDE reason: ${item.reviewItemId}`);
+    expect(typeof item.rationale === "string" && item.rationale.length > 45, `HARVEST item needs source-qualification rationale: ${item.reviewItemId}`);
+    const candidate = gate2BookById.get(item.candidateId);
+    expect(candidate, `HARVEST item points to missing canonical-book candidate: ${item.reviewItemId} -> ${item.candidateId}`);
+    expect(candidate.origin === item.sourceId, `HARVEST item crosses canonical sources: ${item.reviewItemId}`);
+    harvestDecisionCandidateIds.push(item.candidateId);
+  } else {
+    excludeDecisionCount += 1;
+    expect(item.candidateId === undefined, `EXCLUDE item must not also point to a candidate: ${item.reviewItemId}`);
+    expect(typeof item.reason === "string" && item.reason.length > 35, `EXCLUDE item needs a substantive bounded-rule reason: ${item.reviewItemId}`);
+    if (item.pdfPage !== undefined) {
+      expect(Number.isInteger(item.pdfPage) && item.pdfPage >= 1 && item.pdfPage <= source.pages, `EXCLUDE item page out of frozen PDF bounds: ${item.reviewItemId}`);
+      expect(pageInsideZone(zone,item.pdfPage), `EXCLUDE item page lies outside its declared bounded source zone: ${item.reviewItemId}`);
+    }
+  }
 }
 
+expect(reviewIds.size === ARSENAL_GATE2_SOURCE_CLOSURE_META.reviewedItems, "Reviewed source-item inventory metadata drifted.");
+expect(harvestDecisionCount === ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestDecisions, "HARVEST decision metadata drifted.");
+expect(excludeDecisionCount === ARSENAL_GATE2_SOURCE_CLOSURE_META.exclusions, "EXCLUDE decision metadata drifted.");
+expect(
+  JSON.stringify([...new Set(harvestDecisionCandidateIds)].sort()) === JSON.stringify([...gate2BookIds].sort()),
+  "Every canonical-book candidate must be justified by at least one reviewed HARVEST item, and no HARVEST item may point outside the candidate set."
+);
+
+// Derived compatibility exports must be exact projections of the item-level inventory.
+expect(
+  JSON.stringify([...new Set(harvestDecisionCandidateIds)].sort()) === JSON.stringify([...closureHarvestIds].sort()),
+  "Derived source-closure HARVEST_IDS must equal the reviewed HARVEST projection."
+);
+expect(
+  ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS.length === excludeDecisionCount,
+  "Derived source-closure EXCLUSIONS must equal the reviewed EXCLUDE projection."
+);
+const exclusionReviewIds = ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS.map(x => x.reviewItemId);
+expect(new Set(exclusionReviewIds).size === exclusionReviewIds.length, "Derived EXCLUDE projection contains duplicate reviewed-item IDs.");
+
+// Reviewed per-source candidate counts are protected independently of total size.
 const closureExpectedCounts = ARSENAL_GATE2_SOURCE_CLOSURE_META.expectedHarvestBySource;
 for (const [sourceId, expected] of Object.entries(closureExpectedCounts)) {
   const actual = ARSENAL_GATE2_BOOK_CANDIDATES.filter(x => x.origin === sourceId).length;
   expect(actual === expected, `Reviewed source-closure count drift for ${sourceId}: expected ${expected}, got ${actual}`);
 }
 
-// Exact reviewer-blocker regression checks: these must fall out of the manifest as HARVEST decisions.
+// Regression checks for every independently reported closure-integrity example.
 for (const candidateId of [
   "RAW-SOURCE-e-graph-theory",
   "RAW-SOURCE-e-eliminate-floor-ceiling",
   "RAW-SOURCE-h-combining-techniques",
   "RAW-SOURCE-h-equivalent-statements",
+  "RAW-SOURCE-z-algebraic-proof",
+  "RAW-SOURCE-z-geometric-proof",
+  "RAW-SOURCE-z-algorithmic-construction",
+  "RAW-SOURCE-z-dissection",
+  "RAW-SOURCE-z-similar-triangles",
 ]) {
-  expect(closureHarvestIds.includes(candidateId), `Independent-review closure regression: missing ${candidateId}`);
-  expect(gate2BookIds.includes(candidateId), `Independent-review source candidate missing from harvest: ${candidateId}`);
+  expect(closureHarvestIds.includes(candidateId), `Independent-review HARVEST regression: missing ${candidateId}`);
+  expect(gate2BookIds.includes(candidateId), `Independent-review candidate missing from canonical-book harvest: ${candidateId}`);
+}
+for (const sourceLabel of [
+  "AM-GM inequality — Cauchy's proof",
+  "Cauchy-Schwarz inequality — proof",
+  "Prime infinitude — classical proof",
+  "Prime infinitude — Euler's proof",
+  "Theorem — centroid proof",
+  "Theorem — power-of-a-point proof",
+]) {
+  expect(
+    ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS.some(x => x.sourceId === "S1-ZEITZ-2007-2E" && x.sourceLabel === sourceLabel && x.disposition === "EXCLUDE"),
+    `Independent-review EXCLUDE regression: missing decision for ${sourceLabel}`
+  );
+}
+for (const sourceLabel of [
+  "Congruence theorems — induction proof",
+  "Fermat's little theorem — induction proof",
+  "Theorem — proof using area",
+  "Theorem — proof using trigonometry",
+  "Theorem — proof with auxiliary line",
+  "Ptolemy's theorem — proof using auxiliary construction",
+  "Ptolemy's theorem — proof using complex numbers",
+  "Ptolemy's theorem — proof using inversion",
+  "Pythagorean theorem — proof using dissection",
+  "Pythagorean theorem — proof using shearing",
+  "Pythagorean theorem — proof using similar triangles",
+]) {
+  expect(
+    ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS.some(x => x.sourceId === "S1-ZEITZ-2007-2E" && x.sourceLabel === sourceLabel && x.disposition === "HARVEST"),
+    `Independent-review mapped-HARVEST regression: missing decision for ${sourceLabel}`
+  );
 }
 
 expect(ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE.length === 127, "Expected 127 direct official-solution occurrence records.");
