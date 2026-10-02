@@ -417,6 +417,19 @@ const SOURCE_SEEDS = Object.freeze([
   // first review candidate. These remain raw ore: no merge, type, rank, prerequisite,
   // relation, or granularity disposition is implied by their inclusion.
 
+  // Zeitz — systematic source-closure additions from the explicit strategy/method/tool zones.
+  ["Z-MENTAL-TOUGHNESS","Mental Toughness","S1-ZEITZ-2007-2E",31,"2.1 Mental Toughness: Learn from Polya's Mouse","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly presents mental toughness inside the Psychological Strategies section."],
+  ["Z-CREATIVITY","Creativity","S1-ZEITZ-2007-2E",34,"2.1 Creativity","SOURCE_TERMINOLOGY","NONE","Zeitz gives Creativity its own subsection inside Psychological Strategies."],
+  ["Z-ARGUMENT-CONTRADICTION","Argument by Contradiction","S1-ZEITZ-2007-2E",58,"2.3 Argument by Contradiction","PROOF_STRUCTURE","NONE","Zeitz gives argument by contradiction an explicit Methods of Argument subsection."],
+  ["Z-MATHEMATICAL-INDUCTION","Mathematical Induction","S1-ZEITZ-2007-2E",62,"2.3 Mathematical Induction","PROOF_STRUCTURE","NONE","Zeitz gives mathematical induction an explicit Methods of Argument subsection."],
+  ["Z-CROSSOVER-TACTIC","Crossover Tactic","S1-ZEITZ-2007-2E",126,"Chapter 4 — Three Important Crossover Tactics","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly defines a crossover as an idea connecting different mathematical domains and frames graph theory, complex numbers, and generating functions as crossover tactics."],
+  ["Z-DIVISION-ALGORITHM","Division Algorithm","S1-ZEITZ-2007-2E",241,"7.1 GCD, LCM, and the Division Algorithm","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly names the division algorithm in the number-theory toolkit."],
+  ["Z-RIGID-MOTIONS-VECTORS","Rigid Motions and Vectors","S1-ZEITZ-2007-2E",315,"8.5 Rigid Motions and Vectors","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly develops rigid motions and vectors as geometry transformations."],
+  ["Z-TRANSLATION","Translation","S1-ZEITZ-2007-2E",315,"8.5 Translations","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly treats translations as rigid motions usable in geometry."],
+  ["Z-GLIDE-REFLECTION","Glide Reflection","S1-ZEITZ-2007-2E",318,"8.5 Glide Reflections","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly treats glide reflection as a rigid motion."],
+  ["Z-ROTATION","Rotation","S1-ZEITZ-2007-2E",319,"8.5 Rotations","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly treats rotations as rigid motions."],
+  ["Z-LOG-DIFFERENTIATION","Logarithmic Differentiation","S1-ZEITZ-2007-2E",352,"9.3 A Useful Tool / Example 9.3.6","SOURCE_TERMINOLOGY","NONE","Zeitz explicitly presents logarithmic differentiation as a useful tool and part of a broader function-of-a-function recognition idea."],
+
   // Zeitz — additional indexed discovery/proof tactics and specialist tools.
   ["Z-LOOK-PATTERNS","Look for Patterns","S1-ZEITZ-2007-2E",380,"Index — patterns, look for","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly points to looking for patterns as a recurring problem-investigation move."],
   ["Z-BRAINSTORMING","Brainstorming","S1-ZEITZ-2007-2E",377,"Index","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly lists brainstorming in the problem-solving discussion."],
@@ -439,6 +452,12 @@ const SOURCE_SEEDS = Object.freeze([
   ["Z-INVERSION","Inversion","S1-ZEITZ-2007-2E",383,"Index — transformations","SOURCE_TERMINOLOGY","NONE","Zeitz's index explicitly lists inversion among transformations."],
   ["Z-ORDER-FROM-CHAOS","Create Order out of Chaos","S1-ZEITZ-2007-2E",377,"Index — chaos, creating order out of","DISCOVERY_HEURISTIC","DISCOVERY","Zeitz's index explicitly points to creating order out of chaos in the invariants discussion."],
 
+  // Engel — systematic closure of Chapter 14's explicitly declared Further Strategies.
+  ["E-GRAPH-THEORY","Graph Theory","S2-ENGEL-1998",373,"14.1 Graph Theory","SOURCE_TERMINOLOGY","NONE","Engel's Further Strategies chapter explicitly singles out Graph Theory as an important strategy area."],
+  ["E-EQUATIONS-FUNCTIONS-ITERATIONS","Equations, Functions, and Iterations","S2-ENGEL-1998",380,"14.5 Equations, Functions, and Iterations","SOURCE_TERMINOLOGY","NONE","Engel gives Equations, Functions, and Iterations a dedicated subsection inside Further Strategies."],
+  ["E-INTEGER-FUNCTIONS","Integer Functions","S2-ENGEL-1998",382,"14.6 Integer Functions","SOURCE_TERMINOLOGY","NONE","Engel gives Integer Functions a dedicated subsection inside Further Strategies."],
+  ["E-ELIMINATE-FLOOR-CEILING","Get Rid of Floor and Ceiling Brackets","S2-ENGEL-1998",382,"14.6 Integer Functions","DISCOVERY_HEURISTIC","DISCOVERY","Engel explicitly says it is usually a good strategy to get rid of floor and ceiling brackets."],
+
   // Engel — additional indexed algorithms/encodings/recurrence tools.
   ["E-EUCLIDEAN-ALGORITHM","Euclidean Algorithm","S2-ENGEL-1998",399,"Index — Algorithm","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists the Euclidean algorithm."],
   ["E-DIFFERENCE-EQUATIONS","Difference Equations","S2-ENGEL-1998",399,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists difference equations."],
@@ -446,6 +465,13 @@ const SOURCE_SEEDS = Object.freeze([
   ["E-PRUFER-CODE","Prüfer Code","S2-ENGEL-1998",400,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists Prüfer code."],
   ["E-CAYLEY-FORMULA","Cayley's Formula","S2-ENGEL-1998",399,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists Cayley's formula."],
   ["E-BINET-FORMULA","Binet's Formula","S2-ENGEL-1998",399,"Index","SOURCE_TERMINOLOGY","NONE","Engel's index explicitly lists Binet's formula."],
+
+  // Hammack — systematic proof-structure closure from Parts II–III.
+  ["H-STATEMENTS-CONTRADICTION","Proving Statements with Contradiction","S3-HAMMACK-BOOK-OF-PROOF-3.4",150,"6.1 Proving Statements with Contradiction","PROOF_STRUCTURE","NONE","Hammack gives proving statements by contradiction an explicit proof-structure section."],
+  ["H-CONDITIONAL-CONTRADICTION","Proving Conditional Statements by Contradiction","S3-HAMMACK-BOOK-OF-PROOF-3.4",153,"6.2 Proving Conditional Statements by Contradiction","PROOF_STRUCTURE","NONE","Hammack explicitly treats contradiction as a structure for conditional statements."],
+  ["H-COMBINING-TECHNIQUES","Combining Techniques","S3-HAMMACK-BOOK-OF-PROOF-3.4",154,"6.3 Combining Techniques","PROOF_STRUCTURE","NONE","Hammack explicitly describes combining and nesting proof techniques in proofs inside proofs."],
+  ["H-EQUIVALENT-STATEMENTS","Equivalent Statements","S3-HAMMACK-BOOK-OF-PROOF-3.4",161,"7.2 Equivalent Statements","PROOF_STRUCTURE","NONE","Hammack gives proving families of equivalent statements a dedicated proof-structure section."],
+  ["H-EXISTENCE-UNIQUENESS","Existence-and-Uniqueness Proof","S3-HAMMACK-BOOK-OF-PROOF-3.4",162,"7.3 Existence Proofs; Existence and Uniqueness Proofs","PROOF_STRUCTURE","NONE","Hammack explicitly treats the combined existence-and-uniqueness proof structure."],
 
   // Hammack — proof/counting structures that are explicit source headings.
   ["H-MULTIPLICATION-PRINCIPLE","Multiplication Principle","S3-HAMMACK-BOOK-OF-PROOF-3.4",4,"3.2 The Multiplication Principle","SOURCE_TERMINOLOGY","NONE","Hammack gives the Multiplication Principle its own section."],
@@ -456,6 +482,9 @@ const SOURCE_SEEDS = Object.freeze([
   ["H-PROVE-MEMBERSHIP","How to Prove Membership","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"8.1 How to Prove a ∈ A","PROOF_STRUCTURE","NONE","Hammack gives proving set membership an explicit proof-structure section."],
   ["H-PROVE-SUBSET","How to Prove a Subset Relation","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"8.2 How to Prove A ⊆ B","PROOF_STRUCTURE","NONE","Hammack gives proving a subset relation an explicit proof-structure section."],
   ["H-PROVE-SET-EQUALITY","How to Prove Set Equality","S3-HAMMACK-BOOK-OF-PROOF-3.4",5,"8.3 How to Prove A = B","PROOF_STRUCTURE","NONE","Hammack gives proving set equality an explicit proof-structure section."],
+
+  // Velleman — final closure item from the Summary of Proof Techniques.
+  ["V-UNIQUE-EXISTENCE-GIVEN","Instantiate a Unique-Existence Given","S4-VELLEMAN-2006-2E",393,"Summary of Proof Techniques — given ∃!x P(x)","PROOF_STRUCTURE","NONE","Velleman explicitly instantiates a unique-existence given with a witness and its uniqueness condition."],
 
   // Velleman — explicit goal/given transformations from the summary of proof techniques.
   ["V-UNIQUE-EXISTENCE","Existence-and-Uniqueness Goal","S4-VELLEMAN-2006-2E",391,"Summary of Proof Techniques — ∃!x P(x)","PROOF_STRUCTURE","NONE","Velleman explicitly instructs splitting a unique-existence goal into existence and uniqueness obligations."],
