@@ -8,9 +8,9 @@ const close=(x,y,e=1e-12)=>assert(Math.abs(x-y)<e,`${x} != ${y}`);
 const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 
 assert.equal(a.module.id,'ARC048');
-assert.equal(a.version,'m04-authoring-v2.0-deep-reconstruction-r1');
-assert.equal(a.instructionVersion,'m04-instruction-v2-deep-reconstruction-r1');
-assert.equal(a.module.status,'v2-deep-reconstruction-builder-candidate');
+assert.equal(a.version,'m04-authoring-v2.1-independent-review-repair-r1');
+assert.equal(a.instructionVersion,'m04-instruction-v2.1-independent-review-repair-r1');
+assert.equal(a.module.status,'v2.1-independent-review-repair-candidate');
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-DISC01']);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
@@ -34,7 +34,7 @@ for(const s of a.sessions){
   assert(s.guidedFeedback?.startsWith('Check after attempting.'),`S${s.order} staged feedback missing`);
   assert(!s.lesson.includes('\\\\n'),`S${s.order} visible escape`);
   const st=a.semanticSeparationAudit.sessions[s.id].status;
-  assert(['builder-reviewed-separated-awaiting-independent-confirmation','reviewed-separated'].includes(st),`S${s.order} semantic status`);
+  assert(['builder-reviewed-separated-awaiting-independent-confirmation','builder-repaired-awaiting-independent-confirmation','reviewed-separated'].includes(st),`S${s.order} semantic status`);
   const c={id:s.id,title:s.title,focus:s.focus,purpose:s.purpose,centralCapability:s.centralCapability,principalObstacle:s.principalObstacle,entryPrerequisites:s.entryPrerequisites,requiredOwnership:s.requiredOwnership,applicationScope:s.applicationScope,transferScope:s.transferScope,inScope:s.inScope,outOfScope:s.outOfScope,exitCondition:s.exitCondition};
   const h=crypto.createHash('sha256').update(JSON.stringify(stable(c))).digest('hex');
   assert(!hashes.has(h)); hashes.add(h);
@@ -76,7 +76,7 @@ for(const id of decisionTargets){
 // Material fixed-contract versioning.
 const versions={
   '1M':2,'1T':2,'2T':2,'3T':2,'4T':2,'5T':3,'6T':2,'7M':2,'7T':2,'8T':2,'9T':2,'10T':2,
-  '15M':2,'15T':2,'16T':2,'17M':2,'17T':2,'18M':2,'18T':2,'19T':2,'21M':2,'23T':2,'24M':2,'24T':2
+  '15M':2,'15T':2,'16T':2,'17M':2,'17T':2,'18M':3,'18T':3,'19T':3,'20T':2,'21M':2,'23T':2,'24M':3,'24T':3
 };
 for(const [k,v] of Object.entries(versions)){
   const n=Number(k.match(/\d+/)[0]),kind=k.endsWith('M')?'main':'transfer';
@@ -127,6 +127,13 @@ assert(a.problems[by(15).main].prompt.includes('looks more random'));
 assert(a.problems[by(15).main].prompt.includes("'due'"));
 assert(a.problems[by(18).transfer].prompt.includes('(.4+.1+.25)/3')||a.problems[by(18).transfer].prompt.includes('(0.4+0.1+0.25)/3'));
 assert(a.problems[by(24).main].prompt.includes('representation of your choice'));
+assert.equal(a.evidenceDistance.items[by(14).main].class,'retrieval');
+assert.equal(a.evidenceDistance.items[by(24).main].class,'fresh Main evidence');
+assert.deepEqual(a.sessions.filter(s=>a.evidenceDistance.items[s.transfer].class==='changed-surface Transfer').map(s=>s.order),[9,10,13,24]);
+assert.equal(Object.keys(a.decisionAudit.items).length,5);
+assert(a.problems[by(18).main].prompt.includes('direct S07 conditional calculation'));
+assert(a.problems[by(24).transfer].prompt.includes('compute P(X|flag) directly from the S07 conditional definition'));
+assert(a.independentReviewRepair?.findings?.length===6);
 
 // Deterministic math checks for changed contracts.
 close(.05+.15+.20+.25+.35,1);
@@ -138,8 +145,10 @@ close(.8**3*.2,.1024); close(.3**3*.7**2,.01323);
 close(6*.2*.8**5,.393216);
 close(1-.75**4,.68359375); close(1-.6**5,.92224);
 close(.5*.01+.3*.03+.2*.06,.026); close(.2*.4+.5*.1+.3*.25,.205);
-close(8*.1+8*.2+1*.3-2*.4,1.9);
-close(.35*.8+.65*.4,.54); close(5*.54-2*.46,1.78);
-close(.25*.8+.75*.2,.35); close(6*.35,2.1);
+close(8*.1+4*.2+1*.3-2*.4,1.1);
+close((1+1+1+1+3+7+9+9)/8,4);
+close((1+3+7+9)/4,5);
+close(.4*.7+.6*.5,.58); close(.4*.7,.28); close(4*.58-3*.42,1.06);
+close(.25*.8+.75*.2,.35); close(6*.35,2.1); close((.25*.8)/.35,4/7);
 
-console.log('PASS: M04 v2 deep reconstruction candidate — 24 sessions/48 tasks/120 claims, staged novice lessons, table-tree-partition representation progression, 48 evidence-distance labels, 23 decision audits, 24 wrong-solver attacks and versioned high-risk assessment repairs.');
+console.log('PASS: M04 v2.1 independent-review repair candidate — 24 sessions/48 tasks/120 claims, staged novice lessons, table-tree-partition representation progression, 48 honest evidence-distance labels, 5 decision audits, 24 wrong-solver attacks and R01–R06 repairs pinned.');
