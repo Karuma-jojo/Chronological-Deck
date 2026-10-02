@@ -39,7 +39,7 @@ assert.equal(a.module.status,'modernization-v1.3-source-driven-candidate');
 assert.equal(a.sourceLedger.version,'m04-source-ledger-v13-r1');
 assert.equal(a.sourceLedger.sources.length,8);
 assert.equal(a.modernizationAudit.disposition,'BOUNDED REPAIR REQUIRED');
-assert.deepEqual(a.modernizationAudit.fixedAssessmentContractsChanged,[]);
+assert.deepEqual(a.modernizationAudit.fixedAssessmentContractsChanged,[by(24).main,by(24).transfer]);
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-DISC01']);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
@@ -104,8 +104,10 @@ close((2+5+8+11+14+17)/6,9.5);
 close((3+9+3)/3,5);
 close(3*(4/10),1.2);
 close(0*.75+12*.25,3);
-close(.4*.75+.6*.5,.6);
-close(4*.6-1*.4,2);
+close(.2*.8+.5*.4+.3*.6,.54);
+close(5*.54-2*.46,1.78);
+close(.10+.15+.02,.27);
+close(4*.27-1*.73,.35);
 
 // Astra bounded repair regressions.
 assert.equal(a.problems[by(5).transfer].obligationVersion,2);
@@ -146,10 +148,16 @@ assert(!by(18).entryPrerequisites.some(x=>x.includes('M03-S17 partitions/disjoin
 assert(!by(21).lesson.includes('E[XY]=E[X]E[Y]'));
 assert(by(23).lesson.includes('M05 will introduce'));
 assert(by(24).lesson.includes('North with probability0.2'));
+assert.equal(a.problems[by(24).main].obligationVersion,2);
+assert.equal(a.problems[by(24).transfer].obligationVersion,2);
+assert(a.problems[by(24).main].prompt.includes('20% of tasks use system A'));
+assert(a.problems[by(24).main].prompt.includes('At each stage state why'));
+assert(a.problems[by(24).transfer].prompt.includes('100 equally weighted cases'));
+assert.equal(a.modernizationVersionAudit.unchangedFixedAssessmentCount,46);
 
 for(const n of [7,9,10,11,12,13,14,16,18,19,21,22,24]){
   const worked=by(n).lesson.split('Worked example:')[1].split('Guided check:')[0].trim();
   assert(worked.length>=90,'S'+n+' worked reasoning too thin');
 }
 
-console.log('PASS: M04 v1.3 source-modernization candidate — 24 sessions, 48 unchanged fixed tasks, 120/120 historical claim/task/rubric mappings retained, source ledger present, S07/S13/S15/S18 instruction repairs pinned, historical Astra repairs preserved, and 24/24 separation records.');
+console.log('PASS: M04 v1.3 source-modernization candidate — 24 sessions, 48 fixed tasks with S24 Main/Transfer versioned to v2, 120/120 claim/task/rubric mappings pinned, source ledger present, S07/S13/S15/S18 instruction repairs pinned, historical Astra repairs preserved, and 24/24 separation records.');
