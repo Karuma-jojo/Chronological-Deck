@@ -549,10 +549,11 @@ expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 661, "Gate-2 raw evid
 // reviewed decision partition, not merely by equality with a positive HARVEST set.
 expect(ARSENAL_GATE2_SOURCE_CLOSURE_RULE.gate3StillClosed === true, "Source-closure certificate must not open Gate 3.");
 expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.canonicalSourcesReviewed === 5, "Source-closure certificate must cover all five canonical books.");
-expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.reviewedItems === 386, "Source-closure reviewed-item inventory count drifted.");
-expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestDecisions === 311, "Source-closure HARVEST decision count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.reviewedItems === 458, "Source-closure reviewed-item inventory count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestDecisions === 375, "Source-closure HARVEST decision count drifted.");
 expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestedCandidates === 288, "Source-closure unique harvested-candidate count drifted.");
-expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.exclusions === 75, "Source-closure EXCLUDE decision count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.exclusions === 83, "Source-closure EXCLUDE decision count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.everyReviewedItemHasPdfPage === true, "Every reviewed source item must carry an explicit physical PDF page.");
 expect(
   typeof ARSENAL_GATE2_SOURCE_CLOSURE_RULE.closureClaim === "string" &&
   ARSENAL_GATE2_SOURCE_CLOSURE_RULE.closureClaim.includes("complete decision partition"),
@@ -578,6 +579,11 @@ for (const zone of ARSENAL_GATE2_SOURCE_CLOSURE_ZONES) {
   expect(typeof zone.zoneId === "string" && zone.zoneId.length > 0, "Source-closure zone missing zoneId.");
   expect(!closureZones.has(zone.zoneId), `Duplicate source-closure zoneId: ${zone.zoneId}`);
   expect(typeof zone.selector === "string" && zone.selector.length > 120, `Source-closure zone needs an explicit bounded selector: ${zone.zoneId}`);
+  expect(
+    typeof zone.locatorSemantics === "string" &&
+    zone.locatorSemantics.includes("enumerationSegments define the exhaustive"),
+    `Source-closure zone must distinguish exhaustive enumeration surfaces from locator-only verification pages: ${zone.zoneId}`
+  );
   for (const [kind,segments] of [["enumeration",zone.enumerationSegments],["verification",zone.verificationSegments]]) {
     expect(Array.isArray(segments), `Source-closure ${kind} segments missing: ${zone.zoneId}`);
     for (const seg of segments) {
@@ -614,6 +620,8 @@ for (const item of ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS) {
   expect(zone && zone.sourceId === item.sourceId, `Reviewed source item has missing/mismatched closure zone: ${item.reviewItemId}`);
   expect(typeof item.sourceLabel === "string" && item.sourceLabel.trim().length > 0, `Reviewed source item missing sourceLabel: ${item.reviewItemId}`);
   expect(typeof item.section === "string" && item.section.trim().length > 0, `Reviewed source item missing section/context: ${item.reviewItemId}`);
+  expect(Number.isInteger(item.pdfPage) && item.pdfPage >= 1 && item.pdfPage <= source.pages, `Reviewed source item missing/out-of-bounds physical PDF page: ${item.reviewItemId}`);
+  expect(pageInsideZone(zone,item.pdfPage), `Reviewed source item locator lies outside its declared bounded source zone: ${item.reviewItemId}`);
 
   const reviewedKey = `${item.sourceId}|${item.zoneId}|${item.sourceLabel.trim().toLowerCase()}|${item.section.trim().toLowerCase()}`;
   expect(!reviewedKeys.has(reviewedKey), `Same reviewed source item was decisioned twice: ${reviewedKey}`);
@@ -634,10 +642,6 @@ for (const item of ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS) {
     excludeDecisionCount += 1;
     expect(item.candidateId === undefined, `EXCLUDE item must not also point to a candidate: ${item.reviewItemId}`);
     expect(typeof item.reason === "string" && item.reason.length > 35, `EXCLUDE item needs a substantive bounded-rule reason: ${item.reviewItemId}`);
-    if (item.pdfPage !== undefined) {
-      expect(Number.isInteger(item.pdfPage) && item.pdfPage >= 1 && item.pdfPage <= source.pages, `EXCLUDE item page out of frozen PDF bounds: ${item.reviewItemId}`);
-      expect(pageInsideZone(zone,item.pdfPage), `EXCLUDE item page lies outside its declared bounded source zone: ${item.reviewItemId}`);
-    }
   }
 }
 
@@ -696,6 +700,47 @@ for (const sourceLabel of [
     `Independent-review EXCLUDE regression: missing decision for ${sourceLabel}`
   );
 }
+// Literal Zeitz family-child partition required by review 5393058455.
+for (const sourceLabel of [
+  "Strategies → defined",
+  "Strategies → angle chasing → limitations of",
+  "Tactics → defined",
+  "Tactics → factoring",
+  "Tactics → generating functions",
+  "Tactics → graph theory",
+  "Tactics → modular arithmetic",
+  "Tactics → modulo m filter",
+  "Tools → defined",
+  "Tools → weights → and Ceva's theorem",
+  "Transformations → and Felix Klein",
+  "Transformations → and Henri Poincare",
+  "Transformations → homothety → and concurrence",
+]) {
+  expect(
+    ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS.some(
+      x => x.sourceId === "S1-ZEITZ-2007-2E" &&
+           x.sourceLabel === sourceLabel &&
+           Number.isInteger(x.pdfPage) &&
+           (x.pdfPage === 382 || x.pdfPage === 383)
+    ),
+    `Independent-review Zeitz family-child regression: missing decision/locator for ${sourceLabel}`
+  );
+}
+for (const familyPrefix of [
+  "Combinatorial Strategies and Tactics →",
+  "Strategies →",
+  "Tactics →",
+  "Tools →",
+  "Transformations →",
+]) {
+  expect(
+    ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS.some(
+      x => x.sourceId === "S1-ZEITZ-2007-2E" && x.sourceLabel.startsWith(familyPrefix)
+    ),
+    `Zeitz family-child partition missing family ${familyPrefix}`
+  );
+}
+
 for (const sourceLabel of [
   "Congruence theorems — induction proof",
   "Fermat's little theorem — induction proof",
