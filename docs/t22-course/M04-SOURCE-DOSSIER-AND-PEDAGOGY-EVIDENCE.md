@@ -284,8 +284,9 @@ The source stack supplies reasons to strengthen particular sessions, not reasons
 - **S13:** strengthen the independence/exclusivity contrast with the conditional interpretation that positive-probability disjointness makes the other event impossible once one occurs.
 - **S15:** explicitly distinguish exact-sequence probability from “looks random” / representativeness reasoning; defer multi-path counting to S16.
 - **S18:** explicitly contrast correct partition weighting with the wrong unweighted average of conditional rates.
+- **S24:** replace the old formula-by-formula synthesis scaffold with a genuinely organized three-branch Main and a count-surface Transfer; both fixed contracts advance to obligationVersion 2.
 
-These are instruction-level repairs. They do not by themselves require fixed-assessment version bumps.
+S07/S13/S15/S18 are instruction-only repairs. S24 is a material assessment repair and is versioned accordingly; historical attempts are retained but do not silently certify the revised contract.
 
 ### Evidence modernization still required before publication
 
