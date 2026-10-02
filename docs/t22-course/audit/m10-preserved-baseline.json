@@ -47,10 +47,8 @@
   "authorizedM04V2Retrofit": {
     "branch": "codex/t22-m04-godlike-v2",
     "deepAuditCommit": "94663f536d5024a22579d4eb56ecb49f8677f319",
-    "reason": "Explicit user-authorized M04 v2 deep bounded reconstruction after a fresh source/pedagogy audit. ARC048, 24 stable session/task IDs, the historical evidence key and closed Astra repairs are preserved; novice instruction, representation progression, misconception discriminators, evidence-distance/decision/wrong-solver ledgers and selected fixed assessment contracts are upgraded with obligation-version/fingerprint protection.",
-    "m04Blob": "8f1e71a936400d5e46fc5d990e2bcfab0fd790db",
-    "boundary": "M05/M06/M26 ownership remains unchanged; no downstream curriculum content is modified.",
-    "sharedRendererScope": "A generic probabilityTree representation renderer and responsive presentation support are authorized learner-UI infrastructure for the M04 representation gate; existing representation kinds and evidence storage semantics remain unchanged.",
-    "unchangedBaseline": "Every unrelated protected curriculum blob in this preservation ledger remains pinned."
+    "scope": "User-authorized M04 v2 deep bounded reconstruction on 2026-10-02: preserve ARC048, 24 session IDs, historical evidence identity and closed Astra repairs while rebuilding pedagogy, representations, misconception discriminators, evidence-distance/decision/wrong-solver ledgers and selected versioned assessments. M05/M06/M26 ownership unchanged.",
+    "currentM04Blob": "8f1e71a936400d5e46fc5d990e2bcfab0fd790db",
+    "reviewState": "builder candidate only; independent follow-up still required"
   }
 }
