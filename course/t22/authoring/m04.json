@@ -1239,15 +1239,15 @@
       "id": "T22V3::ARC048::S24-M@1",
       "order": 24,
       "kind": "main",
-      "prompt": "A task is routed to system A with probability0.40 and B with0.60. Given A it succeeds with probability0.75; given B it succeeds with0.50. (i) Build the four leaf probabilities. (ii) Compute P(A∩success). (iii) Compute overall success probability by total probability. (iv) Test whether route and success are independent by comparing P(success|A) with P(success). (v) A numerical score is +4 on success and −1 on failure; compute its expectation from the leaf/marginal model. Do not compute any posterior route-given-success probability.",
-      "obligationVersion": 1
+      "prompt": "An operations log says 20% of tasks use system A, 50% use B and 30% use C. Conditional success rates are 80% on A, 40% on B and 60% on C. A success scores +5 and a failure scores −2. Produce one coherent finite-probability analysis that builds and checks the six route/outcome leaf probabilities, gives P(B∩success), obtains the overall success probability without treating the routes as equally common, decides whether the event 'route A' is independent of success with a numerical justification, and computes the expected score. At each stage state why the probability operation you use is valid. Do not compute any route-given-success posterior probability.",
+      "obligationVersion": 2
     },
     "T22V3::ARC048::S24-T@1": {
       "id": "T22V3::ARC048::S24-T@1",
       "order": 24,
       "kind": "transfer",
-      "prompt": "A case comes from channel X with probability0.25 or Y with0.75. Conditional flag probabilities are0.80 and0.20. Build the four leaves, compute P(X∩flag), compute overall flag probability, test channel/flag independence, and compute expectation of a value +6 for flag and0 otherwise. Do not compute P(X|flag).",
-      "obligationVersion": 1
+      "prompt": "A historical batch contains 100 equally weighted cases: 50 from channel X, 30 from Y and 20 from Z. Among them, 10 X cases, 15 Y cases and 2 Z cases are flagged. A flagged case has numerical value +4 and an unflagged case has value −1. Starting from the counts rather than prewritten branch probabilities, construct the finite staged probability model, compute P(Y∩flag), compute the overall flag probability, decide whether channel X and flag are independent with a numerical justification, and compute the expected value. Explain the relevant denominator or weighting choice at each stage. Do not compute P(X|flag).",
+      "obligationVersion": 2
     }
   },
   "evaluators": {
@@ -2448,56 +2448,56 @@
       "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
     },
     "T22V3::ARC048::S24-M@1": {
-      "reference": "Leaves A-S .30,A-F .10,B-S .30,B-F .30. Joint A∩S=.30. Total success=.60. Since .75≠.60, route and success dependent. Expected score=4(.60)−1(.40)=2.0. No posterior requested.",
+      "reference": "Leaves A-S=.16,A-F=.04,B-S=.20,B-F=.30,C-S=.18,C-F=.12; they sum to1. P(B∩S)=.20 by branch multiplication. Overall success=.16+.20+.18=.54, equivalently .2(.8)+.5(.4)+.3(.6); an unweighted mean of the three conditional rates would ignore route prevalence. Since P(S|A)=.80≠.54, route A and success are dependent. Expected score=5(.54)−2(.46)=1.78. No posterior is needed.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Four leaves .30,.10,.30,.30 and normalization."
+          "criterion": "Builds the six leaf probabilities .16,.04,.20,.30,.18,.12 and checks that they sum to1."
         },
         {
           "points": 2,
-          "criterion": "Joint P(A∩success)=.30."
+          "criterion": "Computes P(B∩success)=.20 and justifies the branch product from route probability times conditional success rate."
         },
         {
           "points": 2,
-          "criterion": "Total success=.60 via forward partition."
+          "criterion": "Computes overall success=.54 from the disjoint weighted route branches and does not replace the route weights by an equal average."
         },
         {
           "points": 2,
-          "criterion": "Dependence correctly diagnosed from .75≠.60."
+          "criterion": "Diagnoses dependence numerically from P(success|A)=.80 versus P(success)=.54."
         },
         {
           "points": 2,
-          "criterion": "Expected score2.0 with no posterior inversion."
+          "criterion": "Computes expected score 1.78 and keeps route-given-success posterior inversion out of the solution."
         }
       ],
-      "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
+      "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. The learner must justify the organizing probability operations rather than receive credit for an unexplained final number."
     },
     "T22V3::ARC048::S24-T@1": {
-      "reference": "Leaves X-F .20,X-N .05,Y-F .15,Y-N .60. Total flag=.35. Since .80≠.35, dependent. Expected value=6·.35=2.1.",
+      "reference": "From the 100-case counts: X-F=.10,X-N=.40,Y-F=.15,Y-N=.15,Z-F=.02,Z-N=.18; total1. P(Y∩F)=.15. Overall P(F)=27/100=.27. P(F|X)=10/50=.20, which differs from .27, so X and flag are dependent. Expected value=4(.27)−1(.73)=.35. P(X|F) is not needed.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Four leaf probabilities correct."
+          "criterion": "Converts the counts into the six correct leaf probabilities .10,.40,.15,.15,.02,.18 and checks normalization."
         },
         {
           "points": 2,
-          "criterion": "Joint X∩flag=.20."
+          "criterion": "Computes P(Y∩flag)=.15 from the Y-and-flag count/leaf."
         },
         {
           "points": 2,
-          "criterion": "Total flag=.35."
+          "criterion": "Computes overall flag probability .27 by adding the disjoint flagged leaves or equivalently using the correct count denominator."
         },
         {
           "points": 2,
-          "criterion": "Dependence correctly diagnosed."
+          "criterion": "Diagnoses dependence from P(flag|X)=.20 versus P(flag)=.27, with the denominator 50 for the conditional made clear."
         },
         {
           "points": 2,
-          "criterion": "Expectation2.1 and no posterior inversion."
+          "criterion": "Computes expected value .35 and does not perform the forbidden posterior P(X|flag)."
         }
       ],
-      "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable."
+      "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. The count surface must be converted coherently rather than treated as if branch probabilities were already supplied."
     }
   },
   "coverage": {
@@ -3909,41 +3909,41 @@
       {
         "claim": "Construct the finite staged probability model.",
         "task": "main",
-        "publicRequest": "A task is routed to system A with probability0.40 and B with0.60. Given A it succeeds with probability0.75; given B it succeeds with0.50. (i) Build the four leaf probabilities. (ii) Compute P(A∩success). (iii) Compute overall success probability by total probability. (iv) Test whether route and success are independent by comparing P(success|A) with P(success). (v) A numerical score is +4 on success and −1 on failure; compute its expectation from the leaf/marginal model. Do not compute any posterior route-given-success probability.",
+        "publicRequest": "An operations log says 20% of tasks use system A, 50% use B and 30% use C. Conditional success rates are 80% on A, 40% on B and 60% on C. A success scores +5 and a failure scores −2. Produce one coherent finite-probability analysis that builds and checks the six route/outcome leaf probabilities, gives P(B∩success), obtains the overall success probability without treating the routes as equally common, decides whether the event 'route A' is independent of success with a numerical justification, and computes the expected score. At each stage state why the probability operation you use is valid. Do not compute any route-given-success posterior probability.",
         "rubricEvidence": [
-          "Four leaves .30,.10,.30,.30 and normalization."
+          "Builds the six leaf probabilities .16,.04,.20,.30,.18,.12 and checks that they sum to1."
         ]
       },
       {
         "claim": "Compute a joint probability from conditionals.",
         "task": "main",
-        "publicRequest": "A task is routed to system A with probability0.40 and B with0.60. Given A it succeeds with probability0.75; given B it succeeds with0.50. (i) Build the four leaf probabilities. (ii) Compute P(A∩success). (iii) Compute overall success probability by total probability. (iv) Test whether route and success are independent by comparing P(success|A) with P(success). (v) A numerical score is +4 on success and −1 on failure; compute its expectation from the leaf/marginal model. Do not compute any posterior route-given-success probability.",
+        "publicRequest": "An operations log says 20% of tasks use system A, 50% use B and 30% use C. Conditional success rates are 80% on A, 40% on B and 60% on C. A success scores +5 and a failure scores −2. Produce one coherent finite-probability analysis that builds and checks the six route/outcome leaf probabilities, gives P(B∩success), obtains the overall success probability without treating the routes as equally common, decides whether the event 'route A' is independent of success with a numerical justification, and computes the expected score. At each stage state why the probability operation you use is valid. Do not compute any route-given-success posterior probability.",
         "rubricEvidence": [
-          "Joint P(A∩success)=.30."
+          "Computes P(B∩success)=.20 and justifies the branch product from route probability times conditional success rate."
         ]
       },
       {
         "claim": "Compute a marginal by total probability.",
         "task": "main",
-        "publicRequest": "A task is routed to system A with probability0.40 and B with0.60. Given A it succeeds with probability0.75; given B it succeeds with0.50. (i) Build the four leaf probabilities. (ii) Compute P(A∩success). (iii) Compute overall success probability by total probability. (iv) Test whether route and success are independent by comparing P(success|A) with P(success). (v) A numerical score is +4 on success and −1 on failure; compute its expectation from the leaf/marginal model. Do not compute any posterior route-given-success probability.",
+        "publicRequest": "An operations log says 20% of tasks use system A, 50% use B and 30% use C. Conditional success rates are 80% on A, 40% on B and 60% on C. A success scores +5 and a failure scores −2. Produce one coherent finite-probability analysis that builds and checks the six route/outcome leaf probabilities, gives P(B∩success), obtains the overall success probability without treating the routes as equally common, decides whether the event 'route A' is independent of success with a numerical justification, and computes the expected score. At each stage state why the probability operation you use is valid. Do not compute any route-given-success posterior probability.",
         "rubricEvidence": [
-          "Total success=.60 via forward partition."
+          "Computes overall success=.54 from the disjoint weighted route branches and does not replace the route weights by an equal average."
         ]
       },
       {
         "claim": "Diagnose independence from conditional/marginal comparison.",
         "task": "main",
-        "publicRequest": "A task is routed to system A with probability0.40 and B with0.60. Given A it succeeds with probability0.75; given B it succeeds with0.50. (i) Build the four leaf probabilities. (ii) Compute P(A∩success). (iii) Compute overall success probability by total probability. (iv) Test whether route and success are independent by comparing P(success|A) with P(success). (v) A numerical score is +4 on success and −1 on failure; compute its expectation from the leaf/marginal model. Do not compute any posterior route-given-success probability.",
+        "publicRequest": "An operations log says 20% of tasks use system A, 50% use B and 30% use C. Conditional success rates are 80% on A, 40% on B and 60% on C. A success scores +5 and a failure scores −2. Produce one coherent finite-probability analysis that builds and checks the six route/outcome leaf probabilities, gives P(B∩success), obtains the overall success probability without treating the routes as equally common, decides whether the event 'route A' is independent of success with a numerical justification, and computes the expected score. At each stage state why the probability operation you use is valid. Do not compute any route-given-success posterior probability.",
         "rubricEvidence": [
-          "Dependence correctly diagnosed from .75≠.60."
+          "Diagnoses dependence numerically from P(success|A)=.80 versus P(success)=.54."
         ]
       },
       {
         "claim": "Compute the expectation of a numerical outcome on the resulting leaves.",
         "task": "main",
-        "publicRequest": "A task is routed to system A with probability0.40 and B with0.60. Given A it succeeds with probability0.75; given B it succeeds with0.50. (i) Build the four leaf probabilities. (ii) Compute P(A∩success). (iii) Compute overall success probability by total probability. (iv) Test whether route and success are independent by comparing P(success|A) with P(success). (v) A numerical score is +4 on success and −1 on failure; compute its expectation from the leaf/marginal model. Do not compute any posterior route-given-success probability.",
+        "publicRequest": "An operations log says 20% of tasks use system A, 50% use B and 30% use C. Conditional success rates are 80% on A, 40% on B and 60% on C. A success scores +5 and a failure scores −2. Produce one coherent finite-probability analysis that builds and checks the six route/outcome leaf probabilities, gives P(B∩success), obtains the overall success probability without treating the routes as equally common, decides whether the event 'route A' is independent of success with a numerical justification, and computes the expected score. At each stage state why the probability operation you use is valid. Do not compute any route-given-success posterior probability.",
         "rubricEvidence": [
-          "Expected score2.0 with no posterior inversion."
+          "Computes expected score 1.78 and keeps route-given-success posterior inversion out of the solution."
         ]
       }
     ]
@@ -4471,12 +4471,12 @@
     },
     "T22V3::ARC048::S24@1": {
       "main": [
-        "A task is routed to system A with",
-        "task is routed to system A with probability0.40"
+        "An operations log says 20% of tasks use system A",
+        "50% use B and 30% use C"
       ],
       "transfer": [
-        "A case comes from channel X with probability0.25",
-        "case comes from channel X with probability0.25 or"
+        "A historical batch contains 100 equally weighted cases",
+        "50 from channel X, 30 from Y and 20 from Z"
       ]
     }
   },
@@ -4578,7 +4578,7 @@
       },
       "T22V3::ARC048::S24@1": {
         "status": "reviewed-separated",
-        "note": "Worked synthesis now uses North/South, .2/.8, damage .1/.3 and values −5/1; fixed tasks use systems/channels with different probabilities and scores."
+        "note": "v1.3 fixed synthesis contracts remove the old formula-by-formula scaffold. Lesson uses a two-source North/South damage model; Main requires an independently organized three-route six-leaf analysis with weighted marginal, independence diagnosis and expectation; Transfer changes representation again to raw 100-case counts before the probability model is built."
       }
     }
   },
@@ -4666,8 +4666,32 @@
       "T22V3::ARC048::S15@1",
       "T22V3::ARC048::S18@1"
     ],
-    "fixedAssessmentContractsChanged": [],
+    "fixedAssessmentContractsChanged": [
+      "T22V3::ARC048::S24-M@1",
+      "T22V3::ARC048::S24-T@1"
+    ],
     "evidenceStore": "chrono_t22_elite_course_evidence_v1 unchanged",
     "publicationState": "candidate-only; no re-freeze claim until current-standard evidence harness and exact-head CI/Chromium/follow-up pass"
+  },
+  "modernizationVersionAudit": {
+    "version": "m04-v13-fixed-contract-versioning-r1",
+    "baseline": "m04-authoring-v1.2-astra-r1",
+    "policy": "Stable task IDs are retained. Material public-prompt/evaluator changes advance obligationVersion and stale prior mastery evidence for the revised assessment contract without deleting historical attempts.",
+    "changed": [
+      {
+        "id": "T22V3::ARC048::S24-M@1",
+        "fromObligationVersion": 1,
+        "toObligationVersion": 2,
+        "reason": "Old synthesis enumerated the exact algorithm step-by-step; v1.3 requires the learner to organize a three-branch model and justify each probability operation."
+      },
+      {
+        "id": "T22V3::ARC048::S24-T@1",
+        "fromObligationVersion": 1,
+        "toObligationVersion": 2,
+        "reason": "Old Transfer repeated the same supplied-probability surface; v1.3 starts from counts and requires model construction plus denominator/weighting justification."
+      }
+    ],
+    "unchangedFixedAssessmentCount": 46,
+    "historicalAttempts": "retained but stale for current S24 Main/Transfer mastery until redone under obligationVersion2"
   }
 }
