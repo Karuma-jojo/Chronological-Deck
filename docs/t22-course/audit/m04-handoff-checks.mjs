@@ -11,12 +11,13 @@ const oldRes=fs.readFileSync('docs/t22-course/M04-RESOLUTION.md','utf8');
 const design=fs.readFileSync('docs/t22-course/M04-V2-DESIGN-GATE.md','utf8');
 const audit=fs.readFileSync('docs/t22-course/M04-DEEP-SOURCE-AUDIT-v1.0.md','utf8');
 const dossier=fs.readFileSync('docs/t22-course/M04-SOURCE-DOSSIER-AND-PEDAGOGY-EVIDENCE.md','utf8');
+const review=fs.readFileSync('docs/t22-course/M04-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 const by=n=>a.sessions.find(s=>s.order===n);
 
-assert.equal(a.version,'m04-authoring-v2.0-deep-reconstruction-r1');
-assert.equal(a.instructionVersion,'m04-instruction-v2-deep-reconstruction-r1');
-assert.equal(a.module.status,'v2-deep-reconstruction-builder-candidate');
+assert.equal(a.version,'m04-authoring-v2.1-independent-review-repair-r1');
+assert.equal(a.instructionVersion,'m04-instruction-v2.1-independent-review-repair-r1');
+assert.equal(a.module.status,'v2.1-independent-review-repair-candidate');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
@@ -31,6 +32,12 @@ assert(by(22).lesson.includes('labelled ordered samples'));
 assert(!by(4).lesson.includes('generated independently'));
 
 for(const n of [1,7,15,17,18,24])assert(a.problems[by(n).main].obligationVersion>=2,`S${n} Main version`);
+assert.equal(a.problems[by(18).main].obligationVersion,3);
+assert.equal(a.problems[by(18).transfer].obligationVersion,3);
+assert.equal(a.problems[by(19).transfer].obligationVersion,3);
+assert.equal(a.problems[by(20).transfer].obligationVersion,2);
+assert.equal(a.problems[by(24).main].obligationVersion,3);
+assert.equal(a.problems[by(24).transfer].obligationVersion,3);
 assert.equal(a.problems[by(9).main].obligationVersion,1,'S9 Main contract intentionally unchanged');
 assert.equal(a.problems[by(9).transfer].obligationVersion,2,'S9 Transfer repaired/versioned');
 assert.equal(a.problems[by(5).transfer].obligationVersion,3);
@@ -41,6 +48,11 @@ assert(design.includes('Representation Progression Map'));
 assert(audit.includes('Representation progression is missing as a designed system'));
 assert(dossier.includes('Pedagogy-Evidence Ledger'));
 for(const token of ['Díaz & Batanero','Konold','Batanero & Álvarez-Arroyo','Blitzstein'])assert(dossier.includes(token),token);
+for(const token of ['R01','R02','R03','R04','R05','R06','BOUNDED REPAIR REQUIRED'])assert(review.includes(token),token);
+assert.equal(Object.keys(a.decisionAudit.items).length,5);
+assert.deepEqual(a.sessions.filter(s=>a.evidenceDistance.items[s.transfer].class==='changed-surface Transfer').map(s=>s.order),[9,10,13,24]);
+assert.equal(a.evidenceDistance.items[by(14).main].class,'retrieval');
+assert.equal(a.evidenceDistance.items[by(24).main].class,'fresh Main evidence');
 
 assert.equal(road.modules.find(x=>x.id==='ARC048').availability,'authored','published roadmap remains historical while v2 branch is under review');
 assert.equal(led.entries.find(x=>x.id==='ARC048').semanticStatus,'accepted','historical semantic acceptance remains provenance during branch repair');
@@ -63,4 +75,4 @@ for(const s of a.sessions){
 for(const token of ['7d377d847728a7ebec6e4b81f2864238bd0b1683','10df637dbb46bd4985a1f98fc298c746b52bf1fd','120/120 manually re-audited'])assert(oldHand.includes(token),token);
 for(const token of ['M04-01','M04-02','M04-03','M04-04','chrono_t22_elite_course_evidence_v1'])assert(oldRes.includes(token),token);
 
-console.log('PASS: M04 v2 handoff checks preserve historical Astra receipts/evidence identity while pinning the new 24-session source, representation and evidence reconstruction candidate.');
+console.log('PASS: M04 v2.1 handoff checks preserve historical Astra receipts/evidence identity while pinning the independent-review R01–R06 repairs and honest evidence classifications.');
