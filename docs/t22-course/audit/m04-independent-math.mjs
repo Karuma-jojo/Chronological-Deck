@@ -58,8 +58,13 @@ close(.5*.01+.3*.03+.2*.06,.026);
 close(.2*.4+.5*.1+.3*.25,.205);
 assert.notEqual((.4+.1+.25)/3,.205);
 
-// S19 leaf expectation.
-close(8*.1+8*.2+1*.3-2*.4,1.9);
+// S19 leaf expectation after ownership-boundary repair.
+close(8*.1+4*.2+1*.3-2*.4,1.1);
+
+// S20 unequal multiplicity discriminator.
+close((1+1+1+1+3+7+9+9)/8,4);
+close((1+3+7+9)/4,5);
+assert.notEqual(4,5);
 
 // S21 linearity/nonlinear guard.
 const X=[0,2,4],Y=[1,1,7],Z=X.map((x,i)=>3*x-2*Y[i]+5);
@@ -78,9 +83,9 @@ close(3*(4/10),1.2);
 // S23 equal expectation does not collapse outcomes.
 close(-5*.2+5*.8,3); close(3,3);
 
-// S24 synthesis and transfer audit.
-const ps=.35*.8+.65*.4; close(ps,.54); close(.35*.8,.28); close(5*ps-2*(1-ps),1.78);
-const flag=.25*.8+.75*.2; close(flag,.35); close(6*flag,2.1);
+// S24 repaired fresh synthesis and transfer audit.
+const ps=.4*.7+.6*.5; close(ps,.58); close(.4*.7,.28); close(4*ps-3*(1-ps),1.06);assert.notEqual(.7,ps);
+const flag=.25*.8+.75*.2; close(flag,.35); close(6*flag,2.1);close((.25*.8)/flag,4/7);
 assert.notEqual(.8,flag);
 
-console.log('PASS M04 v2 independent math: nonuniform conditioning, tables/trees, replacement, independence hierarchy, sequence fallacies, exact-k/complement, weighted total probability, expectation/linearity/indicators and synthesis rederived.');
+console.log('PASS M04 v2.1 independent math: conditioning, tables/trees, replacement, independence hierarchy, repeated-trial fallacies, weighted total probability, S19/S20 expectation boundaries, linearity/indicators and repaired synthesis rederived.');
