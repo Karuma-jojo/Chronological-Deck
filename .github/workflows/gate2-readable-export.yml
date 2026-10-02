@@ -1,0 +1,16 @@
+name: Gate2 Readable Export Artifact
+on:
+  push:
+    branches:
+      - codex/smmc-gate2-readable-export
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upload readable Markdown export
+        uses: actions/upload-artifact@v4
+        with:
+          name: SMMC-Arsenal-Gate2-Full-Raw-Readable
+          path: exports/SMMC-Arsenal-Gate2-Full-Raw-Readable.md
+          if-no-files-found: error
