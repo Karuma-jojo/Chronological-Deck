@@ -146,6 +146,24 @@ function table(spec){
  const thead=html('thead'),tr=html('tr');for(const h of spec.headers||[])tr.append(html('th',{},h));thead.append(tr);t.append(thead);
  const body=html('tbody');for(const row of spec.rows||[]){const rr=html('tr');for(const c of row)rr.append(html('td',{},String(c)));body.append(rr);}t.append(body);wrap.append(t);return wrap;
 }
+function probabilityTree(spec){
+ const wrap=html('div',{class:'repr-tree',role:'img','aria-label':spec.alt||spec.title||'Probability tree'});
+ const root=html('div',{class:'repr-tree-root'},spec.root||'Start');wrap.append(root);
+ const branches=html('div',{class:'repr-tree-branches'});
+ for(const b of spec.branches||[]){
+  const branch=html('section',{class:'repr-tree-branch'});
+  const head=html('div',{class:'repr-tree-edge'},`${b.label??''}${b.prob!=null?' · '+b.prob:''}`);branch.append(head);
+  const kids=html('div',{class:'repr-tree-children'});
+  for(const child of b.children||[]){
+    const row=html('div',{class:'repr-tree-child'});
+    row.append(html('span',{class:'repr-tree-child-label'},`${child.label??''}${child.prob!=null?' · '+child.prob:''}`));
+    if(child.leaf!=null)row.append(html('span',{class:'repr-tree-leaf'},`leaf ${child.leaf}`));
+    kids.append(row);
+  }
+  branch.append(kids);branches.append(branch);
+ }
+ wrap.append(branches);return wrap;
+}
 function one(spec){
  const fig=html('figure',{class:'representation'});
  if(spec.title&&spec.kind!=='table')fig.append(html('figcaption',{},spec.title));
@@ -153,6 +171,7 @@ function one(spec){
  else if(spec.kind==='numberLine')fig.append(numberLine(spec));
  else if(spec.kind==='unitCircle')fig.append(unitCircle(spec));
  else if(spec.kind==='table')fig.append(table(spec));
+ else if(spec.kind==='probabilityTree')fig.append(probabilityTree(spec));
  else fig.append(html('p',{class:'small'},'Unsupported representation.'));
  if(spec.note)fig.append(html('p',{class:'repr-note'},spec.note));
  return fig;
