@@ -8,7 +8,7 @@
     "course/t22/authoring/m01-repairs-1.1.json": "97a232a965a7cf8bcbaa2dd5858d00e9d75fee8e",
     "course/t22/authoring/m02.json": "3e75949b3ae7f63d963c7d8de095cf0a9f578486",
     "course/t22/authoring/m03.json": "d3c9854760ca6930f09f1379a2c15faf2eebfaf1",
-    "course/t22/authoring/m04.json": "8f1e71a936400d5e46fc5d990e2bcfab0fd790db",
+    "course/t22/authoring/m04.json": "65966333fb52337c3fab62b845c66076f323d804",
     "course/t22/authoring/m05.json": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
     "course/t22/authoring/m06.json": "da9360afd3adb81f75fa987c0ffac3015a8d19cf",
     "course/t22/authoring/m07.json": "6af63290de8cc44615871aeb456ce2946b26e08b",
@@ -43,12 +43,5 @@
     "sourceReviewHead": "c6003be2f18d3f904898483a422a9a356dc5bc54",
     "scope": "Independently confirmed foundation publication; unrelated M15 candidate excluded.",
     "status": "frozen"
-  },
-  "authorizedM04V2Retrofit": {
-    "branch": "codex/t22-m04-godlike-v2",
-    "deepAuditCommit": "94663f536d5024a22579d4eb56ecb49f8677f319",
-    "scope": "User-authorized M04 v2 deep bounded reconstruction on 2026-10-02: preserve ARC048, 24 session IDs, historical evidence identity and closed Astra repairs while rebuilding pedagogy, representations, misconception discriminators, evidence-distance/decision/wrong-solver ledgers and selected versioned assessments. M05/M06/M26 ownership unchanged.",
-    "currentM04Blob": "8f1e71a936400d5e46fc5d990e2bcfab0fd790db",
-    "reviewState": "builder candidate only; independent follow-up still required"
   }
 }
