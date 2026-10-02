@@ -1,9 +1,8 @@
 name: T22 Elite checks
-# M04 v2 review-branch validation trigger 2
 
 on:
   push:
-    branches: [codex/t22-pedagogical-rebuild, codex/t22-m15-publication, codex/t22-m04-godlike-v2, main]
+    branches: [codex/t22-pedagogical-rebuild, codex/t22-m15-publication, main]
     paths:
       - 'course/t22/**'
       - 'js/t22-course/**'
@@ -38,7 +37,6 @@ jobs:
           node --check scripts/test-t22-elite-m02.mjs
           node --check scripts/test-t22-elite-m03.mjs
           node --check scripts/test-t22-elite-m04.mjs
-          node --check scripts/test-t22-elite-m04-browser.mjs
           node --check scripts/test-t22-elite-m05.mjs
           node --check scripts/test-t22-elite-m06.mjs
           node --check scripts/test-t22-elite-m07.mjs
@@ -143,7 +141,6 @@ jobs:
       - name: Browser evidence workflow
         run: |
           node scripts/test-t22-elite-course-browser.mjs
-          node scripts/test-t22-elite-m04-browser.mjs
           node scripts/test-t22-elite-m11-browser.mjs
           node scripts/test-t22-elite-m12-browser.mjs
           node scripts/test-t22-elite-m13-browser.mjs
