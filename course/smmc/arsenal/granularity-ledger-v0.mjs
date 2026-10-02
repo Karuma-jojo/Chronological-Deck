@@ -53,7 +53,7 @@ const CALIBRATION = Object.freeze([
     candidateId: "RAW-LEGACY-direct",
     referenceScale: "UNRESOLVED",
     bundleStructure: "UNRESOLVED",
-    actionShape: "LABEL_ONLY",
+    actionShape: "UNRESOLVED",
     contextReach: "UNRESOLVED",
     triggerBoundary: "UNRESOLVED",
     operationBoundary: "UNRESOLVED",
