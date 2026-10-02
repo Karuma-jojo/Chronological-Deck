@@ -978,3 +978,72 @@ Current pool: **631 candidates / 631 evidence records** = 44 method tags + 39 se
 
 The prior review SHA is superseded. Fresh exact-head CI and independent follow-up are required. Gate 3 remains CLOSED.
 
+## Arsenal Gate 2 systematic source-closure repair — 653 raw candidates (2026-10-02)
+
+The independent exact-head follow-up on `5f4ffc2d4bc93f960ac32ce358267283bf8f709b` accepted the G2-R01 evidence-semantics repair and G2-R03 status repair, but correctly kept **G2-R02** open because the positive source-saturation sentinels did not prove exhaustion of the declared inclusion rule.
+
+A single bounded closure pass was therefore run across designated TOC/index/summary/strategy zones for all five canonical books.
+
+### Auditable closure artifact
+
+Added:
+
+`course/smmc/arsenal/source-closure-manifest-v0.mjs`
+
+The manifest records:
+- the exact source zones reviewed;
+- the exact canonical-book HARVEST candidate-ID set;
+- explicit EXCLUDE decisions with physical PDF page, section, and reason.
+
+The validator now requires exact set equality between the canonical-book candidate IDs and the manifest HARVEST set. It also validates source-zone and exclusion page bounds against the canonical source registry, uniqueness of decisions, substantive exclusion reasons, and HARVEST/EXCLUDE disjointness.
+
+### New raw source rows from the closure pass
+
+The source-book pool moved from **258 to 280**.
+
+Zeitz moved 82 → **94** with:
+- Mental Toughness;
+- Creativity;
+- Argument by Contradiction;
+- Mathematical Induction;
+- Crossover Tactic;
+- Division Algorithm;
+- Combinatorial Proof;
+- Rigid Motions and Vectors;
+- Translation;
+- Glide Reflection;
+- Rotation;
+- Logarithmic Differentiation.
+
+Engel moved 42 → **46** with:
+- Graph Theory;
+- Equations, Functions, and Iterations;
+- Integer Functions;
+- Get Rid of Floor and Ceiling Brackets.
+
+Hammack moved 25 → **30** with:
+- Proving Statements with Contradiction;
+- Proving Conditional Statements by Contradiction;
+- Combining Techniques;
+- Equivalent Statements;
+- Existence-and-Uniqueness Proof.
+
+Velleman moved 25 → **26** with:
+- Instantiate a Unique-Existence Given.
+
+Putnam and Beyond remains **84** after its complete TOC closure; generic organizational/problem-bucket headings are recorded as explicit exclusions rather than silently ignored.
+
+### Current Gate-2 pool
+
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 127 direct official-solution SOURCE_FACT + BATTLE + HISTORICAL_OCCURRENCE leads;
+- 280 canonical-book source leads;
+- **653 candidates / 653 evidence records**.
+
+No aliases were merged. No ontology type, granularity disposition, rank, rarity, prerequisite, parent/child relation, candidate relation, learning order, Forge, Boss, or Arena work was introduced.
+
+Gate 2 remains **REVIEW CANDIDATE** and Gate 3 remains CLOSED. A fresh exact-head CI pass and fresh bounded independent follow-up are required before Gate 2 can close.
+
