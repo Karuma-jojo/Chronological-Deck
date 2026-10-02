@@ -46,6 +46,12 @@ assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
+assert.equal(Object.keys(a.evidenceDistance.items).length,48);
+assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,24);
+assert.equal(Object.keys(a.decisionAudit.items).length,11);
+const evidenceClasses=new Set(['retrieval','proof reconstruction','fresh Main evidence','changed-surface Transfer']);
+for(const [id,row] of Object.entries(a.evidenceDistance.items)){assert(evidenceClasses.has(row.class),`invalid evidence class ${id}: ${row.class}`);if(row.class==='fresh Main evidence'||row.class==='changed-surface Transfer')assert(a.decisionAudit.items[id],`missing decision audit for ${id}`);}
+for(const row of Object.values(a.decisionAudit.items)){assert(row.scoredLearnerAction&&row.classificationJustification);}
 assert.deepEqual(a.crossModulePrerequisiteCleanup.changedContractSessionIds,[by(18).id]);
 assert.deepEqual(a.crossModulePrerequisiteCleanup.fixedAssessmentChanges,[]);
 
@@ -160,4 +166,4 @@ for(const n of [7,9,10,11,12,13,14,16,18,19,21,22,24]){
   assert(worked.length>=90,'S'+n+' worked reasoning too thin');
 }
 
-console.log('PASS: M04 v1.3 source-modernization candidate — 24 sessions, 48 fixed tasks with S24 Main/Transfer versioned to v2, 120/120 claim/task/rubric mappings pinned, source ledger present, S07/S13/S15/S18 instruction repairs pinned, historical Astra repairs preserved, and 24/24 separation records.');
+console.log('PASS: M04 v1.3 source-modernization candidate — 24 sessions, 48 fixed tasks with S24 Main/Transfer versioned to v2, 120/120 claim/task/rubric mappings pinned, source ledger + 48 evidence-distance rows + 11 decision audits + 24 wrong-solver rows present, source-driven instruction repairs pinned, historical Astra repairs preserved, and 24/24 separation records.');
