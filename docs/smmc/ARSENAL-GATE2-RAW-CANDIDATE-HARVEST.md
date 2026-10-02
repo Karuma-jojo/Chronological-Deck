@@ -384,6 +384,44 @@ The complete Gate-2 pool is now **661 candidates / 661 evidence records**:
 
 This is still a **REVIEW CANDIDATE**, not an accepted gate. The new exact head must pass fresh exact-head CI and then survive one new independent adversarial review. Gate 3 remains closed.
 
+
+### Literal Zeitz family-child closure + locator hardening after review 5393058455
+
+Independent review **5393058455** on exact SHA `8f004a237fcb09c386138cd5abdf7580fdb081a8` accepted the item-level partition architecture but found two final certificate-integrity gaps:
+
+1. the Zeitz selector literally promised **every child** of the index Strategies / Tactics / Tools / Transformations / Combinatorial Strategies and Tactics families, while several child entries still had no reviewed-item row;
+2. HARVEST reviewed items mapped to real same-source candidates but did not carry their own physical PDF-page locator, so the validator could not prove the reviewed source occurrence itself lay inside the declared bounded source zone.
+
+This repair changes **no raw-candidate count**. The mathematical pool remains **661 candidates / 661 evidence records**, including **288 canonical-book candidates**. The repair strengthens only the closure certificate.
+
+The certificate now contains:
+
+- **458 reviewed source items**;
+- **375 HARVEST decisions**;
+- **288 unique harvested book candidates**;
+- **83 EXCLUDE decisions**.
+
+The additional 72 reviewed items are the literal child partition of the Zeitz index families already named by the selector. Every child now has a disposition. Examples include:
+
+- Strategies → defined → HARVEST to the existing Zeitz Strategy meta-candidate;
+- Strategies → angle chasing → limitations of → EXCLUDE as a limitation cross-reference;
+- Tactics → factoring / generating functions / graph theory / modular arithmetic / modulo m filter → HARVEST to the already preserved same-source tactic candidates;
+- Tools → defined → HARVEST to the Tool meta-candidate;
+- Tools → weights → and Ceva's theorem → EXCLUDE as an application cross-reference;
+- Transformations → and Felix Klein / and Henri Poincare → EXCLUDE as historical/contextual attributions;
+- Transformations → homothety → and concurrence → EXCLUDE as an application cross-reference;
+- every concrete transformation child such as composition, homothety, inversion, rigid motions, glide reflection, reflection, rotations, translations, and shearing → HARVEST to the corresponding same-source raw candidate;
+- all four Combinatorial Strategies and Tactics children → HARVEST to the already preserved counting candidates.
+
+Every reviewed item — **HARVEST and EXCLUDE** — now carries an explicit physical `pdfPage` plus section/context. The bounded source-zone model distinguishes:
+
+- **enumeration segments**, which carry the exhaustiveness claim; and
+- **verification segments**, which are exact point pages used only to verify already-reviewed source occurrences and do not enlarge the exhaustiveness selector.
+
+The validator now rejects any reviewed item whose `pdfPage` is missing, outside the frozen canonical PDF, or outside its declared enumeration/verification zone. It also retains the full decision-partition checks: unique reviewed-item identity, exactly one disposition, same-source HARVEST mapping, exact unique-HARVEST projection to all 288 book candidates, and explicit EXCLUDE reasons.
+
+This is still a **REVIEW CANDIDATE** until a new exact-head independent attack accepts it. Gate 3 remains closed.
+
 ## 5. Non-adjudicating duplicate/orphan audit
 
 `course/smmc/arsenal/raw-harvest-audit-v0.mjs` now reports:
