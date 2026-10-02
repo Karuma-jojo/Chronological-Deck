@@ -11,13 +11,20 @@ const res=fs.readFileSync('docs/t22-course/M04-RESOLUTION.md','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 const by=n=>a.sessions.find(s=>s.order===n);
 
-assert.equal(a.version,'m04-authoring-v1.2-astra-r1');
+assert.equal(a.version,'m04-authoring-v1.3-source-modernization-r1');
 assert.equal(a.instructionVersion,'m04-instruction-astra-r1');
-assert.equal(a.module.status,'authored-v1.2-astra-repaired');
+assert.equal(a.module.status,'modernization-v1.3-source-driven-candidate');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
+assert.equal(a.sourceLedger.sources.length,8);
+assert.equal(Object.keys(a.evidenceDistance.items).length,48);
+assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,24);
+assert.equal(Object.keys(a.decisionAudit.items).length,11);
+assert.equal(a.problems[by(24).main].obligationVersion,2);
+assert.equal(a.problems[by(24).transfer].obligationVersion,2);
+assert.equal(a.modernizationVersionAudit.unchangedFixedAssessmentCount,46);
 
 assert.equal(a.problems[by(5).transfer].obligationVersion,2);
 assert.equal(a.problems[by(21).main].obligationVersion,2);
@@ -71,4 +78,4 @@ for(const token of [
   'STOP FOR BOUNDED FOLLOW-UP REVIEW'
 ]) assert(res.includes(token),token);
 
-console.log('PASS: M04 Astra repair handoff matches 24/48/120 state, versioned S05-T/S21-M contracts, repaired S11/S22 prerequisites, shared evidence key, later-authorized M07/M08 validation candidates while M04 repair acceptance remains pinned.');
+console.log('PASS: M04 v1.3 modernization handoff preserves historical Astra provenance while adding source/pedagogy evidence, 48 evidence-distance rows, 11 decision audits, 24 wrong-solver rows, source-driven instruction repairs and versioned S24 synthesis contracts.');
