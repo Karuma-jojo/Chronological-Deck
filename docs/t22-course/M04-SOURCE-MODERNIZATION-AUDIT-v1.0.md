@@ -15,7 +15,8 @@ The deep-source audit does, however, find a real modernization gap:
 
 1. the current module lacks the permanent source/pedagogy dossier required by the post-M03 v1.7.2 standard;
 2. its semantic-separation metadata predates the current evidence-distance / decision-audit / wrong-solver machinery;
-3. several lessons are mathematically correct but do not yet attack well-documented probability misconceptions as directly as the new sources justify.
+3. several lessons are mathematically correct but do not yet attack well-documented probability misconceptions as directly as the new sources justify;
+4. the old S24 synthesis assessment supplied the algorithm almost step-by-step, so it overstated integrated method-selection evidence.
 
 Historical M04-01→M04-04 repairs remain binding and must not regress.
 
@@ -32,7 +33,7 @@ Historical M04-01→M04-04 repairs remain binding and must not regress.
 | Repeated trials | S15–S17 | retain + repair S15 | Exact path→exactly-k aggregation→complement is the right dependency order; S15 should directly attack representativeness/outcome reasoning. |
 | Total probability | S18 | retain + repair | Correct forward-marginal boundary, but should contrast weighted partitioning with the empirically documented equal-average error. |
 | Expectation | S19–S23 | retain | Cleanly stops before formal distribution/variance/decision theory; S21/S22 correctly emphasize no independence requirement. |
-| Integration | S24 | retain | Strong forward-only synthesis; explicitly forbids posterior inversion. |
+| Integration | S24 | retain + assessment repair | Boundary is strong, but the old fixed tasks enumerated the algorithm step by step. v1.3 versions both contracts and removes the formula-by-formula scaffold. |
 
 No session-count expansion is justified by the current evidence.
 
@@ -65,7 +66,7 @@ No session-count expansion is justified by the current evidence.
 | 21 | 🟢 | Strong finite-sum derivation; no independence assumption; nonlinear counterexample retained. |
 | 22 | 🟢 | Historical positional-marginal repair is mathematically explicit; dependence does not block linearity. |
 | 23 | 🟢 | Clean expectation-versus-mode/guarantee/preference boundary into M05. |
-| 24 | 🟢 | Good integrated forward probability; no posterior or decision-policy leakage. |
+| 24 | 🟠→🟢 repaired | Old Main/Transfer were near-isomorphic, heavily scaffolded reconstructions. v1.3 Main now requires organizing a three-route six-leaf analysis and justifying operations; Transfer begins from raw counts. Both are obligationVersion 2 and still forbid posterior inversion. |
 
 ---
 
