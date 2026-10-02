@@ -33,8 +33,13 @@ const claimPlan={
 };
 
 assert.equal(a.module.id,'ARC048');
-assert.equal(a.version,'m04-authoring-v1.2-astra-r1');
+assert.equal(a.version,'m04-authoring-v1.3-source-modernization-r1');
 assert.equal(a.instructionVersion,'m04-instruction-astra-r1');
+assert.equal(a.module.status,'modernization-v1.3-source-driven-candidate');
+assert.equal(a.sourceLedger.version,'m04-source-ledger-v13-r1');
+assert.equal(a.sourceLedger.sources.length,8);
+assert.equal(a.modernizationAudit.disposition,'BOUNDED REPAIR REQUIRED');
+assert.deepEqual(a.modernizationAudit.fixedAssessmentContractsChanged,[]);
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-DISC01']);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
@@ -123,9 +128,19 @@ assert(by(22).lesson.includes('equals the initial red fraction'));
 assert(a.prerequisiteAudit.S22.some(x=>x.item.includes('ordered-sample model')));
 
 assert(!by(4).lesson.includes('generated independently'));
+assert.equal(by(7).instructionVersion,'m04-s07-instruction-v13-conditional-denominator-r1');
 assert(by(7).lesson.includes('P(B)>0'));
+assert(by(7).lesson.includes('nonuniform model'));
+assert(by(7).lesson.includes('P(B|A)=.70/.70=1'));
+assert.equal(by(13).instructionVersion,'m04-s13-instruction-v13-exclusivity-independence-r1');
+assert(by(13).lesson.includes('P(B|A)=0'));
 assert(by(14).lesson.includes('triple intersection'));
+assert.equal(by(15).instructionVersion,'m04-s15-instruction-v13-exact-path-representativeness-r1');
+assert(by(15).lesson.includes('Visual representativeness is not a probability rule'));
+assert(by(15).lesson.includes('will be counted in S16'));
+assert.equal(by(18).instructionVersion,'m04-s18-instruction-v13-weighted-partition-r1');
 assert(by(18).lesson.includes('Bayes territory'));
+assert(by(18).lesson.includes('(.02+.05)/2=.035 is wrong'));
 assert(by(18).entryPrerequisites.some(x=>x.includes('JIT disjoint/exhaustive partition definition')));
 assert(!by(18).entryPrerequisites.some(x=>x.includes('M03-S17 partitions/disjoint unions')));
 assert(!by(21).lesson.includes('E[XY]=E[X]E[Y]'));
@@ -137,4 +152,4 @@ for(const n of [7,9,10,11,12,13,14,16,18,19,21,22,24]){
   assert(worked.length>=90,'S'+n+' worked reasoning too thin');
 }
 
-console.log('PASS: M04 Astra-r1 — 24 sessions, 48 tasks, 120/120 manually pinned claim/task/rubric mappings, S05/S21 obligation-v2 repairs, S11/S22 novice bridges, and 24/24 separation records.');
+console.log('PASS: M04 v1.3 source-modernization candidate — 24 sessions, 48 unchanged fixed tasks, 120/120 historical claim/task/rubric mappings retained, source ledger present, S07/S13/S15/S18 instruction repairs pinned, historical Astra repairs preserved, and 24/24 separation records.');
