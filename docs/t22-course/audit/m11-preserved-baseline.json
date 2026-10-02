@@ -62,8 +62,8 @@
     "docs/t22-course/audit/m03-handoff-checks.mjs": "5cb4cf0087d7b88df9c6e7cb0560dbbf5fdf61a3",
     "docs/t22-course/audit/m03-independent-math.mjs": "af03889cdff59867d1fdb8eff0891439cc9ce7ff",
     "docs/t22-course/audit/m03-repair-checks.mjs": "4fc6428c4121848e010f70375700520bc366d926",
-    "docs/t22-course/audit/m04-handoff-checks.mjs": "e67e626a71056e3ecb1825e6767deb16a7014c67",
-    "docs/t22-course/audit/m04-independent-math.mjs": "36b58547788eef81a127a98fe5582d36a37fa681",
+    "docs/t22-course/audit/m04-handoff-checks.mjs": "1fa244763497925c1e35d801055794416527998d",
+    "docs/t22-course/audit/m04-independent-math.mjs": "8ef2c3d4917e8c3567628612529becd2fa32c4ce",
     "docs/t22-course/audit/m05-handoff-checks.mjs": "8d6867dc9cbdfc01063d694db8473ffec91b901b",
     "docs/t22-course/audit/m05-independent-math.mjs": "3179c806f5a4e45b9dc465d01e07d5a0b961de13",
     "docs/t22-course/audit/m05-m06-reviewed-contracts.json": "fdf82c324b89a6a7acb6999a7016240c65a58d40",
@@ -94,7 +94,7 @@
     "scripts/test-t22-elite-m01.mjs": "fc826630789ddd7469492f7c16b0b9071a33472f",
     "scripts/test-t22-elite-m02.mjs": "3422e3c392126d016a2be335cf78a251da755b73",
     "scripts/test-t22-elite-m03.mjs": "e932fa3e0498999d2c4b3b6c0e1419cc96c15328",
-    "scripts/test-t22-elite-m04.mjs": "ebba1d1c2e4d07155af4e3329ddf51ff0465f628",
+    "scripts/test-t22-elite-m04.mjs": "ec966cc2cee78d061fa94997d0ddf823c4c87516",
     "scripts/test-t22-elite-m05-m06-repairs.mjs": "09698eba2aa23c76f5f8bc6d3640bf1e8c277bad",
     "scripts/test-t22-elite-m05.mjs": "b2f5562467b484a96408cb461344176f95a39c33",
     "scripts/test-t22-elite-m06.mjs": "55fc41a5d93cf28d22842630751d5e528f29c854",
@@ -191,6 +191,11 @@
     "scope": "Bounded repair of independent findings R01–R06 only: evidence-distance honesty, S14 declassification, S24 fresh synthesis redesign, exact S18/S24 direct-conditioning-vs-Bayes boundary, S19→S20 ownership ordering and S20 multiplicity wrong-solver discrimination. M05/M06/M26 curriculum content unchanged.",
     "currentM04Blob": "69ab0e03b246bb5e4a0d4836ef2bc335380580cc",
     "reviewState": "repair candidate awaiting exact-head validation and independent confirmation",
-    "currentM04GitBlobSha1": "69ab0e03b246bb5e4a0d4836ef2bc335380580cc"
+    "currentM04GitBlobSha1": "69ab0e03b246bb5e4a0d4836ef2bc335380580cc",
+    "protectedM04SupportBlobs": {
+      "docs/t22-course/audit/m04-handoff-checks.mjs": "1fa244763497925c1e35d801055794416527998d",
+      "docs/t22-course/audit/m04-independent-math.mjs": "8ef2c3d4917e8c3567628612529becd2fa32c4ce",
+      "scripts/test-t22-elite-m04.mjs": "ec966cc2cee78d061fa94997d0ddf823c4c87516"
+    }
   }
 }
