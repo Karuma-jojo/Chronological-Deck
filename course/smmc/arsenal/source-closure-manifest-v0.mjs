@@ -34,10 +34,66 @@ export const ARSENAL_GATE2_SOURCE_CLOSURE_ZONES = Object.freeze([
   },
   {
     sourceId: "S1-ZEITZ-2007-2E",
-    zoneId: "ZEITZ-EXPLICIT-FOLLOWUPS",
+    zoneId: "ZEITZ-PSYCHOLOGICAL-FOLLOWUP",
     startPage: 31,
+    endPage: 34,
+    note: "Exact Psychological Strategies follow-up for Mental Toughness and Creativity."
+  },
+  {
+    sourceId: "S1-ZEITZ-2007-2E",
+    zoneId: "ZEITZ-METHODS-OF-ARGUMENT-FOLLOWUP",
+    startPage: 58,
+    endPage: 62,
+    note: "Exact Methods of Argument follow-up for contradiction and induction structures."
+  },
+  {
+    sourceId: "S1-ZEITZ-2007-2E",
+    zoneId: "ZEITZ-CROSSOVER-FOLLOWUP",
+    startPage: 126,
+    endPage: 126,
+    note: "Exact source-definition page for the Crossover Tactic family."
+  },
+  {
+    sourceId: "S1-ZEITZ-2007-2E",
+    zoneId: "ZEITZ-AVERAGE-PRINCIPLE-FOLLOWUP",
+    startPage: 193,
+    endPage: 193,
+    note: "Exact source page used to verify the Average Principle wording and bounded proof-style exclusion."
+  },
+  {
+    sourceId: "S1-ZEITZ-2007-2E",
+    zoneId: "ZEITZ-DIVISION-ALGORITHM-FOLLOWUP",
+    startPage: 241,
+    endPage: 241,
+    note: "Exact number-theory toolkit page for the Division Algorithm."
+  },
+  {
+    sourceId: "S1-ZEITZ-2007-2E",
+    zoneId: "ZEITZ-TRANSFORMATIONS-FOLLOWUP",
+    startPage: 315,
+    endPage: 319,
+    note: "Exact transformation pages for rigid motions, translations, glide reflections, and rotations."
+  },
+  {
+    sourceId: "S1-ZEITZ-2007-2E",
+    zoneId: "ZEITZ-BISECTION-FOLLOWUP",
+    startPage: 344,
+    endPage: 344,
+    note: "Exact source page used to verify the repeated-bisection strategy."
+  },
+  {
+    sourceId: "S1-ZEITZ-2007-2E",
+    zoneId: "ZEITZ-LOG-DIFFERENTIATION-FOLLOWUP",
+    startPage: 351,
+    endPage: 352,
+    note: "Exact A Useful Tool pages used to identify Logarithmic Differentiation as the concrete tool."
+  },
+  {
+    sourceId: "S1-ZEITZ-2007-2E",
+    zoneId: "ZEITZ-ALGORITHMIC-PROOF-FOLLOWUP",
+    startPage: 369,
     endPage: 369,
-    note: "Only exact pages reached from the reviewed TOC/index terms were inspected for source wording; this is not a page-by-page whole-book noun harvest."
+    note: "Exact source page used to verify Algorithmic Proof as an explicitly labelled proof style."
   },
   {
     sourceId: "S2-ENGEL-1998",
