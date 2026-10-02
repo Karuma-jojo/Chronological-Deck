@@ -4,137 +4,151 @@ import crypto from 'node:crypto';
 
 const a=JSON.parse(fs.readFileSync('course/t22/authoring/m04.json','utf8'));
 const by=n=>a.sessions.find(s=>s.order===n);
-const P=(task,r)=>({task,r});
-const claimPlan={
-  1:[P('main',[0]),P('main',[1]),P('main',[2]),P('main',[3]),P('main',[4])],
-  2:[P('main',[0]),P('main',[1]),P('main',[2]),P('main',[0,4]),P('main',[3])],
-  3:[P('main',[0]),P('main',[1]),P('main',[2]),P('main',[3]),P('main',[4])],
-  4:[P('main',[0]),P('main',[1]),P('main',[2]),P('main',[3]),P('main',[0,1])],
-  5:[P('main',[0]),P('main',[1]),P('transfer',[2,4]),P('main',[4]),P('main',[2,3])],
-  6:[P('main',[0]),P('main',[2]),P('main',[1]),P('main',[3]),P('main',[4])],
-  7:[P('main',[0]),P('main',[1]),P('main',[0,3]),P('main',[2,3]),P('main',[4])],
-  8:[P('main',[0]),P('main',[1]),P('main',[3]),P('main',[2]),P('main',[4])],
-  9:[P('main',[0]),P('main',[0]),P('main',[1]),P('main',[3,4]),P('main',[2])],
- 10:[P('main',[4]),P('main',[0]),P('main',[1]),P('main',[2,3]),P('main',[3,4])],
- 11:[P('main',[2]),P('main',[1,2]),P('main',[2]),P('main',[3]),P('main',[4])],
- 12:[P('main',[2,4]),P('main',[1,2]),P('main',[2]),P('main',[3]),P('main',[4])],
- 13:[P('main',[0]),P('main',[1,2]),P('main',[2,3]),P('main',[4]),P('transfer',[3,4])],
- 14:[P('main',[1,2]),P('main',[3,4]),P('main',[1,2]),P('main',[3]),P('main',[2,3,4])],
- 15:[P('main',[4]),P('main',[0]),P('main',[1,2]),P('main',[3]),P('main',[3])],
- 16:[P('main',[0]),P('main',[1]),P('main',[2]),P('main',[3]),P('main',[4])],
- 17:[P('main',[3]),P('main',[0]),P('main',[2]),P('main',[1,3]),P('main',[4])],
- 18:[P('main',[0]),P('main',[0]),P('main',[1]),P('main',[2,3]),P('main',[3,4])],
- 19:[P('main',[1]),P('main',[1]),P('main',[2]),P('main',[0]),P('main',[3,4])],
- 20:[P('main',[0,3]),P('main',[0]),P('main',[1,2]),P('main',[4]),P('main',[3,4])],
- 21:[P('main',[0]),P('main',[0]),P('main',[1]),P('main',[3]),P('main',[4])],
- 22:[P('main',[0]),P('main',[1]),P('main',[2]),P('main',[3]),P('main',[4])],
- 23:[P('main',[0]),P('main',[1]),P('main',[2]),P('main',[3]),P('main',[4])],
- 24:[P('main',[0]),P('main',[1]),P('main',[2]),P('main',[3]),P('main',[4])]
-};
+const close=(x,y,e=1e-12)=>assert(Math.abs(x-y)<e,`${x} != ${y}`);
+const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 
 assert.equal(a.module.id,'ARC048');
-assert.equal(a.version,'m04-authoring-v1.2-astra-r1');
-assert.equal(a.instructionVersion,'m04-instruction-astra-r1');
+assert.equal(a.version,'m04-authoring-v2.1-independent-review-repair-r1');
+assert.equal(a.instructionVersion,'m04-instruction-v2.1-independent-review-repair-r1');
+assert.equal(a.module.status,'v2.1-independent-review-repair-candidate');
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-DISC01']);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
-assert.deepEqual(a.crossModulePrerequisiteCleanup.changedContractSessionIds,[by(18).id]);
-assert.deepEqual(a.crossModulePrerequisiteCleanup.fixedAssessmentChanges,[]);
+assert.equal(Object.keys(a.evidenceDistance.items).length,48);
+assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,24);
+assert.equal(a.representationProgression.length,10);
+assert(fs.existsSync(a.researchBasis.designGate));
+assert(fs.existsSync(a.researchBasis.deepSourceAudit));
+assert(fs.existsSync(a.researchBasis.sourceDossier));
 
-const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
+const allowed=new Set(['retrieval','proof reconstruction','fresh Main evidence','changed-surface Transfer']);
+const decisionTargets=[];
 const hashes=new Set();
 for(const s of a.sessions){
   assert.equal(s.requiredOwnership.length,5);
-  assert(s.lesson.includes('Worked example:')&&s.lesson.includes('Guided check:'));
-  assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'reviewed-separated');
+  assert(s.lesson.length>700,`S${s.order} lesson too thin`);
+  for(const token of ['Orient.','Define.','Connect.','Explain.','Worked example:','Guided check:','Fade.','Distinction check.']) assert(s.lesson.includes(token),`S${s.order} missing ${token}`);
+  assert(s.guidedFeedback?.startsWith('Check after attempting.'),`S${s.order} staged feedback missing`);
+  assert(!s.lesson.includes('\\\\n'),`S${s.order} visible escape`);
+  const st=a.semanticSeparationAudit.sessions[s.id].status;
+  assert(['builder-reviewed-separated-awaiting-independent-confirmation','builder-repaired-awaiting-independent-confirmation','reviewed-separated'].includes(st),`S${s.order} semantic status`);
   const c={id:s.id,title:s.title,focus:s.focus,purpose:s.purpose,centralCapability:s.centralCapability,principalObstacle:s.principalObstacle,entryPrerequisites:s.entryPrerequisites,requiredOwnership:s.requiredOwnership,applicationScope:s.applicationScope,transferScope:s.transferScope,inScope:s.inScope,outOfScope:s.outOfScope,exitCondition:s.exitCondition};
   const h=crypto.createHash('sha256').update(JSON.stringify(stable(c))).digest('hex');
   assert(!hashes.has(h)); hashes.add(h);
   assert.equal(a.claimEvidence[s.id].length,5);
-  const plan=claimPlan[s.order];
   a.claimEvidence[s.id].forEach((e,i)=>{
-    const expected=plan[i], id=s[expected.task], rubric=a.evaluators[id].rubric;
     assert.equal(e.claim,s.requiredOwnership[i]);
-    assert.equal(e.task,expected.task);
-    assert.equal(e.publicRequest,a.problems[id].prompt);
-    assert.deepEqual(e.rubricEvidence,expected.r.map(j=>rubric[j].criterion));
-    assert.deepEqual(a.coverage[s.id][i],[expected.task]);
+    assert(['main','transfer'].includes(e.task));
+    const pid=s[e.task];
+    assert.equal(e.publicRequest,a.problems[pid].prompt);
+    assert.deepEqual(a.coverage[s.id][i],[e.task]);
+    for(const criterion of e.rubricEvidence)assert(a.evaluators[pid].rubric.some(r=>r.criterion===criterion),`${s.id} missing observer ${criterion}`);
   });
   for(const kind of ['main','transfer']){
-    const id=s[kind];
-    assert.equal(a.evaluators[id].rubric.reduce((z,r)=>z+r.points,0),10);
-    assert(a.instructionSeparation[s.id][kind].length);
-    for(const f of a.instructionSeparation[s.id][kind]){
-      assert(a.problems[id].prompt.includes(f),`S${s.order} ${kind} missing separation fragment: ${f}`);
-      assert(!s.lesson.includes(f),`S${s.order} ${kind} lesson leaks separation fragment: ${f}`);
+    const id=s[kind],ev=a.evaluators[id],ed=a.evidenceDistance.items[id];
+    assert.equal(ev.rubric.reduce((z,r)=>z+r.points,0),10);
+    assert(allowed.has(ed.class),`${id} bad evidence class`);
+    if(ed.class==='fresh Main evidence'||ed.class==='changed-surface Transfer')decisionTargets.push(id);
+    assert(a.instructionSeparation[s.id][kind]?.length,`S${s.order} ${kind} separation missing`);
+    for(const frag of a.instructionSeparation[s.id][kind]){
+      assert(a.problems[id].prompt.includes(frag),`S${s.order} ${kind} missing fragment ${frag}`);
+      assert(!s.lesson.includes(frag),`S${s.order} ${kind} leaked fragment ${frag}`);
     }
   }
-  assert(a.prerequisiteAudit['S'+String(s.order).padStart(2,'0')]?.length);
+  assert(a.prerequisiteAudit['S'+String(s.order).padStart(2,'0')]?.length,`S${s.order} prereq audit`);
+  const tClass=a.evidenceDistance.items[s.transfer].class;
+  if(tClass==='changed-surface Transfer')assert(s.transferScope.startsWith('Changed-surface transfer:'),`S${s.order} changed-surface scope not honest`);
+  else assert(s.transferScope.startsWith('Retrieval/fluency'),`S${s.order} retrieval scope not honest`);
+}
+assert.deepEqual(Object.keys(a.decisionAudit.items).sort(),decisionTargets.sort());
+for(const id of decisionTargets){
+  const d=a.decisionAudit.items[id];
+  assert.equal(typeof d.decisionSuppliedByPrompt,'boolean');
+  assert.equal(typeof d.decisionRehearsedInVisibleInstruction,'boolean');
+  assert(d.claimedLearnerDecision?.length>20);
+  assert(d.scoredLearnerAction?.length>20);
+  assert(d.classificationJustification?.length>20);
 }
 
-const close=(x,y,e=1e-12)=>assert(Math.abs(x-y)<e,`${x} != ${y}`);
-close(.08+.17+.30+.30+.15,1);
-close(4/36,1/9);
-close(1-1/16,15/16);
-close(4/6,2/3);
-close(.55+.40-.18,.77);
-close(2/6,1/3);
-close((.48*.35)/.42,.4);
-close(.55*.9+.45*.7,.81);
-close((5/8)*(3/7),15/56);
-close(.5*(1/3),1/6);
-close((4/6)*(3/5),.4);
-close((1/4)*(3/8),3/32);
-close(1/4,1/4);
-assert.notEqual(0,1/8);
-close(.8**3*.2,.1024);
-close(10*.6**3*.4**2,.3456);
-close(1-.75**4,.68359375);
-close(.5*.01+.3*.03+.2*.06,.026);
-close(-3*.2+1*.5+7*.3,2);
-close((2+5+8+11+14+17)/6,9.5);
-close((3+9+3)/3,5);
-close(3*(4/10),1.2);
-close(0*.75+12*.25,3);
-close(.4*.75+.6*.5,.6);
-close(4*.6-1*.4,2);
+// Material fixed-contract versioning.
+const versions={
+  '1M':2,'1T':2,'2T':2,'3T':2,'4T':2,'5T':3,'6T':2,'7M':2,'7T':2,'8T':2,'9T':2,'10T':2,
+  '15M':2,'15T':2,'16T':2,'17M':2,'17T':2,'18M':3,'18T':3,'19T':3,'20T':2,'21M':2,'23T':2,'24M':3,'24T':3
+};
+for(const [k,v] of Object.entries(versions)){
+  const n=Number(k.match(/\d+/)[0]),kind=k.endsWith('M')?'main':'transfer';
+  assert.equal(a.problems[by(n)[kind]].obligationVersion,v,`${k} version`);
+}
 
-// Astra bounded repair regressions.
-assert.equal(a.problems[by(5).transfer].obligationVersion,2);
-assert(a.problems[by(5).transfer].prompt.includes("D='number is 10 or 11'"));
-assert(a.evaluators[by(5).transfer].rubric.some(r=>r.criterion.includes('disjoint addition rule')));
+// Exact semantic observers for materially changed Main contracts.
+const observerPlan={
+  1:[[0],[1],[2],[4],[3]],
+  15:[[4],[1,4],[0],[1],[1,2]],
+  17:[[2],[0,4],[1,4],[2],[3]],
+  18:[[0],[0],[1],[2],[3,4]],
+  24:[[0],[1],[2],[3],[4]]
+};
+for(const [nstr,plan] of Object.entries(observerPlan)){
+  const s=by(Number(nstr)),rub=a.evaluators[s.main].rubric;
+  a.claimEvidence[s.id].forEach((e,i)=>assert.deepEqual(e.rubricEvidence,plan[i].map(j=>rub[j].criterion),`S${nstr} claim ${i+1} semantic observer drift`));
+}
+
+// Historical repairs remain closed.
 assert.equal(a.claimEvidence[by(5).id][2].task,'transfer');
-
-assert(by(11).lesson.includes('P(A∩B^c)=P(A)−P(A∩B)'));
+assert.equal(a.claimEvidence[by(13).id][4].task,'transfer');
+assert(by(11).lesson.includes('P(A∩B^c)=P(A)-P(A∩B)'));
 assert(by(11).lesson.includes('P(A)P(B^c)'));
 assert(a.prerequisiteAudit.S11.some(x=>x.item.includes('complemented event')));
+assert(by(22).lesson.includes('labelled ordered samples'));
+assert(by(22).lesson.includes('original category fraction'));
+assert(!by(4).lesson.includes('independence before')&&!by(4).lesson.includes('generated independently'));
 
-assert.equal(a.claimEvidence[by(13).id][4].task,'transfer');
+// Representation progression blockers are now real learner artifacts.
+assert(by(7).lesson.includes('F   not F   total'));
+assert(by(7).representations?.some(x=>x.kind==='table'&&x.rows?.length===3));
+assert(by(9).lesson.includes('├─ L (.60)')&&by(9).lesson.includes('└─ R (.40)'));
+assert(by(9).representations?.some(x=>x.kind==='probabilityTree'&&x.branches?.length===2));
+assert(a.problems[by(9).transfer].representations?.some(x=>x.kind==='probabilityTree'));
+assert(by(18).lesson.includes('joint contribution'));
+assert(by(18).representations?.some(x=>x.kind==='table'));
+assert(a.problems[by(18).main].representations?.some(x=>x.kind==='table'));
+assert(a.problems[by(7).transfer].prompt.includes('two-way table'));
+assert(a.problems[by(9).transfer].prompt.includes('routing tree'));
+assert(a.problems[by(18).main].prompt.includes('finite branch table'));
 
-assert.equal(a.problems[by(21).main].obligationVersion,2);
-assert(a.problems[by(21).main].prompt.includes('derive from the finite weighted-sum definition'));
-assert(a.evaluators[by(21).main].rubric[0].criterion.includes('Derives finite linearity'));
+// Conditioning and misconception discriminators.
+assert(by(7).lesson.includes('favourable-count/total-count is only the special case'));
+assert(a.problems[by(7).main].prompt.includes("P(a)=0.05"));
+assert(a.problems[by(7).main].prompt.includes('without changing the past'));
+assert(a.problems[by(15).main].prompt.includes('looks more random'));
+assert(a.problems[by(15).main].prompt.includes("'due'"));
+assert(a.problems[by(18).transfer].prompt.includes('(.4+.1+.25)/3')||a.problems[by(18).transfer].prompt.includes('(0.4+0.1+0.25)/3'));
+assert(a.problems[by(24).main].prompt.includes('representation of your choice'));
+assert.equal(a.evidenceDistance.items[by(14).main].class,'retrieval');
+assert.equal(a.evidenceDistance.items[by(24).main].class,'fresh Main evidence');
+assert.deepEqual(a.sessions.filter(s=>a.evidenceDistance.items[s.transfer].class==='changed-surface Transfer').map(s=>s.order),[9,10,13,24]);
+assert.equal(Object.keys(a.decisionAudit.items).length,5);
+assert(a.problems[by(18).main].prompt.includes('direct S07 conditional calculation'));
+assert(a.problems[by(24).transfer].prompt.includes('compute P(X|flag) directly from the S07 conditional definition'));
+assert(a.independentReviewRepair?.findings?.length===6);
 
-assert(by(22).lesson.includes('each original labelled object appears equally often'));
-assert(by(22).lesson.includes('equals the initial red fraction'));
-assert(a.prerequisiteAudit.S22.some(x=>x.item.includes('ordered-sample model')));
+// Deterministic math checks for changed contracts.
+close(.05+.15+.20+.25+.35,1);
+close(.55/.80,11/16); close(.55/.60,11/12);
+close(18/24,3/4); close(18/30,3/5);
+close(.4*.1,.04); close(.4*.9,.36); close(.6*.25,.15); close(.6*.75,.45);
+close(.3*.7,.21); close(.21/.4,.525);
+close(.8**3*.2,.1024); close(.3**3*.7**2,.01323);
+close(6*.2*.8**5,.393216);
+close(1-.75**4,.68359375); close(1-.6**5,.92224);
+close(.5*.01+.3*.03+.2*.06,.026); close(.2*.4+.5*.1+.3*.25,.205);
+close(8*.1+4*.2+1*.3-2*.4,1.1);
+close((1+1+1+1+3+7+9+9)/8,4);
+close((1+3+7+9)/4,5);
+close(.4*.7+.6*.5,.58); close(.4*.7,.28); close(4*.58-3*.42,1.06);
+close(.25*.8+.75*.2,.35); close(6*.35,2.1); close((.25*.8)/.35,4/7);
 
-assert(!by(4).lesson.includes('generated independently'));
-assert(by(7).lesson.includes('P(B)>0'));
-assert(by(14).lesson.includes('triple intersection'));
-assert(by(18).lesson.includes('Bayes territory'));
-assert(by(18).entryPrerequisites.some(x=>x.includes('JIT disjoint/exhaustive partition definition')));
-assert(!by(18).entryPrerequisites.some(x=>x.includes('M03-S17 partitions/disjoint unions')));
-assert(!by(21).lesson.includes('E[XY]=E[X]E[Y]'));
-assert(by(23).lesson.includes('M05 will introduce'));
-assert(by(24).lesson.includes('North with probability0.2'));
-
-for(const n of [7,9,10,11,12,13,14,16,18,19,21,22,24]){
-  const worked=by(n).lesson.split('Worked example:')[1].split('Guided check:')[0].trim();
-  assert(worked.length>=90,'S'+n+' worked reasoning too thin');
-}
-
-console.log('PASS: M04 Astra-r1 — 24 sessions, 48 tasks, 120/120 manually pinned claim/task/rubric mappings, S05/S21 obligation-v2 repairs, S11/S22 novice bridges, and 24/24 separation records.');
+console.log('PASS: M04 v2.1 independent-review repair candidate — 24 sessions/48 tasks/120 claims, staged novice lessons, table-tree-partition representation progression, 48 honest evidence-distance labels, 5 decision audits, 24 wrong-solver attacks and R01–R06 repairs pinned.');

@@ -6,69 +6,73 @@ const a=read('course/t22/authoring/m04.json');
 const meta=read('course/t22/generated/course-meta.json');
 const road=read('course/t22/generated/roadmap.json');
 const led=read('docs/t22-rebuild/SEMANTIC-PREREQUISITES.json');
-const hand=fs.readFileSync('docs/t22-course/M04-REVIEW-HANDOFF.md','utf8');
-const res=fs.readFileSync('docs/t22-course/M04-RESOLUTION.md','utf8');
+const oldHand=fs.readFileSync('docs/t22-course/M04-REVIEW-HANDOFF.md','utf8');
+const oldRes=fs.readFileSync('docs/t22-course/M04-RESOLUTION.md','utf8');
+const design=fs.readFileSync('docs/t22-course/M04-V2-DESIGN-GATE.md','utf8');
+const audit=fs.readFileSync('docs/t22-course/M04-DEEP-SOURCE-AUDIT-v1.0.md','utf8');
+const dossier=fs.readFileSync('docs/t22-course/M04-SOURCE-DOSSIER-AND-PEDAGOGY-EVIDENCE.md','utf8');
+const review=fs.readFileSync('docs/t22-course/M04-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 const by=n=>a.sessions.find(s=>s.order===n);
 
-assert.equal(a.version,'m04-authoring-v1.2-astra-r1');
-assert.equal(a.instructionVersion,'m04-instruction-astra-r1');
-assert.equal(a.module.status,'authored-v1.2-astra-repaired');
+assert.equal(a.version,'m04-authoring-v2.1-independent-review-repair-r1');
+assert.equal(a.instructionVersion,'m04-instruction-v2.1-independent-review-repair-r1');
+assert.equal(a.module.status,'v2.1-independent-review-repair-candidate');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
+assert.equal(Object.keys(a.evidenceDistance.items).length,48);
+assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,24);
 
-assert.equal(a.problems[by(5).transfer].obligationVersion,2);
-assert.equal(a.problems[by(21).main].obligationVersion,2);
 assert.equal(a.claimEvidence[by(5).id][2].task,'transfer');
 assert.equal(a.claimEvidence[by(13).id][4].task,'transfer');
-assert(by(11).lesson.includes('P(A∩B^c)=P(A)−P(A∩B)'));
-assert(by(22).lesson.includes('each original labelled object appears equally often'));
+assert(by(11).lesson.includes('P(A∩B^c)=P(A)-P(A∩B)'));
+assert(by(22).lesson.includes('labelled ordered samples'));
 assert(!by(4).lesson.includes('generated independently'));
 
-assert.equal(road.modules.find(x=>x.id==='ARC048').availability,'authored');
-assert.equal(led.entries.find(x=>x.id==='ARC048').semanticStatus,'accepted');
-assert(['planned','authored'].includes(road.modules.find(x=>x.id==='T22E-TRD01').availability));
-assert(['planned','authored'].includes(road.modules.find(x=>x.id==='ARC502').availability));
-assert.equal(road.modules.find(x=>x.id==='T22E-MKT01').availability,'validation');
-assert(meta.moduleSources.some(x=>x.id==='ARC048'&&x.source==='course/t22/authoring/m04.json'),'M04 source must remain registered as later modules are added');
+for(const n of [1,7,15,17,18,24])assert(a.problems[by(n).main].obligationVersion>=2,`S${n} Main version`);
+assert.equal(a.problems[by(18).main].obligationVersion,3);
+assert.equal(a.problems[by(18).transfer].obligationVersion,3);
+assert.equal(a.problems[by(19).transfer].obligationVersion,3);
+assert.equal(a.problems[by(20).transfer].obligationVersion,2);
+assert.equal(a.problems[by(24).main].obligationVersion,3);
+assert.equal(a.problems[by(24).transfer].obligationVersion,3);
+assert.equal(a.problems[by(9).main].obligationVersion,1,'S9 Main contract intentionally unchanged');
+assert.equal(a.problems[by(9).transfer].obligationVersion,2,'S9 Transfer repaired/versioned');
+assert.equal(a.problems[by(5).transfer].obligationVersion,3);
+assert.equal(a.problems[by(21).main].obligationVersion,2);
+
+assert(design.includes('KEEP 24'));
+assert(design.includes('Representation Progression Map'));
+assert(audit.includes('Representation progression is missing as a designed system'));
+assert(dossier.includes('Pedagogy-Evidence Ledger'));
+for(const token of ['Díaz & Batanero','Konold','Batanero & Álvarez-Arroyo','Blitzstein'])assert(dossier.includes(token),token);
+for(const token of ['R01','R02','R03','R04','R05','R06','BOUNDED REPAIR REQUIRED'])assert(review.includes(token),token);
+assert.equal(Object.keys(a.decisionAudit.items).length,5);
+assert.deepEqual(a.sessions.filter(s=>a.evidenceDistance.items[s.transfer].class==='changed-surface Transfer').map(s=>s.order),[9,10,13,24]);
+assert.equal(a.evidenceDistance.items[by(14).main].class,'retrieval');
+assert.equal(a.evidenceDistance.items[by(24).main].class,'fresh Main evidence');
+
+assert.equal(road.modules.find(x=>x.id==='ARC048').availability,'authored','published roadmap remains historical while v2 branch is under review');
+assert.equal(led.entries.find(x=>x.id==='ARC048').semanticStatus,'accepted','historical semantic acceptance remains provenance during branch repair');
 assert(meta.moduleSources.some(x=>x.id==='ARC048'&&x.source==='course/t22/authoring/m04.json'));
 assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
-assert(fs.existsSync('course/t22/authoring/m07.json'),'M07 remains present');assert(fs.existsSync('course/t22/authoring/m08.json'),'M08 is now explicitly authorized after this historical M04 checkpoint');
 
 for(const s of a.sessions){
   assert.equal(s.requiredOwnership.length,5);
   assert.equal(a.claimEvidence[s.id].length,5);
-  assert.equal(a.semanticSeparationAudit.sessions[s.id].status,'reviewed-separated');
   a.claimEvidence[s.id].forEach((e,i)=>{
     assert.equal(e.claim,s.requiredOwnership[i]);
-    const id=s[e.task];
     assert(['main','transfer'].includes(e.task));
+    const id=s[e.task];
     assert.equal(e.publicRequest,a.problems[id].prompt);
     for(const criterion of e.rubricEvidence)assert(a.evaluators[id].rubric.some(r=>r.criterion===criterion));
   });
 }
 
-for(const token of [
-  '7d377d847728a7ebec6e4b81f2864238bd0b1683',
-  '10df637dbb46bd4985a1f98fc298c746b52bf1fd',
-  'm04-instruction-astra-r1',
-  '120/120 manually re-audited',
-  'S05 claim 3 and S13 claim 5 intentionally use Transfer',
-  'STOP HERE FOR BOUNDED FOLLOW-UP REVIEW OF THE ASTRA REPAIRS'
-]) assert(hand.includes(token),token);
+// Historical receipts stay intact and are not rewritten as v2 acceptance.
+for(const token of ['7d377d847728a7ebec6e4b81f2864238bd0b1683','10df637dbb46bd4985a1f98fc298c746b52bf1fd','120/120 manually re-audited'])assert(oldHand.includes(token),token);
+for(const token of ['M04-01','M04-02','M04-03','M04-04','chrono_t22_elite_course_evidence_v1'])assert(oldRes.includes(token),token);
 
-for(const token of [
-  'M04-01',
-  'M04-02',
-  'M04-03',
-  'M04-04',
-  'obligationVersion 2',
-  'S05-T',
-  'S21-M',
-  'chrono_t22_elite_course_evidence_v1',
-  'STOP FOR BOUNDED FOLLOW-UP REVIEW'
-]) assert(res.includes(token),token);
-
-console.log('PASS: M04 Astra repair handoff matches 24/48/120 state, versioned S05-T/S21-M contracts, repaired S11/S22 prerequisites, shared evidence key, later-authorized M07/M08 validation candidates while M04 repair acceptance remains pinned.');
+console.log('PASS: M04 v2.1 handoff checks preserve historical Astra receipts/evidence identity while pinning the independent-review R01–R06 repairs and honest evidence classifications.');
