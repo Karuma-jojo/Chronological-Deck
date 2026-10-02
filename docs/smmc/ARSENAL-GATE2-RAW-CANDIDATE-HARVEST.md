@@ -34,9 +34,9 @@ Current expanded harvest inventory:
 - **39** current `SMMC_SECONDARY_TAGS`, preserved separately so tool/topic/specialist possibilities are not lost;
 - **129** distinct ledger `bridgeNeeds` harvested across all **88** official 2017–2025 problem rows as raw project-index leads;
 - **34** additional problem-specific route leads curated from the complete 88-row `auditNote` pass;
-- **258** source-specific book candidates from deeper inspection of the five Gate-1 canonical books;
-- **631 total raw candidates**;
-- **631 evidence records**;
+- **280** source-specific book candidates from the five Gate-1 canonical books after the systematic closure pass;
+- **653 total raw candidates**;
+- **653 evidence records**;
 - **0 typed candidates**;
 - **0 alias merges**;
 - **0 adjudications**;
@@ -175,12 +175,12 @@ Current raw book harvest, still without adjudication:
 
 | Canonical source | Raw source-specific candidates |
 |---|---:|
-| Zeitz | 82 |
-| Engel | 42 |
-| Hammack | 25 |
-| Velleman | 25 |
+| Zeitz | 94 |
+| Engel | 46 |
+| Hammack | 30 |
+| Velleman | 26 |
 | Putnam and Beyond | 84 |
-| **Total** | **258** |
+| **Total** | **280** |
 
 The counts are deliberately not interpreted as source importance. They reflect the current harvest granularity and how explicitly each source names techniques.
 
@@ -257,9 +257,64 @@ The first independent review of the old 477-row head identified three real defec
 - **G2-R02 — book-source omissions:** the follow-up source pass added the reviewer's missing Zeitz terms and continued through the source's explicit strategy/tactic/tool/index vocabulary. The final bounded repair adds **Average Principle**, **Algorithmic Proof**, and **Repeated Bisection Method**; earlier repair commits had already added **Symmetry-Product Principle**, **Euclidean Algorithm**, **Bisection Method**, and **Well-Ordering Principle**. Zeitz now contributes **82** source-specific rows, and the five-book total is **258**.
 - **G2-R03 — documentation drift:** the Gate-2 invariant is synchronized to RAW-HARVEST-REVIEW-CANDIDATE; the obsolete RAW-HARVEST-IN-PROGRESS wording is gone.
 
-For source-saturation purposes, the bounded inclusion rule used in the final book pass is: preserve source-specific terms explicitly presented by the source as a strategy, tactic, tool, principle, method, algorithm/proof style, or structured proof move; also preserve named specialist methods from the canonical TOC/index when they are plausible contest-solving machinery. Same-looking terms remain separate. This is a raw-harvest rule only, not a claim that every preserved term deserves a final Arsenal card. The authoring validator carries source-specific saturation sentinels across all five canonical books so the explicit reviewed vocabulary cannot silently disappear in a later edit.
+For source-saturation purposes, the bounded inclusion rule is: preserve source-specific terms explicitly presented by the source as a strategy, tactic, tool, principle, method, algorithm/proof style, or structured proof move; also preserve named specialist methods from the designated TOC/index/summary zones when they are plausible contest-solving machinery. Same-looking terms remain separate. This is a raw-harvest rule only, not a claim that every preserved term deserves a final Arsenal card. The reviewed decision set is now stored in `course/smmc/arsenal/source-closure-manifest-v0.mjs`, and the authoring validator requires the canonical-book candidate IDs to match that manifest exactly.
 
-After these review repairs the current pool is **631 candidates / 631 evidence records**: 44 method tags, 39 secondary tags, 129 bridgeNeeds, 34 audit-note route leads, 127 verified official historical occurrences, and 258 canonical-book source leads.
+After the first R01–R03 repair checkpoint the pool was **631 candidates / 631 evidence records**. That checkpoint was not accepted because the independent follow-up kept G2-R02 open; the systematic closure pass below supersedes it.
+
+
+### Systematic source-saturation closure after independent follow-up
+
+The independent follow-up on `5f4ffc2d4bc93f960ac32ce358267283bf8f709b` closed G2-R01 and G2-R03 but correctly kept **G2-R02** open: the positive sentinel list did not prove that the declared source-harvest rule had actually been exhausted.
+
+Gate 2 therefore performed one bounded source-closure pass across the designated zones for **all five canonical books**, and recorded the result in:
+
+`course/smmc/arsenal/source-closure-manifest-v0.mjs`
+
+The manifest has three auditable parts:
+
+1. the exact source zones reviewed;
+2. the exact **HARVEST** candidate-ID set;
+3. explicit **EXCLUDE** decisions with PDF page, section, and a short reason.
+
+The validator now requires exact set equality between the **280 canonical-book raw candidates** and the manifest HARVEST set. It also checks every closure zone and exclusion against the canonical frozen PDF page bounds, rejects duplicate decisions, requires substantive exclusion reasons, and guards against a term being both HARVEST and EXCLUDE.
+
+This closure pass naturally recovered the independent reviewer's four examples:
+
+- Engel — **Graph Theory**;
+- Engel — **Get Rid of Floor and Ceiling Brackets**;
+- Hammack — **Combining Techniques**;
+- Hammack — **Equivalent Statements**.
+
+It also recovered further items exposed by the same rule rather than stopping at those four:
+
+- Zeitz — **Mental Toughness**, **Creativity**, **Argument by Contradiction**, **Mathematical Induction**, **Crossover Tactic**, **Division Algorithm**, **Combinatorial Proof**, **Rigid Motions and Vectors**, **Translation**, **Glide Reflection**, **Rotation**, and **Logarithmic Differentiation**;
+- Engel — **Equations, Functions, and Iterations** and **Integer Functions** in the chapter explicitly titled *Further Strategies*;
+- Hammack — **Proving Statements with Contradiction**, **Proving Conditional Statements by Contradiction**, and **Existence-and-Uniqueness Proof** in addition to the two reviewer examples;
+- Velleman — **Instantiate a Unique-Existence Given** from the complete Summary of Proof Techniques.
+
+The manifest also records explicit bounded exclusions for organizational umbrellas, generic problem buckets, software-specific scaffolding, subject/example headings without an independent move, and implementation details subordinate to an already harvested named method. Those exclusions are **Gate-2 source-qualification decisions only**; they are not ontology, granularity, importance, ranking, or prerequisite judgments.
+
+Current source counts after closure:
+
+| Canonical book | Raw source candidates |
+| --- | ---: |
+| Zeitz | 94 |
+| Engel | 46 |
+| Hammack | 30 |
+| Velleman | 26 |
+| Putnam and Beyond | 84 |
+| **Total** | **280** |
+
+Current complete Gate-2 pool after this closure pass is **653 candidates / 653 evidence records**:
+
+- 44 method-tag leads;
+- 39 secondary-tag leads;
+- 129 bridgeNeed leads;
+- 34 project-derived audit-note route leads;
+- 127 verified official historical occurrences;
+- 280 canonical-book source leads.
+
+Gate 2 remains **REVIEW CANDIDATE** until a fresh independent reviewer accepts the new exact head. Gate 3 remains closed.
 
 ## 5. Non-adjudicating duplicate/orphan audit
 
@@ -299,8 +354,8 @@ The raw pool is now a review candidate, not an accepted ontology.
 The reviewer should attack at least these questions:
 
 1. **Coverage:** did any current method tag, secondary tag, ledger bridge need, or recurring problem-specific route disappear?
-2. **Book blind spots:** do Zeitz/Engel/Hammack/Velleman/Putnam contain clearly reusable named problem-solving ideas that the current source sweeps missed?
-3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 631-row raw pool?
+2. **Book blind spots:** does the reviewed source-closure manifest still omit an obvious item satisfying its own bounded inclusion rule?
+3. **Solution blind spots:** do the official solution booklets contain recurring or structurally important methods absent from the 653-row raw pool?
 4. **Premature merging:** were any same-looking source terms silently collapsed instead of preserved separately?
 5. **Premature ontology:** is any candidate typed, ranked, parented, prerequisite-linked, or adjudicated?
 6. **Evidence honesty:** does every row use the Gate-1 basis/channel/claim-kind contract correctly?
