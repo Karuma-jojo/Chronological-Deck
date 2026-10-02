@@ -30,7 +30,9 @@ assert(by(11).lesson.includes('P(A∩B^c)=P(A)-P(A∩B)'));
 assert(by(22).lesson.includes('labelled ordered samples'));
 assert(!by(4).lesson.includes('generated independently'));
 
-for(const n of [1,7,9,15,17,18,24])assert(a.problems[by(n).main].obligationVersion>=2,`S${n} Main version`);
+for(const n of [1,7,15,17,18,24])assert(a.problems[by(n).main].obligationVersion>=2,`S${n} Main version`);
+assert.equal(a.problems[by(9).main].obligationVersion,1,'S9 Main contract intentionally unchanged');
+assert.equal(a.problems[by(9).transfer].obligationVersion,2,'S9 Transfer repaired/versioned');
 assert.equal(a.problems[by(5).transfer].obligationVersion,3);
 assert.equal(a.problems[by(21).main].obligationVersion,2);
 
