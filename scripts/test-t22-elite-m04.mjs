@@ -93,8 +93,13 @@ assert(!by(4).lesson.includes('independence before')&&!by(4).lesson.includes('ge
 
 // Representation progression blockers are now real learner artifacts.
 assert(by(7).lesson.includes('F   not F   total'));
+assert(by(7).representations?.some(x=>x.kind==='table'&&x.rows?.length===3));
 assert(by(9).lesson.includes('├─ L (.60)')&&by(9).lesson.includes('└─ R (.40)'));
+assert(by(9).representations?.some(x=>x.kind==='probabilityTree'&&x.branches?.length===2));
+assert(a.problems[by(9).transfer].representations?.some(x=>x.kind==='probabilityTree'));
 assert(by(18).lesson.includes('joint contribution'));
+assert(by(18).representations?.some(x=>x.kind==='table'));
+assert(a.problems[by(18).main].representations?.some(x=>x.kind==='table'));
 assert(a.problems[by(7).transfer].prompt.includes('two-way table'));
 assert(a.problems[by(9).transfer].prompt.includes('routing tree'));
 assert(a.problems[by(18).main].prompt.includes('finite branch table'));
@@ -122,4 +127,4 @@ close(8*.1+8*.2+1*.3-2*.4,1.9);
 close(.35*.8+.65*.4,.54); close(5*.54-2*.46,1.78);
 close(.25*.8+.75*.2,.35); close(6*.35,2.1);
 
-console.log('PASS: M04 v2 deep reconstruction candidate — 24 sessions/48 tasks/120 claims, staged novice lessons, table-tree-partition representation progression, 48 evidence-distance labels, 33 decision audits, 24 wrong-solver attacks and versioned high-risk assessment repairs.');
+console.log('PASS: M04 v2 deep reconstruction candidate — 24 sessions/48 tasks/120 claims, staged novice lessons, table-tree-partition representation progression, 48 evidence-distance labels, 23 decision audits, 24 wrong-solver attacks and versioned high-risk assessment repairs.');
