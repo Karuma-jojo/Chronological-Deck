@@ -1112,3 +1112,35 @@ No alias merge, ontology type, granularity disposition, rank, rarity, prerequisi
 
 Gate 2 remains **REVIEW CANDIDATE** and Gate 3 remains CLOSED. The repaired exact head requires fresh exact-head CI and one fresh independent adversarial follow-up before closure.
 
+## Arsenal Gate 2 literal family-child + locator hardening — 661 raw candidates (2026-10-02)
+
+Independent review **5393058455** on exact SHA `8f004a237fcb09c386138cd5abdf7580fdb081a8` accepted the item-level closure-certificate architecture but found two narrow R02 integrity holes:
+
+1. Zeitz's selector explicitly promised every child of the Strategies / Tactics / Tools / Transformations / Combinatorial Strategies and Tactics index families, but some literal child entries still lacked a reviewed-item disposition.
+2. HARVEST reviewed items lacked their own physical `pdfPage` locator, so the validator could not prove that the reviewed source occurrence itself lay inside the declared bounded source zone.
+
+### Repair
+
+No new raw candidates were added. The Gate-2 pool remains **661 candidates / 661 evidence records**, including **288 canonical-book candidates**.
+
+The closure certificate now contains:
+- **458 reviewed source items**;
+- **375 HARVEST decisions**;
+- **288 unique harvested book candidates**;
+- **83 EXCLUDE decisions**.
+
+Added **72** literal Zeitz family-child reviewed items, covering every child on the declared index families. Existing same-source methods are mapped with HARVEST; contextual/application-only children receive EXCLUDE reasons. Examples include Strategy/Tactic/Tool `defined` children, all named tactic children, all named tool children, every concrete transformation child, the Felix Klein / Henri Poincare contextual entries, the Homothety/concurrence application entry, and all four Combinatorial Strategies and Tactics children.
+
+Every reviewed item now carries:
+- an explicit physical PDF page;
+- section/context;
+- exactly one disposition.
+
+The source-zone model now distinguishes:
+- **enumerationSegments** — surfaces that carry the exhaustiveness claim;
+- **verificationSegments** — exact point pages used only to validate reviewed-item locators for already-admitted source items.
+
+The validator now rejects any reviewed item whose page is missing, outside the frozen canonical artifact, or outside its declared source zone. Existing partition checks remain in force: unique review identities, one disposition, HARVEST/EXCLUDE exclusivity, same-source candidate mappings, exact unique-HARVEST projection, and substantive EXCLUDE reasons.
+
+Gate 2 remains **REVIEW CANDIDATE**. Gate 3 remains CLOSED. Fresh exact-head CI and one fresh independent attack are required.
+
