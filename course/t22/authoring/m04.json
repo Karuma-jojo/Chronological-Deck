@@ -3196,7 +3196,7 @@
         "task": "main",
         "publicRequest": "A quality check records two fields for each item: production line X or Y, and result pass or fail. An analyst proposes Ω={X,Y,pass,fail}. Repair the model: define what one atomic recorded outcome is, construct the complete atomic sample space, let A='line X' and B='fail', list A∩B and A∪B, and explain why 'fail' is an event rather than one atomic recorded outcome.",
         "rubricEvidence": [
-          "Lists A∩B and A∪B correctly."
+          "Explains that 'fail' is a two-atom event because the production-line field is unspecified."
         ]
       },
       {
@@ -3204,7 +3204,7 @@
         "task": "main",
         "publicRequest": "A quality check records two fields for each item: production line X or Y, and result pass or fail. An analyst proposes Ω={X,Y,pass,fail}. Repair the model: define what one atomic recorded outcome is, construct the complete atomic sample space, let A='line X' and B='fail', list A∩B and A∪B, and explain why 'fail' is an event rather than one atomic recorded outcome.",
         "rubricEvidence": [
-          "Explains that 'fail' is a two-atom event because the production-line field is unspecified."
+          "Lists A∩B and A∪B correctly."
         ]
       }
     ],
@@ -3780,7 +3780,7 @@
         "task": "main",
         "publicRequest": "A device succeeds independently on each trial with probability0.8. Compare the exact four-trial paths S,S,S,F and S,F,S,S by computing each probability and writing the common power product. Then evaluate two claims: (i) S,F,S,S is more likely because it 'looks more random'; (ii) after three consecutive successes, failure is more likely on the next trial because it is 'due'. State the model assumption that decides both claims.",
         "rubricEvidence": [
-          "Computes both exact path probabilities as0.1024."
+          "Attributes both conclusions to repeated independent trials with constant per-trial probability."
         ]
       },
       {
@@ -3788,7 +3788,8 @@
         "task": "main",
         "publicRequest": "A device succeeds independently on each trial with probability0.8. Compare the exact four-trial paths S,S,S,F and S,F,S,S by computing each probability and writing the common power product. Then evaluate two claims: (i) S,F,S,S is more likely because it 'looks more random'; (ii) after three consecutive successes, failure is more likely on the next trial because it is 'due'. State the model assumption that decides both claims.",
         "rubricEvidence": [
-          "Writes/uses the common power form0.8^3·0.2 and explains why the two orderings match."
+          "Writes/uses the common power form0.8^3·0.2 and explains why the two orderings match.",
+          "Attributes both conclusions to repeated independent trials with constant per-trial probability."
         ]
       },
       {
@@ -3796,7 +3797,7 @@
         "task": "main",
         "publicRequest": "A device succeeds independently on each trial with probability0.8. Compare the exact four-trial paths S,S,S,F and S,F,S,S by computing each probability and writing the common power product. Then evaluate two claims: (i) S,F,S,S is more likely because it 'looks more random'; (ii) after three consecutive successes, failure is more likely on the next trial because it is 'due'. State the model assumption that decides both claims.",
         "rubricEvidence": [
-          "Rejects the representativeness claim that the more mixed-looking path is more likely."
+          "Computes both exact path probabilities as0.1024."
         ]
       },
       {
@@ -3804,7 +3805,7 @@
         "task": "main",
         "publicRequest": "A device succeeds independently on each trial with probability0.8. Compare the exact four-trial paths S,S,S,F and S,F,S,S by computing each probability and writing the common power product. Then evaluate two claims: (i) S,F,S,S is more likely because it 'looks more random'; (ii) after three consecutive successes, failure is more likely on the next trial because it is 'due'. State the model assumption that decides both claims.",
         "rubricEvidence": [
-          "Rejects the gambler's-fallacy claim and states next-trial success/failure remain0.8/0.2 after a run."
+          "Writes/uses the common power form0.8^3·0.2 and explains why the two orderings match."
         ]
       },
       {
@@ -3812,7 +3813,8 @@
         "task": "main",
         "publicRequest": "A device succeeds independently on each trial with probability0.8. Compare the exact four-trial paths S,S,S,F and S,F,S,S by computing each probability and writing the common power product. Then evaluate two claims: (i) S,F,S,S is more likely because it 'looks more random'; (ii) after three consecutive successes, failure is more likely on the next trial because it is 'due'. State the model assumption that decides both claims.",
         "rubricEvidence": [
-          "Attributes both conclusions to repeated independent trials with constant per-trial probability."
+          "Writes/uses the common power form0.8^3·0.2 and explains why the two orderings match.",
+          "Rejects the representativeness claim that the more mixed-looking path is more likely."
         ]
       }
     ],
@@ -3864,7 +3866,7 @@
         "task": "main",
         "publicRequest": "Four independent sensors each detect an event with probability0.25. Find P(none detect), P(all detect), and P(at least one detects). For the at-least-one calculation, choose and justify an efficient route rather than summing overlapping 'sensor i detects' events, and state exactly where independence is used.",
         "rubricEvidence": [
-          "Computes P(none)=0.75^4=0.31640625."
+          "Chooses the complement of none and computes P(at least one)=0.68359375."
         ]
       },
       {
@@ -3872,7 +3874,8 @@
         "task": "main",
         "publicRequest": "Four independent sensors each detect an event with probability0.25. Find P(none detect), P(all detect), and P(at least one detects). For the at-least-one calculation, choose and justify an efficient route rather than summing overlapping 'sensor i detects' events, and state exactly where independence is used.",
         "rubricEvidence": [
-          "Computes P(all)=0.25^4=0.00390625."
+          "Computes P(none)=0.75^4=0.31640625.",
+          "States that independence justifies the product for none/all, while the complement identity itself does not require independence."
         ]
       },
       {
@@ -3880,7 +3883,8 @@
         "task": "main",
         "publicRequest": "Four independent sensors each detect an event with probability0.25. Find P(none detect), P(all detect), and P(at least one detects). For the at-least-one calculation, choose and justify an efficient route rather than summing overlapping 'sensor i detects' events, and state exactly where independence is used.",
         "rubricEvidence": [
-          "Chooses the complement of none and computes P(at least one)=0.68359375."
+          "Computes P(all)=0.25^4=0.00390625.",
+          "States that independence justifies the product for none/all, while the complement identity itself does not require independence."
         ]
       },
       {
@@ -3888,7 +3892,7 @@
         "task": "main",
         "publicRequest": "Four independent sensors each detect an event with probability0.25. Find P(none detect), P(all detect), and P(at least one detects). For the at-least-one calculation, choose and justify an efficient route rather than summing overlapping 'sensor i detects' events, and state exactly where independence is used.",
         "rubricEvidence": [
-          "Justifies why direct addition of individual-detection events is invalid/inefficient because they overlap."
+          "Chooses the complement of none and computes P(at least one)=0.68359375."
         ]
       },
       {
@@ -3896,7 +3900,7 @@
         "task": "main",
         "publicRequest": "Four independent sensors each detect an event with probability0.25. Find P(none detect), P(all detect), and P(at least one detects). For the at-least-one calculation, choose and justify an efficient route rather than summing overlapping 'sensor i detects' events, and state exactly where independence is used.",
         "rubricEvidence": [
-          "States that independence justifies the product for none/all, while the complement identity itself does not require independence."
+          "Justifies why direct addition of individual-detection events is invalid/inefficient because they overlap."
         ]
       }
     ],
@@ -3914,7 +3918,7 @@
         "task": "main",
         "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
         "rubricEvidence": [
-          "Computes the three joint defect contributions0.005,0.009,0.012."
+          "Verifies the three source events are disjoint/exhaustive as stated and their probabilities sum to1."
         ]
       },
       {
@@ -3922,7 +3926,7 @@
         "task": "main",
         "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
         "rubricEvidence": [
-          "Sums the weighted contributions to overall defect probability0.026 and rejects the unweighted rate average."
+          "Computes the three joint defect contributions0.005,0.009,0.012."
         ]
       },
       {
@@ -3930,7 +3934,7 @@
         "task": "main",
         "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
         "rubricEvidence": [
-          "States the finite law P(A)=Σ_i P(B_i)P(A|B_i) for a partition (equivalent notation accepted)."
+          "Sums the weighted contributions to overall defect probability0.026 and rejects the unweighted rate average."
         ]
       },
       {
@@ -3938,6 +3942,7 @@
         "task": "main",
         "publicRequest": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and identify one reverse/posterior question that this calculation does not answer.",
         "rubricEvidence": [
+          "States the finite law P(A)=Σ_i P(B_i)P(A|B_i) for a partition (equivalent notation accepted).",
           "Identifies a reverse quantity such as P(M3|defect) as not answered by this forward calculation."
         ]
       }
