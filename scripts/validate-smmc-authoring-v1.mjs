@@ -42,6 +42,7 @@ import {
   ARSENAL_GATE2_RAW_EVIDENCE,
   ARSENAL_GATE2_LEGACY_TAG_CANDIDATES,
   ARSENAL_GATE2_SECONDARY_TAG_CANDIDATES,
+  ARSENAL_GATE2_BOOK_CANDIDATES,
   ARSENAL_GATE2_HARVEST_META,
 } from "../course/smmc/arsenal/candidates-v0.mjs";
 import {
@@ -58,6 +59,13 @@ import {
 import {
   ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE,
 } from "../course/smmc/arsenal/official-solution-candidates-v0.mjs";
+import {
+  ARSENAL_GATE2_SOURCE_CLOSURE_RULE,
+  ARSENAL_GATE2_SOURCE_CLOSURE_ZONES,
+  ARSENAL_GATE2_SOURCE_CLOSURE_HARVEST_IDS,
+  ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS,
+  ARSENAL_GATE2_SOURCE_CLOSURE_META,
+} from "../course/smmc/arsenal/source-closure-manifest-v0.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -532,53 +540,69 @@ expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteCandidates === 34, "Gate-2 ledger r
 expect(ARSENAL_GATE2_HARVEST_META.ledgerRouteEvidenceRecords === 34, "Gate-2 ledger route evidence count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.officialSolutionCandidates === 127, "Gate-2 direct official-solution candidate count drifted.");
 expect(ARSENAL_GATE2_HARVEST_META.officialSolutionEvidenceRecords === 127, "Gate-2 direct official-solution evidence count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 258, "Gate-2 book-source harvest count drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 631, "Gate-2 raw candidate total drifted.");
-expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 631, "Gate-2 raw evidence total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.bookSourceCandidates === 280, "Gate-2 book-source harvest count drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalCandidates === 653, "Gate-2 raw candidate total drifted.");
+expect(ARSENAL_GATE2_HARVEST_META.totalEvidenceRecords === 653, "Gate-2 raw evidence total drifted.");
 
-const gate2SourceTerms = new Map();
-for (const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
-  if (typeof candidate.origin !== "string" || !candidate.origin.startsWith("S")) continue;
-  if (!gate2SourceTerms.has(candidate.origin)) gate2SourceTerms.set(candidate.origin, new Set());
-  gate2SourceTerms.get(candidate.origin).add(candidate.sourceTerminology);
+// Gate-2 canonical-source closure is protected by an exact reviewed decision manifest,
+// not merely by a hand-picked positive sentinel subset.
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_RULE.gate3StillClosed === true, "Source-closure manifest must not open Gate 3.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.canonicalSourcesReviewed === 5, "Source-closure manifest must cover all five canonical books.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.harvestedCandidates === 280, "Source-closure harvested count drifted.");
+expect(ARSENAL_GATE2_SOURCE_CLOSURE_META.exclusions === 62, "Source-closure exclusion count drifted.");
+
+const gate2BookIds = ARSENAL_GATE2_BOOK_CANDIDATES.map(x => x.candidateId);
+const closureHarvestIds = [...ARSENAL_GATE2_SOURCE_CLOSURE_HARVEST_IDS];
+expect(new Set(gate2BookIds).size === gate2BookIds.length, "Book-source candidate IDs must be unique.");
+expect(new Set(closureHarvestIds).size === closureHarvestIds.length, "Source-closure manifest harvest IDs must be unique.");
+expect(
+  JSON.stringify([...gate2BookIds].sort()) === JSON.stringify([...closureHarvestIds].sort()),
+  "Gate-2 canonical-book candidates must exactly equal the reviewed source-closure HARVEST decision set."
+);
+
+const closureSourceIds = new Set();
+for (const zone of ARSENAL_GATE2_SOURCE_CLOSURE_ZONES) {
+  const source = canonicalArsenalSource(zone.sourceId);
+  expect(source && source.kind === "BOOK", `Source-closure zone uses noncanonical/nonbook source: ${zone.zoneId}`);
+  expect(Number.isInteger(zone.startPage) && Number.isInteger(zone.endPage) && zone.startPage >= 1 && zone.endPage >= zone.startPage, `Invalid closure-zone page range: ${zone.zoneId}`);
+  expect(zone.endPage <= source.pages, `Source-closure zone exceeds frozen PDF bounds: ${zone.zoneId}`);
+  expect(typeof zone.note === "string" && zone.note.length > 40, `Source-closure zone needs an auditable note: ${zone.zoneId}`);
+  closureSourceIds.add(zone.sourceId);
 }
-const gate2SourceSaturationSentinels = Object.freeze({
-  "S1-ZEITZ-2007-2E": Object.freeze([
-    "Strategy", "Tactic", "Tool", "Crux Move", "Average Principle", "Symmetry-Product Principle",
-    "Algorithmic Proof", "Euclidean Algorithm", "Repeated Bisection Method", "Well-Ordering Principle",
-    "Draw a Picture", "Recast the Problem in Other Ways", "Monotonize", "Method of Weights",
-  ]),
-  "S2-ENGEL-1998": Object.freeze([
-    "Invariance Principle", "Coloring Proofs", "Extremal Principle", "Box Principle", "Induction Principle",
-    "Working Backwards", "Greedy Algorithm", "Divide and Conquer", "Counting by Bijection",
-    "Heuristic Principle", "Reflection Principle", "Involution", "Prüfer Code", "Great Ideas",
-  ]),
-  "S3-HAMMACK-BOOK-OF-PROOF-3.4": Object.freeze([
-    "Direct Proof", "Using Cases", "Contrapositive Proof", "Proof by Contradiction", "If-and-Only-If Proof",
-    "Existence Proof", "Uniqueness Proof", "Constructive Proof", "Non-Constructive Proof",
-    "Proof by Strong Induction", "Proof by Smallest Counterexample", "Counterexample", "Logical Inference",
-  ]),
-  "S4-VELLEMAN-2006-2E": Object.freeze([
-    "Direct Conditional Proof", "Contrapositive Proof", "Proof by Cases", "Biconditional Proof",
-    "Arbitrary Object for a Universal Goal", "Existence Witness", "Modus Ponens", "Modus Tollens",
-    "Existential Instantiation", "Universal Instantiation", "Analyze the Logical Form of the Goal",
-    "Expand Definitions to Expose Logical Form", "Existence-and-Uniqueness Goal",
-  ]),
-  "S5-GELCA-ANDREESCU-2007": Object.freeze([
-    "Argument by Contradiction", "Pigeonhole Principle", "Ordered Sets and Extremal Elements",
-    "Invariants and Semi-Invariants", "Search for a Pattern", "Fermat's Infinite Descent Principle",
-    "Chinese Remainder Theorem", "Generating Functions", "Counting Strategies",
-    "Linear Recursive Sequences", "Determinants", "Linear Transformations, Eigenvalues, Eigenvectors",
-    "Sturm's Principle", "Cayley–Hamilton Theorem", "Perron–Frobenius Theorem",
-    "Riemann Sums", "Euler's Formula for Planar Graphs", "Combinatorial Geometry",
-  ]),
-});
-for (const [sourceId, terms] of Object.entries(gate2SourceSaturationSentinels)) {
-  const harvested = gate2SourceTerms.get(sourceId);
-  expect(harvested instanceof Set, `Missing Gate-2 source harvest for ${sourceId}`);
-  for (const term of terms) {
-    expect(harvested.has(term), `Gate-2 source saturation sentinel missing ${sourceId}: ${term}`);
-  }
+expect(closureSourceIds.size === 5, "Source-closure zones must cover every canonical book.");
+
+const closureExclusionKeys = new Set();
+for (const decision of ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS) {
+  const source = canonicalArsenalSource(decision.sourceId);
+  expect(source && source.kind === "BOOK", `Closure exclusion uses noncanonical/nonbook source: ${decision.term}`);
+  expect(Number.isInteger(decision.pdfPage) && decision.pdfPage >= 1 && decision.pdfPage <= source.pages, `Closure exclusion page out of bounds: ${decision.term}`);
+  expect(typeof decision.term === "string" && decision.term.trim().length > 0, "Closure exclusion missing term.");
+  expect(typeof decision.section === "string" && decision.section.length > 0, `Closure exclusion missing section: ${decision.term}`);
+  expect(typeof decision.reason === "string" && decision.reason.length > 35, `Closure exclusion needs a substantive reason: ${decision.term}`);
+  const key = `${decision.sourceId}|${decision.term}|${decision.pdfPage}|${decision.section}`;
+  expect(!closureExclusionKeys.has(key), `Duplicate source-closure exclusion: ${key}`);
+  closureExclusionKeys.add(key);
+  expect(
+    !ARSENAL_GATE2_BOOK_CANDIDATES.some(x => x.origin === decision.sourceId && x.sourceTerminology === decision.term),
+    `Source-closure term is simultaneously HARVEST and EXCLUDE: ${decision.sourceId} / ${decision.term}`
+  );
+}
+
+const closureExpectedCounts = ARSENAL_GATE2_SOURCE_CLOSURE_META.expectedHarvestBySource;
+for (const [sourceId, expected] of Object.entries(closureExpectedCounts)) {
+  const actual = ARSENAL_GATE2_BOOK_CANDIDATES.filter(x => x.origin === sourceId).length;
+  expect(actual === expected, `Reviewed source-closure count drift for ${sourceId}: expected ${expected}, got ${actual}`);
+}
+
+// Exact reviewer-blocker regression checks: these must fall out of the manifest as HARVEST decisions.
+for (const candidateId of [
+  "RAW-SOURCE-e-graph-theory",
+  "RAW-SOURCE-e-eliminate-floor-ceiling",
+  "RAW-SOURCE-h-combining-techniques",
+  "RAW-SOURCE-h-equivalent-statements",
+]) {
+  expect(closureHarvestIds.includes(candidateId), `Independent-review closure regression: missing ${candidateId}`);
+  expect(gate2BookIds.includes(candidateId), `Independent-review source candidate missing from harvest: ${candidateId}`);
 }
 
 expect(ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE.length === 127, "Expected 127 direct official-solution occurrence records.");
