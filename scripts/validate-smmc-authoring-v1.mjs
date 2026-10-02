@@ -563,7 +563,7 @@ expect(
 const closureSourceIds = new Set();
 for (const zone of ARSENAL_GATE2_SOURCE_CLOSURE_ZONES) {
   const source = canonicalArsenalSource(zone.sourceId);
-  expect(source && source.kind === "BOOK", `Source-closure zone uses noncanonical/nonbook source: ${zone.zoneId}`);
+  expect(source && source.kind === "BOOK_PDF", `Source-closure zone uses noncanonical/nonbook source: ${zone.zoneId}`);
   expect(Number.isInteger(zone.startPage) && Number.isInteger(zone.endPage) && zone.startPage >= 1 && zone.endPage >= zone.startPage, `Invalid closure-zone page range: ${zone.zoneId}`);
   expect(zone.endPage <= source.pages, `Source-closure zone exceeds frozen PDF bounds: ${zone.zoneId}`);
   expect(typeof zone.note === "string" && zone.note.length > 40, `Source-closure zone needs an auditable note: ${zone.zoneId}`);
@@ -574,7 +574,7 @@ expect(closureSourceIds.size === 5, "Source-closure zones must cover every canon
 const closureExclusionKeys = new Set();
 for (const decision of ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS) {
   const source = canonicalArsenalSource(decision.sourceId);
-  expect(source && source.kind === "BOOK", `Closure exclusion uses noncanonical/nonbook source: ${decision.term}`);
+  expect(source && source.kind === "BOOK_PDF", `Closure exclusion uses noncanonical/nonbook source: ${decision.term}`);
   expect(Number.isInteger(decision.pdfPage) && decision.pdfPage >= 1 && decision.pdfPage <= source.pages, `Closure exclusion page out of bounds: ${decision.term}`);
   expect(typeof decision.term === "string" && decision.term.trim().length > 0, "Closure exclusion missing term.");
   expect(typeof decision.section === "string" && decision.section.length > 0, `Closure exclusion missing section: ${decision.term}`);
