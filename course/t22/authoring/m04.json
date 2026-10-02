@@ -36,7 +36,7 @@
   },
   "coverageAudit": {
     "version": "m04-observability-v2-r1-2026-10-02",
-    "status": "24-session v2 deep reconstruction candidate: modernized novice instruction, explicit representation progression, selected fixed-task version repairs and current-standard evidence ledgers are being pinned; independent follow-up and full exact-head CI remain required.",
+    "status": "24-session v2 deep reconstruction candidate: modernized novice instruction, explicit representation progression, selected versioned assessment repairs, 48 honest evidence-distance labels, 23 decision audits and 24 wrong-solver attacks are pinned; independent follow-up and exact-head CI/browser remain required.",
     "policy": "Every retained claim must be literally requested and scored. Different numbers/contexts do not establish transfer; representation, decision or obstacle changes must be stated."
   },
   "sessions": [
@@ -445,7 +445,7 @@
         "Use product factorization to recompute a joint probability after independence is established."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Two-dice product criterion → one-die overlapping events plus complemented-event factorization.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method and representation are already explicit in instruction.",
       "inScope": [
         "Pairwise event independence"
       ],
@@ -787,7 +787,7 @@
         "Reject simple averaging for nonuniform probabilities."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Distinct uniform numbers → repeated payoff labels where atomic multiplicity must be audited.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method and representation are already explicit in instruction.",
       "inScope": [
         "Uniform finite expectation",
         "Symmetry"
@@ -863,7 +863,7 @@
         "Explain independence is unnecessary for the expectation sum."
       ],
       "applicationScope": "Finite probability reasoning on explicitly specified sample spaces and probability models.",
-      "transferScope": "Changed-surface transfer: Sequential draw-position indicators → named-person committee indicators with dependent selection events.",
+      "transferScope": "Retrieval/fluency on a new instance; the underlying method and representation are already explicit in instruction.",
       "inScope": [
         "Indicators",
         "Expected counts"
@@ -4447,7 +4447,7 @@
     "T22V3::ARC048::S15@1": {
       "main": [
         "A device succeeds independently on each trial with probability0.8",
-        "looks more random"
+        "failure is more likely on the next trial because it is 'due'"
       ],
       "transfer": [
         "A colleague writes",
@@ -4551,99 +4551,99 @@
     "sessions": {
       "T22V3::ARC048::S01@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s01-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is fresh Main evidence; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s01-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S02@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s02-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s02-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S03@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s03-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s03-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S04@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s04-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s04-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S05@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s05-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s05-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S06@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s06-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s06-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S07@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s07-instruction-v2-conditioning-representation-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is fresh Main evidence; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s07-instruction-v2-conditioning-representation-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S08@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s08-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s08-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S09@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s09-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is fresh Main evidence; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s09-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S10@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s10-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s10-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S11@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s11-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s11-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer retrieval; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S12@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s12-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s12-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S13@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s13-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is proof reconstruction; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s13-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main proof reconstruction and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S14@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s14-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is fresh Main evidence; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s14-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main fresh Main evidence and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S15@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s15-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is fresh Main evidence; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s15-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S16@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s16-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s16-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S17@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s17-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is fresh Main evidence; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s17-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S18@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s18-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is fresh Main evidence; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s18-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S19@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s19-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s19-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S20@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s20-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s20-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer retrieval; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S21@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s21-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is proof reconstruction; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s21-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main proof reconstruction and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S22@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s22-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is proof reconstruction; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s22-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main proof reconstruction and lesson/Main→Transfer retrieval; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S23@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s23-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is retrieval; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s23-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main retrieval and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       },
       "T22V3::ARC048::S24@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m04-s24-instruction-v2-r1: lesson/worked/guided surfaces use instructional data distinct from fixed answers. Working evidence audit: lesson→Main is fresh Main evidence; lesson/Main→Transfer is changed-surface Transfer. Fixed-task separation was re-read semantically, not inferred from changed numbers alone."
+        "note": "m04-s24-instruction-v2-r1: fixed numerical answers remain distinct from visible worked/guided data. Evidence-distance audit labels lesson→Main fresh Main evidence and lesson/Main→Transfer changed-surface Transfer; changed numbers alone were not counted as freshness or transfer."
       }
     }
   },
@@ -4662,8 +4662,8 @@
     "reviewedAt": "2026-10-02",
     "items": {
       "T22V3::ARC048::S01-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Main requires repairing an invalid non-atomic sample-space proposal before constructing events; that model-audit decision is not solved in the lesson."
+        "class": "retrieval",
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S01-T@1": {
         "class": "changed-surface Transfer",
@@ -4671,15 +4671,15 @@
       },
       "T22V3::ARC048::S02-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S02-T@1": {
         "class": "changed-surface Transfer",
         "reason": "Forward normalization exercise → audit an illegal probability ledger and repair one mass while preserving the others."
       },
       "T22V3::ARC048::S03-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Main must justify atomic equiprobability and diagnose an aggregated-label multiplicity trap on fresh dice data."
+        "class": "retrieval",
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S03-T@1": {
         "class": "changed-surface Transfer",
@@ -4687,7 +4687,7 @@
       },
       "T22V3::ARC048::S04-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S04-T@1": {
         "class": "changed-surface Transfer",
@@ -4695,7 +4695,7 @@
       },
       "T22V3::ARC048::S05-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S05-T@1": {
         "class": "changed-surface Transfer",
@@ -4703,15 +4703,15 @@
       },
       "T22V3::ARC048::S06-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S06-T@1": {
         "class": "changed-surface Transfer",
         "reason": "Forward inclusion–exclusion → infer the missing overlap and neither region from aggregate counts."
       },
       "T22V3::ARC048::S07-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Main uses a fresh nonuniform mass model and separately scores denominator direction plus information-versus-causation."
+        "class": "retrieval",
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S07-T@1": {
         "class": "changed-surface Transfer",
@@ -4719,15 +4719,15 @@
       },
       "T22V3::ARC048::S08-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S08-T@1": {
         "class": "changed-surface Transfer",
         "reason": "Joint-from-conditional execution → diagnose illegal marginal multiplication and repair the model."
       },
       "T22V3::ARC048::S09-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Main requires the learner to construct the tree from prose and audit branch/leaf normalization rather than copy a shown tree."
+        "class": "retrieval",
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S09-T@1": {
         "class": "changed-surface Transfer",
@@ -4735,7 +4735,7 @@
       },
       "T22V3::ARC048::S10-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S10-T@1": {
         "class": "changed-surface Transfer",
@@ -4743,15 +4743,15 @@
       },
       "T22V3::ARC048::S11-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S11-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Two-dice product criterion → one-die overlapping events plus complemented-event factorization."
+        "class": "retrieval",
+        "reason": "S11 Transfer reuses the explicitly taught product test and complemented-event factorization on another one-die event pair; the theorem/method is visible, so this is retrieval rather than claimed transfer."
       },
       "T22V3::ARC048::S12-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S12-T@1": {
         "class": "changed-surface Transfer",
@@ -4759,7 +4759,7 @@
       },
       "T22V3::ARC048::S13-M@1": {
         "class": "proof reconstruction",
-        "reason": "Main reconstructs the taught proof that positive-probability disjoint events cannot be independent on a fresh finite model."
+        "reason": "Main reconstructs the taught positive-probability disjoint⇒dependent argument on a fresh finite set and requires the zero-probability edge case."
       },
       "T22V3::ARC048::S13-T@1": {
         "class": "changed-surface Transfer",
@@ -4767,15 +4767,15 @@
       },
       "T22V3::ARC048::S14-M@1": {
         "class": "fresh Main evidence",
-        "reason": "Main supplies an XOR event system not solved in instruction and requires discovering pairwise-but-not-mutual independence."
+        "reason": "Instruction deliberately does not exhibit pairwise-but-not-mutual independence; Main's XOR system requires discovering the higher-order failure."
       },
       "T22V3::ARC048::S14-T@1": {
         "class": "changed-surface Transfer",
         "reason": "XOR bit construction → four-atom set system with the same higher-order phenomenon in a different representation."
       },
       "T22V3::ARC048::S15-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Main combines exact path arithmetic with explicit representativeness and gambler's-fallacy discrimination on fresh data."
+        "class": "retrieval",
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S15-T@1": {
         "class": "changed-surface Transfer",
@@ -4783,23 +4783,23 @@
       },
       "T22V3::ARC048::S16-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S16-T@1": {
         "class": "changed-surface Transfer",
         "reason": "Derive exactly-k correctly → repair a one-path-only solution that omits arrangement count."
       },
       "T22V3::ARC048::S17-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Main requires choosing/justifying the complement route and separating complement logic from the independence assumption."
+        "class": "retrieval",
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S17-T@1": {
         "class": "changed-surface Transfer",
         "reason": "Choose complement route → diagnose an impossible blind-addition result and separate overlap from complement."
       },
       "T22V3::ARC048::S18-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Main requires weighted branch reasoning, rejection of an unweighted average, statement of the general total-probability law and boundary control."
+        "class": "retrieval",
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S18-T@1": {
         "class": "changed-surface Transfer",
@@ -4807,7 +4807,7 @@
       },
       "T22V3::ARC048::S19-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S19-T@1": {
         "class": "changed-surface Transfer",
@@ -4815,15 +4815,15 @@
       },
       "T22V3::ARC048::S20-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S20-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Distinct uniform numbers → repeated payoff labels where atomic multiplicity must be audited."
+        "class": "retrieval",
+        "reason": "S20 Transfer repeats atomic averaging/symmetry with duplicated labels after the guided practice already uses duplicated labels; this is valuable retrieval but not changed-surface transfer."
       },
       "T22V3::ARC048::S21-M@1": {
         "class": "proof reconstruction",
-        "reason": "Main explicitly reconstructs the finite weighted-sum proof of linearity before applying it."
+        "reason": "Main reconstructs the finite weighted-sum derivation of linearity before applying it and checking the nonlinear boundary."
       },
       "T22V3::ARC048::S21-T@1": {
         "class": "changed-surface Transfer",
@@ -4831,15 +4831,15 @@
       },
       "T22V3::ARC048::S22-M@1": {
         "class": "proof reconstruction",
-        "reason": "Main reconstructs the indicator/positional-marginal reasoning in a new without-replacement sample."
+        "reason": "Main reconstructs the indicator/linearity argument with a new without-replacement sample after the labelled-position theorem is taught."
       },
       "T22V3::ARC048::S22-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Sequential draw-position indicators → named-person committee indicators with dependent selection events."
+        "class": "retrieval",
+        "reason": "S22 Transfer is another uniform committee-indicator expected-count problem after both the worked and guided instruction already use committee/person-selection indicators; it is retrieval."
       },
       "T22V3::ARC048::S23-M@1": {
         "class": "retrieval",
-        "reason": "The fixed Main applies a directly taught definition/procedure on fresh numerical data; it is retained and labelled retrieval rather than overstated as fresh transfer."
+        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
       },
       "T22V3::ARC048::S23-T@1": {
         "class": "changed-surface Transfer",
@@ -4847,7 +4847,7 @@
       },
       "T22V3::ARC048::S24-M@1": {
         "class": "fresh Main evidence",
-        "reason": "Main supplies data and required outputs but no representation or method sequence; the learner must organize the model and choose a valid independence criterion."
+        "reason": "Main supplies data and target quantities but no required representation or calculation pipeline; the learner must choose an auditable model/representation and a valid independence criterion."
       },
       "T22V3::ARC048::S24-T@1": {
         "class": "changed-surface Transfer",
@@ -4856,251 +4856,319 @@
     }
   },
   "decisionAudit": {
-    "version": "m04-decision-audit-v2-r1",
+    "version": "m04-decision-audit-v2.1-r1",
     "reviewedAt": "2026-10-02",
     "items": {
-      "T22V3::ARC048::S01-M@1": {
-        "claimedLearnerDecision": "Choose a valid atomic recording model after rejecting the supplied overlapping labels.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Defines an atomic outcome as one complete line-and-result record and identifies the proposed four-label Ω as non-atomic/overlapping. | Constructs exactly the four ordered atomic records in Ω. | Represents A and B correctly as subsets of Ω. | Lists A∩B and A∪B correctly. | Explains that 'fail' is a two-atom event because the production-line field is unspecified.",
-        "classificationJustification": "Main requires repairing an invalid non-atomic sample-space proposal before constructing events; that model-audit decision is not solved in the lesson."
-      },
-      "T22V3::ARC048::S03-M@1": {
-        "claimedLearnerDecision": "Choose the correct atomic denominator rather than the derived sum labels.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": true,
-        "scoredLearnerAction": "Equiprobability of the 36 ordered pairs is justified from two fair dice. | Total count36. | Exactly four favourable ordered pairs are identified. | Probability1/9 is simplified correctly. | The '11 equally likely sums' error is explained via unequal multiplicities.",
-        "classificationJustification": "Main must justify atomic equiprobability and diagnose an aggregated-label multiplicity trap on fresh dice data."
-      },
-      "T22V3::ARC048::S07-M@1": {
-        "claimedLearnerDecision": "Choose/track the conditioning reference mass and separate information from causation.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Computes P(A|B)=11/16 from intersection mass0.55 over conditioning mass P(B)=0.80, without using a uniform count ratio. | Computes P(B|A)=11/12 from the same intersection mass0.55 over conditioning mass P(A)=0.60. | Identifies the denominator/reference mass as the probability of the event after the conditioning bar in each direction. | Explains that later information can restrict the reference set without physically or causally changing the earlier-generated outcome. | States that the finite ratio P(A|B) requires P(B)>0 and is undefined here when P(B)=0.",
-        "classificationJustification": "Main uses a fresh nonuniform mass model and separately scores denominator direction plus information-versus-causation."
-      },
-      "T22V3::ARC048::S09-M@1": {
-        "claimedLearnerDecision": "Construct a valid tree and decide which quantities are branches versus leaves.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": true,
-        "scoredLearnerAction": "Tree branches and complements are labelled correctly. | Four leaf probabilities are computed by path multiplication. | Leaf sum equals1. | Pass probability0.81 by adding pass leaves. | Fail probability0.19 by adding fail leaves.",
-        "classificationJustification": "Main requires the learner to construct the tree from prose and audit branch/leaf normalization rather than copy a shown tree."
-      },
-      "T22V3::ARC048::S14-M@1": {
-        "claimedLearnerDecision": "Determine whether pairwise checks settle the three-event claim and inspect the triple intersection.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": true,
-        "scoredLearnerAction": "All three marginals1/2. | Each pair intersection1/4. | Pairwise independence correctly concluded. | Triple intersection0 computed. | Mutual independence correctly rejected because0≠1/8.",
-        "classificationJustification": "Main supplies an XOR event system not solved in instruction and requires discovering pairwise-but-not-mutual independence."
-      },
-      "T22V3::ARC048::S15-M@1": {
-        "claimedLearnerDecision": "Decide whether visual randomness/run history changes exact or next-trial probabilities.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Computes both exact path probabilities as0.1024. | Writes/uses the common power form0.8^3·0.2 and explains why the two orderings match. | Rejects the representativeness claim that the more mixed-looking path is more likely. | Rejects the gambler's-fallacy claim and states next-trial success/failure remain0.8/0.2 after a run. | Attributes both conclusions to repeated independent trials with constant per-trial probability.",
-        "classificationJustification": "Main combines exact path arithmetic with explicit representativeness and gambler's-fallacy discrimination on fresh data."
-      },
-      "T22V3::ARC048::S17-M@1": {
-        "claimedLearnerDecision": "Choose complement rather than blind union addition for at-least-one.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": true,
-        "scoredLearnerAction": "Computes P(none)=0.75^4=0.31640625. | Computes P(all)=0.25^4=0.00390625. | Chooses the complement of none and computes P(at least one)=0.68359375. | Justifies why direct addition of individual-detection events is invalid/inefficient because they overlap. | States that independence justifies the product for none/all, while the complement identity itself does not require independence.",
-        "classificationJustification": "Main requires choosing/justifying the complement route and separating complement logic from the independence assumption."
-      },
-      "T22V3::ARC048::S18-M@1": {
-        "claimedLearnerDecision": "Choose weighted branch marginalization rather than averaging conditional rates.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": true,
-        "scoredLearnerAction": "Verifies the three source events are disjoint/exhaustive as stated and their probabilities sum to1. | Computes the three joint defect contributions0.005,0.009,0.012. | Sums the weighted contributions to overall defect probability0.026 and rejects the unweighted rate average. | States the finite law P(A)=Σ_i P(B_i)P(A|B_i) for a partition (equivalent notation accepted). | Identifies a reverse quantity such as P(M3|defect) as not answered by this forward calculation.",
-        "classificationJustification": "Main requires weighted branch reasoning, rejection of an unweighted average, statement of the general total-probability law and boundary control."
-      },
-      "T22V3::ARC048::S24-M@1": {
-        "claimedLearnerDecision": "Choose a representation and valid probability relationships to organize the requested outputs.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Constructs a coherent tree/partition/table model with route probabilities0.35/0.65 and normalized success/failure leaves. | Computes P(L∩success)=0.28. | Computes overall success probability0.54 from the finite model. | Diagnoses dependence with a valid numerical criterion such as0.80≠0.54 or0.28≠0.35×0.54. | Computes expected score1.78 and states a posterior/decision conclusion not licensed by the analysis alone.",
-        "classificationJustification": "Main supplies data and required outputs but no representation or method sequence; the learner must organize the model and choose a valid independence criterion."
-      },
       "T22V3::ARC048::S01-T@1": {
         "claimedLearnerDecision": "Invalid overlapping label list → learner repairs a common recording rule and atomic representation.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Diagnoses that the proposed labels are overlapping/incomplete rather than mutually exclusive complete records. | Constructs the valid four ordered atomic outcomes. | Represents the blue event correctly. | Represents the alarm event correctly. | Gives their intersection as the single blue-and-on atom.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Invalid overlapping label list → learner repairs a common recording rule and atomic representation."
+        "classificationJustification": "Invalid overlapping label list → learner repairs a common recording rule and atomic representation."
       },
       "T22V3::ARC048::S02-T@1": {
         "claimedLearnerDecision": "Forward normalization exercise → audit an illegal probability ledger and repair one mass while preserving the others.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Detects total mass1.05 and rejects the proposed model. | Repairs W to0.25 by normalization while leaving the other masses fixed. | Checks the repaired masses are nonnegative and total1. | Computes P({W,E})=0.37 in the repaired model. | Explains that individual bounds do not replace the normalization requirement.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Forward normalization exercise → audit an illegal probability ledger and repair one mass while preserving the others."
+        "classificationJustification": "Forward normalization exercise → audit an illegal probability ledger and repair one mass while preserving the others."
       },
       "T22V3::ARC048::S03-T@1": {
         "claimedLearnerDecision": "Atomic fair outcomes → aggregated dashboard labels with unequal multiplicities.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Identifies HH,HT,TH,TT as the four equiprobable atomic outcomes. | Builds multiplicities 1,2,1 for 0,1,2 heads. | Computes P(exactly1 head)=1/2. | Rejects probability1/3 for each aggregate label because multiplicities differ. | Explicitly distinguishes atomic equiprobability from equiprobability of derived labels.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Atomic fair outcomes → aggregated dashboard labels with unequal multiplicities."
+        "classificationJustification": "Atomic fair outcomes → aggregated dashboard labels with unequal multiplicities."
       },
       "T22V3::ARC048::S04-T@1": {
         "claimedLearnerDecision": "Direct complement calculation → diagnose a linguistically plausible but set-theoretically wrong complement.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "States B^c exactly as 'not divisible by4' (or lists the 15 matching integers). | Computes P(B^c)=3/4. | Identifies Ω as certain and ∅ as impossible. | Explains that the proposed wording can include members of B and therefore is not a complement. | Uses exact set membership rather than an 'opposite-looking' description.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Direct complement calculation → diagnose a linguistically plausible but set-theoretically wrong complement."
+        "classificationJustification": "Direct complement calculation → diagnose a linguistically plausible but set-theoretically wrong complement."
       },
       "T22V3::ARC048::S05-T@1": {
         "claimedLearnerDecision": "Explicit sets → region-count ledger; disjointness and addition must be inferred from the overlap cell.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Uses the zero overlap region to establish C∩D=∅ and disjointness. | Computes P(C)=7/30. | Computes P(D)=5/30. | Explicitly invokes the disjoint addition rule after establishing disjointness. | Computes P(C∪D)=12/30=2/5 from the region ledger.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Explicit sets → region-count ledger; disjointness and addition must be inferred from the overlap cell."
+        "classificationJustification": "Explicit sets → region-count ledger; disjointness and addition must be inferred from the overlap cell."
       },
       "T22V3::ARC048::S06-T@1": {
         "claimedLearnerDecision": "Forward inclusion–exclusion → infer the missing overlap and neither region from aggregate counts.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Rearranges inclusion–exclusion to infer |C∩D|=20. | Computes P(C∩D)=1/4. | Computes neither count20 (probability1/4). | Explains the double-counted overlap in region terms. | Keeps counts/probabilities consistent with the 80-record universe.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Forward inclusion–exclusion → infer the missing overlap and neither region from aggregate counts."
+        "classificationJustification": "Forward inclusion–exclusion → infer the missing overlap and neither region from aggregate counts."
       },
       "T22V3::ARC048::S07-T@1": {
         "claimedLearnerDecision": "Nonuniform atom ledger → two-way table plus chronological-information misconception.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Reads the S column as the reference group and computes P(E|S)=18/24=3/4. | Reads the E row as the reference group and computes P(S|E)=18/30=3/5. | Explicitly distinguishes the two denominators/reference populations rather than reversing the conditional mechanically. | Rejects the time-axis/causal misconception: later information can restrict the reference set without changing the earlier source. | States the positive-conditioning-count/probability requirement for each conditional ratio.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Nonuniform atom ledger → two-way table plus chronological-information misconception."
+        "classificationJustification": "Nonuniform atom ledger → two-way table plus chronological-information misconception."
       },
       "T22V3::ARC048::S08-T@1": {
         "claimedLearnerDecision": "Joint-from-conditional execution → diagnose illegal marginal multiplication and repair the model.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Diagnoses that multiplying the two marginals is unjustified because independence was not established. | Uses P(urgent)P(escalated|urgent) to compute the joint0.21. | Computes P(urgent|escalated)=0.525 using denominator0.40. | Tracks the conditional direction correctly. | Checks0.21 is no larger than either marginal.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Joint-from-conditional execution → diagnose illegal marginal multiplication and repair the model."
+        "classificationJustification": "Joint-from-conditional execution → diagnose illegal marginal multiplication and repair the model."
       },
       "T22V3::ARC048::S09-T@1": {
         "claimedLearnerDecision": "Construct a correct tree → audit a malformed partially labelled tree and repair a wrong leaf.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Repairs the missing A no-timeout branch to0.90 and preserves valid branch complements. | Replaces the incorrect A-timeout leaf with0.40×0.10=0.04. | Computes all four leaves0.04,0.36,0.15,0.45 by path multiplication. | Verifies the leaf probabilities sum to1. | Adds the two timeout leaves to obtain overall timeout0.19.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Construct a correct tree → audit a malformed partially labelled tree and repair a wrong leaf."
+        "classificationJustification": "Construct a correct tree → audit a malformed partially labelled tree and repair a wrong leaf."
       },
       "T22V3::ARC048::S10-T@1": {
         "claimedLearnerDecision": "Compute two protocols from wording → infer which candidate second-stage branch belongs to which protocol.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Identifies Model I (4/10) as with replacement. | Identifies Model II (3/9) as without replacement. | Computes with-replacement P(BB)=0.16. | Computes without-replacement P(BB)=2/15. | Explains the numerator/denominator state update after removing a B card.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Compute two protocols from wording → infer which candidate second-stage branch belongs to which protocol."
-      },
-      "T22V3::ARC048::S11-T@1": {
-        "claimedLearnerDecision": "Two-dice product criterion → one-die overlapping events plus complemented-event factorization.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Marginals correct. | Joint1/6. | Product test correct. | Independence conclusion correct. | Complement-joint1/3.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Two-dice product criterion → one-die overlapping events plus complemented-event factorization."
+        "classificationJustification": "Compute two protocols from wording → infer which candidate second-stage branch belongs to which protocol."
       },
       "T22V3::ARC048::S12-T@1": {
         "claimedLearnerDecision": "Sequential without-replacement story → static marginal/joint probability data requiring conditional/product cross-check.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Conditional.24. | Compared with marginal.30. | Dependence conclusion. | Product benchmark.15. | Criteria linked consistently.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Sequential without-replacement story → static marginal/joint probability data requiring conditional/product cross-check."
+        "classificationJustification": "Sequential without-replacement story → static marginal/joint probability data requiring conditional/product cross-check."
       },
       "T22V3::ARC048::S13-T@1": {
         "claimedLearnerDecision": "Given disjoint sets → construct a valid independent non-disjoint pair on a different two-die surface.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "C,D disjoint. | Product test shows dependence. | Reason not based on intuition. | Valid non-disjoint independent pair supplied. | Pair justified numerically.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Given disjoint sets → construct a valid independent non-disjoint pair on a different two-die surface."
+        "classificationJustification": "Given disjoint sets → construct a valid independent non-disjoint pair on a different two-die surface."
+      },
+      "T22V3::ARC048::S14-M@1": {
+        "claimedLearnerDecision": "Determine whether pairwise factorization is sufficient and decide to inspect the triple intersection.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "All three marginals1/2. | Each pair intersection1/4. | Pairwise independence correctly concluded. | Triple intersection0 computed. | Mutual independence correctly rejected because0≠1/8.",
+        "classificationJustification": "Instruction deliberately does not exhibit pairwise-but-not-mutual independence; Main's XOR system requires discovering the higher-order failure."
       },
       "T22V3::ARC048::S14-T@1": {
         "claimedLearnerDecision": "XOR bit construction → four-atom set system with the same higher-order phenomenon in a different representation.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Marginals correct. | Pair intersections correct. | Pairwise independence established. | Triple probability1/4. | Mutual independence rejected against1/8.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: XOR bit construction → four-atom set system with the same higher-order phenomenon in a different representation."
+        "classificationJustification": "XOR bit construction → four-atom set system with the same higher-order phenomenon in a different representation."
       },
       "T22V3::ARC048::S15-T@1": {
         "claimedLearnerDecision": "Direct exact paths → audit a written representativeness/gambler's-fallacy explanation.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Computes the first exact path as0.3^3·0.7^2=0.01323. | Computes the second exact path as the same0.01323. | Explains that alternation/visual representativeness does not alter exact path probability. | States P(next positive|+++)=0.30 under independence (and negative0.70). | Explicitly rejects a run-induced balancing/'due' effect.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Direct exact paths → audit a written representativeness/gambler's-fallacy explanation."
+        "classificationJustification": "Direct exact paths → audit a written representativeness/gambler's-fallacy explanation."
       },
       "T22V3::ARC048::S16-T@1": {
         "claimedLearnerDecision": "Derive exactly-k correctly → repair a one-path-only solution that omits arrangement count.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Identifies that one exact path is not the whole exactly-one-failure event. | Counts six possible failure positions. | Computes one-path probability0.2·0.8^5=0.065536. | Uses disjoint equal-probability path addition to multiply by6. | Obtains total probability0.393216.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Derive exactly-k correctly → repair a one-path-only solution that omits arrangement count."
+        "classificationJustification": "Derive exactly-k correctly → repair a one-path-only solution that omits arrangement count."
       },
       "T22V3::ARC048::S17-T@1": {
         "claimedLearnerDecision": "Choose complement route → diagnose an impossible blind-addition result and separate overlap from complement.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Diagnoses overlapping success events and rejects the clipped blind-addition method. | Computes P(none)=0.6^5=0.07776 using independence. | Computes P(at least one)=0.92224 by complement. | Computes P(all)=0.4^5=0.01024. | Correctly separates the independence product assumption from the complement rule.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Choose complement route → diagnose an impossible blind-addition result and separate overlap from complement."
+        "classificationJustification": "Choose complement route → diagnose an impossible blind-addition result and separate overlap from complement."
       },
       "T22V3::ARC048::S18-T@1": {
         "claimedLearnerDecision": "Build weighted total → audit unweighted rate averaging and an illegal conditional reversal.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Computes branch contributions0.08,0.05,0.075. | Computes overall escalation0.205. | Explains why the unweighted average0.25 is invalid with unequal branch probabilities. | Distinguishes P(escalation|B)=0.1 from P(B|escalation). | Explains that total probability is a forward marginalization rule and does not justify reversing the conditional.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Build weighted total → audit unweighted rate averaging and an illegal conditional reversal."
+        "classificationJustification": "Build weighted total → audit unweighted rate averaging and an illegal conditional reversal."
       },
       "T22V3::ARC048::S19-T@1": {
         "claimedLearnerDecision": "Outcome-value prose → four-leaf payoff table with repeated value labels.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Uses all four atomic probabilities rather than collapsing repeated value8. | Forms the four weighted terms correctly. | Computes expectation1.9. | States that the expectation need not equal a displayed leaf value. | Explains why an unweighted average of distinct value labels is invalid.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Outcome-value prose → four-leaf payoff table with repeated value labels."
-      },
-      "T22V3::ARC048::S20-T@1": {
-        "claimedLearnerDecision": "Distinct uniform numbers → repeated payoff labels where atomic multiplicity must be audited.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Eight atomic outcomes respected. | Expectation5. | Symmetry/pairing valid. | Why label-average works here explained. | Unequal-multiplicity failure condition stated.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Distinct uniform numbers → repeated payoff labels where atomic multiplicity must be audited."
+        "classificationJustification": "Outcome-value prose → four-leaf payoff table with repeated value labels."
       },
       "T22V3::ARC048::S21-T@1": {
         "claimedLearnerDecision": "Explicit outcome proof/application → expectation-only summary data where linearity is usable but nonlinear moments are not recoverable.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Computes expectation27. | Applies linearity with the coefficients/signs correctly. | States that dependence between U and V is irrelevant for this linear combination. | States that E[U²] is not determined by E[U] alone. | Attributes the limitation to nonlinearity rather than to a missing independence assumption.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Explicit outcome proof/application → expectation-only summary data where linearity is usable but nonlinear moments are not recoverable."
-      },
-      "T22V3::ARC048::S22-T@1": {
-        "claimedLearnerDecision": "Sequential draw-position indicators → named-person committee indicators with dependent selection events.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Three indicators defined. | Each selection probability5/12. | Count sum stated. | Expectation1.25. | Dependence-versus-linearity explanation correct.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Sequential draw-position indicators → named-person committee indicators with dependent selection events."
+        "classificationJustification": "Explicit outcome proof/application → expectation-only summary data where linearity is usable but nonlinear moments are not recoverable."
       },
       "T22V3::ARC048::S23-T@1": {
         "claimedLearnerDecision": "Direct model comparison → audit an overreaching decision memo from equal expectation.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Computes both expectations as3. | Identifies A's most likely outcome as+5 and B's only/most likely outcome as+3. | Distinguishes A's possible loss from B's guaranteed+3. | Rejects the claim that equal expectation implies equal risk/outcome structure. | Rejects a universal preference/indifference conclusion from expectation alone and leaves preference criteria to later decision theory.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Direct model comparison → audit an overreaching decision memo from equal expectation."
+        "classificationJustification": "Direct model comparison → audit an overreaching decision memo from equal expectation."
+      },
+      "T22V3::ARC048::S24-M@1": {
+        "claimedLearnerDecision": "Choose an auditable representation and valid probability relationships for the requested joint, marginal, dependence and expectation quantities.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Constructs a coherent tree/partition/table model with route probabilities0.35/0.65 and normalized success/failure leaves. | Computes P(L∩success)=0.28. | Computes overall success probability0.54 from the finite model. | Diagnoses dependence with a valid numerical criterion such as0.80≠0.54 or0.28≠0.35×0.54. | Computes expected score1.78 and states a posterior/decision conclusion not licensed by the analysis alone.",
+        "classificationJustification": "Main supplies data and target quantities but no required representation or calculation pipeline; the learner must choose an auditable model/representation and a valid independence criterion."
       },
       "T22V3::ARC048::S24-T@1": {
         "claimedLearnerDecision": "Construct a model → audit another solver's unweighted marginal, independence, expectation and conditional-direction errors.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Builds/recovers the four joint leaves0.20,0.05,0.15,0.60 or an equivalent auditable partition. | Repairs overall flag probability to0.35 and explains the branch-weighting error. | Repairs the independence claim and shows channel/flag are dependent with a numerical criterion. | Repairs expected value to2.1. | Diagnoses .80 as P(flag|X), not P(X|flag), and does not justify reversal by Bayes-like swapping.",
-        "classificationJustification": "Transfer changes a representation, direction, error state or construction obligation rather than only numbers/context: Construct a model → audit another solver's unweighted marginal, independence, expectation and conditional-direction errors."
+        "classificationJustification": "Construct a model → audit another solver's unweighted marginal, independence, expectation and conditional-direction errors."
       }
     }
   },
   "wrongSolverAudit": {
-    "version": "m04-wrong-solver-v2-r1",
+    "version": "m04-wrong-solver-v2.1-r1",
     "reviewedAt": "2026-10-02",
     "sessions": {
-      "undefined": {
-        "plausibleWrongSolver": "Use the simple average of conditional rates, infer independence from that number, and reverse a conditional without a valid denominator.",
+      "T22V3::ARC048::S01@1": {
+        "plausibleWrongSolver": "Treat {X,Y,pass,fail} as four atoms because every label is meaningful.",
+        "targetedTask": "T22V3::ARC048::S01-T@1",
+        "discriminatingCriterion": "Diagnoses that the proposed labels are overlapping/incomplete rather than mutually exclusive complete records.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S02@1": {
+        "plausibleWrongSolver": "Check only individual bounds and accept a mass ledger summing to1.05.",
+        "targetedTask": "T22V3::ARC048::S02-T@1",
+        "discriminatingCriterion": "Detects total mass1.05 and rejects the proposed model.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S03@1": {
+        "plausibleWrongSolver": "Treat 0/1/2-head labels as equiprobable because the coins are fair.",
+        "targetedTask": "T22V3::ARC048::S03-T@1",
+        "discriminatingCriterion": "Rejects probability1/3 for each aggregate label because multiplicities differ.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S04@1": {
+        "plausibleWrongSolver": "Choose an opposite-sounding phrase rather than the exact set complement.",
+        "targetedTask": "T22V3::ARC048::S04-T@1",
+        "discriminatingCriterion": "Explains that the proposed wording can include members of B and therefore is not a complement.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S05@1": {
+        "plausibleWrongSolver": "Blindly add P(C)+P(D) without establishing empty overlap.",
+        "targetedTask": "T22V3::ARC048::S05-T@1",
+        "discriminatingCriterion": "Explicitly invokes the disjoint addition rule after establishing disjointness.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S06@1": {
+        "plausibleWrongSolver": "Fail to remove the duplicate overlap when reconstructing a union.",
+        "targetedTask": "T22V3::ARC048::S06-T@1",
+        "discriminatingCriterion": "Explains the double-counted overlap in region terms.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S07@1": {
+        "plausibleWrongSolver": "Keep the original denominator, reverse the bar, or reject later evidence as backward causation.",
+        "targetedTask": "T22V3::ARC048::S07-T@1",
+        "discriminatingCriterion": "Rejects the time-axis/causal misconception: later information can restrict the reference set without changing the earlier source.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S08@1": {
+        "plausibleWrongSolver": "Multiply two marginals to obtain a joint without proving independence.",
+        "targetedTask": "T22V3::ARC048::S08-T@1",
+        "discriminatingCriterion": "Diagnoses that multiplying the two marginals is unjustified because independence was not established.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S09@1": {
+        "plausibleWrongSolver": "Add along a path or confuse branch conditional with leaf probability.",
+        "targetedTask": "T22V3::ARC048::S09-T@1",
+        "discriminatingCriterion": "Replaces the incorrect A-timeout leaf with0.40×0.10=0.04.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S10@1": {
+        "plausibleWrongSolver": "Leave the second-draw state unchanged without replacement.",
+        "targetedTask": "T22V3::ARC048::S10-T@1",
+        "discriminatingCriterion": "Explains the numerator/denominator state update after removing a B card.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S11@1": {
+        "plausibleWrongSolver": "Call events independent because their stories seem separate.",
+        "targetedTask": "T22V3::ARC048::S11-M@1",
+        "discriminatingCriterion": "Explains that independence is established by the probability equality, not the verbal separation of the dice.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S12@1": {
+        "plausibleWrongSolver": "Infer independence without comparing conditional and marginal probabilities.",
+        "targetedTask": "T22V3::ARC048::S12-M@1",
+        "discriminatingCriterion": "Concludes dependence from 3/5≠2/3.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S13@1": {
+        "plausibleWrongSolver": "Equate mutual exclusivity with independence for positive-probability events.",
+        "targetedTask": "T22V3::ARC048::S13-M@1",
+        "discriminatingCriterion": "Dependence conclusion follows from0≠3/32.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S14@1": {
+        "plausibleWrongSolver": "Stop after all pairwise checks and declare mutual independence.",
+        "targetedTask": "T22V3::ARC048::S14-M@1",
+        "discriminatingCriterion": "Mutual independence correctly rejected because0≠1/8.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S15@1": {
+        "plausibleWrongSolver": "Prefer an alternating-looking path or claim an opposite result becomes due after a run.",
+        "targetedTask": "T22V3::ARC048::S15-M@1",
+        "discriminatingCriterion": "Rejects the representativeness claim that the more mixed-looking path is more likely.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S16@1": {
+        "plausibleWrongSolver": "Use one representative exact path for an exactly-one event and omit arrangements.",
+        "targetedTask": "T22V3::ARC048::S16-T@1",
+        "discriminatingCriterion": "Identifies that one exact path is not the whole exactly-one-failure event.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S17@1": {
+        "plausibleWrongSolver": "Add overlapping success events, obtain a value above1, then clip it.",
+        "targetedTask": "T22V3::ARC048::S17-T@1",
+        "discriminatingCriterion": "Diagnoses overlapping success events and rejects the clipped blind-addition method.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S18@1": {
+        "plausibleWrongSolver": "Take an unweighted mean of subgroup rates and swap a conditional direction.",
+        "targetedTask": "T22V3::ARC048::S18-T@1",
+        "discriminatingCriterion": "Explains why the unweighted average0.25 is invalid with unequal branch probabilities.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S19@1": {
+        "plausibleWrongSolver": "Average distinct payoff labels rather than atomic probability mass.",
+        "targetedTask": "T22V3::ARC048::S19-T@1",
+        "discriminatingCriterion": "Explains why an unweighted average of distinct value labels is invalid.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S20@1": {
+        "plausibleWrongSolver": "Ignore atomic multiplicity when averaging duplicated labels.",
+        "targetedTask": "T22V3::ARC048::S20-T@1",
+        "discriminatingCriterion": "Unequal-multiplicity failure condition stated.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S21@1": {
+        "plausibleWrongSolver": "Require independence for linearity or push expectation through squaring.",
+        "targetedTask": "T22V3::ARC048::S21-M@1",
+        "discriminatingCriterion": "Explains correctly that independence is not required for linearity.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S22@1": {
+        "plausibleWrongSolver": "Refuse linearity because the sampling indicators are dependent.",
+        "targetedTask": "T22V3::ARC048::S22-M@1",
+        "discriminatingCriterion": "No-independence requirement explained.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S23@1": {
+        "plausibleWrongSolver": "Infer same mode, guarantee, risk and universal preference from equal EV.",
+        "targetedTask": "T22V3::ARC048::S23-T@1",
+        "discriminatingCriterion": "Rejects the claim that equal expectation implies equal risk/outcome structure.",
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
+      },
+      "T22V3::ARC048::S24@1": {
+        "plausibleWrongSolver": "Use an unweighted conditional-rate average, infer independence, and reverse the conditional.",
         "targetedTask": "T22V3::ARC048::S24-T@1",
         "discriminatingCriterion": "Repairs overall flag probability to0.35 and explains the branch-weighting error.",
-        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some arithmetic elsewhere is correct."
+        "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
       }
     }
   },
