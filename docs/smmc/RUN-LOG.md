@@ -1168,3 +1168,56 @@ The initial calibration deliberately reviews **43** mixed candidates across all 
 
 No raw candidate/evidence record was mutated.
 
+## Arsenal Gate 3 calibration repair after review 5397001542 (2026-10-03)
+
+Independent review **5397001542** on exact SHA `7a93f88c7ba813f8d1c6de3f46b8b52d0dc15ef9` accepted the overall granularity architecture but found five bounded ruler/certificate blockers before the 661-row mass pass.
+
+### G3-R01 — evidence-supported MICRO + orthogonal context anchors
+
+- `RAW-ROUTE-004 — Recoverability Lemma` no longer borrows semantics from the richer official Recoverability candidate. Its candidate-owned audit-note evidence supports only the label and attachment to SMMC-2020-A2, so scale and trigger/operation/output boundaries are now `UNRESOLVED`; `PROBLEM_LOCAL` remains supported by the explicit historical-problem attachment.
+- Added `RAW-SOURCE-p-positivity-squares` as an independent **MICRO + GENERAL** anchor: the expression is a reusable fact `x² ≥ 0`, narrower than a complete deliberate move and with no operation boundary.
+- Added `RAW-OFFICIAL-115` as an independent **DEPLOYABLE + PROBLEM_LOCAL** anchor: one coherent recurrence-specific prime-support step.
+- Calibration is now **45 REVIEWED / 616 UNREVIEWED**.
+
+### G3-R02 — Crux Move / CROSS_SCALE semantics
+
+`CROSS_SCALE` now has exactly two permitted meanings:
+1. the current expression packages independently meaningful moves at more than one grain; or
+2. a source-defined role/label is explicitly stated to occur at more than one grain.
+
+Zeitz's `Crux Move` is now `CROSS_SCALE + SINGLE_PRIMARY_MOVE`, not MACRO and not BUNDLED_MOVES, because the accepted source fact explicitly says a crux may occur at strategic, tactical, or tool level.
+
+### G3-R03 — actionShape is lexical/current-expression only
+
+`EXPLICIT_ACTION` now requires the candidate wording itself to state the action through an imperative/verb phrase or action gerund. Noun-like/compressed labels whose operation is recoverable from candidate-owned evidence are `IMPLICIT_ACTION`. Evidence may justify that an operation exists but cannot promote noun-like wording to EXPLICIT.
+
+Affected calibration rows were repaired, including the official noun-like labels highlighted by review: finite-field quotient model, information-state counting lower bound, threat-pair forcing strategy, modulo-4 obstruction, and similar noun-phrase candidates.
+
+### G3-R04 — fail-closed exact key schema
+
+Gate-3 records now have an executable exact allowlist, `ARSENAL_GATE3_RECORD_KEYS`. Any unknown field fails validation. A regression probe explicitly verifies that an injected `difficulty` key is rejected.
+
+A small rationale-leak check also rejects explicit later-gate recommendations such as merge-into / split-into / drop / keep-as-card / final-representation language.
+
+### G3-R05 — accepted Gate-2 ore is mechanically fingerprinted
+
+Added `course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs`.
+
+The validator computes SHA-256 over the canonical JSON payload containing:
+- all 661 raw candidates;
+- all 661 raw evidence records;
+- official route index + structural meta;
+- source-closure rule, zones, reviewed-item partition, and closure meta.
+
+Accepted fingerprint:
+
+`f947742d48b46a45d3a49d86e334123f752fcd28dccf351b7e7114ddcf08861f`
+
+Any mutation to those accepted Gate-2 semantic/provenance objects now fails Gate-3 CI even when candidate IDs/names/origins remain unchanged.
+
+### Confidence semantics
+
+Confidence now explicitly means confidence in the **Gate-3 assessment**, not in the mathematical truth or source. HIGH + UNRESOLVED is valid when we are highly confident that the accepted evidence does not justify a finer call. LOW is now exercised by the Chinese Remainder Theorem stress case.
+
+No 618-row mass pass has begun. Tribunal/ontology/prerequisite/ranking/product gates remain closed.
+
