@@ -1,128 +1,168 @@
-# M05 boundary — Trading Games & Decisions Under Uncertainty
+# M05 v2 boundary — Trading Games & Decisions Under Uncertainty
 
-Date: 2026-09-18  
-Branch: `codex/t22-pedagogical-rebuild`  
+Date: 2026-10-03  
+Branch: `codex/t22-m05-deep-source-restart`  
 Stable module ID: `T22E-TRD01`  
-Status: **BOUNDARY ACCEPTED FOR M05 AUTHORING ONLY**
+Status: **V2 DEEP-SOURCE BUILDER CANDIDATE — NOT INDEPENDENTLY ACCEPTED**
 
-## Repair status — 2026-09-23 (supersedes historical internal acceptance)
+Authority:
 
-The boundary and route below are preserved. M05/M06 require the bounded batch repair review; see `M05-M06-RESOLUTION.md`. Earlier internal completion labels are historical, not independent acceptance. M07 remains closed.
+- `M05-DEEP-SOURCE-AUDIT-v1.0.md`
+- `M05-V2-DESIGN-GATE.md`
+- published M04 v2.1 prerequisite authority
+- T22 Module Builder / Adversarial Checker v1.2
+
+The historical Astra M05 remains part of the provenance record. Its prior independent acceptance does not automatically certify this materially reconstructed v2 candidate.
 
 ## Entry authority
 
-M04 · `ARC048` is independently accepted in `M04-ASTRA-FOLLOWUP.md`, including full-suite run `35368721291` on reviewed head `87ccf3e...`.
+Direct macro prerequisite: **M04 · ARC048**.
 
-Direct macro prerequisite: **M04 only**.
+M05 may assume from published M04:
 
-M05 may reuse:
+- legal finite probability models;
+- event probabilities, complements and finite trees;
+- repeated independent finite paths when explicitly stated;
+- finite expectation;
+- linearity of expectation without independence;
+- expectation is not a mode, one-play guarantee or preference rule.
 
-- finite sample spaces, event probabilities, complements, unions/intersections;
-- conditional probability and independence;
-- repeated finite trials;
-- finite expectation and linearity;
-- indicators/expected counts;
-- algebra, ratios, percentages and elementary finite sums from M01–M03.
+M05 must apply those ideas rather than quietly reclaim their theorem ownership.
 
-## M05 destination
+## V2 destination
 
-A learner should be able to turn a finite uncertain game into an auditable decision object:
+The learner should be able to turn a finite known-probability situation into an auditable decision analysis by separating:
 
-1. separate stake, gross payoff, net payoff and terminal wealth;
-2. compute expected net payoff and fair/break-even entry prices;
-3. solve break-even probability/payoff conditions;
-4. distinguish expected value from probability of loss, typical outcome and guaranteed outcome;
-5. aggregate expected payoff across repeated plays without assuming more than linearity requires;
-6. track bankroll and running peak, compute drawdown and reason through small finite-horizon ruin trees;
-7. compare stake sizes under explicit bankroll/loss constraints without inventing a universal sizing rule;
-8. explain why multiplicative wealth paths can matter even when one-play expectation looks attractive;
-9. represent explicit risk preferences through finite utility tables / certainty equivalents;
-10. reason about statewise dominance, worst-case guarantees and simple adversarial payoff matrices;
-11. make rapid quantitative decisions while stating which criterion is being used.
+1. what can be chosen;
+2. what is exogenous chance;
+3. what consequences occur;
+4. what wealth/path constraints apply;
+5. what preference or decision criterion is actually supplied;
+6. whether uncertainty comes from nature or from another strategic chooser.
 
-## Frozen 24-session route
+## Canonical candidate 24-session route
 
-S01 payoff-table anatomy: stake, gross payoff, net payoff, terminal wealth  
-S02 expected net payoff from finite games  
-S03 fair entry fee / fair price  
-S04 break-even probability  
-S05 break-even payoff and price sensitivity  
-S06 probability of gain/loss/zero versus EV  
-S07 skewed games: EV versus most-likely outcome  
-S08 comparing games on multiple reported metrics without hidden preference claims  
-S09 repeated plays and linearity of total expected payoff  
-S10 bankroll accounting and wealth paths  
-S11 running peaks and drawdown  
-S12 finite-horizon ruin by explicit tree/enumeration  
-S13 stake size as fraction of bankroll; hard loss constraints  
-S14 additive payoff versus multiplicative wealth mechanics  
-S15 repeated multiplicative bets: path dependence and recovery arithmetic  
-S16 preference is extra structure: same EV, different choices  
-S17 expected utility on finite outcomes with supplied utility values  
-S18 certainty equivalent and risk premium in finite games  
-S19 statewise dominance and dominated choices  
-S20 worst-case payoff and maximin guarantee in a finite table  
-S21 adversarial 2×2 payoff matrices and best responses  
-S22 mixed-strategy expected payoff and indifference in a 2×2 game  
-S23 rapid fair-price / break-even / bankroll decision drills  
-S24 integrated decision audit: EV, loss probability, drawdown constraint, utility and adversarial sensitivity
+1. Decision anatomy: actions, states/chance, consequences & criterion
+2. Money accounting: cost/fee, gross receipt, net payoff & terminal wealth
+3. Expected monetary value as a criterion; zero-EMV entry fee
+4. One-stage decision trees: decision nodes, chance nodes & rollback
+5. Break-even thresholds: probability, payoff or fee
+6. Sensitivity & model-input audit
+7. Downside profile: loss frequency, magnitude, skew & modal outcome
+8. Statewise dominance before probabilities
+9. Fixed-horizon repetition: expected total versus realized path
+10. Bankroll stock, payoff increments & cumulative P&L
+11. Running peaks & drawdown
+12. Finite-horizon first-hit ruin
+13. Hard bankroll/stake constraints: feasible set, not optimal stake
+14. Multiplicative wealth factors & recovery after drawdown
+15. Preferences over certain consequences & ordinal representation
+16. Lottery preferences: when expected utility is licensed
+17. Expected utility versus expected money; risk-neutral money as a special case
+18. Certainty equivalent & finite risk premium
+19. Decision-criteria audit: dominance, EMV, constraints, maximin & EU
+20. Chance states versus strategic opponents: general bimatrix anatomy
+21. Pure best responses, dominance & mutual best response
+22. Strictly competitive 2×2 games: security levels & pure saddle
+23. Mixed strategies in 2×2: expected payoff & indifference
+24. Fresh integrated decision audit
 
-## Explicitly out of scope
+## Explicit ownership
 
-M05 must **not** own:
+M05 v2 owns:
 
-- posterior probabilities, Bayes' rule, base-rate updating, likelihood ratios or sequential belief updating — M06;
-- prices/returns, long/short P&L, bid/ask, order types, fills or market vocabulary — M07;
-- formal random-variable distribution theory, variance/covariance or conditional expectation — M26;
-- Kelly criterion, logarithmic-growth optimality or general portfolio optimization;
-- dynamic programming, Markov decision processes or infinite-horizon ruin;
-- formal game-theoretic minimax theorem / equilibrium existence;
-- no-arbitrage, replication or derivative pricing — M54;
-- empirical calibration of risk preferences.
+- action–state–consequence decision models;
+- gross/cost/net/terminal-wealth accounting;
+- expected monetary value when explicitly named as the criterion;
+- zero-EMV entry fees and elementary break-even thresholds;
+- one-stage decision trees and rollback;
+- one-input sensitivity analysis;
+- descriptive downside summaries;
+- statewise monetary dominance;
+- finite repeated-play expected totals as an M04 application;
+- realized bankroll paths, running peaks and drawdown;
+- small finite-horizon first-hit ruin by explicit enumeration;
+- hard stake/bankroll feasibility constraints;
+- multiplicative wealth and recovery arithmetic;
+- deterministic preference ordering versus lottery-preference structure;
+- supplied finite Bernoulli/vNM utility, expected utility, certainty equivalents and finite risk premiums;
+- criterion-labelled maximin in finite payoff tables;
+- general finite two-player bimatrices and pure best responses;
+- explicitly strictly competitive 2×2 security/saddle calculations;
+- elementary 2×2 mixed-strategy indifference calculations.
 
-## Teaching safeguards
+## Explicit exclusions
 
-Every session must contain:
+M05 v2 must not own:
 
-- novice-usable explanation before assessment;
-- a worked example with distinct numbers/surface from both fixed tasks;
-- a guided check;
-- explicit prerequisite source or JIT bridge for every new symbol/operation;
-- no answer-equivalent rehearsal;
-- exact distinction between descriptive metrics and preference-dependent decisions.
+- Bayes, base-rate inversion, likelihood ratios, posterior updating or value of information — M06;
+- market prices, returns, long/short mechanics, bid/ask, orders or fills — M07;
+- simulation/programming — M08;
+- formal variance/covariance/distribution theory;
+- Kelly/log-optimal sizing, portfolio construction or general optimization;
+- stochastic dominance as a formal distribution topic;
+- dynamic programming, MDPs or infinite-horizon ruin;
+- full expected-utility representation-theorem proofs;
+- multiattribute utility, prospect theory or a behavioral-decision-theory survey;
+- general Nash/minimax existence theorems, repeated/Bayesian games, auctions or mechanism design;
+- no-arbitrage, replication or derivative pricing.
 
-A learner must never be told that higher EV is automatically “better” without an explicit decision criterion.
+## Utility boundary
 
-## Assessment safeguards
+This boundary is strict.
 
-- Two fixed tasks per session: Main + Transfer.
-- Five ownership claims per session.
-- Every claim maps to the exact fixed task and exact rubric criterion(s) that observe it.
-- Cross-task ownership is allowed when semantically necessary; do not force positional Main mappings.
-- Every evaluator totals 10 points.
-- Fixed-task changes after publication require `obligationVersion` changes.
-- Assessment fingerprints and shared evidence provenance remain unchanged.
+S15 may represent preferences over **certain outcomes** by ordinal numerical labels. Those labels need only preserve order.
 
-## Provenance / runtime safeguards
+S16 may average utility values only after the problem explicitly supplies/assumes a Bernoulli/vNM-style utility representation of **lottery preferences**. Positive-affine changes preserve expected-utility rankings; arbitrary increasing relabelings need not.
 
-Use the existing evidence key exactly:
+M05 does not prove the full representation theorem and does not claim the supplied model describes universal human behavior.
+
+## Strategic-game boundary
+
+A general strategic game is first represented as a bimatrix with one payoff for each player.
+
+The one-number row-payoff / minimizing-column convention is introduced only after the problem explicitly supplies a strictly competitive interpretation.
+
+A strategic opponent is never silently treated as an exogenous chance state.
+
+## Evidence-distance policy
+
+`main` and `transfer` remain stable task slots for runtime compatibility. They are not prestige labels.
+
+The candidate evidence ledger currently classifies:
+
+- one fresh Main: S24-M;
+- four changed-surface Transfers: S04-T, S16-T, S22-T, S24-T;
+- derivation/reasoning-reconstruction Mains where applicable;
+- the remaining tasks honestly as retrieval.
+
+Changed numbers, names or stories alone never establish transfer.
+
+## Provenance policy
+
+The shared store remains exactly:
 
 `chrono_t22_elite_course_evidence_v1`
 
-Do not add a parallel M05 evidence store. Preserve:
+Stable module/session/task IDs are retained.
 
-- prompt/evaluator fingerprinting;
-- lesson assistance provenance;
-- answer-exposure semantics;
-- unsaved draft provenance across module switching;
-- review attachment to the original attempt;
-- export/import coexistence across authored modules;
-- corrupt-store preservation.
+Thirty-six materially changed public task contracts are `obligationVersion=3`. Twelve compatible public contracts are preserved at their historical obligation versions. Historical attempts are retained rather than deleted or silently recertified.
 
-## Stop boundary
+Historical answer-bearing and guided-practice exposure records remain in the authoring pack.
 
-Complete, validate, push and hand off **M05 separately** before opening M06 content.
+## Acceptance policy
 
-M06 may open only after the M05 checkpoint is internally verified.
+This boundary permits builder-side implementation and validation only.
 
-**M07 authoring is forbidden in this pass.**
+M05 v2 becomes independently accepted only after:
+
+- deterministic mathematical validation;
+- structural/pedagogical/semantic/provenance checks;
+- actual learner-facing Chromium traversal;
+- rendering/mobile checks;
+- a frozen exact candidate head;
+- a fresh independent adversarial review;
+- repair of every justified material finding;
+- exact-head independent confirmation.
+
+Do not describe this v2 candidate as accepted merely because the historical Astra M05 was accepted.
