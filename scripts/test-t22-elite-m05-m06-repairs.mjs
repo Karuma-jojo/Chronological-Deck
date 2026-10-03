@@ -15,19 +15,25 @@ for(const m of ['m05','m06']){
  if(m==='m05'&&a.version==='m05-authoring-v2-deep-source-candidate'){
   const changed=new Set(a.reconstructionAudit.materiallyChangedPublicContracts);
   const preserved=new Set(a.reconstructionAudit.preservedPublicContracts);
+  const reconstructionBaseline=read('docs/t22-course/audit/m05-v2-reconstruction-baseline.json');
+  assert.equal(reconstructionBaseline.baselineMain,a.reconstructionAudit.baselineMain);
+  assert.equal(reconstructionBaseline.baselineM05Blob,a.reconstructionAudit.baselineM05Blob);
+  assert.equal(Object.keys(reconstructionBaseline.assessments).length,48);
   assert.equal(changed.size,36);assert.equal(preserved.size,12);
   for(const s of a.sessions)for(const k of ['main','transfer']){
-   const pid=s[k],baseFp=review.baseline.assessmentFingerprints[pid];
+   const pid=s[k],baseFp=review.baseline.assessmentFingerprints[pid],published=reconstructionBaseline.assessments[pid];
    assert(baseFp,'historical M05 baseline fingerprint missing '+pid);
+   assert(published,'published-current reconstruction baseline missing '+pid);
+   const samePublished=JSON.stringify({problem:a.problems[pid],evaluator:a.evaluators[pid]})===JSON.stringify(published);
    if(changed.has(pid)){
     assert.equal(a.problems[pid].obligationVersion,3,pid);
-    assert.notEqual(a.assessmentFingerprints[pid],baseFp,'changed M05 v2 task kept old fingerprint '+pid);
+    assert.equal(samePublished,false,'materially changed M05 v2 contract still equals published baseline '+pid);
    }else{
     assert(preserved.has(pid),'unclassified M05 v2 task '+pid);
     assert([1,2].includes(a.problems[pid].obligationVersion),pid);
-    assert.equal(a.assessmentFingerprints[pid],baseFp,'preserved M05 public contract fingerprint drift '+pid);
+    assert.equal(samePublished,true,'preserved M05 public contract drifted from recovered published baseline '+pid);
    }
-   // Historical records are retained verbatim even when current contract hashes make them stale.
+   // Historical pre-repair records are retained verbatim even when later/current contract hashes make them stale.
    const prior={...make(pid,preAt,'old-'+pid),assessmentFingerprint:baseFp,contractHash:review.baseline.contractHashes[s.id]};
    const round=validateEvidence(JSON.parse(JSON.stringify({...emptyEvidence(),attempts:[prior]})),a);
    assert.deepEqual(round.attempts[0],prior,'Historical M05 evidence must be retained');
