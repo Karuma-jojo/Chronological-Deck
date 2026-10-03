@@ -13,7 +13,7 @@ const boundary=fs.readFileSync('docs/t22-course/M05-BOUNDARY.md','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 
 assert.equal(a.version,'m05-authoring-v2-independent-review-repair-r1');
-assert.equal(a.instructionVersion,'m05-instruction-v2-deep-source-candidate');
+assert.equal(a.instructionVersion,'m05-instruction-v2-independent-review-repair-r1');
 assert.equal(a.module.status,'v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
@@ -48,8 +48,8 @@ for(const token of [
  '24 sessions',
  '48 fixed Main/Transfer task slots',
  '120 ownership claims',
- 'zero fresh fixed Mains',
- 'one changed-surface Transfer',
+ 'zero fixed Mains labelled fresh',
+ 'one changed-surface Transfer claim',
  'Do not merge to main',
  'Do not self-declare acceptance'
 ])assert(hand.includes(token),token);
