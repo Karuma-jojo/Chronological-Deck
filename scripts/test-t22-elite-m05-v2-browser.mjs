@@ -63,12 +63,12 @@ try{
   };
  });
  assert.equal(candidate.ok,true);assert.equal(candidate.status,200);assert.equal(candidate.id,'T22E-TRD01');
- assert.equal(candidate.version,'m05-authoring-v2-deep-source-candidate');
- assert.equal(candidate.moduleStatus,'v2-deep-source-builder-candidate-awaiting-validation-and-independent-review');
+ assert.equal(candidate.version,'m05-authoring-v2-independent-review-repair-r1');
+ assert.equal(candidate.moduleStatus,'v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation');
  assert.equal(candidate.sessions,24);assert.equal(candidate.problems,48);assert.equal(candidate.evaluators,48);
  assert.equal(candidate.hashes,true);assert.equal(candidate.fingerprints,48);assert.equal(candidate.guided,true);
  assert.equal(candidate.badEscaped,0);assert.equal(candidate.badReplacement,0);
- assert.equal(candidate.evidenceDistance,48);assert.equal(candidate.decision,5);assert.equal(candidate.wrong,24);
+ assert.equal(candidate.evidenceDistance,48);assert.equal(candidate.decision,1);assert.equal(candidate.wrong,24);
  assert(candidate.reprLedger>=15);assert(candidate.sourceLedger>=10);
  assert(candidate.renderedSessionRepresentations>=18);assert(candidate.renderedProblemRepresentations>=15);
  assert.equal(candidate.preserved,12);assert.equal(candidate.changed,36);
@@ -102,11 +102,13 @@ try{
  await page.selectOption('#session','1');await page.click('#note');
  assert.equal(await page.locator('#learningRepresentations .repr-table').count(),1);
  assert((await page.locator('#learningRepresentations').textContent()).includes('action × chance state'));
- await page.click('#mainTask');assert.equal(await page.locator('#problemRepresentations .repr-table').count(),1);
+ await page.click('#mainTask');assert.equal(await page.locator('#problemRepresentations').getAttribute('hidden')!==null,true);
 
  await page.selectOption('#session','4');await page.click('#note');
  assert.equal(await page.locator('#learningRepresentations .repr-tree').count(),1);
- assert((await page.locator('#learningRepresentations').textContent()).includes('Safe'));
+ assert((await page.locator('#learningRepresentations').textContent()).includes('DECISION NODE'));
+ assert((await page.locator('#learningRepresentations').textContent()).includes('CHANCE NODE'));
+ await page.click('#mainTask');assert.equal(await page.locator('#problemRepresentations').getAttribute('hidden')!==null,true);
  await page.click('#transferTask');assert.equal(await page.locator('#problemRepresentations .repr-tree').count(),1);
  assert((await page.locator('#problemRepresentations').textContent()).includes('.50'));
 
@@ -132,7 +134,7 @@ try{
  await page.click('#transferTask');assert.equal(await page.locator('#problemRepresentations .repr-table').count(),1);
  assert((await page.locator('#problemRepresentations').textContent()).includes('(3,4)'));
 
- // S24 Main deliberately receives no problem representation: choosing/building one is part of fresh evidence.
+ // S24 Main deliberately receives no problem representation: representation choice is part of the integrated synthesis.
  await page.selectOption('#session','24');await page.click('#mainTask');
  assert.equal(await page.locator('#problemRepresentations').count(),1);
  assert.equal(await page.locator('#problemRepresentations').getAttribute('hidden')!==null,true);
@@ -159,7 +161,7 @@ try{
 
  assert.deepEqual(errors,[]);
  await context.close();
- console.log('PASS M05 v2 browser: all24 lessons, staged guided feedback, 48 task/reference/rubric surfaces, decision/table/tree/path/utility/game representations, S24 fresh-representation gate, mobile rendering and evidence export/import/reload.');
+ console.log('PASS M05 v2 browser: all24 lessons, staged guided feedback, 48 task/reference/rubric surfaces, decision/table/tree/path/utility/game representations, S24 representation-choice gate, mobile rendering and evidence export/import/reload.');
 }finally{
  if(browser)await browser.close();
  await new Promise(r=>server.close(r));
