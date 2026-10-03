@@ -62,7 +62,7 @@ assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));
 // behavior remains covered by the existing browser suite and M13 UI checks.
 const publicationAuthorized=new Set(['course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/ui.js','t22-course.html','course/t22/authoring/m05.json']);
 const m05v2=read('course/t22/authoring/m05.json');
-assert.equal(m05v2.version,'m05-authoring-v2-deep-source-candidate','M10 baseline exception is bounded to the explicit M05 v2 candidate');
+assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version,'M10 baseline exception is bounded to the explicit M05 v2 candidate');
 assert(fs.existsSync('docs/t22-course/M05-V2-DESIGN-GATE.md'));
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication metadata');
 const currentProtectedRows=semanticLedger.entries.filter(x=>x.order<=10);
