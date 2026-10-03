@@ -47,6 +47,12 @@ Every reviewed raw candidate receives the following independent measurements.
 - `DEPLOYABLE` — approximately one coherent reusable move at the diagnostic scale.
 - `MACRO` — broader than one deployable move. This includes families/areas/umbrellas **and bundles of multiple same-grain or not-proven-different-grain moves**. If the evidence only establishes “more than one operation,” use `MACRO + BUNDLED_MOVES`; do not infer mixed grain.
 - `CROSS_SCALE` — reserved for cases where mixed grain is itself supported: **(a)** the accepted candidate expression/evidence explicitly supports components at different reference grains, or **(b)** a source-defined role/label is explicitly stated to occur at more than one grain. A bundle is not CROSS_SCALE merely because it contains several operations.
+
+The two CROSS_SCALE branches are calibrated separately:
+- **mixed-grain expression anchor:** `Convex envelope and epigraph/convex-hull construction`, whose wording itself couples a named target concept/object with a construction expression;
+- **scale-variable role anchor:** Zeitz's `Crux Move`, whose candidate-owned source fact explicitly says the role may occur at strategic, tactical, or tool level.
+
+If a future candidate appears CROSS_SCALE for a reason not represented by one of these calibrated branches, fail closed with `UNRESOLVED` and reopen calibration rather than inventing a third meaning during the mass pass.
 - `UNRESOLVED` — the available accepted evidence and raw wording do not support a responsible scale call.
 
 These are measurements of the **current candidate expression**, not claims about what the mathematics “really is.”
@@ -69,12 +75,12 @@ This is not an ontology type. For example, a theorem can be `LABEL_ONLY` as phra
 
 ### D. `contextReach`
 
-- `GENERAL` — current wording is reusable across problems/domains without essential dependence on one source instance.
-- `SOURCE_LOCAL` — the wording is tied to a particular source treatment or specialized representation, even if it might later generalize.
-- `PROBLEM_LOCAL` — the current expression depends on one historical problem/route context.
+- `GENERAL` — the current expression has a source-independent mathematical meaning and does not require one source/problem context to understand what it denotes. **Origin/provenance alone never makes an expression SOURCE_LOCAL.** Generic labels such as `Graph Theory`, `Groups`, or `Chinese Remainder Theorem` remain GENERAL even when harvested from a particular book.
+- `SOURCE_LOCAL` — the expression's meaning is genuinely author/source-specific under its candidate-owned evidence, such as Zeitz's explicitly defined Strategy / Tactic / Tool taxonomy or another source-authored specialized role.
+- `PROBLEM_LOCAL` — the current expression is materially underspecified or semantically dependent on one historical problem/route context; the problem attachment is relevant because the wording itself needs that context, not merely because the evidence has a historicalProblemId.
 - `UNRESOLVED`
 
-This is **not Transfer evidence**. It measures semantic dependence of the wording, not observed learner transfer.
+This is **not Transfer evidence**. It measures semantic dependence of the current wording, not source provenance and not observed learner transfer.
 
 ### E. Confidence
 
@@ -192,7 +198,11 @@ Before classifying all 661 rows, the builder must calibrate the ruler on a delib
 
 The repaired calibration ledger reviews **45** candidates and leaves the remaining **616** explicitly `UNREVIEWED`.
 
-This is deliberate. We do not auto-classify the remaining 616 from string patterns.
+All 45 calibration rows have now received a full **strict-mode re-audit** against only:
+1. the raw candidate expression; and
+2. that candidate's attached accepted Gate-2 evidence.
+
+The ledger records `strictEvidenceReauditVersion: "v1-45-complete"`. This is deliberate. We do not auto-classify the remaining 616 from string patterns or from unstated mathematical familiarity.
 
 ## 8. What the first calibration is testing
 
@@ -206,6 +216,10 @@ The calibration intentionally includes awkward cases:
 - `Positivity of Squares (x² ≥ 0)` supplies the independent `MICRO + GENERAL` anchor: a reusable fact narrower than a complete deliberate move.
 - `Smallest Nondivisible Multiplier Advances Prime Support` supplies an independent `DEPLOYABLE + PROBLEM_LOCAL` anchor, demonstrating that semantic reach and grain are orthogonal.
 - `Clearing denominators and primitive-integer normalization`, `Combining Techniques`, row-replacement-plus-cofactor expansion, and the Dilation–Derivative Boundedness Bootstrap test `MACRO + BUNDLED_MOVES`: the accepted evidence establishes multiple operations but not mixed reference grains.
+- `Convex envelope and epigraph/convex-hull construction` is the calibrated mixed-grain CROSS_SCALE branch: the wording itself couples a concept/object expression with a construction expression, without pretending that this automatically means multiple executable moves.
+- Generic source-book labels `Graph Theory`, `Groups`, `Chinese Remainder Theorem`, and `Counting Strategies` are GENERAL because their semantics are generic; their book origin is provenance, not semantic locality.
+- Zeitz's `Strategy / Tactic / Tool / Crux Move` remain SOURCE_LOCAL because the attached evidence gives those words source-authored taxonomy/role meanings.
+- Hammack's `Direct Proof` and the project bridge `Gram-matrix viewpoint for vectors` are now strict-mode stress cases: their candidate-owned evidence is too thin to support the richer operations previously inferred, so unsupported dimensions are UNRESOLVED.
 - `Chinese Remainder Theorem` is the strict-evidence stress case: its attached Gate-2 record establishes only a dedicated subsection, so grain/bundle/trigger/operation/output remain `UNRESOLVED` despite the theorem being mathematically familiar.
 - `Finite-Field Quotient Model of the Projective Plane` exercises `LOW` confidence correctly: its attached official evidence does support a concrete representation move, but there is genuine evidence-supported ambiguity about whether the expression is exactly one deployable move or a somewhat broader specialized construction.
 
