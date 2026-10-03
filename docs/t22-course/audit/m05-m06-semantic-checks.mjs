@@ -7,11 +7,12 @@ export const digest=x=>crypto.createHash('sha256').update(JSON.stringify(canonic
 export function reviewPayload(a,s){return {session:s,tasks:Object.fromEntries(['main','transfer'].map(k=>[k,{problem:a.problems[s[k]],evaluator:a.evaluators[s[k]]}])),claims:a.claimEvidence[s.id],coverage:a.coverage[s.id],separation:a.semanticSeparationAudit.sessions[s.id]};}
 
 function checkCandidateV2(a,reviewed){
- assert.equal(a.version,'m05-authoring-v2-deep-source-candidate');
+ assert.equal(a.version,'m05-authoring-v2-independent-review-repair-r1');
  assert(a.sourceLedger?.length>=10,'M05 v2 source ledger missing');
  assert.equal(Object.keys(a.evidenceDistance?.items||{}).length,48,'M05 v2 evidence-distance ledger must cover48 tasks');
  assert.equal(Object.keys(a.wrongSolverAudit?.sessions||{}).length,24,'M05 v2 wrong-solver audit must cover24 sessions');
  assert(Array.isArray(a.representationProgression)&&a.representationProgression.length>=15,'M05 v2 representation progression missing');
+ assert(a.independentReviewRepairAudit?.findings?.length===8,'M05 independent-review repair ledger missing');
  for(const s of a.sessions){
   assert.equal(s.requiredOwnership.length,5,'M05 v2 '+s.id+' claim count');
   const evs=a.claimEvidence[s.id];assert.equal(evs.length,5,'M05 v2 '+s.id+' claim evidence');
@@ -26,7 +27,7 @@ function checkCandidateV2(a,reviewed){
   });
   for(const k of ['main','transfer']){
    const pid=s[k],p=a.problems[pid],ev=a.evaluators[pid];
-   assert([1,2,3].includes(p.obligationVersion),'M05 v2 obligation version '+pid);
+   assert([1,2,3,4].includes(p.obligationVersion),'M05 v2 obligation version '+pid);
    assert.equal(ev.rubric.length,5,'M05 v2 rubric length '+pid);
    assert.equal(ev.rubric.reduce((z,r)=>z+r.points,0),10,'M05 v2 rubric total '+pid);
    assert(a.evidenceDistance.items[pid],'M05 v2 missing evidence distance '+pid);
@@ -42,7 +43,7 @@ function checkCandidateV2(a,reviewed){
 export function checkModule(a){
  const reviewed=JSON.parse(fs.readFileSync('docs/t22-course/audit/m05-m06-reviewed-contracts.json','utf8')).modules[a.module.id];
  assert(reviewed,'Module must have a bounded semantic review/baseline');
- if(a.module.id==='T22E-TRD01'&&a.version==='m05-authoring-v2-deep-source-candidate')return checkCandidateV2(a,reviewed);
+ if(a.module.id==='T22E-TRD01'&&a.version==='m05-authoring-v2-independent-review-repair-r1')return checkCandidateV2(a,reviewed);
  for(const s of a.sessions){
   const rec=reviewed.sessions[s.id];assert(rec,'Unreviewed session '+s.id);
   assert.equal(digest(reviewPayload(a,s)),rec.reviewHash,'Semantic review stale: '+s.id+'; reread public tasks, rubric rows and instruction before updating the review record');
