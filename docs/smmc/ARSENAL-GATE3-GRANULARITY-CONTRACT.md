@@ -46,7 +46,7 @@ Every reviewed raw candidate receives the following independent measurements.
 - `MICRO` — narrower than the diagnostic move; usually a local substep, instance, or context-dependent supporting fragment.
 - `DEPLOYABLE` — approximately one coherent reusable move at the diagnostic scale.
 - `MACRO` — broader than one move; typically a family, area, level, or umbrella that can contain multiple deployable moves.
-- `CROSS_SCALE` — the current wording explicitly spans more than one grain, usually because it packages several operations or a concept plus a construction/route.
+- `CROSS_SCALE` — the current expression is demonstrably multi-grain in one of two ways only: **(a)** it packages independently meaningful moves at more than one grain, or **(b)** a source-defined role/label is explicitly stated to occur at more than one grain. The second case does **not** imply a bundle.
 - `UNRESOLVED` — the available accepted evidence and raw wording do not support a responsible scale call.
 
 These are measurements of the **current candidate expression**, not claims about what the mathematics “really is.”
@@ -61,9 +61,10 @@ A proof may contain many internal algebraic steps and still count as one primary
 
 ### C. `actionShape`
 
-- `EXPLICIT_ACTION` — the candidate wording says what to do.
-- `IMPLICIT_ACTION` — the source/candidate clearly carries an operation, but the wording is noun-like or compressed.
-- `LABEL_ONLY` — the current expression names a topic, theorem, family, proof category, or source category without itself specifying an operation.
+- `EXPLICIT_ACTION` — **lexical/current-expression test only**: the candidate wording itself directly states an action, normally through an imperative/verb phrase or an action gerund such as “split…”, “analyze…”, “diagonalize…”, or “clearing denominators…”.
+- `IMPLICIT_ACTION` — the current expression is noun-like/compressed but denotes an operation that the candidate-owned accepted evidence makes recoverable. Evidence may justify that an operation exists, but it does not convert noun-like wording into `EXPLICIT_ACTION`.
+- `LABEL_ONLY` — the current expression names a topic, theorem, family, fact, proof category, or source category without itself specifying an operation. A theorem can therefore be `LABEL_ONLY` while still being approximately deployable in scale.
+- `UNRESOLVED` — even the action-shape distinction is not supportable from the accepted candidate expression/evidence.
 - `UNRESOLVED`
 
 This is not an ontology type. For example, a theorem can be `LABEL_ONLY` as phrased while still becoming an excellent future tool.
@@ -76,6 +77,16 @@ This is not an ontology type. For example, a theorem can be `LABEL_ONLY` as phra
 - `UNRESOLVED`
 
 This is **not Transfer evidence**. It measures semantic dependence of the wording, not observed learner transfer.
+
+### E. Confidence
+
+`confidence` means **confidence in the Gate-3 assessment**, not confidence in the underlying mathematical truth, source, or historical occurrence.
+
+- `HIGH` — strong confidence that the recorded granularity dimensions are the best supported reading of the current candidate expression under the accepted evidence.
+- `MEDIUM` — some meaningful ambiguity remains, but the recorded assessment is still preferable to the alternatives.
+- `LOW` — genuinely tentative calibration call; more than one assessment remains plausible and the row should receive extra reviewer attention.
+
+A row may be `UNRESOLVED + HIGH`: that means high confidence that **unresolved is the correct assessment** under the available accepted evidence. Conversely, a familiar theorem name may receive LOW confidence if the accepted source row is too thin to pin down its exact grain.
 
 ### E. Trigger / operation / output boundaries
 
@@ -164,7 +175,7 @@ Before classifying all 661 rows, the builder must calibrate the ruler on a delib
 - explicit discovery heuristics;
 - at least one `MICRO`, `DEPLOYABLE`, `MACRO`, `CROSS_SCALE`, and `UNRESOLVED` example.
 
-The initial calibration ledger currently reviews **43** candidates and leaves the remaining **618** explicitly `UNREVIEWED`.
+The repaired calibration ledger reviews **45** candidates and leaves the remaining **616** explicitly `UNREVIEWED`.
 
 This is deliberate. We do not auto-classify the remaining 618 from string patterns.
 
@@ -176,9 +187,11 @@ The calibration intentionally includes awkward cases:
 - `GRAPH`, `ODE`, `Groups`, and Engel's `Graph Theory` are macro labels, even though graph/ODE/group methods may later yield excellent abilities.
 - Zeitz's `Strategy`, `Tactic`, `Tool`, and `Crux Move` are measured as source category expressions; this does not adopt Zeitz's taxonomy.
 - `Adjacent-Swap Improvement Argument` and Velleman's conjunction-goal split are clean deployable moves.
-- `Recoverability Lemma` is intentionally tested as a problem-local micro expression.
+- the audit-note `Recoverability Lemma` is now deliberately **UNRESOLVED in grain** because its candidate-owned index evidence supplies only the label; its `PROBLEM_LOCAL` reach comes only from that record's explicit historical-problem attachment.
+- `Positivity of Squares (x² ≥ 0)` supplies the independent `MICRO + GENERAL` anchor: a reusable fact narrower than a complete deliberate move.
+- `Smallest Nondivisible Multiplier Advances Prime Support` supplies an independent `DEPLOYABLE + PROBLEM_LOCAL` anchor, demonstrating that semantic reach and grain are orthogonal.
 - `Clearing denominators and primitive-integer normalization`, `Combining Techniques`, and row-replacement-plus-cofactor expansion test explicit bundles.
-- `Chinese Remainder Theorem` tests a named theorem that is approximately deployable in scale while still being `LABEL_ONLY` as phrased.
+- `Chinese Remainder Theorem` tests a named theorem that is approximately deployable in scale while still being `LABEL_ONLY` as phrased; its calibration confidence is deliberately LOW because the accepted source row is a TOC-level terminology fact rather than an operational exposition.
 - the official Dilation–Derivative Boundedness Bootstrap tests a historically coherent route that still contains multiple meaningful operations.
 
 The point is not to make these 43 sacred. The point is to make the ruler attackable before it touches all 661 candidates.
