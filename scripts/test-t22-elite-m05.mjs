@@ -9,7 +9,7 @@ const by=n=>a.sessions.find(s=>s.order===n);
 const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 
 assert.equal(a.version,'m05-authoring-v2-independent-review-repair-r1');
-assert.equal(a.instructionVersion,'m05-instruction-v2-deep-source-candidate');
+assert.equal(a.instructionVersion,'m05-instruction-v2-independent-review-repair-r1');
 assert.equal(a.module.id,'T22E-TRD01');
 assert.equal(a.module.status,'v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation');
 assert.deepEqual(a.boundary.prerequisiteModules,['ARC048']);
