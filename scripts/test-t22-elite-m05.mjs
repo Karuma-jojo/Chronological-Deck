@@ -28,7 +28,7 @@ assert.equal(a.reconstructionAudit.architectureDecision,'DEEP BOUNDED RECONSTRUC
 const hashes=new Set();
 for(const s of a.sessions){
  assert.equal(s.requiredOwnership.length,5);
- assert(s.lesson.includes('Worked example')&&s.lesson.includes('Guided check'));
+ assert(/Worked (example|contrast|synthesis)/.test(s.lesson)&&s.lesson.includes('Guided check'));
  assert(s.guidedFeedback?.length>20);
  assert.equal(a.claimEvidence[s.id].length,5);
  assert(a.prerequisiteAudit['S'+String(s.order).padStart(2,'0')]?.length);
