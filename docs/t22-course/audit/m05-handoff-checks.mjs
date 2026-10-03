@@ -12,9 +12,9 @@ const hand=fs.readFileSync('docs/t22-course/M05-REVIEW-HANDOFF.md','utf8');
 const boundary=fs.readFileSync('docs/t22-course/M05-BOUNDARY.md','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 
-assert.equal(a.version,'m05-authoring-v2-deep-source-candidate');
+assert.equal(a.version,'m05-authoring-v2-independent-review-repair-r1');
 assert.equal(a.instructionVersion,'m05-instruction-v2-deep-source-candidate');
-assert.equal(a.module.status,'v2-deep-source-builder-candidate-awaiting-validation-and-independent-review');
+assert.equal(a.module.status,'v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation');
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
 assert.equal(Object.keys(a.evaluators).length,48);
@@ -22,7 +22,7 @@ assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
 assert.equal(Object.keys(a.evidenceDistance.items).length,48);
 assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,24);
-assert.equal(Object.keys(a.decisionAudit.items).length,5);
+assert.equal(Object.keys(a.decisionAudit.items).length,1);
 assert(a.sourceLedger.length>=10);
 assert(a.representationProgression.length>=15);
 for(const s of a.sessions){
@@ -44,12 +44,12 @@ for(const p of ['docs/t22-course/M05-DEEP-SOURCE-AUDIT-v1.0.md','docs/t22-course
 for(const token of [
  'codex/t22-m05-deep-source-restart',
  'DEEP BOUNDED RECONSTRUCTION',
- 'm05-authoring-v2-deep-source-candidate',
+ 'm05-authoring-v2-independent-review-repair-r1',
  '24 sessions',
  '48 fixed Main/Transfer task slots',
  '120 ownership claims',
- 'one fresh Main',
- 'four changed-surface Transfer',
+ 'zero fresh fixed Mains',
+ 'one changed-surface Transfer',
  'Do not merge to main',
  'Do not self-declare acceptance'
 ])assert(hand.includes(token),token);
@@ -58,11 +58,13 @@ for(const token of [
  'Lottery preferences',
  'general bimatrix',
  'Strictly competitive 2×2',
- 'm05-authoring-v2-deep-source-candidate'
+ 'm05-authoring-v2-independent-review-repair-r1'
 ])assert(boundary.includes(token),token);
 
 assert.equal(a.reconstructionAudit.preservedPublicContracts.length,12);
 assert.equal(a.reconstructionAudit.materiallyChangedPublicContracts.length,36);
-for(const pid of a.reconstructionAudit.materiallyChangedPublicContracts)assert.equal(a.problems[pid].obligationVersion,3,pid);
+assert.equal(a.independentReviewRepairAudit.changedAssessmentIds.length,10);
+const repairV4=new Set(a.independentReviewRepairAudit.changedAssessmentIds);
+for(const pid of a.reconstructionAudit.materiallyChangedPublicContracts)assert.equal(a.problems[pid].obligationVersion,repairV4.has(pid)?4:3,pid);
 
 console.log('PASS: M05 v2 handoff matches deep-source 24/48/120 candidate, source/evidence/representation ledgers, provenance versioning and explicit independent-review stop boundary.');
