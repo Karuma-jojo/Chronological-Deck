@@ -1,11 +1,11 @@
 {
-  "version": "m05-authoring-v2-deep-source-candidate",
-  "instructionVersion": "m05-instruction-v2-deep-source-candidate",
+  "version": "m05-authoring-v2-independent-review-repair-r1",
+  "instructionVersion": "m05-instruction-v2-independent-review-repair-r1",
   "module": {
     "order": 5,
     "id": "T22E-TRD01",
     "title": "Trading Games & Decisions Under Uncertainty",
-    "status": "v2-deep-source-builder-candidate-awaiting-validation-and-independent-review",
+    "status": "v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation",
     "destination": "Turn finite known-probability models into auditable decisions by separating actions, uncertainty, consequences, paths, constraints, preferences and strategic opponents—without importing Bayes, market mechanics, optimal sizing or advanced equilibrium theory.",
     "gate": "Builder completion is not clearance. Every ownership claim must be literally observed, evidence distance must be honest, wrong solvers must fail, representations must be delivered/reused, changed public contracts must preserve provenance, and an exact candidate head must pass independent adversarial review.",
     "nextBoundary": "M06 owns posterior updating/evidence. M07 owns market prices, returns, orders and fills. M05 stops at finite known-probability decision analysis, finite bankroll paths and elementary 2×2 strategic reasoning."
@@ -203,7 +203,7 @@
   ],
   "coverageAudit": {
     "version": "m05-observability-v2-candidate-2026-10-03",
-    "status": "120/120 candidate claims mapped to explicit public requests/rubric observers; independent semantic confirmation pending.",
+    "status": "120/120 claims mapped to explicit public requests/rubric observers after independent-review repair; exact-head confirmation pending.",
     "policy": "Mappings are semantic. Main/Transfer slot names do not imply evidence distance; see evidenceDistance. A claim is retained only when the cited public task literally requests and scores it."
   },
   "sessions": [
@@ -448,7 +448,7 @@
         "No-arbitrage/replication/derivative pricing"
       ],
       "exitCondition": "Independently perform and explain the S04 capability on a fresh finite surface without importing an unstated criterion or later-module machinery.",
-      "lesson": "Orient. A probability tree from M04 starts with chance. A decision tree can start with a choice. Those are different node types.\n\nDefine. At a decision node, branches are actions and do not need probabilities. At a chance node, branches are mutually exclusive uncertain states whose probabilities sum to1. Terminal leaves contain the consequence after both the action and chance outcome are known.\n\nWorked example: Choose Safe or Risky. Safe ends at +3. Risky leads to +12 with probability .4 or −2 with probability .6. Under EMV, roll back the Risky chance node: .4(12)+.6(−2)=3.6. Compare 3.6 with Safe's3 only because EMV was stated. The root action is chosen; it is not a 50/50 random event.\n\nGuided check: Build a tree for action A with sure +2 and action B with +9(.3),−1(.7). Mark which node is a decision node, which is a chance node, and calculate B's rollback value under EMV.\n\nFade. On the Transfer, the tree itself is wrong. Repair the node semantics before computing.\n\nDistinction check. A randomized strategy can deliberately attach probabilities to actions, but that is an additional decision rule. It is not the default meaning of a decision node.",
+      "lesson": "Orient. A probability tree from M04 starts with chance. A decision tree can start with a choice. Those are different node types.\n\nDefine. At a decision node, branches are actions and do not need probabilities. At a chance node, branches are mutually exclusive uncertain states whose probabilities sum to1. Terminal leaves contain the consequence after both the action and chance outcome are known.\n\nWorked example: Choose Safe or Risky. Safe ends at +3. Risky leads to +12 with probability .4 or −2 with probability .6. Under EMV, roll back the Risky chance node: .4(12)+.6(−2)=3.6. Compare 3.6 with Safe's3 only because EMV was stated. The root action is chosen; it is not a 50/50 random event.\n\nGuided check: Build a tree for action A with sure +2 and action B with +9(.3),−1(.7). Mark which node is a decision node, which is a chance node, and calculate B's rollback value under EMV.\n\nFade. When a tree is supplied rather than built, audit who controls each branch before accepting any probability label; repair node semantics before computing.\n\nDistinction check. A randomized strategy can deliberately attach probabilities to actions, but that is an additional decision rule. It is not the default meaning of a decision node.",
       "guidedFeedback": "Check after attempting. Action branches leave a decision node with no nature probabilities. Only chance branches carry the supplied probabilities. Roll back chance first, then compare actions under the stated criterion.",
       "main": "T22V3::T22E-TRD01::S04-M@1",
       "transfer": "T22V3::T22E-TRD01::S04-T@1",
@@ -456,11 +456,11 @@
       "representations": [
         {
           "kind": "probabilityTree",
-          "title": "Decision first, chance second",
-          "root": "Choose",
+          "title": "Decision node → chance node",
+          "root": "□ DECISION NODE · choose action",
           "branches": [
             {
-              "label": "Safe",
+              "label": "Safe → terminal",
               "children": [
                 {
                   "label": "terminal",
@@ -469,7 +469,7 @@
               ]
             },
             {
-              "label": "Risky",
+              "label": "Risky → ○ CHANCE NODE",
               "children": [
                 {
                   "label": "gain",
@@ -484,7 +484,7 @@
               ]
             }
           ],
-          "note": "The Safe/Risky branches are actions, not 50/50 chance outcomes. Only the Risky chance branches carry the supplied probabilities."
+          "note": "The root is controlled by the decision maker; only the chance node carries nature's probabilities."
         }
       ]
     },
@@ -1790,7 +1790,7 @@
         "No-arbitrage/replication/derivative pricing"
       ],
       "exitCondition": "Independently perform and explain the S22 capability on a fresh finite surface without importing an unstated criterion or later-module machinery.",
-      "lesson": "Orient. Only now do we license the one-number row-payoff matrix used by old M05. The model must explicitly say the column player's preference is to make the row payoff smaller (equivalently, a strictly competitive/zero-sum-style interpretation).\n\nWorked example: Row payoff matrix [[2,1],[0,−1]]. Row minima are1 and−1, so maximin=1 using the top row. Column maxima are2 and1, so the minimizing column chooses the right column and minimax=1. They meet at top-right with payoff1: a pure saddle.\n\nGuided check: For [[3,−1],[0,2]], compute row minima and column maxima. You get maximin0 and minimax2, so no pure saddle. Do not leap from this gap to a general theorem.\n\nFade. The Transfer gives a general bimatrix and asks whether the reduction is even legal.\n\nDistinction check. “Column minimizes row payoff” is a model assumption/special structure, not the definition of another strategic player.",
+      "lesson": "Orient. Only now do we license a one-number row-payoff matrix. For these elementary calculations the model must explicitly supply the row player's numerical payoff and state that the column player's criterion is to make that row payoff smaller. This is the minimizing/zero-sum numerical representation used here; it is not inferred from an arbitrary bimatrix.\n\nWorked example: Row payoff matrix [[2,1],[0,−1]]. Row minima are1 and−1, so maximin=1 using the top row. Column maxima are2 and1, so the minimizing column chooses the right column and minimax=1. They meet at top-right with payoff1: a pure saddle.\n\nGuided check: For [[3,−1],[0,2]], compute row minima and column maxima. You get maximin0 and minimax2, so no pure saddle. Do not leap from this gap to a general theorem.\n\nFade. Before using a one-number maximin/minimax calculation, verify that the supplied game actually licenses a minimizing-column interpretation.\n\nDistinction check. “Column minimizes row payoff” is a model assumption/special structure, not the definition of another strategic player.",
       "guidedFeedback": "Check after attempting. First check that strict competition/minimization is actually supplied. Then compare row minima and column maxima. Equality at the same cell gives a pure saddle.",
       "main": "T22V3::T22E-TRD01::S22-M@1",
       "transfer": "T22V3::T22E-TRD01::S22-T@1",
@@ -1869,7 +1869,7 @@
         "No-arbitrage/replication/derivative pricing"
       ],
       "exitCondition": "Independently perform and explain the S23 capability on a fresh finite surface without importing an unstated criterion or later-module machinery.",
-      "lesson": "Orient. Randomization adds probabilities to a player's own actions. Those probabilities are part of a strategy, not nature's exogenous state probabilities.\n\nWorked example: Row payoff matrix [[3,0],[1,2]]. Let the column player choose L with probability q. Row's expected payoff from U is3q; from D it is q+2(1−q)=2−q. Indifference requires3q=2−q, so q=.5 and the common payoff is1.5.\n\nFor the reciprocal condition, let row choose U with probability p. Row payoff conditional on column L is3p+1(1−p)=1+2p; conditional on R it is0p+2(1−p)=2−2p. Equalizing them gives p=.25 and common payoff1.5.\n\nGuided check: On [[4,0],[1,2]], write both row expected-payoff functions against L-probability q before solving.\n\nFade. Do not guess q=.5 from symmetry unless the equations actually imply it.\n\nBoundary. This is direct 2×2 indifference algebra. We do not prove general existence, uniqueness or minimax theorems here.",
+      "lesson": "Orient. Randomization adds probabilities to a player's own actions. Those probabilities are part of a strategy, not nature's exogenous state probabilities. In S23 the one-number matrix is explicitly the row player's numerical payoff and the column player's supplied criterion is to minimize expected row payoff; we do not derive that numerical mixed-strategy representation from ordinal strict competition alone.\n\nWorked example: Row payoff matrix [[3,0],[1,2]]. Let the column player choose L with probability q. Row's expected payoff from U is3q; from D it is q+2(1−q)=2−q. Indifference requires3q=2−q, so q=.5 and the common payoff is1.5.\n\nFor the reciprocal condition, let row choose U with probability p. Row payoff conditional on column L is3p+1(1−p)=1+2p; conditional on R it is0p+2(1−p)=2−2p. Equalizing them gives p=.25 and common payoff1.5.\n\nGuided check: On [[4,0],[1,2]], write both row expected-payoff functions against L-probability q before solving.\n\nFade. Do not guess q=.5 from symmetry unless the equations actually imply it.\n\nBoundary. This is direct 2×2 indifference algebra. We do not prove general existence, uniqueness or minimax theorems here.",
       "guidedFeedback": "Check after attempting. Write each pure action's expected payoff as a function of the opponent's mix, then set the relevant expressions equal. The equations—not the number of actions—determine the mix.",
       "main": "T22V3::T22E-TRD01::S23-M@1",
       "transfer": "T22V3::T22E-TRD01::S23-T@1",
@@ -1939,7 +1939,7 @@
         "No-arbitrage/replication/derivative pricing"
       ],
       "exitCondition": "Independently perform and explain the S24 capability on a fresh finite surface without importing an unstated criterion or later-module machinery.",
-      "lesson": "Orient. The final skill is not “remember all formulas.” It is deciding what mathematical object you have before choosing a tool.\n\nModel-selection questions:\n1. What can the decision maker choose?\n2. What is exogenous chance, and what—if anything—is another strategic player's action?\n3. Is the consequence one-step or path dependent?\n4. Which criterion or hard constraint is actually supplied?\n5. Which representation—decision table, decision tree, wealth path, utility table or bimatrix—makes the reasoning auditable?\n\nWorked synthesis (different strand from the fixed Main): A bankroll starts at2 and a proposed policy allows at most two independent plays of ±1, stopping at0. A hard rule forbids any policy with more than25% finite-horizon ruin probability. Build a first-hit tree/prefix ledger: ruin occurs on LL only, probability.25. The policy is exactly at the hard boundary. Notice what we did not do: no expected utility, no opponent best response, and no claim that the policy is “optimal.”\n\nGuided check: A separate one-shot table gives two actions and common states but no probabilities. Decide whether statewise dominance can settle anything before inventing a probability model.\n\nFade. The fixed Main uses a different synthesis: monetary EMV, a hard loss cap, supplied lottery utility and sensitivity. You must choose the representation yourself. The Transfer is strategic and requires rejecting chance/zero-sum leakage.\n\nDistinction check. A strong M05 solution begins with model classification, not arithmetic.",
+      "lesson": "Orient. The final skill is not “remember all formulas.” It is deciding what mathematical object you have before choosing a tool.\n\nModel-selection questions:\n1. What can the decision maker choose?\n2. What is exogenous chance, and what—if anything—is another strategic player's action?\n3. Is the consequence one-step or path dependent?\n4. Which criterion or hard constraint is actually supplied?\n5. Which representation—decision table, decision tree, wealth path, utility table or bimatrix—makes the reasoning auditable?\n\nWorked synthesis (different strand from the fixed Main): A bankroll starts at2 and a proposed policy allows at most two independent plays of ±1, stopping at0. A hard rule forbids any policy with more than25% finite-horizon ruin probability. Build a first-hit tree/prefix ledger: ruin occurs on LL only, probability.25. The policy is exactly at the hard boundary. Notice what we did not do: no expected utility, no opponent best response, and no claim that the policy is “optimal.”\n\nGuided check: A separate one-shot table gives two actions and common states but no probabilities. Decide whether statewise dominance can settle anything before inventing a probability model.\n\nFade. On a new situation, identify the model class and supplied criteria from the facts themselves; choose a representation without importing chance, utility, path or strategic machinery that the situation does not license.\n\nDistinction check. A strong M05 solution begins with model classification, not arithmetic.",
       "guidedFeedback": "Check after attempting. Name the model type and criterion first. Build the representation that exposes the needed relationships. Reject any tool whose assumptions were not supplied.",
       "main": "T22V3::T22E-TRD01::S24-M@1",
       "transfer": "T22V3::T22E-TRD01::S24-T@1",
@@ -1981,31 +1981,7 @@
       "order": 1,
       "kind": "main",
       "prompt": "A team must choose Route A or Route B before weather is known. Weather is calm with probability .70 and rough with probability .30. Route A has net consequences +5 if calm and −1 if rough; Route B has +8 if calm and −6 if rough. Build the action–state–consequence table, identify the model facts, and explain why the information given does not by itself determine a universal choice.",
-      "obligationVersion": 3,
-      "representations": [
-        {
-          "kind": "table",
-          "title": "Route decision data",
-          "headers": [
-            "action",
-            "calm (.70)",
-            "rough (.30)"
-          ],
-          "rows": [
-            [
-              "Route A",
-              "+5",
-              "−1"
-            ],
-            [
-              "Route B",
-              "+8",
-              "−6"
-            ]
-          ],
-          "note": "Use the table to separate actions, chance states and consequences before applying any criterion."
-        }
-      ]
+      "obligationVersion": 4
     },
     "T22V3::T22E-TRD01::S01-T@1": {
       "id": "T22V3::T22E-TRD01::S01-T@1",
@@ -2088,48 +2064,14 @@
       "order": 1,
       "kind": "main",
       "prompt": "You must choose Safe or Bold. Safe gives net +4 for sure. Bold gives +12 with probability .40 and −2 with probability .60. Build a one-stage decision tree, label the node types, place the consequences at leaves, roll back Bold under the stated EMV criterion, and state which action EMV selects.",
-      "obligationVersion": 3,
-      "representations": [
-        {
-          "kind": "probabilityTree",
-          "title": "One-stage decision tree to complete",
-          "root": "Choose",
-          "branches": [
-            {
-              "label": "Safe",
-              "children": [
-                {
-                  "label": "terminal",
-                  "leaf": "+4"
-                }
-              ]
-            },
-            {
-              "label": "Bold",
-              "children": [
-                {
-                  "label": "gain",
-                  "prob": ".40",
-                  "leaf": "+12"
-                },
-                {
-                  "label": "loss",
-                  "prob": ".60",
-                  "leaf": "−2"
-                }
-              ]
-            }
-          ],
-          "note": "Label the root as a decision node and the Bold split as a chance node before rollback."
-        }
-      ]
+      "obligationVersion": 4
     },
     "T22V3::T22E-TRD01::S04-T@1": {
       "id": "T22V3::T22E-TRD01::S04-T@1",
       "order": 1,
       "kind": "transfer",
       "prompt": "An analyst draws Safe and Gamble as two 0.50-probability branches from the root, then averages their values. In fact the decision maker chooses the branch. Safe gives +2 for sure; Gamble gives +10(.30) or −1(.70). Repair the tree semantics and evaluate the two actions under EMV.",
-      "obligationVersion": 3,
+      "obligationVersion": 4,
       "representations": [
         {
           "kind": "probabilityTree",
@@ -2163,7 +2105,7 @@
               ]
             }
           ],
-          "note": "The .50 labels on the two action branches are the model error. The decision maker chooses the root branch."
+          "note": "Audit the supplied tree against the meaning of each branch and probability label."
         }
       ]
     },
@@ -2238,7 +2180,7 @@
       "order": 1,
       "kind": "main",
       "prompt": "Across common states s1,s2,s3, action X pays (6,1,−2), Y pays (5,1,−4), and Z pays (7,0,−2). Represent the payoff vectors, determine whether X dominates Y, determine whether X and Z dominate one another, identify any dominated action, and explain why no state probabilities are needed.",
-      "obligationVersion": 3,
+      "obligationVersion": 4,
       "representations": [
         {
           "kind": "table",
@@ -2269,7 +2211,7 @@
               "−2"
             ]
           ],
-          "note": "Test dominance coordinate by coordinate; do not invent state probabilities."
+          "note": "Use the common-state columns to organize the pairwise payoff comparisons."
         }
       ]
     },
@@ -2396,7 +2338,7 @@
       "order": 1,
       "kind": "main",
       "prompt": "A decision maker ranks certain outcomes C≻B≻A. Representation u assigns A=0,B=1,C=2; representation v assigns A=−10,B=5,C=100. (a) Show that both represent the same certain-outcome ordering. (b) Explain why the larger gaps in v do not by themselves measure stronger preference intensity. (c) Explain why this ranking alone does not tell us whether the person prefers sure B to a 50/50 lottery over A and C.",
-      "obligationVersion": 3,
+      "obligationVersion": 4,
       "representations": [
         {
           "kind": "table",
@@ -2421,7 +2363,7 @@
               "100"
             ]
           ],
-          "note": "Both preserve C ≻ B ≻ A; the task asks what this does and does not license."
+          "note": "Use the two supplied numerical labelings when answering each part."
         }
       ]
     },
@@ -2603,7 +2545,7 @@
       "order": 1,
       "kind": "main",
       "prompt": "Consider the bimatrix with row actions U,D and column actions L,R: (U,L)=(3,4), (U,R)=(0,1), (D,L)=(1,0), (D,R)=(2,3). Identify both players' action sets, explain what each ordered pair means, determine the column player's preferred response to U from her own payoffs, and explain why treating L/R as chance states or automatically minimizing the row payoff would be wrong.",
-      "obligationVersion": 3,
+      "obligationVersion": 4,
       "representations": [
         {
           "kind": "table",
@@ -2624,8 +2566,7 @@
               "(1,0)",
               "(2,3)"
             ]
-          ],
-          "note": "Use the second component for the column player's preference."
+          ]
         }
       ]
     },
@@ -2710,7 +2651,7 @@
       "order": 1,
       "kind": "transfer",
       "prompt": "A general bimatrix is (U,L)=(3,4),(U,R)=(0,1),(D,L)=(1,0),(D,R)=(2,3). Someone discards the second payoff in every cell and runs a row maximin/minimax calculation as though the column player minimizes the row payoff. Decide whether that reduction is licensed and use one best-response comparison to justify your answer.",
-      "obligationVersion": 3,
+      "obligationVersion": 4,
       "representations": [
         {
           "kind": "table",
@@ -2732,7 +2673,7 @@
               "(2,3)"
             ]
           ],
-          "note": "Do not discard the second payoff component unless strict competition is established."
+          "note": "Audit the proposed one-number reduction against the original ordered-pair payoffs."
         }
       ]
     },
@@ -2740,8 +2681,8 @@
       "id": "T22V3::T22E-TRD01::S23-M@1",
       "order": 1,
       "kind": "main",
-      "prompt": "In the strictly competitive row-payoff matrix [[3,0],[1,2]], let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
-      "obligationVersion": 3,
+      "prompt": "In the supplied zero-sum/minimizing representation with row-payoff matrix [[3,0],[1,2]], the column player's criterion is to minimize expected row payoff. Let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
+      "obligationVersion": 4,
       "representations": [
         {
           "kind": "table",
@@ -2771,8 +2712,8 @@
       "id": "T22V3::T22E-TRD01::S23-T@1",
       "order": 1,
       "kind": "transfer",
-      "prompt": "For the strictly competitive row-payoff matrix [[4,0],[1,2]], find the column probability q of L that makes the row player indifferent between the two rows and compute the common expected payoff. Explain why q is not automatically .50 just because there are two columns.",
-      "obligationVersion": 3
+      "prompt": "For the supplied zero-sum/minimizing representation with row-payoff matrix [[4,0],[1,2]], where the column player minimizes expected row payoff, find the column probability q of L that makes the row player indifferent between the two rows and compute the common expected payoff. Explain why q is not automatically .50 just because there are two columns.",
+      "obligationVersion": 4
     },
     "T22V3::T22E-TRD01::S24-M@1": {
       "id": "T22V3::T22E-TRD01::S24-M@1",
@@ -2786,7 +2727,7 @@
       "order": 1,
       "kind": "transfer",
       "prompt": "Audit this different model. Two strategic players choose simultaneously. Payoffs are (U,L)=(4,1),(U,R)=(1,3),(D,L)=(2,0),(D,R)=(3,2). An analyst treats L/R as 50/50 chance states, computes row expected values, and then says the column player will minimize row payoff anyway. Classify the model, choose an appropriate representation, determine the pure best responses and any mutual-best-response cell, and explain both modeling errors.",
-      "obligationVersion": 3,
+      "obligationVersion": 4,
       "representations": [
         {
           "kind": "table",
@@ -2808,7 +2749,7 @@
               "(3,2)"
             ]
           ],
-          "note": "This is a bimatrix of strategic choices, not a chance table."
+          "note": "Use the ordered-pair payoff data to audit the analyst's reasoning."
         }
       ]
     }
@@ -3959,7 +3900,7 @@
       "marking": "Score only what the public Transfer requests. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated criterion, probability model or theorem."
     },
     "T22V3::T22E-TRD01::S23-M@1": {
-      "reference": "U(q)=3q. D(q)=q+2(1−q)=2−q. Equality gives q=.5 and common payoff1.5. With row mix p, payoff versus L=3p+1(1−p)=1+2p; versus R=0p+2(1−p)=2−2p. Equality gives p=.25, common1.5. These are finite indifference calculations, not a proof of a general equilibrium/minimax theorem.",
+      "reference": "U(q)=3q. D(q)=q+2(1−q)=2−q. Equality gives q=.5 and common payoff1.5. With row mix p, payoff versus L=3p+1(1−p)=1+2p; versus R=0p+2(1−p)=2−2p. Equality gives p=.25, common1.5. These are finite indifference calculations under the supplied minimizing-expected-row-payoff representation, not a proof that arbitrary ordinally strictly competitive games admit this numerical form or a proof of a general equilibrium/minimax theorem.",
       "rubric": [
         {
           "points": 2,
@@ -3979,13 +3920,13 @@
         },
         {
           "points": 2,
-          "criterion": "States that the calculation is local 2×2 algebra rather than a general theorem proof."
+          "criterion": "States that the calculation uses the supplied minimizing-expected-row-payoff numerical representation and is not a proof of a general equilibrium/minimax or representation theorem."
         }
       ],
       "marking": "Score only what the public Main requests. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated criterion, probability model or theorem."
     },
     "T22V3::T22E-TRD01::S23-T@1": {
-      "reference": "Top payoff=4q. Bottom=q+2(1−q)=2−q. Set4q=2−q, so q=2/5=.4. Common payoff=1.6. Two actions do not imply equal mixing; the payoffs determine the indifference probability.",
+      "reference": "Top payoff=4q. Bottom=q+2(1−q)=2−q. Set4q=2−q, so q=2/5=.4. Common payoff=1.6. Two actions do not imply equal mixing; the supplied numerical payoffs determine the indifference probability under the stated minimizing-expected-row-payoff model.",
       "rubric": [
         {
           "points": 2,
@@ -4005,7 +3946,7 @@
         },
         {
           "points": 2,
-          "criterion": "Rejects the automatic-50/50 wrong solver and keeps the conclusion within 2×2 indifference algebra."
+          "criterion": "Rejects the automatic-50/50 wrong solver and keeps the conclusion within the supplied 2×2 minimizing-expected-row-payoff model."
         }
       ],
       "marking": "Score only what the public Transfer requests. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated criterion, probability model or theorem."
@@ -5404,7 +5345,7 @@
       {
         "claim": "Compute expected payoff of a pure row action against a randomized column action.",
         "task": "main",
-        "publicRequest": "In the strictly competitive row-payoff matrix [[3,0],[1,2]], let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
+        "publicRequest": "In the supplied zero-sum/minimizing representation with row-payoff matrix [[3,0],[1,2]], the column player's criterion is to minimize expected row payoff. Let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
         "rubricEvidence": [
           "Writes the two pure-row expected-payoff functions correctly."
         ]
@@ -5412,7 +5353,7 @@
       {
         "claim": "Solve the column mixing probability that makes two row actions indifferent.",
         "task": "main",
-        "publicRequest": "In the strictly competitive row-payoff matrix [[3,0],[1,2]], let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
+        "publicRequest": "In the supplied zero-sum/minimizing representation with row-payoff matrix [[3,0],[1,2]], the column player's criterion is to minimize expected row payoff. Let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
         "rubricEvidence": [
           "Solves q=.5 from the indifference equation."
         ]
@@ -5420,7 +5361,7 @@
       {
         "claim": "Compute expected payoff at the indifference probability.",
         "task": "main",
-        "publicRequest": "In the strictly competitive row-payoff matrix [[3,0],[1,2]], let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
+        "publicRequest": "In the supplied zero-sum/minimizing representation with row-payoff matrix [[3,0],[1,2]], the column player's criterion is to minimize expected row payoff. Let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
         "rubricEvidence": [
           "Computes the common payoff1.5."
         ]
@@ -5428,7 +5369,7 @@
       {
         "claim": "Solve the symmetric row mixing condition that makes columns yield equal expected row payoff.",
         "task": "main",
-        "publicRequest": "In the strictly competitive row-payoff matrix [[3,0],[1,2]], let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
+        "publicRequest": "In the supplied zero-sum/minimizing representation with row-payoff matrix [[3,0],[1,2]], the column player's criterion is to minimize expected row payoff. Let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
         "rubricEvidence": [
           "Solves the reciprocal row-mixing condition p=.25 correctly."
         ]
@@ -5436,9 +5377,9 @@
       {
         "claim": "State that this algebraic indifference calculation is not a proof of a general equilibrium theorem.",
         "task": "main",
-        "publicRequest": "In the strictly competitive row-payoff matrix [[3,0],[1,2]], let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
+        "publicRequest": "In the supplied zero-sum/minimizing representation with row-payoff matrix [[3,0],[1,2]], the column player's criterion is to minimize expected row payoff. Let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
         "rubricEvidence": [
-          "States that the calculation is local 2×2 algebra rather than a general theorem proof."
+          "States that the calculation uses the supplied minimizing-expected-row-payoff numerical representation and is not a proof of a general equilibrium/minimax or representation theorem."
         ]
       }
     ],
@@ -6089,8 +6030,8 @@
         "reason": "The central method/distinction is explicitly taught in visible instruction; changed numbers or context do not make the task fresh."
       },
       "T22V3::T22E-TRD01::S04-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Instruction constructs and rolls back a valid decision tree; Transfer instead repairs a malformed model that wrongly randomizes the decision node."
+        "class": "reasoning reconstruction",
+        "reason": "The task repairs a malformed decision tree, but visible instruction already teaches that action branches are chosen rather than probabilistic and explicitly trains node-semantic auditing. This is useful reasoning reconstruction, not changed-surface transfer."
       },
       "T22V3::T22E-TRD01::S05-M@1": {
         "class": "retrieval",
@@ -6233,8 +6174,8 @@
         "reason": "The central method/distinction is explicitly taught in visible instruction; changed numbers or context do not make the task fresh."
       },
       "T22V3::T22E-TRD01::S22-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Instruction analyzes a valid strictly competitive row-payoff matrix; Transfer requires rejecting an illegal reduction of a general bimatrix to a minimizing-opponent row-payoff matrix."
+        "class": "reasoning reconstruction",
+        "reason": "The task rejects an illegal one-number reduction, but S20–S22 explicitly teach that a general bimatrix keeps both players' payoffs and that the minimizing-column reduction requires supplied special structure. This is reasoning reconstruction."
       },
       "T22V3::T22E-TRD01::S23-M@1": {
         "class": "proof/reasoning reconstruction",
@@ -6245,53 +6186,25 @@
         "reason": "The central mathematical action or error pattern is visibly rehearsed; the task is retained honestly as retrieval/reconstruction."
       },
       "T22V3::T22E-TRD01::S24-M@1": {
-        "class": "fresh Main evidence",
-        "reason": "Visible S24 instruction synthesizes finite-horizon ruin plus a hard constraint, whereas Main requires model selection plus EMV, feasibility, supplied expected utility and sensitivity on a different one-shot chance decision without prescribing the representation."
+        "class": "integrated reasoning reconstruction",
+        "reason": "The task integrates model classification, representation choice, EMV, feasibility, supplied expected utility and threshold sensitivity, but the prompt explicitly requests those actions and the component methods are all previously taught. It is strong synthesis, not fresh evidence."
       },
       "T22V3::T22E-TRD01::S24-T@1": {
-        "class": "changed-surface Transfer",
-        "reason": "Main is a chance-decision synthesis; Transfer switches the model class to a general strategic bimatrix and requires diagnosing two different model-leakage errors."
+        "class": "integrated reasoning reconstruction",
+        "reason": "The task integrates strategic-game classification and pure best responses, but those distinctions are explicitly taught in S20–S24. The model changes relative to S24 Main, yet the scored mathematical actions are rehearsed."
       }
     }
   },
   "decisionAudit": {
-    "version": "m05-decision-audit-v2-candidate",
-    "reviewedAt": "2026-10-03",
+    "version": "m05-decision-audit-v2-independent-review-r1",
+    "reviewedAt": "2026-10-04",
     "items": {
-      "T22V3::T22E-TRD01::S04-T@1": {
-        "claimedLearnerDecision": "Instruction constructs and rolls back a valid decision tree; Transfer instead repairs a malformed model that wrongly randomizes the decision node.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Rejects the 0.50 probabilities on the root action branches. | Repairs the root as a decision node and the Gamble branch as a chance node. | Uses .30/.70 on the Gamble chance branches only. | Computes Gamble EMV2.3. | Compares Gamble2.3 with Safe2 under EMV rather than averaging across actions.",
-        "classificationJustification": "Instruction constructs and rolls back a valid decision tree; Transfer instead repairs a malformed model that wrongly randomizes the decision node."
-      },
       "T22V3::T22E-TRD01::S16-T@1": {
         "claimedLearnerDecision": "Instruction diagnoses a supplied non-affine transform; Transfer requires constructing a new strictly increasing relabeling that reverses a lottery ranking and explaining why it cannot be positive-affine.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Recognizes that deterministic order alone is not enough to preserve lottery preferences. | Treats the original u as the supplied lottery-preference representation. | Constructs a strictly increasing relabeling, e.g.0,1,1.5. | Shows the transformed lottery average is below the transformed sure-B value. | Explains that a positive-affine rescaling could not reverse the original EU ranking.",
-        "classificationJustification": "Instruction diagnoses a supplied non-affine transform; Transfer requires constructing a new strictly increasing relabeling that reverses a lottery ranking and explaining why it cannot be positive-affine."
-      },
-      "T22V3::T22E-TRD01::S22-T@1": {
-        "claimedLearnerDecision": "Instruction analyzes a valid strictly competitive row-payoff matrix; Transfer requires rejecting an illegal reduction of a general bimatrix to a minimizing-opponent row-payoff matrix.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Checks the model type before using a one-number row-payoff matrix. | Explains why separate column payoffs prevent automatic strict-competition reduction. | Uses the original bimatrix rather than silently discarding data. | Provides a concrete best-response contradiction, e.g. against U column prefers L. | Rejects the general-minimax interpretation and states that S22's method requires explicit strict competition.",
-        "classificationJustification": "Instruction analyzes a valid strictly competitive row-payoff matrix; Transfer requires rejecting an illegal reduction of a general bimatrix to a minimizing-opponent row-payoff matrix."
-      },
-      "T22V3::T22E-TRD01::S24-T@1": {
-        "claimedLearnerDecision": "Main is a chance-decision synthesis; Transfer switches the model class to a general strategic bimatrix and requires diagnosing two different model-leakage errors.",
-        "decisionSuppliedByPrompt": true,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Classifies the model as strategic rather than exogenous chance and uses a bimatrix representation. | Finds the row player's pure best responses correctly. | Finds the column player's pure best responses and mutual cell (D,R). | Rejects the invented 50/50 chance treatment of the column action. | Rejects the unjustified minimizing-opponent assumption and states the conclusion only for the supplied one-shot game.",
-        "classificationJustification": "Main is a chance-decision synthesis; Transfer switches the model class to a general strategic bimatrix and requires diagnosing two different model-leakage errors."
-      },
-      "T22V3::T22E-TRD01::S24-M@1": {
-        "claimedLearnerDecision": "Classify the fresh situation, choose an auditable representation, and keep EMV, feasibility, supplied expected utility and sensitivity conclusions separate.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Correctly classifies the situation as a chance decision and builds an auditable table/tree rather than a strategic-game model. | Computes the quantities actually needed: EMV(A)=6 versus4 and feasibility10≤12. | Computes EU(A)=6.4 versus EU(B)=7 under the supplied lottery-utility model. | Solves the EMV tie threshold p=.35 and rejects at least the analyst's universal-best inference. | Writes a criterion-labeled conclusion: EMV favors A, hard constraint permits A, supplied EU favors B, with no Bayes/market-price/optimal-sizing overclaim.",
-        "classificationJustification": "Visible S24 instruction synthesizes finite-horizon ruin plus a hard constraint, whereas Main requires model selection plus EMV, feasibility, supplied expected utility and sensitivity on a different one-shot chance decision without prescribing the representation."
+        "classificationJustification": "Instruction demonstrates and diagnoses a supplied non-affine transform. The Transfer requires the learner to construct a new strictly increasing relabeling satisfying competing inequalities, then prove why it cannot be positive-affine."
       }
     }
   },
@@ -6643,5 +6556,42 @@
       "T22V3::T22E-TRD01::S24-T@1"
     ],
     "note": "Stable module/session/task IDs retained. Materially changed public obligations are version3; compatible retained contracts preserve their earlier obligation versions."
+  },
+  "independentReviewRepairAudit": {
+    "review": "docs/t22-course/M05-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md",
+    "reviewedCandidateHead": "c8d3518b3902ca312c3141dad7b138b308f4f858",
+    "findings": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08"
+    ],
+    "evidenceDowngrades": [
+      "T22V3::T22E-TRD01::S04-T@1",
+      "T22V3::T22E-TRD01::S22-T@1",
+      "T22V3::T22E-TRD01::S24-M@1",
+      "T22V3::T22E-TRD01::S24-T@1"
+    ],
+    "survivingChangedSurfaceEvidence": [
+      "T22V3::T22E-TRD01::S16-T@1"
+    ],
+    "changedAssessmentIds": [
+      "T22V3::T22E-TRD01::S01-M@1",
+      "T22V3::T22E-TRD01::S04-M@1",
+      "T22V3::T22E-TRD01::S04-T@1",
+      "T22V3::T22E-TRD01::S08-M@1",
+      "T22V3::T22E-TRD01::S15-M@1",
+      "T22V3::T22E-TRD01::S20-M@1",
+      "T22V3::T22E-TRD01::S22-T@1",
+      "T22V3::T22E-TRD01::S23-M@1",
+      "T22V3::T22E-TRD01::S23-T@1",
+      "T22V3::T22E-TRD01::S24-T@1"
+    ],
+    "assessmentVersion": 4,
+    "status": "repair-r1-awaiting-full-validation-and-exact-head-confirmation"
   }
 }
