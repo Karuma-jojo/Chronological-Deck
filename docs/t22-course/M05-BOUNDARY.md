@@ -3,8 +3,8 @@
 Date: 2026-10-03  
 Branch: `codex/t22-m05-deep-source-restart`  
 Stable module ID: `T22E-TRD01`  
-Authoring version: `m05-authoring-v2-deep-source-candidate`  
-Status: **V2 DEEP-SOURCE BUILDER CANDIDATE — NOT INDEPENDENTLY ACCEPTED**
+Authoring version: `m05-authoring-v2-independent-review-repair-r1`  
+Status: **V2 INDEPENDENT-REVIEW REPAIR R1 — EXACT-HEAD CONFIRMATION PENDING**
 
 Authority:
 
@@ -130,12 +130,16 @@ A strategic opponent is never silently treated as an exogenous chance state.
 
 `main` and `transfer` remain stable task slots for runtime compatibility. They are not prestige labels.
 
-The candidate evidence ledger currently classifies:
+After independent adversarial review, the repaired evidence ledger classifies:
 
-- one fresh Main: S24-M;
-- four changed-surface Transfers: S04-T, S16-T, S22-T, S24-T;
+- **zero fixed Mains as fresh evidence**;
+- **one changed-surface Transfer: S16-T**, where the learner must construct a new order-preserving relabeling satisfying a reversal constraint;
+- S04-T and S22-T as reasoning reconstruction;
+- S24-M and S24-T as integrated reasoning reconstruction;
 - derivation/reasoning-reconstruction Mains where applicable;
 - the remaining tasks honestly as retrieval.
+
+This downgrade is intentional: difficult or integrated work is not called transfer merely for prestige.
 
 Changed numbers, names or stories alone never establish transfer.
 
@@ -147,9 +151,15 @@ The shared store remains exactly:
 
 Stable module/session/task IDs are retained.
 
-Thirty-six materially changed public task contracts are `obligationVersion=3`. Twelve compatible public contracts are preserved at their historical obligation versions. Historical attempts are retained rather than deleted or silently recertified.
+Relative to the recovered published baseline, thirty-six public contracts are materially reconstructed and twelve compatible contracts remain preserved. After independent review, ten of those reconstructed assessment surfaces were repaired again and are `obligationVersion=4`; the other twenty-six remain `obligationVersion=3`. Historical attempts are retained rather than deleted or silently recertified.
 
 Historical answer-bearing and guided-practice exposure records remain in the authoring pack.
+
+## Independent-review repair authority
+
+The frozen builder-green candidate `c8d3518b3902ca312c3141dad7b138b308f4f858` was reviewed in `M05-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md`.
+
+R01–R08 were accepted as justified findings. The repair downgrades inflated evidence labels, removes assessment-specific coaching, removes/neutralizes answer-bearing assessment representations, makes the instructional decision/chance distinction visible, and tightens the supplied minimizing-expected-row-payoff convention for S22–S23.
 
 ## Acceptance policy
 
