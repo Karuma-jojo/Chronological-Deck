@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { FOUNDATION_MODULE, FOUNDATION_UNITS } from '../course/smmc/authoring/foundation-ladder.mjs';
 import ledger from "../course/smmc/ledger.mjs";
 import { SMMC_METHOD_TAGS, SMMC_SECONDARY_TAGS } from "../course/smmc/schema.mjs";
@@ -67,6 +69,19 @@ import {
   ARSENAL_GATE2_SOURCE_CLOSURE_EXCLUSIONS,
   ARSENAL_GATE2_SOURCE_CLOSURE_META,
 } from "../course/smmc/arsenal/source-closure-manifest-v0.mjs";
+import {
+  ARSENAL_GATE3_ACCEPTED_GATE2_SHA,
+  ARSENAL_GATE3_GATE2_MERGE_SHA,
+  ARSENAL_GATE3_EVIDENCE_MODE,
+  ARSENAL_GATE3_CONTRACT_META,
+  validateGate3GranularityRecord,
+} from "../course/smmc/arsenal/granularity-contract-v1.mjs";
+import {
+  ARSENAL_GATE3_GRANULARITY_RECORDS,
+  ARSENAL_GATE3_GRANULARITY_META,
+  buildGate3AssessedCalibration,
+} from "../course/smmc/arsenal/granularity-ledger-v0.mjs";
+import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -837,6 +852,372 @@ for (const group of ARSENAL_GATE2_DUPLICATE_NAME_GROUPS) {
   expect(group.candidateIds.length > 1, "Duplicate-name report contains singleton.");
   expect(new Set(group.candidateIds).size === group.candidateIds.length, "Duplicate-name report repeated the same candidate ID.");
 }
+
+// Gate 3 granularity calibration: exact overlay on the independently accepted Gate-2 pool.
+expect(
+  ARSENAL_GATE3_ACCEPTED_GATE2_SHA === "ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7",
+  "Gate 3 must remain anchored to the independently accepted Gate-2 exact SHA."
+);
+expect(
+  ARSENAL_GATE3_GATE2_MERGE_SHA === "7600dd377192aafe6ca777636d94474736ea4e4f",
+  "Gate 3 must remain anchored to the merge commit that preserves the accepted Gate-2 SHA."
+);
+expect(ARSENAL_GATE3_CONTRACT_META.gate === 3, "Granularity contract must identify Gate 3.");
+expect(ARSENAL_GATE3_CONTRACT_META.purpose === "GRANULARITY_MEASUREMENT_ONLY", "Gate 3 purpose drifted.");
+expect(
+  ARSENAL_GATE3_EVIDENCE_MODE === "STRICT_CANDIDATE_OWNED_GATE2" &&
+  ARSENAL_GATE3_CONTRACT_META.evidenceMode === ARSENAL_GATE3_EVIDENCE_MODE,
+  "Gate 3 must remain in strict candidate-owned Gate-2 evidence mode during calibration and mass review."
+);
+for (const [field, value] of Object.entries({
+  referenceUnitIsFinalOntology: false,
+  mergeSplitDecisionsAllowed: false,
+  ontologyAllowed: false,
+  prerequisiteGraphAllowed: false,
+  rankingAllowed: false,
+  candidateRelationsAllowed: false,
+  learnerGamificationAllowed: false,
+  gate2RawPoolImmutable: true,
+})) {
+  expect(
+    ARSENAL_GATE3_CONTRACT_META[field] === value,
+    `Gate-3 boundary flag drifted: ${field}`
+  );
+}
+
+expect(
+  ARSENAL_GATE3_GRANULARITY_RECORDS.length === ARSENAL_GATE2_RAW_CANDIDATES.length,
+  "Gate-3 granularity overlay must contain exactly one row per accepted Gate-2 raw candidate."
+);
+expect(ARSENAL_GATE3_GRANULARITY_RECORDS.length === 661, "Gate-3 population must remain the accepted 661-candidate Gate-2 pool.");
+
+const gate3Ids = ARSENAL_GATE3_GRANULARITY_RECORDS.map(x => x.candidateId);
+expect(new Set(gate3Ids).size === gate3Ids.length, "Duplicate Gate-3 candidate row.");
+expect(
+  JSON.stringify([...gate3Ids].sort()) === JSON.stringify([...rawCandidateIds].sort()),
+  "Gate-3 candidate IDs must exactly equal the accepted Gate-2 raw candidate IDs."
+);
+
+const rawCandidateById = new Map(ARSENAL_GATE2_RAW_CANDIDATES.map(x => [x.candidateId, x]));
+let gate3Reviewed = 0;
+let gate3Unreviewed = 0;
+for (const row of ARSENAL_GATE3_GRANULARITY_RECORDS) {
+  validateGate3GranularityRecord(row);
+  const raw = rawCandidateById.get(row.candidateId);
+  expect(raw, `Gate-3 row references unknown raw candidate ${row.candidateId}`);
+  expect(row.candidateName === raw.candidateName, `Gate-3 candidate-name snapshot drifted for ${row.candidateId}`);
+  expect(row.origin === raw.origin, `Gate-3 origin snapshot drifted for ${row.candidateId}`);
+  for (const evidenceId of row.supportingEvidenceRecordIds) {
+    expect(
+      raw.evidenceRecordIds.includes(evidenceId),
+      `Gate-3 row cites evidence not owned by candidate ${row.candidateId}: ${evidenceId}`
+    );
+  }
+  if (row.status === "REVIEWED") gate3Reviewed += 1;
+  if (row.status === "UNREVIEWED") gate3Unreviewed += 1;
+}
+expect(gate3Reviewed === 45, "Gate-3 calibration reviewed-count drifted.");
+expect(gate3Unreviewed === 616, "Gate-3 calibration must leave the remaining 616 candidates explicitly UNREVIEWED.");
+expect(
+  ARSENAL_GATE3_GRANULARITY_META.reviewed === gate3Reviewed &&
+  ARSENAL_GATE3_GRANULARITY_META.unreviewed === gate3Unreviewed,
+  "Gate-3 granularity metadata does not match the actual reviewed/unreviewed partition."
+);
+expect(ARSENAL_GATE3_GRANULARITY_META.status === "CALIBRATION-IN-PROGRESS", "Gate 3 must not self-declare completion during calibration.");
+expect(ARSENAL_GATE3_GRANULARITY_META.gate2CandidateCount === 661, "Gate-3 metadata must preserve the 661-candidate Gate-2 population.");
+expect(ARSENAL_GATE3_GRANULARITY_META.ontologyStarted === false, "Gate 3 must not start ontology.");
+expect(ARSENAL_GATE3_GRANULARITY_META.mergeSplitStarted === false, "Gate 3 must not start merge/split adjudication.");
+expect(ARSENAL_GATE3_GRANULARITY_META.prerequisiteGraphStarted === false, "Gate 3 must not start prerequisites.");
+expect(ARSENAL_GATE3_GRANULARITY_META.rankingStarted === false, "Gate 3 must not rank candidates.");
+expect(ARSENAL_GATE3_GRANULARITY_META.candidateRelationsStarted === false, "Gate 3 must not build candidate relations.");
+expect(ARSENAL_GATE3_GRANULARITY_META.learnerGamificationStarted === false, "Gate 3 must not start Forge/Boss/Arena representation.");
+expect(
+  ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v1-45-complete",
+  "All 45 calibration rows must remain marked as re-audited under strict candidate-owned evidence mode."
+);
+
+// Calibration must exercise every reference-scale outcome and the major orthogonal dimensions.
+const gate3ReviewedRows = ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "REVIEWED");
+for (const scale of ["MICRO","DEPLOYABLE","MACRO","CROSS_SCALE","UNRESOLVED"]) {
+  expect(gate3ReviewedRows.some(x => x.referenceScale === scale), `Gate-3 calibration does not exercise referenceScale=${scale}`);
+}
+for (const bundle of ["SINGLE_PRIMARY_MOVE","BUNDLED_MOVES","UNRESOLVED"]) {
+  expect(gate3ReviewedRows.some(x => x.bundleStructure === bundle), `Gate-3 calibration does not exercise bundleStructure=${bundle}`);
+}
+for (const shape of ["EXPLICIT_ACTION","IMPLICIT_ACTION","LABEL_ONLY","UNRESOLVED"]) {
+  expect(gate3ReviewedRows.some(x => x.actionShape === shape), `Gate-3 calibration does not exercise actionShape=${shape}`);
+}
+for (const reach of ["GENERAL","SOURCE_LOCAL","PROBLEM_LOCAL","UNRESOLVED"]) {
+  expect(gate3ReviewedRows.some(x => x.contextReach === reach), `Gate-3 calibration does not exercise contextReach=${reach}`);
+}
+
+for (const confidence of ["HIGH","MEDIUM","LOW"]) {
+  expect(gate3ReviewedRows.some(x => x.confidence === confidence), `Gate-3 calibration does not exercise confidence=${confidence}`);
+}
+
+// Scale and context must be independently calibrated: MICRO is not synonymous
+// with PROBLEM_LOCAL, and PROBLEM_LOCAL is not synonymous with MICRO.
+expect(
+  gate3ReviewedRows.some(x => x.referenceScale === "MICRO" && x.contextReach !== "PROBLEM_LOCAL"),
+  "Gate-3 calibration needs a genuine MICRO anchor outside PROBLEM_LOCAL context."
+);
+expect(
+  gate3ReviewedRows.some(x => x.contextReach === "PROBLEM_LOCAL" && x.referenceScale !== "MICRO"),
+  "Gate-3 calibration needs a PROBLEM_LOCAL anchor whose grain is not MICRO."
+);
+
+const recoverabilityCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-ROUTE-004");
+expect(
+  recoverabilityCalibration?.referenceScale === "UNRESOLVED" &&
+  recoverabilityCalibration?.triggerBoundary === "UNRESOLVED" &&
+  recoverabilityCalibration?.operationBoundary === "UNRESOLVED" &&
+  recoverabilityCalibration?.outputBoundary === "UNRESOLVED",
+  "Weak audit-note Recoverability evidence must not borrow richer official evidence from another candidate."
+);
+
+const cruxCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-z-crux-move");
+expect(
+  cruxCalibration?.referenceScale === "CROSS_SCALE" &&
+  cruxCalibration?.bundleStructure === "SINGLE_PRIMARY_MOVE",
+  "Crux Move must exercise source-defined scale variability without falsely implying a bundled move."
+);
+
+for (const candidateId of [
+  "RAW-BRIDGE-070",
+  "RAW-OFFICIAL-095",
+  "RAW-OFFICIAL-107",
+  "RAW-SOURCE-h-combining-techniques",
+]) {
+  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
+  expect(
+    row?.referenceScale === "MACRO" && row?.bundleStructure === "BUNDLED_MOVES",
+    `Evidence-supported multi-operation bundle without mixed grain must be MACRO + BUNDLED_MOVES: ${candidateId}`
+  );
+}
+
+const forcingBridgeCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-002");
+expect(
+  forcingBridgeCalibration?.referenceScale === "MACRO" &&
+  forcingBridgeCalibration?.bundleStructure === "UNRESOLVED" &&
+  forcingBridgeCalibration?.actionShape === "LABEL_ONLY",
+  "A bridge label that merely conjoins method-family names must not be upgraded into BUNDLED_MOVES under strict evidence mode."
+);
+
+const mixedGrainCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-127");
+expect(
+  mixedGrainCalibration?.referenceScale === "CROSS_SCALE" &&
+  mixedGrainCalibration?.bundleStructure === "UNRESOLVED",
+  "Convex-envelope + construction wording must exercise the calibrated mixed-grain CROSS_SCALE branch without inventing multiple moves."
+);
+
+const strictDirectProof = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-h-direct-proof");
+expect(
+  strictDirectProof?.referenceScale === "UNRESOLVED" &&
+  strictDirectProof?.bundleStructure === "UNRESOLVED" &&
+  strictDirectProof?.actionShape === "LABEL_ONLY" &&
+  strictDirectProof?.triggerBoundary === "ABSENT" &&
+  strictDirectProof?.operationBoundary === "ABSENT" &&
+  strictDirectProof?.outputBoundary === "ABSENT",
+  "TOC-level Direct Proof evidence must not import the familiar proof schema under strict candidate-owned evidence mode."
+);
+
+const gramBridgeCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-052");
+expect(
+  gramBridgeCalibration?.referenceScale === "UNRESOLVED" &&
+  gramBridgeCalibration?.bundleStructure === "UNRESOLVED" &&
+  gramBridgeCalibration?.actionShape === "LABEL_ONLY" &&
+  gramBridgeCalibration?.operationBoundary === "UNRESOLVED" &&
+  gramBridgeCalibration?.outputBoundary === "UNRESOLVED",
+  "Gram-matrix viewpoint bridge label must not expand into an unstated operation/payoff under strict evidence mode."
+);
+
+for (const candidateId of [
+  "RAW-LEGACY-small-cases",
+  "RAW-LEGACY-cross-domain",
+]) {
+  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
+  expect(
+    row?.referenceScale === "UNRESOLVED" &&
+    row?.actionShape === "LABEL_ONLY",
+    `Thin schema-tag evidence must remain conservative for ${candidateId}`
+  );
+}
+
+const factorTacticCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-z-factor-tactic");
+expect(
+  factorTacticCalibration?.referenceScale === "UNRESOLVED" &&
+  factorTacticCalibration?.operationBoundary === "PARTIAL" &&
+  factorTacticCalibration?.outputBoundary === "UNRESOLVED",
+  "Factor Tactic must not import the richer source treatment beyond the attached naming/development fact."
+);
+
+// contextReach measures semantic dependence, never provenance alone.
+for (const candidateId of [
+  "RAW-SECONDARY-graph",
+  "RAW-SOURCE-e-graph-theory",
+  "RAW-SOURCE-p-groups",
+  "RAW-SOURCE-p-crt",
+  "RAW-SOURCE-p-counting-strategies",
+  "RAW-ROUTE-029",
+  "RAW-OFFICIAL-048",
+  "RAW-OFFICIAL-095",
+  "RAW-OFFICIAL-107",
+]) {
+  expect(
+    gate3ReviewedRows.find(x => x.candidateId === candidateId)?.contextReach === "GENERAL",
+    `Generic mathematical wording must remain GENERAL regardless of source provenance: ${candidateId}`
+  );
+}
+for (const candidateId of [
+  "RAW-SOURCE-z-strategy-term",
+  "RAW-SOURCE-z-tactic-term",
+  "RAW-SOURCE-z-tool-term",
+  "RAW-SOURCE-z-crux-move",
+]) {
+  expect(
+    gate3ReviewedRows.find(x => x.candidateId === candidateId)?.contextReach === "SOURCE_LOCAL",
+    `Source-authored taxonomy/role meaning must remain SOURCE_LOCAL: ${candidateId}`
+  );
+}
+expect(
+  gate3ReviewedRows.find(x => x.candidateId === "RAW-ROUTE-004")?.contextReach === "PROBLEM_LOCAL" &&
+  gate3ReviewedRows.find(x => x.candidateId === "RAW-OFFICIAL-115")?.contextReach === "PROBLEM_LOCAL",
+  "PROBLEM_LOCAL must be exercised by wording whose semantics actually depend on the attached historical problem context."
+);
+
+const crtCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-p-crt");
+expect(
+  crtCalibration?.referenceScale === "UNRESOLVED" &&
+  crtCalibration?.bundleStructure === "UNRESOLVED" &&
+  crtCalibration?.actionShape === "LABEL_ONLY" &&
+  crtCalibration?.triggerBoundary === "UNRESOLVED" &&
+  crtCalibration?.operationBoundary === "UNRESOLVED" &&
+  crtCalibration?.outputBoundary === "UNRESOLVED",
+  "Strict candidate-owned evidence mode must keep CRT operational grain unresolved when its attached Gate-2 evidence is only TOC-level source terminology."
+);
+
+const lowConfidenceCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-OFFICIAL-048");
+expect(
+  lowConfidenceCalibration?.confidence === "LOW" &&
+  lowConfidenceCalibration?.referenceScale === "DEPLOYABLE" &&
+  lowConfidenceCalibration?.actionShape === "IMPLICIT_ACTION",
+  "LOW confidence must be exercised only on an evidence-supported but genuinely ambiguous assessment."
+);
+
+for (const candidateId of [
+  "RAW-OFFICIAL-048",
+  "RAW-OFFICIAL-073",
+  "RAW-OFFICIAL-103",
+  "RAW-OFFICIAL-127",
+]) {
+  expect(
+    gate3ReviewedRows.find(x => x.candidateId === candidateId)?.actionShape === "IMPLICIT_ACTION",
+    `Noun-like/compressed official candidate must remain IMPLICIT_ACTION under lexical actionShape semantics: ${candidateId}`
+  );
+}
+expect(
+  gate3ReviewedRows.find(x => x.candidateId === "RAW-ROUTE-029")?.actionShape === "EXPLICIT_ACTION",
+  "Imperative/verb-phrase calibration anchor must remain EXPLICIT_ACTION."
+);
+
+// Exact allowlist schema must fail closed both after construction and at the
+// actual assessed({...}) authoring entry point used by the mass pass.
+const gate3SchemaProbe = { ...gate3ReviewedRows[0], difficulty: "HARD" };
+let gate3UnknownKeyRejected = false;
+try {
+  validateGate3GranularityRecord(gate3SchemaProbe);
+} catch {
+  gate3UnknownKeyRejected = true;
+}
+expect(gate3UnknownKeyRejected, "Gate-3 exported-record schema must reject arbitrary unknown keys.");
+
+let gate3AuthoringUnknownKeyRejected = false;
+try {
+  buildGate3AssessedCalibration({
+    candidateId: "SCHEMA-PROBE",
+    referenceScale: "UNRESOLVED",
+    bundleStructure: "UNRESOLVED",
+    actionShape: "UNRESOLVED",
+    contextReach: "UNRESOLVED",
+    triggerBoundary: "UNRESOLVED",
+    operationBoundary: "UNRESOLVED",
+    outputBoundary: "UNRESOLVED",
+    confidence: "HIGH",
+    rationale: "This regression probe exists only to verify that the assessed authoring helper rejects unknown keys before destructuring.",
+    difficulty: "HARD",
+  });
+} catch {
+  gate3AuthoringUnknownKeyRejected = true;
+}
+expect(
+  gate3AuthoringUnknownKeyRejected,
+  "Gate-3 assessed({...}) authoring helper must reject unknown keys before destructuring."
+);
+
+// Mechanically freeze the accepted Gate-2 ore underneath Gate 3.
+//
+// Layer 1: byte-level Git blob SHA-1s copied from exact accepted Gate-2 SHA
+// ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7. These literals live in the
+// validator rather than the mutable snapshot module, so updating the snapshot
+// constant alone cannot bless changed Gate-2 files.
+const ACCEPTED_GATE2_FILE_BLOBS = Object.freeze({
+  "course/smmc/schema.mjs": "6d92a8f5a37b38b1ab5fb521b7e3542925920652",
+  "course/smmc/arsenal/candidates-v0.mjs": "a9cbeb55a2a829a881e228be6d6b22f667baa2c7",
+  "course/smmc/arsenal/ledger-bridge-candidates-v0.mjs": "c37c9c4bc749f69b8c946616ec9224f90183aa31",
+  "course/smmc/arsenal/ledger-route-candidates-v0.mjs": "89c522b16b9c39ed10b02fa97a53b5262a7a8dd1",
+  "course/smmc/arsenal/official-solution-candidates-v0.mjs": "1299ddf04cee2b782d7ab4490b88085bf710069c",
+  "course/smmc/arsenal/official-solution-route-index-v0.mjs": "fcb59cf9e411e7a56ca5a88db4b7104dbb891170",
+  "course/smmc/arsenal/source-closure-manifest-v0.mjs": "898560c151bfcc759c080f8abe64ea4a199a1ea9",
+  "course/smmc/arsenal/raw-harvest-audit-v0.mjs": "18d541e9dc687032b8e968ba6b5d21e029c1450c",
+  "course/smmc/arsenal/canonical-sources-v1.mjs": "4893470951d2aacd4554a4c2afee8345d0600c85",
+  "course/smmc/arsenal/evidence-contract-v1.mjs": "565f72747e4901f8ea5730b23e64dddf9e60b676",
+  "course/smmc/official-solution-sources-v1.mjs": "ad0b6da1856cd0c8c8aacd014baa924afe74e376",
+});
+
+for (const [path, expectedBlobSha1] of Object.entries(ACCEPTED_GATE2_FILE_BLOBS)) {
+  const bytes = readFileSync(path);
+  const actualBlobSha1 = createHash("sha1")
+    .update(`blob ${bytes.length}\0`)
+    .update(bytes)
+    .digest("hex");
+  expect(
+    actualBlobSha1 === expectedBlobSha1,
+    `Accepted Gate-2 file changed underneath Gate 3: ${path}; expected blob ${expectedBlobSha1}, got ${actualBlobSha1}`
+  );
+}
+
+// Layer 2: semantic/provenance payload digest. The accepted literal is asserted
+// independently of the imported snapshot value, preventing a snapshot-only
+// self-update from blessing altered Gate-2 semantics.
+const ACCEPTED_GATE2_SEMANTIC_SHA256 =
+  "f947742d48b46a45d3a49d86e334123f752fcd28dccf351b7e7114ddcf08861f";
+expect(
+  ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1.sha256 === ACCEPTED_GATE2_SEMANTIC_SHA256,
+  "Gate-2 snapshot module digest literal drifted from the independently pinned accepted digest."
+);
+
+const gate2AcceptedPayload = {
+  rawCandidates: ARSENAL_GATE2_RAW_CANDIDATES,
+  rawEvidence: ARSENAL_GATE2_RAW_EVIDENCE,
+  officialRouteIndex: ARSENAL_GATE2_OFFICIAL_ROUTE_INDEX,
+  officialRouteMeta: ARSENAL_GATE2_OFFICIAL_ROUTE_META,
+  sourceClosureRule: ARSENAL_GATE2_SOURCE_CLOSURE_RULE,
+  sourceClosureZones: ARSENAL_GATE2_SOURCE_CLOSURE_ZONES,
+  sourceClosureReviewedItems: ARSENAL_GATE2_SOURCE_CLOSURE_REVIEWED_ITEMS,
+  sourceClosureMeta: ARSENAL_GATE2_SOURCE_CLOSURE_META,
+};
+const gate2AcceptedDigest = createHash("sha256")
+  .update(JSON.stringify(gate2AcceptedPayload))
+  .digest("hex");
+expect(
+  gate2AcceptedDigest === ACCEPTED_GATE2_SEMANTIC_SHA256,
+  `Accepted Gate-2 semantic/provenance payload mutated underneath Gate 3: expected ${ACCEPTED_GATE2_SEMANTIC_SHA256}, got ${gate2AcceptedDigest}`
+);
+expect(
+  ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1.acceptedGate2Sha === ARSENAL_GATE3_ACCEPTED_GATE2_SHA &&
+  ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1.preservedByMergeSha === ARSENAL_GATE3_GATE2_MERGE_SHA,
+  "Gate-2 accepted snapshot anchor SHA metadata drifted."
+);
 
 expect(unitIds.size === SMMC_UNITS_V1.length, "Duplicate SMMC unit ID.");
 expect(Object.keys(SMMC_PUBLIC_PROBLEMS_V1).length === 28, "Expected twenty-eight authored public problems.");
