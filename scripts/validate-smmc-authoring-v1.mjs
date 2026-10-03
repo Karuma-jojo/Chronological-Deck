@@ -931,6 +931,10 @@ expect(ARSENAL_GATE3_GRANULARITY_META.prerequisiteGraphStarted === false, "Gate 
 expect(ARSENAL_GATE3_GRANULARITY_META.rankingStarted === false, "Gate 3 must not rank candidates.");
 expect(ARSENAL_GATE3_GRANULARITY_META.candidateRelationsStarted === false, "Gate 3 must not build candidate relations.");
 expect(ARSENAL_GATE3_GRANULARITY_META.learnerGamificationStarted === false, "Gate 3 must not start Forge/Boss/Arena representation.");
+expect(
+  ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v1-45-complete",
+  "All 45 calibration rows must remain marked as re-audited under strict candidate-owned evidence mode."
+);
 
 // Calibration must exercise every reference-scale outcome and the major orthogonal dimensions.
 const gate3ReviewedRows = ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "REVIEWED");
@@ -979,9 +983,7 @@ expect(
 );
 
 for (const candidateId of [
-  "RAW-BRIDGE-002",
   "RAW-BRIDGE-070",
-  "RAW-BRIDGE-127",
   "RAW-OFFICIAL-095",
   "RAW-OFFICIAL-107",
   "RAW-SOURCE-h-combining-techniques",
@@ -989,9 +991,99 @@ for (const candidateId of [
   const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
   expect(
     row?.referenceScale === "MACRO" && row?.bundleStructure === "BUNDLED_MOVES",
-    `Multi-operation bundle without evidence of mixed reference grains must be MACRO + BUNDLED_MOVES: ${candidateId}`
+    `Evidence-supported multi-operation bundle without mixed grain must be MACRO + BUNDLED_MOVES: ${candidateId}`
   );
 }
+
+const forcingBridgeCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-002");
+expect(
+  forcingBridgeCalibration?.referenceScale === "MACRO" &&
+  forcingBridgeCalibration?.bundleStructure === "UNRESOLVED" &&
+  forcingBridgeCalibration?.actionShape === "LABEL_ONLY",
+  "A bridge label that merely conjoins method-family names must not be upgraded into BUNDLED_MOVES under strict evidence mode."
+);
+
+const mixedGrainCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-127");
+expect(
+  mixedGrainCalibration?.referenceScale === "CROSS_SCALE" &&
+  mixedGrainCalibration?.bundleStructure === "UNRESOLVED",
+  "Convex-envelope + construction wording must exercise the calibrated mixed-grain CROSS_SCALE branch without inventing multiple moves."
+);
+
+const strictDirectProof = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-h-direct-proof");
+expect(
+  strictDirectProof?.referenceScale === "UNRESOLVED" &&
+  strictDirectProof?.bundleStructure === "UNRESOLVED" &&
+  strictDirectProof?.actionShape === "LABEL_ONLY" &&
+  strictDirectProof?.triggerBoundary === "ABSENT" &&
+  strictDirectProof?.operationBoundary === "ABSENT" &&
+  strictDirectProof?.outputBoundary === "ABSENT",
+  "TOC-level Direct Proof evidence must not import the familiar proof schema under strict candidate-owned evidence mode."
+);
+
+const gramBridgeCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-052");
+expect(
+  gramBridgeCalibration?.referenceScale === "UNRESOLVED" &&
+  gramBridgeCalibration?.bundleStructure === "UNRESOLVED" &&
+  gramBridgeCalibration?.actionShape === "LABEL_ONLY" &&
+  gramBridgeCalibration?.operationBoundary === "UNRESOLVED" &&
+  gramBridgeCalibration?.outputBoundary === "UNRESOLVED",
+  "Gram-matrix viewpoint bridge label must not expand into an unstated operation/payoff under strict evidence mode."
+);
+
+for (const candidateId of [
+  "RAW-LEGACY-small-cases",
+  "RAW-LEGACY-cross-domain",
+]) {
+  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
+  expect(
+    row?.referenceScale === "UNRESOLVED" &&
+    row?.actionShape === "LABEL_ONLY",
+    `Thin schema-tag evidence must remain conservative for ${candidateId}`
+  );
+}
+
+const factorTacticCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-z-factor-tactic");
+expect(
+  factorTacticCalibration?.referenceScale === "UNRESOLVED" &&
+  factorTacticCalibration?.operationBoundary === "PARTIAL" &&
+  factorTacticCalibration?.outputBoundary === "UNRESOLVED",
+  "Factor Tactic must not import the richer source treatment beyond the attached naming/development fact."
+);
+
+// contextReach measures semantic dependence, never provenance alone.
+for (const candidateId of [
+  "RAW-SECONDARY-graph",
+  "RAW-SOURCE-e-graph-theory",
+  "RAW-SOURCE-p-groups",
+  "RAW-SOURCE-p-crt",
+  "RAW-SOURCE-p-counting-strategies",
+  "RAW-ROUTE-029",
+  "RAW-OFFICIAL-048",
+  "RAW-OFFICIAL-095",
+  "RAW-OFFICIAL-107",
+]) {
+  expect(
+    gate3ReviewedRows.find(x => x.candidateId === candidateId)?.contextReach === "GENERAL",
+    `Generic mathematical wording must remain GENERAL regardless of source provenance: ${candidateId}`
+  );
+}
+for (const candidateId of [
+  "RAW-SOURCE-z-strategy-term",
+  "RAW-SOURCE-z-tactic-term",
+  "RAW-SOURCE-z-tool-term",
+  "RAW-SOURCE-z-crux-move",
+]) {
+  expect(
+    gate3ReviewedRows.find(x => x.candidateId === candidateId)?.contextReach === "SOURCE_LOCAL",
+    `Source-authored taxonomy/role meaning must remain SOURCE_LOCAL: ${candidateId}`
+  );
+}
+expect(
+  gate3ReviewedRows.find(x => x.candidateId === "RAW-ROUTE-004")?.contextReach === "PROBLEM_LOCAL" &&
+  gate3ReviewedRows.find(x => x.candidateId === "RAW-OFFICIAL-115")?.contextReach === "PROBLEM_LOCAL",
+  "PROBLEM_LOCAL must be exercised by wording whose semantics actually depend on the attached historical problem context."
+);
 
 const crtCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-p-crt");
 expect(
