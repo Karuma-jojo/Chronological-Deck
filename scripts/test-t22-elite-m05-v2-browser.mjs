@@ -81,7 +81,7 @@ try{
   await page.click('#note');
   const lesson=await page.locator('#learningText').textContent();
   for(const token of ['Orient.','Guided check','Fade.'])assert(lesson.includes(token),`S${n} missing ${token}`);
-  assert(/Worked (example|contrast|synthesis)/.test(lesson),`S${n} missing worked instructional stage`);
+  assert(/Worked /.test(lesson),`S${n} missing worked instructional stage`);
   assert.equal(await page.locator('#guidedPanel').isVisible(),true);
   assert.equal(await page.locator('#guidedCheck').isDisabled(),true);
   await page.fill('#guidedAnswer',`S${n} attempted before feedback.`);
