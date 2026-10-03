@@ -1301,3 +1301,99 @@ The semantic/provenance SHA-256 `f947742d48b46a45d3a49d86e334123f752fcd28dccf351
 
 The calibration remains **45 REVIEWED / 616 UNREVIEWED**. No mass pass, tribunal, ontology, prerequisite, ranking, relation, learning-order, or product work has started.
 
+## Arsenal Gate 3 strict-mode calibration consistency repair after review 5401367313 (2026-10-04)
+
+Independent review **5401367313** on exact SHA `bb8bc47d83e326463cbf06ad2e30e09824662d10` confirmed that the freeze/schema/CRT/bundle repairs were real, but kept the 616-row mass pass closed for three remaining calibration-consistency issues.
+
+### G3-R08 — complete 45-row strict-evidence re-audit
+
+Every one of the 45 REVIEWED calibration rows was re-audited against **only**:
+1. the current raw candidate expression; and
+2. the accepted Gate-2 evidence records attached to that exact candidate.
+
+No richer PDF content, general theorem familiarity, or another candidate's evidence was used to fill dimensions.
+
+The re-audit deliberately downgraded unsupported calls. Examples:
+
+- `RAW-SOURCE-h-direct-proof` is now `UNRESOLVED + LABEL_ONLY` with trigger/operation/output absent; its attached evidence establishes only a Direct Proof chapter heading, not the familiar proof schema.
+- `RAW-BRIDGE-052 — Gram-matrix viewpoint for vectors` is now unresolved on grain/bundle/operation/output; its project-index evidence merely preserves the label.
+- `RAW-LEGACY-small-cases` and `RAW-LEGACY-cross-domain` no longer import unstated action/grain semantics from familiar contest vocabulary.
+- `RAW-SOURCE-z-factor-tactic` keeps only the lexical implication of a factor operation as partial; deployable grain/payoff remain unresolved because the attached source fact only says the tactic is named/developed.
+- project bridge/route leads now use only what their labels themselves support; exact operational details are not reconstructed from model knowledge.
+- rich official SOURCE_FACT + BATTLE rows retain stronger trigger/operation/output calls only where the attached official evidence claim explicitly states them.
+
+The ledger records:
+`strictEvidenceReauditVersion: "v1-45-complete"`
+
+Calibration remains **45 REVIEWED / 616 UNREVIEWED**.
+
+### G3-R09 — contextReach repaired to measure semantics, not provenance
+
+The contract now states explicitly:
+
+- source origin alone never makes a candidate SOURCE_LOCAL;
+- generic mathematical expressions are GENERAL even when harvested from a book;
+- SOURCE_LOCAL requires author/source-specific meaning established by candidate-owned evidence;
+- PROBLEM_LOCAL requires the wording itself to depend materially on one historical problem/route context, not merely to carry a historicalProblemId.
+
+Repaired examples:
+- `GRAPH` → GENERAL
+- Engel `Graph Theory` → GENERAL
+- Putnam-and-Beyond `Groups` → GENERAL
+- Putnam-and-Beyond `Chinese Remainder Theorem` → GENERAL
+- Putnam-and-Beyond `Counting Strategies` → GENERAL
+- `Diagonalize a 2-by-2 Polynomial Matrix` → GENERAL
+- official finite-field quotient / dilation-bootstrap / determinant-reduction wording → GENERAL
+
+Source-authored meanings remain SOURCE_LOCAL:
+- Zeitz Strategy
+- Zeitz Tactic
+- Zeitz Tool
+- Zeitz Crux Move
+
+Problem-local stress cases remain independently represented:
+- audit-note Recoverability Lemma
+- Newton-Polygon Alternative
+- Smallest Nondivisible Multiplier Advances Prime Support
+
+Validator regressions pin these contrasts.
+
+### G3-R10 — both legal CROSS_SCALE branches are now calibrated
+
+CROSS_SCALE still has only two allowed meanings:
+
+1. **mixed-grain expression**: the current candidate expression/evidence itself supports components at different reference grains;
+2. **scale-variable source role**: candidate-owned evidence explicitly states that one role may occur at multiple grains.
+
+Both branches now have explicit calibration anchors:
+
+- **branch 1:** `RAW-BRIDGE-127 — Convex envelope and epigraph/convex-hull construction`
+  - `CROSS_SCALE`
+  - `bundleStructure: UNRESOLVED`
+  - the wording itself couples a named target concept/object with a construction expression;
+  - no claim of multiple executable moves is manufactured.
+
+- **branch 2:** `RAW-SOURCE-z-crux-move`
+  - `CROSS_SCALE`
+  - `SINGLE_PRIMARY_MOVE`
+  - Zeitz's attached source fact explicitly says a crux move may occur at strategic, tactical, or tool level.
+
+The human contract also requires fail-closed `UNRESOLVED` if a future mass-pass candidate appears CROSS_SCALE for a reason outside these two calibrated branches.
+
+### Current calibration distribution
+
+- 45 REVIEWED / 616 UNREVIEWED
+- referenceScale:
+  - UNRESOLVED 10
+  - DEPLOYABLE 17
+  - MACRO 15
+  - CROSS_SCALE 2
+  - MICRO 1
+- contextReach:
+  - GENERAL 37
+  - SOURCE_LOCAL 4
+  - PROBLEM_LOCAL 3
+  - UNRESOLVED 1
+
+No mass-pass, tribunal, ontology, prerequisite, ranking, relation, learning-order, or product work has started.
+
