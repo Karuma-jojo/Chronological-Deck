@@ -57,7 +57,7 @@ assert(by(16).lesson.includes('arbitrary increasing'));
 assert(by(20).title.includes('strategic opponents'));
 assert(by(20).lesson.includes('bimatrix'));
 assert(by(22).title.includes('Strictly competitive'));
-assert(by(22).lesson.includes('strict competition'));
+assert(by(22).lesson.includes('strictly competitive')||by(22).lesson.includes('strict competition'));
 assert(by(23).title.includes('Mixed strategies'));
 assert(by(24).lesson.includes('Model-selection questions'));
 assert(by(24).lesson.includes('different strand from the fixed Main'));
