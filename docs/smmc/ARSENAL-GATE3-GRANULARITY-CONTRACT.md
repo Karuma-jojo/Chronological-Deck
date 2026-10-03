@@ -45,8 +45,8 @@ Every reviewed raw candidate receives the following independent measurements.
 
 - `MICRO` — narrower than the diagnostic move; usually a local substep, instance, or context-dependent supporting fragment.
 - `DEPLOYABLE` — approximately one coherent reusable move at the diagnostic scale.
-- `MACRO` — broader than one move; typically a family, area, level, or umbrella that can contain multiple deployable moves.
-- `CROSS_SCALE` — the current expression is demonstrably multi-grain in one of two ways only: **(a)** it packages independently meaningful moves at more than one grain, or **(b)** a source-defined role/label is explicitly stated to occur at more than one grain. The second case does **not** imply a bundle.
+- `MACRO` — broader than one deployable move. This includes families/areas/umbrellas **and bundles of multiple same-grain or not-proven-different-grain moves**. If the evidence only establishes “more than one operation,” use `MACRO + BUNDLED_MOVES`; do not infer mixed grain.
+- `CROSS_SCALE` — reserved for cases where mixed grain is itself supported: **(a)** the accepted candidate expression/evidence explicitly supports components at different reference grains, or **(b)** a source-defined role/label is explicitly stated to occur at more than one grain. A bundle is not CROSS_SCALE merely because it contains several operations.
 - `UNRESOLVED` — the available accepted evidence and raw wording do not support a responsible scale call.
 
 These are measurements of the **current candidate expression**, not claims about what the mathematics “really is.”
@@ -65,8 +65,6 @@ A proof may contain many internal algebraic steps and still count as one primary
 - `IMPLICIT_ACTION` — the current expression is noun-like/compressed but denotes an operation that the candidate-owned accepted evidence makes recoverable. Evidence may justify that an operation exists, but it does not convert noun-like wording into `EXPLICIT_ACTION`.
 - `LABEL_ONLY` — the current expression names a topic, theorem, family, fact, proof category, or source category without itself specifying an operation. A theorem can therefore be `LABEL_ONLY` while still being approximately deployable in scale.
 - `UNRESOLVED` — even the action-shape distinction is not supportable from the accepted candidate expression/evidence.
-- `UNRESOLVED`
-
 This is not an ontology type. For example, a theorem can be `LABEL_ONLY` as phrased while still becoming an excellent future tool.
 
 ### D. `contextReach`
@@ -84,11 +82,11 @@ This is **not Transfer evidence**. It measures semantic dependence of the wordin
 
 - `HIGH` — strong confidence that the recorded granularity dimensions are the best supported reading of the current candidate expression under the accepted evidence.
 - `MEDIUM` — some meaningful ambiguity remains, but the recorded assessment is still preferable to the alternatives.
-- `LOW` — genuinely tentative calibration call; more than one assessment remains plausible and the row should receive extra reviewer attention.
+- `LOW` — genuinely tentative **among assessments that are already supported by the accepted candidate-owned evidence**; more than one supported reading remains plausible and the row should receive extra reviewer attention.
 
-A row may be `UNRESOLVED + HIGH`: that means high confidence that **unresolved is the correct assessment** under the available accepted evidence. Conversely, a familiar theorem name may receive LOW confidence if the accepted source row is too thin to pin down its exact grain.
+A row may be `UNRESOLVED + HIGH`: that means high confidence that **unresolved is the correct assessment** under the available accepted evidence. `LOW` is never permission to fill a dimension that the evidence does not support. Thin evidence still forces `UNRESOLVED` on the unsupported dimensions.
 
-### E. Trigger / operation / output boundaries
+### F. Trigger / operation / output boundaries
 
 Each receives:
 
@@ -106,6 +104,14 @@ Questions:
 These boundary tests are what keep Gate 3 from collapsing into vague “feels too broad” judgments.
 
 ## 4. Evidence discipline
+
+Gate 3 currently operates in **strict candidate-owned Gate-2 evidence mode**.
+
+For each candidate, Gate 3 may use only:
+- the accepted raw candidate expression itself; and
+- the accepted evidence record IDs already attached to that exact candidate.
+
+Gate 3 does **not** inspect a frozen canonical PDF beyond what the candidate-owned Gate-2 evidence record itself establishes, and it does not use general mathematical familiarity to fill missing semantics. If richer source inspection is ever allowed, that would require a later explicit contract amendment plus an auditable Gate-3 analysis locator; it is not part of this calibration or the planned mass pass.
 
 Gate 3 inherits the accepted Gate-1 contract.
 
@@ -197,9 +203,9 @@ The calibration intentionally includes awkward cases:
 - the audit-note `Recoverability Lemma` is now deliberately **UNRESOLVED in grain** because its candidate-owned index evidence supplies only the label; its `PROBLEM_LOCAL` reach comes only from that record's explicit historical-problem attachment.
 - `Positivity of Squares (x² ≥ 0)` supplies the independent `MICRO + GENERAL` anchor: a reusable fact narrower than a complete deliberate move.
 - `Smallest Nondivisible Multiplier Advances Prime Support` supplies an independent `DEPLOYABLE + PROBLEM_LOCAL` anchor, demonstrating that semantic reach and grain are orthogonal.
-- `Clearing denominators and primitive-integer normalization`, `Combining Techniques`, and row-replacement-plus-cofactor expansion test explicit bundles.
-- `Chinese Remainder Theorem` tests a named theorem that is approximately deployable in scale while still being `LABEL_ONLY` as phrased; its calibration confidence is deliberately LOW because the accepted source row is a TOC-level terminology fact rather than an operational exposition.
-- the official Dilation–Derivative Boundedness Bootstrap tests a historically coherent route that still contains multiple meaningful operations.
+- `Clearing denominators and primitive-integer normalization`, `Combining Techniques`, row-replacement-plus-cofactor expansion, and the Dilation–Derivative Boundedness Bootstrap test `MACRO + BUNDLED_MOVES`: the accepted evidence establishes multiple operations but not mixed reference grains.
+- `Chinese Remainder Theorem` is the strict-evidence stress case: its attached Gate-2 record establishes only a dedicated subsection, so grain/bundle/trigger/operation/output remain `UNRESOLVED` despite the theorem being mathematically familiar.
+- `Finite-Field Quotient Model of the Projective Plane` exercises `LOW` confidence correctly: its attached official evidence does support a concrete representation move, but there is genuine evidence-supported ambiguity about whether the expression is exactly one deployable move or a somewhat broader specialized construction.
 
 The point is not to make these 45 sacred. The point is to make the ruler attackable before it touches all 661 candidates.
 
