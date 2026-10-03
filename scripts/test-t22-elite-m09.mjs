@@ -14,7 +14,7 @@ assert(!fs.existsSync('course/t22/authoring/m10.json'),'M10 is outside this assi
 const baseline=read('docs/t22-course/audit/m09-preserved-baseline.json');
 const m05v2Authorized=new Set(['course/t22/authoring/m05.json']);
 const m05v2=read('course/t22/authoring/m05.json');
-assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version,'Only the explicitly authorized M05 v2 candidate may differ from the M09-era protected baseline');
+assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'Only the explicitly authorized M05 v2 candidate may differ from the M09-era protected baseline');
 assert(fs.existsSync('docs/t22-course/M05-DEEP-SOURCE-AUDIT-v1.0.md'));
 for(const [file,hash] of Object.entries(baseline.files))if(!m05v2Authorized.has(file))assert.equal(sha(fs.readFileSync(file,'utf8')),hash,file+' accepted-baseline drift');
 function check(pack){
