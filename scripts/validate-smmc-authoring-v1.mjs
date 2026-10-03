@@ -72,6 +72,7 @@ import {
 import {
   ARSENAL_GATE3_ACCEPTED_GATE2_SHA,
   ARSENAL_GATE3_GATE2_MERGE_SHA,
+  ARSENAL_GATE3_EVIDENCE_MODE,
   ARSENAL_GATE3_CONTRACT_META,
   validateGate3GranularityRecord,
 } from "../course/smmc/arsenal/granularity-contract-v1.mjs";
@@ -863,6 +864,11 @@ expect(
 );
 expect(ARSENAL_GATE3_CONTRACT_META.gate === 3, "Granularity contract must identify Gate 3.");
 expect(ARSENAL_GATE3_CONTRACT_META.purpose === "GRANULARITY_MEASUREMENT_ONLY", "Gate 3 purpose drifted.");
+expect(
+  ARSENAL_GATE3_EVIDENCE_MODE === "STRICT_CANDIDATE_OWNED_GATE2" &&
+  ARSENAL_GATE3_CONTRACT_META.evidenceMode === ARSENAL_GATE3_EVIDENCE_MODE,
+  "Gate 3 must remain in strict candidate-owned Gate-2 evidence mode during calibration and mass review."
+);
 for (const [field, value] of Object.entries({
   referenceUnitIsFinalOntology: false,
   mergeSplitDecisionsAllowed: false,
