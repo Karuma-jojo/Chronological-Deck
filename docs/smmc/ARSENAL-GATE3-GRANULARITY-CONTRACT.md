@@ -144,6 +144,12 @@ The executable contract rejects fields that would leak those decisions into a Ga
 
 A Gate-3 rationale may explain why wording is broad, narrow, bundled, or ambiguous. It may **not** say “merge X into Y,” “split into A/B,” or “drop this.”
 
+## 5A. Fail-closed record schema
+
+Every Gate-3 row must contain **exactly** the allowed record keys defined in `ARSENAL_GATE3_RECORD_KEYS`. Unknown keys are rejected.
+
+This means a future commit cannot quietly add fields such as `difficulty`, `importance`, `tribunalDecision`, `finalRepresentation`, or any other later-gate payload and still pass validation. The allowlist is the primary enforcement wall; the rationale validator also rejects a small set of explicit merge/split/drop/keep/final-representation recommendations.
+
 ## 6. Raw-pool immutability
 
 The 661 accepted Gate-2 candidates are the fixed population for Gate 3.
@@ -156,6 +162,7 @@ The Gate-3 ledger is an overlay. It must prove:
 - no unknown or missing candidate IDs;
 - every cited evidence ID belongs to that candidate;
 - Gate-2 candidates/evidence remain unchanged;
+- the accepted Gate-2 ore fingerprint remains equal to the frozen SHA-256 snapshot `f947742d48b46a45d3a49d86e334123f752fcd28dccf351b7e7114ddcf08861f`; the fingerprint covers raw candidates, raw evidence, official route index/meta, and the source-closure rule/zones/reviewed-items/meta;
 - no additional harvest is performed.
 
 If Gate 3 discovers that some mathematical concept is missing, that observation is **not** permission to append it here. It belongs in a separately justified reopen/amendment process after this gate.
@@ -177,7 +184,7 @@ Before classifying all 661 rows, the builder must calibrate the ruler on a delib
 
 The repaired calibration ledger reviews **45** candidates and leaves the remaining **616** explicitly `UNREVIEWED`.
 
-This is deliberate. We do not auto-classify the remaining 618 from string patterns.
+This is deliberate. We do not auto-classify the remaining 616 from string patterns.
 
 ## 8. What the first calibration is testing
 
@@ -185,7 +192,7 @@ The calibration intentionally includes awkward cases:
 
 - `DIRECT` remains `UNRESOLVED` because the frozen legacy tag gives only shorthand.
 - `GRAPH`, `ODE`, `Groups`, and Engel's `Graph Theory` are macro labels, even though graph/ODE/group methods may later yield excellent abilities.
-- Zeitz's `Strategy`, `Tactic`, `Tool`, and `Crux Move` are measured as source category expressions; this does not adopt Zeitz's taxonomy.
+- Zeitz's `Strategy`, `Tactic`, and `Tool` are measured as source category expressions; `Crux Move` is a scale-variable source role and therefore calibrates `CROSS_SCALE` without `BUNDLED_MOVES`. This does not adopt Zeitz's taxonomy.
 - `Adjacent-Swap Improvement Argument` and Velleman's conjunction-goal split are clean deployable moves.
 - the audit-note `Recoverability Lemma` is now deliberately **UNRESOLVED in grain** because its candidate-owned index evidence supplies only the label; its `PROBLEM_LOCAL` reach comes only from that record's explicit historical-problem attachment.
 - `Positivity of Squares (x² ≥ 0)` supplies the independent `MICRO + GENERAL` anchor: a reusable fact narrower than a complete deliberate move.
@@ -194,7 +201,7 @@ The calibration intentionally includes awkward cases:
 - `Chinese Remainder Theorem` tests a named theorem that is approximately deployable in scale while still being `LABEL_ONLY` as phrased; its calibration confidence is deliberately LOW because the accepted source row is a TOC-level terminology fact rather than an operational exposition.
 - the official Dilation–Derivative Boundedness Bootstrap tests a historically coherent route that still contains multiple meaningful operations.
 
-The point is not to make these 43 sacred. The point is to make the ruler attackable before it touches all 661 candidates.
+The point is not to make these 45 sacred. The point is to make the ruler attackable before it touches all 661 candidates.
 
 ## 9. Gate-3 graduation criteria
 
