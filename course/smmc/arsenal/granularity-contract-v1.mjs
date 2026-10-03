@@ -9,9 +9,11 @@
 //   meaningful mathematical output/progress.
 //
 // A candidate may intentionally live above, below, or across that reference unit.
-// CROSS_SCALE has two allowed meanings only: (a) the current expression packages
-// independently meaningful moves at more than one grain, or (b) a source-defined
-// role/label is explicitly stated to occur at more than one grain. Gate 3 records
+// CROSS_SCALE has two allowed meanings only: (a) the accepted candidate
+// expression/evidence actually supports components at different reference grains,
+// or (b) a source-defined role/label is explicitly stated to occur at more than
+// one grain. Merely containing multiple operations is not CROSS_SCALE; without
+// evidence of mixed grain such a bundle is MACRO + BUNDLED_MOVES. Gate 3 records
 // that fact; it does not decide what the final Arsenal should do with the candidate.
 
 export const ARSENAL_GATE3_ACCEPTED_GATE2_SHA =
@@ -19,6 +21,9 @@ export const ARSENAL_GATE3_ACCEPTED_GATE2_SHA =
 
 export const ARSENAL_GATE3_GATE2_MERGE_SHA =
   "7600dd377192aafe6ca777636d94474736ea4e4f";
+
+export const ARSENAL_GATE3_EVIDENCE_MODE =
+  "STRICT_CANDIDATE_OWNED_GATE2";
 
 export const ARSENAL_GATE3_REFERENCE_SCALE = Object.freeze([
   "MICRO",
@@ -188,6 +193,7 @@ export function validateGate3GranularityRecord(record) {
 export const ARSENAL_GATE3_CONTRACT_META = Object.freeze({
   gate: 3,
   purpose: "GRANULARITY_MEASUREMENT_ONLY",
+  evidenceMode: ARSENAL_GATE3_EVIDENCE_MODE,
   referenceUnitIsFinalOntology: false,
   mergeSplitDecisionsAllowed: false,
   ontologyAllowed: false,
