@@ -250,7 +250,31 @@
       "guidedFeedback": "Check after attempting. One axis must contain only choices under the decision maker's control; the other contains the mutually exclusive uncertain states. Consequences belong in the cells. A criterion is a separate statement, not a hidden property of the table.",
       "main": "T22V3::T22E-TRD01::S01-M@1",
       "transfer": "T22V3::T22E-TRD01::S01-T@1",
-      "instructionVersion": "m05-s01-instruction-v2-candidate"
+      "instructionVersion": "m05-s01-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Decision model: action × chance state",
+          "headers": [
+            "action",
+            "high demand (.40)",
+            "low demand (.60)"
+          ],
+          "rows": [
+            [
+              "Safe",
+              "+3",
+              "+3"
+            ],
+            [
+              "Bold",
+              "+12",
+              "−4"
+            ]
+          ],
+          "note": "Rows are choices. Columns are exogenous chance states. The table does not itself choose a criterion."
+        }
+      ]
     },
     {
       "order": 2,
@@ -296,7 +320,48 @@
       "guidedFeedback": "Check after attempting. Subtract the deterministic cost in every state, then add the resulting net payoff to initial wealth. Probability normalization should be checked before any weighted calculation.",
       "main": "T22V3::T22E-TRD01::S02-M@1",
       "transfer": "T22V3::T22E-TRD01::S02-T@1",
-      "instructionVersion": "m05-s02-instruction-v2-candidate"
+      "instructionVersion": "m05-s02-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Money accounting by state",
+          "headers": [
+            "state",
+            "probability",
+            "gross receipt",
+            "cost",
+            "net payoff",
+            "terminal wealth"
+          ],
+          "rows": [
+            [
+              "A",
+              ".25",
+              "11",
+              "3",
+              "+8",
+              "28"
+            ],
+            [
+              "B",
+              ".50",
+              "5",
+              "3",
+              "+2",
+              "22"
+            ],
+            [
+              "C",
+              ".25",
+              "0",
+              "3",
+              "−3",
+              "17"
+            ]
+          ],
+          "note": "Subtract the deterministic cost in every state before updating wealth."
+        }
+      ]
     },
     {
       "order": 3,
@@ -387,7 +452,41 @@
       "guidedFeedback": "Check after attempting. Action branches leave a decision node with no nature probabilities. Only chance branches carry the supplied probabilities. Roll back chance first, then compare actions under the stated criterion.",
       "main": "T22V3::T22E-TRD01::S04-M@1",
       "transfer": "T22V3::T22E-TRD01::S04-T@1",
-      "instructionVersion": "m05-s04-instruction-v2-candidate"
+      "instructionVersion": "m05-s04-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "probabilityTree",
+          "title": "Decision first, chance second",
+          "root": "Choose",
+          "branches": [
+            {
+              "label": "Safe",
+              "children": [
+                {
+                  "label": "terminal",
+                  "leaf": "+3"
+                }
+              ]
+            },
+            {
+              "label": "Risky",
+              "children": [
+                {
+                  "label": "gain",
+                  "prob": ".40",
+                  "leaf": "+12"
+                },
+                {
+                  "label": "loss",
+                  "prob": ".60",
+                  "leaf": "−2"
+                }
+              ]
+            }
+          ],
+          "note": "The Safe/Risky branches are actions, not 50/50 chance outcomes. Only the Risky chance branches carry the supplied probabilities."
+        }
+      ]
     },
     {
       "order": 5,
@@ -477,7 +576,36 @@
       "guidedFeedback": "Check after attempting. Name the input category, state what remains fixed, solve the threshold or endpoints, and phrase robustness only over the supplied range.",
       "main": "T22V3::T22E-TRD01::S06-M@1",
       "transfer": "T22V3::T22E-TRD01::S06-T@1",
-      "instructionVersion": "m05-s06-instruction-v2-candidate"
+      "instructionVersion": "m05-s06-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Sensitivity audit over one probability input",
+          "headers": [
+            "p",
+            "Risky EMV = 14p−4",
+            "Safe EMV"
+          ],
+          "rows": [
+            [
+              ".25",
+              "−0.50",
+              "1"
+            ],
+            [
+              "5/14≈.357",
+              "1",
+              "1"
+            ],
+            [
+              ".45",
+              "2.30",
+              "1"
+            ]
+          ],
+          "note": "Only p changes. The payoffs and EMV criterion stay fixed."
+        }
+      ]
     },
     {
       "order": 7,
@@ -522,7 +650,43 @@
       "guidedFeedback": "Check after attempting. Separate event probabilities from payoff magnitudes. Compute the mode from the largest state probability and EMV from all probability×payoff contributions.",
       "main": "T22V3::T22E-TRD01::S07-M@1",
       "transfer": "T22V3::T22E-TRD01::S07-T@1",
-      "instructionVersion": "m05-s07-instruction-v2-candidate"
+      "instructionVersion": "m05-s07-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Different summaries answer different questions",
+          "headers": [
+            "game",
+            "P(gain)",
+            "P(loss)",
+            "best",
+            "worst",
+            "modal payoff",
+            "EMV"
+          ],
+          "rows": [
+            [
+              "A",
+              ".10",
+              ".90",
+              "30",
+              "−1",
+              "−1",
+              "2.10"
+            ],
+            [
+              "B",
+              ".90",
+              ".10",
+              "1",
+              "−12",
+              "+1",
+              "−0.30"
+            ]
+          ],
+          "note": "Win rate, modal outcome, worst loss and expected money are not interchangeable."
+        }
+      ]
     },
     {
       "order": 8,
@@ -567,7 +731,40 @@
       "guidedFeedback": "Check after attempting. Compare coordinates state by state. Do not create probabilities. One strict improvement plus no worsening elsewhere is enough for weak dominance.",
       "main": "T22V3::T22E-TRD01::S08-M@1",
       "transfer": "T22V3::T22E-TRD01::S08-T@1",
-      "instructionVersion": "m05-s08-instruction-v2-candidate"
+      "instructionVersion": "m05-s08-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Common-state payoff vectors",
+          "headers": [
+            "action",
+            "s1",
+            "s2",
+            "s3"
+          ],
+          "rows": [
+            [
+              "X",
+              "5",
+              "2",
+              "0"
+            ],
+            [
+              "Y",
+              "4",
+              "1",
+              "−1"
+            ],
+            [
+              "R",
+              "3",
+              "0",
+              "2"
+            ]
+          ],
+          "note": "Statewise dominance is a coordinate-by-coordinate comparison; probabilities are not needed."
+        }
+      ]
     },
     {
       "order": 9,
@@ -657,7 +854,52 @@
       "guidedFeedback": "Check after attempting. Update one step at a time and keep a separate cumulative-P&L column. The final identity should reconcile exactly.",
       "main": "T22V3::T22E-TRD01::S10-M@1",
       "transfer": "T22V3::T22E-TRD01::S10-T@1",
-      "instructionVersion": "m05-s10-instruction-v2-candidate"
+      "instructionVersion": "m05-s10-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Wealth stock versus payoff increment",
+          "headers": [
+            "time",
+            "realized payoff",
+            "wealth",
+            "cumulative P&L"
+          ],
+          "rows": [
+            [
+              "0",
+              "—",
+              "50",
+              "0"
+            ],
+            [
+              "1",
+              "+8",
+              "58",
+              "+8"
+            ],
+            [
+              "2",
+              "−5",
+              "53",
+              "+3"
+            ],
+            [
+              "3",
+              "−5",
+              "48",
+              "−2"
+            ],
+            [
+              "4",
+              "+12",
+              "60",
+              "+10"
+            ]
+          ],
+          "note": "Wealth is a level; each payoff is the increment that changes it."
+        }
+      ]
     },
     {
       "order": 11,
@@ -702,7 +944,46 @@
       "guidedFeedback": "Check after attempting. Update the running maximum before computing each drawdown. The denominator is the current running peak, not the initial bankroll.",
       "main": "T22V3::T22E-TRD01::S11-M@1",
       "transfer": "T22V3::T22E-TRD01::S11-T@1",
-      "instructionVersion": "m05-s11-instruction-v2-candidate"
+      "instructionVersion": "m05-s11-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Running peak and drawdown",
+          "headers": [
+            "wealth",
+            "running peak",
+            "drawdown amount",
+            "drawdown %"
+          ],
+          "rows": [
+            [
+              "100",
+              "100",
+              "0",
+              "0%"
+            ],
+            [
+              "110",
+              "110",
+              "0",
+              "0%"
+            ],
+            [
+              "99",
+              "110",
+              "11",
+              "10%"
+            ],
+            [
+              "105",
+              "110",
+              "5",
+              "4.55%"
+            ]
+          ],
+          "note": "The denominator is the running peak, not the starting wealth."
+        }
+      ]
     },
     {
       "order": 12,
@@ -748,7 +1029,49 @@
       "guidedFeedback": "Check after attempting. Mark the first time wealth hits0. Once it does, stop the path. Use disjoint first-hit prefixes or complete paths without double-counting.",
       "main": "T22V3::T22E-TRD01::S12-M@1",
       "transfer": "T22V3::T22E-TRD01::S12-T@1",
-      "instructionVersion": "m05-s12-instruction-v2-candidate"
+      "instructionVersion": "m05-s12-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "probabilityTree",
+          "title": "Finite first-hit ruin tree",
+          "root": "Bankroll 2",
+          "branches": [
+            {
+              "label": "W",
+              "prob": ".50",
+              "children": [
+                {
+                  "label": "W",
+                  "prob": ".50",
+                  "leaf": "4 — survive"
+                },
+                {
+                  "label": "L",
+                  "prob": ".50",
+                  "leaf": "2 — survive"
+                }
+              ]
+            },
+            {
+              "label": "L",
+              "prob": ".50",
+              "children": [
+                {
+                  "label": "W",
+                  "prob": ".50",
+                  "leaf": "2 — survive"
+                },
+                {
+                  "label": "L",
+                  "prob": ".50",
+                  "leaf": "0 — RUIN"
+                }
+              ]
+            }
+          ],
+          "note": "Ruin is a path event. After the first hit of 0, play stops and the state is absorbing."
+        }
+      ]
     },
     {
       "order": 13,
@@ -794,7 +1117,26 @@
       "guidedFeedback": "Check after attempting. Compute the worst loss implied by the stake rule, translate the hard cap into an inequality, then explicitly separate feasibility from any objective.",
       "main": "T22V3::T22E-TRD01::S13-M@1",
       "transfer": "T22V3::T22E-TRD01::S13-T@1",
-      "instructionVersion": "m05-s13-instruction-v2-candidate"
+      "instructionVersion": "m05-s13-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "numberLine",
+          "title": "Feasible stake set under a hard loss cap",
+          "min": 0,
+          "max": 20,
+          "tick": 2,
+          "intervals": [
+            {
+              "from": 0,
+              "to": 12,
+              "closedFrom": true,
+              "closedTo": true,
+              "label": "feasible: 0 ≤ s ≤ 12"
+            }
+          ],
+          "note": "The interval is an admissible set, not an optimal stake."
+        }
+      ]
     },
     {
       "order": 14,
@@ -839,7 +1181,34 @@
       "guidedFeedback": "Check after attempting. Convert every percentage to a factor. For recovery, set final wealth equal to the old peak and solve algebraically.",
       "main": "T22V3::T22E-TRD01::S14-M@1",
       "transfer": "T22V3::T22E-TRD01::S14-T@1",
-      "instructionVersion": "m05-s14-instruction-v2-candidate"
+      "instructionVersion": "m05-s14-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Additive versus multiplicative path",
+          "headers": [
+            "mechanic",
+            "step 0",
+            "step 1",
+            "step 2"
+          ],
+          "rows": [
+            [
+              "additive dollars",
+              "100",
+              "120",
+              "100"
+            ],
+            [
+              "percentage factors",
+              "100",
+              "120 (=100×1.2)",
+              "96 (=120×.8)"
+            ]
+          ],
+          "note": "Equal percentage moves do not cancel because the second percentage acts on a changed base."
+        }
+      ]
     },
     {
       "order": 15,
@@ -884,7 +1253,34 @@
       "guidedFeedback": "Check after attempting. Any strictly increasing relabeling preserves the certain-outcome order. Do not infer intensity from gaps, and do not average the labels to rank lotteries yet.",
       "main": "T22V3::T22E-TRD01::S15-M@1",
       "transfer": "T22V3::T22E-TRD01::S15-T@1",
-      "instructionVersion": "m05-s15-instruction-v2-candidate"
+      "instructionVersion": "m05-s15-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Same certain-outcome order, different ordinal labels",
+          "headers": [
+            "certain outcome",
+            "A",
+            "B",
+            "C"
+          ],
+          "rows": [
+            [
+              "u",
+              "0",
+              "1",
+              "2"
+            ],
+            [
+              "v",
+              "−10",
+              "5",
+              "100"
+            ]
+          ],
+          "note": "Both rows preserve C ≻ B ≻ A. The numerical gaps do not measure preference intensity."
+        }
+      ]
     },
     {
       "order": 16,
@@ -929,7 +1325,48 @@
       "guidedFeedback": "Check after attempting. First confirm that the utility index is supplied/assumed to represent lottery preferences. Positive-affine rescaling preserves EU ranking algebraically; a general increasing transform need not.",
       "main": "T22V3::T22E-TRD01::S16-M@1",
       "transfer": "T22V3::T22E-TRD01::S16-T@1",
-      "instructionVersion": "m05-s16-instruction-v2-candidate"
+      "instructionVersion": "m05-s16-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Ordinal relabeling versus lottery-utility equivalence",
+          "headers": [
+            "index",
+            "A",
+            "B",
+            "C",
+            "sure B",
+            "50/50 A–C"
+          ],
+          "rows": [
+            [
+              "u",
+              "0",
+              "1",
+              "3",
+              "1",
+              "1.5"
+            ],
+            [
+              "v=2+4u",
+              "2",
+              "6",
+              "14",
+              "6",
+              "8"
+            ],
+            [
+              "g=√u",
+              "0",
+              "1",
+              "√3",
+              "1",
+              "√3/2≈.866"
+            ]
+          ],
+          "note": "Positive-affine v preserves the lottery ranking. The increasing but non-affine g preserves deterministic order yet reverses this lottery ranking."
+        }
+      ]
     },
     {
       "order": 17,
@@ -974,7 +1411,34 @@
       "guidedFeedback": "Check after attempting. Keep money and utility in separate columns. Average each with the same probabilities, then apply only the criterion that the prompt explicitly supplies.",
       "main": "T22V3::T22E-TRD01::S17-M@1",
       "transfer": "T22V3::T22E-TRD01::S17-T@1",
-      "instructionVersion": "m05-s17-instruction-v2-candidate"
+      "instructionVersion": "m05-s17-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Expected money and expected utility are separate columns",
+          "headers": [
+            "option",
+            "wealth outcomes",
+            "E[wealth]",
+            "E[u]"
+          ],
+          "rows": [
+            [
+              "Sure",
+              "100",
+              "100",
+              "5"
+            ],
+            [
+              "Lottery",
+              "80(.5), 140(.5)",
+              "110",
+              "5"
+            ]
+          ],
+          "note": "The same probabilities weight different consequence scales."
+        }
+      ]
     },
     {
       "order": 18,
@@ -1019,7 +1483,36 @@
       "guidedFeedback": "Check after attempting. Find the lottery's expected utility, then locate the sure wealth with matching utility. Only afterward compute expected wealth and the difference.",
       "main": "T22V3::T22E-TRD01::S18-M@1",
       "transfer": "T22V3::T22E-TRD01::S18-T@1",
-      "instructionVersion": "m05-s18-instruction-v2-candidate"
+      "instructionVersion": "m05-s18-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Certainty-equivalent lookup",
+          "headers": [
+            "wealth",
+            "u(wealth)"
+          ],
+          "rows": [
+            [
+              "50",
+              "1"
+            ],
+            [
+              "80",
+              "4"
+            ],
+            [
+              "130",
+              "7"
+            ],
+            [
+              "lottery EU",
+              "4"
+            ]
+          ],
+          "note": "Because the lottery EU equals u(80), the certainty equivalent is 80; expected wealth is computed separately."
+        }
+      ]
     },
     {
       "order": 19,
@@ -1066,7 +1559,58 @@
       "guidedFeedback": "Check after attempting. First prune only genuine statewise dominance. Then run each supplied criterion separately. A disagreement is a result to report, not something to hide.",
       "main": "T22V3::T22E-TRD01::S19-M@1",
       "transfer": "T22V3::T22E-TRD01::S19-T@1",
-      "instructionVersion": "m05-s19-instruction-v2-candidate"
+      "instructionVersion": "m05-s19-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "One model, several explicitly named criteria",
+          "headers": [
+            "criterion",
+            "A",
+            "B",
+            "C",
+            "criterion conclusion"
+          ],
+          "rows": [
+            [
+              "statewise dominance",
+              "—",
+              "dominates C",
+              "dominated",
+              "remove C"
+            ],
+            [
+              "EMV",
+              "3.6",
+              "4.2",
+              "1.4",
+              "B > A > C"
+            ],
+            [
+              "hard loss cap 1",
+              "infeasible",
+              "feasible",
+              "feasible",
+              "constraint only"
+            ],
+            [
+              "maximin",
+              "−2",
+              "3",
+              "1",
+              "B"
+            ],
+            [
+              "supplied EU",
+              "4.8",
+              "3.4",
+              "1.4",
+              "A"
+            ]
+          ],
+          "note": "Do not average the criteria together. Every conclusion is conditional on the rule named in its row."
+        }
+      ]
     },
     {
       "order": 20,
@@ -1111,7 +1655,31 @@
       "guidedFeedback": "Check after attempting. Read ordered payoff pairs player by player. A best response for the column player is based on the second component, not on minimizing the first unless strict competition has been stated.",
       "main": "T22V3::T22E-TRD01::S20-M@1",
       "transfer": "T22V3::T22E-TRD01::S20-T@1",
-      "instructionVersion": "m05-s20-instruction-v2-candidate"
+      "instructionVersion": "m05-s20-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "General strategic game: each cell has two payoffs",
+          "headers": [
+            "",
+            "L",
+            "R"
+          ],
+          "rows": [
+            [
+              "U",
+              "(3,4)",
+              "(0,1)"
+            ],
+            [
+              "D",
+              "(1,0)",
+              "(2,3)"
+            ]
+          ],
+          "note": "First component is row player's payoff; second is column player's payoff. The column player uses her own component."
+        }
+      ]
     },
     {
       "order": 21,
@@ -1156,7 +1724,31 @@
       "guidedFeedback": "Check after attempting. Fix the opponent's action, compare only your own payoff component, and mark all ties if they occur. A mutual-best-response cell must satisfy both players simultaneously.",
       "main": "T22V3::T22E-TRD01::S21-M@1",
       "transfer": "T22V3::T22E-TRD01::S21-T@1",
-      "instructionVersion": "m05-s21-instruction-v2-candidate"
+      "instructionVersion": "m05-s21-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Best responses in a bimatrix",
+          "headers": [
+            "",
+            "L",
+            "R"
+          ],
+          "rows": [
+            [
+              "U",
+              "(4,1)",
+              "(1,3)"
+            ],
+            [
+              "D",
+              "(2,0)",
+              "(3,2)"
+            ]
+          ],
+          "note": "Compare first components down a column for the row player; second components across a row for the column player."
+        }
+      ]
     },
     {
       "order": 22,
@@ -1202,7 +1794,40 @@
       "guidedFeedback": "Check after attempting. First check that strict competition/minimization is actually supplied. Then compare row minima and column maxima. Equality at the same cell gives a pure saddle.",
       "main": "T22V3::T22E-TRD01::S22-M@1",
       "transfer": "T22V3::T22E-TRD01::S22-T@1",
-      "instructionVersion": "m05-s22-instruction-v2-candidate"
+      "instructionVersion": "m05-s22-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Strictly competitive row-payoff matrix",
+          "headers": [
+            "",
+            "L",
+            "R",
+            "row minimum"
+          ],
+          "rows": [
+            [
+              "Top",
+              "2",
+              "1",
+              "1"
+            ],
+            [
+              "Bottom",
+              "0",
+              "−1",
+              "−1"
+            ],
+            [
+              "column maximum",
+              "2",
+              "1",
+              ""
+            ]
+          ],
+          "note": "Maximin and minimax both equal 1 at the top-right cell, giving a pure saddle."
+        }
+      ]
     },
     {
       "order": 23,
@@ -1248,7 +1873,32 @@
       "guidedFeedback": "Check after attempting. Write each pure action's expected payoff as a function of the opponent's mix, then set the relevant expressions equal. The equations—not the number of actions—determine the mix.",
       "main": "T22V3::T22E-TRD01::S23-M@1",
       "transfer": "T22V3::T22E-TRD01::S23-T@1",
-      "instructionVersion": "m05-s23-instruction-v2-candidate"
+      "instructionVersion": "m05-s23-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Expected payoff against the opponent's mix",
+          "headers": [
+            "row action",
+            "expected payoff vs L-probability q"
+          ],
+          "rows": [
+            [
+              "U",
+              "3q"
+            ],
+            [
+              "D",
+              "2−q"
+            ],
+            [
+              "indifference",
+              "3q = 2−q ⇒ q=.5"
+            ]
+          ],
+          "note": "The mixture is derived from the payoff equations; two actions do not imply a 50/50 mix."
+        }
+      ]
     },
     {
       "order": 24,
@@ -1293,7 +1943,36 @@
       "guidedFeedback": "Check after attempting. Name the model type and criterion first. Build the representation that exposes the needed relationships. Reject any tool whose assumptions were not supplied.",
       "main": "T22V3::T22E-TRD01::S24-M@1",
       "transfer": "T22V3::T22E-TRD01::S24-T@1",
-      "instructionVersion": "m05-s24-instruction-v2-candidate"
+      "instructionVersion": "m05-s24-instruction-v2-candidate",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Model-selection compass",
+          "headers": [
+            "question",
+            "candidate representation"
+          ],
+          "rows": [
+            [
+              "choice + exogenous chance",
+              "decision table / decision tree"
+            ],
+            [
+              "realized wealth through time",
+              "wealth path / first-hit tree"
+            ],
+            [
+              "supplied lottery preferences",
+              "utility table"
+            ],
+            [
+              "another strategic chooser",
+              "bimatrix"
+            ]
+          ],
+          "note": "Choose the representation because of the model structure, not because a familiar formula is nearby."
+        }
+      ]
     }
   ],
   "problems": {
@@ -1302,7 +1981,31 @@
       "order": 1,
       "kind": "main",
       "prompt": "A team must choose Route A or Route B before weather is known. Weather is calm with probability .70 and rough with probability .30. Route A has net consequences +5 if calm and −1 if rough; Route B has +8 if calm and −6 if rough. Build the action–state–consequence table, identify the model facts, and explain why the information given does not by itself determine a universal choice.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Route decision data",
+          "headers": [
+            "action",
+            "calm (.70)",
+            "rough (.30)"
+          ],
+          "rows": [
+            [
+              "Route A",
+              "+5",
+              "−1"
+            ],
+            [
+              "Route B",
+              "+8",
+              "−6"
+            ]
+          ],
+          "note": "Use the table to separate actions, chance states and consequences before applying any criterion."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S01-T@1": {
       "id": "T22V3::T22E-TRD01::S01-T@1",
@@ -1316,7 +2019,48 @@
       "order": 1,
       "kind": "main",
       "prompt": "A game costs 4 to enter. Gross receipts are 16 with probability .25, 6 with probability .50, and 0 with probability .25. Starting wealth is 40. Build a probability/gross/net/terminal-wealth table, verify normalization, and classify every net outcome as gain, loss or break-even.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Accounting skeleton",
+          "headers": [
+            "state",
+            "probability",
+            "gross",
+            "fee",
+            "net",
+            "terminal wealth"
+          ],
+          "rows": [
+            [
+              "A",
+              ".25",
+              "16",
+              "4",
+              "?",
+              "?"
+            ],
+            [
+              "B",
+              ".50",
+              "6",
+              "4",
+              "?",
+              "?"
+            ],
+            [
+              "C",
+              ".25",
+              "0",
+              "4",
+              "?",
+              "?"
+            ]
+          ],
+          "note": "Fill net payoff and terminal wealth; verify the probability column."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S02-T@1": {
       "id": "T22V3::T22E-TRD01::S02-T@1",
@@ -1344,14 +2088,84 @@
       "order": 1,
       "kind": "main",
       "prompt": "You must choose Safe or Bold. Safe gives net +4 for sure. Bold gives +12 with probability .40 and −2 with probability .60. Build a one-stage decision tree, label the node types, place the consequences at leaves, roll back Bold under the stated EMV criterion, and state which action EMV selects.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "probabilityTree",
+          "title": "One-stage decision tree to complete",
+          "root": "Choose",
+          "branches": [
+            {
+              "label": "Safe",
+              "children": [
+                {
+                  "label": "terminal",
+                  "leaf": "+4"
+                }
+              ]
+            },
+            {
+              "label": "Bold",
+              "children": [
+                {
+                  "label": "gain",
+                  "prob": ".40",
+                  "leaf": "+12"
+                },
+                {
+                  "label": "loss",
+                  "prob": ".60",
+                  "leaf": "−2"
+                }
+              ]
+            }
+          ],
+          "note": "Label the root as a decision node and the Bold split as a chance node before rollback."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S04-T@1": {
       "id": "T22V3::T22E-TRD01::S04-T@1",
       "order": 1,
       "kind": "transfer",
       "prompt": "An analyst draws Safe and Gamble as two 0.50-probability branches from the root, then averages their values. In fact the decision maker chooses the branch. Safe gives +2 for sure; Gamble gives +10(.30) or −1(.70). Repair the tree semantics and evaluate the two actions under EMV.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "probabilityTree",
+          "title": "Analyst's malformed tree — repair the root semantics",
+          "root": "Start",
+          "branches": [
+            {
+              "label": "Safe",
+              "prob": ".50",
+              "children": [
+                {
+                  "label": "terminal",
+                  "leaf": "+2"
+                }
+              ]
+            },
+            {
+              "label": "Gamble",
+              "prob": ".50",
+              "children": [
+                {
+                  "label": "gain",
+                  "prob": ".30",
+                  "leaf": "+10"
+                },
+                {
+                  "label": "loss",
+                  "prob": ".70",
+                  "leaf": "−1"
+                }
+              ]
+            }
+          ],
+          "note": "The .50 labels on the two action branches are the model error. The decision maker chooses the root branch."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S05-M@1": {
       "id": "T22V3::T22E-TRD01::S05-M@1",
@@ -1386,7 +2200,31 @@
       "order": 1,
       "kind": "main",
       "prompt": "Compare these two one-play games descriptively. A pays +30(.10) and −1(.90). B pays +1(.90) and −12(.10). For each, compute P(gain), P(loss), best/worst payoff, most-likely payoff and EMV. Then explain why the statement “B wins 90% of the time, so B must be better” is not justified by those facts alone.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Two games, several summaries",
+          "headers": [
+            "game",
+            "gain state",
+            "loss state"
+          ],
+          "rows": [
+            [
+              "A",
+              "+30 with .10",
+              "−1 with .90"
+            ],
+            [
+              "B",
+              "+1 with .90",
+              "−12 with .10"
+            ]
+          ],
+          "note": "Compute frequency, extremes, mode and EMV separately."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S07-T@1": {
       "id": "T22V3::T22E-TRD01::S07-T@1",
@@ -1400,7 +2238,40 @@
       "order": 1,
       "kind": "main",
       "prompt": "Across common states s1,s2,s3, action X pays (6,1,−2), Y pays (5,1,−4), and Z pays (7,0,−2). Represent the payoff vectors, determine whether X dominates Y, determine whether X and Z dominate one another, identify any dominated action, and explain why no state probabilities are needed.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Common-state payoffs",
+          "headers": [
+            "action",
+            "s1",
+            "s2",
+            "s3"
+          ],
+          "rows": [
+            [
+              "X",
+              "6",
+              "1",
+              "−2"
+            ],
+            [
+              "Y",
+              "5",
+              "1",
+              "−4"
+            ],
+            [
+              "Z",
+              "7",
+              "0",
+              "−2"
+            ]
+          ],
+          "note": "Test dominance coordinate by coordinate; do not invent state probabilities."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S08-T@1": {
       "id": "T22V3::T22E-TRD01::S08-T@1",
@@ -1484,7 +2355,34 @@
       "order": 1,
       "kind": "main",
       "prompt": "Starting wealth is200. (a) Compare an additive −60 then +60 dollars with a multiplicative −30% then +30%. (b) Derive the general gain g needed to recover from a fractional loss L, stating its domain. (c) Apply the formula to a30% loss and verify the recovery from200 numerically.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Recovery audit",
+          "headers": [
+            "mechanic",
+            "start",
+            "after loss/change",
+            "after gain/change"
+          ],
+          "rows": [
+            [
+              "additive dollars",
+              "200",
+              "140",
+              "200"
+            ],
+            [
+              "−30%, then +30%",
+              "200",
+              "140",
+              "?"
+            ]
+          ],
+          "note": "Use multiplicative factors for the percentage row and derive the exact recovery gain separately."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S14-T@1": {
       "id": "T22V3::T22E-TRD01::S14-T@1",
@@ -1498,7 +2396,34 @@
       "order": 1,
       "kind": "main",
       "prompt": "A decision maker ranks certain outcomes C≻B≻A. Representation u assigns A=0,B=1,C=2; representation v assigns A=−10,B=5,C=100. (a) Show that both represent the same certain-outcome ordering. (b) Explain why the larger gaps in v do not by themselves measure stronger preference intensity. (c) Explain why this ranking alone does not tell us whether the person prefers sure B to a 50/50 lottery over A and C.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Two labels for the same certain-outcome ordering",
+          "headers": [
+            "representation",
+            "A",
+            "B",
+            "C"
+          ],
+          "rows": [
+            [
+              "u",
+              "0",
+              "1",
+              "2"
+            ],
+            [
+              "v",
+              "−10",
+              "5",
+              "100"
+            ]
+          ],
+          "note": "Both preserve C ≻ B ≻ A; the task asks what this does and does not license."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S15-T@1": {
       "id": "T22V3::T22E-TRD01::S15-T@1",
@@ -1512,21 +2437,102 @@
       "order": 1,
       "kind": "main",
       "prompt": "Outcomes A<B<C have a supplied lottery-utility index u(A)=0,u(B)=1,u(C)=3. Compare sure B with a 50/50 lottery over A and C by expected utility. Then define v=2+4u and verify that the ranking is unchanged. Finally apply g(u)=√u and show that although deterministic order is preserved, the expected-utility ranking of these two lotteries reverses. State the conceptual lesson.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Lottery-utility transform audit",
+          "headers": [
+            "index",
+            "A",
+            "B",
+            "C"
+          ],
+          "rows": [
+            [
+              "u",
+              "0",
+              "1",
+              "3"
+            ],
+            [
+              "v=2+4u",
+              "2",
+              "6",
+              "14"
+            ],
+            [
+              "g=√u",
+              "0",
+              "1",
+              "√3"
+            ]
+          ],
+          "note": "Compare sure B with the 50/50 A–C lottery under each row."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S16-T@1": {
       "id": "T22V3::T22E-TRD01::S16-T@1",
       "order": 1,
       "kind": "transfer",
       "prompt": "A supplied lottery utility has u(A)=0,u(B)=1,u(C)=4, so a 50/50 lottery over A,C has EU2 and ranks above sure B (EU1). Construct a strictly increasing relabeling h of the three utility values that preserves A<B<C but makes the same 50/50 lottery rank below sure B when h-values are averaged. Explain why your h cannot be an equivalent positive-affine rescaling of u.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Construct a non-affine increasing relabeling",
+          "headers": [
+            "outcome",
+            "A",
+            "B",
+            "C"
+          ],
+          "rows": [
+            [
+              "original u",
+              "0",
+              "1",
+              "4"
+            ],
+            [
+              "your h",
+              "?",
+              "?",
+              "?"
+            ]
+          ],
+          "note": "Preserve A<B<C but make the averaged h-values reverse the original sure-B versus 50/50 A–C ranking."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S17-M@1": {
       "id": "T22V3::T22E-TRD01::S17-M@1",
       "order": 1,
       "kind": "main",
       "prompt": "A supplied lottery utility is u(70)=1,u(100)=5,u(150)=9. Option A gives wealth100 for sure; option B gives wealth70 or150 with probability .50 each. Compute expected wealth and expected utility for both; apply the stated expected-utility criterion; and explain why if instead u(w)=a+bw with b>0, EU and expected-money rankings would agree. State why the supplied table is not universal.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Money and supplied lottery utility",
+          "headers": [
+            "wealth",
+            "70",
+            "100",
+            "150"
+          ],
+          "rows": [
+            [
+              "u(wealth)",
+              "1",
+              "5",
+              "9"
+            ]
+          ],
+          "note": "Compute expected wealth and expected utility in separate columns."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S17-T@1": {
       "id": "T22V3::T22E-TRD01::S17-T@1",
@@ -1554,7 +2560,36 @@
       "order": 1,
       "kind": "main",
       "prompt": "States H and L have probabilities .40 and .60. Starting wealth is100. Actions A,B,C have net payoffs A=(12,−2), B=(6,3), C=(2,1). A hard rule forbids any one-play loss exceeding1. A separate maximin criterion is also to be reported. Supplied terminal-wealth utilities are u(98)=0,u(101)=1,u(102)=2,u(103)=3,u(106)=4,u(112)=12. Audit the decision: apply statewise dominance, EMV, the hard constraint, maximin, and expected utility; then write a criterion-labeled summary without declaring a universal winner.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Criterion-audit data",
+          "headers": [
+            "action",
+            "H (.40)",
+            "L (.60)"
+          ],
+          "rows": [
+            [
+              "A",
+              "+12",
+              "−2"
+            ],
+            [
+              "B",
+              "+6",
+              "+3"
+            ],
+            [
+              "C",
+              "+2",
+              "+1"
+            ]
+          ],
+          "note": "Apply dominance, EMV, the hard loss cap, maximin and the supplied utility model separately."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S19-T@1": {
       "id": "T22V3::T22E-TRD01::S19-T@1",
@@ -1568,7 +2603,31 @@
       "order": 1,
       "kind": "main",
       "prompt": "Consider the bimatrix with row actions U,D and column actions L,R: (U,L)=(3,4), (U,R)=(0,1), (D,L)=(1,0), (D,R)=(2,3). Identify both players' action sets, explain what each ordered pair means, determine the column player's preferred response to U from her own payoffs, and explain why treating L/R as chance states or automatically minimizing the row payoff would be wrong.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "General bimatrix",
+          "headers": [
+            "",
+            "L",
+            "R"
+          ],
+          "rows": [
+            [
+              "U",
+              "(3,4)",
+              "(0,1)"
+            ],
+            [
+              "D",
+              "(1,0)",
+              "(2,3)"
+            ]
+          ],
+          "note": "Use the second component for the column player's preference."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S20-T@1": {
       "id": "T22V3::T22E-TRD01::S20-T@1",
@@ -1582,7 +2641,31 @@
       "order": 1,
       "kind": "main",
       "prompt": "For the bimatrix (U,L)=(4,1),(U,R)=(1,3),(D,L)=(2,0),(D,R)=(3,2), find the row player's best response to each column action and the column player's best response to each row action; identify any dominant action; mark the mutual-best-response cell; and explain why maximizing total payoff would be a different rule.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Pure best-response game",
+          "headers": [
+            "",
+            "L",
+            "R"
+          ],
+          "rows": [
+            [
+              "U",
+              "(4,1)",
+              "(1,3)"
+            ],
+            [
+              "D",
+              "(2,0)",
+              "(3,2)"
+            ]
+          ],
+          "note": "Mark row and column best responses separately."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S21-T@1": {
       "id": "T22V3::T22E-TRD01::S21-T@1",
@@ -1596,21 +2679,93 @@
       "order": 1,
       "kind": "main",
       "prompt": "An explicitly strictly competitive game is represented by the row player's payoff matrix [[2,1],[0,−1]], with the column player preferring smaller row payoffs. Compute row minima and the row maximin security level; compute column maxima and the column minimax bound; identify the pure saddle and its payoff; and state the scope of the conclusion.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Strictly competitive row-payoff matrix",
+          "headers": [
+            "",
+            "L",
+            "R"
+          ],
+          "rows": [
+            [
+              "Top",
+              "2",
+              "1"
+            ],
+            [
+              "Bottom",
+              "0",
+              "−1"
+            ]
+          ],
+          "note": "The problem explicitly licenses a minimizing column player."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S22-T@1": {
       "id": "T22V3::T22E-TRD01::S22-T@1",
       "order": 1,
       "kind": "transfer",
       "prompt": "A general bimatrix is (U,L)=(3,4),(U,R)=(0,1),(D,L)=(1,0),(D,R)=(2,3). Someone discards the second payoff in every cell and runs a row maximin/minimax calculation as though the column player minimizes the row payoff. Decide whether that reduction is licensed and use one best-response comparison to justify your answer.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "General bimatrix — is one-number reduction legal?",
+          "headers": [
+            "",
+            "L",
+            "R"
+          ],
+          "rows": [
+            [
+              "U",
+              "(3,4)",
+              "(0,1)"
+            ],
+            [
+              "D",
+              "(1,0)",
+              "(2,3)"
+            ]
+          ],
+          "note": "Do not discard the second payoff component unless strict competition is established."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S23-M@1": {
       "id": "T22V3::T22E-TRD01::S23-M@1",
       "order": 1,
       "kind": "main",
       "prompt": "In the strictly competitive row-payoff matrix [[3,0],[1,2]], let the column player choose L with probability q. Derive the row payoffs from U and D as functions of q, solve the q that makes them indifferent, and compute the common payoff. Then let the row player choose U with probability p and solve the p that makes columns L and R yield equal expected row payoff. State the theorem boundary.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Strictly competitive 2×2 row payoffs",
+          "headers": [
+            "",
+            "L",
+            "R"
+          ],
+          "rows": [
+            [
+              "U",
+              "3",
+              "0"
+            ],
+            [
+              "D",
+              "1",
+              "2"
+            ]
+          ],
+          "note": "Derive q and p from indifference equations."
+        }
+      ]
     },
     "T22V3::T22E-TRD01::S23-T@1": {
       "id": "T22V3::T22E-TRD01::S23-T@1",
@@ -1631,7 +2786,31 @@
       "order": 1,
       "kind": "transfer",
       "prompt": "Audit this different model. Two strategic players choose simultaneously. Payoffs are (U,L)=(4,1),(U,R)=(1,3),(D,L)=(2,0),(D,R)=(3,2). An analyst treats L/R as 50/50 chance states, computes row expected values, and then says the column player will minimize row payoff anyway. Classify the model, choose an appropriate representation, determine the pure best responses and any mutual-best-response cell, and explain both modeling errors.",
-      "obligationVersion": 3
+      "obligationVersion": 3,
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Strategic-game data",
+          "headers": [
+            "",
+            "L",
+            "R"
+          ],
+          "rows": [
+            [
+              "U",
+              "(4,1)",
+              "(1,3)"
+            ],
+            [
+              "D",
+              "(2,0)",
+              "(3,2)"
+            ]
+          ],
+          "note": "This is a bimatrix of strategic choices, not a chance table."
+        }
+      ]
     }
   },
   "evaluators": {
