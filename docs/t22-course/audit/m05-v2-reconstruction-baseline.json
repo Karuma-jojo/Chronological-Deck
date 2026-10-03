@@ -1,0 +1,428 @@
+{
+  "baselineMain": "7600dd377192aafe6ca777636d94474736ea4e4f",
+  "baselineM05Blob": "76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c",
+  "capturedAt": "2026-10-04",
+  "purpose": "Exact published-current public assessment contracts preserved through M05 v2 reconstruction. This snapshot is distinct from the older Astra pre-repair baseline fingerprints in m05-m06-reviewed-contracts.json.",
+  "assessments": {
+    "T22V3::T22E-TRD01::S09-M@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S09-M@1",
+        "order": 9,
+        "kind": "main",
+        "prompt": "One play pays +3 with probability .60 and −2 with probability .40. Let X_i be the net payoff on play i and let T be the seven-play total. Write T as a sum. Compute one-play EV, compute E[T], state exactly why independence is not required for that expectation calculation, and explain why E[T] does not guarantee the realized seven-play total.",
+        "obligationVersion": 2
+      },
+      "evaluator": {
+        "reference": "One-play EV=.6(3)−.4(2)=1. Thus E[T]=7 by linearity. Linearity holds for finite expectations whether or not the X_i are independent. The realized total can differ from7. Total is T=X_1+...+X_7.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Total payoff is represented as a sum of seven play-level payoffs."
+          },
+          {
+            "points": 2,
+            "criterion": "One-play EV=1 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Expected total E[T]=7 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "The no-independence requirement for linearity is stated correctly."
+          },
+          {
+            "points": 2,
+            "criterion": "Expected total is not presented as a guaranteed realized total."
+          }
+        ],
+        "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
+      }
+    },
+    "T22V3::T22E-TRD01::S09-T@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S09-T@1",
+        "order": 9,
+        "kind": "transfer",
+        "prompt": "Four plays have expected net payoffs 1.5,−.5,2 and0, with unspecified dependence. Compute expected total and explain which fact justifies the calculation. Distinguish this expectation from a guaranteed realized total.",
+        "obligationVersion": 2
+      },
+      "evaluator": {
+        "reference": "Expected total is1.5−.5+2+0=3 by linearity of expectation; dependence need not be specified. The realized sum need not equal3.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Total is represented as a sum."
+          },
+          {
+            "points": 2,
+            "criterion": "Expected total3 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Linearity is named/used correctly."
+          },
+          {
+            "points": 2,
+            "criterion": "No independence assumption is added."
+          },
+          {
+            "points": 2,
+            "criterion": "Realized total is distinguished from its expectation."
+          }
+        ],
+        "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
+      }
+    },
+    "T22V3::T22E-TRD01::S10-M@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S10-M@1",
+        "order": 10,
+        "kind": "main",
+        "prompt": "Start with bankroll 100. Four realized net payoffs are −20,+15,−10,+30. Construct the wealth path including time0, compute cumulative net P&L after each play, verify the final accounting identity, and explain the difference between a bankroll level and a one-play payoff.",
+        "obligationVersion": 1
+      },
+      "evaluator": {
+        "reference": "Wealth path:100,80,95,85,115. Cumulative P&L:0,−20,−5,−15,+15. Final identity115=100+15. Bankroll is the current wealth stock; a play payoff is the increment changing it.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Recursive bankroll update is used correctly."
+          },
+          {
+            "points": 2,
+            "criterion": "Wealth path 100,80,95,85,115 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Cumulative P&L path 0,−20,−5,−15,15 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Final identity W4=W0+cumulative P&L is verified."
+          },
+          {
+            "points": 2,
+            "criterion": "Bankroll level and one-play payoff are distinguished."
+          }
+        ],
+        "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    },
+    "T22V3::T22E-TRD01::S10-T@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S10-T@1",
+        "order": 10,
+        "kind": "transfer",
+        "prompt": "Start with bankroll 75 and realized net payoffs +5,+10,−25,+8. List the wealth path, cumulative P&L path and final accounting check. Distinguish a wealth level from a payoff increment.",
+        "obligationVersion": 2
+      },
+      "evaluator": {
+        "reference": "Wealth:75,80,90,65,73. Cumulative P&L:0,5,15,−10,−2. Final73=75−2. Wealth is a level; each payoff is a change in that level.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Wealth path is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Cumulative P&L path is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Final P&L −2 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Final accounting identity is checked."
+          },
+          {
+            "points": 2,
+            "criterion": "Stock-versus-increment language is correct."
+          }
+        ],
+        "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    },
+    "T22V3::T22E-TRD01::S11-M@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S11-M@1",
+        "order": 11,
+        "kind": "main",
+        "prompt": "A realized wealth path is 100,120,90,108,130,104. Compute the running peak at every time, the drawdown amount and percentage at every time, identify maximum drawdown amount and maximum drawdown percentage, and explain why final wealth 104 is not a loss relative to the initial bankroll even though it is in drawdown from the running peak.",
+        "obligationVersion": 1
+      },
+      "evaluator": {
+        "reference": "Peaks:100,120,120,120,130,130. Drawdown amounts:0,0,30,12,0,26. Percentage drawdowns:0,0,25%,10%,0,20%. Maximum amount30 and maximum percentage25%. Final wealth104 is +4 versus initial100 but 20% below the peak130.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Running peaks 100,120,120,120,130,130 are correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Drawdown amounts 0,0,30,12,0,26 are correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Drawdown percentages 0,0,25%,10%,0,20% are correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Maximum drawdown amount30 and percentage25% are identified."
+          },
+          {
+            "points": 2,
+            "criterion": "Drawdown-from-peak is distinguished from gain/loss versus initial wealth."
+          }
+        ],
+        "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    },
+    "T22V3::T22E-TRD01::S11-T@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S11-T@1",
+        "order": 11,
+        "kind": "transfer",
+        "prompt": "For wealth path 200,240,216,252,189, compute running peaks and percentage drawdowns, then identify maximum percentage drawdown.",
+        "obligationVersion": 1
+      },
+      "evaluator": {
+        "reference": "Peaks200,240,240,252,252. Percentage drawdowns0,0,10%,0,25%; maximum25%.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Running peaks are correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Drawdown denominators use running peaks."
+          },
+          {
+            "points": 2,
+            "criterion": "Intermediate 10% drawdown is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Final 25% drawdown is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Maximum drawdown25% is identified."
+          }
+        ],
+        "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    },
+    "T22V3::T22E-TRD01::S12-M@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S12-M@1",
+        "order": 12,
+        "kind": "main",
+        "prompt": "Start bankroll 3. On each of three independent plays, win +2 with probability .40 or lose −1 with probability .60. Ruin means bankroll hits 0 at or before play3. Enumerate the eight W/L paths, track bankroll enough to identify ruin paths, compute the three-play ruin probability, and state why this is a finite-horizon result rather than a general ruin formula.",
+        "obligationVersion": 1
+      },
+      "evaluator": {
+        "reference": "The eight paths are WWW,WWL,WLW,WLL,LWW,LWL,LLW,LLL. Starting3, only LLL follows3→2→1→0 and ruins by play3. Its probability is .6^3=.216. This result applies to the stated three-play independent model only.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Ruin is correctly defined as hitting zero by play3."
+          },
+          {
+            "points": 2,
+            "criterion": "All eight W/L paths are accounted for under independence."
+          },
+          {
+            "points": 2,
+            "criterion": "Bankroll tracking correctly identifies only LLL as ruin."
+          },
+          {
+            "points": 2,
+            "criterion": "Ruin probability .216 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "The finite-horizon scope is stated; no infinite-horizon formula is claimed."
+          }
+        ],
+        "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    },
+    "T22V3::T22E-TRD01::S12-T@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S12-T@1",
+        "order": 12,
+        "kind": "transfer",
+        "prompt": "Start bankroll 1. At most three independent potential plays win +1 with probability .60 or lose −1 with probability .40. Stop at the first hit of 0; after stopping, bankroll stays 0. Define ruin by this three-play horizon, list all possible first-hit W/L prefixes, compute their probabilities and the total without double-counting continuations. Compare the hypothetical unstopped path LWW with its stopped bankroll path and explain why checking only the unstopped endpoint would miss ruin.",
+        "obligationVersion": 2
+      },
+      "evaluator": {
+        "reference": "First-hit prefixes are L (probability .4) and WLL (probability .6×.4×.4=.096). They are disjoint and exhaustive for hitting0 within three plays, so ruin probability is .496=62/125. L includes every later potential continuation and is counted once. Hypothetical unstopped LWW has wealth1→0→1→2, but the stopped path is1→0→0→0: it is ruined at play1 despite a positive unstopped endpoint.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Ruin is the first hit of0 by play3 with absorption thereafter."
+          },
+          {
+            "points": 2,
+            "criterion": "First-hit prefixes L and WLL are identified as exhaustive."
+          },
+          {
+            "points": 2,
+            "criterion": "Prefix probabilities .4 and .096 are computed under independence."
+          },
+          {
+            "points": 2,
+            "criterion": "Total .496=62/125 is obtained with disjoint prefixes and no double-counting."
+          },
+          {
+            "points": 2,
+            "criterion": "LWW is compared as 1→0→1→2 unstopped versus 1→0→0→0 stopped, explaining the endpoint error."
+          }
+        ],
+        "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    },
+    "T22V3::T22E-TRD01::S13-M@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S13-M@1",
+        "order": 13,
+        "kind": "main",
+        "prompt": "Bankroll is 80. A proposed bet stakes s; on success it earns net +1.5s with probability .50 and on failure loses the full stake with probability .50. A hard rule says one-play loss may not exceed 12. Compute EV as a function of s, translate the hard rule into a stake bound and bankroll fraction, classify stakes 8,12,20 as feasible/infeasible, and explain why the bound does not identify an optimal stake.",
+        "obligationVersion": 2
+      },
+      "evaluator": {
+        "reference": "EV=.5(1.5s)−.5s=.25s. Worst loss=s, so s≤12. As a bankroll fraction, s/80≤.15. Stakes8 and12 are feasible;20 is not. The constraint gives an admissible set, not an objective that selects one optimal s.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "EV(s)=.25s is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Worst possible loss is s, so the hard cap gives s≤12 (for a nonnegative stake)."
+          },
+          {
+            "points": 2,
+            "criterion": "Maximum stake fraction15% is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Stakes8,12 feasible and20 infeasible are classified correctly."
+          },
+          {
+            "points": 2,
+            "criterion": "Feasibility is explicitly distinguished from optimal sizing."
+          }
+        ],
+        "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    },
+    "T22V3::T22E-TRD01::S13-T@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S13-T@1",
+        "order": 13,
+        "kind": "transfer",
+        "prompt": "Bankroll150; the full stake can be lost and a hard rule caps one-play loss at 10% of bankroll. Find the maximum feasible stake and fraction, then explain why positive EV would not by itself authorize a larger stake.",
+        "obligationVersion": 2
+      },
+      "evaluator": {
+        "reference": "Loss cap=.10(150)=15, so s≤15 and stake fraction≤10%. Positive EV does not override the stated hard loss constraint.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Loss cap15 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Stake inequality s≤15 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Maximum fraction10% is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Constraint is treated as binding feasibility."
+          },
+          {
+            "points": 2,
+            "criterion": "No optimal-size claim is inferred from EV alone."
+          }
+        ],
+        "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion. Negative accuracy/scope guards require no extra disclaimer: a complete answer to the public request receives those points unless it actually makes the prohibited error. Accept equivalent valid methods; do not require the reference wording."
+      }
+    },
+    "T22V3::T22E-TRD01::S18-M@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S18-M@1",
+        "order": 18,
+        "kind": "main",
+        "prompt": "A supplied utility table has u(80)=2, u(100)=5, u(140)=8. A lottery gives wealth80 or140 with probability .50 each. Compute its expected utility, identify the certainty equivalent from the table, compute expected monetary wealth, compute E[wealth]−CE, and interpret that difference only within the supplied preference model.",
+        "obligationVersion": 1
+      },
+      "evaluator": {
+        "reference": "EU=.5(2)+.5(8)=5. Since u(100)=5, CE=100. Expected wealth=.5(80)+.5(140)=110. E[W]−CE=10. This is a risk-premium measure under the supplied utility table, not a universal market price.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "Expected utility5 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Certainty equivalent100 is identified from u(100)=5."
+          },
+          {
+            "points": 2,
+            "criterion": "Expected wealth110 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Risk premium110−100=10 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Interpretation is explicitly conditional on the supplied preference model."
+          }
+        ],
+        "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    },
+    "T22V3::T22E-TRD01::S18-T@1": {
+      "problem": {
+        "id": "T22V3::T22E-TRD01::S18-T@1",
+        "order": 18,
+        "kind": "transfer",
+        "prompt": "Utility table: u(100)=4,u(120)=7,u(140)=8. A lottery gives wealth100 with probability .25 and140 with probability .75. Find EU, CE from the table, expected wealth and E[W]−CE. Interpret the premium within this supplied preference model.",
+        "obligationVersion": 2
+      },
+      "evaluator": {
+        "reference": "EU=.25(4)+.75(8)=7, so CE=120. Expected wealth=25+105=130. Premium=10. This premium is relative to the supplied utility table, not a universal valuation.",
+        "rubric": [
+          {
+            "points": 2,
+            "criterion": "EU7 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "CE120 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Expected wealth130 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Premium10 is correct."
+          },
+          {
+            "points": 2,
+            "criterion": "Model-specific interpretation is stated."
+          }
+        ],
+        "marking": "Score only what the public Transfer asks. Equivalent exact forms and logically valid alternate routes are acceptable. Do not reward an unstated decision criterion."
+      }
+    }
+  }
+}
