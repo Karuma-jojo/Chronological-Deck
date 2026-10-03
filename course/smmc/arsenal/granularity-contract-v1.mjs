@@ -9,8 +9,10 @@
 //   meaningful mathematical output/progress.
 //
 // A candidate may intentionally live above, below, or across that reference unit.
-// Gate 3 records that fact; it does not decide what the final Arsenal should do
-// with the candidate.
+// CROSS_SCALE has two allowed meanings only: (a) the current expression packages
+// independently meaningful moves at more than one grain, or (b) a source-defined
+// role/label is explicitly stated to occur at more than one grain. Gate 3 records
+// that fact; it does not decide what the final Arsenal should do with the candidate.
 
 export const ARSENAL_GATE3_ACCEPTED_GATE2_SHA =
   "ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7";
@@ -64,6 +66,24 @@ export const ARSENAL_GATE3_STATUS = Object.freeze([
   "REVIEWED",
 ]);
 
+
+export const ARSENAL_GATE3_RECORD_KEYS = Object.freeze([
+  "candidateId",
+  "candidateName",
+  "origin",
+  "status",
+  "referenceScale",
+  "bundleStructure",
+  "actionShape",
+  "contextReach",
+  "triggerBoundary",
+  "operationBoundary",
+  "outputBoundary",
+  "confidence",
+  "supportingEvidenceRecordIds",
+  "rationale",
+]);
+
 export const ARSENAL_GATE3_FORBIDDEN_FIELDS = Object.freeze([
   "ontologyType",
   "aliases",
@@ -103,6 +123,14 @@ const invariant = (condition, message) => {
 export function validateGate3GranularityRecord(record) {
   invariant(record && typeof record === "object", "Gate-3 record must be an object.");
   invariant(typeof record.candidateId === "string" && record.candidateId.length > 0, "Gate-3 record missing candidateId.");
+
+  const actualKeys = Object.keys(record).sort();
+  const allowedKeys = [...ARSENAL_GATE3_RECORD_KEYS].sort();
+  invariant(
+    JSON.stringify(actualKeys) === JSON.stringify(allowedKeys),
+    `Gate-3 record key schema drift for ${record.candidateId}: expected exactly ${allowedKeys.join(",")}; got ${actualKeys.join(",")}`
+  );
+
   invariant(STATUS.has(record.status), `Gate-3 record has invalid status for ${record.candidateId}`);
 
   for (const field of ARSENAL_GATE3_FORBIDDEN_FIELDS) {
@@ -134,6 +162,25 @@ export function validateGate3GranularityRecord(record) {
   invariant(Array.isArray(record.supportingEvidenceRecordIds) && record.supportingEvidenceRecordIds.length > 0, `Reviewed Gate-3 record must cite supporting evidence: ${record.candidateId}`);
   invariant(new Set(record.supportingEvidenceRecordIds).size === record.supportingEvidenceRecordIds.length, `Duplicate supporting evidence IDs for ${record.candidateId}`);
   invariant(typeof record.rationale === "string" && record.rationale.trim().length >= 40, `Reviewed Gate-3 record needs substantive rationale: ${record.candidateId}`);
+
+  const rationaleLower = record.rationale.toLowerCase();
+  for (const forbiddenRecommendation of [
+    "merge into",
+    "split into",
+    "drop this",
+    "delete this",
+    "keep as a card",
+    "keep as card",
+    "final representation",
+    "tribunal decision",
+    "rank this",
+    "prerequisite of",
+  ]) {
+    invariant(
+      !rationaleLower.includes(forbiddenRecommendation),
+      `Gate-3 rationale leaks a later-gate recommendation (${forbiddenRecommendation}) for ${record.candidateId}`
+    );
+  }
 
   return true;
 }
