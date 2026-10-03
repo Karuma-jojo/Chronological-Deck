@@ -12,7 +12,7 @@ for(const m of ['m05','m06']){
  await prepareContractHashes(a);await prepareAssessmentFingerprints(a,a.evaluators);
  const make=(pid,at,id)=>({id,problemId:pid,at,answer:'Saved independent reasoning',assistance:'independent',minutes:5,result:'secure',error:'',referenceSeenBefore:false,noteSeenDuringAttempt:false,contractHash:a.sessions.find(s=>s.main===pid||s.transfer===pid).contractHash,assessmentFingerprint:a.assessmentFingerprints[pid]});
 
- if(m==='m05'&&a.version==='m05-authoring-v2-deep-source-candidate'){
+ if(m==='m05'&&a.version==='m05-authoring-v2-independent-review-repair-r1'){
   const changed=new Set(a.reconstructionAudit.materiallyChangedPublicContracts);
   const preserved=new Set(a.reconstructionAudit.preservedPublicContracts);
   const reconstructionBaseline=read('docs/t22-course/audit/m05-v2-reconstruction-baseline.json');
@@ -26,7 +26,8 @@ for(const m of ['m05','m06']){
    assert(published,'published-current reconstruction baseline missing '+pid);
    const samePublished=JSON.stringify({problem:a.problems[pid],evaluator:a.evaluators[pid]})===JSON.stringify(published);
    if(changed.has(pid)){
-    assert.equal(a.problems[pid].obligationVersion,3,pid);
+    const repairV4=new Set(a.independentReviewRepairAudit.changedAssessmentIds);
+    assert.equal(a.problems[pid].obligationVersion,repairV4.has(pid)?4:3,pid);
     assert.equal(samePublished,false,'materially changed M05 v2 contract still equals published baseline '+pid);
    }else{
     assert(preserved.has(pid),'unclassified M05 v2 task '+pid);
