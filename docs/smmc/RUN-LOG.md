@@ -1221,3 +1221,83 @@ Confidence now explicitly means confidence in the **Gate-3 assessment**, not in 
 
 No 618-row mass pass has begun. Tribunal/ontology/prerequisite/ranking/product gates remain closed.
 
+## Arsenal Gate 3 second calibration repair after review 5400107346 (2026-10-03)
+
+Independent review **5400107346** on exact SHA `c805ffba749d49f5eb055a94da1da33c7ede47bf` kept four bounded issues open before the 616-row mass pass.
+
+### G3-R06 — MACRO vs CROSS_SCALE made reproducible
+
+The ruler now applies this priority:
+
+- a bundle of multiple operations is **MACRO + BUNDLED_MOVES** unless the accepted candidate expression/evidence actually establishes that its components live at different reference grains;
+- **CROSS_SCALE** is reserved for evidence-supported mixed-grain expressions or source-defined roles explicitly stated to occur at multiple grains.
+
+Accordingly, the following calibration rows are now MACRO + BUNDLED_MOVES:
+- forcing-strategy trees + threat-pair reasoning;
+- clearing denominators + primitive-integer normalization;
+- convex-envelope + epigraph/convex-hull construction;
+- Dilation–Derivative Boundedness Bootstrap;
+- row replacement + cofactor expansion;
+- Hammack Combining Techniques.
+
+Zeitz's Crux Move remains CROSS_SCALE + SINGLE_PRIMARY_MOVE as the explicit scale-variable-role anchor.
+
+### G3-R07 — strict candidate-owned Gate-2 evidence mode
+
+Gate 3 now states explicitly that it may use only:
+- the accepted raw candidate expression; and
+- the accepted evidence records already attached to that exact candidate.
+
+No richer canonical-PDF reading or general mathematical familiarity may silently fill missing semantics during this gate.
+
+`RAW-SOURCE-p-crt — Chinese Remainder Theorem` is therefore now:
+- referenceScale UNRESOLVED;
+- bundleStructure UNRESOLVED;
+- actionShape LABEL_ONLY;
+- contextReach SOURCE_LOCAL;
+- trigger / operation / output UNRESOLVED;
+- confidence HIGH in the unresolved call.
+
+LOW confidence is now calibrated on `RAW-OFFICIAL-048 — Finite-Field Quotient Model of the Projective Plane`, where the attached official evidence genuinely supports a representation operation but leaves a plausible evidence-supported boundary ambiguity.
+
+LOW is explicitly uncertainty **among evidence-supported assessments**; it cannot authorize an otherwise unsupported dimensional call.
+
+### G3-R04 final closure — validate authoring input before destructuring
+
+`assessed({...})` was replaced by exported `buildGate3AssessedCalibration(input)`.
+
+The helper validates the exact authoring-key set **before** destructuring. Unknown input keys therefore cannot disappear silently.
+
+CI now tests both:
+- an unknown key injected into a final exported Gate-3 record; and
+- `difficulty: "HARD"` supplied through the actual assessed authoring helper.
+
+Both must be rejected.
+
+### G3-R05 hardening — accepted Git blob freeze plus semantic digest
+
+The validator now contains accepted Git blob SHA-1 literals copied from exact accepted Gate-2 SHA `ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7` for eleven frozen Gate-2 source/provenance files:
+
+- `course/smmc/schema.mjs`
+- `course/smmc/arsenal/candidates-v0.mjs`
+- `course/smmc/arsenal/ledger-bridge-candidates-v0.mjs`
+- `course/smmc/arsenal/ledger-route-candidates-v0.mjs`
+- `course/smmc/arsenal/official-solution-candidates-v0.mjs`
+- `course/smmc/arsenal/official-solution-route-index-v0.mjs`
+- `course/smmc/arsenal/source-closure-manifest-v0.mjs`
+- `course/smmc/arsenal/raw-harvest-audit-v0.mjs`
+- `course/smmc/arsenal/canonical-sources-v1.mjs`
+- `course/smmc/arsenal/evidence-contract-v1.mjs`
+- `course/smmc/official-solution-sources-v1.mjs`
+
+CI computes each current checkout's Git-blob SHA-1 from raw bytes and compares it to the accepted literal.
+
+The semantic/provenance SHA-256 `f947742d48b46a45d3a49d86e334123f752fcd28dccf351b7e7114ddcf08861f` remains a second layer, and the validator pins that literal independently of the mutable snapshot module.
+
+### Documentation cleanup
+
+- duplicate actionShape `UNRESOLVED` bullet removed;
+- Trigger / operation / output boundaries renumbered from section E to section F.
+
+The calibration remains **45 REVIEWED / 616 UNREVIEWED**. No mass pass, tribunal, ontology, prerequisite, ranking, relation, learning-order, or product work has started.
+
