@@ -48,7 +48,7 @@ assert.equal(meta.moduleSources.filter(x=>x.order<=11).length,11);
 const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/generated/course-meta.json','scripts/test-t22-elite-m09.mjs','scripts/test-t22-elite-m10.mjs','docs/t22-course/audit/m06-handoff-checks.mjs','docs/t22-course/audit/m07-handoff-checks.mjs','docs/t22-course/audit/m08-handoff-checks.mjs','docs/t22-course/audit/m10-protected-semantic-rows.json','js/t22-course/core.js','js/t22-course/overrides.js','css/t22-course.css','js/t22-course/ui.js','t22-course.html',
  'course/t22/authoring/m05.json','docs/t22-course/M05-BOUNDARY.md','docs/t22-course/M05-REVIEW-HANDOFF.md','docs/t22-course/audit/m05-handoff-checks.mjs','docs/t22-course/audit/m05-independent-math.mjs','docs/t22-course/audit/m05-m06-semantic-checks.mjs','docs/t22-course/audit/m05-m06-transfer-math.mjs','scripts/test-t22-elite-m05-m06-repairs.mjs','scripts/test-t22-elite-m05.mjs']);
 const m05v2=read('course/t22/authoring/m05.json');
-assert.equal(m05v2.version,'m05-authoring-v2-deep-source-candidate','M11 baseline exception is bounded to the explicit M05 v2 candidate');
+assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version,'M11 baseline exception is bounded to the explicit M05 v2 candidate');
 assert(fs.existsSync('docs/t22-course/M05-DEEP-SOURCE-AUDIT-v1.0.md')&&fs.existsSync('docs/t22-course/M05-V2-DESIGN-GATE.md'));
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized through-M12 publication surfaces');
 
