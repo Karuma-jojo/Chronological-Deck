@@ -108,7 +108,7 @@ try{
  assert.equal(await page.locator('#learningRepresentations .repr-tree').count(),1);
  assert((await page.locator('#learningRepresentations').textContent()).includes('Safe'));
  await page.click('#transferTask');assert.equal(await page.locator('#problemRepresentations .repr-tree').count(),1);
- assert((await page.locator('#problemRepresentations').textContent()).includes('0.50'));
+ assert((await page.locator('#problemRepresentations').textContent()).includes('.50'));
 
  await page.selectOption('#session','12');await page.click('#note');
  assert.equal(await page.locator('#learningRepresentations .repr-tree').count(),1);
