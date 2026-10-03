@@ -168,7 +168,9 @@ The Gate-3 ledger is an overlay. It must prove:
 - no unknown or missing candidate IDs;
 - every cited evidence ID belongs to that candidate;
 - Gate-2 candidates/evidence remain unchanged;
-- the accepted Gate-2 ore fingerprint remains equal to the frozen SHA-256 snapshot `f947742d48b46a45d3a49d86e334123f752fcd28dccf351b7e7114ddcf08861f`; the fingerprint covers raw candidates, raw evidence, official route index/meta, and the source-closure rule/zones/reviewed-items/meta;
+- eleven frozen Gate-2 source/provenance files are byte-checked against their accepted Git blob SHA-1 values from exact accepted SHA `ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7`;
+- independently, the accepted Gate-2 ore semantic/provenance payload must equal the literal SHA-256 `f947742d48b46a45d3a49d86e334123f752fcd28dccf351b7e7114ddcf08861f`; this covers raw candidates, raw evidence, official route index/meta, and the source-closure rule/zones/reviewed-items/meta;
+- the validator also requires the snapshot module's digest to equal that independently pinned literal, so changing only the snapshot constant cannot bless a mutated Gate-2 payload;
 - no additional harvest is performed.
 
 If Gate 3 discovers that some mathematical concept is missing, that observation is **not** permission to append it here. It belongs in a separately justified reopen/amendment process after this gate.
