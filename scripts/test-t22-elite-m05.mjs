@@ -8,10 +8,10 @@ checkModule(a);
 const by=n=>a.sessions.find(s=>s.order===n);
 const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])])):x;
 
-assert.equal(a.version,'m05-authoring-v2-deep-source-candidate');
+assert.equal(a.version,'m05-authoring-v2-independent-review-repair-r1');
 assert.equal(a.instructionVersion,'m05-instruction-v2-deep-source-candidate');
 assert.equal(a.module.id,'T22E-TRD01');
-assert.equal(a.module.status,'v2-deep-source-builder-candidate-awaiting-validation-and-independent-review');
+assert.equal(a.module.status,'v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation');
 assert.deepEqual(a.boundary.prerequisiteModules,['ARC048']);
 assert.equal(a.sessions.length,24);
 assert.equal(Object.keys(a.problems).length,48);
@@ -20,7 +20,7 @@ assert.equal(Object.values(a.claimEvidence).flat().length,120);
 assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
 assert.equal(Object.keys(a.evidenceDistance.items).length,48);
 assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,24);
-assert.equal(Object.keys(a.decisionAudit.items).length,5);
+assert.equal(Object.keys(a.decisionAudit.items).length,1);
 assert(a.sourceLedger.length>=10);
 assert(a.representationProgression.length>=15);
 assert.equal(a.reconstructionAudit.architectureDecision,'DEEP BOUNDED RECONSTRUCTION');
@@ -38,7 +38,7 @@ for(const s of a.sessions){
  assert(!hashes.has(h),'duplicate session payload '+s.id);hashes.add(h);
  for(const kind of ['main','transfer']){
   const id=s[kind],p=a.problems[id],ev=a.evaluators[id];
-  assert([1,2,3].includes(p.obligationVersion),id);
+  assert([1,2,3,4].includes(p.obligationVersion),id);
   assert.equal(ev.rubric.length,5,id);
   assert.equal(ev.rubric.reduce((z,r)=>z+r.points,0),10,id);
   assert(a.evidenceDistance.items[id],id);
@@ -48,6 +48,9 @@ for(const s of a.sessions){
 // Architecture / boundary pins from the deep-source rebuild.
 assert(by(1).title.includes('Decision anatomy'));
 assert(by(4).title.includes('decision trees'));
+assert(by(4).representations?.[0]?.root.includes('DECISION NODE'));
+assert.equal(a.problems[by(1).main].representations,undefined);
+assert.equal(a.problems[by(4).main].representations,undefined);
 assert(by(8).title.includes('dominance'));
 assert(by(12).lesson.includes('first-hit')&&by(12).lesson.includes('absorption')&&by(12).lesson.includes('prefix'));
 assert(by(13).lesson.includes('not')&&by(13).lesson.includes('optimization'));
@@ -59,18 +62,24 @@ assert(by(20).lesson.includes('bimatrix'));
 assert(by(22).title.includes('Strictly competitive'));
 assert(by(22).lesson.includes('strictly competitive')||by(22).lesson.includes('strict competition'));
 assert(by(23).title.includes('Mixed strategies'));
+assert(by(23).lesson.includes('minimize expected row payoff'));
 assert(by(24).lesson.includes('Model-selection questions'));
 assert(by(24).lesson.includes('different strand from the fixed Main'));
 
 // Evidence-distance honesty: very few tasks claim genuine changed-surface/fresh evidence.
 const classes=Object.values(a.evidenceDistance.items).map(x=>x.class);
-assert.equal(classes.filter(x=>x==='fresh Main evidence').length,1);
-assert.equal(classes.filter(x=>x==='changed-surface Transfer').length,4);
-assert.equal(a.evidenceDistance.items[by(24).main].class,'fresh Main evidence');
-for(const n of [4,16,22,24])assert.equal(a.evidenceDistance.items[by(n).transfer].class,'changed-surface Transfer');
+assert.equal(classes.filter(x=>x==='fresh Main evidence').length,0);
+assert.equal(classes.filter(x=>x==='changed-surface Transfer').length,1);
+assert.equal(a.evidenceDistance.items[by(24).main].class,'integrated reasoning reconstruction');
+assert.equal(a.evidenceDistance.items[by(16).transfer].class,'changed-surface Transfer');
+assert.equal(a.evidenceDistance.items[by(4).transfer].class,'reasoning reconstruction');
+assert.equal(a.evidenceDistance.items[by(22).transfer].class,'reasoning reconstruction');
+assert.equal(a.evidenceDistance.items[by(24).transfer].class,'integrated reasoning reconstruction');
 
-// All v2-new public contracts are version3; preserved compatible contracts retain prior versions.
-for(const pid of a.reconstructionAudit.materiallyChangedPublicContracts)assert.equal(a.problems[pid].obligationVersion,3,pid);
+// Independent-review surface repairs are version4; other reconstructed contracts remain version3.
+assert.equal(a.independentReviewRepairAudit.changedAssessmentIds.length,10);
+const repairV4=new Set(a.independentReviewRepairAudit.changedAssessmentIds);
+for(const pid of a.reconstructionAudit.materiallyChangedPublicContracts)assert.equal(a.problems[pid].obligationVersion,repairV4.has(pid)?4:3,pid);
 for(const pid of a.reconstructionAudit.preservedPublicContracts)assert([1,2].includes(a.problems[pid].obligationVersion),pid);
 
 // Critical misconception discriminators.
