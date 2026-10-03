@@ -3,7 +3,7 @@
 Date: 2026-10-03  
 Branch: `codex/t22-m05-deep-source-restart`  
 Stable module: `T22E-TRD01`  
-Status: **BUILDER-VALIDATED CANDIDATE IN PROGRESS — INDEPENDENT REVIEW NOT YET PERFORMED**
+Status: **INDEPENDENT REVIEW COMPLETE · R01–R08 REPAIRED · FULL REVALIDATION / EXACT-HEAD CONFIRMATION PENDING**
 
 ## Recovery authority
 
@@ -35,15 +35,15 @@ The stable M05 identity and roughly 24-session scale survive. The old session al
 
 Authoring version:
 
-`m05-authoring-v2-deep-source-candidate`
+`m05-authoring-v2-independent-review-repair-r1`
 
 Instruction version:
 
-`m05-instruction-v2-deep-source-candidate`
+`m05-instruction-v2-independent-review-repair-r1`
 
 Module status:
 
-`v2-deep-source-builder-candidate-awaiting-validation-and-independent-review`
+`v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation`
 
 Current shape:
 
@@ -52,11 +52,13 @@ Current shape:
 - 120 ownership claims;
 - 48/48 evidence-distance entries;
 - 24/24 wrong-solver entries;
-- 5 decision-audit entries;
+- 1 decision-audit entry;
 - permanent source ledger;
 - permanent representation progression ledger;
-- one fresh Main claim: S24-M;
-- four changed-surface Transfer claims: S04-T, S16-T, S22-T, S24-T.
+- zero fixed Mains labelled fresh;
+- one changed-surface Transfer claim: S16-T;
+- S04-T/S22-T as reasoning reconstruction;
+- S24-M/S24-T as integrated reasoning reconstruction.
 
 The remaining tasks are deliberately labelled retrieval/reconstruction rather than inflating new numbers or context into “transfer.”
 
@@ -75,7 +77,7 @@ The v2 reconstruction adds or repairs:
 - general bimatrix strategic games before any minimizing-opponent specialization;
 - strictly competitive 2×2 saddle/security analysis only after the model gate;
 - mixed-strategy indifference after pure best responses;
-- a fresh S24 model-selection audit whose worked synthesis is mathematically different from the fixed Main.
+- an integrated S24 model-selection synthesis, deliberately not overclaimed as fresh evidence.
 
 ## Preserved strong historical block
 
@@ -90,7 +92,7 @@ The following public task contracts were retained because their mathematical/evi
 
 These 12 contracts preserve their historical obligation versions and assessment fingerprints.
 
-All other 36 public contracts are materially changed and are now `obligationVersion=3`.
+All other 36 public contracts are materially changed relative to the recovered published baseline. Independent review then repaired 10 of those assessment surfaces to `obligationVersion=4`; the remaining 26 reconstructed contracts remain at `obligationVersion=3`.
 
 Stable IDs and the shared evidence store are retained.
 
@@ -103,6 +105,31 @@ Historical answer-bearing exposure remains recorded:
 Historical guided-practice exposure remains recorded separately for old S15/S16 practice and does not fabricate a reveal timestamp.
 
 Deep reconstruction does not delete old attempts. Changed fingerprints/contracts become stale rather than silently recertified. Import/merge order must not hide older answer exposure.
+
+## Independent adversarial review and repair
+
+Frozen builder-green candidate reviewed:
+
+- head: `c8d3518b3902ca312c3141dad7b138b308f4f858`;
+- full T22 Elite run #643 / 37155016405: SUCCESS;
+- review: `M05-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md`.
+
+The reviewer raised R01–R08. All eight were accepted as justified:
+
+- R01: downgrade S04-T evidence;
+- R02: downgrade S22-T evidence;
+- R03: downgrade S24-T evidence;
+- R04: downgrade S24-M fresh claim;
+- R05: remove/neutralize answer-bearing assessment representations;
+- R06: remove assessment-specific lesson coaching;
+- R07: visually deliver decision-node versus chance-node semantics in S04 instruction;
+- R08: tighten S22/S23 minimizing-expected-row-payoff numerical convention.
+
+Core repair commit:
+
+- `e5412b485cfa4442138654645bccc9674681e9c5` — R01–R08 learner/evidence repair.
+
+The post-review candidate must still pass the full workflow on one exact head and then receive an exact-head confirmation. No review document is allowed to self-certify its own repair.
 
 ## Source stack
 
@@ -164,7 +191,7 @@ Required:
 
 Do **not** write “independently accepted” until an independent reviewer has produced findings, all justified findings are repaired, and an exact-head confirmation is complete.
 
-## Reviewer attack priorities
+## Exact-head confirmation priorities
 
 Attack at least:
 
@@ -180,8 +207,8 @@ Attack at least:
 10. whether S19 keeps dominance, EMV, feasibility, maximin and EU genuinely separate;
 11. whether S20–S22 correctly separate chance, general strategic games and strict competition;
 12. whether S23 solves only elementary indifference rather than smuggling in a general theorem;
-13. whether S24-M is actually fresh after reading the complete visible lesson;
-14. whether S04-T/S16-T/S22-T/S24-T really deserve changed-surface labels;
+13. whether S24-M/S24-T are now honestly labelled integrated reasoning reconstruction;
+14. whether S16-T is the only remaining changed-surface label and genuinely earns it;
 15. whether any retained public contract has become semantically stale despite matching text/fingerprint.
 
 ## Stop boundary
