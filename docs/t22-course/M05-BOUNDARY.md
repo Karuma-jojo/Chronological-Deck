@@ -3,6 +3,7 @@
 Date: 2026-10-03  
 Branch: `codex/t22-m05-deep-source-restart`  
 Stable module ID: `T22E-TRD01`  
+Authoring version: `m05-authoring-v2-deep-source-candidate`  
 Status: **V2 DEEP-SOURCE BUILDER CANDIDATE — NOT INDEPENDENTLY ACCEPTED**
 
 Authority:
