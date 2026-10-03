@@ -23,29 +23,56 @@ const rawById = new Map(ARSENAL_GATE2_RAW_CANDIDATES.map(candidate => [
   candidate,
 ]));
 
-const assessed = ({
-  candidateId,
-  referenceScale,
-  bundleStructure,
-  actionShape,
-  contextReach,
-  triggerBoundary,
-  operationBoundary,
-  outputBoundary,
-  confidence,
-  rationale,
-}) => Object.freeze({
-  candidateId,
-  referenceScale,
-  bundleStructure,
-  actionShape,
-  contextReach,
-  triggerBoundary,
-  operationBoundary,
-  outputBoundary,
-  confidence,
-  rationale,
-});
+export const ARSENAL_GATE3_ASSESSED_INPUT_KEYS = Object.freeze([
+  "candidateId",
+  "referenceScale",
+  "bundleStructure",
+  "actionShape",
+  "contextReach",
+  "triggerBoundary",
+  "operationBoundary",
+  "outputBoundary",
+  "confidence",
+  "rationale",
+]);
+
+export function buildGate3AssessedCalibration(input) {
+  const actualKeys = Object.keys(input).sort();
+  const allowedKeys = [...ARSENAL_GATE3_ASSESSED_INPUT_KEYS].sort();
+  if (JSON.stringify(actualKeys) !== JSON.stringify(allowedKeys)) {
+    throw new Error(
+      `Gate-3 assessed(...) authoring key schema drift: expected exactly ${allowedKeys.join(",")}; got ${actualKeys.join(",")}`
+    );
+  }
+
+  const {
+    candidateId,
+    referenceScale,
+    bundleStructure,
+    actionShape,
+    contextReach,
+    triggerBoundary,
+    operationBoundary,
+    outputBoundary,
+    confidence,
+    rationale,
+  } = input;
+
+  return Object.freeze({
+    candidateId,
+    referenceScale,
+    bundleStructure,
+    actionShape,
+    contextReach,
+    triggerBoundary,
+    operationBoundary,
+    outputBoundary,
+    confidence,
+    rationale,
+  });
+}
+
+const assessed = buildGate3AssessedCalibration;
 
 const CALIBRATION = Object.freeze([
   // Frozen legacy method-tag vocabulary: intentionally includes ambiguous shorthand.
@@ -139,7 +166,7 @@ const CALIBRATION = Object.freeze([
   // Ledger bridgeNeeds: preserve wording while diagnosing bundled or move-sized grain.
   assessed({
     candidateId: "RAW-BRIDGE-002",
-    referenceScale: "CROSS_SCALE",
+    referenceScale: "MACRO",
     bundleStructure: "BUNDLED_MOVES",
     actionShape: "IMPLICIT_ACTION",
     contextReach: "GENERAL",
@@ -147,7 +174,7 @@ const CALIBRATION = Object.freeze([
     operationBoundary: "PARTIAL",
     outputBoundary: "PARTIAL",
     confidence: "HIGH",
-    rationale: "The bridge wording explicitly joins forcing-strategy trees with threat-pair reasoning. Those can participate in one route but are separable reasoning moves, so the raw phrase crosses more than one diagnostic grain.",
+    rationale: "The bridge wording explicitly joins forcing-strategy trees with threat-pair reasoning. The accepted evidence establishes a bundle of separable moves but does not establish that the components live at different grains; under the repaired ruler that makes the expression MACRO + BUNDLED_MOVES, not CROSS_SCALE.",
   }),
   assessed({
     candidateId: "RAW-BRIDGE-006",
@@ -199,7 +226,7 @@ const CALIBRATION = Object.freeze([
   }),
   assessed({
     candidateId: "RAW-BRIDGE-070",
-    referenceScale: "CROSS_SCALE",
+    referenceScale: "MACRO",
     bundleStructure: "BUNDLED_MOVES",
     actionShape: "EXPLICIT_ACTION",
     contextReach: "GENERAL",
@@ -207,7 +234,7 @@ const CALIBRATION = Object.freeze([
     operationBoundary: "PARTIAL",
     outputBoundary: "CLEAR",
     confidence: "HIGH",
-    rationale: "Clearing denominators and primitive-integer normalization explicitly combines two distinct normalization operations. They are often sequentially useful, but the raw phrase bundles them rather than expressing one primary operation.",
+    rationale: "Clearing denominators and primitive-integer normalization explicitly combines two distinct normalization operations. The evidence supports multiple operations but not different reference grains, so the bundle is MACRO + BUNDLED_MOVES rather than CROSS_SCALE.",
   }),
   assessed({
     candidateId: "RAW-BRIDGE-095",
@@ -223,7 +250,7 @@ const CALIBRATION = Object.freeze([
   }),
   assessed({
     candidateId: "RAW-BRIDGE-127",
-    referenceScale: "CROSS_SCALE",
+    referenceScale: "MACRO",
     bundleStructure: "BUNDLED_MOVES",
     actionShape: "IMPLICIT_ACTION",
     contextReach: "GENERAL",
@@ -231,7 +258,7 @@ const CALIBRATION = Object.freeze([
     operationBoundary: "PARTIAL",
     outputBoundary: "CLEAR",
     confidence: "HIGH",
-    rationale: "Convex envelope and epigraph/convex-hull construction combines the target object with a particular construction route. The phrase therefore spans a concept plus at least one independently describable construction move.",
+    rationale: "Convex envelope and epigraph/convex-hull construction packages a target concept with a particular construction route. The accepted wording establishes more than one independently meaningful component but does not itself prove different reference grains, so the conservative call is MACRO + BUNDLED_MOVES.",
   }),
 
   // auditNote route leads.
@@ -318,8 +345,8 @@ const CALIBRATION = Object.freeze([
     triggerBoundary: "PARTIAL",
     operationBoundary: "CLEAR",
     outputBoundary: "CLEAR",
-    confidence: "MEDIUM",
-    rationale: "The official route performs one coherent representation move: model projective-plane points through a finite-field quotient. The construction is technically specialized but has a definite operation and output.",
+    confidence: "LOW",
+    rationale: "The official route clearly performs a representation move by identifying a finite-field quotient with projective-plane points, so the operational reading is evidence-supported. LOW confidence records the remaining ambiguity between treating the current expression as one deployable representation move or a somewhat broader specialized construction—not permission to infer beyond the accepted evidence.",
   }),
   assessed({
     candidateId: "RAW-OFFICIAL-057",
@@ -347,7 +374,7 @@ const CALIBRATION = Object.freeze([
   }),
   assessed({
     candidateId: "RAW-OFFICIAL-095",
-    referenceScale: "CROSS_SCALE",
+    referenceScale: "MACRO",
     bundleStructure: "BUNDLED_MOVES",
     actionShape: "IMPLICIT_ACTION",
     contextReach: "SOURCE_LOCAL",
@@ -371,7 +398,7 @@ const CALIBRATION = Object.freeze([
   }),
   assessed({
     candidateId: "RAW-OFFICIAL-107",
-    referenceScale: "CROSS_SCALE",
+    referenceScale: "MACRO",
     bundleStructure: "BUNDLED_MOVES",
     actionShape: "IMPLICIT_ACTION",
     contextReach: "SOURCE_LOCAL",
@@ -379,7 +406,7 @@ const CALIBRATION = Object.freeze([
     operationBoundary: "PARTIAL",
     outputBoundary: "CLEAR",
     confidence: "HIGH",
-    rationale: "The candidate explicitly contains row replacement and cofactor expansion as two algebraically distinct operations. They form one historical route but the raw candidate spans more than one diagnostic move.",
+    rationale: "The candidate explicitly contains row replacement and cofactor expansion as two algebraically distinct operations. The accepted evidence supports a multi-operation bundle but not mixed reference grains, so the expression is MACRO + BUNDLED_MOVES.",
   }),
   assessed({
     candidateId: "RAW-OFFICIAL-127",
@@ -577,16 +604,15 @@ const CALIBRATION = Object.freeze([
   }),
   assessed({
     candidateId: "RAW-SOURCE-p-crt",
-    referenceScale: "DEPLOYABLE",
-    bundleStructure: "SINGLE_PRIMARY_MOVE",
+    referenceScale: "UNRESOLVED",
+    bundleStructure: "UNRESOLVED",
     actionShape: "LABEL_ONLY",
-    contextReach: "GENERAL",
-    triggerBoundary: "PARTIAL",
-    operationBoundary: "PARTIAL",
-    outputBoundary: "CLEAR",
-    confidence: "LOW",
-    rationale: "Chinese Remainder Theorem is harvested as theorem terminology rather than an imperative action, yet it normally packages one coherent congruence-combination tool. The source row alone leaves trigger and execution only partially explicit.",
-  }),
+    contextReach: "SOURCE_LOCAL",
+    triggerBoundary: "UNRESOLVED",
+    operationBoundary: "UNRESOLVED",
+    outputBoundary: "UNRESOLVED",
+    confidence: "HIGH",
+    rationale: "The attached Gate-2 record establishes only that Putnam and Beyond gives the Chinese Remainder Theorem a dedicated subsection. Under strict candidate-owned-evidence mode, that supports the theorem label and source-local provenance but not a deployable grain, trigger, operation, or output; those dimensions remain unresolved.",  }),
   assessed({
     candidateId: "RAW-SOURCE-p-counting-strategies",
     referenceScale: "MACRO",
