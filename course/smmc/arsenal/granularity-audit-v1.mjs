@@ -97,6 +97,53 @@ export const ARSENAL_GATE3_MASS_RULE_USAGE = Object.freeze(Object.fromEntries(
   ])
 ));
 
+export const ARSENAL_GATE3_BUNDLED_AUDIT = Object.freeze(
+  reviewed
+    .filter(row => row.bundleStructure === "BUNDLED_MOVES")
+    .map(row => Object.freeze({
+      candidateId: row.candidateId,
+      candidateName: row.candidateName,
+      origin: row.origin,
+      referenceScale: row.referenceScale,
+      actionShape: row.actionShape,
+      triggerBoundary: row.triggerBoundary,
+      operationBoundary: row.operationBoundary,
+      outputBoundary: row.outputBoundary,
+      confidence: row.confidence,
+      rationale: row.rationale,
+    }))
+);
+
+export const ARSENAL_GATE3_EXTREME_SCALE_AUDIT = Object.freeze(
+  reviewed
+    .filter(row => row.referenceScale === "MICRO" || row.referenceScale === "CROSS_SCALE")
+    .map(row => Object.freeze({
+      candidateId: row.candidateId,
+      candidateName: row.candidateName,
+      origin: row.origin,
+      referenceScale: row.referenceScale,
+      bundleStructure: row.bundleStructure,
+      actionShape: row.actionShape,
+      contextReach: row.contextReach,
+      rationale: row.rationale,
+    }))
+);
+
+export const ARSENAL_GATE3_LOW_CONFIDENCE_AUDIT = Object.freeze(
+  reviewed
+    .filter(row => row.confidence === "LOW")
+    .map(row => Object.freeze({
+      candidateId: row.candidateId,
+      candidateName: row.candidateName,
+      origin: row.origin,
+      referenceScale: row.referenceScale,
+      bundleStructure: row.bundleStructure,
+      actionShape: row.actionShape,
+      contextReach: row.contextReach,
+      rationale: row.rationale,
+    }))
+);
+
 export const ARSENAL_GATE3_OFFICIAL_UNRESOLVED_AUDIT = Object.freeze(
   reviewed
     .filter(row => row.origin === "OFFICIAL_SMMC_SOLUTION" && row.referenceScale === "UNRESOLVED")
