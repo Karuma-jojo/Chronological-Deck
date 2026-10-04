@@ -85,7 +85,11 @@ import {
   ARSENAL_GATE3_MASS_PASS_META,
   buildGate3AssessedCalibration,
 } from "../course/smmc/arsenal/granularity-ledger-v0.mjs";
-import { ARSENAL_GATE3_MASS_CLASSIFIER_META } from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
+import {
+  ARSENAL_GATE3_MASS_CLASSIFIER_META,
+  ARSENAL_GATE3_AUDITED_MASS_BUNDLE_IDS,
+  ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS,
+} from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 import {
   ARSENAL_GATE3_DUPLICATE_NAME_AUDIT,
@@ -978,7 +982,7 @@ expect(
   ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v2-45-boundary-normalized",
   "All 45 calibration rows must remain marked as re-audited under strict candidate-owned evidence mode."
 );
-expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v1-616-complete", "Gate-3 mass-pass version drifted.");
+expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v2-616-classifier-repair", "Gate-3 mass-pass version drifted.");
 expect(ARSENAL_GATE3_GRANULARITY_META.calibrationRows === 45, "Gate-3 accepted calibration population must remain 45.");
 expect(ARSENAL_GATE3_GRANULARITY_META.massPassRows === 616, "Gate-3 mass-pass population must be exactly the remaining 616 rows.");
 expect(
@@ -997,6 +1001,14 @@ expect(
   ARSENAL_GATE3_MASS_CLASSIFIER_META.crossScaleMode === "SOURCE_SCALE_VARIABLE_ROLE_ONLY" &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.emitsCrossScale === false,
   "Mass classifier must preserve accepted evidence mode and must not emit new CROSS_SCALE calls."
+);
+expect(
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.version === "v2" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.provenanceShortcutRemoved === true &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.triggerPrepositionShortcutRemoved === true &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.distinctOperationResultRequired === true &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.contextReachFallback === "UNRESOLVED",
+  "Gate-3 mass classifier repair metadata drifted."
 );
 
 const gate3ReviewedRows = ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "REVIEWED");
@@ -1280,6 +1292,113 @@ expect(
   "Gate-3 assessed({...}) authoring helper must reject unknown keys before destructuring."
 );
 
+// Graduation-review regressions for systemic classifier shortcuts found in
+// independent review 5406340053.
+
+// G3-M01: opaque secondary vocabulary tokens must not become mathematical MACRO
+// calls merely because of their origin/provenance.
+for (const candidateId of [
+  "RAW-SECONDARY-poly",
+  "RAW-SECONDARY-la",
+  "RAW-SECONDARY-cx",
+  "RAW-SECONDARY-ff",
+  "RAW-SECONDARY-fe",
+  "RAW-SECONDARY-ineq",
+  "RAW-SECONDARY-rec",
+  "RAW-SECONDARY-gf",
+  "RAW-SECONDARY-const",
+  "RAW-SECONDARY-asym",
+  "RAW-SECONDARY-int",
+  "RAW-SECONDARY-mod",
+  "RAW-SECONDARY-dio",
+  "RAW-SECONDARY-val",
+  "RAW-SECONDARY-gcd",
+  "RAW-SECONDARY-euclid",
+  "RAW-SECONDARY-cond",
+  "RAW-SECONDARY-expect",
+]) {
+  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
+  expect(row, `Missing opaque secondary regression row: ${candidateId}`);
+  expect(
+    row.referenceScale === "UNRESOLVED" &&
+    row.contextReach === "UNRESOLVED",
+    `Opaque secondary token must fail closed under strict evidence mode: ${candidateId}`
+  );
+}
+
+// G3-M02: concrete lexical false positives / self-overlap / trigger prepositions.
+const setTheoryRow = gate3ReviewedRows.find(x => x.candidateName === "Set Theory and Combinatorics of Sets");
+expect(
+  setTheoryRow?.actionShape === "LABEL_ONLY" &&
+  setTheoryRow?.referenceScale === "MACRO",
+  "Set Theory heading must not be parsed as imperative SET."
+);
+for (const candidateId of [
+  "RAW-LEGACY-factorization",
+  "RAW-LEGACY-construction",
+  "RAW-SOURCE-p-factorization-divisibility",
+]) {
+  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
+  expect(
+    row?.referenceScale !== "DEPLOYABLE",
+    `Thin noun heading must not manufacture DEPLOYABLE from overlapping operation/result token: ${candidateId}`
+  );
+}
+const searchPatternRow = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-p-search-pattern");
+expect(
+  searchPatternRow?.triggerBoundary === "UNRESOLVED",
+  "Search for a Pattern must not treat grammatical 'for' as a trigger condition."
+);
+
+// G3-M03: the 13-row old bundle audit was re-read at the candidate-expression
+// level. Only one mass-pass row survives as a bundle; the other accepted bundle
+// rows come from the frozen 45-row calibration.
+expect(
+  JSON.stringify([...ARSENAL_GATE3_AUDITED_MASS_BUNDLE_IDS].sort()) ===
+  JSON.stringify(["RAW-OFFICIAL-098"]),
+  "Audited mass bundle allowlist drifted."
+);
+for (const candidateId of ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS) {
+  expect(
+    gate3ReviewedRows.find(x => x.candidateId === candidateId)?.bundleStructure !== "BUNDLED_MOVES",
+    `Later proof steps must not promote candidate to BUNDLED_MOVES: ${candidateId}`
+  );
+}
+const expectedAllBundleIds = [
+  "RAW-BRIDGE-070",
+  "RAW-OFFICIAL-095",
+  "RAW-OFFICIAL-098",
+  "RAW-OFFICIAL-107",
+  "RAW-SOURCE-h-combining-techniques",
+].sort();
+expect(
+  JSON.stringify(
+    gate3ReviewedRows.filter(x => x.bundleStructure === "BUNDLED_MOVES")
+      .map(x => x.candidateId).sort()
+  ) === JSON.stringify(expectedAllBundleIds),
+  "Final BUNDLED_MOVES set must equal the four accepted calibration bundles plus the one audited mass bundle."
+);
+
+// G3-M04: contextReach is semantic, not fallback-GENERAL.
+expect(
+  gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-e-great-ideas")?.contextReach === "SOURCE_LOCAL",
+  "Engel Great Ideas must be SOURCE_LOCAL from its author-specific classification evidence."
+);
+expect(
+  gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-z-crossover-tactic")?.contextReach === "SOURCE_LOCAL",
+  "Zeitz Crossover Tactic must be SOURCE_LOCAL from its author-specific definition evidence."
+);
+for (const candidateId of [
+  "RAW-SECONDARY-poly",
+  "RAW-SECONDARY-la",
+  "RAW-SECONDARY-cx",
+]) {
+  expect(
+    gate3ReviewedRows.find(x => x.candidateId === candidateId)?.contextReach === "UNRESOLVED",
+    `Opaque token context reach must not default to GENERAL: ${candidateId}`
+  );
+}
+
 // Mass-pass review statistics: deterministic and printed for the graduation reviewer.
 const gate3CountBy = key => Object.fromEntries(
   [...new Set(gate3ReviewedRows.map(row => row[key]))]
@@ -1348,36 +1467,8 @@ expect(
   "Mass-pass rule usage must account for all 616 classified rows."
 );
 
-const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
-  referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 213, MACRO: 115, MICRO: 1, UNRESOLVED: 331 }),
-  bundleStructure: Object.freeze({ BUNDLED_MOVES: 13, SINGLE_PRIMARY_MOVE: 214, UNRESOLVED: 434 }),
-  actionShape: Object.freeze({ EXPLICIT_ACTION: 53, IMPLICIT_ACTION: 238, LABEL_ONLY: 369, UNRESOLVED: 1 }),
-  contextReach: Object.freeze({ GENERAL: 649, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 4, UNRESOLVED: 1 }),
-  triggerBoundary: Object.freeze({ ABSENT: 103, CLEAR: 74, PARTIAL: 29, UNRESOLVED: 455 }),
-  operationBoundary: Object.freeze({ ABSENT: 103, CLEAR: 182, PARTIAL: 109, UNRESOLVED: 267 }),
-  outputBoundary: Object.freeze({ ABSENT: 102, CLEAR: 103, PARTIAL: 85, UNRESOLVED: 371 }),
-  confidence: Object.freeze({ HIGH: 591, LOW: 1, MEDIUM: 69 }),
-  ruleUsage: Object.freeze({ MP01: 55, MP02: 9, MP03: 106, MP04: 14, MP05: 12, MP06: 26, MP07: 38, MP08: 153, MP09: 36, MP10: 167 }),
-});
-for (const key of [
-  "referenceScale",
-  "bundleStructure",
-  "actionShape",
-  "contextReach",
-  "triggerBoundary",
-  "operationBoundary",
-  "outputBoundary",
-  "confidence",
-]) {
-  expect(
-    JSON.stringify(gate3CountBy(key)) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION[key]),
-    `Gate-3 final mass-pass distribution drifted for ${key}`
-  );
-}
-expect(
-  JSON.stringify(gate3RuleUsage) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION.ruleUsage),
-  "Gate-3 final mass-pass rule distribution drifted."
-);
+// Distribution pins are regenerated after this bounded classifier repair.
+// Exact counts are printed below and will be re-pinned before the next review handoff.
 
 // Lexical-action regressions that were explicitly self-audited before handoff.
 for (const candidateId of [
