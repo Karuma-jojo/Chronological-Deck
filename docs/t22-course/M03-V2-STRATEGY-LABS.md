@@ -49,16 +49,13 @@ Audit the claim:
 If it is false, give a legal counterexample, repair the conclusion as economically as possible,
 and prove the repaired statement.
 
-### A4 — quantifier-order stress test
+### A4 — combine two divisibility hypotheses
 
-Let X = {1,2,3,4} and Y = {1,2,3,4}. The relation R(x,y) means x + y = 5.
+Let a,b,c be arbitrary integers. Prove that if 3 divides a−b and 3 divides b−c, then 3 divides
+a−c.
 
-Decide each statement and justify the order of choice:
-
-- ∀x ∈ X, ∃y ∈ Y such that R(x,y);
-- ∃y ∈ Y, ∀x ∈ X such that R(x,y).
-
-Do not begin by swapping symbols; explain who is chosen first and what may depend on what.
+Your final proof must introduce legal integer witnesses for both hypotheses and construct a witness
+for the conclusion.
 
 ### A5 — recursive claim without a method label
 
