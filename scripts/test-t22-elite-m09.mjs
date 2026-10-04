@@ -12,7 +12,11 @@ assert.deepEqual(a.boundary.prerequisiteModules,deps.modules.find(m=>m.id==='SID
 assert.equal(meta.moduleSources.filter(x=>x.order<=9).length,9);assert(meta.moduleSources.some(x=>x.order===9&&x.source==='course/t22/authoring/m09.json'));assert(meta.moduleSources.length>=13,'later-authorized publication must preserve M09 and all subsequently published modules');
 assert(!fs.existsSync('course/t22/authoring/m10.json'),'M10 is outside this assignment');
 const baseline=read('docs/t22-course/audit/m09-preserved-baseline.json');
-for(const [file,hash] of Object.entries(baseline.files))assert.equal(sha(fs.readFileSync(file,'utf8')),hash,file+' accepted-baseline drift');
+const m05v2Authorized=new Set(['course/t22/authoring/m05.json']);
+const m05v2=read('course/t22/authoring/m05.json');
+assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'Only the explicitly authorized M05 v2 candidate may differ from the M09-era protected baseline');
+assert(fs.existsSync('docs/t22-course/M05-DEEP-SOURCE-AUDIT-v1.0.md'));
+for(const [file,hash] of Object.entries(baseline.files))if(!m05v2Authorized.has(file))assert.equal(sha(fs.readFileSync(file,'utf8')),hash,file+' accepted-baseline drift');
 function check(pack){
  const seen=new Set();
  for(const s of pack.sessions){

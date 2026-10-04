@@ -51,7 +51,9 @@ assert(meta.moduleSources.some(x=>x.order===11&&x.id==='ARC510'));
 assert(meta.moduleSources.some(x=>x.order===12&&x.id==='SIDE267'));
 
 // Protected M01-M11/runtime baseline.
-const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/authoring/m11-arc510.json','course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/core.js','js/t22-course/overrides.js','css/t22-course.css','js/t22-course/ui.js','t22-course.html']);
+const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/authoring/m11-arc510.json','course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/core.js','js/t22-course/overrides.js','css/t22-course.css','js/t22-course/ui.js','t22-course.html','course/t22/authoring/m05.json']);
+const m05v2=read('course/t22/authoring/m05.json');
+assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M12 baseline exception is bounded to the explicit M05 v2 candidate');
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication surfaces');
 
 // Gate-3 artifacts and pilot.

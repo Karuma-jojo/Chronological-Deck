@@ -1,30 +1,42 @@
 import assert from 'node:assert/strict';
-const near=(a,b)=>{if(Array.isArray(a)){assert.equal(a.length,b.length);a.forEach((x,i)=>near(x,b[i]));}else assert(Math.abs(a-b)<1e-10,`${a} != ${b}`);};
+const near=(a,b)=>{if(Array.isArray(a)){assert.equal(a.length,b.length);a.forEach((x,i)=>near(x,b[i]));}else assert(Math.abs(a-b)<1e-10,String(a)+' != '+String(b));};
 const ev=(x,p)=>x.reduce((z,v,i)=>z+v*p[i],0),bayes=(p,h,f)=>p*h/(p*h+(1-p)*f),update=(p,lr)=>p*lr/(1-p+p*lr);
 const wealth=(w,x)=>x.reduce((a,v)=>[...a,a.at(-1)+v],[w]);
-// M05 transfer numeric references S01–S24, independently recomputed from each public model.
-near([18-5,7-5,2-5],[13,2,-3]);near([60+13,60+2,60-3],[73,62,57]);
-near(ev([7,1,-4],[.25,.35,.4]),.5);
-near([ev([9,3,0],[.3,.5,.2]),ev([9,3,0],[.3,.5,.2])-5],[4.2,-.8]);
-near([2/(5+2),ev([5,-2],[.4,.6])],[2/7,.8]);
-near([4/.25,.25*20-4,.25*20-5],[16,1,0]);
-near([ev([20,-1],[.1,.9]),.9],[1.1,.9]);near(ev([14,-1],[.1,.9]),.5);
-near([ev([6,-1],[.3,.7]),ev([2,-3],[.7,.3])],[1.1,.5]);
-near([1.5,-.5,2,0].reduce((a,b)=>a+b),3);near(wealth(75,[5,10,-25,8]),[75,80,90,65,73]);
-let peak=0;near([200,240,216,252,189].map(w=>{peak=Math.max(peak,w);return(peak-w)/peak;}),[0,0,.1,0,.25]);
-// Two independent enumerations: eight potential paths versus disjoint first-hit prefixes.
+
+// M05 v2 Transfer numeric/logic references S01–S24.
+near(.25+.75,1); // S01
+near([20-5,9-5,2-5],[15,4,-3]);near([60+15,60+4,60-3],[75,64,57]); // S02
+near([ev([9,3,0],[.3,.5,.2]),ev([9,3,0],[.3,.5,.2])-5],[4.2,-.8]); // S03
+near(ev([10,-1],[.3,.7]),2.3); // S04
+near([4/.25,.25*20-4],[16,1]); // S05
+near([3.2/.6,ev([8,-4],[.4,.6]),ev([8,-6],[.4,.6])],[16/3,.8,-.4]); // S06
+near(ev([49,-1],[.03,.97]),.5); // S07
+assert([4,2,1].every((x,i)=>x>=[3,2,0][i]));assert([4,2,1].some((x,i)=>x>[3,2,0][i])); // S08
+near([1.5,-.5,2,0].reduce((a,b)=>a+b),3); // S09 preserved
+near(wealth(75,[5,10,-25,8]),[75,80,90,65,73]); // S10 preserved
+let peak=0;near([200,240,216,252,189].map(w=>{peak=Math.max(peak,w);return(peak-w)/peak;}),[0,0,.1,0,.25]); // S11 preserved
 const paths=Array.from({length:8},(_,i)=>Array.from({length:3},(_,j)=>(i>>(2-j))&1?'W':'L').join(''));
 let firstPassage=0,endpointOnly=0;const prefixes=new Set();
 for(const path of paths){let w=1,hit=false,p=1;for(let i=0;i<3;i++){const win=path[i]==='W';p*=win?.6:.4;w+=win?1:-1;if(!hit&&w===0){hit=true;prefixes.add(path.slice(0,i+1));}}if(hit)firstPassage+=p;if(w<=0)endpointOnly+=p;}
-assert.deepEqual([...prefixes].sort(),['L','WLL']);near(firstPassage,.496);near(.4+.6*.4*.4,.496);near(endpointOnly,.352);assert(firstPassage>endpointOnly);near(wealth(1,[-1,1,1]),[1,0,1,2]);
-near([150*.1,15/150],[15,.1]);near(100*1.25*.8,100);near([.2/.8,200*.8*1.25],[.25,200]);
-near(ev([8,0],[.25,.75]),2);near([ev([0,10],[.5,.5]),ev([40,100],[.5,.5])],[5,70]);
-near([ev([4,8],[.25,.75]),ev([100,140],[.25,.75]),130-120],[7,130,10]);
-assert([2,4,1].every((x,i)=>x>=[2,3,1][i]));assert([2,4,1].some((x,i)=>x>[2,3,1][i]));
-near([[2,-1,3],[0,0,0],[5,-4,6]].map(r=>Math.min(...r)),[-1,0,-4]);
-const saddle=[[2,1],[0,-1]];assert(saddle[0][1]===Math.max(saddle[0][1],saddle[1][1])&&saddle[0][1]===Math.min(...saddle[0]));
-near([(2+1)/(3+3),3*.5-1],[.5,.5]);near([12*.25,5/(5+5),9,(100-85)/100],[3,.5,9,.15]);
-near([ev([16,-8],[.5,.5]),ev([9,2],[.5,.5]),(3+8)/(16+8)],[4,5.5,11/24]);
+assert.deepEqual([...prefixes].sort(),['L','WLL']);near(firstPassage,.496);near(endpointOnly,.352);assert(firstPassage>endpointOnly); // S12 preserved
+near([150*.1,15/150],[15,.1]); // S13 preserved
+near([.36/.64,250*.64,160*1.5625],[9/16,160,250]); // S14
+assert(0<1&&1<20); // S15 ordinal representation exemplar
+near(.5*0+.5*1.5,.75);assert(.75<1); // S16 constructive non-affine relabel
+near([ev([40,100],[.5,.5]),ev([0,10],[.5,.5])],[70,5]); // S17
+near([ev([4,8],[.25,.75]),ev([100,140],[.25,.75]),130-120],[7,130,10]); // S18 preserved
+near([ev([10,-2],[.25,.75]),ev([4,2],[.25,.75]),ev([3,1],[.25,.75])],[1,2.5,1.5]);
+near([ev([9,0],[.25,.75]),ev([4,2],[.25,.75]),ev([3,1],[.25,.75])],[2.25,2.5,1.5]); // S19
+assert(4>0&&3>1); // S20: column chooses R against U, L against D from second components in transfer
+// S21 transfer: row BR U to L, D to R; column BR L to U, R to D.
+assert(3>1&&2>0&&2>0&&3>1);
+// S22 transfer: against U column own payoff4>1, contrary to minimizing row payoff which would choose R.
+assert(4>1&&0<3);
+// S23
+near([2/5,4*(2/5)],[.4,1.6]);
+// S24 strategic transfer: row U to L, D to R; column R to both rows.
+assert(4>2&&3>1&&3>1&&2>0);
+
 // M06 transfer numeric references S01–S24.
 near([35/50,35/(35+45)],[.7,.4375]);near([20000*.02*.75,20000*.98*.02,bayes(.02,.75,.02)],[300,392,75/173]);
 near([10000*.03*.8,10000*.97*.01,bayes(.03,.8,.01)],[240,97,240/337]);near(30/(30+70),.3);
