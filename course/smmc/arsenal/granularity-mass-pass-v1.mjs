@@ -35,6 +35,10 @@ const TRIGGER_CLAIM_RE = /\b(?:if|when|whenever|given|suppose|assume|case|out-of
 
 const RESULT_WORD_RE = /\b(?:bound|contradiction|reduction|reformulation|representation|normal form|ordering|identity|equality|estimate|approximation|construction|decomposition|factorization|encoding|count|valuation|divisibility|injectivity|surjectivity|obstruction|classification|solution)\b/i;
 
+const EXPLICIT_TARGET_RE = /\b(?:goal|matrix|brackets?|denominators?|polynomial|equation|inequality|graph|sequence|function|expression|sum|product|recurrence|determinant|vector|configuration|set|partition|system)\b/i;
+
+const RESULTATIVE_EXPLICIT_RE = /^(?:construct|diagonalize|encode|factor|normalize|reduce|reexpress|recast|split|partition|translate|rotate|reflect|invert|symmetrize|complete|clear|eliminate|replace)\b/i;
+
 const STRONG_BUNDLE_CLAIM_RE = /\b(?:and then|followed by|combines|combining|nests|nesting|first .{0,80} then|after .{0,80} then)\b/i;
 
 const ACTION_TOKEN_RE = /\b(?:replacement|expansion|clearing|normalization|differentiation|halving|construction|reduction|counting|comparison|substitution|factorization|decomposition|encoding|projection|bounding|conditioning|reflection|rotation|translation|inversion|shearing|partitioning|pairing|diagonalization)\b/gi;
@@ -122,8 +126,19 @@ const commonContextReach = (candidate, evidenceRecords) => {
 const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationStrength }) => {
   const name = candidate.candidateName;
   const claim = evidenceRecords.map(e => e.claim ?? "").join(" ");
-  const hasTrigger = evidenceTrigger(evidenceRecords) || /\b(?:when|if|for|under|given|from|with|of|on|at|in)\b/i.test(name);
-  const hasOutput = evidenceOutput(evidenceRecords) || RESULT_WORD_RE.test(name);
+  const lexicalTargetTrigger =
+    actionShape === "EXPLICIT_ACTION" && EXPLICIT_TARGET_RE.test(name);
+  const lexicalResult =
+    actionShape === "EXPLICIT_ACTION" && RESULTATIVE_EXPLICIT_RE.test(name);
+
+  const hasTrigger =
+    evidenceTrigger(evidenceRecords) ||
+    /\b(?:when|if|for|under|given|from|with|of|on|at|in)\b/i.test(name) ||
+    lexicalTargetTrigger;
+  const hasOutput =
+    evidenceOutput(evidenceRecords) ||
+    RESULT_WORD_RE.test(name) ||
+    lexicalResult;
 
   const operationBoundary =
     operationStrength === "CLEAR" ? "CLEAR" :
@@ -132,12 +147,22 @@ const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationS
     "UNRESOLVED";
 
   const triggerBoundary =
-    hasTrigger && richOfficial(evidenceRecords) ? "CLEAR" :
+    hasTrigger && (
+      richOfficial(evidenceRecords) ||
+      richDiscovery(evidenceRecords) ||
+      operationalProofStructure(evidenceRecords) ||
+      lexicalTargetTrigger
+    ) ? "CLEAR" :
     hasTrigger ? "PARTIAL" :
     "UNRESOLVED";
 
   const outputBoundary =
-    hasOutput && richOfficial(evidenceRecords) ? "CLEAR" :
+    hasOutput && (
+      richOfficial(evidenceRecords) ||
+      richDiscovery(evidenceRecords) ||
+      operationalProofStructure(evidenceRecords) ||
+      lexicalResult
+    ) ? "CLEAR" :
     hasOutput ? "PARTIAL" :
     actionShape === "EXPLICIT_ACTION" ? "PARTIAL" :
     "UNRESOLVED";
