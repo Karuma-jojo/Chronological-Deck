@@ -1,7 +1,7 @@
 # M03 v2 — Strategy Lab supplement
 
 Date: 2026-10-04  
-Candidate: `m03-authoring-v2.0-six-tools-candidate-r2`  
+Candidate: `m03-authoring-v2.0-six-tools-candidate-r3`  
 Status: **unscored diagnostic/practice only; never canonical ownership evidence**
 
 These labs extend the published v1.7.2 Spire strategy labs for the six-tool M03 candidate. They are
