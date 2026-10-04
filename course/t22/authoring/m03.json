@@ -6758,7 +6758,7 @@
       },
       "T22V3::T22E-DISC01::S26@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "M03 v2 final micro-cleanup receipt on instructionVersion m03-s26-instruction-v2-combination-range-r1: the lesson now states n≥0, 0≤r≤n for combinations, defines endpoint values through 0!=1, and makes the binomial endpoint convention explicit. The fixed v5 Main and v3 Transfer obligations are unchanged."
+        "note": "M03 v2 final micro-cleanup receipt on instructionVersion m03-s26-instruction-v2-combination-range-r1: the lesson now states n≥0, 0≤r≤n for combinations, defines endpoint values through 0!=1, and makes the binomial endpoint convention explicit. The fixed v5 Main and v3 Transfer obligations are unchanged. Main v5 explicitly requests combination notation, the general finite binomial theorem, the C(n,k) coefficient interpretation and the fresh (u+v)^5 expansion; Transfer retains symmetry/subset ownership."
       },
       "T22V3::T22E-DISC01::S27@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
