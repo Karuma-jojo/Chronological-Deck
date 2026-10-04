@@ -55,7 +55,7 @@ const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','cou
 const m05v2=read('course/t22/authoring/m05.json');
 const m03v2=read('course/t22/authoring/m03.json');
 assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M12 baseline exception is bounded to the explicit M05 v2 candidate');
-assert.equal(m03v2.version,'m03-authoring-v2.0-six-tools-candidate-r2','M12 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03v2.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
+assert.equal(m03v2.version,'m03-authoring-v2.0-six-tools-candidate-r3','M12 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03v2.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication surfaces');
 
 // Gate-3 artifacts and pilot.
