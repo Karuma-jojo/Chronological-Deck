@@ -2,7 +2,7 @@
 
 Date: 2026-10-04  
 Module: `T22E-DISC01 — Mathematical Reasoning & Discrete Foundations`  
-Candidate: `m03-authoring-v2.0-six-tools-candidate-r1`  
+Candidate: `m03-authoring-v2.0-six-tools-candidate-r2`  
 Status: **builder-authored supplement; exact-head full validation and independent adversarial review pending**
 
 This document supplements, rather than rewrites, the published v1.7.2 source dossier. The
@@ -136,6 +136,25 @@ Builder-side deterministic checks cover the new fixed-task reference mathematics
 
 These checks test reference correctness. They do not establish pedagogical effectiveness,
 difficulty calibration or independent review.
+
+## 5A. Selective strengthening of the retained core
+
+The post-build comparison against the proposal's explicit strengthening table found three bounded
+actions rather than a general S01–S30 rewrite. The controlling repair record is
+`docs/t22-course/M03-V2-CORE-STRENGTHENING-AUDIT.md`.
+
+- **S07:** Transfer is materially versioned so a learner must not only refute and repair the
+  zero-product claim, but prove the repaired universal theorem. Visible instruction teaches the
+  refute→repair→prove cycle on a different divisibility surface.
+- **S09:** fixed assessments remain unchanged; visible instruction now distinguishes
+  givens/goal scratch search from the justified forward final proof.
+- **S30:** both fixed assessments are materially versioned into unlabeled mixed synthesis.
+  Main now requires the learner to invent a membership/counting representation for a finite
+  family guarantee; Transfer requires an exact onto-function count plus a separate fibre-capacity
+  existence proof without printing a named-method checklist.
+
+Historical attempts are preserved. The changed S07-T/S30-M/S30-T obligations intentionally get
+new obligation versions so prior evidence cannot certify the stronger public contracts.
 
 ## 6. Pedagogical rhythm
 
