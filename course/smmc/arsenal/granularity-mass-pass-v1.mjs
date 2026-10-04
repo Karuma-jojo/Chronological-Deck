@@ -27,9 +27,9 @@ const METHOD_LIKE_RE = /\b(?:proof|theorem|principle|lemma|method|tactic|strateg
 
 const STATIC_SCOPE_RE = /\b(?:domain|topic|area|vocabulary|language|theory|geometry|algebra|analysis|calculus|probability|groups?|rings?|fields?|sequences?|series|functions?|graphs?|scope|cross-domain)\b/i;
 
-const OPERATIONAL_CLAIM_RE = /\b(?:applies|applying|assumes|bounds|chooses|colors|compares|constructs|counts|deduces|defines|differentiates|draws|encodes|expands|factors|forces|identifies|integrates|invokes|maps|normalizes|pairs|partitions|projects|reduces|replaces|rewrites|rotates|sets|shows|splits|substitutes|swaps|tracks|translates|uses|proves)\b/i;
+const OPERATIONAL_CLAIM_RE = /\b(?:applies|applying|assumes|assigns|begins|bounds|cancels|chooses|colors|combines|compares|computes|concludes|constructs|converts|counts|decomposes|deduces|defines|derives|differentiates|draws|encodes|evaluates|expands|exploits|extracts|factors|forces|forms|identifies|inducts|integrates|interprets|invokes|maintains|maps|moves|normalizes|observes|obtains|pairs|parametri[sz]es|partitions|places|presents|projects|recovers|reduces|records|replaces|rewrites|rotates|sets|shifts|shows|solves|splits|substitutes|sums|swaps|tracks|translates|uses|used|proves)\b/i;
 
-const OUTPUT_CLAIM_RE = /\b(?:contradiction|deduce|deduces|determines|forces|forcing|gives|implies|lower bound|upper bound|obtains|produces|reduces|reduction|shows|therefore|vanish|vanishes|yields|ordering|representation|injective|surjective|equal|equality|divisibility|valuation|bound)\b/i;
+const OUTPUT_CLAIM_RE = /\b(?:cancels|classification|clique|coefficients?|contradiction|deduce|deduces|determines|differential equation|divisibility|equal|equality|fixed point|forces|forcing|gives|history|implies|injective|lower bound|nonnegativity|obtains|ordering|produces|recurrence|reduces|reduction|representation|root|shows|subsequence|surjective|therefore|upper bound|valuation|vanish|vanishes|yields|bound)\b/i;
 
 const TRIGGER_CLAIM_RE = /\b(?:if|when|whenever|given|suppose|assume|case|out-of-order|smallest|largest|interior|minimum|maximum|odd|even|goal|condition|dense set|finite|nonzero|positive|negative)\b/i;
 
@@ -39,7 +39,7 @@ const EXPLICIT_TARGET_RE = /\b(?:goal|matrix|brackets?|denominators?|polynomial|
 
 const RESULTATIVE_EXPLICIT_RE = /^(?:construct|diagonalize|encode|factor|normalize|reduce|reexpress|recast|split|partition|translate|rotate|reflect|invert|symmetrize|complete|clear|eliminate|replace)\b/i;
 
-const STRONG_BUNDLE_CLAIM_RE = /\b(?:and then|followed by|combines|combining|nests|nesting|first .{0,80} then|after .{0,80} then)\b/i;
+const STRONG_BUNDLE_CLAIM_RE = /\b(?:and then|after which|followed by|combines|combining|nests|nesting|first .{0,80} then|after .{0,80} then)\b/i;
 
 const ACTION_TOKEN_RE = /\b(?:replacement|expansion|clearing|normalization|differentiation|halving|construction|reduction|counting|comparison|substitution|factorization|decomposition|encoding|projection|bounding|conditioning|reflection|rotation|translation|inversion|shearing|partitioning|pairing|diagonalization)\b/gi;
 
