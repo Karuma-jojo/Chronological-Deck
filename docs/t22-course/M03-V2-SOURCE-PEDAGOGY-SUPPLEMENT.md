@@ -2,7 +2,7 @@
 
 Date: 2026-10-04  
 Module: `T22E-DISC01 — Mathematical Reasoning & Discrete Foundations`  
-Candidate: `m03-authoring-v2.0-six-tools-candidate-r2`  
+Candidate: `m03-authoring-v2.0-six-tools-candidate-r3`  
 Status: **builder-authored supplement; exact-head full validation and independent adversarial review pending**
 
 This document supplements, rather than rewrites, the published v1.7.2 source dossier. The
