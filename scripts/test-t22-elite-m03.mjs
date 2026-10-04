@@ -55,7 +55,7 @@ assert(a.problems[by(19).main].prompt.includes('|A×B|=|A||B|'));
 assert.equal(a.problems[by(26).main].obligationVersion,5);
 assert.equal(a.problems[by(30).transfer].obligationVersion,3);
 
-assert.equal(a.module.status,'published-v1.7.2-builder-validated-same-model-review-passed');
+assert.equal(a.module.status,'v2-six-tools-builder-candidate-awaiting-independent-review');
 assert.equal(by(24).instructionVersion,'m03-s24-instruction-v17-separation-r1');
 assert(by(24).entryPrerequisites.includes('M03-S21'));
 assert(!/injective|codomain|function/i.test(by(24).lesson),'S24 instruction must not rehearse function Transfer');
