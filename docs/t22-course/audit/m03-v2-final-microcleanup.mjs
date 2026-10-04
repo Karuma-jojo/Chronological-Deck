@@ -2,10 +2,10 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 
 const a=JSON.parse(fs.readFileSync('course/t22/authoring/m03.json','utf8'));
-const pack=fs.readFileSync('docs/t22-course/artifacts/T22-Elite-M03-Master-Pack-v2.0-r3.md','utf8');
+const pack=fs.readFileSync('docs/t22-course/artifacts/T22-Elite-M03-Master-Pack-v2.0-r4.md','utf8');
 const by=n=>a.sessions.find(s=>s.id===`T22V3::T22E-DISC01::S${String(n).padStart(2,'0')}@1`);
 
-assert.equal(a.version,'m03-authoring-v2.0-six-tools-candidate-r3');
+assert.equal(a.version,'m03-authoring-v2.0-six-tools-candidate-r4');
 assert.equal(a.sessions.length,36);
 assert.equal(Object.keys(a.problems).length,72);
 assert.equal(Object.values(a.claimEvidence).flat().length,180);
@@ -59,7 +59,7 @@ for(const n of [4,14,16,24,25,26]){
 
 // MC-06 — historical stale status is not copied into the replacement pack.
 assert(!pack.includes('v1.7 evidence/provenance repair is **not frozen yet**'));
-assert(pack.includes('Historical v1.7.2 publication evidence remains historical provenance'));
-assert(pack.includes('Independent adversarial review remains the final publication gate.'));
+assert(pack.includes('r3 exact SHA reviewed'));
+assert(pack.includes('This pack does not self-declare acceptance.'));
 
-console.log('PASS: M03 v2 r3 final micro-cleanup — task-specific grading, JIT definitions, factorial/range boundaries and replacement pack status are pinned.');
+console.log('PASS: M03 v2 r4 final micro-cleanup — task-specific grading, JIT definitions, factorial/range boundaries and review-repair pack status are pinned.');
