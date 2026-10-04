@@ -92,6 +92,9 @@ import {
   ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES,
   ARSENAL_GATE3_MASS_PASS_DISTRIBUTION,
   ARSENAL_GATE3_MASS_RULE_USAGE,
+  ARSENAL_GATE3_BUNDLED_AUDIT,
+  ARSENAL_GATE3_EXTREME_SCALE_AUDIT,
+  ARSENAL_GATE3_LOW_CONFIDENCE_AUDIT,
   ARSENAL_GATE3_OFFICIAL_UNRESOLVED_AUDIT,
   ARSENAL_GATE3_REVIEW_SENTINELS,
   ARSENAL_GATE3_FALLBACK_AUDIT,
@@ -1344,6 +1347,9 @@ expect(
   Object.values(gate3RuleUsage).reduce((sum, count) => sum + count, 0) === 616,
   "Mass-pass rule usage must account for all 616 classified rows."
 );
+console.log("Gate 3 bundled audit:", JSON.stringify(ARSENAL_GATE3_BUNDLED_AUDIT));
+console.log("Gate 3 extreme-scale audit:", JSON.stringify(ARSENAL_GATE3_EXTREME_SCALE_AUDIT));
+console.log("Gate 3 low-confidence audit:", JSON.stringify(ARSENAL_GATE3_LOW_CONFIDENCE_AUDIT));
 console.log("Gate 3 official unresolved audit:", JSON.stringify(ARSENAL_GATE3_OFFICIAL_UNRESOLVED_AUDIT));
 console.log("Gate 3 review sentinels:", JSON.stringify(ARSENAL_GATE3_REVIEW_SENTINELS));
 console.log("Gate 3 fallback audit:", JSON.stringify(ARSENAL_GATE3_FALLBACK_AUDIT));
