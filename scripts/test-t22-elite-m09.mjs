@@ -17,7 +17,7 @@ const m05v2=read('course/t22/authoring/m05.json');
 const m03v2=read('course/t22/authoring/m03.json');
 assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'Only the explicitly authorized M05 v2 candidate may differ from the M09-era protected baseline');
 assert(fs.existsSync('docs/t22-course/M05-DEEP-SOURCE-AUDIT-v1.0.md'));
-assert.equal(m03v2.version,'m03-authoring-v2.0-six-tools-candidate-r2','Only the explicit M03 six-tools candidate may bypass the historical M09-era M03 hash');
+assert.equal(m03v2.version,'m03-authoring-v2.0-six-tools-candidate-r3','Only the explicit M03 six-tools candidate may bypass the historical M09-era M03 hash');
 assert.equal(m03v2.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
 for(const [file,hash] of Object.entries(baseline.files))if(!m05v2Authorized.has(file))assert.equal(sha(fs.readFileSync(file,'utf8')),hash,file+' accepted-baseline drift');
 function check(pack){
