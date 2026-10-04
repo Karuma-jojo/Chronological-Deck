@@ -24,11 +24,13 @@ For every probe:
 
 Do **not** announce the intended proof method before the learner commits to a plan.
 
-### A1 — divisibility without a named route
+### A1 — direct inequality without a named route
 
-Prove that for every integer n, the integer n³ + 2n is divisible by 3.
+Let x and y be real numbers with x < y. Prove
 
-A complete argument must cover every integer n. Do not treat a table of examples as a proof.
+**x < (x+y)/2 < y.**
+
+A complete argument must start from the stated hypothesis and justify both strict inequalities.
 
 ### A2 — existence plus uniqueness without a linear equation
 
