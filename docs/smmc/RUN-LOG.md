@@ -1578,3 +1578,143 @@ Gate 3 is **not accepted yet**. This is the full mass-pass review candidate.
 
 A fresh exact-head independent graduation attack is required before Tribunal may open.
 
+## Arsenal Gate 3 mass-classifier repair after review 5406340053 (2026-10-04)
+
+Independent graduation review **5406340053** on exact SHA `3881c09390a6923e969043f582c9cb5054e90ab2` confirmed the 661/0 population, Gate-2 freeze, accepted calibration, official unresolved sentinels, and later-gate wall, but rejected four systematic shortcuts in the 616-row application.
+
+The accepted 45-row calibration was **not changed**.
+
+### G3-M01 — removed provenance-driven secondary-tag semantics
+
+Deleted the classifier rule that treated every `SMMC_SECONDARY_TAG` origin as mathematically broad.
+
+Opaque tokens such as `POLY`, `LA`, `CX`, `FF`, `FE`, `INEQ`, `REC`, `GF`, `CONST`, `ASYM`, `INT`, `MOD`, `DIO`, `VAL`, `GCD`, `EUCLID`, `COND`, and `EXPECT` now fail closed to:
+- referenceScale UNRESOLVED;
+- contextReach UNRESOLVED.
+
+Readable broad expressions can still be MACRO when their wording itself supports that call.
+
+Validator regressions pin these opaque-token cases.
+
+### G3-M02 — repaired lexical parser
+
+Three parser shortcuts were removed:
+
+1. bare `set` is no longer an explicit-action verb, so `Set Theory and Combinatorics of Sets` cannot become a fake imperative;
+2. MP07 now requires a semantically distinct result signal—operation nouns such as reduction/reformulation/representation/construction/decomposition/factorization/encoding cannot satisfy both the operation and result tests by themselves;
+3. generic prepositions `for / of / in / with / on / at` no longer count as triggers. Trigger syntax now requires actual condition language or candidate-owned evidence.
+
+Negative regressions protect:
+- Set Theory heading → LABEL_ONLY / MACRO;
+- legacy FACTORIZATION / CONSTRUCTION and Putnam Factorization and Divisibility → not DEPLOYABLE from token overlap;
+- Search for a Pattern → trigger UNRESOLVED.
+
+### G3-M03 — all 13 previous bundle rows re-audited
+
+Proof sequencing is no longer bundle evidence.
+
+The final BUNDLED_MOVES set is exactly **5**:
+
+1. RAW-BRIDGE-070 — Clearing denominators and primitive-integer normalization
+2. RAW-OFFICIAL-095 — Dilation–Derivative Boundedness Bootstrap
+3. RAW-OFFICIAL-098 — One-Variable Root Factorization plus Antisymmetry
+4. RAW-OFFICIAL-107 — Determinant Reduction by Row Replacement and Cofactor Expansion
+5. RAW-SOURCE-h-combining-techniques — Combining Techniques
+
+Only RAW-OFFICIAL-098 is a mass-pass bundle; the other four were already accepted calibration rows.
+
+Eight former mass-pass bundles are explicitly regression-protected as **not** BUNDLED_MOVES:
+RAW-OFFICIAL-074, 075, 077, 080, 084, 099, 102, 108.
+
+### G3-M04 — contextReach now fails closed
+
+GENERAL is no longer the fallback.
+
+The classifier returns GENERAL only when the current expression positively supplies source-independent mathematical semantics via recognizable mathematical vocabulary, a mathematical action/method form, or an accepted broad-topic expression.
+
+Opaque or semantically indeterminate expressions fall to UNRESOLVED.
+
+Source-authored semantics are detected from candidate-owned evidence:
+- Engel Great Ideas → SOURCE_LOCAL;
+- Zeitz Crossover Tactic → SOURCE_LOCAL.
+
+The accepted Zeitz Strategy / Tactic / Tool / Crux calibration rows remain SOURCE_LOCAL.
+
+### Re-generated distribution
+
+All **661** rows remain REVIEWED; zero are UNREVIEWED.
+
+Reference scale:
+- MICRO 1
+- DEPLOYABLE 191
+- MACRO 86
+- CROSS_SCALE 1
+- UNRESOLVED 382
+
+Bundle:
+- BUNDLED_MOVES 5
+- SINGLE_PRIMARY_MOVE 192
+- UNRESOLVED 464
+
+Action shape:
+- EXPLICIT_ACTION 52
+- IMPLICIT_ACTION 237
+- LABEL_ONLY 371
+- UNRESOLVED 1
+
+Context reach:
+- GENERAL 440
+- SOURCE_LOCAL 6
+- PROBLEM_LOCAL 7
+- UNRESOLVED 208
+
+Trigger:
+- CLEAR 47
+- PARTIAL 11
+- ABSENT 82
+- UNRESOLVED 521
+
+Operation:
+- CLEAR 181
+- PARTIAL 108
+- ABSENT 82
+- UNRESOLVED 290
+
+Output:
+- CLEAR 93
+- PARTIAL 55
+- ABSENT 81
+- UNRESOLVED 432
+
+Confidence:
+- HIGH 621
+- MEDIUM 39
+- LOW 1
+
+Mass rule usage:
+- MP01 39
+- MP02 1
+- MP03 114
+- MP04 14
+- MP05 12
+- MP06 25
+- MP07 9
+- MP08 180
+- MP09 31
+- MP10 191
+
+Official rows:
+- DEPLOYABLE 121
+- MACRO 3
+- UNRESOLVED 3
+
+Duplicate-name audit:
+- 25 exact normalized-name groups;
+- 14 differing signatures after provenance defaults were removed.
+
+The validator now pins the repaired distributions and the four independent-review regression families.
+
+Gate 3 remains a **repaired mass-pass review candidate**, not accepted.
+
+`Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 REPAIRED MASS-PASS REVIEW CANDIDATE → Tribunal 🔒`
+
