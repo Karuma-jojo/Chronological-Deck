@@ -27,7 +27,7 @@ const METHOD_LIKE_RE = /\b(?:proof|theorem|principle|lemma|method|tactic|strateg
 
 const STATIC_SCOPE_RE = /\b(?:domain|topic|area|vocabulary|language|theory|geometry|algebra|analysis|calculus|probability|groups?|rings?|fields?|sequences?|series|functions?|graphs?|scope|cross-domain)\b/i;
 
-const OFFICIAL_OPERATIONAL_CLAIM_RE = /\b(?:applies|applying|assumes|assigns|begins|bounds|cancels|chooses|colors|combines|compares|computes|concludes|constructs|converts|counts|decomposes|deduces|defines|derives|differentiates|draws|encodes|evaluates|expands|exploits|extracts|factors|forces|forms|identifies|inducts|integrates|interprets|invokes|maintains|maps|moves|normalizes|observes|obtains|pairs|parametri[sz]es|partitions|places|projects|recovers|reduces|replaces|rewrites|rotates|sets|shifts|shows|solves|splits|substitutes|sums|swaps|tracks|translates|uses|proves|used\s+to)\b/i;
+const OFFICIAL_OPERATIONAL_CLAIM_RE = /\b(?:applies|applying|assumes|assigns|begins|bounds|cancels|chooses|colors|combines|compares|computes|concludes|constructs|converts|counts|decomposes|deduces|defines|derives|differentiates|draws|encodes|evaluates|expands|exploits|extracts|factors|forces|forms|identifies|inducts|integrates|interprets|invokes|maintains|maps|moves|normalizes|observes|obtains|pairs|parametri[sz]es|partitions|places|projects|recovers|reduces|replaces|rewrites|rotates|sets|shifts|shows|solves|splits|substitutes|sums|swaps|tracks|translates|uses|proves|used\s+to|diagonali[sz]es)\b/i;
 
 // Non-Battle source/index prose is deliberately parsed more narrowly. Verbs such
 // as "presents", "records", "gives a section", or passive "used in the text" are
@@ -36,7 +36,7 @@ const SOURCE_OPERATIONAL_CLAIM_RE = /\b(?:instructs|recommends|describes .{0,80}
 
 const OUTPUT_CLAIM_RE = /\b(?:cancels|classification|clique|coefficients?|contradiction|deduce|deduces|determines|differential equation|divisibility|equal|equality|fixed point|forces|forcing|gives|history|implies|injective|lower bound|nonnegativity|obtains|ordering|produces|recurrence|reduces|reduction|representation|root|shows|subsequence|surjective|therefore|upper bound|valuation|vanish|vanishes|yields|bound)\b/i;
 
-const TRIGGER_CLAIM_RE = /\b(?:if|when|whenever|given|suppose|assume|case|out-of-order|smallest|largest|interior|minimum|maximum|odd|even|goal|condition|dense set|finite|nonzero|positive|negative)\b/i;
+const TRIGGER_CLAIM_RE = /\b(?:if|when|whenever|given|suppose|assume|case|out-of-order|smallest|largest|least|interior|minimum|maximum|odd|even|goal|condition|dense set|finite|nonzero|positive|negative|symmetry)\b/i;
 
 const RESULT_WORD_RE = /\b(?:bound|contradiction|reduction|reformulation|representation|normal form|ordering|identity|equality|estimate|approximation|construction|decomposition|factorization|encoding|count|valuation|divisibility|injectivity|surjectivity|obstruction|classification|solution)\b/i;
 
