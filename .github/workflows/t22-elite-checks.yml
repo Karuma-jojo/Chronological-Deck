@@ -36,6 +36,7 @@ jobs:
           node --check scripts/test-t22-elite-m01.mjs
           node --check scripts/test-t22-elite-m02.mjs
           node --check scripts/test-t22-elite-m03.mjs
+          node --check scripts/test-t22-elite-m03-v2-pilot.mjs
           node --check scripts/test-t22-elite-m04.mjs
           node --check scripts/test-t22-elite-m04-browser.mjs
           node --check scripts/test-t22-elite-m05.mjs
@@ -94,6 +95,7 @@ jobs:
           node scripts/test-t22-elite-m01.mjs
           node scripts/test-t22-elite-m02.mjs
           node scripts/test-t22-elite-m03.mjs
+          node scripts/test-t22-elite-m03-v2-pilot.mjs
           node scripts/test-t22-elite-m04.mjs
           node scripts/test-t22-elite-m05.mjs
           node scripts/test-t22-elite-m06.mjs
