@@ -82,8 +82,10 @@ import {
 import {
   ARSENAL_GATE3_GRANULARITY_RECORDS,
   ARSENAL_GATE3_GRANULARITY_META,
+  ARSENAL_GATE3_MASS_PASS_META,
   buildGate3AssessedCalibration,
 } from "../course/smmc/arsenal/granularity-ledger-v0.mjs";
+import { ARSENAL_GATE3_MASS_CLASSIFIER_META } from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 
 function expect(condition, message) {
@@ -944,14 +946,14 @@ for (const row of ARSENAL_GATE3_GRANULARITY_RECORDS) {
   if (row.status === "REVIEWED") gate3Reviewed += 1;
   if (row.status === "UNREVIEWED") gate3Unreviewed += 1;
 }
-expect(gate3Reviewed === 45, "Gate-3 calibration reviewed-count drifted.");
-expect(gate3Unreviewed === 616, "Gate-3 calibration must leave the remaining 616 candidates explicitly UNREVIEWED.");
+expect(gate3Reviewed === 661, "Gate-3 mass pass must review all 661 accepted raw candidates.");
+expect(gate3Unreviewed === 0, "Gate-3 mass pass must leave zero candidates UNREVIEWED.");
 expect(
   ARSENAL_GATE3_GRANULARITY_META.reviewed === gate3Reviewed &&
   ARSENAL_GATE3_GRANULARITY_META.unreviewed === gate3Unreviewed,
   "Gate-3 granularity metadata does not match the actual reviewed/unreviewed partition."
 );
-expect(ARSENAL_GATE3_GRANULARITY_META.status === "CALIBRATION-IN-PROGRESS", "Gate 3 must not self-declare completion during calibration.");
+expect(ARSENAL_GATE3_GRANULARITY_META.status === "MASS-PASS-REVIEW-CANDIDATE", "Gate 3 mass pass must remain a review candidate rather than self-declaring completion.");
 expect(ARSENAL_GATE3_GRANULARITY_META.gate2CandidateCount === 661, "Gate-3 metadata must preserve the 661-candidate Gate-2 population.");
 expect(ARSENAL_GATE3_GRANULARITY_META.ontologyStarted === false, "Gate 3 must not start ontology.");
 expect(ARSENAL_GATE3_GRANULARITY_META.mergeSplitStarted === false, "Gate 3 must not start merge/split adjudication.");
@@ -963,6 +965,38 @@ expect(
   ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v2-45-boundary-normalized",
   "All 45 calibration rows must remain marked as re-audited under strict candidate-owned evidence mode."
 );
+expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v1-616-complete", "Gate-3 mass-pass version drifted.");
+expect(ARSENAL_GATE3_GRANULARITY_META.calibrationRows === 45, "Gate-3 accepted calibration population must remain 45.");
+expect(ARSENAL_GATE3_GRANULARITY_META.massPassRows === 616, "Gate-3 mass-pass population must be exactly the remaining 616 rows.");
+expect(
+  ARSENAL_GATE3_MASS_PASS_META.calibrationRows === 45 &&
+  ARSENAL_GATE3_MASS_PASS_META.massRows === 616 &&
+  ARSENAL_GATE3_MASS_PASS_META.totalRows === 661,
+  "Gate-3 mass-pass metadata does not partition 45 accepted calibration rows + 616 mass rows = 661."
+);
+expect(
+  ARSENAL_GATE3_MASS_PASS_META.calibrationAcceptanceSha === "177a8efa24ebca15e2c84dbb18e96a72be5e1d08" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.calibrationAcceptanceSha === ARSENAL_GATE3_MASS_PASS_META.calibrationAcceptanceSha,
+  "Mass pass must remain anchored to the independently accepted ruler SHA."
+);
+expect(
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.evidenceMode === "STRICT_CANDIDATE_OWNED_GATE2" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.crossScaleMode === "SOURCE_SCALE_VARIABLE_ROLE_ONLY" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.emitsCrossScale === false,
+  "Mass classifier must preserve accepted evidence mode and must not emit new CROSS_SCALE calls."
+);
+
+const massRows = gate3ReviewedRows.filter(row => /^MP\d{2}\b/.test(row.rationale));
+expect(massRows.length === 616, `Expected 616 mass-classified rows, found ${massRows.length}.`);
+const calibrationRows = gate3ReviewedRows.filter(row => !/^MP\d{2}\b/.test(row.rationale));
+expect(calibrationRows.length === 45, `Expected 45 accepted calibration rows, found ${calibrationRows.length}.`);
+for (const row of massRows) {
+  expect(
+    /^MP(?:0[1-9]|10)\b/.test(row.rationale),
+    `Mass-pass row lacks recognized MP01–MP10 rule marker: ${row.candidateId}`
+  );
+}
+
 
 // Calibration must exercise every reference-scale outcome and the major orthogonal dimensions.
 const gate3ReviewedRows = ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "REVIEWED");
@@ -1008,6 +1042,11 @@ expect(
   cruxCalibration?.referenceScale === "CROSS_SCALE" &&
   cruxCalibration?.bundleStructure === "SINGLE_PRIMARY_MOVE",
   "Crux Move must exercise source-defined scale variability without falsely implying a bundled move."
+);
+expect(
+  gate3ReviewedRows.filter(x => x.referenceScale === "CROSS_SCALE").length === 1 &&
+  gate3ReviewedRows.find(x => x.referenceScale === "CROSS_SCALE")?.candidateId === "RAW-SOURCE-z-crux-move",
+  "The accepted ruler permits exactly one active CROSS_SCALE sentinel; mass pass must not introduce another."
 );
 
 for (const candidateId of [
@@ -1227,6 +1266,59 @@ expect(
   gate3AuthoringUnknownKeyRejected,
   "Gate-3 assessed({...}) authoring helper must reject unknown keys before destructuring."
 );
+
+// Mass-pass review statistics: deterministic and printed for the graduation reviewer.
+const gate3CountBy = key => Object.fromEntries(
+  [...new Set(gate3ReviewedRows.map(row => row[key]))]
+    .sort()
+    .map(value => [value, gate3ReviewedRows.filter(row => row[key] === value).length])
+);
+const gate3Origins = [...new Set(gate3ReviewedRows.map(row => row.origin))].sort();
+const gate3ByOrigin = Object.fromEntries(
+  gate3Origins.map(origin => {
+    const rows = gate3ReviewedRows.filter(row => row.origin === origin);
+    return [origin, {
+      total: rows.length,
+      referenceScale: Object.fromEntries(
+        [...new Set(rows.map(row => row.referenceScale))].sort()
+          .map(value => [value, rows.filter(row => row.referenceScale === value).length])
+      ),
+      actionShape: Object.fromEntries(
+        [...new Set(rows.map(row => row.actionShape))].sort()
+          .map(value => [value, rows.filter(row => row.actionShape === value).length])
+      ),
+      contextReach: Object.fromEntries(
+        [...new Set(rows.map(row => row.contextReach))].sort()
+          .map(value => [value, rows.filter(row => row.contextReach === value).length])
+      ),
+    }];
+  })
+);
+const gate3RuleUsage = Object.fromEntries(
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.ruleIds.map(ruleId => [
+    ruleId,
+    massRows.filter(row => row.rationale.startsWith(ruleId)).length,
+  ])
+);
+expect(
+  Object.values(gate3RuleUsage).reduce((sum, count) => sum + count, 0) === 616,
+  "Mass-pass rule usage must account for all 616 classified rows."
+);
+console.log("Gate 3 mass-pass summary:", JSON.stringify({
+  total: gate3ReviewedRows.length,
+  calibrationRows: calibrationRows.length,
+  massRows: massRows.length,
+  referenceScale: gate3CountBy("referenceScale"),
+  bundleStructure: gate3CountBy("bundleStructure"),
+  actionShape: gate3CountBy("actionShape"),
+  contextReach: gate3CountBy("contextReach"),
+  triggerBoundary: gate3CountBy("triggerBoundary"),
+  operationBoundary: gate3CountBy("operationBoundary"),
+  outputBoundary: gate3CountBy("outputBoundary"),
+  confidence: gate3CountBy("confidence"),
+  ruleUsage: gate3RuleUsage,
+  byOrigin: gate3ByOrigin,
+}));
 
 // Mechanically freeze the accepted Gate-2 ore underneath Gate 3.
 //
