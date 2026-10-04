@@ -1467,8 +1467,44 @@ expect(
   "Mass-pass rule usage must account for all 616 classified rows."
 );
 
-// Distribution pins are regenerated after this bounded classifier repair.
-// Exact counts are printed below and will be re-pinned before the next review handoff.
+const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
+  referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 191, MACRO: 86, MICRO: 1, UNRESOLVED: 382 }),
+  bundleStructure: Object.freeze({ BUNDLED_MOVES: 5, SINGLE_PRIMARY_MOVE: 192, UNRESOLVED: 464 }),
+  actionShape: Object.freeze({ EXPLICIT_ACTION: 52, IMPLICIT_ACTION: 237, LABEL_ONLY: 371, UNRESOLVED: 1 }),
+  contextReach: Object.freeze({ GENERAL: 440, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 6, UNRESOLVED: 208 }),
+  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 47, PARTIAL: 11, UNRESOLVED: 521 }),
+  operationBoundary: Object.freeze({ ABSENT: 82, CLEAR: 181, PARTIAL: 108, UNRESOLVED: 290 }),
+  outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 93, PARTIAL: 55, UNRESOLVED: 432 }),
+  confidence: Object.freeze({ HIGH: 621, LOW: 1, MEDIUM: 39 }),
+  ruleUsage: Object.freeze({ MP01: 39, MP02: 1, MP03: 114, MP04: 14, MP05: 12, MP06: 25, MP07: 9, MP08: 180, MP09: 31, MP10: 191 }),
+});
+for (const key of [
+  "referenceScale",
+  "bundleStructure",
+  "actionShape",
+  "contextReach",
+  "triggerBoundary",
+  "operationBoundary",
+  "outputBoundary",
+  "confidence",
+]) {
+  expect(
+    JSON.stringify(gate3CountBy(key)) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION[key]),
+    `Gate-3 repaired mass-pass distribution drifted for ${key}`
+  );
+}
+expect(
+  JSON.stringify(gate3RuleUsage) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION.ruleUsage),
+  "Gate-3 repaired mass-pass rule distribution drifted."
+);
+expect(
+  ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures === 14,
+  "Gate-3 repaired duplicate-name differing-signature count drifted."
+);
+expect(
+  ARSENAL_GATE3_MASS_AUDIT_META.officialUnresolvedScaleRows === 3,
+  "Gate-3 repaired official UNRESOLVED count must remain exactly three."
+);
 
 // Lexical-action regressions that were explicitly self-audited before handoff.
 for (const candidateId of [
