@@ -63,7 +63,7 @@ for(const p of currentProbes){
 // Pins for the independently requested replacements.
 const map=Object.fromEntries(currentProbes.map(x=>[x.id,x.text]));
 assert(map.A1.includes('(x+y)/2')&&map.A1.includes('x < y'));
-const a4=map.A4.replace(/\s+/g,' ');assert(a4.includes('3 divides a−b')&&a4.includes('3 divides b−c')&&a4.includes('3 divides a−c'));
+const a4=map.A4.replace(/\s+/g,' ');assert(a4.includes('|x| ≥ x')&&a4.includes('equality holds')&&a4.includes('meaning of absolute value'));
 assert(map.A5.includes('aₙ₊₁ = aₙ + 2n + 1')&&map.A5.includes('conjecture an exact formula'));
 assert(map.B1.includes('exactly two positions contain even symbols'));
 assert(map.B2.includes('even cardinality')&&map.B2.includes('reversible'));
