@@ -1,7 +1,7 @@
 # M03 v2 — Strategy Lab supplement
 
 Date: 2026-10-04  
-Candidate: `m03-authoring-v2.0-six-tools-candidate-r1`  
+Candidate: `m03-authoring-v2.0-six-tools-candidate-r2`  
 Status: **unscored diagnostic/practice only; never canonical ownership evidence**
 
 These labs extend the published v1.7.2 Spire strategy labs for the six-tool M03 candidate. They are
@@ -119,11 +119,12 @@ midpoint whose coordinates are both integers.
 
 How many permutations of ({1,2,3,4,5,6}) fix neither (1) nor (2)?
 
-### B6 — invent the counted incidences
+### B6 — choose a counting representation
 
-Let (mathcal F) be the family of all 3-element subsets of
-({1,2,ldots,7}). Count the pairs ((S,i)) with (Sinmathcal F) and (iin S)
-in two different ways, and explain why the two calculations count exactly the same objects.
+How many length-5 strings over {A,B,C} contain exactly two A's and at least one B?
+
+Define the objects before using a formula, and give a second representation or decomposition that
+checks your count.
 
 ### B7 — an invariant must actually decide something
 
