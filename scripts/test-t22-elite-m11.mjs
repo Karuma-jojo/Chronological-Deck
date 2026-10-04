@@ -46,10 +46,12 @@ assert(meta.moduleSources.some(x=>x.order===11&&x.id==='ARC510'&&x.source==='cou
 assert.equal(meta.moduleSources.filter(x=>x.order<=11).length,11);
 
 const publicationAuthorized=new Set(['course/t22/authoring/m10-arc053.json','course/t22/generated/course-meta.json','scripts/test-t22-elite-m09.mjs','scripts/test-t22-elite-m10.mjs','docs/t22-course/audit/m06-handoff-checks.mjs','docs/t22-course/audit/m07-handoff-checks.mjs','docs/t22-course/audit/m08-handoff-checks.mjs','docs/t22-course/audit/m10-protected-semantic-rows.json','js/t22-course/core.js','js/t22-course/overrides.js','css/t22-course.css','js/t22-course/ui.js','t22-course.html',
- 'course/t22/authoring/m05.json','docs/t22-course/M05-BOUNDARY.md','docs/t22-course/M05-REVIEW-HANDOFF.md','docs/t22-course/audit/m05-handoff-checks.mjs','docs/t22-course/audit/m05-independent-math.mjs','docs/t22-course/audit/m05-m06-semantic-checks.mjs','docs/t22-course/audit/m05-m06-transfer-math.mjs','scripts/test-t22-elite-m05-m06-repairs.mjs','scripts/test-t22-elite-m05.mjs']);
+ 'course/t22/authoring/m05.json','docs/t22-course/M05-BOUNDARY.md','docs/t22-course/M05-REVIEW-HANDOFF.md','docs/t22-course/audit/m05-handoff-checks.mjs','docs/t22-course/audit/m05-independent-math.mjs','docs/t22-course/audit/m05-m06-semantic-checks.mjs','docs/t22-course/audit/m05-m06-transfer-math.mjs','scripts/test-t22-elite-m05-m06-repairs.mjs','scripts/test-t22-elite-m05.mjs','course/t22/authoring/m03.json','docs/t22-course/audit/m03-handoff-checks.mjs','docs/t22-course/audit/m03-repair-checks.mjs','scripts/test-t22-elite-m03.mjs','scripts/test-t22-elite-m10.mjs']);
 const m05v2=read('course/t22/authoring/m05.json');
+const m03v2=read('course/t22/authoring/m03.json');
 assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M11 baseline exception is bounded to the explicit M05 v2 candidate');
 assert(fs.existsSync('docs/t22-course/M05-DEEP-SOURCE-AUDIT-v1.0.md')&&fs.existsSync('docs/t22-course/M05-V2-DESIGN-GATE.md'));
+assert.equal(m03v2.version,'m03-authoring-v2.0-six-tools-candidate-r1','M11 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03v2.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized through-M12 publication surfaces');
 
 for(const heading of ['Boundary contract','Source dossier','Concept dependency graph','Conceptual-distinction map','Failure-mode map','Narrative spine','Candidate session boundaries']){
