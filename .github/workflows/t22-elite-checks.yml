@@ -158,3 +158,13 @@ jobs:
           node scripts/test-t22-elite-m13-browser.mjs
           node scripts/test-t22-elite-m14-browser.mjs
           node scripts/test-t22-elite-m15-browser.mjs
+      - name: Package M03 v2 r3 deliverable
+        if: github.ref == 'refs/heads/codex/t22-m03-six-tools-upgrade'
+        uses: actions/upload-artifact@v4
+        with:
+          name: T22-Elite-M03-v2.0-r3-finished
+          if-no-files-found: error
+          path: |
+            docs/t22-course/artifacts/T22-Elite-M03-Master-Pack-v2.0-r3.md
+            course/t22/authoring/m03.json
+            docs/t22-course/M03-V2-FINAL-MICROCLEANUP.md
