@@ -49,13 +49,14 @@ Audit the claim:
 If it is false, give a legal counterexample, repair the conclusion as economically as possible,
 and prove the repaired statement.
 
-### A4 — combine two divisibility hypotheses
+### A4 — absolute value and proof by cases
 
-Let a,b,c be arbitrary integers. Prove that if 3 divides a−b and 3 divides b−c, then 3 divides
-a−c.
+Prove that for every real number x,
 
-Your final proof must introduce legal integer witnesses for both hypotheses and construct a witness
-for the conclusion.
+**|x| ≥ x.**
+
+Determine exactly when equality holds. Do not cite a graph; give a complete argument from the
+meaning of absolute value.
 
 ### A5 — recursive claim without a method label
 
