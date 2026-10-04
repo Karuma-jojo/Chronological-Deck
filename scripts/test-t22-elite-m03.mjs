@@ -55,7 +55,7 @@ assert(a.problems[by(19).main].prompt.includes('|A×B|=|A||B|'));
 assert.equal(a.problems[by(26).main].obligationVersion,5);
 assert.equal(a.problems[by(7).transfer].obligationVersion,3);assert.equal(a.problems[by(30).main].obligationVersion,3);assert.equal(a.problems[by(30).transfer].obligationVersion,4);
 
-assert.equal(a.module.status,'v2-six-tools-builder-candidate-awaiting-independent-review');
+assert.equal(a.module.status,'v2-r4-independent-review-repair-candidate-awaiting-follow-up-review');
 assert.equal(by(24).instructionVersion,'m03-s24-instruction-v2-factorial-range-r1');assert(by(24).lesson.includes('define 0!=1')||by(24).lesson.includes('define 0!=1'.replace('define ','')),'S24 must define 0!=1');assert(by(24).lesson.includes('0≤r≤n'),'S24 must state permutation range');
 assert(by(24).entryPrerequisites.includes('M03-S21'));
 assert(!/injective|codomain|function/i.test(by(24).lesson),'S24 instruction must not rehearse function Transfer');
