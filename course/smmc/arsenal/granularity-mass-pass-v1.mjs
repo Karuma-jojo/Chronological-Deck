@@ -15,13 +15,20 @@
 
 const lower = value => String(value ?? "").toLowerCase();
 
-const EXPLICIT_ACTION_RE = /^(?:(?:how\s+to\s+prove)|analy[sz]e|apply|assume|bound|brainstorm|build|change|choose|clear|color|compare|complete|construct|count|create|define|decompose|derive|diagonalize|differentiate|disprove|divide|draw|encode|eliminate|expand|extract|factor|filter|find|generalize|get|identify|instantiate|integrate|invent|invert|look|make|normalize|pair|partition|produce|prove|recast|reduce|reexpress|reflect|replace|restate|rotate|search|select|set|shear|show|simplify|split|steal|substitute|symmetrize|take|telescope|translate|treat|use|work|working|breaking|brainstorming|clearing|combining|counting|creating|defining|disproving|dividing|encoding|expanding|factoring|filtering|instantiating|inventing|pairing|partitioning|producing|proving|restating|searching|smoothing|stealing|taking|treating|using|bounding)\b/i;
+const EXPLICIT_ACTION_RE = /^(?:(?:how\s+to\s+prove)|analy[sz]e|apply|assume|bound|brainstorm|build|change|choose|clear|color|compare|complete|construct|count|create|define|decompose|derive|diagonalize|differentiate|disprove|divide|draw|encode|eliminate|expand|extract|factor|filter|find|generalize|get|identify|instantiate|integrate|invent|invert|look|make|normalize|pair|partition|produce|prove|recast|reduce|reexpress|reflect|replace|restate|rotate|search|select|shear|show|simplify|split|steal|substitute|symmetrize|take|telescope|translate|treat|use|work|working|breaking|brainstorming|clearing|combining|counting|creating|defining|disproving|dividing|encoding|expanding|factoring|filtering|instantiating|inventing|pairing|partitioning|producing|proving|restating|searching|smoothing|stealing|taking|treating|using|bounding)\b/i;
 
 const IMPLICIT_OPERATION_RE = /\b(?:argument|reformulation|reduction|construction|encoding|decomposition|comparison|normalization|approximation|bound(?:ing)?|pairing|partition(?:ing)?|factorization|substitution|elimination|expansion|replacement|projection|parametri[sz]ation|symmetrization|rearrangement|recursion|diagonalization|optimization|conditioning|descent|averaging|smoothing|counting|exchange|bootstrap|filter|transformation|translation|reflection|rotation|inversion|shearing|bisection|interpolation|extrapolation|compression|recognition|centering|coloring|guarding|cancellation|summation|experimentation)\b/i;
 
-const BROAD_TOPIC_RE = /^(?:algebra|linear algebra|analysis|calculus|combinatorics|discrete mathematics|number theory|geometry|probability|statistics|graph theory|groups?|rings?|fields?|polynomials?|matrices|determinants|complex numbers|inequalities|sequences?|series|functions?|recurrences?|generating functions|formal power series|ordinary generating functions|convexity|monotonicity|projective geometry|projective-geo|vector geometry|vector-geo|lattice geometry|lattice|polyhedral geometry|random walks?|random processes?|stopping|game theory|tilings?|topology|coordinate geometry|coordinates|vectors?|counting strategies|combinatorial strategies|finite graphs?)$/i;
+const BROAD_TOPIC_RE = /^(?:algebra|linear algebra|analysis|calculus|combinatorics|discrete mathematics|number theory|geometry|probability|statistics|graph|graph theory|groups?|rings?|fields?|polynomials?|matrices|determinants|complex numbers|inequalities|sequences?|series|functions?|recurrences?|generating functions|formal power series|ordinary generating functions|convexity|monotonicity|projective geometry|projective-geo|vector geometry|vector-geo|lattice geometry|lattice|polyhedral geometry|random walk|random walks|random-walk|random process|random processes|random-process|stopping|game|game theory|tiling|tilings?|topology|coordinate geometry|coordinates|vectors?|counting strategies|combinatorial strategies|finite graphs?|ode)$/i;
 
 const BROAD_FAMILY_RE = /\b(?:vocabulary|language|foundations?|theory|strategies|strategy area|methods|techniques|toolbox|topics|facts and definitions|facts\/definitions)\b/i;
+
+const COMPOUND_TOPIC_HEADING_RE = /\b(?:and|&)\b/i;
+const DEDICATED_HEADING_CLAIM_RE = /\b(?:dedicated|named)\s+(?:subsection|section|chapter)\b/i;
+const OPAQUE_TOKEN_RE = /^[A-Z][A-Z0-9-]{1,15}$/;
+const STANDARD_MATH_WORD_RE = /\b(?:algebra|analysis|calculus|combinator|number|integer|prime|polynomial|matrix|determinant|vector|graph|geometry|probability|sequence|series|function|equation|inequality|convex|concav|modulo|mod-|valuation|divisib|root|basis|field|group|ring|set|binomial|recurrence|generating|asymptotic|symmetr|monot|parity|pigeonhole|bijection|induction|contradiction|contrapositive|invariant|descent|normal form|optimization|conditioning|expectation|random|lattice|projective|coordinate|topology)\b/i;
+
+const SOURCE_LOCAL_CLAIM_RE = /(?:leading principles .{0,120} compact contest training .{0,120} classifying problems|explicitly defines a crossover .{0,160} frames .{0,160} as crossover tactics)/i;
 
 const METHOD_LIKE_RE = /\b(?:proof|theorem|principle|lemma|method|tactic|strategy|argument|criterion|test|rule|algorithm|construction|reduction|reformulation|encoding|viewpoint|filter|descent|induction|contradiction|contrapositive|invariant|monovariant|pigeonhole|bijection|conditioning|recurrence|exchange|optimization|normal form|obstruction|bootstrap|inclusion[-–— ]exclusion)\b/i;
 
@@ -38,33 +45,68 @@ const OUTPUT_CLAIM_RE = /\b(?:cancels|classification|clique|coefficients?|contra
 
 const TRIGGER_CLAIM_RE = /\b(?:if|when|whenever|given|suppose|assume|case|out-of-order|smallest|largest|least|interior|minimum|maximum|odd|even|goal|condition|dense set|finite|nonzero|positive|negative|symmetry)\b/i;
 
-const RESULT_WORD_RE = /\b(?:bound|contradiction|reduction|reformulation|representation|normal form|ordering|identity|equality|estimate|approximation|construction|decomposition|factorization|encoding|count|valuation|divisibility|injectivity|surjectivity|obstruction|classification|solution)\b/i;
+const OUTPUT_SIGNAL_RE = /\b(?:bound|contradiction|normal form|ordering|identity|equality|estimate|count|valuation|divisibility|injectivity|surjectivity|obstruction|classification|solution|fixed point|root|recurrence|differential equation|nonnegativity)\b/i;
+
+const DISTINCT_RESULT_RE = /\b(?:bound|contradiction|normal form|ordering|identity|equality|estimate|count|valuation|divisibility|injectivity|surjectivity|obstruction|classification|solution|fixed point|root|differential equation|nonnegativity)\b/i;
 
 const EXPLICIT_TARGET_RE = /\b(?:goal|matrix|brackets?|denominators?|polynomial|equation|inequality|graph|sequence|function|expression|sum|product|recurrence|determinant|vector|configuration|set|partition|system)\b/i;
 
 const RESULTATIVE_EXPLICIT_RE = /^(?:construct|diagonalize|encode|factor|normalize|reduce|reexpress|recast|split|partition|translate|rotate|reflect|invert|symmetrize|complete|clear|eliminate|replace)\b/i;
 
-const STRONG_BUNDLE_CLAIM_RE = /\b(?:and then|after which|followed by|combines|combining|nests|nesting|first .{0,80} then|after .{0,80} then)\b/i;
+// The first mass-pass graduation attack showed that proof-sequencing prose cannot
+// decide whether the candidate itself is a bundle. The originally surfaced 13
+// bundle rows were manually re-audited against the accepted candidate-expression
+// rule. Of the 9 mass-pass rows, only RAW-OFFICIAL-098 explicitly packages two
+// independently meaningful operations in the candidate expression itself.
+// The other four accepted bundle rows live in the frozen 45-row calibration.
+export const ARSENAL_GATE3_AUDITED_MASS_BUNDLE_IDS = Object.freeze([
+  "RAW-OFFICIAL-098",
+]);
 
-const ACTION_TOKEN_RE = /\b(?:replacement|expansion|clearing|normalization|differentiation|halving|construction|reduction|counting|comparison|substitution|factorization|decomposition|encoding|projection|bounding|conditioning|reflection|rotation|translation|inversion|shearing|partitioning|pairing|diagonalization)\b/gi;
+export const ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS = Object.freeze([
+  "RAW-OFFICIAL-074",
+  "RAW-OFFICIAL-075",
+  "RAW-OFFICIAL-077",
+  "RAW-OFFICIAL-080",
+  "RAW-OFFICIAL-084",
+  "RAW-OFFICIAL-099",
+  "RAW-OFFICIAL-102",
+  "RAW-OFFICIAL-108",
+]);
+
+const auditedMassBundle = candidateId =>
+  ARSENAL_GATE3_AUDITED_MASS_BUNDLE_IDS.includes(candidateId);
 
 const localCue = text => /\b(?:this recurrence|the recurrence|this problem|specific problem|particular problem|this configuration|specific configuration|recoverability lemma|alternative route)\b/i.test(text);
 
 const sourceLocalCue = (name, claim) =>
-  /^(?:strategy|tactic|tool|crux move)$/i.test(name) &&
-  /\b(?:explicitly defines|his broad level|as his|strategic, tactical, or tool)\b/i.test(claim);
+  (
+    /^(?:strategy|tactic|tool|crux move)$/i.test(name) &&
+    /\b(?:explicitly defines|his broad level|as his|strategic, tactical, or tool)\b/i.test(claim)
+  ) ||
+  SOURCE_LOCAL_CLAIM_RE.test(claim);
 
 const broadByExpression = (candidate, claim) => {
-  if (candidate.origin === "SMMC_SECONDARY_TAG") return true;
   const name = candidate.candidateName.trim();
   if (BROAD_TOPIC_RE.test(name)) return true;
-  if (BROAD_FAMILY_RE.test(name) && !EXPLICIT_ACTION_RE.test(name)) return true;
+  if (BROAD_FAMILY_RE.test(name) && !explicitAction(name)) return true;
   if (/\b(?:distance, paths, cycles, trees and components|facts, definitions|basic vocabulary|finite graph\/game vocabulary|square-free\/prime-factor language)\b/i.test(name)) return true;
-  if (/\b(?:chapter|section)\b/i.test(claim) && /^(?:groups?|graph theory|counting strategies|combinatorics|geometry|probability|analysis|algebra)$/i.test(name)) return true;
+  // A source claim that this is a dedicated heading can support a broad-heading
+  // reading only when the expression itself visibly joins multiple topic nouns.
+  if (
+    DEDICATED_HEADING_CLAIM_RE.test(claim) &&
+    COMPOUND_TOPIC_HEADING_RE.test(name) &&
+    !explicitAction(name)
+  ) return true;
   return false;
 };
 
-const explicitAction = name => EXPLICIT_ACTION_RE.test(name.trim());
+const explicitAction = name => {
+  const trimmed = name.trim();
+  if (/^Set\s+(?:Theory|Systems?|Partitions?|Functions?)\b/i.test(trimmed)) return false;
+  if (/^Use\s+of\b/i.test(trimmed)) return false;
+  return EXPLICIT_ACTION_RE.test(trimmed);
+};
 
 const evidenceOperational = evidenceRecords =>
   evidenceRecords.some(e => {
@@ -107,11 +149,7 @@ const operationalProofStructure = evidenceRecords =>
     SOURCE_OPERATIONAL_CLAIM_RE.test(e.claim ?? "")
   );
 
-const bundleSupported = (name, claim) => {
-  const tokens = [...name.matchAll(ACTION_TOKEN_RE)].map(m => m[0].toLowerCase());
-  const nameHasJoin = /\b(?:and|then)\b|\+|\//i.test(name);
-  return STRONG_BUNDLE_CLAIM_RE.test(claim) || (nameHasJoin && new Set(tokens).size >= 2);
-};
+const bundleSupported = candidate => auditedMassBundle(candidate.candidateId);
 
 const problemLocalReach = (candidate, evidenceRecords) => {
   const hasHistorical = evidenceRecords.some(e => Array.isArray(e.historicalProblemIds) && e.historicalProblemIds.length > 0);
@@ -132,27 +170,45 @@ const supportSummary = evidenceRecords => {
 };
 
 const commonContextReach = (candidate, evidenceRecords) => {
+  const name = candidate.candidateName.trim();
   const claim = evidenceRecords.map(e => e.claim ?? "").join(" ");
-  if (sourceLocalCue(candidate.candidateName, claim)) return "SOURCE_LOCAL";
+  if (sourceLocalCue(name, claim)) return "SOURCE_LOCAL";
   if (problemLocalReach(candidate, evidenceRecords)) return "PROBLEM_LOCAL";
-  return "GENERAL";
+
+  // Opaque all-caps/hyphen tokens do not become semantically GENERAL merely
+  // because they came from an index vocabulary.
+  if (OPAQUE_TOKEN_RE.test(name) && !BROAD_TOPIC_RE.test(name)) return "UNRESOLVED";
+
+  // GENERAL requires positive source-independent semantics in the current
+  // expression: recognizable mathematical vocabulary, an explicit action, a
+  // method/proof form, or an accepted broad mathematical topic.
+  if (
+    BROAD_TOPIC_RE.test(name) ||
+    STANDARD_MATH_WORD_RE.test(name) ||
+    explicitAction(name) ||
+    IMPLICIT_OPERATION_RE.test(name) ||
+    METHOD_LIKE_RE.test(name)
+  ) return "GENERAL";
+
+  return "UNRESOLVED";
 };
 
 const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationStrength }) => {
   const name = candidate.candidateName;
-  const claim = evidenceRecords.map(e => e.claim ?? "").join(" ");
-  const lexicalTargetTrigger =
-    actionShape === "EXPLICIT_ACTION" && EXPLICIT_TARGET_RE.test(name);
+  const lexicalConditionTrigger =
+    /\b(?:when|whenever|if|given|assuming|under the condition|under conditions)\b/i.test(name);
   const lexicalResult =
     actionShape === "EXPLICIT_ACTION" && RESULTATIVE_EXPLICIT_RE.test(name);
 
+  // Grammatical prepositions such as "for", "of", "in", and "with" are NOT
+  // triggers. A trigger requires an actual condition/situation in the wording or
+  // candidate-owned evidence.
   const hasTrigger =
     evidenceTrigger(evidenceRecords) ||
-    /\b(?:when|if|for|under|given|from|with|of|on|at|in)\b/i.test(name) ||
-    lexicalTargetTrigger;
+    lexicalConditionTrigger;
   const hasOutput =
     evidenceOutput(evidenceRecords) ||
-    RESULT_WORD_RE.test(name) ||
+    OUTPUT_SIGNAL_RE.test(name) ||
     lexicalResult;
 
   const operationBoundary =
@@ -166,7 +222,7 @@ const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationS
       richOfficial(evidenceRecords) ||
       richDiscovery(evidenceRecords) ||
       operationalProofStructure(evidenceRecords) ||
-      lexicalTargetTrigger
+      lexicalConditionTrigger
     ) ? "CLEAR" :
     hasTrigger ? "PARTIAL" :
     "UNRESOLVED";
@@ -183,8 +239,7 @@ const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationS
     "UNRESOLVED";
 
   return { triggerBoundary, operationBoundary, outputBoundary };
-};
-
+}
 export function buildGate3MassAssessment(candidate, evidenceRecords) {
   if (!candidate || typeof candidate !== "object") {
     throw new Error("Gate-3 mass classifier requires a raw candidate.");
@@ -232,7 +287,7 @@ export function buildGate3MassAssessment(candidate, evidenceRecords) {
     (hasOperationalEvidence || hasImplicitOperationWord) ? "IMPLICIT_ACTION" :
     "LABEL_ONLY";
 
-  const hasBundle = bundleSupported(name, claim);
+  const hasBundle = bundleSupported(candidate);
 
   // MP02 — evidence-supported multiple-operation bundle. Multiple operations are
   // MACRO + BUNDLED_MOVES; mixed grain is NOT inferred.
@@ -350,11 +405,11 @@ export function buildGate3MassAssessment(candidate, evidenceRecords) {
     };
   }
 
-  // MP07 — compressed operation noun whose wording itself identifies a primary
-  // transformation/reduction/construction. With only thin evidence, operation is
-  // PARTIAL rather than CLEAR; the scale is deployable only when the expression
-  // also exposes a meaningful output/result word.
-  if (hasImplicitOperationWord && RESULT_WORD_RE.test(name)) {
+  // MP07 — compressed operation noun plus a SEMANTICALLY DISTINCT result signal.
+  // Operation nouns such as factorization/reduction/construction cannot satisfy
+  // both sides by themselves. Dedicated noun-heading compounds are caught by
+  // MP01 before this point. With thin evidence, operation remains PARTIAL.
+  if (hasImplicitOperationWord && DISTINCT_RESULT_RE.test(name)) {
     const b = boundaryForAction({
       candidate,
       evidenceRecords,
@@ -425,11 +480,17 @@ export function buildGate3MassAssessment(candidate, evidenceRecords) {
 }
 
 export const ARSENAL_GATE3_MASS_CLASSIFIER_META = Object.freeze({
-  version: "v1",
+  version: "v2",
   calibrationAcceptanceSha: "177a8efa24ebca15e2c84dbb18e96a72be5e1d08",
   evidenceMode: "STRICT_CANDIDATE_OWNED_GATE2",
   crossScaleMode: "SOURCE_SCALE_VARIABLE_ROLE_ONLY",
   emitsCrossScale: false,
+  provenanceShortcutRemoved: true,
+  triggerPrepositionShortcutRemoved: true,
+  distinctOperationResultRequired: true,
+  auditedMassBundleIds: ARSENAL_GATE3_AUDITED_MASS_BUNDLE_IDS,
+  rejectedBundleShortcutIds: ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS,
+  contextReachFallback: "UNRESOLVED",
   ruleIds: Object.freeze([
     "MP01",
     "MP02",
