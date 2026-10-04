@@ -1,5 +1,5 @@
 {
-  "version": "m03-authoring-v2.0-six-tools-candidate-r2",
+  "version": "m03-authoring-v2.0-six-tools-candidate-r3",
   "instructionVersion": "m03-instruction-v12-evidence-retrofit-r1",
   "module": {
     "order": 3,
@@ -38,8 +38,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m03-observability-v2-six-tools-candidate-r2-2026-10-04",
-    "status": "Candidate 36/72/180 M03 expansion authored and selectively strengthened from the published 30/60/150 baseline. Six new sessions are interleaved with stable new identities; S07-T and S30-M/T are deliberately versioned to satisfy repaired-claim proof and unlabeled final-synthesis obligations; S09 receives instruction-only proof-search strengthening. Full exact-head workflow/browser and independent adversarial review remain required.",
+    "version": "m03-observability-v2-six-tools-candidate-r3-2026-10-04",
+    "status": "Candidate 36/72/180 M03 expansion with selective core strengthening and final prerequisite/pack cleanup. Six new sessions are interleaved with stable new identities; S07-T and S30-M/T are versioned for stronger obligations; S04/S14/S16/S24–S26 now close JIT notation/definition/range leaks without changing fixed assessment prompts. Full exact-head workflow/browser and independent adversarial review remain required.",
     "policy": "Every retained or new ownership claim must be literally requested and supported by exact rubric evidence. Changed numbers or a Transfer storage slot do not establish transfer. Historical v1.7.2 acceptance does not certify this candidate."
   },
   "sessions": [
@@ -173,9 +173,10 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Biconditionals; necessary & sufficient conditions.",
-      "lesson": "P↔Q means both P→Q and Q→P. If P→Q, then P is sufficient for Q and Q is necessary for P; the reverse direction must be checked separately. Worked example: over integers, 4|n implies n is even, so divisibility by4 is sufficient for evenness and evenness is necessary for divisibility by4. The reverse fails, for example at n=6. Guided check: compare “n is divisible by6” with “n is divisible by3”; check both arrows and give a counterexample to any failed direction.",
+      "lesson": "P↔Q means both P→Q and Q→P. If P→Q, then P is sufficient for Q and Q is necessary for P; the reverse direction must be checked separately. Just-in-time notation for this example: for integers d,n, d|n means n=dk for some integer k. This notation is used here only to read the example; S08 owns the full divisibility/parity proof language. Worked example: over integers, 4|n implies n is even, so divisibility by4 is sufficient for evenness and evenness is necessary for divisibility by4. The reverse fails, for example at n=6. Guided check: compare “n is divisible by6” with “n is divisible by3”; check both arrows and give a counterexample to any failed direction.",
       "main": "T22V3::T22E-DISC01::S04-M@1",
-      "transfer": "T22V3::T22E-DISC01::S04-T@1"
+      "transfer": "T22V3::T22E-DISC01::S04-T@1",
+      "instructionVersion": "m03-s04-instruction-v2-jit-divisibility-r1"
     },
     {
       "order": 5,
@@ -606,9 +607,10 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Strong induction & recursive claims.",
-      "lesson": "Strong induction assumes every earlier case from the starting index through k, which is useful when the next case reduces to more than one possible earlier value. Worked example: every integer n≥2 is either prime or a product of primes. Base n=2 is prime. Assume the statement holds for every integer from2 through k. For k+1, if it is prime we are done; if it is composite, write k+1=ab with 2≤a,b≤k, apply the all-prior hypothesis to a and b, and combine their prime factorizations. Guided check: if a future target P(n) naturally reduces to a case P(m) with m<n but not necessarily m=n−1, explain why an all-prior hypothesis is useful and what must be true of the base range.",
+      "lesson": "Strong induction assumes every earlier case from the starting index through k, which is useful when the next case reduces to more than one possible earlier value. For this worked example, an integer p≥2 is prime if its only positive divisors are 1 and p; an integer n≥2 is composite if it can be written n=ab with integers 2≤a,b<n. Worked example: every integer n≥2 is either prime or a product of primes. Base n=2 is prime. Assume the statement holds for every integer from2 through k. For k+1, if it is prime we are done; if it is composite, write k+1=ab with 2≤a,b≤k, apply the all-prior hypothesis to a and b, and combine their prime factorizations. Guided check: if a future target P(n) naturally reduces to a case P(m) with m<n but not necessarily m=n−1, explain why an all-prior hypothesis is useful and what must be true of the base range.",
       "main": "T22V3::T22E-DISC01::S14-M@1",
-      "transfer": "T22V3::T22E-DISC01::S14-T@1"
+      "transfer": "T22V3::T22E-DISC01::S14-T@1",
+      "instructionVersion": "m03-s14-instruction-v2-prime-composite-r1"
     },
     {
       "order": 17,
@@ -715,9 +717,10 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Power sets & finite cardinality.",
-      "lesson": "P(A) contains every subset, including∅ and A. Each element has include/exclude choice, so an n-element set has2^n subsets. Worked example: P({x,y})={∅,{x},{y},{x,y}}. Guided check: Find P({1}) and compare∅ with{∅}.",
+      "lesson": "For a finite set A, |A| means its cardinality: the number of elements in A. P(A) contains every subset of A, including ∅ and A itself. Each element has an independent include/exclude choice, so an n-element set has 2^n subsets; equivalently |P(A)|=2^|A|. Worked example: P({x,y})={∅,{x},{y},{x,y}}, so |{x,y}|=2 and |P({x,y})|=4. Guided check: Find P({1}), state both cardinalities, and compare ∅ with {∅}.",
       "main": "T22V3::T22E-DISC01::S16-M@1",
-      "transfer": "T22V3::T22E-DISC01::S16-T@1"
+      "transfer": "T22V3::T22E-DISC01::S16-T@1",
+      "instructionVersion": "m03-s16-instruction-v2-cardinality-notation-r1"
     },
     {
       "order": 20,
@@ -989,10 +992,10 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Permutations, factorials & ordered selections.",
-      "lesson": "For n distinct objects, n!=n(n−1)⋯1 counts all orderings. Filling r labeled positions without replacement gives P(n,r)=n!/(n−r)! because the available choices decrease at every stage. Worked example: five runners can receive gold, silver and bronze in 5·4·3=P(5,3)=60 ways; the medal labels make the order matter. Guided check: from eight candidates, count the ordered choices for captain and deputy as 8·7=P(8,2), and explain why reversing the two people gives a different assignment.",
+      "lesson": "For every nonnegative integer n, define n!=n(n−1)⋯1 when n≥1 and define 0!=1. For integers n≥0 and 0≤r≤n, filling r labeled positions without replacement gives P(n,r)=n!/(n−r)! because the available choices decrease at every stage; in particular P(n,0)=1, the one empty ordered selection. For n distinct objects, n! counts all orderings. Worked example: five runners can receive gold, silver and bronze in 5·4·3=P(5,3)=60 ways; the medal labels make the order matter. Guided check: from eight candidates, count the ordered choices for captain and deputy as 8·7=P(8,2), state the permitted values of n and r, and explain why reversing the two people gives a different assignment.",
       "main": "T22V3::T22E-DISC01::S24-M@1",
       "transfer": "T22V3::T22E-DISC01::S24-T@1",
-      "instructionVersion": "m03-s24-instruction-v17-separation-r1"
+      "instructionVersion": "m03-s24-instruction-v2-factorial-range-r1"
     },
     {
       "order": 28,
@@ -1068,10 +1071,10 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Permutations with repeated objects & multinomial grouping.",
-      "lesson": "If swapping identical copies changes nothing visible, n! overcounts and internal repeat factorials must be divided out. Worked example: AABC has4!/2!=12 distinct strings. Guided check: count AABB arrangements. Labeled-group bridge: if n distinct objects are split into labeled groups of fixed sizes n1,…,nk with n1+⋯+nk=n, first imagine a temporary ordering of all n objects. There are n! such orders. Within each labeled group, however, its n_i! internal rearrangements do not change the assignment, so divide them out. Therefore the number of labeled-group assignments is n!/(n1!⋯nk!). The group labels remain distinct and are not divided out. For example, assigning6 distinct cards to labeled boxes A(2),B(1),C(3) gives6!/(2!1!3!) assignments.",
+      "lesson": "If swapping identical copies changes nothing visible, n! overcounts and internal repeat factorials must be divided out. All multiplicities are nonnegative integers whose total is n; the S24 convention 0!=1 makes a zero multiplicity contribute a neutral denominator factor. Worked example: AABC has4!/2!=12 distinct strings. Guided check: count AABB arrangements. Labeled-group bridge: if n distinct objects are split into labeled groups of fixed nonnegative sizes n1,…,nk with n1+⋯+nk=n, first imagine a temporary ordering of all n objects. There are n! such orders. Within each labeled group, however, its n_i! internal rearrangements do not change the assignment, so divide them out. Therefore the number of labeled-group assignments is n!/(n1!⋯nk!). The group labels remain distinct and are not divided out. For example, assigning6 distinct cards to labeled boxes A(2),B(1),C(3) gives6!/(2!1!3!) assignments.",
       "main": "T22V3::T22E-DISC01::S25-M@1",
       "transfer": "T22V3::T22E-DISC01::S25-T@1",
-      "instructionVersion": "m03-s25-instruction-v17-factorial-boundary-r1"
+      "instructionVersion": "m03-s25-instruction-v2-multinomial-range-r1"
     },
     {
       "order": 30,
@@ -1109,9 +1112,10 @@
         "Infinite binomial series"
       ],
       "exitCondition": "State the finite binomial theorem for positive integer n, justify its coefficient C(n,k) by factor-choice counting, and apply it on a fresh finite expansion while retaining the subset/complement interpretation of combinations.",
-      "lesson": "A combination selects an r-element subset, so internal order is irrelevant: C(n,r)=n!/[r!(n−r)!]. An ordered r-selection can be built in two stages: first choose the r-element subset in C(n,r) ways, then order its r chosen elements in r! ways. Therefore P(n,r)=C(n,r)·r!, which explains the factorial formula rather than treating division by r! as a cancellation trick. Choosing the included r items is symmetric with choosing the excluded n−r items, so C(n,r)=C(n,n−r). The same subset-counting idea gives the finite binomial theorem. In the product of n factors (x+y), a term x^(n−k)y^k is produced by choosing exactly which k of the n factors contribute y; there are C(n,k) such choices. Hence for every positive integer n, (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k. Worked example: (x+y)^3=x³+3x²y+3xy²+y³ because the coefficients are C(3,0),C(3,1),C(3,2),C(3,3). Guided check: in (p+q)^6, do not expand the whole expression. Explain why the coefficient of p^4q^2 is C(6,2)=15 by choosing which two factors contribute q, and connect that choice-count to the general coefficient C(n,k).",
+      "lesson": "For integers n≥0 and 0≤r≤n, a combination selects an r-element subset, so internal order is irrelevant: C(n,r)=n!/[r!(n−r)!]. With 0!=1, the endpoint values are C(n,0)=C(n,n)=1. An ordered r-selection can be built in two stages: first choose the r-element subset in C(n,r) ways, then order its r chosen elements in r! ways. Therefore P(n,r)=C(n,r)·r!, which explains the factorial formula rather than treating division by r! as a cancellation trick. Choosing the included r items is symmetric with choosing the excluded n−r items, so C(n,r)=C(n,n−r). The same subset-counting idea gives the finite binomial theorem. In the product of n factors (x+y), a term x^(n−k)y^k is produced by choosing exactly which k of the n factors contribute y; there are C(n,k) such choices. Hence for every positive integer n, (x+y)^n=Σ(k=0..n) C(n,k)x^(n−k)y^k. The endpoint terms k=0 and k=n are legal precisely because 0!=1 gives C(n,0)=C(n,n)=1. Worked example: (x+y)^3=x³+3x²y+3xy²+y³ because the coefficients are C(3,0),C(3,1),C(3,2),C(3,3). Guided check: in (p+q)^6, do not expand the whole expression. Explain why the coefficient of p^4q^2 is C(6,2)=15 by choosing which two factors contribute q, state the allowed k-range 0≤k≤6, and connect that choice-count to the general coefficient C(n,k).",
       "main": "T22V3::T22E-DISC01::S26-M@1",
-      "transfer": "T22V3::T22E-DISC01::S26-T@1"
+      "transfer": "T22V3::T22E-DISC01::S26-T@1",
+      "instructionVersion": "m03-s26-instruction-v2-combination-range-r1"
     },
     {
       "order": 31,
@@ -6665,8 +6669,8 @@
         "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'retrieval'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
       },
       "T22V3::T22E-DISC01::S04@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'proof reconstruction' and lesson/Main→Transfer is classified 'proof reconstruction'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "M03 v2 final micro-cleanup receipt on instructionVersion m03-s04-instruction-v2-jit-divisibility-r1: the lesson now defines d|n locally before first use and explicitly preserves S08 as the owner of full divisibility/parity proof language. Fixed Main/Transfer contracts are unchanged."
       },
       "T22V3::T22E-DISC01::S05@1": {
         "status": "reviewed-separated",
@@ -6705,16 +6709,16 @@
         "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'proof reconstruction' and lesson/Main→Transfer is classified 'proof reconstruction'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
       },
       "T22V3::T22E-DISC01::S14@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'proof reconstruction' and lesson/Main→Transfer is classified 'proof reconstruction'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "M03 v2 final micro-cleanup receipt on instructionVersion m03-s14-instruction-v2-prime-composite-r1: prime and composite are now explicitly defined before the strong-induction worked example uses them. No number-theory ownership is added beyond what the example requires; fixed assessments are unchanged."
       },
       "T22V3::T22E-DISC01::S15@1": {
         "status": "reviewed-separated",
         "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'retrieval'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
       },
       "T22V3::T22E-DISC01::S16@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'changed-surface Transfer'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "M03 v2 final micro-cleanup receipt on instructionVersion m03-s16-instruction-v2-cardinality-notation-r1: finite cardinality notation |A| is now defined before use, then tied directly to |P(A)|=2^|A|. Fixed assessments are unchanged."
       },
       "T22V3::T22E-DISC01::S17@1": {
         "status": "reviewed-separated",
@@ -6746,15 +6750,15 @@
       },
       "T22V3::T22E-DISC01::S24@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m03-s24-instruction-v17-separation-r1 removes all injective-function worked/guided examples. Instruction uses medals/roles with different sizes; fixed Transfer retains the 3→7 injective-map recast. Historical v1.6 S24 lesson exposure is separately migrated onto S24-T and is not retroactively cleaned."
+        "note": "M03 v2 final micro-cleanup receipt on instructionVersion m03-s24-instruction-v2-factorial-range-r1: the lesson now defines 0!=1 and states the integer domain n≥0, 0≤r≤n for P(n,r), including the empty-selection boundary. The injective-function Transfer remains unrehearsed and the fixed task contracts are unchanged."
       },
       "T22V3::T22E-DISC01::S25@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "Current v1.7.1 receipt on instructionVersion m03-s25-instruction-v17-factorial-boundary-r1: Main is retrieval; Transfer is changed-surface fixed-member/labeled-group counting. The factorial-only bridge removes pre-S26 C(n,r) notation. This lesson version changed for provenance only; no historical S25 answer-overlap migration is declared."
+        "note": "M03 v2 final micro-cleanup receipt on instructionVersion m03-s25-instruction-v2-multinomial-range-r1: the repeated-object/multinomial bridge now carries forward the nonnegative-integer multiplicity convention and 0!=1 boundary from S24. Fixed assessments remain unchanged."
       },
       "T22V3::T22E-DISC01::S26@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "m03-instruction-v12-evidence-retrofit-r1 with v1.7 observer repair: Main v5 explicitly requests combination notation and scores only committee count/order irrelevance + general binomial theorem/coefficient argument + n=5 expansion. Symmetry and subset interpretation move to explicitly observable Transfer v3."
+        "note": "M03 v2 final micro-cleanup receipt on instructionVersion m03-s26-instruction-v2-combination-range-r1: the lesson now states n≥0, 0≤r≤n for combinations, defines endpoint values through 0!=1, and makes the binomial endpoint convention explicit. The fixed v5 Main and v3 Transfer obligations are unchanged."
       },
       "T22V3::T22E-DISC01::S27@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
@@ -6942,11 +6946,11 @@
         "tasks": 72,
         "ownershipClaims": 180
       },
-      "status": "builder-candidate-core-strengthening-full-CI-and-independent-review-pending",
+      "status": "builder-candidate-r3-exact-head-ci-and-independent-review-pending",
       "historicalBaseline": "published-v1.7.2-builder-validated-same-model-review-passed",
-      "progressPolicy": "Historical attempts are preserved. Existing S01–S06, S08, S10–S29 fixed assessment contracts remain unchanged. S07-T, S30-M and S30-T are materially strengthened and obligation-versioned, so older attempts cannot certify the new obligations under the existing assessment-fingerprint rules. S07/S09/S30 session instruction/contract changes are explicitly versioned. New S31–S36 retain fresh identities with no historical attempts.",
+      "progressPolicy": "Historical attempts are preserved. The r3 micro-cleanup changes visible instruction/session contracts for S04, S14, S16, S24, S25 and S26 but does not change their fixed prompts, evaluators or obligation versions. S07-T and S30-M/T remain the only retained-core fixed obligations materially strengthened in v2. New S31–S36 keep fresh identities.",
       "publicationPolicy": "Do not merge or label accepted before exact-head full workflow/Chromium and independent adversarial review.",
-      "revision": "r2-core-strengthening",
+      "revision": "r3-final-micro-cleanup",
       "coreStrengtheningAudit": "docs/t22-course/M03-V2-CORE-STRENGTHENING-AUDIT.md",
       "materialExistingTaskChanges": {
         "T22V3::T22E-DISC01::S07-T@1": {
@@ -6967,6 +6971,22 @@
       },
       "instructionOnlyExistingChange": {
         "T22V3::T22E-DISC01::S09@1": "m03-s09-instruction-v2-proof-search-r1"
+      },
+      "finalMicroCleanup": {
+        "date": "2026-10-04",
+        "source": "external follow-up review supplied by user",
+        "instructionOnlySessions": {
+          "S04": "Define d|n before first use; preserve S08 ownership.",
+          "S14": "Define prime/composite before the strong-induction example.",
+          "S16": "Define finite cardinality notation |A| before use.",
+          "S24": "Define 0!=1 and permutation ranges n≥0, 0≤r≤n.",
+          "S25": "Carry nonnegative multiplicity and 0!=1 convention through multinomial grouping.",
+          "S26": "State combination ranges and endpoint/binomial conventions."
+        },
+        "fixedAssessmentPromptsChanged": false,
+        "evaluatorRubricsChanged": false,
+        "obligationVersionsChanged": false,
+        "packRepair": "Create a new v2 compiled Master Pack; do not rewrite the historical v1.7.2 artifact."
       }
     }
   },
