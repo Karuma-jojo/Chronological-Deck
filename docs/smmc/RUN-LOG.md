@@ -1397,3 +1397,67 @@ The human contract also requires fail-closed `UNRESOLVED` if a future mass-pass 
 
 No mass-pass, tribunal, ontology, prerequisite, ranking, relation, learning-order, or product work has started.
 
+## Arsenal Gate 3 final ruler-semantics repair after review 5402888871 (2026-10-04)
+
+Independent review **5402888871** on exact SHA `dba5155fc7dc69142a4ec998bc4501dc5c61a0b3` confirmed the 45-row strict-evidence re-audit, contextReach repair, Gate-2 freeze, and CI, but kept two ruler-level ambiguities open before the 616-row mass pass.
+
+### G3-R10 — mixed-grain CROSS_SCALE branch deferred
+
+The attempted mixed-grain anchor `Convex envelope and epigraph/convex-hull construction` was rejected as insufficient: concept/object wording plus construction wording proves heterogeneous semantic roles, not different MICRO / DEPLOYABLE / MACRO reference grains.
+
+Gate 3 now has **one active CROSS_SCALE meaning only**:
+
+- a source-defined role/label whose candidate-owned evidence explicitly states that the role can occur at more than one reference grain.
+
+The calibration anchor is:
+
+- `RAW-SOURCE-z-crux-move` → `CROSS_SCALE + SINGLE_PRIMARY_MOVE`.
+
+The formerly proposed `MIXED_GRAIN_EXPRESSION` branch is explicitly deferred in the executable contract.
+
+`RAW-BRIDGE-127 — Convex envelope and epigraph/convex-hull construction` now fails closed to:
+- `referenceScale: UNRESOLVED`;
+- `bundleStructure: UNRESOLVED`.
+
+Its wording still supports only partial construction operation/output semantics. During the mass pass, any candidate that appears to require the deferred mixed-grain branch must remain UNRESOLVED and reopen calibration rather than inventing a new CROSS_SCALE meaning.
+
+### G3-R11 — ABSENT vs UNRESOLVED defined and normalized
+
+Boundary states are now operationally distinct:
+
+- **CLEAR** — the raw expression + candidate-owned accepted evidence identifies the boundary specifically enough to state it.
+- **PARTIAL** — the permitted evidence positively identifies some boundary content but leaves material detail unspecified.
+- **ABSENT** — the current expression/evidence is affirmatively non-operational with respect to that boundary at its present grain. **Mere silence is not ABSENT.**
+- **UNRESOLVED** — the boundary is plausibly relevant/implied, but strict candidate-owned evidence is insufficient to determine it.
+
+The 45 calibration rows received a bounded boundary-state consistency pass.
+
+Pinned contrasts now include:
+
+**ABSENT**
+- `GRAPH`
+- `ODE`
+- `Groups`
+- `CROSS-DOMAIN`
+
+These are broad subject/scope labels that are non-operational at the current expression grain.
+
+**UNRESOLVED**
+- `Direct Proof`
+- `Chinese Remainder Theorem`
+- `Recoverability Lemma`
+- `Gram-matrix viewpoint for vectors`
+- `SMALL-CASES`
+
+These expressions plausibly carry operational boundaries, but the accepted candidate-owned evidence does not determine them.
+
+Additional normalizations:
+- Graph Reformulation / Base-three encoding / Adjacent-Swap Optimality Argument / Look for Patterns / Combining Techniques now use UNRESOLVED rather than ABSENT for missing triggers when a deployment trigger is plausibly relevant.
+- Crux Move now uses operationBoundary UNRESOLVED rather than ABSENT because the role implies an operation exists but does not identify it.
+
+The calibration audit marker is now:
+
+`strictEvidenceReauditVersion: "v2-45-boundary-normalized"`
+
+The population remains **45 REVIEWED / 616 UNREVIEWED**. No mass-pass, tribunal, ontology, prerequisite, ranking, relation, learning-order, or product work has started.
+
