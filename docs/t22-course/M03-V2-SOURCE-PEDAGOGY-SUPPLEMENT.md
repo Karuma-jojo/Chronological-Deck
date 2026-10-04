@@ -2,8 +2,13 @@
 
 Date: 2026-10-04  
 Module: `T22E-DISC01 — Mathematical Reasoning & Discrete Foundations`  
-Candidate: `m03-authoring-v2.0-six-tools-candidate-r3`  
-Status: **builder-authored supplement; exact-head full validation and independent adversarial review pending**
+Candidate: `m03-authoring-v2.0-six-tools-candidate-r4`  
+Status: **independent-review repair supplement; acceptance requires exact-head validation and follow-up adversarial confirmation**
+
+Independent adversarial review r1 of exact r3 SHA `05d7bae1e7e2dc55a292de649fd9a013129476a7`
+returned **REPAIRS REQUIRED**. The bounded r4 repair keeps the 36-position architecture and all 72
+fixed prompt/evaluator contracts, while repairing Strategy Labs and narrowing evidence claims that
+overstated learner invention.
 
 This document supplements, rather than rewrites, the published v1.7.2 source dossier. The
 published 30-session state remains historical authority for its own acceptance record. The v2
