@@ -64,7 +64,7 @@ assert(by(22).lesson.includes('column player\'s criterion is to make that row pa
 assert(by(23).title.includes('Mixed strategies'));
 assert(by(23).lesson.includes('minimize expected row payoff'));
 assert(by(24).lesson.includes('Model-selection questions'));
-assert(by(24).lesson.includes('different strand from the fixed Main'));
+assert(by(24).lesson.includes('Worked synthesis (path-dependent strand)'));
 
 // Evidence-distance honesty: very few tasks claim genuine changed-surface/fresh evidence.
 const classes=Object.values(a.evidenceDistance.items).map(x=>x.class);
