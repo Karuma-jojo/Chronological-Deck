@@ -89,37 +89,46 @@ For every probe, begin with an orientation note:
 
 Do not reveal method names until the learner has committed to an organizing plan.
 
-### B1 — constrained strings
+### B1 — mixed ordered selection
 
-How many length-6 strings over {0,1,2,3} contain at least one 0 and at least one 1?
+How many length-4 strings can be formed from the symbols {0,1,2,3,4,5} if no symbol repeats and
+exactly two positions contain even symbols?
 
-### B2 — spacing representation
+Define what is being chosen and which parts are ordered before calculating.
 
-How many 5-element subsets of {1,2,…,12} contain no two consecutive integers?
+### B2 — pair even and odd subsets by a reversible move
 
-### B3 — bounded allocation
+How many subsets of {1,2,3,4,5,6,7,8} have even cardinality?
 
-Count the nonnegative integer solutions of
+Give a counting argument that does not list all subsets. If you use a correspondence, state the
+forward move and why it is reversible.
 
-**x + y + z = 14**
+### B3 — justify a symmetry division
 
-subject to x ≤ 5.
+Eight distinct people are split into two teams of four, but the two teams have no labels.
+How many different splits are possible?
 
-### B4 — finite existence by a useful partition
+If you begin by choosing one four-person team, justify carefully why and by what constant factor
+that procedure overcounts each final split.
 
-Six points with integer coordinates are placed in the plane. Prove that two of them have a
-midpoint whose coordinates are both integers.
+### B4 — invent the holes
 
-### B5 — avoid two fixed positions
+Prove that among any five integers, two have a difference divisible by 4.
 
-How many permutations of {1,2,3,4,5,6} fix neither 1 nor 2?
+The integers are arbitrary; define the finite categories that make the guarantee unavoidable.
 
-### B6 — choose a counting representation
+### B5 — complement on a subset universe
 
-How many length-5 strings over {A,B,C} contain exactly two A's and at least one B?
+How many subsets of {1,2,…,10} contain at least one of the elements 1, 2, 3?
 
-Define the objects before using a formula, and give a second representation or decomposition that
-checks your count.
+State the universe you are counting and justify any complement you use.
+
+### B6 — rectangles from a representation
+
+A rectangular grid has 4 columns of unit squares and 3 rows of unit squares.
+How many axis-aligned rectangles are determined by the grid lines?
+
+Explain the representation of one rectangle before using combinations or products.
 
 ### B7 — an invariant must actually decide something
 
