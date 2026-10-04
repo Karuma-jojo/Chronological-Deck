@@ -60,10 +60,11 @@ assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));
 
 // M13 adds optional staged guided feedback to the shared UI; earlier module
 // behavior remains covered by the existing browser suite and M13 UI checks.
-const publicationAuthorized=new Set(['course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/ui.js','t22-course.html','course/t22/authoring/m05.json']);
+const publicationAuthorized=new Set(['course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/ui.js','t22-course.html','course/t22/authoring/m05.json','course/t22/authoring/m03.json']);
 const m05v2=read('course/t22/authoring/m05.json');
 assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M10 baseline exception is bounded to the explicit M05 v2 candidate');
 assert(fs.existsSync('docs/t22-course/M05-V2-DESIGN-GATE.md'));
+assert.equal(m03.version,'m03-authoring-v2.0-six-tools-candidate-r1','M10 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication metadata');
 const currentProtectedRows=semanticLedger.entries.filter(x=>x.order<=10);
 assert.deepEqual(currentProtectedRows,protectedSemantic.rows,'M01-M10 semantic-ledger rows changed after their reviewed baseline');
