@@ -5933,16 +5933,16 @@
     ],
     "S07": [
       {
-        "item": "M03-S03",
-        "source": "Prior authored M03-S03"
+        "item": "implication and conclusion structure",
+        "source": "Published M03-S03"
       },
       {
-        "item": "M03-S05",
-        "source": "Prior authored M03-S05"
+        "item": "universal/existential quantifier language",
+        "source": "Published M03-S05"
       },
       {
-        "item": "M01 algebra",
-        "source": "M01 algebra"
+        "item": "algebra/divisibility witnesses needed for repaired proofs",
+        "source": "Published M01"
       }
     ],
     "S08": [
@@ -5953,12 +5953,16 @@
     ],
     "S09": [
       {
-        "item": "M03-S08",
-        "source": "Prior authored M03-S08"
+        "item": "parity/divisibility witness definitions",
+        "source": "Published M03-S08"
       },
       {
-        "item": "M01 algebra",
-        "source": "M01 algebra"
+        "item": "algebraic manipulation of integer witness forms",
+        "source": "Published M01"
+      },
+      {
+        "item": "scratch search versus final-proof distinction",
+        "source": "Defined locally in strengthened S09 instruction"
       }
     ],
     "S10": [
@@ -6199,20 +6203,24 @@
     ],
     "S30": [
       {
-        "item": "finite map / injectivity",
-        "source": "M03-S21"
+        "item": "finite mappings, preimages and fibres",
+        "source": "Published M03-S20/S21 plus new S34"
       },
       {
-        "item": "fixed-size subsets",
-        "source": "M03-S26"
+        "item": "finite counting and overlap correction",
+        "source": "Published M03-S23–S28"
       },
       {
-        "item": "two-set inclusion-exclusion plus the three-set bridge taught/derived in S28",
-        "source": "M03-S28 instruction; S30 is the first fixed synthesis assessment that applies the three-set bridge"
+        "item": "capacity/pigeonhole guarantees",
+        "source": "Published M03-S29"
       },
       {
-        "item": "pigeonhole",
-        "source": "M03-S29"
+        "item": "double-counting/incidence representation",
+        "source": "New M03-S35"
+      },
+      {
+        "item": "unlabeled mixed route selection",
+        "source": "Built locally in S30 from already-owned M03 tools; no new theorem imported"
       }
     ],
     "S31": [
