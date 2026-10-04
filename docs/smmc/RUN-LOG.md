@@ -1461,3 +1461,120 @@ The calibration audit marker is now:
 
 The population remains **45 REVIEWED / 616 UNREVIEWED**. No mass-pass, tribunal, ontology, prerequisite, ranking, relation, learning-order, or product work has started.
 
+## Arsenal Gate 3 full 616-row mass pass — review candidate (2026-10-04)
+
+Independent review **5404589125** accepted the Gate-3 calibration ruler on exact SHA `177a8efa24ebca15e2c84dbb18e96a72be5e1d08` and explicitly opened the remaining 616-row mass pass.
+
+The accepted ruler semantics and evidence mode were not changed.
+
+### Mass implementation
+
+Added:
+- `course/smmc/arsenal/granularity-mass-pass-v1.mjs`
+- `course/smmc/arsenal/granularity-audit-v1.mjs`
+- `docs/smmc/ARSENAL-GATE3-MASS-PASS-REPORT.md`
+
+The mass classifier:
+- is anchored to the accepted calibration SHA;
+- receives only the raw candidate expression plus candidate-owned accepted Gate-2 evidence;
+- emits no CROSS_SCALE rows;
+- uses ten bounded implementation rules MP01–MP10;
+- fails thin operational-looking rows closed to UNRESOLVED rather than using general mathematical familiarity.
+
+The ledger now contains **661 REVIEWED / 0 UNREVIEWED** rows:
+- 45 independently accepted calibration rows;
+- 616 mass-pass rows.
+
+### Deliberate self-audits before handoff
+
+The builder did not stop at the first green 661-row run.
+
+Self-audit passes repaired:
+- an ordering bug in the validator that initially prevented the mass run from validating;
+- lexical trigger/result consistency for explicit action wording;
+- over-permissive official/source claim parsing;
+- passive/provenance verbs such as `presents`, `records`, and `used in the text` no longer count as executable source operations;
+- official Battle claim parsing was widened only for verbs actually present in the accepted candidate-owned claims;
+- obvious explicit action wording such as `Define a Function`, `Create Order out of Chaos`, `Search for a Pattern`, `How to Prove Membership`, etc.;
+- compressed operation nouns such as compression/recognition/centering/coloring/guarding/cancellation/summation.
+
+A dedicated official high-risk audit reduced the official UNRESOLVED set to exactly three evidence-thin cases:
+- Newton-Polygon Alternative;
+- 2-adic Valuation;
+- Bijective Counting Route.
+
+A dedicated bundled audit exposes all **13** BUNDLED_MOVES rows.
+
+A duplicate-name audit checks all **25** exact normalized-name duplicate groups. **10** have different granularity signatures, all retained as explicit review targets rather than being merged/adjudicated.
+
+### Final pinned distribution
+
+Reference scale:
+- MICRO 1
+- DEPLOYABLE 213
+- MACRO 115
+- CROSS_SCALE 1
+- UNRESOLVED 331
+
+Bundle structure:
+- BUNDLED_MOVES 13
+- SINGLE_PRIMARY_MOVE 214
+- UNRESOLVED 434
+
+Action shape:
+- EXPLICIT_ACTION 53
+- IMPLICIT_ACTION 238
+- LABEL_ONLY 369
+- UNRESOLVED 1
+
+Context reach:
+- GENERAL 649
+- SOURCE_LOCAL 4
+- PROBLEM_LOCAL 7
+- UNRESOLVED 1
+
+Trigger boundaries:
+- CLEAR 74
+- PARTIAL 29
+- ABSENT 103
+- UNRESOLVED 455
+
+Operation boundaries:
+- CLEAR 182
+- PARTIAL 109
+- ABSENT 103
+- UNRESOLVED 267
+
+Output boundaries:
+- CLEAR 103
+- PARTIAL 85
+- ABSENT 102
+- UNRESOLVED 371
+
+Confidence:
+- HIGH 591
+- MEDIUM 69
+- LOW 1
+
+Mass-rule usage:
+- MP01 55
+- MP02 9
+- MP03 106
+- MP04 14
+- MP05 12
+- MP06 26
+- MP07 38
+- MP08 153
+- MP09 36
+- MP10 167
+
+These counts are now executable regression expectations in the validator.
+
+### Gate state
+
+Gate 3 is **not accepted yet**. This is the full mass-pass review candidate.
+
+`Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 MASS-PASS REVIEW CANDIDATE → Tribunal 🔒`
+
+A fresh exact-head independent graduation attack is required before Tribunal may open.
+
