@@ -1347,6 +1347,52 @@ expect(
   Object.values(gate3RuleUsage).reduce((sum, count) => sum + count, 0) === 616,
   "Mass-pass rule usage must account for all 616 classified rows."
 );
+
+const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
+  referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 213, MACRO: 115, MICRO: 1, UNRESOLVED: 331 }),
+  bundleStructure: Object.freeze({ BUNDLED_MOVES: 13, SINGLE_PRIMARY_MOVE: 214, UNRESOLVED: 434 }),
+  actionShape: Object.freeze({ EXPLICIT_ACTION: 53, IMPLICIT_ACTION: 238, LABEL_ONLY: 369, UNRESOLVED: 1 }),
+  contextReach: Object.freeze({ GENERAL: 649, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 4, UNRESOLVED: 1 }),
+  triggerBoundary: Object.freeze({ ABSENT: 103, CLEAR: 74, PARTIAL: 29, UNRESOLVED: 455 }),
+  operationBoundary: Object.freeze({ ABSENT: 103, CLEAR: 182, PARTIAL: 109, UNRESOLVED: 267 }),
+  outputBoundary: Object.freeze({ ABSENT: 102, CLEAR: 103, PARTIAL: 85, UNRESOLVED: 371 }),
+  confidence: Object.freeze({ HIGH: 591, LOW: 1, MEDIUM: 69 }),
+  ruleUsage: Object.freeze({ MP01: 55, MP02: 9, MP03: 106, MP04: 14, MP05: 12, MP06: 26, MP07: 38, MP08: 153, MP09: 36, MP10: 167 }),
+});
+for (const key of [
+  "referenceScale",
+  "bundleStructure",
+  "actionShape",
+  "contextReach",
+  "triggerBoundary",
+  "operationBoundary",
+  "outputBoundary",
+  "confidence",
+]) {
+  expect(
+    JSON.stringify(gate3CountBy(key)) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION[key]),
+    `Gate-3 final mass-pass distribution drifted for ${key}`
+  );
+}
+expect(
+  JSON.stringify(gate3RuleUsage) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION.ruleUsage),
+  "Gate-3 final mass-pass rule distribution drifted."
+);
+
+// Lexical-action regressions that were explicitly self-audited before handoff.
+for (const candidateId of [
+  "RAW-SOURCE-z-define-function",
+  "RAW-SOURCE-z-order-from-chaos",
+  "RAW-SOURCE-p-search-pattern",
+  "RAW-SOURCE-h-prove-membership",
+]) {
+  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
+  expect(
+    row?.referenceScale === "DEPLOYABLE" && row?.actionShape === "EXPLICIT_ACTION",
+    `Explicit-action mass-pass regression: ${candidateId}`
+  );
+}
+
 console.log("Gate 3 bundled audit:", JSON.stringify(ARSENAL_GATE3_BUNDLED_AUDIT));
 console.log("Gate 3 extreme-scale audit:", JSON.stringify(ARSENAL_GATE3_EXTREME_SCALE_AUDIT));
 console.log("Gate 3 low-confidence audit:", JSON.stringify(ARSENAL_GATE3_LOW_CONFIDENCE_AUDIT));
