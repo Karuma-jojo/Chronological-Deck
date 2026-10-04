@@ -9,12 +9,14 @@
 //   meaningful mathematical output/progress.
 //
 // A candidate may intentionally live above, below, or across that reference unit.
-// CROSS_SCALE has two allowed meanings only: (a) the accepted candidate
-// expression/evidence actually supports components at different reference grains,
-// or (b) a source-defined role/label is explicitly stated to occur at more than
-// one grain. Merely containing multiple operations is not CROSS_SCALE; without
-// evidence of mixed grain such a bundle is MACRO + BUNDLED_MOVES. Gate 3 records
-// that fact; it does not decide what the final Arsenal should do with the candidate.
+// CROSS_SCALE currently has ONE active calibrated meaning only: a source-defined
+// role/label whose candidate-owned evidence explicitly states that the role can
+// occur at more than one reference grain. The formerly proposed "mixed-grain
+// expression" branch is DEFERRED because heterogeneous lexical/semantic roles do
+// not by themselves prove different reference grains. During the mass pass, any
+// candidate that appears to need that deferred branch must fail closed to
+// referenceScale=UNRESOLVED and reopen calibration rather than inventing a new
+// CROSS_SCALE meaning. Gate 3 records grain only; it does not decide ontology.
 
 export const ARSENAL_GATE3_ACCEPTED_GATE2_SHA =
   "ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7";
@@ -24,6 +26,13 @@ export const ARSENAL_GATE3_GATE2_MERGE_SHA =
 
 export const ARSENAL_GATE3_EVIDENCE_MODE =
   "STRICT_CANDIDATE_OWNED_GATE2";
+
+export const ARSENAL_GATE3_CROSS_SCALE_MODE =
+  "SOURCE_SCALE_VARIABLE_ROLE_ONLY";
+
+export const ARSENAL_GATE3_DEFERRED_SCALE_BRANCHES = Object.freeze([
+  "MIXED_GRAIN_EXPRESSION",
+]);
 
 export const ARSENAL_GATE3_REFERENCE_SCALE = Object.freeze([
   "MICRO",
@@ -59,6 +68,13 @@ export const ARSENAL_GATE3_BOUNDARY_TEST = Object.freeze([
   "ABSENT",
   "UNRESOLVED",
 ]);
+
+export const ARSENAL_GATE3_BOUNDARY_SEMANTICS = Object.freeze({
+  CLEAR: "The candidate expression plus candidate-owned accepted evidence identifies this boundary specifically enough to state it without importing outside semantics.",
+  PARTIAL: "The permitted expression/evidence positively identifies part of this boundary, but leaves material details unspecified.",
+  ABSENT: "The current candidate expression/evidence is affirmatively non-operational with respect to this boundary at its present grain; the boundary is not part of what this expression conveys. Mere silence is not ABSENT.",
+  UNRESOLVED: "A boundary is plausibly relevant or implied for this candidate, but the permitted expression/evidence is insufficient to determine it responsibly.",
+});
 
 export const ARSENAL_GATE3_CONFIDENCE = Object.freeze([
   "HIGH",
@@ -194,6 +210,8 @@ export const ARSENAL_GATE3_CONTRACT_META = Object.freeze({
   gate: 3,
   purpose: "GRANULARITY_MEASUREMENT_ONLY",
   evidenceMode: ARSENAL_GATE3_EVIDENCE_MODE,
+  crossScaleMode: ARSENAL_GATE3_CROSS_SCALE_MODE,
+  deferredScaleBranches: ARSENAL_GATE3_DEFERRED_SCALE_BRANCHES,
   referenceUnitIsFinalOntology: false,
   mergeSplitDecisionsAllowed: false,
   ontologyAllowed: false,
