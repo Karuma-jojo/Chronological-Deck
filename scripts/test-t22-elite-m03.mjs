@@ -16,16 +16,16 @@ for(const expected of [
  'Uses the theorem to expand (u+v)^5 with coefficients1,5,10,10,5,1.'
 ])assert(a.claimEvidence[s26.id][4].rubricEvidence.includes(expected),'LF-R01 exact observer missing: '+expected);
 assert(a.semanticSeparationAudit.sessions[s26.id].note.includes('Main v5 explicitly requests combination notation'),'LF-R01 semantic ledger must record the v5 observer surface');
-assert(s27.lesson.includes('5 stars and 2 bars')&&s27.lesson.includes('bijection')&&s27.lesson.includes('★★|★|★★'),'S27 rendered-safe stars-and-bars representation missing');assert(!s27.lesson.includes('**|*|**'),'Markdown-sensitive stars-and-bars form must not return');assert(s29.lesson.includes('least integer greater than or equal to x'));assert(!s29.lesson.includes('25 records across6 labels'));assert(a.problems[s30.transfer].obligationVersion===3);assert(a.problems[s30.transfer].prompt.includes('define Ei as the set of functions that miss ci'));assert(a.problems[s30.transfer].prompt.includes('Use the three-set inclusion-exclusion rule from S28'));assert(!a.problems[s30.transfer].prompt.includes('Derive the three-event inclusion-exclusion correction'));assert.deepEqual(a.historicalLessonAnswerOverlap.sessions[s11.id],[s11.transfer]);assert.deepEqual(a.historicalLessonAnswerOverlap.sessions[s12.id],[s12.main]);assert.deepEqual(a.historicalLessonAnswerOverlap.sessions[s22.id],[s22.main]);assert.deepEqual(a.historicalLessonAnswerOverlap.sessions[s29.id],[s29.main]);
-assert.equal(a.version,'m03-authoring-v2.0-six-tools-candidate-r1');assert.equal(a.module.status,'v2-six-tools-builder-candidate-awaiting-independent-review');
-for(const n of [5,7,12,14,18,19,25,28,29,30])assert.equal(a.problems[by(n).main].obligationVersion,2,'v1.2 evaluator/request repair must version changed Main contract S'+n);
+assert(s27.lesson.includes('5 stars and 2 bars')&&s27.lesson.includes('bijection')&&s27.lesson.includes('★★|★|★★'),'S27 rendered-safe stars-and-bars representation missing');assert(!s27.lesson.includes('**|*|**'),'Markdown-sensitive stars-and-bars form must not return');assert(s29.lesson.includes('least integer greater than or equal to x'));assert(!s29.lesson.includes('25 records across6 labels'));assert.equal(a.problems[s30.main].obligationVersion,3);assert.equal(a.problems[s30.transfer].obligationVersion,4);assert(!/pigeonhole|double counting|inclusion-exclusion/i.test(a.problems[s30.main].prompt),'S30 Main must remain unlabeled');assert(!/inclusion-exclusion|pigeonhole/i.test(a.problems[s30.transfer].prompt),'S30 Transfer must remain unlabeled');assert.deepEqual(a.historicalLessonAnswerOverlap.sessions[s11.id],[s11.transfer]);assert.deepEqual(a.historicalLessonAnswerOverlap.sessions[s12.id],[s12.main]);assert.deepEqual(a.historicalLessonAnswerOverlap.sessions[s22.id],[s22.main]);assert.deepEqual(a.historicalLessonAnswerOverlap.sessions[s29.id],[s29.main]);
+assert.equal(a.version,'m03-authoring-v2.0-six-tools-candidate-r2');assert.equal(a.module.status,'v2-six-tools-builder-candidate-awaiting-independent-review');
+for(const n of [5,7,12,14,18,19,25,28,29])assert.equal(a.problems[by(n).main].obligationVersion,2,'v1.2 evaluator/request repair must version changed Main contract S'+n);assert.equal(a.problems[by(30).main].obligationVersion,3,'S30 unlabeled-synthesis Main must be v3');
 assert.equal(a.claimEvidence[by(25).id][2].task,'transfer');
 assert(!a.evaluators[by(25).main].rubric.some(r=>r.criterion.includes('multinomial count for labeled groups')),'S25 Main must not score Transfer-only multinomial ownership');
 assert(!a.evaluators[by(28).main].rubric.some(r=>r.criterion.includes('divisibility')),'S28 Main must not score Transfer-only divisibility ownership');
 assert(!a.evaluators[by(29).main].rubric.some(r=>r.criterion.includes('non-obvious')),'S29 Main must not score Transfer-only hole-design ownership');
 assert(!a.evaluators[by(30).main].rubric.some(r=>r.criterion.includes('noninject')||r.criterion.includes('surjective')),'S30 Main must not score Transfer-only function ownership');
 assert(by(25).lesson.includes('Labeled-group bridge:')&&by(25).lesson.includes('n!/(n1!⋯nk!)'),'S25 explicit multinomial bridge missing');
-assert(by(30).lesson.includes('Finite-function bridge:')&&by(30).lesson.includes('r^m total functions'),'S30 finite-function counting bridge missing');
+assert(by(30).lesson.includes('A synthesis problem should begin before a formula is chosen')&&by(30).lesson.includes('No method name is supplied')===false,'S30 lesson must teach synthesis orientation without printing a fixed method checklist');
 assert(!by(9).lesson.includes('sums of multiples of 4'),'S09 lesson must not clone Main');
 assert(!by(23).lesson.includes('hats')&&!by(23).lesson.includes('scarves'),'S23 lesson must not clone outfit surface');
 assert(!by(28).lesson.includes('Among 50 users'),'S28 lesson must not clone population-count Main');
@@ -37,7 +37,7 @@ assert(Object.keys(a.decisionAudit.items).length>=10,'meaningful Transfer decisi
 assert.equal(a.semanticSeparationAudit.version,'m03-semantic-separation-v2-six-tools-r1');
 assert.equal(a.semanticSeparationAudit.reviewedAt,'2026-10-04');
 for(const ss of a.sessions){const effectiveInstruction=ss.instructionVersion||a.instructionVersion;assert(a.semanticSeparationAudit.sessions[ss.id].note.includes(effectiveInstruction),'semantic receipt must identify effective instruction version '+ss.id+' -> '+effectiveInstruction);}
-assert(a.semanticSeparationAudit.sessions[by(21).id].note.includes('lesson→Main is retrieval'));assert(a.semanticSeparationAudit.sessions[by(28).id].note.includes('Main is retrieval/application'));assert(a.semanticSeparationAudit.sessions[by(29).id].note.includes('Main is proof reconstruction'));assert(a.semanticSeparationAudit.sessions[by(30).id].note.includes('S28 teaches/derives')&&a.semanticSeparationAudit.sessions[by(30).id].note.includes('first fixed synthesis assessment'));const forbiddenGeneric=new Set(['Correct changed-surface result.','Uses the intended underlying capability.','Shows auditable reasoning.','Respects all stated assumptions/domains.','States the requested conclusion precisely.']);
+assert(a.semanticSeparationAudit.sessions[by(21).id].note.includes('lesson→Main is retrieval'));assert(a.semanticSeparationAudit.sessions[by(28).id].note.includes('Main is retrieval/application'));assert(a.semanticSeparationAudit.sessions[by(29).id].note.includes('Main is proof reconstruction'));assert(a.semanticSeparationAudit.sessions[by(30).id].note.includes('m03-s30-instruction-v2-unlabeled-synthesis-r1')&&a.semanticSeparationAudit.sessions[by(30).id].note.includes('withholds method labels'));const forbiddenGeneric=new Set(['Correct changed-surface result.','Uses the intended underlying capability.','Shows auditable reasoning.','Respects all stated assumptions/domains.','States the requested conclusion precisely.']);
 for(const ss of a.sessions)for(const row of a.evaluators[ss.transfer].rubric)assert(!forbiddenGeneric.has(row.criterion),'generic Transfer rubric survived '+ss.transfer);
 for(const n of [17,23,24])assert.equal(a.problems[by(n).transfer].obligationVersion,2,'weak Transfer replacement must be versioned S'+n);assert.equal(a.problems[by(25).transfer].obligationVersion,3,'S25 Transfer evaluator boundary repair must be v3');assert.equal(a.problems[by(27).transfer].obligationVersion,3,'S27 complement-leaking v2 candidate must be superseded by v3');
 assert(a.problems[by(17).transfer].prompt.includes('even elements of U')&&a.problems[by(17).transfer].prompt.includes('divisible by3'));
@@ -47,13 +47,13 @@ assert(a.problems[by(25).transfer].prompt.includes('student A must be in Morning
 assert(a.problems[by(27).transfer].prompt.includes('monomial x^a y^b z^c w^d'));assert(!a.problems[by(27).transfer].prompt.includes('at most4'),'S27 must not steal S28 complement ownership');
 assert.equal(by(5).requiredOwnership[0],'Track and explain the stated quantifier domain.');
 assert.equal(by(18).requiredOwnership[0],'Translate a supplied De Morgan identity into elementwise membership logic.');
-assert.equal(by(30).requiredOwnership[0],'Execute a correct pigeonhole proof of a universal finite claim.');
+assert.equal(by(30).requiredOwnership[0],'Define the finite objects or states and relevant constraints before selecting a method.');
 assert(a.problems[by(7).main].prompt.includes('Before giving a counterexample'));
 assert(a.problems[by(12).main].prompt.includes('general remainder form n=dq+r'));
 assert(a.problems[by(14).main].prompt.includes('explain why access to more than only the immediately previous case is useful'));
 assert(a.problems[by(19).main].prompt.includes('|A×B|=|A||B|'));
 assert.equal(a.problems[by(26).main].obligationVersion,5);
-assert.equal(a.problems[by(30).transfer].obligationVersion,3);
+assert.equal(a.problems[by(7).transfer].obligationVersion,3);assert.equal(a.problems[by(30).main].obligationVersion,3);assert.equal(a.problems[by(30).transfer].obligationVersion,4);
 
 assert.equal(a.module.status,'v2-six-tools-builder-candidate-awaiting-independent-review');
 assert.equal(by(24).instructionVersion,'m03-s24-instruction-v17-separation-r1');
