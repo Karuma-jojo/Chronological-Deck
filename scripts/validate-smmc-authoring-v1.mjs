@@ -986,6 +986,7 @@ expect(
   "Mass classifier must preserve accepted evidence mode and must not emit new CROSS_SCALE calls."
 );
 
+const gate3ReviewedRows = ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "REVIEWED");
 const massRows = gate3ReviewedRows.filter(row => /^MP\d{2}\b/.test(row.rationale));
 expect(massRows.length === 616, `Expected 616 mass-classified rows, found ${massRows.length}.`);
 const calibrationRows = gate3ReviewedRows.filter(row => !/^MP\d{2}\b/.test(row.rationale));
@@ -999,7 +1000,6 @@ for (const row of massRows) {
 
 
 // Calibration must exercise every reference-scale outcome and the major orthogonal dimensions.
-const gate3ReviewedRows = ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "REVIEWED");
 for (const scale of ["MICRO","DEPLOYABLE","MACRO","CROSS_SCALE","UNRESOLVED"]) {
   expect(gate3ReviewedRows.some(x => x.referenceScale === scale), `Gate-3 calibration does not exercise referenceScale=${scale}`);
 }
