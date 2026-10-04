@@ -1,5 +1,5 @@
 {
-  "version": "m03-authoring-v2.0-six-tools-candidate-r1",
+  "version": "m03-authoring-v2.0-six-tools-candidate-r2",
   "instructionVersion": "m03-instruction-v12-evidence-retrofit-r1",
   "module": {
     "order": 3,
@@ -38,8 +38,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m03-observability-v2-six-tools-candidate-2026-10-04",
-    "status": "Candidate 36/72/180 M03 expansion authored from the published 30/60/150 baseline. Six new sessions are source-grounded and locally re-derived; stable S01–S30 session/task IDs are preserved and only learner-facing order metadata shifts. Full exact-head workflow/browser and independent adversarial review remain required.",
+    "version": "m03-observability-v2-six-tools-candidate-r2-2026-10-04",
+    "status": "Candidate 36/72/180 M03 expansion authored and selectively strengthened from the published 30/60/150 baseline. Six new sessions are interleaved with stable new identities; S07-T and S30-M/T are deliberately versioned to satisfy repaired-claim proof and unlabeled final-synthesis obligations; S09 receives instruction-only proof-search strengthening. Full exact-head workflow/browser and independent adversarial review remain required.",
     "policy": "Every retained or new ownership claim must be literally requested and supported by exact rubric evidence. Changed numbers or a Transfer storage slot do not establish transfer. Historical v1.7.2 acceptance does not certify this candidate."
   },
   "sessions": [
@@ -293,34 +293,40 @@
       "moduleId": "T22E-DISC01",
       "title": "Counterexamples, boundary cases & claim debugging",
       "focus": "Counterexamples, boundary cases & claim debugging",
-      "purpose": "Build counterexamples, boundary cases & claim debugging as an independently observable capability before later probability/research modules.",
-      "centralCapability": "Check counterexample legality/hypothesis. Check conclusion failure. Use one valid counterexample to refute a universal. Explain confirming examples do not prove universality. Search strategically near sign/zero/boundaries.",
-      "principalObstacle": "Avoid the characteristic shortcut/category error for counterexamples, boundary cases & claim debugging.",
+      "purpose": "Build counterexample search into a complete debugging cycle: refute a false universal claim, repair it economically, and prove the repaired theorem.",
+      "centralCapability": "Search strategically for a legal counterexample, verify the failure, repair the false statement without gratuitous boundary changes, and prove the repaired claim.",
+      "principalObstacle": "Stopping after a counterexample or treating a plausible repaired statement as true because it survives a few tests.",
       "entryPrerequisites": [
-        "M03-S03",
-        "M03-S05",
-        "M01 algebra"
+        "M03-S03 implication language",
+        "M03-S05 universal/existential quantifiers",
+        "M01 algebra and integer divisibility"
       ],
       "requiredOwnership": [
-        "Check counterexample legality/hypothesis.",
-        "Check conclusion failure.",
-        "Use one valid counterexample to refute a universal.",
-        "Explain confirming examples do not prove universality.",
-        "Search strategically near sign/zero/boundaries."
+        "Search strategically near sign, zero or domain boundaries and verify counterexample legality/hypotheses.",
+        "Verify conclusion failure and use one legal counterexample to refute a universal implication.",
+        "Explain why confirming examples do not prove a universal claim.",
+        "Repair a false statement while preserving the original domain/hypothesis unless a change is explicitly justified.",
+        "Prove the repaired statement rather than merely testing additional examples."
       ],
-      "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
+      "applicationScope": "Elementary real/integer universal claims whose failure can be diagnosed and repaired with already-owned algebra.",
+      "transferScope": "Changed-surface transfer: move from search/refutation on an inequality to refute→repair→prove on a zero-product implication.",
       "inScope": [
-        "Counterexamples, boundary cases & claim debugging"
+        "counterexample legality",
+        "boundary/sign/zero search",
+        "universal refutation",
+        "minimal useful repair",
+        "proof of repaired claim"
       ],
       "outOfScope": [
+        "Polynomial-inequality theory not owned by M01",
         "Probability/expectation until M04",
         "Limits/convergence until M09"
       ],
-      "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Counterexamples, boundary cases & claim debugging.",
-      "lesson": "A valid counterexample is legal, satisfies the hypothesis, and falsifies the conclusion. One refutes a universal; confirmations do not prove one. Worked example: over reals, the claim a+b>0⇒(a>0 and b>0) fails at a=2,b=−1: the hypothesis is true but one conclusion component is false. Guided check: audit the claim x²=x⇒x=1 by testing the boundary value x=0 and explicitly checking hypothesis and conclusion.",
+      "exitCondition": "Independently refute the Main claim and, on Transfer, refute a different false statement, repair it and prove the repaired theorem.",
+      "lesson": "A mathematical counterexample must be legal, satisfy every hypothesis and make the conclusion false. One such example refutes a universal statement; many confirming examples do not prove it. Debugging should then continue: repair the statement as economically as possible and prove the repair. Worked example: over integers, the claim 6|n⇒4|n is false because n=6 satisfies 6|n but not 4|n. A useful repair is 6|n⇒3|n. If 6|n, then n=6k=3(2k) for some integer k, so the repaired conclusion follows for every legal n. Guided check: audit 10|n⇒6|n. Find a legal counterexample, propose a divisor conclusion that really follows from 10|n, and write the witness form you would use to prove your repaired claim. Search first near small multiples and divisor boundaries; do not call a repair proved until the universal argument is complete.",
       "main": "T22V3::T22E-DISC01::S07-M@1",
-      "transfer": "T22V3::T22E-DISC01::S07-T@1"
+      "transfer": "T22V3::T22E-DISC01::S07-T@1",
+      "instructionVersion": "m03-s07-instruction-v2-repair-proof-r1"
     },
     {
       "order": 9,
@@ -385,9 +391,10 @@
         "Limits/convergence until M09"
       ],
       "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for Direct proof architecture.",
-      "lesson": "A direct proof of a universal implication starts with arbitrary legal objects satisfying the hypotheses, unpacks definitions, derives symbolically, and finishes by matching the conclusion definition. Worked example: if n is odd, then n+2 is odd. Write n=2k+1 for some integer k; then n+2=2(k+1)+1, which has the required odd form. Guided check: if 6|n, unpack the divisibility witness and show directly that n is even, naming the integer witness that matches the even definition.",
+      "lesson": "A direct proof of a universal implication starts with arbitrary legal objects satisfying the hypotheses, unpacks definitions, derives symbolically, and finishes by matching the conclusion definition. Worked example: if n is odd, then n+2 is odd. Write n=2k+1 for some integer k; then n+2=2(k+1)+1, which has the required odd form. Guided check: if 6|n, unpack the divisibility witness and show directly that n is even, naming the integer witness that matches the even definition. Search discipline: scratchwork and final proof have different jobs. In scratchwork, write the givens and the target definition, work backward from the target to identify a useful witness or intermediate statement, and allow failed routes. Once the connection is found, the final proof should start from arbitrary legal givens and present only the justified forward logical spine. Working backward is a discovery device, not permission to assume the conclusion.",
       "main": "T22V3::T22E-DISC01::S09-M@1",
-      "transfer": "T22V3::T22E-DISC01::S09-T@1"
+      "transfer": "T22V3::T22E-DISC01::S09-T@1",
+      "instructionVersion": "m03-s09-instruction-v2-proof-search-r1"
     },
     {
       "order": 11,
@@ -1302,37 +1309,45 @@
       "order": 36,
       "id": "T22V3::T22E-DISC01::S30@1",
       "moduleId": "T22E-DISC01",
-      "title": "M03 synthesis — claims, proof, sets & finite counting",
-      "focus": "M03 synthesis — claims, proof, sets & finite counting",
-      "purpose": "Build m03 synthesis — claims, proof, sets & finite counting as an independently observable capability before later probability/research modules.",
-      "centralCapability": "Execute a correct pigeonhole proof of a universal finite claim. Count fixed-size subsets. Use complement counting for a subset class. Use pigeonhole to prove noninjectivity. Count surjective finite functions by inclusion-exclusion.",
-      "principalObstacle": "Avoid the characteristic shortcut/category error for m03 synthesis — claims, proof, sets & finite counting.",
+      "title": "M03 synthesis — representation, proof & finite counting",
+      "focus": "Unlabeled mixed route selection and complete finite argument",
+      "purpose": "Observe whether the learner can independently select a finite representation and combine previously owned proof/counting tools after all 35 earlier learner positions.",
+      "centralCapability": "Define the objects, choose and justify a representation/method without a supplied label, combine multiple owned tools, audit edge/overlap conditions, and communicate a complete argument.",
+      "principalObstacle": "Waiting for a method keyword, or performing locally correct calculations without defining what is counted/proved and why the pieces form one valid solution.",
       "entryPrerequisites": [
-        "M03-S21 finite mappings",
-        "M03-S26 combinations",
+        "All earlier M03 learner positions 1–35",
+        "M03-S21 finite mappings/preimages",
         "M03-S28 inclusion-exclusion",
-        "M03-S29 pigeonhole"
+        "M03-S29 finite capacity/pigeonhole",
+        "M03-S35 double counting and incidence representations"
       ],
       "requiredOwnership": [
-        "Execute a correct pigeonhole proof of a universal finite claim.",
-        "Count fixed-size subsets.",
-        "Use complement counting for a subset class.",
-        "Use pigeonhole to prove noninjectivity.",
-        "Count surjective finite functions by inclusion-exclusion."
+        "Define the finite objects or states and relevant constraints before selecting a method.",
+        "Select and justify a useful representation or method without a method label being supplied.",
+        "Combine two or more previously owned M03 tools coherently in one solution.",
+        "Verify edge, overlap or capacity conditions and distinguish guaranteed existence from identification where relevant.",
+        "Communicate a complete proof/count whose logical and counting stages are justified, while allowing valid alternative routes."
       ],
-      "applicationScope": "Elementary finite/discrete mathematical reasoning.",
-      "transferScope": "Changed-surface transfer: the same owned capability must be reconstructed on a materially different representation or context.",
+      "applicationScope": "Mixed deterministic finite reasoning using only already-owned M03 definitions and methods.",
+      "transferScope": "Changed-surface transfer: move from a finite family/incidence guarantee to surjective function counting plus a fibre-size existence proof, with no named-method checklist.",
       "inScope": [
-        "M03 synthesis — claims, proof, sets & finite counting"
+        "unlabeled route selection",
+        "finite representation",
+        "tool composition",
+        "overlap/capacity audit",
+        "complete proof/count communication"
       ],
       "outOfScope": [
         "Probability/expectation until M04",
+        "Graph algorithms until M22",
+        "Generating functions/Burnside",
         "Limits/convergence until M09"
       ],
-      "exitCondition": "Solve Main and Transfer while visibly satisfying the five ownership claims for M03 synthesis — claims, proof, sets & finite counting.",
-      "lesson": "A synthesis problem may combine proof and counting tools, so first identify the mathematical objects and decide which earlier capability each subproblem appears to need. Finite-function bridge: if a domain has m elements and a codomain has r available values, each domain element independently has r output choices, so there are r^m total functions. If one specified codomain value is forbidden, only r−1 outputs remain for each input, giving (r−1)^m functions. Worked example: from a 3-element domain to a 4-element codomain there are 4^3 total functions; if one specified output value is forbidden there are 3^3. Guided check: for a separate finite-map problem, identify which quantities are determined by domain size, codomain size, and a forbidden-output restriction before choosing any counting formula.",
+      "exitCondition": "Solve both unlabeled mixed tasks by defining the objects, choosing/justifying the route, combining owned tools and checking the relevant overlap/capacity boundaries.",
+      "lesson": "A synthesis problem should begin before a formula is chosen. First define the objects, target and constraints; then ask which representation makes the obstruction or count visible. Scratchwork may try more than one route, but the final solution should state why each chosen tool applies and how the stages fit together. Worked example: count length-4 binary strings that are not constant. The objects are the 2^4 binary strings; exactly two are constant, so the desired count is 2^4−2. The same objects can be viewed as functions from four labelled positions to {0,1}, which checks that the representation is faithful. Guided check: consider 3-person committees chosen from seven people with the requirement that at least one of two named people serves. Before calculating, state a natural universe and a complementary bad class, and say what must be checked before subtraction is valid. Do not calculate the final number yet. In final synthesis, a method name is less important than a correct object model, justified hypotheses and a complete argument.",
       "main": "T22V3::T22E-DISC01::S30-M@1",
-      "transfer": "T22V3::T22E-DISC01::S30-T@1"
+      "transfer": "T22V3::T22E-DISC01::S30-T@1",
+      "instructionVersion": "m03-s30-instruction-v2-unlabeled-synthesis-r1"
     }
   ],
   "problems": {
@@ -1431,8 +1446,8 @@
       "id": "T22V3::T22E-DISC01::S07-T@1",
       "order": 8,
       "kind": "transfer",
-      "prompt": "Audit: for all real a,b, if ab=0 then a=0 and b=0. Give a counterexample and repair the conclusion.",
-      "obligationVersion": 2
+      "prompt": "Audit the claim: for all real a,b, if ab=0 then a=0 and b=0. Give a legal counterexample and verify the failure. Repair the conclusion without changing the real domain or the hypothesis ab=0, then prove your repaired statement for arbitrary real a,b rather than checking more examples.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S08-M@1": {
       "id": "T22V3::T22E-DISC01::S08-M@1",
@@ -1746,15 +1761,15 @@
       "id": "T22V3::T22E-DISC01::S30-M@1",
       "order": 36,
       "kind": "main",
-      "prompt": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
-      "obligationVersion": 2
+      "prompt": "A family F consists of 13 distinct 4-element subsets of U={1,2,…,8}. Prove that some element of U belongs to at least 7 members of F. No method name is supplied. Give a complete proof: define any auxiliary finite objects or counts you introduce, justify every counting/guarantee step, and explain why the conclusion guarantees existence without identifying which element is forced.",
+      "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S30-T@1": {
       "id": "T22V3::T22E-DISC01::S30-T@1",
       "order": 36,
       "kind": "transfer",
-      "prompt": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective and count all functions. Next define Ei as the set of functions that miss ci. Use the three-set inclusion-exclusion rule from S28 (or justify the same correction by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
-      "obligationVersion": 3
+      "prompt": "Let D be a 5-element set and C={c1,c2,c3}. Determine exactly how many functions f:D→C use every output value at least once. Separately prove that every such function has some output with at least two preimages. No named-method checklist is supplied: define whatever sets or representation you use, justify any overlap correction or boundary case, and distinguish what your existence argument guarantees from what it identifies.",
+      "obligationVersion": 4
     },
     "T22V3::T22E-DISC01::S31-M@1": {
       "id": "T22V3::T22E-DISC01::S31-M@1",
@@ -2181,30 +2196,30 @@
       "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
     },
     "T22V3::T22E-DISC01::S07-T@1": {
-      "reference": "a=0,b=1 refutes AND. Correct: a=0 OR b=0.",
+      "reference": "For example a=0,b=1 has ab=0 but the AND conclusion fails. The repaired theorem is: for all real a,b, if ab=0 then a=0 OR b=0 (inclusive OR). Proof: take arbitrary real a,b with ab=0. If a=0 the conclusion holds. If a≠0, divide ab=0 by the nonzero real a to get b=0. Thus a=0 or b=0 for every legal pair.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Gives a legal counterexample such as a=0,b=1 with ab=0."
+          "criterion": "Gives a legal real counterexample such as a=0,b=1, verifies ab=0, and identifies why the original AND conclusion fails."
         },
         {
           "points": 2,
-          "criterion": "Shows that the original conclusion a=0 and b=0 fails on the same pair."
+          "criterion": "Uses that single legal hypothesis-true/conclusion-false pair to refute the original universal implication."
         },
         {
           "points": 2,
-          "criterion": "Explains that one legal counterexample refutes the universal implication."
+          "criterion": "Repairs the conclusion to the inclusive statement a=0 or b=0 while preserving the real domain and hypothesis ab=0."
         },
         {
           "points": 2,
-          "criterion": "Repairs the conclusion to a=0 or b=0."
+          "criterion": "Proves the repaired implication for arbitrary real a,b, for example by separating a=0 from a≠0 and using division by nonzero a to obtain b=0."
         },
         {
           "points": 2,
-          "criterion": "Keeps the repaired claim over real a,b and distinguishes inclusive OR from AND."
+          "criterion": "Makes clear that the repaired universal statement is established by proof, not by checking additional numerical examples."
         }
       ],
-      "marking": "Award only for the public obligations above. Accept mathematically equivalent reasoning, but do not award a criterion that the response does not actually demonstrate."
+      "marking": "Accept any logically valid proof of the real zero-product property using already-owned algebra. Do not require the reference case split verbatim. A corrected sentence without proof does not satisfy the strengthened Transfer."
     },
     "T22V3::T22E-DISC01::S08-M@1": {
       "reference": "6|42 with7; 8∤42; −4|20 with−5; even2m, odd2m+1.",
@@ -3343,56 +3358,56 @@
       "marking": "Accept valid alternate reasoning; preserve domains, assumptions and proof/counting distinctions."
     },
     "T22V3::T22E-DISC01::S30-M@1": {
-      "reference": "Pigeonhole over2 parity holes. Total C(8,3)=56; same-parity2C(4,3)=8; mixed48.",
+      "reference": "One clean route counts incidences I={(S,u):S∈F,u∈S}. Every one of the 13 sets contributes 4 incidences, so |I|=52. If every u∈U belonged to at most 6 sets, grouping the same incidences by u would give at most 8·6=48, contradiction. Hence some u belongs to at least 7 members of F. The argument guarantees at least one such u; it does not identify which element it is.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Proves that every3-element subset of A contains two elements of the same parity using the two parity classes."
+          "criterion": "Defines a legitimate finite object/counting representation for membership across the 13 four-element sets, such as subset–element incidences."
         },
         {
           "points": 2,
-          "criterion": "Counts all3-element subsets as C(8,3)=56."
+          "criterion": "Justifies that the total membership/incidence count is 13·4=52."
         },
         {
           "points": 2,
-          "criterion": "Counts all-same-parity3-subsets as 2C(4,3)=8."
+          "criterion": "Uses a valid second grouping/capacity argument: if every one of the 8 elements occurred in at most 6 sets, the same total would be at most 8·6=48."
         },
         {
           "points": 2,
-          "criterion": "Uses complement counting to obtain56−8=48 subsets containing both parities."
+          "criterion": "Derives the contradiction 52>48 and concludes that some element belongs to at least 7 members of F."
         },
         {
           "points": 2,
-          "criterion": "Keeps the proof claim and the three counting classes logically consistent and clearly interpreted."
+          "criterion": "Explains that the proof guarantees existence of at least one such element without identifying which element is forced, and presents the stages as one coherent argument."
         }
       ],
-      "marking": "Accept any logically valid route meeting the public request. Examples alone do not prove a universal claim unless the finite domain is exhausted."
+      "marking": "Accept any mathematically equivalent route, including an average-membership argument, provided the learner defines what is being averaged/counted and justifies the guarantee. Do not require the words double counting or pigeonhole."
     },
     "T22V3::T22E-DISC01::S30-T@1": {
-      "reference": "Pigeonhole: 4 domain elements into 3 codomain values forbids injectivity. There are 3^4=81 total functions. For each i, |Ei|=2^4=16 because only two codomain values may be used. For i≠j, |Ei∩Ej|=1^4=1 because only the remaining codomain value may be used. E1∩E2∩E3 is empty because a function from nonempty D cannot use zero codomain values, so its size is0. Deriving the three-set correction gives |E1∪E2∪E3|=3·16−3·1+0=45. Therefore surjective functions=81−45=36.",
+      "reference": "There are 3^5=243 total functions. Let Ei be the functions missing ci (the learner may use equivalent notation). Then |Ei|=2^5=32; each pair intersection has size 1^5=1; the triple intersection is empty because D is nonempty. Thus functions missing at least one output number 3·32−3·1+0=93, so the onto functions number 243−93=150. For the second claim, five domain elements are distributed among three nonempty fibres; if every fibre had size at most 1 there would be at most three domain elements, impossible. Hence some output has at least two preimages. This guarantees such an output exists but need not identify which ci it is.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Uses pigeonhole correctly to prove no map D→C can be injective and counts all functions as3^4=81."
+          "criterion": "Defines the finite function-counting universe and correctly obtains 3^5=243 total functions before imposing surjectivity."
         },
         {
           "points": 2,
-          "criterion": "Defines the missing-output sets Ei and applies the three-set inclusion-exclusion correction with the correct alternating signs."
+          "criterion": "Introduces and justifies an exact correction for missed outputs (or an equivalent exact route), with single-missed counts 2^5=32, pair-missed counts 1 and the all-missed boundary count 0."
         },
         {
           "points": 2,
-          "criterion": "Computes each |Ei|=2^4=16 and explains the two available codomain values."
+          "criterion": "Accounts for overlaps with the correct alternating correction and obtains exactly 150 functions that use all three outputs."
         },
         {
           "points": 2,
-          "criterion": "Computes each pair intersection as1 and the triple intersection as0 with correct set-of-functions reasoning."
+          "criterion": "Proves that every such function has an output with at least two preimages by a valid finite-capacity/fibre argument on 5 domain elements and 3 outputs."
         },
         {
           "points": 2,
-          "criterion": "Obtains |E1∪E2∪E3|=45 and hence 81−45=36 surjective functions."
+          "criterion": "Distinguishes the guaranteed existence of a fibre of size at least 2 from identification of a particular output, and communicates both counting and existence parts coherently."
         }
       ],
-      "marking": "Accept the S28 three-set inclusion-exclusion rule or an equivalent membership-multiplicity justification. The learner must identify missing-output events as sets of functions and account for singles, pairwise intersections and the triple intersection; merely quoting36 is insufficient."
+      "marking": "Accept any exact surjection count and any valid fibre/capacity proof. Inclusion–exclusion notation is not mandatory, but any overcount correction must be justified rather than asserted."
     },
     "T22V3::T22E-DISC01::S31-M@1": {
       "reference": "A is true: n is chosen first, then m=n+1 is an integer, m>n, and m−n=1 is odd. B is false: m would be fixed before n; for any proposed integer m choose n=m, making m>n false. The exact negation of B is ∀m∈Z ∃n∈Z such that ¬(m>n and m−n is odd), equivalently ∀m∈Z ∃n∈Z such that m≤n or m−n is even. A allows m to depend on n because ∃m occurs after ∀n; B requires one m before all n.",
@@ -3821,10 +3836,10 @@
         "main"
       ],
       [
-        "main"
+        "transfer"
       ],
       [
-        "main"
+        "transfer"
       ]
     ],
     "T22V3::T22E-DISC01::S08@1": [
@@ -4577,31 +4592,25 @@
     ],
     "T22V3::T22E-DISC01::S07@1": [
       {
-        "claim": "Check counterexample legality/hypothesis.",
+        "claim": "Search strategically near sign, zero or domain boundaries and verify counterexample legality/hypotheses.",
         "task": "main",
         "publicRequest": "Audit: for every real x, if x²>4 then x>2. Before giving a counterexample, name one search family you would inspect (for example sign, zero, or a boundary) and use that search to produce a valid counterexample. Verify the hypothesis and conclusion failure, explain why one case refutes the universal, and why checking x=3,4,5 does not prove it.",
         "rubricEvidence": [
+          "Names a plausible sign/zero/boundary search family before presenting the counterexample and connects it to the chosen test value.",
           "Gives a legal real counterexample such as x=−3 and verifies x²>4."
         ]
       },
       {
-        "claim": "Check conclusion failure.",
+        "claim": "Verify conclusion failure and use one legal counterexample to refute a universal implication.",
         "task": "main",
         "publicRequest": "Audit: for every real x, if x²>4 then x>2. Before giving a counterexample, name one search family you would inspect (for example sign, zero, or a boundary) and use that search to produce a valid counterexample. Verify the hypothesis and conclusion failure, explain why one case refutes the universal, and why checking x=3,4,5 does not prove it.",
         "rubricEvidence": [
-          "Verifies that the conclusion x>2 fails for the same counterexample."
-        ]
-      },
-      {
-        "claim": "Use one valid counterexample to refute a universal.",
-        "task": "main",
-        "publicRequest": "Audit: for every real x, if x²>4 then x>2. Before giving a counterexample, name one search family you would inspect (for example sign, zero, or a boundary) and use that search to produce a valid counterexample. Verify the hypothesis and conclusion failure, explain why one case refutes the universal, and why checking x=3,4,5 does not prove it.",
-        "rubricEvidence": [
+          "Verifies that the conclusion x>2 fails for the same counterexample.",
           "Explains why one legal hypothesis-true/conclusion-false case refutes the universal implication."
         ]
       },
       {
-        "claim": "Explain confirming examples do not prove universality.",
+        "claim": "Explain why confirming examples do not prove a universal claim.",
         "task": "main",
         "publicRequest": "Audit: for every real x, if x²>4 then x>2. Before giving a counterexample, name one search family you would inspect (for example sign, zero, or a boundary) and use that search to produce a valid counterexample. Verify the hypothesis and conclusion failure, explain why one case refutes the universal, and why checking x=3,4,5 does not prove it.",
         "rubricEvidence": [
@@ -4609,11 +4618,20 @@
         ]
       },
       {
-        "claim": "Search strategically near sign/zero/boundaries.",
-        "task": "main",
-        "publicRequest": "Audit: for every real x, if x²>4 then x>2. Before giving a counterexample, name one search family you would inspect (for example sign, zero, or a boundary) and use that search to produce a valid counterexample. Verify the hypothesis and conclusion failure, explain why one case refutes the universal, and why checking x=3,4,5 does not prove it.",
+        "claim": "Repair a false statement while preserving the original domain/hypothesis unless a change is explicitly justified.",
+        "task": "transfer",
+        "publicRequest": "Audit the claim: for all real a,b, if ab=0 then a=0 and b=0. Give a legal counterexample and verify the failure. Repair the conclusion without changing the real domain or the hypothesis ab=0, then prove your repaired statement for arbitrary real a,b rather than checking more examples.",
         "rubricEvidence": [
-          "Names a plausible sign/zero/boundary search family before presenting the counterexample and connects it to the chosen test value."
+          "Repairs the conclusion to the inclusive statement a=0 or b=0 while preserving the real domain and hypothesis ab=0."
+        ]
+      },
+      {
+        "claim": "Prove the repaired statement rather than merely testing additional examples.",
+        "task": "transfer",
+        "publicRequest": "Audit the claim: for all real a,b, if ab=0 then a=0 and b=0. Give a legal counterexample and verify the failure. Repair the conclusion without changing the real domain or the hypothesis ab=0, then prove your repaired statement for arbitrary real a,b rather than checking more examples.",
+        "rubricEvidence": [
+          "Proves the repaired implication for arbitrary real a,b, for example by separating a=0 from a≠0 and using division by nonzero a to obtain b=0.",
+          "Makes clear that the repaired universal statement is established by proof, not by checking additional numerical examples."
         ]
       }
     ],
@@ -5547,44 +5565,49 @@
     ],
     "T22V3::T22E-DISC01::S30@1": [
       {
-        "claim": "Execute a correct pigeonhole proof of a universal finite claim.",
+        "claim": "Define the finite objects or states and relevant constraints before selecting a method.",
         "task": "main",
-        "publicRequest": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
+        "publicRequest": "A family F consists of 13 distinct 4-element subsets of U={1,2,…,8}. Prove that some element of U belongs to at least 7 members of F. No method name is supplied. Give a complete proof: define any auxiliary finite objects or counts you introduce, justify every counting/guarantee step, and explain why the conclusion guarantees existence without identifying which element is forced.",
         "rubricEvidence": [
-          "Proves that every3-element subset of A contains two elements of the same parity using the two parity classes."
+          "Defines a legitimate finite object/counting representation for membership across the 13 four-element sets, such as subset–element incidences."
         ]
       },
       {
-        "claim": "Count fixed-size subsets.",
+        "claim": "Select and justify a useful representation or method without a method label being supplied.",
         "task": "main",
-        "publicRequest": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
+        "publicRequest": "A family F consists of 13 distinct 4-element subsets of U={1,2,…,8}. Prove that some element of U belongs to at least 7 members of F. No method name is supplied. Give a complete proof: define any auxiliary finite objects or counts you introduce, justify every counting/guarantee step, and explain why the conclusion guarantees existence without identifying which element is forced.",
         "rubricEvidence": [
-          "Counts all3-element subsets as C(8,3)=56.",
-          "Counts all-same-parity3-subsets as 2C(4,3)=8."
+          "Defines a legitimate finite object/counting representation for membership across the 13 four-element sets, such as subset–element incidences.",
+          "Uses a valid second grouping/capacity argument: if every one of the 8 elements occurred in at most 6 sets, the same total would be at most 8·6=48."
         ]
       },
       {
-        "claim": "Use complement counting for a subset class.",
+        "claim": "Combine two or more previously owned M03 tools coherently in one solution.",
         "task": "main",
-        "publicRequest": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
+        "publicRequest": "A family F consists of 13 distinct 4-element subsets of U={1,2,…,8}. Prove that some element of U belongs to at least 7 members of F. No method name is supplied. Give a complete proof: define any auxiliary finite objects or counts you introduce, justify every counting/guarantee step, and explain why the conclusion guarantees existence without identifying which element is forced.",
         "rubricEvidence": [
-          "Uses complement counting to obtain56−8=48 subsets containing both parities."
+          "Justifies that the total membership/incidence count is 13·4=52.",
+          "Uses a valid second grouping/capacity argument: if every one of the 8 elements occurred in at most 6 sets, the same total would be at most 8·6=48.",
+          "Derives the contradiction 52>48 and concludes that some element belongs to at least 7 members of F."
         ]
       },
       {
-        "claim": "Use pigeonhole to prove noninjectivity.",
+        "claim": "Verify edge, overlap or capacity conditions and distinguish guaranteed existence from identification where relevant.",
         "task": "transfer",
-        "publicRequest": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective and count all functions. Next define Ei as the set of functions that miss ci. Use the three-set inclusion-exclusion rule from S28 (or justify the same correction by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
+        "publicRequest": "Let D be a 5-element set and C={c1,c2,c3}. Determine exactly how many functions f:D→C use every output value at least once. Separately prove that every such function has some output with at least two preimages. No named-method checklist is supplied: define whatever sets or representation you use, justify any overlap correction or boundary case, and distinguish what your existence argument guarantees from what it identifies.",
         "rubricEvidence": [
-          "Uses pigeonhole correctly to prove no map D→C can be injective and counts all functions as3^4=81."
+          "Introduces and justifies an exact correction for missed outputs (or an equivalent exact route), with single-missed counts 2^5=32, pair-missed counts 1 and the all-missed boundary count 0.",
+          "Proves that every such function has an output with at least two preimages by a valid finite-capacity/fibre argument on 5 domain elements and 3 outputs.",
+          "Distinguishes the guaranteed existence of a fibre of size at least 2 from identification of a particular output, and communicates both counting and existence parts coherently."
         ]
       },
       {
-        "claim": "Count surjective finite functions by inclusion-exclusion.",
+        "claim": "Communicate a complete proof/count whose logical and counting stages are justified, while allowing valid alternative routes.",
         "task": "transfer",
-        "publicRequest": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective and count all functions. Next define Ei as the set of functions that miss ci. Use the three-set inclusion-exclusion rule from S28 (or justify the same correction by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
+        "publicRequest": "Let D be a 5-element set and C={c1,c2,c3}. Determine exactly how many functions f:D→C use every output value at least once. Separately prove that every such function has some output with at least two preimages. No named-method checklist is supplied: define whatever sets or representation you use, justify any overlap correction or boundary case, and distinguish what your existence argument guarantees from what it identifies.",
         "rubricEvidence": [
-          "Obtains |E1∪E2∪E3|=45 and hence 81−45=36 surjective functions."
+          "Accounts for overlaps with the correct alternating correction and obtains exactly 150 functions that use all three outputs.",
+          "Distinguishes the guaranteed existence of a fibre of size at least 2 from identification of a particular output, and communicates both counting and existence parts coherently."
         ]
       }
     ],
@@ -6359,7 +6382,7 @@
         "Audit: for every real x, if x²>4 then x>2. Before giving a"
       ],
       "transfer": [
-        "Audit: for all real a,b, if ab=0 then a=0 and b=0. Give"
+        "for all real a,b, if ab=0 then a=0 and b=0"
       ]
     },
     "T22V3::T22E-DISC01::S08@1": {
@@ -6540,10 +6563,10 @@
     },
     "T22V3::T22E-DISC01::S30@1": {
       "main": [
-        "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same"
+        "13 distinct 4-element subsets of U={1,2,…,8}"
       ],
       "transfer": [
-        "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can "
+        "D be a 5-element set and C={c1,c2,c3}"
       ]
     },
     "T22V3::T22E-DISC01::S31@1": {
@@ -6646,16 +6669,16 @@
         "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'changed-surface Transfer'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
       },
       "T22V3::T22E-DISC01::S07@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'fresh Main evidence' and lesson/Main→Transfer is classified 'changed-surface Transfer'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "V2 core-strengthening receipt on instructionVersion m03-s07-instruction-v2-repair-proof-r1: lesson teaches refute→repair→prove on divisibility. Main retains fresh sign/boundary counterexample search on an inequality. Transfer changes to a real zero-product implication and now requires a proof of the repaired OR theorem; the fixed zero-product surface is not visible in instruction."
       },
       "T22V3::T22E-DISC01::S08@1": {
         "status": "reviewed-separated",
         "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'retrieval' and lesson/Main→Transfer is classified 'retrieval'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
       },
       "T22V3::T22E-DISC01::S09@1": {
-        "status": "reviewed-separated",
-        "note": "Current v1.2 re-audit on instructionVersion m03-instruction-v12-evidence-retrofit-r1: lesson→Main is classified 'proof reconstruction' and lesson/Main→Transfer is classified 'proof reconstruction'. Different data alone is not used as proof of separation; exact decision distance is recorded separately where Transfer is claimed."
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "V2 instruction receipt on instructionVersion m03-s09-instruction-v2-proof-search-r1: the lesson now distinguishes scratch givens/goal search from the forward final proof. Fixed Main/Transfer statements and evaluators are unchanged and remain proof reconstruction on different divisibility/parity surfaces."
       },
       "T22V3::T22E-DISC01::S10@1": {
         "status": "reviewed-separated",
@@ -6739,7 +6762,7 @@
       },
       "T22V3::T22E-DISC01::S30@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "Current v1.7.1 receipt on instructionVersion m03-instruction-v12-evidence-retrofit-r1: Main is proof reconstruction/integration; Transfer is changed-surface finite-function synthesis. S28 teaches/derives the three-set inclusion-exclusion bridge; S30 is the first fixed synthesis assessment that applies that bridge. No retrospective S28 ownership claim is made."
+        "note": "V2 core-strengthening receipt on instructionVersion m03-s30-instruction-v2-unlabeled-synthesis-r1: visible instruction demonstrates orientation on binary strings and a committee-complement setup. Main withholds method labels and requires the learner to invent a membership representation plus capacity guarantee. Transfer changes to surjective function counting and a fibre-size existence proof; no missing-output sets or inclusion–exclusion method are printed in the prompt."
       },
       "T22V3::T22E-DISC01::S31@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
@@ -6911,10 +6934,32 @@
         "tasks": 72,
         "ownershipClaims": 180
       },
-      "status": "builder-candidate-full-CI-and-independent-review-pending",
+      "status": "builder-candidate-core-strengthening-full-CI-and-independent-review-pending",
       "historicalBaseline": "published-v1.7.2-builder-validated-same-model-review-passed",
-      "progressPolicy": "Existing S01–S30 assessment fingerprints remain unchanged because prompts/evaluators/obligation versions are untouched; changing order metadata does not enter the assessment fingerprint or session contract hash. New S31–S36 start with fresh identities and no historical attempts.",
-      "publicationPolicy": "Do not merge or label accepted before exact-head full workflow/Chromium and independent adversarial review."
+      "progressPolicy": "Historical attempts are preserved. Existing S01–S06, S08, S10–S29 fixed assessment contracts remain unchanged. S07-T, S30-M and S30-T are materially strengthened and obligation-versioned, so older attempts cannot certify the new obligations under the existing assessment-fingerprint rules. S07/S09/S30 session instruction/contract changes are explicitly versioned. New S31–S36 retain fresh identities with no historical attempts.",
+      "publicationPolicy": "Do not merge or label accepted before exact-head full workflow/Chromium and independent adversarial review.",
+      "revision": "r2-core-strengthening",
+      "coreStrengtheningAudit": "docs/t22-course/M03-V2-CORE-STRENGTHENING-AUDIT.md",
+      "materialExistingTaskChanges": {
+        "T22V3::T22E-DISC01::S07-T@1": {
+          "fromObligationVersion": 2,
+          "toObligationVersion": 3,
+          "reason": "require proof of repaired zero-product claim"
+        },
+        "T22V3::T22E-DISC01::S30-M@1": {
+          "fromObligationVersion": 2,
+          "toObligationVersion": 3,
+          "reason": "unlabeled mixed route-selection final synthesis"
+        },
+        "T22V3::T22E-DISC01::S30-T@1": {
+          "fromObligationVersion": 3,
+          "toObligationVersion": 4,
+          "reason": "unlabeled onto-count plus fibre guarantee synthesis"
+        }
+      },
+      "instructionOnlyExistingChange": {
+        "T22V3::T22E-DISC01::S09@1": "m03-s09-instruction-v2-proof-search-r1"
+      }
     }
   },
   "evidenceDistance": {
@@ -6970,11 +7015,11 @@
       },
       "T22V3::T22E-DISC01::S07-M@1": {
         "class": "fresh Main evidence",
-        "note": "Main requires the learner to choose and report a counterexample-search family before producing a valid counterexample; the decisive search choice is not supplied by visible instruction."
+        "note": "Main still requires the learner to choose and report a productive counterexample-search family before producing a legal counterexample; the successful family/value is not supplied by instruction."
       },
       "T22V3::T22E-DISC01::S07-T@1": {
         "class": "changed-surface Transfer",
-        "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S07; storage in the Transfer slot is not treated as proof of transfer."
+        "note": "Transfer changes from inequality search to a two-variable zero-product claim and requires the full refute→repair→prove cycle. The task names the debugging obligations but neither the counterexample, repaired OR statement nor universal proof is rehearsed in visible instruction."
       },
       "T22V3::T22E-DISC01::S08-M@1": {
         "class": "retrieval",
@@ -6986,11 +7031,11 @@
       },
       "T22V3::T22E-DISC01::S09-M@1": {
         "class": "proof reconstruction",
-        "note": "Main classified from the actual current lesson→task reasoning distance for S09; label is descriptive, not a prestige score."
+        "note": "Main reconstructs the explicitly taught direct-proof architecture; the added scratch-search paragraph improves construction discipline but does not turn the fixed task into method discovery."
       },
       "T22V3::T22E-DISC01::S09-T@1": {
         "class": "proof reconstruction",
-        "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S09; storage in the Transfer slot is not treated as proof of transfer."
+        "note": "Transfer executes the same direct-proof architecture on an even-product statement; its classification remains proof reconstruction."
       },
       "T22V3::T22E-DISC01::S10-M@1": {
         "class": "proof reconstruction",
@@ -7153,12 +7198,12 @@
         "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S29; storage in the Transfer slot is not treated as proof of transfer."
       },
       "T22V3::T22E-DISC01::S30-M@1": {
-        "class": "proof reconstruction",
-        "note": "Main classified from the actual current lesson→task reasoning distance for S30; label is descriptive, not a prestige score."
+        "class": "fresh Main evidence",
+        "note": "Main supplies only the finite family and target. The learner must choose a membership/incidence or equivalent average representation and combine it with a capacity contradiction; neither method nor auxiliary set is supplied or rehearsed."
       },
       "T22V3::T22E-DISC01::S30-T@1": {
         "class": "changed-surface Transfer",
-        "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S30; storage in the Transfer slot is not treated as proof of transfer."
+        "note": "Transfer changes from subset-family membership to finite functions. It requires an exact onto count plus a separate fibre-capacity proof, while withholding named methods and missing-output event definitions."
       },
       "T22V3::T22E-DISC01::S31-M@1": {
         "class": "proof reconstruction",
@@ -7242,22 +7287,22 @@
         "classificationJustification": "The prompt explicitly says to negate both natural-language claims; S06 visibly rehearses quantifier switching, scope preservation and inequality complements."
       },
       "T22V3::T22E-DISC01::S07-M@1": {
-        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "status": "builder-v2-readjudicated-awaiting-independent-confirmation",
         "classification": "fresh Main evidence",
         "decision": "Choose a productive counterexample-search family before presenting the counterexample.",
         "decisionSuppliedByPrompt": false,
         "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Names a plausible sign/zero/boundary search family before presenting the counterexample and connects it to the chosen test value. | Gives a legal real counterexample such as x=−3 and verifies x²>4. | Verifies that the conclusion x>2 fails for the same counterexample. | Explains why one legal hypothesis-true/conclusion-false case refutes the universal implication. | Explains why checking only positive examples such as 3,4,5 cannot prove a claim over all real numbers.",
-        "classificationJustification": "The prompt requires a search-family commitment but does not supply the successful family/counterexample; visible instruction gives examples of counterexample checking without rehearsing this exact search decision."
+        "scoredLearnerAction": "Commits to a plausible search family, finds a legal counterexample, verifies hypothesis/conclusion failure and explains why confirmations cannot prove the universal claim.",
+        "classificationJustification": "The public request requires a search-family commitment but does not supply the successful family or counterexample; the new divisibility lesson uses a different surface."
       },
       "T22V3::T22E-DISC01::S07-T@1": {
-        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "status": "builder-v2-readjudicated-awaiting-independent-confirmation",
         "classification": "changed-surface Transfer",
-        "decision": "Find a legal counterexample and repair the failed AND conclusion to OR.",
-        "decisionSuppliedByPrompt": true,
+        "decision": "Find the zero-product counterexample, formulate the correct inclusive-OR repair, and choose a proof route that establishes it for arbitrary reals.",
+        "decisionSuppliedByPrompt": false,
         "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Gives a legal counterexample such as a=0,b=1 with ab=0. | Shows that the original conclusion a=0 and b=0 fails on the same pair. | Explains that one legal counterexample refutes the universal implication. | Repairs the conclusion to a=0 or b=0. | Keeps the repaired claim over real a,b and distinguishes inclusive OR from AND.",
-        "classificationJustification": "The prompt explicitly asks for a counterexample and repaired conclusion. Visible S07 instruction rehearses legality/falsification but does not rehearse repairing this zero-product AND conclusion to OR."
+        "scoredLearnerAction": "Refutes the AND claim, states a legal repair without changing the boundary, and proves the repaired zero-product theorem universally.",
+        "classificationJustification": "The prompt requires a repair and proof but does not print the repaired conclusion or the case-split/division argument. Visible instruction rehearses the debugging cycle on integer divisibility, not zero products."
       },
       "T22V3::T22E-DISC01::S16-T@1": {
         "status": "builder-readjudicated-awaiting-independent-confirmation",
@@ -7350,13 +7395,13 @@
         "classificationJustification": "The prompt says only to design 10 pigeonholes; it does not supply the consecutive pairs {1,2},{3,4},…,{19,20}. Visible S29 instruction uses folders/drawers and does not rehearse that pair construction."
       },
       "T22V3::T22E-DISC01::S30-T@1": {
-        "status": "builder-readjudicated-awaiting-independent-confirmation",
+        "status": "builder-v2-readjudicated-awaiting-independent-confirmation",
         "classification": "changed-surface Transfer",
-        "decision": "Integrate pigeonhole, finite-function counting and inclusion-exclusion on a function-space surface distinct from Main, while acknowledging that the public task still scaffolds the event sets.",
-        "decisionSuppliedByPrompt": true,
+        "decision": "Choose an exact representation for onto functions, justify overlap/boundary corrections, and separately choose a fibre-capacity argument for the preimage guarantee.",
+        "decisionSuppliedByPrompt": false,
         "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Uses pigeonhole correctly to prove no map D→C can be injective and counts all functions as3^4=81. | Defines the missing-output sets Ei and applies the three-set inclusion-exclusion correction with the correct alternating signs. | Computes each |Ei|=2^4=16 and explains the two available codomain values. | Computes each pair intersection as1 and the triple intersection as0 with correct set-of-functions reasoning. | Obtains |E1∪E2∪E3|=45 and hence 81−45=36 surjective functions.",
-        "classificationJustification": "The prompt explicitly scaffolds the integration: no injection, total functions, missing-output sets and three-set inclusion-exclusion. S30 visible instruction rehearses total/forbidden-output function counts but not the full pigeonhole+event-set+inclusion-exclusion synthesis."
+        "scoredLearnerAction": "Counts 150 onto functions with justified correction, then proves a size-at-least-2 fibre exists and distinguishes guarantee from identity.",
+        "classificationJustification": "The prompt does not name inclusion–exclusion, define missing-output sets, give the correction signs or name pigeonhole. It demands the result and proof standards only."
       },
       "T22V3::T22E-DISC01::S31-T@1": {
         "status": "builder-pilot-awaiting-independent-confirmation",
@@ -7420,6 +7465,15 @@
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Proves a−b invariant, a+b decreasing integer rank, termination, terminal state and move count with role separation.",
         "classificationJustification": "The prompt names the categories invariant/rank but does not supply the functions. Correct completion requires choosing quantities with different logical roles."
+      },
+      "T22V3::T22E-DISC01::S30-M@1": {
+        "status": "builder-v2-readjudicated-awaiting-independent-confirmation",
+        "classification": "fresh Main evidence",
+        "decision": "Choose a representation that counts total set membership and compare it with the maximum capacity under the negation of the target.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Defines a finite membership representation, obtains 52, derives the at-most-48 contradiction under the negated target, and states existence-not-identity.",
+        "classificationJustification": "The prompt gives no method name, incidence set, average formula or pigeonhole partition. Visible instruction uses binary strings/committees, not a family-of-subsets capacity guarantee."
       }
     }
   },
@@ -7451,8 +7505,8 @@
         "requiredDiscrimination": "Quantifier switch and inequality complement are separately scored."
       },
       "T22V3::T22E-DISC01::S07@1": {
-        "wrongApproach": "Give x=3 as 'evidence' or a value that does not falsify the conclusion.",
-        "requiredDiscrimination": "The same value must satisfy the hypothesis and fail the conclusion; search process is also observed."
+        "wrongApproach": "Stop after a legal counterexample, or propose a corrected statement and support it only with more examples.",
+        "requiredDiscrimination": "Main observes legal strategic refutation; Transfer separately scores a boundary-preserving repair and an arbitrary-real proof of the repair."
       },
       "T22V3::T22E-DISC01::S08@1": {
         "wrongApproach": "Write 3|(n−1) as n−1=3 without an integer witness.",
@@ -7543,8 +7597,8 @@
         "requiredDiscrimination": "Transfer rubric requires the consecutive-pair hole design."
       },
       "T22V3::T22E-DISC01::S30@1": {
-        "wrongApproach": "Count onto functions as 3^4 or subtract 3·2^4 without restoring pair intersections.",
-        "requiredDiscrimination": "Rubric requires the overlap structure and final surjective count."
+        "wrongApproach": "Wait for a named method, count local pieces without showing they refer to the same universe, subtract missed-output cases without restoring overlaps, or say 'some fibre is large' without a capacity proof.",
+        "requiredDiscrimination": "Main requires an explicit representation plus 52-versus-48 guarantee; Transfer requires an exact overlap-aware onto count and a logically separate fibre-capacity existence proof."
       },
       "T22V3::T22E-DISC01::S31@1": {
         "wrongApproach": "Choose a different y for each x while claiming this proves ∃y∀x, or swap the quantifier symbols without negating the predicate.",
