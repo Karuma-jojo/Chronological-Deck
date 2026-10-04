@@ -6858,7 +6858,7 @@
     "taskReplacementPolicy": "Stable task IDs are retained with incremented obligationVersion. Substantively changed prompts (S17/S23/S24/S25/S27 Transfer and selected Main observers) are new evidence obligations; older attempts do not auto-satisfy them. S27-T v3 supersedes the rejected upper-bound/complement v2 candidate so S28 retains first ownership of complement counting.",
     "strategyLabPolicy": "Method-selection diagnostics remain post-assessment, unscored practice/diagnostic evidence and never auto-grant canonical ownership. Final Spire pack v1.7.2 clone-audits the strategy probes against S01–S30 and replaces close archetype clones with changed mathematical surfaces before publication.",
     "historicalAcceptedStatus": "published-v1.4-lang-final-stitch-accepted",
-    "currentCandidateStatus": "v2-six-tools-builder-candidate-awaiting-independent-review",
+    "currentCandidateStatus": "v2-r4-independent-review-repair-candidate-awaiting-follow-up-review",
     "v17ChangedAssessmentIds": [
       "T22V3::T22E-DISC01::S25-T@1",
       "T22V3::T22E-DISC01::S26-M@1",
@@ -6948,8 +6948,8 @@
       },
       "status": "review-repair-r1-candidate-requires-exact-head-validation-and-follow-up-review",
       "historicalBaseline": "published-v1.7.2-builder-validated-same-model-review-passed",
-      "progressPolicy": "Historical attempts are preserved. The r3 micro-cleanup changes visible instruction/session contracts for S04, S14, S16, S24, S25 and S26 but does not change their fixed prompts, evaluators or obligation versions. S07-T and S30-M/T remain the only retained-core fixed obligations materially strengthened in v2. New S31–S36 keep fresh identities.",
-      "publicationPolicy": "Do not merge or label accepted before exact-head full workflow/Chromium and independent adversarial review.",
+      "progressPolicy": "Historical attempts are preserved. r4 changes no fixed prompt, evaluator or obligation version relative to r3. It repairs Strategy Lab artifacts separately and narrows selected S33/S34/S35/S36 ownership wording plus S07/S31/S34 evidence metadata to match literal public observability. S07-T and S30-M/T remain the only retained-core fixed obligations materially strengthened in v2; new S31–S36 retain their stable identities.",
+      "publicationPolicy": "Do not merge or label accepted before a fresh exact-head full workflow/Chromium run on r4 and follow-up adversarial confirmation of R01–R05 closure.",
       "revision": "r4-independent-review-repair-r1",
       "coreStrengtheningAudit": "docs/t22-course/M03-V2-CORE-STRENGTHENING-AUDIT.md",
       "materialExistingTaskChanges": {
