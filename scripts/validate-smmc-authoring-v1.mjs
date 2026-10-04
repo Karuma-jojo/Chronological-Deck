@@ -87,6 +87,13 @@ import {
 } from "../course/smmc/arsenal/granularity-ledger-v0.mjs";
 import { ARSENAL_GATE3_MASS_CLASSIFIER_META } from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
+import {
+  ARSENAL_GATE3_DUPLICATE_NAME_AUDIT,
+  ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES,
+  ARSENAL_GATE3_MASS_PASS_DISTRIBUTION,
+  ARSENAL_GATE3_MASS_RULE_USAGE,
+  ARSENAL_GATE3_MASS_AUDIT_META,
+} from "../course/smmc/arsenal/granularity-audit-v1.mjs";
 
 function expect(condition, message) {
   if (!condition) throw new Error(message);
@@ -1301,9 +1308,46 @@ const gate3RuleUsage = Object.fromEntries(
   ])
 );
 expect(
+  JSON.stringify(gate3RuleUsage) === JSON.stringify(ARSENAL_GATE3_MASS_RULE_USAGE),
+  "Gate-3 exported mass-rule usage report drifted from validator recomputation."
+);
+expect(
+  ARSENAL_GATE3_MASS_AUDIT_META.totalRows === 661 &&
+  ARSENAL_GATE3_MASS_AUDIT_META.calibrationRows === 45 &&
+  ARSENAL_GATE3_MASS_AUDIT_META.massRows === 616,
+  "Gate-3 mass audit metadata must preserve the accepted 45 + 616 = 661 partition."
+);
+expect(
+  ARSENAL_GATE3_MASS_AUDIT_META.activeCrossScaleRows === 1,
+  "Gate-3 mass audit must report exactly one active CROSS_SCALE sentinel."
+);
+expect(
+  ARSENAL_GATE3_MASS_AUDIT_META.unresolvedScaleRows === gate3ReviewedRows.filter(row => row.referenceScale === "UNRESOLVED").length,
+  "Gate-3 unresolved-scale audit count drifted."
+);
+expect(
+  ARSENAL_GATE3_DUPLICATE_NAME_AUDIT.length === ARSENAL_GATE2_DUPLICATE_NAME_GROUPS.length,
+  "Every Gate-2 duplicate-name group must appear in the Gate-3 consistency audit."
+);
+expect(
+  ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES.every(group =>
+    group.rows.length > 1 &&
+    group.classificationSignatures.length > 1
+  ),
+  "Gate-3 duplicate-name difference report contains a non-difference."
+);
+
+expect(
   Object.values(gate3RuleUsage).reduce((sum, count) => sum + count, 0) === 616,
   "Mass-pass rule usage must account for all 616 classified rows."
 );
+console.log("Gate 3 duplicate-name audit:", JSON.stringify({
+  groups: ARSENAL_GATE3_DUPLICATE_NAME_AUDIT.length,
+  differingGroups: ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES.length,
+  differences: ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES,
+}));
+console.log("Gate 3 exported distribution:", JSON.stringify(ARSENAL_GATE3_MASS_PASS_DISTRIBUTION));
+
 console.log("Gate 3 mass-pass summary:", JSON.stringify({
   total: gate3ReviewedRows.length,
   calibrationRows: calibrationRows.length,
