@@ -12,7 +12,14 @@
 // - LABEL_ONLY does NOT mean "not Arsenal".
 // Those decisions belong to later tribunal / ontology gates.
 
-import { ARSENAL_GATE2_RAW_CANDIDATES } from "./candidates-v0.mjs";
+import {
+  ARSENAL_GATE2_RAW_CANDIDATES,
+  ARSENAL_GATE2_RAW_EVIDENCE,
+} from "./candidates-v0.mjs";
+import {
+  buildGate3MassAssessment,
+  ARSENAL_GATE3_MASS_CLASSIFIER_META,
+} from "./granularity-mass-pass-v1.mjs";
 import {
   ARSENAL_GATE3_ACCEPTED_GATE2_SHA,
   ARSENAL_GATE3_GATE2_MERGE_SHA,
@@ -22,6 +29,13 @@ const rawById = new Map(ARSENAL_GATE2_RAW_CANDIDATES.map(candidate => [
   candidate.candidateId,
   candidate,
 ]));
+
+const evidenceByCandidateId = new Map();
+for (const record of ARSENAL_GATE2_RAW_EVIDENCE) {
+  const rows = evidenceByCandidateId.get(record.candidateId) ?? [];
+  rows.push(record);
+  evidenceByCandidateId.set(record.candidateId, rows);
+}
 
 export const ARSENAL_GATE3_ASSESSED_INPUT_KEYS = Object.freeze([
   "candidateId",
@@ -619,26 +633,22 @@ const CALIBRATION = Object.freeze([
 
 const assessedById = new Map(CALIBRATION.map(row => [row.candidateId, row]));
 
+const MASS_ASSESSMENTS = Object.freeze(
+  ARSENAL_GATE2_RAW_CANDIDATES
+    .filter(candidate => !assessedById.has(candidate.candidateId))
+    .map(candidate => {
+      const evidenceRecords = evidenceByCandidateId.get(candidate.candidateId) ?? [];
+      return assessed(buildGate3MassAssessment(candidate, evidenceRecords));
+    })
+);
+
+const massById = new Map(MASS_ASSESSMENTS.map(row => [row.candidateId, row]));
+
 export const ARSENAL_GATE3_GRANULARITY_RECORDS = Object.freeze(
   ARSENAL_GATE2_RAW_CANDIDATES.map(candidate => {
-    const row = assessedById.get(candidate.candidateId);
+    const row = assessedById.get(candidate.candidateId) ?? massById.get(candidate.candidateId);
     if (!row) {
-      return Object.freeze({
-        candidateId: candidate.candidateId,
-        candidateName: candidate.candidateName,
-        origin: candidate.origin,
-        status: "UNREVIEWED",
-        referenceScale: null,
-        bundleStructure: null,
-        actionShape: null,
-        contextReach: null,
-        triggerBoundary: null,
-        operationBoundary: null,
-        outputBoundary: null,
-        confidence: null,
-        supportingEvidenceRecordIds: Object.freeze([]),
-        rationale: null,
-      });
+      throw new Error(`Gate-3 mass pass failed to classify ${candidate.candidateId}`);
     }
 
     return Object.freeze({
@@ -660,14 +670,26 @@ export const ARSENAL_GATE3_GRANULARITY_RECORDS = Object.freeze(
   })
 );
 
+export const ARSENAL_GATE3_MASS_PASS_META = Object.freeze({
+  calibrationRows: CALIBRATION.length,
+  massRows: MASS_ASSESSMENTS.length,
+  totalRows: ARSENAL_GATE3_GRANULARITY_RECORDS.length,
+  classifierVersion: ARSENAL_GATE3_MASS_CLASSIFIER_META.version,
+  calibrationAcceptanceSha: ARSENAL_GATE3_MASS_CLASSIFIER_META.calibrationAcceptanceSha,
+  evidenceMode: ARSENAL_GATE3_MASS_CLASSIFIER_META.evidenceMode,
+  crossScaleMode: ARSENAL_GATE3_MASS_CLASSIFIER_META.crossScaleMode,
+});
+
 export const ARSENAL_GATE3_GRANULARITY_META = Object.freeze({
   gate: 3,
-  status: "CALIBRATION-IN-PROGRESS",
+  status: "MASS-PASS-REVIEW-CANDIDATE",
   acceptedGate2Sha: ARSENAL_GATE3_ACCEPTED_GATE2_SHA,
   gate2MergeSha: ARSENAL_GATE3_GATE2_MERGE_SHA,
   gate2CandidateCount: ARSENAL_GATE2_RAW_CANDIDATES.length,
   reviewed: ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "REVIEWED").length,
   unreviewed: ARSENAL_GATE3_GRANULARITY_RECORDS.filter(x => x.status === "UNREVIEWED").length,
+  calibrationRows: CALIBRATION.length,
+  massPassRows: MASS_ASSESSMENTS.length,
   ontologyStarted: false,
   mergeSplitStarted: false,
   prerequisiteGraphStarted: false,
@@ -675,4 +697,5 @@ export const ARSENAL_GATE3_GRANULARITY_META = Object.freeze({
   candidateRelationsStarted: false,
   learnerGamificationStarted: false,
   strictEvidenceReauditVersion: "v2-45-boundary-normalized",
+  massPassVersion: "v1-616-complete",
 });
