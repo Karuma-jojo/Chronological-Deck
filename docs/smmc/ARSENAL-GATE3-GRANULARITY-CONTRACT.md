@@ -46,13 +46,11 @@ Every reviewed raw candidate receives the following independent measurements.
 - `MICRO` — narrower than the diagnostic move; usually a local substep, instance, or context-dependent supporting fragment.
 - `DEPLOYABLE` — approximately one coherent reusable move at the diagnostic scale.
 - `MACRO` — broader than one deployable move. This includes families/areas/umbrellas **and bundles of multiple same-grain or not-proven-different-grain moves**. If the evidence only establishes “more than one operation,” use `MACRO + BUNDLED_MOVES`; do not infer mixed grain.
-- `CROSS_SCALE` — reserved for cases where mixed grain is itself supported: **(a)** the accepted candidate expression/evidence explicitly supports components at different reference grains, or **(b)** a source-defined role/label is explicitly stated to occur at more than one grain. A bundle is not CROSS_SCALE merely because it contains several operations.
+- `CROSS_SCALE` — **currently active for one calibrated meaning only**: a source-defined role/label whose candidate-owned evidence explicitly says that the role may occur at more than one reference grain. Zeitz's `Crux Move` is the calibration anchor.
 
-The two CROSS_SCALE branches are calibrated separately:
-- **mixed-grain expression anchor:** `Convex envelope and epigraph/convex-hull construction`, whose wording itself couples a named target concept/object with a construction expression;
-- **scale-variable role anchor:** Zeitz's `Crux Move`, whose candidate-owned source fact explicitly says the role may occur at strategic, tactical, or tool level.
+The formerly proposed **mixed-grain-expression** branch is deliberately **DEFERRED**. Merely coupling different lexical/semantic roles—such as a concept/object plus a construction expression—does not prove that the components occupy different MICRO / DEPLOYABLE / MACRO grains. During the mass pass, any candidate that appears to require this deferred branch must use `referenceScale: UNRESOLVED` and reopen calibration before a new CROSS_SCALE meaning can be activated.
 
-If a future candidate appears CROSS_SCALE for a reason not represented by one of these calibrated branches, fail closed with `UNRESOLVED` and reopen calibration rather than inventing a third meaning during the mass pass.
+A bundle is never CROSS_SCALE merely because it contains several operations.
 - `UNRESOLVED` — the available accepted evidence and raw wording do not support a responsible scale call.
 
 These are measurements of the **current candidate expression**, not claims about what the mathematics “really is.”
@@ -94,18 +92,24 @@ A row may be `UNRESOLVED + HIGH`: that means high confidence that **unresolved i
 
 ### F. Trigger / operation / output boundaries
 
-Each receives:
+Each receives one of four **operationally distinct** states:
 
-- `CLEAR`
-- `PARTIAL`
-- `ABSENT`
-- `UNRESOLVED`
+- `CLEAR` — the raw candidate expression plus candidate-owned accepted evidence identifies the boundary specifically enough to state it without importing outside semantics.
+- `PARTIAL` — the permitted expression/evidence positively identifies some content for the boundary, but leaves material details unspecified.
+- `ABSENT` — the current expression/evidence is affirmatively non-operational with respect to this boundary at its present grain. The boundary is simply **not part of what this expression conveys**. Mere silence is **not** enough for ABSENT.
+- `UNRESOLVED` — a boundary is plausibly relevant or implied for the candidate, but the permitted expression/evidence is too thin to determine it responsibly.
 
 Questions:
 
 1. **Trigger:** can we say what kind of situation invites the move?
 2. **Operation:** can we say what the solver deliberately does?
 3. **Output:** can we say what immediate mathematical object, simplification, bound, contradiction, representation, or progress the move produces?
+
+The critical distinction is **ABSENT vs UNRESOLVED**:
+
+- `GRAPH`, `ODE`, and `Groups` are broad subject labels. At their current grain they are not expressing a trigger/operation/output at all, so those boundaries are `ABSENT`.
+- `Direct Proof`, `Chinese Remainder Theorem`, `Recoverability Lemma`, and `Gram-matrix viewpoint for vectors` plausibly have operational content, but their candidate-owned evidence is too thin to identify it under strict mode, so the relevant boundaries are `UNRESOLVED`.
+- An explicit or implicit action with an unspecified trigger should normally use `UNRESOLVED`, not `ABSENT`, because a trigger is plausibly part of deploying that move even though the permitted evidence does not identify it.
 
 These boundary tests are what keep Gate 3 from collapsing into vague “feels too broad” judgments.
 
@@ -216,7 +220,8 @@ The calibration intentionally includes awkward cases:
 - `Positivity of Squares (x² ≥ 0)` supplies the independent `MICRO + GENERAL` anchor: a reusable fact narrower than a complete deliberate move.
 - `Smallest Nondivisible Multiplier Advances Prime Support` supplies an independent `DEPLOYABLE + PROBLEM_LOCAL` anchor, demonstrating that semantic reach and grain are orthogonal.
 - `Clearing denominators and primitive-integer normalization`, `Combining Techniques`, row-replacement-plus-cofactor expansion, and the Dilation–Derivative Boundedness Bootstrap test `MACRO + BUNDLED_MOVES`: the accepted evidence establishes multiple operations but not mixed reference grains.
-- `Convex envelope and epigraph/convex-hull construction` is the calibrated mixed-grain CROSS_SCALE branch: the wording itself couples a concept/object expression with a construction expression, without pretending that this automatically means multiple executable moves.
+- `Convex envelope and epigraph/convex-hull construction` is now a **fail-closed UNRESOLVED** scale stress case. Its concept/object + construction wording does not by itself prove different reference grains, so the mixed-grain CROSS_SCALE branch remains deferred.
+- `Crux Move` is the **only active CROSS_SCALE calibration anchor**, exercising the source-defined scale-variable-role meaning.
 - Generic source-book labels `Graph Theory`, `Groups`, `Chinese Remainder Theorem`, and `Counting Strategies` are GENERAL because their semantics are generic; their book origin is provenance, not semantic locality.
 - Zeitz's `Strategy / Tactic / Tool / Crux Move` remain SOURCE_LOCAL because the attached evidence gives those words source-authored taxonomy/role meanings.
 - Hammack's `Direct Proof` and the project bridge `Gram-matrix viewpoint for vectors` are now strict-mode stress cases: their candidate-owned evidence is too thin to support the richer operations previously inferred, so unsupported dimensions are UNRESOLVED.
@@ -231,14 +236,16 @@ Gate 3 is not complete until:
 
 1. the granularity contract survives independent adversarial review;
 2. the calibration cases survive a bounded attack on the definitions and edge cases;
-3. all 661 accepted candidates have exactly one `REVIEWED` row;
-4. every reviewed row passes the executable contract and cites candidate-owned evidence;
-5. every `UNRESOLVED` scale call has a substantive rationale rather than silent guessing;
-6. the final distribution is mechanically reported by origin and by granularity dimensions;
-7. an adversarial sample checks consistency across duplicate-looking names from different sources without merging them;
-8. no Gate-2 mutation or Gate-4+ leakage is present;
-9. exact-head CI is green;
-10. an independent reviewer accepts the exact SHA.
+3. the ABSENT / UNRESOLVED boundary distinction survives calibration review on comparable thin-evidence examples;
+4. CROSS_SCALE remains restricted to the active scale-variable-role meaning unless a future calibration amendment explicitly activates another branch;
+5. all 661 accepted candidates have exactly one `REVIEWED` row;
+6. every reviewed row passes the executable contract and cites candidate-owned evidence;
+7. every `UNRESOLVED` scale call has a substantive rationale rather than silent guessing;
+8. the final distribution is mechanically reported by origin and by granularity dimensions;
+9. an adversarial sample checks consistency across duplicate-looking names from different sources without merging them;
+10. no Gate-2 mutation or Gate-4+ leakage is present;
+11. exact-head CI is green;
+12. an independent reviewer accepts the exact SHA.
 
 Only then may the next tribunal/adjudication gate open.
 
