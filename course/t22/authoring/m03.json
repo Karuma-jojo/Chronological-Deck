@@ -6743,27 +6743,27 @@
       },
       "T22V3::T22E-DISC01::S31@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "V2 S31 pilot: lesson teaches nested quantifier order, witness dependence and exact negation on distinct integer/real examples. Main reconstructs the logic on a new odd-difference relation; Transfer changes representation to a finite allowed-output table and requires an unsupplied function/intersection interpretation."
+        "note": "V2 receipt on instructionVersion m03-s31-instruction-v2-r1: V2 S31 pilot: lesson teaches nested quantifier order, witness dependence and exact negation on distinct integer/real examples. Main reconstructs the logic on a new odd-difference relation; Transfer changes representation to a finite allowed-output table and requires an unsupplied function/intersection interpretation."
       },
       "T22V3::T22E-DISC01::S32@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "S32 instruction uses a distinct affine equation. Main requires the learner to construct, verify and separately prove uniqueness for a new parameter equation. Transfer changes the obstacle to nonlinear roots plus a domain restriction; neither fixed equation appears in instruction."
+        "note": "V2 receipt on instructionVersion m03-s32-instruction-v2-r1: S32 instruction uses a distinct affine equation. Main requires the learner to construct, verify and separately prove uniqueness for a new parameter equation. Transfer changes the obstacle to nonlinear roots plus a domain restriction; neither fixed equation appears in instruction."
       },
       "T22V3::T22E-DISC01::S33@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "S33 lesson demonstrates least-counterexample structure on a divisibility claim. Main applies the architecture to a different exponential inequality and explicitly audits the real-minimum boundary. Transfer changes to a finite extremal closure argument."
+        "note": "V2 receipt on instructionVersion m03-s33-instruction-v2-r1: S33 lesson demonstrates least-counterexample structure on a divisibility claim. Main applies the architecture to a different exponential inequality and explicitly audits the real-minimum boundary. Transfer changes to a finite extremal closure argument."
       },
       "T22V3::T22E-DISC01::S34@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "S34 instruction uses function-string and absolute-value examples. Main requires a fresh subset↔5-bit encoding with both inverse identities. Transfer attacks a variable-fibre marked-string map; neither fixed map appears in instruction."
+        "note": "V2 receipt on instructionVersion m03-s34-instruction-v2-r1: S34 instruction uses function-string and absolute-value examples. Main requires a fresh subset↔5-bit encoding with both inverse identities. Transfer attacks a variable-fibre marked-string map; neither fixed map appears in instruction."
       },
       "T22V3::T22E-DISC01::S35@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "S35 lesson teaches double counting via person-team incidences. Main changes to subset/outside-element pairs and a boundary-zero term. Transfer withholds the counted objects entirely and requires the learner to invent a single-set/two-count interpretation for a binomial-power sum."
+        "note": "V2 receipt on instructionVersion m03-s35-instruction-v2-r1: S35 lesson teaches double counting via person-team incidences. Main changes to subset/outside-element pairs and a boundary-zero term. Transfer withholds the counted objects entirely and requires the learner to invent a single-set/two-count interpretation for a binomial-power sum."
       },
       "T22V3::T22E-DISC01::S36@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "S36 instruction uses a ±1 sum invariant and separate subtract-two rank example. Main requires an unsupplied decisive parity invariant in a two-coordinate transfer process. Transfer changes to simultaneous pile depletion and requires two independently selected quantities with different proof roles."
+        "note": "V2 receipt on instructionVersion m03-s36-instruction-v2-r1: S36 instruction uses a ±1 sum invariant and separate subtract-two rank example. Main requires an unsupplied decisive parity invariant in a two-coordinate transfer process. Transfer changes to simultaneous pile depletion and requires two independently selected quantities with different proof roles."
       }
     }
   },
