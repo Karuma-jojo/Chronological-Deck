@@ -73,6 +73,9 @@ import {
   ARSENAL_GATE3_ACCEPTED_GATE2_SHA,
   ARSENAL_GATE3_GATE2_MERGE_SHA,
   ARSENAL_GATE3_EVIDENCE_MODE,
+  ARSENAL_GATE3_CROSS_SCALE_MODE,
+  ARSENAL_GATE3_DEFERRED_SCALE_BRANCHES,
+  ARSENAL_GATE3_BOUNDARY_SEMANTICS,
   ARSENAL_GATE3_CONTRACT_META,
   validateGate3GranularityRecord,
 } from "../course/smmc/arsenal/granularity-contract-v1.mjs";
@@ -869,6 +872,31 @@ expect(
   ARSENAL_GATE3_CONTRACT_META.evidenceMode === ARSENAL_GATE3_EVIDENCE_MODE,
   "Gate 3 must remain in strict candidate-owned Gate-2 evidence mode during calibration and mass review."
 );
+expect(
+  ARSENAL_GATE3_CROSS_SCALE_MODE === "SOURCE_SCALE_VARIABLE_ROLE_ONLY" &&
+  ARSENAL_GATE3_CONTRACT_META.crossScaleMode === ARSENAL_GATE3_CROSS_SCALE_MODE,
+  "Gate 3 must keep mixed-grain-expression CROSS_SCALE deferred during this calibrated mass-review mode."
+);
+expect(
+  JSON.stringify(ARSENAL_GATE3_DEFERRED_SCALE_BRANCHES) === JSON.stringify(["MIXED_GRAIN_EXPRESSION"]) &&
+  JSON.stringify(ARSENAL_GATE3_CONTRACT_META.deferredScaleBranches) === JSON.stringify(ARSENAL_GATE3_DEFERRED_SCALE_BRANCHES),
+  "Gate-3 deferred scale-branch contract drifted."
+);
+for (const state of ["CLEAR","PARTIAL","ABSENT","UNRESOLVED"]) {
+  expect(
+    typeof ARSENAL_GATE3_BOUNDARY_SEMANTICS[state] === "string" &&
+    ARSENAL_GATE3_BOUNDARY_SEMANTICS[state].length > 80,
+    `Gate-3 boundary semantics missing/substantive definition for ${state}`
+  );
+}
+expect(
+  ARSENAL_GATE3_BOUNDARY_SEMANTICS.ABSENT.includes("Mere silence is not ABSENT"),
+  "Gate-3 ABSENT semantics must distinguish affirmative non-operation from mere missing evidence."
+);
+expect(
+  ARSENAL_GATE3_BOUNDARY_SEMANTICS.UNRESOLVED.includes("plausibly relevant or implied"),
+  "Gate-3 UNRESOLVED semantics must cover plausible but evidence-indeterminate boundaries."
+);
 for (const [field, value] of Object.entries({
   referenceUnitIsFinalOntology: false,
   mergeSplitDecisionsAllowed: false,
@@ -1003,11 +1031,16 @@ expect(
   "A bridge label that merely conjoins method-family names must not be upgraded into BUNDLED_MOVES under strict evidence mode."
 );
 
-const mixedGrainCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-127");
+const deferredMixedGrainCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-127");
 expect(
-  mixedGrainCalibration?.referenceScale === "CROSS_SCALE" &&
-  mixedGrainCalibration?.bundleStructure === "UNRESOLVED",
-  "Convex-envelope + construction wording must exercise the calibrated mixed-grain CROSS_SCALE branch without inventing multiple moves."
+  deferredMixedGrainCalibration?.referenceScale === "UNRESOLVED" &&
+  deferredMixedGrainCalibration?.bundleStructure === "UNRESOLVED",
+  "Concept/object + construction wording must fail closed to UNRESOLVED while mixed-grain CROSS_SCALE is deferred."
+);
+expect(
+  gate3ReviewedRows.filter(x => x.referenceScale === "CROSS_SCALE").length === 1 &&
+  gate3ReviewedRows.find(x => x.referenceScale === "CROSS_SCALE")?.candidateId === "RAW-SOURCE-z-crux-move",
+  "Crux Move must be the only active CROSS_SCALE calibration anchor until another branch is explicitly calibrated."
 );
 
 const strictDirectProof = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-h-direct-proof");
@@ -1015,10 +1048,10 @@ expect(
   strictDirectProof?.referenceScale === "UNRESOLVED" &&
   strictDirectProof?.bundleStructure === "UNRESOLVED" &&
   strictDirectProof?.actionShape === "LABEL_ONLY" &&
-  strictDirectProof?.triggerBoundary === "ABSENT" &&
-  strictDirectProof?.operationBoundary === "ABSENT" &&
-  strictDirectProof?.outputBoundary === "ABSENT",
-  "TOC-level Direct Proof evidence must not import the familiar proof schema under strict candidate-owned evidence mode."
+  strictDirectProof?.triggerBoundary === "UNRESOLVED" &&
+  strictDirectProof?.operationBoundary === "UNRESOLVED" &&
+  strictDirectProof?.outputBoundary === "UNRESOLVED",
+  "TOC-level Direct Proof plausibly has operational boundaries but strict evidence cannot determine them; use UNRESOLVED, not ABSENT."
 );
 
 const gramBridgeCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-052");
@@ -1026,22 +1059,30 @@ expect(
   gramBridgeCalibration?.referenceScale === "UNRESOLVED" &&
   gramBridgeCalibration?.bundleStructure === "UNRESOLVED" &&
   gramBridgeCalibration?.actionShape === "LABEL_ONLY" &&
+  gramBridgeCalibration?.triggerBoundary === "UNRESOLVED" &&
   gramBridgeCalibration?.operationBoundary === "UNRESOLVED" &&
   gramBridgeCalibration?.outputBoundary === "UNRESOLVED",
-  "Gram-matrix viewpoint bridge label must not expand into an unstated operation/payoff under strict evidence mode."
+  "Gram-matrix viewpoint bridge label plausibly carries operational content but strict evidence cannot determine any boundary."
 );
 
-for (const candidateId of [
-  "RAW-LEGACY-small-cases",
-  "RAW-LEGACY-cross-domain",
-]) {
-  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
-  expect(
-    row?.referenceScale === "UNRESOLVED" &&
-    row?.actionShape === "LABEL_ONLY",
-    `Thin schema-tag evidence must remain conservative for ${candidateId}`
-  );
-}
+const smallCasesCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-LEGACY-small-cases");
+expect(
+  smallCasesCalibration?.referenceScale === "UNRESOLVED" &&
+  smallCasesCalibration?.actionShape === "LABEL_ONLY" &&
+  smallCasesCalibration?.triggerBoundary === "UNRESOLVED" &&
+  smallCasesCalibration?.operationBoundary === "UNRESOLVED" &&
+  smallCasesCalibration?.outputBoundary === "UNRESOLVED",
+  "Method-like SMALL-CASES shorthand plausibly has boundaries but thin schema evidence cannot determine them."
+);
+const crossDomainCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-LEGACY-cross-domain");
+expect(
+  crossDomainCalibration?.referenceScale === "UNRESOLVED" &&
+  crossDomainCalibration?.actionShape === "LABEL_ONLY" &&
+  crossDomainCalibration?.triggerBoundary === "ABSENT" &&
+  crossDomainCalibration?.operationBoundary === "ABSENT" &&
+  crossDomainCalibration?.outputBoundary === "ABSENT",
+  "CROSS-DOMAIN is a scope/relation label whose current expression is affirmatively non-operational at these boundaries."
+);
 
 const factorTacticCalibration = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-z-factor-tactic");
 expect(
@@ -1050,6 +1091,39 @@ expect(
   factorTacticCalibration?.outputBoundary === "UNRESOLVED",
   "Factor Tactic must not import the richer source treatment beyond the attached naming/development fact."
 );
+
+// ABSENT vs UNRESOLVED calibration on comparable thin-evidence labels.
+// Broad subject/category labels are affirmatively non-operational at this grain.
+for (const candidateId of [
+  "RAW-SECONDARY-graph",
+  "RAW-SECONDARY-ode",
+  "RAW-SOURCE-p-groups",
+]) {
+  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
+  expect(
+    row?.triggerBoundary === "ABSENT" &&
+    row?.operationBoundary === "ABSENT" &&
+    row?.outputBoundary === "ABSENT",
+    `Broad non-operational label must use ABSENT boundaries: ${candidateId}`
+  );
+}
+// Method/theorem/lemma/viewpoint labels plausibly carry boundaries, but strict
+// candidate-owned evidence cannot determine them.
+for (const candidateId of [
+  "RAW-SOURCE-h-direct-proof",
+  "RAW-SOURCE-p-crt",
+  "RAW-ROUTE-004",
+  "RAW-BRIDGE-052",
+]) {
+  const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
+  expect(
+    row?.triggerBoundary === "UNRESOLVED" &&
+    row?.operationBoundary === "UNRESOLVED" &&
+    row?.outputBoundary === "UNRESOLVED",
+    `Plausibly operational thin-evidence label must use UNRESOLVED boundaries: ${candidateId}`
+  );
+}
+
 
 // contextReach measures semantic dependence, never provenance alone.
 for (const candidateId of [
