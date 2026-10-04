@@ -1,12 +1,12 @@
 # M03 v2 — Strategy Lab supplement
 
-Date: 2026-10-04  
-Candidate: `m03-authoring-v2.0-six-tools-candidate-r3`  
+Date: 2026-10-05  
+Candidate: `m03-authoring-v2.0-six-tools-candidate-r4`  
 Status: **unscored diagnostic/practice only; never canonical ownership evidence**
 
-These labs extend the published v1.7.2 Spire strategy labs for the six-tool M03 candidate. They are
-run only after the relevant fixed assessments. A correct lab solution does not retroactively make
-a contaminated or assisted fixed attempt independent.
+These labs extend the published v1.7.2 Spire strategy labs for the six-tool M03 candidate. They run
+only after the relevant fixed assessments. A correct lab solution does not retroactively make a
+contaminated or assisted fixed attempt independent.
 
 ## Strategy Lab A — proof construction and reduction
 
@@ -24,17 +24,17 @@ For every probe:
 
 Do **not** announce the intended proof method before the learner commits to a plan.
 
-### A1 — reverse-divisibility claim
+### A1 — divisibility without a named route
 
-For every integer (n), if (3mid n^2), then (3mid n).
+Prove that for every integer n, the integer n³ + 2n is divisible by 3.
+
+A complete argument must cover every integer n. Do not treat a table of examples as a proof.
 
 ### A2 — existence plus uniqueness without a linear equation
 
-Prove that there exists exactly one real number (x) satisfying
+Prove that there exists exactly one real number x satisfying
 
-[
-x^3+x=2.
-]
+**x³ + x = 2.**
 
 The final proof must visibly contain both the existence and the at-most-one parts.
 
@@ -42,34 +42,30 @@ The final proof must visibly contain both the existence and the at-most-one part
 
 Audit the claim:
 
-> For all integers (a,b), if (a^2=b^2), then (a=b).
+> For all integers a,b, if a² = b², then a = b.
 
 If it is false, give a legal counterexample, repair the conclusion as economically as possible,
 and prove the repaired statement.
 
 ### A4 — quantifier-order stress test
 
-Let (X={1,2,3,4}) and (Y={1,2,3,4}). The relation (R(x,y)) means
-(x+y=5).
+Let X = {1,2,3,4} and Y = {1,2,3,4}. The relation R(x,y) means x + y = 5.
 
 Decide each statement and justify the order of choice:
 
-- (orall xin X,exists yin Y,R(x,y));
-- (exists yin Y,orall xin X,R(x,y)).
+- ∀x ∈ X, ∃y ∈ Y such that R(x,y);
+- ∃y ∈ Y, ∀x ∈ X such that R(x,y).
 
-Do not begin by trying to swap the symbols; explain who is chosen first and what may depend on
-what.
+Do not begin by swapping symbols; explain who is chosen first and what may depend on what.
 
-### A5 — choose induction or minimal-counterexample reasoning yourself
+### A5 — recursive claim without a method label
 
-Prove that for every integer (nge1),
+A sequence is defined by a₁ = 1 and, for every n ≥ 1,
 
-[
-5^nge4n+1.
-]
+**aₙ₊₁ = aₙ + 2n + 1.**
 
-The method is deliberately not named. If your first route becomes awkward, record the failed
-first move briefly, change route, and present only the clean argument as the final proof.
+Compute the first few terms, conjecture an exact formula for aₙ, and prove your formula for every
+integer n ≥ 1. The proof method is deliberately not named.
 
 **Diagnostic target:** Can the learner select a legal proof architecture from the logical form and
 mathematical structure rather than from a prompt label?
@@ -93,22 +89,19 @@ Do not reveal method names until the learner has committed to an organizing plan
 
 ### B1 — constrained strings
 
-How many length-6 strings over ({0,1,2,3}) contain at least one (0) and at least one
-(1)?
+How many length-6 strings over {0,1,2,3} contain at least one 0 and at least one 1?
 
 ### B2 — spacing representation
 
-How many 5-element subsets of ({1,2,ldots,12}) contain no two consecutive integers?
+How many 5-element subsets of {1,2,…,12} contain no two consecutive integers?
 
 ### B3 — bounded allocation
 
 Count the nonnegative integer solutions of
 
-[
-x+y+z=14
-]
+**x + y + z = 14**
 
-subject to (xle5).
+subject to x ≤ 5.
 
 ### B4 — finite existence by a useful partition
 
@@ -117,7 +110,7 @@ midpoint whose coordinates are both integers.
 
 ### B5 — avoid two fixed positions
 
-How many permutations of ({1,2,3,4,5,6}) fix neither (1) nor (2)?
+How many permutations of {1,2,3,4,5,6} fix neither 1 nor 2?
 
 ### B6 — choose a counting representation
 
@@ -128,16 +121,17 @@ checks your count.
 
 ### B7 — an invariant must actually decide something
 
-Start at ((0,0)). A legal move adds either ((2,1)) or ((1,2)).
-Can the state ((10,10)) ever be reached? Give a proof, not a search.
+Start at (0,0). A legal move adds either (2,1) or (1,2).
+Can the state (10,10) ever be reached? Give a proof, not a search.
 
-### B8 — preservation is not termination
+### B8 — difference process: preservation versus termination
 
-A state is a finite nonempty list of positive integers. A legal move replaces two entries
-(a,b) by the single entry (a+b).
+Start with the multiset {1,2,3,4,5,6,7,8,9,10}. A legal move chooses any two current entries a,b,
+deletes both, and inserts |a−b|.
 
-Prove that every legal play terminates and determine what the final single entry must be.
-State separately what proves termination and what determines the terminal value.
+Prove that every legal play terminates after finitely many moves. Then prove a nontrivial property
+that every possible final single entry must satisfy. State separately what proves termination and
+what restricts the final entry.
 
 **Diagnostic target:** Can the learner invent or choose a representation, distinguish invariant
 from rank/termination, and combine previously learned tools when the procedure is not named?
