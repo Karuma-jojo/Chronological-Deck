@@ -206,7 +206,7 @@ All 45 calibration rows have now received a full **strict-mode re-audit** agains
 1. the raw candidate expression; and
 2. that candidate's attached accepted Gate-2 evidence.
 
-The ledger records `strictEvidenceReauditVersion: "v1-45-complete"`. This is deliberate. We do not auto-classify the remaining 616 from string patterns or from unstated mathematical familiarity.
+The ledger records `strictEvidenceReauditVersion: "v2-45-boundary-normalized"`. This is deliberate. We do not auto-classify the remaining 616 from string patterns or from unstated mathematical familiarity.
 
 ## 8. What the first calibration is testing
 
