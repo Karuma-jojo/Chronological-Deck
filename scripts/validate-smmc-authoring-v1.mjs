@@ -92,6 +92,9 @@ import {
   ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES,
   ARSENAL_GATE3_MASS_PASS_DISTRIBUTION,
   ARSENAL_GATE3_MASS_RULE_USAGE,
+  ARSENAL_GATE3_OFFICIAL_UNRESOLVED_AUDIT,
+  ARSENAL_GATE3_REVIEW_SENTINELS,
+  ARSENAL_GATE3_FALLBACK_AUDIT,
   ARSENAL_GATE3_MASS_AUDIT_META,
 } from "../course/smmc/arsenal/granularity-audit-v1.mjs";
 
@@ -1341,6 +1344,9 @@ expect(
   Object.values(gate3RuleUsage).reduce((sum, count) => sum + count, 0) === 616,
   "Mass-pass rule usage must account for all 616 classified rows."
 );
+console.log("Gate 3 official unresolved audit:", JSON.stringify(ARSENAL_GATE3_OFFICIAL_UNRESOLVED_AUDIT));
+console.log("Gate 3 review sentinels:", JSON.stringify(ARSENAL_GATE3_REVIEW_SENTINELS));
+console.log("Gate 3 fallback audit:", JSON.stringify(ARSENAL_GATE3_FALLBACK_AUDIT));
 console.log("Gate 3 duplicate-name audit:", JSON.stringify({
   groups: ARSENAL_GATE3_DUPLICATE_NAME_AUDIT.length,
   differingGroups: ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES.length,
