@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 3 granularity contract
 
-Status: **CALIBRATION IN PROGRESS — Gate 3 open; tribunal / ontology / prerequisite / ranking gates remain closed**
+Status: **REPAIRED MASS-PASS REVIEW CANDIDATE — all 661 rows reviewed; Tribunal remains closed pending independent graduation acceptance**
 
 Accepted Gate-2 parent:
 - independently accepted exact SHA: `ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7`
@@ -200,13 +200,13 @@ Before classifying all 661 rows, the builder must calibrate the ruler on a delib
 - explicit discovery heuristics;
 - at least one `MICRO`, `DEPLOYABLE`, `MACRO`, `CROSS_SCALE`, and `UNRESOLVED` example.
 
-The repaired calibration ledger reviews **45** candidates and leaves the remaining **616** explicitly `UNREVIEWED`.
+The independently accepted calibration ledger fixed the ruler on **45** candidates. The current repaired mass pass applies that unchanged ruler to the remaining **616**, so the Gate-3 overlay now contains **661 REVIEWED / 0 UNREVIEWED** rows.
 
 All 45 calibration rows have now received a full **strict-mode re-audit** against only:
 1. the raw candidate expression; and
 2. that candidate's attached accepted Gate-2 evidence.
 
-The ledger records `strictEvidenceReauditVersion: "v2-45-boundary-normalized"`. This is deliberate. We do not auto-classify the remaining 616 from string patterns or from unstated mathematical familiarity.
+The ledger records `strictEvidenceReauditVersion: "v2-45-boundary-normalized"`. The mass application is deliberately fail-closed: it uses bounded implementation rules under strict candidate-owned Gate-2 evidence and regression tests for the systematic shortcuts found by graduation review. It does not use unstated mathematical familiarity.
 
 ## 8. What the first calibration is testing
 
@@ -251,6 +251,6 @@ Only then may the next tribunal/adjudication gate open.
 
 ## 10. Current state
 
-`Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 CALIBRATION → later tribunal/ontology/prerequisite/ranking gates 🔒`
+`Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 REPAIRED MASS-PASS REVIEW CANDIDATE → Tribunal 🔒 → later gates 🔒`
 
-Gate 3 has started. No candidate has yet been merged, split, deleted, typed, ranked, prerequisite-linked, or related.
+All 661 candidates have a Gate-3 granularity review row, but Gate 3 is **not complete until an independent reviewer accepts the exact repaired mass-pass SHA**. No candidate has been merged, split, deleted, typed, ranked, prerequisite-linked, or related.
