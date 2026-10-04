@@ -1,14 +1,14 @@
 {
-  "version": "m03-authoring-v1.7.2-publication-state-r1",
+  "version": "m03-authoring-v2.0-six-tools-candidate-r1",
   "instructionVersion": "m03-instruction-v12-evidence-retrofit-r1",
   "module": {
     "order": 3,
     "id": "T22E-DISC01",
     "title": "Mathematical Reasoning & Discrete Foundations",
-    "status": "published-v1.7.2-builder-validated-same-model-review-passed",
-    "destination": "State claims precisely, prove/refute them, reason with sets/maps, and execute deterministic finite counting before probability.",
-    "gate": "Canonical M03 mathematics/content/evidence core is closed. Exact-SHA T22 Elite workflow #604 (run 36921555847, job 110568597589) passed static, semantic, provenance and Chromium/browser checks on implementation SHA 1da2268efe0b284c2c54cdccb563a315f565bf31. Final v1.7.2 closeout repaired only non-canonical Spire strategy probes and the Source/Pedagogy dossier. External/formal independent review of the v1.7.x closeout was not performed; publication to main is user-authorized.",
-    "nextBoundary": "M04 owns probability, conditional probability, independence and expectation. M03 stops at deterministic finite counting.",
+    "status": "v2-six-tools-builder-candidate-awaiting-independent-review",
+    "destination": "State claims precisely; construct, prove or refute them; choose finite representations; justify counting correspondences; and use elementary extremal/invariant reasoning before probability.",
+    "gate": "M03 v2 is a branch-only 36-position candidate built from the published v1.7.2 baseline. Six stable new sessions S31–S36 are interleaved without renumbering S01–S30. Historical v1.7.2 publication remains the accepted baseline; this expanded candidate requires exact-head CI/Chromium and a fresh independent adversarial review before any publication.",
+    "nextBoundary": "M04 still owns probability, conditional probability, independence and expectation. M09 still owns epsilon-limit theory. M08/M22 may consume the new invariant/rank foundation without importing programming or graph algorithms into M03.",
     "historicalAcceptance": {
       "status": "published-v1.4-lang-final-stitch-accepted",
       "note": "Historical v1.4 Lang-foundation publication acceptance remains part of the audit trail; it does not certify the current v1.7 evidence/provenance repair."
@@ -20,25 +20,27 @@
       "T22E-FND02"
     ],
     "owns": [
-      "logic and quantified claims",
-      "counterexamples and proof methods",
-      "divisibility/parity/remainder proof",
-      "ordinary/strong induction",
+      "logic and quantified claims, including nested quantifier order and allowed witness dependence",
+      "counterexamples and proof methods, including constructive existence/uniqueness and least-counterexample reasoning",
+      "divisibility/parity/remainder proof and ordinary/strong induction",
       "sets/relations/formal finite mappings/equivalence relations",
-      "finite counting through pigeonhole"
+      "finite counting through pigeonhole, including explicit bijective encodings, uniform-fibre audits and double counting",
+      "elementary state invariants and nonnegative-integer ranks for finite termination arguments"
     ],
     "excludes": [
       "probability/conditional probability/independence/expectation (M04)",
-      "limits/convergence/infinite series (M09)",
+      "epsilon-limit/convergence/infinite-series theory (M09)",
       "calculus",
-      "advanced graph theory",
+      "graph algorithms (M22)",
+      "group actions/Burnside/generating functions",
+      "substantial contest number theory/geometry",
       "abstract algebra"
     ]
   },
   "coverageAudit": {
-    "version": "m03-observability-v1.7.2-final-2026-10-02",
-    "status": "Canonical 30/60/150 M03 content/evidence contract closed; hostile same-model follow-up found no canonical math/evidence defect; exact-SHA T22 Elite + Chromium run #604 passed. Final v1.7.2 closeout adds source/pedagogy documentation and clone-audited post-assessment Strategy Labs only. External independent review is not claimed.",
-    "policy": "Every retained ownership claim must be literally requested and supported by exact rubric evidence. Different data or a Transfer storage slot is not sufficient. Builder self-report does not certify semantic observability."
+    "version": "m03-observability-v2-six-tools-candidate-2026-10-04",
+    "status": "Candidate 36/72/180 M03 expansion authored from the published 30/60/150 baseline. Six new sessions are source-grounded and locally re-derived; stable S01–S30 session/task IDs are preserved and only learner-facing order metadata shifts. Full exact-head workflow/browser and independent adversarial review remain required.",
+    "policy": "Every retained or new ownership claim must be literally requested and supported by exact rubric evidence. Changed numbers or a Transfer storage slot do not establish transfer. Historical v1.7.2 acceptance does not certify this candidate."
   },
   "sessions": [
     {
@@ -245,6 +247,48 @@
     },
     {
       "order": 7,
+      "id": "T22V3::T22E-DISC01::S31@1",
+      "moduleId": "T22E-DISC01",
+      "title": "Quantifier order & witness dependence",
+      "focus": "Nested quantifiers, scope and allowed dependence",
+      "purpose": "Make nested quantifier order operational before later proof and analysis modules require parameter-dependent choices.",
+      "centralCapability": "Read, construct, negate and refute two-quantifier claims while tracking which choices may depend on earlier quantified variables.",
+      "principalObstacle": "Treating ∀x∃y and ∃y∀x as interchangeable, or using a witness chosen after x when the claim requires one witness chosen before x.",
+      "entryPrerequisites": [
+        "M03-S05 universal/existential quantifiers over stated domains",
+        "M03-S06 exact negation of quantified claims",
+        "M02 function input/output intuition"
+      ],
+      "requiredOwnership": [
+        "Read nested ∀∃ and ∃∀ claims in the stated order over explicit domains.",
+        "Explain when an existential witness may depend on an earlier universally quantified variable.",
+        "Distinguish input-dependent witnesses from one global witness that must work for every input.",
+        "Negate a two-quantifier claim by switching each quantifier, preserving domains and complementing the predicate.",
+        "Refute a false quantifier order with a legal adversarial choice made after the proposed global witness."
+      ],
+      "applicationScope": "Elementary quantified claims over integers and finite assignment relations; no limit notation.",
+      "transferScope": "Changed-surface Transfer: reconstruct dependence as a finite assignment/function problem rather than an inequality over integers.",
+      "inScope": [
+        "two nested quantifiers",
+        "scope and explicit domains",
+        "dependent witnesses",
+        "one global witness",
+        "exact negation",
+        "finite assignment-table representation"
+      ],
+      "outOfScope": [
+        "epsilon-N or epsilon-delta definitions until M09",
+        "uniform convergence or advanced analysis terminology",
+        "choice axioms or infinite selection theorems"
+      ],
+      "exitCondition": "Solve the integer Main and finite-assignment Transfer while explicitly identifying who is chosen first, who may depend on whom, and why the reversed order succeeds or fails.",
+      "lesson": "A quantified sentence is read in order. In ∀x∈X ∃y∈Y P(x,y), x is chosen first; after seeing that x, you may choose a y that can depend on x. A useful way to record this is y=f(x). In ∃y∈Y ∀x∈X P(x,y), y is chosen first, so the same y must survive every legal x; it may not be changed after x is revealed. To negate nested quantifiers, switch each quantifier and negate the final predicate while keeping the same domains: ¬(∀x∈X ∃y∈Y P(x,y)) is ∃x∈X ∀y∈Y ¬P(x,y), and ¬(∃y∈Y ∀x∈X P(x,y)) is ∀y∈Y ∃x∈X ¬P(x,y). Worked example: over integers, consider ∀n∈Z ∃k∈Z with k=n+2. It is true: once n is given, choose k=n+2. The reversed claim ∃k∈Z ∀n∈Z with k=n+2 is false: after a fixed k is proposed, choosing n=k makes the required equality k=k+2 impossible. The lesson is not that ∀∃ is always true or ∃∀ is always false; the predicate decides truth, while the quantifier order decides what dependence is allowed. Guided check: over real numbers, compare ∀x∈R ∃y∈R with y=3x−1 and ∃y∈R ∀x∈R with y=3x−1. For the first, write a witness rule. For the second, explain what a single y would have to do and give one x-choice that defeats a proposed y.",
+      "main": "T22V3::T22E-DISC01::S31-M@1",
+      "transfer": "T22V3::T22E-DISC01::S31-T@1",
+      "instructionVersion": "m03-s31-instruction-v2-r1"
+    },
+    {
+      "order": 8,
       "id": "T22V3::T22E-DISC01::S07@1",
       "moduleId": "T22E-DISC01",
       "title": "Counterexamples, boundary cases & claim debugging",
@@ -279,7 +323,7 @@
       "transfer": "T22V3::T22E-DISC01::S07-T@1"
     },
     {
-      "order": 8,
+      "order": 9,
       "id": "T22V3::T22E-DISC01::S08@1",
       "moduleId": "T22E-DISC01",
       "title": "Integers, divisibility & parity language",
@@ -312,7 +356,7 @@
       "transfer": "T22V3::T22E-DISC01::S08-T@1"
     },
     {
-      "order": 9,
+      "order": 10,
       "id": "T22V3::T22E-DISC01::S09@1",
       "moduleId": "T22E-DISC01",
       "title": "Direct proof architecture",
@@ -346,7 +390,49 @@
       "transfer": "T22V3::T22E-DISC01::S09-T@1"
     },
     {
-      "order": 10,
+      "order": 11,
+      "id": "T22V3::T22E-DISC01::S32@1",
+      "moduleId": "T22E-DISC01",
+      "title": "Constructive existence & uniqueness",
+      "focus": "Existence, at-most-one and exactly-one proofs",
+      "purpose": "Separate constructing a legal object from proving that no other legal object can satisfy the same property.",
+      "centralCapability": "Prove elementary existence-and-uniqueness claims by constructing and verifying a witness, then proving uniqueness as a separate obligation.",
+      "principalObstacle": "Treating an algebraic candidate as automatic existence, or treating one found solution as proof that no second solution exists.",
+      "entryPrerequisites": [
+        "M03-S05 existential language",
+        "M03-S09 direct proof architecture",
+        "M01 equation solving and factoring",
+        "M02 domain checks"
+      ],
+      "requiredOwnership": [
+        "Decompose an exactly-one claim into existence and at-most-one obligations.",
+        "Construct a candidate and verify both its domain membership and the original defining property.",
+        "Prove uniqueness by taking two arbitrary legal objects with the property and showing they are equal.",
+        "Distinguish at-least-one, at-most-one and exactly-one conclusions.",
+        "Audit how changing the domain can preserve existence while changing uniqueness."
+      ],
+      "applicationScope": "Elementary algebraic objects over explicit real or restricted-real domains.",
+      "transferScope": "Changed-surface Transfer: move from an affine parameter equation to a nonlinear equation whose uniqueness changes with the domain.",
+      "inScope": [
+        "constructive existence",
+        "at most one",
+        "exactly one",
+        "two-object uniqueness proof",
+        "domain audit"
+      ],
+      "outOfScope": [
+        "linear algebra solvability/rank until M13–M15",
+        "optimization/minimizer uniqueness",
+        "existence theorems from analysis"
+      ],
+      "exitCondition": "Produce a checked witness and a separate uniqueness proof, then correctly diagnose a domain change that alters uniqueness.",
+      "lesson": "The symbol ∃! means exactly one, and an exactly-one proof has two logically separate jobs. Existence: construct at least one legal object and check it in the original domain and property. Uniqueness: assume u and v are any two legal objects with the property and prove u=v. A solver output or transformed equation is only a candidate until it is checked against the original conditions. Worked example: fix a real parameter t. For 5x−2t=9, the candidate x=(9+2t)/5 is real and substitution verifies existence. If u and v both satisfy the equation, then 5u−2t=9=5v−2t, hence 5u=5v and u=v, proving uniqueness. Guided check: for a real parameter c, solve 3x+c=12, verify the candidate in the original equation, then write a one-line two-solution uniqueness argument. Finally say which line proves existence and which proves at most one.",
+      "main": "T22V3::T22E-DISC01::S32-M@1",
+      "transfer": "T22V3::T22E-DISC01::S32-T@1",
+      "instructionVersion": "m03-s32-instruction-v2-r1"
+    },
+    {
+      "order": 12,
       "id": "T22V3::T22E-DISC01::S10@1",
       "moduleId": "T22E-DISC01",
       "title": "Proof by contraposition",
@@ -381,7 +467,7 @@
       "transfer": "T22V3::T22E-DISC01::S10-T@1"
     },
     {
-      "order": 11,
+      "order": 13,
       "id": "T22V3::T22E-DISC01::S11@1",
       "moduleId": "T22E-DISC01",
       "title": "Proof by contradiction",
@@ -416,7 +502,7 @@
       "transfer": "T22V3::T22E-DISC01::S11-T@1"
     },
     {
-      "order": 12,
+      "order": 14,
       "id": "T22V3::T22E-DISC01::S12@1",
       "moduleId": "T22E-DISC01",
       "title": "Remainder classes & exhaustive proof cases",
@@ -450,7 +536,7 @@
       "transfer": "T22V3::T22E-DISC01::S12-T@1"
     },
     {
-      "order": 13,
+      "order": 15,
       "id": "T22V3::T22E-DISC01::S13@1",
       "moduleId": "T22E-DISC01",
       "title": "Mathematical induction",
@@ -484,7 +570,7 @@
       "transfer": "T22V3::T22E-DISC01::S13-T@1"
     },
     {
-      "order": 14,
+      "order": 16,
       "id": "T22V3::T22E-DISC01::S14@1",
       "moduleId": "T22E-DISC01",
       "title": "Strong induction & recursive claims",
@@ -518,7 +604,49 @@
       "transfer": "T22V3::T22E-DISC01::S14-T@1"
     },
     {
-      "order": 15,
+      "order": 17,
+      "id": "T22V3::T22E-DISC01::S33@1",
+      "moduleId": "T22E-DISC01",
+      "title": "Well-ordering, least counterexamples & finite extrema",
+      "focus": "Well-ordering and extremal reduction",
+      "purpose": "Connect induction-style reduction to the legal choice of a least integer counterexample and to justified extremal choices in finite sets.",
+      "centralCapability": "Use well-ordering or finiteness to choose a legitimate extremal object, then reduce it to a smaller legal case or contradiction.",
+      "principalObstacle": "Writing 'take the smallest counterexample' without proving a smallest element exists, especially when the domain is not the nonnegative integers or a finite set.",
+      "entryPrerequisites": [
+        "M03-S11 contradiction",
+        "M03-S13 ordinary induction",
+        "M03-S14 strong induction",
+        "M01 integer order and inequalities"
+      ],
+      "requiredOwnership": [
+        "State the well-ordering principle for nonempty subsets of the nonnegative integers.",
+        "Define a nonempty counterexample set before selecting a least counterexample.",
+        "Reduce a supposed least counterexample to a smaller legal case and derive a contradiction.",
+        "Reject an unjustified claim that every nonempty set of real numbers has a minimum.",
+        "Choose and use a justified extremal element of a nonempty finite set."
+      ],
+      "applicationScope": "Elementary integer claims and bounded finite extremal arguments.",
+      "transferScope": "Changed-surface Transfer: move from least-counterexample proof of an indexed inequality to an extremal argument on an arbitrary finite set.",
+      "inScope": [
+        "well-ordering of nonnegative integers",
+        "least counterexample",
+        "legal reduction",
+        "finite minima",
+        "extremal contradiction"
+      ],
+      "outOfScope": [
+        "completeness/infimum theory until analysis",
+        "general olympiad extremal-method syllabus",
+        "compactness"
+      ],
+      "exitCondition": "Use a least counterexample only after establishing its legal existence, and separately justify a finite extremal choice without overgeneralizing to arbitrary real sets.",
+      "lesson": "Well-ordering says every nonempty subset of the nonnegative integers has a least element. A least-counterexample proof therefore has obligations: define the counterexample set, assume it is nonempty, choose its least member N, verify N is not a protected base case, and use the failure at N to produce a smaller legal counterexample or a contradiction. This principle is about nonnegative integers; it does not say every nonempty set of real numbers has a minimum. For example, the positive reals have no least element because x/2 is smaller than any proposed x>0. A nonempty finite set of reals does have a minimum, so finite extremal choices are also legitimate. Worked example: prove 3 divides 4^n−1 for every integer n≥1 by least counterexample. If C were nonempty, let N be its least element. N≠1 because 4−1=3. Then N−1 is not a counterexample, so 3 divides 4^(N−1)−1. Since 4^N−1=4(4^(N−1)−1)+3, the N case is also divisible by 3, contradiction. Guided check: outline the same least-counterexample obligations for the claim 2^n≥n+1 for n≥0 without completing the final algebra; explicitly name the counterexample set and explain why a least element exists.",
+      "main": "T22V3::T22E-DISC01::S33-M@1",
+      "transfer": "T22V3::T22E-DISC01::S33-T@1",
+      "instructionVersion": "m03-s33-instruction-v2-r1"
+    },
+    {
+      "order": 18,
       "id": "T22V3::T22E-DISC01::S15@1",
       "moduleId": "T22E-DISC01",
       "title": "Sets, membership, subsets & equality",
@@ -551,7 +679,7 @@
       "transfer": "T22V3::T22E-DISC01::S15-T@1"
     },
     {
-      "order": 16,
+      "order": 19,
       "id": "T22V3::T22E-DISC01::S16@1",
       "moduleId": "T22E-DISC01",
       "title": "Power sets & finite cardinality",
@@ -585,7 +713,7 @@
       "transfer": "T22V3::T22E-DISC01::S16-T@1"
     },
     {
-      "order": 17,
+      "order": 20,
       "id": "T22V3::T22E-DISC01::S17@1",
       "moduleId": "T22E-DISC01",
       "title": "Union, intersection, difference & complement",
@@ -619,7 +747,7 @@
       "transfer": "T22V3::T22E-DISC01::S17-T@1"
     },
     {
-      "order": 18,
+      "order": 21,
       "id": "T22V3::T22E-DISC01::S18@1",
       "moduleId": "T22E-DISC01",
       "title": "Set identities & De Morgan laws",
@@ -654,7 +782,7 @@
       "transfer": "T22V3::T22E-DISC01::S18-T@1"
     },
     {
-      "order": 19,
+      "order": 22,
       "id": "T22V3::T22E-DISC01::S19@1",
       "moduleId": "T22E-DISC01",
       "title": "Cartesian products & relations",
@@ -688,7 +816,7 @@
       "transfer": "T22V3::T22E-DISC01::S19-T@1"
     },
     {
-      "order": 20,
+      "order": 23,
       "id": "T22V3::T22E-DISC01::S20@1",
       "moduleId": "T22E-DISC01",
       "title": "Functions as mappings; domain, codomain, image & preimage",
@@ -722,7 +850,7 @@
       "transfer": "T22V3::T22E-DISC01::S20-T@1"
     },
     {
-      "order": 21,
+      "order": 24,
       "id": "T22V3::T22E-DISC01::S21@1",
       "moduleId": "T22E-DISC01",
       "title": "Injective, surjective, bijective & inverse claims",
@@ -756,7 +884,7 @@
       "transfer": "T22V3::T22E-DISC01::S21-T@1"
     },
     {
-      "order": 22,
+      "order": 25,
       "id": "T22V3::T22E-DISC01::S22@1",
       "moduleId": "T22E-DISC01",
       "title": "Equivalence relations & partitions",
@@ -791,7 +919,7 @@
       "transfer": "T22V3::T22E-DISC01::S22-T@1"
     },
     {
-      "order": 23,
+      "order": 26,
       "id": "T22V3::T22E-DISC01::S23@1",
       "moduleId": "T22E-DISC01",
       "title": "Addition & product counting principles",
@@ -825,7 +953,7 @@
       "transfer": "T22V3::T22E-DISC01::S23-T@1"
     },
     {
-      "order": 24,
+      "order": 27,
       "id": "T22V3::T22E-DISC01::S24@1",
       "moduleId": "T22E-DISC01",
       "title": "Permutations, factorials & ordered selections",
@@ -860,7 +988,51 @@
       "instructionVersion": "m03-s24-instruction-v17-separation-r1"
     },
     {
-      "order": 25,
+      "order": 28,
+      "id": "T22V3::T22E-DISC01::S34@1",
+      "moduleId": "T22E-DISC01",
+      "title": "Bijections, encodings & uniform fibres",
+      "focus": "Reversible finite representations and justified division",
+      "purpose": "Turn 'same number of objects' and 'divide the overcount' into explicit mapping arguments with checked inverses or constant fibre sizes.",
+      "centralCapability": "Build a reversible encoding or audit a finite many-to-one map by inspecting its fibres before transferring counts.",
+      "principalObstacle": "Treating an intuitive correspondence as automatically bijective, or dividing by a supposed symmetry factor without proving every counted object has the same number of preimages.",
+      "entryPrerequisites": [
+        "M03-S16 finite cardinality/power sets",
+        "M03-S20 image/preimage",
+        "M03-S21 bijections/inverses",
+        "M03-S23 sum/product rules",
+        "M03-S24 ordered selections"
+      ],
+      "requiredOwnership": [
+        "Define an explicit finite encoding map between two collections.",
+        "Construct and verify an inverse map to prove a counting correspondence is bijective.",
+        "Transfer a finite count through a proved bijection without losing or duplicating objects.",
+        "Interpret a fibre as the preimage of one output under a finite map.",
+        "Use division by a multiplicity only after proving all relevant fibres have the same positive size, and detect when that condition fails."
+      ],
+      "applicationScope": "Finite sets, strings, functions and many-to-one counting maps.",
+      "transferScope": "Changed-surface Transfer: audit a tempting divide-by-three argument by discovering variable fibre sizes in a marked-string map.",
+      "inScope": [
+        "finite bijections",
+        "explicit inverse",
+        "encodings",
+        "fibres/preimages",
+        "constant-fibre counting",
+        "unsafe overcount division"
+      ],
+      "outOfScope": [
+        "group actions",
+        "Burnside/Pólya enumeration",
+        "infinite cardinal arithmetic"
+      ],
+      "exitCondition": "Prove one count by a reversible encoding and correctly reject a division argument whose fibre multiplicity is not constant.",
+      "lesson": "A counting encoding is trustworthy when the map is explicit and reversible. To prove a finite map φ:A→B is a bijection, define how an object of A is encoded, define a reverse map ψ:B→A, and check that applying one after the other returns the original object. For a many-to-one map, the fibre over b∈B is φ⁻¹({b}), the set of inputs that map to b. If every b has exactly the same positive number q of preimages, then A is partitioned into equal fibres and |A|=q|B|. Division by q is legal only after this constant-fibre fact is proved. Worked example: a function f:{1,2,3}→{A,B} can be encoded as the three-letter string f(1)f(2)f(3); reading the three positions gives the inverse map, so the correspondence is bijective and there are 2^3 such functions. For a constant-fibre contrast, the absolute-value map from {−4,−3,−2,−1,1,2,3,4} onto {1,2,3,4} has exactly two preimages over each output. Guided check: for the map that forgets the sign from {−3,−2,−1,1,2,3} to {1,2,3}, list every fibre and explain why division by 2 is justified.",
+      "main": "T22V3::T22E-DISC01::S34-M@1",
+      "transfer": "T22V3::T22E-DISC01::S34-T@1",
+      "instructionVersion": "m03-s34-instruction-v2-r1"
+    },
+    {
+      "order": 29,
       "id": "T22V3::T22E-DISC01::S25@1",
       "moduleId": "T22E-DISC01",
       "title": "Permutations with repeated objects & multinomial grouping",
@@ -895,7 +1067,7 @@
       "instructionVersion": "m03-s25-instruction-v17-factorial-boundary-r1"
     },
     {
-      "order": 26,
+      "order": 30,
       "id": "T22V3::T22E-DISC01::S26@1",
       "moduleId": "T22E-DISC01",
       "title": "Combinations, binomial coefficients, subsets & binomial expansion",
@@ -935,7 +1107,49 @@
       "transfer": "T22V3::T22E-DISC01::S26-T@1"
     },
     {
-      "order": 27,
+      "order": 31,
+      "id": "T22V3::T22E-DISC01::S35@1",
+      "moduleId": "T22E-DISC01",
+      "title": "Double counting & combinatorial identities",
+      "focus": "One finite set counted in two valid ways",
+      "purpose": "Turn algebraic counting identities into explanations by defining one finite collection and decomposing it in two independent ways.",
+      "centralCapability": "Define a finite incidence/pair set, count the same objects exactly once in two ways, and equate the results.",
+      "principalObstacle": "Equating two expressions because they look algebraically similar without proving that both count the same finite objects under compatible boundary conventions.",
+      "entryPrerequisites": [
+        "M03-S23 finite sum/product rules",
+        "M03-S26 combinations/binomial coefficients",
+        "M03-S34 encodings and finite fibres",
+        "M02 finite sums"
+      ],
+      "requiredOwnership": [
+        "Define one finite incidence or pair set that both sides of a counting identity enumerate.",
+        "Partition and count that set by one feature without omissions or overlap.",
+        "Count the same set by a different feature and justify that every object is counted exactly once.",
+        "Equate the two counts and state the summation/boundary conventions used.",
+        "Invent a combinatorial interpretation for an algebraic-looking finite sum using already-owned finite objects."
+      ],
+      "applicationScope": "Finite subsets, incidences, marked objects and binomial sums.",
+      "transferScope": "Changed-surface Transfer: invent a nested-subset interpretation for a binomial-power sum instead of being given the counted incidence set.",
+      "inScope": [
+        "double counting",
+        "incidence sets",
+        "binomial identities",
+        "summation boundaries",
+        "combinatorial proof"
+      ],
+      "outOfScope": [
+        "expectation/probability until M04",
+        "generating functions",
+        "graph-theory theorems"
+      ],
+      "exitCondition": "Derive one identity from an explicitly supplied incidence set and independently invent a valid two-way counting model for a new finite sum.",
+      "lesson": "Double counting proves an equality by counting one finite set of objects in two different valid ways. The key obligation is sameness: both calculations must count exactly the same objects, exactly once. Worked example: with five people, let I be the incidences (p,T) where T is a two-person team and p is a member of T. Counting by teams gives 2·C(5,2). Counting by the marked person gives 5·4 because after choosing p there are four choices for the teammate. Therefore 2C(5,2)=20=5·4. This is not two unrelated computations; both count I. Guided check: define incidences (p,T) for six people and three-person teams, then write—but do not simplify—the count by teams and the count by the marked person. State why each incidence appears once in each decomposition.",
+      "main": "T22V3::T22E-DISC01::S35-M@1",
+      "transfer": "T22V3::T22E-DISC01::S35-T@1",
+      "instructionVersion": "m03-s35-instruction-v2-r1"
+    },
+    {
+      "order": 32,
       "id": "T22V3::T22E-DISC01::S27@1",
       "moduleId": "T22E-DISC01",
       "title": "Stars-and-bars: combinations with repetition",
@@ -970,7 +1184,7 @@
       "transfer": "T22V3::T22E-DISC01::S27-T@1"
     },
     {
-      "order": 28,
+      "order": 33,
       "id": "T22V3::T22E-DISC01::S28@1",
       "moduleId": "T22E-DISC01",
       "title": "Complement counting & inclusion-exclusion",
@@ -1004,7 +1218,7 @@
       "transfer": "T22V3::T22E-DISC01::S28-T@1"
     },
     {
-      "order": 29,
+      "order": 34,
       "id": "T22V3::T22E-DISC01::S29@1",
       "moduleId": "T22E-DISC01",
       "title": "Pigeonhole principle",
@@ -1039,7 +1253,53 @@
       "transfer": "T22V3::T22E-DISC01::S29-T@1"
     },
     {
-      "order": 30,
+      "order": 35,
+      "id": "T22V3::T22E-DISC01::S36@1",
+      "moduleId": "T22E-DISC01",
+      "title": "Invariants, integer ranks & termination",
+      "focus": "State transitions, preserved quantities and decreasing integer measures",
+      "purpose": "Introduce a mathematical language for proving impossibility and finite termination before M08 turns the same ideas into program invariants and loop variants.",
+      "centralCapability": "Model a discrete process by states and legal moves, prove an invariant across all moves, and use a strictly decreasing nonnegative integer rank to prove termination.",
+      "principalObstacle": "Assuming a preserved property proves reachability or termination, or assuming an arbitrary decreasing real quantity must force a finite process.",
+      "entryPrerequisites": [
+        "M03-S08 parity/divisibility language",
+        "M03-S13 induction",
+        "M03-S33 well-ordering",
+        "M03-S19 relations",
+        "M02 recurrence/state intuition"
+      ],
+      "requiredOwnership": [
+        "Define the state space, legal moves, initial state and target/terminal condition of a finite process.",
+        "Propose and prove an invariant by checking it initially and after every legal move.",
+        "Use an invariant to rule out a target without claiming that every invariant-compatible target is reachable.",
+        "Choose a nonnegative integer rank that strictly decreases at every legal move and use it to prove termination.",
+        "Distinguish termination from identification of the terminal state, and combine an invariant with termination when needed."
+      ],
+      "applicationScope": "Elementary finite/discrete processes with explicitly stated legal moves.",
+      "transferScope": "Changed-surface Transfer: combine a preserved difference with a decreasing integer rank in a two-pile process and use the invariant to identify the terminal state.",
+      "inScope": [
+        "state",
+        "legal transition",
+        "reachable state",
+        "invariant",
+        "integer rank",
+        "termination",
+        "terminal-state reasoning"
+      ],
+      "outOfScope": [
+        "programming syntax until M08",
+        "graph algorithms until M22",
+        "game-theory strategy",
+        "real-analysis convergence"
+      ],
+      "exitCondition": "Prove one target impossible by an invariant and solve a different terminating process using both an invariant and a valid nonnegative integer rank.",
+      "lesson": "A state records all information needed to describe the process at one moment; a legal move specifies which transitions are allowed. An invariant is a property true in the initial state and preserved by every legal move. It can rule out any target that violates the property, but preservation alone does not prove that every other target is reachable and does not prove termination. A rank for termination is a nonnegative integer attached to each state that strictly decreases after every legal move. Such a rank cannot decrease forever, so an infinite legal sequence is impossible. The integer condition matters: a positive real quantity can decrease forever through 1,1/2,1/4,… without reaching zero in finitely many steps. Worked example: a board state is (x,y)∈Z² and a move sends (x,y) to (x+1,y−1); x+y is invariant because the +1 and −1 cancel. Separately, if a process on a nonnegative integer n replaces n by n−2 whenever n≥2, the rank n strictly decreases and proves termination. Guided check: a list operation replaces two adjacent entries by their sum. Identify one preserved numerical quantity and one nonnegative integer rank that strictly decreases, but do not infer the final value until you state the terminal rule.",
+      "main": "T22V3::T22E-DISC01::S36-M@1",
+      "transfer": "T22V3::T22E-DISC01::S36-T@1",
+      "instructionVersion": "m03-s36-instruction-v2-r1"
+    },
+    {
+      "order": 36,
       "id": "T22V3::T22E-DISC01::S30@1",
       "moduleId": "T22E-DISC01",
       "title": "M03 synthesis — claims, proof, sets & finite counting",
@@ -1162,339 +1422,423 @@
     },
     "T22V3::T22E-DISC01::S07-M@1": {
       "id": "T22V3::T22E-DISC01::S07-M@1",
-      "order": 7,
+      "order": 8,
       "kind": "main",
       "prompt": "Audit: for every real x, if x²>4 then x>2. Before giving a counterexample, name one search family you would inspect (for example sign, zero, or a boundary) and use that search to produce a valid counterexample. Verify the hypothesis and conclusion failure, explain why one case refutes the universal, and why checking x=3,4,5 does not prove it.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S07-T@1": {
       "id": "T22V3::T22E-DISC01::S07-T@1",
-      "order": 7,
+      "order": 8,
       "kind": "transfer",
       "prompt": "Audit: for all real a,b, if ab=0 then a=0 and b=0. Give a counterexample and repair the conclusion.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S08-M@1": {
       "id": "T22V3::T22E-DISC01::S08-M@1",
-      "order": 8,
+      "order": 9,
       "kind": "main",
       "prompt": "Decide 6|42,8|42,−4|20. Give witnesses for true claims, explain the false one, and write generic even/odd forms.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S08-T@1": {
       "id": "T22V3::T22E-DISC01::S08-T@1",
-      "order": 8,
+      "order": 9,
       "kind": "transfer",
       "prompt": "Translate '3 divides n−1' and 'n is odd' into witness equations and give one integer n satisfying both.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S09-M@1": {
       "id": "T22V3::T22E-DISC01::S09-M@1",
-      "order": 9,
+      "order": 10,
       "kind": "main",
       "prompt": "Prove directly: for arbitrary integers a,b, if 5|a and5|b then5|(a+b). Introduce witnesses, keep variables arbitrary, derive the required form, name the final witness, and explain why examples are insufficient.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S09-T@1": {
       "id": "T22V3::T22E-DISC01::S09-T@1",
-      "order": 9,
+      "order": 10,
       "kind": "transfer",
       "prompt": "Prove directly: if e is even and m any integer, then em is even. Identify the final witness.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S10-M@1": {
       "id": "T22V3::T22E-DISC01::S10-M@1",
-      "order": 10,
+      "order": 12,
       "kind": "main",
       "prompt": "Prove by contraposition: for every integer n, if n² is even then n is even. Write the exact contrapositive, prove it from n=2k+1, distinguish the converse, and reconnect to the original.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S10-T@1": {
       "id": "T22V3::T22E-DISC01::S10-T@1",
-      "order": 10,
+      "order": 12,
       "kind": "transfer",
       "prompt": "Prove by contraposition over real x: if x²<1 then |x|<1.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S11-M@1": {
       "id": "T22V3::T22E-DISC01::S11-M@1",
-      "order": 11,
+      "order": 13,
       "kind": "main",
       "prompt": "Prove by contradiction that no integer n can be both even and odd. Assume the negation, unpack parity forms, derive an explicit impossibility, name it, and explain why 'I found no example' is not proof.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S11-T@1": {
       "id": "T22V3::T22E-DISC01::S11-T@1",
-      "order": 11,
+      "order": 13,
       "kind": "transfer",
       "prompt": "Prove by contradiction that there is no greatest integer, using N+1.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S12-M@1": {
       "id": "T22V3::T22E-DISC01::S12-M@1",
-      "order": 12,
+      "order": 14,
       "kind": "main",
       "prompt": "Begin by stating the general remainder form n=dq+r with 0≤r<d for integer d>0. Then prove every integer square leaves remainder0 or1 when divided by4. Use exhaustive parity/remainder forms, compute both cases, combine them, and explain why checking n=1,2,3,4 alone is not proof.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S12-T@1": {
       "id": "T22V3::T22E-DISC01::S12-T@1",
-      "order": 12,
+      "order": 14,
       "kind": "transfer",
       "prompt": "Prove by exhaustive parity cases that n(n+1) is even for every integer n.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S13-M@1": {
       "id": "T22V3::T22E-DISC01::S13-M@1",
-      "order": 13,
+      "order": 15,
       "kind": "main",
       "prompt": "Prove by induction 1+3+5+⋯+(2n−1)=n² for every integer n≥1. State domain, base, hypothesis, k+1 step and final conclusion.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S13-T@1": {
       "id": "T22V3::T22E-DISC01::S13-T@1",
-      "order": 13,
+      "order": 15,
       "kind": "transfer",
       "prompt": "Prove by induction 2^n≥n+1 for every integer n≥0.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S14-M@1": {
       "id": "T22V3::T22E-DISC01::S14-M@1",
-      "order": 14,
+      "order": 16,
       "kind": "main",
       "prompt": "Use strong induction to prove every integer n≥8 can be written n=3a+5b for nonnegative integers a,b. Check enough bases, state the all-prior hypothesis, reduce k+1 to a strictly earlier covered integer, avoid circularity, conclude, and explain why access to more than only the immediately previous case is useful in this proof.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S14-T@1": {
       "id": "T22V3::T22E-DISC01::S14-T@1",
-      "order": 14,
+      "order": 16,
       "kind": "transfer",
       "prompt": "Let F1=1,F2=1,Fn=F(n−1)+F(n−2). Use strong induction to prove Fn≤2^(n−1) for all n≥1.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S15-M@1": {
       "id": "T22V3::T22E-DISC01::S15-M@1",
-      "order": 15,
+      "order": 18,
       "kind": "main",
       "prompt": "Let A={1,2,2,3},B={3,2,1},C={1,2}. Decide 2∈A,C⊆A,A=B,A=C,{2}⊆A. Explain repetition/order and distinguish membership from singleton-subset.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S15-T@1": {
       "id": "T22V3::T22E-DISC01::S15-T@1",
-      "order": 15,
+      "order": 18,
       "kind": "transfer",
       "prompt": "Let D={−1,0,1} and E={x among −2,−1,0,1,2 such that x²≤1}. Write E, decide D=E,{−1,1}⊆D and2∈E.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S16-M@1": {
       "id": "T22V3::T22E-DISC01::S16-M@1",
-      "order": 16,
+      "order": 19,
       "kind": "main",
       "prompt": "Let A={a,b,c}. List P(A), identify ∅ and A, compute |P(A)| by list and2^|A|, and explain why ∅≠{∅}.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S16-T@1": {
       "id": "T22V3::T22E-DISC01::S16-T@1",
-      "order": 16,
+      "order": 19,
       "kind": "transfer",
       "prompt": "Let B=∅ and C={∅}. Find P(B),P(C) and cardinalities.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S17-M@1": {
       "id": "T22V3::T22E-DISC01::S17-M@1",
-      "order": 17,
+      "order": 20,
       "kind": "main",
       "prompt": "Let U={1,2,3,4,5,6,7,8},A={2,4,6,8},B={5,6,7,8}. Compute union, intersection, both differences, A^c,B^c and explain universe dependence.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S17-T@1": {
       "id": "T22V3::T22E-DISC01::S17-T@1",
-      "order": 17,
+      "order": 20,
       "kind": "transfer",
       "prompt": "Let U={1,2,…,12}. Let A be the even elements of U and B the elements of U divisible by3. Determine A∪B, A∩B, A\\B and A^c, and give the cardinality of each. Explain each result from the defining properties before or while listing the elements.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S18-M@1": {
       "id": "T22V3::T22E-DISC01::S18-M@1",
-      "order": 18,
+      "order": 21,
       "kind": "main",
       "prompt": "Prove for arbitrary A,B⊆U that (A∪B)^c=A^c∩B^c using an arbitrary x and iff chain. Rewrite A\\B, verify the identity on U={1,2,3,4},A={1,2},B={2,3}, and explain why the finite check is not universal proof.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S18-T@1": {
       "id": "T22V3::T22E-DISC01::S18-T@1",
-      "order": 18,
+      "order": 21,
       "kind": "transfer",
       "prompt": "Prove the distributive identity A∩(B∪C)=(A∩B)∪(A∩C) elementwise for arbitrary subsets A,B,C⊆U. Use an arbitrary x and an iff chain, and explain why the argument establishes set equality.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S19-M@1": {
       "id": "T22V3::T22E-DISC01::S19-M@1",
-      "order": 19,
+      "order": 22,
       "kind": "main",
       "prompt": "Let A={1,2,3},B={x,y}. List A×B, then compute its size both by counting the listed pairs and by using |A×B|=|A||B|. Let R={(1,x),(2,x),(2,y)}. Verify R⊆A×B and decide whether R is a function A→B, explaining the exact function-condition failure.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S19-T@1": {
       "id": "T22V3::T22E-DISC01::S19-T@1",
-      "order": 19,
+      "order": 22,
       "kind": "transfer",
       "prompt": "Let C={x,y,z},D={0,1},S={(x,0),(y,0),(z,1)}. Compute |C×D|, verify relation and decide function condition.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S20-M@1": {
       "id": "T22V3::T22E-DISC01::S20-M@1",
-      "order": 20,
+      "order": 23,
       "kind": "main",
       "prompt": "Let f:A→B with A={1,2,3},B={a,b,c},f(1)=a,f(2)=b,f(3)=a. Verify function condition, state domain/codomain/range, compute f({1,3}), f⁻¹({a}), and identify the unused codomain value.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S20-T@1": {
       "id": "T22V3::T22E-DISC01::S20-T@1",
-      "order": 20,
+      "order": 23,
       "kind": "transfer",
       "prompt": "On D={−2,−1,0,1,2},g(x)=x² with codomain C={0,1,4,9}. Find range,g({−2,1}),g⁻¹({1,4}) and unused codomain.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S21-M@1": {
       "id": "T22V3::T22E-DISC01::S21-M@1",
-      "order": 21,
+      "order": 24,
       "kind": "main",
       "prompt": "Let f:{1,2,3}→{a,b,c} with f(1)=b,f(2)=c,f(3)=a. Decide injective/surjective/bijective, construct f⁻¹, and verify it is two-sided.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S21-T@1": {
       "id": "T22V3::T22E-DISC01::S21-T@1",
-      "order": 21,
+      "order": 24,
       "kind": "transfer",
       "prompt": "Let g:{1,2,3}→{a,b},g(1)=a,g(2)=a,g(3)=b. Classify and explain why no two-sided inverse exists.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S22-M@1": {
       "id": "T22V3::T22E-DISC01::S22-M@1",
-      "order": 22,
+      "order": 25,
       "kind": "main",
       "prompt": "On integers define a~b when a,b have the same parity. Prove reflexivity, symmetry and transitivity generally, conclude equivalence, and identify the classes.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S22-T@1": {
       "id": "T22V3::T22E-DISC01::S22-T@1",
-      "order": 22,
+      "order": 25,
       "kind": "transfer",
       "prompt": "On D={0,1,2,3,4,5}, xRy when x,y have the same remainder on division by3. Verify equivalence and list classes.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S23-M@1": {
       "id": "T22V3::T22E-DISC01::S23-M@1",
-      "order": 23,
+      "order": 26,
       "kind": "main",
       "prompt": "A shop offers4 shirts and3 trousers; an outfit chooses one each. A commuter chooses exactly one of5 bus routes or3 train routes. Compute both counts, identify the rule, give a table/tree check, and state the disjointness condition.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S23-T@1": {
       "id": "T22V3::T22E-DISC01::S23-T@1",
-      "order": 23,
+      "order": 26,
       "kind": "transfer",
       "prompt": "An event badge is made in exactly one of two disjoint formats. A Visitor badge chooses one of3 colors and then one of4 digits. A Staff badge chooses one of2 departments and then one of5 levels. How many badges are possible in total? Explain why choices within a format combine differently from the two alternative formats.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S24-M@1": {
       "id": "T22V3::T22E-DISC01::S24-M@1",
-      "order": 24,
+      "order": 27,
       "kind": "main",
       "prompt": "Six distinct books are arranged on a shelf; separately gold/silver/bronze are awarded to3 distinct people from6 finalists. Compute both by factorial/permutation notation, expand products, explain medal order, and verify sequentially.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S24-T@1": {
       "id": "T22V3::T22E-DISC01::S24-T@1",
-      "order": 24,
+      "order": 27,
       "kind": "transfer",
       "prompt": "Let D={a,b,c} and let C be a7-element codomain. How many injective functions f:D→C are possible? Count sequentially, express the result as P(7,3), and explain why the labels a,b,c make the output assignments ordered.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S25-M@1": {
       "id": "T22V3::T22E-DISC01::S25-M@1",
-      "order": 25,
+      "order": 29,
       "kind": "main",
       "prompt": "How many distinct strings can be formed from BALLOON? Identify repeats, write the corrected factorial formula, explain the overcounting divided out, and validate on AAB by listing its distinct strings.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S25-T@1": {
       "id": "T22V3::T22E-DISC01::S25-T@1",
-      "order": 25,
+      "order": 29,
       "kind": "transfer",
       "prompt": "Nine distinct students are assigned to labeled shifts Morning(4), Afternoon(3), Night(2), and student A must be in Morning. Count the valid assignments. Explain what is fixed first, why internal order within each shift is irrelevant, and why the shift labels remain distinct.",
       "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S26-M@1": {
       "id": "T22V3::T22E-DISC01::S26-M@1",
-      "order": 26,
+      "order": 30,
       "kind": "main",
       "prompt": "For a committee of4 chosen from10 distinct people, compute the number of committees using combination notation and explain why internal order is irrelevant. State the finite binomial theorem for positive integer n, including the general coefficient of x^(n−k)y^k. Explain combinatorially why that coefficient is C(n,k), and then use the theorem to expand (u+v)^5 completely.",
       "obligationVersion": 5
     },
     "T22V3::T22E-DISC01::S26-T@1": {
       "id": "T22V3::T22E-DISC01::S26-T@1",
-      "order": 26,
+      "order": 30,
       "kind": "transfer",
       "prompt": "For an 8-element set, count its 3-element subsets using C(8,3), explain why this is an unordered subset count, explain the complementary-subset symmetry C(8,3)=C(8,5), then count the ordered triples obtained by ordering each selected subset.",
       "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S27-M@1": {
       "id": "T22V3::T22E-DISC01::S27-M@1",
-      "order": 27,
+      "order": 32,
       "kind": "main",
       "prompt": "Count nonnegative integer solutions to x1+x2+x3=7. Then count positive solutions y1+y2+y3=8 by shifting. Explain identical-object/labeled-box interpretation and why xi≤3 invalidates the plain formula.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S27-T@1": {
       "id": "T22V3::T22E-DISC01::S27-T@1",
-      "order": 27,
+      "order": 32,
       "kind": "transfer",
       "prompt": "For a monomial x^a y^b z^c w^d, define its total degree as a+b+c+d, where a,b,c,d are nonnegative integers. How many such monomials have total degree10? How many have all four exponents positive? Explain the exponent-vector ↔ stars-and-bars correspondence.",
       "obligationVersion": 3
     },
     "T22V3::T22E-DISC01::S28-M@1": {
       "id": "T22V3::T22E-DISC01::S28-M@1",
-      "order": 28,
+      "order": 33,
       "kind": "main",
       "prompt": "Among100 users,60 use A,45 use B,25 use both. Find union, explain the correction, find neither, find exactly one, and write the set logic.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S28-T@1": {
       "id": "T22V3::T22E-DISC01::S28-T@1",
-      "order": 28,
+      "order": 33,
       "kind": "transfer",
       "prompt": "How many integers1 through100 are divisible by2 or5? Use inclusion-exclusion and identify overlap.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S29-M@1": {
       "id": "T22V3::T22E-DISC01::S29-M@1",
-      "order": 29,
+      "order": 34,
       "kind": "main",
       "prompt": "Twenty-five records are assigned to6 categories. Identify pigeons/holes, compute the guaranteed minimum occupancy, prove the ceiling bound, explain existence-not-identity, and state the simpler collision for13 people assigned to12 birth months.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S29-T@1": {
       "id": "T22V3::T22E-DISC01::S29-T@1",
-      "order": 29,
+      "order": 34,
       "kind": "transfer",
       "prompt": "Eleven distinct integers are chosen from {1,2,…,20}. Prove two chosen integers must be consecutive by designing10 pigeonholes.",
       "obligationVersion": 1
     },
     "T22V3::T22E-DISC01::S30-M@1": {
       "id": "T22V3::T22E-DISC01::S30-M@1",
-      "order": 30,
+      "order": 36,
       "kind": "main",
       "prompt": "Let A={1,2,3,4,5,6,7,8}. Prove every 3-element subset contains two elements with the same parity by pigeonhole. Count all3-subsets, count all-same-parity subsets, and by complement count those containing both parities.",
       "obligationVersion": 2
     },
     "T22V3::T22E-DISC01::S30-T@1": {
       "id": "T22V3::T22E-DISC01::S30-T@1",
-      "order": 30,
+      "order": 36,
       "kind": "transfer",
       "prompt": "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can be injective and count all functions. Next define Ei as the set of functions that miss ci. Use the three-set inclusion-exclusion rule from S28 (or justify the same correction by membership multiplicities), determine |Ei|, |Ei∩Ej| and |E1∩E2∩E3|, and use these sets to count the surjective functions.",
       "obligationVersion": 3
+    },
+    "T22V3::T22E-DISC01::S31-M@1": {
+      "id": "T22V3::T22E-DISC01::S31-M@1",
+      "order": 7,
+      "kind": "main",
+      "prompt": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S31-T@1": {
+      "id": "T22V3::T22E-DISC01::S31-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "Let X={a,b,c} and Y={1,2,3}. The allowed outputs are A(a)={1,2}, A(b)={2,3}, A(c)={1,3}. Decide whether (i) ∀x∈X ∃y∈Y with y∈A(x) and (ii) ∃y∈Y ∀x∈X with y∈A(x) are true. For (i), construct an explicit function f:X→Y whose value is allowed for every input and verify all three assignments. For (ii), either give one common y or prove that none exists by checking the candidates. Finish by explaining how this table represents input-dependent witnesses versus one global witness.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S32-M@1": {
+      "id": "T22V3::T22E-DISC01::S32-M@1",
+      "order": 11,
+      "kind": "main",
+      "prompt": "For an arbitrary real parameter t, prove that there exists exactly one real x satisfying 4x+t=2x+7. Your proof must (i) construct a candidate, (ii) verify it in the original equation, and (iii) prove uniqueness by taking two arbitrary real solutions u and v and showing u=v. Label which part establishes existence and which establishes at most one.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S32-T@1": {
+      "id": "T22V3::T22E-DISC01::S32-T@1",
+      "order": 11,
+      "kind": "transfer",
+      "prompt": "Compare the equation x²=16 on two domains. On R, prove that a solution exists but uniqueness fails by exhibiting two distinct legal solutions. On D=[0,∞), prove that exactly one solution exists: construct the solution and then prove any y∈D with y²=16 must equal it. State explicitly how the domain change alters the uniqueness conclusion.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S33-M@1": {
+      "id": "T22V3::T22E-DISC01::S33-M@1",
+      "order": 17,
+      "kind": "main",
+      "prompt": "Use a least-counterexample proof to show that 3^n≥2n+1 for every integer n≥1. Define the counterexample set, justify the existence of a least counterexample if that set were nonempty, handle the base boundary, and reduce the least counterexample to the smaller integer N−1. Also explain why the same well-ordering principle would not by itself justify choosing a least element from an arbitrary nonempty set of positive real numbers.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S33-T@1": {
+      "id": "T22V3::T22E-DISC01::S33-T@1",
+      "order": 17,
+      "kind": "transfer",
+      "prompt": "Let A be a nonempty finite set of positive integers with the property that whenever a∈A and a>1, then a−1∈A. Prove that 1∈A by choosing a justified extremal element. Your proof must state why that extremal element exists and why assuming it is greater than 1 contradicts its extremality.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S34-M@1": {
+      "id": "T22V3::T22E-DISC01::S34-M@1",
+      "order": 28,
+      "kind": "main",
+      "prompt": "Let A be the set of all subsets of {1,2,3,4,5} and B the set of all 5-bit strings. Define φ:A→B by making the ith bit 1 exactly when i belongs to the subset. Define an explicit inverse map ψ:B→A, verify both compositions on an arbitrary object, and use the bijection to rederive |A|=2^5.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S34-T@1": {
+      "id": "T22V3::T22E-DISC01::S34-T@1",
+      "order": 28,
+      "kind": "transfer",
+      "prompt": "Let P be the set of pairs (w,i) where w is a 3-bit string, i∈{1,2,3}, and the ith bit of w is 1. Let B be the set of nonzero 3-bit strings, and let π:P→B forget the marked position: π(w,i)=w. A proposed solution says |B|=|P|/3 because there are three possible marker positions. Audit the argument: compute |P|, inspect enough fibres to determine whether their sizes are constant, explain whether division by 3 is legal, and then count |B| correctly.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S35-M@1": {
+      "id": "T22V3::T22E-DISC01::S35-M@1",
+      "order": 31,
+      "kind": "main",
+      "prompt": "Let U={1,2,3,4,5} and let I={(S,i): S⊆U and i∈U\\S}. Count I in two ways. First partition by k=|S| to obtain a finite sum. Then count by choosing i first. Equate the two counts to prove Σ(k=0..5)(5−k)C(5,k)=5·2^4, and explain the k=5 boundary term.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S35-T@1": {
+      "id": "T22V3::T22E-DISC01::S35-T@1",
+      "order": 31,
+      "kind": "transfer",
+      "prompt": "Give a combinatorial proof that Σ(k=0..4) C(4,k)2^k=81. Your proof must define one finite set of objects and count that same set in two genuinely different ways. Do not justify the identity by expanding the sum arithmetically.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S36-M@1": {
+      "id": "T22V3::T22E-DISC01::S36-M@1",
+      "order": 35,
+      "kind": "main",
+      "prompt": "A state is a pair (x,y) of nonnegative integers. A legal move transfers exactly 2 units from one coordinate to the other: (x,y)→(x−2,y+2) when x≥2, or (x,y)→(x+2,y−2) when y≥2. Starting from (3,8), decide whether (4,7) is reachable. Find an invariant that decides the question, prove it is preserved by every legal move, and explain why your invariant proves non-reachability here but would not by itself prove that every invariant-compatible state is reachable.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S36-T@1": {
+      "id": "T22V3::T22E-DISC01::S36-T@1",
+      "order": 35,
+      "kind": "transfer",
+      "prompt": "Two piles contain 17 and 11 tokens. While both piles are nonempty, one legal move removes exactly one token from each pile. Find (i) a useful invariant and (ii) a nonnegative integer rank that strictly decreases on every move. Use the rank to prove the process terminates, then use the invariant together with the terminal rule to determine the terminal state and the number of moves. State clearly which conclusion comes from the invariant and which comes from the rank.",
+      "obligationVersion": 1
     }
   },
   "evaluators": {
@@ -3049,6 +3393,318 @@
         }
       ],
       "marking": "Accept the S28 three-set inclusion-exclusion rule or an equivalent membership-multiplicity justification. The learner must identify missing-output events as sets of functions and account for singles, pairwise intersections and the triple intersection; merely quoting36 is insufficient."
+    },
+    "T22V3::T22E-DISC01::S31-M@1": {
+      "reference": "A is true: n is chosen first, then m=n+1 is an integer, m>n, and m−n=1 is odd. B is false: m would be fixed before n; for any proposed integer m choose n=m, making m>n false. The exact negation of B is ∀m∈Z ∃n∈Z such that ¬(m>n and m−n is odd), equivalently ∀m∈Z ∃n∈Z such that m≤n or m−n is even. A allows m to depend on n because ∃m occurs after ∀n; B requires one m before all n.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Reads A in the correct order: n is arbitrary first and the existential m may then be chosen as a function of n."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses a legal witness such as m=n+1 and verifies m∈Z, m>n and the odd difference."
+        },
+        {
+          "points": 2,
+          "criterion": "Reads B in the correct order and refutes every proposed global m by a legal later choice such as n=m."
+        },
+        {
+          "points": 2,
+          "criterion": "Writes the exact negation ∀m∈Z ∃n∈Z ¬(m>n and m−n is odd), or a logically equivalent form with the same domains."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that A permits m to depend on n because the existential choice comes later, whereas B requires one fixed m to work for every n."
+        }
+      ],
+      "marking": "Accept any equivalent witness/refutation and any logically equivalent exact negation. Do not require the reference wording. A response that merely swaps symbols or states truth values without the dependence argument does not earn the corresponding credit."
+    },
+    "T22V3::T22E-DISC01::S31-T@1": {
+      "reference": "(i) is true, for example f(a)=1,f(b)=2,f(c)=3; each value lies in Y and in the corresponding allowed set. (ii) is false because A(a)∩A(b)∩A(c)=∅: y=1 fails at b, y=2 fails at c, and y=3 fails at a. The function f records a witness chosen after x; (ii) asks for one y chosen before x and common to all three allowed sets.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Correctly decides that the ∀x∃y statement is true and supplies an explicit function f:X→Y."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies all three assigned outputs are in Y and in the corresponding allowed sets A(a), A(b) and A(c)."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly decides that the ∃y∀x statement is false."
+        },
+        {
+          "points": 2,
+          "criterion": "Proves no common y exists, for example by checking y=1,2,3 against the three allowed sets or by showing their intersection is empty."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that f records input-dependent witnesses chosen after x, while the reversed order demands one global y that works for every input."
+        }
+      ],
+      "marking": "Accept any legal function for (i) and any exhaustive proof that the common intersection is empty for (ii). Do not award the final explanation for merely repeating the quantifier symbols."
+    },
+    "T22V3::T22E-DISC01::S32-M@1": {
+      "reference": "Solve 4x+t=2x+7 to get x=(7−t)/2. This is real for every real t; substitution verifies the equation. If u,v are solutions, then 4u+t=2u+7 and 4v+t=2v+7, so 2u=7−t=2v, hence u=v. The first part gives existence; the two-solution comparison gives at most one.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Separates the exactly-one claim into an existence obligation and an at-most-one/uniqueness obligation."
+        },
+        {
+          "points": 2,
+          "criterion": "Constructs x=(7−t)/2, or an algebraically equivalent candidate, for arbitrary real t."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies the constructed candidate in the original equation and notes it is a legal real number."
+        },
+        {
+          "points": 2,
+          "criterion": "Takes two arbitrary real solutions u and v and derives u=v without assuming uniqueness."
+        },
+        {
+          "points": 2,
+          "criterion": "Labels correctly which argument establishes existence and which establishes at most one, hence exactly one."
+        }
+      ],
+      "marking": "Accept any correct algebraic route. Do not award uniqueness merely because one candidate was found or a calculator reports one root."
+    },
+    "T22V3::T22E-DISC01::S32-T@1": {
+      "reference": "On R, x=4 and x=−4 are distinct solutions, so existence holds and uniqueness fails. On [0,∞), x=4 is legal. If y≥0 and y²=16, then (y−4)(y+4)=0; since y+4>0, y−4=0, so y=4. Thus the restricted domain removes the negative solution and restores uniqueness.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "On R, constructs a legal solution and correctly states that existence holds."
+        },
+        {
+          "points": 2,
+          "criterion": "On R, exhibits the two distinct legal solutions 4 and −4 and uses them to refute uniqueness."
+        },
+        {
+          "points": 2,
+          "criterion": "On [0,∞), constructs and verifies the legal solution x=4."
+        },
+        {
+          "points": 2,
+          "criterion": "Proves any y≥0 with y²=16 equals 4, for example via (y−4)(y+4)=0 and y+4>0."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that the domain restriction removes the negative solution, so existence remains while uniqueness changes."
+        }
+      ],
+      "marking": "Accept equivalent factorization/order arguments. The learner must prove the restricted-domain uniqueness, not merely list roots."
+    },
+    "T22V3::T22E-DISC01::S33-M@1": {
+      "reference": "Let C={n∈Z:n≥1 and 3^n<2n+1}. If C is nonempty, well-ordering gives a least N. N≠1 because 3=3. Hence N≥2 and N−1≥1. By minimality N−1∉C, so 3^(N−1)≥2(N−1)+1=2N−1. Thus 3^N≥6N−3≥2N+1 for N≥1, contradicting N∈C. Positive reals are not well-ordered by the usual order; for any x>0, x/2 is a smaller positive real.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Defines the integer counterexample set C for n≥1 and makes the nonempty assumption explicit."
+        },
+        {
+          "points": 2,
+          "criterion": "Invokes well-ordering legally to choose the least N∈C and verifies N≠1, so N−1 remains in the allowed integer domain."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses minimality to obtain 3^(N−1)≥2N−1 and derives 3^N≥6N−3≥2N+1."
+        },
+        {
+          "points": 2,
+          "criterion": "Closes the contradiction and concludes that the counterexample set is empty, hence the universal claim holds."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that ordinary positive reals need not have a least element, for example because x/2 is smaller than any proposed x>0."
+        }
+      ],
+      "marking": "Equivalent least-counterexample algebra is accepted. Do not award the method claim if a least counterexample is simply asserted without a nonempty integer counterexample set."
+    },
+    "T22V3::T22E-DISC01::S33-T@1": {
+      "reference": "Because A is nonempty and finite, it has a least element m. If m>1, the closure property gives m−1∈A, but m−1<m, contradicting minimality. Therefore m=1, so 1∈A.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Chooses the least element m of A as the extremal object."
+        },
+        {
+          "points": 2,
+          "criterion": "Justifies that m exists because A is nonempty and finite."
+        },
+        {
+          "points": 2,
+          "criterion": "Assumes m>1 and correctly applies the given property to obtain m−1∈A."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses m−1<m to contradict the minimality of m."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes m=1 and therefore 1∈A without importing a stronger theorem."
+        }
+      ],
+      "marking": "Accept any equivalent finite-minimum/extremal proof. The learner must justify the extremal choice from finiteness and nonemptiness."
+    },
+    "T22V3::T22E-DISC01::S34-M@1": {
+      "reference": "φ sends S to its membership-indicator string. Define ψ(b1…b5)={i:bi=1}. For any subset S, ψ(φ(S))=S; for any bit string b, φ(ψ(b))=b. Hence φ is bijective. There are 2 choices per bit, so |B|=2^5=32 and therefore |A|=32.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Defines the forward encoding φ using membership of i in the subset."
+        },
+        {
+          "points": 2,
+          "criterion": "Defines the inverse ψ by collecting exactly the positions whose bits are 1."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies ψ∘φ is the identity on an arbitrary subset."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies φ∘ψ is the identity on an arbitrary 5-bit string, establishing bijectivity."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses the bijection and the two independent choices per bit to conclude |A|=|B|=2^5=32."
+        }
+      ],
+      "marking": "Equivalent indicator-vector notation is accepted. Listing a few examples without defining/checking the inverse is insufficient for the bijection claim."
+    },
+    "T22V3::T22E-DISC01::S34-T@1": {
+      "reference": "Choose the marked position i first (3 choices) and then the other two bits freely (4 choices), so |P|=12. Fibre size equals the number of 1s in w: for example 100 has one preimage, 110 has two and 111 has three. The fibres are not constant, so |P|/3 is not a valid count of B. B contains every 3-bit string except 000, so |B|=2^3−1=7.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Computes |P|=3·2²=12 by choosing the marked 1-position and the two remaining bits."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies the fibre π⁻¹({w}) as the possible marked 1-positions of the output string w."
+        },
+        {
+          "points": 2,
+          "criterion": "Exhibits unequal fibre sizes, for example 1 for 100, 2 for 110 and 3 for 111."
+        },
+        {
+          "points": 2,
+          "criterion": "Concludes that division by 3 is invalid because the relevant fibres do not all have the same size."
+        },
+        {
+          "points": 2,
+          "criterion": "Counts the nonzero 3-bit strings correctly as 2³−1=7."
+        }
+      ],
+      "marking": "Accept any correct computation of |P| and any decisive examples proving variable fibre size. The learner need not list all seven fibres."
+    },
+    "T22V3::T22E-DISC01::S35-M@1": {
+      "reference": "I consists of a subset S together with a marked element outside it. If |S|=k, choose S in C(5,k) ways and i from the 5−k outside elements, giving Σ(5−k)C(5,k). Alternatively choose i first (5 ways); each of the other four elements may independently be in or out of S, giving 5·2^4=80. At k=5 there is no outside element, so the term is 0·C(5,5)=0.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Defines/uses the single incidence set I of a subset together with a marked element outside it."
+        },
+        {
+          "points": 2,
+          "criterion": "Counts by subset size as Σ(k=0..5)(5−k)C(5,k), with the factor 5−k justified."
+        },
+        {
+          "points": 2,
+          "criterion": "Counts the same I by choosing i first and then choosing any subset of the remaining four elements, giving 5·2^4."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that both decompositions count every pair (S,i) exactly once and therefore may be equated."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains the k=5 boundary term as zero because no element of U lies outside S=U."
+        }
+      ],
+      "marking": "Accept equivalent notation for the incidence set. Algebraic manipulation alone does not satisfy the combinatorial-proof request."
+    },
+    "T22V3::T22E-DISC01::S35-T@1": {
+      "reference": "One model is J={(T,S):T⊆S⊆{1,2,3,4}}. If |S|=k, choose S in C(4,k) ways and then T⊆S in 2^k ways, giving the sum. Alternatively, each ground-set element has three states: outside S, in S\\T, or in T, so |J|=3^4=81.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Defines a single finite set of objects whose size is represented by the given sum."
+        },
+        {
+          "points": 2,
+          "criterion": "Justifies a first count producing C(4,k)2^k for objects in the kth class and sums over k=0,…,4."
+        },
+        {
+          "points": 2,
+          "criterion": "Provides a second, genuinely different count of the same objects that yields 81."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains why both counts enumerate every chosen object exactly once, rather than merely matching algebraic values."
+        },
+        {
+          "points": 2,
+          "criterion": "Reaches the identity Σ(k=0..4)C(4,k)2^k=81 with valid finite boundary conventions."
+        }
+      ],
+      "marking": "The nested-subset reference is not mandatory. Award full credit to any correct single-set/two-count combinatorial proof; do not require a particular story or notation."
+    },
+    "T22V3::T22E-DISC01::S36-M@1": {
+      "reference": "The parity of x is invariant because every legal move changes x by ±2. Initially x=3 is odd, while the target has x=4 even, so the target is unreachable. Both move types preserve this parity. The invariant rules out states with even x but does not prove that every state with odd x and the same other constraints is reachable.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Models both allowed transitions and notes the nonnegative-state legality condition."
+        },
+        {
+          "points": 2,
+          "criterion": "Identifies a decisive invariant such as the parity of x (or equivalently the parity of y)."
+        },
+        {
+          "points": 2,
+          "criterion": "Proves the invariant is preserved under both legal move types, not just in sampled moves."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses the mismatch between the initial and target invariant values to prove (4,7) is unreachable."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that an invariant can rule out incompatible targets but does not by itself prove reachability of all compatible states."
+        }
+      ],
+      "marking": "Accept any genuinely decisive preserved property. The total x+y is also invariant but cannot alone rule out this target because both sums are 11; do not award the decisive-invariant points for sum alone."
+    },
+    "T22V3::T22E-DISC01::S36-T@1": {
+      "reference": "The difference a−b is invariant because both coordinates decrease by 1. The rank a+b is a nonnegative integer and decreases by 2 each move, so the process terminates. The invariant begins at 6. At termination at least one pile is zero; because the difference remains +6, the terminal state must be (6,0). Eleven moves occur, since the second pile loses one token per move from 11 to 0.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Identifies and proves a useful invariant, such as a−b=6, under the simultaneous removal move."
+        },
+        {
+          "points": 2,
+          "criterion": "Chooses a nonnegative integer rank such as a+b and proves it strictly decreases on every legal move."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses the rank to conclude that an infinite legal move sequence is impossible, so the process terminates."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses the invariant plus the terminal rule to determine the terminal state (6,0), rather than attributing that state to termination alone."
+        },
+        {
+          "points": 2,
+          "criterion": "Determines that exactly 11 moves occur and distinguishes the invariant's role from the rank's role."
+        }
+      ],
+      "marking": "Equivalent ranks are accepted if they are nonnegative integers and strictly decrease on every move. Do not accept 'the piles get smaller' without a stated rank, and do not treat termination alone as proof of the terminal state."
     }
   },
   "coverage": {
@@ -3546,6 +4202,108 @@
       ]
     ],
     "T22V3::T22E-DISC01::S30@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-DISC01::S31@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::T22E-DISC01::S32@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-DISC01::S33@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-DISC01::S34@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-DISC01::S35@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::T22E-DISC01::S36@1": [
       [
         "main"
       ],
@@ -4829,6 +5587,272 @@
           "Obtains |E1∪E2∪E3|=45 and hence 81−45=36 surjective functions."
         ]
       }
+    ],
+    "T22V3::T22E-DISC01::S31@1": [
+      {
+        "claim": "Read nested ∀∃ and ∃∀ claims in the stated order over explicit domains.",
+        "task": "main",
+        "publicRequest": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not.",
+        "rubricEvidence": [
+          "Reads A in the correct order: n is arbitrary first and the existential m may then be chosen as a function of n.",
+          "Reads B in the correct order and refutes every proposed global m by a legal later choice such as n=m."
+        ]
+      },
+      {
+        "claim": "Explain when an existential witness may depend on an earlier universally quantified variable.",
+        "task": "main",
+        "publicRequest": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not.",
+        "rubricEvidence": [
+          "Explains that A permits m to depend on n because the existential choice comes later, whereas B requires one fixed m to work for every n."
+        ]
+      },
+      {
+        "claim": "Distinguish input-dependent witnesses from one global witness that must work for every input.",
+        "task": "transfer",
+        "publicRequest": "Let X={a,b,c} and Y={1,2,3}. The allowed outputs are A(a)={1,2}, A(b)={2,3}, A(c)={1,3}. Decide whether (i) ∀x∈X ∃y∈Y with y∈A(x) and (ii) ∃y∈Y ∀x∈X with y∈A(x) are true. For (i), construct an explicit function f:X→Y whose value is allowed for every input and verify all three assignments. For (ii), either give one common y or prove that none exists by checking the candidates. Finish by explaining how this table represents input-dependent witnesses versus one global witness.",
+        "rubricEvidence": [
+          "Explains that f records input-dependent witnesses chosen after x, while the reversed order demands one global y that works for every input."
+        ]
+      },
+      {
+        "claim": "Negate a two-quantifier claim by switching each quantifier, preserving domains and complementing the predicate.",
+        "task": "main",
+        "publicRequest": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not.",
+        "rubricEvidence": [
+          "Writes the exact negation ∀m∈Z ∃n∈Z ¬(m>n and m−n is odd), or a logically equivalent form with the same domains."
+        ]
+      },
+      {
+        "claim": "Refute a false quantifier order with a legal adversarial choice made after the proposed global witness.",
+        "task": "main",
+        "publicRequest": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not.",
+        "rubricEvidence": [
+          "Reads B in the correct order and refutes every proposed global m by a legal later choice such as n=m."
+        ]
+      }
+    ],
+    "T22V3::T22E-DISC01::S32@1": [
+      {
+        "claim": "Decompose an exactly-one claim into existence and at-most-one obligations.",
+        "task": "main",
+        "publicRequest": "For an arbitrary real parameter t, prove that there exists exactly one real x satisfying 4x+t=2x+7. Your proof must (i) construct a candidate, (ii) verify it in the original equation, and (iii) prove uniqueness by taking two arbitrary real solutions u and v and showing u=v. Label which part establishes existence and which establishes at most one.",
+        "rubricEvidence": [
+          "Separates the exactly-one claim into an existence obligation and an at-most-one/uniqueness obligation."
+        ]
+      },
+      {
+        "claim": "Construct a candidate and verify both its domain membership and the original defining property.",
+        "task": "main",
+        "publicRequest": "For an arbitrary real parameter t, prove that there exists exactly one real x satisfying 4x+t=2x+7. Your proof must (i) construct a candidate, (ii) verify it in the original equation, and (iii) prove uniqueness by taking two arbitrary real solutions u and v and showing u=v. Label which part establishes existence and which establishes at most one.",
+        "rubricEvidence": [
+          "Constructs x=(7−t)/2, or an algebraically equivalent candidate, for arbitrary real t.",
+          "Verifies the constructed candidate in the original equation and notes it is a legal real number."
+        ]
+      },
+      {
+        "claim": "Prove uniqueness by taking two arbitrary legal objects with the property and showing they are equal.",
+        "task": "main",
+        "publicRequest": "For an arbitrary real parameter t, prove that there exists exactly one real x satisfying 4x+t=2x+7. Your proof must (i) construct a candidate, (ii) verify it in the original equation, and (iii) prove uniqueness by taking two arbitrary real solutions u and v and showing u=v. Label which part establishes existence and which establishes at most one.",
+        "rubricEvidence": [
+          "Takes two arbitrary real solutions u and v and derives u=v without assuming uniqueness."
+        ]
+      },
+      {
+        "claim": "Distinguish at-least-one, at-most-one and exactly-one conclusions.",
+        "task": "main",
+        "publicRequest": "For an arbitrary real parameter t, prove that there exists exactly one real x satisfying 4x+t=2x+7. Your proof must (i) construct a candidate, (ii) verify it in the original equation, and (iii) prove uniqueness by taking two arbitrary real solutions u and v and showing u=v. Label which part establishes existence and which establishes at most one.",
+        "rubricEvidence": [
+          "Labels correctly which argument establishes existence and which establishes at most one, hence exactly one."
+        ]
+      },
+      {
+        "claim": "Audit how changing the domain can preserve existence while changing uniqueness.",
+        "task": "transfer",
+        "publicRequest": "Compare the equation x²=16 on two domains. On R, prove that a solution exists but uniqueness fails by exhibiting two distinct legal solutions. On D=[0,∞), prove that exactly one solution exists: construct the solution and then prove any y∈D with y²=16 must equal it. State explicitly how the domain change alters the uniqueness conclusion.",
+        "rubricEvidence": [
+          "Explains that the domain restriction removes the negative solution, so existence remains while uniqueness changes."
+        ]
+      }
+    ],
+    "T22V3::T22E-DISC01::S33@1": [
+      {
+        "claim": "State the well-ordering principle for nonempty subsets of the nonnegative integers.",
+        "task": "main",
+        "publicRequest": "Use a least-counterexample proof to show that 3^n≥2n+1 for every integer n≥1. Define the counterexample set, justify the existence of a least counterexample if that set were nonempty, handle the base boundary, and reduce the least counterexample to the smaller integer N−1. Also explain why the same well-ordering principle would not by itself justify choosing a least element from an arbitrary nonempty set of positive real numbers.",
+        "rubricEvidence": [
+          "Defines the integer counterexample set C for n≥1 and makes the nonempty assumption explicit.",
+          "Invokes well-ordering legally to choose the least N∈C and verifies N≠1, so N−1 remains in the allowed integer domain."
+        ]
+      },
+      {
+        "claim": "Define a nonempty counterexample set before selecting a least counterexample.",
+        "task": "main",
+        "publicRequest": "Use a least-counterexample proof to show that 3^n≥2n+1 for every integer n≥1. Define the counterexample set, justify the existence of a least counterexample if that set were nonempty, handle the base boundary, and reduce the least counterexample to the smaller integer N−1. Also explain why the same well-ordering principle would not by itself justify choosing a least element from an arbitrary nonempty set of positive real numbers.",
+        "rubricEvidence": [
+          "Defines the integer counterexample set C for n≥1 and makes the nonempty assumption explicit."
+        ]
+      },
+      {
+        "claim": "Reduce a supposed least counterexample to a smaller legal case and derive a contradiction.",
+        "task": "main",
+        "publicRequest": "Use a least-counterexample proof to show that 3^n≥2n+1 for every integer n≥1. Define the counterexample set, justify the existence of a least counterexample if that set were nonempty, handle the base boundary, and reduce the least counterexample to the smaller integer N−1. Also explain why the same well-ordering principle would not by itself justify choosing a least element from an arbitrary nonempty set of positive real numbers.",
+        "rubricEvidence": [
+          "Uses minimality to obtain 3^(N−1)≥2N−1 and derives 3^N≥6N−3≥2N+1.",
+          "Closes the contradiction and concludes that the counterexample set is empty, hence the universal claim holds."
+        ]
+      },
+      {
+        "claim": "Reject an unjustified claim that every nonempty set of real numbers has a minimum.",
+        "task": "main",
+        "publicRequest": "Use a least-counterexample proof to show that 3^n≥2n+1 for every integer n≥1. Define the counterexample set, justify the existence of a least counterexample if that set were nonempty, handle the base boundary, and reduce the least counterexample to the smaller integer N−1. Also explain why the same well-ordering principle would not by itself justify choosing a least element from an arbitrary nonempty set of positive real numbers.",
+        "rubricEvidence": [
+          "Explains that ordinary positive reals need not have a least element, for example because x/2 is smaller than any proposed x>0."
+        ]
+      },
+      {
+        "claim": "Choose and use a justified extremal element of a nonempty finite set.",
+        "task": "transfer",
+        "publicRequest": "Let A be a nonempty finite set of positive integers with the property that whenever a∈A and a>1, then a−1∈A. Prove that 1∈A by choosing a justified extremal element. Your proof must state why that extremal element exists and why assuming it is greater than 1 contradicts its extremality.",
+        "rubricEvidence": [
+          "Chooses the least element m of A as the extremal object.",
+          "Justifies that m exists because A is nonempty and finite."
+        ]
+      }
+    ],
+    "T22V3::T22E-DISC01::S34@1": [
+      {
+        "claim": "Define an explicit finite encoding map between two collections.",
+        "task": "main",
+        "publicRequest": "Let A be the set of all subsets of {1,2,3,4,5} and B the set of all 5-bit strings. Define φ:A→B by making the ith bit 1 exactly when i belongs to the subset. Define an explicit inverse map ψ:B→A, verify both compositions on an arbitrary object, and use the bijection to rederive |A|=2^5.",
+        "rubricEvidence": [
+          "Defines the forward encoding φ using membership of i in the subset."
+        ]
+      },
+      {
+        "claim": "Construct and verify an inverse map to prove a counting correspondence is bijective.",
+        "task": "main",
+        "publicRequest": "Let A be the set of all subsets of {1,2,3,4,5} and B the set of all 5-bit strings. Define φ:A→B by making the ith bit 1 exactly when i belongs to the subset. Define an explicit inverse map ψ:B→A, verify both compositions on an arbitrary object, and use the bijection to rederive |A|=2^5.",
+        "rubricEvidence": [
+          "Defines the inverse ψ by collecting exactly the positions whose bits are 1.",
+          "Verifies ψ∘φ is the identity on an arbitrary subset.",
+          "Verifies φ∘ψ is the identity on an arbitrary 5-bit string, establishing bijectivity."
+        ]
+      },
+      {
+        "claim": "Transfer a finite count through a proved bijection without losing or duplicating objects.",
+        "task": "main",
+        "publicRequest": "Let A be the set of all subsets of {1,2,3,4,5} and B the set of all 5-bit strings. Define φ:A→B by making the ith bit 1 exactly when i belongs to the subset. Define an explicit inverse map ψ:B→A, verify both compositions on an arbitrary object, and use the bijection to rederive |A|=2^5.",
+        "rubricEvidence": [
+          "Uses the bijection and the two independent choices per bit to conclude |A|=|B|=2^5=32."
+        ]
+      },
+      {
+        "claim": "Interpret a fibre as the preimage of one output under a finite map.",
+        "task": "transfer",
+        "publicRequest": "Let P be the set of pairs (w,i) where w is a 3-bit string, i∈{1,2,3}, and the ith bit of w is 1. Let B be the set of nonzero 3-bit strings, and let π:P→B forget the marked position: π(w,i)=w. A proposed solution says |B|=|P|/3 because there are three possible marker positions. Audit the argument: compute |P|, inspect enough fibres to determine whether their sizes are constant, explain whether division by 3 is legal, and then count |B| correctly.",
+        "rubricEvidence": [
+          "Identifies the fibre π⁻¹({w}) as the possible marked 1-positions of the output string w."
+        ]
+      },
+      {
+        "claim": "Use division by a multiplicity only after proving all relevant fibres have the same positive size, and detect when that condition fails.",
+        "task": "transfer",
+        "publicRequest": "Let P be the set of pairs (w,i) where w is a 3-bit string, i∈{1,2,3}, and the ith bit of w is 1. Let B be the set of nonzero 3-bit strings, and let π:P→B forget the marked position: π(w,i)=w. A proposed solution says |B|=|P|/3 because there are three possible marker positions. Audit the argument: compute |P|, inspect enough fibres to determine whether their sizes are constant, explain whether division by 3 is legal, and then count |B| correctly.",
+        "rubricEvidence": [
+          "Exhibits unequal fibre sizes, for example 1 for 100, 2 for 110 and 3 for 111.",
+          "Concludes that division by 3 is invalid because the relevant fibres do not all have the same size."
+        ]
+      }
+    ],
+    "T22V3::T22E-DISC01::S35@1": [
+      {
+        "claim": "Define one finite incidence or pair set that both sides of a counting identity enumerate.",
+        "task": "main",
+        "publicRequest": "Let U={1,2,3,4,5} and let I={(S,i): S⊆U and i∈U\\S}. Count I in two ways. First partition by k=|S| to obtain a finite sum. Then count by choosing i first. Equate the two counts to prove Σ(k=0..5)(5−k)C(5,k)=5·2^4, and explain the k=5 boundary term.",
+        "rubricEvidence": [
+          "Defines/uses the single incidence set I of a subset together with a marked element outside it."
+        ]
+      },
+      {
+        "claim": "Partition and count that set by one feature without omissions or overlap.",
+        "task": "main",
+        "publicRequest": "Let U={1,2,3,4,5} and let I={(S,i): S⊆U and i∈U\\S}. Count I in two ways. First partition by k=|S| to obtain a finite sum. Then count by choosing i first. Equate the two counts to prove Σ(k=0..5)(5−k)C(5,k)=5·2^4, and explain the k=5 boundary term.",
+        "rubricEvidence": [
+          "Counts by subset size as Σ(k=0..5)(5−k)C(5,k), with the factor 5−k justified."
+        ]
+      },
+      {
+        "claim": "Count the same set by a different feature and justify that every object is counted exactly once.",
+        "task": "main",
+        "publicRequest": "Let U={1,2,3,4,5} and let I={(S,i): S⊆U and i∈U\\S}. Count I in two ways. First partition by k=|S| to obtain a finite sum. Then count by choosing i first. Equate the two counts to prove Σ(k=0..5)(5−k)C(5,k)=5·2^4, and explain the k=5 boundary term.",
+        "rubricEvidence": [
+          "Counts the same I by choosing i first and then choosing any subset of the remaining four elements, giving 5·2^4."
+        ]
+      },
+      {
+        "claim": "Equate the two counts and state the summation/boundary conventions used.",
+        "task": "main",
+        "publicRequest": "Let U={1,2,3,4,5} and let I={(S,i): S⊆U and i∈U\\S}. Count I in two ways. First partition by k=|S| to obtain a finite sum. Then count by choosing i first. Equate the two counts to prove Σ(k=0..5)(5−k)C(5,k)=5·2^4, and explain the k=5 boundary term.",
+        "rubricEvidence": [
+          "Explains that both decompositions count every pair (S,i) exactly once and therefore may be equated.",
+          "Explains the k=5 boundary term as zero because no element of U lies outside S=U."
+        ]
+      },
+      {
+        "claim": "Invent a combinatorial interpretation for an algebraic-looking finite sum using already-owned finite objects.",
+        "task": "transfer",
+        "publicRequest": "Give a combinatorial proof that Σ(k=0..4) C(4,k)2^k=81. Your proof must define one finite set of objects and count that same set in two genuinely different ways. Do not justify the identity by expanding the sum arithmetically.",
+        "rubricEvidence": [
+          "Defines a single finite set of objects whose size is represented by the given sum.",
+          "Provides a second, genuinely different count of the same objects that yields 81."
+        ]
+      }
+    ],
+    "T22V3::T22E-DISC01::S36@1": [
+      {
+        "claim": "Define the state space, legal moves, initial state and target/terminal condition of a finite process.",
+        "task": "main",
+        "publicRequest": "A state is a pair (x,y) of nonnegative integers. A legal move transfers exactly 2 units from one coordinate to the other: (x,y)→(x−2,y+2) when x≥2, or (x,y)→(x+2,y−2) when y≥2. Starting from (3,8), decide whether (4,7) is reachable. Find an invariant that decides the question, prove it is preserved by every legal move, and explain why your invariant proves non-reachability here but would not by itself prove that every invariant-compatible state is reachable.",
+        "rubricEvidence": [
+          "Models both allowed transitions and notes the nonnegative-state legality condition."
+        ]
+      },
+      {
+        "claim": "Propose and prove an invariant by checking it initially and after every legal move.",
+        "task": "main",
+        "publicRequest": "A state is a pair (x,y) of nonnegative integers. A legal move transfers exactly 2 units from one coordinate to the other: (x,y)→(x−2,y+2) when x≥2, or (x,y)→(x+2,y−2) when y≥2. Starting from (3,8), decide whether (4,7) is reachable. Find an invariant that decides the question, prove it is preserved by every legal move, and explain why your invariant proves non-reachability here but would not by itself prove that every invariant-compatible state is reachable.",
+        "rubricEvidence": [
+          "Identifies a decisive invariant such as the parity of x (or equivalently the parity of y).",
+          "Proves the invariant is preserved under both legal move types, not just in sampled moves."
+        ]
+      },
+      {
+        "claim": "Use an invariant to rule out a target without claiming that every invariant-compatible target is reachable.",
+        "task": "main",
+        "publicRequest": "A state is a pair (x,y) of nonnegative integers. A legal move transfers exactly 2 units from one coordinate to the other: (x,y)→(x−2,y+2) when x≥2, or (x,y)→(x+2,y−2) when y≥2. Starting from (3,8), decide whether (4,7) is reachable. Find an invariant that decides the question, prove it is preserved by every legal move, and explain why your invariant proves non-reachability here but would not by itself prove that every invariant-compatible state is reachable.",
+        "rubricEvidence": [
+          "Uses the mismatch between the initial and target invariant values to prove (4,7) is unreachable.",
+          "Explains that an invariant can rule out incompatible targets but does not by itself prove reachability of all compatible states."
+        ]
+      },
+      {
+        "claim": "Choose a nonnegative integer rank that strictly decreases at every legal move and use it to prove termination.",
+        "task": "transfer",
+        "publicRequest": "Two piles contain 17 and 11 tokens. While both piles are nonempty, one legal move removes exactly one token from each pile. Find (i) a useful invariant and (ii) a nonnegative integer rank that strictly decreases on every move. Use the rank to prove the process terminates, then use the invariant together with the terminal rule to determine the terminal state and the number of moves. State clearly which conclusion comes from the invariant and which comes from the rank.",
+        "rubricEvidence": [
+          "Chooses a nonnegative integer rank such as a+b and proves it strictly decreases on every legal move.",
+          "Uses the rank to conclude that an infinite legal move sequence is impossible, so the process terminates."
+        ]
+      },
+      {
+        "claim": "Distinguish termination from identification of the terminal state, and combine an invariant with termination when needed.",
+        "task": "transfer",
+        "publicRequest": "Two piles contain 17 and 11 tokens. While both piles are nonempty, one legal move removes exactly one token from each pile. Find (i) a useful invariant and (ii) a nonnegative integer rank that strictly decreases on every move. Use the rank to prove the process terminates, then use the invariant together with the terminal rule to determine the terminal state and the number of moves. State clearly which conclusion comes from the invariant and which comes from the rank.",
+        "rubricEvidence": [
+          "Uses the invariant plus the terminal rule to determine the terminal state (6,0), rather than attributing that state to termination alone.",
+          "Determines that exactly 11 moves occur and distinguishes the invariant's role from the rank's role."
+        ]
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -5167,6 +6191,118 @@
         "item": "pigeonhole",
         "source": "M03-S29"
       }
+    ],
+    "S31": [
+      {
+        "item": "Nested universal/existential quantifiers",
+        "source": "Published M03-S05"
+      },
+      {
+        "item": "Exact quantified negation",
+        "source": "Published M03-S06"
+      },
+      {
+        "item": "Function-style input-dependent rule",
+        "source": "Published M02 function intuition; restated locally as y=f(x)"
+      }
+    ],
+    "S32": [
+      {
+        "item": "Existential claims and witnesses",
+        "source": "Published M03-S05"
+      },
+      {
+        "item": "Direct proof with arbitrary legal objects",
+        "source": "Published M03-S09"
+      },
+      {
+        "item": "Elementary equation solving/factoring",
+        "source": "Published M01"
+      },
+      {
+        "item": "Domain legality",
+        "source": "Published M02 domain discipline; rechecked locally"
+      }
+    ],
+    "S33": [
+      {
+        "item": "Contradiction structure",
+        "source": "Published M03-S11"
+      },
+      {
+        "item": "Induction/reduction to earlier indices",
+        "source": "Published M03-S13/S14"
+      },
+      {
+        "item": "Integer order and inequalities",
+        "source": "Published M01"
+      },
+      {
+        "item": "Well-ordering principle",
+        "source": "Stated locally before first use in S33"
+      }
+    ],
+    "S34": [
+      {
+        "item": "Power-set and finite-cardinality language",
+        "source": "Published M03-S16"
+      },
+      {
+        "item": "Preimage notation",
+        "source": "Published M03-S20"
+      },
+      {
+        "item": "Bijective map and inverse",
+        "source": "Published M03-S21"
+      },
+      {
+        "item": "Finite product counting",
+        "source": "Published M03-S23"
+      },
+      {
+        "item": "Fibre / constant-fibre theorem",
+        "source": "Defined and derived locally in S34 before assessment"
+      }
+    ],
+    "S35": [
+      {
+        "item": "Finite addition/product rules",
+        "source": "Published M03-S23"
+      },
+      {
+        "item": "Binomial coefficients/combinations",
+        "source": "Published M03-S26"
+      },
+      {
+        "item": "Explicit encodings and finite set maps",
+        "source": "New M03-S34"
+      },
+      {
+        "item": "Finite summation notation",
+        "source": "Published M02 finite sums"
+      }
+    ],
+    "S36": [
+      {
+        "item": "Parity language",
+        "source": "Published M03-S08"
+      },
+      {
+        "item": "Induction/all-steps reasoning",
+        "source": "Published M03-S13"
+      },
+      {
+        "item": "Well-ordering / no infinite strict descent in nonnegative integers",
+        "source": "New M03-S33"
+      },
+      {
+        "item": "State/relation language",
+        "source": "Published M03-S19 plus local state/transition definitions"
+      },
+      {
+        "item": "Rank theorem",
+        "source": "Proved locally in S36 from nonnegative-integer strict descent"
+      }
     ]
   },
   "instructionSeparation": {
@@ -5409,6 +6545,54 @@
       "transfer": [
         "Let D have4 elements and C={c1,c2,c3}. First prove no f:D→C can "
       ]
+    },
+    "T22V3::T22E-DISC01::S31@1": {
+      "main": [
+        "m>n and m−n is odd"
+      ],
+      "transfer": [
+        "A(a)={1,2}, A(b)={2,3}, A(c)={1,3}"
+      ]
+    },
+    "T22V3::T22E-DISC01::S32@1": {
+      "main": [
+        "4x+t=2x+7"
+      ],
+      "transfer": [
+        "x²=16"
+      ]
+    },
+    "T22V3::T22E-DISC01::S33@1": {
+      "main": [
+        "3^n≥2n+1"
+      ],
+      "transfer": [
+        "whenever a∈A and a>1, then a−1∈A"
+      ]
+    },
+    "T22V3::T22E-DISC01::S34@1": {
+      "main": [
+        "all 5-bit strings"
+      ],
+      "transfer": [
+        "pairs (w,i) where w is a 3-bit string"
+      ]
+    },
+    "T22V3::T22E-DISC01::S35@1": {
+      "main": [
+        "i∈U\\S"
+      ],
+      "transfer": [
+        "C(4,k)2^k=81"
+      ]
+    },
+    "T22V3::T22E-DISC01::S36@1": {
+      "main": [
+        "transfers exactly 2 units"
+      ],
+      "transfer": [
+        "17 and 11 tokens"
+      ]
     }
   },
   "authoringPolicy": "T22 v1.2 evidence policy: novice instruction precedes assessment, but different numbers/data alone do not establish semantic separation. Evidence distance is classified explicitly; public requests and exact rubrics must literally observe retained ownership; strategy-choice evidence uses fresh solution-free probes rather than exposed fixed tasks.",
@@ -5434,8 +6618,8 @@
     }
   },
   "semanticSeparationAudit": {
-    "version": "m03-semantic-separation-v17-r1",
-    "reviewedAt": "2026-09-30",
+    "version": "m03-semantic-separation-v2-six-tools-r1",
+    "reviewedAt": "2026-10-04",
     "sessions": {
       "T22V3::T22E-DISC01::S01@1": {
         "status": "reviewed-separated",
@@ -5556,6 +6740,30 @@
       "T22V3::T22E-DISC01::S30@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
         "note": "Current v1.7.1 receipt on instructionVersion m03-instruction-v12-evidence-retrofit-r1: Main is proof reconstruction/integration; Transfer is changed-surface finite-function synthesis. S28 teaches/derives the three-set inclusion-exclusion bridge; S30 is the first fixed synthesis assessment that applies that bridge. No retrospective S28 ownership claim is made."
+      },
+      "T22V3::T22E-DISC01::S31@1": {
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "V2 S31 pilot: lesson teaches nested quantifier order, witness dependence and exact negation on distinct integer/real examples. Main reconstructs the logic on a new odd-difference relation; Transfer changes representation to a finite allowed-output table and requires an unsupplied function/intersection interpretation."
+      },
+      "T22V3::T22E-DISC01::S32@1": {
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "S32 instruction uses a distinct affine equation. Main requires the learner to construct, verify and separately prove uniqueness for a new parameter equation. Transfer changes the obstacle to nonlinear roots plus a domain restriction; neither fixed equation appears in instruction."
+      },
+      "T22V3::T22E-DISC01::S33@1": {
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "S33 lesson demonstrates least-counterexample structure on a divisibility claim. Main applies the architecture to a different exponential inequality and explicitly audits the real-minimum boundary. Transfer changes to a finite extremal closure argument."
+      },
+      "T22V3::T22E-DISC01::S34@1": {
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "S34 instruction uses function-string and absolute-value examples. Main requires a fresh subset↔5-bit encoding with both inverse identities. Transfer attacks a variable-fibre marked-string map; neither fixed map appears in instruction."
+      },
+      "T22V3::T22E-DISC01::S35@1": {
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "S35 lesson teaches double counting via person-team incidences. Main changes to subset/outside-element pairs and a boundary-zero term. Transfer withholds the counted objects entirely and requires the learner to invent a single-set/two-count interpretation for a binomial-power sum."
+      },
+      "T22V3::T22E-DISC01::S36@1": {
+        "status": "builder-reviewed-separated-awaiting-independent-confirmation",
+        "note": "S36 instruction uses a ±1 sum invariant and separate subtract-two rank example. Main requires an unsupplied decisive parity invariant in a two-coordinate transfer process. Transfer changes to simultaneous pile depletion and requires two independently selected quantities with different proof roles."
       }
     }
   },
@@ -5615,7 +6823,7 @@
     "taskReplacementPolicy": "Stable task IDs are retained with incremented obligationVersion. Substantively changed prompts (S17/S23/S24/S25/S27 Transfer and selected Main observers) are new evidence obligations; older attempts do not auto-satisfy them. S27-T v3 supersedes the rejected upper-bound/complement v2 candidate so S28 retains first ownership of complement counting.",
     "strategyLabPolicy": "Method-selection diagnostics remain post-assessment, unscored practice/diagnostic evidence and never auto-grant canonical ownership. Final Spire pack v1.7.2 clone-audits the strategy probes against S01–S30 and replaces close archetype clones with changed mathematical surfaces before publication.",
     "historicalAcceptedStatus": "published-v1.4-lang-final-stitch-accepted",
-    "currentCandidateStatus": "published-v1.7.2-builder-validated-same-model-review-passed",
+    "currentCandidateStatus": "v2-six-tools-builder-candidate-awaiting-independent-review",
     "v17ChangedAssessmentIds": [
       "T22V3::T22E-DISC01::S25-T@1",
       "T22V3::T22E-DISC01::S26-M@1",
@@ -5659,10 +6867,58 @@
       "finalPublicationRecord": "docs/t22-course/M03-FINAL-PUBLICATION.md",
       "userAuthorizedMainPublication": true,
       "contentChange": "none-to-S01-S30"
+    },
+    "v2SixToolsUpgrade": {
+      "date": "2026-10-04",
+      "branch": "codex/t22-m03-six-tools-upgrade",
+      "recoveredBaselineCommit": "087a9b98299e0021e009590f92123d3c05e50ab5",
+      "designGate": "docs/t22-course/M03-V2-DESIGN-GATE.md",
+      "pilot": "docs/t22-course/artifacts/M03-V2-S31-PILOT.json",
+      "stableExistingSessionIdsPreserved": true,
+      "stableExistingTaskIdsPreserved": true,
+      "newStableSessionIds": [
+        "T22V3::T22E-DISC01::S31@1",
+        "T22V3::T22E-DISC01::S32@1",
+        "T22V3::T22E-DISC01::S33@1",
+        "T22V3::T22E-DISC01::S34@1",
+        "T22V3::T22E-DISC01::S35@1",
+        "T22V3::T22E-DISC01::S36@1"
+      ],
+      "newTaskIds": [
+        "T22V3::T22E-DISC01::S31-M@1",
+        "T22V3::T22E-DISC01::S31-T@1",
+        "T22V3::T22E-DISC01::S32-M@1",
+        "T22V3::T22E-DISC01::S32-T@1",
+        "T22V3::T22E-DISC01::S33-M@1",
+        "T22V3::T22E-DISC01::S33-T@1",
+        "T22V3::T22E-DISC01::S34-M@1",
+        "T22V3::T22E-DISC01::S34-T@1",
+        "T22V3::T22E-DISC01::S35-M@1",
+        "T22V3::T22E-DISC01::S35-T@1",
+        "T22V3::T22E-DISC01::S36-M@1",
+        "T22V3::T22E-DISC01::S36-T@1"
+      ],
+      "learnerOrderPositions": [
+        7,
+        11,
+        17,
+        28,
+        31,
+        35
+      ],
+      "currentCounts": {
+        "sessions": 36,
+        "tasks": 72,
+        "ownershipClaims": 180
+      },
+      "status": "builder-candidate-full-CI-and-independent-review-pending",
+      "historicalBaseline": "published-v1.7.2-builder-validated-same-model-review-passed",
+      "progressPolicy": "Existing S01–S30 assessment fingerprints remain unchanged because prompts/evaluators/obligation versions are untouched; changing order metadata does not enter the assessment fingerprint or session contract hash. New S31–S36 start with fresh identities and no historical attempts.",
+      "publicationPolicy": "Do not merge or label accepted before exact-head full workflow/Chromium and independent adversarial review."
     }
   },
   "evidenceDistance": {
-    "version": "m03-evidence-distance-v17-r1",
+    "version": "m03-evidence-distance-v2-six-tools-r1",
     "items": {
       "T22V3::T22E-DISC01::S01-M@1": {
         "class": "retrieval",
@@ -5903,12 +7159,60 @@
       "T22V3::T22E-DISC01::S30-T@1": {
         "class": "changed-surface Transfer",
         "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S30; storage in the Transfer slot is not treated as proof of transfer."
+      },
+      "T22V3::T22E-DISC01::S31-M@1": {
+        "class": "proof reconstruction",
+        "note": "The lesson explicitly teaches quantifier order, dependence and exact negation; Main requires reconstructing those moves on a new integer relation and choosing a legal witness/refuter."
+      },
+      "T22V3::T22E-DISC01::S31-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "The learner must recast nested quantifiers as a finite assignment/function and common-intersection problem; the exact allowed-set table and successful function are not rehearsed in the lesson."
+      },
+      "T22V3::T22E-DISC01::S32-M@1": {
+        "class": "proof reconstruction",
+        "note": "Main executes the explicitly taught existence-then-uniqueness architecture on a fresh affine relation."
+      },
+      "T22V3::T22E-DISC01::S32-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer changes from an affine parameter equation to a nonlinear root/domain problem where the learner must diagnose that the same equation has different uniqueness status on two domains."
+      },
+      "T22V3::T22E-DISC01::S33-M@1": {
+        "class": "proof reconstruction",
+        "note": "Main reconstructs the taught least-counterexample architecture on a new inequality; the route is named but the reduction algebra is not supplied."
+      },
+      "T22V3::T22E-DISC01::S33-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer uses justified extremal choice on a finite set rather than a counterexample set indexed by n; the learner must identify the least-element contradiction from the closure rule."
+      },
+      "T22V3::T22E-DISC01::S34-M@1": {
+        "class": "proof reconstruction",
+        "note": "Main reconstructs explicit encoding + inverse verification on a new representation."
+      },
+      "T22V3::T22E-DISC01::S34-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer is an adversarial overcount audit: the learner must identify fibres of a forgetful map, detect nonconstant multiplicity and replace the invalid division with a correct count."
+      },
+      "T22V3::T22E-DISC01::S35-M@1": {
+        "class": "proof reconstruction",
+        "note": "Main uses the taught same-set/two-count contract but on a different finite incidence structure with a summation boundary."
+      },
+      "T22V3::T22E-DISC01::S35-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer presents only an algebraic-looking sum and the required proof standard; the counted objects and the second representation must be invented."
+      },
+      "T22V3::T22E-DISC01::S36-M@1": {
+        "class": "fresh Main evidence",
+        "note": "The method family 'invariant' is taught, but the decisive invariant is not supplied or rehearsed; the obvious sum invariant is deliberately insufficient, so the learner must choose parity and justify it."
+      },
+      "T22V3::T22E-DISC01::S36-T@1": {
+        "class": "changed-surface Transfer",
+        "note": "Transfer requires both a preserved difference and a strictly decreasing integer rank, then separates termination from terminal-state identification in a new process."
       }
     }
   },
   "decisionAudit": {
-    "version": "m03-decision-audit-v17.1-r1",
-    "policy": "Every assessment labeled fresh Main evidence or changed-surface Transfer is adjudicated against the specific decision named in that row. decisionSuppliedByPrompt asks whether that organizing decision is effectively given/cued by the public task; decisionRehearsedInVisibleInstruction asks whether that same decision/representation is visibly rehearsed in the session lesson. These booleans do not score task quality.",
+    "version": "m03-decision-audit-v2-six-tools-r1",
+    "policy": "Decision audit covers every fixed task labelled fresh Main evidence or changed-surface Transfer. A task is not upgraded merely because it is difficult or stored in the Transfer slot.",
     "items": {
       "T22V3::T22E-DISC01::S01-T@1": {
         "status": "builder-readjudicated-awaiting-independent-confirmation",
@@ -6053,11 +7357,74 @@
         "decisionRehearsedInVisibleInstruction": false,
         "scoredLearnerAction": "Uses pigeonhole correctly to prove no map D→C can be injective and counts all functions as3^4=81. | Defines the missing-output sets Ei and applies the three-set inclusion-exclusion correction with the correct alternating signs. | Computes each |Ei|=2^4=16 and explains the two available codomain values. | Computes each pair intersection as1 and the triple intersection as0 with correct set-of-functions reasoning. | Obtains |E1∪E2∪E3|=45 and hence 81−45=36 surjective functions.",
         "classificationJustification": "The prompt explicitly scaffolds the integration: no injection, total functions, missing-output sets and three-set inclusion-exclusion. S30 visible instruction rehearses total/forbidden-output function counts but not the full pigeonhole+event-set+inclusion-exclusion synthesis."
+      },
+      "T22V3::T22E-DISC01::S31-T@1": {
+        "status": "builder-pilot-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Translate allowed-output sets into a dependent function for ∀∃ and into a common-intersection requirement for ∃∀.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Constructs a legal f for all three inputs; exhaustively proves no one y lies in all three allowed sets; explains dependent versus global witness semantics.",
+        "classificationJustification": "The prompt supplies the finite relation but not the intersection criterion or the successful function. The learner must choose a representation that makes the quantifier order operational."
+      },
+      "T22V3::T22E-DISC01::S32-T@1": {
+        "status": "builder-authored-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Use the domain restriction, not new algebra, as the decisive reason uniqueness changes.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Finds two real roots, then proves only the nonnegative root survives on the restricted domain and explains the change in uniqueness.",
+        "classificationJustification": "The prompt names both domains but does not supply the factorization proof or the reason the negative solution is excluded. The meaningful change is the legality/domain obstacle."
+      },
+      "T22V3::T22E-DISC01::S33-T@1": {
+        "status": "builder-authored-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Choose the least element of the finite set and use the closure rule to manufacture a smaller member.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Justifies the finite minimum, applies the closure condition and contradicts minimality.",
+        "classificationJustification": "The prompt asks for an extremal element but does not provide which extremum or the contradiction move. The mathematical surface differs from the indexed least-counterexample proof."
+      },
+      "T22V3::T22E-DISC01::S34-T@1": {
+        "status": "builder-authored-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Inspect fibre sizes rather than trusting the superficial three-marker symmetry.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Computes the marked-string domain, identifies fibres, exhibits varying multiplicities and rejects the division before counting B correctly.",
+        "classificationJustification": "The prompt asks for an audit but does not tell the learner which fibres differ. The decisive step is discovering that multiplicity equals Hamming weight and therefore varies."
+      },
+      "T22V3::T22E-DISC01::S35-T@1": {
+        "status": "builder-authored-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Invent a finite object with two nested membership states so C(4,k) chooses an outer set and 2^k chooses internal structure, then recast each element as one of three states.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Defines a valid counted set, obtains the given summand by one partition and 81 by a different enumeration, and proves both counts are of the same set.",
+        "classificationJustification": "No incidence/nested-subset model is supplied in the prompt, and the lesson uses a person-team incidence rather than a binomial-power identity."
+      },
+      "T22V3::T22E-DISC01::S36-M@1": {
+        "status": "builder-authored-awaiting-independent-confirmation",
+        "classification": "fresh Main evidence",
+        "decision": "Reject the tempting but non-decisive sum invariant and choose a parity invariant that separates start from target.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Finds a decisive preserved property, proves both move cases preserve it and uses its mismatch to rule out the target.",
+        "classificationJustification": "The prompt asks for an invariant but not which one; the easiest visible invariant x+y does not solve the task. The learner must make a mathematically consequential choice."
+      },
+      "T22V3::T22E-DISC01::S36-T@1": {
+        "status": "builder-authored-awaiting-independent-confirmation",
+        "classification": "changed-surface Transfer",
+        "decision": "Choose one preserved quantity and a different decreasing integer quantity, then assign the correct conclusion to each.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Proves a−b invariant, a+b decreasing integer rank, termination, terminal state and move count with role separation.",
+        "classificationJustification": "The prompt names the categories invariant/rank but does not supply the functions. Correct completion requires choosing quantities with different logical roles."
       }
     }
   },
   "wrongSolverAudit": {
-    "version": "m03-wrong-solver-v12-r1",
+    "version": "m03-wrong-solver-v2-six-tools-r1",
     "sessions": {
       "T22V3::T22E-DISC01::S01@1": {
         "wrongApproach": "Treat R(r) as already true/false without assigning r.",
@@ -6178,6 +7545,30 @@
       "T22V3::T22E-DISC01::S30@1": {
         "wrongApproach": "Count onto functions as 3^4 or subtract 3·2^4 without restoring pair intersections.",
         "requiredDiscrimination": "Rubric requires the overlap structure and final surjective count."
+      },
+      "T22V3::T22E-DISC01::S31@1": {
+        "wrongApproach": "Choose a different y for each x while claiming this proves ∃y∀x, or swap the quantifier symbols without negating the predicate.",
+        "requiredDiscrimination": "Main requires one fixed m for the ∃∀ reading and exact nested negation; Transfer requires either one common y or an exhaustive proof none exists."
+      },
+      "T22V3::T22E-DISC01::S32@1": {
+        "wrongApproach": "Find one candidate and declare it unique, or factor x²=16 and forget to apply the stated domain.",
+        "requiredDiscrimination": "Main separately scores two-solution uniqueness; Transfer separately scores the domain-based exclusion of −4."
+      },
+      "T22V3::T22E-DISC01::S33@1": {
+        "wrongApproach": "Say 'let N be the smallest counterexample' without defining a nonempty integer set, or assume arbitrary positive-real sets have minima.",
+        "requiredDiscrimination": "Main scores the counterexample-set/well-ordering prerequisites and the explicit positive-real counterexample to the false minimum rule."
+      },
+      "T22V3::T22E-DISC01::S34@1": {
+        "wrongApproach": "Divide a labelled/marked count by the number of possible labels without checking that every output has that many preimages.",
+        "requiredDiscrimination": "Transfer rubric requires explicit unequal fibre sizes and rejects the divide-by-three shortcut."
+      },
+      "T22V3::T22E-DISC01::S35@1": {
+        "wrongApproach": "Expand both sides numerically or manipulate the binomial theorem without defining one set that both sides count.",
+        "requiredDiscrimination": "Both Main and Transfer rubrics explicitly require a single finite set, two decompositions and exact-once counting."
+      },
+      "T22V3::T22E-DISC01::S36@1": {
+        "wrongApproach": "Use the preserved sum in Main even though it agrees at the target, or claim that any decreasing quantity proves finite termination and that termination identifies the terminal state.",
+        "requiredDiscrimination": "Main marking rejects sum-alone as decisive; Transfer separately scores an integer rank, termination, and invariant-based terminal-state identification."
       }
     }
   }
