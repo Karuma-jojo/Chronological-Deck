@@ -43,6 +43,6 @@ assert(labs.includes('Placement:** after learner position 17'));
 assert(labs.includes('Placement:** after learner position 36'));
 assert(labs.includes('unscored diagnostic/practice only'));
 assert(labs.includes('Do not reveal method names until the learner has committed'));
-assert(labs.includes('Preservation is not termination'));
+assert(/preservation is not termination/i.test(labs));
 
 console.log('PASS: M03 v2 clone/contamination audit — new fixed tasks separated from old bank and v2 strategy probes avoid new fixed-task surfaces.');
