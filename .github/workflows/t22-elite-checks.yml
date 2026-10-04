@@ -2,7 +2,7 @@ name: T22 Elite checks
 
 on:
   push:
-    branches: [codex/t22-pedagogical-rebuild, codex/t22-m15-publication, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation, codex/t22-m05-deep-source-restart, codex/t22-m05-final-confirmation-sol, codex/t22-m03-six-tools-upgrade, main]
+    branches: [codex/t22-pedagogical-rebuild, codex/t22-m15-publication, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation, codex/t22-m05-deep-source-restart, codex/t22-m05-final-confirmation-sol, codex/t22-m03-six-tools-upgrade, codex/t22-m03-v2-review-repair-r1, main]
     paths:
       - 'course/t22/**'
       - 'js/t22-course/**'
@@ -81,6 +81,7 @@ jobs:
           node --check docs/t22-course/audit/m03-v2-independent-math.mjs
           node --check docs/t22-course/audit/m03-v2-clone-audit.mjs
           node --check docs/t22-course/audit/m03-v2-final-microcleanup.mjs
+          node --check docs/t22-course/audit/m03-v2-review-repair-r1.mjs
           node --check docs/t22-course/audit/m04-independent-math.mjs
           node --check docs/t22-course/audit/m04-handoff-checks.mjs
           node --check docs/t22-course/audit/m05-independent-math.mjs
@@ -132,6 +133,7 @@ jobs:
           node docs/t22-course/audit/m03-v2-independent-math.mjs
           node docs/t22-course/audit/m03-v2-clone-audit.mjs
           node docs/t22-course/audit/m03-v2-final-microcleanup.mjs
+          node docs/t22-course/audit/m03-v2-review-repair-r1.mjs
           node docs/t22-course/audit/m04-independent-math.mjs
           node docs/t22-course/audit/m04-handoff-checks.mjs
           node docs/t22-course/audit/m05-independent-math.mjs
@@ -168,3 +170,15 @@ jobs:
             docs/t22-course/artifacts/T22-Elite-M03-Master-Pack-v2.0-r3.md
             course/t22/authoring/m03.json
             docs/t22-course/M03-V2-FINAL-MICROCLEANUP.md
+
+      - name: Package M03 v2 r4 repair deliverable
+        if: github.ref == 'refs/heads/codex/t22-m03-v2-review-repair-r1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: T22-Elite-M03-v2.0-r4-review-repair
+          if-no-files-found: error
+          path: |
+            docs/t22-course/artifacts/T22-Elite-M03-Master-Pack-v2.0-r4.md
+            course/t22/authoring/m03.json
+            docs/t22-course/M03-V2-INDEPENDENT-ADVERSARIAL-REVIEW-r1.md
+            docs/t22-course/M03-V2-STRATEGY-LABS.md
