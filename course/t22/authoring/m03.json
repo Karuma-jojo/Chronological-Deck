@@ -267,7 +267,7 @@
         "Refute a false quantifier order with a legal adversarial choice made after the proposed global witness."
       ],
       "applicationScope": "Elementary quantified claims over integers and finite assignment relations; no limit notation.",
-      "transferScope": "Changed-surface Transfer: reconstruct dependence as a finite assignment/function problem rather than an inequality over integers.",
+      "transferScope": "Changed-surface transfer: reconstruct dependence as a finite assignment/function problem rather than an inequality over integers.",
       "inScope": [
         "two nested quantifiers",
         "scope and explicit domains",
@@ -412,7 +412,7 @@
         "Audit how changing the domain can preserve existence while changing uniqueness."
       ],
       "applicationScope": "Elementary algebraic objects over explicit real or restricted-real domains.",
-      "transferScope": "Changed-surface Transfer: move from an affine parameter equation to a nonlinear equation whose uniqueness changes with the domain.",
+      "transferScope": "Changed-surface transfer: move from an affine parameter equation to a nonlinear equation whose uniqueness changes with the domain.",
       "inScope": [
         "constructive existence",
         "at most one",
@@ -626,7 +626,7 @@
         "Choose and use a justified extremal element of a nonempty finite set."
       ],
       "applicationScope": "Elementary integer claims and bounded finite extremal arguments.",
-      "transferScope": "Changed-surface Transfer: move from least-counterexample proof of an indexed inequality to an extremal argument on an arbitrary finite set.",
+      "transferScope": "Changed-surface transfer: move from least-counterexample proof of an indexed inequality to an extremal argument on an arbitrary finite set.",
       "inScope": [
         "well-ordering of nonnegative integers",
         "least counterexample",
@@ -1011,7 +1011,7 @@
         "Use division by a multiplicity only after proving all relevant fibres have the same positive size, and detect when that condition fails."
       ],
       "applicationScope": "Finite sets, strings, functions and many-to-one counting maps.",
-      "transferScope": "Changed-surface Transfer: audit a tempting divide-by-three argument by discovering variable fibre sizes in a marked-string map.",
+      "transferScope": "Changed-surface transfer: audit a tempting divide-by-three argument by discovering variable fibre sizes in a marked-string map.",
       "inScope": [
         "finite bijections",
         "explicit inverse",
@@ -1129,7 +1129,7 @@
         "Invent a combinatorial interpretation for an algebraic-looking finite sum using already-owned finite objects."
       ],
       "applicationScope": "Finite subsets, incidences, marked objects and binomial sums.",
-      "transferScope": "Changed-surface Transfer: invent a nested-subset interpretation for a binomial-power sum instead of being given the counted incidence set.",
+      "transferScope": "Changed-surface transfer: invent a nested-subset interpretation for a binomial-power sum instead of being given the counted incidence set.",
       "inScope": [
         "double counting",
         "incidence sets",
@@ -1276,7 +1276,7 @@
         "Distinguish termination from identification of the terminal state, and combine an invariant with termination when needed."
       ],
       "applicationScope": "Elementary finite/discrete processes with explicitly stated legal moves.",
-      "transferScope": "Changed-surface Transfer: combine a preserved difference with a decreasing integer rank in a two-pile process and use the invariant to identify the terminal state.",
+      "transferScope": "Changed-surface transfer: combine a preserved difference with a decreasing integer rank in a two-pile process and use the invariant to identify the terminal state.",
       "inScope": [
         "state",
         "legal transition",
