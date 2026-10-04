@@ -1,13 +1,13 @@
 {
-  "version": "m03-authoring-v2.0-six-tools-candidate-r3",
+  "version": "m03-authoring-v2.0-six-tools-candidate-r4",
   "instructionVersion": "m03-instruction-v12-evidence-retrofit-r1",
   "module": {
     "order": 3,
     "id": "T22E-DISC01",
     "title": "Mathematical Reasoning & Discrete Foundations",
-    "status": "v2-six-tools-builder-candidate-awaiting-independent-review",
+    "status": "v2-r4-independent-review-repair-candidate-awaiting-follow-up-review",
     "destination": "State claims precisely; construct, prove or refute them; choose finite representations; justify counting correspondences; and use elementary extremal/invariant reasoning before probability.",
-    "gate": "M03 v2 is a branch-only 36-position candidate built from the published v1.7.2 baseline. Six stable new sessions S31–S36 are interleaved without renumbering S01–S30. Historical v1.7.2 publication remains the accepted baseline; this expanded candidate requires exact-head CI/Chromium and a fresh independent adversarial review before any publication.",
+    "gate": "M03 v2 r4 is a bounded independent-review repair candidate. The 36-position architecture and fixed mathematical task surfaces are retained; ownership/evidence metadata is narrowed where the r3 review found overclaiming, and Strategy Labs are repaired separately. Acceptance requires a fresh exact-head full workflow/Chromium run and follow-up adversarial confirmation.",
     "nextBoundary": "M04 still owns probability, conditional probability, independence and expectation. M09 still owns epsilon-limit theory. M08/M22 may consume the new invariant/rank foundation without importing programming or graph algorithms into M03.",
     "historicalAcceptance": {
       "status": "published-v1.4-lang-final-stitch-accepted",
@@ -38,8 +38,8 @@
     ]
   },
   "coverageAudit": {
-    "version": "m03-observability-v2-six-tools-candidate-r3-2026-10-04",
-    "status": "Candidate 36/72/180 M03 expansion with selective core strengthening and final prerequisite/pack cleanup. Six new sessions are interleaved with stable new identities; S07-T and S30-M/T are versioned for stronger obligations; S04/S14/S16/S24–S26 now close JIT notation/definition/range leaks without changing fixed assessment prompts. Full exact-head workflow/browser and independent adversarial review remain required.",
+    "version": "m03-observability-v2-six-tools-candidate-r4-2026-10-05",
+    "status": "36/72/180 M03 review-repair candidate. Fixed mathematical task surfaces remain intact; selected ownership verbs and decision-audit labels are narrowed to literal public evidence. Acceptance requirements are exact-head full validation and follow-up adversarial confirmation.",
     "policy": "Every retained or new ownership claim must be literally requested and supported by exact rubric evidence. Changed numbers or a Transfer storage slot do not establish transfer. Historical v1.7.2 acceptance does not certify this candidate."
   },
   "sessions": [
@@ -628,7 +628,7 @@
         "M01 integer order and inequalities"
       ],
       "requiredOwnership": [
-        "State the well-ordering principle for nonempty subsets of the nonnegative integers.",
+        "Invoke the well-ordering principle correctly to justify a least element of a nonempty subset of the nonnegative integers.",
         "Define a nonempty counterexample set before selecting a least counterexample.",
         "Reduce a supposed least counterexample to a smaller legal case and derive a contradiction.",
         "Reject an unjustified claim that every nonempty set of real numbers has a minimum.",
@@ -1004,7 +1004,7 @@
       "title": "Bijections, encodings & uniform fibres",
       "focus": "Reversible finite representations and justified division",
       "purpose": "Turn 'same number of objects' and 'divide the overcount' into explicit mapping arguments with checked inverses or constant fibre sizes.",
-      "centralCapability": "Build a reversible encoding or audit a finite many-to-one map by inspecting its fibres before transferring counts.",
+      "centralCapability": "Use and complete a reversible finite encoding, verify an inverse, and audit a finite many-to-one map by inspecting its fibres before transferring counts.",
       "principalObstacle": "Treating an intuitive correspondence as automatically bijective, or dividing by a supposed symmetry factor without proving every counted object has the same number of preimages.",
       "entryPrerequisites": [
         "M03-S16 finite cardinality/power sets",
@@ -1014,11 +1014,11 @@
         "M03-S24 ordered selections"
       ],
       "requiredOwnership": [
-        "Define an explicit finite encoding map between two collections.",
+        "Formalize and use a supplied explicit finite encoding map between two collections.",
         "Construct and verify an inverse map to prove a counting correspondence is bijective.",
         "Transfer a finite count through a proved bijection without losing or duplicating objects.",
         "Interpret a fibre as the preimage of one output under a finite map.",
-        "Use division by a multiplicity only after proving all relevant fibres have the same positive size, and detect when that condition fails."
+        "Audit a proposed multiplicity division by inspecting fibre sizes and reject it when the relevant fibres are not constant."
       ],
       "applicationScope": "Finite sets, strings, functions and many-to-one counting maps.",
       "transferScope": "Changed-surface transfer: audit a tempting divide-by-three argument by discovering variable fibre sizes in a marked-string map.",
@@ -1133,7 +1133,7 @@
         "M02 finite sums"
       ],
       "requiredOwnership": [
-        "Define one finite incidence or pair set that both sides of a counting identity enumerate.",
+        "Use an explicitly supplied finite incidence or pair set as the common object in a double-counting proof.",
         "Partition and count that set by one feature without omissions or overlap.",
         "Count the same set by a different feature and justify that every object is counted exactly once.",
         "Equate the two counts and state the summation/boundary conventions used.",
@@ -1270,7 +1270,7 @@
       "title": "Invariants, integer ranks & termination",
       "focus": "State transitions, preserved quantities and decreasing integer measures",
       "purpose": "Introduce a mathematical language for proving impossibility and finite termination before M08 turns the same ideas into program invariants and loop variants.",
-      "centralCapability": "Model a discrete process by states and legal moves, prove an invariant across all moves, and use a strictly decreasing nonnegative integer rank to prove termination.",
+      "centralCapability": "Analyze a supplied discrete process by states and legal moves, prove an invariant across all moves, and use a strictly decreasing nonnegative integer rank to prove termination.",
       "principalObstacle": "Assuming a preserved property proves reachability or termination, or assuming an arbitrary decreasing real quantity must force a finite process.",
       "entryPrerequisites": [
         "M03-S08 parity/divisibility language",
@@ -1280,7 +1280,7 @@
         "M02 recurrence/state intuition"
       ],
       "requiredOwnership": [
-        "Define the state space, legal moves, initial state and target/terminal condition of a finite process.",
+        "Interpret and model a supplied state space, legal moves, initial state and target/terminal condition of a finite process.",
         "Propose and prove an invariant by checking it initially and after every legal move.",
         "Use an invariant to rule out a target without claiming that every invariant-compatible target is reachable.",
         "Choose a nonnegative integer rank that strictly decreases at every legal move and use it to prove termination.",
@@ -5703,7 +5703,7 @@
     ],
     "T22V3::T22E-DISC01::S33@1": [
       {
-        "claim": "State the well-ordering principle for nonempty subsets of the nonnegative integers.",
+        "claim": "Invoke the well-ordering principle correctly to justify a least element of a nonempty subset of the nonnegative integers.",
         "task": "main",
         "publicRequest": "Use a least-counterexample proof to show that 3^n≥2n+1 for every integer n≥1. Define the counterexample set, justify the existence of a least counterexample if that set were nonempty, handle the base boundary, and reduce the least counterexample to the smaller integer N−1. Also explain why the same well-ordering principle would not by itself justify choosing a least element from an arbitrary nonempty set of positive real numbers.",
         "rubricEvidence": [
@@ -5748,7 +5748,7 @@
     ],
     "T22V3::T22E-DISC01::S34@1": [
       {
-        "claim": "Define an explicit finite encoding map between two collections.",
+        "claim": "Formalize and use a supplied explicit finite encoding map between two collections.",
         "task": "main",
         "publicRequest": "Let A be the set of all subsets of {1,2,3,4,5} and B the set of all 5-bit strings. Define φ:A→B by making the ith bit 1 exactly when i belongs to the subset. Define an explicit inverse map ψ:B→A, verify both compositions on an arbitrary object, and use the bijection to rederive |A|=2^5.",
         "rubricEvidence": [
@@ -5782,7 +5782,7 @@
         ]
       },
       {
-        "claim": "Use division by a multiplicity only after proving all relevant fibres have the same positive size, and detect when that condition fails.",
+        "claim": "Audit a proposed multiplicity division by inspecting fibre sizes and reject it when the relevant fibres are not constant.",
         "task": "transfer",
         "publicRequest": "Let P be the set of pairs (w,i) where w is a 3-bit string, i∈{1,2,3}, and the ith bit of w is 1. Let B be the set of nonzero 3-bit strings, and let π:P→B forget the marked position: π(w,i)=w. A proposed solution says |B|=|P|/3 because there are three possible marker positions. Audit the argument: compute |P|, inspect enough fibres to determine whether their sizes are constant, explain whether division by 3 is legal, and then count |B| correctly.",
         "rubricEvidence": [
@@ -5793,7 +5793,7 @@
     ],
     "T22V3::T22E-DISC01::S35@1": [
       {
-        "claim": "Define one finite incidence or pair set that both sides of a counting identity enumerate.",
+        "claim": "Use an explicitly supplied finite incidence or pair set as the common object in a double-counting proof.",
         "task": "main",
         "publicRequest": "Let U={1,2,3,4,5} and let I={(S,i): S⊆U and i∈U\\S}. Count I in two ways. First partition by k=|S| to obtain a finite sum. Then count by choosing i first. Equate the two counts to prove Σ(k=0..5)(5−k)C(5,k)=5·2^4, and explain the k=5 boundary term.",
         "rubricEvidence": [
@@ -5837,7 +5837,7 @@
     ],
     "T22V3::T22E-DISC01::S36@1": [
       {
-        "claim": "Define the state space, legal moves, initial state and target/terminal condition of a finite process.",
+        "claim": "Interpret and model a supplied state space, legal moves, initial state and target/terminal condition of a finite process.",
         "task": "main",
         "publicRequest": "A state is a pair (x,y) of nonnegative integers. A legal move transfers exactly 2 units from one coordinate to the other: (x,y)→(x−2,y+2) when x≥2, or (x,y)→(x+2,y−2) when y≥2. Starting from (3,8), decide whether (4,7) is reachable. Find an invariant that decides the question, prove it is preserved by every legal move, and explain why your invariant proves non-reachability here but would not by itself prove that every invariant-compatible state is reachable.",
         "rubricEvidence": [
@@ -6786,19 +6786,19 @@
       },
       "T22V3::T22E-DISC01::S33@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "V2 receipt on instructionVersion m03-s33-instruction-v2-r1: S33 lesson demonstrates least-counterexample structure on a divisibility claim. Main applies the architecture to a different exponential inequality and explicitly audits the real-minimum boundary. Transfer changes to a finite extremal closure argument."
+        "note": "V2 receipt on instructionVersion m03-s33-instruction-v2-r1: S33 lesson demonstrates least-counterexample structure on a divisibility claim. Main applies the architecture to a different exponential inequality and explicitly audits the real-minimum boundary. Transfer changes to a finite extremal closure argument. Independent-review repair r1 narrows the first ownership verb from 'state' to correct invocation/use because the fixed Main asks for justified least-element existence rather than a verbatim statement of the principle."
       },
       "T22V3::T22E-DISC01::S34@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "V2 receipt on instructionVersion m03-s34-instruction-v2-r1: S34 instruction uses function-string and absolute-value examples. Main requires a fresh subset↔5-bit encoding with both inverse identities. Transfer attacks a variable-fibre marked-string map; neither fixed map appears in instruction."
+        "note": "V2 receipt on instructionVersion m03-s34-instruction-v2-r1: S34 instruction uses function-string and absolute-value examples. Main requires a fresh subset↔5-bit encoding with both inverse identities. Transfer attacks a variable-fibre marked-string map; neither fixed map appears in instruction. Independent-review repair r1 narrows ownership to what the fixed tasks literally observe: the forward encoding rule is supplied, while the learner constructs/verifies the inverse; Transfer audits a failed constant-multiplicity division rather than independently proving a positive constant-fibre theorem."
       },
       "T22V3::T22E-DISC01::S35@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "V2 receipt on instructionVersion m03-s35-instruction-v2-r1: S35 lesson teaches double counting via person-team incidences. Main changes to subset/outside-element pairs and a boundary-zero term. Transfer withholds the counted objects entirely and requires the learner to invent a single-set/two-count interpretation for a binomial-power sum."
+        "note": "V2 receipt on instructionVersion m03-s35-instruction-v2-r1: S35 lesson teaches double counting via person-team incidences. Main changes to subset/outside-element pairs and a boundary-zero term. Transfer withholds the counted objects entirely and requires the learner to invent a single-set/two-count interpretation for a binomial-power sum. Independent-review repair r1 narrows Main ownership because the incidence set I is supplied by the prompt; independent invention of a counted set remains observed by the Transfer claim."
       },
       "T22V3::T22E-DISC01::S36@1": {
         "status": "builder-reviewed-separated-awaiting-independent-confirmation",
-        "note": "V2 receipt on instructionVersion m03-s36-instruction-v2-r1: S36 instruction uses a ±1 sum invariant and separate subtract-two rank example. Main requires an unsupplied decisive parity invariant in a two-coordinate transfer process. Transfer changes to simultaneous pile depletion and requires two independently selected quantities with different proof roles."
+        "note": "V2 receipt on instructionVersion m03-s36-instruction-v2-r1: S36 instruction uses a ±1 sum invariant and separate subtract-two rank example. Main requires an unsupplied decisive parity invariant in a two-coordinate transfer process. Transfer changes to simultaneous pile depletion and requires two independently selected quantities with different proof roles. Independent-review repair r1 narrows the first ownership verb because the public tasks supply the process/state rules; the learner must model and reason with them rather than invent them."
       }
     }
   },
@@ -6946,11 +6946,11 @@
         "tasks": 72,
         "ownershipClaims": 180
       },
-      "status": "builder-candidate-r3-exact-head-ci-and-independent-review-pending",
+      "status": "review-repair-r1-candidate-requires-exact-head-validation-and-follow-up-review",
       "historicalBaseline": "published-v1.7.2-builder-validated-same-model-review-passed",
       "progressPolicy": "Historical attempts are preserved. The r3 micro-cleanup changes visible instruction/session contracts for S04, S14, S16, S24, S25 and S26 but does not change their fixed prompts, evaluators or obligation versions. S07-T and S30-M/T remain the only retained-core fixed obligations materially strengthened in v2. New S31–S36 keep fresh identities.",
       "publicationPolicy": "Do not merge or label accepted before exact-head full workflow/Chromium and independent adversarial review.",
-      "revision": "r3-final-micro-cleanup",
+      "revision": "r4-independent-review-repair-r1",
       "coreStrengtheningAudit": "docs/t22-course/M03-V2-CORE-STRENGTHENING-AUDIT.md",
       "materialExistingTaskChanges": {
         "T22V3::T22E-DISC01::S07-T@1": {
@@ -6987,6 +6987,23 @@
         "evaluatorRubricsChanged": false,
         "obligationVersionsChanged": false,
         "packRepair": "Create a new v2 compiled Master Pack; do not rewrite the historical v1.7.2 artifact."
+      },
+      "independentReviewRepairR1": {
+        "date": "2026-10-05",
+        "reviewedImplementationSha": "05d7bae1e7e2dc55a292de649fd9a013129476a7",
+        "reviewRecord": "docs/t22-course/M03-V2-INDEPENDENT-ADVERSARIAL-REVIEW-r1.md",
+        "repairBranch": "codex/t22-m03-v2-review-repair-r1",
+        "dispositions": {
+          "R01": "repair Strategy Lab serialization/control characters; regenerate pack; add guard",
+          "R02": "replace rehearsed A1/A5/B8 probes with fresh structures",
+          "R03": "narrow S33/S34/S35/S36 ownership verbs to literal observability",
+          "R04": "correct S07/S31/S34 prompt-cue and decision-audit metadata",
+          "R05": "remove stale CI-pending wording; write exact-head closeout only after validation"
+        },
+        "fixedTaskPromptsChanged": false,
+        "fixedEvaluatorRubricsChanged": false,
+        "fixedObligationVersionsChanged": false,
+        "architectureChanged": false
       }
     }
   },
@@ -7042,8 +7059,8 @@
         "note": "Transfer classified from the actual current Main/lesson surface and decision distance for S06; storage in the Transfer slot is not treated as proof of transfer."
       },
       "T22V3::T22E-DISC01::S07-M@1": {
-        "class": "fresh Main evidence",
-        "note": "Main still requires the learner to choose and report a productive counterexample-search family before producing a legal counterexample; the successful family/value is not supplied by instruction."
+        "class": "proof reconstruction",
+        "note": "Main asks the learner to choose among explicitly suggested search families (for example sign, zero or boundary), then find and verify a legal counterexample. This is meaningful strategic execution but not uncued method discovery."
       },
       "T22V3::T22E-DISC01::S07-T@1": {
         "class": "changed-surface Transfer",
@@ -7315,13 +7332,13 @@
         "classificationJustification": "The prompt explicitly says to negate both natural-language claims; S06 visibly rehearses quantifier switching, scope preservation and inequality complements."
       },
       "T22V3::T22E-DISC01::S07-M@1": {
-        "status": "builder-v2-readjudicated-awaiting-independent-confirmation",
-        "classification": "fresh Main evidence",
-        "decision": "Choose a productive counterexample-search family before presenting the counterexample.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Commits to a plausible search family, finds a legal counterexample, verifies hypothesis/conclusion failure and explains why confirmations cannot prove the universal claim.",
-        "classificationJustification": "The public request requires a search-family commitment but does not supply the successful family or counterexample; the new divisibility lesson uses a different surface."
+        "status": "independent-review-repair-r1",
+        "classification": "proof reconstruction",
+        "decision": "Choose which of the prompt-suggested search families to pursue and find a concrete legal counterexample within that family.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
+        "scoredLearnerAction": "Selects a prompted search family, finds a legal counterexample, verifies hypothesis/conclusion failure and explains why confirming examples cannot prove the universal claim.",
+        "classificationJustification": "The prompt itself names sign/zero/boundary search families, and the lesson teaches boundary-oriented counterexample search on a different divisibility surface. The learner still supplies the successful concrete counterexample and verifies it."
       },
       "T22V3::T22E-DISC01::S07-T@1": {
         "status": "builder-v2-readjudicated-awaiting-independent-confirmation",
@@ -7432,13 +7449,13 @@
         "classificationJustification": "The prompt does not name inclusion–exclusion, define missing-output sets, give the correction signs or name pigeonhole. It demands the result and proof standards only."
       },
       "T22V3::T22E-DISC01::S31-T@1": {
-        "status": "builder-pilot-awaiting-independent-confirmation",
+        "status": "independent-review-repair-r1",
         "classification": "changed-surface Transfer",
-        "decision": "Translate allowed-output sets into a dependent function for ∀∃ and into a common-intersection requirement for ∃∀.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": false,
+        "decision": "Within the prompt-supplied function/common-output frame, choose a legal dependent assignment and carry out an exhaustive common-output test.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
         "scoredLearnerAction": "Constructs a legal f for all three inputs; exhaustively proves no one y lies in all three allowed sets; explains dependent versus global witness semantics.",
-        "classificationJustification": "The prompt supplies the finite relation but not the intersection criterion or the successful function. The learner must choose a representation that makes the quantifier order operational."
+        "classificationJustification": "The prompt explicitly requests a function for the ∀∃ part and a common-output check for the ∃∀ part, while the lesson already teaches dependent versus global witnesses. Transfer value comes from the finite-table surface and the learner's concrete assignments/exhaustive check, not from discovering the broad representation."
       },
       "T22V3::T22E-DISC01::S32-T@1": {
         "status": "builder-authored-awaiting-independent-confirmation",
@@ -7459,13 +7476,13 @@
         "classificationJustification": "The prompt asks for an extremal element but does not provide which extremum or the contradiction move. The mathematical surface differs from the indexed least-counterexample proof."
       },
       "T22V3::T22E-DISC01::S34-T@1": {
-        "status": "builder-authored-awaiting-independent-confirmation",
+        "status": "independent-review-repair-r1",
         "classification": "changed-surface Transfer",
-        "decision": "Inspect fibre sizes rather than trusting the superficial three-marker symmetry.",
-        "decisionSuppliedByPrompt": false,
-        "decisionRehearsedInVisibleInstruction": false,
+        "decision": "Follow the prompt-supplied fibre audit and discover which fibre sizes differ, why the multiplicity varies, and how to count B correctly after rejecting the proposed division.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": true,
         "scoredLearnerAction": "Computes the marked-string domain, identifies fibres, exhibits varying multiplicities and rejects the division before counting B correctly.",
-        "classificationJustification": "The prompt asks for an audit but does not tell the learner which fibres differ. The decisive step is discovering that multiplicity equals Hamming weight and therefore varies."
+        "classificationJustification": "The prompt explicitly instructs the learner to inspect fibres, and the lesson rehearses fibre inspection on constant-size examples. The unsupplied mathematical work is discovering the variable multiplicities on this marked-string map and completing the corrected count."
       },
       "T22V3::T22E-DISC01::S35-T@1": {
         "status": "builder-authored-awaiting-independent-confirmation",
