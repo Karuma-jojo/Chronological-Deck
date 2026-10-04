@@ -64,7 +64,7 @@ const publicationAuthorized=new Set(['course/t22/generated/course-meta.json','co
 const m05v2=read('course/t22/authoring/m05.json');
 assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M10 baseline exception is bounded to the explicit M05 v2 candidate');
 assert(fs.existsSync('docs/t22-course/M05-V2-DESIGN-GATE.md'));
-assert.equal(m03.version,'m03-authoring-v2.0-six-tools-candidate-r1','M10 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
+assert.equal(m03.version,'m03-authoring-v2.0-six-tools-candidate-r2','M10 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication metadata');
 const currentProtectedRows=semanticLedger.entries.filter(x=>x.order<=10);
 assert.deepEqual(currentProtectedRows,protectedSemantic.rows,'M01-M10 semantic-ledger rows changed after their reviewed baseline');
