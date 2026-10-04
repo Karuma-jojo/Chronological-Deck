@@ -27,7 +27,12 @@ const METHOD_LIKE_RE = /\b(?:proof|theorem|principle|lemma|method|tactic|strateg
 
 const STATIC_SCOPE_RE = /\b(?:domain|topic|area|vocabulary|language|theory|geometry|algebra|analysis|calculus|probability|groups?|rings?|fields?|sequences?|series|functions?|graphs?|scope|cross-domain)\b/i;
 
-const OPERATIONAL_CLAIM_RE = /\b(?:applies|applying|assumes|assigns|begins|bounds|cancels|chooses|colors|combines|compares|computes|concludes|constructs|converts|counts|decomposes|deduces|defines|derives|differentiates|draws|encodes|evaluates|expands|exploits|extracts|factors|forces|forms|identifies|inducts|integrates|interprets|invokes|maintains|maps|moves|normalizes|observes|obtains|pairs|parametri[sz]es|partitions|places|presents|projects|recovers|reduces|records|replaces|rewrites|rotates|sets|shifts|shows|solves|splits|substitutes|sums|swaps|tracks|translates|uses|used|proves)\b/i;
+const OFFICIAL_OPERATIONAL_CLAIM_RE = /\b(?:applies|applying|assumes|assigns|begins|bounds|cancels|chooses|colors|combines|compares|computes|concludes|constructs|converts|counts|decomposes|deduces|defines|derives|differentiates|draws|encodes|evaluates|expands|exploits|extracts|factors|forces|forms|identifies|inducts|integrates|interprets|invokes|maintains|maps|moves|normalizes|observes|obtains|pairs|parametri[sz]es|partitions|places|projects|recovers|reduces|replaces|rewrites|rotates|sets|shifts|shows|solves|splits|substitutes|sums|swaps|tracks|translates|uses|proves)\b/i;
+
+// Non-Battle source/index prose is deliberately parsed more narrowly. Verbs such
+// as "presents", "records", "gives a section", or passive "used in the text" are
+// provenance/terminology facts, not evidence of an executable operation.
+const SOURCE_OPERATIONAL_CLAIM_RE = /\b(?:instructs|recommends|describes .{0,80} trigger|lists assuming|lists proving|proving .{0,80} separately|split(?:ting)? .{0,80} goal|reexpress(?:ing)? .{0,80} goal|taking an arbitrary object|finding a value|instantiates|treating .{0,80} as two givens|using a disjunction given to split)\b/i;
 
 const OUTPUT_CLAIM_RE = /\b(?:cancels|classification|clique|coefficients?|contradiction|deduce|deduces|determines|differential equation|divisibility|equal|equality|fixed point|forces|forcing|gives|history|implies|injective|lower bound|nonnegativity|obtains|ordering|produces|recurrence|reduces|reduction|representation|root|shows|subsequence|surjective|therefore|upper bound|valuation|vanish|vanishes|yields|bound)\b/i;
 
@@ -62,7 +67,17 @@ const broadByExpression = (candidate, claim) => {
 const explicitAction = name => EXPLICIT_ACTION_RE.test(name.trim());
 
 const evidenceOperational = evidenceRecords =>
-  evidenceRecords.some(e => OPERATIONAL_CLAIM_RE.test(e.claim ?? ""));
+  evidenceRecords.some(e => {
+    const claim = e.claim ?? "";
+    const isOfficialBattle =
+      e.evidenceBasis === "SOURCE_FACT" &&
+      e.recordChannel === "BATTLE" &&
+      e.claimKind === "HISTORICAL_OCCURRENCE" &&
+      e.verificationStatus === "VERIFIED";
+    return isOfficialBattle
+      ? OFFICIAL_OPERATIONAL_CLAIM_RE.test(claim)
+      : SOURCE_OPERATIONAL_CLAIM_RE.test(claim);
+  });
 
 const evidenceOutput = evidenceRecords =>
   evidenceRecords.some(e => OUTPUT_CLAIM_RE.test(e.claim ?? ""));
@@ -89,7 +104,7 @@ const operationalProofStructure = evidenceRecords =>
   evidenceRecords.some(e =>
     e.evidenceBasis === "SOURCE_FACT" &&
     e.claimKind === "PROOF_STRUCTURE" &&
-    OPERATIONAL_CLAIM_RE.test(e.claim ?? "")
+    SOURCE_OPERATIONAL_CLAIM_RE.test(e.claim ?? "")
   );
 
 const bundleSupported = (name, claim) => {
