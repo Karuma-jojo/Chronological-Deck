@@ -174,7 +174,7 @@ assert.match(a.prerequisiteAudit.notationRepair.bigOPolicy,/Formal O\(h\) notati
 
 // Lang-foundation dependency guards: every theorem/law consumed in M10 must have a real prior owner.
 const d10=a.sessions.find(s=>s.order===10),d16=a.sessions.find(s=>s.order===16),d20=a.sessions.find(s=>s.order===20);
-const m03s26=m03.sessions.find(s=>s.order===26),m02s22=m02.sessions.find(s=>s.order===22),m02s12=m02.sessions.find(s=>s.order===12);
+const m03s26=m03.sessions.find(s=>s.id==='T22V3::T22E-DISC01::S26@1'),m02s22=m02.sessions.find(s=>s.order===22),m02s12=m02.sessions.find(s=>s.order===12);
 assert(d10.entryPrerequisites.includes('M03-S26 finite binomial theorem/expansion'),'L04 M10-S10 must name M03-S26, not fictitious M01 binomial algebra');
 assert(!d10.entryPrerequisites.some(x=>/M01 binomial/i.test(x)),'L04 fictitious M01 binomial prerequisite must stay removed');
 const binomialClaim='State and use the finite binomial theorem for positive integer n, and explain combinatorially why the coefficient of x^(n−k)y^k is C(n,k).';
