@@ -60,7 +60,7 @@ assert(by(16).lesson.includes('arbitrary increasing'));
 assert(by(20).title.includes('strategic opponents'));
 assert(by(20).lesson.includes('bimatrix'));
 assert(by(22).title.includes('Strictly competitive'));
-assert(by(22).lesson.includes('strictly competitive')||by(22).lesson.includes('strict competition'));
+assert(by(22).lesson.includes('column player\'s criterion is to make that row payoff smaller')&&by(22).lesson.includes('not inferred from an arbitrary bimatrix'));
 assert(by(23).title.includes('Mixed strategies'));
 assert(by(23).lesson.includes('minimize expected row payoff'));
 assert(by(24).lesson.includes('Model-selection questions'));
