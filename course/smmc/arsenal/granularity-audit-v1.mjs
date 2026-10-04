@@ -97,6 +97,55 @@ export const ARSENAL_GATE3_MASS_RULE_USAGE = Object.freeze(Object.fromEntries(
   ])
 ));
 
+export const ARSENAL_GATE3_OFFICIAL_UNRESOLVED_AUDIT = Object.freeze(
+  reviewed
+    .filter(row => row.origin === "OFFICIAL_SMMC_SOLUTION" && row.referenceScale === "UNRESOLVED")
+    .map(row => Object.freeze({
+      candidateId: row.candidateId,
+      candidateName: row.candidateName,
+      actionShape: row.actionShape,
+      triggerBoundary: row.triggerBoundary,
+      operationBoundary: row.operationBoundary,
+      outputBoundary: row.outputBoundary,
+      confidence: row.confidence,
+      rationale: row.rationale,
+    }))
+);
+
+export const ARSENAL_GATE3_REVIEW_SENTINELS = Object.freeze(
+  origins.flatMap(origin => {
+    const originRows = reviewed.filter(row => row.origin === origin);
+    return ["MICRO","DEPLOYABLE","MACRO","CROSS_SCALE","UNRESOLVED"]
+      .map(scale => originRows.find(row => row.referenceScale === scale))
+      .filter(Boolean)
+      .map(row => Object.freeze({
+        candidateId: row.candidateId,
+        candidateName: row.candidateName,
+        origin: row.origin,
+        referenceScale: row.referenceScale,
+        bundleStructure: row.bundleStructure,
+        actionShape: row.actionShape,
+        contextReach: row.contextReach,
+        triggerBoundary: row.triggerBoundary,
+        operationBoundary: row.operationBoundary,
+        outputBoundary: row.outputBoundary,
+        confidence: row.confidence,
+        rationale: row.rationale,
+      }));
+  })
+);
+
+export const ARSENAL_GATE3_FALLBACK_AUDIT = Object.freeze(
+  origins.map(origin => {
+    const rows = reviewed.filter(row => row.origin === origin && row.rationale.startsWith("MP10"));
+    return Object.freeze({
+      origin,
+      count: rows.length,
+      sampleCandidateIds: Object.freeze(rows.slice(0, 5).map(row => row.candidateId)),
+    });
+  }).filter(row => row.count > 0)
+);
+
 export const ARSENAL_GATE3_MASS_AUDIT_META = Object.freeze({
   status: "MASS-PASS-REVIEW-CANDIDATE",
   calibrationAcceptanceSha: ARSENAL_GATE3_MASS_PASS_META.calibrationAcceptanceSha,
@@ -107,5 +156,7 @@ export const ARSENAL_GATE3_MASS_AUDIT_META = Object.freeze({
   duplicateNameGroupsWithDifferentSignatures: ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES.length,
   unresolvedScaleRows: reviewed.filter(row => row.referenceScale === "UNRESOLVED").length,
   activeCrossScaleRows: reviewed.filter(row => row.referenceScale === "CROSS_SCALE").length,
+  officialUnresolvedScaleRows: ARSENAL_GATE3_OFFICIAL_UNRESOLVED_AUDIT.length,
+  reviewSentinels: ARSENAL_GATE3_REVIEW_SENTINELS.length,
   note: "Duplicate-name differences are review targets only. Gate 3 does not merge, split, or adjudicate aliases.",
 });
