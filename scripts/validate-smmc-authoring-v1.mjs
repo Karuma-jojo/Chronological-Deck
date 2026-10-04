@@ -960,7 +960,7 @@ expect(ARSENAL_GATE3_GRANULARITY_META.rankingStarted === false, "Gate 3 must not
 expect(ARSENAL_GATE3_GRANULARITY_META.candidateRelationsStarted === false, "Gate 3 must not build candidate relations.");
 expect(ARSENAL_GATE3_GRANULARITY_META.learnerGamificationStarted === false, "Gate 3 must not start Forge/Boss/Arena representation.");
 expect(
-  ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v1-45-complete",
+  ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v2-45-boundary-normalized",
   "All 45 calibration rows must remain marked as re-audited under strict candidate-owned evidence mode."
 );
 
