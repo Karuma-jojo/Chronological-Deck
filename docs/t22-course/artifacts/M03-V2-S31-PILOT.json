@@ -1,0 +1,228 @@
+{
+  "version": "m03-v2-s31-pilot-r1",
+  "moduleId": "T22E-DISC01",
+  "proposedStableSessionId": "T22V3::T22E-DISC01::S31@1",
+  "proposedLearnerOrder": 7,
+  "session": {
+    "order": 7,
+    "id": "T22V3::T22E-DISC01::S31@1",
+    "moduleId": "T22E-DISC01",
+    "title": "Quantifier order & witness dependence",
+    "focus": "Nested quantifiers, scope and allowed dependence",
+    "purpose": "Make nested quantifier order operational before later proof and analysis modules require parameter-dependent choices.",
+    "centralCapability": "Read, construct, negate and refute two-quantifier claims while tracking which choices may depend on earlier quantified variables.",
+    "principalObstacle": "Treating ∀x∃y and ∃y∀x as interchangeable, or using a witness chosen after x when the claim requires one witness chosen before x.",
+    "entryPrerequisites": [
+      "M03-S05 universal/existential quantifiers over stated domains",
+      "M03-S06 exact negation of quantified claims",
+      "M02 function input/output intuition"
+    ],
+    "requiredOwnership": [
+      "Read nested ∀∃ and ∃∀ claims in the stated order over explicit domains.",
+      "Explain when an existential witness may depend on an earlier universally quantified variable.",
+      "Distinguish input-dependent witnesses from one global witness that must work for every input.",
+      "Negate a two-quantifier claim by switching each quantifier, preserving domains and complementing the predicate.",
+      "Refute a false quantifier order with a legal adversarial choice made after the proposed global witness."
+    ],
+    "applicationScope": "Elementary quantified claims over integers and finite assignment relations; no limit notation.",
+    "transferScope": "Changed-surface Transfer: reconstruct dependence as a finite assignment/function problem rather than an inequality over integers.",
+    "inScope": [
+      "two nested quantifiers",
+      "scope and explicit domains",
+      "dependent witnesses",
+      "one global witness",
+      "exact negation",
+      "finite assignment-table representation"
+    ],
+    "outOfScope": [
+      "epsilon-N or epsilon-delta definitions until M09",
+      "uniform convergence or advanced analysis terminology",
+      "choice axioms or infinite selection theorems"
+    ],
+    "exitCondition": "Solve the integer Main and finite-assignment Transfer while explicitly identifying who is chosen first, who may depend on whom, and why the reversed order succeeds or fails.",
+    "lesson": "A quantified sentence is read in order. In ∀x∈X ∃y∈Y P(x,y), x is chosen first; after seeing that x, you may choose a y that can depend on x. A useful way to record this is y=f(x). In ∃y∈Y ∀x∈X P(x,y), y is chosen first, so the same y must survive every legal x; it may not be changed after x is revealed. To negate nested quantifiers, switch each quantifier and negate the final predicate while keeping the same domains: ¬(∀x∈X ∃y∈Y P(x,y)) is ∃x∈X ∀y∈Y ¬P(x,y), and ¬(∃y∈Y ∀x∈X P(x,y)) is ∀y∈Y ∃x∈X ¬P(x,y). Worked example: over integers, consider ∀n∈Z ∃k∈Z with k=n+2. It is true: once n is given, choose k=n+2. The reversed claim ∃k∈Z ∀n∈Z with k=n+2 is false: after a fixed k is proposed, choosing n=k makes the required equality k=k+2 impossible. The lesson is not that ∀∃ is always true or ∃∀ is always false; the predicate decides truth, while the quantifier order decides what dependence is allowed. Guided check: over real numbers, compare ∀x∈R ∃y∈R with y=3x−1 and ∃y∈R ∀x∈R with y=3x−1. For the first, write a witness rule. For the second, explain what a single y would have to do and give one x-choice that defeats a proposed y."
+  },
+  "problems": {
+    "T22V3::T22E-DISC01::S31-M@1": {
+      "id": "T22V3::T22E-DISC01::S31-M@1",
+      "order": 7,
+      "kind": "main",
+      "prompt": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not.",
+      "obligationVersion": 1
+    },
+    "T22V3::T22E-DISC01::S31-T@1": {
+      "id": "T22V3::T22E-DISC01::S31-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "prompt": "Let X={a,b,c} and Y={1,2,3}. The allowed outputs are A(a)={1,2}, A(b)={2,3}, A(c)={1,3}. Decide whether (i) ∀x∈X ∃y∈Y with y∈A(x) and (ii) ∃y∈Y ∀x∈X with y∈A(x) are true. For (i), construct an explicit function f:X→Y whose value is allowed for every input and verify all three assignments. For (ii), either give one common y or prove that none exists by checking the candidates. Finish by explaining how this table represents input-dependent witnesses versus one global witness.",
+      "obligationVersion": 1
+    }
+  },
+  "evaluators": {
+    "T22V3::T22E-DISC01::S31-M@1": {
+      "reference": "A is true: n is chosen first, then m=n+1 is an integer, m>n, and m−n=1 is odd. B is false: m would be fixed before n; for any proposed integer m choose n=m, making m>n false. The exact negation of B is ∀m∈Z ∃n∈Z such that ¬(m>n and m−n is odd), equivalently ∀m∈Z ∃n∈Z such that m≤n or m−n is even. A allows m to depend on n because ∃m occurs after ∀n; B requires one m before all n.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Reads A in the correct order: n is arbitrary first and the existential m may then be chosen as a function of n."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses a legal witness such as m=n+1 and verifies m∈Z, m>n and the odd difference."
+        },
+        {
+          "points": 2,
+          "criterion": "Reads B in the correct order and refutes every proposed global m by a legal later choice such as n=m."
+        },
+        {
+          "points": 2,
+          "criterion": "Writes the exact negation ∀m∈Z ∃n∈Z ¬(m>n and m−n is odd), or a logically equivalent form with the same domains."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that A permits m to depend on n because the existential choice comes later, whereas B requires one fixed m to work for every n."
+        }
+      ],
+      "marking": "Accept any equivalent witness/refutation and any logically equivalent exact negation. Do not require the reference wording. A response that merely swaps symbols or states truth values without the dependence argument does not earn the corresponding credit."
+    },
+    "T22V3::T22E-DISC01::S31-T@1": {
+      "reference": "(i) is true, for example f(a)=1,f(b)=2,f(c)=3; each value lies in Y and in the corresponding allowed set. (ii) is false because A(a)∩A(b)∩A(c)=∅: y=1 fails at b, y=2 fails at c, and y=3 fails at a. The function f records a witness chosen after x; (ii) asks for one y chosen before x and common to all three allowed sets.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Correctly decides that the ∀x∃y statement is true and supplies an explicit function f:X→Y."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies all three assigned outputs are in Y and in the corresponding allowed sets A(a), A(b) and A(c)."
+        },
+        {
+          "points": 2,
+          "criterion": "Correctly decides that the ∃y∀x statement is false."
+        },
+        {
+          "points": 2,
+          "criterion": "Proves no common y exists, for example by checking y=1,2,3 against the three allowed sets or by showing their intersection is empty."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that f records input-dependent witnesses chosen after x, while the reversed order demands one global y that works for every input."
+        }
+      ],
+      "marking": "Accept any legal function for (i) and any exhaustive proof that the common intersection is empty for (ii). Do not award the final explanation for merely repeating the quantifier symbols."
+    }
+  },
+  "coverage": [
+    [
+      "main"
+    ],
+    [
+      "main"
+    ],
+    [
+      "transfer"
+    ],
+    [
+      "main"
+    ],
+    [
+      "main"
+    ]
+  ],
+  "claimEvidence": [
+    {
+      "claim": "Read nested ∀∃ and ∃∀ claims in the stated order over explicit domains.",
+      "task": "main",
+      "rubricEvidence": [
+        "Reads A in the correct order: n is arbitrary first and the existential m may then be chosen as a function of n.",
+        "Reads B in the correct order and refutes every proposed global m by a legal later choice such as n=m."
+      ],
+      "publicRequest": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not."
+    },
+    {
+      "claim": "Explain when an existential witness may depend on an earlier universally quantified variable.",
+      "task": "main",
+      "rubricEvidence": [
+        "Explains that A permits m to depend on n because the existential choice comes later, whereas B requires one fixed m to work for every n."
+      ],
+      "publicRequest": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not."
+    },
+    {
+      "claim": "Distinguish input-dependent witnesses from one global witness that must work for every input.",
+      "task": "transfer",
+      "rubricEvidence": [
+        "Explains that f records input-dependent witnesses chosen after x, while the reversed order demands one global y that works for every input."
+      ],
+      "publicRequest": "Let X={a,b,c} and Y={1,2,3}. The allowed outputs are A(a)={1,2}, A(b)={2,3}, A(c)={1,3}. Decide whether (i) ∀x∈X ∃y∈Y with y∈A(x) and (ii) ∃y∈Y ∀x∈X with y∈A(x) are true. For (i), construct an explicit function f:X→Y whose value is allowed for every input and verify all three assignments. For (ii), either give one common y or prove that none exists by checking the candidates. Finish by explaining how this table represents input-dependent witnesses versus one global witness."
+    },
+    {
+      "claim": "Negate a two-quantifier claim by switching each quantifier, preserving domains and complementing the predicate.",
+      "task": "main",
+      "rubricEvidence": [
+        "Writes the exact negation ∀m∈Z ∃n∈Z ¬(m>n and m−n is odd), or a logically equivalent form with the same domains."
+      ],
+      "publicRequest": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not."
+    },
+    {
+      "claim": "Refute a false quantifier order with a legal adversarial choice made after the proposed global witness.",
+      "task": "main",
+      "rubricEvidence": [
+        "Reads B in the correct order and refutes every proposed global m by a legal later choice such as n=m."
+      ],
+      "publicRequest": "Over the integers compare A: ∀n∈Z ∃m∈Z such that m>n and m−n is odd, with B: ∃m∈Z ∀n∈Z such that m>n and m−n is odd. For A, state the order of choice, give a witness rule m=m(n), and verify it. For B, state the order of choice and refute the claim by choosing a legal n after an arbitrary proposed m. Then write the exact logical negation of B, preserving the integer domains, and explain precisely why A permits dependence on n while B does not."
+    }
+  ],
+  "prerequisiteAudit": [
+    {
+      "item": "Nested universal/existential quantifiers",
+      "source": "Published M03-S05"
+    },
+    {
+      "item": "Exact quantified negation",
+      "source": "Published M03-S06"
+    },
+    {
+      "item": "Function-style input-dependent rule",
+      "source": "Published M02 function intuition; restated locally as y=f(x)"
+    }
+  ],
+  "instructionSeparation": {
+    "main": [
+      "m>n and m−n is odd"
+    ],
+    "transfer": [
+      "A(a)={1,2}, A(b)={2,3}, A(c)={1,3}"
+    ]
+  },
+  "evidenceDistance": {
+    "main": {
+      "class": "proof reconstruction",
+      "note": "The lesson explicitly teaches quantifier order, dependence and exact negation; Main requires reconstructing those moves on a new integer relation and choosing a legal witness/refuter."
+    },
+    "transfer": {
+      "class": "changed-surface Transfer",
+      "note": "The learner must recast nested quantifiers as a finite assignment/function and common-intersection problem; the exact allowed-set table and successful function are not rehearsed in the lesson."
+    }
+  },
+  "decisionAudit": {
+    "transfer": {
+      "status": "builder-pilot-awaiting-independent-confirmation",
+      "classification": "changed-surface Transfer",
+      "decision": "Translate allowed-output sets into a dependent function for ∀∃ and into a common-intersection requirement for ∃∀.",
+      "decisionSuppliedByPrompt": false,
+      "decisionRehearsedInVisibleInstruction": false,
+      "scoredLearnerAction": "Constructs a legal f for all three inputs; exhaustively proves no one y lies in all three allowed sets; explains dependent versus global witness semantics.",
+      "classificationJustification": "The prompt supplies the finite relation but not the intersection criterion or the successful function. The learner must choose a representation that makes the quantifier order operational."
+    }
+  },
+  "wrongSolverAudit": {
+    "wrongApproach": "Choose a different y for each x while claiming this proves ∃y∀x, or swap the quantifier symbols without negating the predicate.",
+    "requiredDiscrimination": "Main requires one fixed m for the ∃∀ reading and exact nested negation; Transfer requires either one common y or an exhaustive proof none exists."
+  },
+  "mathChecks": {
+    "mainWitness": "m=n+1 gives odd difference 1 for every integer n.",
+    "mainRefutation": "For every proposed integer m in B, n=m is legal and makes m>n false.",
+    "transferDependentWitness": "f(a)=1,f(b)=2,f(c)=3 is legal.",
+    "transferGlobalWitness": "A(a)∩A(b)∩A(c)=∅."
+  }
+}
