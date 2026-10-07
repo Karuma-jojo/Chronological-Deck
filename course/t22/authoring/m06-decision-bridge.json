@@ -56,7 +56,8 @@
       "main": "T22V3::ARC502::S25-M@1",
       "transfer": "T22V3::ARC502::S25-T@1",
       "instructionVersion": "m06-decision-bridge-instruction-v1",
-      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof."
+      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof.",
+      "guidedFeedback": "For X=(3,−1) versus0, the value is4q−1. The action threshold isq=1/4: prefer X above it, either action at equality, and0 below it. Atq=.3, X has value.2, so X is favored despiteq<.5. The conclusion is conditional on the supplied criterion/payoffs."
     },
     {
       "order": 26,
@@ -98,7 +99,8 @@
       "main": "T22V3::ARC502::S26-M@1",
       "transfer": "T22V3::ARC502::S26-T@1",
       "instructionVersion": "m06-decision-bridge-instruction-v1",
-      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof."
+      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof.",
+      "guidedFeedback": "If one action a* is best in every state, sum_h p(h)max_a r(a,h)=sum_h p(h)r(a*,h)=max_a sum_h p(h)r(a,h). Thus EVPI=0 even when knowing the state would change beliefs. An acquisition fee would then reduce net value."
     },
     {
       "order": 27,
@@ -142,7 +144,8 @@
       "main": "T22V3::ARC502::S27-M@1",
       "transfer": "T22V3::ARC502::S27-T@1",
       "instructionVersion": "m06-decision-bridge-instruction-v1",
-      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof."
+      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof.",
+      "guidedFeedback": "In the worked model each report has probability.5. Only + supports X, with conditional value2.4; − supports the zero-valued alternative. The pre-observation value is.5·2.4+.5·0=1.2, not2.4. With a nonlinear wealth utility and money fee c, first compute terminal wealth W+r−c in every state, apply u, and average. Currency and utility units cannot be subtracted."
     },
     {
       "order": 28,
@@ -185,7 +188,8 @@
       "main": "T22V3::ARC502::S28-M@1",
       "transfer": "T22V3::ARC502::S28-T@1",
       "instructionVersion": "m06-decision-bridge-instruction-v1",
-      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof."
+      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof.",
+      "guidedFeedback": "For prior.5, set P(+|H)=.6 and P(+|Hᶜ)=.4. Reports +/− each have mass.5 and posteriors.6/.4. With A=(5,−1), its conditional values are2.6 and1.4, both above B=0. The direct joint-mass value is.5·2.6+.5·1.4=2, equal to the prior A value. Thus this informative channel has EVSI0; the protocol and action threshold explain why."
     }
   ],
   "problems": {
