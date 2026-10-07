@@ -4315,7 +4315,7 @@
         "task": "main",
         "publicRequest": "A model for two six-sided dice states that the recorded ordered pair is uniform over all 36 pairs in {1,2,3,4,5,6}×{1,2,3,4,5,6}. Use that stated joint law to justify why the 36 ordered pairs are equally likely, count the pairs whose sum is 9, compute the probability, and explain why treating the possible sums 2 through 12 as 11 equally likely outcomes would be wrong. Also state why marginal fairness of the two dice, by itself, would not be enough to infer this joint law.",
         "rubricEvidence": [
-          "The '11 equally likely sums' error is explained via unequal multiplicities."
+          "Explains both the unequal multiplicities of sums and why marginal fairness alone would not establish the joint law."
         ]
       }
     ],
