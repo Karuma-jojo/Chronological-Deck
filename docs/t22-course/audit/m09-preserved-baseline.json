@@ -13,7 +13,7 @@
     "course/t22/authoring/m05.json": "117751c09d0b0d32528674740cb79227fa4b5db57df530f58095c86dc0e6f513",
     "course/t22/authoring/m03.json": "6dc985b23bbbf47c4946e3ec3ace72e55a8a1afc99e2ce1126b965d83e2ed635",
     "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
-    "course/t22/authoring/m04.json": "3b189915e6e499001226cfd2540d643fbc4692d1740b6bf62c8c1d5ce7ab4901",
+    "course/t22/authoring/m04.json": "9cee920ea3ffec6876646ecb7c8be84aee614f09f2b8c25ce766e18a773bd853",
     "course/t22/authoring/m02.json": "d54530eb493dfa75e4d03c9e8ee201f50a84303a51c71e148337e3aeffbc433a",
     "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
     "course/t22/authoring/m01-repairs-1.1.json": "a2efe7697dc4bbaf163ac81ef40f2c69d25831cda9c5c07a994f8d61d326cc19"
@@ -60,5 +60,13 @@
     "currentM04Blob": "69ab0e03b246bb5e4a0d4836ef2bc335380580cc",
     "reviewState": "repair candidate awaiting exact-head validation and independent confirmation",
     "currentM04RawSha256": "3b189915e6e499001226cfd2540d643fbc4692d1740b6bf62c8c1d5ce7ab4901"
+  },
+  "authorizedM04V22WholeCurriculumRebuild": {
+    "branch": "codex/t22-m04-28-session-rebuild",
+    "base": "ed10a7b142e5f771ac1d61965e2038707e3265b9",
+    "decisionSource": "M04 whole-curriculum audit 2026-10-07",
+    "scope": "User-authorized M04 expansion only: preserve stable S01–S24 identities, add S25 finite bounds/incomplete joint information, S26 full-history paths, S27 observation/reporting mechanisms and S28 finite stopped experiments; strengthen selected M04 instruction/evidence surfaces. No M09 mathematical content change.",
+    "status": "candidate awaiting exact-head CI and independent adversarial confirmation",
+    "m09Disposition": "Repin only the intentional M04 dependency hash; all other M09 preserved-baseline curriculum hashes remain unchanged."
   }
 }
