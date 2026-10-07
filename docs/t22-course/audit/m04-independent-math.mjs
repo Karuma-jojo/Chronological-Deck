@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import {validateCandidateMathOracles,runCandidateMathMutationProbes} from './m04-candidate-math-oracle.mjs';
 import assert from 'node:assert/strict';
 const close=(x,y,e=1e-12)=>assert(Math.abs(x-y)<e,`${x} != ${y}`);
 
@@ -124,4 +126,7 @@ close(.216+.144,.36);close(.096+.064,.16);
 const unionLo=1.1-.5,unionHi=1.1-.1;close(unionLo,.6);close(unionHi,1);
 close(6*unionLo-1,2.6);close(6*unionHi-1,5);close(6*.8-1,3.8);
 
-console.log('PASS M04 v2.2 independent math: retained v2.1 oracles plus incomplete-joint bounds, full-history paths, reporting mechanisms, finite stopped experiments and expanded exit interval independently rederived.');
+const candidate=JSON.parse(fs.readFileSync('course/t22/authoring/m04.json','utf8'));
+validateCandidateMathOracles(candidate);
+runCandidateMathMutationProbes(candidate);
+console.log('PASS M04 v2.2-r2 independent math: numeric constructions rederived and candidate-bound wrong-reference/wrong-rubric/wrong-input mutations rejected.');
