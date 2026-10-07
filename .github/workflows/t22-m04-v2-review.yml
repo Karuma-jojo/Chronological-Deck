@@ -3,7 +3,7 @@ name: T22 M04 v2 review
 
 on:
   push:
-    branches: [codex/t22-m04-godlike-v2, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation]
+    branches: [codex/t22-m04-godlike-v2, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation, codex/t22-m04-28-session-rebuild]
     paths:
       - 'course/t22/authoring/m04.json'
       - 'js/t22-course/**'
