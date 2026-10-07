@@ -1,5 +1,5 @@
 {
-  "version": "M65-semantic-r2-2026-09-18",
+  "version": "M65-semantic-r3-2026-10-07-coherence",
   "moduleCount": 65,
   "modules": [
     {
@@ -46,7 +46,8 @@
       "id": "ARC502",
       "title": "Bayes, Base Rates & Sequential Updating",
       "prerequisites": [
-        "ARC048"
+        "ARC048",
+        "T22E-TRD01"
       ]
     },
     {
@@ -227,7 +228,8 @@
         "ARC048",
         "ARC502",
         "ARC510",
-        "SIDE271"
+        "SIDE271",
+        "ARC503"
       ]
     },
     {
@@ -305,6 +307,7 @@
       "title": "Fisher Information, Efficiency & Asymptotic Precision",
       "prerequisites": [
         "SIDE271",
+        "ARC712",
         "ARC531"
       ]
     },
@@ -385,7 +388,10 @@
         "SIDE263",
         "T22E-CODE02",
         "ARC517",
-        "ARC539"
+        "ARC539",
+        "ARC508",
+        "ARC509",
+        "ARC541"
       ]
     },
     {
@@ -455,7 +461,10 @@
       "prerequisites": [
         "T22E-DISC01",
         "SIDE263",
-        "ARC517"
+        "SIDE279",
+        "ARC517",
+        "ARC513",
+        "ARC542"
       ]
     },
     {
@@ -465,6 +474,9 @@
       "prerequisites": [
         "ARC510",
         "ARC517",
+        "ARC712",
+        "ARC513",
+        "ARC542",
         "ARC524"
       ]
     },
@@ -619,5 +631,6 @@
         "ARC593"
       ]
     }
-  ]
+  ],
+  "repairAuthority": "docs/t22-rebuild/M01-M05-REPAIR-RECEIPT.md"
 }

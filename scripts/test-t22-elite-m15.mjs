@@ -30,7 +30,7 @@ const publishedM15=meta.moduleSources.find(x=>x.order===15&&x.id==='SIDE278');
 assert(publishedM15,'M15 missing from published learner registry');
 assert.equal(publishedM15.sourceType,'authoring-pack');
 assert.equal(publishedM15.source,'course/t22/authoring/m15-side278.json');
-assert.equal(meta.version,'T22E-course-0.15.0-through-m15-publication');
+assert.match(meta.version,/^T22E-course-0\.(?:1[5-9]|[2-9]\d)\./,'Later authorized repairs must preserve the through-M15 registry');
 assert.equal(road.modules.find(x=>x.id==='SIDE278').availability,'authored');
 const semRow=sem.entries.find(x=>x.id==='SIDE278');
 assert.equal(semRow.semanticStatus,'accepted');

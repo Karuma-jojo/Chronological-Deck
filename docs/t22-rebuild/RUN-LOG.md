@@ -544,3 +544,14 @@ Final-confirmation handoff: `docs/t22-course/M11-REVIEW-HANDOFF.md`.
 Added `docs/t22-course/M11-RESOLUTION.md` for consistency with prior repaired modules. It records the bounded independent-review findings, exact dispositions, repair checkpoint `645c3d4c96ccdf1b2ad6120f63940d388077e7e9`, successful runs `36015062169` and `36015805901`, architecture/task preservation, and the independent follow-up's conclusion that no substantive defect from the reported audit remains.
 
 This is documentation-only closure. No M11 lesson, task, rubric, ownership claim or mathematical boundary changed.
+
+
+## Whole-route coherence repair — 2026-10-07
+
+Authoritative current resumption: source main `38441e4b61ca89ead4370ad497915a94d8b055cf`, isolated branch `codex/t22-coherence-game-theory-repairs`. User authorized bounded repairs before full M06+ rebuilding and requested game/utility existence theory. Historical stop notes above describe their earlier checkpoints and do not block this explicit authorization. No parallel agents were used.
+
+Implemented separately versioned M06-S25–S28 (posterior actions, EVPI, EVSI/costs, integrated finite reporting-policy audit), four registered M01–M05 cumulative probes under M05-S24, live destination-only clarifications, exact expanded M04 exit prerequisite notes, twelve prerequisite edges across six modules, current-publication authority and all245/558 deferral dispositions. Every existing authoring/generated assessment pack remains byte-identical. Original M06 core contracts/fingerprints are verified unchanged; new obligations do not inherit old evidence.
+
+Planned theory/goal branches have typed prerequisites and observable exit tasks, with finite utility representation after M09 and the eighteen-unit games specialisation after M53. Full future theorem lessons remain unbuilt; no PG/full-entrance certification is implied. Full M06 rebuilding has not started.
+
+Local initial regression receipt: 118/118 existing/new syntax, structural, semantic, mathematical and evidence checks passed. Dedicated Chromium/whole-suite receipts must be verified on the pushed head before delivery. Exact graph-before comparison protects the only M12 baseline update. See `M01-M05-REPAIR-RECEIPT.md`, `CURRENT-PUBLICATION.json`, and `GAME-UTILITY-THEORY-PLAN.md`.

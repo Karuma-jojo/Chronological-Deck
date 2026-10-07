@@ -1,6 +1,8 @@
 # T22 Elite — M65 Macro Skeleton
 
-Status: **macro architecture candidate — no atomic authoring yet**
+Status: **65-family macro architecture; current M01–M15 packs and review states are recorded in CURRENT-PUBLICATION.json. M16–M65 remain unadapted.**
+
+The 2026-10-07 coherence repair assigns explicit optional theorem/entrance extensions in `course/t22/extensions/capability-extensions.json`. A planned extension is not authored coverage.
 
 Design target: take a learner from roughly Class-10 mathematics to unusually strong quantitative-trading / quantitative-research capability, while letting each macro module expand into a large prerequisite-safe set of atomic sessions, investigations, transfer tasks, coding labs and artifacts.
 
@@ -113,16 +115,17 @@ Information sets, decision timestamps, label horizons, chronological splits, gap
 
 **M48 · State-Space Models & Sequential Estimation** — `ARC543`  
 **M49 · Discrete-Time Stochastic Processes — Markov Chains, Martingale/Stopping Foundations** — `ARC524`  
-The existing Markov-chain ownership remains, but the eventual Pandora box may add prerequisite-safe martingale/stopping foundations when justified; this is not permission to smuggle advanced material into early atomic sessions.
+The existing Markov-chain ownership remains. Planned M49-S explicitly owns finite-barrier ruin, filtrations, integrable martingales and bounded optional stopping. General/unbounded results require the M26-P/M28-P theory gates and stated extra hypotheses; the inherited Markov arcs do not already supply these proofs.
 
 **M50 · Continuous-Time Event Processes — Poisson, Renewal & Brownian Foundations** — `ARC525`  
-The existing Poisson/renewal ownership remains. Brownian/continuous-time foundations may be added internally only where they form a coherent progression and do not turn the shared route into derivatives-specialist training.
+The existing Poisson/renewal ownership remains. Optional planned M50-B owns Brownian law construction, continuity, scaling and martingale foundations after M26-P/M28-P/M49-S. It does not promise stochastic calculus or specialist derivatives pricing.
 
 ### Phase 7 — optimization, control and finance
 
 **M51 · Optimization Problems & First/Second-Order Conditions** — `ARC514`  
 **M52 · Convex Sets, Functions & Convexity Geometry** — `ARC581`  
 **M53 · Constrained Convex Optimization, Duality & KKT** — `ARC582`  
+After the core, planned M53-G supplies an 18-unit games specialisation: general finite mixed Nash existence, finite zero-sum minimax through LP duality, equilibrium certificates, correlation and regret, plus a separately gated compact-action/Kakutani extension. Finite utility representation is earlier, in M09-U after M05/M09; compactness and fixed-point proof prerequisites are explicit.
 **M54 · Asset Pricing, Replication, No-Arbitrage & Derivatives Foundations** — `ARC553`  
 **M55 · Portfolio Construction, Covariance Risk & Robustness** — `ARC554`  
 **M56 · Execution Costs, Impact, Scheduling & TCA** — `ARC559`  

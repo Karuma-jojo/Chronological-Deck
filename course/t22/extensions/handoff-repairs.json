@@ -1,0 +1,25 @@
+{
+  "version": "handoff-repairs-2026-10-07-r1",
+  "policy": "These destination clarifications amend routing descriptions only. No existing task, rubric, required ownership or evidence contract is rewritten. Original source packs are historical frozen contracts; this file is authoritative for current displayed handoffs. Planned means not yet authored or certified.",
+  "textCorrections": {
+    "limits/convergence/infinite series (M09)": "Limits/convergence: M09. Infinite geometric/power/Taylor series: M12 S10–S17; broader convergence-test catalogues require M12-A.",
+    "epsilon-limit/convergence/infinite-series theory (M09)": "Epsilon limits/convergence: M09. Infinite series: M12 S10–S17; legal interchange and broader tests: planned M12-A.",
+    "Infinite geometric series reserved M09": "Infinite geometric series: M12-S10, after M09 limits; M09 does not own series.",
+    "Optional stopping theorem/martingales until M49": "Planned M49-S: finite-state martingales and bounded optional stopping first; general/unbounded results require M26-P/M28-P and explicit extra hypotheses.",
+    "Unbounded geometric waiting laws until M50": "M26 canonical discrete laws (inherited A12): geometric waiting on {1,2,…}, including P(T>n) and finite mean conditions. M50 owns continuous event-time models.",
+    "Infinite-horizon ruin": "Planned M49-S-01/-06: nearest-neighbor ruin via finite-barrier recurrences and justified limits; this does not cover arbitrary controlled bankroll processes.",
+    "Dynamic-programming or policy optimization": "M59 deterministic DP / M60 MDP policy optimization (planned); neither is a game-existence theorem.",
+    "formal expected-utility representation theorem proofs": "Planned M09-U: finite vNM representation and positive affine uniqueness, after M05/M09, with explicit lottery axioms.",
+    "general Nash/minimax existence theorems, repeated/Bayesian games, auctions/mechanism design": "General finite Nash/minimax existence: planned M53-G after M09-A/M09-U/M52/M53. Repeated/Bayesian games and auctions/mechanism design are separate future specialisations, not promised by the shared route.",
+    "General equilibrium/minimax existence theorems": "Planned M53-G: general finite mixed Nash existence and finite zero-sum minimax, with compactness/fixed-point and LP-duality prerequisites. More general game domains require the separate Kakutani subgate."
+  },
+  "sessionNotes": {
+    "T22V3::ARC048::S24@1": [
+      "Expanded-route prerequisite clarification: complete stable IDs M04-S01–S23 and M04-S25–S28. S25 supplies the incomplete-joint bounds used in the final transfer; S24 is the exit session."
+    ]
+  },
+  "moduleNotes": {
+    "T22E-TRD01": "Finite posterior action and EVPI/EVSI handoff is now authored as M06-S25–S28 in m06-decision-bridge.json, a candidate supplement after the original updating core.",
+    "ARC502": "Core S01–S24 retains its reviewed updating-only boundary; the separately versioned S25–S28 bridge requires M05 decisions and is builder-checked, not independently accepted."
+  }
+}

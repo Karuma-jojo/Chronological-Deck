@@ -1,0 +1,226 @@
+{
+  "version": "current-publication-2026-10-07-r1",
+  "sourceBase": "38441e4b61ca89ead4370ad497915a94d8b055cf",
+  "policy": "Current versions/counts/review labels are read from current core/supplement packs. A merged candidate is not automatically independently certified. The historical SEMANTIC-PREREQUISITES acceptance labels establish boundary ancestry, not current-content certification. M16–M65 remain inherited/macro-only and unadapted.",
+  "modules": [
+    {
+      "order": 1,
+      "id": "T22E-FND01",
+      "coreVersion": "m01-repairs-1.6-lang-foundation-final-stitch",
+      "coreStatus": "published-v1.6-lang-foundation-accepted",
+      "coreSessionCount": 17,
+      "coreTaskCount": 34,
+      "runtimeSessionCount": 17,
+      "runtimeFixedTaskCount": 34,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m01-repairs-1.1.json",
+      "supplements": []
+    },
+    {
+      "order": 2,
+      "id": "T22E-FND02",
+      "coreVersion": "m02-authoring-v12-lang-foundation-r5",
+      "coreStatus": "published-v1.2-lang-foundation-accepted",
+      "coreSessionCount": 24,
+      "coreTaskCount": 48,
+      "runtimeSessionCount": 24,
+      "runtimeFixedTaskCount": 48,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m02.json",
+      "supplements": []
+    },
+    {
+      "order": 3,
+      "id": "T22E-DISC01",
+      "coreVersion": "m03-authoring-v2.0-six-tools-candidate-r4",
+      "coreStatus": "v2-r4-independent-review-repair-candidate-awaiting-follow-up-review",
+      "coreSessionCount": 36,
+      "coreTaskCount": 72,
+      "runtimeSessionCount": 36,
+      "runtimeFixedTaskCount": 72,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m03.json",
+      "supplements": []
+    },
+    {
+      "order": 4,
+      "id": "ARC048",
+      "coreVersion": "m04-authoring-v2.2-28-session-whole-curriculum-r2",
+      "coreStatus": "v2.2-28-session-whole-curriculum-bounded-repair-r2-candidate",
+      "coreSessionCount": 28,
+      "coreTaskCount": 56,
+      "runtimeSessionCount": 28,
+      "runtimeFixedTaskCount": 56,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m04.json",
+      "supplements": []
+    },
+    {
+      "order": 5,
+      "id": "T22E-TRD01",
+      "coreVersion": "m05-authoring-v2.1-whole-curriculum-candidate",
+      "coreStatus": "v2.1-whole-curriculum-candidate-awaiting-independent-review",
+      "coreSessionCount": 28,
+      "coreTaskCount": 56,
+      "runtimeSessionCount": 28,
+      "runtimeFixedTaskCount": 56,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m05.json",
+      "supplements": []
+    },
+    {
+      "order": 6,
+      "id": "ARC502",
+      "coreVersion": "m06-authoring-astra-r1",
+      "coreStatus": "authored-astra-repaired-independent-accepted",
+      "coreSessionCount": 24,
+      "coreTaskCount": 48,
+      "runtimeSessionCount": 28,
+      "runtimeFixedTaskCount": 56,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m06.json",
+      "supplements": [
+        {
+          "source": "course/t22/authoring/m06-decision-bridge.json",
+          "version": "m06-decision-bridge-v1-candidate",
+          "status": "builder-checked-candidate-awaiting-independent-review",
+          "sessionIds": [
+            "T22V3::ARC502::S25@1",
+            "T22V3::ARC502::S26@1",
+            "T22V3::ARC502::S27@1",
+            "T22V3::ARC502::S28@1"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "id": "T22E-MKT01",
+      "coreVersion": "m07-authoring-v1.1-r2",
+      "coreStatus": "authored-v1.1-retrofitted-awaiting-independent-confirmation",
+      "coreSessionCount": 24,
+      "coreTaskCount": 48,
+      "runtimeSessionCount": 24,
+      "runtimeFixedTaskCount": 48,
+      "semanticBoundaryStatus": "boundary-accepted-content-candidate",
+      "contentReviewAuthority": "course/t22/authoring/m07.json",
+      "supplements": []
+    },
+    {
+      "order": 8,
+      "id": "T22E-CODE01",
+      "coreVersion": "m08-authoring-v5-independent-accepted",
+      "coreStatus": "independently-accepted-frozen",
+      "coreSessionCount": 25,
+      "coreTaskCount": 50,
+      "runtimeSessionCount": 25,
+      "runtimeFixedTaskCount": 50,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m08.json",
+      "supplements": []
+    },
+    {
+      "order": 9,
+      "id": "SIDE263",
+      "coreVersion": "m09-authoring-v1-builder-verified",
+      "coreStatus": "authored-builder-verified",
+      "coreSessionCount": 27,
+      "coreTaskCount": 54,
+      "runtimeSessionCount": 27,
+      "runtimeFixedTaskCount": 54,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m09.json",
+      "supplements": []
+    },
+    {
+      "order": 10,
+      "id": "ARC053",
+      "coreVersion": "m10-arc053-authoring-v3-lang-dependency-repair",
+      "coreStatus": "published-semantic-repair-verified-lang-foundation-accepted",
+      "coreSessionCount": 24,
+      "coreTaskCount": 48,
+      "runtimeSessionCount": 24,
+      "runtimeFixedTaskCount": 48,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m10-arc053.json",
+      "supplements": []
+    },
+    {
+      "order": 11,
+      "id": "ARC510",
+      "coreVersion": "m11-arc510-independent-review-repair-v5",
+      "coreStatus": "published-independent-review-repaired",
+      "coreSessionCount": 20,
+      "coreTaskCount": 40,
+      "runtimeSessionCount": 20,
+      "runtimeFixedTaskCount": 40,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m11-arc510.json",
+      "supplements": []
+    },
+    {
+      "order": 12,
+      "id": "SIDE267",
+      "coreVersion": "m12-side267-builder-candidate-v1.1-audit-repair",
+      "coreStatus": "published-independent-audit-repaired",
+      "coreSessionCount": 19,
+      "coreTaskCount": 38,
+      "runtimeSessionCount": 19,
+      "runtimeFixedTaskCount": 38,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m12-side267.json",
+      "supplements": []
+    },
+    {
+      "order": 13,
+      "id": "ARC511",
+      "coreVersion": "m13-arc511-review-repair-v2",
+      "coreStatus": "published-user-authorized-follow-up",
+      "coreSessionCount": 17,
+      "coreTaskCount": 34,
+      "runtimeSessionCount": 17,
+      "runtimeFixedTaskCount": 34,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m13-arc511.json",
+      "supplements": []
+    },
+    {
+      "order": 14,
+      "id": "SIDE276",
+      "coreVersion": "m14-side276-v12-followup-repair-candidate-v3",
+      "coreStatus": "published-user-authorized-independent-accepted",
+      "coreSessionCount": 19,
+      "coreTaskCount": 38,
+      "runtimeSessionCount": 19,
+      "runtimeFixedTaskCount": 38,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m14-side276.json",
+      "supplements": []
+    },
+    {
+      "order": 15,
+      "id": "SIDE278",
+      "coreVersion": "m15-side278-v2-independent-repair-candidate",
+      "coreStatus": "published-user-authorized-independent-accepted",
+      "coreSessionCount": 16,
+      "coreTaskCount": 32,
+      "runtimeSessionCount": 16,
+      "runtimeFixedTaskCount": 32,
+      "semanticBoundaryStatus": "accepted",
+      "contentReviewAuthority": "course/t22/authoring/m15-side278.json",
+      "supplements": []
+    }
+  ],
+  "earlyReviewNotes": {
+    "M03": "Current v2.0-r4 pack supersedes the historical v1.7.2 status note. Current builder/reviewer receipts are retained in the pack and handoff, not inferred from git merge.",
+    "M04": "Current v2.2-r2 has 28 sessions/56 tasks; the old 24/48 semantic note is historical.",
+    "M05": "Current v2.1 has 28 sessions/56 tasks and 140 claims. Its own candidate/independent-review labels remain honest; merging is not independent acceptance.",
+    "M06": "Original 24-session/48-task updating core is unchanged; the four-session/eight-task decision bridge has separate candidate provenance. Runtime total28/56."
+  },
+  "cumulativeProbes": {
+    "source": "course/t22/authoring/m01-m05-cumulative-probes.json",
+    "count": 4,
+    "status": "builder-checked-candidate; no automatic clearance"
+  },
+  "advancedReadiness": "A Class-10-ish entry route toward advanced quantitative work. Proof-based PG probability/game endpoints additionally require the named unfinished theory branches and unfamiliar/delayed assessed performance. This is not a completed PG curriculum, an admissions guarantee or a comprehensive school/degree syllabus."
+}

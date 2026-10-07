@@ -1,0 +1,218 @@
+{
+  "version": "m01-m05-cumulative-probes-v1-candidate",
+  "status": "builder-checked-awaiting-independent-review",
+  "sessionId": "T22V3::T22E-TRD01::S24@1",
+  "prerequisites": [
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05"
+  ],
+  "policy": "These original registered probes are separate from the 56 fixed M05 tasks. No answer is shown before a saved attempt. Unfamiliar means unexposed in the recorded history, not a promise that the learner has never seen it elsewhere. Exposure/repetition, assistance and timing must be recorded. Probe results do not automatically clear any module. Once exposed, request a new independently reviewed variant.",
+  "schedule": {
+    "initial": [
+      "P01",
+      "P02"
+    ],
+    "delayed": [
+      {
+        "id": "P03",
+        "suggestedDays": 7
+      },
+      {
+        "id": "P04",
+        "suggestedDays": 21
+      }
+    ],
+    "basis": "Product scheduling choices, not validated memory estimates; a check attempted immediately is not delayed evidence."
+  },
+  "problems": {
+    "T22V3::T22E-TRD01::S24-P01@1": {
+      "id": "T22V3::T22E-TRD01::S24-P01@1",
+      "kind": "probe",
+      "order": 24,
+      "obligationVersion": 1,
+      "prompt": "Four labelled states r1,r2,b1,b2 have a known joint report table. Their masses with report R are (2/25,2/25,1/50,9/50), and with report N are (1/50,8/25,9/50,3/25). The label r means red; b means blue. A report R has already arrived. Take pays 30 currency units in red and −18 in blue, then charges a fee c≥0 currency units; wait pays0 with no fee. Maximize conditional expected money. Validate the law, recover the four state masses and color fibres, compute P(R) and P(red|R), derive the full legal c-domain/action rule including equality, and refute a uniform-counting shortcut on the displayed report atoms. State the conditioning/report and criterion assumptions."
+    },
+    "T22V3::T22E-TRD01::S24-P02@1": {
+      "id": "T22V3::T22E-TRD01::S24-P02@1",
+      "kind": "probe",
+      "order": 24,
+      "obligationVersion": 1,
+      "prompt": "Events A,B have known probabilities7/20 and11/20; no joint law or independence is supplied. Let x=P(A∩B). Policy X pays7−20·1_{A∩B}, while Y pays1 always. Construct all four atom masses as functions of x, derive the exact feasible interval, and exhibit laws at both endpoints. Derive expected values and the criterion-dependent choice including ties. Under maximin over all compatible joint laws choose a policy. Refute the claim that marginal probabilities justify multiplying them."
+    },
+    "T22V3::T22E-TRD01::S24-P03@1": {
+      "id": "T22V3::T22E-TRD01::S24-P03@1",
+      "kind": "probe",
+      "order": 24,
+      "obligationVersion": 1,
+      "prompt": "Draw two cards uniformly without replacement from four labelled cards A1,A2,B,C; every ordered pair of distinct labelled cards has probability1/12. The card color map sends A1,A2 to A and fixes B,C. Play pays4 if exactly one drawn color is A, and −2 otherwise, then charges fee c≥0. Wait pays1. Derive the law of the success event from labelled outcomes/fibres, calculate the unconstrained expected-money action rule including ties, and then impose P(net payoff<0)≤1/4. Identify all feasible choices for every c≥0 and compare them. Explain why a uniform law on distinct displayed color pairs is invalid."
+    },
+    "T22V3::T22E-TRD01::S24-P04@1": {
+      "id": "T22V3::T22E-TRD01::S24-P04@1",
+      "kind": "probe",
+      "order": 24,
+      "obligationVersion": 1,
+      "prompt": "Run a capped experiment: stop at the first H, or after trial3 including trial3. P(H on trial1)=1/2; conditional on the history T, trial2 has H probability1/4; conditional on TT, trial3 has H probability3/4. An H by the cap pays4; no H pays−4. Each trial actually run costs1; a fixed outside option pays1. List disjoint terminal prefixes and exact masses, prove normalization, compute expected trial count and net payoff, compute the probability of a strictly negative net payoff, and choose under expected money. Explain why neither equal terminal-prefix weights nor one identical-trial probability is justified; do not claim the given stopping policy is globally optimal."
+    }
+  },
+  "evaluators": {
+    "T22V3::T22E-TRD01::S24-P01@1": {
+      "reference": "The eight masses are nonnegative and sum1. State masses(.1,.4,.2,.3); red fibre{r1,r2}, blue{b1,b2}. P(R)=9/25, red∩R=4/25, so P(red|R)=4/9. Conditional take=30(4/9)−18(5/9)−c=10/3−c. Legal c≥0; take when0≤c<10/3, either action atc=10/3, wait whenc>10/3. Counting two red-report atoms and two blue-report atoms gives1/2 incorrectly because their masses differ. The joint reporter law, already observed report, net fee and expected-money criterion are explicit assumptions.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Joint normalization, state masses and color fibres are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Report mass9/25 and conditional red probability4/9 are derived."
+        },
+        {
+          "points": 2,
+          "criterion": "Conditional net value10/3−c and legal c≥0 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Action regions and the tie at10/3 are complete."
+        },
+        {
+          "points": 2,
+          "criterion": "The counting shortcut is refuted using unequal masses and model/criterion limits are explicit."
+        }
+      ],
+      "marking": "Score visible derivation/model/criterion reasoning, including ties and counterexamples. A correct scalar alone is insufficient. This cumulative probe supplements study evidence and does not automatically certify module mastery."
+    },
+    "T22V3::T22E-TRD01::S24-P02@1": {
+      "reference": "Atom masses for A∩B,A∩Bᶜ,Aᶜ∩B,Aᶜ∩Bᶜ are x,7/20−x,11/20−x,1/10+x. Nonnegativity gives0≤x≤7/20; both endpoint laws are valid. EV(X)=7−20x ranges0 to7; EV(Y)=1. For a known x choose X forx<3/10, either at3/10, Y forx>3/10. Worst compatible X value0 is below Y=1, so maximin choosesY. Independence would impose x=77/400, but it is not implied by the marginals.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Four atom masses and their normalization are constructed."
+        },
+        {
+          "points": 2,
+          "criterion": "Sharp interval[0,7/20] and both endpoint laws are justified."
+        },
+        {
+          "points": 2,
+          "criterion": "Expected values and their exact ranges are derived."
+        },
+        {
+          "points": 2,
+          "criterion": "Known-law action threshold3/10 with tie and maximin choiceY are distinguished."
+        },
+        {
+          "points": 2,
+          "criterion": "The independence multiplication is rejected as an extra assumption."
+        }
+      ],
+      "marking": "Score visible derivation/model/criterion reasoning, including ties and counterexamples. A correct scalar alone is insufficient. This cumulative probe supplements study evidence and does not automatically certify module mastery."
+    },
+    "T22V3::T22E-TRD01::S24-P03@1": {
+      "reference": "Exactly one A occurs in8 of12 labelled ordered pairs, hence success2/3. EV(play)=2−c versus wait1; play for0≤c<1, either atc=1, wait forc>1 under the unconstrained criterion. For0≤c≤4, failures have negative payoff and successes nonnegative, so loss probability1/3; forc>4 every play payoff is negative, so loss probability1. Thus play violates the1/4 constraint for every c≥0; wait is feasible and chosen. Displayed color pairs have unequal fibre sizes: AB has2 labelled preimages while BC has1, so a uniform color-pair law is false.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Success mass2/3 is derived from the12 equiprobable labelled ordered pairs."
+        },
+        {
+          "points": 2,
+          "criterion": "EV2−c and legal fee domain are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Unconstrained threshold1 including tie is derived."
+        },
+        {
+          "points": 2,
+          "criterion": "Loss probabilities1/3 for0≤c≤4 and1 forc>4 exclude play under the1/4 constraint."
+        },
+        {
+          "points": 2,
+          "criterion": "Wait is feasible and the unequal-color-fibre shortcut is refuted."
+        }
+      ],
+      "marking": "Score visible derivation/model/criterion reasoning, including ties and counterexamples. A correct scalar alone is insufficient. This cumulative probe supplements study evidence and does not automatically certify module mastery."
+    },
+    "T22V3::T22E-TRD01::S24-P04@1": {
+      "reference": "Terminal prefixes H,TH,TTH,TTT have masses1/2,1/8,9/32,3/32, summing1. Expected count=(1/2)+2(1/8)+3(12/32)=15/8. Net payoffs3,2,1,−7 give expected net11/8; equivalently gross13/4 minus cost15/8. OnlyTTT has negative net payoff, with probability3/32. Expected-money comparison11/8>1 favors the specified experiment. The branch probabilities differ and are conditional on reachable histories; terminal prefix lengths/masses differ. This evaluates the fixed policy, not an optimization over stopping policies.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "The four disjoint terminal prefixes and masses normalize."
+        },
+        {
+          "points": 2,
+          "criterion": "Expected trial count15/8 is derived from the terminal law."
+        },
+        {
+          "points": 2,
+          "criterion": "Terminal net payoffs and expected net11/8 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Strict loss probability3/32 and expected-money comparison with1 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Unequal-prefix/identical-probability errors are rejected and no global policy-optimality claim is made."
+        }
+      ],
+      "marking": "Score visible derivation/model/criterion reasoning, including ties and counterexamples. A correct scalar alone is insufficient. This cumulative probe supplements study evidence and does not automatically certify module mastery."
+    }
+  },
+  "probeMeta": {
+    "T22V3::T22E-TRD01::S24-P01@1": {
+      "title": "Weighted reports and a fee threshold",
+      "suggestedDelayDays": 0,
+      "claimSources": [
+        "M01 algebra/units",
+        "M02 domains and parameter functions",
+        "M03 fibres/counting versus law",
+        "M04 finite conditional law",
+        "M05 net payoff/criterion"
+      ],
+      "classification": "unfamiliar cumulative candidate; exposure and outside familiarity determine actual evidence distance",
+      "validation": "builder-checked; independent-review/learner-pilot pending"
+    },
+    "T22V3::T22E-TRD01::S24-P02@1": {
+      "title": "Incomplete joint information and robust decisions",
+      "suggestedDelayDays": 0,
+      "claimSources": [
+        "M01 inequalities",
+        "M03 finite partition proof",
+        "M04-S25 sharp joint bounds",
+        "M05-S20–S23 criteria and adversarial decisions"
+      ],
+      "classification": "unfamiliar cumulative candidate; exposure and outside familiarity determine actual evidence distance",
+      "validation": "builder-checked; independent-review/learner-pilot pending"
+    },
+    "T22V3::T22E-TRD01::S24-P03@1": {
+      "title": "Labelled sampling, fibres and a loss constraint",
+      "suggestedDelayDays": 7,
+      "claimSources": [
+        "M01 inequalities",
+        "M02 domain/boundary cases",
+        "M03 labelled fibres",
+        "M04 uniform sampling law",
+        "M05 feasibility before optimization"
+      ],
+      "classification": "unfamiliar cumulative candidate; exposure and outside familiarity determine actual evidence distance",
+      "validation": "builder-checked; independent-review/learner-pilot pending"
+    },
+    "T22V3::T22E-TRD01::S24-P04@1": {
+      "title": "Stopped paths, changing trial probabilities and net value",
+      "suggestedDelayDays": 21,
+      "claimSources": [
+        "M01 net accounting",
+        "M03 termination/prefix partition",
+        "M04-S26/S28 full-history finite stopped law",
+        "M05 expectation and policy scope"
+      ],
+      "classification": "unfamiliar cumulative candidate; exposure and outside familiarity determine actual evidence distance",
+      "validation": "builder-checked; independent-review/learner-pilot pending"
+    }
+  }
+}

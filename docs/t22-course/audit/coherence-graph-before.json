@@ -1,13 +1,12 @@
 {
-  "version": "M65-semantic-r3-2026-10-07-coherence",
-  "status": "macro-frozen-after-dependency-audit",
+  "version": "M65-semantic-r2-2026-09-18",
+  "moduleCount": 65,
   "modules": [
     {
       "order": 1,
       "id": "T22E-FND01",
       "title": "Quantitative Foundations I — Numeracy & Algebra",
-      "prerequisites": [],
-      "availability": "authored"
+      "prerequisites": []
     },
     {
       "order": 2,
@@ -15,8 +14,7 @@
       "title": "Quantitative Foundations II — Functions & Precalculus",
       "prerequisites": [
         "T22E-FND01"
-      ],
-      "availability": "authored"
+      ]
     },
     {
       "order": 3,
@@ -25,9 +23,7 @@
       "prerequisites": [
         "T22E-FND01",
         "T22E-FND02"
-      ],
-      "availability": "authored",
-      "extensionSummary": "Current pack: v2.0-r4, 36 sessions/72 tasks; review provenance follows the current pack and handoff, not the old v1.7.2 ledger note."
+      ]
     },
     {
       "order": 4,
@@ -35,9 +31,7 @@
       "title": "Finite Probability, Conditional Probability, Independence & Expectation",
       "prerequisites": [
         "T22E-DISC01"
-      ],
-      "availability": "authored",
-      "extensionSummary": "Current pack: v2.2-r2, 28 sessions/56 tasks; historical 24-session descriptions are superseded."
+      ]
     },
     {
       "order": 5,
@@ -45,20 +39,15 @@
       "title": "Trading Games & Decisions Under Uncertainty",
       "prerequisites": [
         "ARC048"
-      ],
-      "availability": "authored",
-      "extensionSummary": "Current v2.1 candidate: 28 sessions/56 tasks. Four separate cumulative probes supplement its reconstruction tasks; fixed-task completion does not establish unseen mastery."
+      ]
     },
     {
       "order": 6,
       "id": "ARC502",
       "title": "Bayes, Base Rates & Sequential Updating",
       "prerequisites": [
-        "ARC048",
-        "T22E-TRD01"
-      ],
-      "availability": "authored",
-      "extensionSummary": "Original 24-session updating core plus four separately versioned decision-bridge candidate sessions: runtime28/56. Independent review of the new bridge is still pending."
+        "ARC048"
+      ]
     },
     {
       "order": 7,
@@ -68,8 +57,7 @@
         "T22E-FND01",
         "T22E-FND02",
         "T22E-TRD01"
-      ],
-      "availability": "validation"
+      ]
     },
     {
       "order": 8,
@@ -79,8 +67,7 @@
         "T22E-FND01",
         "T22E-DISC01",
         "ARC048"
-      ],
-      "availability": "authored"
+      ]
     },
     {
       "order": 9,
@@ -89,9 +76,7 @@
       "prerequisites": [
         "T22E-FND02",
         "T22E-DISC01"
-      ],
-      "availability": "authored",
-      "extensionSummary": "Planned optional branches: M09-A proof-based compactness; M09-U finite utility representation."
+      ]
     },
     {
       "order": 10,
@@ -100,8 +85,7 @@
       "prerequisites": [
         "T22E-FND02",
         "SIDE263"
-      ],
-      "availability": "authored"
+      ]
     },
     {
       "order": 11,
@@ -110,8 +94,7 @@
       "prerequisites": [
         "SIDE263",
         "ARC053"
-      ],
-      "availability": "authored"
+      ]
     },
     {
       "order": 12,
@@ -120,8 +103,7 @@
       "prerequisites": [
         "SIDE263",
         "ARC053"
-      ],
-      "availability": "authored"
+      ]
     },
     {
       "order": 13,
@@ -130,8 +112,7 @@
       "prerequisites": [
         "T22E-FND01",
         "T22E-DISC01"
-      ],
-      "availability": "authored"
+      ]
     },
     {
       "order": 14,
@@ -139,8 +120,7 @@
       "title": "Matrices, Linear Maps & Linear Systems",
       "prerequisites": [
         "ARC511"
-      ],
-      "availability": "authored"
+      ]
     },
     {
       "order": 15,
@@ -148,8 +128,7 @@
       "title": "Orthogonality, Projection & Least Squares Geometry",
       "prerequisites": [
         "SIDE276"
-      ],
-      "availability": "authored"
+      ]
     },
     {
       "order": 16,
@@ -157,8 +136,7 @@
       "title": "Eigenvalues, Eigenvectors & Spectral Structure",
       "prerequisites": [
         "SIDE276"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 17,
@@ -167,8 +145,7 @@
       "prerequisites": [
         "SIDE278",
         "SIDE279"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 18,
@@ -178,8 +155,7 @@
         "ARC053",
         "ARC511",
         "SIDE276"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 19,
@@ -188,8 +164,7 @@
       "prerequisites": [
         "SIDE276",
         "SIDE271"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 20,
@@ -198,8 +173,7 @@
       "prerequisites": [
         "ARC510",
         "SIDE276"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 21,
@@ -208,8 +182,7 @@
       "prerequisites": [
         "T22E-CODE01",
         "SIDE276"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 22,
@@ -217,8 +190,7 @@
       "title": "Quant Coding & Core Algorithms",
       "prerequisites": [
         "T22E-CODE02"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 23,
@@ -227,8 +199,7 @@
       "prerequisites": [
         "SIDE280",
         "T22E-CODE02"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 24,
@@ -237,8 +208,7 @@
       "prerequisites": [
         "T22E-CODE02",
         "ARC585"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 25,
@@ -247,8 +217,7 @@
       "prerequisites": [
         "T22E-DISC01",
         "ARC048"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 26,
@@ -258,11 +227,8 @@
         "ARC048",
         "ARC502",
         "ARC510",
-        "SIDE271",
-        "ARC503"
-      ],
-      "availability": "planned",
-      "extensionSummary": "Planned M26-P measure/probability theory and M26-E order statistics. These are explicit additional obligations, not current authored coverage."
+        "SIDE271"
+      ]
     },
     {
       "order": 27,
@@ -271,8 +237,7 @@
       "prerequisites": [
         "ARC503",
         "ARC517"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 28,
@@ -282,9 +247,7 @@
         "SIDE263",
         "ARC517",
         "ARC504"
-      ],
-      "availability": "planned",
-      "extensionSummary": "Planned M28-P probabilistic convergence and legal limit interchange after M26-P."
+      ]
     },
     {
       "order": 29,
@@ -293,8 +256,7 @@
       "prerequisites": [
         "ARC053",
         "ARC504"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 30,
@@ -305,8 +267,7 @@
         "T22E-CODE02",
         "ARC517",
         "ARC712"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 31,
@@ -315,8 +276,7 @@
       "prerequisites": [
         "ARC504",
         "ARC712"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 32,
@@ -326,8 +286,7 @@
         "T22E-CODE02",
         "ARC504",
         "ARC505"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 33,
@@ -338,8 +297,7 @@
         "ARC517",
         "ARC504",
         "T22E-CODE02"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 34,
@@ -347,10 +305,8 @@
       "title": "Fisher Information, Efficiency & Asymptotic Precision",
       "prerequisites": [
         "SIDE271",
-        "ARC712",
         "ARC531"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 35,
@@ -360,8 +316,7 @@
         "ARC505",
         "ARC531",
         "ARC533"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 36,
@@ -373,8 +328,7 @@
         "ARC503",
         "ARC517",
         "ARC504"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 37,
@@ -383,8 +337,7 @@
       "prerequisites": [
         "ARC503",
         "ARC539"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 38,
@@ -393,8 +346,7 @@
       "prerequisites": [
         "ARC505",
         "ARC506"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 39,
@@ -404,8 +356,7 @@
         "T22E-CODE02",
         "ARC539",
         "ARC507"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 40,
@@ -414,8 +365,7 @@
       "prerequisites": [
         "T22E-CODE02",
         "ARC508"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 41,
@@ -424,8 +374,7 @@
       "prerequisites": [
         "SIDE280",
         "ARC539"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 42,
@@ -436,12 +385,8 @@
         "SIDE263",
         "T22E-CODE02",
         "ARC517",
-        "ARC539",
-        "ARC508",
-        "ARC509",
-        "ARC541"
-      ],
-      "availability": "planned"
+        "ARC539"
+      ]
     },
     {
       "order": 43,
@@ -452,8 +397,7 @@
         "T22E-CODE02",
         "ARC508",
         "ARC542"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 44,
@@ -461,8 +405,7 @@
       "title": "SQL, Joins, Windows & Out-of-Core Query Workflows",
       "prerequisites": [
         "T22E-CODE02"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 45,
@@ -472,8 +415,7 @@
         "T22E-MKT01",
         "T22E-TEMP01",
         "ARC716"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 46,
@@ -483,8 +425,7 @@
         "ARC503",
         "ARC509",
         "ARC714"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 47,
@@ -495,8 +436,7 @@
         "T22E-TRD01",
         "T22E-MKT01",
         "ARC714"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 48,
@@ -506,8 +446,7 @@
         "SIDE279",
         "ARC517",
         "ARC542"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 49,
@@ -516,13 +455,8 @@
       "prerequisites": [
         "T22E-DISC01",
         "SIDE263",
-        "SIDE279",
-        "ARC517",
-        "ARC513",
-        "ARC542"
-      ],
-      "availability": "planned",
-      "extensionSummary": "Planned M49-S ruin, filtrations, martingales and bounded/unbounded stopping with separate hypothesis gates."
+        "ARC517"
+      ]
     },
     {
       "order": 50,
@@ -531,13 +465,8 @@
       "prerequisites": [
         "ARC510",
         "ARC517",
-        "ARC712",
-        "ARC513",
-        "ARC542",
         "ARC524"
-      ],
-      "availability": "planned",
-      "extensionSummary": "Planned M50-B Brownian existence/continuity. The inherited Poisson/renewal module alone does not establish it."
+      ]
     },
     {
       "order": 51,
@@ -546,8 +475,7 @@
       "prerequisites": [
         "ARC053",
         "SIDE271"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 52,
@@ -556,8 +484,7 @@
       "prerequisites": [
         "SIDE278",
         "ARC514"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 53,
@@ -565,9 +492,7 @@
       "title": "Constrained Convex Optimization, Duality & KKT",
       "prerequisites": [
         "ARC581"
-      ],
-      "availability": "planned",
-      "extensionSummary": "Planned games specialisation: M53-G finite Nash existence, LP-duality minimax, correlated equilibrium, regret, and a gated compact-action existence extension."
+      ]
     },
     {
       "order": 54,
@@ -577,8 +502,7 @@
         "ARC048",
         "T22E-MKT01",
         "ARC514"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 55,
@@ -588,8 +512,7 @@
         "ARC541",
         "ARC582",
         "ARC553"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 56,
@@ -600,8 +523,7 @@
         "ARC714",
         "ARC558",
         "ARC514"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 57,
@@ -612,8 +534,7 @@
         "T22E-CODE02",
         "ARC585",
         "ARC582"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 58,
@@ -623,8 +544,7 @@
         "ARC531",
         "ARC582",
         "ARC586"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 59,
@@ -633,8 +553,7 @@
       "prerequisites": [
         "ARC717",
         "ARC514"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 60,
@@ -644,8 +563,7 @@
         "ARC524",
         "ARC514",
         "ARC211"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 61,
@@ -656,8 +574,7 @@
         "ARC531",
         "ARC539",
         "ARC508"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 62,
@@ -666,8 +583,7 @@
       "prerequisites": [
         "ARC582",
         "ARC593"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 63,
@@ -675,8 +591,7 @@
       "title": "Trees, Bagging, Random Forests & Boosting",
       "prerequisites": [
         "ARC593"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 64,
@@ -686,8 +601,7 @@
         "ARC711",
         "ARC589",
         "ARC593"
-      ],
-      "availability": "planned"
+      ]
     },
     {
       "order": 65,
@@ -703,8 +617,7 @@
         "ARC554",
         "ARC559",
         "ARC593"
-      ],
-      "availability": "planned"
+      ]
     }
   ]
 }

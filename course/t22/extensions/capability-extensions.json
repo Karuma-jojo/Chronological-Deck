@@ -1,0 +1,892 @@
+{
+  "schema": "t22-capability-extensions-v1",
+  "version": "2026-10-07-r1",
+  "policy": "Owner slots and observable exit contracts are assigned now. Except for M06-D, these are planned authoring obligations, not implemented lessons or clearance evidence. Branch prerequisites are AND gates; a later macro title does not clear them. Preserve all 65 macro IDs and order.",
+  "extensions": [
+    {
+      "id": "M09-A",
+      "owner": "SIDE263",
+      "ownerOrder": 9,
+      "title": "Proof-based analysis bridge",
+      "goal": "optional-theory",
+      "status": "planned-not-authored",
+      "requires": [
+        "M03",
+        "M09"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M09-A-01",
+          "title": "Completeness and subsequences",
+          "exitTask": "Construct a bounded sequence, extract a convergent subsequence using nested intervals, and prove the limiting point exists using real completeness.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M09-A-02",
+          "title": "Finite-dimensional compactness",
+          "exitTask": "Prove closed-and-bounded compactness in R^d via coordinate subsequences; prove a finite product of simplexes is nonempty, compact and convex.",
+          "dependsOn": [
+            "M09-A-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M09-A-03",
+          "title": "Continuity and extreme values",
+          "exitTask": "Prove continuous images preserve sequential compactness, derive EVT, and refute the claim after removing compactness.",
+          "dependsOn": [
+            "M09-A-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M09-A-04",
+          "title": "Open-cover and sequential formulations",
+          "exitTask": "Prove the equivalence needed in finite-dimensional metric spaces; distinguish pointwise closedness from compactness.",
+          "dependsOn": [
+            "M09-A-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M09-U",
+      "owner": "SIDE263",
+      "ownerOrder": 9,
+      "title": "Finite expected-utility representation",
+      "goal": "optional-theory",
+      "status": "planned-not-authored",
+      "requires": [
+        "M05",
+        "M09"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M09-U-01",
+          "title": "Ordinal preferences versus lottery utility",
+          "exitTask": "Construct two monotone transformations of deterministic rankings that disagree on a lottery; identify why only positive affine transformations preserve all expected-utility comparisons.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M09-U-02",
+          "title": "Lottery domain and preference axioms",
+          "exitTask": "State completeness/transitivity, mixture continuity and mixture independence on the full simplex over finite consequences; test each axiom on an explicit preference relation.",
+          "dependsOn": [
+            "M09-U-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M09-U-03",
+          "title": "Best/worst lotteries and standard gambles",
+          "exitTask": "Using finite best/worst consequences, prove every lottery is indifferent to a standard best/worst mixture; handle the all-indifferent case separately.",
+          "dependsOn": [
+            "M09-U-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M09-U-04",
+          "title": "Finite vNM representation",
+          "exitTask": "Prove the standard-gamble index is affine under mixture using independence, then derive U(p)=sum_x p(x)u(x) and prove the converse.",
+          "dependsOn": [
+            "M09-U-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M09-U-05",
+          "title": "Positive affine uniqueness",
+          "exitTask": "Prove normalized representations agree using standard gambles; recover u′=a u+b with a>0 in the nontrivial case.",
+          "dependsOn": [
+            "M09-U-04"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M09-U-06",
+          "title": "Axiom failures and model boundaries",
+          "exitTask": "Construct an independence violation, distinguish a supplied utility model from a revealed preference representation, and explain why the finite theorem does not establish utility over every infinite outcome domain.",
+          "dependsOn": [
+            "M09-U-05"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M12-A",
+      "owner": "SIDE267",
+      "ownerOrder": 12,
+      "title": "Limits and legal interchange",
+      "goal": "optional-theory",
+      "status": "planned-not-authored",
+      "requires": [
+        "M09-A",
+        "M11",
+        "M12"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M12-A-01",
+          "title": "Uniform versus pointwise convergence",
+          "exitTask": "Construct f_n(x)=x^n on [0,1], find its pointwise limit, and show it is not uniform; prove uniform limits preserve continuity.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M12-A-02",
+          "title": "Termwise integration",
+          "exitTask": "Prove the bounded-interval uniform-convergence integration rule using a sup-norm bound and give an explicit failure when hypotheses are absent.",
+          "dependsOn": [
+            "M12-A-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M12-A-03",
+          "title": "Derivative interchange and series",
+          "exitTask": "Prove a correctly stated differentiation-under-uniform-derivative theorem with an anchor value; justify a power-series operation on compact subintervals of its convergence interval.",
+          "dependsOn": [
+            "M12-A-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M12-A-04",
+          "title": "Counterexamples and convergence-test scope",
+          "exitTask": "Build a narrowing spike showing pointwise convergence alone does not justify integral interchange; prove the ratio/comparison tests actually used before claiming them.",
+          "dependsOn": [
+            "M12-A-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M26-P",
+      "owner": "ARC517",
+      "ownerOrder": 26,
+      "title": "Measure and probability foundations",
+      "goal": "optional-theory",
+      "status": "planned-not-authored",
+      "requires": [
+        "M12-A",
+        "M26"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M26-P-01",
+          "title": "Measurable spaces and sigma-algebras",
+          "exitTask": "Construct a nontrivial sigma-algebra, classify its measurable functions, and prove closure under countable set operations.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M26-P-02",
+          "title": "Probability measures and measurable random variables",
+          "exitTask": "Define countable additivity; derive continuity of measure from below/above with its finite-mass hypotheses and pushforward distributions.",
+          "dependsOn": [
+            "M26-P-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M26-P-03",
+          "title": "Lebesgue expectation",
+          "exitTask": "Construct expectation from nonnegative simple functions and monotone approximation; separate signed integrability from an undefined infinity-minus-infinity expression.",
+          "dependsOn": [
+            "M26-P-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M26-P-04",
+          "title": "Convergence and integration theorems",
+          "exitTask": "Prove monotone convergence and Fatou, derive dominated convergence with an explicit integrable dominator, and produce a counterexample without it.",
+          "dependsOn": [
+            "M26-P-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M26-P-05",
+          "title": "Product laws and iterated integration",
+          "exitTask": "State and apply Tonelli/Fubini with nonnegative/absolute-integrability hypotheses and distinguish a product law from an arbitrary joint law.",
+          "dependsOn": [
+            "M26-P-04"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Absolute continuity and Radon–Nikodym existence",
+          "exitTask": "Prove the finite-measure Radon–Nikodym theorem with its absolute-continuity hypotheses, including the Hahn-decomposition/simple-function construction lemmas used; derive a measurable density and prove almost-sure uniqueness.",
+          "id": "M26-P-06",
+          "dependsOn": [
+            "M26-P-05"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M26-P-07",
+          "title": "Conditional expectation",
+          "exitTask": "Construct finite-partition conditional expectation, then prove the defining integral identity and almost-sure uniqueness; teach the existence theorem with its Radon–Nikodym prerequisite explicitly before general use.",
+          "dependsOn": [
+            "M26-P-06"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ],
+      "requiredProofBridge": "M26-P-06 owns the finite-measure Radon–Nikodym proof before M26-P-07 general conditional-expectation existence. A theorem left assumed cannot clear the proof-complete probability gate."
+    },
+    {
+      "id": "M28-P",
+      "owner": "ARC712",
+      "ownerOrder": 28,
+      "title": "Probabilistic convergence and asymptotics",
+      "goal": "optional-theory",
+      "status": "planned-not-authored",
+      "requires": [
+        "M26-P",
+        "M28"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "title": "Modes of convergence",
+          "exitTask": "Define almost-sure, in-probability, in-distribution and Lp convergence; prove valid implication arrows and construct counterexamples to their converses.",
+          "id": "M28-P-01",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Uniform integrability",
+          "exitTask": "Prove a stated uniform-integrability criterion and the expectation-convergence theorem actually used; distinguish it from pointwise convergence and a uniform bound on first moments.",
+          "id": "M28-P-02",
+          "dependsOn": [
+            "M28-P-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Borel–Cantelli and event limits",
+          "exitTask": "Prove both Borel–Cantelli lemmas with the correct summability/independence hypotheses and construct an example showing why the second conclusion can fail without independence.",
+          "id": "M28-P-03",
+          "dependsOn": [
+            "M28-P-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Characteristic functions and uniqueness",
+          "exitTask": "Define characteristic functions, prove the uniqueness/inversion tools at the exact scope used, and distinguish a transform identity from an unproved distributional convergence assertion.",
+          "id": "M28-P-04",
+          "dependsOn": [
+            "M28-P-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Levy continuity bridge",
+          "exitTask": "Prove the characteristic-function continuity theorem needed for the chosen CLT, including tightness/subsequence arguments and the continuity-at-zero hypothesis.",
+          "id": "M28-P-05",
+          "dependsOn": [
+            "M28-P-04"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Weak law with explicit moment assumptions",
+          "exitTask": "Prove the finite-variance iid weak law from Chebyshev and identify exactly where independence and finite variance enter; avoid claiming this proves every strong law.",
+          "id": "M28-P-06",
+          "dependsOn": [
+            "M28-P-05"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Finite-variance iid central limit theorem",
+          "exitTask": "Derive the characteristic-function expansion from finite variance, prove the iid normalization limit and apply the owned Levy continuity theorem to establish the CLT.",
+          "id": "M28-P-07",
+          "dependsOn": [
+            "M28-P-06"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Conditional expectation calculus",
+          "exitTask": "Prove tower and measurable pull-out identities under integrability assumptions; use them on nested information partitions and then on the general conditional-expectation definition.",
+          "id": "M28-P-08",
+          "dependsOn": [
+            "M28-P-07"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M49-S",
+      "owner": "ARC524",
+      "ownerOrder": 49,
+      "title": "Ruin, martingales and stopping",
+      "goal": "optional-theory",
+      "status": "planned-not-authored",
+      "requires": [
+        "M26",
+        "M28",
+        "M49"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M49-S-01",
+          "title": "Finite-state gambler ruin",
+          "exitTask": "Derive hitting probabilities for barriers 0,N by first-step recurrence; handle p=1/2 separately and distinguish finite barriers from a limit as N→∞.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M49-S-02",
+          "title": "Filtrations and stopping times",
+          "exitTask": "Construct filtrations and classify stopping rules using information available at time n; exhibit a rule using future information that is not a stopping time.",
+          "dependsOn": [
+            "M49-S-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M49-S-03",
+          "title": "Integrable martingales",
+          "exitTask": "Verify a process is adapted, integrable and satisfies E[M_{n+1}|F_n]=M_n; supply a counterexample failing each hypothesis.",
+          "dependsOn": [
+            "M49-S-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M49-S-04",
+          "title": "Bounded optional stopping",
+          "exitTask": "For T≤N, write M_T=M_0+sum_{k<N}1_{T>k}(M_{k+1}−M_k), prove measurability and zero expectation of each term, then derive E[M_T]=E[M_0].",
+          "dependsOn": [
+            "M49-S-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M49-S-05",
+          "title": "Unbounded stopping and failed extrapolation",
+          "exitTask": "Use a symmetric random walk stopped on first hitting +1 to show almost-sure finite stopping alone does not preserve expectation; prove a chosen UI/bounded-increment-and-integrable-time extension only after its extra hypotheses.",
+          "dependsOn": [
+            "M49-S-04"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M49-S-06",
+          "title": "Infinite-horizon ruin limits",
+          "exitTask": "Derive the one-sided nearest-neighbor ruin law from finite barriers using continuity of probability and distinguish drift cases; do not confuse this with an arbitrary bankroll/control process.",
+          "dependsOn": [
+            "M49-S-05"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ],
+      "advancedRequires": [
+        "M26-P",
+        "M28-P"
+      ],
+      "boundedFiniteEntry": "Finite-state/bounded-horizon results may be taught first using M04/M26; general integrable/unbounded statements require advancedRequires."
+    },
+    {
+      "id": "M50-B",
+      "owner": "ARC525",
+      "ownerOrder": 50,
+      "title": "Brownian foundations, without stochastic calculus",
+      "goal": "optional-theory",
+      "status": "planned-not-authored",
+      "requires": [
+        "M26-P",
+        "M28-P",
+        "M49-S",
+        "M50"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "title": "Consistent Gaussian finite-dimensional laws",
+          "exitTask": "Construct the centered Gaussian finite-dimensional laws with covariance min(s,t), verify positive semidefiniteness and consistency, and distinguish law specification from process existence.",
+          "id": "M50-B-01",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Kolmogorov extension and process existence",
+          "exitTask": "State and prove the extension theorem at the Polish/Borel finite-dimensional scope actually used, apply consistency, and identify the coordinate sigma-algebra of the resulting path space.",
+          "id": "M50-B-02",
+          "dependsOn": [
+            "M50-B-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Continuous modification",
+          "exitTask": "Prove the required moment/continuity criterion using dyadic control and the owned Borel–Cantelli tools, then derive a continuous Brownian modification from Gaussian increment moments.",
+          "id": "M50-B-03",
+          "dependsOn": [
+            "M50-B-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Scaling and increments",
+          "exitTask": "Prove Brownian scaling and independent stationary increments from the Gaussian finite-dimensional laws; distinguish equality in law from pathwise equality.",
+          "id": "M50-B-04",
+          "dependsOn": [
+            "M50-B-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Brownian martingales",
+          "exitTask": "Verify the basic Brownian and compensated-square martingale identities under the declared filtration and integrability assumptions, without assuming an Ito formula.",
+          "id": "M50-B-05",
+          "dependsOn": [
+            "M50-B-04"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Grid simulation and its limits",
+          "exitTask": "Construct a reproducible Gaussian-increment grid simulator, check its exact finite-dimensional moments and explain why a finite plot cannot establish path continuity or stochastic calculus.",
+          "id": "M50-B-06",
+          "dependsOn": [
+            "M50-B-05"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M53-G",
+      "owner": "ARC582",
+      "ownerOrder": 53,
+      "title": "Game theory: existence, certificates and learning",
+      "goal": "games-specialisation-requested-by-owner",
+      "status": "planned-not-authored",
+      "requires": [
+        "M05",
+        "M09-A",
+        "M09-U",
+        "M13",
+        "M52",
+        "M53",
+        "M53-LP"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M53-G-01",
+          "title": "Finite normal-form games",
+          "exitTask": "Construct a three-player game, the product of mixed-strategy simplexes, and expected utilities under independent player randomization; distinguish a correlated joint law.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-02",
+          "title": "Best responses and support",
+          "exitTask": "Prove it suffices to check pure deviations and characterize equilibrium support inequalities; verify a degenerate example including unused actions.",
+          "dependsOn": [
+            "M53-G-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-03",
+          "title": "Sperner in arbitrary finite dimension",
+          "exitTask": "State legal boundary labels for a triangulated d-simplex, prove the parity/induction argument for every finite d, and explain why a triangle-only proof does not cover arbitrary games.",
+          "dependsOn": [
+            "M53-G-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-04",
+          "title": "Brouwer fixed-point bridge",
+          "exitTask": "Use vanishing-mesh Sperner subdivisions plus compactness to prove Brouwer for a simplex, then explicitly transfer to the compact convex finite-dimensional strategy domain; reject a discontinuous self-map.",
+          "dependsOn": [
+            "M53-G-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-05",
+          "title": "The continuous Nash map",
+          "exitTask": "Construct F_ia(x)=[x_ia+max(0,u_i(a,x_-i)−u_i(x))]/[1+sum_b max(0,u_i(b,x_-i)−u_i(x))]; prove continuity, simplex preservation and a positive denominator.",
+          "dependsOn": [
+            "M53-G-04"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-06",
+          "title": "General finite Nash existence",
+          "exitTask": "At a fixed point put g_ia=max(0,u_i(a,x_-i)−u_i(x)) and G_i=sum g_ia. Prove x_ia G_i=g_ia and use sum_a x_ia[u_i(a,x_-i)−u_i(x)]=0 to rule out G_i>0; apply Brouwer to prove a mixed Nash equilibrium exists for any finite number of players/actions.",
+          "dependsOn": [
+            "M53-G-05"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-07",
+          "title": "What existence does not imply",
+          "exitTask": "Construct a game with no pure equilibrium and one with several equilibria; distinguish existence, uniqueness, efficiency and dynamic convergence.",
+          "dependsOn": [
+            "M53-G-06"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-08",
+          "title": "Zero-sum games as linear programs",
+          "exitTask": "Derive row primal max v subject to Aᵀx≥v1, x≥0, 1ᵀx=1, and column dual min w subject to Ay≤w1, y≥0, 1ᵀy=1; establish feasibility and boundedness.",
+          "dependsOn": [
+            "M53-G-07"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-09",
+          "title": "Finite minimax via strong duality",
+          "exitTask": "Use the proven M53 LP strong-duality theorem to derive max_x min_y xᵀAy=min_y max_x xᵀAy for every finite rectangular matrix, including negative payoffs and degenerate optima.",
+          "dependsOn": [
+            "M53-G-08"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-10",
+          "title": "Saddle and complementary-slackness certificates",
+          "exitTask": "Construct primal/dual policies and matching bounds for a rectangular game; prove support indifference and inequalities for unused actions instead of relying on equalizing all entries.",
+          "dependsOn": [
+            "M53-G-09"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-11",
+          "title": "Correlated-equilibrium constraints",
+          "exitTask": "Construct a mediator joint distribution and derive every obedience inequality; distinguish correlation from independent mixed play.",
+          "dependsOn": [
+            "M53-G-10"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-12",
+          "title": "Correlated-equilibrium existence",
+          "exitTask": "Convert an existing mixed Nash profile to its product joint law and verify all obedience constraints; explain why CE existence does not require a unique Nash solution.",
+          "dependsOn": [
+            "M53-G-11"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-13",
+          "title": "Regret and empirical distributions",
+          "exitTask": "Derive that vanishing external regret yields coarse-correlated equilibrium of empirical play; demonstrate why ordinary external regret alone does not prove correlated equilibrium or last-iterate Nash convergence.",
+          "dependsOn": [
+            "M53-G-12"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-14",
+          "title": "Existence versus computation",
+          "exitTask": "Measure unilateral-deviation residuals of candidate solutions and give an epsilon-equilibrium certificate; separate a numerical fixed-point iteration from a proof that it converges.",
+          "dependsOn": [
+            "M53-G-13"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-15",
+          "title": "Kakutani bridge for compact games",
+          "exitTask": "Define upper hemicontinuity, nonempty compact convex values and closed graphs; teach/prove the finite-dimensional Kakutani theorem used, rather than cite an unowned theorem.",
+          "dependsOn": [
+            "M53-G-14"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-16",
+          "title": "Compact-action pure equilibrium existence",
+          "exitTask": "For compact convex strategy sets, continuous payoffs quasiconcave in each player’s own strategy, prove the best-response correspondence satisfies Kakutani hypotheses and derive equilibrium; show the role of each hypothesis.",
+          "dependsOn": [
+            "M53-G-15"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-17",
+          "title": "Infinite-game boundaries",
+          "exitTask": "Construct a discontinuous or noncompact game with no equilibrium and reject unconditional existence claims; do not generalize finite Nash to arbitrary action spaces.",
+          "dependsOn": [
+            "M53-G-16"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M53-G-18",
+          "title": "Game design and independent defence",
+          "exitTask": "Design a finite strategic interaction, state utility/information assumptions, compute or certify equilibria, perturb payoffs and defend whether equilibrium selection or learning claims follow.",
+          "dependsOn": [
+            "M53-G-17"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ],
+      "subgates": {
+        "finiteNash": "Units01–07; full finite-dimensional fixed-point proof is mandatory.",
+        "minimax": "Units08–10 after proven LP strong duality, not merely weak duality or KKT heuristics.",
+        "compactGames": "Units15–17 after Kakutani; finite Nash does not certify this subgate.",
+        "laterGames": "Repeated-game folk theorems, Bayesian equilibrium, auctions/mechanism design and stochastic games remain separate future specialisations, not implied by these 18 units."
+      }
+    },
+    {
+      "id": "M02-E",
+      "owner": "T22E-FND02",
+      "ownerOrder": 2,
+      "title": "School/entrance algebra, geometry and complex numbers",
+      "goal": "optional-school-or-selected-entrance-checklist",
+      "status": "planned-not-authored",
+      "requires": [
+        "M01",
+        "M02"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M02-E-01",
+          "title": "Geometry/mensuration diagnostic",
+          "exitTask": "Solve unfamiliar Euclidean similarity, circle and area/volume problems; route missing school geometry to taught remediation.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M02-E-02",
+          "title": "Polynomial and Vieta tools",
+          "exitTask": "Derive Vieta/remainder/division tools with legal domains and solve a parameterized polynomial problem.",
+          "dependsOn": [
+            "M02-E-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M02-E-03",
+          "title": "Complex/trigonometric entrance bridge",
+          "exitTask": "Teach complex arithmetic and polar form, derive De Moivre and use it in an original roots/geometry task; do not invoke complex analysis.",
+          "dependsOn": [
+            "M02-E-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M02-E-04",
+          "title": "Conics and inequalities",
+          "exitTask": "Derive conic equations and solve rational/polynomial sign problems with all domain restrictions.",
+          "dependsOn": [
+            "M02-E-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M03-E",
+      "owner": "T22E-DISC01",
+      "ownerOrder": 3,
+      "title": "Entrance counting extension",
+      "goal": "optional-school-or-selected-entrance-checklist",
+      "status": "planned-not-authored",
+      "requires": [
+        "M03"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M03-E-01",
+          "title": "Multinomial coefficients",
+          "exitTask": "Derive the multinomial theorem by labelled finite allocation and solve a constrained occupancy task.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M26-E",
+      "owner": "ARC517",
+      "ownerOrder": 26,
+      "title": "Order statistics",
+      "goal": "optional-school-or-selected-entrance-checklist",
+      "status": "planned-not-authored",
+      "requires": [
+        "M25",
+        "M26"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M26-E-01",
+          "title": "Order-statistic laws",
+          "exitTask": "Derive minimum/maximum/order-statistic laws under an explicitly iid continuous model; treat ties/discrete models separately.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M33-E",
+      "owner": "ARC531",
+      "ownerOrder": 33,
+      "title": "Sufficiency and estimation theory",
+      "goal": "optional-school-or-selected-entrance-checklist",
+      "status": "planned-not-authored",
+      "requires": [
+        "M26",
+        "M27",
+        "M33"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M33-E-01",
+          "title": "Sufficiency and factorization",
+          "exitTask": "Define sufficiency and prove/apply a correctly dominated factorization theorem; do not treat a good estimator as automatically sufficient.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M33-E-02",
+          "title": "Rao–Blackwell and completeness scope",
+          "exitTask": "Prove a scoped Rao–Blackwell result using conditional expectation, and distinguish completeness and sufficiency from consistency.",
+          "dependsOn": [
+            "M33-E-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M38-E",
+      "owner": "ARC507",
+      "ownerOrder": 38,
+      "title": "ANOVA and design analyses",
+      "goal": "optional-school-or-selected-entrance-checklist",
+      "status": "planned-not-authored",
+      "requires": [
+        "M35",
+        "M36",
+        "M38"
+      ],
+      "placement": "After the owner core; complete all named branch prerequisites before entering.",
+      "units": [
+        {
+          "id": "M38-E-01",
+          "title": "Balanced fixed-effects ANOVA",
+          "exitTask": "Derive sums-of-squares decomposition, degrees of freedom and a correctly assumed F comparison for a balanced design.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M38-E-02",
+          "title": "Design and interaction",
+          "exitTask": "Construct a randomized block/factorial analysis with interactions and demonstrate confounding; do not extrapolate a one-way ANOVA to all designs.",
+          "dependsOn": [
+            "M38-E-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M53-LP",
+      "owner": "ARC582",
+      "ownerOrder": 53,
+      "title": "Finite LP proof bridge for game minimax",
+      "goal": "games-specialisation-requested-by-owner",
+      "status": "planned-not-authored",
+      "requires": [
+        "M09-A",
+        "M15",
+        "M52",
+        "M53"
+      ],
+      "placement": "After the M53 optimization core; before M53-G minimax units.",
+      "units": [
+        {
+          "title": "Primal and dual construction",
+          "exitTask": "Derive a dual linear program with all sign/free-variable conventions and weak-duality certificates; classify infeasible or unbounded cases without assuming strong duality.",
+          "id": "M53-LP-01",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Farkas alternative from finite convex geometry",
+          "exitTask": "Prove closedness of the relevant finitely generated cone and derive Farkas using an explicit separating/projection argument; verify every alternative hypothesis.",
+          "id": "M53-LP-02",
+          "dependsOn": [
+            "M53-LP-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Finite LP strong duality and attainment",
+          "exitTask": "Use the proved alternative to establish primal/dual optimal-value equality and attainment under correctly stated finite LP feasibility/boundedness assumptions, including degeneracy.",
+          "id": "M53-LP-03",
+          "dependsOn": [
+            "M53-LP-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "title": "Complementary slackness certificates",
+          "exitTask": "Derive complementary slackness and verify exact primal/dual optimal solutions with zero coordinates and inactive constraints; reject a certificate that only checks stationarity.",
+          "id": "M53-LP-04",
+          "dependsOn": [
+            "M53-LP-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.mit.edu/~6.7980/nfgs_nash.html",
+      "checked": "2026-10-07",
+      "role": "Finite Nash scope and continuous-map route."
+    },
+    {
+      "url": "https://www.mit.edu/~6.7980/brouwer.html",
+      "checked": "2026-10-07",
+      "role": "Sperner/Brouwer motivation; its planar explanation alone is insufficient for the required all-dimensional bridge."
+    },
+    {
+      "url": "https://www.mit.edu/~6.7980/correlated.html",
+      "checked": "2026-10-07",
+      "role": "Finite minimax/LP duality and correlated-equilibrium distinctions."
+    },
+    {
+      "url": "https://stanford.edu/~avidit/FTnotes.pdf",
+      "checked": "2026-10-07",
+      "role": "Finite lottery axioms/representation scope; original exit tasks here."
+    }
+  ]
+}
