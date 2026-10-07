@@ -167,3 +167,6 @@ pack supply the entry authority. M21/M43 retain their macro-only contracts.
 | M63 | ARC595 | Trees, Bagging, Random Forests & Boosting | legacy-rich-contract | Later ownership; M05 supplies finite decision context only. |
 | M64 | ARC599 | Neural Networks, Backpropagation & Modern Representation Learning | legacy-rich-contract | Later ownership; M05 supplies finite decision context only. |
 | M65 | ARC560 | End-to-End Empirical Strategy Research & Adversarial Defense | legacy-rich-contract | Direct boundary: finite preparation; no formal theory imported. |
+
+
+Post-authoring evidence-distance recheck: the earlier surviving S16-T changed-surface label is conservatively downgraded to reasoning reconstruction. Its transformed labels can be reused from worked instruction. The original review/decision audit remains historical; the current candidate claims zero fresh Mains, zero changed-surface Transfers and zero unrehearsed decision audits. This is a classification repair, not a loss of the task’s constructive mathematical obligation.

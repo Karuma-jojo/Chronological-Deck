@@ -27,15 +27,14 @@ near([ev([40,100],[.5,.5]),ev([0,10],[.5,.5])],[70,5]); // S17
 near([ev([4,8],[.25,.75]),ev([100,140],[.25,.75]),130-120],[7,130,10]); // S18 preserved
 near([ev([10,-2],[.25,.75]),ev([4,2],[.25,.75]),ev([3,1],[.25,.75])],[1,2.5,1.5]);
 near([ev([9,0],[.25,.75]),ev([4,2],[.25,.75]),ev([3,1],[.25,.75])],[2.25,2.5,1.5]); // S19
-assert(4>0&&3>1); // S20: column chooses R against U, L against D from second components in transfer
+assert(4>0&&3>1); // S20: column chooses R against both U and D; against D the row-payoff minimizer instead chooses L
 // S21 transfer: row BR U to L, D to R; column BR L to U, R to D.
 assert(3>1&&2>0&&2>0&&3>1);
 // S22 transfer: against U column own payoff4>1, contrary to minimizing row payoff which would choose R.
 assert(4>1&&0<3);
 // S23
 near([2/5,4*(2/5)],[.4,1.6]);
-// S24 strategic transfer: row U to L, D to R; column R to both rows.
-assert(4>2&&3>1&&3>1&&2>0);
+// Current S24 strategic transfer is computed from its actual public task below.
 
 // M06 transfer numeric references S01–S24.
 near([35/50,35/(35+45)],[.7,.4375]);near([20000*.02*.75,20000*.98*.02,bayes(.02,.75,.02)],[300,392,75/173]);
@@ -55,4 +54,5 @@ near([.5*1+.5*7,.5*50+.5*130,90-80],[4,90,10]);near([bayes(.2,.6,.1),bayes(.2,.6
 near([210/350,bayes(.3,.7,.2)],[.6,.6]);near([.7*.6,.2*.3,.42/.06],[.42,.06,7]);
 near([.7*.4,.3*.2],[.28,.06]);near([.7/.35,.6/.2,.42/.07],[2,3,6]);near([update(.25,3),update(.75,3)],[.5,.9]);
 near([bayes(.3,.7,.1),bayes(.3,.7,.4)],[.75,3/7]);near([bayes(.2,.9*.4,.3*.2),update(.1,6)],[.6,.4]);
-console.log('PASS all48 Transfer numeric references, finite first-hit versus endpoint enumeration, repaired worked examples; existing separate scripts cover Main calculations. Symbolic/interpretive correctness additionally requires the manual review.');
+const {validateCandidateMath}=await import('./m05-candidate-math.mjs');validateCandidateMath(JSON.parse((await import('node:fs')).readFileSync('course/t22/authoring/m05.json')));
+console.log('PASS current M05 critical public models plus retained M05/M06 Transfer examples, finite first-hit versus endpoint enumeration, repaired worked examples; existing separate scripts cover Main calculations. Symbolic/interpretive correctness additionally requires the manual review.');

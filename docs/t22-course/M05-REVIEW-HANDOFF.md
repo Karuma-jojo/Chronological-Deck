@@ -1,218 +1,37 @@
-# M05 v2 reconstruction review handoff — Trading Games & Decisions Under Uncertainty
+# M05 v2.1 whole-curriculum candidate review handoff
 
-Date: 2026-10-03  
-Branch: `codex/t22-m05-deep-source-restart`  
-Stable module: `T22E-TRD01`  
-Status: **INDEPENDENT REVIEW COMPLETE · R01–R08 REPAIRED · FULL REVALIDATION / EXACT-HEAD CONFIRMATION PENDING**
+Date: 2026-10-07. Branch: `codex/t22-m05-whole-curriculum-rebuild`.
+Authoring: `m05-authoring-v2.1-whole-curriculum-candidate`.
+Instruction: `m05-instruction-v2.1-whole-curriculum-candidate`.
+Status: **builder candidate awaiting independent adversarial review**.
 
-## Recovery authority
+Start with [the source and all-module audit](M05-WHOLE-CURRICULUM-AUDIT-2026-10-07.md), [the design gate](M05-V2.1-DESIGN-GATE.md), [the boundary](M05-BOUNDARY.md), and current `course/t22/authoring/m05.json`.
 
-Published baseline recovered before edits:
+The recovered main is `5ecb2806fda6c1904c7eb10739bd5e553801e5eb`; prior M05 blob is `af37d469c95c65f3584e1dc9df97d113f2fe5a6e`. The earlier v2 R01–R08 review/repair remains recorded in its original immutable design/review files. It does not independently certify this expanded candidate.
 
-- `main`: `7600dd377192aafe6ca777636d94474736ea4e4f`
-- published M05 blob: `76b423ce15dbe38dd5ae4fa75ed4cff1a2dc075c`
-- historical authoring version: `m05-authoring-astra-r1`
-- historical instruction version: `m05-instruction-astra-r1`
+Current contract: 28 sessions, 56 fixed Main/Transfer task slots, 56 evaluators and 140 ownership claims. The semantic separation, wrong-solver, prerequisite and evidence-distance ledgers cover every session/task. There are zero fixed Mains labelled fresh, zero changed-surface Transfer claims, and zero current decision-audit entries. S24’s two exit tasks are integrated reasoning reconstruction. All eight new tasks are reasoning reconstruction.
 
-The historical bounded Astra repair/acceptance remains provenance. It is **not reused as acceptance of this reconstructed v2**.
+S25 adds finite risk/chord comparisons and table CE limits. S26 adds decisions under incomplete joint laws. S27 adds constrained comparison of supplied stopped policies. S28 adds mixed support/probability/deviation checks. S01–S24 keep their stable IDs, with learner positions changed only by insertion. S20-T’s false counterexample is fixed, S15-T/S21-T expose the requested rubric obligations, and S19 separates unconstrained rankings from feasible choices.
 
-## Source-first reconstruction authority
+Provenance: 48 prior r1 assessment fingerprints and 24 session contract hashes are retained in the pack. Seven existing public tasks increment their obligation versions; 41 existing assessment fingerprints remain unchanged. Eight new tasks start at version 1. The older reconstruction’s twelve preserved / thirty-six changed contracts and subsequent ten repair surfaces remain historical records. They are not re-labelled as new-review acceptance. S12 public assessment meaning is unchanged but its added M04-S28 prerequisite can stale the session contract. Every stale attempt remains stored verbatim.
 
-Read, in order:
+Instructional overlap audit removes the discovered answer reuse and records its historical target tasks, including cross-session S20 → S22-T. Current per-session instruction versions are respected; an unchanged lesson is not falsely stamped with the new global version. Unsolved guided practice remains distinct from answer exposure. Import/merge order cannot erase old answer exposure.
 
-1. `M05-DEEP-SOURCE-AUDIT-v1.0.md`
-2. `M05-V2-DESIGN-GATE.md`
-3. `M05-BOUNDARY.md`
-4. current `course/t22/authoring/m05.json`
+Checks to reproduce:
 
-The deep-source audit independently regenerated the module architecture before learner content was edited. Disposition:
+- `node scripts/test-t22-elite-m05.mjs`
+- `node docs/t22-course/audit/m05-candidate-math.mjs`
+- `node docs/t22-course/audit/m05-independent-math.mjs`
+- `node docs/t22-course/audit/m05-m06-transfer-math.mjs`
+- `node scripts/test-t22-elite-m05-m06-repairs.mjs`
+- `node docs/t22-course/audit/m05-handoff-checks.mjs`
+- `node scripts/test-t22-elite-m05-v2-browser.mjs`
+- full `.github/workflows/t22-elite-checks.yml`
 
-**DEEP BOUNDED RECONSTRUCTION**
+Math scope is explicit: seventeen critical actual public models are independently calculated and bound to reference/rubric roles; 69 deliberate corruptions must fail and one coherent model edit must pass. All 28 actual lesson/task/rubric/claim payloads additionally have builder semantic hashes. Supplemental historical examples are not described as independent computation of every current task.
 
-The stable M05 identity and roughly 24-session scale survive. The old session allocation does not.
+The Chromium test walks all 28 learner positions and 56 task/reference/rubric surfaces, attempts every guided check before feedback, verifies all four new representations, tests mobile width and Unicode, imports all 48 prior evidence records with exact current/stale classification, probes the newly found cross-session exposure migration, and performs save/reveal/export/import/reload. Full regression checks preserve other authoring packs and pin the authorized M05 exception to the exact candidate bytes.
 
-## Current candidate
+Reviewer attacks: recompute the S20-T response/minimizer mismatch; seek hidden assumptions in S26/S24 joint laws; enumerate S27 prefixes and normalization; check S25’s finite/global risk distinction and unobserved exact CE; check S28 support, illegal mixing probabilities and both-player deviations; compare all worked examples against public tasks; verify rubric/public-request observability; inspect evidence-distance honesty and historical migration. Inspect whole-curriculum seams, especially M04’s ownership and M06’s remaining posterior-to-action bridge.
 
-Authoring version:
-
-`m05-authoring-v2-independent-review-repair-r1`
-
-Instruction version:
-
-`m05-instruction-v2-independent-review-repair-r1`
-
-Module status:
-
-`v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation`
-
-Current shape:
-
-- 24 sessions;
-- 48 fixed Main/Transfer task slots;
-- 120 ownership claims;
-- 48/48 evidence-distance entries;
-- 24/24 wrong-solver entries;
-- 1 decision-audit entry;
-- permanent source ledger;
-- permanent representation progression ledger;
-- zero fixed Mains labelled fresh;
-- one changed-surface Transfer claim: S16-T;
-- S04-T/S22-T as reasoning reconstruction;
-- S24-M/S24-T as integrated reasoning reconstruction.
-
-The remaining tasks are deliberately labelled retrieval/reconstruction rather than inflating new numbers or context into “transfer.”
-
-## Major architectural changes
-
-The v2 reconstruction adds or repairs:
-
-- decision anatomy before calculation;
-- one-stage decision trees with decision/chance-node separation;
-- EMV as an explicit criterion rather than an unstated universal rule;
-- sensitivity analysis separated from Bayesian updating;
-- statewise dominance moved earlier;
-- old rapid-drill session redistributed as spaced retrieval rather than concept ownership;
-- utility bridge: certain-outcome ordinal representation → lottery preferences → Bernoulli/vNM utility → expected utility → CE/risk premium;
-- positive-affine versus arbitrary increasing utility-transform distinction;
-- general bimatrix strategic games before any minimizing-opponent specialization;
-- strictly competitive 2×2 saddle/security analysis only after the model gate;
-- mixed-strategy indifference after pure best responses;
-- an integrated S24 model-selection synthesis, deliberately not overclaimed as fresh evidence.
-
-## Preserved strong historical block
-
-The following public task contracts were retained because their mathematical/evidence jobs remain compatible:
-
-- S09 Main/Transfer;
-- S10 Main/Transfer;
-- S11 Main/Transfer;
-- S12 Main/Transfer;
-- S13 Main/Transfer;
-- S18 Main/Transfer.
-
-These 12 contracts preserve their historical obligation versions and assessment fingerprints.
-
-All other 36 public contracts are materially changed relative to the recovered published baseline. Independent review then repaired 10 of those assessment surfaces to `obligationVersion=4`; the remaining 26 reconstructed contracts remain at `obligationVersion=3`.
-
-Stable IDs and the shared evidence store are retained.
-
-## Historical exposure / learner evidence
-
-Historical answer-bearing exposure remains recorded:
-
-- old S18 answer-bearing lesson → S18-M.
-
-Historical guided-practice exposure remains recorded separately for old S15/S16 practice and does not fabricate a reveal timestamp.
-
-Deep reconstruction does not delete old attempts. Changed fingerprints/contracts become stale rather than silently recertified. Import/merge order must not hide older answer exposure.
-
-## Independent adversarial review and repair
-
-Frozen builder-green candidate reviewed:
-
-- head: `c8d3518b3902ca312c3141dad7b138b308f4f858`;
-- full T22 Elite run #643 / 37155016405: SUCCESS;
-- review: `M05-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md`.
-
-The reviewer raised R01–R08. All eight were accepted as justified:
-
-- R01: downgrade S04-T evidence;
-- R02: downgrade S22-T evidence;
-- R03: downgrade S24-T evidence;
-- R04: downgrade S24-M fresh claim;
-- R05: remove/neutralize answer-bearing assessment representations;
-- R06: remove assessment-specific lesson coaching;
-- R07: visually deliver decision-node versus chance-node semantics in S04 instruction;
-- R08: tighten S22/S23 minimizing-expected-row-payoff numerical convention.
-
-Core repair commit:
-
-- `e5412b485cfa4442138654645bccc9674681e9c5` — R01–R08 learner/evidence repair.
-
-The post-review candidate must still pass the full workflow on one exact head and then receive an exact-head confirmation. No review document is allowed to self-certify its own repair.
-
-## Source stack
-
-Role-separated sources include:
-
-- published M04 v2.1 as prerequisite authority;
-- Ross for finite probability/process comparison;
-- Osborne for choice, preference representation, lottery expected payoff, dominance/best responses, strictly competitive games and mixing;
-- MIT ESD.72 decision analysis;
-- MIT 15.060 decision trees;
-- MIT 14.123 choice/preference/decision under risk;
-- Stanford Levin choice under uncertainty;
-- MIT/Yale game-theory route comparators;
-- CFA/MSCI drawdown terminology;
-- MAA undergraduate mathematics pedagogy;
-- IES/WWC learning guidance;
-- Konold et al. probability misconception evidence.
-
-The sources support route/design decisions; they do not scientifically validate this exact T22 learner experience.
-
-## Current implementation commits
-
-Source/design stage:
-
-- `5ea4eb96a4a88a52e98d5bbeccf78c5960682732` — deep-source audit;
-- `f709eab37a0452592d7886baabb91ad8f9805b27` — v2 pre-authoring design gate.
-
-Implementation / gates so far:
-
-- `c1dc9b7995a5ed3bfda878c422922df70f4e21f7` — reconstructed `m05.json`;
-- `272f3d4b8857298ea32e0af0f7358066b37f9f98` — candidate-aware semantic gate;
-- `d1ffde82105c60c0d3ce84d7cea9de91aca2c7ad` — v2 independent-math oracle;
-- `2715b8d278d31266b9995ca7e5efec11d5b8de60` — v2 Transfer math oracle;
-- `ffd0bb1034e8615a0f176e5df0522695317f7286` — v2 structural/pedagogy gate;
-- `0a2bad7848b5d8aa597c0ba67db28f556e430ebd` — provenance regression adaptation;
-- `55e5d3d223794d9c7337c793e84a41c7b1af7bd1` — v2 boundary update.
-
-These commits are builder-side work only. The eventual independent reviewer must use the final frozen implementation head, not one of these intermediate commits.
-
-## Validation still required before reviewer handoff
-
-Required:
-
-- syntax / JSON load;
-- M05 structural/pedagogy gate;
-- independent M05 Main math;
-- all M05 Transfer math;
-- candidate semantic claim/rubric checks;
-- assessment fingerprint/provenance regressions;
-- historical exposure import/merge checks;
-- inherited M01–M15 protections;
-- actual browser traversal of all 24 M05 lessons;
-- all staged guided-feedback states;
-- all 48 Main/Transfer/reference/rubric surfaces;
-- representation rendering;
-- save → reveal → export → import → reload;
-- mobile width / escaped-newline / malformed-Unicode checks;
-- full T22 Elite workflow on the exact pushed head.
-
-Do **not** write “independently accepted” until an independent reviewer has produced findings, all justified findings are repaired, and an exact-head confirmation is complete.
-
-## Exact-head confirmation priorities
-
-Attack at least:
-
-1. whether S01 really teaches a decision model rather than just another table;
-2. whether S04 decision-node versus chance-node semantics are visible in the actual UI;
-3. whether S06 accidentally drifts into Bayesian interpretation;
-4. whether S07's high-win-rate contrast distinguishes frequency from payoff magnitude;
-5. whether S12 still discriminates first-hit ruin from endpoint-only reasoning;
-6. whether S13 remains feasibility rather than optimization;
-7. whether S15–S16 correctly distinguish ordinal certain-outcome utility from lottery EU representation;
-8. whether S16's positive-affine/non-affine transform example is mathematically and pedagogically clean;
-9. whether S18's CE/premium language remains model-relative;
-10. whether S19 keeps dominance, EMV, feasibility, maximin and EU genuinely separate;
-11. whether S20–S22 correctly separate chance, general strategic games and strict competition;
-12. whether S23 solves only elementary indifference rather than smuggling in a general theorem;
-13. whether S24-M/S24-T are now honestly labelled integrated reasoning reconstruction;
-14. whether S16-T is the only remaining changed-surface label and genuinely earns it;
-15. whether any retained public contract has become semantically stale despite matching text/fingerprint.
-
-## Stop boundary
-
-After full builder validation, freeze the exact candidate head and hand it to an independent adversarial reviewer.
-
-**Do not merge to main. Do not self-declare acceptance. Do not rebuild M06/M07 in this pass.**
+Do not merge to main. Do not self-declare acceptance. Freeze the final exact commit and subject this candidate to independent review before promotion. M06 and later authoring packs remain outside this implementation pass.

@@ -123,10 +123,7 @@ assert.deepEqual([Math.max(2,0),Math.max(1,-1)],[2,1]);
 close(.5,2/4);close(3*.5,1.5);close(.25,1/4);
 close(2/5,.4);close(4*.4,1.6);
 
-// S24 fresh chance decision.
-close(ev([30,-10],[.4,.6]),6);
-close(ev([10,4],[.4,.6]),6.4);
-close((4+10)/40,.35);
+// S24 was rebuilt; its current public model is computed below.
 
 // Boundary sentinels.
 const m05=JSON.parse((await import('node:fs')).readFileSync('course/t22/authoring/m05.json','utf8'));
@@ -134,4 +131,5 @@ for(const bad of ["Bayes' rule",'posterior odds','bid/ask','log return','Kelly c
  assert(!m05.sessions.some(s=>s.lesson.includes(bad)),'boundary leak: '+bad);
 }
 
-console.log('PASS M05 v2 independent math: decision accounting/tree rollback, EMV thresholds/sensitivity, downside, dominance, repeated expectation, bankroll/drawdown/first-hit ruin, feasibility, multiplicative recovery, ordinal-vs-lottery utility, CE, criterion audit, bimatrix/best responses, strict-competition saddle, mixed indifference and fresh synthesis.');
+const {assertMathMutationsRejected}=await import('./m05-candidate-math.mjs');const receipt=assertMathMutationsRejected(m05);
+console.log('PASS M05 current critical public math: '+receipt.rejected+' rejected mutations; supplemental historical examples: decision accounting/tree rollback, EMV thresholds/sensitivity, downside, dominance, repeated expectation, bankroll/drawdown/first-hit ruin, feasibility, multiplicative recovery, ordinal-vs-lottery utility, CE, criterion audit, bimatrix/best responses, strict-competition saddle, mixed indifference.');

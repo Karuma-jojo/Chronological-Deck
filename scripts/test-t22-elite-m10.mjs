@@ -62,7 +62,9 @@ assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));
 // behavior remains covered by the existing browser suite and M13 UI checks.
 const publicationAuthorized=new Set(['course/t22/authoring/m04.json','course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/ui.js','t22-course.html','course/t22/authoring/m05.json','course/t22/authoring/m03.json']);
 const m05v2=read('course/t22/authoring/m05.json');
-assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M10 baseline exception is bounded to the explicit M05 v2 candidate');
+assert.equal(m05v2.version,'m05-authoring-v2.1-whole-curriculum-candidate','M10 exception permits only the authorized whole-curriculum M05 candidate');
+assert.equal(m05v2.sessions.length,28);
+assert.equal(createHash('sha256').update(fs.readFileSync('course/t22/authoring/m05.json')).digest('hex'),'201498c3b0b048a6264dea5fc16aa0d9828cae8b2b33507b8a3efaf9f26f5a2f','M10 M05 exception is pinned to exact candidate bytes');
 assert(fs.existsSync('docs/t22-course/M05-V2-DESIGN-GATE.md'));
 assert.equal(m03.version,'m03-authoring-v2.0-six-tools-candidate-r4','M10 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
 const m04v22=read('course/t22/authoring/m04.json');

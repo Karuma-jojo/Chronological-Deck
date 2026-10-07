@@ -1,16 +1,18 @@
 # M05 v2 boundary — Trading Games & Decisions Under Uncertainty
 
-Date: 2026-10-03  
-Branch: `codex/t22-m05-deep-source-restart`  
-Stable module ID: `T22E-TRD01`  
-Authoring version: `m05-authoring-v2-independent-review-repair-r1`  
-Status: **V2 INDEPENDENT-REVIEW REPAIR R1 — EXACT-HEAD CONFIRMATION PENDING**
+Date: 2026-10-07
+Branch: `codex/t22-m05-whole-curriculum-rebuild`
+Stable module ID: `T22E-TRD01`
+Authoring version: `m05-authoring-v2.1-whole-curriculum-candidate`
+Status: **V2.1 WHOLE-CURRICULUM CANDIDATE — INDEPENDENT REVIEW PENDING**
 
 Authority:
 
 - `M05-DEEP-SOURCE-AUDIT-v1.0.md`
-- `M05-V2-DESIGN-GATE.md`
-- published M04 v2.1 prerequisite authority
+- `M05-V2-DESIGN-GATE.md` (historical)
+- `M05-WHOLE-CURRICULUM-AUDIT-2026-10-07.md`
+- `M05-V2.1-DESIGN-GATE.md`
+- published M04 v2.2-r2 prerequisite authority
 - T22 Module Builder / Adversarial Checker v1.2
 
 The historical Astra M05 remains part of the provenance record. Its prior independent acceptance does not automatically certify this materially reconstructed v2 candidate.
@@ -22,6 +24,8 @@ Direct macro prerequisite: **M04 · ARC048**.
 M05 may assume from published M04:
 
 - legal finite probability models;
+- sharp finite joint-law bounds without invented independence (M04-S25);
+- full-history path laws and normalized stopped terminal prefixes (M04-S26/S28);
 - event probabilities, complements and finite trees;
 - repeated independent finite paths when explicitly stated;
 - finite expectation;
@@ -41,32 +45,40 @@ The learner should be able to turn a finite known-probability situation into an 
 5. what preference or decision criterion is actually supplied;
 6. whether uncertainty comes from nature or from another strategic chooser.
 
-## Canonical candidate 24-session route
+## Canonical candidate 28-session route
 
-1. Decision anatomy: actions, states/chance, consequences & criterion
-2. Money accounting: cost/fee, gross receipt, net payoff & terminal wealth
-3. Expected monetary value as a criterion; zero-EMV entry fee
-4. One-stage decision trees: decision nodes, chance nodes & rollback
-5. Break-even thresholds: probability, payoff or fee
-6. Sensitivity & model-input audit
-7. Downside profile: loss frequency, magnitude, skew & modal outcome
-8. Statewise dominance before probabilities
-9. Fixed-horizon repetition: expected total versus realized path
-10. Bankroll stock, payoff increments & cumulative P&L
-11. Running peaks & drawdown
-12. Finite-horizon first-hit ruin
-13. Hard bankroll/stake constraints: feasible set, not optimal stake
-14. Multiplicative wealth factors & recovery after drawdown
-15. Preferences over certain consequences & ordinal representation
-16. Lottery preferences: when expected utility is licensed
-17. Expected utility versus expected money; risk-neutral money as a special case
-18. Certainty equivalent & finite risk premium
-19. Decision-criteria audit: dominance, EMV, constraints, maximin & EU
-20. Chance states versus strategic opponents: general bimatrix anatomy
-21. Pure best responses, dominance & mutual best response
-22. Strictly competitive 2×2 games: security levels & pure saddle
-23. Mixed strategies in 2×2: expected payoff & indifference
-24. Fresh integrated decision audit
+S01 → S02 → S03 → S04 → S05 → S06 → S07 → S08 → S26 → S09 → S10 → S11 → S12 → S13 → S27 → S14 → S15 → S16 → S17 → S18 → S25 → S19 → S20 → S21 → S22 → S23 → S28 → S24.
+
+| Position | Stable ID | Session |
+| --- | --- | --- |
+| 1 | S01 | Decision anatomy: actions, states/chance, consequences & criterion |
+| 2 | S02 | Money accounting: cost, gross receipt, net payoff & terminal wealth |
+| 3 | S03 | Expected monetary value as a criterion; zero-EMV entry fee |
+| 4 | S04 | One-stage decision trees: decision nodes, chance nodes & rollback |
+| 5 | S05 | Break-even thresholds: probability, payoff or fee |
+| 6 | S06 | Sensitivity & model-input audit |
+| 7 | S07 | Downside profile: loss frequency, magnitude, skew & modal outcome |
+| 8 | S08 | Statewise dominance before probabilities |
+| 9 | S26 | Decisions with incomplete joint information & robust comparisons |
+| 10 | S09 | Fixed-horizon repetition: expected total versus realized path |
+| 11 | S10 | Bankroll stock, payoff increments & cumulative P&L |
+| 12 | S11 | Running peaks & drawdown |
+| 13 | S12 | Finite-horizon first-hit ruin |
+| 14 | S13 | Hard bankroll/stake constraints: feasible set, not optimal stake |
+| 15 | S27 | Finite stopped-policy comparisons: ruin, terminal wealth & constraints |
+| 16 | S14 | Multiplicative wealth factors & recovery after drawdown |
+| 17 | S15 | Preferences over certain consequences & ordinal representation |
+| 18 | S16 | Lottery preferences: when expected utility is licensed |
+| 19 | S17 | Expected utility versus expected money; risk-neutral money as a special case |
+| 20 | S18 | Certainty equivalent & finite risk premium |
+| 21 | S25 | Finite risk attitudes, chord comparisons & CE limits |
+| 22 | S19 | Decision-criteria audit: dominance, EMV, constraints, maximin & EU |
+| 23 | S20 | Chance states versus strategic opponents: general bimatrix anatomy |
+| 24 | S21 | Pure best responses, dominance & mutual best response |
+| 25 | S22 | Strictly competitive 2×2 games: security levels & pure saddle |
+| 26 | S23 | Mixed strategies in 2×2: expected payoff & indifference |
+| 27 | S28 | Mixed-strategy validity: own payoffs, support & unilateral deviations |
+| 28 | S24 | M05 cumulative decision audit: model, criterion & feasibility |
 
 ## Explicit ownership
 
@@ -90,7 +102,11 @@ M05 v2 owns:
 - criterion-labelled maximin in finite payoff tables;
 - general finite two-player bimatrices and pure best responses;
 - explicitly strictly competitive 2×2 security/saddle calculations;
-- elementary 2×2 mixed-strategy indifference calculations.
+- elementary 2×2 mixed-strategy indifference calculations;
+- finite chord/risk comparisons and table-defined CE limits;
+- robust EMV differences across legal incomplete joint laws;
+- constrained evaluation of supplied finite stopped policies;
+- support/legal-probability, independent joint-law and unilateral-deviation validation.
 
 ## Explicit exclusions
 
@@ -133,7 +149,7 @@ A strategic opponent is never silently treated as an exogenous chance state.
 After independent adversarial review, the repaired evidence ledger classifies:
 
 - **zero fixed Mains as fresh evidence**;
-- **one changed-surface Transfer: S16-T**, where the learner must construct a new order-preserving relabeling satisfying a reversal constraint;
+- **zero changed-surface Transfer claims**; S16-T is reasoning reconstruction because the worked transformed labels can be reused;
 - S04-T and S22-T as reasoning reconstruction;
 - S24-M and S24-T as integrated reasoning reconstruction;
 - derivation/reasoning-reconstruction Mains where applicable;
@@ -154,6 +170,8 @@ Stable module/session/task IDs are retained.
 Relative to the recovered published baseline, thirty-six public contracts are materially reconstructed and twelve compatible contracts remain preserved. After independent review, ten of those reconstructed assessment surfaces were repaired again and are `obligationVersion=4`; the other twenty-six remain `obligationVersion=3`. Historical attempts are retained rather than deleted or silently recertified.
 
 Historical answer-bearing and guided-practice exposure records remain in the authoring pack.
+
+Seven r1 public assessment contracts are changed again in v2.1, with obligation versions incremented by one; eight added tasks begin at version 1. The retained r1 fingerprint/hash receipt determines exact migration. The historical thirty-six/twelve and ten-repair counts above describe earlier stages, not this new delta.
 
 ## Independent-review repair authority
 
