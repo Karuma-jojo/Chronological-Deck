@@ -1718,3 +1718,136 @@ Gate 3 remains a **repaired mass-pass review candidate**, not accepted.
 
 `Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 REPAIRED MASS-PASS REVIEW CANDIDATE → Tribunal 🔒`
 
+## Arsenal Gate 3 bundle/trigger repair after review 5436149362 (2026-10-07)
+
+Independent repaired graduation review **5436149362** on exact SHA `7ea6d64d8a0bf0424a3b23925ff8c5e77bd487a2` confirmed the v2 classifier repair but kept two narrower application blockers open. The accepted 45-row calibration remains unchanged.
+
+### G3-M05 — replace one-ID mass bundle allowlist with exhaustive candidate-expression audit
+
+The v2 repair over-corrected bundle detection by allowing only `RAW-OFFICIAL-098` to become BUNDLED_MOVES outside the frozen calibration. Review exposed three genuine false negatives:
+
+- `RAW-OFFICIAL-088 — Extend a Vector to a Basis and Count Free Images`
+- `RAW-BRIDGE-063 — Matrix-to-incidence-graph translation and block decomposition by components`
+- `RAW-BRIDGE-072 — Coefficient extraction from shifted polynomials and reduction modulo a prime`
+
+The v3 classifier now uses:
+
+1. a deterministic candidate-expression surface for multiple operation heads joined by `and / plus / then / slash`;
+2. an explicit decision table for every surfaced mass candidate;
+3. the previously audited `RAW-OFFICIAL-098` bundle.
+
+The validator requires every surfaced mass candidate to have a decision, so newly visible multi-operation expressions cannot silently bypass the audit.
+
+The final **8** BUNDLED_MOVES rows are:
+
+- RAW-BRIDGE-063
+- RAW-BRIDGE-070
+- RAW-BRIDGE-072
+- RAW-OFFICIAL-088
+- RAW-OFFICIAL-095
+- RAW-OFFICIAL-098
+- RAW-OFFICIAL-107
+- RAW-SOURCE-h-combining-techniques
+
+The earlier eight proof-sequencing false positives remain explicitly protected as NOT BUNDLED_MOVES:
+RAW-OFFICIAL-074, 075, 077, 080, 084, 099, 102, 108.
+
+`RAW-OFFICIAL-088` is now also correctly `EXPLICIT_ACTION`.
+
+### G3-M06 — restore accepted object-as-trigger semantics
+
+The v2 preposition repair correctly removed fake triggers such as the `for` in `Search for a Pattern`, but it accidentally weakened an accepted ruler case.
+
+Frozen calibration:
+- `RAW-ROUTE-029 — Diagonalize a 2-by-2 Polynomial Matrix`
+- actionShape EXPLICIT_ACTION
+- triggerBoundary CLEAR
+- accepted rationale: the object supplies the trigger.
+
+The v3 classifier now distinguishes:
+- generic grammatical prepositions → never trigger evidence by themselves;
+- an explicit action whose mathematically specific direct object states the object/situation being acted on → lexical object trigger can be CLEAR.
+
+Therefore `RAW-OFFICIAL-091 — Diagonalize a 2-by-2 Polynomial Matrix` now matches the accepted calibration with:
+- EXPLICIT_ACTION
+- triggerBoundary CLEAR.
+
+`Search for a Pattern` remains trigger UNRESOLVED.
+
+### Re-generated v3 distribution
+
+Population remains **661 REVIEWED / 0 UNREVIEWED**.
+
+Reference scale:
+- MICRO 1
+- DEPLOYABLE 190
+- MACRO 89
+- CROSS_SCALE 1
+- UNRESOLVED 380
+
+Bundle structure:
+- BUNDLED_MOVES 8
+- SINGLE_PRIMARY_MOVE 191
+- UNRESOLVED 462
+
+Action shape:
+- EXPLICIT_ACTION 53
+- IMPLICIT_ACTION 236
+- LABEL_ONLY 371
+- UNRESOLVED 1
+
+Context reach:
+- GENERAL 440
+- SOURCE_LOCAL 6
+- PROBLEM_LOCAL 7
+- UNRESOLVED 208
+
+Trigger boundaries:
+- CLEAR 51
+- PARTIAL 10
+- ABSENT 82
+- UNRESOLVED 518
+
+Operation boundaries:
+- CLEAR 181
+- PARTIAL 108
+- ABSENT 82
+- UNRESOLVED 290
+
+Output boundaries:
+- CLEAR 93
+- PARTIAL 56
+- ABSENT 81
+- UNRESOLVED 431
+
+Confidence:
+- HIGH 619
+- MEDIUM 41
+- LOW 1
+
+Mass rule usage:
+- MP01 39
+- MP02 4
+- MP03 113
+- MP04 14
+- MP05 12
+- MP06 25
+- MP07 9
+- MP08 178
+- MP09 31
+- MP10 191
+
+Official rows:
+- DEPLOYABLE 120
+- MACRO 4
+- UNRESOLVED 3
+
+Duplicate-name audit:
+- 25 normalized duplicate groups;
+- 13 differing signatures;
+- `Diagonalize a 2-by-2 Polynomial Matrix` is no longer a difference because the mass duplicate now matches the frozen calibration trigger semantics.
+
+The exact v3 distributions are executable regression expectations.
+
+Gate 3 remains a **review candidate**, not accepted. Tribunal remains closed pending another exact-head graduation attack.
+
