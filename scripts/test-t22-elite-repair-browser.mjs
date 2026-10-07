@@ -3,14 +3,14 @@ const key='chrono_t22_elite_course_evidence_v1';
 const state=p=>p.evaluate(k=>JSON.parse(localStorage.getItem(k)),key);
 const ready=p=>p.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
 export async function runRepairBrowserChecks(browser,base){
- const m05=JSON.parse(await readFile('course/t22/authoring/m05.json'));const pos=(module,n)=>module===5?m05.sessions.find(s=>s.id===`T22V3::T22E-TRD01::S${String(n).padStart(2,'0')}@1`).order:n;
+ const m05=JSON.parse(await readFile('course/t22/authoring/m05.json')),m06=JSON.parse(await readFile('course/t22/authoring/m06-v2.json'));const pos=(module,n)=>{const pack=module===5?m05:m06;return pack.sessions.find(s=>s.id===`T22V3::${pack.module.id}::S${String(n).padStart(2,'0')}@1`).order;};
  const review=JSON.parse(await readFile('docs/t22-course/audit/m05-m06-reviewed-contracts.json'));
  for(const [module,mid,sourceN,targetN] of [[5,'T22E-TRD01',18,18],[6,'ARC502',10,1]]){
   const source=`T22V3::${mid}::S${String(sourceN).padStart(2,'0')}-M@1`,target=`T22V3::${mid}::S${String(targetN).padStart(2,'0')}-M@1`,sid=target.replace('-M@','@');
   const ctx=await browser.newContext(),p=await ctx.newPage();await p.goto(`${base}/t22-course.html?module=${module}&session=${pos(module,sourceN)}`);await ready(p);
   // Current instruction is guided in this attempt, but not permanently answer-revealed after a fresh visit.
   await p.click('#note');await p.click('#previous');await p.click('#next');await p.fill('#answer','Fresh reconstruction after current separated instruction');await p.click('#save');
-  let st=await state(p);const expectedAssistance=module===5?'guided':'independent';assert.equal(st.attempts.at(-1).assistance,expectedAssistance,'Current module-specific note provenance changed unexpectedly');assert.equal(st.attempts.at(-1).referenceSeenBefore,false);
+  let st=await state(p);const expectedAssistance='guided';assert.equal(st.attempts.at(-1).assistance,expectedAssistance,'Current module-specific note provenance changed unexpectedly');assert.equal(st.attempts.at(-1).referenceSeenBefore,false);
   const oldAt='2026-09-18T07:00:00.000Z',old={schema:'t22e-course-evidence-v1',attempts:[{id:'historical-'+module,problemId:target,at:'2026-09-18T06:00:00.000Z',answer:'Original pre-exposure reasoning — preserve verbatim',assistance:'independent',minutes:7,result:'secure',error:'',referenceSeenBefore:false,noteSeenDuringAttempt:false,contractHash:review.modules[mid].baseline.contractHashes[sid],assessmentFingerprint:review.modules[mid].baseline.assessmentFingerprints[target]}],artifacts:[],exposures:{[source]:{firstSeen:oldAt,lastSeen:oldAt,views:1,lessonSeenAt:oldAt,lessonContentVersion:`m0${module}-instruction-v1`}}};
   // Import an old, unmigrated export into a browser that has already read the clean current version.
   await p.setInputFiles('#import',{name:'old.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(old))});await p.waitForFunction(()=>document.querySelector('#status').textContent.includes('Evidence merged'));
