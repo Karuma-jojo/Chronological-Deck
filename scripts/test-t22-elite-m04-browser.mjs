@@ -56,14 +56,19 @@ try{
       evidenceDistance:Object.keys(json.evidenceDistance?.items||{}).length,
       decision:Object.keys(json.decisionAudit?.items||{}).length,
       wrong:Object.keys(json.wrongSolverAudit?.sessions||{}).length,
-      repr:json.representationProgression?.length
+      repr:json.representationProgression?.length,
+      staleR2:Object.entries(json.wholeCurriculumRebuild?.r2PriorAssessmentFingerprints||{}).every(([problemId,oldFp])=>{
+        const session=core.sessionForProblem(course,problemId);
+        return oldFp!==course.assessmentFingerprints[problemId] && core.evidenceIsCurrent({problemId,contractHash:session.contractHash,assessmentFingerprint:oldFp},course)===false;
+      }),
+      staleR2Count:Object.keys(json.wholeCurriculumRebuild?.r2PriorAssessmentFingerprints||{}).length
     };
   });
   assert.equal(candidate.ok,true);assert.equal(candidate.status,200);assert.equal(candidate.id,'ARC048');
-  assert.equal(candidate.moduleStatus,'v2.2-28-session-whole-curriculum-rebuild-candidate');
+  assert.equal(candidate.moduleStatus,'v2.2-28-session-whole-curriculum-bounded-repair-r2-candidate');
   assert.equal(candidate.sessions,28);assert.equal(candidate.problems,56);assert.equal(candidate.evaluators,56);assert.equal(candidate.hashes,true);assert.equal(candidate.fingerprints,56);
-  assert.equal(candidate.badEscaped,0);assert.equal(candidate.badReplacement,0);assert.equal(candidate.guided,true);
-  assert.equal(candidate.evidenceDistance,56);assert.equal(candidate.decision,9);assert.equal(candidate.wrong,28);assert.equal(candidate.repr,14);
+  assert.equal(candidate.badEscaped,0);assert.equal(candidate.badReplacement,0);assert.equal(candidate.guided,true);assert.equal(candidate.staleR2,true);assert.equal(candidate.staleR2Count,10);
+  assert.equal(candidate.evidenceDistance,56);assert.equal(candidate.decision,7);assert.equal(candidate.wrong,28);assert.equal(candidate.repr,14);
   for(let i=0;i<route.length;i++){
     const n=route[i],ss=pad(n);
     assert.deepEqual(candidate.ids[i],[i+1,`T22V3::ARC048::S${ss}@1`,`T22V3::ARC048::S${ss}-M@1`,`T22V3::ARC048::S${ss}-T@1`]);
@@ -134,6 +139,13 @@ try{
   await page.selectOption('#session','22');await page.click('#transferTask');assert((await page.locator('#problem').textContent()).includes('HH:0.10, HT:0.20, TH:0.30, TT:0.40'));
   await page.selectOption('#session','20');await page.click('#transferTask');assert((await page.locator('#problem').textContent()).includes('Stop as soon as either player has two wins'));
 
+  // Independent-review repair surfaces are public and unambiguous.
+  await page.selectOption('#session','3');await page.click('#mainTask');assert((await page.locator('#problem').textContent()).includes('uniform over all 36 pairs'));
+  await page.selectOption('#session','12');await page.click('#mainTask');assert((await page.locator('#problem').textContent()).includes('joint model for two six-sided dice is uniform'));
+  await page.selectOption('#session','7');await page.click('#transferTask');assert((await page.locator('#problem').textContent()).includes('disjoint new-contribution events'));
+  await page.selectOption('#session','21');await page.click('#mainTask');assert((await page.locator('#problem').textContent()).includes('universally valid identity P(A)=Σ_i P(A∩B_i)'));
+  await page.selectOption('#session','20');await page.click('#mainTask');assert((await page.locator('#problem').textContent()).includes('by the cap (including an H on trial3)'));
+
   const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));
   assert.equal(stored.attempts.filter(a=>a.problemId.includes('ARC048')).length,56);
   assert(stored.attempts.filter(a=>a.problemId.includes('ARC048')).every(a=>a.noteSeenDuringAttempt===true&&a.assistance==='guided'));
@@ -150,7 +162,7 @@ try{
   assert.deepEqual(errors,[]);
   await context.close();
 
-  console.log('PASS M04 v2.2 browser: 28-session stable-ID route, all 56 task/reference/rubric surfaces, retained + new representations, mobile rendering and evidence export/import/reload work on the real learner UI.');
+  console.log('PASS M04 v2.2-r2 browser: 28-session stable-ID route, all 56 surfaces, reviewer repair wording, stale-r1 fingerprint rejection, representations, mobile rendering and evidence round-trip pass.');
 }finally{
   if(browser)await browser.close();
   await new Promise(r=>server.close(r));
