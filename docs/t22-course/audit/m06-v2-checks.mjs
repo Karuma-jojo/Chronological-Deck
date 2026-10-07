@@ -60,6 +60,7 @@ export function adversarialContractGuards(a){
  const s30=a.sessions.find(s=>s.id.includes('::S30@')),s33=a.sessions.find(s=>s.id.includes('::S33@')),s34=a.sessions.find(s=>s.id.includes('::S34@'));
  assert(s30.lesson.includes('LR(R)=P(R|H)/P(R|Hc)'),'Early report-ratio definition must precede later formal LR lessons');
  assert(s33.lesson.includes('P(X=1,Y=1|H_i)=P(X=1|H_i)P(Y=1|H_i)'),'The pre-S19 task needs a JIT independence definition');
+ assert(s33.lesson.includes('w_i(t)=P(H_i∩{e1...et})')&&s33.lesson.includes('Only for a positive-prior H_i'),'History instruction must start from joint mass even for zero priors');
  assert(a.problems[s34.main].prompt.includes('are mutually independent: for every x,y,e in{0,1}'));
  assert(a.problems[s34.main].prompt.includes('P(X=x,Y=y,1_E=e|H_i)=P(X=x|H_i)P(Y=y|H_i)P(1_E=e|H_i)'));
  assert.equal(a.mathModels[s34.main].jointAssumption,'mutual-independence-X-Y-evidence-indicator-given-each-hypothesis');

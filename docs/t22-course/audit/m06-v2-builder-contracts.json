@@ -2,7 +2,7 @@
   "version": "m06-authoring-v2.0-r1-adversarial-repair-candidate",
   "status": "builder-audited-awaiting-independent-review",
   "sourceMain": "9458e9e6b114c3366f6b009982f26de2e40234f6",
-  "candidateDigest": "3d09e28a058ba5019341c20365b8d08dabf9825e40be4b3329b9317f7019e318",
+  "candidateDigest": "202a5e3a1eb0a3a990b42116e0bb0f55a3b57a6a3e4f987b08dd7c4dec0ee81b",
   "policy": "Binds read public requests, evaluators, lessons, claim links and typed models. This is a builder integrity pin, not independent review.",
   "adversarialReview": "docs/t22-course/M06-V2-ADVERSARIAL-REVIEW.md",
   "reviewKind": "same-builder-adversarial-recheck-not-independent"
