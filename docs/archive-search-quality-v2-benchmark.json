@@ -1,0 +1,236 @@
+{
+  "date": "2026-10-07",
+  "corpus": {
+    "logicalArcs": 8,
+    "readyChunks": 460
+  },
+  "retrieval": {
+    "completedOnly": true,
+    "limit": 40,
+    "logicalArcId": null,
+    "documentType": null
+  },
+  "method": "Authored concept queries; a hit requires the audited target ARC and a passage evidence pattern. Same unfiltered queries and model before/after. No ranking constants tuned against results. Source audit corrected one ARC label, documented in the fixture; held-out cases are diagnostic, not a blind external evaluation.",
+  "before": {
+    "cases": 30,
+    "hitAt1": 20,
+    "hitAt5": 27,
+    "mrrAt40": 0.7794444444444444,
+    "bySplit": {
+      "development": {
+        "cases": 21,
+        "hitAt1": 14,
+        "hitAt5": 19,
+        "mrrAt40": 0.7873015873015872
+      },
+      "held_out": {
+        "cases": 9,
+        "hitAt1": 6,
+        "hitAt5": 8,
+        "mrrAt40": 0.7611111111111111
+      }
+    }
+  },
+  "after": {
+    "cases": 30,
+    "hitAt1": 28,
+    "hitAt5": 30,
+    "mrrAt40": 0.9666666666666667,
+    "bySplit": {
+      "development": {
+        "cases": 21,
+        "hitAt1": 21,
+        "hitAt5": 21,
+        "mrrAt40": 1
+      },
+      "held_out": {
+        "cases": 9,
+        "hitAt1": 7,
+        "hitAt5": 9,
+        "mrrAt40": 0.8888888888888888
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "logic-shared-input",
+      "split": "development",
+      "beforeRank": 6,
+      "afterRank": 1
+    },
+    {
+      "id": "logic-necessary",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "logic-negation",
+      "split": "development",
+      "beforeRank": 2,
+      "afterRank": 1
+    },
+    {
+      "id": "logic-small-square",
+      "split": "development",
+      "beforeRank": 6,
+      "afterRank": 1
+    },
+    {
+      "id": "logic-domain",
+      "split": "held_out",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "logic-exists",
+      "split": "held_out",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "foundations-percent",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "foundations-negative-inequality",
+      "split": "development",
+      "beforeRank": 2,
+      "afterRank": 1
+    },
+    {
+      "id": "foundations-root",
+      "split": "held_out",
+      "beforeRank": 2,
+      "afterRank": 2
+    },
+    {
+      "id": "foundations-absolute",
+      "split": "development",
+      "beforeRank": 2,
+      "afterRank": 1
+    },
+    {
+      "id": "secants-symmetric",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "secants-tolerance",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "secants-output",
+      "split": "held_out",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "intervals-bound",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "intervals-equality",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "intervals-debt",
+      "split": "held_out",
+      "beforeRank": 10,
+      "afterRank": 2
+    },
+    {
+      "id": "linearity-reciprocal",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "linearity-relative",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "linearity-transfer",
+      "split": "held_out",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "powers-binomial",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "powers-scaling",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "powers-convention",
+      "split": "held_out",
+      "beforeRank": 4,
+      "afterRank": 1
+    },
+    {
+      "id": "domain-hole",
+      "split": "development",
+      "beforeRank": 5,
+      "afterRank": 1
+    },
+    {
+      "id": "domain-log-negative",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "domain-rational-power",
+      "split": "held_out",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "equations-squaring",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "equations-zero-branch",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "equations-rational-sign",
+      "split": "development",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "equations-recovery",
+      "split": "held_out",
+      "beforeRank": 1,
+      "afterRank": 1
+    },
+    {
+      "id": "logic-reciprocal-bound",
+      "split": "development",
+      "beforeRank": 2,
+      "afterRank": 1
+    }
+  ]
+}
