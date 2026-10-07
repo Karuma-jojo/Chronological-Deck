@@ -13,7 +13,7 @@
     "course/t22/authoring/m05.json": "117751c09d0b0d32528674740cb79227fa4b5db57df530f58095c86dc0e6f513",
     "course/t22/authoring/m03.json": "6dc985b23bbbf47c4946e3ec3ace72e55a8a1afc99e2ce1126b965d83e2ed635",
     "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
-    "course/t22/authoring/m04.json": "cc28a2cdef6f4d1efab893e1e1e5437a4fb85fec7c5ada92fb03c2cfc6425b34",
+    "course/t22/authoring/m04.json": "73f69f55bb0811de356eb739b530cfe7574960fabc89e56181748c8be84e2f05",
     "course/t22/authoring/m02.json": "d54530eb493dfa75e4d03c9e8ee201f50a84303a51c71e148337e3aeffbc433a",
     "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
     "course/t22/authoring/m01-repairs-1.1.json": "a2efe7697dc4bbaf163ac81ef40f2c69d25831cda9c5c07a994f8d61d326cc19"
@@ -69,7 +69,7 @@
     "status": "independent review bounded repair r2 candidate; exact-head CI and focused confirmation required",
     "m09Disposition": "Repin only the intentional M04 dependency hash; all other M09 preserved-baseline curriculum hashes remain unchanged.",
     "repairReview": "M04-v2.2 adversarial review 2026-10-07, findings R01-R06+C01/C02",
-    "currentM04RawSha256": "cc28a2cdef6f4d1efab893e1e1e5437a4fb85fec7c5ada92fb03c2cfc6425b34",
+    "currentM04RawSha256": "73f69f55bb0811de356eb739b530cfe7574960fabc89e56181748c8be84e2f05",
     "repairScope": "R01 public joint/sampling assumptions; R02 evidence-class honesty; R03 union-bound proof observability; R04 zero-mass total-probability qualification; R05 candidate-bound math mutation checks; R06 inclusive cap wording; C01 typo; C02 exact downstream pinning."
   }
 }
