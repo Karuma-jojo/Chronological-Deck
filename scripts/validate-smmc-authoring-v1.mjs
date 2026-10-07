@@ -1551,10 +1551,45 @@ expect(
   "Mass-pass rule usage must account for all 616 classified rows."
 );
 
-// Exact repaired distribution pins are regenerated from this bounded repair
-// and reinserted after the first green validator run. The invariant checks above
-// still require 661/0 population, 45+616 partition, exact bundle audit closure,
-// one CROSS_SCALE sentinel, Gate-2 freeze, and no later-gate leakage.
+const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
+  referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 190, MACRO: 89, MICRO: 1, UNRESOLVED: 380 }),
+  bundleStructure: Object.freeze({ BUNDLED_MOVES: 8, SINGLE_PRIMARY_MOVE: 191, UNRESOLVED: 462 }),
+  actionShape: Object.freeze({ EXPLICIT_ACTION: 53, IMPLICIT_ACTION: 236, LABEL_ONLY: 371, UNRESOLVED: 1 }),
+  contextReach: Object.freeze({ GENERAL: 440, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 6, UNRESOLVED: 208 }),
+  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 51, PARTIAL: 10, UNRESOLVED: 518 }),
+  operationBoundary: Object.freeze({ ABSENT: 82, CLEAR: 181, PARTIAL: 108, UNRESOLVED: 290 }),
+  outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 93, PARTIAL: 56, UNRESOLVED: 431 }),
+  confidence: Object.freeze({ HIGH: 619, LOW: 1, MEDIUM: 41 }),
+  ruleUsage: Object.freeze({ MP01: 39, MP02: 4, MP03: 113, MP04: 14, MP05: 12, MP06: 25, MP07: 9, MP08: 178, MP09: 31, MP10: 191 }),
+});
+
+for (const key of [
+  "referenceScale",
+  "bundleStructure",
+  "actionShape",
+  "contextReach",
+  "triggerBoundary",
+  "operationBoundary",
+  "outputBoundary",
+  "confidence",
+]) {
+  expect(
+    JSON.stringify(gate3CountBy(key)) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION[key]),
+    `Gate-3 v3 repaired mass-pass distribution drifted for ${key}`
+  );
+}
+expect(
+  JSON.stringify(gate3RuleUsage) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION.ruleUsage),
+  "Gate-3 v3 repaired mass-pass rule distribution drifted."
+);
+expect(
+  ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures === 13,
+  "Gate-3 v3 duplicate-name differing-signature count drifted."
+);
+expect(
+  ARSENAL_GATE3_MASS_AUDIT_META.officialUnresolvedScaleRows === 3,
+  "Gate-3 v3 official UNRESOLVED count must remain exactly three."
+);
 
 // Lexical-action regressions that were explicitly self-audited before handoff.
 for (const candidateId of [
