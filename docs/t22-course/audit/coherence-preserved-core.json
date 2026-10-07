@@ -1,0 +1,29 @@
+{
+  "sourceBase": "38441e4b61ca89ead4370ad497915a94d8b055cf",
+  "purpose": "Exact hashes of every existing authoring/generated assessment pack. Supplements and destination-only rendering do not rewrite old learner contracts.",
+  "files": {
+    "course/t22/authoring/m01-repairs-1.1.json": "a2efe7697dc4bbaf163ac81ef40f2c69d25831cda9c5c07a994f8d61d326cc19",
+    "course/t22/authoring/m02.json": "d54530eb493dfa75e4d03c9e8ee201f50a84303a51c71e148337e3aeffbc433a",
+    "course/t22/authoring/m03.json": "846d40cbd78e829ea43baed8bc9b8c61fcd9626f3b873ae90212a682b0918fca",
+    "course/t22/authoring/m04.json": "1b35e031b96d6d413afaea9866efe364f0a4eef3a02c544f0ea483d28fcc0071",
+    "course/t22/authoring/m05.json": "201498c3b0b048a6264dea5fc16aa0d9828cae8b2b33507b8a3efaf9f26f5a2f",
+    "course/t22/authoring/m06.json": "65badb40514aa55c483175c673facfaa21fedce04057b9a8dbe7295008ba93cc",
+    "course/t22/authoring/m07.json": "42c7e03a4cbacfd12ff4a4afcfb9e71b9b9dc0af0cf86bcbbc7fafa46ba04240",
+    "course/t22/authoring/m08.json": "7618abef8a9d9ab8bb285df7dad11730e1d442b564744ec86f77e6acec0e908f",
+    "course/t22/authoring/m09.json": "972a07387cf2236df0d65abf2e9568f916af500e6a02884ca11bd0b19a8a7513",
+    "course/t22/authoring/m10-arc053.json": "e0101e0986994c485899c1c34139150934199f5d7c9403b85a79a61214f9ed6d",
+    "course/t22/authoring/m11-arc510.json": "9443c229f2ef5f58ea36a54e48a4ab44ae2e4a069259b06c4a759a5efe2a1178",
+    "course/t22/authoring/m12-side267.json": "6e7e073c2f12f383cee7175e1428b614f211e873ed7cb7a7eb53d1f14d390e80",
+    "course/t22/authoring/m13-arc511.json": "5c7cfc5549a90d64283604e3ea26c1f1a831f41494dc40ef2969bf5124a7e410",
+    "course/t22/authoring/m14-side276.json": "b80575b8c44e6790a5ae5dba14597bad07b2caf4bc33434cc059ca59a94ce1d1",
+    "course/t22/authoring/m15-side278.json": "3b03abc36cd54f957c701d8a35f603d282388f019932dc0a4e32ef0449c30a4b",
+    "course/t22/generated/eval-m01-001-005.json": "b3f93989368259f3898728399e153f8ec3570021f8ef743ffa6c64b31f581575",
+    "course/t22/generated/eval-m01-006-010.json": "c19d6f95688f9e60f312a6dd60f313b2066bf6477226de6f120b09717ba069ca",
+    "course/t22/generated/eval-m01-011-015.json": "9fa488cf2a60fb741c8cb650fb9952ce91e8ab4270e723c8ade127e0a3eb90a4",
+    "course/t22/generated/eval-m01-016-017.json": "76b3c4cf45859a6c4478551f96e2a18f13fdb217e1e42011eadb412143760fc2",
+    "course/t22/generated/m01-001-005.json": "eb268e5da9399ef35e026404ee1fb33fa7799057214f033eff2f65a3fd71621b",
+    "course/t22/generated/m01-006-010.json": "cf44123afbbb3b66234613a05fc29fbf5ae71e582d44b5f2829b3857f7b662b8",
+    "course/t22/generated/m01-011-015.json": "e067e5ba31b1846b5fc40154323ee5f29648f688ece9a4d7ce5940910ae9734f",
+    "course/t22/generated/m01-016-017.json": "7368a1496f8f2add7d3103fb9973384203757d700995b5d6adeeec0f17d6be5f"
+  }
+}

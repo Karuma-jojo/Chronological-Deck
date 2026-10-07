@@ -1,6 +1,6 @@
 {
-  "version": "T22E-course-0.15.0-through-m15-publication",
-  "routeVersion": "M65-semantic-r2-2026-09-18",
+  "version": "T22E-course-0.15.1-coherence-repairs",
+  "routeVersion": "M65-semantic-r3-2026-10-07-coherence",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
     2,
@@ -91,7 +91,10 @@
       "order": 6,
       "id": "ARC502",
       "sourceType": "authoring-pack",
-      "source": "course/t22/authoring/m06.json"
+      "source": "course/t22/authoring/m06.json",
+      "supplements": [
+        "course/t22/authoring/m06-decision-bridge.json"
+      ]
     },
     {
       "order": 7,
@@ -147,5 +150,11 @@
       "sourceType": "authoring-pack",
       "source": "course/t22/authoring/m15-side278.json"
     }
+  ],
+  "handoffRepairs": "course/t22/extensions/handoff-repairs.json",
+  "capabilityExtensions": "course/t22/extensions/capability-extensions.json",
+  "publicationState": "docs/t22-rebuild/CURRENT-PUBLICATION.json",
+  "probeBanks": [
+    "course/t22/authoring/m01-m05-cumulative-probes.json"
   ]
 }

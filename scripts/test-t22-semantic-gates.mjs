@@ -4,7 +4,7 @@ const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const deps=read('docs/t22-rebuild/m65.dependencies.json');
 const ledger=read('docs/t22-rebuild/SEMANTIC-PREREQUISITES.json');
 const roadmap=read('course/t22/generated/roadmap.json');
-assert.equal(deps.version,'M65-semantic-r2-2026-09-18');assert.equal(deps.modules.length,65);assert.equal(ledger.entries.length,65);
+assert.equal(deps.version,'M65-semantic-r3-2026-10-07-coherence');assert.equal(deps.modules.length,65);assert.equal(ledger.entries.length,65);
 const depBy=new Map(deps.modules.map(m=>[m.id,m])),pos=new Map(deps.modules.map(m=>[m.id,m.order])),ledBy=new Map(ledger.entries.map(m=>[m.id,m]));
 assert.equal(depBy.size,65);assert.equal(ledBy.size,65);
 for(const m of deps.modules){assert(ledBy.has(m.id),`missing semantic ledger row ${m.id}`);assert.equal(ledBy.get(m.id).order,m.order);for(const p of m.prerequisites){assert(pos.has(p),`${m.id} missing prerequisite ${p}`);assert(pos.get(p)<m.order,`${m.id} backward prerequisite ${p}`);}}

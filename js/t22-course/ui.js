@@ -1,11 +1,12 @@
 import {STORAGE_KEY,emptyEvidence,validateEvidence,mergeEvidence,expose,exposeAnswersForSession,taskText,reviewQueue,moduleEvidenceSummary,compilerPacket,freshProbePacket,evidenceIsCurrent,prepareAssessmentFingerprints,prepareContractHashes,migrateHistoricalLessonAnswerExposure,answerExposureAt} from './core.js';
 import {applyCourseOverrides} from './overrides.js';
 import {renderRepresentations} from './representations.js';
+import {appendSupplement,registerProbeBank,routingText,routingNotes} from './supplements.js';
 
 const $=id=>document.getElementById(id);
 const tell=x=>$('status').textContent=x;
 const uuid=()=>crypto.randomUUID();
-let course,roadmap,state,session,problemId,lastSaved=null,keys=null,visit=0,noteSeen=false,storageOK=true,activeModuleId=null;
+let course,roadmap,state,session,problemId,lastSaved=null,keys=null,visit=0,noteSeen=false,storageOK=true,activeModuleId=null,handoffRepairs=null;
 const drafts=new Map();
 const guidedDrafts=new Map();
 const learningNoteSeenThisVisit=new Set();
@@ -26,6 +27,7 @@ function renderRoadmap(){
   const row=document.createElement('div');row.className='roadmap-row'+(active?' active':' planned');
   const status=m.availability==='authored'?'AUTHORED':m.availability==='validation'?'VALIDATING':'PLANNED';
   row.innerHTML=`<span>${String(m.order).padStart(2,'0')}</span><b>${m.title}</b><em>${status}</em>`;
+  if(m.extensionSummary){const note=document.createElement('p');note.className='small';note.style.gridColumn='1 / -1';note.style.margin='0';note.style.overflowWrap='anywhere';note.textContent=m.extensionSummary;row.append(note);}
   if(loaded){row.tabIndex=0;row.setAttribute('role','button');row.addEventListener('click',()=>selectModule(m.id));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectModule(m.id);}});}
   list.append(row);
  }
@@ -55,7 +57,7 @@ function sessionsList(){
  options($('session'),list.map(s=>[String(s.order),`${String(s.order).padStart(2,'0')} · ${s.title}`]));
  if(list.some(s=>s.id===session?.id))$('session').value=String(session.order);
 }
-function contractText(s){return [s.centralCapability,'PRINCIPAL OBSTACLE',s.principalObstacle,'ENTRY PREREQUISITES',...s.entryPrerequisites,'REQUIRED OWNERSHIP',...s.requiredOwnership,'APPLICATION SCOPE',s.applicationScope,'TRANSFER SCOPE',s.transferScope,'EXIT CONDITION',s.exitCondition,'OUT OF SCOPE',...s.outOfScope].join('\n\n');}
+function contractText(s){return [s.centralCapability,'PRINCIPAL OBSTACLE',s.principalObstacle,'ENTRY PREREQUISITES',...s.entryPrerequisites,...routingNotes(s.id,handoffRepairs),'REQUIRED OWNERSHIP',...s.requiredOwnership,'APPLICATION SCOPE',s.applicationScope,'TRANSFER SCOPE',s.transferScope,'EXIT CONDITION',s.exitCondition,'OUT OF SCOPE',...s.outOfScope.map(x=>routingText(x,handoffRepairs))].join('\n\n');}
 function captureDraft(){
  if(!problemId)return;
  const answer=$('answer').value;
@@ -78,10 +80,12 @@ function selectSession(orderOrId,kind='main'){
  $('search').value='';sessionsList();$('session').value=String(session.order);
  put('sessionMeta',`${moduleCode()} · Session ${String(session.order).padStart(2,'0')} · ${session.id}`);put('title',session.title);put('focus',session.focus);put('contractText',contractText(session));
  const idx=list.findIndex(s=>s.id===session.id);$('previous').disabled=idx===0;$('next').disabled=idx===list.length-1;
+ $('probePanel').hidden=!session.replacements?.length;
+ options($('cumulativeProbe'),(session.replacements||[]).map(id=>[id,session.probeMeta[id].title+(session.probeMeta[id].suggestedDelayDays?` · suggested delay ${session.probeMeta[id].suggestedDelayDays}+ days`:'')]));
  showProblem(session[kind]);window.history.replaceState(null,'',`?module=${moduleMeta().order}&session=${session.order}`);
 }
 function applyModuleHeader(){
- const m=moduleMeta();put('moduleTitle',`${moduleCode()} · ${m.title}`);put('moduleDestination',m.destination||'');put('moduleGate',m.gate||'Module clearance requires current independent evidence; page completion alone is insufficient.');
+ const m=moduleMeta();put('moduleTitle',`${moduleCode()} · ${m.title}`);put('moduleDestination',[m.destination,handoffRepairs?.moduleNotes?.[m.id]].filter(Boolean).join(' '));put('moduleGate',m.gate||'Module clearance requires current independent evidence; page completion alone is insufficient.');
  $('module').value=m.id;put('sessionSearchLabel',`Find a ${moduleCode()} session`);
  $('readiness').hidden=!m.readinessDiagnostic;$('readinessPanel').hidden=true;$('readinessKey').hidden=true;
 }
@@ -110,18 +114,21 @@ async function loadCourse(meta){
    Object.assign(historicalOverlapSessions,local.historicalLessonAnswerOverlap?.sessions||{});
    legacyPolicy={instructionVersion:local.instructionVersion,instructionSeparation:local.instructionSeparation};
   }else if(spec.sourceType==='authoring-pack'){
-   const a=await json(spec.source);
+   let a=await json(spec.source);
+   for(const source of spec.supplements||[])a=appendSupplement(a,await json(source));
    for(const s of a.sessions)s.instructionVersion=s.instructionVersion||a.instructionVersion||a.version;
    Object.assign(historicalOverlapSessions,a.historicalLessonAnswerOverlap?.sessions||{});
    allSessions.push(...a.sessions);Object.assign(allProblems,a.problems);Object.assign(allKeys,a.evaluators);allModules.push(a.module);
   }else throw Error(`Unknown module source type ${spec.sourceType}`);
  }
  const built={...meta,...legacyPolicy,historicalLessonAnswerOverlap:{version:'combined-module-overlap-v1',sessions:historicalOverlapSessions},modules:allModules.sort((a,b)=>a.order-b.order),sessions:allSessions,problems:allProblems};
+ for(const source of meta.probeBanks||[])registerProbeBank(built,allKeys,await json(source));
  await prepareContractHashes(built);await prepareAssessmentFingerprints(built,allKeys);
  return {built,allKeys};
 }
 async function init(){
  const [meta,road]=await Promise.all([json('course/t22/generated/course-meta.json'),json('course/t22/generated/roadmap.json')]);roadmap=road;
+ handoffRepairs=meta.handoffRepairs?await json(meta.handoffRepairs):null;
  const loaded=await loadCourse(meta);course=loaded.built;keys=loaded.allKeys;
  state=emptyEvidence();
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state=validateEvidence(JSON.parse(raw),course);if(migrateHistoricalLessonAnswerExposure(state,course))persist('Historical answer-containing lesson exposure was conservatively migrated; prior attempts were preserved.');}catch{storageOK=false;tell('Existing T22 Elite study storage could not be read. It has not been overwritten. Export any new work before leaving.');}
@@ -165,10 +172,11 @@ async function init(){
   persist('Result recorded on the original attempt. This did not save a second attempt or create a new practice day.');renderHistory();renderQueue();renderModuleEvidence();refreshReviewSave();
  };
  $('copyTask').onclick=()=>copy('[T22 ELITE — LEARNER TASK]\n\n'+taskText(course.problems[problemId]));
- $('copyPacket').onclick=async()=>{const targetSession=session,targetProblem=problemId,token=visit;try{if(visit!==token||problemId!==targetProblem||session.id!==targetSession.id){tell('Evaluator-packet export cancelled because navigation changed.');return;}const at=new Date().toISOString();exposeAnswersForSession(state,targetSession,at);persist('Answer-bearing packet export recorded for both fixed tasks.');await copy(compilerPacket(course,targetSession,keys,targetProblem));renderHistory();renderQueue();renderModuleEvidence();}catch(e){tell(e.message);}};
+ $('copyPacket').onclick=async()=>{const targetSession=session,targetProblem=problemId,token=visit;try{if(visit!==token||problemId!==targetProblem||session.id!==targetSession.id){tell('Evaluator-packet export cancelled because navigation changed.');return;}const at=new Date().toISOString();exposeAnswersForSession(state,targetSession,at);if(targetProblem!==targetSession.main&&targetProblem!==targetSession.transfer)expose(state,targetProblem,at,'referenceSeenAt');persist('Answer-bearing packet export recorded for both fixed tasks.');const routing=[...routingNotes(targetSession.id,handoffRepairs),...targetSession.outOfScope.filter(x=>routingText(x,handoffRepairs)!==x).map(x=>routingText(x,handoffRepairs))];await copy(compilerPacket(course,targetSession,keys,targetProblem)+(routing.length?'\n\nCURRENT DESTINATIONS — these supersede historical destination wording only; assessed ownership is unchanged.\n'+routing.join('\n'):''));renderHistory();renderQueue();renderModuleEvidence();}catch(e){tell(e.message);}};
  $('copyFreshProbe').onclick=()=>copy(freshProbePacket(course,session));
+ $('startProbe').onclick=()=>showProblem($('cumulativeProbe').value);
  $('export').onclick=()=>download('t22-elite-study-record.json',JSON.stringify(state,null,2));
  $('import').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>15000000)throw Error('Evidence file is too large');const incoming=validateEvidence(JSON.parse(await file.text()),course);state=mergeEvidence(state,incoming,course);const migrated=migrateHistoricalLessonAnswerExposure(state,course);persist(migrated?'Evidence merged; historical answer-containing lesson exposure migrated conservatively.':'Evidence merged; existing attempts retained.');renderHistory();renderQueue();renderModuleEvidence();}catch(err){tell('Import rejected: '+err.message);}finally{e.target.value='';}};
- if(storageOK)tell(`Ready: ${course.modules.length} loaded modules, ${course.sessions.length} sessions, ${Object.keys(course.problems).length} fixed tasks, 65-module roadmap.`);
+ if(storageOK)tell(`Ready: ${course.modules.length} loaded modules, ${course.sessions.length} sessions, ${Object.values(course.problems).filter(p=>p.kind!=='probe').length} fixed tasks and ${Object.values(course.problems).filter(p=>p.kind==='probe').length} cumulative probes, 65-module roadmap.`);
 }
 init().catch(e=>tell('T22 Elite course could not start: '+e.message));

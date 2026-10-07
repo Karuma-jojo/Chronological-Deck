@@ -16,7 +16,7 @@
     "course/t22/authoring/m11-arc510.json": "7c11adeb736f3699b8a7f59c07f49856d1467074",
     "course/t22/generated/course-meta.json": "cc7e31980e9a4764ac4f1becef92b4f77070b6d9",
     "course/t22/generated/roadmap.json": "68665c633c93830fa19e9e5510136795d2b13a02",
-    "docs/t22-rebuild/m65.dependencies.json": "fb45a5ab97932f5220bffb9989347c23574383b9",
+    "docs/t22-rebuild/m65.dependencies.json": "df7d93be29e45018457258ea7867a34abbae3c24",
     "js/t22-course/core.js": "64e2bd78317cac5f558807fee9308e242cf3c0e9",
     "js/t22-course/overrides.js": "e030f48bbc790bcb2a2c675fe9bdb39a85f71367",
     "js/t22-course/ui.js": "bfcd47bc0d4835626794add957b3c067385995cf"
@@ -64,5 +64,12 @@
     "currentM04Blob": "69ab0e03b246bb5e4a0d4836ef2bc335380580cc",
     "reviewState": "repair candidate awaiting exact-head validation and independent confirmation",
     "currentM04GitBlobSha1": "69ab0e03b246bb5e4a0d4836ef2bc335380580cc"
+  },
+  "authorizedCoherenceRepair": {
+    "sourceBase": "38441e4b61ca89ead4370ad497915a94d8b055cf",
+    "reason": "User-authorized retrospective prerequisite repair. Only the exact twelve prerequisite edges across six modules documented in M01-M05-REPAIR-RECEIPT.md are allowed; test-t22-elite-coherence-repairs compares every graph row to the immutable before graph.",
+    "changedFiles": [
+      "docs/t22-rebuild/m65.dependencies.json"
+    ]
   }
 }

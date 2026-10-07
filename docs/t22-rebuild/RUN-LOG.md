@@ -544,3 +544,22 @@ Final-confirmation handoff: `docs/t22-course/M11-REVIEW-HANDOFF.md`.
 Added `docs/t22-course/M11-RESOLUTION.md` for consistency with prior repaired modules. It records the bounded independent-review findings, exact dispositions, repair checkpoint `645c3d4c96ccdf1b2ad6120f63940d388077e7e9`, successful runs `36015062169` and `36015805901`, architecture/task preservation, and the independent follow-up's conclusion that no substantive defect from the reported audit remains.
 
 This is documentation-only closure. No M11 lesson, task, rubric, ownership claim or mathematical boundary changed.
+
+
+## Whole-route coherence repair — 2026-10-07
+
+Authoritative current resumption: source main `38441e4b61ca89ead4370ad497915a94d8b055cf`, isolated branch `codex/t22-coherence-game-theory-repairs`. User authorized bounded repairs before full M06+ rebuilding and requested game/utility existence theory. Historical stop notes above describe their earlier checkpoints and do not block this explicit authorization. No parallel agents were used.
+
+Implemented separately versioned M06-S25–S28 (posterior actions, EVPI, EVSI/costs, integrated finite reporting-policy audit), four registered M01–M05 cumulative probes under M05-S24, live destination-only clarifications, exact expanded M04 exit prerequisite notes, twelve prerequisite edges across six modules, current-publication authority and all245/558 deferral dispositions. Every existing authoring/generated assessment pack remains byte-identical. Original M06 core contracts/fingerprints are verified unchanged; new obligations do not inherit old evidence.
+
+Planned theory/goal branches have typed prerequisites and observable exit tasks, with finite utility representation after M09 and the eighteen-unit games specialisation after M53. Full future theorem lessons remain unbuilt; no PG/full-entrance certification is implied. Full M06 rebuilding has not started.
+
+Local initial regression receipt: 118/118 existing/new syntax, structural, semantic, mathematical and evidence checks passed. Dedicated Chromium/whole-suite receipts must be verified on the pushed head before delivery. Exact graph-before comparison protects the only M12 baseline update. See `M01-M05-REPAIR-RECEIPT.md`, `CURRENT-PUBLICATION.json`, and `GAME-UTILITY-THEORY-PLAN.md`.
+
+Browser follow-up on first repair head `72a3ae0421e4dec83eac83cea58c17802fec8234`: run `37635956621` passed syntax and all structural/math/evidence stages, then exposed missing persistent lesson-use provenance on the new M06 bridge. Added explicit guided-check feedback to S25–S28, enabling the existing staged-guidance exposure mechanism without changing old core sessions. The new candidate builder hash was refreshed only after reading these four feedback responses; rerun required.
+
+Second repair-head run `37636315413` on `12c0eecd72a11772e50fdbddc825f58963fc7fdd`: dedicated Chromium bridge/probe/exposure/export checks passed; full-course browser stopped on a remaining historical M06 packet-flow count assertion (24 instead of runtime28). Updated that count, retained all its packet-exposure assertions, and restricted the new explicit packet-exposure call to probes so existing fixed-task view counters retain their behavior. Full-suite rerun required on the follow-up head.
+
+Full repair checkpoint `dd557d982b1300ce83b3c8f6f54fc39289e0dd51`: T22 Elite run `37636796786`, job `112845027857`, **SUCCESS** through syntax, structural/semantic/mathematical regressions and all nine Chromium workflows. Original early/through-M15 browser and exposure preservation checks passed. Final display-only polish makes the added roadmap status/extension notes span the full grid row instead of the narrow number column; no content/evidence contract changed. Final published-head workflow must remain green.
+
+Final handoff consistency check: evaluator-packet exports now append the same current destination corrections as the learner contract, explicitly overriding only historical routing wording. Added a real clipboard assertion for the M26 geometric-waiting destination. Existing scored contracts and packet exposure rules are preserved. This is part of the bounded coherence repair; a final exact-head Chromium run remains required.

@@ -1,6 +1,6 @@
 {
-  "version": "semantic-ledger-r4-through-m14-published-2026-09-26",
-  "policy": "Every macro module must have a ledger row. Before its learner-facing authoring is published, semanticStatus must be accepted and every actual prerequisite in the authored content must trace to an earlier accepted module or a bounded bridge owned by this module. Topological position alone is not evidence of semantic ancestry.",
+  "version": "semantic-ledger-r5-coherence-2026-10-07",
+  "policy": "Every macro module must have a ledger row. Before its learner-facing authoring is published, semanticStatus must be accepted and every actual prerequisite in the authored content must trace to an earlier accepted module or a bounded bridge owned by this module. Topological position alone is not evidence of semantic ancestry. Historical early acceptance describes semantic boundaries, not independent acceptance of every later candidate. CURRENT-PUBLICATION.json is authoritative for current pack versions/counts/review status; extensions carry separate unfinished proof gates.",
   "entries": [
     {
       "order": 1,
@@ -289,6 +289,11 @@
           "before": "joint continuous-density laws / former A08",
           "content": "Describe planar support regions, write inner/outer bounds in both orders where feasible, evaluate bounded iterated integrals and check normalization. One-variable integration comes from ARC510; multivariable coordinate context comes from SIDE271. SIDE271 edge added in semantic graph r1."
         }
+      ],
+      "coherenceRepair": "2026-10-07: named producer edges/extension prerequisites recorded. Existing inherited content still needs a full boundary and task audit before learner publication.",
+      "extensionIds": [
+        "M26-P",
+        "M26-E"
       ]
     },
     {
@@ -303,7 +308,11 @@
       "id": "ARC712",
       "mode": "reused",
       "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "bridges": [],
+      "coherenceRepair": "2026-10-07: named producer edges/extension prerequisites recorded. Existing inherited content still needs a full boundary and task audit before learner publication.",
+      "extensionIds": [
+        "M28-P"
+      ]
     },
     {
       "order": 29,
@@ -353,7 +362,9 @@
       "id": "ARC533",
       "mode": "reused",
       "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "bridges": [],
+      "coherenceRepair": "2026-10-07: named producer edges/extension prerequisites recorded. Existing inherited content still needs a full boundary and task audit before learner publication.",
+      "extensionIds": []
     },
     {
       "order": 35,
@@ -417,7 +428,9 @@
           "before": "polynomial-root stability task / former A10",
           "content": "Introduce i²=−1, conjugate pairs for real-coefficient polynomials, modulus |a+bi|=sqrt(a²+b²), and the unit-circle root criterion used by the retained stability task. This is a bounded time-series bridge, not a general complex-analysis module. T22E-FND02 edge added in semantic graph r1."
         }
-      ]
+      ],
+      "coherenceRepair": "2026-10-07: named producer edges/extension prerequisites recorded. Existing inherited content still needs a full boundary and task audit before learner publication.",
+      "extensionIds": []
     },
     {
       "order": 43,
@@ -467,7 +480,11 @@
       "mode": "adapted",
       "semanticStatus": "pending-boundary-audit",
       "bridges": [],
-      "note": "Expanded title may add martingale/stopping foundations; exact boundary must be audited before authoring."
+      "note": "Expanded title may add martingale/stopping foundations; exact boundary must be audited before authoring.",
+      "coherenceRepair": "2026-10-07: named producer edges/extension prerequisites recorded. Existing inherited content still needs a full boundary and task audit before learner publication.",
+      "extensionIds": [
+        "M49-S"
+      ]
     },
     {
       "order": 50,
@@ -475,7 +492,11 @@
       "mode": "adapted",
       "semanticStatus": "pending-boundary-audit",
       "bridges": [],
-      "note": "Expanded title may add Brownian foundations; exact boundary must be audited before authoring."
+      "note": "Expanded title may add Brownian foundations; exact boundary must be audited before authoring.",
+      "coherenceRepair": "2026-10-07: named producer edges/extension prerequisites recorded. Existing inherited content still needs a full boundary and task audit before learner publication.",
+      "extensionIds": [
+        "M50-B"
+      ]
     },
     {
       "order": 51,
@@ -496,7 +517,12 @@
       "id": "ARC582",
       "mode": "reused",
       "semanticStatus": "pending-boundary-audit",
-      "bridges": []
+      "bridges": [],
+      "coherenceRepair": "2026-10-07: named producer edges/extension prerequisites recorded. Existing inherited content still needs a full boundary and task audit before learner publication.",
+      "extensionIds": [
+        "M53-LP",
+        "M53-G"
+      ]
     },
     {
       "order": 54,
@@ -583,5 +609,7 @@
       "semanticStatus": "pending-boundary-audit",
       "bridges": []
     }
-  ]
+  ],
+  "currentPublicationAuthority": "docs/t22-rebuild/CURRENT-PUBLICATION.json",
+  "extensionAuthority": "course/t22/extensions/capability-extensions.json"
 }

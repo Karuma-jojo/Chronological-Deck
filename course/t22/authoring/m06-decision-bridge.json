@@ -1,0 +1,1126 @@
+{
+  "version": "m06-decision-bridge-v1-candidate",
+  "instructionVersion": "m06-decision-bridge-instruction-v1",
+  "status": "builder-checked-candidate-awaiting-independent-review",
+  "extendsModule": "ARC502",
+  "afterSession": "T22V3::ARC502::S24@1",
+  "prerequisiteModules": [
+    "ARC048",
+    "T22E-TRD01",
+    "ARC502"
+  ],
+  "moduleAmendment": {
+    "status": "updating-core-plus-decision-bridge-candidate",
+    "destination": "Update finite evidence correctly, then choose an action under an explicit payoff/utility criterion and value a specified observation channel.",
+    "gate": "The original 24-session updating core retains its historical review. The four decision-bridge sessions are a new builder-checked candidate; all 28 require their own evidence. Fixed tasks alone do not certify unseen transfer or retention."
+  },
+  "sessions": [
+    {
+      "order": 25,
+      "id": "T22V3::ARC502::S25@1",
+      "moduleId": "ARC502",
+      "title": "From posterior probabilities to actions",
+      "focus": "Derive an action threshold and choose using posterior expected payoff.",
+      "purpose": "Close the M05→M06 finite decision handoff through an explicit, checkable construction.",
+      "centralCapability": "Derive an action threshold and choose using posterior expected payoff.",
+      "principalObstacle": "Treating a posterior as an action rule without a loss/payoff model.",
+      "entryPrerequisites": [
+        "M05-S01–S05 payoff/EV comparisons",
+        "M05-S18–S19 supplied utility and certainty equivalents",
+        "M06-S06–S11 Bayes and positive evidence normalization"
+      ],
+      "requiredOwnership": [
+        "Compare all constant actions under the prior.",
+        "Normalize the observed-signal posterior from the given channel.",
+        "Derive the payoff-dependent action threshold including the tie.",
+        "Choose among actions using their posterior values.",
+        "State information timing, criterion and model limits."
+      ],
+      "applicationScope": "Finite states/actions with an explicit prior, observation channel, decision timing and supplied payoff/utility criterion.",
+      "transferScope": "A changed information or decision structure; no distribution, optimal-control or utility-representation theorem is assumed.",
+      "inScope": [
+        "Finite posterior action choice with supplied payoff or utility table",
+        "EVPI and EVSI under a specified finite observation channel",
+        "Nonnegative gross information value when information can be ignored",
+        "Acquisition costs in the correct units and information timing"
+      ],
+      "outOfScope": [
+        "General utility representation proof (M09-U)",
+        "General equilibrium existence (M53-G)",
+        "Bayesian parameter inference/conjugacy",
+        "Adaptive multistage optimal control (M59/M60)",
+        "Claims about live trading performance"
+      ],
+      "exitCondition": "Solve both public tasks with the conditioning model and the action criterion visible; demonstrate an unfamiliar delayed variant before a mastery claim.",
+      "lesson": "An updated belief and a decision answer different questions. First state the action set, outcome payoffs, information available before action, and criterion. For two states H,Hᶜ, the expected payoff of action a at belief q is q r(a,H)+(1−q)r(a,Hᶜ). Compare all feasible actions; a .5 cutoff has no special status unless the payoffs imply it. A supplied utility table is averaged in utility units, not money. Worked example: prior P(H)=.2, a signal has likelihoods .6 under H and .1 under Hᶜ. Its mass is .2 and the positive-signal posterior is .6. Action X pays (7,−3), action Y pays (0,0). X is better iff 10q−3≥0, so its threshold is .3. Before the signal Y beats X's −1; after the positive signal X has value 3. This conclusion assumes the stated channel, timing and payoff criterion; it is not a consequence of Bayes alone. Guided check: With payoffs (3,−1) versus (0,0), derive the threshold and explain why a belief .3 can favor the risky action.",
+      "main": "T22V3::ARC502::S25-M@1",
+      "transfer": "T22V3::ARC502::S25-T@1",
+      "instructionVersion": "m06-decision-bridge-instruction-v1",
+      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof.",
+      "guidedFeedback": "For X=(3,−1) versus0, the value is4q−1. The action threshold isq=1/4: prefer X above it, either action at equality, and0 below it. Atq=.3, X has value.2, so X is favored despiteq<.5. The conclusion is conditional on the supplied criterion/payoffs."
+    },
+    {
+      "order": 26,
+      "id": "T22V3::ARC502::S26@1",
+      "moduleId": "ARC502",
+      "title": "Perfect information and the price of knowing the state",
+      "focus": "Compute EVPI and prove gross information value is nonnegative.",
+      "purpose": "Close the M05→M06 finite decision handoff through an explicit, checkable construction.",
+      "centralCapability": "Compute EVPI and prove gross information value is nonnegative.",
+      "principalObstacle": "Swapping a maximum with an expectation or valuing information after its outcome is known.",
+      "entryPrerequisites": [
+        "M06-S25 posterior action comparison",
+        "M04-S19/S20 finite expectation and linearity"
+      ],
+      "requiredOwnership": [
+        "Compute the best prior action value.",
+        "Construct state-contingent actions after perfect revelation.",
+        "Compare gross EVPI with an acquisition cost in the same units.",
+        "Prove nonnegative EVPI from statewise inequalities.",
+        "Distinguish a pre-observation value from a realized conditional action value."
+      ],
+      "applicationScope": "Finite states/actions with an explicit prior, observation channel, decision timing and supplied payoff/utility criterion.",
+      "transferScope": "A changed information or decision structure; no distribution, optimal-control or utility-representation theorem is assumed.",
+      "inScope": [
+        "Finite posterior action choice with supplied payoff or utility table",
+        "EVPI and EVSI under a specified finite observation channel",
+        "Nonnegative gross information value when information can be ignored",
+        "Acquisition costs in the correct units and information timing"
+      ],
+      "outOfScope": [
+        "General utility representation proof (M09-U)",
+        "General equilibrium existence (M53-G)",
+        "Bayesian parameter inference/conjugacy",
+        "Adaptive multistage optimal control (M59/M60)",
+        "Claims about live trading performance"
+      ],
+      "exitCondition": "Solve both public tasks with the conditioning model and the action criterion visible; demonstrate an unfamiliar delayed variant before a mastery claim.",
+      "lesson": "Before purchasing information, compare policies at the same prior and decision time. Let V0=max_a Σ_h p(h)r(a,h). Perfect revelation before action permits choosing a different action in each state: VPI=Σ_h p(h)max_a r(a,h). EVPI=VPI−V0. For every constant action, the statewise maximum is at least its state payoff; multiply by nonnegative probabilities and sum, then maximize the constant action. This proves EVPI≥0. It is an upper bound on gross value of a signal that only reveals information about the same state and does not alter actions or payoffs. Worked example: P(H)=.5; X=(6,−2), Y=(1,1). V0=2, VPI=.5·6+.5·1=3.5, EVPI=1.5. A fee 1.2 in the same net monetary units leaves benefit .3; a fee 2 would not be worthwhile. With nonlinear wealth utility, a monetary fee must enter terminal wealth before utility is evaluated; do not subtract currency from utility units. Guided check: Why can informative free revelation have zero value if one action is already best in every state?",
+      "main": "T22V3::ARC502::S26-M@1",
+      "transfer": "T22V3::ARC502::S26-T@1",
+      "instructionVersion": "m06-decision-bridge-instruction-v1",
+      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof.",
+      "guidedFeedback": "If one action a* is best in every state, sum_h p(h)max_a r(a,h)=sum_h p(h)r(a*,h)=max_a sum_h p(h)r(a,h). Thus EVPI=0 even when knowing the state would change beliefs. An acquisition fee would then reduce net value."
+    },
+    {
+      "order": 27,
+      "id": "T22V3::ARC502::S27@1",
+      "moduleId": "ARC502",
+      "title": "Imperfect observations, EVSI and acquisition costs",
+      "focus": "Value a finite signal by weighting optimal posterior actions over every possible report.",
+      "purpose": "Close the M05→M06 finite decision handoff through an explicit, checkable construction.",
+      "centralCapability": "Value a finite signal by weighting optimal posterior actions over every possible report.",
+      "principalObstacle": "Pricing only the positive signal or subtracting money from utility.",
+      "entryPrerequisites": [
+        "M06-S25 action choice",
+        "M06-S26 EVPI",
+        "M04-S27 observation/reporting mechanisms",
+        "M06-S07/S11 finite evidence normalization"
+      ],
+      "requiredOwnership": [
+        "Normalize every positive-mass report and its posterior.",
+        "Construct an optimal report-contingent action policy.",
+        "Compute pre-observation EVSI relative to the best prior action.",
+        "Verify the information bounds under a common action/payoff model.",
+        "Price acquisition in correct units and state assumptions."
+      ],
+      "applicationScope": "Finite states/actions with an explicit prior, observation channel, decision timing and supplied payoff/utility criterion.",
+      "transferScope": "A changed information or decision structure; no distribution, optimal-control or utility-representation theorem is assumed.",
+      "inScope": [
+        "Finite posterior action choice with supplied payoff or utility table",
+        "EVPI and EVSI under a specified finite observation channel",
+        "Nonnegative gross information value when information can be ignored",
+        "Acquisition costs in the correct units and information timing"
+      ],
+      "outOfScope": [
+        "General utility representation proof (M09-U)",
+        "General equilibrium existence (M53-G)",
+        "Bayesian parameter inference/conjugacy",
+        "Adaptive multistage optimal control (M59/M60)",
+        "Claims about live trading performance"
+      ],
+      "exitCondition": "Solve both public tasks with the conditioning model and the action criterion visible; demonstrate an unfamiliar delayed variant before a mastery claim.",
+      "lesson": "Specify the entire reporting channel P(s|h). For each report of positive mass, normalize P(h|s), then choose an action. The pre-observation signal value is VS=Σ_s P(s)max_a Σ_h P(h|s)r(a,h); zero-mass reports contribute zero and require no conditional. EVSI=VS−V0. A free signal can be ignored, so VS≥V0; each report's conditional maximum is no larger than its conditional expectation of the statewise maximum, so VS≤VPI. Both claims need the same feasible actions and payoffs, pre-action observation and no forced use. Worked example: prior .5, signal accuracy .8 in both states, X=(4,−4), Y=(0,0). Both reports have mass .5. Posteriors are .8 and .2; choose X after + (value 2.4), Y after −. VS=1.2, V0=0, EVSI=1.2 and EVPI=2. A monetary fee .7 leaves net gain .5. Guided check: Why does valuing the signal at 2.4 ignore half the reports? How does a fee change terminal wealth before nonlinear utility is averaged?",
+      "main": "T22V3::ARC502::S27-M@1",
+      "transfer": "T22V3::ARC502::S27-T@1",
+      "instructionVersion": "m06-decision-bridge-instruction-v1",
+      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof.",
+      "guidedFeedback": "In the worked model each report has probability.5. Only + supports X, with conditional value2.4; − supports the zero-valued alternative. The pre-observation value is.5·2.4+.5·0=1.2, not2.4. With a nonlinear wealth utility and money fee c, first compute terminal wealth W+r−c in every state, apply u, and average. Currency and utility units cannot be subtracted."
+    },
+    {
+      "order": 28,
+      "id": "T22V3::ARC502::S28@1",
+      "moduleId": "ARC502",
+      "title": "Integrated information-policy audit",
+      "focus": "Build a finite information model and distinguish informativeness from decision value.",
+      "purpose": "Close the M05→M06 finite decision handoff through an explicit, checkable construction.",
+      "centralCapability": "Build a finite information model and distinguish informativeness from decision value.",
+      "principalObstacle": "Assuming an informative signal must change the best action or have positive value.",
+      "entryPrerequisites": [
+        "M06-S24 calibrated Bayesian evidence audit",
+        "M06-S25–S27 finite information decisions",
+        "M04-S27 reporting protocol; M05-S24 criterion discipline"
+      ],
+      "requiredOwnership": [
+        "Validate and normalize a finite joint state/report law.",
+        "Derive posteriors and an admissible conditional policy including ties.",
+        "Compute baseline, sample-information value and perfect-information bound.",
+        "Distinguish informative reporting from positive decision value.",
+        "State acquisition, protocol and criterion limits without inventing information."
+      ],
+      "applicationScope": "Finite states/actions with an explicit prior, observation channel, decision timing and supplied payoff/utility criterion.",
+      "transferScope": "A changed information or decision structure; no distribution, optimal-control or utility-representation theorem is assumed.",
+      "inScope": [
+        "Finite posterior action choice with supplied payoff or utility table",
+        "EVPI and EVSI under a specified finite observation channel",
+        "Nonnegative gross information value when information can be ignored",
+        "Acquisition costs in the correct units and information timing"
+      ],
+      "outOfScope": [
+        "General utility representation proof (M09-U)",
+        "General equilibrium existence (M53-G)",
+        "Bayesian parameter inference/conjugacy",
+        "Adaptive multistage optimal control (M59/M60)",
+        "Claims about live trading performance"
+      ],
+      "exitCondition": "Solve both public tasks with the conditioning model and the action criterion visible; demonstrate an unfamiliar delayed variant before a mastery claim.",
+      "lesson": "An information-policy audit makes the joint state/report law visible, checks normalization, identifies the pre-observation baseline, then checks every posterior action. Informativeness need not produce positive decision value: an updated belief may remain on the same side of every action threshold. Worked example: prior .5; A=(5,−1), B=(0,0). A is optimal for beliefs above 1/6. A channel producing posteriors .4 and .6 with equal report masses is informative, but A remains optimal after both reports. Its pre-observation value remains 2, hence EVSI=0. Perfect revelation still has value .5·5=2.5, so EVPI=.5. An unspecified reporter protocol does not determine a posterior: a state-sensitive reporter and an independent reporter can produce the same marginal frequency but different joint laws. Guided check: Construct a channel whose reports alter beliefs without altering optimal actions. Verify VS directly by summing joint state/report masses, rather than treating a report as a new prior.",
+      "main": "T22V3::ARC502::S28-M@1",
+      "transfer": "T22V3::ARC502::S28-T@1",
+      "instructionVersion": "m06-decision-bridge-instruction-v1",
+      "codingExtension": "Enumerate states and signals using exact rational arithmetic. Compare a signal-contingent policy with every constant action; verify that ignoring a free signal remains feasible. Coding is an optional cross-check and does not replace the proof.",
+      "guidedFeedback": "For prior.5, set P(+|H)=.6 and P(+|Hᶜ)=.4. Reports +/− each have mass.5 and posteriors.6/.4. With A=(5,−1), its conditional values are2.6 and1.4, both above B=0. The direct joint-mass value is.5·2.6+.5·1.4=2, equal to the prior A value. Thus this informative channel has EVSI0; the protocol and action threshold explain why."
+    }
+  ],
+  "problems": {
+    "T22V3::ARC502::S25-M@1": {
+      "id": "T22V3::ARC502::S25-M@1",
+      "order": 25,
+      "kind": "main",
+      "obligationVersion": 1,
+      "prompt": "Prior P(H)=1/4. A positive signal has likelihood 4/5 under H and 1/5 under Hᶜ and is observed before action. Operate pays 12 under H and −8 under Hᶜ; wait pays 1 in either state. Maximize expected monetary payoff. Compare actions before observation, compute the positive-signal mass and posterior, derive the operate/wait threshold including ties, choose after the signal using both values, and state the timing/model/criterion limits."
+    },
+    "T22V3::ARC502::S25-T@1": {
+      "id": "T22V3::ARC502::S25-T@1",
+      "order": 25,
+      "kind": "transfer",
+      "obligationVersion": 1,
+      "prompt": "A screening model has P(H)=3/5, with report R likelihood 1/2 under H and 3/4 under Hᶜ. Approve pays 4 under H and −10 under Hᶜ; hold pays 0 in either state. Under expected-money maximization, compare prior values, compute P(R) and P(H|R), derive the approval threshold including ties, choose after R, and explain why a probability-only approval rule is inadequate."
+    },
+    "T22V3::ARC502::S26-M@1": {
+      "id": "T22V3::ARC502::S26-M@1",
+      "order": 26,
+      "kind": "main",
+      "obligationVersion": 1,
+      "prompt": "P(H)=3/10. Action A pays (15,−5) in H,Hᶜ; B pays (2,2). Use expected monetary payoff. Compute the best prior action, construct the perfect-information policy and its pre-observation value, compute EVPI and decide whether a fee 4 is worth paying. Prove EVPI≥0 for arbitrary finite states/actions by a statewise comparison, and explain why the acquisition decision is made before revelation."
+    },
+    "T22V3::ARC502::S26-T@1": {
+      "id": "T22V3::ARC502::S26-T@1",
+      "order": 26,
+      "kind": "transfer",
+      "obligationVersion": 1,
+      "prompt": "Three states have probabilities (1/5,3/10,1/2). Actions A,B,C pay (6,−2,0), (0,4,−1), (1,1,1). Maximize expected money. Compare all prior actions; find an optimal action after perfect state revelation; compute EVPI and the net value at fee 2. Prove the nonnegativity inequality for this setup and explain why looking only at the most favorable revelation misprices the information."
+    },
+    "T22V3::ARC502::S27-M@1": {
+      "id": "T22V3::ARC502::S27-M@1",
+      "order": 27,
+      "kind": "main",
+      "obligationVersion": 1,
+      "prompt": "P(H)=2/5. Signal + has likelihood 3/4 under H and 1/4 under Hᶜ; − is its complement and arrives before action. Play pays (10,−6); safe pays (0,0). Maximize expected money. Compute both report masses/posteriors, choose after each report, compute the best prior value, VS and EVSI, compare with EVPI, and decide whether to buy at monetary fee 3/2. State the assumptions behind 0≤EVSI≤EVPI."
+    },
+    "T22V3::ARC502::S27-T@1": {
+      "id": "T22V3::ARC502::S27-T@1",
+      "order": 27,
+      "kind": "transfer",
+      "obligationVersion": 1,
+      "prompt": "A finite model has P(H)=1/3. Report R likelihood is 1/2 under H and 1/4 under Hᶜ; N is its complement. The supplied utility table is A=(2,−1), B=(0,0). Reports arrive before action and may be ignored. Normalize both reports; choose the utility-maximizing policy; compute V0, VS, EVSI and EVPI in utility units. A seller asks a fee of 0.1 monetary units but supplies no wealth-to-utility model. Prove the information bounds and say exactly whether the purchase decision is identifiable."
+    },
+    "T22V3::ARC502::S28-M@1": {
+      "id": "T22V3::ARC502::S28-M@1",
+      "order": 28,
+      "kind": "main",
+      "obligationVersion": 1,
+      "prompt": "The joint state/report table is P(H,+)=3/10, P(H,−)=1/5, P(Hᶜ,+)=1/10, P(Hᶜ,−)=2/5. The report is available before action. A pays (8,−4), B=(0,0), with expected-money maximization and optional use of the report. Validate the law and prior, derive both posteriors and optimal actions including ties, compute V0, VS, EVSI and EVPI, decide at fee1/10, and explain how the report can be informative with zero decision value. Explain why the same report words from an unspecified reporter do not determine the same posterior."
+    },
+    "T22V3::ARC502::S28-T@1": {
+      "id": "T22V3::ARC502::S28-T@1",
+      "order": 28,
+      "kind": "transfer",
+      "obligationVersion": 1,
+      "prompt": "Three states have prior (1/5,3/10,1/2). The specified reporter gives R with conditional probabilities (1/2,3/5,4/5); N is the complement. Act pays (9,2,−3), safe pays (1,1,1). Under expected-money maximization with pre-action optional reports, build the joint table, normalize both posteriors, choose conditional actions, compute V0, VS, EVSI and EVPI, and decide at fee3/5. Explain why knowing only P(R), rather than this conditional channel, would not identify the posterior policy."
+    }
+  },
+  "evaluators": {
+    "T22V3::ARC502::S25-M@1": {
+      "reference": "Before observation: operate=−3, wait=1. P(+)=7/20; P(H|+)=4/7. Operate=20q−8 versus wait=1; operate iff q≥9/20, tie at equality. After +, operate=24/7, wait=1, so operate. The rule uses supplied net monetary payoffs, expected-money maximization and an observation available before action; a posterior alone does not justify a recommendation outside this model.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Prior values −3 and 1 and the choice wait are derived."
+        },
+        {
+          "points": 2,
+          "criterion": "Signal mass 7/20 and posterior 4/7 are normalized."
+        },
+        {
+          "points": 2,
+          "criterion": "Threshold 9/20 and tie case are derived from the payoff comparison."
+        },
+        {
+          "points": 2,
+          "criterion": "Posterior values 24/7 and 1 justify operate."
+        },
+        {
+          "points": 2,
+          "criterion": "Conclusion states criterion, pre-action observation and conditional model scope."
+        }
+      ],
+      "marking": "Score the requested construction and justification. Accept exact fractions, correct equivalent policies and all tied maximizers. Do not award model/decision justification for a posterior number alone."
+    },
+    "T22V3::ARC502::S25-T@1": {
+      "reference": "P(R)=3/5; posterior=1/2. Prior approve=−8/5, hold=0. Approve at q iff 14q−10≥0, hence threshold 5/7 with a tie there. After R approve=−3 and hold=0, so hold. A posterior of one half does not determine an action without the asymmetric payoffs.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Prior values −8/5 and 0 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Report mass 3/5 and posterior 1/2 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Threshold 5/7 including equality is justified."
+        },
+        {
+          "points": 2,
+          "criterion": "Posterior values −3 and 0 imply hold."
+        },
+        {
+          "points": 2,
+          "criterion": "The explanation distinguishes probability from a payoff-dependent action rule."
+        }
+      ],
+      "marking": "Score the requested construction and justification. Accept exact fractions, correct equivalent policies and all tied maximizers. Do not award model/decision justification for a posterior number alone."
+    },
+    "T22V3::ARC502::S26-M@1": {
+      "reference": "A=1, B=2, V0=2. With perfect revelation choose A in H and B in Hᶜ: VPI=59/10. EVPI=39/10, below fee4, net benefit −1/10; do not buy. For any a, max_b r(b,h)≥r(a,h). Summing against p(h) gives VPI≥V(a) for every a, hence VPI≥max_a V(a)=V0. Information must be priced over all possible revelations before seeing which occurs.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Prior values 1 and 2 yield baseline 2."
+        },
+        {
+          "points": 2,
+          "criterion": "Statewise choices A/B and pre-observation value 59/10 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "EVPI 39/10 and net benefit −1/10 reject fee 4."
+        },
+        {
+          "points": 2,
+          "criterion": "Nonnegativity is proved using statewise inequalities and finite expectation."
+        },
+        {
+          "points": 2,
+          "criterion": "Acquisition timing and pre-observation averaging are explained."
+        }
+      ],
+      "marking": "Score the requested construction and justification. Accept exact fractions, correct equivalent policies and all tied maximizers. Do not award model/decision justification for a posterior number alone."
+    },
+    "T22V3::ARC502::S26-T@1": {
+      "reference": "Prior values A=3/5, B=7/10, C=1, so V0=1. Revelation chooses A,B,C respectively; VPI=29/10. EVPI=19/10; fee2 gives −1/10, so do not buy. For each constant action, its payoff in each state is bounded by that state maximum; average and maximize. Favorable-outcome value is conditional, not the pre-observation purchase value.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "All three prior values and baseline 1 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Optimal state choices and perfect-information value 29/10 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "EVPI 19/10 and rejection at fee2 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "A statewise inequality proves the nonnegative gross value."
+        },
+        {
+          "points": 2,
+          "criterion": "The purchase argument averages all revelations rather than cherry-picking one."
+        }
+      ],
+      "marking": "Score the requested construction and justification. Accept exact fractions, correct equivalent policies and all tied maximizers. Do not award model/decision justification for a posterior number alone."
+    },
+    "T22V3::ARC502::S27-M@1": {
+      "reference": "P(+)=9/20, posterior+=2/3; P(−)=11/20, posterior−=2/11. Play has conditional values 14/3 and −34/11; choose play after + and safe after −. Prior play=2/5, safe=0, V0=2/5. VS=21/10; EVSI=17/10. VPI=4, EVPI=18/5, so 0≤17/10≤18/5. Fee3/2 gives net benefit1/5, buy. Same action/payoff model, pre-action reports, optional use and no other effects are required.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Both report masses and posteriors 2/3,2/11 are normalized."
+        },
+        {
+          "points": 2,
+          "criterion": "Report-contingent values and play/safe policy are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Baseline 2/5, VS21/10 and EVSI17/10 use all reports."
+        },
+        {
+          "points": 2,
+          "criterion": "EVPI18/5 and the bounds with their common-model assumptions are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Fee3/2 gives net benefit1/5 in monetary units and supports acquisition."
+        }
+      ],
+      "marking": "Score the requested construction and justification. Accept exact fractions, correct equivalent policies and all tied maximizers. Do not award model/decision justification for a posterior number alone."
+    },
+    "T22V3::ARC502::S27-T@1": {
+      "reference": "P(R)=1/3, posteriorR=1/2; P(N)=2/3, posteriorN=1/4. A values 1/2 and −1/4, so choose A after R, B after N. Prior A=B=0; V0=0, VS=EVSI=1/6 utility units. VPI=EVPI=2/3 utility units. Ignoring information proves the lower bound; each state maximum bounds every conditional action payoff, giving the upper bound. A money fee cannot be subtracted from utility; the purchase decision is not identifiable without utility of terminal wealth including the fee.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Masses1/3,2/3 and posteriors1/2,1/4 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "A/B conditional policy and utility values are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Baseline0 and VS=EVSI=1/6 are in utility units."
+        },
+        {
+          "points": 2,
+          "criterion": "EVPI2/3 and both bounds are justified."
+        },
+        {
+          "points": 2,
+          "criterion": "The monetary-fee decision is rejected as unidentified without a fee/wealth utility model."
+        }
+      ],
+      "marking": "Score the requested construction and justification. Accept exact fractions, correct equivalent policies and all tied maximizers. Do not award model/decision justification for a posterior number alone."
+    },
+    "T22V3::ARC502::S28-M@1": {
+      "reference": "The four nonnegative masses sum1, P(H)=1/2, P(+)=2/5, P(−)=3/5. Posteriors3/4 and1/3. A values5 and0; choose A after +, either A or B after −. Prior A=2, B=0, V0=2. VS=(2/5)5+(3/5)0=2, EVSI=0. VPI=4, EVPI=2. Fee1/10 has net benefit−1/10; do not buy. Beliefs change, but A remains an optimal action in both reports. The given joint protocol identifies the posterior; the marginal report wording/frequency alone does not identify that joint law.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Joint masses normalize and prior/report masses are recovered."
+        },
+        {
+          "points": 2,
+          "criterion": "Posteriors3/4,1/3 and all tied conditional actions are identified."
+        },
+        {
+          "points": 2,
+          "criterion": "V0=VS=2, EVSI0 and EVPI2 are correctly constructed."
+        },
+        {
+          "points": 2,
+          "criterion": "The informative-but-zero-value explanation uses unchanged optimal actions."
+        },
+        {
+          "points": 2,
+          "criterion": "Fee1/10 is rejected and unspecified reporter/criterion limits are stated."
+        }
+      ],
+      "marking": "Score the requested construction and justification. Accept exact fractions, correct equivalent policies and all tied maximizers. Do not award model/decision justification for a posterior number alone."
+    },
+    "T22V3::ARC502::S28-T@1": {
+      "reference": "Joint R=(1/10,9/50,2/5), total17/25; N=(1/10,3/25,1/10), total8/25. PosteriorsR=(5/34,9/34,10/17), N=(5/16,3/8,5/16). Act values3/34 afterR and21/8 afterN; choose safe afterR and act afterN. Prior act9/10, safe1, V0=1. VS=(17/25)1+(8/25)(21/8)=38/25; EVSI13/25. VPI29/10; EVPI19/10. Fee3/5 exceeds13/25, net benefit−2/25; do not buy. A report marginal alone leaves the coupling with states unspecified, hence does not determine these posterior actions.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Joint table and both report masses17/25,8/25 are constructed."
+        },
+        {
+          "points": 2,
+          "criterion": "Both posteriors and safe/act conditional values/policy are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Baseline1, VS38/25, EVSI13/25 and EVPI19/10 are correct."
+        },
+        {
+          "points": 2,
+          "criterion": "Pre-observation averaging and the conditional policy explain the information benefit."
+        },
+        {
+          "points": 2,
+          "criterion": "Fee3/5 is rejected and marginal-report-only identification is denied."
+        }
+      ],
+      "marking": "Score the requested construction and justification. Accept exact fractions, correct equivalent policies and all tied maximizers. Do not award model/decision justification for a posterior number alone."
+    }
+  },
+  "claimEvidence": {
+    "T22V3::ARC502::S25@1": [
+      {
+        "claim": "Compare all constant actions under the prior.",
+        "task": "main",
+        "publicRequest": "Prior P(H)=1/4. A positive signal has likelihood 4/5 under H and 1/5 under Hᶜ and is observed before action. Operate pays 12 under H and −8 under Hᶜ; wait pays 1 in either state. Maximize expected monetary payoff. Compare actions before observation, compute the positive-signal mass and posterior, derive the operate/wait threshold including ties, choose after the signal using both values, and state the timing/model/criterion limits.",
+        "rubricEvidence": [
+          "Prior values −3 and 1 and the choice wait are derived."
+        ]
+      },
+      {
+        "claim": "Normalize the observed-signal posterior from the given channel.",
+        "task": "main",
+        "publicRequest": "Prior P(H)=1/4. A positive signal has likelihood 4/5 under H and 1/5 under Hᶜ and is observed before action. Operate pays 12 under H and −8 under Hᶜ; wait pays 1 in either state. Maximize expected monetary payoff. Compare actions before observation, compute the positive-signal mass and posterior, derive the operate/wait threshold including ties, choose after the signal using both values, and state the timing/model/criterion limits.",
+        "rubricEvidence": [
+          "Signal mass 7/20 and posterior 4/7 are normalized."
+        ]
+      },
+      {
+        "claim": "Derive the payoff-dependent action threshold including the tie.",
+        "task": "main",
+        "publicRequest": "Prior P(H)=1/4. A positive signal has likelihood 4/5 under H and 1/5 under Hᶜ and is observed before action. Operate pays 12 under H and −8 under Hᶜ; wait pays 1 in either state. Maximize expected monetary payoff. Compare actions before observation, compute the positive-signal mass and posterior, derive the operate/wait threshold including ties, choose after the signal using both values, and state the timing/model/criterion limits.",
+        "rubricEvidence": [
+          "Threshold 9/20 and tie case are derived from the payoff comparison."
+        ]
+      },
+      {
+        "claim": "Choose among actions using their posterior values.",
+        "task": "main",
+        "publicRequest": "Prior P(H)=1/4. A positive signal has likelihood 4/5 under H and 1/5 under Hᶜ and is observed before action. Operate pays 12 under H and −8 under Hᶜ; wait pays 1 in either state. Maximize expected monetary payoff. Compare actions before observation, compute the positive-signal mass and posterior, derive the operate/wait threshold including ties, choose after the signal using both values, and state the timing/model/criterion limits.",
+        "rubricEvidence": [
+          "Posterior values 24/7 and 1 justify operate."
+        ]
+      },
+      {
+        "claim": "State information timing, criterion and model limits.",
+        "task": "main",
+        "publicRequest": "Prior P(H)=1/4. A positive signal has likelihood 4/5 under H and 1/5 under Hᶜ and is observed before action. Operate pays 12 under H and −8 under Hᶜ; wait pays 1 in either state. Maximize expected monetary payoff. Compare actions before observation, compute the positive-signal mass and posterior, derive the operate/wait threshold including ties, choose after the signal using both values, and state the timing/model/criterion limits.",
+        "rubricEvidence": [
+          "Conclusion states criterion, pre-action observation and conditional model scope."
+        ]
+      }
+    ],
+    "T22V3::ARC502::S26@1": [
+      {
+        "claim": "Compute the best prior action value.",
+        "task": "main",
+        "publicRequest": "P(H)=3/10. Action A pays (15,−5) in H,Hᶜ; B pays (2,2). Use expected monetary payoff. Compute the best prior action, construct the perfect-information policy and its pre-observation value, compute EVPI and decide whether a fee 4 is worth paying. Prove EVPI≥0 for arbitrary finite states/actions by a statewise comparison, and explain why the acquisition decision is made before revelation.",
+        "rubricEvidence": [
+          "Prior values 1 and 2 yield baseline 2."
+        ]
+      },
+      {
+        "claim": "Construct state-contingent actions after perfect revelation.",
+        "task": "main",
+        "publicRequest": "P(H)=3/10. Action A pays (15,−5) in H,Hᶜ; B pays (2,2). Use expected monetary payoff. Compute the best prior action, construct the perfect-information policy and its pre-observation value, compute EVPI and decide whether a fee 4 is worth paying. Prove EVPI≥0 for arbitrary finite states/actions by a statewise comparison, and explain why the acquisition decision is made before revelation.",
+        "rubricEvidence": [
+          "Statewise choices A/B and pre-observation value 59/10 are correct."
+        ]
+      },
+      {
+        "claim": "Compare gross EVPI with an acquisition cost in the same units.",
+        "task": "main",
+        "publicRequest": "P(H)=3/10. Action A pays (15,−5) in H,Hᶜ; B pays (2,2). Use expected monetary payoff. Compute the best prior action, construct the perfect-information policy and its pre-observation value, compute EVPI and decide whether a fee 4 is worth paying. Prove EVPI≥0 for arbitrary finite states/actions by a statewise comparison, and explain why the acquisition decision is made before revelation.",
+        "rubricEvidence": [
+          "EVPI 39/10 and net benefit −1/10 reject fee 4."
+        ]
+      },
+      {
+        "claim": "Prove nonnegative EVPI from statewise inequalities.",
+        "task": "main",
+        "publicRequest": "P(H)=3/10. Action A pays (15,−5) in H,Hᶜ; B pays (2,2). Use expected monetary payoff. Compute the best prior action, construct the perfect-information policy and its pre-observation value, compute EVPI and decide whether a fee 4 is worth paying. Prove EVPI≥0 for arbitrary finite states/actions by a statewise comparison, and explain why the acquisition decision is made before revelation.",
+        "rubricEvidence": [
+          "Nonnegativity is proved using statewise inequalities and finite expectation."
+        ]
+      },
+      {
+        "claim": "Distinguish a pre-observation value from a realized conditional action value.",
+        "task": "main",
+        "publicRequest": "P(H)=3/10. Action A pays (15,−5) in H,Hᶜ; B pays (2,2). Use expected monetary payoff. Compute the best prior action, construct the perfect-information policy and its pre-observation value, compute EVPI and decide whether a fee 4 is worth paying. Prove EVPI≥0 for arbitrary finite states/actions by a statewise comparison, and explain why the acquisition decision is made before revelation.",
+        "rubricEvidence": [
+          "Acquisition timing and pre-observation averaging are explained."
+        ]
+      }
+    ],
+    "T22V3::ARC502::S27@1": [
+      {
+        "claim": "Normalize every positive-mass report and its posterior.",
+        "task": "main",
+        "publicRequest": "P(H)=2/5. Signal + has likelihood 3/4 under H and 1/4 under Hᶜ; − is its complement and arrives before action. Play pays (10,−6); safe pays (0,0). Maximize expected money. Compute both report masses/posteriors, choose after each report, compute the best prior value, VS and EVSI, compare with EVPI, and decide whether to buy at monetary fee 3/2. State the assumptions behind 0≤EVSI≤EVPI.",
+        "rubricEvidence": [
+          "Both report masses and posteriors 2/3,2/11 are normalized."
+        ]
+      },
+      {
+        "claim": "Construct an optimal report-contingent action policy.",
+        "task": "main",
+        "publicRequest": "P(H)=2/5. Signal + has likelihood 3/4 under H and 1/4 under Hᶜ; − is its complement and arrives before action. Play pays (10,−6); safe pays (0,0). Maximize expected money. Compute both report masses/posteriors, choose after each report, compute the best prior value, VS and EVSI, compare with EVPI, and decide whether to buy at monetary fee 3/2. State the assumptions behind 0≤EVSI≤EVPI.",
+        "rubricEvidence": [
+          "Report-contingent values and play/safe policy are correct."
+        ]
+      },
+      {
+        "claim": "Compute pre-observation EVSI relative to the best prior action.",
+        "task": "main",
+        "publicRequest": "P(H)=2/5. Signal + has likelihood 3/4 under H and 1/4 under Hᶜ; − is its complement and arrives before action. Play pays (10,−6); safe pays (0,0). Maximize expected money. Compute both report masses/posteriors, choose after each report, compute the best prior value, VS and EVSI, compare with EVPI, and decide whether to buy at monetary fee 3/2. State the assumptions behind 0≤EVSI≤EVPI.",
+        "rubricEvidence": [
+          "Baseline 2/5, VS21/10 and EVSI17/10 use all reports."
+        ]
+      },
+      {
+        "claim": "Verify the information bounds under a common action/payoff model.",
+        "task": "main",
+        "publicRequest": "P(H)=2/5. Signal + has likelihood 3/4 under H and 1/4 under Hᶜ; − is its complement and arrives before action. Play pays (10,−6); safe pays (0,0). Maximize expected money. Compute both report masses/posteriors, choose after each report, compute the best prior value, VS and EVSI, compare with EVPI, and decide whether to buy at monetary fee 3/2. State the assumptions behind 0≤EVSI≤EVPI.",
+        "rubricEvidence": [
+          "EVPI18/5 and the bounds with their common-model assumptions are correct."
+        ]
+      },
+      {
+        "claim": "Price acquisition in correct units and state assumptions.",
+        "task": "main",
+        "publicRequest": "P(H)=2/5. Signal + has likelihood 3/4 under H and 1/4 under Hᶜ; − is its complement and arrives before action. Play pays (10,−6); safe pays (0,0). Maximize expected money. Compute both report masses/posteriors, choose after each report, compute the best prior value, VS and EVSI, compare with EVPI, and decide whether to buy at monetary fee 3/2. State the assumptions behind 0≤EVSI≤EVPI.",
+        "rubricEvidence": [
+          "Fee3/2 gives net benefit1/5 in monetary units and supports acquisition."
+        ]
+      }
+    ],
+    "T22V3::ARC502::S28@1": [
+      {
+        "claim": "Validate and normalize a finite joint state/report law.",
+        "task": "main",
+        "publicRequest": "The joint state/report table is P(H,+)=3/10, P(H,−)=1/5, P(Hᶜ,+)=1/10, P(Hᶜ,−)=2/5. The report is available before action. A pays (8,−4), B=(0,0), with expected-money maximization and optional use of the report. Validate the law and prior, derive both posteriors and optimal actions including ties, compute V0, VS, EVSI and EVPI, decide at fee1/10, and explain how the report can be informative with zero decision value. Explain why the same report words from an unspecified reporter do not determine the same posterior.",
+        "rubricEvidence": [
+          "Joint masses normalize and prior/report masses are recovered."
+        ]
+      },
+      {
+        "claim": "Derive posteriors and an admissible conditional policy including ties.",
+        "task": "main",
+        "publicRequest": "The joint state/report table is P(H,+)=3/10, P(H,−)=1/5, P(Hᶜ,+)=1/10, P(Hᶜ,−)=2/5. The report is available before action. A pays (8,−4), B=(0,0), with expected-money maximization and optional use of the report. Validate the law and prior, derive both posteriors and optimal actions including ties, compute V0, VS, EVSI and EVPI, decide at fee1/10, and explain how the report can be informative with zero decision value. Explain why the same report words from an unspecified reporter do not determine the same posterior.",
+        "rubricEvidence": [
+          "Posteriors3/4,1/3 and all tied conditional actions are identified."
+        ]
+      },
+      {
+        "claim": "Compute baseline, sample-information value and perfect-information bound.",
+        "task": "main",
+        "publicRequest": "The joint state/report table is P(H,+)=3/10, P(H,−)=1/5, P(Hᶜ,+)=1/10, P(Hᶜ,−)=2/5. The report is available before action. A pays (8,−4), B=(0,0), with expected-money maximization and optional use of the report. Validate the law and prior, derive both posteriors and optimal actions including ties, compute V0, VS, EVSI and EVPI, decide at fee1/10, and explain how the report can be informative with zero decision value. Explain why the same report words from an unspecified reporter do not determine the same posterior.",
+        "rubricEvidence": [
+          "V0=VS=2, EVSI0 and EVPI2 are correctly constructed."
+        ]
+      },
+      {
+        "claim": "Distinguish informative reporting from positive decision value.",
+        "task": "main",
+        "publicRequest": "The joint state/report table is P(H,+)=3/10, P(H,−)=1/5, P(Hᶜ,+)=1/10, P(Hᶜ,−)=2/5. The report is available before action. A pays (8,−4), B=(0,0), with expected-money maximization and optional use of the report. Validate the law and prior, derive both posteriors and optimal actions including ties, compute V0, VS, EVSI and EVPI, decide at fee1/10, and explain how the report can be informative with zero decision value. Explain why the same report words from an unspecified reporter do not determine the same posterior.",
+        "rubricEvidence": [
+          "The informative-but-zero-value explanation uses unchanged optimal actions."
+        ]
+      },
+      {
+        "claim": "State acquisition, protocol and criterion limits without inventing information.",
+        "task": "main",
+        "publicRequest": "The joint state/report table is P(H,+)=3/10, P(H,−)=1/5, P(Hᶜ,+)=1/10, P(Hᶜ,−)=2/5. The report is available before action. A pays (8,−4), B=(0,0), with expected-money maximization and optional use of the report. Validate the law and prior, derive both posteriors and optimal actions including ties, compute V0, VS, EVSI and EVPI, decide at fee1/10, and explain how the report can be informative with zero decision value. Explain why the same report words from an unspecified reporter do not determine the same posterior.",
+        "rubricEvidence": [
+          "Fee1/10 is rejected and unspecified reporter/criterion limits are stated."
+        ]
+      }
+    ]
+  },
+  "coverage": {
+    "T22V3::ARC502::S25@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::ARC502::S26@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::ARC502::S27@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::ARC502::S28@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ]
+  },
+  "prerequisiteAudit": {
+    "T22V3::ARC502::S25@1": [
+      "M05-S01–S05 payoff/EV comparisons",
+      "M05-S18–S19 supplied utility and certainty equivalents",
+      "M06-S06–S11 Bayes and positive evidence normalization"
+    ],
+    "T22V3::ARC502::S26@1": [
+      "M06-S25 posterior action comparison",
+      "M04-S19/S20 finite expectation and linearity"
+    ],
+    "T22V3::ARC502::S27@1": [
+      "M06-S25 action choice",
+      "M06-S26 EVPI",
+      "M04-S27 observation/reporting mechanisms",
+      "M06-S07/S11 finite evidence normalization"
+    ],
+    "T22V3::ARC502::S28@1": [
+      "M06-S24 calibrated Bayesian evidence audit",
+      "M06-S25–S27 finite information decisions",
+      "M04-S27 reporting protocol; M05-S24 criterion discipline"
+    ]
+  },
+  "instructionSeparation": {
+    "T22V3::ARC502::S25@1": {
+      "main": [
+        "Prior P(H)=1/4. A positive signal has likelihood 4/5 under H and 1/5 under Hᶜ and is obser"
+      ],
+      "transfer": [
+        "A screening model has P(H)=3/5, with report R likelihood 1/2 under H and 3/4 under Hᶜ. App"
+      ]
+    },
+    "T22V3::ARC502::S26@1": {
+      "main": [
+        "P(H)=3/10. Action A pays (15,−5) in H,Hᶜ; B pays (2,2). Use expected monetary payoff. Comp"
+      ],
+      "transfer": [
+        "Three states have probabilities (1/5,3/10,1/2). Actions A,B,C pay (6,−2,0), (0,4,−1), (1,1"
+      ]
+    },
+    "T22V3::ARC502::S27@1": {
+      "main": [
+        "P(H)=2/5. Signal + has likelihood 3/4 under H and 1/4 under Hᶜ; − is its complement and ar"
+      ],
+      "transfer": [
+        "A finite model has P(H)=1/3. Report R likelihood is 1/2 under H and 1/4 under Hᶜ; N is its"
+      ]
+    },
+    "T22V3::ARC502::S28@1": {
+      "main": [
+        "The joint state/report table is P(H,+)=3/10, P(H,−)=1/5, P(Hᶜ,+)=1/10, P(Hᶜ,−)=2/5. The re"
+      ],
+      "transfer": [
+        "Three states have prior (1/5,3/10,1/2). The specified reporter gives R with conditional pr"
+      ]
+    }
+  },
+  "semanticSeparationAudit": {
+    "sessions": {
+      "T22V3::ARC502::S25@1": {
+        "status": "builder-checked-separated",
+        "note": "Worked/guided examples use different models and numbers. Public tasks and rubric claims were read together; this is not independent review."
+      },
+      "T22V3::ARC502::S26@1": {
+        "status": "builder-checked-separated",
+        "note": "Worked/guided examples use different models and numbers. Public tasks and rubric claims were read together; this is not independent review."
+      },
+      "T22V3::ARC502::S27@1": {
+        "status": "builder-checked-separated",
+        "note": "Worked/guided examples use different models and numbers. Public tasks and rubric claims were read together; this is not independent review."
+      },
+      "T22V3::ARC502::S28@1": {
+        "status": "builder-checked-separated",
+        "note": "Worked/guided examples use different models and numbers. Public tasks and rubric claims were read together; this is not independent review."
+      }
+    }
+  },
+  "evidenceDistance": {
+    "T22V3::ARC502::S25-M@1": {
+      "classification": "reasoning reconstruction",
+      "reason": "The lesson teaches the method. This fixed task changes the model, but is not certified unseen evidence after exposure."
+    },
+    "T22V3::ARC502::S25-T@1": {
+      "classification": "reasoning reconstruction",
+      "reason": "The lesson teaches the method. This fixed task changes the model, but is not certified unseen evidence after exposure."
+    },
+    "T22V3::ARC502::S26-M@1": {
+      "classification": "reasoning reconstruction",
+      "reason": "The lesson teaches the method. This fixed task changes the model, but is not certified unseen evidence after exposure."
+    },
+    "T22V3::ARC502::S26-T@1": {
+      "classification": "reasoning reconstruction",
+      "reason": "The lesson teaches the method. This fixed task changes the model, but is not certified unseen evidence after exposure."
+    },
+    "T22V3::ARC502::S27-M@1": {
+      "classification": "reasoning reconstruction",
+      "reason": "The lesson teaches the method. This fixed task changes the model, but is not certified unseen evidence after exposure."
+    },
+    "T22V3::ARC502::S27-T@1": {
+      "classification": "reasoning reconstruction",
+      "reason": "The lesson teaches the method. This fixed task changes the model, but is not certified unseen evidence after exposure."
+    },
+    "T22V3::ARC502::S28-M@1": {
+      "classification": "reasoning reconstruction",
+      "reason": "The lesson teaches the method. This fixed task changes the model, but is not certified unseen evidence after exposure."
+    },
+    "T22V3::ARC502::S28-T@1": {
+      "classification": "reasoning reconstruction",
+      "reason": "The lesson teaches the method. This fixed task changes the model, but is not certified unseen evidence after exposure."
+    }
+  },
+  "wrongSolverAudit": {
+    "T22V3::ARC502::S25@1": {
+      "attack": "Choose whenever posterior exceeds one half; confuse probability with expected payoff.",
+      "rejection": "The public deliverables and corresponding rubric rows require the missing model/action/timing argument."
+    },
+    "T22V3::ARC502::S26@1": {
+      "attack": "Use max of prior values as the perfect-information value; purchase based only on a favorable realized state.",
+      "rejection": "The public deliverables and corresponding rubric rows require the missing model/action/timing argument."
+    },
+    "T22V3::ARC502::S27@1": {
+      "attack": "Only average the favorable report; assume all information is worth buying; compare currency with utility units.",
+      "rejection": "The public deliverables and corresponding rubric rows require the missing model/action/timing argument."
+    },
+    "T22V3::ARC502::S28@1": {
+      "attack": "All informative signals have positive value; choose a prior action after seeing the favorable signal; infer a joint law from report marginals.",
+      "rejection": "The public deliverables and corresponding rubric rows require the missing model/action/timing argument."
+    }
+  },
+  "mathModels": {
+    "T22V3::ARC502::S25-M@1": {
+      "prior": [
+        0.25,
+        0.75
+      ],
+      "channel": [
+        [
+          0.8,
+          0.2
+        ],
+        [
+          0.2,
+          0.8
+        ]
+      ],
+      "payoffs": [
+        [
+          12,
+          -8
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "observed": 0,
+      "expected": {
+        "baseline": 1,
+        "signalMass": 0.35,
+        "posterior": [
+          0.5714285714285714,
+          0.42857142857142855
+        ],
+        "observedValue": 3.4285714285714284
+      }
+    },
+    "T22V3::ARC502::S25-T@1": {
+      "prior": [
+        0.6,
+        0.4
+      ],
+      "channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.75,
+          0.25
+        ]
+      ],
+      "payoffs": [
+        [
+          4,
+          -10
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "observed": 0,
+      "expected": {
+        "baseline": 0,
+        "signalMass": 0.6,
+        "posterior": [
+          0.5,
+          0.5
+        ],
+        "observedValue": 0
+      }
+    },
+    "T22V3::ARC502::S26-M@1": {
+      "prior": [
+        0.3,
+        0.7
+      ],
+      "payoffs": [
+        [
+          15,
+          -5
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "cost": 4,
+      "expected": {
+        "baseline": 2,
+        "perfect": 5.9,
+        "evpi": 3.9
+      }
+    },
+    "T22V3::ARC502::S26-T@1": {
+      "prior": [
+        0.2,
+        0.3,
+        0.5
+      ],
+      "payoffs": [
+        [
+          6,
+          -2,
+          0
+        ],
+        [
+          0,
+          4,
+          -1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "cost": 2,
+      "expected": {
+        "baseline": 1,
+        "perfect": 2.9,
+        "evpi": 1.9
+      }
+    },
+    "T22V3::ARC502::S27-M@1": {
+      "prior": [
+        0.4,
+        0.6
+      ],
+      "channel": [
+        [
+          0.75,
+          0.25
+        ],
+        [
+          0.25,
+          0.75
+        ]
+      ],
+      "payoffs": [
+        [
+          10,
+          -6
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "cost": 1.5,
+      "expected": {
+        "baseline": 0.4,
+        "sample": 2.1,
+        "evsi": 1.7,
+        "perfect": 4,
+        "evpi": 3.6
+      }
+    },
+    "T22V3::ARC502::S27-T@1": {
+      "prior": [
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.25,
+          0.75
+        ]
+      ],
+      "payoffs": [
+        [
+          2,
+          -1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "valueUnits": "utility",
+      "costUnits": "money",
+      "expected": {
+        "baseline": 0,
+        "sample": 0.16666666666666666,
+        "evsi": 0.16666666666666666,
+        "perfect": 0.6666666666666666,
+        "evpi": 0.6666666666666666
+      }
+    },
+    "T22V3::ARC502::S28-M@1": {
+      "prior": [
+        0.5,
+        0.5
+      ],
+      "channel": [
+        [
+          0.6,
+          0.4
+        ],
+        [
+          0.2,
+          0.8
+        ]
+      ],
+      "payoffs": [
+        [
+          8,
+          -4
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "cost": 0.1,
+      "expected": {
+        "baseline": 2,
+        "sample": 2,
+        "evsi": 0,
+        "perfect": 4,
+        "evpi": 2
+      }
+    },
+    "T22V3::ARC502::S28-T@1": {
+      "prior": [
+        0.2,
+        0.3,
+        0.5
+      ],
+      "channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.6,
+          0.4
+        ],
+        [
+          0.8,
+          0.2
+        ]
+      ],
+      "payoffs": [
+        [
+          9,
+          2,
+          -3
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "cost": 0.6,
+      "expected": {
+        "baseline": 1,
+        "sample": 1.52,
+        "evsi": 0.52,
+        "perfect": 2.9,
+        "evpi": 1.9
+      }
+    }
+  },
+  "sourceLedger": [
+    {
+      "url": "https://ocw.mit.edu/courses/14-123-microeconomic-theory-iii-spring-2015/a8b0b0de1bebe039bc3cccc15f1b756f_MIT14_123S15_decision.pdf",
+      "checked": "2026-10-07",
+      "role": "Finite lottery/utility assumptions; original finite decision and information-value tasks written here."
+    }
+  ],
+  "boundary": {
+    "owns": [
+      "Finite posterior action choice with supplied payoff or utility table",
+      "EVPI and EVSI under a specified finite observation channel",
+      "Nonnegative gross information value when information can be ignored",
+      "Acquisition costs in the correct units and information timing"
+    ],
+    "excludes": [
+      "General utility representation proof (M09-U)",
+      "General equilibrium existence (M53-G)",
+      "Bayesian parameter inference/conjugacy",
+      "Adaptive multistage optimal control (M59/M60)",
+      "Claims about live trading performance"
+    ]
+  },
+  "historicalLessonAnswerOverlap": {
+    "sessions": {}
+  }
+}
