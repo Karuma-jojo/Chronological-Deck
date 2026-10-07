@@ -2,7 +2,7 @@ name: T22 Elite checks
 
 on:
   push:
-    branches: [codex/t22-pedagogical-rebuild, codex/t22-m15-publication, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation, codex/t22-m05-deep-source-restart, codex/t22-m05-final-confirmation-sol, codex/t22-m03-six-tools-upgrade, codex/t22-m03-v2-review-repair-r1, main]
+    branches: [codex/t22-pedagogical-rebuild, codex/t22-m15-publication, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation, codex/t22-m04-28-session-rebuild, codex/t22-m05-deep-source-restart, codex/t22-m05-final-confirmation-sol, codex/t22-m03-six-tools-upgrade, codex/t22-m03-v2-review-repair-r1, main]
     paths:
       - 'course/t22/**'
       - 'js/t22-course/**'

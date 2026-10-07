@@ -3,7 +3,7 @@ name: T22 M04 v2 review
 
 on:
   push:
-    branches: [codex/t22-m04-godlike-v2, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation]
+    branches: [codex/t22-m04-godlike-v2, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation, codex/t22-m04-28-session-rebuild]
     paths:
       - 'course/t22/authoring/m04.json'
       - 'js/t22-course/**'
@@ -33,11 +33,14 @@ jobs:
           node --check scripts/test-t22-elite-m04.mjs
           node --check scripts/test-t22-elite-m04-browser.mjs
           node --check docs/t22-course/audit/m04-independent-math.mjs
+          node --check docs/t22-course/audit/m04-candidate-math-oracle.mjs
+          node --check docs/t22-course/audit/m04-r2-adversarial-recheck.mjs
           node --check docs/t22-course/audit/m04-handoff-checks.mjs
       - name: M04 structural, semantic and math checks
         run: |
           node scripts/test-t22-elite-m04.mjs
           node docs/t22-course/audit/m04-independent-math.mjs
+          node docs/t22-course/audit/m04-r2-adversarial-recheck.mjs
           node docs/t22-course/audit/m04-handoff-checks.mjs
       - name: Install browser-test dependency
         run: npm ci --prefix scripts/review-tests

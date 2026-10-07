@@ -60,11 +60,15 @@ assert(fs.existsSync('course/t22/authoring/m10-arc053.json'));
 
 // M13 adds optional staged guided feedback to the shared UI; earlier module
 // behavior remains covered by the existing browser suite and M13 UI checks.
-const publicationAuthorized=new Set(['course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/ui.js','t22-course.html','course/t22/authoring/m05.json','course/t22/authoring/m03.json']);
+const publicationAuthorized=new Set(['course/t22/authoring/m04.json','course/t22/generated/course-meta.json','course/t22/generated/roadmap.json','js/t22-course/ui.js','t22-course.html','course/t22/authoring/m05.json','course/t22/authoring/m03.json']);
 const m05v2=read('course/t22/authoring/m05.json');
 assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M10 baseline exception is bounded to the explicit M05 v2 candidate');
 assert(fs.existsSync('docs/t22-course/M05-V2-DESIGN-GATE.md'));
 assert.equal(m03.version,'m03-authoring-v2.0-six-tools-candidate-r4','M10 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
+const m04v22=read('course/t22/authoring/m04.json');
+assert.equal(m04v22.version,'m04-authoring-v2.2-28-session-whole-curriculum-r2','scripts/test-t22-elite-m10.mjs baseline exception permits only the user-authorized M04 v2.2 whole-curriculum candidate');
+assert.equal(m04v22.sessions.length,28);assert(fs.existsSync('docs/t22-course/M04-V2.2-28-SESSION-DESIGN-GATE.md'));
+assert.equal(createHash('sha256').update(fs.readFileSync('course/t22/authoring/m04.json')).digest('hex'),'1b35e031b96d6d413afaea9866efe364f0a4eef3a02c544f0ea483d28fcc0071','scripts/test-t22-elite-m10.mjs M04 exception is pinned to the exact independently-reviewed repair candidate bytes, not merely version/session shape');
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication metadata');
 const currentProtectedRows=semanticLedger.entries.filter(x=>x.order<=10);
 assert.deepEqual(currentProtectedRows,protectedSemantic.rows,'M01-M10 semantic-ledger rows changed after their reviewed baseline');

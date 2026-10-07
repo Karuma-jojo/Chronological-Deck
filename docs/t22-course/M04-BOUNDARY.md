@@ -1,7 +1,37 @@
 # M04 boundary & authoring contract — ARC048
 
 Date: 2026-09-18  
-Status: **ASTRA-REPAIRED — 24 sessions / 48 fixed tasks / 120 ownership claims; bounded follow-up pending; M05/M06 remain closed**
+Status: **V2.2-R2 BOUNDED-REPAIR CANDIDATE — 28 sessions / 56 fixed tasks / 140 ownership claims; independent findings R01–R06 + C01/C02 repaired; historical v2.1 acceptance retained as provenance; exact-head CI + focused confirmation required**
+
+
+## v2.2-r2 independent-review bounded repair
+
+The independent adversarial review of the 28-session v2.2 candidate returned **BOUNDED REPAIR REQUIRED**, not a rebuild. The r2 candidate preserves the 28-session architecture and stable IDs while repairing:
+
+- **R01** — public joint/sampling laws are explicit; marginal fairness or replacement alone never supplies a joint/uniform sampling law;
+- **R02** — S26-T and S27-T are honestly classified as retrieval/fluency rather than unrehearsed changed-surface transfer;
+- **R03** — S25-T now requires and scores a finite-union-bound derivation from disjoint new contributions;
+- **R04** — S18 begins with the universally valid identity \(P(A)=\sum_iP(A\cap B_i)\), and only rewrites positive-mass cells as conditional products;
+- **R05** — critical evaluator references/rubrics are bound to typed math oracles with deliberate wrong-reference, wrong-rubric and wrong-input mutation probes;
+- **R06** — S28 uses the inclusive wording “by the cap (including trial 3)” for the \(7/8\) event;
+- **C01/C02** — the S19 expectation typo is fixed and M10–M12 compatibility exceptions are pinned to the exact repaired M04 bytes.
+
+The canonical r2 authoring file is `m04-authoring-v2.2-28-session-whole-curriculum-r2`. Historical v2.1 confirmation remains provenance only and does not certify this repaired v2.2 contract.
+
+## v2.2 whole-curriculum expansion — current candidate
+
+The current candidate preserves stable IDs `S01–S24` and adds four distinct foundations:
+
+- **S25** finite probability bounds & incomplete joint information;
+- **S26** longer finite paths & full-history conditioning;
+- **S27** observation & reporting mechanisms;
+- **S28** finite stopped experiments & terminal prefixes.
+
+Learner-facing order is:
+
+`S01, S02, S03, S04, S05, S06, S25, S07, S08, S09, S10, S11, S12, S13, S14, S15, S16, S26, S17, S28, S18, S27, S19, S20, S21, S22, S23, S24`.
+
+Stable identity and learner order are deliberately separate. Existing S01–S24 IDs are not renumbered; only their current `order` positions move around the inserted sessions. The historical 24-session v2.1 confirmation remains a receipt for that older contract and does not certify S25–S28 or materially changed v2.2 assessments.
 
 ## Semantic ancestry
 
@@ -18,15 +48,18 @@ M04 owns:
 - experiments, outcomes, finite sample spaces and events;
 - finite probability models and normalization;
 - equally likely finite models and favorable/total counting;
-- complements, unions, intersections and finite probability addition rules;
+- complements, unions, intersections, event monotonicity, the finite union bound and sharp two-event feasibility bounds under incomplete joint information;
 - conditional probability as a restricted/reweighted sample space;
 - the multiplication/intersection rule;
-- finite probability trees and sequential probability;
+- finite probability trees, full-history finite chain products and sequential probability;
 - sampling with and without replacement;
 - event independence via both product and conditional criteria;
 - dependence diagnosis and the difference between independence and mutual exclusivity;
 - pairwise versus mutual independence in finite examples;
 - repeated independent trials, ordered paths, exactly-k success counts and complement strategies;
+- independent-but-nonidentical finite trials and unequal path aggregation;
+- finite observation/reporting mechanisms on enlarged atom spaces;
+- bounded finite stopping rules, terminal prefixes and probability-preserving padded-horizon checks;
 - partitions and the law of total probability;
 - expectation of a finite numerical payoff/function as a probability-weighted average;
 - linearity of expectation in finite settings;
@@ -42,9 +75,10 @@ M04 explicitly does **not** own:
 - formal random variables, PMFs/CDFs, variance, covariance/correlation, named distributions, continuous densities or conditional expectation → **M26 · ARC517**;
 - Monte Carlo simulation/coding → **M08/M31**;
 - asymptotic laws such as LLN/CLT → **M28 · ARC712**;
+- unbounded stopping times, martingales, optional stopping and infinite-horizon ruin → **M49/M50**;
 - measure-theoretic probability.
 
-## Atomic route — 24 sessions
+## Historical v2.1 atomic route — 24 sessions
 
 01. Random experiments, outcomes, sample spaces & events  
 02. Finite probability models, axioms & normalization  
@@ -71,6 +105,38 @@ M04 explicitly does **not** own:
 23. Expectation is not “most likely”, “guaranteed” or a decision rule  
 24. M04 synthesis — conditioning, independence, counting & expectation
 
+
+## Current v2.2 learner route — 28 sessions
+
+01. S01 · Experiments, atomic outcomes & sample-space audits  
+02. S02 · Finite probability models, axioms & normalization  
+03. S03 · Equally likely outcomes & counting probability  
+04. S04 · Complements, certainty, impossibility & at-least-one basics  
+05. S05 · Union, intersection & the addition rule  
+06. S06 · Two-event inclusion–exclusion in probability  
+07. **S25 · Finite probability bounds & incomplete joint information**  
+08. S07 · Conditional probability: restricted mass, tables & direction  
+09. S08 · Multiplication rule & intersections from conditionals  
+10. S09 · Probability trees: branches, paths & marginals  
+11. S10 · Sampling with vs without replacement  
+12. S11 · Independence via the product rule  
+13. S12 · Independence via conditioning; diagnosing dependence  
+14. S13 · Mutual exclusivity vs independence  
+15. S14 · Pairwise vs mutual independence  
+16. S15 · Exact independent paths & randomness fallacies  
+17. S16 · Exactly-k successes via combinations  
+18. **S26 · Longer finite paths & full-history conditioning**  
+19. S17 · Complement strategy for none / at least one / all  
+20. **S28 · Finite stopped experiments & terminal prefixes**  
+21. S18 · Partitions, weighted branches & the law of total probability  
+22. **S27 · Observation & reporting mechanisms**  
+23. S19 · Finite expectation as a probability-weighted average  
+24. S20 · Expectation under equally likely finite outcomes & symmetry  
+25. S21 · Linearity of expectation  
+26. S22 · Indicators & expected counts without independence  
+27. S23 · Expectation is not most likely, guaranteed or a decision rule  
+28. S24 · M04 synthesis — choose the probability model
+
 ## Downstream bridge obligations
 
 M04 must leave the learner ready for:
@@ -84,10 +150,10 @@ M04 must leave the learner ready for:
 
 Before M04 is marked authored:
 
-1. all 24 sessions have novice instruction, a genuinely worked example, guided check, Main + Transfer and 10-point evaluators;
+1. all 28 sessions have novice instruction, a genuinely worked example, guided check, Main + Transfer and 10-point evaluators;
 2. every ownership claim is tied to the exact public task that actually observes it, not mechanically defaulted to Main;
 3. every new symbol/operation has an M03/prior-M04/JIT source;
-4. all 48 fixed tasks pass both literal **and recorded semantic** instruction-separation audit;
+4. all 56 fixed tasks pass both literal **and recorded semantic** instruction-separation audit;
 5. conditional-probability denominators and zero-probability edge cases are explicit;
 6. independence claims are checked by definition, not inferred from intuition;
 7. expectation tasks distinguish weighted average from probability, typical value and decision quality;
@@ -95,12 +161,17 @@ Before M04 is marked authored:
 9. changed assessment contracts use obligation versions/fingerprints rather than equivalence shortcuts;
 10. M04 loads through the existing shared runtime and retains `chrono_t22_elite_course_evidence_v1`;
 11. Chromium validates M04 module/session scope, save/reveal/review, draft provenance, packet exposure and 4-module export/import;
-12. only after all gates pass may semantic status/roadmap become accepted/authored;
+12. only after all gates pass and the expanded candidate receives independent confirmation may its semantic status/roadmap be treated as accepted/authored;
 13. create `M04-REVIEW-HANDOFF.md` and stop. Do not author M05 or M06.
 
 ## Review emphasis
 
 Independent review should especially attack:
+
+- exact-vs-bounded reasoning when only marginals are known;
+- full-history conditioning and independence-versus-identical-trial assumptions;
+- observation/reporting protocol modelling;
+- terminal-prefix completeness and padded-horizon non-duplication;
 
 - conditional-probability denominator discipline;
 - independence versus exclusivity;
@@ -139,3 +210,8 @@ Independent review `7d377d847728a7ebec6e4b81f2864238bd0b1683` returned M04-01 th
 - Evidence key and shared runtime are unchanged.
 
 **Boundary remains closed beyond M04 until bounded follow-up accepts these repairs.**
+
+
+## v2.2 candidate note — 2026-10-07
+
+Implementation is tracked by `docs/t22-course/M04-V2.2-28-SESSION-DESIGN-GATE.md`. The historical acceptance receipts below are intentionally preserved. They certify older exact contracts only; they are not evidence that the v2.2 28-session candidate has passed independent review.
