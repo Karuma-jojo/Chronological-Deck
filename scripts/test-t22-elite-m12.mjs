@@ -57,8 +57,9 @@ const m03v2=read('course/t22/authoring/m03.json');
 assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M12 baseline exception is bounded to the explicit M05 v2 candidate');
 assert.equal(m03v2.version,'m03-authoring-v2.0-six-tools-candidate-r4','M12 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03v2.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
 const m04v22=read('course/t22/authoring/m04.json');
-assert.equal(m04v22.version,'m04-authoring-v2.2-28-session-whole-curriculum-r1','scripts/test-t22-elite-m12.mjs baseline exception permits only the user-authorized M04 v2.2 whole-curriculum candidate');
+assert.equal(m04v22.version,'m04-authoring-v2.2-28-session-whole-curriculum-r2','scripts/test-t22-elite-m12.mjs baseline exception permits only the user-authorized M04 v2.2 whole-curriculum candidate');
 assert.equal(m04v22.sessions.length,28);assert(fs.existsSync('docs/t22-course/M04-V2.2-28-SESSION-DESIGN-GATE.md'));
+assert.equal(createHash('sha256').update(fs.readFileSync('course/t22/authoring/m04.json')).digest('hex'),'cc28a2cdef6f4d1efab893e1e1e5437a4fb85fec7c5ada92fb03c2cfc6425b34','scripts/test-t22-elite-m12.mjs M04 exception is pinned to the exact independently-reviewed repair candidate bytes, not merely version/session shape');
 for(const [path,sha] of Object.entries(baseline.files))if(!publicationAuthorized.has(path))assert.equal(gitBlobSha(path),sha,path+' changed outside authorized publication surfaces');
 
 // Gate-3 artifacts and pilot.
