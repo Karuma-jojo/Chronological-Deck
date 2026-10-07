@@ -88,4 +88,40 @@ const ps=.4*.7+.6*.5; close(ps,.58); close(.4*.7,.28); close(4*ps-3*(1-ps),1.06)
 const flag=.25*.8+.75*.2; close(flag,.35); close(6*flag,2.1);close((.25*.8)/flag,4/7);
 assert.notEqual(.8,flag);
 
-console.log('PASS M04 v2.1 independent math: conditioning, tables/trees, replacement, independence hierarchy, repeated-trial fallacies, weighted total probability, S19/S20 expectation boundaries, linearity/indicators and repaired synthesis rederived.');
+// v2.2 S19 weighted-mean range/units numerical core.
+const s19mean=-3*.2+1*.5+7*.3;close(s19mean,2);assert(s19mean>=-3&&s19mean<=7);
+
+// v2.2 S25 finite bounds and incomplete joint information.
+const lo=Math.max(0,.6+.5-1),hi=Math.min(.6,.5);close(lo,.1);close(hi,.5);
+close(.6+.5-hi,.6);close(.6+.5-lo,1);
+const nestedUnion=.30,disjointUnion=.15+.20+.30;close(nestedUnion,.30);close(disjointUnion,.65);
+assert(nestedUnion<=disjointUnion);
+
+// v2.2 S26 full-history path audit.
+const hist=[
+ .4*.5*.2,.4*.5*.8,
+ .4*.5*.7,.4*.5*.3,
+ .6*.25*.8,.6*.25*.2,
+ .6*.75*.4,.6*.75*.6
+];
+close(hist.reduce((a,b)=>a+b,0),1);
+close(hist[0]+hist[2]+hist[4]+hist[6],.48);
+const exactlyOne=.2*.5*.2+.8*.5*.2+.8*.5*.8;close(exactlyOne,.42);
+close(3*.5*.5**2,.375);assert.notEqual(exactlyOne,.375);
+
+// v2.2 S27 observation/reporting mechanisms.
+close((1/4)/(3/4),1/3);
+close((2/8)/(4/8),1/2);
+const observed=.10+.20*.75+.30*.25;close(observed,.325);
+close(.10/observed,4/13);close(.10/.60,1/6);assert.notEqual(4/13,1/6);
+
+// v2.2 S28 bounded stopped experiments.
+const stopped=[.5,.25,.125,.125];close(stopped.reduce((a,b)=>a+b,0),1);close(stopped.slice(0,3).reduce((a,b)=>a+b,0),7/8);
+const contest=[.36,.16,.144,.096,.144,.096];close(contest.reduce((a,b)=>a+b,0),1);close(contest[0]+contest[2]+contest[4],.648);
+close(.216+.144,.36);close(.096+.064,.16);
+
+// v2.2 S24 expanded-route exit interval.
+const unionLo=1.1-.5,unionHi=1.1-.1;close(unionLo,.6);close(unionHi,1);
+close(6*unionLo-1,2.6);close(6*unionHi-1,5);close(6*.8-1,3.8);
+
+console.log('PASS M04 v2.2 independent math: retained v2.1 oracles plus incomplete-joint bounds, full-history paths, reporting mechanisms, finite stopped experiments and expanded exit interval independently rederived.');
