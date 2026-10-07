@@ -1,13 +1,13 @@
 {
-  "version": "m04-authoring-v2.1-independent-review-repair-r1",
-  "instructionVersion": "m04-instruction-v2.1-independent-review-repair-r1",
+  "version": "m04-authoring-v2.2-28-session-whole-curriculum-r1",
+  "instructionVersion": "m04-instruction-v2.2-28-session-whole-curriculum-r1",
   "module": {
     "order": 4,
     "id": "ARC048",
     "title": "Finite Probability, Conditional Probability, Independence & Expectation",
-    "status": "v2.1-independent-review-repair-candidate",
+    "status": "v2.2-28-session-whole-curriculum-rebuild-candidate",
     "destination": "Model finite uncertainty rigorously, condition correctly, distinguish dependence from independence, and compute finite expectations without prematurely using Bayes, decision theory or formal distribution machinery.",
-    "gate": "M04 v2 candidate preserves the 24-session/48-task/120-claim identity but reopens current-standard source, representation, evidence-distance, decision, wrong-solver and rendered-surface gates. Builder completion is not independent acceptance.",
+    "gate": "M04 v2.2 is a 28-session/56-task/140-claim whole-curriculum rebuild candidate. Stable S01–S24 identities are preserved; S25–S28 add four separately assessable foundations. Historical v2.1 acceptance remains provenance only; this expanded candidate requires fresh exact-head CI and independent adversarial confirmation.",
     "nextBoundary": "M05 owns trading-game decisions and risk preferences; M06 owns Bayes/posterior updating. M04 stops at forward finite probability and expectation."
   },
   "boundary": {
@@ -16,12 +16,15 @@
     ],
     "owns": [
       "finite sample spaces/events and probability models",
-      "counting probability",
-      "complements/unions/intersections",
+      "counting probability and atom-to-label multiplicity",
+      "complements/unions/intersections and elementary finite event bounds",
+      "incomplete joint information and sharp two-event feasibility ranges",
       "conditional probability and multiplication rule",
-      "probability trees and sampling protocols",
-      "event independence including pairwise versus mutual",
+      "probability trees, full-history finite path products and sampling protocols",
+      "event independence including pairwise versus mutual and independence versus identical trial laws",
       "repeated independent finite trials",
+      "finite stopped experiments with bounded horizons and terminal prefixes",
+      "finite observation/reporting mechanisms on enlarged atom spaces",
       "law of total probability",
       "finite expectation, linearity and indicators"
     ],
@@ -31,13 +34,14 @@
       "formal random-variable distributions/variance/covariance/conditional expectation (M26)",
       "Monte Carlo simulation/coding",
       "LLN/CLT",
-      "measure-theoretic probability"
+      "measure-theoretic probability",
+      "unbounded stopping times, martingales, optional stopping and infinite-horizon ruin (M49/M50)"
     ]
   },
   "coverageAudit": {
-    "version": "m04-observability-v2.1-review-repair-r1-2026-10-02",
-    "status": "Independent follow-up R01–R06 repaired: honest evidence-distance labels, S14 declassified from fresh, S24 fresh synthesis rebuilt, S18/S24 forward-vs-reverse boundary corrected, S19/S20 ownership/multiplicity defects repaired. Exact-head CI/browser and independent confirmation still required.",
-    "policy": "Every retained claim must be literally requested and scored. Different numbers/contexts do not establish transfer; representation, decision or obstacle changes must be stated."
+    "version": "m04-observability-v2.2-whole-curriculum-r1-2026-10-07",
+    "status": "Whole-curriculum rebuild candidate: retained stable S01–S24, inserted S25–S28 at prerequisite-correct learner positions, strengthened selected instruction/assessment surfaces, and rebuilt observability/evidence ledgers to 28 sessions / 56 fixed tasks / 140 ownership claims. Fresh exact-head CI and independent review are required.",
+    "policy": "Every ownership claim must be literally requested and scored. Different numbers/contexts do not establish transfer; representation, decision or obstacle changes must be stated. Historical v2.1 confirmation does not certify the added or materially changed v2.2 surfaces."
   },
   "sessions": [
     {
@@ -78,7 +82,7 @@
       "main": "T22V3::ARC048::S01-M@1",
       "transfer": "T22V3::ARC048::S01-T@1",
       "guidedFeedback": "Check after attempting. Ω has four ordered pairs: (red,on),(red,off),(blue,on),(blue,off). “blue” is the two-atom event {(blue,on),(blue,off)}; “blue and on” is the single atom {(blue,on)}.",
-      "instructionVersion": "m04-s01-instruction-v2-r1"
+      "instructionVersion": "m04-s01-instruction-v2.2-r1"
     },
     {
       "order": 2,
@@ -117,7 +121,7 @@
       "main": "T22V3::ARC048::S02-M@1",
       "transfer": "T22V3::ARC048::S02-T@1",
       "guidedFeedback": "Check after attempting. q=1-.32-.41=.27; all three masses are nonnegative and total1. P({u,w})=.27+.41=.68.",
-      "instructionVersion": "m04-s02-instruction-v2-r1"
+      "instructionVersion": "m04-s02-instruction-v2.2-r1"
     },
     {
       "order": 3,
@@ -151,11 +155,11 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Solve a counting probability and state why the denominator is legitimate.",
-      "lesson": "Orient. Counting gives probability only after a modeling decision: are the atomic outcomes equally likely?\n\nDefine. If N atomic outcomes are equiprobable, each has mass 1/N and P(E)=|E|/N. Aggregated labels need not be equiprobable even when the underlying atoms are.\n\nConnect. M03 supplies product counting and combinations. S02 supplies the probability model that justifies favourable/total.\n\nExplain. Two fair dice have 36 equiprobable ordered pairs, but the eleven possible sums are not equiprobable: sum2 has one pair, sum7 has six. The correct denominator is the atomic pair space, not the number of distinct labels.\n\nWorked example: Choose uniformly from {1,2,3}×{A,B}. Six pairs are equiprobable. Event “number at least2 and letter B” has two atoms, so probability2/6=1/3.\n\nGuided check: A 4-bit string is chosen uniformly. How many atomic strings have exactly one 1? Use the atom count to compute the probability, then explain why the labels “zero ones, one one, two ones, three ones, four ones” are not five equally likely outcomes.\n\nFade. Before using favourable/total, state what the atoms are and why they have equal mass.\n\nDistinction check. Fair component mechanisms do not imply every derived summary label is equally likely; multiplicity matters.",
+      "lesson": "Orient. Counting gives probability only after a modeling decision: are the atomic outcomes equally likely?\n\nDefine. If N atomic outcomes are equiprobable, each has mass 1/N and P(E)=|E|/N. Aggregated labels need not be equiprobable even when the underlying atoms are.\n\nConnect. M03 supplies product counting, combinations and S34's fibre/preimage language. If a map sends atomic outcomes to a displayed label, the label mass is the total mass of its fibre. Equal fibre sizes plus a uniform atomic law can justify equal label probabilities; a bijection or equal-looking labels alone cannot create a probability law. S02 supplies the probability model that justifies favourable/total.\n\nExplain. Two fair dice have 36 equiprobable ordered pairs, but the eleven possible sums are not equiprobable: sum2 has one pair, sum7 has six. The correct denominator is the atomic pair space, not the number of distinct labels.\n\nWorked example: Choose uniformly from {1,2,3}×{A,B}. Six pairs are equiprobable. Event “number at least2 and letter B” has two atoms, so probability2/6=1/3.\n\nGuided check: A 4-bit string is chosen uniformly. How many atomic strings have exactly one 1? Use the atom count to compute the probability, then explain why the labels “zero ones, one one, two ones, three ones, four ones” are not five equally likely outcomes.\n\nFade. Before using favourable/total, state what the atoms are and why they have equal mass.\n\nDistinction check. Fair component mechanisms do not imply every derived summary label is equally likely; multiplicity matters.",
       "main": "T22V3::ARC048::S03-M@1",
       "transfer": "T22V3::ARC048::S03-T@1",
       "guidedFeedback": "Check after attempting. Exactly one 1 has four strings, so probability4/16=1/4. The five count labels contain 1,4,6,4,1 atomic strings respectively, so they are not equiprobable.",
-      "instructionVersion": "m04-s03-instruction-v2-r1"
+      "instructionVersion": "m04-s03-instruction-v2.2-r1"
     },
     {
       "order": 4,
@@ -193,7 +197,7 @@
       "main": "T22V3::ARC048::S04-M@1",
       "transfer": "T22V3::ARC048::S04-T@1",
       "guidedFeedback": "Check after attempting. B^c={000}, so P(B)=1-1/8=7/8.",
-      "instructionVersion": "m04-s04-instruction-v2-r1"
+      "instructionVersion": "m04-s04-instruction-v2.2-r1"
     },
     {
       "order": 5,
@@ -232,7 +236,7 @@
       "main": "T22V3::ARC048::S05-M@1",
       "transfer": "T22V3::ARC048::S05-T@1",
       "guidedFeedback": "Check after attempting. First E∩F=∅ and P(E∪F)=7/10. After changing F, the overlap is {3}; blind addition counts that atom twice.",
-      "instructionVersion": "m04-s05-instruction-v2-r1"
+      "instructionVersion": "m04-s05-instruction-v2.2-r1"
     },
     {
       "order": 6,
@@ -270,10 +274,80 @@
       "main": "T22V3::ARC048::S06-M@1",
       "transfer": "T22V3::ARC048::S06-T@1",
       "guidedFeedback": "Check after attempting. P(C∩D)=.55+.30-.68=.17, which is between0 and.30. Neither has probability1-.68=.32.",
-      "instructionVersion": "m04-s06-instruction-v2-r1"
+      "instructionVersion": "m04-s06-instruction-v2.2-r1"
     },
     {
       "order": 7,
+      "id": "T22V3::ARC048::S25@1",
+      "moduleId": "ARC048",
+      "title": "Finite probability bounds & incomplete joint information",
+      "focus": "Separate exact consequences from bounds and extra modelling assumptions when joint information is missing.",
+      "purpose": "Prevent marginal probabilities from silently turning into an invented dependence law.",
+      "centralCapability": "Derive elementary finite probability bounds, construct feasible joint region models, and state exactly what the supplied marginals do and do not determine.",
+      "principalObstacle": "The learner multiplies marginals or clips an impossible answer instead of recognizing that many joint laws can share the same marginals.",
+      "entryPrerequisites": [
+        "M04-S02 finite probability mass",
+        "M04-S05/S06 event regions and inclusion–exclusion",
+        "M03 subset/set reasoning"
+      ],
+      "requiredOwnership": [
+        "Derive event monotonicity from a subset relation using a disjoint difference.",
+        "Derive and use the finite union bound without assuming independence.",
+        "Derive the sharp two-event overlap and union ranges from two marginals.",
+        "Construct normalized region-mass models attaining feasible endpoints.",
+        "Reject an exact joint answer that is unsupported by marginal information alone."
+      ],
+      "applicationScope": "Finite events with known marginal probabilities but incomplete dependence information.",
+      "transferScope": "Changed-surface transfer: two-event sharp feasibility becomes a three-failure guarantee problem, so the learner must choose bounds rather than invent a product law.",
+      "inScope": [
+        "Event monotonicity",
+        "Finite union bound",
+        "Two-event Fréchet-style overlap bounds derived from region nonnegativity",
+        "Endpoint constructions"
+      ],
+      "outOfScope": [
+        "Markov/Chebyshev/Hoeffding inequalities until M28",
+        "Formal joint distributions/couplings until M26",
+        "Bayes/posterior inversion until M06"
+      ],
+      "exitCondition": "Given incomplete finite joint information, state exact consequences, sharp or valid bounds, legal endpoint models and any extra assumption needed for a single numerical answer.",
+      "lesson": "Orient. Marginals can be exact while the joint picture is not. The disciplined move is not to guess a dependence law; it is to ask what every legal finite model must satisfy.\n\nDefine. If A⊆B, then B is the disjoint union of A and B\\A, so P(B)=P(A)+P(B\\A)≥P(A). For finitely many events, disjointize their union: the new part contributed by each event has probability at most that event's probability. Hence P(∪Ai)≤ΣP(Ai), with no independence assumption. For two events write a=P(A), b=P(B), c=P(A∩B). The four region masses are c, a−c, b−c, 1−a−b+c. Nonnegativity forces max(0,a+b−1)≤c≤min(a,b).\n\nConnect. S05/S06 supplied the four event regions and inclusion–exclusion. M03 set difference supplies the disjoint decomposition. These are finite mass statements, not concentration inequalities.\n\nExplain. Once c is bounded, P(A∪B)=a+b−c reverses the interval endpoints. A value inside the interval can describe a legal model if all four region masses are nonnegative and sum to1. Independence would select c=ab, but only when independence is declared or proved.\n\nWorked example: If P(C)=0.45 and P(D)=0.35, then overlap lies in [0,0.35] and union lies in [0.45,0.80]. At overlap0 the four masses are0,0.45,0.35,0.20; at overlap0.35 they are0.35,0.10,0,0.55. Both normalize, so the marginals alone do not choose between them.\n\nGuided check: P(U)=0.70 and P(V)=0.55. Derive the feasible overlap interval from four nonnegative region masses, convert it to a union interval, and say what extra statement would be needed before multiplying0.70×0.55.\n\nFade. When information is incomplete, report an interval or guarantee if that is all the premises license. A bound is a theorem about all compatible models, not a failed exact computation.\n\nDistinction check. 'No dependence information was supplied' does not mean 'assume independence'. Independence is additional mathematical structure.",
+      "main": "T22V3::ARC048::S25-M@1",
+      "transfer": "T22V3::ARC048::S25-T@1",
+      "guidedFeedback": "Check after attempting. The overlap c must satisfy max(0,.70+.55−1)=.25≤c≤.55. Therefore P(U∪V)=1.25−c lies in[.70,1]. Multiplying.70×.55=.385 is licensed only by an independence assumption or proof.",
+      "instructionVersion": "m04-s25-instruction-v2.2-r1",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Four-region mass ledger",
+          "headers": [
+            "region",
+            "mass"
+          ],
+          "rows": [
+            [
+              "A∩B",
+              "c"
+            ],
+            [
+              "A only",
+              "a−c"
+            ],
+            [
+              "B only",
+              "b−c"
+            ],
+            [
+              "neither",
+              "1−a−b+c"
+            ]
+          ],
+          "note": "Every row must be nonnegative; together they sum to1."
+        }
+      ]
+    },
+    {
+      "order": 8,
       "id": "T22V3::ARC048::S07@1",
       "moduleId": "ARC048",
       "title": "Conditional probability: restricted mass, tables & direction",
@@ -306,10 +380,10 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Restrict to the conditioning event, renormalize its mass, track direction/denominator, and explain why information timing is not the same as physical causation.",
-      "lesson": "Orient. Two analysts can use the same joint data and get different conditional probabilities because the bar changes the reference population. The question is not “which event caused the other?” but “after I am told B occurred, what probability mass is still eligible?”\n\nDefine. For finite events A and B with P(B)>0,\nP(A|B)=P(A∩B)/P(B).\nConditioning on B discards outcomes outside B and rescales the mass inside B to total 1. This definition works for unequal atomic probabilities too; favourable-count/total-count is only the special case where the surviving atomic outcomes are equiprobable. Reversing the bar changes the denominator: P(A|B) and P(B|A) generally answer different questions.\n\nConnect. From S02, event probability is the sum of its atomic masses. From S05, A∩B is the part satisfying both conditions. Therefore the conditional numerator is the surviving mass that also satisfies A, and the denominator is all surviving B-mass.\n\nExplain. Suppose Ω={u,v,w,x} with masses .10,.20,.30,.40. Let A={u,x} and B={v,w,x}. Then P(B)=.90 and P(A∩B)=.40, so P(A|B)=.40/.90=4/9. In the reverse direction P(A)=.50, so P(B|A)=.40/.50=4/5. The same overlap .40 appears in both numerators, but the reference populations differ. If P(B)=0, the finite ratio is undefined.\n\nWorked example: A complete count table can encode the same restriction idea:\n            F   not F   total\nX          12      8      20\nnot X       3     17      20\ntotal      15     25      40\nFor P(F|X), keep only the X row: 12 of 20, so 3/5. For P(X|F), keep only the F column: 12 of 15, so 4/5. The table is not a new formula; it is a compact picture of the joint counts and the restricted denominator.\n\nGuided check: A finite model has masses P(a)=.15,P(b)=.25,P(c)=.10,P(d)=.20,P(e)=.30. Let C={b,d,e} and D={a,d,e}. Without counting outcomes, compute P(C|D) and name the exact denominator mass you used. Then say whether P(D|C) must be the same number.\n\nFade. On an independent task, first identify the conditioning event and its total mass/count before writing any ratio. Do not assume the atoms are uniform unless the model says so.\n\nDistinction check. Information can arrive after the underlying event without “changing the past.” If a sealed record was generated earlier and a later report tells you that the record lies in B, the physical record is unchanged but your reference set is now B. Conditional probability is information restriction, not backward causation.",
+      "lesson": "Orient. Two analysts can use the same joint data and get different conditional probabilities because the bar changes the reference population. The question is not “which event caused the other?” but “after I am told B occurred, what probability mass is still eligible?”\n\nDefine. For finite events A and B with P(B)>0,\nP(A|B)=P(A∩B)/P(B).\nConditioning on B discards outcomes outside B and rescales the mass inside B to total 1. This definition works for unequal atomic probabilities too; favourable-count/total-count is only the special case where the surviving atomic outcomes are equiprobable. Reversing the bar changes the denominator: P(A|B) and P(B|A) generally answer different questions.\n\nConnect. From S02, event probability is the sum of its atomic masses. From S05, A∩B is the part satisfying both conditions. Therefore the conditional numerator is the surviving mass that also satisfies A, and the denominator is all surviving B-mass.\n\nExplain. Suppose Ω={u,v,w,x} with masses .10,.20,.30,.40. Let A={u,x} and B={v,w,x}. Then P(B)=.90 and P(A∩B)=.40, so P(A|B)=.40/.90=4/9. In the reverse direction P(A)=.50, so P(B|A)=.40/.50=4/5. The same overlap .40 appears in both numerators, but the reference populations differ. If P(B)=0, the finite ratio is undefined.\n\nWorked example: A complete count table can encode the same restriction idea:\n            F   not F   total\nX          12      8      20\nnot X       3     17      20\ntotal      15     25      40\nFor P(F|X), keep only the X row: 12 of 20, so 3/5. For P(X|F), keep only the F column: 12 of 15, so 4/5. The table is not a new formula; it is a compact picture of the joint counts and the restricted denominator.\n\nGuided check: A finite model has masses P(a)=.15,P(b)=.25,P(c)=.10,P(d)=.20,P(e)=.30. Let C={b,d,e} and D={a,d,e}. Without counting outcomes, compute P(C|D) and name the exact denominator mass you used. Then say whether P(D|C) must be the same number.\n\nFade. On an independent task, first identify the conditioning event and its total mass/count before writing any ratio. Do not assume the atoms are uniform unless the model says so.\n\nDistinction check. Information can arrive after the underlying event without “changing the past.” If a sealed record was generated earlier and a later report tells you that the record lies in B, the physical record is unchanged but your reference set is now B. Conditional probability is information restriction, not backward causation.\n\nForward link. S27 will make the information mechanism itself part of the experiment: a message produced by a random reporter need not be the same event as directly learning a property of the underlying record. The conditional definition stays the same; the atom space can change.",
       "main": "T22V3::ARC048::S07-M@1",
       "transfer": "T22V3::ARC048::S07-T@1",
-      "instructionVersion": "m04-s07-instruction-v2-conditioning-representation-r1",
+      "instructionVersion": "m04-s07-instruction-v2.2-r1",
       "guidedFeedback": "Check after attempting. D={a,d,e} has mass .15+.20+.30=.65. C∩D={d,e} has mass .50, so P(C|D)=.50/.65=10/13. The reverse uses denominator P(C)=.25+.20+.30=.75, so it need not match.",
       "representations": [
         {
@@ -346,7 +420,7 @@
       ]
     },
     {
-      "order": 8,
+      "order": 9,
       "id": "T22V3::ARC048::S08@1",
       "moduleId": "ARC048",
       "title": "Multiplication rule & intersections from conditionals",
@@ -380,10 +454,10 @@
       "main": "T22V3::ARC048::S08-M@1",
       "transfer": "T22V3::ARC048::S08-T@1",
       "guidedFeedback": "Check after attempting. P(E∩F)=.70×.20=.14; P(E|F)=.14/.35=.40. The joint .14 is below both .70 and .35.",
-      "instructionVersion": "m04-s08-instruction-v2-r1"
+      "instructionVersion": "m04-s08-instruction-v2.2-r1"
     },
     {
-      "order": 9,
+      "order": 10,
       "id": "T22V3::ARC048::S09@1",
       "moduleId": "ARC048",
       "title": "Probability trees: branches, paths & marginals",
@@ -418,7 +492,7 @@
       "main": "T22V3::ARC048::S09-M@1",
       "transfer": "T22V3::ARC048::S09-T@1",
       "guidedFeedback": "Check after attempting. Leaves: X∩alarm=.15, X∩no=.10, Y∩alarm=.15, Y∩no=.60. They sum1 and total alarm=.30.",
-      "instructionVersion": "m04-s09-instruction-v2-r1",
+      "instructionVersion": "m04-s09-instruction-v2.2-r1",
       "representations": [
         {
           "kind": "probabilityTree",
@@ -463,7 +537,7 @@
       ]
     },
     {
-      "order": 10,
+      "order": 11,
       "id": "T22V3::ARC048::S10@1",
       "moduleId": "ARC048",
       "title": "Sampling with vs without replacement",
@@ -497,10 +571,10 @@
       "main": "T22V3::ARC048::S10-M@1",
       "transfer": "T22V3::ARC048::S10-T@1",
       "guidedFeedback": "Check after attempting. With replacement: (2/7)(2/7)=4/49, second denominator7. Without replacement: (2/7)(1/6)=1/21, second denominator6.",
-      "instructionVersion": "m04-s10-instruction-v2-r1"
+      "instructionVersion": "m04-s10-instruction-v2.2-r1"
     },
     {
-      "order": 11,
+      "order": 12,
       "id": "T22V3::ARC048::S11@1",
       "moduleId": "ARC048",
       "title": "Independence via the product rule",
@@ -535,10 +609,10 @@
       "main": "T22V3::ARC048::S11-M@1",
       "transfer": "T22V3::ARC048::S11-T@1",
       "guidedFeedback": "Check after attempting. P(C)=1/3,P(D)=1/2,P(C∩D)=1/6 and P(C)P(D)=1/6, so the events are independent.",
-      "instructionVersion": "m04-s11-instruction-v2-r1"
+      "instructionVersion": "m04-s11-instruction-v2.2-r1"
     },
     {
-      "order": 12,
+      "order": 13,
       "id": "T22V3::ARC048::S12@1",
       "moduleId": "ARC048",
       "title": "Independence via conditioning; diagnosing dependence",
@@ -572,10 +646,10 @@
       "main": "T22V3::ARC048::S12-M@1",
       "transfer": "T22V3::ARC048::S12-T@1",
       "guidedFeedback": "Check after attempting. P(F|G)=.08/.25=.32, which differs from .40; product benchmark .40×.25=.10 also differs from joint .08. The events are dependent.",
-      "instructionVersion": "m04-s12-instruction-v2-r1"
+      "instructionVersion": "m04-s12-instruction-v2.2-r1"
     },
     {
-      "order": 13,
+      "order": 14,
       "id": "T22V3::ARC048::S13@1",
       "moduleId": "ARC048",
       "title": "Mutual exclusivity vs independence",
@@ -609,10 +683,10 @@
       "main": "T22V3::ARC048::S13-M@1",
       "transfer": "T22V3::ARC048::S13-T@1",
       "guidedFeedback": "Check after attempting. P(C)=1/4,P(D)=3/8, product3/32>0 while joint0, so dependent. If C=∅, both joint and product are0, so the edge-case pair is independent.",
-      "instructionVersion": "m04-s13-instruction-v2-r1"
+      "instructionVersion": "m04-s13-instruction-v2.2-r1"
     },
     {
-      "order": 14,
+      "order": 15,
       "id": "T22V3::ARC048::S14@1",
       "moduleId": "ARC048",
       "title": "Pairwise vs mutual independence",
@@ -647,10 +721,10 @@
       "main": "T22V3::ARC048::S14-M@1",
       "transfer": "T22V3::ARC048::S14-T@1",
       "guidedFeedback": "Check after attempting. Check AB, AC and BC factorization, plus P(A∩B∩C)=P(A)P(B)P(C). Pairwise success alone does not settle the fourth equality.",
-      "instructionVersion": "m04-s14-instruction-v2-r1"
+      "instructionVersion": "m04-s14-instruction-v2.2-r1"
     },
     {
-      "order": 15,
+      "order": 16,
       "id": "T22V3::ARC048::S15@1",
       "moduleId": "ARC048",
       "title": "Exact independent paths & randomness fallacies",
@@ -681,14 +755,14 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Compute exact ordered success/failure path probabilities and justify the multiplication.",
-      "lesson": "Orient. Randomness does not mean “alternating-looking,” and a run does not make the opposite outcome due.\n\nDefine. In repeated independent trials with constant success probability p, an exact ordered path with s successes and f failures has probability p^s(1-p)^f. Order changes the event identity but not the probability when the counts s,f are the same.\n\nConnect. S11 supplies independence factorization; S09 supplies multiplication along a path.\n\nExplain. With p=.60, SSFS and FSSS are different exact events but each has probability .6^3·.4=.0864. A path like SSSS is not “less random” because it contains a run; its probability is computed from the same model. Also, after three successes, the next-trial success probability is still .60 if independence/constant p remains the model.\n\nWorked example: A fair coin has P(HHTHT)=P(HTHTH)=1/32. One sequence looks more alternating, but exact-sequence appearance does not change its probability.\n\nGuided check: Independent trials have p=.70. Compare SSSF and SFSS exactly, then compute P(success on the next trial | first three were successes).\n\nFade. Separate two questions: the probability of one exact sequence, and the probability of a family of sequences. S16 handles the family count.\n\nDistinction check. Representativeness (“more mixed looks more random”) and the gambler's fallacy (“failure is due”) are not consequences of independence; they predict answers the model rejects.",
+      "lesson": "Orient. Randomness does not mean “alternating-looking,” and a run does not make the opposite outcome due.\n\nDefine. In repeated independent trials with constant success probability p, an exact ordered path with s successes and f failures has probability p^s(1-p)^f. Order changes the event identity but not the probability when the counts s,f are the same.\n\nConnect. S11 supplies independence factorization; S09 supplies multiplication along a path.\n\nExplain. With p=.60, SSFS and FSSS are different exact events but each has probability .6^3·.4=.0864. A path like SSSS is not “less random” because it contains a run; its probability is computed from the same model. Also, after three successes, the next-trial success probability is still .60 if independence/constant p remains the model.\n\nWorked example: A fair coin has P(HHTHT)=P(HTHTH)=1/32. One sequence looks more alternating, but exact-sequence appearance does not change its probability.\n\nGuided check: Independent trials have p=.70. Compare SSSF and SFSS exactly, then compute P(success on the next trial | first three were successes).\n\nFade. Separate two questions: the probability of one exact sequence, and the probability of a family of sequences. S16 handles the family count.\n\nDistinction check. Representativeness (“more mixed looks more random”) and the gambler's fallacy (“failure is due”) are not consequences of independence; they predict answers the model rejects.\n\nModel audit. Independence and identical trial probabilities are separate assumptions. This session uses both: independence licenses path multiplication and constant p makes equal-count orderings have equal mass. S26 will keep independence but deliberately vary the per-position probabilities.",
       "main": "T22V3::ARC048::S15-M@1",
       "transfer": "T22V3::ARC048::S15-T@1",
       "guidedFeedback": "Check after attempting. Both four-trial paths have probability .7^3·.3=.1029. Under the stated independent constant-p model, P(next success | SSS)=.70, not something smaller because of the run.",
-      "instructionVersion": "m04-s15-instruction-v2-r1"
+      "instructionVersion": "m04-s15-instruction-v2.2-r1"
     },
     {
-      "order": 16,
+      "order": 17,
       "id": "T22V3::ARC048::S16@1",
       "moduleId": "ARC048",
       "title": "Exactly-k successes via combinations",
@@ -723,10 +797,86 @@
       "main": "T22V3::ARC048::S16-M@1",
       "transfer": "T22V3::ARC048::S16-T@1",
       "guidedFeedback": "Check after attempting. C(5,2)=10 and one path has .3^2·.7^3=.03087, so total .3087.",
-      "instructionVersion": "m04-s16-instruction-v2-r1"
+      "instructionVersion": "m04-s16-instruction-v2.2-r1"
     },
     {
-      "order": 17,
+      "order": 18,
+      "id": "T22V3::ARC048::S26@1",
+      "moduleId": "ARC048",
+      "title": "Longer finite paths & full-history conditioning",
+      "focus": "Condition every branch on the history that actually defines its probability, then aggregate unequal path masses.",
+      "purpose": "Extend two-stage trees into auditable finite histories without smuggling in a Markov or constant-p assumption.",
+      "centralCapability": "Factor three-or-more-stage finite paths using full positive-mass histories and distinguish independence from identical trial laws.",
+      "principalObstacle": "The learner conditions only on the most recent symbol or replaces heterogeneous independent trials by one average success probability.",
+      "entryPrerequisites": [
+        "M04-S08 multiplication rule",
+        "M04-S09/S10 probability trees and protocol state",
+        "M04-S11–S16 independence and constant-p repeated trials",
+        "M03 finite products/sums"
+      ],
+      "requiredOwnership": [
+        "Reconstruct a three-or-more-stage path probability by repeated multiplication.",
+        "Name the entire positive-mass history conditioning each noninitial factor.",
+        "Audit outgoing branch masses, reachable leaves and normalization.",
+        "Distinguish independent trials from identically distributed trials.",
+        "Add unequal path masses when an event contains several histories."
+      ],
+      "applicationScope": "Bounded finite sequential experiments with explicitly supplied history-dependent or nonidentical branch laws.",
+      "transferScope": "Changed-surface transfer: a full-history tree becomes heterogeneous but independent trials, forcing unequal exactly-one path weights and rejection of the constant-p shortcut.",
+      "inScope": [
+        "Finite chain rule by repeated conditioning",
+        "Full-history branch labels",
+        "Leaf ledgers",
+        "Independent but nonidentical Bernoulli-style trials"
+      ],
+      "outOfScope": [
+        "Markov property/transition matrices until M49",
+        "Likelihood theory until M33",
+        "Policies/MDPs until M60",
+        "Undefined ratio-conditionals on zero-mass histories"
+      ],
+      "exitCondition": "Build and audit a finite multi-stage path model, state every conditioning history, and simplify a factor only when an explicit assumption licenses it.",
+      "lesson": "Orient. A branch probability belongs to a history, not merely to the last symbol drawn on a tree. Two nodes can look locally identical while carrying different information.\n\nDefine. For positive-mass histories, P(A∩B∩C)=P(A)P(B|A)P(C|A∩B). Repeating the multiplication rule gives the corresponding finite path product. A zero-mass history contributes zero joint mass, but its ratio-defined conditional is undefined; do not replace an undefined conditional by zero. Every reachable node's outgoing probabilities must sum to1 and the terminal leaf masses must normalize.\n\nConnect. S08 supplied the two-event multiplication rule; S09 made path multiplication visible. S15/S16 then specialized to independent identical trials. Here we deliberately remove that constant-p simplification while keeping the experiment finite.\n\nExplain. Suppose the first signal is L or R. After L the second signal X may lead to a final success probability different from the X branch after R. Writing only P(success|X) silently changes the model unless an additional restriction says earlier history no longer matters. Full history is the safe default.\n\nWorked example: Stage1 chooses A with.5 or B with.5. Stage2 is X/Y with probabilities.4/.6 after A and.7/.3 after B. Final success probabilities are.25 after AX,.50 after AY,.80 after BX,.20 after BY. The AX-success leaf is.5·.4·.25=.05; the BX-success leaf is.5·.7·.80=.28. Both recent symbols are X, yet the final factors differ because the histories differ.\n\nGuided check: Three independent trials have success probabilities.3,.4,.9. Write the three exact paths containing exactly one success, multiply each path using its own position probabilities, and say why the paths need not have equal mass even though the trials are independent.\n\nFade. Write the complete history under each conditional bar first. Only then erase history when an independence or state-sufficiency statement actually proves it can be erased.\n\nDistinction check. Independence says the joint factors appropriately; identical distribution says the per-position probabilities are the same. One does not imply the other.",
+      "main": "T22V3::ARC048::S26-M@1",
+      "transfer": "T22V3::ARC048::S26-T@1",
+      "guidedFeedback": "Check after attempting. The exactly-one paths are SFF=.3·.6·.1=.018, FSF=.7·.4·.1=.028, and FFS=.7·.6·.9=.378, totaling.424. Independence licenses multiplying position factors; it does not make the three success probabilities equal.",
+      "instructionVersion": "m04-s26-instruction-v2.2-r1",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Full-history leaf audit template",
+          "headers": [
+            "history",
+            "next branch law",
+            "leaf mass"
+          ],
+          "rows": [
+            [
+              "A→X",
+              "condition on A∩X",
+              "P(A)P(X|A)P(·|A∩X)"
+            ],
+            [
+              "A→Y",
+              "condition on A∩Y",
+              "P(A)P(Y|A)P(·|A∩Y)"
+            ],
+            [
+              "B→X",
+              "condition on B∩X",
+              "P(B)P(X|B)P(·|B∩X)"
+            ],
+            [
+              "B→Y",
+              "condition on B∩Y",
+              "P(B)P(Y|B)P(·|B∩Y)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "order": 19,
       "id": "T22V3::ARC048::S17@1",
       "moduleId": "ARC048",
       "title": "Complement strategy for none / at least one / all",
@@ -760,10 +910,86 @@
       "main": "T22V3::ARC048::S17-M@1",
       "transfer": "T22V3::ARC048::S17-T@1",
       "guidedFeedback": "Check after attempting. None=.2^4=.0016; at least one=.9984; all=.8^4=.4096. Independence is used in multiplying the four per-trial probabilities.",
-      "instructionVersion": "m04-s17-instruction-v2-r1"
+      "instructionVersion": "m04-s17-instruction-v2.2-r1"
     },
     {
-      "order": 18,
+      "order": 20,
+      "id": "T22V3::ARC048::S28@1",
+      "moduleId": "ARC048",
+      "title": "Finite stopped experiments & terminal prefixes",
+      "focus": "Model bounded stopping rules with terminal records of different lengths without assigning equal mass to terminal labels.",
+      "purpose": "Provide the finite experiment beneath later ruin, hitting-time and policy trajectories while keeping formal stochastic stopping theory downstream.",
+      "centralCapability": "Enumerate terminal prefixes under a finite stopping rule, assign their path masses, and compare them with a valid padded fixed-horizon representation.",
+      "principalObstacle": "The learner treats differently sized terminal strings as equiprobable outcomes or counts continuations of an already stopped path as new stopped outcomes.",
+      "entryPrerequisites": [
+        "M04-S09/S26 path products",
+        "M04-S15–S17 repeated finite trials",
+        "M03 finite termination/invariant reasoning"
+      ],
+      "requiredOwnership": [
+        "State a stopping rule with a finite maximum horizon.",
+        "Enumerate exhaustive and disjoint terminal prefixes.",
+        "Compute terminal-prefix masses from their branch probabilities.",
+        "Add disjoint stopped outcomes without recounting their artificial continuations.",
+        "Cross-check with a fixed-horizon extension when the added suffixes are explicitly defined."
+      ],
+      "applicationScope": "Bounded finite stopped experiments with explicitly specified branch laws.",
+      "transferScope": "Changed-surface transfer: first-success stopping becomes a finite two-sided contest, requiring terminal-prefix enumeration and a probability-preserving padded-horizon cross-check.",
+      "inScope": [
+        "Finite maximum horizons",
+        "Terminal prefixes",
+        "Prefix probability masses",
+        "Padded fixed-horizon cross-checks"
+      ],
+      "outOfScope": [
+        "Optional stopping theorem/martingales until M49",
+        "Unbounded geometric waiting laws until M50",
+        "Infinite-horizon ruin",
+        "Dynamic-programming or policy optimization"
+      ],
+      "exitCondition": "Given a bounded stopping protocol, write the actual terminal sample space, normalize its unequal prefix masses and prevent stopped paths from being double-counted through later artificial suffixes.",
+      "lesson": "Orient. A stopped experiment can have terminal records of different lengths. The labels may be equally easy to write down, but they are not therefore equally probable.\n\nDefine. A bounded stopping rule says when the experiment terminates and gives a finite maximum horizon. The sample space of the stopped experiment is the set of complete terminal prefixes: no listed terminal prefix is a proper prefix of another terminal record. Its probability is the product of the branches actually traversed before stopping. Once a path stops, possible later symbols are not additional stopped outcomes.\n\nConnect. S26 supplies finite path products with explicit history. M03 termination reasoning certifies that a bounded protocol ends. S17's complement strategy can check some stopped-event totals, but the terminal sample space must first be correct.\n\nExplain. A fixed-horizon extension can be a useful audit if artificial suffixes are declared. Each stopped prefix then corresponds to all full-horizon continuations beneath it; the masses of those continuations must add back to the prefix mass. This is a representation change, not a new physical experiment.\n\nWorked example: Independent trials succeed with probability.6. Stop at first success or after two trials. Terminal prefixes are S, FS, FF with masses.6,.4·.6=.24,.4²=.16; they sum1. The success-by-cap probability is.84. Giving each of the three terminal labels probability1/3 would ignore their different path lengths and branch products.\n\nGuided check: With independent success probability.7, stop at first success or after three trials. List the four terminal prefixes, assign their masses and check that they sum1 before computing success by the cap.\n\nFade. First write the stopping rule, then terminal prefixes, then masses. Do not start by counting visible labels.\n\nDistinction check. Padding a stopped path to a common horizon is legal only when all artificial continuations are included and recombined; it must not duplicate probability mass.",
+      "main": "T22V3::ARC048::S28-M@1",
+      "transfer": "T22V3::ARC048::S28-T@1",
+      "guidedFeedback": "Check after attempting. Terminal prefixes are S,FS,FFS,FFF with masses.7,.21,.063,.027; they sum1. Success by the cap is.973. The unequal terminal masses come from the different branch products.",
+      "instructionVersion": "m04-s28-instruction-v2.2-r1",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Terminal-prefix ledger",
+          "headers": [
+            "terminal prefix",
+            "why it stops",
+            "mass"
+          ],
+          "rows": [
+            [
+              "S",
+              "first success",
+              "p"
+            ],
+            [
+              "FS",
+              "first success at2",
+              "(1−p)p"
+            ],
+            [
+              "FFS",
+              "first success at3",
+              "(1−p)²p"
+            ],
+            [
+              "FFF",
+              "horizon reached",
+              "(1−p)³"
+            ]
+          ],
+          "note": "Different-length terminal labels inherit path masses; they are not equiprobable by count."
+        }
+      ]
+    },
+    {
+      "order": 21,
       "id": "T22V3::ARC048::S18@1",
       "moduleId": "ARC048",
       "title": "Partitions, weighted branches & the law of total probability",
@@ -799,7 +1025,7 @@
       "main": "T22V3::ARC048::S18-M@1",
       "transfer": "T22V3::ARC048::S18-T@1",
       "guidedFeedback": "Check after attempting. Contributions are .08,.05,.075, totaling .205. The unweighted average (.40+.10+.25)/3=.25 is different because the branch shares are unequal.",
-      "instructionVersion": "m04-s18-instruction-v2.1-forward-reverse-boundary-r1",
+      "instructionVersion": "m04-s18-instruction-v2.2-r1",
       "representations": [
         {
           "kind": "table",
@@ -835,7 +1061,77 @@
       ]
     },
     {
-      "order": 19,
+      "order": 22,
+      "id": "T22V3::ARC048::S27@1",
+      "moduleId": "ARC048",
+      "title": "Observation & reporting mechanisms",
+      "focus": "Model how information was selected or reported before conditioning on the observed message.",
+      "purpose": "Make the observation protocol an explicit finite random experiment when the message is generated by a selector/reporter.",
+      "centralCapability": "Enlarge a finite atom space to include a reporting mechanism and condition on the actual observation event.",
+      "principalObstacle": "The learner treats a reported message as if it were automatically the same event as directly learning a property of the underlying record.",
+      "entryPrerequisites": [
+        "M04-S01–S03 finite atom models",
+        "M04-S07 conditioning",
+        "M04-S09/S26 staged joint masses",
+        "M04-S18 finite partitions"
+      ],
+      "requiredOwnership": [
+        "Specify the observation/reporting protocol before conditioning.",
+        "Enlarge the finite atom space when a random selector or reporter is present.",
+        "Define the observed event in the enlarged space.",
+        "Compute a conditional as joint mass divided by observation mass.",
+        "Explain why identical surface messages under different protocols can induce different conditional laws."
+      ],
+      "applicationScope": "Finite, fully specified selection/reporting mechanisms with ordinary conditional probability.",
+      "transferScope": "Changed-surface transfer: an unequal selector and nonuniform underlying records require a corrected fine-atom mass ledger rather than direct event filtering.",
+      "inScope": [
+        "Random selectors/reporters",
+        "Enlarged finite atom spaces",
+        "Protocol-sensitive observations",
+        "Direct finite conditioning"
+      ],
+      "outOfScope": [
+        "Bayes as a reusable inversion theorem until M06",
+        "Causal identification until M37",
+        "Missing-data correction/survivorship methods until M46",
+        "Unspecified host policies"
+      ],
+      "exitCondition": "Given a reported message, state the protocol, construct the appropriate atom space, define the observed event and compute only the conditional law that protocol supports.",
+      "lesson": "Orient. 'I observed H' can describe different experiments. Did someone filter whole records for a property, or did a random mechanism choose one field and reveal its value? Those messages can sound identical while corresponding to different events.\n\nDefine. Start with the underlying finite record space. If a selector/reporter is random, enlarge each record atom by the reporter outcome and assign joint mass using the stated reporting probabilities. The observation event is then a subset of this enlarged space. Ordinary conditioning still uses P(target∩observation)/P(observation); the novelty is modelling what 'observation' means.\n\nConnect. S07 already owns conditional probability and denominator discipline. S09/S26 own staged joint mass. S18 owns partition weighting. No new inversion formula is needed.\n\nExplain. A direct filter 'record has property Q' restricts the original record space. A reporter 'choose field1 with probability r, field2 otherwise, then reveal its value' creates finer atoms (record,chosen field). If selection probabilities change, the observation mass and therefore the conditional law can change.\n\nWorked example: Three records have masses.2,.3,.5 and binary fields (1,1),(1,0),(0,1). A reporter selects field1 with probability.6 and field2 with.4. Observing a reported1 has mass .2 + .3(.6)+.5(.4)=.58. The first record contributes joint mass.2 to both 'record is first' and 'reported1', so its conditional probability is.2/.58. Directly filtering records with at least one1 would instead retain all three records and answer a different question.\n\nGuided check: Two records r1=(1,0),r2=(0,1) have masses.25,.75. A selector chooses field1 with probability.8 and field2 with.2. Compute the observation mass for 'reported1' and then P(r1|reported1) from the enlarged atoms.\n\nFade. Never infer a hidden reporting rule from a familiar puzzle. Write every selection probability publicly; if the protocol is missing, say the conditional is not identified by the message alone.\n\nDistinction check. The algebraic definition of conditional probability did not change. The experiment did.",
+      "main": "T22V3::ARC048::S27-M@1",
+      "transfer": "T22V3::ARC048::S27-T@1",
+      "guidedFeedback": "Check after attempting. Observation mass=.25(.8)+.75(.2)=.35. The joint mass of r1 and reported1 is.20, so P(r1|reported1)=.20/.35=4/7.",
+      "instructionVersion": "m04-s27-instruction-v2.2-r1",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Reporter-expanded atom ledger",
+          "headers": [
+            "underlying record",
+            "report choice",
+            "joint mass",
+            "is observed?"
+          ],
+          "rows": [
+            [
+              "record i",
+              "field1",
+              "P(record i)·r",
+              "depends on field1"
+            ],
+            [
+              "record i",
+              "field2",
+              "P(record i)·(1−r)",
+              "depends on field2"
+            ]
+          ],
+          "note": "The observation denominator is the total mass of fine atoms that actually produce the message."
+        }
+      ]
+    },
+    {
+      "order": 23,
       "id": "T22V3::ARC048::S19@1",
       "moduleId": "ARC048",
       "title": "Finite expectation as a probability-weighted average",
@@ -872,10 +1168,10 @@
       "main": "T22V3::ARC048::S19-M@1",
       "transfer": "T22V3::ARC048::S19-T@1",
       "guidedFeedback": "Check after attempting. Probabilities total1. E=(-1)(.2)+2(.5)+8(.3)=-.2+1+2.4=3.2.",
-      "instructionVersion": "m04-s19-instruction-v2-r1"
+      "instructionVersion": "m04-s19-instruction-v2.2-r1"
     },
     {
-      "order": 20,
+      "order": 24,
       "id": "T22V3::ARC048::S20@1",
       "moduleId": "ARC048",
       "title": "Expectation under equally likely finite outcomes & symmetry",
@@ -910,10 +1206,10 @@
       "main": "T22V3::ARC048::S20-M@1",
       "transfer": "T22V3::ARC048::S20-T@1",
       "guidedFeedback": "Check after attempting. The atomic mean is (0+0+0+0+2+6+6+10)/8=24/8=3. The distinct-label mean is (0+2+6+10)/4=4.5. They differ because the four value labels have multiplicities4,1,2,1 rather than equal total probability.",
-      "instructionVersion": "m04-s20-instruction-v2.1-multiplicity-discriminator-r1"
+      "instructionVersion": "m04-s20-instruction-v2.2-r1"
     },
     {
-      "order": 21,
+      "order": 25,
       "id": "T22V3::ARC048::S21@1",
       "moduleId": "ARC048",
       "title": "Linearity of expectation",
@@ -948,10 +1244,10 @@
       "main": "T22V3::ARC048::S21-M@1",
       "transfer": "T22V3::ARC048::S21-T@1",
       "guidedFeedback": "Check after attempting. E[4U+2V-7]=12-2-7=3. Dependence is irrelevant for this affine expectation; E[U²] is not determined by E[U] alone.",
-      "instructionVersion": "m04-s21-instruction-v2-r1"
+      "instructionVersion": "m04-s21-instruction-v2.2-r1"
     },
     {
-      "order": 22,
+      "order": 26,
       "id": "T22V3::ARC048::S22@1",
       "moduleId": "ARC048",
       "title": "Indicators & expected counts without independence",
@@ -983,14 +1279,14 @@
         "Trading decision/fair-price policy until M05"
       ],
       "exitCondition": "Compute an expected finite count using indicators under dependent sampling.",
-      "lesson": "Orient. Expected counts can often be computed without enumerating the full joint distribution.\n\nDefine. For event A, indicator I_A is1 if A occurs and0 otherwise, so E[I_A]=P(A). If N=I1+...+Ik counts occurrences, linearity gives E[N]=ΣE[Ii]=ΣP(event_i), even when the indicators are dependent.\n\nConnect. S21 supplies linearity. For sampling without replacement, a fixed draw position has the original category fraction because labelled ordered samples place each original object equally often in that position.\n\nExplain. Bag3 red,2 blue; two draws without replacement. For either position, P(red)=3/5 by the labelled-position argument. If I1,I2 indicate red, E[number red]=3/5+3/5=6/5 although the two indicators are dependent.\n\nWorked example: A 2-person committee is chosen uniformly from4 people, two of whom are specialists. Each named specialist has selection probability2/4=1/2, so expected specialists=1.\n\nGuided check: Choose3 of8 people uniformly, where two named people are auditors. Define indicators for each auditor and compute the expected number selected.\n\nFade. Linearity lets you add expected indicators; it does not assert that the selection events are independent.\n\nDistinction check. Dependence changes joint probabilities, not the identity E[I1+...+Ik]=ΣE[Ii].",
+      "lesson": "Orient. Expected counts can often be computed without enumerating the full joint distribution.\n\nDefine. For event A, indicator I_A is1 if A occurs and0 otherwise, so E[I_A]=P(A). If N=I1+...+Ik counts occurrences, linearity gives E[N]=ΣE[Ii]=ΣP(event_i), even when the indicators are dependent.\n\nConnect. S21 supplies linearity. M03-S34 uniform fibres and M03-S35 double counting justify the positional symmetry rather than merely naming it: among labelled ordered samples, each original object occurs equally often in each fixed position. Therefore a fixed draw position has the original category fraction even though different positions are dependent.\n\nExplain. Bag3 red,2 blue; two draws without replacement. For either position, P(red)=3/5 by the labelled-position argument. If I1,I2 indicate red, E[number red]=3/5+3/5=6/5 although the two indicators are dependent.\n\nWorked example: A 2-person committee is chosen uniformly from4 people, two of whom are specialists. Each named specialist has selection probability2/4=1/2, so expected specialists=1.\n\nGuided check: Choose3 of8 people uniformly, where two named people are auditors. Define indicators for each auditor and compute the expected number selected.\n\nFade. Linearity lets you add expected indicators; it does not assert that the selection events are independent.\n\nDistinction check. Dependence changes joint probabilities, not the identity E[I1+...+Ik]=ΣE[Ii].",
       "main": "T22V3::ARC048::S22-M@1",
       "transfer": "T22V3::ARC048::S22-T@1",
       "guidedFeedback": "Check after attempting. Each named auditor is selected with probability3/8. The count J1+J2 therefore has expectation3/8+3/8=3/4.",
-      "instructionVersion": "m04-s22-instruction-v2-r1"
+      "instructionVersion": "m04-s22-instruction-v2.2-r1"
     },
     {
-      "order": 23,
+      "order": 27,
       "id": "T22V3::ARC048::S23@1",
       "moduleId": "ARC048",
       "title": "Expectation is not most likely, guaranteed or a decision rule",
@@ -1026,10 +1322,10 @@
       "main": "T22V3::ARC048::S23-M@1",
       "transfer": "T22V3::ARC048::S23-T@1",
       "guidedFeedback": "Check after attempting. Both expectations are3. X most often pays0 and guarantees nothing above0; Y always pays3. Equal expectation alone does not choose between them.",
-      "instructionVersion": "m04-s23-instruction-v2-r1"
+      "instructionVersion": "m04-s23-instruction-v2.2-r1"
     },
     {
-      "order": 24,
+      "order": 28,
       "id": "T22V3::ARC048::S24@1",
       "moduleId": "ARC048",
       "title": "M04 synthesis — choose the probability model",
@@ -1058,11 +1354,11 @@
         "Formal random-variable distribution machinery"
       ],
       "exitCondition": "Solve a multi-step finite uncertainty problem and defend each selected rule.",
-      "lesson": "Orient. Real probability problems rarely announce one formula. The final skill is to build an auditable finite model, choose a useful representation, and refuse conclusions that the model does not support.\n\nDefine. A synthesis certificate names the finite states/branches or cells, records which probabilities are marginal/conditional/joint, applies only relationships whose hypotheses are established, and separates probability facts from later decision rules.\n\nConnect. S07–S18 provide conditioning, joints, trees, independence, repeated-trial structure and total probability. S19–S23 provide finite expectation and its interpretation limits.\n\nExplain. Representation choice should follow the givens. Explicit outcome lists are useful when atomic states are small; two-way tables expose joint/conditional denominators; trees expose staged conditionals; partition algebra can be shortest once the branches are already known. None of these formats is automatically best.\n\nWorked example: Four independent messages are delivered with probability0.60 each. A score is +3 if at least one is delivered and -2 if none are delivered. The efficient representation is the two-event partition {none, at least one}. Independence gives P(none)=.4^4=.0256, so P(at least one)=.9744. The expected score is 3(.9744)-2(.0256)=2.872. This synthesis uses repeated-trial complement plus expectation; it does not involve staged conditional branches or an independence test between route and outcome.\n\nGuided check: A fair die is rolled once. Score +4 if the result is a multiple of3 and -1 otherwise. Choose either an explicit event/complement representation or direct counting, compute the event probability and expected score, and say why no tree is needed.\n\nFade. On an independent synthesis task, do not imitate the surface form of the worked example. Let the givens determine whether a table, tree, partition or explicit atoms make the structure easiest to audit.\n\nDistinction check. Never reverse a conditional merely by swapping the bar. If a complete joint model is already available, direct S07 conditioning remains legal. Bayes as a general inversion/update rule is M06; preference/optimal-policy criteria are M05.",
+      "lesson": "Orient. Real probability problems rarely announce one formula. The final skill is to build an auditable finite model, choose a useful representation, and refuse conclusions that the model does not support.\n\nDefine. A synthesis certificate names the finite states/branches or cells, records which probabilities are marginal/conditional/joint, applies only relationships whose hypotheses are established, and separates probability facts from later decision rules.\n\nConnect. S07–S18 provide conditioning, joints, trees, independence, repeated-trial structure and total probability. S25 adds bounds under missing joint information, S26 full-history paths, S28 bounded stopping and S27 observation mechanisms. S19–S23 provide finite expectation and its interpretation limits.\n\nExplain. Representation choice should follow the givens. Explicit outcome lists are useful when atomic states are small; two-way tables expose joint/conditional denominators; trees expose staged conditionals; partition algebra can be shortest once the branches are already known. None of these formats is automatically best.\n\nWorked example: Four independent messages are delivered with probability0.60 each. A score is +3 if at least one is delivered and -2 if none are delivered. The efficient representation is the two-event partition {none, at least one}. Independence gives P(none)=.4^4=.0256, so P(at least one)=.9744. The expected score is 3(.9744)-2(.0256)=2.872. This synthesis uses repeated-trial complement plus expectation; it does not involve staged conditional branches or an independence test between route and outcome.\n\nGuided check: A fair die is rolled once. Score +4 if the result is a multiple of3 and -1 otherwise. Choose either an explicit event/complement representation or direct counting, compute the event probability and expected score, and say why no tree is needed.\n\nFade. On an independent synthesis task, do not imitate the surface form of the worked example. Let the givens determine whether a table, tree, partition or explicit atoms make the structure easiest to audit.\n\nDistinction check. Never reverse a conditional merely by swapping the bar. If a complete joint model is already available, direct S07 conditioning remains legal. Bayes as a general inversion/update rule is M06; preference/optimal-policy criteria are M05.\n\nExpanded-route audit. A complete synthesis may end with an interval rather than a point when the joint law is not identified. It may also require modelling a reporter or terminal-prefix experiment before conditioning. Choosing not to invent a missing assumption is itself part of a correct model.",
       "main": "T22V3::ARC048::S24-M@1",
       "transfer": "T22V3::ARC048::S24-T@1",
       "guidedFeedback": "Check after attempting. Multiples of3 are {3,6}, so probability2/6=1/3 and complement2/3. Expected score=4(1/3)-1(2/3)=2/3. An explicit finite event split is sufficient; there is no staged conditional structure requiring a tree.",
-      "instructionVersion": "m04-s24-instruction-v2.1-fresh-synthesis-r1"
+      "instructionVersion": "m04-s24-instruction-v2.2-r1"
     }
   ],
   "problems": {
@@ -1152,14 +1448,14 @@
     },
     "T22V3::ARC048::S07-M@1": {
       "id": "T22V3::ARC048::S07-M@1",
-      "order": 7,
+      "order": 8,
       "kind": "main",
       "prompt": "A finite model has Ω={a,b,c,d,e} with P(a)=0.05,P(b)=0.15,P(c)=0.20,P(d)=0.25,P(e)=0.35. Let A={a,c,e} and B={c,d,e}. Without treating the five outcomes as equally likely, compute P(A|B) and P(B|A), identify the reference mass used in each denominator, explain why learning after the outcome was generated that 'the outcome lies in B' can legitimately change the probability you assign to A without changing the past, and state the condition under which P(A|B) is undefined.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S07-T@1": {
       "id": "T22V3::ARC048::S07-T@1",
-      "order": 7,
+      "order": 8,
       "kind": "transfer",
       "prompt": "A completed archive is summarized by this two-way table:\n                 signal S   not S   total\nearly source E        18       12      30\nlate source L          6       24      30\ntotal                  24       36      60\n\n(a) Compute P(E|S) and P(S|E), explicitly naming the denominator/reference group in each direction.\n(b) A reviewer says: “Signal S was recorded after the source label, so observing S cannot change the probability that the archived record came from E.” Diagnose the statement using the table and the meaning of conditioning.\n(c) State when each conditional ratio would be undefined.",
       "obligationVersion": 2,
@@ -1199,28 +1495,28 @@
     },
     "T22V3::ARC048::S08-M@1": {
       "id": "T22V3::ARC048::S08-M@1",
-      "order": 8,
+      "order": 9,
       "kind": "main",
       "prompt": "Suppose P(B)=0.48,P(A|B)=0.35 and P(A)=0.42. Compute P(A∩B), then compute P(B|A) using the same intersection, verify both multiplication-rule orderings give the same joint probability, and check the joint probability is no larger than either marginal.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S08-T@1": {
       "id": "T22V3::ARC048::S08-T@1",
-      "order": 8,
+      "order": 9,
       "kind": "transfer",
       "prompt": "A service request is urgent with probability0.30. Given urgent, escalation probability is0.70; overall escalation probability is0.40. An analyst writes P(urgent∩escalated)=0.30×0.40 because those are the two marginals. Diagnose the error, compute the correct joint probability, recover P(urgent|escalated), and check the joint against both marginals.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S09-M@1": {
       "id": "T22V3::ARC048::S09-M@1",
-      "order": 9,
+      "order": 10,
       "kind": "main",
       "prompt": "A part comes from line X with probability0.55 or line Y with0.45. Given X, it passes inspection with probability0.90; given Y, it passes with probability0.70. Build the full two-stage tree, compute all four leaf probabilities, verify they sum to1, and compute the probability of pass and of fail by adding the appropriate disjoint leaves.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S09-T@1": {
       "id": "T22V3::ARC048::S09-T@1",
-      "order": 9,
+      "order": 10,
       "kind": "transfer",
       "prompt": "A routing tree is reported as:\nStart\n├─ A (.40)\n│  ├─ timeout (.10) → leaf .50\n│  └─ no-timeout (?) \n└─ B (.60)\n   ├─ timeout (.25)\n   └─ no-timeout (.75)\n\nAudit and repair the tree: fill every missing branch probability, replace the incorrect A-timeout leaf with the correct path product, compute all four leaf probabilities, verify the leaf total is1, and find the overall timeout probability.",
       "obligationVersion": 2,
@@ -1269,119 +1565,119 @@
     },
     "T22V3::ARC048::S10-M@1": {
       "id": "T22V3::ARC048::S10-M@1",
-      "order": 10,
+      "order": 11,
       "kind": "main",
       "prompt": "A bag contains5 green and3 yellow balls. Compute P(green then yellow) with replacement and without replacement, showing every conditional denominator. Then compute P(green on second draw | green on first) in each protocol and explain what changed.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S10-T@1": {
       "id": "T22V3::ARC048::S10-T@1",
-      "order": 10,
+      "order": 11,
       "kind": "transfer",
       "prompt": "A deck contains6 R cards and4 B cards. Two candidate second-stage branches are proposed after the first draw is B: Model I uses P(B on draw2|B on draw1)=4/10; Model II uses3/9. Identify which model corresponds to replacement and which to no replacement, compute P(B then B) in both protocols, and explain the state change that justifies the different second branch.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S11-M@1": {
       "id": "T22V3::ARC048::S11-M@1",
-      "order": 11,
+      "order": 12,
       "kind": "main",
       "prompt": "Two fair dice are rolled. Let A='first die is even' and B='second die is greater than4'. Compute P(A),P(B),P(A∩B) by counting, test the product criterion, conclude whether A and B are independent, and then recompute P(A∩B) using the independence factorization. Explain why the conclusion comes from the probabilities rather than merely from saying 'two dice are separate'.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S11-T@1": {
       "id": "T22V3::ARC048::S11-T@1",
-      "order": 11,
+      "order": 12,
       "kind": "transfer",
       "prompt": "On a uniform die, let C='even' and D='multiple of3'. Compute P(C),P(D),P(C∩D), decide whether C and D are independent, and if they are use factorization to compute P(C∩D^c).",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S12-M@1": {
       "id": "T22V3::ARC048::S12-M@1",
-      "order": 12,
+      "order": 13,
       "kind": "main",
       "prompt": "A box has4 white and2 black balls; two are drawn without replacement. Let A='second draw is white' and B='first draw is white'. Compute P(A) by summing the two disjoint first-draw branches, compute P(A|B), decide independence, show the product criterion reaches the same conclusion, and state why the conditional test requires P(B)>0.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S12-T@1": {
       "id": "T22V3::ARC048::S12-T@1",
-      "order": 12,
+      "order": 13,
       "kind": "transfer",
       "prompt": "In a population, P(F)=0.30,P(G)=0.50 and P(F∩G)=0.12. Compute P(F|G), compare it with P(F), diagnose dependence, and verify the product criterion gives the same diagnosis.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S13-M@1": {
       "id": "T22V3::ARC048::S13-M@1",
-      "order": 13,
+      "order": 14,
       "kind": "main",
       "prompt": "On a uniform draw from {1,2,3,4,5,6,7,8}, let A={1,2} and B={3,4,5}. Show A and B are mutually exclusive, test independence numerically, prove from their positive probabilities why disjointness forces dependence here, and then explain why replacing A by ∅ changes the independence conclusion.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S13-T@1": {
       "id": "T22V3::ARC048::S13-T@1",
-      "order": 13,
+      "order": 14,
       "kind": "transfer",
       "prompt": "A fair die is rolled. C='result is1' and D='result is2'. Classify them as disjoint/not disjoint and independent/dependent with calculation. Then give one pair of independent, non-disjoint events on a two-die experiment and justify it.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S14-M@1": {
       "id": "T22V3::ARC048::S14-M@1",
-      "order": 14,
+      "order": 15,
       "kind": "main",
       "prompt": "Let two fair bits X,Y be chosen uniformly from {00,01,10,11}. Define A={X=1}, B={Y=1}, and C={X⊕Y=1}. Compute each marginal probability, all three pair intersections, test pairwise independence, compute A∩B∩C, and decide whether A,B,C are mutually independent.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S14-T@1": {
       "id": "T22V3::ARC048::S14-T@1",
-      "order": 14,
+      "order": 15,
       "kind": "transfer",
       "prompt": "On uniform Ω={a,b,c,d}, let E={a,b},F={a,c},G={a,d}. Verify pairwise independence and test mutual independence by comparing the triple intersection with the product of marginals.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S15-M@1": {
       "id": "T22V3::ARC048::S15-M@1",
-      "order": 15,
+      "order": 16,
       "kind": "main",
       "prompt": "A device succeeds independently on each trial with probability0.8. Compare the exact four-trial paths S,S,S,F and S,F,S,S by computing each probability and writing the common power product. Then evaluate two claims: (i) S,F,S,S is more likely because it 'looks more random'; (ii) after three consecutive successes, failure is more likely on the next trial because it is 'due'. State the model assumption that decides both claims.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S15-T@1": {
       "id": "T22V3::ARC048::S15-T@1",
-      "order": 15,
+      "order": 16,
       "kind": "transfer",
       "prompt": "A binary signal is positive independently with probability0.30 each observation. A colleague writes: “+,-,+,-,+ is more plausible than +,+,+,-,- because the first pattern alternates more, and after +,+,+ the next result should lean negative.” Audit the reasoning by computing the two exact five-observation probabilities and the next-observation probability after +,+,+.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S16-M@1": {
       "id": "T22V3::ARC048::S16-M@1",
-      "order": 16,
+      "order": 17,
       "kind": "main",
       "prompt": "Five independent trials each succeed with probability0.6. Derive from combinations the probability of exactly three successes: count the success-position patterns, compute one such path probability, multiply, give the final value, and explain why adding those path probabilities is legitimate.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S16-T@1": {
       "id": "T22V3::ARC048::S16-T@1",
-      "order": 16,
+      "order": 17,
       "kind": "transfer",
       "prompt": "Six independent components fail with probability0.2 each. A solver reports P(exactly one failure)=0.2·0.8^5 because that is the path F,S,S,S,S,S. Diagnose what is missing, count the distinct one-failure paths, and repair the probability.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S17-M@1": {
       "id": "T22V3::ARC048::S17-M@1",
-      "order": 17,
+      "order": 19,
       "kind": "main",
       "prompt": "Four independent sensors each detect an event with probability0.25. Find P(none detect), P(all detect), and P(at least one detects). For the at-least-one calculation, choose and justify an efficient route rather than summing overlapping 'sensor i detects' events, and state exactly where independence is used.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S17-T@1": {
       "id": "T22V3::ARC048::S17-T@1",
-      "order": 17,
+      "order": 19,
       "kind": "transfer",
       "prompt": "Five independent attempts succeed with probability0.4. A solver claims P(at least one success)=5(0.4)=2 and then clips the answer to1. Diagnose the error, compute the correct probability, also compute P(all succeed), and identify the probability rule/assumption used in your repair.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S18-M@1": {
       "id": "T22V3::ARC048::S18-M@1",
-      "order": 18,
+      "order": 21,
       "kind": "main",
       "prompt": "A component source has this finite branch table:\nsource        M1      M2      M3\nP(source)    .50     .30     .20\nP(defect|source)\n              .01     .03     .06\n\nTreat M1,M2,M3 as the stated source categories. Verify they form the required finite partition, determine the overall defect probability with auditable branch contributions, explain why simply averaging .01,.03,.06 is not valid here, state the general finite total-probability relationship you used, and explain the forward/reverse boundary precisely: total probability gives P(defect) but does not obtain P(M3|defect) by swapping the conditional bar. State what would make a direct S07 conditional calculation possible without introducing Bayes' theorem as a new rule.",
       "obligationVersion": 3,
@@ -1415,94 +1711,263 @@
     },
     "T22V3::ARC048::S18-T@1": {
       "id": "T22V3::ARC048::S18-T@1",
-      "order": 18,
+      "order": 21,
       "kind": "transfer",
       "prompt": "A request stream is A with probability0.2, B with0.5, C with0.3. Conditional escalation rates are0.4,0.1,0.25. An analyst reports overall escalation=(0.4+0.1+0.25)/3=0.25 and then says P(B|escalation)=0.1. Audit both claims: compute the correct weighted overall escalation from branch contributions, explain the averaging error, explain why0.1 is P(escalation|B) rather than P(B|escalation), and state the precise boundary: total probability does not perform conditional reversal, though a completed joint model could be conditioned directly by the S07 definition. Do not introduce Bayes' theorem as a new rule.",
       "obligationVersion": 3
     },
     "T22V3::ARC048::S19-M@1": {
       "id": "T22V3::ARC048::S19-M@1",
-      "order": 19,
+      "order": 23,
       "kind": "main",
-      "prompt": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
-      "obligationVersion": 1
+      "prompt": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], state its payoff units, verify that it lies between the smallest and largest possible payoff, and explain why E[X] need not equal any payoff that can actually occur.",
+      "obligationVersion": 2
     },
     "T22V3::ARC048::S19-T@1": {
       "id": "T22V3::ARC048::S19-T@1",
-      "order": 19,
+      "order": 23,
       "kind": "transfer",
       "prompt": "A four-leaf finite payoff model is already normalized:\nleaf      1     2     3     4\nprob.    .10   .20   .30   .40\nvalue     8     4     1    -2\nCompute the expectation by weighting all four leaves, state whether the expected value must equal one of the displayed leaf values, and explain why the unweighted arithmetic mean of the four payoff values would be the wrong operation when the leaf probabilities are unequal.",
       "obligationVersion": 3
     },
     "T22V3::ARC048::S20-M@1": {
       "id": "T22V3::ARC048::S20-M@1",
-      "order": 20,
+      "order": 24,
       "kind": "main",
       "prompt": "A number is chosen uniformly from {2,5,8,11,14,17}. Compute the expected chosen number by direct arithmetic mean and by symmetric pairing, explain why the two methods agree, and state why simply averaging distinct payoff labels would fail if some labels corresponded to more atomic outcomes than others.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S20-T@1": {
       "id": "T22V3::ARC048::S20-T@1",
-      "order": 20,
+      "order": 24,
       "kind": "transfer",
       "prompt": "Eight atomic outcomes are equally likely and have numerical values {1,1,1,1,3,7,9,9}. Compute the expectation by averaging all eight atomic values. Then compute the naive average of the four distinct labels {1,3,7,9}, compare the two numbers, and explain exactly why the distinct-label method fails here.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S21-M@1": {
       "id": "T22V3::ARC048::S21-M@1",
-      "order": 21,
+      "order": 25,
       "kind": "main",
       "prompt": "On three equally likely outcomes ω1,ω2,ω3, let X take values(0,2,4) and Y take values(1,1,7). First derive from the finite weighted-sum definition that E[aX+bY+c]=aE[X]+bE[Y]+c, using distributivity and ΣP(ω)=1. Then compute E[X] and E[Y], apply the identity to E[3X−2Y+5], verify it by evaluating 3X−2Y+5 on all three outcomes, explain why no independence assumption is required, and use X itself to show that linearity does not imply E[X²]=(E[X])².",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S21-T@1": {
       "id": "T22V3::ARC048::S21-T@1",
-      "order": 21,
+      "order": 25,
       "kind": "transfer",
       "prompt": "Suppose finite payoffs U,V have E[U]=−2 and E[V]=5, possibly dependent. Compute E[−3U+4V+1], state whether dependence matters for this calculation, and explain why a nonlinear quantity such as E[U²] cannot be recovered from E[U] alone.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S22-M@1": {
       "id": "T22V3::ARC048::S22-M@1",
-      "order": 22,
+      "order": 26,
       "kind": "main",
       "prompt": "Three cards are drawn without replacement from a 10-card set containing4 red and6 black. Let Ii indicate 'draw i is red' and N=I1+I2+I3. Define the indicators, justify E[Ii]=4/10 for each position, compute E[N], and explain why the without-replacement dependence does not block the linearity calculation.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S22-T@1": {
       "id": "T22V3::ARC048::S22-T@1",
-      "order": 22,
+      "order": 26,
       "kind": "transfer",
       "prompt": "A committee of5 is chosen uniformly from12 people, of whom3 are specialists. Let Jk indicate whether specialist k is selected. Express the specialist count as J1+J2+J3, compute its expectation, and explain why the indicators are dependent but linearity still applies.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S23-M@1": {
       "id": "T22V3::ARC048::S23-M@1",
-      "order": 23,
+      "order": 27,
       "kind": "main",
       "prompt": "Model X pays0 with probability0.75 and12 with0.25. Model Y pays3 for sure. Compute both expectations, identify each model's most likely outcome, state whether the expectation is attainable in each model, state what is guaranteed, and explain why equal expectation alone does not tell a person which model to prefer.",
       "obligationVersion": 1
     },
     "T22V3::ARC048::S23-T@1": {
       "id": "T22V3::ARC048::S23-T@1",
-      "order": 23,
+      "order": 27,
       "kind": "transfer",
       "prompt": "Model A pays -5 with probability0.2 and +5 with0.8. Model B pays +3 for sure. A memo says: “Both have expectation3, so they have the same most likely outcome, the same guarantee, the same risk, and every rational person must be indifferent.” Audit the memo by computing expectations and identifying exactly which of those conclusions do and do not follow from expectation alone.",
       "obligationVersion": 2
     },
     "T22V3::ARC048::S24-M@1": {
       "id": "T22V3::ARC048::S24-M@1",
-      "order": 24,
+      "order": 28,
       "kind": "main",
       "prompt": "An operations log covers250 tasks:100 were routed through system L and150 through R. Conditional success rate is0.70 on L and0.50 on R. A success scores+4 and a failure scores−3. A note claims (i) route and success are independent because both routes sometimes succeed, and (ii) the positive overall expected score proves the current routing policy is optimal. Produce one compact auditable analysis using a representation of your choice. Reconstruct the staged probability model, compute P(L∩success), obtain the overall success probability by the branch partition, decide the independence claim numerically, compute the expected score, and decide whether the 'optimal policy' conclusion follows from these M04 facts.",
       "obligationVersion": 3
     },
     "T22V3::ARC048::S24-T@1": {
       "id": "T22V3::ARC048::S24-T@1",
-      "order": 24,
+      "order": 28,
       "kind": "transfer",
-      "prompt": "Audit this proposed analysis. A case comes from channel X with probability0.25 or Y with0.75. Conditional flag probabilities are0.80 and0.20; value is+6 for flag and0 otherwise. Proposal: “Overall flag=(.80+.20)/2=.50; therefore channel and flag are independent; expected value=6(.50)=3; and P(X|flag)=.80 because the X flag rate is.80.” Identify and repair every probability/expectation claim M04 can settle using an auditable representation. Once you have the completed joint model, compute P(X|flag) directly from the S07 conditional definition; do not introduce Bayes' theorem as a new inversion rule.",
-      "obligationVersion": 3
+      "prompt": "Final exit audit. Only the marginals P(A)=0.60 and P(B)=0.50 are known. A score is+5 if A∪B occurs and−1 otherwise. A memo says: “No dependence was stated, so assume independence; P(A∪B)=0.80, expected score=3.8, therefore this policy is optimal.” Produce an auditable answer without adding an unstated dependence law. Derive the feasible overlap and union intervals, convert the union interval into the complete feasible interval for expected score, construct legal endpoint region models, state where the independence calculation sits inside the feasible family, and decide whether policy optimality follows from these M04 facts alone.",
+      "obligationVersion": 4
+    },
+    "T22V3::ARC048::S25-M@1": {
+      "id": "T22V3::ARC048::S25-M@1",
+      "order": 7,
+      "kind": "main",
+      "obligationVersion": 1,
+      "prompt": "First prove the finite monotonicity fact P(E)≤P(F) when E⊆F by writing F as a disjoint union involving E. Then suppose P(A)=0.60 and P(B)=0.50. Without assuming independence, derive the complete feasible interval for P(A∩B) from the four region masses, convert it to the complete feasible interval for P(A∪B), construct normalized four-region models attaining both overlap endpoints, and explain why the marginals do not identify one exact joint answer.",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Complete two-event region model",
+          "headers": [
+            "region",
+            "mass"
+          ],
+          "rows": [
+            [
+              "both",
+              "c"
+            ],
+            [
+              "A only",
+              "0.60−c"
+            ],
+            [
+              "B only",
+              "0.50−c"
+            ],
+            [
+              "neither",
+              "c−0.10"
+            ]
+          ]
+        }
+      ]
+    },
+    "T22V3::ARC048::S25-T@1": {
+      "id": "T22V3::ARC048::S25-T@1",
+      "order": 7,
+      "kind": "transfer",
+      "obligationVersion": 1,
+      "prompt": "Three possible failure events F1,F2,F3 have marginal probabilities0.15,0.20,0.30. No dependence law is supplied. A memo multiplies complements and reports one exact probability of at least one failure. Audit the memo. Derive a guaranteed upper bound for P(F1∪F2∪F3) without independence, state a guaranteed lower bound that follows from the marginals, and exhibit two legal finite dependence structures attaining those two bounds. Explain why the product-based exact answer is unsupported."
+    },
+    "T22V3::ARC048::S26-M@1": {
+      "id": "T22V3::ARC048::S26-M@1",
+      "order": 18,
+      "kind": "main",
+      "obligationVersion": 1,
+      "prompt": "A three-stage procedure works as follows. Stage1 chooses A with probability0.40 or B with0.60. At stage2, X/Y probabilities are0.50/0.50 after A and0.25/0.75 after B. At stage3 the success probabilities are0.20 after history A-X,0.70 after A-Y,0.80 after B-X, and0.40 after B-Y (failure is the complement at each node). Build the complete eight-leaf ledger, writing the full history conditioning every stage3 branch. Compute every leaf mass, verify normalization, compute the probability of success, and diagnose why replacing the two X-history success laws by one rule depending only on the most recent symbol X would change the stated model.",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Three-stage history ledger",
+          "headers": [
+            "history",
+            "P(success|history)"
+          ],
+          "rows": [
+            [
+              "A-X",
+              "0.20"
+            ],
+            [
+              "A-Y",
+              "0.70"
+            ],
+            [
+              "B-X",
+              "0.80"
+            ],
+            [
+              "B-Y",
+              "0.40"
+            ]
+          ],
+          "note": "The same most-recent symbol X occurs under two different full histories."
+        }
+      ]
+    },
+    "T22V3::ARC048::S26-T@1": {
+      "id": "T22V3::ARC048::S26-T@1",
+      "order": 18,
+      "kind": "transfer",
+      "obligationVersion": 1,
+      "prompt": "Three trials are independent but have success probabilities0.20,0.50,0.80 in positions1,2,3. Compute the probability of exactly one success by listing and summing the three unequal ordered path weights. Then audit the shortcut 'use the average success probability0.50 in the constant-p exactly-one formula'. Compute that shortcut's value and explain precisely which assumption it adds."
+    },
+    "T22V3::ARC048::S27-M@1": {
+      "id": "T22V3::ARC048::S27-M@1",
+      "order": 22,
+      "kind": "main",
+      "obligationVersion": 1,
+      "prompt": "An underlying record consists of two independent fair H/T fields, so HH,HT,TH,TT each have probability1/4. Compare two observation protocols. Protocol W reports 'H present' exactly when the whole record contains at least one H. Protocol R independently chooses one of the two field positions uniformly and reports the value at that selected position. For each protocol, specify the experiment/atom space and the exact observation event, then compute P(HH | observed message is H/H-present). Explain why the two answers differ even though the surface message mentions H in both cases.",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Underlying fair two-field records",
+          "headers": [
+            "record",
+            "mass"
+          ],
+          "rows": [
+            [
+              "HH",
+              "1/4"
+            ],
+            [
+              "HT",
+              "1/4"
+            ],
+            [
+              "TH",
+              "1/4"
+            ],
+            [
+              "TT",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    "T22V3::ARC048::S27-T@1": {
+      "id": "T22V3::ARC048::S27-T@1",
+      "order": 22,
+      "kind": "transfer",
+      "obligationVersion": 1,
+      "prompt": "An audit log has underlying two-field records with masses HH:0.10, HT:0.20, TH:0.30, TT:0.40. A reporter independently selects field1 with probability0.75 and field2 with0.25, then reports only the selected H/T value. You observe H. Build enough of the enlarged (record,selected-field) mass ledger to compute P(HH|reported H). Then compare it with the answer obtained by directly conditioning on 'the underlying record contains at least one H', and explain why the message 'H' alone would not identify the conditional law if the reporter protocol were omitted."
+    },
+    "T22V3::ARC048::S28-M@1": {
+      "id": "T22V3::ARC048::S28-M@1",
+      "order": 20,
+      "kind": "main",
+      "obligationVersion": 1,
+      "prompt": "Independent fair H/T trials are run with this bounded rule: stop immediately at the first H, or stop after three trials if no H has appeared. State the stopping rule and complete terminal sample space, assign the probability of every terminal prefix, verify normalization, compute the probability of seeing H before the cap, and audit the claim that the four terminal labels should each have probability1/4. Finally pad the stopped experiment to three trials by explicitly grouping artificial continuations and show that the padded model preserves each terminal-prefix mass.",
+      "representations": [
+        {
+          "kind": "table",
+          "title": "Stopped-record slots",
+          "headers": [
+            "terminal prefix",
+            "mass to determine"
+          ],
+          "rows": [
+            [
+              "H",
+              "?"
+            ],
+            [
+              "TH",
+              "?"
+            ],
+            [
+              "TTH",
+              "?"
+            ],
+            [
+              "TTT",
+              "?"
+            ]
+          ]
+        }
+      ]
+    },
+    "T22V3::ARC048::S28-T@1": {
+      "id": "T22V3::ARC048::S28-T@1",
+      "order": 20,
+      "kind": "transfer",
+      "obligationVersion": 1,
+      "prompt": "A finite contest consists of independent rounds won by A with probability0.60 and by B with0.40. Stop as soon as either player has two wins; therefore at most three rounds are played. Enumerate the complete terminal win/loss prefixes, compute and normalize their masses, find P(A wins the contest), and compare this direct stopped-prefix calculation with a padded three-round model. Explain why counting the six terminal labels equally would be invalid."
     }
   },
   "evaluators": {
@@ -2443,30 +2908,30 @@
       "marking": "Do not require the numerical reverse conditional. Score the direction/boundary distinction."
     },
     "T22V3::ARC048::S19-M@1": {
-      "reference": "Probabilities sum1. E=−.6+.5+2.1=2.0. The payoff2 never occurs; expectation is a weighted average.",
+      "reference": "The probabilities sum to1. Weighted terms are −0.6,+0.5,+2.1, so E[X]=2 payoff units. Since −3≤2≤7, the finite weighted-mean range check passes. The value2 need not be an attainable payoff; expectation is a probability-weighted average, not a guarantee.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Probability normalization checked."
+          "criterion": "Probability normalization is checked."
         },
         {
           "points": 2,
-          "criterion": "Three weighted terms −.6,.5,2.1."
+          "criterion": "Forms the three weighted terms −0.6,+0.5,+2.1 correctly."
         },
         {
           "points": 2,
-          "criterion": "Expectation2.0."
+          "criterion": "Computes E[X]=2."
         },
         {
           "points": 2,
-          "criterion": "Weighted-average interpretation correct."
+          "criterion": "States the payoff units and verifies the weighted-mean bound −3≤2≤7."
         },
         {
           "points": 2,
-          "criterion": "No claim that2 must occur/ be guaranteed."
+          "criterion": "Interprets expectation as a probability-weighted average and does not claim that2 must occur or is guaranteed."
         }
       ],
-      "marking": "Score only what the public Main asks. Equivalent exact forms and logically valid alternate routes are acceptable."
+      "marking": "Score only the public obligations. Equivalent exact arithmetic is accepted; the range check must use the actual payoff extrema and the units must match the payoff."
     },
     "T22V3::ARC048::S19-T@1": {
       "reference": "E=8(.10)+4(.20)+1(.30)-2(.40)=.8+.8+.3-.8=1.1. Expectation need not be an attainable leaf value;1.1 is not displayed. The arithmetic mean of the four values would silently assign equal probability1/4 to each leaf, contradicting the stated unequal probabilities.",
@@ -2729,30 +3194,238 @@
       "marking": "Accept any coherent finite representation. The learner must organize the mixed count/conditional data rather than copy a prescribed representation."
     },
     "T22V3::ARC048::S24-T@1": {
-      "reference": "Joint leaves are X-flag=.20,X-no=.05,Y-flag=.15,Y-no=.60. Overall flag=.35, not.50, because branch rates require weights. Channel and flag are dependent since P(flag|X)=.80≠.35 (or .20≠.25×.35). Expected value=6(.35)=2.1. The number .80 is P(flag|X), not P(X|flag). From the completed joint model, direct S07 conditioning gives P(X|flag)=.20/.35=4/7. This uses the conditional definition, not Bayes as a new general inversion rule.",
+      "reference": "Let c=P(A∩B). Four-region nonnegativity gives .10≤c≤.50, hence .60≤u=P(A∪B)=1.10−c≤1. The score expectation is5u−1(1−u)=6u−1, so it lies in[2.6,5]. Endpoint region models are c=.50: both.50,A-only.10,B-only0,neither.40 (u=.60); and c=.10: both.10,A-only.50,B-only.40,neither0 (u=1). Independence would choose c=.30,u=.80,E=3.8, which is one compatible interior model, not an inference from the marginals. Even a positive expectation interval does not prove policy optimality without alternatives/criteria from M05.",
       "rubric": [
         {
           "points": 2,
-          "criterion": "Builds/recovers the four joint leaves0.20,0.05,0.15,0.60 or an equivalent auditable partition."
+          "criterion": "Derives the sharp overlap interval[0.10,0.50] and union interval[0.60,1.00] without assuming independence."
         },
         {
           "points": 2,
-          "criterion": "Repairs overall flag probability to0.35 and explains the branch-weighting error."
+          "criterion": "Transforms the union interval through E=5u−1(1−u)=6u−1 to obtain the expected-score interval[2.6,5]."
         },
         {
           "points": 2,
-          "criterion": "Repairs the independence claim and shows channel/flag are dependent with a numerical criterion."
+          "criterion": "Constructs legal normalized four-region models attaining both union/expectation endpoints."
         },
         {
           "points": 2,
-          "criterion": "Repairs expected value to2.1."
+          "criterion": "Explains that independence gives c=0.30,u=0.80,E=3.8 as one compatible model rather than a consequence of missing dependence information."
         },
         {
           "points": 2,
-          "criterion": "Diagnoses .80 as P(flag|X), not P(X|flag), and computes P(X|flag)=4/7 directly from the completed joint model using the S07 definition rather than conditional swapping."
+          "criterion": "Rejects the claim that these probability/expectation facts alone prove a policy optimal; alternatives and decision criteria are not supplied."
         }
       ],
-      "marking": "Direct finite conditioning is already owned in S07. Do not require Bayes' theorem or posterior-odds machinery."
+      "marking": "This is the fresh cumulative exit surface for the expanded route. Accept equivalent exact endpoint constructions; do not reward an unstated independence assumption."
+    },
+    "T22V3::ARC048::S25-M@1": {
+      "reference": "If E⊆F, then F=E ⊔ (F\\E), so P(F)=P(E)+P(F\\E)≥P(E). Let c=P(A∩B). Region masses are c,.60−c,.50−c,−.10+c, so nonnegativity gives .10≤c≤.50. Since P(A∪B)=1.10−c, the union interval is [.60,1.00]. At c=.10 the regions (both,A-only,B-only,neither) are(.10,.50,.40,0); at c=.50 they are(.50,.10,0,.40). Both normalize. Independence would give c=.30, but that is an additional model assumption, not a consequence of the marginals.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Derives P(E)≤P(F) from the disjoint decomposition F=E ⊔ (F\\E) and nonnegative probability mass."
+        },
+        {
+          "points": 2,
+          "criterion": "Derives the sharp overlap interval 0.10≤P(A∩B)≤0.50 from nonnegative four-region masses."
+        },
+        {
+          "points": 2,
+          "criterion": "Converts the overlap interval correctly to 0.60≤P(A∪B)≤1.00."
+        },
+        {
+          "points": 2,
+          "criterion": "Constructs legal normalized four-region models attaining both overlap endpoints."
+        },
+        {
+          "points": 2,
+          "criterion": "States that the marginals alone do not imply independence or any other single exact overlap."
+        }
+      ],
+      "marking": "Accept any equivalent disjoint-difference proof and any equivalent endpoint atom/region representation. Do not award exact-answer credit for silently assuming independence."
+    },
+    "T22V3::ARC048::S25-T@1": {
+      "reference": "The union bound gives P(any failure)≤.15+.20+.30=.65. Also P(any failure)≥max(.15,.20,.30)=.30 by monotonicity. Both bounds are attainable: make the events disjoint to obtain union.65; make F1⊆F2⊆F3 to obtain union.30. The complement product (or any exact product answer) requires an independence assumption that was not supplied.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Recognizes that the marginals do not determine one exact union probability without a dependence law."
+        },
+        {
+          "points": 2,
+          "criterion": "Derives/applies the finite union bound to obtain P(any failure)≤0.65 without independence."
+        },
+        {
+          "points": 2,
+          "criterion": "Uses monotonicity to obtain the guaranteed lower bound P(any failure)≥0.30."
+        },
+        {
+          "points": 2,
+          "criterion": "Gives legal nested and disjoint finite constructions attaining0.30 and0.65 respectively."
+        },
+        {
+          "points": 2,
+          "criterion": "Rejects the complement-product exact answer unless independence is additionally assumed or proved."
+        }
+      ],
+      "marking": "Equivalent finite atom constructions are accepted. The task is about guarantees under missing joint information, not about choosing a preferred dependence model."
+    },
+    "T22V3::ARC048::S26-M@1": {
+      "reference": "The success leaves are AX-S=.4·.5·.2=.04, AY-S=.4·.5·.7=.14, BX-S=.6·.25·.8=.12, BY-S=.6·.75·.4=.18. Failure leaves are.16,.06,.03,.27 respectively. All eight sum1 and P(success)=.04+.14+.12+.18=.48. The stage3 laws are conditioned on AX, AY, BX, BY; AX and BX share recent symbol X but have different success probabilities. Replacing them by one P(S|X) is an extra state/history assumption and changes the model.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Writes the stage3 branch laws against the full histories AX,AY,BX,BY rather than only the most recent symbol."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes all eight leaf products correctly: success .04,.14,.12,.18 and failures .16,.06,.03,.27."
+        },
+        {
+          "points": 2,
+          "criterion": "Verifies the outgoing branch laws are legal and the eight terminal masses sum to1."
+        },
+        {
+          "points": 2,
+          "criterion": "Aggregates the four success leaves to P(success)=0.48."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that collapsing AX and BX into a last-symbol-only X rule adds an unsupported restriction and changes the stated model."
+        }
+      ],
+      "marking": "Equivalent tree or table layouts are accepted if the full conditioning histories and all reachable leaf masses are explicit."
+    },
+    "T22V3::ARC048::S26-T@1": {
+      "reference": "Exactly-one paths are SFF=.2·.5·.2=.02, FSF=.8·.5·.2=.08, FFS=.8·.5·.8=.32, totaling.42. The average-p shortcut gives C(3,1)(.5)(.5)^2=.375. Independence licenses multiplying position probabilities; it does not make the three trials identically distributed. The constant-p formula adds an equal-success-probability assumption.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Lists exactly the three one-success paths SFF,FSF,FFS with position-specific probabilities."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the three path masses0.02,0.08,0.32 correctly."
+        },
+        {
+          "points": 2,
+          "criterion": "Sums the unequal path masses to the correct exactly-one probability0.42."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the average-p constant-probability shortcut as0.375 and shows it disagrees."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that independence permits factorization but does not imply identical per-position success probabilities."
+        }
+      ],
+      "marking": "Do not accept0.375 as the model answer. Equivalent exact fractions are accepted."
+    },
+    "T22V3::ARC048::S27-M@1": {
+      "reference": "Under W, the original four-record space is enough and the observation event is {HH,HT,TH}, mass3/4; thus P(HH|H-present)=(1/4)/(3/4)=1/3. Under R, use eight equiprobable fine atoms (record,selected position). The event 'selected value H' has four of eight fine atoms, while HH contributes two of those eight, so P(HH|selected H)=2/4=1/2. The conditional definition is unchanged; the reporting mechanisms define different observation events.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Specifies Protocol W on the original record space and Protocol R on the enlarged (record,selected-position) space with correct masses."
+        },
+        {
+          "points": 2,
+          "criterion": "Defines the whole-record H-present event and the selected-position-is-H event exactly rather than treating them as the same event."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes Protocol W conditional P(HH|H-present)=1/3."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes Protocol R conditional P(HH|selected H)=1/2 from joint observation mass over total observation mass."
+        },
+        {
+          "points": 2,
+          "criterion": "Explains that the answers differ because the observation/reporting protocols create different conditioned events, not because the conditional formula changed."
+        }
+      ],
+      "marking": "Equivalent enumerations of the eight reporter atoms are accepted. No Bayes terminology is required."
+    },
+    "T22V3::ARC048::S27-T@1": {
+      "reference": "Reported-H mass is HH:.10 (either selector), HT:.20·.75=.15, TH:.30·.25=.075, TT:0, totaling.325. Hence P(HH|reported H)=.10/.325=4/13. Directly conditioning on underlying 'at least one H' uses HH+HT+TH=.60, so P(HH|at least one H)=.10/.60=1/6. These are different observation events. Without the selector/reporting law, the surface message H does not specify which event/masses form the denominator.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Builds the reporter-expanded masses and obtains contributions0.10,0.15,0.075,0 to the reported-H event."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes total observation mass P(reported H)=0.325."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes P(HH|reported H)=0.10/0.325=4/13."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes the direct underlying-record filter answer P(HH|at least one H)=1/6 and distinguishes the two events."
+        },
+        {
+          "points": 2,
+          "criterion": "States that the observation protocol is required; the surface message alone does not identify the conditional denominator/law."
+        }
+      ],
+      "marking": "Accept exact fractions or sufficiently clear decimal equivalents. The reporting probabilities are part of the model and may not be ignored."
+    },
+    "T22V3::ARC048::S28-M@1": {
+      "reference": "Terminal prefixes are H,TH,TTH,TTT with masses1/2,1/4,1/8,1/8; they are exhaustive/disjoint and sum1. Success before the cap is7/8. Equal terminal-label mass is wrong because prefix lengths have different path probabilities. In a three-trial padding, H corresponds to HHH,HHT,HTH,HTT with total4/8=1/2; TH corresponds to THH,THT totaling2/8=1/4; TTH and TTT remain1/8 each.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "States the finite stopping rule and enumerates exactly the terminal prefixes H,TH,TTH,TTT."
+        },
+        {
+          "points": 2,
+          "criterion": "Assigns masses1/2,1/4,1/8,1/8 and verifies they sum to1."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes P(H before the cap)=7/8 by summing the disjoint success terminal prefixes."
+        },
+        {
+          "points": 2,
+          "criterion": "Rejects equal terminal-label weighting and explains that different prefix lengths carry different branch-product masses."
+        },
+        {
+          "points": 2,
+          "criterion": "Builds a valid three-trial padding and groups continuations to recover terminal masses1/2,1/4,1/8,1/8 without double counting."
+        }
+      ],
+      "marking": "Any equivalent complete prefix-code or padded eight-outcome representation is accepted if stopped paths are not counted again as distinct stopped outcomes."
+    },
+    "T22V3::ARC048::S28-T@1": {
+      "reference": "Terminal prefixes are AA(.36), BB(.16), ABA(.144), ABB(.096), BAA(.144), BAB(.096); they sum1. A wins on AA,ABA,BAA, so probability=.36+.144+.144=.648. In a padded three-round model, AA is represented by AAA(.216)+AAB(.144)=.36 and BB by BBA(.096)+BBB(.064)=.16; length-three terminals remain as listed, so the probability is preserved. Equal terminal-label weighting would give1/6 each and ignores unequal path masses.",
+      "rubric": [
+        {
+          "points": 2,
+          "criterion": "Enumerates exactly the six terminal prefixes AA,BB,ABA,ABB,BAA,BAB under the two-wins stopping rule."
+        },
+        {
+          "points": 2,
+          "criterion": "Computes their masses0.36,0.16,0.144,0.096,0.144,0.096 and verifies normalization."
+        },
+        {
+          "points": 2,
+          "criterion": "Sums the A-winning terminal prefixes to P(A wins)=0.648."
+        },
+        {
+          "points": 2,
+          "criterion": "Constructs/uses the padded three-round grouping and shows it preserves the stopped-prefix masses."
+        },
+        {
+          "points": 2,
+          "criterion": "Rejects equal weighting of the six terminal labels because their path lengths/probabilities differ."
+        }
+      ],
+      "marking": "Equivalent exact fractions/decimals are accepted. No fair-stake, strategy or optimal-stopping conclusion is part of this task."
     }
   },
   "coverage": {
@@ -3148,6 +3821,74 @@
       ]
     ],
     "T22V3::ARC048::S24@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::ARC048::S25@1": [
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::ARC048::S26@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "transfer"
+      ],
+      [
+        "transfer"
+      ]
+    ],
+    "T22V3::ARC048::S27@1": [
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ],
+      [
+        "main"
+      ]
+    ],
+    "T22V3::ARC048::S28@1": [
       [
         "main"
       ],
@@ -3951,42 +4692,42 @@
       {
         "claim": "Associate a numerical payoff/value with each outcome.",
         "task": "main",
-        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
+        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], state its payoff units, verify that it lies between the smallest and largest possible payoff, and explain why E[X] need not equal any payoff that can actually occur.",
         "rubricEvidence": [
-          "Three weighted terms −.6,.5,2.1."
+          "Forms the three weighted terms −0.6,+0.5,+2.1 correctly."
         ]
       },
       {
         "claim": "Multiply each value by its probability.",
         "task": "main",
-        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
+        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], state its payoff units, verify that it lies between the smallest and largest possible payoff, and explain why E[X] need not equal any payoff that can actually occur.",
         "rubricEvidence": [
-          "Three weighted terms −.6,.5,2.1."
+          "Forms the three weighted terms −0.6,+0.5,+2.1 correctly."
         ]
       },
       {
         "claim": "Sum the weighted values.",
         "task": "main",
-        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
+        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], state its payoff units, verify that it lies between the smallest and largest possible payoff, and explain why E[X] need not equal any payoff that can actually occur.",
         "rubricEvidence": [
-          "Expectation2.0."
+          "Computes E[X]=2."
         ]
       },
       {
         "claim": "Check probabilities form a valid model.",
         "task": "main",
-        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
+        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], state its payoff units, verify that it lies between the smallest and largest possible payoff, and explain why E[X] need not equal any payoff that can actually occur.",
         "rubricEvidence": [
-          "Probability normalization checked."
+          "Probability normalization is checked."
         ]
       },
       {
         "claim": "Interpret expectation as a probability-weighted average, not a guaranteed outcome.",
         "task": "main",
-        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], and explain why E[X] need not equal any payoff that can actually occur.",
+        "publicRequest": "A finite outcome has numerical payoff −3 with probability0.20, +1 with probability0.50, and +7 with probability0.30. Verify the probabilities define a model, compute the expectation term by term, give E[X], state its payoff units, verify that it lies between the smallest and largest possible payoff, and explain why E[X] need not equal any payoff that can actually occur.",
         "rubricEvidence": [
-          "Weighted-average interpretation correct.",
-          "No claim that2 must occur/ be guaranteed."
+          "States the payoff units and verifies the weighted-mean bound −3≤2≤7.",
+          "Interprets expectation as a probability-weighted average and does not claim that2 must occur or is guaranteed."
         ]
       }
     ],
@@ -4202,6 +4943,179 @@
           "Computes expected score1.06 and rejects the claim that positive expectation alone proves the routing policy optimal."
         ]
       }
+    ],
+    "T22V3::ARC048::S25@1": [
+      {
+        "claim": "Derive event monotonicity from a subset relation using a disjoint difference.",
+        "task": "main",
+        "publicRequest": "First prove the finite monotonicity fact P(E)≤P(F) when E⊆F by writing F as a disjoint union involving E. Then suppose P(A)=0.60 and P(B)=0.50. Without assuming independence, derive the complete feasible interval for P(A∩B) from the four region masses, convert it to the complete feasible interval for P(A∪B), construct normalized four-region models attaining both overlap endpoints, and explain why the marginals do not identify one exact joint answer.",
+        "rubricEvidence": [
+          "Derives P(E)≤P(F) from the disjoint decomposition F=E ⊔ (F\\E) and nonnegative probability mass."
+        ]
+      },
+      {
+        "claim": "Derive and use the finite union bound without assuming independence.",
+        "task": "transfer",
+        "publicRequest": "Three possible failure events F1,F2,F3 have marginal probabilities0.15,0.20,0.30. No dependence law is supplied. A memo multiplies complements and reports one exact probability of at least one failure. Audit the memo. Derive a guaranteed upper bound for P(F1∪F2∪F3) without independence, state a guaranteed lower bound that follows from the marginals, and exhibit two legal finite dependence structures attaining those two bounds. Explain why the product-based exact answer is unsupported.",
+        "rubricEvidence": [
+          "Derives/applies the finite union bound to obtain P(any failure)≤0.65 without independence."
+        ]
+      },
+      {
+        "claim": "Derive the sharp two-event overlap and union ranges from two marginals.",
+        "task": "main",
+        "publicRequest": "First prove the finite monotonicity fact P(E)≤P(F) when E⊆F by writing F as a disjoint union involving E. Then suppose P(A)=0.60 and P(B)=0.50. Without assuming independence, derive the complete feasible interval for P(A∩B) from the four region masses, convert it to the complete feasible interval for P(A∪B), construct normalized four-region models attaining both overlap endpoints, and explain why the marginals do not identify one exact joint answer.",
+        "rubricEvidence": [
+          "Derives the sharp overlap interval 0.10≤P(A∩B)≤0.50 from nonnegative four-region masses.",
+          "Converts the overlap interval correctly to 0.60≤P(A∪B)≤1.00."
+        ]
+      },
+      {
+        "claim": "Construct normalized region-mass models attaining feasible endpoints.",
+        "task": "main",
+        "publicRequest": "First prove the finite monotonicity fact P(E)≤P(F) when E⊆F by writing F as a disjoint union involving E. Then suppose P(A)=0.60 and P(B)=0.50. Without assuming independence, derive the complete feasible interval for P(A∩B) from the four region masses, convert it to the complete feasible interval for P(A∪B), construct normalized four-region models attaining both overlap endpoints, and explain why the marginals do not identify one exact joint answer.",
+        "rubricEvidence": [
+          "Constructs legal normalized four-region models attaining both overlap endpoints."
+        ]
+      },
+      {
+        "claim": "Reject an exact joint answer that is unsupported by marginal information alone.",
+        "task": "main",
+        "publicRequest": "First prove the finite monotonicity fact P(E)≤P(F) when E⊆F by writing F as a disjoint union involving E. Then suppose P(A)=0.60 and P(B)=0.50. Without assuming independence, derive the complete feasible interval for P(A∩B) from the four region masses, convert it to the complete feasible interval for P(A∪B), construct normalized four-region models attaining both overlap endpoints, and explain why the marginals do not identify one exact joint answer.",
+        "rubricEvidence": [
+          "States that the marginals alone do not imply independence or any other single exact overlap."
+        ]
+      }
+    ],
+    "T22V3::ARC048::S26@1": [
+      {
+        "claim": "Reconstruct a three-or-more-stage path probability by repeated multiplication.",
+        "task": "main",
+        "publicRequest": "A three-stage procedure works as follows. Stage1 chooses A with probability0.40 or B with0.60. At stage2, X/Y probabilities are0.50/0.50 after A and0.25/0.75 after B. At stage3 the success probabilities are0.20 after history A-X,0.70 after A-Y,0.80 after B-X, and0.40 after B-Y (failure is the complement at each node). Build the complete eight-leaf ledger, writing the full history conditioning every stage3 branch. Compute every leaf mass, verify normalization, compute the probability of success, and diagnose why replacing the two X-history success laws by one rule depending only on the most recent symbol X would change the stated model.",
+        "rubricEvidence": [
+          "Computes all eight leaf products correctly: success .04,.14,.12,.18 and failures .16,.06,.03,.27."
+        ]
+      },
+      {
+        "claim": "Name the entire positive-mass history conditioning each noninitial factor.",
+        "task": "main",
+        "publicRequest": "A three-stage procedure works as follows. Stage1 chooses A with probability0.40 or B with0.60. At stage2, X/Y probabilities are0.50/0.50 after A and0.25/0.75 after B. At stage3 the success probabilities are0.20 after history A-X,0.70 after A-Y,0.80 after B-X, and0.40 after B-Y (failure is the complement at each node). Build the complete eight-leaf ledger, writing the full history conditioning every stage3 branch. Compute every leaf mass, verify normalization, compute the probability of success, and diagnose why replacing the two X-history success laws by one rule depending only on the most recent symbol X would change the stated model.",
+        "rubricEvidence": [
+          "Writes the stage3 branch laws against the full histories AX,AY,BX,BY rather than only the most recent symbol."
+        ]
+      },
+      {
+        "claim": "Audit outgoing branch masses, reachable leaves and normalization.",
+        "task": "main",
+        "publicRequest": "A three-stage procedure works as follows. Stage1 chooses A with probability0.40 or B with0.60. At stage2, X/Y probabilities are0.50/0.50 after A and0.25/0.75 after B. At stage3 the success probabilities are0.20 after history A-X,0.70 after A-Y,0.80 after B-X, and0.40 after B-Y (failure is the complement at each node). Build the complete eight-leaf ledger, writing the full history conditioning every stage3 branch. Compute every leaf mass, verify normalization, compute the probability of success, and diagnose why replacing the two X-history success laws by one rule depending only on the most recent symbol X would change the stated model.",
+        "rubricEvidence": [
+          "Verifies the outgoing branch laws are legal and the eight terminal masses sum to1."
+        ]
+      },
+      {
+        "claim": "Distinguish independent trials from identically distributed trials.",
+        "task": "transfer",
+        "publicRequest": "Three trials are independent but have success probabilities0.20,0.50,0.80 in positions1,2,3. Compute the probability of exactly one success by listing and summing the three unequal ordered path weights. Then audit the shortcut 'use the average success probability0.50 in the constant-p exactly-one formula'. Compute that shortcut's value and explain precisely which assumption it adds.",
+        "rubricEvidence": [
+          "Explains that independence permits factorization but does not imply identical per-position success probabilities."
+        ]
+      },
+      {
+        "claim": "Add unequal path masses when an event contains several histories.",
+        "task": "transfer",
+        "publicRequest": "Three trials are independent but have success probabilities0.20,0.50,0.80 in positions1,2,3. Compute the probability of exactly one success by listing and summing the three unequal ordered path weights. Then audit the shortcut 'use the average success probability0.50 in the constant-p exactly-one formula'. Compute that shortcut's value and explain precisely which assumption it adds.",
+        "rubricEvidence": [
+          "Lists exactly the three one-success paths SFF,FSF,FFS with position-specific probabilities.",
+          "Computes the three path masses0.02,0.08,0.32 correctly.",
+          "Sums the unequal path masses to the correct exactly-one probability0.42."
+        ]
+      }
+    ],
+    "T22V3::ARC048::S27@1": [
+      {
+        "claim": "Specify the observation/reporting protocol before conditioning.",
+        "task": "main",
+        "publicRequest": "An underlying record consists of two independent fair H/T fields, so HH,HT,TH,TT each have probability1/4. Compare two observation protocols. Protocol W reports 'H present' exactly when the whole record contains at least one H. Protocol R independently chooses one of the two field positions uniformly and reports the value at that selected position. For each protocol, specify the experiment/atom space and the exact observation event, then compute P(HH | observed message is H/H-present). Explain why the two answers differ even though the surface message mentions H in both cases.",
+        "rubricEvidence": [
+          "Specifies Protocol W on the original record space and Protocol R on the enlarged (record,selected-position) space with correct masses."
+        ]
+      },
+      {
+        "claim": "Enlarge the finite atom space when a random selector or reporter is present.",
+        "task": "main",
+        "publicRequest": "An underlying record consists of two independent fair H/T fields, so HH,HT,TH,TT each have probability1/4. Compare two observation protocols. Protocol W reports 'H present' exactly when the whole record contains at least one H. Protocol R independently chooses one of the two field positions uniformly and reports the value at that selected position. For each protocol, specify the experiment/atom space and the exact observation event, then compute P(HH | observed message is H/H-present). Explain why the two answers differ even though the surface message mentions H in both cases.",
+        "rubricEvidence": [
+          "Specifies Protocol W on the original record space and Protocol R on the enlarged (record,selected-position) space with correct masses."
+        ]
+      },
+      {
+        "claim": "Define the observed event in the enlarged space.",
+        "task": "main",
+        "publicRequest": "An underlying record consists of two independent fair H/T fields, so HH,HT,TH,TT each have probability1/4. Compare two observation protocols. Protocol W reports 'H present' exactly when the whole record contains at least one H. Protocol R independently chooses one of the two field positions uniformly and reports the value at that selected position. For each protocol, specify the experiment/atom space and the exact observation event, then compute P(HH | observed message is H/H-present). Explain why the two answers differ even though the surface message mentions H in both cases.",
+        "rubricEvidence": [
+          "Defines the whole-record H-present event and the selected-position-is-H event exactly rather than treating them as the same event."
+        ]
+      },
+      {
+        "claim": "Compute a conditional as joint mass divided by observation mass.",
+        "task": "main",
+        "publicRequest": "An underlying record consists of two independent fair H/T fields, so HH,HT,TH,TT each have probability1/4. Compare two observation protocols. Protocol W reports 'H present' exactly when the whole record contains at least one H. Protocol R independently chooses one of the two field positions uniformly and reports the value at that selected position. For each protocol, specify the experiment/atom space and the exact observation event, then compute P(HH | observed message is H/H-present). Explain why the two answers differ even though the surface message mentions H in both cases.",
+        "rubricEvidence": [
+          "Computes Protocol W conditional P(HH|H-present)=1/3.",
+          "Computes Protocol R conditional P(HH|selected H)=1/2 from joint observation mass over total observation mass."
+        ]
+      },
+      {
+        "claim": "Explain why identical surface messages under different protocols can induce different conditional laws.",
+        "task": "main",
+        "publicRequest": "An underlying record consists of two independent fair H/T fields, so HH,HT,TH,TT each have probability1/4. Compare two observation protocols. Protocol W reports 'H present' exactly when the whole record contains at least one H. Protocol R independently chooses one of the two field positions uniformly and reports the value at that selected position. For each protocol, specify the experiment/atom space and the exact observation event, then compute P(HH | observed message is H/H-present). Explain why the two answers differ even though the surface message mentions H in both cases.",
+        "rubricEvidence": [
+          "Explains that the answers differ because the observation/reporting protocols create different conditioned events, not because the conditional formula changed."
+        ]
+      }
+    ],
+    "T22V3::ARC048::S28@1": [
+      {
+        "claim": "State a stopping rule with a finite maximum horizon.",
+        "task": "main",
+        "publicRequest": "Independent fair H/T trials are run with this bounded rule: stop immediately at the first H, or stop after three trials if no H has appeared. State the stopping rule and complete terminal sample space, assign the probability of every terminal prefix, verify normalization, compute the probability of seeing H before the cap, and audit the claim that the four terminal labels should each have probability1/4. Finally pad the stopped experiment to three trials by explicitly grouping artificial continuations and show that the padded model preserves each terminal-prefix mass.",
+        "rubricEvidence": [
+          "States the finite stopping rule and enumerates exactly the terminal prefixes H,TH,TTH,TTT."
+        ]
+      },
+      {
+        "claim": "Enumerate exhaustive and disjoint terminal prefixes.",
+        "task": "main",
+        "publicRequest": "Independent fair H/T trials are run with this bounded rule: stop immediately at the first H, or stop after three trials if no H has appeared. State the stopping rule and complete terminal sample space, assign the probability of every terminal prefix, verify normalization, compute the probability of seeing H before the cap, and audit the claim that the four terminal labels should each have probability1/4. Finally pad the stopped experiment to three trials by explicitly grouping artificial continuations and show that the padded model preserves each terminal-prefix mass.",
+        "rubricEvidence": [
+          "States the finite stopping rule and enumerates exactly the terminal prefixes H,TH,TTH,TTT."
+        ]
+      },
+      {
+        "claim": "Compute terminal-prefix masses from their branch probabilities.",
+        "task": "main",
+        "publicRequest": "Independent fair H/T trials are run with this bounded rule: stop immediately at the first H, or stop after three trials if no H has appeared. State the stopping rule and complete terminal sample space, assign the probability of every terminal prefix, verify normalization, compute the probability of seeing H before the cap, and audit the claim that the four terminal labels should each have probability1/4. Finally pad the stopped experiment to three trials by explicitly grouping artificial continuations and show that the padded model preserves each terminal-prefix mass.",
+        "rubricEvidence": [
+          "Assigns masses1/2,1/4,1/8,1/8 and verifies they sum to1."
+        ]
+      },
+      {
+        "claim": "Add disjoint stopped outcomes without recounting their artificial continuations.",
+        "task": "main",
+        "publicRequest": "Independent fair H/T trials are run with this bounded rule: stop immediately at the first H, or stop after three trials if no H has appeared. State the stopping rule and complete terminal sample space, assign the probability of every terminal prefix, verify normalization, compute the probability of seeing H before the cap, and audit the claim that the four terminal labels should each have probability1/4. Finally pad the stopped experiment to three trials by explicitly grouping artificial continuations and show that the padded model preserves each terminal-prefix mass.",
+        "rubricEvidence": [
+          "Computes P(H before the cap)=7/8 by summing the disjoint success terminal prefixes.",
+          "Rejects equal terminal-label weighting and explains that different prefix lengths carry different branch-product masses."
+        ]
+      },
+      {
+        "claim": "Cross-check with a fixed-horizon extension when the added suffixes are explicitly defined.",
+        "task": "main",
+        "publicRequest": "Independent fair H/T trials are run with this bounded rule: stop immediately at the first H, or stop after three trials if no H has appeared. State the stopping rule and complete terminal sample space, assign the probability of every terminal prefix, verify normalization, compute the probability of seeing H before the cap, and audit the claim that the four terminal labels should each have probability1/4. Finally pad the stopped experiment to three trials by explicitly grouping artificial continuations and show that the padded model preserves each terminal-prefix mass.",
+        "rubricEvidence": [
+          "Builds a valid three-trial padding and groups continuations to recover terminal masses1/2,1/4,1/8,1/8 without double counting."
+        ]
+      }
     ]
   },
   "prerequisiteAudit": {
@@ -4231,15 +5145,15 @@
     ],
     "S03": [
       {
-        "item": "product/counting principles",
-        "source": "M03-S23"
+        "item": "product/sample-space counting",
+        "source": "M03 counting foundations"
       },
       {
-        "item": "combinations/counting",
-        "source": "M03-S26"
+        "item": "fibres/preimages and equal-fibre reasoning",
+        "source": "M03-S34"
       },
       {
-        "item": "finite probability model",
+        "item": "finite probability mass and uniformity premise",
         "source": "M04-S02"
       }
     ],
@@ -4465,20 +5379,16 @@
     ],
     "S22": [
       {
-        "item": "linearity",
-        "source": "M04-S21"
+        "item": "finite expectation and linearity",
+        "source": "M04-S19/S21"
       },
       {
-        "item": "event probability",
-        "source": "M04-S03"
+        "item": "uniform fibres/labelled preimages",
+        "source": "M03-S34"
       },
       {
-        "item": "without-replacement ordered-sample model",
-        "source": "M04-S10 + M03 finite counting; positional marginal derived JIT in S22"
-      },
-      {
-        "item": "indicator definition",
-        "source": "Defined/derived JIT S22"
+        "item": "double counting of labelled incidences",
+        "source": "M03-S35"
       }
     ],
     "S23": [
@@ -4515,6 +5425,66 @@
       {
         "item": "representation choice",
         "source": "S01/S07/S09/S18 progression; no single method supplied"
+      }
+    ],
+    "S25": [
+      {
+        "item": "finite probability mass/normalization",
+        "source": "M04-S02"
+      },
+      {
+        "item": "two-event regions and inclusion-exclusion",
+        "source": "M04-S05/S06"
+      },
+      {
+        "item": "subset and set-difference reasoning",
+        "source": "M03 sets"
+      }
+    ],
+    "S26": [
+      {
+        "item": "multiplication rule",
+        "source": "M04-S08"
+      },
+      {
+        "item": "tree/path products",
+        "source": "M04-S09"
+      },
+      {
+        "item": "independence and constant-p path formula",
+        "source": "M04-S11/S15/S16"
+      }
+    ],
+    "S27": [
+      {
+        "item": "finite atom spaces",
+        "source": "M04-S01/S02"
+      },
+      {
+        "item": "conditional probability",
+        "source": "M04-S07"
+      },
+      {
+        "item": "staged joint masses",
+        "source": "M04-S09/S26"
+      },
+      {
+        "item": "weighted partitions",
+        "source": "M04-S18"
+      }
+    ],
+    "S28": [
+      {
+        "item": "finite path products",
+        "source": "M04-S09/S26"
+      },
+      {
+        "item": "repeated independent trials",
+        "source": "M04-S15–S17"
+      },
+      {
+        "item": "finite termination reasoning",
+        "source": "M03-S36"
       }
     ]
   },
@@ -4701,8 +5671,8 @@
     },
     "T22V3::ARC048::S19@1": {
       "main": [
-        "A finite outcome has numerical payoff −3 with",
-        "finite outcome has numerical payoff −3 with probability0.20,"
+        "A finite outcome has numerical payoff −3 with probability0.20",
+        "state its payoff units"
       ],
       "transfer": [
         "A four-leaf finite payoff model is already normalized",
@@ -4755,8 +5725,48 @@
         "positive overall expected score proves the current routing policy is optimal"
       ],
       "transfer": [
-        "Audit this proposed analysis",
-        "compute P(X|flag) directly from the S07 conditional definition"
+        "Final exit audit. Only the marginals",
+        "convert the union interval into the complete feasible interval for expected score"
+      ]
+    },
+    "T22V3::ARC048::S25@1": {
+      "main": [
+        "First prove the finite monotonicity fact",
+        "construct normalized four-region models attaining both overlap endpoints"
+      ],
+      "transfer": [
+        "Three possible failure events F1,F2,F3",
+        "exhibit two legal finite dependence structures attaining those two bounds"
+      ]
+    },
+    "T22V3::ARC048::S26@1": {
+      "main": [
+        "Stage1 chooses A with probability0.40 or B with0.60",
+        "replacing the two X-history success laws by one rule"
+      ],
+      "transfer": [
+        "Three trials are independent but have success probabilities0.20,0.50,0.80",
+        "average success probability0.50"
+      ]
+    },
+    "T22V3::ARC048::S27@1": {
+      "main": [
+        "Compare two observation protocols",
+        "surface message mentions H in both cases"
+      ],
+      "transfer": [
+        "underlying two-field records with masses HH:0.10",
+        "reporter protocol were omitted"
+      ]
+    },
+    "T22V3::ARC048::S28@1": {
+      "main": [
+        "stop immediately at the first H",
+        "pad the stopped experiment to three trials"
+      ],
+      "transfer": [
+        "Stop as soon as either player has two wins",
+        "counting the six terminal labels equally"
       ]
     }
   },
@@ -4838,7 +5848,7 @@
       },
       "T22V3::ARC048::S19@1": {
         "status": "builder-repaired-awaiting-independent-confirmation",
-        "note": "Post-review repair: lesson→Main is 'retrieval' and lesson/Main→Transfer is 'retrieval'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
+        "note": "v2.2 strengthens the Main with explicit payoff units and the finite weighted-mean range check. ObligationVersion is bumped and claim-to-rubric links are repinned; historical S19 evidence cannot silently certify the new Main."
       },
       "T22V3::ARC048::S20@1": {
         "status": "builder-repaired-awaiting-independent-confirmation",
@@ -4859,6 +5869,22 @@
       "T22V3::ARC048::S24@1": {
         "status": "builder-repaired-awaiting-independent-confirmation",
         "note": "Post-review repair: lesson→Main is 'fresh Main evidence' and lesson/Main→Transfer is 'changed-surface Transfer'. Labels were re-read against the entire visible lesson/guided/distinction surface; changed context alone is not treated as transfer."
+      },
+      "T22V3::ARC048::S25@1": {
+        "status": "builder-authored-awaiting-independent-review",
+        "note": "New whole-curriculum foundation. Lesson, Main and Transfer use distinct numerical models; Transfer changes the learner action from two-event region parameterization to a three-event guarantee under missing dependence information."
+      },
+      "T22V3::ARC048::S26@1": {
+        "status": "builder-authored-awaiting-independent-review",
+        "note": "New whole-curriculum foundation. The Main keeps full-history conditioning visible; the Transfer removes tree-state dependence but varies position probabilities, separating independence from identical distribution."
+      },
+      "T22V3::ARC048::S27@1": {
+        "status": "builder-authored-awaiting-independent-review",
+        "note": "New whole-curriculum foundation. Both protocols are public and finite; the lesson does not supply the Main's fair-coin answers or the Transfer's nonuniform reporter calculation."
+      },
+      "T22V3::ARC048::S28@1": {
+        "status": "builder-authored-awaiting-independent-review",
+        "note": "New whole-curriculum foundation. The Main uses first-success stopping; Transfer changes both the stopping condition and branch probabilities, so equal visible terminal labels become a genuine wrong-solver trap."
       }
     }
   },
@@ -5022,7 +6048,7 @@
       },
       "T22V3::ARC048::S19-M@1": {
         "class": "retrieval",
-        "reason": "The public Main exercises a capability that visible instruction explicitly teaches; changed numbers/context do not make it fresh, so it is honestly labelled retrieval."
+        "reason": "The Main explicitly retrieves the finite weighted-average computation and now also checks its units/range consequences; these are taught directly, so no fresh-transfer claim is made."
       },
       "T22V3::ARC048::S19-T@1": {
         "class": "retrieval",
@@ -5066,13 +6092,45 @@
       },
       "T22V3::ARC048::S24-T@1": {
         "class": "changed-surface Transfer",
-        "reason": "Main constructs a coherent staged model; Transfer instead audits a multi-error proposed analysis and then uses the completed joint model for direct reverse conditioning."
+        "reason": "The expanded-route exit probe combines S25 incomplete-joint-information bounds with S19 expectation and S23's decision boundary. It asks for an expectation interval over a feasible model family rather than one staged-model repair."
+      },
+      "T22V3::ARC048::S25-M@1": {
+        "class": "proof reconstruction",
+        "reason": "Main reconstructs the taught disjoint-difference monotonicity argument and four-region feasibility derivation before applying them to fresh marginals."
+      },
+      "T22V3::ARC048::S25-T@1": {
+        "class": "changed-surface Transfer",
+        "reason": "Two-event sharp feasibility becomes a three-event guarantee problem; the learner must choose union/monotonicity bounds and construct extremal dependence structures rather than parameterize one overlap."
+      },
+      "T22V3::ARC048::S26-M@1": {
+        "class": "retrieval",
+        "reason": "Main directly exercises the full-history leaf-ledger method taught in the lesson; it is valuable multi-stage fluency but is not claimed as fresh transfer."
+      },
+      "T22V3::ARC048::S26-T@1": {
+        "class": "changed-surface Transfer",
+        "reason": "A history-dependent tree changes to independent but nonidentical trials; the learner must reject the constant-p exactly-k compression and sum unequal exact paths."
+      },
+      "T22V3::ARC048::S27-M@1": {
+        "class": "retrieval",
+        "reason": "Main explicitly applies the observation-protocol construction taught in the lesson, comparing two fully specified finite mechanisms; no fresh-transfer label is claimed."
+      },
+      "T22V3::ARC048::S27-T@1": {
+        "class": "changed-surface Transfer",
+        "reason": "The selector is unequal and the underlying record law is nonuniform, so the learner must build a weighted fine-atom audit log and compare it with a direct underlying-record filter."
+      },
+      "T22V3::ARC048::S28-M@1": {
+        "class": "retrieval",
+        "reason": "Main retrieves the bounded terminal-prefix method taught in the lesson on a longer horizon and adds an explicit fixed-horizon audit; it is not labelled fresh transfer."
+      },
+      "T22V3::ARC048::S28-T@1": {
+        "class": "changed-surface Transfer",
+        "reason": "First-success stopping changes to a two-sided contest with two terminal conditions and unequal round probabilities; the learner must enumerate a different prefix code and preserve it under padding."
       }
     }
   },
   "decisionAudit": {
-    "version": "m04-decision-audit-v2.2-independent-repair-r1",
-    "reviewedAt": "2026-10-02",
+    "version": "m04-decision-audit-v2.3-whole-curriculum-r1",
+    "reviewedAt": "2026-10-07",
     "items": {
       "T22V3::ARC048::S09-T@1": {
         "claimedLearnerDecision": "Instruction constructs a valid tree; Transfer instead requires auditing and repairing a malformed tree with a wrong leaf and missing branch.",
@@ -5103,11 +6161,39 @@
         "classificationJustification": "Repaired S24 instruction synthesizes repeated-trial complement plus expectation, while Main requires a different mixed count/conditional staged model, weighted marginal, independence diagnosis and decision-boundary audit with no prescribed representation."
       },
       "T22V3::ARC048::S24-T@1": {
-        "claimedLearnerDecision": "Main constructs a coherent staged model; Transfer instead audits a multi-error proposed analysis and then uses the completed joint model for direct reverse conditioning.",
+        "claimedLearnerDecision": "Recognize that incomplete joint information licenses a feasible family, propagate that uncertainty through expectation, and refuse an unsupported decision-optimality claim.",
+        "decisionSuppliedByPrompt": false,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Derives the sharp overlap interval[0.10,0.50] and union interval[0.60,1.00] without assuming independence. | Transforms the union interval through E=5u−1(1−u)=6u−1 to obtain the expected-score interval[2.6,5]. | Constructs legal normalized four-region models attaining both union/expectation endpoints. | Explains that independence gives c=0.30,u=0.80,E=3.8 as one compatible model rather than a consequence of missing dependence information. | Rejects the claim that these probability/expectation facts alone prove a policy optimal; alternatives and decision criteria are not supplied.",
+        "classificationJustification": "The expanded-route exit probe combines S25 incomplete-joint-information bounds with S19 expectation and S23's decision boundary. It asks for an expectation interval over a feasible model family rather than one staged-model repair."
+      },
+      "T22V3::ARC048::S25-T@1": {
+        "claimedLearnerDecision": "Two-event sharp feasibility becomes a three-event guarantee problem; the learner must choose union/monotonicity bounds and construct extremal dependence structures rather than parameterize one overlap.",
         "decisionSuppliedByPrompt": true,
         "decisionRehearsedInVisibleInstruction": false,
-        "scoredLearnerAction": "Builds/recovers the four joint leaves0.20,0.05,0.15,0.60 or an equivalent auditable partition. | Repairs overall flag probability to0.35 and explains the branch-weighting error. | Repairs the independence claim and shows channel/flag are dependent with a numerical criterion. | Repairs expected value to2.1. | Diagnoses .80 as P(flag|X), not P(X|flag), and computes P(X|flag)=4/7 directly from the completed joint model using the S07 definition rather than conditional swapping.",
-        "classificationJustification": "Main constructs a coherent staged model; Transfer instead audits a multi-error proposed analysis and then uses the completed joint model for direct reverse conditioning."
+        "scoredLearnerAction": "Recognizes that the marginals do not determine one exact union probability without a dependence law. | Derives/applies the finite union bound to obtain P(any failure)≤0.65 without independence. | Uses monotonicity to obtain the guaranteed lower bound P(any failure)≥0.30. | Gives legal nested and disjoint finite constructions attaining0.30 and0.65 respectively. | Rejects the complement-product exact answer unless independence is additionally assumed or proved.",
+        "classificationJustification": "Two-event sharp feasibility becomes a three-event guarantee problem; the learner must choose union/monotonicity bounds and construct extremal dependence structures rather than parameterize one overlap."
+      },
+      "T22V3::ARC048::S26-T@1": {
+        "claimedLearnerDecision": "A history-dependent tree changes to independent but nonidentical trials; the learner must reject the constant-p exactly-k compression and sum unequal exact paths.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Lists exactly the three one-success paths SFF,FSF,FFS with position-specific probabilities. | Computes the three path masses0.02,0.08,0.32 correctly. | Sums the unequal path masses to the correct exactly-one probability0.42. | Computes the average-p constant-probability shortcut as0.375 and shows it disagrees. | Explains that independence permits factorization but does not imply identical per-position success probabilities.",
+        "classificationJustification": "A history-dependent tree changes to independent but nonidentical trials; the learner must reject the constant-p exactly-k compression and sum unequal exact paths."
+      },
+      "T22V3::ARC048::S27-T@1": {
+        "claimedLearnerDecision": "The selector is unequal and the underlying record law is nonuniform, so the learner must build a weighted fine-atom audit log and compare it with a direct underlying-record filter.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Builds the reporter-expanded masses and obtains contributions0.10,0.15,0.075,0 to the reported-H event. | Computes total observation mass P(reported H)=0.325. | Computes P(HH|reported H)=0.10/0.325=4/13. | Computes the direct underlying-record filter answer P(HH|at least one H)=1/6 and distinguishes the two events. | States that the observation protocol is required; the surface message alone does not identify the conditional denominator/law.",
+        "classificationJustification": "The selector is unequal and the underlying record law is nonuniform, so the learner must build a weighted fine-atom audit log and compare it with a direct underlying-record filter."
+      },
+      "T22V3::ARC048::S28-T@1": {
+        "claimedLearnerDecision": "First-success stopping changes to a two-sided contest with two terminal conditions and unequal round probabilities; the learner must enumerate a different prefix code and preserve it under padding.",
+        "decisionSuppliedByPrompt": true,
+        "decisionRehearsedInVisibleInstruction": false,
+        "scoredLearnerAction": "Enumerates exactly the six terminal prefixes AA,BB,ABA,ABB,BAA,BAB under the two-wins stopping rule. | Computes their masses0.36,0.16,0.144,0.096,0.144,0.096 and verifies normalization. | Sums the A-winning terminal prefixes to P(A wins)=0.648. | Constructs/uses the padded three-round grouping and shows it preserves the stopped-prefix masses. | Rejects equal weighting of the six terminal labels because their path lengths/probabilities differ.",
+        "classificationJustification": "First-success stopping changes to a two-sided contest with two terminal conditions and unequal round probabilities; the learner must enumerate a different prefix code and preserve it under padding."
       }
     }
   },
@@ -5254,10 +6340,34 @@
         "expectedFailure": "The flawed solver loses the cited conceptual credit even if some numerical work elsewhere is correct."
       },
       "T22V3::ARC048::S24@1": {
-        "plausibleWrongSolver": "Use an unweighted conditional-rate average, infer independence from co-occurrence, overclaim policy optimality, or reverse a conditional by swapping the bar.",
+        "plausibleWrongSolver": "Treat absence of dependence information as independence, report one expected score, and overclaim policy optimality.",
         "targetedTask": "T22V3::ARC048::S24-T@1",
-        "discriminatingCriterion": "Diagnoses .80 as P(flag|X), not P(X|flag), and computes P(X|flag)=4/7 directly from the completed joint model using the S07 definition rather than conditional swapping.",
-        "expectedFailure": "A conditional-swap solver cannot receive the final conceptual credit even if other repaired quantities are correct."
+        "discriminatingCriterion": "Explains that independence gives c=0.30,u=0.80,E=3.8 as one compatible model rather than a consequence of missing dependence information.",
+        "expectedFailure": "The independence-by-default solver may reproduce3.8 but cannot earn the feasible-family or assumption-discipline credit."
+      },
+      "T22V3::ARC048::S25@1": {
+        "plausibleWrongSolver": "Treat missing dependence information as permission to assume independence and report one product-based exact probability.",
+        "targetedTask": "T22V3::ARC048::S25-T@1",
+        "discriminatingCriterion": "Rejects the complement-product exact answer unless independence is additionally assumed or proved.",
+        "expectedFailure": "The product-law solver cannot earn the dependence-information credit even if its arithmetic is internally consistent."
+      },
+      "T22V3::ARC048::S26@1": {
+        "plausibleWrongSolver": "Average heterogeneous success probabilities and substitute that average into the constant-p exactly-k formula.",
+        "targetedTask": "T22V3::ARC048::S26-T@1",
+        "discriminatingCriterion": "Explains that independence permits factorization but does not imply identical per-position success probabilities.",
+        "expectedFailure": "The average-p solver obtains0.375 instead of0.42 and loses the model-assumption credit."
+      },
+      "T22V3::ARC048::S27@1": {
+        "plausibleWrongSolver": "Ignore the selector/reporter and condition directly on an underlying property that merely sounds like the observed message.",
+        "targetedTask": "T22V3::ARC048::S27-T@1",
+        "discriminatingCriterion": "States that the observation protocol is required; the surface message alone does not identify the conditional denominator/law.",
+        "expectedFailure": "The protocol-blind solver produces the direct-filter denominator and cannot earn the reporting-mechanism credit."
+      },
+      "T22V3::ARC048::S28@1": {
+        "plausibleWrongSolver": "Treat the finite set of terminal labels as equiprobable and ignore that some terminal prefixes are shorter and carry more branch mass.",
+        "targetedTask": "T22V3::ARC048::S28-T@1",
+        "discriminatingCriterion": "Rejects equal weighting of the six terminal labels because their path lengths/probabilities differ.",
+        "expectedFailure": "The equal-label solver assigns1/6 to each terminal record and cannot justify the correct0.648 contest probability."
       }
     }
   },
@@ -5321,19 +6431,44 @@
       "teachingArtifact": "S24 explains criteria for choosing list/table/tree/algebra but does not mandate one.",
       "laterPublicEvidence": "S24 Main accepts tree/partition/table/leaf-list; Transfer audits a flawed model.",
       "rubricDisposition": "Coherent model construction and justified relationships are scored, not cosmetic format."
+    },
+    {
+      "representation": "Feasible region-mass ledger / probability interval",
+      "teachingArtifact": "S25 derives nonnegative four-region masses and finite union/monotonicity bounds.",
+      "laterPublicEvidence": "S25 Main endpoint construction; S25 Transfer nested/disjoint three-event guarantees; S24 Transfer propagates a union interval into an expectation interval.",
+      "rubricDisposition": "Bounds, endpoint models and assumption discipline are directly scored."
+    },
+    {
+      "representation": "Full-history leaf ledger",
+      "teachingArtifact": "S26 labels every noninitial branch by its complete positive-mass history.",
+      "laterPublicEvidence": "S26 Main eight-leaf audit; S26 Transfer heterogeneous independent path sum.",
+      "rubricDisposition": "History labels, normalization and unequal path aggregation are scored."
+    },
+    {
+      "representation": "Reporter-expanded atom ledger",
+      "teachingArtifact": "S27 enlarges atoms to (underlying record, reporter choice).",
+      "laterPublicEvidence": "S27 Main compares two observation protocols; Transfer uses unequal selector weights and nonuniform records.",
+      "rubricDisposition": "Protocol, fine-atom denominator and mechanism comparison are scored."
+    },
+    {
+      "representation": "Terminal-prefix ledger / padded horizon",
+      "teachingArtifact": "S28 lists complete stopped prefixes and then groups artificial fixed-horizon continuations back to each prefix.",
+      "laterPublicEvidence": "S28 Main first-success cap; Transfer two-sided contest.",
+      "rubricDisposition": "Exhaustive terminal prefixes, unequal masses and padding equivalence are scored."
     }
   ],
   "researchBasis": {
-    "designGate": "docs/t22-course/M04-V2-DESIGN-GATE.md",
+    "designGate": "docs/t22-course/M04-V2.2-28-SESSION-DESIGN-GATE.md",
     "deepSourceAudit": "docs/t22-course/M04-DEEP-SOURCE-AUDIT-v1.0.md",
     "sourceDossier": "docs/t22-course/M04-SOURCE-DOSSIER-AND-PEDAGOGY-EVIDENCE.md",
     "protocol": "T22 Module Builder and Adversarial Checker v1.2 (24 Sep 2026)",
-    "boundaryDecision": "KEEP 24 via deep bounded reconstruction; no M05/M06/M26 ownership import."
+    "boundaryDecision": "REBUILD 28: preserve stable S01–S24 identities, insert S25–S28 at prerequisite-correct learner positions, and strengthen selected existing evidence surfaces.",
+    "wholeCurriculumAudit": "M04-Whole-Curriculum-Audit.md (user-supplied 2026-10-07; implementation contract distilled into repository design gate)"
   },
   "historicalLessonAnswerOverlap": {
-    "version": "m04-historical-exposure-v2-r1",
+    "version": "m04-historical-exposure-v2.2-r1",
     "sessions": {},
-    "note": "Fresh v2 lesson examples were deliberately chosen away from current fixed numerical instances. Materially changed fixed tasks are versioned by obligationVersion/fingerprint; no historical exact-answer lesson exposure has been newly identified in this builder pass."
+    "note": "Stable IDs remain intact. S19-M and S24-T are materially strengthened/versioned; new S25–S28 tasks have new IDs. Learner-facing order changes do not by themselves change session contract hashes, but changed assessment fingerprints make prior evidence stale where obligations changed."
   },
   "independentReviewRepair": {
     "review": "docs/t22-course/M04-V2-INDEPENDENT-ADVERSARIAL-REVIEW.md",
@@ -5355,5 +6490,51 @@
       "S24-M": 3,
       "S24-T": 3
     }
+  },
+  "wholeCurriculumRebuild": {
+    "version": "m04-whole-curriculum-rebuild-2026-10-07-r1",
+    "sourceDecision": "28 sessions: retain stable S01–S24; add S25 finite bounds/incomplete joint information, S26 full-history paths, S27 observation/reporting mechanisms, S28 finite stopped experiments.",
+    "stableRoute": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S25",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S26",
+      "S17",
+      "S28",
+      "S18",
+      "S27",
+      "S19",
+      "S20",
+      "S21",
+      "S22",
+      "S23",
+      "S24"
+    ],
+    "newStableSessions": [
+      "S25",
+      "S26",
+      "S27",
+      "S28"
+    ],
+    "materiallyChangedFixedContracts": {
+      "S19-M": 2,
+      "S24-T": 4
+    },
+    "historicalV21Confirmation": "docs/t22-course/M04-V2-FINAL-CONFIRMATION.md",
+    "status": "builder candidate; not independently confirmed"
   }
 }
