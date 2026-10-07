@@ -87,13 +87,27 @@ secret value.
 Pure vector search is good for meaning. Full-text search is good for exact
 equations, names, symbols, and phrases.
 
-Chrono-Deck combines both:
+The current implementation is `supabase/arc-search-quality-v2.sql`, applied after
+`arc-logical-authority-v1.sql`. It combines ranks from both channels:
 
 ```text
-hybrid score = 0.72 * semantic similarity + 0.28 * normalized lexical score
+hybrid score = 1 / (60 + semantic rank) + 1 / (60 + lexical rank)
 ```
 
-This lets searches such as:
+Each channel contributes up to 200 candidates; a missing channel contributes
+zero. Raw cosine and text scores have different scales, so they are no longer
+added directly. `hybrid_score` is an ordering score, not a confidence or
+probability, and must not be compared with scores from the old formula.
+
+Plain natural-language queries retrieve any English non-stopword query term.
+Lexical ordering uses term coverage, normalized text rank, and a small bonus for
+matching the original complete query. This avoids requiring every word in a
+long question to occur in one passage. Quoted phrases, explicit `OR`, and
+`-excluded` terms keep Postgres websearch semantics in the lexical channel;
+semantic matches can still appear independently.
+
+There is no date boost or special preference for a particular ARC. No embedding
+model change is required. This lets searches such as:
 
 > where did I confuse a favorable example with a universal proof?
 
@@ -106,7 +120,8 @@ Semantic search defaults to academically cleared ARC documents. Completion is
 deliberately **not** inferred from `planning_status`, because planning state and
 academic mastery are different dimensions.
 
-`completedOnly: true` includes documents whose normalized `clearance` is one of:
+`completedOnly: true` uses logical ARC authority clearance, falling back to the
+document only when authority is absent. Included clearance values are:
 
 ```text
 core_cleared
@@ -144,7 +159,9 @@ For the Archive/semantic layer, the important sequence is:
 6. `supabase/arc-archive-private-api-v1.sql`;
 7. `supabase/arc-clearance-semantic-completion-v1.sql`;
 8. `supabase/arc-clearance-admin-completion-fix.sql`;
-9. later storage/media migrations listed in `supabase/PRODUCTION-SCHEMA.md`.
+9. later storage/media migrations listed in `supabase/PRODUCTION-SCHEMA.md`;
+10. `supabase/arc-logical-authority-v1.sql`;
+11. `supabase/arc-search-quality-v2.sql` (production uses pgvector 0.8.2).
 
 Then deploy the Edge Functions:
 
@@ -271,13 +288,69 @@ Each H2-backed `arc_section` is split into overlapping chunks of approximately:
 
 The current implementation uses a 1600-character step.
 
-This is deliberately simple and stable. It prevents giant RAW sections from
-becoming one semantic blob while preserving enough neighboring context for
-mathematical reasoning.
+Existing chunk storage and embeddings stay unchanged in search quality v2.
+The results contain at most two windows per document section, so one long RAW
+section cannot fill the result page with overlapping windows. RAW and POLISHED
+representations remain independently searchable.
+
+At retrieval time, the selected window is matched against the archived section
+and expanded to nearby paragraph boundaries within 400 characters on each side.
+Short sections (up to 2600 characters including the heading) are returned in
+full. The heading is included for later windows. If the source cannot be matched
+exactly, the original window is returned. This handles both normal newlines and
+the literal newline separators found in some historical index rows. Expansion
+does not rewrite source Markdown, section IDs, source hashes, or embeddings.
 
 The chunking policy can be changed later without changing the canonical
 Markdown files. Re-sync/rebuild simply regenerates the semantic derivative
 index.
+
+## Search quality benchmark and checks
+
+`scripts/fixtures/archive-search-benchmark-v2.json` contains 30 authored queries
+covering all eight indexed ARCs. A successful hit needs both the expected ARC
+and a matching passage evidence pattern, not merely the right document title.
+The live run used the same unfiltered queries, `completedOnly: true`, and a
+40-result limit before and after deployment.
+
+On the 2026-10-07 corpus (460 ready passages), the audited results were:
+
+| Metric | Previous search | Search quality v2 |
+| --- | --- | --- |
+| Relevant passage first | 20/30 | 28/30 |
+| Relevant passage in first five | 27/30 | 30/30 |
+| Mean reciprocal rank, first 40 | 0.7794 | 0.9667 |
+
+These are a small authored regression benchmark, not a guarantee about every
+query or a large future corpus. The fixture records one target-label correction:
+real-power domain conventions belong to Domain-Safe Algebra, not the
+positive-integer power-rule ARC. No rank constants were tuned against these
+results. The development/held-out split is recorded for diagnostics; label
+inspection means it is not a blind external evaluation.
+
+Per-query ranks and split summaries are in
+`docs/archive-search-quality-v2-benchmark.json`. Retrieved private conversations
+and embeddings must not be committed. To score local connector snapshots with
+shape `{ "cases": [{ "id": "...", "results": [...] }] }`:
+
+```bash
+node scripts/score-archive-search-benchmark.mjs \
+  scripts/fixtures/archive-search-benchmark-v2.json /path/to/private-snapshot.json
+node scripts/test-archive-search-quality-v2.mjs
+```
+
+The Archive search quality workflow executes the actual SQL migration against
+an isolated pgvector/Postgres database, then tests phrase/exclusion handling,
+joint ranking evidence, section diversity, source context, owner isolation,
+clearance authority, optional filters, and function privileges. It also checks
+the benchmark scorer. Private helpers use SECURITY INVOKER and RLS; the public
+RPC derives the owner from `auth.uid()`. The admin wrapper remains executable
+only by `service_role` (and the database owner).
+
+Rollback restores the two hybrid RPC definitions from
+`supabase/arc-logical-authority-v1.sql`. Unused private helpers can remain until a
+later cleanup. Both Edge Functions keep their existing RPC signatures and do
+not need redeployment for this SQL-only upgrade.
 
 ## Frontmatter rule
 

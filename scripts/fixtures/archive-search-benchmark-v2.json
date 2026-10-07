@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "description": "Thirty authored retrieval cases grounded in the eight archived ARC topics. Expected targets are fixed before changing ranking. Archived source text and embeddings are not committed.",
+  "cases": [
+    {
+      "id": "logic-shared-input",
+      "query": "Where did I confuse the value of twice a number with evaluating two conditions at the same input?",
+      "logicalArcId": "T22E-DISC01-S01-S05",
+      "evidence": "shared.{0,25}(variable|input|x)|same.{0,20}\\$?x|2x>0",
+      "split": "development"
+    },
+    {
+      "id": "logic-necessary",
+      "query": "I could check the forward implication but kept mixing up which condition was necessary and which was sufficient.",
+      "logicalArcId": "T22E-DISC01-S01-S05",
+      "evidence": "necessary.{0,80}sufficient|sufficient.{0,80}necessary",
+      "split": "development"
+    },
+    {
+      "id": "logic-negation",
+      "query": "When I negate a strict inequality, why must I include the equality boundary?",
+      "logicalArcId": "T22E-DISC01-S01-S05",
+      "evidence": "negat.{0,150}equal|equal.{0,150}negat",
+      "split": "development"
+    },
+    {
+      "id": "logic-small-square",
+      "query": "My decimal counterexample showed squaring can make a positive number smaller than itself.",
+      "logicalArcId": "T22E-DISC01-S01-S05",
+      "evidence": "0\\.1|0<x<1",
+      "split": "development"
+    },
+    {
+      "id": "logic-domain",
+      "query": "Why was the square inequality true for integers but false for real numbers?",
+      "logicalArcId": "T22E-DISC01-S01-S05",
+      "evidence": "integer|\\\\mathbb Z",
+      "split": "held_out"
+    },
+    {
+      "id": "logic-exists",
+      "query": "I rejected an existential because only one value worked in the finite domain.",
+      "logicalArcId": "T22E-DISC01-S01-S05",
+      "evidence": "witness|existential",
+      "split": "held_out"
+    },
+    {
+      "id": "foundations-percent",
+      "query": "Why do successive percentage changes multiply instead of simply adding the percentages?",
+      "logicalArcId": "T22E-FND01",
+      "evidence": "percent|percentage|multiplier",
+      "split": "development"
+    },
+    {
+      "id": "foundations-negative-inequality",
+      "query": "Multiplying an inequality by a negative number reverses its direction.",
+      "logicalArcId": "T22E-FND01",
+      "evidence": "negative.{0,100}(revers|flip)|revers.{0,100}negative",
+      "split": "development"
+    },
+    {
+      "id": "foundations-root",
+      "query": "Principal square root versus both solutions of a square equation.",
+      "logicalArcId": "T22E-FND01",
+      "evidence": "principal|square.root|root convention",
+      "split": "held_out"
+    },
+    {
+      "id": "foundations-absolute",
+      "query": "Absolute value means distance from zero, so absolute value equations can have two branches.",
+      "logicalArcId": "T22E-FND01",
+      "evidence": "absolute|distance from zero",
+      "split": "development"
+    },
+    {
+      "id": "secants-symmetric",
+      "query": "A symmetric secant gave zero at the absolute value corner, but the two one-sided rates disagreed.",
+      "logicalArcId": "T22-M01-A01",
+      "evidence": "symmetric|one.sided|right.side|left.side",
+      "split": "development"
+    },
+    {
+      "id": "secants-tolerance",
+      "query": "The skeptic chooses the error tolerance and I choose a nonzero interval small enough to satisfy it.",
+      "logicalArcId": "T22-M01-A01",
+      "evidence": "skeptic|tolerance",
+      "split": "development"
+    },
+    {
+      "id": "secants-output",
+      "query": "I used the total output instead of change in output when computing a finite rate.",
+      "logicalArcId": "T22-M01-A01",
+      "evidence": "change in output|output instead|total cost",
+      "split": "held_out"
+    },
+    {
+      "id": "intervals-bound",
+      "query": "How did I control all nearby endpoint pairs using the error bound 6d plus 3d squared?",
+      "logicalArcId": "T22-M01-A02",
+      "evidence": "6d|3d|endpoint",
+      "split": "development"
+    },
+    {
+      "id": "intervals-equality",
+      "query": "I treated an upper bound as an equality and assumed two independent offsets had to be equal.",
+      "logicalArcId": "T22-M01-A02",
+      "evidence": "bound|equalit|offset",
+      "split": "development"
+    },
+    {
+      "id": "intervals-debt",
+      "query": "Which vanishing intervals ARC still owed an operational application and unfamiliar transfer after the central proof?",
+      "logicalArcId": "T22-M01-A02",
+      "evidence": "not completed|not attempted|debt|pending|remains",
+      "split": "held_out"
+    },
+    {
+      "id": "linearity-reciprocal",
+      "query": "Find the reciprocal function tangent line at two with slope minus one quarter and error small relative to displacement.",
+      "logicalArcId": "T22-M01-A03",
+      "evidence": "reciprocal|1/x|1\\\\x|quarter|displacement|1/4",
+      "split": "development"
+    },
+    {
+      "id": "linearity-relative",
+      "query": "Why is a tiny absolute residual insufficient to establish local linearity without dividing by displacement?",
+      "logicalArcId": "T22-M01-A03",
+      "evidence": "relative|residual|displacement",
+      "split": "development"
+    },
+    {
+      "id": "linearity-transfer",
+      "query": "Why did the piecewise radical transfer force two incompatible one-sided slopes after the reciprocal local line proof?",
+      "logicalArcId": "T22-M01-A03",
+      "evidence": "one.sided|incompatible|rationaliz|radical",
+      "split": "held_out"
+    },
+    {
+      "id": "powers-binomial",
+      "query": "How did the binomial expansion prove the general power rule from first principles?",
+      "logicalArcId": "T22-M01-A04",
+      "evidence": "binomial|power rule",
+      "split": "development"
+    },
+    {
+      "id": "powers-scaling",
+      "query": "In the power rule work, I confused scaling the output by a constant with scaling the input.",
+      "logicalArcId": "T22-M01-A04",
+      "evidence": "scal|constant|input",
+      "split": "development"
+    },
+    {
+      "id": "powers-convention",
+      "query": "How did real powers and absolute value behavior at zero depend on the exponent convention?",
+      "logicalArcId": "T25-ARC801-A01",
+      "evidence": "rational.power|negative.exponent|reduced.rational|real.power",
+      "split": "held_out",
+      "labelCorrection": "Source audit found real-power domain conventions in Domain-Safe Algebra; A04 proves positive-integer powers only. Corrected without changing the query or tuning the ranker."
+    },
+    {
+      "id": "domain-hole",
+      "query": "Canceling the factor x minus three simplifies the formula but does not restore the excluded input.",
+      "logicalArcId": "T25-ARC801-A01",
+      "evidence": "cancel|excluded|inherited",
+      "split": "development"
+    },
+    {
+      "id": "domain-log-negative",
+      "query": "Replacing log of x to the negative two by minus two log x loses the negative inputs.",
+      "logicalArcId": "T25-ARC801-A01",
+      "evidence": "negative|log",
+      "split": "development"
+    },
+    {
+      "id": "domain-rational-power",
+      "query": "The domain of a real rational power depends on the parity of the reduced denominator.",
+      "logicalArcId": "T25-ARC801-A01",
+      "evidence": "denominator|rational.power|parity",
+      "split": "held_out"
+    },
+    {
+      "id": "equations-squaring",
+      "query": "Squaring the equation square root of x plus six equals x created an extraneous negative candidate.",
+      "logicalArcId": "T25-ARC801-A02",
+      "evidence": "candidate|squar|extraneous",
+      "split": "development"
+    },
+    {
+      "id": "equations-zero-branch",
+      "query": "Dividing by a factor that might be zero can delete a genuine solution branch.",
+      "logicalArcId": "T25-ARC801-A02",
+      "evidence": "zero|divid|branch",
+      "split": "development"
+    },
+    {
+      "id": "equations-rational-sign",
+      "query": "Solve a rational inequality by separating numerator and denominator signs and keeping the forbidden denominator out.",
+      "logicalArcId": "T25-ARC801-A02",
+      "evidence": "numerator|denominator|quotient",
+      "split": "development"
+    },
+    {
+      "id": "equations-recovery",
+      "query": "The recovery equation was square root of x divided by x minus two equals one, with candidates one and four.",
+      "logicalArcId": "T25-ARC801-A02",
+      "evidence": "recovery|candidate|sqrt",
+      "split": "held_out"
+    },
+    {
+      "id": "logic-reciprocal-bound",
+      "query": "I kept reversing the restriction on y when choosing reciprocal counterexamples to x squared greater than or equal to x.",
+      "logicalArcId": "T22E-DISC01-S01-S05",
+      "evidence": "reciprocal|y>1|parameter",
+      "split": "development"
+    }
+  ]
+}

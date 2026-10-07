@@ -24,6 +24,27 @@ Last reconciled against production: **2026-08-22**.
 | `20260821144124` | `arc_media_r2_v1` | `supabase/arc-media-r2-v1.sql` |
 | `20260821190012` | `arc_media_placement_cleanup_v2` | `supabase/arc-media-placement-cleanup-v2.sql` |
 
+### Search quality deployment — 2026-10-07
+
+This addition reconciles the search RPCs only; the historical ledger above has
+not been presented as a complete audit of unrelated later migrations.
+
+| Version | Migration | Final repository source |
+| --- | --- | --- |
+| `20261007201352` | `arc_search_quality_v2` | `supabase/arc-search-quality-v2.sql` |
+| `20261007201841` | `arc_search_quality_v2_lexeme_coverage` | `supabase/arc-search-quality-v2.sql` |
+
+The second idempotent application corrected coverage scoring to use already
+stemmed lexemes directly. The final source reproduces both applications in one
+transaction. A proposed ANN parameter adjustment was rejected by database
+parameter permissions and rolled back; no such setting is required or deployed.
+Production remains on the existing gte-small 384-dimensional embeddings and
+existing Edge Function versions. The public/admin search RPC signatures are
+unchanged. Logical authority clearance and row ownership remain mandatory.
+
+Live retrieval was compared with 30 authored queries before/after; see
+`docs/archive-search-quality-v2-benchmark.json` and `docs/arc-semantic-search.md`.
+
 ## Deployed Edge Function source
 
 Production currently uses these Archive/semantic functions:
