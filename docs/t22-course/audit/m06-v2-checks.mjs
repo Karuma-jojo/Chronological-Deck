@@ -45,7 +45,7 @@ export function mathOracle(m){
  close(result,m.expected);return result;
 }
 export function checkCandidate(a,pin=read('docs/t22-course/audit/m06-v2-builder-contracts.json')){
- assert.equal(a.version,'m06-authoring-v2.0-whole-curriculum-candidate');assert.equal(pin.status,'builder-audited-awaiting-independent-review');assert.equal(digest(a),pin.candidateDigest,'Candidate bytes differ from the reviewed builder contract');
+ assert.equal(a.version,'m06-authoring-v2.0-r1-adversarial-repair-candidate');assert.equal(pin.status,'builder-audited-awaiting-independent-review');assert.equal(digest(a),pin.candidateDigest,'Candidate bytes differ from the reviewed builder contract');
  assert.equal(a.sessions.length,36);assert.equal(Object.keys(a.problems).length,72);assert.equal(Object.keys(a.evaluators).length,72);assert.equal(Object.keys(a.mathModels).length,72);
  assert.deepEqual(a.boundary.prerequisiteModules,['ARC048','T22E-TRD01']);
  const ids=new Set(),order=new Map(a.sessions.map(s=>[s.id,s.order]));let claims=0;
@@ -54,7 +54,19 @@ export function checkCandidate(a,pin=read('docs/t22-course/audit/m06-v2-builder-
   const links=a.claimEvidence[s.id];assert.equal(links.length,5);links.forEach((e,i)=>{assert.equal(e.claim,s.requiredOwnership[i]);assert.equal(e.publicRequest,a.problems[s[e.task]].prompt);const rows=a.evaluators[s[e.task]].rubric.map(r=>r.criterion);assert(e.rubricEvidence.every(c=>rows.includes(c)));assert.deepEqual(a.coverage[s.id][i],[e.task]);claims++;});
   for(const k of ['main','transfer']){const p=s[k],task=a.problems[p],ev=a.evaluators[p];assert.equal(task.kind,k);assert(task.obligationVersion>=1);assert.equal(ev.rubric.length,5);assert.equal(sum(ev.rubric.map(r=>r.points)),10);assert(a.evidenceDistance.items[p]);for(const fragment of a.instructionSeparation[s.id][k]){assert(task.prompt.includes(fragment));assert(!s.lesson.includes(fragment));}assert.equal(raw(task.prompt),a.mathModels[p].publicInputBinding.promptSha256);mathOracle(a.mathModels[p]);}
  }
- assert.equal(claims,180);assert.deepEqual(a.sessions.map(s=>Number(s.id.split('::S')[1].slice(0,2))),a.routeArchitecture.learnerRoute);return true;
+ assert.equal(claims,180);assert.deepEqual(a.sessions.map(s=>Number(s.id.split('::S')[1].slice(0,2))),a.routeArchitecture.learnerRoute);adversarialContractGuards(a);return true;
+}
+export function adversarialContractGuards(a){
+ const s30=a.sessions.find(s=>s.id.includes('::S30@')),s33=a.sessions.find(s=>s.id.includes('::S33@')),s34=a.sessions.find(s=>s.id.includes('::S34@'));
+ assert(s30.lesson.includes('LR(R)=P(R|H)/P(R|Hc)'),'Early report-ratio definition must precede later formal LR lessons');
+ assert(s33.lesson.includes('P(X=1,Y=1|H_i)=P(X=1|H_i)P(Y=1|H_i)'),'The pre-S19 task needs a JIT independence definition');
+ assert(a.problems[s34.main].prompt.includes('are mutually independent: for every x,y,e in{0,1}'));
+ assert(a.problems[s34.main].prompt.includes('P(X=x,Y=y,1_E=e|H_i)=P(X=x|H_i)P(Y=y|H_i)P(1_E=e|H_i)'));
+ assert.equal(a.mathModels[s34.main].jointAssumption,'mutual-independence-X-Y-evidence-indicator-given-each-hypothesis');
+ assert(a.problems[s34.transfer].prompt.includes('State and derive the conditional-partition predictive formula'),'A scored derivation must be publicly requested');
+ const proof=a.evaluators[s33.main].reference;
+ assert(proof.includes('I={i:w_i>0}')&&proof.includes('no l_i is evaluated')&&proof.includes('sums over I only'),'General proof must avoid undefined zero-prefix conditionals');
+ return true;
 }
 if(process.argv[1]?.endsWith('m06-v2-checks.mjs')){
  const a=read('course/t22/authoring/m06-v2.json');checkCandidate(a);
@@ -66,8 +78,13 @@ if(process.argv[1]?.endsWith('m06-v2-checks.mjs')){
  const old=appendSupplement(read('course/t22/authoring/m06.json'),read('course/t22/authoring/m06-decision-bridge.json'));old.modules=[old.module];const current=structuredClone(a);current.modules=[a.module];await prepareContractHashes(old);await prepareAssessmentFingerprints(old,old.evaluators);await prepareContractHashes(current);await prepareAssessmentFingerprints(current,current.evaluators);
  const changed=new Set(a.repairVersionAudit.changedFixedTasks);assert.equal(changed.size,2);
  for(const s of old.sessions){assert.equal(current.sessions.find(x=>x.id===s.id).contractHash,s.contractHash);for(const k of ['main','transfer']){const p=s[k];assert.equal(old.assessmentFingerprints[p]===current.assessmentFingerprints[p],!changed.has(p));const attempt={id:'legacy-'+p,problemId:p,at:'2026-10-06T01:00:00Z',answer:'Original independently derived evidence.',assistance:'independent',result:'secure',minutes:30,referenceSeenBefore:false,noteSeenDuringAttempt:false,error:'',contractHash:s.contractHash,assessmentFingerprint:old.assessmentFingerprints[p]};const state=emptyEvidence();state.attempts=[attempt];assert.equal(validateEvidence(state,current).attempts.length,1);assert.equal(evidenceIsCurrent(attempt,current),!changed.has(p));}}
+ const previous=read('docs/t22-course/audit/m06-v2-previous-assessments.json'),repair=new Set(a.repairVersionAudit.adversarialRepair.changedFixedTasks);assert.equal(repair.size,3);
+ let preserved=0;for(const [id,fingerprint] of Object.entries(previous.allAssessmentFingerprints)){assert.equal(current.assessmentFingerprints[id]===fingerprint,!repair.has(id));if(!repair.has(id))preserved++;}assert.equal(preserved,69);
+ for(const record of previous.assessments){const id=record.problem.id;assert(repair.has(id));assert.equal(current.problems[id].obligationVersion,record.problem.obligationVersion+1);const historical={sessions:[record.session],problems:{[id]:record.problem},evaluators:{[id]:record.evaluator}};await prepareContractHashes(historical);await prepareAssessmentFingerprints(historical,historical.evaluators);assert.equal(historical.assessmentFingerprints[id],record.assessmentFingerprint);const state=emptyEvidence();state.attempts=[{id:'previous-v2-'+id,problemId:id,at:'2026-10-07T16:00:00Z',answer:'Earlier candidate response retained verbatim.',assistance:'independent',result:'secure',minutes:30,referenceSeenBefore:false,noteSeenDuringAttempt:false,error:'',contractHash:record.contractHash,assessmentFingerprint:record.assessmentFingerprint}];assert.deepEqual(validateEvidence(state,current).attempts,state.attempts);assert.equal(evidenceIsCurrent(state.attempts[0],current),false);}
+ // Reject the reviewed semantic regressions independently of the whole-candidate hash.
+ for(const defect of ['pairwise','unasked-proof','zero-support-proof','missing-definition']){const b=structuredClone(a);if(defect==='pairwise')b.problems['T22V3::ARC502::S34-M@1'].prompt=b.problems['T22V3::ARC502::S34-M@1'].prompt.replace('are mutually independent: for every x,y,e in{0,1}','are pairwise independent');if(defect==='unasked-proof')b.problems['T22V3::ARC502::S34-T@1'].prompt=b.problems['T22V3::ARC502::S34-T@1'].prompt.replace('State and derive the conditional-partition predictive formula','Discuss prediction');if(defect==='zero-support-proof')b.evaluators['T22V3::ARC502::S33-M@1'].reference=b.evaluators['T22V3::ARC502::S33-M@1'].reference.replace('no l_i is evaluated','evaluate every l_i');if(defect==='missing-definition')b.sessions.find(s=>s.id.includes('::S30@')).lesson=b.sessions.find(s=>s.id.includes('::S30@')).lesson.replace('LR(R)=P(R|H)/P(R|Hc)','ratio');assert.throws(()=>adversarialContractGuards(b),'Semantic repair regression accepted '+defect);}
  const meta=read('course/t22/generated/course-meta.json'),spec=meta.moduleSources.find(x=>x.id==='ARC502');assert.equal(spec.source,'course/t22/authoring/m06-v2.json');assert(!spec.supplements?.length,'Bridge must not be appended twice');
  const pub=read('docs/t22-rebuild/CURRENT-PUBLICATION.json').modules.find(x=>x.id==='ARC502');assert.equal(pub.runtimeSessionCount,36);assert.equal(pub.coreTaskCount,72);assert.equal(pub.contentReviewAuthority,spec.source);
  const branches=read('course/t22/extensions/capability-extensions.json');const b=branches.extensions.find(x=>x.id==='M33-B');assert.deepEqual(b.requires,['M06','M26','M33']);assert.equal(b.status,'planned-not-authored');
- console.log('PASS M06 v2: 36/72/180; all72 typed mathematical models; full-history/reporter enumeration, supported channel averaging, sharp endpoint bounds and finite information values; six mutation rejections; 54 unchanged fingerprints plus two retained stale obligations; current-source and future-owner gates.');
+ console.log('PASS M06 v2-r1: 36/72/180; all72 typed mathematical models; six original and four adversarial mutation rejections; 54 historical fingerprints preserved; 69 previous-candidate fingerprints preserved and three explicitly stale; current-source and future-owner gates.');
 }

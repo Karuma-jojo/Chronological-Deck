@@ -15,3 +15,5 @@ The authoring pack's source ledger records section-level roles. All new tasks, t
 The all65 stable-ID source scan is `whole-route-scan.json`. M33's inherited exclusion points Bayesian parameter inference back to M06 while M06 excludes it; the repair supplies a named M33-B branch after M26/M33 instead of pretending it is taught somewhere. M48 owns linear-Gaussian changing-state filtering, not unrestricted MCMC/particles. Broader Bayesian algorithms remain explicit specialisations outside the current core promise.
 
 For later M33-B, a specialist Bayesian inference text may add useful breadth. That possible future source need is not a gap in M06's finite foundation.
+
+Adversarial follow-up source check (2026-10-07): [MIT RES.6-012, independence of a collection](https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/0efce5573e22478ef2bde873d509d4ac_UbQcqFH33G0.pdf) distinguishes pairwise conditions from three-way factorization. R01 uses an original exact perturbation of the actual S34 inputs, not a copied exercise, to show why explicit joint independence is required.

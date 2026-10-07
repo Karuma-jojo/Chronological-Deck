@@ -71,8 +71,8 @@
     {
       "order": 6,
       "id": "ARC502",
-      "coreVersion": "m06-authoring-v2.0-whole-curriculum-candidate",
-      "coreStatus": "v2.0-builder-checked-candidate-awaiting-independent-review",
+      "coreVersion": "m06-authoring-v2.0-r1-adversarial-repair-candidate",
+      "coreStatus": "v2.0-r1-builder-checked-candidate-awaiting-independent-review",
       "coreSessionCount": 36,
       "coreTaskCount": 72,
       "runtimeSessionCount": 36,

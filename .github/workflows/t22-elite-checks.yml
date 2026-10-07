@@ -103,6 +103,7 @@ jobs:
       - name: Structural, pedagogy, semantic and evidence regressions
         run: |
           node docs/t22-course/audit/m06-v2-checks.mjs
+          python3 docs/t22-course/audit/m06-v2-adversarial-math.py
           python3 course/t22/labs/m06-finite-evidence-lab.py
           node scripts/test-t22-elite-coherence-repairs.mjs
           node scripts/test-t22-elite-m01.mjs

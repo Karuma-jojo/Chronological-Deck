@@ -11,3 +11,9 @@ S01–S24 instruction now has its own v2 content version, guided feedback and sc
 The node check imports every old fixed-task record into the new model and checks retention/currentness. Chromium checks the two stale attempts through actual import, all36 navigation positions,72 save/reveal/review surfaces, packet copying, export/import/reload and mobile layout. Automated browser answers are workflow fixtures, not examples of learner mastery.
 
 Current status: builder-checked candidate awaiting independent review. The old semantic ledger establishes historical prerequisite ancestry, not independent approval of changed lessons or added obligations.
+
+## Adversarial r1 migration
+
+The same-builder recheck of head9ef4031053f6eca3384a83230086c5b8106961fa changes three additional obligations: S33-M1→2, S34-M1→2 and S34-T1→2. Their previous prompts/references/rubrics/session contracts and fingerprints are retained in `../audit/m06-v2-previous-assessments.json`. All69 other v2 assessment fingerprints remain identical; all54 unchanged historical-core/bridge fingerprints also remain identical. The earlier two historical stale tasks and these three candidate stale tasks remain stored/readable/exportable but cannot clear current obligations. No equivalence override is added. Chromium checks all five records verbatim before and after export/import/reload.
+
+Instruction version is `m06-instruction-v2.0-r1-adversarial-repair-candidate`; mathematical evidence on unchanged assessments is not invalidated by new lesson wording. Current authoring version is `m06-authoring-v2.0-r1-adversarial-repair-candidate`.
