@@ -2952,12 +2952,12 @@
           "max": 7
         },
         "referenceContains": [
-          "=2",
-          "-3",
-          "7"
+          "E[X]=2",
+          "−3≤2≤7"
         ],
         "rubricContains": [
-          "smallest and largest possible payoff"
+          "E[X]=2",
+          "−3≤2≤7"
         ]
       }
     },
@@ -3275,7 +3275,8 @@
         ],
         "rubricContains": [
           "2.6",
-          "5.0"
+          "5]",
+          "3.8"
         ]
       }
     },
