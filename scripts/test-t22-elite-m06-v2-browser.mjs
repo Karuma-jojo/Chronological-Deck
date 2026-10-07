@@ -29,7 +29,8 @@ try{
    await page.click(kind==='main'?'#mainTask':'#transferTask');assert.equal((await page.locator('#problem').textContent()).trim(),a.problems[s[kind]].prompt);assert(await page.locator('#reference').isHidden());assert(await page.locator('#reveal').isDisabled());
    await page.fill('#answer',`Derived joint masses and model conditions for ${s.id} ${kind}.`);await page.click('#save');await page.click('#reveal');assert((await page.locator('#reference').textContent()).includes(a.evaluators[s[kind]].reference));await page.click('#saveReview');
   }
-  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,'Mobile overflow '+s.id);
+  const width=await page.evaluate(()=>({ok:document.documentElement.scrollWidth<=innerWidth+1,viewport:innerWidth,document:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('main *,aside *')].filter(e=>e.getBoundingClientRect().width>0&&e.getBoundingClientRect().right>innerWidth+1).slice(-12).map(e=>({tag:e.tagName,id:e.id,cls:e.className,right:e.getBoundingClientRect().right,text:e.textContent.slice(0,80)}))}));
+  assert.equal(width.ok,true,'Mobile overflow '+s.id+' '+JSON.stringify(width));
  }
  const state=await page.evaluate(()=>JSON.parse(localStorage.getItem('chrono_t22_elite_course_evidence_v1')));assert.equal(state.attempts.length,146);assert(state.attempts.slice(2).every(x=>x.assistance==='guided'&&/^[0-9a-f]{64}$/.test(x.assessmentFingerprint)));
  const first=a.sessions[0];assert.equal(state.exposures[first.main].lessonContentVersion,a.instructionVersion);
