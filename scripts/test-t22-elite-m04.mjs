@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
+import {validateCandidateMathOracles,runCandidateMathMutationProbes} from '../docs/t22-course/audit/m04-candidate-math-oracle.mjs';
 
 const a=JSON.parse(fs.readFileSync('course/t22/authoring/m04.json','utf8'));
 const pad=n=>String(n).padStart(2,'0');
@@ -12,9 +13,9 @@ const stable=x=>Array.isArray(x)?x.map(stable):x&&typeof x==='object'?Object.fro
 const route=[1,2,3,4,5,6,25,7,8,9,10,11,12,13,14,15,16,26,17,28,18,27,19,20,21,22,23,24];
 
 assert.equal(a.module.id,'ARC048');
-assert.equal(a.version,'m04-authoring-v2.2-28-session-whole-curriculum-r1');
-assert.equal(a.instructionVersion,'m04-instruction-v2.2-28-session-whole-curriculum-r1');
-assert.equal(a.module.status,'v2.2-28-session-whole-curriculum-rebuild-candidate');
+assert.equal(a.version,'m04-authoring-v2.2-28-session-whole-curriculum-r2');
+assert.equal(a.instructionVersion,'m04-instruction-v2.2-28-session-whole-curriculum-r2');
+assert.equal(a.module.status,'v2.2-28-session-whole-curriculum-bounded-repair-r2-candidate');
 assert.deepEqual(a.boundary.prerequisiteModules,['T22E-DISC01']);
 assert.equal(a.sessions.length,28);
 assert.equal(Object.keys(a.problems).length,56);
@@ -24,7 +25,7 @@ assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,28);
 assert.equal(Object.keys(a.evidenceDistance.items).length,56);
 assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,28);
 assert.equal(a.representationProgression.length,14);
-assert.equal(a.wholeCurriculumRebuild?.status,'builder candidate; not independently confirmed');
+assert.equal(a.wholeCurriculumRebuild?.status,'bounded-repair r2 builder candidate; focused independent confirmation required');
 assert(fs.existsSync(a.researchBasis.designGate));
 assert(fs.existsSync(a.researchBasis.deepSourceAudit));
 assert(fs.existsSync(a.researchBasis.sourceDossier));
@@ -74,7 +75,7 @@ for(const s of a.sessions){
   else assert(s.transferScope.startsWith('Retrieval/fluency'),`S${n} retrieval scope not honest`);
 }
 assert.deepEqual(Object.keys(a.decisionAudit.items).sort(),decisionTargets.sort());
-assert.equal(decisionTargets.length,9);
+assert.equal(decisionTargets.length,7);
 for(const id of decisionTargets){
   const d=a.decisionAudit.items[id];
   assert.equal(typeof d.decisionSuppliedByPrompt,'boolean');
@@ -86,8 +87,8 @@ for(const id of decisionTargets){
 
 // Historical repaired contracts remain pinned; v2.2 changes are explicitly versioned.
 const historicalVersions={
-  '1M':2,'1T':2,'2T':2,'3T':2,'4T':2,'5T':3,'6T':2,'7M':2,'7T':2,'8T':2,'9T':2,'10T':2,
-  '15M':2,'15T':2,'16T':2,'17M':2,'17T':2,'18M':3,'18T':3,'19T':3,'20T':2,'21M':2,'23T':2,'24M':3
+  '1M':2,'1T':2,'2T':2,'3M':2,'3T':3,'4T':2,'5T':3,'6T':2,'7M':2,'7T':2,'8T':2,'9T':2,'10M':2,'10T':3,
+  '11M':2,'12M':2,'15M':2,'15T':2,'16T':2,'17M':2,'17T':2,'18M':4,'18T':3,'19T':3,'20T':2,'21M':2,'22M':2,'23T':2,'24M':3
 };
 for(const [k,v] of Object.entries(historicalVersions)){
   const n=Number(k.match(/\d+/)[0]),kind=k.endsWith('M')?'main':'transfer';
@@ -95,10 +96,10 @@ for(const [k,v] of Object.entries(historicalVersions)){
 }
 assert.equal(a.problems[by(19).main].obligationVersion,2,'v2.2 S19 Main strengthened/versioned');
 assert.equal(a.problems[by(24).transfer].obligationVersion,4,'v2.2 S24 Transfer exit probe versioned');
-for(const n of [25,26,27,28]){
-  assert.equal(a.problems[by(n).main].obligationVersion,1);
-  assert.equal(a.problems[by(n).transfer].obligationVersion,1);
-}
+assert.equal(a.problems[by(25).main].obligationVersion,1);assert.equal(a.problems[by(25).transfer].obligationVersion,2);
+assert.equal(a.problems[by(26).main].obligationVersion,1);assert.equal(a.problems[by(26).transfer].obligationVersion,1);
+assert.equal(a.problems[by(27).main].obligationVersion,1);assert.equal(a.problems[by(27).transfer].obligationVersion,1);
+assert.equal(a.problems[by(28).main].obligationVersion,2);assert.equal(a.problems[by(28).transfer].obligationVersion,1);
 
 // Stable retained mathematics and historical repairs.
 assert.equal(a.claimEvidence[by(5).id][2].task,'transfer');
@@ -129,9 +130,11 @@ assert.equal(a.evidenceDistance.items[by(24).main].class,'fresh Main evidence');
 assert.equal(a.evidenceDistance.items[by(25).main].class,'proof reconstruction');
 assert.deepEqual(
   a.sessions.filter(s=>a.evidenceDistance.items[s.transfer].class==='changed-surface Transfer').map(stableNum).sort((x,y)=>x-y),
-  [9,10,13,24,25,26,27,28]
+  [9,10,13,24,25,28]
 );
-assert.equal(Object.keys(a.decisionAudit.items).length,9);
+assert.equal(Object.keys(a.decisionAudit.items).length,7);
+assert.equal(a.evidenceDistance.items[by(26).transfer].class,'retrieval');
+assert.equal(a.evidenceDistance.items[by(27).transfer].class,'retrieval');
 
 // New boundaries stay downstream.
 for(const n of [25,26,27,28]){
@@ -142,6 +145,22 @@ assert(by(25).outOfScope.some(x=>x.includes('M28')));
 assert(by(26).outOfScope.some(x=>x.includes('M49')));
 assert(by(27).outOfScope.some(x=>x.includes('M06')));
 assert(by(28).outOfScope.some(x=>x.includes('M49')));
+
+// Reviewer repairs: public model laws, qualified total probability, proof observability and inclusive cap wording.
+assert(by(3).lesson.includes('Marginal fairness of each die alone would not establish this uniform joint law'));
+assert(a.problems[by(3).main].prompt.includes('uniform over all 36 pairs'));
+assert(a.problems[by(11).main].prompt.includes('joint model for two six-sided dice is uniform'));
+assert(by(10).lesson.includes('every currently present labelled object is conditionally equally likely'));
+assert(a.problems[by(12).main].prompt.includes('every currently present ball conditionally equally likely'));
+assert(a.problems[by(22).main].prompt.includes('every remaining labelled card conditionally equally likely'));
+assert(a.problems[by(25).transfer].prompt.includes('disjoint new-contribution events'));
+assert(a.evaluators[by(25).transfer].rubric.some(r=>r.criterion.includes('formula-only invocation is insufficient')));
+assert(by(18).lesson.includes('P(A)=Σ P(A∩Bi)'));
+assert(a.evaluators[by(18).main].rubric.some(r=>r.criterion.includes('zero-mass cells contributing0')));
+assert(a.problems[by(28).main].prompt.includes('by the cap (including an H on trial3)'));
+assert(!by(19).lesson.includes('E=0+.1.2+2=3.2'));
+validateCandidateMathOracles(a);
+runCandidateMathMutationProbes(a);
 
 // Deterministic math checks: retained contracts.
 close(.05+.15+.20+.25+.35,1);
@@ -191,4 +210,4 @@ const unionLo=1.1-overlapHi,unionHi=1.1-overlapLo;
 close(unionLo,.6);close(unionHi,1);
 close(6*unionLo-1,2.6);close(6*unionHi-1,5);close(6*.8-1,3.8);
 
-console.log('PASS: M04 v2.2 whole-curriculum candidate — 28 sessions/56 tasks/140 claims; stable IDs preserved, four new foundations wired, strengthened evidence versioned, exact math and evidence-distance ledgers checked.');
+console.log('PASS: M04 v2.2-r2 bounded-repair candidate — 28 sessions/56 tasks/140 claims; reviewer R01–R06/C01 repaired, rehearsal labels corrected, candidate-bound math mutations rejected.');
