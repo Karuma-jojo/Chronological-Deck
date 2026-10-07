@@ -27,7 +27,7 @@ function renderRoadmap(){
   const row=document.createElement('div');row.className='roadmap-row'+(active?' active':' planned');
   const status=m.availability==='authored'?'AUTHORED':m.availability==='validation'?'VALIDATING':'PLANNED';
   row.innerHTML=`<span>${String(m.order).padStart(2,'0')}</span><b>${m.title}</b><em>${status}</em>`;
-  if(m.extensionSummary){const note=document.createElement('p');note.className='small';note.textContent=m.extensionSummary;row.append(note);}
+  if(m.extensionSummary){const note=document.createElement('p');note.className='small';note.style.gridColumn='1 / -1';note.style.margin='0';note.style.overflowWrap='anywhere';note.textContent=m.extensionSummary;row.append(note);}
   if(loaded){row.tabIndex=0;row.setAttribute('role','button');row.addEventListener('click',()=>selectModule(m.id));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectModule(m.id);}});}
   list.append(row);
  }

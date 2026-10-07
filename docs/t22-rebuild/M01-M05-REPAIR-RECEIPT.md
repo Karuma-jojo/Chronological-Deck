@@ -51,7 +51,7 @@ The defensible description is a Class-10-ish entry route toward advanced quantit
 
 Local existing syntax/structural/pedagogy/semantic/math regressions: **122/122 passed**, including the finalized workflow syntax and focused repair gate. The focused repair gate checks candidate-bound mathematical models, independent posterior/direct-joint value computations, null/perfect/zero-mass signals, five deliberate candidate corruptions, all four cumulative mathematical references, immutable core bytes/contracts/fingerprints, probe evidence round trips without clearance, exact graph changes and the planned extension DAG.
 
-The dedicated Chromium check walks all eight new M06 task surfaces and all four cumulative probes, verifies save-before-reveal and packet exposure, exercises export/import, rejects silent clearance, and checks corrected destinations on the actual learner page. The full browser suite remains required on the published head. Exact CI receipts are reported with delivery rather than invented in advance.
+The dedicated Chromium check walks all eight new M06 task surfaces and all four cumulative probes, verifies save-before-reveal and packet exposure, exercises export/import, rejects silent clearance, and checks corrected destinations on the actual learner page. Full T22 Elite run `37636796786` passed on checkpoint `dd557d982b1300ce83b3c8f6f54fc39289e0dd51`, including all nine browser workflows. The final display-only roadmap polish is rechecked on the final published head; its exact receipt is reported with delivery.
 
 ## Next module boundary
 
