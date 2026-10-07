@@ -1,8 +1,22 @@
 # M04 boundary & authoring contract — ARC048
 
 Date: 2026-09-18  
-Status: **V2.2 WHOLE-CURRICULUM REBUILD CANDIDATE — 28 sessions / 56 fixed tasks / 140 ownership claims; historical v2.1 acceptance retained as provenance; fresh CI + independent review required**
+Status: **V2.2-R2 BOUNDED-REPAIR CANDIDATE — 28 sessions / 56 fixed tasks / 140 ownership claims; independent findings R01–R06 + C01/C02 repaired; historical v2.1 acceptance retained as provenance; exact-head CI + focused confirmation required**
 
+
+## v2.2-r2 independent-review bounded repair
+
+The independent adversarial review of the 28-session v2.2 candidate returned **BOUNDED REPAIR REQUIRED**, not a rebuild. The r2 candidate preserves the 28-session architecture and stable IDs while repairing:
+
+- **R01** — public joint/sampling laws are explicit; marginal fairness or replacement alone never supplies a joint/uniform sampling law;
+- **R02** — S26-T and S27-T are honestly classified as retrieval/fluency rather than unrehearsed changed-surface transfer;
+- **R03** — S25-T now requires and scores a finite-union-bound derivation from disjoint new contributions;
+- **R04** — S18 begins with the universally valid identity \(P(A)=\sum_iP(A\cap B_i)\), and only rewrites positive-mass cells as conditional products;
+- **R05** — critical evaluator references/rubrics are bound to typed math oracles with deliberate wrong-reference, wrong-rubric and wrong-input mutation probes;
+- **R06** — S28 uses the inclusive wording “by the cap (including trial 3)” for the \(7/8\) event;
+- **C01/C02** — the S19 expectation typo is fixed and M10–M12 compatibility exceptions are pinned to the exact repaired M04 bytes.
+
+The canonical r2 authoring file is `m04-authoring-v2.2-28-session-whole-curriculum-r2`. Historical v2.1 confirmation remains provenance only and does not certify this repaired v2.2 contract.
 
 ## v2.2 whole-curriculum expansion — current candidate
 
