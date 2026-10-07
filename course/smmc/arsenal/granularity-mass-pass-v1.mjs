@@ -15,7 +15,7 @@
 
 const lower = value => String(value ?? "").toLowerCase();
 
-const EXPLICIT_ACTION_RE = /^(?:(?:how\s+to\s+prove)|analy[sz]e|apply|assume|bound|brainstorm|build|change|choose|clear|color|compare|complete|construct|count|create|define|decompose|derive|diagonalize|differentiate|disprove|divide|draw|encode|eliminate|expand|extract|factor|filter|find|generalize|get|identify|instantiate|integrate|invent|invert|look|make|normalize|pair|partition|produce|prove|recast|reduce|reexpress|reflect|replace|restate|rotate|search|select|shear|show|simplify|split|steal|substitute|symmetrize|take|telescope|translate|treat|use|work|working|breaking|brainstorming|clearing|combining|counting|creating|defining|disproving|dividing|encoding|expanding|factoring|filtering|instantiating|inventing|pairing|partitioning|producing|proving|restating|searching|smoothing|stealing|taking|treating|using|bounding)\b/i;
+const EXPLICIT_ACTION_RE = /^(?:(?:how\s+to\s+prove)|analy[sz]e|apply|assume|bound|brainstorm|build|change|choose|clear|color|compare|complete|construct|count|create|define|decompose|derive|diagonalize|differentiate|disprove|divide|draw|encode|eliminate|expand|extend|extract|factor|filter|find|generalize|get|identify|instantiate|integrate|invent|invert|look|make|normalize|pair|partition|produce|prove|recast|reduce|reexpress|reflect|replace|restate|rotate|search|select|shear|show|simplify|split|steal|substitute|symmetrize|take|telescope|translate|treat|use|work|working|breaking|brainstorming|clearing|combining|counting|creating|defining|disproving|dividing|encoding|expanding|factoring|filtering|instantiating|inventing|pairing|partitioning|producing|proving|restating|searching|smoothing|stealing|taking|treating|using|bounding)\b/i;
 
 const IMPLICIT_OPERATION_RE = /\b(?:argument|reformulation|reduction|construction|encoding|decomposition|comparison|normalization|approximation|bound(?:ing)?|pairing|partition(?:ing)?|factorization|substitution|elimination|expansion|replacement|projection|parametri[sz]ation|symmetrization|rearrangement|recursion|diagonalization|optimization|conditioning|descent|averaging|smoothing|counting|exchange|bootstrap|filter|transformation|translation|reflection|rotation|inversion|shearing|bisection|interpolation|extrapolation|compression|recognition|centering|coloring|guarding|cancellation|summation|experimentation)\b/i;
 
@@ -53,14 +53,79 @@ const EXPLICIT_TARGET_RE = /\b(?:goal|matrix|brackets?|denominators?|polynomial|
 
 const RESULTATIVE_EXPLICIT_RE = /^(?:construct|diagonalize|encode|factor|normalize|reduce|reexpress|recast|split|partition|translate|rotate|reflect|invert|symmetrize|complete|clear|eliminate|replace)\b/i;
 
-// The first mass-pass graduation attack showed that proof-sequencing prose cannot
-// decide whether the candidate itself is a bundle. The originally surfaced 13
-// bundle rows were manually re-audited against the accepted candidate-expression
-// rule. Of the 9 mass-pass rows, only RAW-OFFICIAL-098 explicitly packages two
-// independently meaningful operations in the candidate expression itself.
-// The other four accepted bundle rows live in the frozen 45-row calibration.
-export const ARSENAL_GATE3_AUDITED_MASS_BUNDLE_IDS = Object.freeze([
-  "RAW-OFFICIAL-098",
+// Candidate-level bundle audit.
+//
+// The old proof-sequencing heuristic over-fired, and the first repair
+// over-corrected to a one-ID allowlist. The accepted ruler instead asks whether
+// the CANDIDATE AS EXPRESSED packages independently meaningful operations.
+//
+// We therefore separate:
+//   (1) a deterministic SURFACE that finds expressions visibly containing
+//       multiple operation heads joined by and/plus/then/slash;
+//   (2) a complete explicit decision table for every surfaced MASS candidate;
+//   (3) a manually preserved bundle (RAW-OFFICIAL-098) whose accepted expression
+//       "Factorization plus Antisymmetry" was already independently audited.
+//
+// The validator requires every surfaced mass candidate to have exactly one
+// decision, so a newly added/missed multi-head expression cannot silently bypass
+// the audit.
+
+const BUNDLE_EXPLICIT_VERB_TOKEN =
+  /\b(?:analy[sz]e|apply|assume|bound|build|change|choose|clear|color|compare|complete|construct|count|create|define|decompose|derive|diagonalize|differentiate|disprove|divide|draw|encode|eliminate|expand|extend|extract|factor|filter|find|generalize|get|identify|instantiate|integrate|invent|invert|look|make|normalize|pair|partition|produce|prove|recast|reduce|reexpress|reflect|replace|restate|rotate|search|select|shear|show|simplify|split|steal|substitute|symmetrize|take|telescope|translate|treat|use|work)\b/gi;
+
+const BUNDLE_OPERATION_NOUN_TOKEN =
+  /\b(?:reformulation|reduction|construction|encoding|decomposition|comparison|normalization|bounding|pairing|partitioning|factorization|substitution|elimination|expansion|replacement|projection|parametri[sz]ation|symmetrization|rearrangement|diagonalization|conditioning|averaging|smoothing|counting|exchange|filtering|transformation|translation|reflection|rotation|inversion|shearing|bisection|interpolation|extrapolation|compression|centering|coloring|cancellation|summation|extraction)\b/gi;
+
+const BUNDLE_CONNECTOR_RE = /\b(?:and|then|plus|followed by)\b|\+|\/|→|->/i;
+
+const operationHeads = expression => [
+  ...expression.matchAll(BUNDLE_EXPLICIT_VERB_TOKEN),
+  ...expression.matchAll(BUNDLE_OPERATION_NOUN_TOKEN),
+].map(match => ({
+  token: match[0].toLowerCase(),
+  index: match.index ?? -1,
+}));
+
+export function surfaceGate3MassBundleCandidate(candidate) {
+  const name = candidate.candidateName ?? "";
+  if (!BUNDLE_CONNECTOR_RE.test(name)) return false;
+  const heads = operationHeads(name);
+  if (heads.length < 2) return false;
+
+  // Require at least one connector between two distinct operation heads. This
+  // avoids treating an unconnected list of operation words as a bundle signal.
+  for (let i = 0; i < heads.length; i += 1) {
+    for (let j = i + 1; j < heads.length; j += 1) {
+      const between = name.slice(heads[i].index + heads[i].token.length, heads[j].index);
+      if (BUNDLE_CONNECTOR_RE.test(between) && heads[i].token !== heads[j].token) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+export const ARSENAL_GATE3_MASS_BUNDLE_DECISIONS = Object.freeze([
+  Object.freeze({
+    candidateId: "RAW-BRIDGE-063",
+    decision: "BUNDLE",
+    rationale: "The raw expression itself joins matrix-to-incidence-graph translation AND block decomposition by components: two independently meaningful operation heads. Candidate-owned project-index evidence repeats that exact expression.",
+  }),
+  Object.freeze({
+    candidateId: "RAW-BRIDGE-072",
+    decision: "BUNDLE",
+    rationale: "The raw expression itself joins coefficient extraction from shifted polynomials AND reduction modulo a prime: two independently meaningful operation heads. Candidate-owned project-index evidence repeats that exact expression.",
+  }),
+  Object.freeze({
+    candidateId: "RAW-OFFICIAL-088",
+    decision: "BUNDLE",
+    rationale: "The expression explicitly commands Extend a Vector to a Basis AND Count Free Images, and the candidate-owned official claim confirms both operations in that sequence.",
+  }),
+  Object.freeze({
+    candidateId: "RAW-OFFICIAL-098",
+    decision: "BUNDLE",
+    rationale: "Manually preserved from the earlier 13-row audit: the expression explicitly packages one-variable root factorization PLUS antisymmetry, and its official claim confirms factorization followed by an antisymmetry comparison.",
+  }),
 ]);
 
 export const ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS = Object.freeze([
@@ -74,8 +139,12 @@ export const ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS = Object.freeze([
   "RAW-OFFICIAL-108",
 ]);
 
+const bundleDecisionById = new Map(
+  ARSENAL_GATE3_MASS_BUNDLE_DECISIONS.map(row => [row.candidateId, row])
+);
+
 const auditedMassBundle = candidateId =>
-  ARSENAL_GATE3_AUDITED_MASS_BUNDLE_IDS.includes(candidateId);
+  bundleDecisionById.get(candidateId)?.decision === "BUNDLE";
 
 const localCue = text => /\b(?:this recurrence|the recurrence|this problem|specific problem|particular problem|this configuration|specific configuration|recoverability lemma|alternative route)\b/i.test(text);
 
@@ -197,15 +266,23 @@ const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationS
   const name = candidate.candidateName;
   const lexicalConditionTrigger =
     /\b(?:when|whenever|if|given|assuming|under the condition|under conditions)\b/i.test(name);
+
+  // Accepted calibration semantics: for an explicit imperative/action, a
+  // mathematically specific direct object can itself state the situation/object
+  // on which the move is deployed. This is distinct from the rejected generic
+  // preposition shortcut: "Search for a Pattern" still has no object-trigger
+  // because "pattern" is not in EXPLICIT_TARGET_RE.
+  const lexicalObjectTrigger =
+    actionShape === "EXPLICIT_ACTION" &&
+    EXPLICIT_TARGET_RE.test(name);
+
   const lexicalResult =
     actionShape === "EXPLICIT_ACTION" && RESULTATIVE_EXPLICIT_RE.test(name);
 
-  // Grammatical prepositions such as "for", "of", "in", and "with" are NOT
-  // triggers. A trigger requires an actual condition/situation in the wording or
-  // candidate-owned evidence.
   const hasTrigger =
     evidenceTrigger(evidenceRecords) ||
-    lexicalConditionTrigger;
+    lexicalConditionTrigger ||
+    lexicalObjectTrigger;
   const hasOutput =
     evidenceOutput(evidenceRecords) ||
     OUTPUT_SIGNAL_RE.test(name) ||
@@ -222,7 +299,8 @@ const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationS
       richOfficial(evidenceRecords) ||
       richDiscovery(evidenceRecords) ||
       operationalProofStructure(evidenceRecords) ||
-      lexicalConditionTrigger
+      lexicalConditionTrigger ||
+      lexicalObjectTrigger
     ) ? "CLEAR" :
     hasTrigger ? "PARTIAL" :
     "UNRESOLVED";
@@ -291,7 +369,7 @@ export function buildGate3MassAssessment(candidate, evidenceRecords) {
 
   // MP02 — evidence-supported multiple-operation bundle. Multiple operations are
   // MACRO + BUNDLED_MOVES; mixed grain is NOT inferred.
-  if (hasBundle && (hasOperationalEvidence || isExplicit)) {
+  if (hasBundle) {
     const b = boundaryForAction({
       candidate,
       evidenceRecords,
@@ -480,7 +558,7 @@ export function buildGate3MassAssessment(candidate, evidenceRecords) {
 }
 
 export const ARSENAL_GATE3_MASS_CLASSIFIER_META = Object.freeze({
-  version: "v2",
+  version: "v3",
   calibrationAcceptanceSha: "177a8efa24ebca15e2c84dbb18e96a72be5e1d08",
   evidenceMode: "STRICT_CANDIDATE_OWNED_GATE2",
   crossScaleMode: "SOURCE_SCALE_VARIABLE_ROLE_ONLY",
@@ -488,7 +566,8 @@ export const ARSENAL_GATE3_MASS_CLASSIFIER_META = Object.freeze({
   provenanceShortcutRemoved: true,
   triggerPrepositionShortcutRemoved: true,
   distinctOperationResultRequired: true,
-  auditedMassBundleIds: ARSENAL_GATE3_AUDITED_MASS_BUNDLE_IDS,
+  bundleAuditMode: "EXHAUSTIVE_CANDIDATE_EXPRESSION_SURFACE",
+  massBundleDecisions: ARSENAL_GATE3_MASS_BUNDLE_DECISIONS,
   rejectedBundleShortcutIds: ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS,
   contextReachFallback: "UNRESOLVED",
   ruleIds: Object.freeze([
