@@ -1,5 +1,5 @@
 {
-  "version": "T22E-course-0.15.1-coherence-repairs",
+  "version": "T22E-course-0.15.3-m06-v2-r1-candidate",
   "routeVersion": "M65-semantic-r3-2026-10-07-coherence",
   "evidenceSchema": "t22e-course-evidence-v1",
   "reviewDays": [
@@ -91,10 +91,7 @@
       "order": 6,
       "id": "ARC502",
       "sourceType": "authoring-pack",
-      "source": "course/t22/authoring/m06.json",
-      "supplements": [
-        "course/t22/authoring/m06-decision-bridge.json"
-      ]
+      "source": "course/t22/authoring/m06-v2.json"
     },
     {
       "order": 7,

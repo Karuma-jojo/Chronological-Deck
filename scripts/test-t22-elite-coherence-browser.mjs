@@ -5,15 +5,15 @@ import {createServer} from 'node:http';
 import {resolve,extname} from 'node:path';
 const require=createRequire(import.meta.url);let chromium;
 try{({chromium}=require('playwright'));}catch{try{({chromium}=require('./review-tests/node_modules/@playwright/test'));}catch{({chromium}=require((process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES||'/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules')+'/playwright'));}}
-const bridge=JSON.parse(await fs.readFile('course/t22/authoring/m06-decision-bridge.json')),probes=JSON.parse(await fs.readFile('course/t22/authoring/m01-m05-cumulative-probes.json'));
+const current=JSON.parse(await fs.readFile('course/t22/authoring/m06-v2.json'));const bridge={...current,sessions:current.sessions.filter(s=>Number(s.id.split('::S')[1].slice(0,2))>=25&&Number(s.id.split('::S')[1].slice(0,2))<=28)},probes=JSON.parse(await fs.readFile('course/t22/authoring/m01-m05-cumulative-probes.json'));
 const server=createServer(async(req,res)=>{try{const path=resolve('.','.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname.replace(/\/$/,'/index.html')));if(!path.startsWith(resolve('.')+'/')){res.writeHead(403).end();return;}res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css'})[extname(path)]||'text/plain');res.end(await fs.readFile(path));}catch{res.writeHead(404).end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
 try{
  browser=await chromium.launch({headless:true,executablePath:process.env.REVIEW_CHROMIUM_PATH||undefined,args:['--no-sandbox','--disable-dev-shm-usage']});
  const context=await browser.newContext({permissions:['clipboard-read','clipboard-write']});const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(`http://127.0.0.1:${server.address().port}/t22-course.html?module=6&session=25`);await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Ready:'));
- assert.equal(await page.locator('#module option').count(),15);assert.equal(await page.locator('#session option').count(),28);assert.equal(await page.locator('#roadmap .roadmap-row').count(),65);
- assert((await page.locator('#moduleGate').textContent()).includes('new builder-checked candidate'));
+ assert.equal(await page.locator('#module option').count(),15);assert.equal(await page.locator('#session option').count(),36);assert.equal(await page.locator('#roadmap .roadmap-row').count(),65);
+ assert((await page.locator('#moduleGate').textContent()).includes('Builder-checked candidate'));
  for(const s of bridge.sessions){
   await page.selectOption('#session',String(s.order));assert((await page.locator('#sessionMeta').textContent()).includes(s.id));assert((await page.locator('#contractText').textContent()).includes(s.entryPrerequisites[0]));
   await page.click('#note');assert((await page.locator('#learningText').textContent()).includes(s.lesson));
