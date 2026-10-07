@@ -563,3 +563,13 @@ Second repair-head run `37636315413` on `12c0eecd72a11772e50fdbddc825f58963fc7fd
 Full repair checkpoint `dd557d982b1300ce83b3c8f6f54fc39289e0dd51`: T22 Elite run `37636796786`, job `112845027857`, **SUCCESS** through syntax, structural/semantic/mathematical regressions and all nine Chromium workflows. Original early/through-M15 browser and exposure preservation checks passed. Final display-only polish makes the added roadmap status/extension notes span the full grid row instead of the narrow number column; no content/evidence contract changed. Final published-head workflow must remain green.
 
 Final handoff consistency check: evaluator-packet exports now append the same current destination corrections as the learner contract, explicitly overriding only historical routing wording. Added a real clipboard assertion for the M26 geometric-waiting destination. Existing scored contracts and packet exposure rules are preserved. This is part of the bounded coherence repair; a final exact-head Chromium run remains required.
+
+## M06 v2 full build — 2026-10-07 current authority
+
+User authorized merging the green coherence repair and starting M06. PR190 merged at main9458e9e6b114c3366f6b009982f26de2e40234f6. Isolated branch codex/t22-m06-whole-curriculum. No agents were spawned and no M07+ teaching pack was changed.
+
+Sources: Drive Blitzstein/Hwang, Statistical Rethinking, existing Peterson/MIT decision materials. Relevant finite updating/reporting/prediction sections suffice; no new PDF upload needed. Source criticism rejects an unrestricted prior-washing/truth claim. All65 stable macro identities traced; a real M06/M33 deferral loop is resolved by planned M33-B after M26/M33, not claimed as authored.
+
+Current candidate is m06-v2.json:36 sessions/72 fixed tasks/180 claim observers, eight new foundations S29–S36, strengthened instruction for S01–S24, existing S25–S28 information decisions integrated once. Original m06.json and m06-decision-bridge.json remain frozen historical bytes.54 earlier fingerprints preserved; S24-T/S28-T explicitly versioned and stale old evidence retained. All72 tasks have typed math models/current prompt bindings; finite exact laboratory and mutation rejection added. Local124 checks pass. Final current source/pedagogy is builder-candidate, not independently accepted.
+
+Next: push exact tree checkpoint, verify full T22 Elite including real36/72 Chromium workflow plus inherited browser/evidence regressions on the final branch head, fix bounded defects, and update the PR receipt. Independent review remains a separate certification gate. See M06-V2-REVIEW-HANDOFF.md for exact files/resumption contract.

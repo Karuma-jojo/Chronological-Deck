@@ -1,6 +1,6 @@
 {
   "schema": "t22-capability-extensions-v1",
-  "version": "2026-10-07-r1",
+  "version": "2026-10-07-r2-m06",
   "policy": "Owner slots and observable exit contracts are assigned now. Except for M06-D, these are planned authoring obligations, not implemented lessons or clearance evidence. Branch prerequisites are AND gates; a later macro title does not clear them. Preserve all 65 macro IDs and order.",
   "extensions": [
     {
@@ -861,6 +861,74 @@
           "id": "M53-LP-04",
           "dependsOn": [
             "M53-LP-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        }
+      ]
+    },
+    {
+      "id": "M33-B",
+      "owner": "ARC531",
+      "ownerOrder": 33,
+      "title": "Bayesian parameter inference and continuous prediction",
+      "goal": "optional-bayesian-theory",
+      "status": "planned-not-authored",
+      "requires": [
+        "M06",
+        "M26",
+        "M33"
+      ],
+      "placement": "After likelihood and distribution/integration foundations; finite hypothesis prediction is already owned by M06-S34.",
+      "units": [
+        {
+          "id": "M33-B-01",
+          "title": "Posterior densities and support",
+          "exitTask": "Construct a continuous posterior from an explicit prior density and sampling law, prove its normalizing integral is positive and finite, and diagnose an improper or support-incompatible posterior.",
+          "dependsOn": [],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M33-B-02",
+          "title": "Beta-Bernoulli and conjugacy",
+          "exitTask": "Derive the Beta-Bernoulli posterior and normalizer from the likelihood and prior kernel, verify all shape/support conditions, and distinguish finite-hypothesis weights from a continuous parameter density.",
+          "dependsOn": [
+            "M33-B-01"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M33-B-03",
+          "title": "Posterior predictive laws",
+          "exitTask": "Integrate the sampling law over the continuous parameter posterior, derive a predictive probability and explain uncertainty omitted by a point-estimate plug-in.",
+          "dependsOn": [
+            "M33-B-02"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M33-B-04",
+          "title": "Loss-dependent estimates and credible sets",
+          "exitTask": "Derive posterior expected-loss actions under stated squared/absolute/finite-action losses; construct a credible set and explain why its probability statement differs from confidence-interval coverage.",
+          "dependsOn": [
+            "M33-B-03"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M33-B-05",
+          "title": "Prior/model criticism and computation",
+          "exitTask": "Compare priors on an explicit scientific model, check prior and posterior predictive implications with reproducible quadrature or simulation, and refuse a claim that internal Bayes consistency validates the population model.",
+          "dependsOn": [
+            "M33-B-04"
+          ],
+          "evidenceStatus": "task-contract-only-no-learner-evidence"
+        },
+        {
+          "id": "M33-B-06",
+          "title": "Reproducible Bayesian defence",
+          "exitTask": "Defend a small Bayesian analysis with data provenance, identifiability/support checks, prior sensitivity, predictive checks and a held-out evaluation; separate supplied numerical assistance from independent mathematical and coding evidence.",
+          "dependsOn": [
+            "M33-B-05"
           ],
           "evidenceStatus": "task-contract-only-no-learner-evidence"
         }

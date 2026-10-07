@@ -1,5 +1,5 @@
 {
-  "version": "current-publication-2026-10-07-r1",
+  "version": "current-publication-2026-10-07-r2-m06",
   "sourceBase": "38441e4b61ca89ead4370ad497915a94d8b055cf",
   "policy": "Current versions/counts/review labels are read from current core/supplement packs. A merged candidate is not automatically independently certified. The historical SEMANTIC-PREREQUISITES acceptance labels establish boundary ancestry, not current-content certification. M16–M65 remain inherited/macro-only and unadapted.",
   "modules": [
@@ -71,27 +71,16 @@
     {
       "order": 6,
       "id": "ARC502",
-      "coreVersion": "m06-authoring-astra-r1",
-      "coreStatus": "authored-astra-repaired-independent-accepted",
-      "coreSessionCount": 24,
-      "coreTaskCount": 48,
-      "runtimeSessionCount": 28,
-      "runtimeFixedTaskCount": 56,
+      "coreVersion": "m06-authoring-v2.0-whole-curriculum-candidate",
+      "coreStatus": "v2.0-builder-checked-candidate-awaiting-independent-review",
+      "coreSessionCount": 36,
+      "coreTaskCount": 72,
+      "runtimeSessionCount": 36,
+      "runtimeFixedTaskCount": 72,
       "semanticBoundaryStatus": "accepted",
-      "contentReviewAuthority": "course/t22/authoring/m06.json",
-      "supplements": [
-        {
-          "source": "course/t22/authoring/m06-decision-bridge.json",
-          "version": "m06-decision-bridge-v1-candidate",
-          "status": "builder-checked-candidate-awaiting-independent-review",
-          "sessionIds": [
-            "T22V3::ARC502::S25@1",
-            "T22V3::ARC502::S26@1",
-            "T22V3::ARC502::S27@1",
-            "T22V3::ARC502::S28@1"
-          ]
-        }
-      ]
+      "contentReviewAuthority": "course/t22/authoring/m06-v2.json",
+      "supplements": [],
+      "historicalReviewAuthority": "course/t22/authoring/m06.json (24-session old content only)"
     },
     {
       "order": 7,

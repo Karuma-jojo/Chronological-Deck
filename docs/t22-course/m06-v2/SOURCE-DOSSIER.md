@@ -1,0 +1,17 @@
+# M06 v2 source dossier
+
+Checked 2026-10-07. Existing Drive books are sufficient for this module's finite scope; no additional upload is needed. The sources provide mathematical and pedagogical guidance, not independent approval of this candidate. Private PDFs and extracted text are not copied into the repository.
+
+| Source | Consulted sections | Role | Boundary or correction |
+|---|---|---|---|
+| [Blitzstein & Hwang, Introduction to Probability, second edition](https://drive.google.com/file/d/1Q8Pdg7Dj5ZMnUFLYeHAy0_vNCAPkFs5t/view) | §§2.3–2.6, printed52–68; PDF69–85 | Joint derivation, natural frequencies, odds, conditional probability laws, independence distinctions, exact update coherence | Ordinary finite conditionals require positive conditioning mass; use joint weights for zero-prior cells. Selected PDF79 was rendered and inspected to check extra-conditioning notation. |
+| [McElreath, Statistical Rethinking, second edition](https://drive.google.com/file/d/1FAZsk9Vfo3MPZ5_uTln-O3HxOtzOB1Cy/view) | Chapter2 finite weighting/model-story passages; §3.3 printed64–66 | Construct rather than memorize, separate a model from the world, carry hypothesis uncertainty into prediction | Teach the finite analogue only. Continuous parameter posteriors, integrations, Stan and sampling algorithms do not become M06 prerequisites. |
+| [Peterson, An Introduction to Decision Theory, second edition](https://drive.google.com/file/d/1jGAuzxgeKqIb0y6iMJsjGGwVHL2jSENj/view) | §§6.3–6.4, printed131–136 | Bayes and unknown-prior motivation; source criticism | Reject unconditional prior-washing/convergence-to-truth statements. Zero-prior support exclusion and omitted models supply counterexamples; a realized update need not move closer to truth. |
+| [MIT14.123 Decision Making under Risk](https://ocw.mit.edu/courses/14-123-microeconomic-theory-iii-spring-2015/resources/mit14_123s15_chap2/) | Supplied numerical lottery preferences/representation context | Reuse M05's explicit utility criterion rather than selecting actions from posterior probability alone | General vNM proof remains planned M09-U. Finite action/report values cannot be presented as a theorem about arbitrary utility or games. |
+| [Harvard Stat110](https://stat110.hsites.harvard.edu/) | Official course/book source availability checked | Primary provenance for the probability text | A university course/book reference does not establish that our module is PG-complete or learner-tested. |
+
+The authoring pack's source ledger records section-level roles. All new tasks, tables, reports, utilities and histories are original. No textbook exercise bank is copied. Instruction intentionally uses different models/numbers from the fixed tasks, but similar reasoning remains honestly classified as retrieval, reconstruction or decision audit. Distinct numbers do not prove fresh transfer.
+
+The all65 stable-ID source scan is `whole-route-scan.json`. M33's inherited exclusion points Bayesian parameter inference back to M06 while M06 excludes it; the repair supplies a named M33-B branch after M26/M33 instead of pretending it is taught somewhere. M48 owns linear-Gaussian changing-state filtering, not unrestricted MCMC/particles. Broader Bayesian algorithms remain explicit specialisations outside the current core promise.
+
+For later M33-B, a specialist Bayesian inference text may add useful breadth. That possible future source need is not a gap in M06's finite foundation.

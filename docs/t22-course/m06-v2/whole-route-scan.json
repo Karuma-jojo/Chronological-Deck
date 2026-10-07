@@ -1,0 +1,2182 @@
+[
+  {
+    "order": 1,
+    "id": "T22E-FND01",
+    "title": "Quantitative Foundations I — Numeracy & Algebra",
+    "source": "early authored source / macro contract",
+    "prerequisites": [],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 2,
+    "id": "T22E-FND02",
+    "title": "Quantitative Foundations II — Functions & Precalculus",
+    "source": "early authored source / macro contract",
+    "prerequisites": [
+      "T22E-FND01"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 3,
+    "id": "T22E-DISC01",
+    "title": "Mathematical Reasoning & Discrete Foundations",
+    "source": "early authored source / macro contract",
+    "prerequisites": [
+      "T22E-FND01",
+      "T22E-FND02"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 4,
+    "id": "ARC048",
+    "title": "Finite Probability, Conditional Probability, Independence & Expectation",
+    "source": "js/data/t22-rich-module-17.js",
+    "prerequisites": [
+      "T22E-DISC01"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 7,
+        "text": "\"Build probability from explicit outcome models, event algebra and counting into conditional reasoning, independence and expectation, so later Bayesian inference, random variables, sampling theory, stochastic models and market applications rest on auditable probability structure rather than intuition or formula recall.\","
+      },
+      {
+        "line": 19,
+        "text": "\"Bayes' rule as a dedicated inference framework — ARC502\","
+      },
+      {
+        "line": 107,
+        "text": "\"A04 owns probability after conditioning on information and introduces the product/total-probability structure needed later for Bayes.\","
+      },
+      {
+        "line": 112,
+        "text": "\"Quantitative research constantly asks how probabilities change after observing information; conditional probability is the primitive operation behind likelihoods, Bayesian updating and state-dependent risk.\","
+      },
+      {
+        "line": 127,
+        "text": "\"Transfer conditioning to an unfamiliar diagnostic, signal or filtering scenario without invoking Bayes as a memorized formula\","
+      },
+      {
+        "line": 133,
+        "text": "explicitlyOutOfScope: [\"Bayes' rule as a full updating framework — ARC502\", \"Regular conditional probabilities\", \"Continuous conditioning\"],"
+      },
+      {
+        "line": 140,
+        "text": "\"Independence assumptions drive model factorization, likelihood construction, simulation and risk aggregation; unjustified independence is one of the most consequential shortcuts in quantitative work.\","
+      }
+    ]
+  },
+  {
+    "order": 5,
+    "id": "T22E-TRD01",
+    "title": "Trading Games & Decisions Under Uncertainty",
+    "source": "early authored source / macro contract",
+    "prerequisites": [
+      "ARC048"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 6,
+    "id": "ARC502",
+    "title": "Bayes, Base Rates & Sequential Updating",
+    "source": "js/data/t22-rich-module-19.js",
+    "prerequisites": [
+      "ARC048",
+      "T22E-TRD01"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 7,
+        "text": "\"Build Bayesian updating as disciplined conditional-probability reasoning: make base rates explicit, derive Bayes' rule instead of memorizing it, use odds and likelihood ratios to separate prior information from evidential weight, update sequentially without double-counting evidence, and stress-test conclusions against prior and model assumptions.\","
+      },
+      {
+        "line": 9,
+        "text": "\"The learner can translate a verbal evidence problem into hypotheses, priors, likelihoods and posteriors; derive and apply Bayes' rule; express evidence through likelihood ratios and posterior odds; perform coherent sequential updates when conditional assumptions are stated; and diagnose when a posterior is being driven by fragile priors, misspecified likelihoods, dependent evidence or an incomplete hypothesis set.\","
+      },
+      {
+        "line": 17,
+        "text": "\"Continuous-distribution Bayes calculations requiring densities — ARC517\","
+      },
+      {
+        "line": 18,
+        "text": "\"Bayesian parameter estimation, conjugate-prior families or posterior predictive modelling\","
+      },
+      {
+        "line": 19,
+        "text": "\"Likelihood construction and maximum likelihood estimation — ARC531\","
+      },
+      {
+        "line": 20,
+        "text": "\"Formal decision theory, utility and Bayes-optimal actions\","
+      },
+      {
+        "line": 21,
+        "text": "\"Sampling-based posterior computation such as MCMC\","
+      },
+      {
+        "line": 22,
+        "text": "\"Bayesian networks or graphical-model algorithms\","
+      },
+      {
+        "line": 28,
+        "text": "\"Quantitative researchers constantly evaluate signals, screens, alerts and rare-event hypotheses; ignoring prevalence can make apparently strong evidence produce weak posterior odds.\","
+      },
+      {
+        "line": 30,
+        "text": "\"Make the base-rate problem operational before introducing Bayes' rule so updating is motivated by a concrete failure of naive evidence interpretation.\","
+      },
+      {
+        "line": 32,
+        "text": "\"A high hit rate P(E|H) does not imply a high probability P(H|E); the posterior also depends on how common H was before observing E and how often E occurs when H is false.\","
+      },
+      {
+        "line": 35,
+        "text": "\"Given a rare-hypothesis evidence problem, reconstruct the population or probability table, distinguish the two conditional directions, and explain quantitatively how the base rate changes the posterior conclusion.\","
+      },
+      {
+        "line": 37,
+        "text": "\"Distinguish sensitivity-like quantities P(E|H) from posterior quantities P(H|E)\","
+      },
+      {
+        "line": 40,
+        "text": "\"Explain why a strong test or signal can still yield a modest posterior when the hypothesis is rare\","
+      },
+      {
+        "line": 42,
+        "text": "\"Identify what additional probability information is required before the posterior is identifiable\","
+      },
+      {
+        "line": 50,
+        "text": "\"General Bayesian parameter estimation\","
+      },
+      {
+        "line": 55,
+        "text": "\"A02 owns the general algebraic identity that converts prior probability and likelihood information into posterior probability.\","
+      },
+      {
+        "line": 58,
+        "text": "focus: \"Deriving Bayes' rule from conditional probability and total probability.\","
+      },
+      {
+        "line": 60,
+        "text": "\"Bayes' rule is a reusable research identity for reversing conditional direction without hand-waving, provided the hypotheses and evidence model are stated correctly.\","
+      },
+      {
+        "line": 62,
+        "text": "\"Derive Bayes' rule from definitions and make every denominator term interpretable rather than treat the formula as a black box.\","
+      },
+      {
+        "line": 64,
+        "text": "\"The posterior requires normalization over all ways the evidence could occur; omitting competing hypotheses or using the wrong denominator produces numerically plausible but logically invalid answers.\","
+      },
+      {
+        "line": 69,
+        "text": "\"Derive Bayes' rule by equating two factorizations of a joint probability\","
+      },
+      {
+        "line": 72,
+        "text": "\"Compute a posterior for binary and small multi-hypothesis cases\","
+      },
+      {
+        "line": 73,
+        "text": "\"Check that posterior probabilities normalize to one across the hypothesis set\","
+      },
+      {
+        "line": 82,
+        "text": "\"Density-based Bayes theorem\","
+      },
+      {
+        "line": 87,
+        "text": "\"A03 owns the odds form of Bayes' rule and likelihood ratios as a clean measure of how evidence changes relative support.\","
+      },
+      {
+        "line": 90,
+        "text": "focus: \"Prior odds, posterior odds and likelihood ratios as evidence multipliers.\","
+      },
+      {
+        "line": 92,
+        "text": "\"Likelihood ratios separate evidential strength from prevalence and make it easier to compare signals across different prior environments without confusing probability with evidence weight.\","
+      },
+      {
+        "line": 94,
+        "text": "\"Reexpress Bayesian updating multiplicatively so the learner can reason about evidence strength independently of the initial odds.\","
+      },
+      {
+        "line": 96,
+        "text": "\"A likelihood ratio is not itself a posterior probability, and a large ratio can still leave posterior probability modest when prior odds are extremely small.\","
+      },
+      {
+        "line": 99,
+        "text": "\"Derive posterior odds = prior odds × likelihood ratio for two hypotheses, interpret LR>1, LR=1 and LR<1, and move correctly between probability and odds representations.\","
+      },
+      {
+        "line": 102,
+        "text": "\"Derive the posterior-odds identity from Bayes' rule\","
+      },
+      {
+        "line": 103,
+        "text": "\"Compute and interpret the likelihood ratio P(E|H1)/P(E|H0)\","
+      },
+      {
+        "line": 105,
+        "text": "\"Show numerically how the same likelihood ratio produces different posteriors under different priors\","
+      },
+      {
+        "line": 106,
+        "text": "\"Distinguish likelihood ratio, posterior odds and posterior probability\","
+      },
+      {
+        "line": 107,
+        "text": "\"Diagnose the error of calling a likelihood ratio a probability or confidence score\","
+      },
+      {
+        "line": 115,
+        "text": "\"Likelihood-ratio hypothesis tests and Neyman-Pearson optimality — ARC534\","
+      },
+      {
+        "line": 116,
+        "text": "\"Likelihood construction over unknown parameters — ARC531\","
+      },
+      {
+        "line": 117,
+        "text": "\"Log-likelihood optimization\","
+      },
+      {
+        "line": 123,
+        "text": "focus: \"Sequential Bayesian updating and conditional evidence dependence.\","
+      },
+      {
+        "line": 127,
+        "text": "\"Show how posterior beliefs become the next prior and establish the exact assumptions under which likelihood ratios multiply across observations.\","
+      },
+      {
+        "line": 129,
+        "text": "\"Repeated evidence is not automatically independent evidence; multiplying marginal likelihood ratios can double-count shared information and create severe overconfidence.\","
+      },
+      {
+        "line": 132,
+        "text": "\"Perform sequential updates by using the current posterior as the next prior, derive the chain-rule likelihood for multiple observations, and distinguish conditionally independent evidence from dependent or duplicated evidence.\","
+      },
+      {
+        "line": 134,
+        "text": "\"Update a prior with one observation and carry the posterior forward as the next prior\","
+      },
+      {
+        "line": 135,
+        "text": "\"Derive the joint likelihood of sequential observations with the probability chain rule\","
+      },
+      {
+        "line": 136,
+        "text": "\"Show when conditional independence given each hypothesis allows likelihood ratios to multiply\","
+      },
+      {
+        "line": 146,
+        "text": "\"An unfamiliar case where multiple apparently distinct pieces of evidence are partially redundant and naive likelihood multiplication must be rejected.\","
+      },
+      {
+        "line": 148,
+        "text": "\"Hidden Markov models and filtering — ARC543/ARC524\","
+      },
+      {
+        "line": 149,
+        "text": "\"Continuous-time Bayesian filtering\","
+      },
+      {
+        "line": 154,
+        "text": "\"A05 owns robustness: how much the posterior depends on prior choices, likelihood assumptions and the hypothesis/model set itself.\","
+      },
+      {
+        "line": 157,
+        "text": "focus: \"Prior sensitivity, likelihood misspecification and model dependence of posterior conclusions.\","
+      },
+      {
+        "line": 159,
+        "text": "\"A posterior can look mathematically precise while being substantively fragile; quantitative research requires knowing whether evidence overwhelms reasonable priors or whether conclusions mostly reflect modelling choices.\","
+      },
+      {
+        "line": 161,
+        "text": "\"Turn Bayesian updating into an auditable research argument by stress-testing the prior, likelihood and hypothesis set instead of reporting a single posterior as if it were assumption-free.\","
+      },
+      {
+        "line": 163,
+        "text": "\"Bayes' rule is exact conditional on the model, but the model inputs are not automatically true; a posterior can be highly sensitive to prior odds, evidence probabilities or omitted alternatives.\","
+      },
+      {
+        "line": 166,
+        "text": "\"Stress-test a posterior over plausible priors and likelihood values, identify which assumptions dominate, and state conclusions with calibrated language that distinguishes conditional mathematical certainty from empirical model uncertainty.\","
+      },
+      {
+        "line": 168,
+        "text": "\"Recompute posterior conclusions across a defensible range of prior probabilities\","
+      },
+      {
+        "line": 170,
+        "text": "\"Identify when posterior conclusions remain prior-dominated\","
+      },
+      {
+        "line": 171,
+        "text": "\"Stress-test sensitivity to false-positive/false-negative or likelihood assumptions\","
+      },
+      {
+        "line": 172,
+        "text": "\"Explain how omitted hypotheses can distort normalization and posterior interpretation\","
+      },
+      {
+        "line": 174,
+        "text": "\"Diagnose a falsely precise posterior claim whose assumptions are untested\","
+      },
+      {
+        "line": 175,
+        "text": "\"Write a concise posterior conclusion that states the key prior/model dependence and what new evidence would be most informative\","
+      },
+      {
+        "line": 179,
+        "text": "\"Small Bayesian evidence analyses where priors and likelihoods can be varied explicitly and the stability of the substantive conclusion can be inspected.\","
+      },
+      {
+        "line": 181,
+        "text": "\"A new claim whose posterior appears decisive under one modelling choice but changes materially under another plausible prior or evidence model.\","
+      },
+      {
+        "line": 183,
+        "text": "\"Hierarchical Bayesian modelling\","
+      },
+      {
+        "line": 184,
+        "text": "\"Formal Bayesian model averaging\","
+      },
+      {
+        "line": 185,
+        "text": "\"Posterior predictive checks requiring full distribution theory\","
+      },
+      {
+        "line": 186,
+        "text": "\"Bayesian decision theory\","
+      },
+      {
+        "line": 189,
+        "text": "\"M20 / ARC503 owns how samples are generated, selected and summarized; later ARC517 supplies general random-variable/distribution machinery and ARC531 owns formal likelihood-based statistical models.\","
+      }
+    ]
+  },
+  {
+    "order": 7,
+    "id": "T22E-MKT01",
+    "title": "Markets 0 — Prices, Returns & Trading Mechanics",
+    "source": "early authored source / macro contract",
+    "prerequisites": [
+      "T22E-FND01",
+      "T22E-FND02",
+      "T22E-TRD01"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 8,
+    "id": "T22E-CODE01",
+    "title": "Quant Programming & Simulation Foundations",
+    "source": "early authored source / macro contract",
+    "prerequisites": [
+      "T22E-FND01",
+      "T22E-DISC01",
+      "ARC048"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 9,
+    "id": "SIDE263",
+    "title": "Sequences, Convergence & Limits",
+    "source": "js/data/t22-rich-module-2.js",
+    "prerequisites": [
+      "T22E-FND02",
+      "T22E-DISC01"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 10,
+    "id": "ARC053",
+    "title": "Derivatives & Local Linearity",
+    "source": "early authored source / macro contract",
+    "prerequisites": [
+      "T22E-FND02",
+      "SIDE263"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 11,
+    "id": "ARC510",
+    "title": "Integration & Accumulation",
+    "source": "js/data/t22-rich-module-3.js",
+    "prerequisites": [
+      "SIDE263",
+      "ARC053"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 21,
+        "text": "\"Probability distributions, densities, expectations and likelihood integrals as a subject — owned later by ARC517 and statistical modules\","
+      },
+      {
+        "line": 235,
+        "text": "\"Variable transformations recur in probability, likelihood work, simulation and model reparameterization. The important habit is tracking the transformation, derivative factor, bounds and domain rather than performing symbolic substitution by pattern.\","
+      }
+    ]
+  },
+  {
+    "order": 12,
+    "id": "SIDE267",
+    "title": "Taylor Approximation, Asymptotics & Error",
+    "source": "js/data/t22-rich-module-9.js",
+    "prerequisites": [
+      "SIDE263",
+      "ARC053"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 13,
+    "id": "ARC511",
+    "title": "Vectors, Span, Basis & Dot Products",
+    "source": "js/data/t22-rich-module-4.js",
+    "prerequisites": [
+      "T22E-FND01",
+      "T22E-DISC01"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 14,
+    "id": "SIDE276",
+    "title": "Matrices, Linear Maps & Linear Systems",
+    "source": "js/data/t22-rich-module-5.js",
+    "prerequisites": [
+      "ARC511"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 266,
+        "text": "\"Determinants later appear in density transformations, covariance/likelihood expressions and matrix calculus. Their useful content is structural—volume scaling, orientation, invertibility and multiplicativity—not cofactor arithmetic for its own sake.\","
+      }
+    ]
+  },
+  {
+    "order": 15,
+    "id": "SIDE278",
+    "title": "Orthogonality, Projection & Least Squares Geometry",
+    "source": "js/data/t22-rich-module-6.js",
+    "prerequisites": [
+      "SIDE276"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 16,
+    "id": "SIDE279",
+    "title": "Eigenvalues, Eigenvectors & Spectral Structure",
+    "source": "js/data/t22-rich-module-7.js",
+    "prerequisites": [
+      "SIDE276"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 17,
+    "id": "SIDE280",
+    "title": "PSD Matrices, QR, Cholesky & SVD",
+    "source": "js/data/t22-rich-module-8.js",
+    "prerequisites": [
+      "SIDE278",
+      "SIDE279"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 18,
+    "id": "SIDE271",
+    "title": "Multivariable Calculus — Gradients, Jacobians & Hessians",
+    "source": "js/data/t22-rich-module-10.js",
+    "prerequisites": [
+      "ARC053",
+      "ARC511",
+      "SIDE276"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 55,
+        "text": "\"Gradients are the basic local-sensitivity objects behind likelihoods, optimization, risk surfaces and machine-learning objectives.\","
+      },
+      {
+        "line": 112,
+        "text": "\"Nested parameter transformations, feature maps, likelihoods and computational graphs all require correct propagation of multivariable sensitivity.\","
+      },
+      {
+        "line": 169,
+        "text": "\"Curvature of objective and likelihood surfaces determines local identification, sensitivity, uncertainty approximations and the behavior of second-order optimization methods later in T22.\","
+      },
+      {
+        "line": 198,
+        "text": "\"Quantitative researchers need to read local curvature of loss, likelihood and risk surfaces before choosing or trusting optimization and approximation procedures.\","
+      },
+      {
+        "line": 214,
+        "text": "\"Transfer the quadratic-model logic to an unfamiliar loss/likelihood-style surface without running an optimization algorithm\","
+      },
+      {
+        "line": 220,
+        "text": "explicitlyOutOfScope: [\"Newton/quasi-Newton iteration\", \"Global convex optimization theory\", \"Constraints/KKT\", \"Statistical likelihood inference\", \"Matrix-variable objectives\"],"
+      }
+    ]
+  },
+  {
+    "order": 19,
+    "id": "ARC711",
+    "title": "Matrix Calculus for Quantitative Models",
+    "source": "js/data/t22-rich-module-11.js",
+    "prerequisites": [
+      "SIDE276",
+      "SIDE271"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 21,
+        "text": "\"Measure-theoretic likelihood theory, asymptotic inference and Fisher information — owned by ARC531/ARC533\","
+      },
+      {
+        "line": 111,
+        "text": "\"Trace identities compress matrix derivatives common in covariance, likelihood and machine-learning objectives, but careless use easily turns cyclic invariance into false commutativity.\","
+      },
+      {
+        "line": 167,
+        "text": "\"Log-determinants appear in Gaussian likelihoods, entropy-like quantities, covariance regularization and volume terms.\","
+      },
+      {
+        "line": 188,
+        "text": "explicitlyOutOfScope: [\"Asymptotic likelihood theory\", \"Random-matrix log determinants\", \"Numerical logdet algorithms\"],"
+      },
+      {
+        "line": 214,
+        "text": "\"A Gaussian negative-log-likelihood, covariance-model, weighted least-squares or portfolio-style objective chosen for structural richness rather than statistical inference depth.\","
+      },
+      {
+        "line": 224,
+        "text": "\"A research gradient that is subtly wrong can invalidate an optimizer, likelihood fit or backtest while still producing plausible numerical output.\","
+      },
+      {
+        "line": 243,
+        "text": "\"One adversarial review of a gradient intended for a quantitative model, likelihood or loss function, including an explicit verification record.\","
+      }
+    ]
+  },
+  {
+    "order": 20,
+    "id": "ARC512",
+    "title": "Differential Equations & Dynamical Systems",
+    "source": "js/data/t22-rich-module-12.js",
+    "prerequisites": [
+      "ARC510",
+      "SIDE276"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 170,
+        "text": "\"Whether perturbations decay, persist, oscillate or explode determines whether a dynamic model is usable for forecasting, filtering or local approximation.\","
+      }
+    ]
+  },
+  {
+    "order": 21,
+    "id": "T22E-CODE02",
+    "title": "Scientific Computing & Research Engineering",
+    "source": "early authored source / macro contract",
+    "prerequisites": [
+      "T22E-CODE01",
+      "SIDE276"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 22,
+    "id": "ARC717",
+    "title": "Quant Coding & Core Algorithms",
+    "source": "js/data/t22-rich-module-14.js",
+    "prerequisites": [
+      "T22E-CODE02"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 23,
+    "id": "ARC585",
+    "title": "Numerical Linear Algebra & Conditioning",
+    "source": "js/data/t22-rich-module-15.js",
+    "prerequisites": [
+      "SIDE280",
+      "T22E-CODE02"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 24,
+    "id": "ARC713",
+    "title": "Performance-Aware Scientific Computing",
+    "source": "js/data/t22-rich-module-16.js",
+    "prerequisites": [
+      "T22E-CODE02",
+      "ARC585"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 25,
+    "id": "ARC503",
+    "title": "Sampling, Empirical Distributions & Bias",
+    "source": "js/data/t22-rich-module-20.js",
+    "prerequisites": [
+      "T22E-DISC01",
+      "ARC048"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 188,
+        "text": "\"A06 owns integrated distributional diagnosis: detecting when observed sample shape is itself evidence of filtering, truncation or selection and deciding what can safely be concluded.\","
+      }
+    ]
+  },
+  {
+    "order": 26,
+    "id": "ARC517",
+    "title": "Random Variables, Distributions, Covariance & Conditioning",
+    "source": "js/data/t22-rich-module-21.js",
+    "prerequisites": [
+      "ARC048",
+      "ARC502",
+      "ARC510",
+      "SIDE271",
+      "ARC503"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 19,
+        "text": "\"Likelihood, MLE, score functions and Fisher information — ARC531/ARC533\","
+      },
+      {
+        "line": 160,
+        "text": "explicitlyOutOfScope: [\"Conditional expectation depth — A09\", \"Estimator expectations/bias — ARC504\", \"Expected utility theory\"],"
+      },
+      {
+        "line": 246,
+        "text": "\"A09 owns conditional distributions and conditional expectation obtained by restricting/reweighting a joint law given observed information.\","
+      },
+      {
+        "line": 249,
+        "text": "focus: \"Conditional distributions and conditional expectation as probability after observing another random variable.\","
+      },
+      {
+        "line": 258,
+        "text": "\"Compute discrete conditional PMFs and continuous conditional densities from a joint law where marginals are positive, then compute conditional expectations and verify the tower/total-expectation principle in concrete cases.\","
+      },
+      {
+        "line": 272,
+        "text": "explicitlyOutOfScope: [\"Bayesian parameter inference beyond ARC502\", \"Kalman filtering — ARC543\", \"Conditional expectation as Hilbert-space projection\"],"
+      },
+      {
+        "line": 365,
+        "text": "\"Continuous model assumptions drive likelihoods, simulations and risk calculations; researchers need to know what each common family asserts before using it as a convenient default.\","
+      }
+    ]
+  },
+  {
+    "order": 27,
+    "id": "ARC504",
+    "title": "Estimation, Standard Error & Confidence Intervals",
+    "source": "js/data/t22-rich-module-22.js",
+    "prerequisites": [
+      "ARC503",
+      "ARC517"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 20,
+        "text": "\"Likelihood, MLE and likelihood-based curvature/information — ARC531/ARC533\","
+      },
+      {
+        "line": 22,
+        "text": "\"Bayesian credible intervals and posterior uncertainty — ARC502/later Bayesian work\","
+      },
+      {
+        "line": 49,
+        "text": "explicitlyOutOfScope: [\"Estimator optimality theory beyond bias/variance/MSE\", \"Likelihood-based estimation\", \"Hypothesis testing\"],"
+      },
+      {
+        "line": 183,
+        "text": "\"Reject a Bayesian posterior-probability interpretation unless a Bayesian model has actually been specified\","
+      },
+      {
+        "line": 189,
+        "text": "explicitlyOutOfScope: [\"General CLT-based intervals — ARC712\", \"t-tests and hypothesis testing — ARC505\", \"Bootstrap intervals — ARC537\", \"Bayesian credible intervals\"],"
+      }
+    ]
+  },
+  {
+    "order": 28,
+    "id": "ARC712",
+    "title": "LLN, CLT & Concentration",
+    "source": "js/data/t22-rich-module-23.js",
+    "prerequisites": [
+      "SIDE263",
+      "ARC517",
+      "ARC504"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 29,
+    "id": "SIDE476",
+    "title": "Measurement Uncertainty & Error Propagation",
+    "source": "js/data/t22-rich-module-18.js",
+    "prerequisites": [
+      "ARC053",
+      "ARC504"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 20,
+        "text": "\"Bayesian uncertainty quantification — ARC502 and later statistical modelling\","
+      },
+      {
+        "line": 82,
+        "text": "explicitlyOutOfScope: [\"Statistical standardized residuals\", \"Likelihood-based scale models\", \"Formal condition numbers — ARC585\"],"
+      },
+      {
+        "line": 180,
+        "text": "\"M19 / ARC502 owns Bayesian updating from evidence; M20 onward builds sampling and distributional uncertainty on top of this measurement-discipline foundation.\","
+      }
+    ]
+  },
+  {
+    "order": 30,
+    "id": "ARC513",
+    "title": "Monte Carlo Methods & Simulation Diagnostics",
+    "source": "js/data/t22-rich-module-34.js",
+    "prerequisites": [
+      "T22E-CODE01",
+      "T22E-CODE02",
+      "ARC517",
+      "ARC712"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 21,
+        "text": "\"State-space simulation/filtering — ARC543\","
+      },
+      {
+        "line": 221,
+        "text": "\"A08 owns importance sampling: change the sampling law and correct the estimator with likelihood weights.\","
+      },
+      {
+        "line": 230,
+        "text": "\"Changing the sampling distribution changes the expectation unless every draw is corrected by the target-to-proposal likelihood ratio; even unbiased weighting can have catastrophic variance if the proposal undersamples important regions.\","
+      },
+      {
+        "line": 231,
+        "text": "entryPrerequisites: [\"T22-M34-A02-A04\", \"ARC517 densities/support\", \"Basic likelihood-ratio algebra\"],"
+      }
+    ]
+  },
+  {
+    "order": 31,
+    "id": "ARC505",
+    "title": "Hypothesis Tests, Power & Multiple Testing",
+    "source": "js/data/t22-rich-module-24.js",
+    "prerequisites": [
+      "ARC504",
+      "ARC712"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 18,
+        "text": "\"Likelihood-ratio, score and Wald testing from likelihood theory — ARC534 after ARC531/ARC533\","
+      },
+      {
+        "line": 21,
+        "text": "\"Bayesian hypothesis comparison and Bayes factors\","
+      },
+      {
+        "line": 76,
+        "text": "explicitlyOutOfScope: [\"General likelihood-ratio theory\", \"Bootstrap/permutation null distributions\", \"Regression-specific t/F distributions\"],"
+      },
+      {
+        "line": 83,
+        "text": "\"p-values remain common in empirical research and interviews; misreading them as posterior probabilities or effect sizes creates false certainty and bad model selection.\","
+      },
+      {
+        "line": 90,
+        "text": "\"Compute one- or two-tail p-values from a stated null distribution, define 'as or more extreme' through the chosen statistic, and refute posterior-probability/effect-size interpretations.\","
+      },
+      {
+        "line": 104,
+        "text": "explicitlyOutOfScope: [\"Bayesian posterior odds\", \"e-values\", \"Sequential/always-valid p-values\"],"
+      },
+      {
+        "line": 113,
+        "text": "\"Derive rejection regions from a chosen alpha and null law, and distinguish procedure size from realized p-values or posterior error probabilities.\","
+      },
+      {
+        "line": 132,
+        "text": "explicitlyOutOfScope: [\"Multiple-comparison adjustment\", \"Sequential testing\", \"Bayesian false-positive probabilities\"],"
+      },
+      {
+        "line": 264,
+        "text": "\"Interpret the guarantee as an expectation-level property rather than a posterior probability for each discovery\","
+      },
+      {
+        "line": 273,
+        "text": "explicitlyOutOfScope: [\"Knockoffs\", \"Local FDR/empirical Bayes\", \"Online FDR\", \"Post-selection inference\", \"Production backtest selection protocols\"],"
+      },
+      {
+        "line": 275,
+        "text": "\"M25 / ARC539 owns regression modelling and regression-specific uncertainty; later ARC534 revisits testing through likelihood-ratio/Wald/score machinery and ARC537 owns resampling-based inference.\","
+      }
+    ]
+  },
+  {
+    "order": 32,
+    "id": "ARC537",
+    "title": "Bootstrap, Permutation & Resampling Inference",
+    "source": "js/data/t22-rich-module-29.js",
+    "prerequisites": [
+      "T22E-CODE02",
+      "ARC504",
+      "ARC505"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 15,
+        "text": "\"ARC531 likelihood/MLE context for parametric-vs-nonparametric contrast\","
+      },
+      {
+        "line": 21,
+        "text": "\"Bayesian posterior simulation or MCMC\","
+      },
+      {
+        "line": 77,
+        "text": "explicitlyOutOfScope: [\"Dependent-data block resampling\", \"Weighted/bootstrap variants\", \"Bayesian bootstrap\"],"
+      },
+      {
+        "line": 158,
+        "text": "explicitlyOutOfScope: [\"Full BCa derivation\", \"Studentized bootstrap theory in depth\", \"Bayesian credible intervals\"],"
+      }
+    ]
+  },
+  {
+    "order": 33,
+    "id": "ARC531",
+    "title": "Likelihood, MLE & Identifiability",
+    "source": "js/data/t22-rich-module-26.js",
+    "prerequisites": [
+      "ARC053",
+      "ARC517",
+      "ARC504",
+      "T22E-CODE02"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 7,
+        "text": "\"Build likelihood as a model-based evidence function and maximum likelihood as an estimative optimization principle: define parametric families, distinguish probability from likelihood, construct and simplify joint likelihoods, derive and interpret log-likelihoods, solve one- and multi-parameter MLE problems, connect score and curvature to local estimation geometry, implement numerical likelihood optimization responsibly, and diagnose identifiability failures before downstream information or testing theory.\","
+      },
+      {
+        "line": 9,
+        "text": "\"The learner can start from a probabilistic model, write the correct likelihood under explicit sampling assumptions, derive and solve MLEs analytically when possible, formulate constrained and numerical MLEs when needed, compute score/Hessian objects as optimization diagnostics, and recognize non-identifiability or boundary pathologies rather than treating optimizer output as proof of a meaningful estimate.\","
+      },
+      {
+        "line": 19,
+        "text": "\"Likelihood-ratio, Wald, score and Neyman-Pearson testing theory — ARC534\","
+      },
+      {
+        "line": 21,
+        "text": "\"Bayesian posterior inference and prior modelling beyond likelihood comparison — ARC502\","
+      },
+      {
+        "line": 22,
+        "text": "\"General optimization algorithms beyond the minimum numerical machinery needed to solve likelihood problems — ARC514/ARC586\","
+      },
+      {
+        "line": 23,
+        "text": "\"Measure-theoretic statistics or advanced semiparametric/nonparametric likelihood theory\","
+      },
+      {
+        "line": 29,
+        "text": "purpose: \"Make the model family and parameter space explicit before any likelihood is written.\","
+      },
+      {
+        "line": 43,
+        "text": "explicitlyOutOfScope: [\"Likelihood calculation\", \"Bayesian priors\", \"Model selection criteria\"],"
+      },
+      {
+        "line": 44,
+        "text": "nextArcBoundary: \"A02 turns a fixed observed dataset into a function of the parameter: the likelihood.\","
+      },
+      {
+        "line": 47,
+        "text": "focus: \"Probability versus likelihood: same model expression, different variable held fixed.\","
+      },
+      {
+        "line": 49,
+        "text": "purpose: \"Establish likelihood as relative support for parameter values from fixed observed data, not as a normalized parameter probability distribution.\","
+      },
+      {
+        "line": 51,
+        "text": "entryPrerequisites: [\"T22-M26-A01\", \"ARC502 conditional probability/Bayesian distinction\"],"
+      },
+      {
+        "line": 52,
+        "text": "target: \"Given a model and observation, construct L(theta; x)=f_theta(x), explain what is and is not probabilistic about it, and compare parameter values without inventing a posterior distribution.\","
+      },
+      {
+        "line": 54,
+        "text": "\"State which quantity is fixed and which varies in a likelihood\","
+      },
+      {
+        "line": 55,
+        "text": "\"Distinguish a density value from a probability and a likelihood value from a parameter probability\","
+      },
+      {
+        "line": 56,
+        "text": "\"Compare two parameter values by their likelihood ratio\","
+      },
+      {
+        "line": 57,
+        "text": "\"Explain why likelihood need not integrate or sum to one over theta\","
+      },
+      {
+        "line": 61,
+        "text": "applicationScope: \"One-parameter discrete and continuous models with directly evaluable likelihoods.\","
+      },
+      {
+        "line": 63,
+        "text": "explicitlyOutOfScope: [\"Posterior distributions\", \"Formal likelihood-ratio testing\"],"
+      },
+      {
+        "line": 64,
+        "text": "nextArcBoundary: \"A03 owns construction of likelihoods from multiple observations and dependence assumptions.\","
+      },
+      {
+        "line": 67,
+        "text": "focus: \"Constructing joint likelihoods from the sampling model, including iid factorization and dependence caveats.\","
+      },
+      {
+        "line": 68,
+        "text": "roleRelevance: \"Every empirical likelihood calculation depends on how observations are assumed to combine; hidden independence assumptions can fabricate information.\","
+      },
+      {
+        "line": 69,
+        "text": "purpose: \"Build likelihoods from the joint data law rather than reflexively multiplying marginal terms.\","
+      },
+      {
+        "line": 72,
+        "text": "target: \"Derive a joint likelihood from a stated sampling mechanism, factorize it when justified, and preserve parameter-dependent terms while discarding only parameter-constant factors when appropriate.\","
+      },
+      {
+        "line": 74,
+        "text": "\"Write the joint likelihood before simplifying\","
+      },
+      {
+        "line": 83,
+        "text": "explicitlyOutOfScope: [\"General sufficient-statistic theory\", \"Dependent time-series likelihoods in full generality\"],"
+      },
+      {
+        "line": 84,
+        "text": "nextArcBoundary: \"A04 transforms products into sums and exposes the optimization structure through the log-likelihood.\","
+      },
+      {
+        "line": 87,
+        "text": "focus: \"Log-likelihood as a monotone transformation that preserves maximizers while improving algebra and computation.\","
+      },
+      {
+        "line": 88,
+        "text": "roleRelevance: \"Real research likelihoods are almost always optimized in log form for derivative structure and numerical robustness.\","
+      },
+      {
+        "line": 89,
+        "text": "purpose: \"Derive log-likelihoods, simplify them correctly, and understand exactly why maximization is preserved.\","
+      },
+      {
+        "line": 92,
+        "text": "target: \"Convert a positive likelihood into a log-likelihood, prove argmax preservation, simplify products/powers, and identify domain or zero-likelihood edge cases.\","
+      },
+      {
+        "line": 94,
+        "text": "\"Derive a log-likelihood from a joint likelihood\","
+      },
+      {
+        "line": 97,
+        "text": "\"Handle zero-probability or boundary cases where log-likelihood is minus infinity\","
+      },
+      {
+        "line": 101,
+        "text": "applicationScope: \"Analytic and computational simplification of finite-sample likelihoods.\","
+      },
+      {
+        "line": 102,
+        "text": "transferScope: \"A new likelihood where the learner must determine which terms can be safely removed and which constraints remain.\","
+      },
+      {
+        "line": 104,
+        "text": "nextArcBoundary: \"A05 uses the likelihood/log-likelihood objective to define and derive maximum-likelihood estimators.\","
+      },
+      {
+        "line": 107,
+        "text": "focus: \"Maximum likelihood estimation as parameter-space optimization with first- and second-order verification.\","
+      },
+      {
+        "line": 115,
+        "text": "\"Differentiate a log-likelihood and solve the score equation in a tractable model\","
+      },
+      {
+        "line": 127,
+        "text": "focus: \"Multiparameter and constrained maximum likelihood.\","
+      },
+      {
+        "line": 132,
+        "text": "target: \"Formulate and solve tractable vector-parameter likelihoods, characterize stationary points, and handle simple equality/inequality or positivity constraints without leaving the parameter space.\","
+      },
+      {
+        "line": 134,
+        "text": "\"Write a vector-parameter log-likelihood and gradient\","
+      },
+      {
+        "line": 143,
+        "text": "explicitlyOutOfScope: [\"General KKT theory — later optimization modules\", \"High-dimensional regularized likelihood\"],"
+      },
+      {
+        "line": 144,
+        "text": "nextArcBoundary: \"A07 isolates the score as the first derivative of log-likelihood and studies what it means locally.\","
+      },
+      {
+        "line": 147,
+        "text": "focus: \"Score functions as local sensitivity of log-likelihood to parameter perturbations.\","
+      },
+      {
+        "line": 154,
+        "text": "\"Differentiate a log-likelihood to obtain the score\","
+      },
+      {
+        "line": 164,
+        "text": "nextArcBoundary: \"A08 studies second derivatives and local likelihood curvature without yet claiming full information theory.\","
+      },
+      {
+        "line": 167,
+        "text": "focus: \"Hessian and likelihood curvature as local geometry of estimation objectives.\","
+      },
+      {
+        "line": 172,
+        "text": "target: \"Compute the Hessian of a log-likelihood, classify local curvature at candidate optima, and diagnose flat/near-flat directions or coupled parameters.\","
+      },
+      {
+        "line": 174,
+        "text": "\"Compute scalar or matrix second derivatives of a log-likelihood\","
+      },
+      {
+        "line": 179,
+        "text": "\"Transfer curvature reasoning to a two-parameter likelihood\","
+      },
+      {
+        "line": 181,
+        "text": "applicationScope: \"Low-dimensional likelihood surfaces whose Hessian can be derived and inspected directly.\","
+      },
+      {
+        "line": 184,
+        "text": "nextArcBoundary: \"A09 moves from analytic MLEs to numerical optimization while preserving likelihood diagnostics and constraints.\","
+      },
+      {
+        "line": 187,
+        "text": "focus: \"Numerical maximum likelihood: stable objective evaluation, parameterization, initialization and verification.\","
+      },
+      {
+        "line": 190,
+        "text": "principalObstacle: \"Overflow/underflow, invalid parameter proposals, local optima, poor scaling and flat likelihoods can produce plausible-looking but unreliable estimates.\","
+      },
+      {
+        "line": 192,
+        "text": "target: \"Implement and audit a numerical log-likelihood optimization using stable evaluation, constraint-aware parameterization and independent post-fit checks.\","
+      },
+      {
+        "line": 194,
+        "text": "\"Implement a log-likelihood from a stated model\","
+      },
+      {
+        "line": 199,
+        "text": "\"Construct a reproducible failure case caused by poor parameterization or raw likelihood underflow and repair it\","
+      },
+      {
+        "line": 203,
+        "text": "transferScope: \"A new likelihood where numerical success must be defended through model-domain and post-optimization evidence.\","
+      },
+      {
+        "line": 209,
+        "text": "roleRelevance: \"Non-identifiability can make reported estimates arbitrary even when code converges and the likelihood is optimized perfectly.\","
+      },
+      {
+        "line": 217,
+        "text": "\"Distinguish non-identifiability from weak identification/flat finite-sample likelihood\","
+      }
+    ]
+  },
+  {
+    "order": 34,
+    "id": "ARC533",
+    "title": "Fisher Information, Efficiency & Asymptotic Precision",
+    "source": "js/data/t22-rich-module-27.js",
+    "prerequisites": [
+      "SIDE271",
+      "ARC712",
+      "ARC531"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 7,
+        "text": "\"Turn the score and likelihood curvature from ARC531 into a rigorous information framework: define Fisher information through score variability and expected curvature under explicit regularity conditions, distinguish observed from expected information, prove information additivity for independent samples, derive and interpret the Cramer-Rao lower bound with its hypotheses, and connect information geometry to finite-sample estimator variance and regular asymptotic MLE behavior without overclaiming exact efficiency.\","
+      },
+      {
+        "line": 11,
+        "text": "\"ARC531 likelihoods, log-likelihoods, score functions, Hessians, MLE and identifiability\","
+      },
+      {
+        "line": 18,
+        "text": "\"Neyman-Pearson theory, likelihood-ratio tests, Wald tests and score tests — ARC534\","
+      },
+      {
+        "line": 20,
+        "text": "\"Bayesian posterior curvature or Bernstein-von Mises theory\","
+      },
+      {
+        "line": 31,
+        "text": "\"Build the conceptual bridge from likelihood sensitivity to statistical information without introducing a formula before the object it measures is clear.\","
+      },
+      {
+        "line": 33,
+        "text": "\"A sharply changing likelihood can indicate local parameter distinguishability, but raw curvature at one realized sample is data-dependent and parameterization-sensitive; information must be defined through a repeated-sampling object with explicit regularity conditions.\","
+      },
+      {
+        "line": 34,
+        "text": "entryPrerequisites: [\"ARC531 score and likelihood curvature\", \"ARC504 estimator variability\"],"
+      },
+      {
+        "line": 38,
+        "text": "\"Compare two models whose likelihoods react differently to small parameter perturbations\","
+      },
+      {
+        "line": 39,
+        "text": "\"Explain why flatter likelihood regions imply weaker local parameter determination\","
+      },
+      {
+        "line": 40,
+        "text": "\"Distinguish realized likelihood curvature from a model-level expected quantity\","
+      },
+      {
+        "line": 42,
+        "text": "\"Construct a counterexample where a sharp realized likelihood does not justify a universal information claim\","
+      },
+      {
+        "line": 46,
+        "text": "\"Low-dimensional regular parametric models where local likelihood sensitivity can be visualized or computed directly.\","
+      },
+      {
+        "line": 49,
+        "text": "explicitlyOutOfScope: [\"Formal Fisher-information formulas\", \"Hypothesis testing\", \"Bayesian information measures\"],"
+      },
+      {
+        "line": 54,
+        "text": "focus: \"Score variability as a repeated-sampling measure of local likelihood sensitivity.\","
+      },
+      {
+        "line": 81,
+        "text": "focus: \"Fisher information from score variance and expected negative log-likelihood curvature.\","
+      },
+      {
+        "line": 104,
+        "text": "explicitlyOutOfScope: [\"Cramer-Rao bound\", \"Likelihood-ratio/Wald/score tests\", \"Global model comparison\"],"
+      },
+      {
+        "line": 111,
+        "text": "\"Practical likelihood software often reports curvature at the fitted sample, while theory may invoke expectation under the model; confusing the two can hide finite-sample instability.\","
+      },
+      {
+        "line": 116,
+        "text": "entryPrerequisites: [\"T22-M27-A03\", \"ARC531 likelihood Hessians\"],"
+      },
+      {
+        "line": 125,
+        "text": "\"Transfer the distinction to numerical likelihood output\","
+      },
+      {
+        "line": 128,
+        "text": "\"Finite-sample likelihoods in which Hessian curvature can be computed analytically or numerically.\","
+      },
+      {
+        "line": 140,
+        "text": "\"Derive information growth from additive scores/log-likelihoods rather than treating I_n=nI_1 as a universal sample-size law.\","
+      },
+      {
+        "line": 142,
+        "text": "\"Information adds because independent joint log-likelihoods and score covariances combine in a specific way; dependence or heterogeneous observations change the formula.\","
+      },
+      {
+        "line": 143,
+        "text": "entryPrerequisites: [\"T22-M27-A03-A04\", \"ARC517 independence/covariance\", \"ARC531 joint likelihoods\"],"
+      },
+      {
+        "line": 186,
+        "text": "explicitlyOutOfScope: [\"Biased Cramer-Rao variants in full generality\", \"Semiparametric efficiency bounds\", \"Bayesian lower bounds\"],"
+      },
+      {
+        "line": 193,
+        "text": "\"Likelihood-based quantitative models routinely report inverse-information standard errors, so researchers must know the theorem-shaped assumptions behind those numbers.\","
+      },
+      {
+        "line": 208,
+        "text": "\"Transfer the audit to numerical likelihood output from an unfamiliar model\","
+      },
+      {
+        "line": 216,
+        "text": "\"Likelihood-ratio, Wald and score tests — ARC534\","
+      },
+      {
+        "line": 221,
+        "text": "\"M28 / ARC534 owns likelihood-based hypothesis testing, including likelihood-ratio, Wald and score-test structures built on M24-M27.\","
+      }
+    ]
+  },
+  {
+    "order": 35,
+    "id": "ARC534",
+    "title": "Likelihood-Ratio & Optimal Testing Theory",
+    "source": "js/data/t22-rich-module-28.js",
+    "prerequisites": [
+      "ARC505",
+      "ARC531",
+      "ARC533"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 7,
+        "text": "\"Build likelihood-based hypothesis testing from first principles: start with simple-vs-simple decisions, interpret likelihood ratios as evidence, derive Neyman-Pearson optimality, analyze power functions, generalize to likelihood-ratio tests for composite models, examine uniformly most powerful structure when it exists, and finish by diagnosing the assumptions and trade-offs that prevent 'optimal test' claims from being universal.\","
+      },
+      {
+        "line": 9,
+        "text": "\"The learner can construct and justify likelihood-based tests from stated models and error constraints, derive rejection rules rather than memorize them, compute and compare power functions, distinguish simple from composite hypotheses, recognize when UMP claims are available or impossible, and audit regularity, nuisance-parameter, multiplicity and model-misspecification limits before trusting asymptotic or optimality claims.\","
+      },
+      {
+        "line": 12,
+        "text": "\"ARC531 likelihoods, log-likelihoods and MLE\","
+      },
+      {
+        "line": 13,
+        "text": "\"ARC533 score, information and regular asymptotic likelihood geometry\","
+      },
+      {
+        "line": 22,
+        "text": "\"Full decision-theoretic Bayes risk/minimax testing theory\","
+      },
+      {
+        "line": 23,
+        "text": "\"High-dimensional likelihood theory and nonstandard empirical-process asymptotics\","
+      },
+      {
+        "line": 40,
+        "text": "\"Distinguish a test rule from a posterior probability claim\","
+      },
+      {
+        "line": 49,
+        "text": "explicitlyOutOfScope: [\"Neyman-Pearson optimality\", \"Composite hypotheses\", \"Asymptotic chi-square likelihood-ratio tests\"],"
+      },
+      {
+        "line": 51,
+        "text": "\"A02 identifies the likelihood ratio as the natural evidence ordering between two simple models.\","
+      },
+      {
+        "line": 54,
+        "text": "focus: \"Likelihood ratios as relative evidence for two specified hypotheses.\","
+      },
+      {
+        "line": 56,
+        "text": "\"Likelihood ratios compress model comparison into the relative support that the observed data provide under two competing mechanisms.\","
+      },
+      {
+        "line": 58,
+        "text": "\"Derive why f1(x)/f0(x) orders observations by evidence for H1 versus H0 without confusing that ratio with posterior odds.\","
+      },
+      {
+        "line": 60,
+        "text": "\"The likelihood ratio is a data-dependent comparison of model fit, not P(H1|x)/P(H0|x) unless prior odds and a Bayesian model are explicitly supplied.\","
+      },
+      {
+        "line": 61,
+        "text": "entryPrerequisites: [\"T22-M28-A01\", \"ARC531 probability versus likelihood\"],"
+      },
+      {
+        "line": 63,
+        "text": "\"Compute likelihood ratios, interpret their direction and scale correctly, and translate thresholds on the ratio into rejection regions.\","
+      },
+      {
+        "line": 65,
+        "text": "\"Compute a likelihood ratio for discrete and continuous simple models\","
+      },
+      {
+        "line": 66,
+        "text": "\"Explain why ratios above one favor H1 relative to H0 without producing posterior probabilities\","
+      },
+      {
+        "line": 67,
+        "text": "\"Convert a likelihood-ratio threshold into an equivalent statistic/rejection region when monotonicity permits\","
+      },
+      {
+        "line": 68,
+        "text": "\"Diagnose arbitrary reparameterizations or rescalings that leave likelihood-ratio ordering unchanged\","
+      },
+      {
+        "line": 69,
+        "text": "\"Construct an example where raw likelihood magnitude is misleading but the ratio is informative\","
+      },
+      {
+        "line": 75,
+        "text": "\"An unfamiliar pair of models where the learner must derive the evidential ordering and separate it from Bayesian updating.\","
+      },
+      {
+        "line": 76,
+        "text": "explicitlyOutOfScope: [\"Prior odds/posterior odds except as contrast\", \"Composite likelihood maximization\"],"
+      },
+      {
+        "line": 103,
+        "text": "explicitlyOutOfScope: [\"General UMP theory\", \"Bayesian decision optimality\", \"Composite nuisance parameters\"],"
+      },
+      {
+        "line": 135,
+        "text": "focus: \"Likelihood-ratio tests for composite hypotheses.\","
+      },
+      {
+        "line": 139,
+        "text": "\"Construct the generalized likelihood-ratio statistic by comparing constrained and unconstrained maximum likelihoods and connect its asymptotic calibration to regular model geometry.\","
+      },
+      {
+        "line": 142,
+        "text": "entryPrerequisites: [\"T22-M28-A02-A04\", \"ARC531 constrained/unconstrained MLE\", \"ARC533 regular likelihood curvature\"],"
+      },
+      {
+        "line": 147,
+        "text": "\"Form the generalized likelihood-ratio statistic\","
+      },
+      {
+        "line": 155,
+        "text": "\"Regular low-dimensional nested likelihood models with one deliberately nonregular contrast.\","
+      },
+      {
+        "line": 177,
+        "text": "\"Identify nuisance parameters in a likelihood/test statistic\","
+      },
+      {
+        "line": 190,
+        "text": "focus: \"Uniformly most powerful tests and monotone-likelihood-ratio structure.\","
+      },
+      {
+        "line": 194,
+        "text": "\"Understand what UMP means, derive it in a simple one-parameter monotone-likelihood-ratio setting, and recognize why two-sided or multiparameter alternatives often destroy uniform dominance.\","
+      },
+      {
+        "line": 199,
+        "text": "\"Define UMP precisely, derive a threshold test from monotone likelihood-ratio structure in a tractable one-sided family, and demonstrate a case where no UMP test exists because power preferences conflict across alternatives.\","
+      },
+      {
+        "line": 202,
+        "text": "\"Connect monotone likelihood-ratio ordering to one-sided rejection regions\","
+      },
+      {
+        "line": 210,
+        "text": "\"Canonical one-parameter families with monotone-likelihood-ratio structure plus contrasts where UMP fails.\","
+      },
+      {
+        "line": 227,
+        "text": "\"Audit a likelihood-based testing workflow end to end, identifying which claims are exact, asymptotic, model-dependent or unsupported, and propose a safer next step when assumptions fail.\","
+      },
+      {
+        "line": 233,
+        "text": "\"Integrate multiplicity concerns from ARC505 with likelihood-based testing\","
+      },
+      {
+        "line": 239,
+        "text": "\"End-to-end audits of low-dimensional likelihood-based tests, including at least one deliberately misspecified or nonregular case.\","
+      }
+    ]
+  },
+  {
+    "order": 36,
+    "id": "ARC539",
+    "title": "Regression, Diagnostics & Research Lab",
+    "source": "js/data/t22-rich-module-25.js",
+    "prerequisites": [
+      "SIDE278",
+      "T22E-CODE02",
+      "ARC503",
+      "ARC517",
+      "ARC504"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 18,
+        "text": "\"General likelihood and maximum-likelihood estimation — ARC531\","
+      },
+      {
+        "line": 19,
+        "text": "\"Likelihood-ratio, Wald and score tests — ARC534\","
+      },
+      {
+        "line": 41,
+        "text": "roleRelevance: \"Deriving OLS prevents regression from becoming a black-box software ritual and prepares later optimization and likelihood work.\","
+      },
+      {
+        "line": 49,
+        "text": "explicitlyOutOfScope: [\"Matrix OLS\", \"Likelihood interpretation\", \"Regularization\"],"
+      },
+      {
+        "line": 127,
+        "text": "explicitlyOutOfScope: [\"Robust sandwich covariance derivation\", \"HAC/cluster covariance\", \"Likelihood/Fisher information\"],"
+      },
+      {
+        "line": 134,
+        "text": "principalObstacle: \"Plug-in standard errors depend on a noise estimate and design geometry; confidence intervals do not assign posterior probability to a fixed coefficient.\","
+      },
+      {
+        "line": 140,
+        "text": "explicitlyOutOfScope: [\"Robust/HAC/cluster SE formulas in depth\", \"Bootstrap intervals — ARC537\", \"Likelihood-ratio inference\"],"
+      },
+      {
+        "line": 218,
+        "text": "explicitlyOutOfScope: [\"Production backtesting protocol — later empirical modules\", \"General likelihood methods — ARC531\", \"Bootstrap inference — ARC537\", \"Regularized/high-dimensional modelling\"],"
+      },
+      {
+        "line": 219,
+        "text": "nextArcBoundary: \"ARC531 owns parametric likelihood modelling and maximum likelihood; later modules add resampling, time-series and broader predictive modelling.\","
+      }
+    ]
+  },
+  {
+    "order": 37,
+    "id": "ARC506",
+    "title": "Causal Skepticism & Observational Identification",
+    "source": "js/data/t22-rich-module-30.js",
+    "prerequisites": [
+      "ARC503",
+      "ARC539"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 12,
+        "text": "\"ARC517 covariance, correlation, conditional distributions and conditional expectation\","
+      },
+      {
+        "line": 137,
+        "text": "\"Feature filtering, sample selection and post-event conditioning can inadvertently couple otherwise independent causes, making aggressive adjustment a source of bias rather than a cure.\","
+      }
+    ]
+  },
+  {
+    "order": 38,
+    "id": "ARC507",
+    "title": "Experimental Design & Randomized Evidence",
+    "source": "js/data/t22-rich-module-31.js",
+    "prerequisites": [
+      "ARC505",
+      "ARC506"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 39,
+    "id": "ARC508",
+    "title": "Leakage, Validation, Baselines & Distribution Shift",
+    "source": "js/data/t22-rich-module-32.js",
+    "prerequisites": [
+      "T22E-CODE02",
+      "ARC539",
+      "ARC507"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 13,
+        "text": "\"ARC531 statistical models, likelihood and identifiability\","
+      },
+      {
+        "line": 166,
+        "text": "explicitlyOutOfScope: [\"Bayesian optimization algorithms\", \"Selective-inference theory\", \"Production AutoML engineering\"],"
+      }
+    ]
+  },
+  {
+    "order": 40,
+    "id": "ARC509",
+    "title": "Research Provenance, Reproducibility & Falsification",
+    "source": "js/data/t22-rich-module-33.js",
+    "prerequisites": [
+      "T22E-CODE02",
+      "ARC508"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 99,
+        "text": "\"Record row/entity inclusion, exclusion and filtering rules\","
+      }
+    ]
+  },
+  {
+    "order": 41,
+    "id": "ARC541",
+    "title": "Multivariate Covariance, PCA & Discrimination",
+    "source": "js/data/t22-rich-module-35.js",
+    "prerequisites": [
+      "SIDE280",
+      "ARC539"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 109,
+        "text": "explicitlyOutOfScope: [\"Full block-matrix conditional-normal derivations\", \"Gaussian graphical models\", \"State-space filtering — ARC543\"],"
+      },
+      {
+        "line": 221,
+        "text": "principalObstacle: \"LDA's linear boundary is a consequence of shared covariance plus Gaussian/log-posterior structure; it is not simply PCA followed by labels.\","
+      },
+      {
+        "line": 222,
+        "text": "entryPrerequisites: [\"T22-M35-A04-A05\", \"ARC502 Bayes rule/odds\"],"
+      }
+    ]
+  },
+  {
+    "order": 42,
+    "id": "ARC542",
+    "title": "Time Series, Stationarity, ARMA & Forecasting",
+    "source": "js/data/t22-rich-module-36.js",
+    "prerequisites": [
+      "T22E-FND02",
+      "SIDE263",
+      "T22E-CODE02",
+      "ARC517",
+      "ARC539",
+      "ARC508",
+      "ARC509",
+      "ARC541"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 20,
+        "text": "\"State-space models, latent-state filtering, smoothing and Kalman recursions — ARC543\","
+      },
+      {
+        "line": 292,
+        "text": "purpose: \"Connect conditional least squares/likelihood intuition to ARMA fitting while preserving time order, stability constraints and honest model comparison.\","
+      },
+      {
+        "line": 294,
+        "text": "entryPrerequisites: [\"T22-M36-A12\", \"ARC531 likelihood/MLE\", \"ARC508 time-ordered validation\"],"
+      },
+      {
+        "line": 297,
+        "text": "\"Form a conditional objective or likelihood for a simple AR model\","
+      },
+      {
+        "line": 312,
+        "text": "purpose: \"Derive one-step and multi-step forecasts from conditional expectation and propagate innovation uncertainty across horizons.\","
+      },
+      {
+        "line": 326,
+        "text": "explicitlyOutOfScope: [\"Decision-making/trading policy from forecasts\", \"State-space filtering — ARC543\"],"
+      },
+      {
+        "line": 348,
+        "text": "\"Latent-state filtering and smoothing — ARC543\","
+      },
+      {
+        "line": 353,
+        "text": "nextArcBoundary: \"ARC543 owns latent-state/state-space representation, Gaussian conditioning, Kalman filtering and smoothing; ARC542 ends with observed-series classical dependence modelling and its diagnostics.\","
+      }
+    ]
+  },
+  {
+    "order": 43,
+    "id": "T22E-TEMP01",
+    "title": "Temporal Research Design & Walk-Forward Validation",
+    "source": "early authored source / macro contract",
+    "prerequisites": [
+      "T22E-MKT01",
+      "T22E-CODE02",
+      "ARC508",
+      "ARC542"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 44,
+    "id": "ARC716",
+    "title": "SQL, Joins, Windows & Out-of-Core Query Workflows",
+    "source": "js/data/t22-rich-module-51.js",
+    "prerequisites": [
+      "T22E-CODE02"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 8,
+        "text": "modulePurpose: \"Build efficient, reproducible querying for large time-series research datasets without turning the route into a database-engineering course. The learner must reason relationally about tables and keys, express filtering/aggregation/joins/window operations in SQL, inspect query plans and indexing trade-offs, understand columnar analytical storage, exploit partition pruning and predicate pushdown, and construct lazy/out-of-core pipelines that do not require loading the full dataset into memory. Generic Python/dataframe work remains in ARC515, generic performance measurement and memory locality in ARC713, market-event temporal alignment and as-of joins belong to ARC714, and financial-data defects/bias controls belong to ARC715.\","
+      },
+      {
+        "line": 13,
+        "text": "\"T22-M51-A01\": arc(\"Relational data models, table grain, keys and relationships.\", \"Research joins are only trustworthy when the unit represented by each row and the uniqueness assumptions of keys are explicit.\", \"Model research data as relations with declared grain, candidate/primary keys and foreign-key-style relationships.\", \"A table can look tidy while duplicate or nonunique keys silently change the meaning and cardinality of downstream joins.\", [\"ARC515 tabular data\", \"Basic sets and equality\"], \"Given several research tables, state each table's grain, identify valid keys, test uniqueness and specify intended one-to-one, one-to-many or many-to-many relationships.\", [\"State table grain in words\", \"Distinguish rows, columns and relations\", \"Identify candidate and composite keys\", \"Test key uniqueness\", \"Distinguish one-to-one, one-to-many and many-to-many relationships\", \"Predict when duplicate keys will multiply rows in a join\"], \"Reference tables, observations, instruments and feature tables.\", \"A supposedly unique instrument-date key containing revisions that makes the relationship one-to-many.\", [\"Normalization-form theory\", \"SQL filtering — A02\", \"Temporal as-of relationship semantics — ARC714\"], \"A02 owns selecting rows and columns once relational meaning is fixed.\"),"
+      },
+      {
+        "line": 14,
+        "text": "\"T22-M51-A02\": arc(\"Filtering and projection with SQL.\", \"Most large-data research begins by reducing rows and columns before expensive downstream work.\", \"Express precise row predicates and column projection while handling NULL and Boolean logic deliberately.\", \"SQL's three-valued NULL logic and accidental broad scans can make an apparently obvious filter semantically or computationally wrong.\", [\"A01\", \"Boolean predicates\"], \"Write and audit SELECT/WHERE queries that return exactly the intended subset, including explicit NULL handling and bounded time predicates.\", [\"Project only required columns\", \"Compose AND/OR predicates with explicit precedence\", \"Filter bounded date/time ranges\", \"Handle NULL with IS NULL/IS NOT NULL rather than equality\", \"Distinguish WHERE filtering from later aggregation filters\", \"Verify a query against a tiny hand-computed reference\"], \"Extracting research slices from large fact tables.\", \"A NOT IN or comparison predicate encountering NULL and producing fewer rows than expected.\", [\"Vendor-specific SQL syntax catalogues\", \"Grouping — A03\"], \"A03 owns summarizing filtered rows into groups.\"),"
+      },
+      {
+        "line": 22,
+        "text": "\"T22-M51-A10\": arc(\"Lazy and out-of-core query workflows.\", \"Research datasets routinely exceed RAM, so correctness and performance must not depend on materializing every intermediate table.\", \"Construct a lazy or chunked pipeline that pushes reduction early, controls materialization and respects a memory budget.\", \"A lazy API can still trigger a huge materialization through collect/to-pandas-style operations, wide joins or poorly placed transformations.\", [\"A02-A09\", \"ARC713 batching and memory constraints\"], \"Execute or design a query over data larger than the allowed memory budget, documenting where scanning, filtering, aggregation and materialization occur.\", [\"Distinguish lazy plan construction from execution\", \"Push projection and filtering early when semantics permit\", \"Aggregate before materialization when appropriate\", \"Avoid unbounded intermediate collections\", \"Use chunked/out-of-core execution deliberately\", \"Measure peak memory and scanned data against a stated budget\"], \"Large historical research extracts and feature computation.\", \"A pipeline is lazy until one convenience conversion materializes a multi-gigabyte intermediate on the client.\", [\"Distributed scheduler internals\", \"Cluster administration\", \"Full performance engineering — ARC713\"], \"A11 integrates relational correctness, physical efficiency and reproducibility in one defended pipeline.\"),"
+      }
+    ]
+  },
+  {
+    "order": 45,
+    "id": "ARC714",
+    "title": "Market Data Engineering & Temporal Alignment",
+    "source": "js/data/t22-rich-module-52.js",
+    "prerequisites": [
+      "T22E-MKT01",
+      "T22E-TEMP01",
+      "ARC716"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 46,
+    "id": "ARC715",
+    "title": "Dirty Financial Data, Revisions, Missingness & Selection Bias",
+    "source": "js/data/t22-rich-module-53.js",
+    "prerequisites": [
+      "ARC503",
+      "ARC509",
+      "ARC714"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 47,
+    "id": "ARC558",
+    "title": "Market Microstructure & Order-Book Mechanics",
+    "source": "js/data/t22-rich-module-56.js",
+    "prerequisites": [
+      "ARC048",
+      "T22E-TRD01",
+      "T22E-MKT01",
+      "ARC714"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 13,
+        "text": "\"T22-M56-A10\":arc(\"Adverse selection.\",\"Liquidity providers face losses when trading against better-informed counterparties, shaping quotes, depth and post-trade price behavior.\",\"Model adverse selection through conditional value differences around aggressive trades and quote responses.\",\"Post-trade price continuation is suggestive but can also arise from common information or mechanical effects.\",[\"A07-A09\",\"Conditional expectation intuition\"],\"Construct a finite-state adverse-selection example and derive how information asymmetry can widen quotes or reduce displayed depth.\",[\"Distinguish informed from uninformed order flow\",\"Compute conditional asset values under trade signals\",\"Explain spread widening under information risk\",\"Connect post-trade price moves to provider losses\",\"Separate adverse selection from inventory risk\",\"State empirical confounds\"],\"Toy informed-trader/liquidity-provider models.\",\"Change the fraction of informed flow and predict quote/depth response.\",[\"Equilibrium microstructure theory in full generality\"],\"A11 owns inventory-risk incentives of liquidity providers.\"),"
+      },
+      {
+        "line": 16,
+        "text": "\"T22-M56-A13\":arc(\"Queue position and priority.\",\"Displayed price alone does not determine a limit order's fill likelihood; position ahead in the queue is economically crucial.\",\"Track approximate queue-ahead volume and update it under executions, cancellations and new same-price orders under stated observability assumptions.\",\"Level-2 data may not reveal whether cancellations occurred ahead or behind, so exact queue position can be unidentified.\",[\"A05\",\"A04\"],\"Estimate a defensible queue-position range from available events and state what cannot be known from the feed.\",[\"Define queue-ahead quantity\",\"Update under FIFO executions\",\"Handle own-order arrival position\",\"Distinguish new orders behind from ahead\",\"Model ambiguous cancellations as bounds/scenarios\",\"Avoid false exactness with aggregated feeds\"],\"Limit-order queue reconstruction.\",\"A cancellation at your price occurs without order IDs; produce queue-position bounds rather than a fabricated exact rank.\",[\"Optimal limit-order placement — ARC559\"],\"A14 owns book-imbalance and microprice-style state summaries.\"),"
+      }
+    ]
+  },
+  {
+    "order": 48,
+    "id": "ARC543",
+    "title": "State-Space Models & Sequential Estimation",
+    "source": "js/data/t22-rich-module-37.js",
+    "prerequisites": [
+      "SIDE279",
+      "ARC517",
+      "ARC542"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 7,
+        "text": "\"Build linear-Gaussian state-space reasoning from the distinction between latent state and noisy observation through prediction, Bayesian/Gaussian measurement updating, Kalman gain, recursive filtering, multivariate systems, initialization, smoothing and diagnostics. The module must make every covariance update and information-fusion step interpretable, preserve the boundary with general Markov chains and event-time processes, and prepare the learner to recognize when a Kalman model is scientifically or numerically untrustworthy.\","
+      },
+      {
+        "line": 16,
+        "text": "\"ARC531 likelihood/model specification intuition\","
+      },
+      {
+        "line": 24,
+        "text": "\"General nonlinear filtering such as extended/unscented Kalman filters and particle filters\","
+      },
+      {
+        "line": 32,
+        "text": "purpose: \"Create the latent-state problem before introducing state-space notation or filtering formulas.\","
+      },
+      {
+        "line": 67,
+        "text": "nextArcBoundary: \"A03 propagates the posterior state estimate forward before the next measurement arrives.\","
+      },
+      {
+        "line": 71,
+        "text": "roleRelevance: \"Filtering alternates model-based prediction with data-based correction; the prediction step is the model's testable forward claim.\","
+      },
+      {
+        "line": 72,
+        "text": "purpose: \"Derive the prior/predicted state mean from the transition model and the previous posterior estimate.\","
+      },
+      {
+        "line": 74,
+        "text": "entryPrerequisites: [\"A02\", \"ARC517 conditional expectation\", \"SIDE276 linear transformations\"],"
+      },
+      {
+        "line": 92,
+        "text": "purpose: \"Derive how posterior covariance is transformed by the dynamics and enlarged by process noise.\","
+      },
+      {
+        "line": 135,
+        "text": "target: \"Derive the posterior state mean and covariance from Gaussian conditioning using Cov(x_t,y_t)=P^- H^T and Var(y_t)=H P^- H^T+R.\","
+      },
+      {
+        "line": 146,
+        "text": "explicitlyOutOfScope: [\"Non-Gaussian exact Bayesian filtering\", \"Particle filtering\", \"Discrete HMM inference\"],"
+      },
+      {
+        "line": 167,
+        "text": "nextArcBoundary: \"A08 assembles prediction, innovation, gain and posterior correction into one auditable recursion.\","
+      },
+      {
+        "line": 175,
+        "text": "target: \"Execute the complete Kalman filter recursively and maintain consistent prior/posterior notation, innovation statistics and covariance updates.\","
+      },
+      {
+        "line": 179,
+        "text": "\"Update posterior mean with the innovation correction\","
+      },
+      {
+        "line": 181,
+        "text": "\"Track t|t-1 and t|t quantities without mixing priors and posteriors\","
+      },
+      {
+        "line": 185,
+        "text": "applicationScope: \"A complete scalar or low-dimensional filtering run with interpretable intermediate quantities.\","
+      },
+      {
+        "line": 191,
+        "text": "focus: \"Multivariate Kalman filtering.\","
+      },
+      {
+        "line": 193,
+        "text": "purpose: \"Generalize filtering intuition from scalar weighting to matrix-valued state, observation and covariance geometry.\","
+      },
+      {
+        "line": 204,
+        "text": "\"Interpret posterior cross-covariances rather than discarding them\","
+      },
+      {
+        "line": 208,
+        "text": "explicitlyOutOfScope: [\"Full control-theoretic observability theory\", \"Large-scale sparse filtering algorithms\"],"
+      },
+      {
+        "line": 209,
+        "text": "nextArcBoundary: \"A10 addresses the nontrivial effect of the initial state distribution on early filtering behaviour.\","
+      },
+      {
+        "line": 234,
+        "text": "purpose: \"Distinguish filtering from smoothing and derive the logic of backward refinement after a forward pass.\","
+      },
+      {
+        "line": 239,
+        "text": "\"Distinguish filtering p(x_t|y_{1:t}) from smoothing p(x_t|y_{1:T}) for T>t\","
+      },
+      {
+        "line": 242,
+        "text": "\"Interpret the smoothing gain as linking posterior uncertainty at t to predicted uncertainty at t+1\","
+      },
+      {
+        "line": 244,
+        "text": "\"Select filtering versus smoothing according to the scientific question\","
+      },
+      {
+        "line": 248,
+        "text": "explicitlyOutOfScope: [\"General Bayesian message passing\", \"Particle smoothers\", \"Production feature pipelines — ARC560\"],"
+      },
+      {
+        "line": 266,
+        "text": "\"Defend whether filtering, a different model family, or no latent-state claim is warranted in an unfamiliar case\","
+      }
+    ]
+  },
+  {
+    "order": 49,
+    "id": "ARC524",
+    "title": "Discrete-Time Stochastic Processes — Markov Chains, Martingale/Stopping Foundations",
+    "source": "js/data/t22-rich-module-38.js",
+    "prerequisites": [
+      "T22E-DISC01",
+      "SIDE263",
+      "SIDE279",
+      "ARC517",
+      "ARC513",
+      "ARC542"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 19,
+        "text": "\"Linear-Gaussian latent-state estimation, Kalman filtering and smoothing — ARC543\","
+      },
+      {
+        "line": 133,
+        "text": "entryPrerequisites: [\"A03-A05\", \"Conditional expectation\", \"Linear systems\"],"
+      }
+    ]
+  },
+  {
+    "order": 50,
+    "id": "ARC525",
+    "title": "Continuous-Time Event Processes — Poisson, Renewal & Brownian Foundations",
+    "source": "js/data/t22-rich-module-39.js",
+    "prerequisites": [
+      "ARC510",
+      "ARC517",
+      "ARC712",
+      "ARC513",
+      "ARC542",
+      "ARC524"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 20,
+        "text": "\"Linear-Gaussian latent-state filtering and smoothing — ARC543\","
+      },
+      {
+        "line": 111,
+        "text": "principalObstacle: \"Superposition and thinning require specific independence assumptions; deterministic filtering or history-dependent labels do not automatically preserve Poisson structure.\","
+      },
+      {
+        "line": 123,
+        "text": "transferScope: \"A new aggregation/filtering mechanism where preservation of Poisson structure must be justified rather than assumed.\","
+      },
+      {
+        "line": 184,
+        "text": "explicitlyOutOfScope: [\"Full Hawkes likelihood/branching theory\", \"Latent-state filtering — ARC543\", \"Order-book feature engineering — ARC714\"],"
+      }
+    ]
+  },
+  {
+    "order": 51,
+    "id": "ARC514",
+    "title": "Optimization Problems & First/Second-Order Conditions",
+    "source": "js/data/t22-rich-module-40.js",
+    "prerequisites": [
+      "ARC053",
+      "SIDE271"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 68,
+        "text": "roleRelevance: \"Gradients encode the local sensitivity used to identify candidate optima in likelihoods, least squares, portfolio objectives and learning systems.\","
+      },
+      {
+        "line": 81,
+        "text": "applicationScope: \"Smooth loss, likelihood or economic objective where stationary points can be derived symbolically.\","
+      },
+      {
+        "line": 88,
+        "text": "roleRelevance: \"Curvature determines whether a stationary quantitative model is locally bowl-like, hill-like or saddle-shaped and underpins later Newton and likelihood-curvature methods.\","
+      }
+    ]
+  },
+  {
+    "order": 52,
+    "id": "ARC581",
+    "title": "Convex Sets, Functions & Convexity Geometry",
+    "source": "js/data/t22-rich-module-41.js",
+    "prerequisites": [
+      "SIDE278",
+      "ARC514"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 168,
+        "text": "\"Convex loss functions, risk penalties and negative log-likelihood components.\","
+      }
+    ]
+  },
+  {
+    "order": 53,
+    "id": "ARC582",
+    "title": "Constrained Convex Optimization, Duality & KKT",
+    "source": "js/data/t22-rich-module-42.js",
+    "prerequisites": [
+      "ARC581"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 54,
+    "id": "ARC553",
+    "title": "Asset Pricing, Replication, No-Arbitrage & Derivatives Foundations",
+    "source": "js/data/t22-rich-module-54.js",
+    "prerequisites": [
+      "ARC048",
+      "T22E-MKT01",
+      "ARC514"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 55,
+    "id": "ARC554",
+    "title": "Portfolio Construction, Covariance Risk & Robustness",
+    "source": "js/data/t22-rich-module-55.js",
+    "prerequisites": [
+      "ARC541",
+      "ARC582",
+      "ARC553"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 56,
+    "id": "ARC559",
+    "title": "Execution Costs, Impact, Scheduling & TCA",
+    "source": "js/data/t22-rich-module-57.js",
+    "prerequisites": [
+      "T22E-CODE02",
+      "ARC714",
+      "ARC558",
+      "ARC514"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 14,
+        "text": "\"T22-M57-A11\":arc(\"Fill probability and queue risk.\",\"Passive execution depends on uncertain queue depletion, cancellations, competing arrivals and price movement.\",\"Model fill likelihood and waiting risk using queue-aware state variables without assuming deterministic FIFO outcomes from incomplete data.\",\"Displayed depth ahead is not a deterministic clock because hidden liquidity, cancellations and event ordering can alter queue evolution.\",[\"A10\",\"ARC558 queue position\"],\"Estimate or simulate passive fill probability conditional on queue position, order flow and horizon, with uncertainty bounds.\",[\"Define queue-ahead quantity\",\"Track trades/cancels that can deplete the queue\",\"Distinguish queue depletion from price move-away\",\"Estimate conditional fill rates\",\"Report horizon dependence\",\"State hidden-liquidity/data limitations\"],\"Limit-order event histories.\",\"Two venues show equal displayed depth but different cancellation rates; explain why fill probabilities differ.\",[\"Exchange-engine exact simulation\",\"Adaptive policy — A12\"],\"A12 owns liquidity regimes and adaptive execution.\"),"
+      }
+    ]
+  },
+  {
+    "order": 57,
+    "id": "ARC586",
+    "title": "Numerical Optimization, Finite Differences & Autodiff",
+    "source": "js/data/t22-rich-module-43.js",
+    "prerequisites": [
+      "ARC711",
+      "T22E-CODE02",
+      "ARC585",
+      "ARC582"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 14,
+        "text": "\"T22-M43-A02\": arc(\"Gradient descent from local first-order geometry.\", \"Gradient descent is the baseline against which more sophisticated optimizers are understood and debugged.\", \"Derive the negative-gradient direction from the local linear model and connect it to steepest descent under Euclidean geometry.\", \"Memorizing x<-x-alpha grad f hides the metric dependence and the assumptions behind descent.\", [\"A01\", \"ARC711 gradients\", \"ARC581 convexity\"], \"Derive and implement gradient descent, explain why -grad f is locally descending, and identify when zero gradient is insufficient for global conclusions.\", [\"Use the directional derivative to justify -grad f\", \"Implement a deterministic gradient update\", \"Interpret stationary points\", \"Distinguish convex from nonconvex guarantees\", \"Construct a case where poor geometry makes gradient descent slow\"], \"Least-squares or smooth likelihood optimization.\", \"A re-scaled parameterization whose gradient path changes dramatically.\", [\"Stochastic gradient descent — ARC589\", \"Non-Euclidean mirror descent\"], \"A03 studies how step size controls stability and speed.\"),"
+      },
+      {
+        "line": 18,
+        "text": "\"T22-M43-A06\": arc(\"Newton's method from a local quadratic model.\", \"Newton methods exploit curvature and are central to likelihood fitting, root solving and many higher-order optimization routines.\", \"Derive the Newton step from minimizing a second-order local approximation rather than quoting H^{-1}g.\", \"The Hessian solve is a model-based step, not a guarantee that the original objective improves globally.\", [\"ARC711 Hessians\", \"ARC585 linear solves\", \"A05\"], \"Derive H p=-g, solve for the Newton direction without explicitly inverting H, and connect positive-definite curvature to local descent and fast local convergence.\", [\"Derive the quadratic local model\", \"Obtain the Newton linear system\", \"Use a linear solve rather than explicit inverse\", \"Interpret curvature scaling\", \"Distinguish local quadratic-model optimum from global objective optimum\"], \"Maximum-likelihood or nonlinear least-squares style smooth objectives.\", \"A two-dimensional objective where the Newton direction must be predicted from Hessian geometry.\", [\"Newton-Krylov and large-scale sparse variants\"], \"A07 studies when Newton's method fails and how globalization helps.\"),"
+      },
+      {
+        "line": 21,
+        "text": "\"T22-M43-A09\": arc(\"BFGS curvature updates.\", \"BFGS is a practical default for deterministic smooth optimization and a key solver whose diagnostics researchers should understand.\", \"Apply the BFGS update, preserve positive definiteness under the curvature condition, and distinguish formula correctness from reliable use.\", \"Blindly updating with s^T y<=0 can destroy the geometry the method depends on.\", [\"A08\", \"Matrix algebra\"], \"Compute a BFGS or inverse-BFGS update on a small problem and audit the curvature condition s^T y>0.\", [\"Apply the BFGS rank-two update\", \"Check symmetry\", \"Check/interpret the curvature condition\", \"Explain positive-definite preservation under suitable conditions\", \"Compare BFGS information use with exact Newton\"], \"Deterministic likelihood/calibration fitting.\", \"A deliberately bad curvature pair requiring skipped/damped update reasoning.\", [\"Full L-BFGS engineering\", \"Stochastic quasi-Newton methods\"], \"A10 handles simple convex constraints by projection.\"),"
+      },
+      {
+        "line": 24,
+        "text": "\"T22-M43-A12\": arc(\"Computational graphs for compositional numerical models.\", \"Modern quantitative models are built from composable operations; computational graphs expose the dependency structure needed for automatic differentiation and debugging.\", \"Represent a compositional scalar objective as an explicit graph whose primitive operations can be evaluated and differentiated locally.\", \"Shared subexpressions and branching dependencies make informal chain-rule bookkeeping error-prone unless value flow and derivative accumulation are represented explicitly.\", [\"ARC711 chain/matrix calculus\", \"Directed acyclic graph basics\"], \"Build a computational graph for a scalar objective, execute a forward value pass, and identify local derivative rules and dependency paths.\", [\"Decompose an expression into primitive operations\", \"Topologically order evaluation\", \"Store intermediate values\", \"Associate each primitive with local derivative information\", \"Trace shared subexpressions correctly\"], \"A small likelihood, loss or portfolio objective.\", \"An expression with branching/shared intermediates where naive symbolic duplication miscounts dependencies.\", [\"Neural-network training loops — ARC599\", \"Compiler-level graph optimization\"], \"A13 propagates derivatives forward through the graph.\"),"
+      },
+      {
+        "line": 26,
+        "text": "\"T22-M43-A14\": arc(\"Reverse-mode automatic differentiation.\", \"Reverse mode underlies efficient gradient computation for scalar objectives with many parameters.\", \"Propagate adjoints backward through shared dependencies and understand why a single reverse pass can recover a full scalar-objective gradient after the forward pass.\", \"Incorrect accumulation at fan-out/fan-in nodes silently produces wrong gradients.\", [\"A12-A13\", \"ARC711 chain rule\"], \"Implement reverse-mode autodiff for a scalar computational graph, accumulating adjoints correctly and interpreting vector-Jacobian products.\", [\"Record a forward tape/intermediates\", \"Seed output adjoint\", \"Traverse graph in reverse topological order\", \"Accumulate contributions at shared ancestors\", \"Compare reverse- vs forward-mode complexity by input/output dimension\"], \"Gradient of a many-parameter scalar likelihood or loss.\", \"A branched graph where two downstream paths contribute to the same parameter adjoint.\", [\"Backpropagation as a neural-network training system — ARC599\", \"Checkpointing/rematerialization engineering\"], \"A15 independently checks analytic/autodiff gradients with finite differences.\"),"
+      }
+    ]
+  },
+  {
+    "order": 58,
+    "id": "ARC589",
+    "title": "Stochastic Gradient Methods",
+    "source": "js/data/t22-rich-module-44.js",
+    "prerequisites": [
+      "ARC531",
+      "ARC582",
+      "ARC586"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 10,
+        "text": "entryPrerequisites: [\"ARC582 convex optimization and constrained optimality\", \"ARC531 likelihoods, scores and statistical objectives\", \"ARC586 deterministic gradient methods, automatic differentiation and derivative verification\", \"ARC513 Monte Carlo estimation and simulation error\"],"
+      },
+      {
+        "line": 13,
+        "text": "\"T22-M44-A01\": arc(\"Finite-sum and expected objectives as the setting for stochastic optimization.\", \"Likelihoods, empirical losses and simulation-driven research objectives are often sums or expectations too expensive to evaluate exactly at every iteration.\", \"Represent optimization targets as F(theta)=n^{-1} sum_i f_i(theta) or F(theta)=E[f(theta;Z)], and separate the mathematical objective from the mechanism used to estimate its gradient.\", \"Researchers often conflate a sampled mini-objective with the full objective, hiding what randomness the optimizer is actually introducing.\", [\"ARC531 likelihood objectives\", \"ARC586 deterministic optimization\", \"ARC513 expectations\"], \"Construct finite-sum and expectation formulations for a quantitative objective, identify the source of randomness, and state what exact gradient would be available if full evaluation were affordable.\", [\"Rewrite a sum objective in normalized finite-sum form\", \"Express an expectation objective over an explicit sampling law\", \"Distinguish objective randomness from sampling randomness\", \"Derive the exact full gradient when differentiation/interchange is justified\", \"Diagnose a formulation whose sampling distribution silently changes the objective\"], \"A large-sample likelihood or simulation-based calibration objective.\", \"An unfamiliar weighted-data objective where naive uniform sampling targets the wrong gradient.\", [\"Generalization from empirical to population risk — ARC593\", \"Specific stochastic-gradient estimators — A02\"], \"A02 constructs stochastic gradient estimators for these objectives.\"),"
+      },
+      {
+        "line": 14,
+        "text": "\"T22-M44-A02\": arc(\"Stochastic gradients as random estimators of the full gradient.\", \"Quantitative researchers must know whether a cheap gradient estimate actually points, on average, toward the intended objective.\", \"Derive unbiased single-sample or subsample gradient estimators under explicit sampling schemes and quantify their conditional variance.\", \"A gradient computed from one sampled component is not automatically unbiased when sampling is nonuniform, weighted or state-dependent.\", [\"A01\", \"ARC503 sampling mechanisms\", \"ARC504 estimator bias/variance\"], \"Given a finite-sum objective and sampling law, derive a stochastic gradient estimator, test unbiasedness by conditional expectation, and compute or bound its variance on a small problem.\", [\"Compute E[g_k | theta_k]\", \"Correct nonuniform sampling with appropriate weights when needed\", \"Distinguish unbiasedness from low variance\", \"Compute a gradient covariance/variance in a toy example\", \"Construct a biased sampling scheme and explain the objective it actually follows\"], \"Subsampled score gradients for a large likelihood.\", \"A stratified or importance-weighted component sampler whose correction must be derived rather than guessed.\", [\"General Monte Carlo importance-sampling theory — ARC513\", \"Advanced stochastic variance-reduction algorithms\"], \"A03 uses these estimators inside the stochastic-gradient iteration.\"),"
+      },
+      {
+        "line": 15,
+        "text": "\"T22-M44-A03\": arc(\"Stochastic gradient descent as noisy iterative optimization.\", \"SGD is a baseline optimizer for large statistical objectives and a reference point for diagnosing more elaborate methods.\", \"Derive theta_{k+1}=theta_k-alpha_k g_k from deterministic gradient descent with a random gradient estimator, and separate pathwise noise from expected drift.\", \"Unlike deterministic descent, a valid SGD step need not reduce the full objective on every iteration.\", [\"A02\", \"ARC586 gradient descent and step-size stability\"], \"Implement reproducible SGD, explain its conditional expected update, and diagnose why monotone objective decrease is the wrong success criterion.\", [\"Derive the SGD update from the stochastic estimator\", \"Explain E[theta_{k+1}-theta_k | theta_k] under unbiased gradients\", \"Distinguish pathwise ascent steps from expected progress\", \"Control and record random sampling seeds\", \"Compare with full-gradient descent on the same finite-sum objective\"], \"Large-sample maximum-likelihood estimation.\", \"A convex quadratic finite sum where individual component gradients frequently point away from the optimum.\", [\"Generalization theory — ARC593\", \"Momentum/adaptive methods — A06-A08\"], \"A04 studies batching as a variance/compute trade-off.\"),"
+      },
+      {
+        "line": 16,
+        "text": "\"T22-M44-A04\": arc(\"Mini-batches as statistical and computational trade-offs.\", \"Batch size changes gradient variance, update frequency, memory pressure and throughput; it is not merely a hardware knob.\", \"Derive how averaging multiple sampled gradients changes estimator variance under stated independence assumptions and reason about departures from the ideal 1/b law.\", \"The slogan 'larger batch means variance divided by batch size' fails under dependence, duplicated observations and nonuniform sampling.\", [\"A02-A03\", \"ARC713 batching/performance awareness\", \"Variance of sample means\"], \"Construct mini-batch gradients, derive their expectation and variance under simple assumptions, and choose batch size using both information and compute constraints.\", [\"Derive unbiasedness of a batch mean gradient\", \"Derive the 1/b variance reduction under independent equal-variance sampling\", \"Explain finite-population/dependence corrections qualitatively\", \"Separate batch size from number of parameter updates\", \"Diagnose a batch construction with highly correlated observations\"], \"Mini-batch likelihood optimization under memory limits.\", \"Temporally clustered observations where nominal batch size substantially overstates independent information.\", [\"Hardware-specific accelerator tuning\", \"Time-series model theory — ARC542\", \"Validation splitting — ARC508\"], \"A05 determines how step sizes should evolve across noisy updates.\"),"
+      },
+      {
+        "line": 18,
+        "text": "\"T22-M44-A06\": arc(\"Momentum as filtered stochastic-gradient dynamics.\", \"Momentum is ubiquitous in large-scale optimization and changes both noise filtering and deterministic stability.\", \"Derive a heavy-ball/exponential-moving-average update, interpret velocity as accumulated gradient information, and analyze simple quadratic dynamics.\", \"Momentum can accelerate movement along persistent directions while amplifying oscillation or instability when damping and step size are poorly matched.\", [\"A03-A05\", \"Linear recurrences\", \"ARC585 eigenvalue/stability intuition\"], \"Implement momentum SGD, derive its scalar quadratic recurrence, and predict damping, overshoot and noise-filtering behaviour from the parameters.\", [\"Write velocity and parameter recurrences consistently\", \"Interpret momentum as a filtered history of gradients\", \"Analyze a one-dimensional quadratic recurrence\", \"Explain acceleration versus overshoot\", \"Diagnose instability caused by an unsafe learning-rate/momentum combination\"], \"Ill-conditioned stochastic least-squares optimization.\", \"An anisotropic quadratic where momentum helps one direction but destabilizes another.\", [\"Nesterov acceleration proofs\", \"Neural-network architecture/training ownership — ARC599\"], \"A07 studies per-coordinate scaling from gradient-history statistics.\"),"
+      },
+      {
+        "line": 21,
+        "text": "\"T22-M44-A09\": arc(\"Gradient noise, covariance and signal-to-noise structure.\", \"Optimizer diagnostics improve when stochasticity is measured rather than described vaguely as 'noisy training'.\", \"Estimate gradient mean, covariance/variance and signal-to-noise behaviour across samples or batches, linking these quantities to batch size and parameter region.\", \"Observed gradient variability can arise from sampling, model heterogeneity, derivative bugs or numerical error; these causes should not be conflated.\", [\"A02-A08\", \"ARC504 variance\", \"ARC586 gradient checking\"], \"Measure stochastic-gradient dispersion at fixed parameters, distinguish sampling noise from derivative/numerical error, and reason about how noise changes with batch size and location.\", [\"Estimate gradient mean across repeated batches\", \"Estimate coordinate or norm-based dispersion\", \"Separate sampling variance from deterministic gradient-check error\", \"Relate batch size to observed variance\", \"Diagnose heavy-tailed/outlier-driven gradient noise\", \"Explain why noise statistics can change as theta moves\"], \"Diagnostics for a stochastic likelihood or simulation objective.\", \"A gradient distribution with rare extreme components where variance estimates and mean direction are unstable.\", [\"Formal diffusion/SDE limits of SGD\", \"Advanced robust-gradient estimators\", \"General data distribution-shift theory — ARC508/ARC593\"], \"A10 turns noisy traces into defensible convergence diagnostics.\"),"
+      },
+      {
+        "line": 24,
+        "text": "\"T22-M44-A12\": arc(\"SGD research lab: compare stochastic optimizers without confusing optimization with model quality.\", \"Quantitative researchers need an end-to-end ability to specify, implement, compare and defend stochastic optimization procedures under controlled randomness.\", \"Integrate finite-sum formulation, sampling, SGD, batches, schedules, momentum, adaptive scaling, Adam, noise measurement and diagnostics in one reproducible experiment.\", \"Optimizer comparisons are easy to rig through unequal compute, different stopping budgets, cherry-picked seeds or validation leakage.\", [\"A01-A11\", \"ARC508 validation boundaries\", \"ARC509 reproducibility\", \"ARC586 derivative verification\"], \"Build and defend a reproducible optimizer comparison on one finite-sum or expectation objective, controlling initialization, sampling, compute budget and diagnostics while making no unsupported generalization claim.\", [\"Verify gradients independently before optimization\", \"Specify objective and sampling law\", \"Compare SGD, momentum and Adam under a defensible common budget\", \"Report multiple-seed/noise diagnostics\", \"Separate optimization error from statistical/model error\", \"Document failure criteria before interpreting results\", \"Transfer the protocol to an unfamiliar stochastic objective\"], \"A likelihood, simulated moment or generic empirical objective large enough to motivate stochastic gradients.\", \"An unfamiliar objective where the fastest apparent training loss decrease produces the least defensible optimization conclusion.\", [\"Empirical-risk/generalization theory — ARC593\", \"Regularization and hyperparameter selection — ARC594\", \"Neural-network training systems — ARC599\", \"Production backtest integration — ARC560\"], \"M44 closes stochastic optimizer mechanics; ARC211 next changes domain to sequential decision structure, while ARC593/594/599 later own learning-theoretic and model-training consequences.\"),"
+      }
+    ]
+  },
+  {
+    "order": 59,
+    "id": "ARC211",
+    "title": "Deterministic Dynamic Programming",
+    "source": "js/data/t22-rich-module-45.js",
+    "prerequisites": [
+      "ARC717",
+      "ARC514"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 60,
+    "id": "ARC590",
+    "title": "Markov Decision Processes",
+    "source": "js/data/t22-rich-module-46.js",
+    "prerequisites": [
+      "ARC524",
+      "ARC514",
+      "ARC211"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 19,
+        "text": "\"T22-M46-A07\": arc(\"State-value functions under a fixed policy.\", \"V^pi compresses the future consequence distribution of following a policy into a state-conditioned expected return used throughout exact planning.\", \"Define V^pi(s)=E_pi[G_t|S_t=s], calculate it directly on tiny finite models, and distinguish value from immediate reward or realized return.\", \"A high immediate reward does not imply high state value; continuation dynamics and future policy behaviour matter.\", [\"A03-A06\", \"Conditional expectation\"], \"Compute and interpret V^pi for a finite MDP by explicit trajectory enumeration or equations, including finite-horizon time-indexed values when appropriate.\", [\"State the conditioning and policy in V^pi explicitly\", \"Distinguish immediate reward, realized return and expected state value\", \"Compute V^pi by enumeration on a tiny MDP\", \"Handle terminal-state values consistently\", \"Compare state values under two policies\", \"Diagnose a value calculation that averages over the wrong action distribution\"], \"Small finite controlled process with a fixed decision rule.\", \"A state with low immediate payoff but strong continuation value under one policy.\", [\"Optimal value V* — A10\", \"Function-approximation value learning\"], \"A08 conditions additionally on the first action to obtain action values.\"),"
+      },
+      {
+        "line": 21,
+        "text": "\"T22-M46-A09\": arc(\"Bellman expectation equations for a fixed policy.\", \"Bellman expectation structure turns long-horizon policy evaluation into local one-step expectation plus continuation value.\", \"Derive V^pi and Q^pi Bellman equations from conditional expectation, policy action averaging and the Markov property rather than quoting formulas.\", \"The derivation fails if the state is not sufficient or if expectations are taken under the wrong policy/transition law.\", [\"A01-A08\", \"Law of total expectation\"], \"Derive the finite-state Bellman expectation equations and verify them numerically on a small MDP against direct trajectory calculations.\", [\"Derive V^pi(s)=sum_a pi(a|s) sum_s' P(s'|s,a)[r+gamma V^pi(s')]\", \"Derive the corresponding Q^pi equation\", \"Identify the policy and transition distribution inside each expectation\", \"Check Bellman residuals on a candidate value vector\", \"Express fixed-policy evaluation as a linear system when finite-state matrix notation is convenient\", \"Construct a failure when hidden history violates state sufficiency\"], \"Exact evaluation of a fixed finite-state policy.\", \"A stochastic policy where omitting the action average produces a plausible but wrong value equation.\", [\"Bellman optimality — A10\", \"TD-learning estimators\"], \"A10 replaces fixed-policy averaging with optimization over actions.\"),"
+      }
+    ]
+  },
+  {
+    "order": 61,
+    "id": "ARC593",
+    "title": "Statistical Learning, ERM & Generalization",
+    "source": "js/data/t22-rich-module-47.js",
+    "prerequisites": [
+      "T22E-CODE02",
+      "ARC531",
+      "ARC539",
+      "ARC508"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 11,
+        "text": "explicitlyOutOfScope: [\"Practical split design, cross-validation, nested evaluation, leakage and temporal-validation protocol — ARC508\", \"Ridge, lasso, elastic net, penalized likelihood and high-dimensional regularization algorithms — ARC594\", \"Decision trees, random forests and boosting — ARC595\", \"Neural-network architectures, backpropagation and deep-learning optimization — ARC599\", \"Optimization algorithms for training objectives beyond ERM formulation — ARC586/ARC589\", \"Model-free reinforcement learning and sequential-control learning\", \"Advanced learning theory such as Rademacher complexity, covering numbers, PAC-Bayes, algorithmic stability, margin theory or modern overparameterized generalization theory\"],"
+      },
+      {
+        "line": 15,
+        "text": "\"T22-M47-A03\": arc(\"Population risk as expected deployment loss.\", \"The quantity a predictive model ultimately tries to control is performance on future draws from the target regime, not loss on the observed training table.\", \"Define R_P(f)=E_P[L(f(X),Y)] and make the evaluation distribution part of the estimand.\", \"Population risk is distribution-relative and generally unknown; a predictor can have low risk under one regime and high risk under another without any algebraic contradiction.\", [\"A01-A02\", \"Expectation\", \"ARC508 deployment distribution\"], \"Write and compute population risk for small discrete examples, identify a population-risk minimizer where possible, and distinguish the best unrestricted predictor from the best predictor inside a restricted hypothesis class.\", [\"Define risk with its governing distribution and loss\", \"Compute expected risk from a finite joint distribution\", \"Distinguish realized loss from expected risk\", \"Define a Bayes/unrestricted risk benchmark when the action space permits\", \"Define the best-in-class predictor separately from the unrestricted optimum\", \"Construct two deployment distributions that reverse the ranking of two predictors\"], \"Prediction under a finite stylized distribution or analytically tractable regression/classification model.\", \"A predictor that is optimal in-sample-like conditions but suboptimal after only the input/label distribution changes.\", [\"Distribution-shift taxonomy — A13\", \"Empirical estimation of risk — A04\"], \"A04 replaces inaccessible population expectation with the sample-average empirical risk.\"),"
+      },
+      {
+        "line": 23,
+        "text": "\"T22-M47-A11\": arc(\"Generalization bounds from concentration plus uniform control.\", \"A research claim needs a statement connecting observed empirical performance to unseen population performance with explicit probability, sample-size and class-complexity dependence.\", \"Derive a representative finite-hypothesis uniform-convergence bound using a bounded loss, a concentration inequality and a union bound, then interpret what it does and does not certify.\", \"A bound is not a magic accuracy guarantee: constants, boundedness, iid assumptions, confidence level, class size/capacity and the distinction between a fixed predictor and data-selected predictor all matter.\", [\"A03-A06\", \"A09-A10\", \"ARC505 probability/tail-bound intuition\"], \"Starting from a fixed-function concentration bound for losses in [0,1], derive a finite-class statement of order sqrt((log |H| + log(1/delta))/n), apply it numerically, and use it to bound ERM excess risk up to the appropriate uniform-deviation factor.\", [\"Distinguish a fixed-hypothesis concentration statement from a uniform-over-H statement\", \"Apply a union bound over a finite class\", \"Solve the resulting inequality for a deviation epsilon\", \"Track confidence probability 1-delta correctly\", \"Explain why the complexity term grows logarithmically with finite |H|\", \"Connect VC dimension qualitatively to replacing naive finite-cardinality counting for infinite classes\", \"Diagnose a vacuous bound and state that vacuity does not imply the model itself is poor\"], \"Finite rule selection or discretized predictor class with bounded loss.\", \"A huge class where a valid bound exceeds the full loss range and therefore certifies essentially nothing.\", [\"Full VC generalization theorem proofs with optimal constants\", \"Rademacher/PAC-Bayes/margin bounds\"], \"A12 inverts generalization scaling into sample-complexity and learning-curve reasoning.\"),"
+      }
+    ]
+  },
+  {
+    "order": 62,
+    "id": "ARC594",
+    "title": "Regularization, Ridge/Lasso & Model Selection",
+    "source": "js/data/t22-rich-module-48.js",
+    "prerequisites": [
+      "ARC582",
+      "ARC593"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 8,
+        "text": "modulePurpose: \"Build high-dimensional regularization as a statistically motivated modification of estimation objectives rather than a bag of penalties. The learner must diagnose instability when predictors are numerous or collinear; understand regularization as controlled bias; derive ridge and lasso objectives, geometry and bias-variance behavior; reason about sparsity, elastic net and penalized likelihood; tune hyperparameters without leakage; and treat feature-selection instability as a research result rather than hiding it. General constrained convex duality remains in ARC582, generalization theory remains in ARC593, and tree/neural model families remain in ARC595/ARC599.\","
+      },
+      {
+        "line": 9,
+        "text": "moduleDestination: \"The learner can recognize when unregularized estimation is unstable, standardize and formulate penalized objectives correctly, derive and interpret ridge solutions and lasso optimality conditions, explain geometric differences between L2 and L1 penalties, compare ridge/lasso/elastic-net behavior under collinearity and sparsity, extend penalization to likelihood-based models, design leakage-safe hyperparameter selection, quantify selection instability, and defend an end-to-end high-dimensional regularization study with reproducible diagnostics.\","
+      },
+      {
+        "line": 17,
+        "text": "\"T22-M48-A05\": arc(\"Ridge geometry and spectral shrinkage.\", \"The geometry shows precisely which unstable directions ridge suppresses and why correlated coefficient estimates become more stable.\", \"Interpret L2 penalization as spherical/ellipsoidal constraint geometry and as shrinkage along singular-vector directions.\", \"Saying ridge 'shrinks coefficients' is incomplete: the amount of shrinkage depends on predictor geometry and singular values, not just coordinate-wise magnitude.\", [\"A04\", \"SIDE280 SVD geometry\", \"ARC582 constrained/penalized equivalence intuition\"], \"Use an SVD or eigenbasis to derive ridge shrinkage factors d_j^2/(d_j^2+lambda) and connect them to improved conditioning and L2 constraint geometry.\", [\"Relate penalized and constrained L2 formulations under appropriate correspondence\", \"Derive spectral shrinkage factors\", \"Show weak-singular-value directions are shrunk more strongly\", \"Explain why ridge usually does not set coefficients exactly to zero\", \"Compare contours of squared loss with an L2 ball\", \"Diagnose how standardization changes the geometry\"], \"Collinear predictor spaces and latent factor directions.\", \"A rotated coordinate system where coordinate-wise intuition fails but spectral shrinkage remains transparent.\", [\"L1 sparsity geometry — A08\", \"Advanced Bayesian interpretations\"], \"A06 quantifies ridge's bias-variance behavior under repeated samples.\"),"
+      },
+      {
+        "line": 22,
+        "text": "\"T22-M48-A10\": arc(\"Elastic net for correlated sparse predictor sets.\", \"Elastic net is often preferable when correlated predictor groups make pure lasso selection unstable while pure ridge remains too dense.\", \"Formulate mixed L1/L2 penalization and reason about how each component changes sparsity, uniqueness and grouped behavior.\", \"Adding two penalties creates two scale parameters/conventions; comparing implementations without matching parameterization can produce false conclusions.\", [\"A04-A09\"], \"Write and analyze an elastic-net objective, compare limiting ridge/lasso cases, and explain its behavior on groups of correlated predictors.\", [\"Write lambda1||beta||_1 + lambda2||beta||_2^2 or an equivalent documented parameterization\", \"Recover ridge-like and lasso-like limiting cases\", \"Explain why the L2 component stabilizes correlated predictors\", \"Explain why the L1 component preserves exact sparsity\", \"Compare coefficient paths qualitatively across ridge/lasso/elastic net\", \"Translate between a package's alpha/lambda convention and the mathematical objective\"], \"Correlated feature libraries where sparse but stable models are desired.\", \"A duplicated-predictor example where pure lasso arbitrarily selects while elastic net distributes weight more stably.\", [\"Group lasso and structured penalties\", \"Penalized likelihood — A11\"], \"A11 extends the penalty idea beyond squared-error regression.\"),"
+      },
+      {
+        "line": 23,
+        "text": "\"T22-M48-A11\": arc(\"Penalized likelihood for generalized predictive models.\", \"Regularization applies to logistic and other likelihood-based models used for event probabilities, not only to least squares.\", \"Formulate negative log-likelihood plus a convex penalty and distinguish properties inherited from the likelihood from those induced by the penalty.\", \"Porting ridge/lasso formulas from least squares without re-deriving the objective and gradients can create incorrect updates and interpretations.\", [\"A03-A10\", \"ARC531 likelihood\", \"ARC539 regression modelling\"], \"Construct L1- or L2-penalized logistic likelihood, derive the smooth gradient for the likelihood/L2 case, and state the subgradient/KKT modification for L1.\", [\"Write penalized negative log-likelihood explicitly\", \"Derive logistic score/gradient terms\", \"Add L2 gradient correctly\", \"State L1 subgradient optimality conditions\", \"Explain why complete/quasi-separation can make unpenalized logistic coefficients unstable\", \"Show how penalization can restore finite stable estimates without claiming causal identification\"], \"Binary event-probability models with many correlated predictors.\", \"A nearly separable classification problem where unpenalized maximum likelihood diverges but penalization yields finite coefficients.\", [\"Generalized-linear-model catalogue\", \"Bayesian prior theory beyond regularization analogy\"], \"A12 addresses how penalty strength is chosen without contaminating evaluation.\"),"
+      }
+    ]
+  },
+  {
+    "order": 63,
+    "id": "ARC595",
+    "title": "Trees, Bagging, Random Forests & Boosting",
+    "source": "js/data/t22-rich-module-49.js",
+    "prerequisites": [
+      "ARC593"
+    ],
+    "bayesRelatedContracts": []
+  },
+  {
+    "order": 64,
+    "id": "ARC599",
+    "title": "Neural Networks, Backpropagation & Modern Representation Learning",
+    "source": "js/data/t22-rich-module-50.js",
+    "prerequisites": [
+      "ARC711",
+      "ARC589",
+      "ARC593"
+    ],
+    "bayesRelatedContracts": [
+      {
+        "line": 17,
+        "text": "\"T22-M50-A05\": arc(\"Output layers and loss functions.\", \"The output parameterization must match the statistical target and loss to produce meaningful predictions and gradients.\", \"Choose representative regression, binary-classification and multiclass output/loss pairings and derive their immediate prediction semantics.\", \"Using an incompatible activation/loss pair can create invalid probabilities or poor numerical behavior even when code runs.\", [\"A03-A04\", \"ARC593 loss functions\", \"ARC531 likelihood\"], \"Given a target type, specify output dimension/activation/loss and compute a small loss value under a documented convention.\", [\"Use linear output for ordinary regression when appropriate\", \"Use sigmoid/logistic probability for binary classification\", \"Use softmax-style normalized outputs for multiclass classification\", \"Compute representative squared-error or cross-entropy loss\", \"Distinguish logits from probabilities\", \"Identify numerically safer logit-based loss formulations\"], \"Forecasting and event-probability models.\", \"A binary classifier passing probabilities into a loss implementation that already expects logits.\", [\"Full GLM catalogue\", \"Forward propagation — A06\"], \"A06 executes the complete forward pass.\"),"
+      },
+      {
+        "line": 29,
+        "text": "\"T22-M50-A17\": arc(\"Dropout.\", \"Dropout injects multiplicative masking noise during training and requires consistent scaling/evaluation semantics.\", \"Compute inverted-dropout forward behavior and explain why dropout is disabled at evaluation.\", \"Leaving dropout active at test time or scaling twice creates systematically wrong predictions.\", [\"A11\", \"Probability from ARC517\"], \"Apply a specified dropout mask to activations, use the documented scaling convention and compare training versus evaluation outputs.\", [\"Sample/interpret Bernoulli masks\", \"Apply inverted-dropout scaling\", \"Compute expected activation under the convention\", \"Disable dropout at evaluation\", \"Explain why dropout changes optimization noise and co-adaptation\", \"Avoid treating dropout as an uncertainty estimate without additional justification\"], \"Regularizing dense hidden layers.\", \"A model evaluated with training-mode dropout that produces irreproducible test predictions.\", [\"Bayesian-dropout interpretations\", \"Optimization diagnostics — A18\"], \"A18 integrates the major training diagnostics before implementation defenses.\"),"
+      }
+    ]
+  },
+  {
+    "order": 65,
+    "id": "ARC560",
+    "title": "End-to-End Empirical Strategy Research & Adversarial Defense",
+    "source": "js/data/t22-rich-module-58.js",
+    "prerequisites": [
+      "ARC505",
+      "ARC508",
+      "ARC509",
+      "ARC542",
+      "T22E-TEMP01",
+      "ARC715",
+      "ARC554",
+      "ARC559",
+      "ARC593"
+    ],
+    "bayesRelatedContracts": []
+  }
+]

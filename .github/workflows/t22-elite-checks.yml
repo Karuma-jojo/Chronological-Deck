@@ -2,7 +2,7 @@ name: T22 Elite checks
 
 on:
   push:
-    branches: [codex/t22-coherence-game-theory-repairs,codex/t22-pedagogical-rebuild, codex/t22-m15-publication, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation, codex/t22-m04-28-session-rebuild, codex/t22-m05-whole-curriculum-rebuild, codex/t22-m05-deep-source-restart, codex/t22-m05-final-confirmation-sol, codex/t22-m03-six-tools-upgrade, codex/t22-m03-v2-review-repair-r1, main]
+    branches: [codex/t22-m06-whole-curriculum,codex/t22-coherence-game-theory-repairs,codex/t22-pedagogical-rebuild, codex/t22-m15-publication, codex/t22-m04-v2-review-repair, codex/t22-m04-v2-final-confirmation, codex/t22-m04-28-session-rebuild, codex/t22-m05-whole-curriculum-rebuild, codex/t22-m05-deep-source-restart, codex/t22-m05-final-confirmation-sol, codex/t22-m03-six-tools-upgrade, codex/t22-m03-v2-review-repair-r1, main]
     paths:
       - 'course/t22/**'
       - 'js/t22-course/**'
@@ -29,6 +29,8 @@ jobs:
           python-version: '3.12'
       - name: Syntax checks
         run: |
+          node --check docs/t22-course/audit/m06-v2-checks.mjs
+          node --check scripts/test-t22-elite-m06-v2-browser.mjs
           node --check js/t22-course/supplements.js
           node --check scripts/test-t22-elite-coherence-repairs.mjs
           node --check scripts/test-t22-elite-coherence-browser.mjs
@@ -100,6 +102,8 @@ jobs:
           node --check docs/t22-course/audit/m03-repair-checks.mjs
       - name: Structural, pedagogy, semantic and evidence regressions
         run: |
+          node docs/t22-course/audit/m06-v2-checks.mjs
+          python3 course/t22/labs/m06-finite-evidence-lab.py
           node scripts/test-t22-elite-coherence-repairs.mjs
           node scripts/test-t22-elite-m01.mjs
           node scripts/test-t22-elite-m02.mjs
@@ -157,6 +161,7 @@ jobs:
         run: node scripts/review-tests/node_modules/playwright/cli.js install --with-deps chromium --only-shell
       - name: Browser evidence workflow
         run: |
+          node scripts/test-t22-elite-m06-v2-browser.mjs
           node scripts/test-t22-elite-coherence-browser.mjs
           node scripts/test-t22-elite-course-browser.mjs
           node scripts/test-t22-elite-m04-browser.mjs

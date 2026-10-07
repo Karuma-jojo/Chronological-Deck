@@ -1,0 +1,7 @@
+{
+  "version": "m06-authoring-v2.0-whole-curriculum-candidate",
+  "status": "builder-audited-awaiting-independent-review",
+  "sourceMain": "9458e9e6b114c3366f6b009982f26de2e40234f6",
+  "candidateDigest": "1bc77a002d1eb1c4566d201f2521a64b6be5d742a874f9fa99910d63bf4be811",
+  "policy": "Binds read public requests, evaluators, lessons, claim links and typed models. This is a builder integrity pin, not independent review."
+}
