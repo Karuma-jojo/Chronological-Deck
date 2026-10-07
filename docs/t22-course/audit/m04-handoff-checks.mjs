@@ -22,9 +22,9 @@ const by=n=>a.sessions.find(s=>s.id===sid(n));
 const stableNum=s=>Number(s.id.match(/::S(\d+)@1$/)?.[1]);
 const route=[1,2,3,4,5,6,25,7,8,9,10,11,12,13,14,15,16,26,17,28,18,27,19,20,21,22,23,24];
 
-assert.equal(a.version,'m04-authoring-v2.2-28-session-whole-curriculum-r1');
-assert.equal(a.instructionVersion,'m04-instruction-v2.2-28-session-whole-curriculum-r1');
-assert.equal(a.module.status,'v2.2-28-session-whole-curriculum-rebuild-candidate');
+assert.equal(a.version,'m04-authoring-v2.2-28-session-whole-curriculum-r2');
+assert.equal(a.instructionVersion,'m04-instruction-v2.2-28-session-whole-curriculum-r2');
+assert.equal(a.module.status,'v2.2-28-session-whole-curriculum-bounded-repair-r2-candidate');
 assert.equal(a.sessions.length,28);
 assert.equal(Object.keys(a.problems).length,56);
 assert.equal(Object.keys(a.evaluators).length,56);
@@ -34,7 +34,7 @@ assert.equal(Object.keys(a.evidenceDistance.items).length,56);
 assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,28);
 assert.equal(a.representationProgression.length,14);
 assert.deepEqual(a.sessions.map(stableNum),route);
-assert.equal(Object.keys(a.decisionAudit.items).length,9);
+assert.equal(Object.keys(a.decisionAudit.items).length,7);
 
 for(const n of route){
   const s=by(n);assert(s,`S${n}`);
@@ -56,17 +56,17 @@ assert(!by(4).lesson.includes('generated independently'));
 assert(by(3).lesson.includes('M03')&&by(3).lesson.includes('fibre'));
 assert(by(22).lesson.includes('M03-S34')&&by(22).lesson.includes('M03-S35'));
 
-assert.equal(a.problems[by(18).main].obligationVersion,3);
+assert.equal(a.problems[by(18).main].obligationVersion,4);
 assert.equal(a.problems[by(18).transfer].obligationVersion,3);
 assert.equal(a.problems[by(19).main].obligationVersion,2);
 assert.equal(a.problems[by(19).transfer].obligationVersion,3);
 assert.equal(a.problems[by(20).transfer].obligationVersion,2);
 assert.equal(a.problems[by(24).main].obligationVersion,3);
 assert.equal(a.problems[by(24).transfer].obligationVersion,4);
-for(const n of [25,26,27,28]){
-  assert.equal(a.problems[by(n).main].obligationVersion,1);
-  assert.equal(a.problems[by(n).transfer].obligationVersion,1);
-}
+assert.equal(a.problems[by(25).main].obligationVersion,1);assert.equal(a.problems[by(25).transfer].obligationVersion,2);
+assert.equal(a.problems[by(26).main].obligationVersion,1);assert.equal(a.problems[by(26).transfer].obligationVersion,1);
+assert.equal(a.problems[by(27).main].obligationVersion,1);assert.equal(a.problems[by(27).transfer].obligationVersion,1);
+assert.equal(a.problems[by(28).main].obligationVersion,2);assert.equal(a.problems[by(28).transfer].obligationVersion,1);
 
 assert(oldDesign.includes('KEEP 24'),'historical v2.0 design gate must remain intact as provenance');
 assert(design.includes('28-session'));
@@ -84,7 +84,7 @@ assert(finalV21.includes('37023511435'),'historical v2.1 workflow receipt preser
 
 assert.deepEqual(
   a.sessions.filter(s=>a.evidenceDistance.items[s.transfer].class==='changed-surface Transfer').map(stableNum).sort((x,y)=>x-y),
-  [9,10,13,24,25,26,27,28]
+  [9,10,13,24,25,28]
 );
 assert.equal(a.evidenceDistance.items[by(14).main].class,'retrieval');
 assert.equal(a.evidenceDistance.items[by(24).main].class,'fresh Main evidence');
@@ -99,6 +99,8 @@ assert(core.includes("STORAGE_KEY='chrono_t22_elite_course_evidence_v1'"));
 for(const token of ['7d377d847728a7ebec6e4b81f2864238bd0b1683','10df637dbb46bd4985a1f98fc298c746b52bf1fd','120/120 manually re-audited']) assert(oldHand.includes(token),token);
 for(const token of ['M04-01','M04-02','M04-03','M04-04','chrono_t22_elite_course_evidence_v1']) assert(oldRes.includes(token),token);
 assert.equal(a.wholeCurriculumRebuild.historicalV21Confirmation,'docs/t22-course/M04-V2-FINAL-CONFIRMATION.md');
-assert.equal(a.wholeCurriculumRebuild.status,'builder candidate; not independently confirmed');
+assert.equal(a.wholeCurriculumRebuild.status,'bounded-repair r2 builder candidate; focused independent confirmation required');
+assert.equal(Object.keys(a.wholeCurriculumRebuild.r2PriorAssessmentFingerprints||{}).length,10);
+assert(a.mathOracleContract?.coveredProblems?.length>=10);
 
-console.log('PASS: M04 v2.2 handoff checks preserve v2.1 provenance while pinning the 28-session whole-curriculum candidate, stable-ID route, versioned assessment deltas and non-acceptance status.');
+console.log('PASS: M04 v2.2-r2 handoff checks preserve v2.1 provenance while pinning the 28-session bounded repair, corrected evidence classes, assessment invalidations and non-acceptance status.');
