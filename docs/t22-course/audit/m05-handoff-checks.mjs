@@ -12,17 +12,17 @@ const hand=fs.readFileSync('docs/t22-course/M05-REVIEW-HANDOFF.md','utf8');
 const boundary=fs.readFileSync('docs/t22-course/M05-BOUNDARY.md','utf8');
 const core=fs.readFileSync('js/t22-course/core.js','utf8');
 
-assert.equal(a.version,'m05-authoring-v2-independent-review-repair-r1');
-assert.equal(a.instructionVersion,'m05-instruction-v2-independent-review-repair-r1');
-assert.equal(a.module.status,'v2-independent-review-repair-r1-awaiting-full-validation-and-exact-head-confirmation');
-assert.equal(a.sessions.length,24);
-assert.equal(Object.keys(a.problems).length,48);
-assert.equal(Object.keys(a.evaluators).length,48);
-assert.equal(Object.values(a.claimEvidence).flat().length,120);
-assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,24);
-assert.equal(Object.keys(a.evidenceDistance.items).length,48);
-assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,24);
-assert.equal(Object.keys(a.decisionAudit.items).length,1);
+assert.equal(a.version,'m05-authoring-v2.1-whole-curriculum-candidate');
+assert.equal(a.instructionVersion,'m05-instruction-v2.1-whole-curriculum-candidate');
+assert.equal(a.module.status,'v2.1-whole-curriculum-candidate-awaiting-independent-review');
+assert.equal(a.sessions.length,28);
+assert.equal(Object.keys(a.problems).length,56);
+assert.equal(Object.keys(a.evaluators).length,56);
+assert.equal(Object.values(a.claimEvidence).flat().length,140);
+assert.equal(Object.keys(a.semanticSeparationAudit.sessions).length,28);
+assert.equal(Object.keys(a.evidenceDistance.items).length,56);
+assert.equal(Object.keys(a.wrongSolverAudit.sessions).length,28);
+assert.equal(Object.keys(a.decisionAudit.items).length,0);
 assert(a.sourceLedger.length>=10);
 assert(a.representationProgression.length>=15);
 for(const s of a.sessions){
@@ -42,14 +42,14 @@ assert(fs.existsSync('course/t22/authoring/m08.json'));
 // Permanent source/design artifacts.
 for(const p of ['docs/t22-course/M05-DEEP-SOURCE-AUDIT-v1.0.md','docs/t22-course/M05-V2-DESIGN-GATE.md'])assert(fs.existsSync(p),p);
 for(const token of [
- 'codex/t22-m05-deep-source-restart',
- 'DEEP BOUNDED RECONSTRUCTION',
- 'm05-authoring-v2-independent-review-repair-r1',
- '24 sessions',
- '48 fixed Main/Transfer task slots',
- '120 ownership claims',
+ 'codex/t22-m05-whole-curriculum-rebuild',
+
+ 'm05-authoring-v2.1-whole-curriculum-candidate',
+ '28 sessions',
+ '56 fixed Main/Transfer task slots',
+ '140 ownership claims',
  'zero fixed Mains labelled fresh',
- 'one changed-surface Transfer claim',
+ 'zero changed-surface Transfer claims',
  'Do not merge to main',
  'Do not self-declare acceptance'
 ])assert(hand.includes(token),token);
@@ -58,13 +58,13 @@ for(const token of [
  'Lottery preferences',
  'general bimatrix',
  'Strictly competitive 2×2',
- 'm05-authoring-v2-independent-review-repair-r1'
+ 'm05-authoring-v2.1-whole-curriculum-candidate'
 ])assert(boundary.includes(token),token);
 
 assert.equal(a.reconstructionAudit.preservedPublicContracts.length,12);
 assert.equal(a.reconstructionAudit.materiallyChangedPublicContracts.length,36);
 assert.equal(a.independentReviewRepairAudit.changedAssessmentIds.length,10);
 const repairV4=new Set(a.independentReviewRepairAudit.changedAssessmentIds);
-for(const pid of a.reconstructionAudit.materiallyChangedPublicContracts)assert.equal(a.problems[pid].obligationVersion,repairV4.has(pid)?4:3,pid);
+for(const pid of a.reconstructionAudit.materiallyChangedPublicContracts)assert.equal(a.problems[pid].obligationVersion,(repairV4.has(pid)?4:3)+(a.wholeCurriculumRebuild.changedAssessmentIds.includes(pid)?1:0),pid);
 
-console.log('PASS: M05 v2 handoff matches deep-source 24/48/120 candidate, source/evidence/representation ledgers, provenance versioning and explicit independent-review stop boundary.');
+console.log('PASS: M05 v2 handoff matches whole-curriculum 28/56/140 candidate, source/evidence/representation ledgers, provenance versioning and explicit independent-review stop boundary.');

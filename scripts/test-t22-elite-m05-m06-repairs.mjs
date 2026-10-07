@@ -8,11 +8,11 @@ const preAt='2026-09-18T06:00:00.000Z',seenAt='2026-09-18T07:00:00.000Z',postAt=
 
 for(const m of ['m05','m06']){
  const a=read('course/t22/authoring/'+m+'.json'),review=checkModule(a);
- for(const s of a.sessions)s.instructionVersion=a.instructionVersion;
+ for(const s of a.sessions)s.instructionVersion??=a.instructionVersion;
  await prepareContractHashes(a);await prepareAssessmentFingerprints(a,a.evaluators);
  const make=(pid,at,id)=>({id,problemId:pid,at,answer:'Saved independent reasoning',assistance:'independent',minutes:5,result:'secure',error:'',referenceSeenBefore:false,noteSeenDuringAttempt:false,contractHash:a.sessions.find(s=>s.main===pid||s.transfer===pid).contractHash,assessmentFingerprint:a.assessmentFingerprints[pid]});
 
- if(m==='m05'&&a.version==='m05-authoring-v2-independent-review-repair-r1'){
+ if(m==='m05'&&a.version==='m05-authoring-v2.1-whole-curriculum-candidate'){
   const changed=new Set(a.reconstructionAudit.materiallyChangedPublicContracts);
   const preserved=new Set(a.reconstructionAudit.preservedPublicContracts);
   const reconstructionBaseline=read('docs/t22-course/audit/m05-v2-reconstruction-baseline.json');
@@ -21,13 +21,13 @@ for(const m of ['m05','m06']){
   assert.equal(Object.keys(reconstructionBaseline.assessments).length,48);
   assert.equal(changed.size,36);assert.equal(preserved.size,12);
   for(const s of a.sessions)for(const k of ['main','transfer']){
-   const pid=s[k],baseFp=review.baseline.assessmentFingerprints[pid],published=reconstructionBaseline.assessments[pid];
+   const pid=s[k];if(!a.wholeCurriculumRebuild.priorAssessments.fingerprints[pid]){assert.equal(a.problems[pid].obligationVersion,1);continue;}const baseFp=review.baseline.assessmentFingerprints[pid],published=reconstructionBaseline.assessments[pid];
    assert(baseFp,'historical M05 baseline fingerprint missing '+pid);
    assert(published,'published-current reconstruction baseline missing '+pid);
-   const samePublished=JSON.stringify({problem:a.problems[pid],evaluator:a.evaluators[pid]})===JSON.stringify(published);
+   const withoutOrder=x=>{const copy=structuredClone(x);delete copy.problem.order;return copy;};const samePublished=JSON.stringify(withoutOrder({problem:a.problems[pid],evaluator:a.evaluators[pid]}))===JSON.stringify(withoutOrder(published));
    if(changed.has(pid)){
     const repairV4=new Set(a.independentReviewRepairAudit.changedAssessmentIds);
-    assert.equal(a.problems[pid].obligationVersion,repairV4.has(pid)?4:3,pid);
+    assert.equal(a.problems[pid].obligationVersion,(repairV4.has(pid)?4:3)+(a.wholeCurriculumRebuild.changedAssessmentIds.includes(pid)?1:0),pid);
     assert.equal(samePublished,false,'materially changed M05 v2 contract still equals published baseline '+pid);
    }else{
     assert(preserved.has(pid),'unclassified M05 v2 task '+pid);
@@ -39,6 +39,17 @@ for(const m of ['m05','m06']){
    const round=validateEvidence(JSON.parse(JSON.stringify({...emptyEvidence(),attempts:[prior]})),a);
    assert.deepEqual(round.attempts[0],prior,'Historical M05 evidence must be retained');
    if(changed.has(pid))assert.equal(evidenceIsCurrent(prior,a),false,'Changed M05 v2 contract must not silently recertify prior evidence');
+  }
+
+  const latest=new Set(a.wholeCurriculumRebuild.changedAssessmentIds),prior=a.wholeCurriculumRebuild.priorAssessments;
+  assert.equal(latest.size,7);assert.equal(Object.keys(prior.fingerprints).length,48);
+  for(const [pid,fp] of Object.entries(prior.fingerprints)){
+   const session=a.sessions.find(s=>s.main===pid||s.transfer===pid);
+   assert.equal(a.assessmentFingerprints[pid]!==fp,latest.has(pid),'r1 to v2.1 fingerprint '+pid);
+   assert.equal(a.problems[pid].obligationVersion,a.wholeCurriculumRebuild.priorObligationVersions[pid]+(latest.has(pid)?1:0));
+   const old={...make(pid,preAt,'r1-'+pid),assessmentFingerprint:fp,contractHash:prior.hashes[session.id]};
+   assert.equal(evidenceIsCurrent(old,a),!latest.has(pid)&&old.contractHash===session.contractHash);
+   assert.deepEqual(validateEvidence({...emptyEvidence(),attempts:[old]},a).attempts[0],old);
   }
  }else{
   // Historical M06 Astra repair contract remains pinned exactly.
@@ -71,7 +82,7 @@ for(const m of ['m05','m06']){
    assert.equal(moduleEvidenceSummary(a,after).sessions.find(s=>s.sessionId===target.id)[kind],false,'Post-answer-exposure work cannot qualify');
   }
   assert.equal(migrateHistoricalLessonAnswerExposure(state,a),false,'Idempotent');
-  const clean={...emptyEvidence(),exposures:{[source.main]:{firstSeen:newAt,lastSeen:newAt,views:1,lessonSeenAt:newAt,lessonContentVersion:a.instructionVersion}}};
+  const clean={...emptyEvidence(),exposures:{[source.main]:{firstSeen:newAt,lastSeen:newAt,views:1,lessonSeenAt:newAt,lessonContentVersion:source.instructionVersion||a.instructionVersion}}};
   assert.equal(migrateHistoricalLessonAnswerExposure(clean,a),false,'Current separated instruction does not create permanent historical exposure');
   for(const pair of [[clean,{...emptyEvidence(),exposures:{[source.main]:oldExposure}}],[{...emptyEvidence(),exposures:{[source.main]:oldExposure}},clean]]){
    const merged=mergeEvidence(...pair,a);

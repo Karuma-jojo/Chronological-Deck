@@ -49,7 +49,9 @@ const publicationAuthorized=new Set(['docs/t22-course/audit/m09-preserved-baseli
  'course/t22/authoring/m05.json','docs/t22-course/M05-BOUNDARY.md','docs/t22-course/M05-REVIEW-HANDOFF.md','docs/t22-course/audit/m05-handoff-checks.mjs','docs/t22-course/audit/m05-independent-math.mjs','docs/t22-course/audit/m05-m06-semantic-checks.mjs','docs/t22-course/audit/m05-m06-transfer-math.mjs','scripts/test-t22-elite-m05-m06-repairs.mjs','scripts/test-t22-elite-m05.mjs','course/t22/authoring/m03.json','docs/t22-course/audit/m03-handoff-checks.mjs','docs/t22-course/audit/m03-independent-math.mjs','docs/t22-course/audit/m03-repair-checks.mjs','scripts/test-t22-elite-m03.mjs','scripts/test-t22-elite-m09.mjs','scripts/test-t22-elite-m10.mjs']);
 const m05v2=read('course/t22/authoring/m05.json');
 const m03v2=read('course/t22/authoring/m03.json');
-assert(/^m05-authoring-v2-(deep-source-candidate|independent-review-repair-r1)$/.test(m05v2.version),'M11 baseline exception is bounded to the explicit M05 v2 candidate');
+assert.equal(m05v2.version,'m05-authoring-v2.1-whole-curriculum-candidate','M11 exception permits only the authorized whole-curriculum M05 candidate');
+assert.equal(m05v2.sessions.length,28);
+assert.equal(createHash('sha256').update(fs.readFileSync('course/t22/authoring/m05.json')).digest('hex'),'201498c3b0b048a6264dea5fc16aa0d9828cae8b2b33507b8a3efaf9f26f5a2f','M11 M05 exception is pinned to exact candidate bytes');
 assert(fs.existsSync('docs/t22-course/M05-DEEP-SOURCE-AUDIT-v1.0.md')&&fs.existsSync('docs/t22-course/M05-V2-DESIGN-GATE.md'));
 assert.equal(m03v2.version,'m03-authoring-v2.0-six-tools-candidate-r4','M11 baseline exception permits only the explicit M03 six-tools candidate');assert.equal(m03v2.sessions.length,36);assert(fs.existsSync('docs/t22-course/M03-V2-DESIGN-GATE.md'));
 const m04v22=read('course/t22/authoring/m04.json');
