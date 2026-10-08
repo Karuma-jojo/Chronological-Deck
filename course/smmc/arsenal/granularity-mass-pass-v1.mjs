@@ -54,7 +54,9 @@ const TRIGGER_CLAIM_RE = /\b(?:if|when|whenever|given|suppose|assume|case|out-of
 const RESULT_ROLE_SPAN_RE = /\b(?:to obtain\s+(?:boundedness|a limiting parameter)|to avoid\s+self-intersections|to block diagonal form|into existence and uniqueness obligations|intersection count changes only by even amounts|to decide convergence or divergence|to control convergence\/divergence|to bootstrap regularity from boundedness to continuity)\b/i;
 const CONDITION_ROLE_SPAN_RE = /\b(?:once\s+(?:the|a|an)\s+[^,;.]{3,120}|discriminant\s+(?:is\s+)?greater than zero)\b/i;
 const qualifyingClaim = e => e?.evidenceBasis === "SOURCE_FACT" && e?.verificationStatus === "VERIFIED" &&
-  ((e?.recordChannel === "BATTLE" && e?.claimKind === "HISTORICAL_OCCURRENCE") || e?.claimKind === "PROOF_STRUCTURE");
+  ((e?.recordChannel === "BATTLE" && e?.claimKind === "HISTORICAL_OCCURRENCE") ||
+   (e?.recordChannel === "DISCOVERY" && e?.claimKind === "DISCOVERY_HEURISTIC") ||
+    e?.claimKind === "PROOF_STRUCTURE");
 export function gate3ClaimBoundaryWitnesses(records) {
   return Object.freeze(records.map(e => {
     if (!qualifyingClaim(e)) return null;
@@ -154,11 +156,11 @@ const evidenceOperational = evidenceRecords =>
   });
 
 const evidenceOutput = evidenceRecords =>
-  evidenceRecords.some(e => OUTPUT_CLAIM_RE.test(e.claim ?? "")) ||
+  evidenceRecords.some(e => qualifyingClaim(e) && OUTPUT_CLAIM_RE.test(e.claim ?? "")) ||
   gate3ClaimBoundaryWitnesses(evidenceRecords).some(w => w.output !== null);
 
 const evidenceTrigger = evidenceRecords =>
-  evidenceRecords.some(e => TRIGGER_CLAIM_RE.test(e.claim ?? "")) ||
+  evidenceRecords.some(e => qualifyingClaim(e) && TRIGGER_CLAIM_RE.test(e.claim ?? "")) ||
   gate3ClaimBoundaryWitnesses(evidenceRecords).some(w => w.trigger !== null);
 
 const richOfficial = evidenceRecords =>
