@@ -983,7 +983,7 @@ expect(
   ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v2-45-boundary-normalized",
   "All 45 calibration rows must remain marked as re-audited under strict candidate-owned evidence mode."
 );
-expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v3-616-bundle-trigger-repair", "Gate-3 mass-pass version drifted.");
+expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v4-616-bundle-trigger-role-repair", "Gate-3 mass-pass version drifted.");
 expect(ARSENAL_GATE3_GRANULARITY_META.calibrationRows === 45, "Gate-3 accepted calibration population must remain 45.");
 expect(ARSENAL_GATE3_GRANULARITY_META.massPassRows === 616, "Gate-3 mass-pass population must be exactly the remaining 616 rows.");
 expect(
@@ -1004,12 +1004,12 @@ expect(
   "Mass classifier must preserve accepted evidence mode and must not emit new CROSS_SCALE calls."
 );
 expect(
-  ARSENAL_GATE3_MASS_CLASSIFIER_META.version === "v3" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.version === "v4" &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.provenanceShortcutRemoved === true &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.triggerPrepositionShortcutRemoved === true &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.distinctOperationResultRequired === true &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.contextReachFallback === "UNRESOLVED" &&
-  ARSENAL_GATE3_MASS_CLASSIFIER_META.bundleAuditMode === "EXHAUSTIVE_CANDIDATE_EXPRESSION_SURFACE",
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.bundleAuditMode === "HIGH_RECALL_STRUCTURAL_SURFACE_WITH_POSITIVE_NEGATIVE_ADJUDICATION",
   "Gate-3 mass classifier repair metadata drifted."
 );
 
@@ -1374,6 +1374,12 @@ expect(
 // multiple operation heads joined by and/plus/then/slash. Every surfaced row
 // must have exactly one explicit decision. This closes both the old proof-step
 // over-bundling and the one-ID-allowlist under-bundling.
+// G3-M08: object being defined is output, not a recognizable input trigger.
+const defineFunctionRow = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-z-define-function");
+expect(defineFunctionRow?.actionShape === "EXPLICIT_ACTION" && defineFunctionRow?.triggerBoundary === "UNRESOLVED",
+  "Define a Function must be explicit but have UNRESOLVED trigger; its output noun is not a situation.");
+expect(gate3ReviewedRows.find(x => x.candidateId === "RAW-BRIDGE-080")?.actionShape === "IMPLICIT_ACTION",
+  "Difference-variable trapping/refinement must be action-shaped, not LABEL_ONLY.");
 const massCandidateIds = new Set(massRows.map(row => row.candidateId));
 const surfacedMassBundleIds = ARSENAL_GATE2_RAW_CANDIDATES
   .filter(candidate => massCandidateIds.has(candidate.candidateId))
@@ -1396,14 +1402,23 @@ for (const candidateId of surfacedMassBundleIds) {
     `Surfaced multi-operation mass expression lacks an explicit bundle decision: ${candidateId}`
   );
 }
+expect(
+  JSON.stringify([...bundleDecisionIds].sort()) === JSON.stringify(surfacedMassBundleIds),
+  "High-recall bundle decisions must equal all surfaced candidate IDs, with no extras or omissions."
+);
+expect(
+  ARSENAL_GATE3_MASS_BUNDLE_DECISIONS.some(x => x.decision === "NOT_BUNDLE") &&
+  ARSENAL_GATE3_MASS_BUNDLE_DECISIONS.some(x => x.decision === "BUNDLE"),
+  "Bundle audit must exercise both positive and negative decisions."
+);
 for (const decision of ARSENAL_GATE3_MASS_BUNDLE_DECISIONS) {
   expect(
     massCandidateIds.has(decision.candidateId),
     `Mass bundle audit decision references non-mass candidate: ${decision.candidateId}`
   );
   expect(
-    decision.decision === "BUNDLE",
-    `Current mass bundle decision table should contain only positively audited bundles: ${decision.candidateId}`
+    decision.decision === "BUNDLE" || decision.decision === "NOT_BUNDLE",
+    `Every mass bundle decision must be explicitly BUNDLE or NOT_BUNDLE: ${decision.candidateId}`
   );
   expect(
     typeof decision.rationale === "string" && decision.rationale.length > 100,
@@ -1413,9 +1428,13 @@ for (const decision of ARSENAL_GATE3_MASS_BUNDLE_DECISIONS) {
 
 // The three missed bundles from independent review 5436149362 are now pinned.
 for (const candidateId of [
+  "RAW-BRIDGE-040",
+  "RAW-BRIDGE-053",
   "RAW-BRIDGE-063",
   "RAW-BRIDGE-072",
+  "RAW-BRIDGE-080",
   "RAW-OFFICIAL-088",
+  "RAW-OFFICIAL-093",
 ]) {
   const row = gate3ReviewedRows.find(x => x.candidateId === candidateId);
   expect(
@@ -1450,9 +1469,13 @@ const expectedAllBundleIds = [
   "RAW-OFFICIAL-107",
   "RAW-SOURCE-h-combining-techniques",
   // exhaustive mass candidate-expression audit bundles
+  "RAW-BRIDGE-040",
+  "RAW-BRIDGE-053",
   "RAW-BRIDGE-063",
   "RAW-BRIDGE-072",
+  "RAW-BRIDGE-080",
   "RAW-OFFICIAL-088",
+  "RAW-OFFICIAL-093",
   "RAW-OFFICIAL-098",
 ].sort();
 expect(
@@ -1460,7 +1483,7 @@ expect(
     gate3ReviewedRows.filter(x => x.bundleStructure === "BUNDLED_MOVES")
       .map(x => x.candidateId).sort()
   ) === JSON.stringify(expectedAllBundleIds),
-  "Final BUNDLED_MOVES set must equal the four accepted calibration bundles plus four audited mass candidate-expression bundles."
+  "Final BUNDLED_MOVES set must equal the four accepted calibration bundles plus eight audited mass candidate-expression bundles."
 );
 
 // G3-M04: contextReach is semantic, not fallback-GENERAL.

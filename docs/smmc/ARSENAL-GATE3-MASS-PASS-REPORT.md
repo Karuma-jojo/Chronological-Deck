@@ -1,5 +1,7 @@
 # SMMC Arsenal — Gate 3 repaired mass-pass report
 
+> **v3 historical measurements below.** The appended v4 amendment is a repair candidate, not a Gate-3 acceptance.
+
 Status: **MASS-PASS REVIEW CANDIDATE — Gate 3 is not yet accepted or complete**
 
 Accepted ruler:
@@ -315,3 +317,14 @@ Only explicit independent acceptance of the new exact repaired SHA may close Gat
 Current state:
 
 `Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 REPAIRED MASS-PASS REVIEW CANDIDATE → Tribunal 🔒`
+
+## v4 bounded mass-repair candidate — exact-head verification pending
+
+The independently reviewed v3 SHA \`d332123382c2e4b8c64f6e28c8f4a1af49362496\` was rejected in review 5446516036.
+
+- The candidate-expression bundle surface no longer depends on finite operation-word dictionaries. It broadly surfaces coordinations and requires 87 explicit candidate-owned adjudications: 8 BUNDLE, 79 NOT_BUNDLE. Surfacing is **high-recall review**, not a guarantee of perfect semantic exhaustiveness.
+- Newly surfaced RAW-BRIDGE-040, RAW-BRIDGE-053 and RAW-BRIDGE-080 are positively adjudicated; RAW-OFFICIAL-093 is also reviewed positive. RAW-BRIDGE-080 has IMPLICIT_ACTION wording.
+- A lexical trigger now requires a constrained existing input-object class or clearly named proof-goal form; generic output nouns no longer suffice. The Define a Function negative and diagonalization/pattern positives and negatives are regression protected.
+- The accepted 45 calibration rows and all eleven Gate-2 frozen blobs remain untouched; Tribunal and all future gates stay locked.
+
+**This amendment does not claim CI success or independent acceptance.** Regenerate the complete distribution/duplicate audit on the exact v4 head before graduation.
