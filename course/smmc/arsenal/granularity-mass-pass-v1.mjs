@@ -17,7 +17,7 @@ import { ARSENAL_GATE3_MASS_BUNDLE_REVIEW_V4 } from "./granularity-bundle-review
 
 const lower = value => String(value ?? "").toLowerCase();
 
-const EXPLICIT_ACTION_RE = /^(?:(?:how\s+to\s+prove)|analy[sz]e|apply|assume|bound|brainstorm|build|change|choose|clear|color|compare|complete|construct|count|create|define|decompose|derive|diagonalize|differentiate|disprove|divide|draw|encode|eliminate|expand|extend|extract|factor|filter|find|generalize|get|identify|instantiate|integrate|invent|invert|look|make|normalize|pair|partition|produce|prove|recast|reduce|reexpress|reflect|replace|restate|rotate|search|select|shear|show|simplify|split|steal|substitute|symmetrize|take|telescope|translate|treat|use|work|working|breaking|brainstorming|clearing|combining|counting|creating|defining|disproving|dividing|encoding|expanding|factoring|filtering|instantiating|inventing|pairing|partitioning|producing|proving|restating|searching|smoothing|stealing|taking|treating|using|bounding)\b/i;
+const EXPLICIT_ACTION_RE = /^(?:(?:how\s+to\s+prove)|analy[sz]e|apply|assume|bound|brainstorm|build|change|choose|clear|color|compare|complete|construct|count|create|define|decompose|derive|diagonalize|differentiate|disprove|divide|draw|encode|eliminate|expand|extend|extract|factor|filter|find|generalize|get|identify|instantiate|integrate|invent|invert|look|make|normalize|pair|partition|perturb|produce|prove|recast|reduce|reexpress|reflect|replace|restate|rotate|search|select|shear|show|simplify|split|steal|substitute|symmetrize|take|telescope|track|translate|treat|use|work|working|breaking|brainstorming|clearing|combining|counting|creating|defining|disproving|dividing|encoding|expanding|factoring|filtering|instantiating|inventing|pairing|partitioning|producing|proving|restating|searching|smoothing|stealing|taking|treating|using|bounding)\b/i;
 
 const IMPLICIT_OPERATION_RE = /\b(?:argument|reformulation|reduction|construction|encoding|decomposition|comparison|normalization|approximation|bound(?:ing)?|pairing|partition(?:ing)?|factorization|substitution|elimination|expansion|replacement|projection|parametri[sz]ation|symmetrization|rearrangement|recursion|diagonalization|optimization|conditioning|descent|averaging|smoothing|counting|exchange|bootstrap|filter|transformation|translation|reflection|rotation|inversion|shearing|bisection|interpolation|extrapolation|compression|recognition|trapping|refinement|control|centering|coloring|guarding|cancellation|summation|experimentation)\b/i;
 
@@ -47,6 +47,23 @@ const OUTPUT_CLAIM_RE = /\b(?:cancels|classification|clique|coefficients?|contra
 
 const TRIGGER_CLAIM_RE = /\b(?:if|when|whenever|given|suppose|assume|case|out-of-order|smallest|largest|least|interior|minimum|maximum|odd|even|goal|condition|dense set|finite|nonzero|positive|negative|symmetry)\b/i;
 
+// Candidate-owned evidence clauses with explicit condition/result roles.
+// These supplement (but never replace) the accepted, strict evidence contract.
+// The diagnostic witness is a source-literal matched span; it adds no field
+// to the frozen Gate-3 record schema or to the Gate-2 corpus.
+const RESULT_ROLE_SPAN_RE = /\b(?:to obtain\s+(?:boundedness|a limiting parameter)|to avoid\s+self-intersections|to block diagonal form|into existence and uniqueness obligations|intersection count changes only by even amounts|to decide convergence or divergence|to control convergence\/divergence|to bootstrap regularity from boundedness to continuity)\b/i;
+const CONDITION_ROLE_SPAN_RE = /\b(?:once\s+(?:the|a|an)\s+[^,;.]{3,120}|discriminant\s+(?:is\s+)?greater than zero)\b/i;
+const qualifyingClaim = e => e?.evidenceBasis === "SOURCE_FACT" && e?.verificationStatus === "VERIFIED" &&
+  ((e?.recordChannel === "BATTLE" && e?.claimKind === "HISTORICAL_OCCURRENCE") || e?.claimKind === "PROOF_STRUCTURE");
+export function gate3ClaimBoundaryWitnesses(records) {
+  return Object.freeze(records.map(e => {
+    if (!qualifyingClaim(e)) return null;
+    const claim = e.claim ?? "";
+    const trigger = claim.match(CONDITION_ROLE_SPAN_RE)?.[0] ?? null;
+    const output = claim.match(RESULT_ROLE_SPAN_RE)?.[0] ?? null;
+    return trigger || output ? Object.freeze({ evidenceRecordId: e.recordId, trigger, output }) : null;
+  }).filter(Boolean));
+}
 const OUTPUT_SIGNAL_RE = /\b(?:bound|contradiction|normal form|ordering|identity|equality|estimate|count|valuation|divisibility|injectivity|surjectivity|obstruction|classification|solution|fixed point|root|recurrence|differential equation|nonnegativity)\b/i;
 
 const DISTINCT_RESULT_RE = /\b(?:bound|contradiction|normal form|ordering|identity|equality|estimate|count|valuation|divisibility|injectivity|surjectivity|obstruction|classification|solution|fixed point|root|differential equation|nonnegativity)\b/i;
@@ -58,11 +75,17 @@ const EXISTING_INPUT_ACTION_RE = /^(?:diagonalize|differentiate|integrate|factor
 // a size/structure modifier. A bare "polynomial" cannot qualify itself.
 const CONSTRAINED_EXISTING_INPUT_RE = /\b(?:\d+\s*(?:-?by-?|[×x])\s*\d+\s+(?:\w+\s+){0,2}(?:matrix|system|vector|determinant)|(?:polynomial|quadratic|linear|integer|cyclic|finite|symmetric|skew|homogeneous|nonnegative)\s+(?:matrix|equation|inequality|recurrence|vector|graph|system|polynomial))\b/i;
 const SPECIFIC_PROOF_GOAL_RE = /^how\s+to\s+prove\s+(?:set equality|equality of sets|an? inequality|divisibility)\b/i;
-const lexicalRoleTrigger = name =>
-  SPECIFIC_PROOF_GOAL_RE.test(name) || (
-    EXISTING_INPUT_ACTION_RE.test(name) &&
-    CONSTRAINED_EXISTING_INPUT_RE.test(name)
-  );
+// Only the PRE-destination input phrase can establish a lexical trigger.
+// A constrained result is not a recognizable input; a constrained original
+// remains eligible even when the wording also names its output.
+const RESULT_DESTINATION_RE = /\b(?:into|to\s+(?:a|an|the)\b|to\s+(?:obtain|produce|create|construct|yield|form|become|make)\b|yielding|producing|resulting\s+in)\b/i;
+const lexicalRoleTrigger = name => {
+  if (SPECIFIC_PROOF_GOAL_RE.test(name)) return true;
+  if (!EXISTING_INPUT_ACTION_RE.test(name)) return false;
+  const destination = RESULT_DESTINATION_RE.exec(name);
+  const input = destination ? name.slice(0, destination.index) : name;
+  return CONSTRAINED_EXISTING_INPUT_RE.test(input);
+};
 
 const RESULTATIVE_EXPLICIT_RE = /^(?:construct|diagonalize|encode|factor|normalize|reduce|reexpress|recast|split|partition|translate|rotate|reflect|invert|symmetrize|complete|clear|eliminate|replace)\b/i;
 
@@ -131,10 +154,12 @@ const evidenceOperational = evidenceRecords =>
   });
 
 const evidenceOutput = evidenceRecords =>
-  evidenceRecords.some(e => OUTPUT_CLAIM_RE.test(e.claim ?? ""));
+  evidenceRecords.some(e => OUTPUT_CLAIM_RE.test(e.claim ?? "")) ||
+  gate3ClaimBoundaryWitnesses(evidenceRecords).some(w => w.output !== null);
 
 const evidenceTrigger = evidenceRecords =>
-  evidenceRecords.some(e => TRIGGER_CLAIM_RE.test(e.claim ?? ""));
+  evidenceRecords.some(e => TRIGGER_CLAIM_RE.test(e.claim ?? "")) ||
+  gate3ClaimBoundaryWitnesses(evidenceRecords).some(w => w.trigger !== null);
 
 const richOfficial = evidenceRecords =>
   evidenceRecords.some(e =>
@@ -494,7 +519,7 @@ export function buildGate3MassAssessment(candidate, evidenceRecords) {
 }
 
 export const ARSENAL_GATE3_MASS_CLASSIFIER_META = Object.freeze({
-  version: "v4",
+  version: "v5",
   calibrationAcceptanceSha: "177a8efa24ebca15e2c84dbb18e96a72be5e1d08",
   evidenceMode: "STRICT_CANDIDATE_OWNED_GATE2",
   crossScaleMode: "SOURCE_SCALE_VARIABLE_ROLE_ONLY",
@@ -506,6 +531,9 @@ export const ARSENAL_GATE3_MASS_CLASSIFIER_META = Object.freeze({
   massBundleDecisions: ARSENAL_GATE3_MASS_BUNDLE_DECISIONS,
   rejectedBundleShortcutIds: ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS,
   contextReachFallback: "UNRESOLVED",
+  triggerObjectRole: "PRE_DESTINATION_INPUT_ONLY",
+  evidenceRoleSpans: "VERIFIED_CANDIDATE_OWNED",
+  actionHeadAudit: "FIXED_CORPUS_V5_IMPERATIVE_REVIEW",
   ruleIds: Object.freeze([
     "MP01",
     "MP02",
