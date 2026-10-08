@@ -282,7 +282,7 @@ export const ARSENAL_GATE3_MASS_BUNDLE_REVIEW_V4 = Object.freeze(
   {
     "candidateId": "RAW-OFFICIAL-093",
     "decision": "BUNDLE",
-    "rationale": "Sign-change reasoning and application of the Intermediate Value Theorem are distinct proof operations named by this expression. The verified official claim explicitly supports both ingredients in the root-interlacing route."
+    "rationale": "The candidate wording joins two potentially independently useful moves: determine alternating sign changes (producing a sign-change witness) and apply IVT (producing an intervening-root existence conclusion). The accepted official claim names alternating signs and IVT together without separately narrating each procedure. This is a borderline positive grounded in distinct intermediate outputs, not an automatic conclusion from official provenance; an independent reviewer may reasonably contest whether the sign check is merely part of one IVT move."
   },
   {
     "candidateId": "RAW-OFFICIAL-098",
