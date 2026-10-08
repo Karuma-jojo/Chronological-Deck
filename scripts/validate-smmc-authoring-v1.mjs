@@ -90,6 +90,7 @@ import {
   ARSENAL_GATE3_MASS_BUNDLE_DECISIONS,
   ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS,
   surfaceGate3MassBundleCandidate,
+  buildGate3MassAssessment,
 } from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 import {
@@ -1374,6 +1375,27 @@ expect(
 // multiple operation heads joined by and/plus/then/slash. Every surfaced row
 // must have exactly one explicit decision. This closes both the old proof-step
 // over-bundling and the one-ID-allowlist under-bundling.
+// Synthetic near-miss probes test parser generalization without mutating the
+// fixed 661 raw candidates or their accepted evidence records.
+const syntheticActionEvidence = (name, id) => {
+  const recordId = `SYN-E-${id}`;
+  return buildGate3MassAssessment(
+    { candidateId: id, candidateName: name, evidenceRecordIds: [recordId] },
+    [{ candidateId: id, recordId, claim: `The source index names ${name}.`,
+       evidenceBasis: "SOURCE_FACT", recordChannel: "NONE",
+       claimKind: "SOURCE_TERMINOLOGY", verificationStatus: "VERIFIED" }]
+  );
+};
+for (const name of ["Define a Function", "Factor a Polynomial", "Construct a Polynomial Matrix"]) {
+  const row = syntheticActionEvidence(name, `SYN-${name.toLowerCase().replace(/[^a-z]+/g, "-")}`);
+  expect(row.actionShape === "EXPLICIT_ACTION" && row.triggerBoundary === "UNRESOLVED",
+    `Created/generic mathematical target cannot serve as a lexical trigger: ${name}`);
+}
+expect(
+  syntheticActionEvidence("Diagonalize a 2-by-2 Polynomial Matrix", "SYN-diagonalize").triggerBoundary === "CLEAR",
+  "A constrained existing input must preserve accepted diagonalization trigger semantics."
+);
+
 // G3-M08: object being defined is output, not a recognizable input trigger.
 const defineFunctionRow = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-z-define-function");
 expect(defineFunctionRow?.actionShape === "EXPLICIT_ACTION" && defineFunctionRow?.triggerBoundary === "UNRESOLVED",

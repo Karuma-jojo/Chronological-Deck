@@ -54,14 +54,14 @@ const DISTINCT_RESULT_RE = /\b(?:bound|contradiction|normal form|ordering|identi
 // Only constrained existing inputs or specified proof goals can lexically
 // supply a triggering situation; created outputs do not count.
 const EXISTING_INPUT_ACTION_RE = /^(?:diagonalize|differentiate|integrate|factor|invert|normalize|reduce|simplify|eliminate|clear|rotate|reflect|symmetrize|partition|decompose|translate|expand)\b/i;
-const SPECIFIC_INPUT_OBJECT_RE = /\b(?:matrix|polynomial|equation|inequality|determinant|recurrence|vector|graph|system)\b/i;
-const SPECIFIC_INPUT_QUALIFIER_RE = /\b(?:\d+\s*(?:-?by-?|[×x])\s*\d+|polynomial|quadratic|linear|integer|cyclic|finite|symmetric|skew|homogeneous|nonnegative)\b/i;
+// Input type must contain two DISTINCT structural cues: e.g. a matrix with
+// a size/structure modifier. A bare "polynomial" cannot qualify itself.
+const CONSTRAINED_EXISTING_INPUT_RE = /\b(?:\d+\s*(?:-?by-?|[×x])\s*\d+\s+(?:\w+\s+){0,2}(?:matrix|system|vector|determinant)|(?:polynomial|quadratic|linear|integer|cyclic|finite|symmetric|skew|homogeneous|nonnegative)\s+(?:matrix|equation|inequality|recurrence|vector|graph|system|polynomial))\b/i;
 const SPECIFIC_PROOF_GOAL_RE = /^how\s+to\s+prove\s+(?:set equality|equality of sets|an? inequality|divisibility)\b/i;
 const lexicalRoleTrigger = name =>
   SPECIFIC_PROOF_GOAL_RE.test(name) || (
     EXISTING_INPUT_ACTION_RE.test(name) &&
-    SPECIFIC_INPUT_OBJECT_RE.test(name) &&
-    SPECIFIC_INPUT_QUALIFIER_RE.test(name)
+    CONSTRAINED_EXISTING_INPUT_RE.test(name)
   );
 
 const RESULTATIVE_EXPLICIT_RE = /^(?:construct|diagonalize|encode|factor|normalize|reduce|reexpress|recast|split|partition|translate|rotate|reflect|invert|symmetrize|complete|clear|eliminate|replace)\b/i;
