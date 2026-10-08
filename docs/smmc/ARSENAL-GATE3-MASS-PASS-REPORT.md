@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 3 repaired mass-pass report
 
-> **v4 measured and pinned graduation candidate.** These are diagnostic classifications, not accepted Tribunal decisions.
+> **v5 repaired mass-pass candidate, with measured distributions regression-pinned.** Exact-head CI and fresh independent acceptance are still required.
 
 Status: **MASS-PASS REVIEW CANDIDATE — Gate 3 is not yet accepted or complete**
 
@@ -9,7 +9,7 @@ Accepted ruler:
 - accepted Gate-2 SHA: `ab94f22f32c8ee8e05ae56969bb78a8bcc505ae7`
 - Gate-2 merge SHA: `7600dd377192aafe6ca777636d94474736ea4e4f`
 
-Independent graduation review **5406340053** rejected the first 616-row application for four systematic shortcuts. Independent repaired graduation review **5436149362** then rejected exact SHA `7ea6d64d8a0bf0424a3b23925ff8c5e77bd487a2` for two narrower application defects: an over-corrected one-ID mass bundle allowlist and drift from the accepted explicit-target trigger semantics. This report describes the subsequent v4 repair after independent review 5446516036.
+Independent graduation review **5406340053** rejected the first 616-row application for four systematic shortcuts. Independent repaired graduation review **5436149362** then rejected exact SHA `7ea6d64d8a0bf0424a3b23925ff8c5e77bd487a2` for two narrower application defects: an over-corrected one-ID mass bundle allowlist and drift from the accepted explicit-target trigger semantics. The v4 head `12f0c10d2aab6b0600acb50bd5bb640fb9a760e4` was subsequently rejected for G3-M09/10/11; the verbatim review is archived in `docs/smmc/SMMC-Gate3-v4-Adversarial-Review-12f0c10d.md`. This report describes the bounded v5 repair candidate.
 
 The accepted 45-row calibration is unchanged.
 
@@ -85,15 +85,30 @@ Source-authored semantics remain SOURCE_LOCAL when supported by candidate-owned 
 
 Problem-local semantics remain separate.
 
-### G3-M06 / G3-M08 — role-sensitive lexical triggers
+### G3-M06 / G3-M08 / G3-M09 — distinguish input from created output
 
-An explicit action now receives lexical CLEAR trigger support from a **constrained existing input class** or an explicitly identified proof-goal form, not from an arbitrary mathematical noun. Target creation is not an invitation condition. Generic prepositions are not trigger cues.
+Lexical object triggers are evaluated on the **pre-destination input phrase**, never on the entire candidate wording. A constrained result like *finite graph* or *polynomial matrix* is not a recognizable input trigger when the action is creating that result.
 
-- Accepted calibration `RAW-ROUTE-029` and official duplicate `RAW-OFFICIAL-091` — *Diagonalize a 2-by-2 Polynomial Matrix*: `EXPLICIT_ACTION + CLEAR trigger`.
-- `RAW-SOURCE-z-define-function` — *Define a Function*: `EXPLICIT_ACTION + UNRESOLVED trigger`.
-- `RAW-SOURCE-p-search-pattern` — *Search for a Pattern*: `UNRESOLVED trigger`.
-- Synthetic no-corpus-mutation probes additionally reject false triggers for *Factor a Polynomial*, *Construct a Polynomial Matrix*, and *Define a Function*; they preserve the constrained diagonalization positive.
+- Negative synthetics: *Reduce a Problem to a Finite Graph*, *Translate a Recurrence into a Polynomial Matrix*, *Eliminate a Variable to Obtain a Symmetric Matrix* → EXPLICIT_ACTION, UNRESOLVED trigger under thin terminology evidence.
+- Positive contrast: *Translate a Symmetric Matrix into a Graph*, *Reduce a 2-by-2 Polynomial Matrix to a Graph*, *Diagonalize a 2-by-2 Polynomial Matrix to Obtain Eigenvalues* → CLEAR lexical trigger from the existing constrained input.
+- Frozen `RAW-ROUTE-029` and `RAW-OFFICIAL-091` diagonalization rows retain EXPLICIT_ACTION and CLEAR trigger. `Define a Function` and `Search for a Pattern` keep UNRESOLVED trigger.
 
+### G3-M10 — candidate-owned condition and result spans
+
+Verified, candidate-owned operational claims may supply a **literal condition/result witness span**; source-index terminology alone cannot be treated as a trigger or payoff statement. Witnesses supplement the earlier evidence checks without adding schema fields.
+
+- `RAW-OFFICIAL-052`: “to obtain boundedness” → output CLEAR.
+- `RAW-OFFICIAL-117`: “Once the graph core is 2-regular” → trigger CLEAR; “to block diagonal form” → output CLEAR.
+- `RAW-SOURCE-v-unique-existence`: “into existence and uniqueness obligations” → output CLEAR.
+- `RAW-OFFICIAL-051`: “to obtain a limiting parameter” → output CLEAR.
+
+Meaning-preserving regression probes independently substitute *to obtain boundedness / and obtains boundedness*, *Once / When*, and *positive discriminant / discriminant greater than zero* without changing the clear boundaries. Additional similarly explicit result phrasings receive the same strictly source-bounded treatment.
+
+### G3-M11 — imperative action shapes
+
+`RAW-OFFICIAL-002 — Perturb Away Degeneracies` and `RAW-OFFICIAL-003 — Track Parity Under Continuous Deformation` now receive EXPLICIT_ACTION. The full 616-row mass pass is regenerated, while noun-shaped negative controls `Set Theory and Combinatorics of Sets` and `Use of a Matrix` remain LABEL_ONLY.
+
+These are diagnostic readings, **not** canonical object/type/keep or product decisions.
 ## 3. Repaired final distribution
 
 ### Reference scale
@@ -121,8 +136,8 @@ The rise in UNRESOLVED is intentional. Removing semantic shortcuts means strict 
 
 | Action shape | Count |
 |---|---:|
-| EXPLICIT_ACTION | 53 |
-| IMPLICIT_ACTION | 238 |
+| EXPLICIT_ACTION | 55 |
+| IMPLICIT_ACTION | 236 |
 | LABEL_ONLY | 369 |
 | UNRESOLVED | 1 |
 
@@ -130,10 +145,10 @@ The rise in UNRESOLVED is intentional. Removing semantic shortcuts means strict 
 
 | Reach | Count |
 |---|---:|
-| GENERAL | 442 |
+| GENERAL | 443 |
 | SOURCE_LOCAL | 6 |
 | PROBLEM_LOCAL | 7 |
-| UNRESOLVED | 206 |
+| UNRESOLVED | 205 |
 
 This is the largest intentional change from the first mass pass: GENERAL is no longer a fallback.
 
@@ -141,10 +156,10 @@ This is the largest intentional change from the first mass pass: GENERAL is no l
 
 | State | Trigger | Operation | Output |
 |---|---:|---:|---:|
-| CLEAR | 49 | 181 | 93 |
-| PARTIAL | 11 | 110 | 56 |
+| CLEAR | 50 | 181 | 102 |
+| PARTIAL | 10 | 110 | 55 |
 | ABSENT | 82 | 82 | 81 |
-| UNRESOLVED | 519 | 288 | 431 |
+| UNRESOLVED | 519 | 288 | 423 |
 
 ### Confidence
 
@@ -264,7 +279,7 @@ The repaired mass pass remains a **review candidate**, not self-accepted.
 
 A fresh independent exact-head graduation review must attack:
 
-1. the four repaired systematic failure modes from review 5406340053;
+1. the original systematic shortcuts plus all three blocking G3-M09/10/11 findings in the archived independent v4 rejection;
 2. the 28 opaque secondary-tag UNRESOLVED calls versus the 11 readable MACRO calls;
 3. lexical negative regressions for Set Theory, operation/result overlap, and trigger prepositions;
 4. the 12 BUNDLED_MOVES rows, the high-recall 87-row positive/negative review surface/decision closure, and the eight rejected old bundle shortcuts;
@@ -278,6 +293,6 @@ A fresh independent exact-head graduation review must attack:
 
 Only explicit independent acceptance of the new exact repaired SHA may close Gate 3.
 
-Current state (v4 remains under independent review):
+Current state (v5 remains under independent review):
 
 `Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 REPAIRED MASS-PASS REVIEW CANDIDATE → Tribunal 🔒`
