@@ -1681,14 +1681,14 @@ console.log("GATE3_V4_DISTRIBUTION_DIAGNOSTIC", JSON.stringify({
 const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
   referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 189, MACRO: 93, MICRO: 1, UNRESOLVED: 377 }),
   bundleStructure: Object.freeze({ BUNDLED_MOVES: 12, SINGLE_PRIMARY_MOVE: 190, UNRESOLVED: 459 }),
-  actionShape: Object.freeze({ EXPLICIT_ACTION: 53, IMPLICIT_ACTION: 238, LABEL_ONLY: 369, UNRESOLVED: 1 }),
-  contextReach: Object.freeze({ GENERAL: 442, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 6, UNRESOLVED: 206 }),
-  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 49, PARTIAL: 11, UNRESOLVED: 519 }),
+  actionShape: Object.freeze({ EXPLICIT_ACTION: 55, IMPLICIT_ACTION: 236, LABEL_ONLY: 369, UNRESOLVED: 1 }),
+  contextReach: Object.freeze({ GENERAL: 443, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 6, UNRESOLVED: 205 }),
+  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 50, PARTIAL: 10, UNRESOLVED: 519 }),
   operationBoundary: Object.freeze({ ABSENT: 82, CLEAR: 181, PARTIAL: 110, UNRESOLVED: 288 }),
-  outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 93, PARTIAL: 56, UNRESOLVED: 431 }),
+  outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 102, PARTIAL: 55, UNRESOLVED: 423 }),
   confidence: Object.freeze({ HIGH: 616, LOW: 1, MEDIUM: 44 }),
   ruleUsage: Object.freeze({ MP01: 39, MP02: 8, MP03: 112, MP04: 14, MP05: 12, MP06: 25, MP07: 9, MP08: 177, MP09: 31, MP10: 189 }),
-});
+};
 
 for (const key of [
   "referenceScale",
