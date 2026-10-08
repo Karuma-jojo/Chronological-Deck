@@ -1574,6 +1574,19 @@ expect(
   "Mass-pass rule usage must account for all 616 classified rows."
 );
 
+console.log("GATE3_V4_DISTRIBUTION_DIAGNOSTIC", JSON.stringify({
+  referenceScale: gate3CountBy("referenceScale"),
+  bundleStructure: gate3CountBy("bundleStructure"),
+  actionShape: gate3CountBy("actionShape"),
+  contextReach: gate3CountBy("contextReach"),
+  triggerBoundary: gate3CountBy("triggerBoundary"),
+  operationBoundary: gate3CountBy("operationBoundary"),
+  outputBoundary: gate3CountBy("outputBoundary"),
+  confidence: gate3CountBy("confidence"),
+  ruleUsage: gate3RuleUsage,
+  differingDuplicateGroups: ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures,
+}));
+
 const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
   referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 190, MACRO: 89, MICRO: 1, UNRESOLVED: 380 }),
   bundleStructure: Object.freeze({ BUNDLED_MOVES: 8, SINGLE_PRIMARY_MOVE: 191, UNRESOLVED: 462 }),
