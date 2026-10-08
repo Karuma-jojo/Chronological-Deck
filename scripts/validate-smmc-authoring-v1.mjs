@@ -91,6 +91,7 @@ import {
   ARSENAL_GATE3_REJECTED_BUNDLE_SHORTCUT_IDS,
   surfaceGate3MassBundleCandidate,
   buildGate3MassAssessment,
+  gate3ClaimBoundaryWitnesses,
 } from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 import {
@@ -984,7 +985,7 @@ expect(
   ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v2-45-boundary-normalized",
   "All 45 calibration rows must remain marked as re-audited under strict candidate-owned evidence mode."
 );
-expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v4-616-bundle-trigger-role-repair", "Gate-3 mass-pass version drifted.");
+expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v5-616-claim-span-imperative-role-repair", "Gate-3 mass-pass version drifted.");
 expect(ARSENAL_GATE3_GRANULARITY_META.calibrationRows === 45, "Gate-3 accepted calibration population must remain 45.");
 expect(ARSENAL_GATE3_GRANULARITY_META.massPassRows === 616, "Gate-3 mass-pass population must be exactly the remaining 616 rows.");
 expect(
@@ -1005,11 +1006,14 @@ expect(
   "Mass classifier must preserve accepted evidence mode and must not emit new CROSS_SCALE calls."
 );
 expect(
-  ARSENAL_GATE3_MASS_CLASSIFIER_META.version === "v4" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.version === "v5" &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.provenanceShortcutRemoved === true &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.triggerPrepositionShortcutRemoved === true &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.distinctOperationResultRequired === true &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.contextReachFallback === "UNRESOLVED" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.triggerObjectRole === "PRE_DESTINATION_INPUT_ONLY" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.evidenceRoleSpans === "VERIFIED_CANDIDATE_OWNED" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.actionHeadAudit === "FIXED_CORPUS_V5_IMPERATIVE_REVIEW" &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.bundleAuditMode === "HIGH_RECALL_STRUCTURAL_SURFACE_WITH_POSITIVE_NEGATIVE_ADJUDICATION",
   "Gate-3 mass classifier repair metadata drifted."
 );
@@ -1396,6 +1400,71 @@ expect(
   "A constrained existing input must preserve accepted diagonalization trigger semantics."
 );
 
+// G3-M09: destination/result nouns may not masquerade as triggers.
+for (const name of ["Reduce a Problem to a Finite Graph",
+  "Translate a Recurrence into a Polynomial Matrix",
+  "Eliminate a Variable to Obtain a Symmetric Matrix"]) {
+  const row = syntheticActionEvidence(name, "SYN-OUTPUT-"+name.toLowerCase().replace(/[^a-z]+/g,"-"));
+  expect(row.actionShape === "EXPLICIT_ACTION" && row.triggerBoundary === "UNRESOLVED",
+    "Result representation incorrectly read as input trigger: "+name);
+}
+for (const name of ["Translate a Symmetric Matrix into a Graph",
+  "Reduce a 2-by-2 Polynomial Matrix to a Graph",
+  "Diagonalize a 2-by-2 Polynomial Matrix to Obtain Eigenvalues"]) {
+  expect(syntheticActionEvidence(name,"SYN-INPUT-"+name.toLowerCase().replace(/[^a-z]+/g,"-")).triggerBoundary === "CLEAR",
+    "Pre-destination constrained input must remain CLEAR: "+name);
+}
+// G3-M10: use only candidate-owned accepted evidence and its literal spans.
+const ownedGate3Pair = id => {
+  const candidate = ARSENAL_GATE2_RAW_CANDIDATES.find(c=>c.candidateId===id);
+  const evidenceRecords = ARSENAL_GATE2_RAW_EVIDENCE.filter(e=>e.candidateId===id);
+  expect(candidate && evidenceRecords.length, "Missing accepted owned evidence: "+id);
+  return {candidate,evidenceRecords};
+};
+const rephraseOwnedClaim = (id,before,after) => {
+  const {candidate,evidenceRecords}=ownedGate3Pair(id);
+  const variants=evidenceRecords.map(e=>{
+    expect(e.claim.includes(before),"Missing claim phrase: "+id+"/"+before);
+    return {...e,claim:e.claim.replace(before,after)};
+  });
+  return buildGate3MassAssessment(candidate,variants);
+};
+for(const [id,key] of [["RAW-OFFICIAL-052","outputBoundary"],
+  ["RAW-OFFICIAL-051","outputBoundary"],
+  ["RAW-OFFICIAL-117","triggerBoundary"],["RAW-OFFICIAL-117","outputBoundary"],
+  ["RAW-SOURCE-v-unique-existence","outputBoundary"]]) {
+  expect(gate3ReviewedRows.find(x=>x.candidateId===id)?.[key]==="CLEAR",
+    "Explicitly attested condition/result was lost: "+id+"/"+key);
+}
+expect(rephraseOwnedClaim("RAW-OFFICIAL-052","to obtain boundedness","and obtains boundedness").outputBoundary==="CLEAR",
+  "Boundedness should survive semantic rephrasing.");
+expect(rephraseOwnedClaim("RAW-OFFICIAL-117","Once the graph core","When the graph core").triggerBoundary==="CLEAR",
+  "Once/When condition should remain a CLEAR trigger.");
+expect(rephraseOwnedClaim("RAW-OFFICIAL-110","positive discriminant","discriminant greater than zero").triggerBoundary==="CLEAR",
+  "Positive/greater-than-zero discriminant condition should remain a CLEAR trigger.");
+for(const [id,role,span] of [["RAW-OFFICIAL-052","output","to obtain boundedness"],
+  ["RAW-OFFICIAL-117","trigger","Once the graph core"],
+  ["RAW-OFFICIAL-117","output","to block diagonal form"],
+  ["RAW-SOURCE-v-unique-existence","output","into existence and uniqueness obligations"]]) {
+  const witnesses=gate3ClaimBoundaryWitnesses(ownedGate3Pair(id).evidenceRecords);
+  expect(witnesses.some(w=>(w[role]??"").includes(span)),"Missing literal role span: "+id+"/"+role);
+}
+expect(gate3ClaimBoundaryWitnesses([{recordId:"SYN-INDEX",claim:"Index names a way to obtain boundedness",
+  evidenceBasis:"SOURCE_FACT",verificationStatus:"VERIFIED",claimKind:"SOURCE_TERMINOLOGY",recordChannel:"NONE"}]).length===0,
+  "Source-index terminology must not become an operational result.");
+// G3-M11: every newly identified imperative in the fixed mass population.
+for(const id of ["RAW-OFFICIAL-002","RAW-OFFICIAL-003","RAW-OFFICIAL-088","RAW-OFFICIAL-091"]) {
+  expect(massRows.find(x=>x.candidateId===id)?.actionShape==="EXPLICIT_ACTION",
+    "Imperative action misclassified: "+id);
+}
+for(const name of ["Perturb Away Degeneracies","Track Parity Under Continuous Deformation"]) {
+  expect(syntheticActionEvidence(name,"SYN-ACTION-"+name.toLowerCase().replace(/[^a-z]+/g,"-")).actionShape==="EXPLICIT_ACTION",
+    "Missed syntactically imperative name: "+name);
+}
+expect(syntheticActionEvidence("Use of a Matrix","SYN-USE-OF").actionShape==="LABEL_ONLY",
+  "Use of a Matrix is a noun phrase, not an imperative.");
+expect(gate3ReviewedRows.find(x=>x.candidateName==="Set Theory and Combinatorics of Sets")?.actionShape==="LABEL_ONLY",
+  "Set Theory heading must remain noun-shaped.");
 // G3-M08: object being defined is output, not a recognizable input trigger.
 const defineFunctionRow = gate3ReviewedRows.find(x => x.candidateId === "RAW-SOURCE-z-define-function");
 expect(defineFunctionRow?.actionShape === "EXPLICIT_ACTION" && defineFunctionRow?.triggerBoundary === "UNRESOLVED",
@@ -1633,12 +1702,12 @@ for (const key of [
 ]) {
   expect(
     JSON.stringify(gate3CountBy(key)) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION[key]),
-    `Gate-3 v4 repaired mass-pass distribution drifted for ${key}`
+    `Gate-3 v5 repaired mass-pass distribution drifted for ${key}`
   );
 }
 expect(
   JSON.stringify(gate3RuleUsage) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION.ruleUsage),
-  "Gate-3 v4 repaired mass-pass rule distribution drifted."
+  "Gate-3 v5 repaired mass-pass rule distribution drifted."
 );
 expect(
   ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures === 13,
