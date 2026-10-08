@@ -1610,15 +1610,15 @@ console.log("GATE3_V4_DISTRIBUTION_DIAGNOSTIC", JSON.stringify({
 }));
 
 const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
-  referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 190, MACRO: 89, MICRO: 1, UNRESOLVED: 380 }),
-  bundleStructure: Object.freeze({ BUNDLED_MOVES: 8, SINGLE_PRIMARY_MOVE: 191, UNRESOLVED: 462 }),
-  actionShape: Object.freeze({ EXPLICIT_ACTION: 53, IMPLICIT_ACTION: 236, LABEL_ONLY: 371, UNRESOLVED: 1 }),
-  contextReach: Object.freeze({ GENERAL: 440, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 6, UNRESOLVED: 208 }),
-  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 51, PARTIAL: 10, UNRESOLVED: 518 }),
-  operationBoundary: Object.freeze({ ABSENT: 82, CLEAR: 181, PARTIAL: 108, UNRESOLVED: 290 }),
+  referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 189, MACRO: 93, MICRO: 1, UNRESOLVED: 377 }),
+  bundleStructure: Object.freeze({ BUNDLED_MOVES: 12, SINGLE_PRIMARY_MOVE: 190, UNRESOLVED: 459 }),
+  actionShape: Object.freeze({ EXPLICIT_ACTION: 53, IMPLICIT_ACTION: 238, LABEL_ONLY: 369, UNRESOLVED: 1 }),
+  contextReach: Object.freeze({ GENERAL: 442, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 6, UNRESOLVED: 206 }),
+  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 49, PARTIAL: 11, UNRESOLVED: 519 }),
+  operationBoundary: Object.freeze({ ABSENT: 82, CLEAR: 181, PARTIAL: 110, UNRESOLVED: 288 }),
   outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 93, PARTIAL: 56, UNRESOLVED: 431 }),
-  confidence: Object.freeze({ HIGH: 619, LOW: 1, MEDIUM: 41 }),
-  ruleUsage: Object.freeze({ MP01: 39, MP02: 4, MP03: 113, MP04: 14, MP05: 12, MP06: 25, MP07: 9, MP08: 178, MP09: 31, MP10: 191 }),
+  confidence: Object.freeze({ HIGH: 616, LOW: 1, MEDIUM: 44 }),
+  ruleUsage: Object.freeze({ MP01: 39, MP02: 8, MP03: 112, MP04: 14, MP05: 12, MP06: 25, MP07: 9, MP08: 177, MP09: 31, MP10: 189 }),
 });
 
 for (const key of [
@@ -1633,20 +1633,20 @@ for (const key of [
 ]) {
   expect(
     JSON.stringify(gate3CountBy(key)) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION[key]),
-    `Gate-3 v3 repaired mass-pass distribution drifted for ${key}`
+    `Gate-3 v4 repaired mass-pass distribution drifted for ${key}`
   );
 }
 expect(
   JSON.stringify(gate3RuleUsage) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION.ruleUsage),
-  "Gate-3 v3 repaired mass-pass rule distribution drifted."
+  "Gate-3 v4 repaired mass-pass rule distribution drifted."
 );
 expect(
   ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures === 13,
-  "Gate-3 v3 duplicate-name differing-signature count drifted."
+  "Gate-3 v4 duplicate-name differing-signature count drifted."
 );
 expect(
   ARSENAL_GATE3_MASS_AUDIT_META.officialUnresolvedScaleRows === 3,
-  "Gate-3 v3 official UNRESOLVED count must remain exactly three."
+  "Gate-3 v4 official UNRESOLVED count must remain exactly three."
 );
 
 // Lexical-action regressions that were explicitly self-audited before handoff.
