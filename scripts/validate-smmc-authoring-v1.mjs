@@ -1688,7 +1688,7 @@ const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
   outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 102, PARTIAL: 55, UNRESOLVED: 423 }),
   confidence: Object.freeze({ HIGH: 616, LOW: 1, MEDIUM: 44 }),
   ruleUsage: Object.freeze({ MP01: 39, MP02: 8, MP03: 112, MP04: 14, MP05: 12, MP06: 25, MP07: 9, MP08: 177, MP09: 31, MP10: 189 }),
-};
+});
 
 for (const key of [
   "referenceScale",
