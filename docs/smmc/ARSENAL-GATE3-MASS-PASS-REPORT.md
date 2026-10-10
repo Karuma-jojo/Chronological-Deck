@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 3 repaired mass-pass report
 
-> **v5 repaired mass-pass candidate, with measured distributions regression-pinned.** Exact-head CI and fresh independent acceptance are still required.
+> **v6 bounded repair candidate.** The distribution below is historical v5 until exact-head v6 CI generates new values. Gate 3 remains unaccepted.
 
 Status: **MASS-PASS REVIEW CANDIDATE — Gate 3 is not yet accepted or complete**
 
@@ -296,3 +296,7 @@ Only explicit independent acceptance of the new exact repaired SHA may close Gat
 Current state (v5 remains under independent review):
 
 `Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 REPAIRED MASS-PASS REVIEW CANDIDATE → Tribunal 🔒`
+
+## v6 semantic-role repair pending exact-head validation
+
+The independent v5 review, recorded in [PR #186 comment 6089044248](https://github.com/Karuma-jojo/Chronological-Deck/pull/186#issuecomment-6089044248), rejected v5 for G3-M12 context locality and G3-M13/M14 missing result/premise roles. The v6 implementation changes locality to require genuine expression/claim dependence, supports candidate-owned relational outputs (equivalence, reversibility, identification), and matches named premises to their accepted operational claims. Negative and positive paraphrase probes are added; the frozen Gate-2 and 45-calibration files have not been edited. **Recompute and pin all v6 counts after exact-head CI; independent acceptance remains required.**

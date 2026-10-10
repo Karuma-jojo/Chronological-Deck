@@ -985,7 +985,7 @@ expect(
   ARSENAL_GATE3_GRANULARITY_META.strictEvidenceReauditVersion === "v2-45-boundary-normalized",
   "All 45 calibration rows must remain marked as re-audited under strict candidate-owned evidence mode."
 );
-expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v5-616-claim-span-imperative-role-repair", "Gate-3 mass-pass version drifted.");
+expect(ARSENAL_GATE3_GRANULARITY_META.massPassVersion === "v6-616-context-evidence-role-repair", "Gate-3 mass-pass version drifted.");
 expect(ARSENAL_GATE3_GRANULARITY_META.calibrationRows === 45, "Gate-3 accepted calibration population must remain 45.");
 expect(ARSENAL_GATE3_GRANULARITY_META.massPassRows === 616, "Gate-3 mass-pass population must be exactly the remaining 616 rows.");
 expect(
@@ -1006,7 +1006,7 @@ expect(
   "Mass classifier must preserve accepted evidence mode and must not emit new CROSS_SCALE calls."
 );
 expect(
-  ARSENAL_GATE3_MASS_CLASSIFIER_META.version === "v5" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.version === "v6" &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.provenanceShortcutRemoved === true &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.triggerPrepositionShortcutRemoved === true &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.distinctOperationResultRequired === true &&
@@ -1014,6 +1014,9 @@ expect(
   ARSENAL_GATE3_MASS_CLASSIFIER_META.triggerObjectRole === "PRE_DESTINATION_INPUT_ONLY" &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.evidenceRoleSpans === "VERIFIED_CANDIDATE_OWNED" &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.actionHeadAudit === "FIXED_CORPUS_V5_IMPERATIVE_REVIEW" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.contextReach === "ROLE_SENSITIVE_SEMANTIC_DEPENDENCE_V6" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.evidenceResultGrammar === "VERIFIED_OWNED_RELATION_CLAUSES_V6" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.premiseRoleAgreement === "NAME_AND_VERIFIED_CLAIM_V6" &&
   ARSENAL_GATE3_MASS_CLASSIFIER_META.bundleAuditMode === "HIGH_RECALL_STRUCTURAL_SURFACE_WITH_POSITIVE_NEGATIVE_ADJUDICATION",
   "Gate-3 mass classifier repair metadata drifted."
 );
@@ -1452,6 +1455,52 @@ for(const [id,role,span] of [["RAW-OFFICIAL-052","output","to obtain boundedness
 expect(gate3ClaimBoundaryWitnesses([{recordId:"SYN-INDEX",claim:"Index names a way to obtain boundedness",
   evidenceBasis:"SOURCE_FACT",verificationStatus:"VERIFIED",claimKind:"SOURCE_TERMINOLOGY",recordChannel:"NONE"}]).length===0,
   "Source-index terminology must not become an operational result.");
+// G3-M12: "the recurrence" in a Battle description identifies the source
+// input, not a PROBLEM_LOCAL mathematical dependence of a reusable method.
+for (const id of ["RAW-OFFICIAL-012", "RAW-OFFICIAL-038"]) {
+  expect(gate3ReviewedRows.find(r=>r.candidateId===id)?.contextReach==="GENERAL",
+    "Historical recurrence wording must not force problem-local reach: "+id);
+}
+for (const id of ["RAW-OFFICIAL-044", "RAW-OFFICIAL-115"]) {
+  expect(gate3ReviewedRows.find(r=>r.candidateId===id)?.contextReach==="PROBLEM_LOCAL",
+    "Genuine candidate-and-claim-local method must remain problem-local: "+id);
+}
+expect(rephraseOwnedClaim("RAW-OFFICIAL-012","from the recurrence","from a recurrence").contextReach==="GENERAL",
+  "Changing definite/indefinite recurrence article must not alter generality.");
+expect(rephraseOwnedClaim("RAW-OFFICIAL-038","the recurrence","a recurrence").contextReach==="GENERAL",
+  "An official recurrence source is not a locality trigger.");
+
+// G3-M13: evidence-owned mathematical-result roles, not a finite list of
+// target theorem names. Paraphrase variants retain meaning and boundary.
+for(const id of ["RAW-OFFICIAL-031","RAW-OFFICIAL-045","RAW-OFFICIAL-048"]) {
+  expect(gate3ReviewedRows.find(r=>r.candidateId===id)?.outputBoundary==="CLEAR",
+    "Verified explicit relational result missed: "+id);
+}
+for(const [id,oldText,newText] of [
+  ["RAW-OFFICIAL-031","is equivalent to vanishing of its gradient","holds exactly when its gradient vanishes"],
+  ["RAW-OFFICIAL-045","proves the correspondence is reversible","establishes a bijection between histories and subsets"],
+  ["RAW-OFFICIAL-048","identifies a quotient","models a quotient"],
+]) {
+  expect(rephraseOwnedClaim(id,oldText,newText).outputBoundary==="CLEAR",
+    "Equivalent evidence-owned result wording must stay CLEAR: "+id);
+}
+for(const id of ["RAW-OFFICIAL-031","RAW-OFFICIAL-045","RAW-OFFICIAL-048"]) {
+  const spans=gate3ClaimBoundaryWitnesses(ownedGate3Pair(id).evidenceRecords);
+  expect(spans.some(x=>x.output && x.output.length>=12),
+    "Missing source-literal mathematical result witness: "+id);
+}
+expect(gate3ClaimBoundaryWitnesses([{
+  recordId:"SYN-THIN-RELATION",claim:"The source index names a reversible correspondence and an equivalence.",
+  evidenceBasis:"SOURCE_FACT",verificationStatus:"VERIFIED",claimKind:"SOURCE_TERMINOLOGY",recordChannel:"NONE"
+}]).length===0,"Terminology may not manufacture a verified result relation.");
+
+// G3-M14: an attested existing premise is a trigger even without "if/when".
+expect(gate3ReviewedRows.find(r=>r.candidateId==="RAW-OFFICIAL-052")?.triggerBoundary==="CLEAR",
+  "Integrability on compact intervals is an explicit owned input premise.");
+expect(rephraseOwnedClaim("RAW-OFFICIAL-052",
+  "first uses Riemann integrability on compact intervals to obtain boundedness",
+  "assuming Riemann integrability on compact intervals, it obtains boundedness").triggerBoundary==="CLEAR",
+  "A mathematically equivalent assumption clause must preserve the trigger.");
 // G3-M11: every newly identified imperative in the fixed mass population.
 for(const id of ["RAW-OFFICIAL-002","RAW-OFFICIAL-003","RAW-OFFICIAL-088","RAW-OFFICIAL-091"]) {
   expect(massRows.find(x=>x.candidateId===id)?.actionShape==="EXPLICIT_ACTION",
@@ -1665,7 +1714,7 @@ expect(
   "Mass-pass rule usage must account for all 616 classified rows."
 );
 
-console.log("GATE3_V4_DISTRIBUTION_DIAGNOSTIC", JSON.stringify({
+console.log("GATE3_V6_DISTRIBUTION_DIAGNOSTIC", JSON.stringify({
   referenceScale: gate3CountBy("referenceScale"),
   bundleStructure: gate3CountBy("bundleStructure"),
   actionShape: gate3CountBy("actionShape"),
@@ -1702,12 +1751,12 @@ for (const key of [
 ]) {
   expect(
     JSON.stringify(gate3CountBy(key)) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION[key]),
-    `Gate-3 v5 repaired mass-pass distribution drifted for ${key}`
+    `Gate-3 v6 repaired mass-pass distribution drifted for ${key}`
   );
 }
 expect(
   JSON.stringify(gate3RuleUsage) === JSON.stringify(EXPECTED_GATE3_MASS_DISTRIBUTION.ruleUsage),
-  "Gate-3 v5 repaired mass-pass rule distribution drifted."
+  "Gate-3 v6 repaired mass-pass rule distribution drifted."
 );
 expect(
   ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures === 13,

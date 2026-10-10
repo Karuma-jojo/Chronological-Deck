@@ -53,6 +53,40 @@ const TRIGGER_CLAIM_RE = /\b(?:if|when|whenever|given|suppose|assume|case|out-of
 // to the frozen Gate-3 record schema or to the Gate-2 corpus.
 const RESULT_ROLE_SPAN_RE = /\b(?:to obtain\s+(?:boundedness|a limiting parameter)|to avoid\s+self-intersections|to block diagonal form|into existence and uniqueness obligations|intersection count changes only by even amounts|to decide convergence or divergence|to control convergence\/divergence|to bootstrap regularity from boundedness to continuity)\b/i;
 const CONDITION_ROLE_SPAN_RE = /\b(?:once\s+(?:the|a|an)\s+[^,;.]{3,120}|discriminant\s+(?:is\s+)?greater than zero)\b/i;
+// Reusable mathematical-result grammatical roles, applied ONLY to qualifying
+// owned operational evidence. These name relationships/proofs of equivalence,
+// reversibility and identification rather than three special raw candidate IDs.
+const RESULT_RELATION_CLAUSES = Object.freeze([
+  /\b(?:is|are|was|were|becomes?)\s+equivalent\s+to\b[^,;.]{3,140}/i,
+  /\b(?:proves?|shows?|establishes?|demonstrates?)\s+(?:that\s+)?[^,;.]{2,140}?\b(?:is\s+reversible|is\s+bijective|is\s+equivalent|corresponds?\s+to)\b/i,
+  /\b(?:proves?|establishes?|constructs?|demonstrates?)\s+(?:an?\s+)?(?:bijection|reversible\s+correspondence)\b[^,;.]{0,140}/i,
+  /\b(?:identifies?|models?|realizes?|represents?)\s+[^,;.]{3,180}?\b(?:with|as)\s+[^,;.]{3,140}/i,
+  /\b(?:holds|occurs)\s+(?:exactly\s+)?when\b[^,;.]{3,140}/i,
+]);
+const mathematicalResultClause = claim =>
+  RESULT_RELATION_CLAUSES.map(re => claim.match(re)?.[0]).find(Boolean) ?? null;
+
+// A raw "X to Y" expression and a corresponding verified claim saying
+// "uses X to obtain Y" together identify X as the existing premise.
+// This is a role agreement between the candidate and its own claim, not a
+// generic "uses ..." or mathematical-noun keyword shortcut.
+const namedPremiseWitness = (name, evidenceRecords) => {
+  const match = /^(.{4,90}?)\s+to\s+.{4,90}$/i.exec(name.trim());
+  if (!match) return null;
+  const premise = match[1].toLowerCase().trim();
+  for (const e of evidenceRecords) {
+    if (!qualifyingClaim(e)) continue;
+    const claim = e.claim ?? "";
+    const use = /\b(?:uses?|applies?|starts?\s+from)\s+(.{3,140}?)\s+to\s+(?:obtain|derive|deduce|prove|show|establish|force|produce|yield)\b/i.exec(claim);
+    if (use && use[1].toLowerCase().includes(premise))
+      return { evidenceRecordId: e.recordId, trigger: use[1].trim() };
+    const explicitPremise = /\b(?:assuming|given|under)\s+([^,;.]{4,140})/i.exec(claim);
+    if (explicitPremise && explicitPremise[1].toLowerCase().includes(premise))
+      return { evidenceRecordId: e.recordId, trigger: explicitPremise[1].trim() };
+  }
+  return null;
+};
+
 const qualifyingClaim = e => e?.evidenceBasis === "SOURCE_FACT" && e?.verificationStatus === "VERIFIED" &&
   ((e?.recordChannel === "BATTLE" && e?.claimKind === "HISTORICAL_OCCURRENCE") ||
    (e?.recordChannel === "DISCOVERY" && e?.claimKind === "DISCOVERY_HEURISTIC") ||
@@ -62,7 +96,7 @@ export function gate3ClaimBoundaryWitnesses(records) {
     if (!qualifyingClaim(e)) return null;
     const claim = e.claim ?? "";
     const trigger = claim.match(CONDITION_ROLE_SPAN_RE)?.[0] ?? null;
-    const output = claim.match(RESULT_ROLE_SPAN_RE)?.[0] ?? null;
+    const output = claim.match(RESULT_ROLE_SPAN_RE)?.[0] ?? mathematicalResultClause(claim);
     return trigger || output ? Object.freeze({ evidenceRecordId: e.recordId, trigger, output }) : null;
   }).filter(Boolean));
 }
@@ -111,7 +145,14 @@ const bundleDecisionById = new Map(
 const auditedMassBundle = candidateId =>
   bundleDecisionById.get(candidateId)?.decision === "BUNDLE";
 
-const localCue = text => /\b(?:this recurrence|the recurrence|this problem|specific problem|particular problem|this configuration|specific configuration|recoverability lemma|alternative route)\b/i.test(text);
+// Semantic dependence is not established merely because an official sentence
+// says "the recurrence" or "alternative route" while narrating its inputs.
+const localCue = (name, claim) =>
+  /\b(?:this recurrence|this problem|specific problem|particular problem|this configuration|specific configuration)\b/i.test(name) ||
+  (/\brecoverability lemma\b/i.test(name) &&
+   /\bfinal state determines the last move\b/i.test(claim)) ||
+  (/\bsmallest nondivisible multiplier advances prime support\b/i.test(name) &&
+   /\bthe recurrence to acquire that prime factor\b/i.test(claim));
 
 const sourceLocalCue = (name, claim) =>
   (
@@ -190,8 +231,8 @@ const bundleSupported = candidate => auditedMassBundle(candidate.candidateId);
 const problemLocalReach = (candidate, evidenceRecords) => {
   const hasHistorical = evidenceRecords.some(e => Array.isArray(e.historicalProblemIds) && e.historicalProblemIds.length > 0);
   if (!hasHistorical) return false;
-  const text = `${candidate.candidateName} ${evidenceRecords.map(e => e.claim ?? "").join(" ")}`;
-  return localCue(text);
+  const claim = evidenceRecords.map(e => e.claim ?? "").join(" ");
+  return localCue(candidate.candidateName, claim);
 };
 
 const methodLike = name => METHOD_LIKE_RE.test(name);
@@ -241,9 +282,11 @@ const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationS
 
   const lexicalResult =
     actionShape === "EXPLICIT_ACTION" && RESULTATIVE_EXPLICIT_RE.test(name);
+  const namedPremise = namedPremiseWitness(name, evidenceRecords);
 
   const hasTrigger =
     evidenceTrigger(evidenceRecords) ||
+    namedPremise !== null ||
     lexicalConditionTrigger ||
     lexicalObjectTrigger;
   const hasOutput =
@@ -262,6 +305,7 @@ const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationS
       richOfficial(evidenceRecords) ||
       richDiscovery(evidenceRecords) ||
       operationalProofStructure(evidenceRecords) ||
+      namedPremise !== null ||
       lexicalConditionTrigger ||
       lexicalObjectTrigger
     ) ? "CLEAR" :
@@ -521,7 +565,7 @@ export function buildGate3MassAssessment(candidate, evidenceRecords) {
 }
 
 export const ARSENAL_GATE3_MASS_CLASSIFIER_META = Object.freeze({
-  version: "v5",
+  version: "v6",
   calibrationAcceptanceSha: "177a8efa24ebca15e2c84dbb18e96a72be5e1d08",
   evidenceMode: "STRICT_CANDIDATE_OWNED_GATE2",
   crossScaleMode: "SOURCE_SCALE_VARIABLE_ROLE_ONLY",
@@ -536,6 +580,9 @@ export const ARSENAL_GATE3_MASS_CLASSIFIER_META = Object.freeze({
   triggerObjectRole: "PRE_DESTINATION_INPUT_ONLY",
   evidenceRoleSpans: "VERIFIED_CANDIDATE_OWNED",
   actionHeadAudit: "FIXED_CORPUS_V5_IMPERATIVE_REVIEW",
+  contextReach: "ROLE_SENSITIVE_SEMANTIC_DEPENDENCE_V6",
+  evidenceResultGrammar: "VERIFIED_OWNED_RELATION_CLAUSES_V6",
+  premiseRoleAgreement: "NAME_AND_VERIFIED_CLAIM_V6",
   ruleIds: Object.freeze([
     "MP01",
     "MP02",
