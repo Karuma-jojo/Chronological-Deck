@@ -1714,6 +1714,7 @@ expect(
   "Mass-pass rule usage must account for all 616 classified rows."
 );
 
+console.log("GATE3_V6_DUPLICATE_DIAGNOSTIC", JSON.stringify(ARSENAL_GATE3_DUPLICATE_NAME_DIFFERENCES.map(g => g.normalizedName ?? g.name ?? g.candidateName ?? g)));
 console.log("GATE3_V6_DISTRIBUTION_DIAGNOSTIC", JSON.stringify({
   referenceScale: gate3CountBy("referenceScale"),
   bundleStructure: gate3CountBy("bundleStructure"),
@@ -1731,10 +1732,10 @@ const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
   referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 189, MACRO: 93, MICRO: 1, UNRESOLVED: 377 }),
   bundleStructure: Object.freeze({ BUNDLED_MOVES: 12, SINGLE_PRIMARY_MOVE: 190, UNRESOLVED: 459 }),
   actionShape: Object.freeze({ EXPLICIT_ACTION: 55, IMPLICIT_ACTION: 236, LABEL_ONLY: 369, UNRESOLVED: 1 }),
-  contextReach: Object.freeze({ GENERAL: 443, PROBLEM_LOCAL: 7, SOURCE_LOCAL: 6, UNRESOLVED: 205 }),
-  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 50, PARTIAL: 10, UNRESOLVED: 519 }),
+  contextReach: Object.freeze({ GENERAL: 445, PROBLEM_LOCAL: 4, SOURCE_LOCAL: 6, UNRESOLVED: 206 }),
+  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 51, PARTIAL: 10, UNRESOLVED: 518 }),
   operationBoundary: Object.freeze({ ABSENT: 82, CLEAR: 181, PARTIAL: 110, UNRESOLVED: 288 }),
-  outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 102, PARTIAL: 55, UNRESOLVED: 423 }),
+  outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 107, PARTIAL: 55, UNRESOLVED: 418 }),
   confidence: Object.freeze({ HIGH: 616, LOW: 1, MEDIUM: 44 }),
   ruleUsage: Object.freeze({ MP01: 39, MP02: 8, MP03: 112, MP04: 14, MP05: 12, MP06: 25, MP07: 9, MP08: 177, MP09: 31, MP10: 189 }),
 });
@@ -1759,7 +1760,7 @@ expect(
   "Gate-3 v6 repaired mass-pass rule distribution drifted."
 );
 expect(
-  ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures === 13,
+  ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures === 14,
   "Gate-3 v4 duplicate-name differing-signature count drifted."
 );
 expect(
