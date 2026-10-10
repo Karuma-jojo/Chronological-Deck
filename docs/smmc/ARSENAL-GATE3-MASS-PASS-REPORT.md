@@ -1,6 +1,6 @@
 # SMMC Arsenal — Gate 3 repaired mass-pass report
 
-> **v6 bounded repair candidate.** The distribution below is historical v5 until exact-head v6 CI generates new values. Gate 3 remains unaccepted.
+> **v6 measured and regression-pinned repair candidate; NOT independently accepted.** All numbers below were regenerated on the exact v6 code. The Tribunal remains locked.
 
 Status: **MASS-PASS REVIEW CANDIDATE — Gate 3 is not yet accepted or complete**
 
@@ -145,10 +145,10 @@ The rise in UNRESOLVED is intentional. Removing semantic shortcuts means strict 
 
 | Reach | Count |
 |---|---:|
-| GENERAL | 443 |
+| GENERAL | 445 |
 | SOURCE_LOCAL | 6 |
-| PROBLEM_LOCAL | 7 |
-| UNRESOLVED | 205 |
+| PROBLEM_LOCAL | 4 |
+| UNRESOLVED | 206 |
 
 This is the largest intentional change from the first mass pass: GENERAL is no longer a fallback.
 
@@ -156,10 +156,10 @@ This is the largest intentional change from the first mass pass: GENERAL is no l
 
 | State | Trigger | Operation | Output |
 |---|---:|---:|---:|
-| CLEAR | 50 | 181 | 102 |
+| CLEAR | 51 | 181 | 107 |
 | PARTIAL | 10 | 110 | 55 |
 | ABSENT | 82 | 82 | 81 |
-| UNRESOLVED | 519 | 288 | 423 |
+| UNRESOLVED | 518 | 288 | 418 |
 
 ### Confidence
 
@@ -202,7 +202,7 @@ Secondary-tag rows now demonstrate the intended strict behavior: only readable b
 | MP10 | 189 |
 | **Total** | **616** |
 
-The validator pins the v4 distribution, rule usage, and exact duplicate-signature count. Independent exact-head acceptance is still required.
+The validator pins the v6 distribution, rule usage, and exact duplicate-signature count. Independent exact-head acceptance is still required.
 
 ## 6. Official-solution audit
 
@@ -234,10 +234,10 @@ The mass classifier emits no CROSS_SCALE result and the deferred mixed-grain bra
 The raw pool still contains **25** exact normalized-name duplicate groups.
 
 After the classifier repair:
-- **12** have the same complete granularity signature;
-- **13** differ.
+- **11** have the same complete granularity signature;
+- **14** differ.
 
-The 13 differing groups are:
+The 14 differing groups are:
 
 1. Chinese Remainder Theorem
 2. Contrapositive
@@ -247,11 +247,12 @@ The 13 differing groups are:
 6. Information-State Counting Lower Bound
 7. Lowest/Highest-Power Asymptotic Comparison
 8. Mod-2 Normal-Form Reduction
-9. Parity
-10. Polynomial Identity from Infinitely Many Values
-11. Recoverability Lemma
-12. Roots-of-Unity/Cosine Parametrization
-13. Strong Induction
+9. Newton-Polygon Alternative
+10. Parity
+11. Polynomial Identity from Infinitely Many Values
+12. Recoverability Lemma
+13. Roots-of-Unity/Cosine Parametrization
+14. Strong Induction
 
 These remain **review targets only**. Gate 3 does not merge or adjudicate duplicate-looking candidates.
 
@@ -285,7 +286,7 @@ A fresh independent exact-head graduation review must attack:
 4. the 12 BUNDLED_MOVES rows, the high-recall 87-row positive/negative review surface/decision closure, and the eight rejected old bundle shortcuts;
 5. evidence-supported GENERAL / SOURCE_LOCAL / PROBLEM_LOCAL / UNRESOLVED contextReach calls;
 6. the three official UNRESOLVED rows;
-7. all 25 duplicate-name groups, especially the 13 differing signatures;
+7. all 25 duplicate-name groups, especially the 14 differing signatures;
 8. the sole MICRO and CROSS_SCALE sentinels;
 9. Gate-2 byte/semantic freeze;
 10. hidden later-gate leakage;
@@ -293,10 +294,59 @@ A fresh independent exact-head graduation review must attack:
 
 Only explicit independent acceptance of the new exact repaired SHA may close Gate 3.
 
-Current state (v5 remains under independent review):
+Current state (v6 remains under independent review):
 
 `Gate 0 ✅ → Gate 1 ✅ → Gate 2 ✅ → Gate 3 🟡 REPAIRED MASS-PASS REVIEW CANDIDATE → Tribunal 🔒`
 
-## v6 semantic-role repair pending exact-head validation
+## v6 independent-review repair: G3-M12–M14
 
-The independent v5 review, recorded in [PR #186 comment 6089044248](https://github.com/Karuma-jojo/Chronological-Deck/pull/186#issuecomment-6089044248), rejected v5 for G3-M12 context locality and G3-M13/M14 missing result/premise roles. The v6 implementation changes locality to require genuine expression/claim dependence, supports candidate-owned relational outputs (equivalence, reversibility, identification), and matches named premises to their accepted operational claims. Negative and positive paraphrase probes are added; the frozen Gate-2 and 45-calibration files have not been edited. **Recompute and pin all v6 counts after exact-head CI; independent acceptance remains required.**
+The independent v5 review on [PR #186](https://github.com/Karuma-jojo/Chronological-Deck/pull/186#issuecomment-6089044248) **rejected** SHA `f264f6d6329fecc9a4d38f7a787644bbbde36391`. It identified three strict-evidence failures in the mass application, not defects in accepted Gate 2 or the 45-case ruler.
+
+### G3-M12 — semantic context reach rather than historical narrative
+
+`problemLocalReach` no longer treats “the recurrence” or “alternative route” in an official claim as proof that the *candidate mathematical expression* depends on that historical problem.
+
+- `RAW-OFFICIAL-012 — Generating-Function Route` → **GENERAL**.
+- `RAW-OFFICIAL-038 — Generating Function to Differential Equation` → **GENERAL**.
+- `RAW-OFFICIAL-044 — Recoverability Lemma` and `RAW-OFFICIAL-115 — Smallest Nondivisible Multiplier Advances Prime Support` retain **PROBLEM_LOCAL**, because their candidate wording and attached claims identify specific recoverability/prime-acquisition structure.
+- `RAW-OFFICIAL-010 — Newton-Polygon Alternative` now fails closed to **UNRESOLVED** context: merely saying “alternative route” does not establish problem-local semantic dependence or standalone generality.
+
+This reveals a 14th differing duplicate-name signature: the accepted calibration `RAW-ROUTE-033 — Newton-Polygon Alternative` remains PROBLEM_LOCAL, but the official mass row is now UNRESOLVED. **Gate 3 records that discrepancy without harmonizing, merging or adjudicating the two.**
+
+### G3-M13 — qualifying evidence-owned relational results
+
+New reusable grammatical witnesses detect meaningful mathematical outputs stated as equivalences, reversible correspondences, bijections, or identifications/representations. These witnesses operate **only on qualifying verified, candidate-owned operational records**; an index heading or unverified claim cannot manufacture a result.
+
+The v6 classifier now marks the following additional official rows' output boundaries **CLEAR**:
+
+| Candidate | Explicitly attested mathematical payoff |
+|---|---|
+| `RAW-OFFICIAL-031` | Target vector equation equivalent to vanishing-gradient condition |
+| `RAW-OFFICIAL-045` | Reversible correspondence of move histories and index subsets |
+| `RAW-OFFICIAL-048` | Quotient of a finite-field extension group identified with projective-plane points |
+| `RAW-OFFICIAL-064` | Convex function represented by a maximum of affine functions |
+| `RAW-OFFICIAL-096` | Minkowski sum identified as convex hull of pairwise vertex sums |
+
+Paraphrase tests use equivalent constructions such as “holds exactly when,” “establishes a bijection,” and “models ... as,” so this repair does not just memorize three originally reported wordings.
+
+### G3-M14 — evidence-backed existing premises
+
+`RAW-OFFICIAL-052 — Riemann Integrability to Local Boundedness` now has **CLEAR trigger** as well as CLEAR output: its accepted claim explicitly uses Riemann integrability on compact intervals to obtain boundedness. The named premise is matched against its **own operational claim**; a generic created-result noun is not accepted as a trigger. The equivalent “assuming Riemann integrability on compact intervals” formulation remains CLEAR in regression.
+
+### Exact v6 measured diagnostics
+
+The full 661 rows still partition as **45 frozen accepted calibrations + 616 mass assessments**; no raw candidate or provenance file was modified.
+
+- Reference scale: MICRO 1, DEPLOYABLE 189, MACRO 93, CROSS_SCALE 1, UNRESOLVED 377.
+- Bundle structure: SINGLE_PRIMARY_MOVE 190, BUNDLED_MOVES 12, UNRESOLVED 459; all 87 mass bundle review decisions stay pinned at 8 positive / 79 negative.
+- Action shape: EXPLICIT_ACTION 55, IMPLICIT_ACTION 236, LABEL_ONLY 369, UNRESOLVED 1.
+- Context reach: GENERAL **445**, PROBLEM_LOCAL **4**, SOURCE_LOCAL 6, UNRESOLVED **206**.
+- Trigger: CLEAR **51**, PARTIAL 10, ABSENT 82, UNRESOLVED **518**.
+- Operation: CLEAR 181, PARTIAL 110, ABSENT 82, UNRESOLVED 288.
+- Output: CLEAR **107**, PARTIAL 55, ABSENT 81, UNRESOLVED **418**.
+- Confidence: HIGH 616, MEDIUM 44, LOW 1; all ten MP rule totals unchanged and sum to 616.
+- Exact normalized-name duplicate audit: 25 groups, **14 differing signatures**.
+
+SMMC authoring, frontend integrity, and T22 atomic workflows all passed on implementation SHA `0aee96a3085e8c0ef3e555bf9b15e8e40e9176ec`. **After this documentation commit, rerun CI on the final exact SHA.**
+
+**Graduation remains blocked until independent, adversarial, exact-head acceptance.** The Tribunal remains locked. No merge, split, ontology, prerequisite, importance, combo, teaching order or product decision was introduced.
