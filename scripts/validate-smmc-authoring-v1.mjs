@@ -93,6 +93,7 @@ import {
   buildGate3MassAssessment,
   gate3ClaimBoundaryWitnesses,
 } from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
+import { ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7, ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META } from "../course/smmc/arsenal/granularity-official-role-audit-v7.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 import {
   ARSENAL_GATE3_DUPLICATE_NAME_AUDIT,
@@ -1026,6 +1027,65 @@ const massRows = gate3ReviewedRows.filter(row => /^MP\d{2}\b/.test(row.rationale
 expect(massRows.length === 616, `Expected 616 mass-classified rows, found ${massRows.length}.`);
 const calibrationRows = gate3ReviewedRows.filter(row => !/^MP\d{2}\b/.test(row.rationale));
 expect(calibrationRows.length === 45, `Expected 45 accepted calibration rows, found ${calibrationRows.length}.`);
+// V7 preliminary audit: data-only builder judgments, NOT classifier overrides.
+// Independently verify literal source provenance and 9 frozen calibration cases.
+expect(
+  ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META.status === "BUILDER_REVIEW_CANDIDATE_NOT_INTEGRATED" &&
+  ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META.reviewedOfficialClaims === 127 &&
+  ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META.frozenCalibrationObservations === 9 &&
+  ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META.massRowsEligibleForLaterOverride === 118 &&
+  ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META.acceptance === "INDEPENDENT_REVIEW_PENDING",
+  "V7 preliminary official semantic audit MUST remain non-integrated and review-pending."
+);
+expect(ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7.length === 127,
+  "V7 preliminary semantic audit must cover all 127 verified official Battle claims.");
+const calibratedIds = new Set(calibrationRows.map(x=>x.candidateId));
+const officialEvidenceById = new Map(ARSENAL_GATE2_OFFICIAL_SOLUTION_EVIDENCE.map(e=>[e.candidateId,e]));
+const officialAuditIds = new Set();
+let observedCalibrations = 0;
+for (const a of ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7) {
+  expect(!officialAuditIds.has(a.candidateId),
+    "V7 audit must not duplicate official candidate "+a.candidateId);
+  officialAuditIds.add(a.candidateId);
+  const e = officialEvidenceById.get(a.candidateId);
+  const raw = rawCandidateById.get(a.candidateId);
+  expect(e && raw && e.recordChannel === "BATTLE" && e.claimKind === "HISTORICAL_OCCURRENCE" &&
+    e.verificationStatus === "VERIFIED" && e.evidenceBasis === "SOURCE_FACT",
+    "V7 audit cannot substitute unverified, nonowned or non-Battle evidence: "+a.candidateId);
+  expect(a.candidateName === raw.candidateName && a.acceptedClaim === e.claim,
+    "V7 audit must be bound to exact frozen candidate expression and claim: "+a.candidateId);
+  for(const kind of ["trigger","output"]) {
+    const snippet=a[kind+"Witness"],decision=a[kind+"Proposal"];
+    expect((snippet === null && decision === "UNRESOLVED") ||
+      (typeof snippet === "string" && snippet.length >= 3 && decision === "CLEAR" &&
+       e.claim.includes(snippet)),
+      "V7 "+kind+" role requires a literal owned-claim witness: "+a.candidateId);
+    expect(typeof a[kind+"Rationale"]==="string" && a[kind+"Rationale"].length>35,
+      "V7 "+kind+" decision lacks a stated reason: "+a.candidateId);
+  }
+  expect(["GENERAL","SOURCE_LOCAL","PROBLEM_LOCAL","UNRESOLVED"].includes(a.contextProposal) &&
+    typeof a.contextRationale==="string" && a.contextRationale.length>35 &&
+    a.adjudicationStatus==="BUILDER_REVIEW_CANDIDATE",
+    "V7 context proposal missing semantic rationale: "+a.candidateId);
+  expect(a.frozenCalibration === calibratedIds.has(a.candidateId),
+    "V7 calibration status must not be inferred from provenance or edited: "+a.candidateId);
+  if(a.frozenCalibration) observedCalibrations++;
+}
+expect(officialAuditIds.size === officialEvidenceById.size && observedCalibrations===9,
+  "V7 official audit must cover exactly the official evidence with nine frozen observations.");
+for(const [id,expected] of [
+  ["RAW-OFFICIAL-016","UNRESOLVED"],
+  ["RAW-OFFICIAL-018","UNRESOLVED"],
+  ["RAW-OFFICIAL-089","CLEAR"],
+  ["RAW-OFFICIAL-094","CLEAR"],
+  ["RAW-OFFICIAL-111","CLEAR"],
+  ["RAW-OFFICIAL-119","CLEAR"],
+  ["RAW-OFFICIAL-120","CLEAR"],
+]) {
+  expect(ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7.find(a=>a.candidateId===id)?.outputProposal===expected,
+    "V7 official role proposal misses v6 reviewer positive/negative contrast: "+id);
+}
+
 for (const row of massRows) {
   expect(
     /^MP(?:0[1-9]|10)\b/.test(row.rationale),
