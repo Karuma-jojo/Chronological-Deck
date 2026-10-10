@@ -1465,6 +1465,9 @@ for (const id of ["RAW-OFFICIAL-044", "RAW-OFFICIAL-115"]) {
   expect(gate3ReviewedRows.find(r=>r.candidateId===id)?.contextReach==="PROBLEM_LOCAL",
     "Genuine candidate-and-claim-local method must remain problem-local: "+id);
 }
+expect(gate3ReviewedRows.find(r=>r.candidateId==="RAW-OFFICIAL-010")?.contextReach==="UNRESOLVED" &&
+  gate3ReviewedRows.find(r=>r.candidateId==="RAW-ROUTE-033")?.contextReach==="PROBLEM_LOCAL",
+  "Newton-Polygon identical names must preserve evidence-specific semantic differences without merging.");
 expect(rephraseOwnedClaim("RAW-OFFICIAL-012","from the recurrence","from a recurrence").contextReach==="GENERAL",
   "Changing definite/indefinite recurrence article must not alter generality.");
 expect(rephraseOwnedClaim("RAW-OFFICIAL-038","the recurrence","a recurrence").contextReach==="GENERAL",
@@ -1472,7 +1475,7 @@ expect(rephraseOwnedClaim("RAW-OFFICIAL-038","the recurrence","a recurrence").co
 
 // G3-M13: evidence-owned mathematical-result roles, not a finite list of
 // target theorem names. Paraphrase variants retain meaning and boundary.
-for(const id of ["RAW-OFFICIAL-031","RAW-OFFICIAL-045","RAW-OFFICIAL-048"]) {
+for(const id of ["RAW-OFFICIAL-031","RAW-OFFICIAL-045","RAW-OFFICIAL-048","RAW-OFFICIAL-064","RAW-OFFICIAL-096"]) {
   expect(gate3ReviewedRows.find(r=>r.candidateId===id)?.outputBoundary==="CLEAR",
     "Verified explicit relational result missed: "+id);
 }
@@ -1484,7 +1487,7 @@ for(const [id,oldText,newText] of [
   expect(rephraseOwnedClaim(id,oldText,newText).outputBoundary==="CLEAR",
     "Equivalent evidence-owned result wording must stay CLEAR: "+id);
 }
-for(const id of ["RAW-OFFICIAL-031","RAW-OFFICIAL-045","RAW-OFFICIAL-048"]) {
+for(const id of ["RAW-OFFICIAL-031","RAW-OFFICIAL-045","RAW-OFFICIAL-048","RAW-OFFICIAL-064","RAW-OFFICIAL-096"]) {
   const spans=gate3ClaimBoundaryWitnesses(ownedGate3Pair(id).evidenceRecords);
   expect(spans.some(x=>x.output && x.output.length>=12),
     "Missing source-literal mathematical result witness: "+id);
