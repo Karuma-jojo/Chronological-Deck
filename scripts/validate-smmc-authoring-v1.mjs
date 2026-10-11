@@ -94,6 +94,7 @@ import {
   gate3ClaimBoundaryWitnesses,
 } from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
 import { ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7, ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META } from "../course/smmc/arsenal/granularity-official-role-audit-v7.mjs";
+import { ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B, ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7B } from "../course/smmc/arsenal/granularity-official-adjudication-v7b.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 import {
   ARSENAL_GATE3_DUPLICATE_NAME_AUDIT,
@@ -1073,6 +1074,108 @@ for (const a of ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7) {
 }
 expect(officialAuditIds.size === officialEvidenceById.size && observedCalibrations===9,
   "V7 official audit must cover exactly the official evidence with nine frozen observations.");
+// V7B preliminary adjudication: independent from the unchanged v6 mass pass.
+// A null boundaryDecision means DEFER, NOT a ruling of UNRESOLVED.
+const v7bMeta = ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7B;
+expect(v7bMeta.status === "AUDIT_ADJUDICATION_BUILDER_PROPOSAL_NOT_INTEGRATED" &&
+  v7bMeta.population === 127 && v7bMeta.frozenCalibrationRows === 9 &&
+  v7bMeta.massRowsWithSomeBuilderAdjudication === 26 &&
+  v7bMeta.massRowsFullyDeferred === 92 &&
+  v7bMeta.acceptance === "INDEPENDENT_SEMANTIC_REVIEW_PENDING" &&
+  JSON.stringify(v7bMeta.fourStateBoundaryValues) === JSON.stringify(["CLEAR","PARTIAL","ABSENT","UNRESOLVED"]),
+  "V7B audit metadata must be review-pending, four-state and non-integrated.");
+expect(ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B.length === 127,
+  "V7B proposed adjudication must cover exactly 127 official occurrence cases.");
+const v7bRefs = new Map(ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7.map(r=>[r.candidateId,r]));
+const v7bFrozen = new Map(calibrationRows.map(r=>[r.candidateId,r]));
+const permittedBoundaries = new Set(["CLEAR","PARTIAL","ABSENT","UNRESOLVED"]);
+const permittedContexts = new Set(["GENERAL","PROBLEM_LOCAL","SOURCE_LOCAL","UNRESOLVED"]);
+let v7bFrozenCount=0,v7bBuilderCount=0,v7bDeferredCount=0;
+const seenV7B=new Set();
+for(const r of ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B) {
+  expect(!seenV7B.has(r.candidateId) && v7bRefs.has(r.candidateId),
+    "V7B unrecognized or repeated candidate "+r.candidateId);
+  seenV7B.add(r.candidateId);
+  const initial=v7bRefs.get(r.candidateId);
+  const source=officialEvidenceById.get(r.candidateId);
+  expect(source && r.sourceClaim === source.claim && r.candidateName === initial.candidateName &&
+    r.frozenCalibration === initial.frozenCalibration &&
+    r.acceptance === "NOT_INDEPENDENTLY_ACCEPTED",
+    "V7B cannot misquote accepted candidate-owned evidence or claim acceptance: "+r.candidateId);
+  for(const role of ["trigger","output","context"]) {
+    const a=r[role],was=role==="trigger"?initial.triggerProposal:
+      role==="output"?initial.outputProposal:initial.contextProposal;
+    const allowed=role==="context"?permittedContexts:permittedBoundaries;
+    expect(a && a.previousBuilderProposal===was && typeof a.rationale==="string" && a.rationale.length>=45,
+      "V7B lost original proposal or reason for "+r.candidateId+"/"+role);
+    expect(a.boundaryDecision===null || allowed.has(a.boundaryDecision),
+      "V7B adjudication boundary not in accepted four-state ruler: "+r.candidateId+"/"+role);
+    expect(["FROZEN_REFERENCE","SUPPORT_PROPOSAL","REVISE_PROPOSAL","DEFER"].includes(a.reviewDisposition),
+      "V7B invalid review disposition: "+r.candidateId+"/"+role);
+    if (a.reviewDisposition==="DEFER") expect(a.boundaryDecision===null &&
+      a.witness===null, "V7B deferred proposals cannot assert a boundary/witness.");
+    else expect(a.boundaryDecision!==null, "V7B substantive decision cannot be null.");
+    if (a.witness!==null) {
+      expect(typeof a.witness==="string" && a.witness.length>=3 &&
+        (a.witnessSource==="ACCEPTED_CLAIM" && r.sourceClaim.includes(a.witness) ||
+          a.witnessSource==="RAW_EXPRESSION" && r.candidateName.includes(a.witness)),
+        "V7B witness must be literal in THIS candidate expression or verified owned claim.");
+    }
+    if(a.reviewDisposition==="REVISE_PROPOSAL") expect(a.boundaryDecision!==was,
+      "V7B REVISE requires a changed initial boundary: "+r.candidateId);
+    if(a.reviewDisposition==="SUPPORT_PROPOSAL") expect(a.boundaryDecision===was,
+      "V7B SUPPORT must agree with initial boundary: "+r.candidateId);
+  }
+  const frozen=v7bFrozen.get(r.candidateId);
+  if(frozen){
+    v7bFrozenCount++;
+    expect(r.overallDisposition==="FROZEN_REFERENCE" &&
+      r.trigger.reviewDisposition==="FROZEN_REFERENCE" &&
+      r.output.reviewDisposition==="FROZEN_REFERENCE" &&
+      r.context.reviewDisposition==="FROZEN_REFERENCE" &&
+      r.trigger.boundaryDecision===frozen.triggerBoundary &&
+      r.output.boundaryDecision===frozen.outputBoundary &&
+      r.context.boundaryDecision===frozen.contextReach,
+      "V7B FROZEN calibration may not be recomputed or overwritten: "+r.candidateId);
+  } else {
+    expect(r.trigger.reviewDisposition!=="FROZEN_REFERENCE" &&
+      r.output.reviewDisposition!=="FROZEN_REFERENCE" &&
+      r.context.reviewDisposition!=="FROZEN_REFERENCE",
+      "V7B cannot claim mass case is frozen: "+r.candidateId);
+    if(r.overallDisposition==="DEFER_PENDING_INDIVIDUAL_ADJUDICATION") {
+      v7bDeferredCount++;
+      expect(r.trigger.boundaryDecision===null &&
+        r.output.boundaryDecision===null && r.context.boundaryDecision===null,
+        "A fully deferred row cannot carry unreviewed boundary decisions.");
+    } else {
+      v7bBuilderCount++;
+      expect(r.overallDisposition==="REVISE_OR_SUPPORT_BUILDER_PROPOSAL" &&
+        [r.trigger,r.output,r.context].some(x=>x.boundaryDecision!==null),
+        "A builder row requires an explicit candidate-specific review call.");
+    }
+  }
+}
+expect(seenV7B.size===127 && v7bFrozenCount===9 &&
+  v7bBuilderCount===26 && v7bDeferredCount===92,
+  "V7B audit ownership / coverage / deferred partition drifted.");
+for(const [id,role,expected] of [
+  ["RAW-OFFICIAL-048","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-095","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-103","trigger","CLEAR"],
+  ["RAW-OFFICIAL-107","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-087","trigger","UNRESOLVED"],
+  ["RAW-OFFICIAL-089","trigger","UNRESOLVED"],
+  ["RAW-OFFICIAL-091","trigger","CLEAR"],
+  ["RAW-OFFICIAL-101","trigger","UNRESOLVED"],
+  ["RAW-OFFICIAL-111","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-098","output","PARTIAL"],
+  ["RAW-OFFICIAL-016","output","UNRESOLVED"],
+  ["RAW-OFFICIAL-018","output","UNRESOLVED"]
+]){
+  expect(ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B.find(r=>r.candidateId===id)?.[role].boundaryDecision===expected,
+    "V7B disputed role/frozen correction drifted: "+id+"/"+role);
+}
+
 for(const [id,expected] of [
   ["RAW-OFFICIAL-016","UNRESOLVED"],
   ["RAW-OFFICIAL-018","UNRESOLVED"],
