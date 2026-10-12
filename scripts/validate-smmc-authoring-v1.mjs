@@ -1168,13 +1168,45 @@ for(const [id,role,expected] of [
   ["RAW-OFFICIAL-091","trigger","CLEAR"],
   ["RAW-OFFICIAL-101","trigger","UNRESOLVED"],
   ["RAW-OFFICIAL-111","trigger","PARTIAL"],
-  ["RAW-OFFICIAL-098","output","PARTIAL"],
+  ["RAW-OFFICIAL-054","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-098","output","CLEAR"],
   ["RAW-OFFICIAL-016","output","UNRESOLVED"],
   ["RAW-OFFICIAL-018","output","UNRESOLVED"]
 ]){
   expect(ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B.find(r=>r.candidateId===id)?.[role].boundaryDecision===expected,
     "V7B disputed role/frozen correction drifted: "+id+"/"+role);
 }
+
+// Independent v7B review G3-B01/B02: whole-claim premise and factorization
+// output consistency checks, strictly NON-INTEGRATED builder adjudication.
+const v7bById = new Map(ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B.map(x=>[x.candidateId,x]));
+const coefficientRow = v7bById.get("RAW-OFFICIAL-054");
+expect(coefficientRow?.trigger.boundaryDecision==="PARTIAL" &&
+  coefficientRow.trigger.reviewDisposition==="REVISE_PROPOSAL" &&
+  coefficientRow.trigger.witness==="divisibility of interior binomial coefficients" &&
+  coefficientRow.trigger.witnessSource==="ACCEPTED_CLAIM" &&
+  coefficientRow.sourceClaim.includes("compares coefficients modulo a prime") &&
+  coefficientRow.sourceClaim.includes("using divisibility of interior binomial coefficients to force divisibility information on the polynomial coefficients.") &&
+  coefficientRow.trigger.rationale.includes("preceding normalization") &&
+  coefficientRow.output.boundaryDecision===null,
+  "G3-B01: operative prime-modulus divisibility premise warrants PARTIAL trigger, not previous procedural-stage UNRESOLVED; other roles stay deferred.");
+const factorRow = v7bById.get("RAW-OFFICIAL-098");
+const frobeniusRow = v7bById.get("RAW-OFFICIAL-077");
+expect(factorRow?.output.boundaryDecision==="CLEAR" &&
+  frobeniusRow?.output.boundaryDecision==="CLEAR" &&
+  factorRow.output.reviewDisposition==="REVISE_PROPOSAL" &&
+  factorRow.output.witness==="factors using the known roots" &&
+  frobeniusRow.output.witness==="reconstruct the required factorization" &&
+  factorRow.output.rationale.includes("same CLEAR threshold") &&
+  factorRow.trigger.boundaryDecision===null &&
+  frobeniusRow.trigger.boundaryDecision===null,
+  "G3-B02: an identified root-based factorization is CLEAR, consistently with the base-field factorization witness, without filling deferred triggers.");
+const v7bRoleCounts = Object.fromEntries(["trigger","output","context"].map(role => [
+  role, ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B.filter(x =>
+    !x.frozenCalibration && x[role].boundaryDecision!==null).length
+]));
+expect(JSON.stringify(v7bRoleCounts) === JSON.stringify({trigger:15,output:11,context:4}),
+  "V7B independently inspected 26 mass rows must retain exactly 30 substantive decisions (15 trigger / 11 output / 4 context).");
 
 for(const [id,expected] of [
   ["RAW-OFFICIAL-016","UNRESOLVED"],

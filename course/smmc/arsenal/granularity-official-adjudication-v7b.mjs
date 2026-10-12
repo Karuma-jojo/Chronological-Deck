@@ -1707,12 +1707,12 @@ export const ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B = Object.freeze(
     "frozenCalibration": false,
     "sourceClaim": "After normalization, the official solution compares coefficients modulo a prime, using divisibility of interior binomial coefficients to force divisibility information on the polynomial coefficients.",
     "trigger": {
-      "boundaryDecision": "UNRESOLVED",
+      "boundaryDecision": "PARTIAL",
       "previousBuilderProposal": "CLEAR",
       "reviewDisposition": "REVISE_PROPOSAL",
-      "witness": "After normalization",
+      "witness": "divisibility of interior binomial coefficients",
       "witnessSource": "ACCEPTED_CLAIM",
-      "rationale": "The phrase only locates coefficient comparison after another solver operation; it does not identify a mathematical applicability condition for the coefficient extraction."
+      "rationale": "The accepted claim compares polynomial coefficients modulo a prime and explicitly uses divisibility of interior binomial coefficients as the operative mathematical premise. This is an existing divisibility property needed for the coefficient-extraction argument, unlike the solver's preceding normalization. Because the precise polynomial identity, hypotheses and complete applicability criterion are not given, the triggering boundary is PARTIAL, not CLEAR and not UNRESOLVED."
     },
     "output": {
       "boundaryDecision": null,
@@ -3123,12 +3123,12 @@ export const ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B = Object.freeze(
       "rationale": "One-Variable Root Factorization plus Antisymmetry: the earlier trigger=CLEAR proposal has not been individually adjudicated for premise-vs-step, tool-vs-result and source-independent meaning; defer rather than adopting the template verdict."
     },
     "output": {
-      "boundaryDecision": "PARTIAL",
+      "boundaryDecision": "CLEAR",
       "previousBuilderProposal": "UNRESOLVED",
       "reviewDisposition": "REVISE_PROPOSAL",
       "witness": "factors using the known roots",
       "witnessSource": "ACCEPTED_CLAIM",
-      "rationale": "The solution achieves a one-variable factorization using known roots, but the precise factor values and resulting comparison conclusion are not spelled out; positive output evidence is incomplete."
+      "rationale": "The verified claim states that, with other variables frozen, the solver factors the remaining one-variable expression using its known roots. The immediate mathematical product is a root-based factorization; it is identified sufficiently at the expression's grain even though its full symbolic factors are not transcribed. The separate antisymmetry comparison follows this factorization and is not required to identify that payoff. This uses the same CLEAR threshold as RAW-OFFICIAL-077, whose accepted claim reconstructs a factorization without listing explicit factors; PARTIAL would be warranted only if the claim merely proposed factoring or left the produced type of factorization indeterminate."
     },
     "context": {
       "boundaryDecision": null,

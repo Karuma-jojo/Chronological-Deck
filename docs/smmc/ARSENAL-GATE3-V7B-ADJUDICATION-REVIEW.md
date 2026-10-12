@@ -32,13 +32,14 @@ All nine accepted calibration observations have their accepted trigger, output a
 
 ## Mathematical-role examples needing scrutiny
 
+- `RAW-OFFICIAL-054`: “After normalization” is a procedural stage, **not the trigger**. The same claim says that coefficient comparison modulo a prime uses **divisibility of interior binomial coefficients** to derive divisibility of polynomial coefficients. This is positive trigger information, but the full applicability conditions remain unspecified: propose **PARTIAL**, with the mathematical premise as the witness.
 - `RAW-OFFICIAL-087`: A matrix–eigenvector *pair* is introduced as the **counting representation**, not a pre-existing trigger; propose UNRESOLVED trigger.
 - `RAW-OFFICIAL-089`: The map `A ↦ Av` is solver-introduced, not a given trigger; the computed **rank and kernel size** are actual output.
 - `RAW-OFFICIAL-101`: “Working modulo two” is an operation, not a hypothesis inviting that operation.
 - `RAW-OFFICIAL-054 / 092 / 096`: “After normalization/diagonalization” locates a prior procedural step, but does not independently specify the applicability conditions of the later move.
 - `RAW-OFFICIAL-111`: An ODE names a broad setting, not the precise concavity criterion; propose **PARTIAL** trigger. The stated **strict concavity** is CLEAR output.
 - `RAW-OFFICIAL-091`: The raw expression itself contains the existing constrained input “2-by-2 Polynomial Matrix”; keep **CLEAR** lexical trigger.
-- `RAW-OFFICIAL-098`: Factorization by known roots supplies a real intermediate payoff, but the resulting factors are not specified; propose **PARTIAL** output.
+- `RAW-OFFICIAL-098`: Freezing the other variables and factoring using known roots produces an identifiable **one-variable root-based factorization**, a **CLEAR** output even without a full symbolic expansion. `RAW-OFFICIAL-077` likewise receives CLEAR for reconstructing the required base-field factorization. Both follow the accepted ruler's identified-output criterion; lack of printed factors alone does not lower a boundary to PARTIAL.
 - `RAW-OFFICIAL-016 / 018`: Mentions of valuation information or Rational Root Theorem do not establish an immediate result; propose **UNRESOLVED** output, not false CLEAR and not ABSENT.
 - `RAW-OFFICIAL-029 / 052 / 064 / 094`: Mathematical subsequence, Riemann-integrability, convex-envelope and Jordan-normal-form meanings are readable without the historical problem; propose **GENERAL** contextual reach.
 
@@ -53,3 +54,12 @@ Each newly chosen role records a case-specific explanation and a witness drawn f
 5. Independent reviewers should attack each of the 26 builder proposals, calibrations reconciliation, and every remaining deferred record. Paraphrase stability of mathematical roles remains a distinct unsatisfied exit condition.
 
 **Exit condition:** individually adjudicate the still-deferred cases and obtain independent acceptance of the 127-case semantic ledger before building an evidence-controlled v7 mass-classifier integration; thereafter regenerate all 616 rows, update distribution/regressions, pass exact-head CI, and seek a further independent graduation review.
+
+## v7B bounded response to independent checkpoint review 6106217042
+
+The [independent reviewer](https://github.com/Karuma-jojo/Chronological-Deck/pull/186#issuecomment-6106217042) inspected 26 substantively touched mass cases (**30 proposed dimension judgments: 15 triggers, 11 outputs, 4 contexts**), conditionally supported 24, and required revision to **054** and **098**. Their original v7B decisions are preserved in commit `0633b407cea3b7b3513208a1b1411cda5b89ccdf` for traceability. This bounded amendment changes only these two adjudication proposals and their regression checks; it **does not** change the existing v6 classifier, the 616 classified rows, the original source evidence, frozen calibrations or existing bundle decisions.
+
+- **G3-B01 — 054:** trigger revised **UNRESOLVED → PARTIAL** because the actual owned claim explicitly supplies a mathematical premise—interior binomial-coefficient divisibility—in its prime-modulus coefficient-comparison setting. The earlier witness *After normalization* remains a procedural marker but is no longer used as the adjudicated trigger witness.
+- **G3-B02 — 098:** output revised **PARTIAL → CLEAR** because factoring with known roots has an identifiable resulting one-variable factorization. The independent comparison `RAW-OFFICIAL-077` likewise receives CLEAR from an explicitly reconstructed factorization without enumerated symbolic factors. This is an output-role judgment, not a declaration that the entire multi-move procedure or ultimate goal is resolved.
+
+The partition stays **9 frozen calibration observations, 26 partially adjudicated builder mass rows, 92 fully deferred mass rows**. These 26 still consist of **15 trigger, 11 output and 4 context** proposals, not complete three-dimensional reviews. All remain independent-review-pending, and the 92 deferred rows are not given default boundaries. There is **no v7 classifier integration or Gate 3 graduation**.
