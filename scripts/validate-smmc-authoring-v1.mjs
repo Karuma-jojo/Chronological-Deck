@@ -95,6 +95,7 @@ import {
 } from "../course/smmc/arsenal/granularity-mass-pass-v1.mjs";
 import { ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7, ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META } from "../course/smmc/arsenal/granularity-official-role-audit-v7.mjs";
 import { ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B, ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7B } from "../course/smmc/arsenal/granularity-official-adjudication-v7b.mjs";
+import { ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7C, ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7C } from "../course/smmc/arsenal/granularity-official-adjudication-v7c.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 import {
   ARSENAL_GATE3_DUPLICATE_NAME_AUDIT,
@@ -1207,6 +1208,93 @@ const v7bRoleCounts = Object.fromEntries(["trigger","output","context"].map(role
 ]));
 expect(JSON.stringify(v7bRoleCounts) === JSON.stringify({trigger:15,output:11,context:4}),
   "V7B independently inspected 26 mass rows must retain exactly 30 substantive decisions (15 trigger / 11 output / 4 context).");
+
+// V7C: exhaustive semantic builder review of ALL 92 previously deferred official
+// cases. This is research data, NOT a classifier override or independent approval.
+const v7cMeta = ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7C;
+expect(v7cMeta.status==="BUILDER_92_COMPLETE_SEMANTIC_PROPOSALS_NOT_INTEGRATED" &&
+  v7cMeta.population===127 && v7cMeta.frozenCalibrationReferences===9 &&
+  v7cMeta.priorPartiallyReviewedMassRows===26 &&
+  v7cMeta.newlyProposedCompleteMassRows===92 &&
+  v7cMeta.remainingPartialRoleDimensions===48 &&
+  v7cMeta.underlyingMassClassifierVersion==="v6" &&
+  v7cMeta.independentMathematicalAcceptance===false &&
+  v7cMeta.gate3Graduated===false && v7cMeta.gate4Open===false,
+  "V7C must remain a complete preliminary builder research audit, not a Gate 3 acceptance.");
+const baseV7C = new Map(ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B.map(r=>[r.candidateId,r]));
+const allV7C=ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7C;
+expect(allV7C.length===127 && new Set(allV7C.map(r=>r.candidateId)).size===127,
+  "V7C must have 127 unique official source-grounded records.");
+let newV7C=0,preservedPrior=0,preservedFrozen=0;
+const allNewCaseExplanations=[];
+for(const r of allV7C) {
+  const prev=baseV7C.get(r.candidateId),ev=officialEvidenceById.get(r.candidateId);
+  expect(prev && ev && r.sourceClaim===ev.claim &&
+    r.sourceClaim===prev.sourceClaim && r.candidateName===prev.candidateName &&
+    r.acceptance==="NOT_INDEPENDENTLY_ACCEPTED",
+    "V7C evidence, ownership or acceptance status drifted: "+r.candidateId);
+  if(prev.frozenCalibration || prev.overallDisposition==="REVISE_OR_SUPPORT_BUILDER_PROPOSAL") {
+    expect(r===prev && JSON.stringify(r)===JSON.stringify(prev),
+      "V7C must preserve nine frozen references and all 26 v7B previously reviewed mass cases exactly: "+r.candidateId);
+    if(prev.frozenCalibration) preservedFrozen++; else preservedPrior++;
+    continue;
+  }
+  expect(prev.overallDisposition==="DEFER_PENDING_INDIVIDUAL_ADJUDICATION" &&
+    r.overallDisposition==="NEW_BUILDER_COMPLETE_AWAITING_INDEPENDENT_REVIEW",
+    "V7C cannot modify any record other than an original fully-deferred case: "+r.candidateId);
+  newV7C++;
+  for(const role of ["trigger","output","context"]) {
+    const decision=r[role],old=prev[role];
+    const legal=role==="context"?permittedContexts:permittedBoundaries;
+    expect(decision && legal.has(decision.boundaryDecision) &&
+      decision.reviewDisposition==="NEW_BUILDER_PROPOSAL" &&
+      decision.previousBuilderProposal===old.previousBuilderProposal &&
+      typeof decision.rationale==="string" && decision.rationale.length>=70 &&
+      !decision.rationale.includes("not been individually adjudicated"),
+      "V7C role needs individual rationale and a four-state, nonnull proposed decision: "+r.candidateId+"/"+role);
+    allNewCaseExplanations.push(decision.rationale);
+    if(role!=="context"){
+      expect((decision.boundaryDecision==="UNRESOLVED" || decision.boundaryDecision==="ABSENT") ?
+        decision.witness===null :
+        typeof decision.witness==="string" && decision.witness.length>=3,
+        "V7C partial/clear evidence requires a concrete witness; unresolved/absent must not invent one: "+r.candidateId+"/"+role);
+      if(decision.witness!==null) {
+        expect((decision.witnessSource==="ACCEPTED_CLAIM" && ev.claim.includes(decision.witness)) ||
+          (decision.witnessSource==="RAW_EXPRESSION" && r.candidateName.includes(decision.witness)),
+          "V7C trigger/output witness cannot come from another candidate, made-up knowledge or source index: "+r.candidateId+"/"+role);
+      }
+    } else expect(decision.witness===null && decision.witnessSource===null,
+      "V7C source-independent context reach is a semantic judgment, not a witness keyword.");
+  }
+}
+expect(preservedFrozen===9 && preservedPrior===26 && newV7C===92 &&
+  new Set(allNewCaseExplanations).size===276,
+  "V7C partition or candidate-specific 276 individual explanations lost.");
+const remainingV7CDimensions = allV7C
+  .filter(r=>!r.frozenCalibration)
+  .flatMap(r=>[r.trigger,r.output,r.context])
+  .filter(x=>x.boundaryDecision===null);
+expect(remainingV7CDimensions.length===48 &&
+  remainingV7CDimensions.every(x=>x.reviewDisposition==="DEFER"),
+  "V7C cannot silently resolve the 48 unreviewed dimensions of the prior 26 mass cases.");
+for(const [id,dimension,decision] of [
+  ["RAW-OFFICIAL-004","output","UNRESOLVED"],
+  ["RAW-OFFICIAL-015","output","CLEAR"],
+  ["RAW-OFFICIAL-017","output","UNRESOLVED"],
+  ["RAW-OFFICIAL-022","output","UNRESOLVED"],
+  ["RAW-OFFICIAL-024","output","UNRESOLVED"],
+  ["RAW-OFFICIAL-044","context","PROBLEM_LOCAL"],
+  ["RAW-OFFICIAL-069","context","UNRESOLVED"],
+  ["RAW-OFFICIAL-086","output","CLEAR"],
+  ["RAW-OFFICIAL-093","trigger","CLEAR"],
+  ["RAW-OFFICIAL-098","output","CLEAR"],
+  ["RAW-OFFICIAL-109","trigger","CLEAR"],
+  ["RAW-OFFICIAL-117","output","CLEAR"],
+  ["RAW-OFFICIAL-126","context","UNRESOLVED"],
+]){
+  expect(allV7C.find(r=>r.candidateId===id)?.[dimension].boundaryDecision===decision,
+    "V7C explicit positive/negative/control mathematical sentinel drifted: "+id+"/"+dimension);
+}
 
 for(const [id,expected] of [
   ["RAW-OFFICIAL-016","UNRESOLVED"],
