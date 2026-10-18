@@ -338,7 +338,7 @@ export const ARSENAL_GATE3_V7C_BATCH_02 = Object.freeze([
     },
     "context": {
       "boundaryDecision": "GENERAL",
-      "rationale": "Equal-area triangle pairing is a general geometric matching argument."
+      "rationale": "Pairing adjacent triangles of equal area is a standard Euclidean-geometric comparison construction independent of the specific original arrangement."
     }
   },
   {
@@ -389,7 +389,7 @@ export const ARSENAL_GATE3_V7C_BATCH_02 = Object.freeze([
     },
     "context": {
       "boundaryDecision": "GENERAL",
-      "rationale": "Forced-pair reductions are reusable structural induction techniques."
+      "rationale": "A reduction forced by local pair constraints supports a general structural-induction method, although the precise instance's pairing constraints are specialized."
     }
   },
   {
@@ -491,7 +491,7 @@ export const ARSENAL_GATE3_V7C_BATCH_02 = Object.freeze([
     },
     "context": {
       "boundaryDecision": "GENERAL",
-      "rationale": "Monotone-cycle collapse is a general dynamical-systems argument."
+      "rationale": "Using strict monotonicity to collapse a nontrivial two-cycle into a fixed point is a reusable method in discrete dynamics, separate from this occurrence."
     }
   },
   {

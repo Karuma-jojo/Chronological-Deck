@@ -66,7 +66,7 @@ export const ARSENAL_GATE3_V7C_BATCH_03 = Object.freeze([
     },
     "context": {
       "boundaryDecision": "GENERAL",
-      "rationale": "Alternating-polynomial factorization using degree is general algebra."
+      "rationale": "Alternating multivariate-polynomial divisibility and degree comparisons give a Vandermonde factorization method that is meaningful in arbitrary suitable determinants."
     }
   },
   {
@@ -185,7 +185,7 @@ export const ARSENAL_GATE3_V7C_BATCH_03 = Object.freeze([
     },
     "context": {
       "boundaryDecision": "GENERAL",
-      "rationale": "Nonzero-parameter normalization is a general algebraic technique."
+      "rationale": "Scaling a nonzero coefficient to normalize a polynomial is a general algebraic simplification technique and does not depend on the game's particular moves."
     }
   },
   {
@@ -304,7 +304,7 @@ export const ARSENAL_GATE3_V7C_BATCH_03 = Object.freeze([
     },
     "context": {
       "boundaryDecision": "GENERAL",
-      "rationale": "Cyclic-symmetry order reduction is a general algebraic tactic."
+      "rationale": "A cyclic-symmetry reduction by selecting a least variable is a reusable algebraic ordering argument, not a tactic defined only by this contest example."
     }
   },
   {

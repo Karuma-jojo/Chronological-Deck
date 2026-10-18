@@ -389,7 +389,7 @@ export const ARSENAL_GATE3_V7C_BATCH_01 = Object.freeze([
     },
     "context": {
       "boundaryDecision": "GENERAL",
-      "rationale": "AM-GM lower bounds are general inequality methods."
+      "rationale": "The AM-GM lower-bound technique is a standard inequality method whose mathematical role does not depend on the particular expressions chosen in this contest problem."
     }
   },
   {
