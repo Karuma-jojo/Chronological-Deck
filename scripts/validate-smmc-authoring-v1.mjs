@@ -96,6 +96,7 @@ import {
 import { ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_V7, ARSENAL_GATE3_OFFICIAL_ROLE_AUDIT_META } from "../course/smmc/arsenal/granularity-official-role-audit-v7.mjs";
 import { ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7B, ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7B } from "../course/smmc/arsenal/granularity-official-adjudication-v7b.mjs";
 import { ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7C, ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7C } from "../course/smmc/arsenal/granularity-official-adjudication-v7c.mjs";
+import { ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7D, ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7D } from "../course/smmc/arsenal/granularity-official-adjudication-v7d.mjs";
 import { ARSENAL_GATE2_ACCEPTED_SNAPSHOT_V1 } from "../course/smmc/arsenal/gate2-accepted-snapshot-v1.mjs";
 import {
   ARSENAL_GATE3_DUPLICATE_NAME_AUDIT,
@@ -1330,6 +1331,114 @@ expect(newlyV7CRows.filter(r=>r.context.boundaryDecision==="GENERAL").length===8
   newlyV7CRows.filter(r=>r.context.boundaryDecision==="PROBLEM_LOCAL").length===1 &&
   newlyV7CRows.filter(r=>r.context.boundaryDecision==="UNRESOLVED").length===3,
   "G3-C01–C05 must not change the previous context distribution.");
+
+// V7D: structural, candidate-owned validation of all 48 formerly deferred
+// dimensions. Full mathematical adjudication remains external/independent.
+const v7dMeta=ARSENAL_GATE3_OFFICIAL_ADJUDICATION_META_V7D;
+expect(v7dMeta.status==="127_COMPLETE_BUILDER_ROLES_48_REVIEW_PENDING_NO_INTEGRATION" &&
+  v7dMeta.population===127 && v7dMeta.readOnlyCalibrationReferences===9 &&
+  v7dMeta.acceptedV7CResearchMassCasesPreserved===92 &&
+  v7dMeta.previousV7BMassCasesRetain30Decisions===26 &&
+  JSON.stringify(v7dMeta.newlyFilledDimensions)===JSON.stringify({trigger:11,output:15,context:22}) &&
+  v7dMeta.newlyFilledTotal===48 && v7dMeta.independentAcceptanceOfNew48===false &&
+  v7dMeta.consolidated127Accepted===false && v7dMeta.massClassifierVersionUnchanged==="v6" &&
+  v7dMeta.gate3Graduated===false && v7dMeta.gate4Unlocked===false,
+  "V7D metadata cannot imply independent semantic acceptance or classifier integration.");
+const v7dRows=ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7D;
+expect(v7dRows.length===127 && new Set(v7dRows.map(r=>r.candidateId)).size===127,
+  "V7D must cover 127 distinct official occurrences.");
+const previousV7D=new Map(allV7C.map(r=>[r.candidateId,r]));
+const decisionCountV7D={trigger:0,output:0,context:0};
+const newExplanationsV7D=[];
+let preservedFrozenV7D=0,preservedAccepted92V7D=0,old26V7D=0;
+for(const row of v7dRows) {
+  const old=previousV7D.get(row.candidateId),e=officialEvidenceById.get(row.candidateId);
+  expect(old && e && row.sourceClaim===old.sourceClaim && row.sourceClaim===e.claim &&
+    row.candidateName===old.candidateName && row.frozenCalibration===old.frozenCalibration,
+    "V7D cannot edit source claims or official expression: "+row.candidateId);
+  if(old.frozenCalibration){
+    preservedFrozenV7D++;
+    expect(row===old && JSON.stringify(row)===JSON.stringify(old),
+      "V7D cannot edit any frozen official calibration observation: "+row.candidateId);
+  } else if(old.overallDisposition==="NEW_BUILDER_COMPLETE_AWAITING_INDEPENDENT_REVIEW"){
+    preservedAccepted92V7D++;
+    expect(row===old && JSON.stringify(row)===JSON.stringify(old),
+      "V7D cannot edit independently reviewed v7C 92-case research tranche: "+row.candidateId);
+  } else {
+    old26V7D++;
+    expect(old.overallDisposition==="REVISE_OR_SUPPORT_BUILDER_PROPOSAL" &&
+      row.overallDisposition==="COMPLETE_BUILDER_ROLES_CONSOLIDATED_AWAITING_INDEPENDENT_REVIEW" &&
+      row.acceptance==="NOT_INDEPENDENTLY_ACCEPTED_AS_COMPLETE_LEDGER",
+      "V7D can only fill deferred dimensions from prior 26 cases.");
+  }
+  for(const role of ["trigger","output","context"]){
+    const oldRole=old[role],now=row[role],allowed=role==="context"?permittedContexts:permittedBoundaries;
+    expect(allowed.has(now.boundaryDecision),
+      "V7D all dimensions must have four-state/context semantic judgments, not DEFER: "+row.candidateId+"/"+role);
+    if(oldRole.boundaryDecision!==null){
+      expect(now===oldRole && JSON.stringify(now)===JSON.stringify(oldRole),
+        "V7D must not overwrite ANY formerly decided role: "+row.candidateId+"/"+role);
+      continue;
+    }
+    decisionCountV7D[role]++;
+    expect(!old.frozenCalibration && old.overallDisposition==="REVISE_OR_SUPPORT_BUILDER_PROPOSAL" &&
+      now.reviewDisposition==="NEW_BUILDER_PROPOSAL" &&
+      now.previousBuilderProposal===oldRole.previousBuilderProposal &&
+      typeof now.rationale==="string" && now.rationale.length>=80 &&
+      !now.rationale.includes("not been individually adjudicated"),
+      "V7D newly filled role needs an individual pending-review rationale: "+row.candidateId+"/"+role);
+    newExplanationsV7D.push(now.rationale);
+    if(role==="context"){
+      expect(now.witness===null && now.witnessSource===null,
+        "V7D context judgments use mathematical rationale, not a keyword witness.");
+    }else if(now.witness===null){
+      expect(["UNRESOLVED","ABSENT"].includes(now.boundaryDecision) &&
+        now.witnessSource===null,
+        "V7D CLEAR/PARTIAL must show candidate-owned evidence: "+row.candidateId+"/"+role);
+    }else{
+      expect(now.witness.length>=3 &&
+        ((now.witnessSource==="ACCEPTED_CLAIM" && e.claim.includes(now.witness)) ||
+         (now.witnessSource==="RAW_EXPRESSION" && row.candidateName.includes(now.witness))),
+        "V7D cannot borrow another candidate's evidence or an unowned witness: "+row.candidateId+"/"+role);
+    }
+  }
+}
+expect(preservedFrozenV7D===9 && preservedAccepted92V7D===92 &&
+  old26V7D===26 && JSON.stringify(decisionCountV7D)===
+  JSON.stringify({trigger:11,output:15,context:22}) &&
+  newExplanationsV7D.length===48 && new Set(newExplanationsV7D).size===48,
+  "V7D exactly 48 candidate-specific dimensions over 26 cases must be covered without overwrites.");
+for(const [id,role,expected] of [
+  ["RAW-OFFICIAL-014","output","UNRESOLVED"],
+  ["RAW-OFFICIAL-016","trigger","UNRESOLVED"],
+  ["RAW-OFFICIAL-018","trigger","UNRESOLVED"],
+  ["RAW-OFFICIAL-029","trigger","CLEAR"],
+  ["RAW-OFFICIAL-029","output","CLEAR"],
+  ["RAW-OFFICIAL-031","output","CLEAR"],
+  ["RAW-OFFICIAL-045","output","CLEAR"],
+  ["RAW-OFFICIAL-052","trigger","CLEAR"],
+  ["RAW-OFFICIAL-052","output","CLEAR"],
+  ["RAW-OFFICIAL-054","output","PARTIAL"],
+  ["RAW-OFFICIAL-055","output","PARTIAL"],
+  ["RAW-OFFICIAL-064","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-064","output","CLEAR"],
+  ["RAW-OFFICIAL-074","output","CLEAR"],
+  ["RAW-OFFICIAL-077","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-087","output","CLEAR"],
+  ["RAW-OFFICIAL-091","output","CLEAR"],
+  ["RAW-OFFICIAL-094","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-096","output","CLEAR"],
+  ["RAW-OFFICIAL-098","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-101","output","CLEAR"],
+  ["RAW-OFFICIAL-102","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-112","output","CLEAR"],
+  ["RAW-OFFICIAL-114","context","GENERAL"],
+  ["RAW-OFFICIAL-119","trigger","PARTIAL"],
+  ["RAW-OFFICIAL-120","trigger","PARTIAL"],
+]){
+  expect(v7dRows.find(r=>r.candidateId===id)?.[role].boundaryDecision===expected,
+    "V7D reviewer-targeted semantic role sentinel drifted: "+id+"/"+role);
+}
 
 const remainingV7CDimensions = allV7C
   .filter(r=>!r.frozenCalibration)
