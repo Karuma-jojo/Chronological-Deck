@@ -1549,7 +1549,8 @@ for (const [id,trigger,output,context] of [
 // Synthetic paraphrases must not inherit a verdict validated against other,
 // frozen claim wording; original v6 lexical assessor remains a reproducible fallback.
 for(const id of ["RAW-OFFICIAL-031","RAW-OFFICIAL-045","RAW-OFFICIAL-052"]){
-  const {candidate,evidenceRecords}=ownedGate3Pair(id);
+  const candidate=rawCandidateById.get(id);
+  const evidenceRecords=ARSENAL_GATE2_RAW_EVIDENCE.filter(e=>e.candidateId===id);
   const mutated=evidenceRecords.map(e=>({...e,claim:e.claim+" [SYNTHETIC ALTERED EVIDENCE]"}));
   const assessed=buildGate3MassAssessment(candidate,mutated);
   const lexical=buildGate3LexicalMassAssessment(candidate,mutated);
