@@ -26,9 +26,9 @@ export const ARSENAL_GATE3_V7C_BATCH_02 = Object.freeze([
       "rationale": "Avoidance of a forbidden word pattern specifies the combinatorial setting, although the particular pattern is omitted."
     },
     "output": {
-      "boundaryDecision": "CLEAR",
-      "witness": "complementary bound",
-      "rationale": "The surjective recurrence argument yields the complementary upper bound to the paired counting construction."
+      "boundaryDecision": "PARTIAL",
+      "witness": "for the complementary bound",
+      "rationale": "The official claim identifies encoding configurations into forbidden-pattern-avoiding words and says the surjective recurrence argument is 'for the complementary bound'. It does not explicitly say the complementary bound was obtained, state its value, or identify the exact resulting inequality. The intended bound is positive but incomplete output information, so PARTIAL is appropriate; do not import a bound from the paired proof route or treat the preposition 'for' as an achieved conclusion."
     },
     "context": {
       "boundaryDecision": "GENERAL",
@@ -209,8 +209,8 @@ export const ARSENAL_GATE3_V7C_BATCH_02 = Object.freeze([
     "candidateId": "RAW-OFFICIAL-060",
     "trigger": {
       "boundaryDecision": "PARTIAL",
-      "witness": "fixed-size blocks",
-      "rationale": "Terms are grouped into blocks for benchmark comparison; the sign and exact comparison hypotheses remain unstated."
+      "witness": "Positive Series",
+      "rationale": "The raw candidate expression 'Block Comparison for a Positive Series' specifies an existing positive-series input. The 'fixed-size blocks' in the official claim are created by the solver's grouping operation, not a prior trigger. Positivity is meaningful input information but does not establish the term pattern, block-comparison inequalities or convergence criteria, so trigger remains PARTIAL, anchored to the raw expression rather than the constructed blocks."
     },
     "output": {
       "boundaryDecision": "CLEAR",
@@ -480,9 +480,9 @@ export const ARSENAL_GATE3_V7C_BATCH_02 = Object.freeze([
   {
     "candidateId": "RAW-OFFICIAL-080",
     "trigger": {
-      "boundaryDecision": "CLEAR",
+      "boundaryDecision": "PARTIAL",
       "witness": "Strict monotonicity",
-      "rationale": "Strict monotonicity is the explicit condition ruling out nontrivial two-cycles."
+      "rationale": "The owned claim mentions strict monotonicity, but omits its increasing/decreasing direction and other necessary assumptions for collapsing a two-cycle. Strictly decreasing f(x)=1-x on [0,1] satisfies f(f(x))=x with non-fixed two-cycles; strict monotonicity alone is insufficient. In contrast, a strictly increasing interval self-map cannot have a nontrivial two-cycle. The attested monotonicity supplies PARTIAL trigger evidence only; the historical proof's reported two-cycle conclusion remains an evidence-backed CLEAR output."
     },
     "output": {
       "boundaryDecision": "CLEAR",
@@ -491,7 +491,7 @@ export const ARSENAL_GATE3_V7C_BATCH_02 = Object.freeze([
     },
     "context": {
       "boundaryDecision": "GENERAL",
-      "rationale": "Using strict monotonicity to collapse a nontrivial two-cycle into a fixed point is a reusable method in discrete dynamics, separate from this occurrence."
+      "rationale": "Two-cycle collapse using an appropriate monotonicity hypothesis is a recognizable dynamical-system argument independent of the historical problem. This GENERAL context judgment does NOT mean arbitrary strict monotonicity suffices: decreasing maps such as f(x)=1-x can admit nontrivial two-cycles, whereas strictly increasing interval maps cannot."
     }
   },
   {
@@ -515,8 +515,8 @@ export const ARSENAL_GATE3_V7C_BATCH_02 = Object.freeze([
     "candidateId": "RAW-OFFICIAL-082",
     "trigger": {
       "boundaryDecision": "CLEAR",
-      "witness": "no-carry criterion in base two",
-      "rationale": "The base-two no-carry condition precisely identifies which binomial coefficients are odd."
+      "witness": "odd binomial coefficients",
+      "rationale": "The recognizable existing mathematical task is to count binomial coefficients of odd parity, here using base-two digit data. The 'no-carry criterion in base two' is the mathematical test applied, not itself the initial trigger. Counting odd binomial coefficients supplies a well-defined input/goal for the digitwise criterion, so CLEAR is retained on the established input-and-goal role rather than on the chosen theorem."
     },
     "output": {
       "boundaryDecision": "CLEAR",

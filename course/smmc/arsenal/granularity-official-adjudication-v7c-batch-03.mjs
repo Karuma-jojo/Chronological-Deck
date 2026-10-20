@@ -123,9 +123,9 @@ export const ARSENAL_GATE3_V7C_BATCH_03 = Object.freeze([
   {
     "candidateId": "RAW-OFFICIAL-105",
     "trigger": {
-      "boundaryDecision": "CLEAR",
+      "boundaryDecision": "PARTIAL",
       "witness": "When the sequence tends to zero",
-      "rationale": "A zero-term-limit case is expressly the hypothesis for comparison with the reciprocal next term."
+      "rationale": "The source records the zero-term-limit branch as the setting for the reciprocal comparison, but that limit alone is not sufficient to force divergent partial sums: positive a_n=1/n^2 tends to zero while its series converges. A further problem-specific inequality comparing partial sums with the reciprocal next term must do the work, and its hypotheses are not stated in this candidate-owned claim. Thus the trigger is PARTIAL, while the claim's historical conclusion of unbounded growth remains CLEAR output."
     },
     "output": {
       "boundaryDecision": "CLEAR",
@@ -157,9 +157,9 @@ export const ARSENAL_GATE3_V7C_BATCH_03 = Object.freeze([
   {
     "candidateId": "RAW-OFFICIAL-108",
     "trigger": {
-      "boundaryDecision": "CLEAR",
-      "witness": "replacing one tile by four similar tiles",
-      "rationale": "The allowed one-to-four local replacement explicitly identifies an operation whose tile-count effect can be applied repeatedly."
+      "boundaryDecision": "PARTIAL",
+      "witness": "one tile",
+      "rationale": "An existing tile that admits a permitted one-to-four similar-tile replacement supplies some recognizable local construction input. The phrase 'replacing one tile by four similar tiles' describes the solver's operation rather than the trigger itself. The accepted claim does not specify which tiles are eligible or the replacement's geometric feasibility conditions, so the applicability boundary is PARTIAL; the +3 change in tile count remains a definite output."
     },
     "output": {
       "boundaryDecision": "CLEAR",
@@ -345,8 +345,8 @@ export const ARSENAL_GATE3_V7C_BATCH_03 = Object.freeze([
     "candidateId": "RAW-OFFICIAL-125",
     "trigger": {
       "boundaryDecision": "CLEAR",
-      "witness": "nontrivial gcd",
-      "rationale": "Two domain elements sharing a nontrivial gcd, together with a uniquely available common multiple, create a forced collision."
+      "witness": "interval containing only one multiple available to two domain elements with a nontrivial gcd",
+      "rationale": "The collision obstruction requires the joint structural situation: two domain elements have a nontrivial gcd AND the constructed interval contains exactly one multiple available to both. A nontrivial gcd alone does not force a collision. Once that interval has been selected, the whole conjunction provides a recognizable intermediate-stage trigger for the divisibility-collision argument. The interval is a solver-chosen witness for this stage, not a claim that the initial problem already supplied it; the derived collision/injectivity contradiction remains CLEAR output."
     },
     "output": {
       "boundaryDecision": "CLEAR",

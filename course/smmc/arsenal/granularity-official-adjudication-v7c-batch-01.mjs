@@ -332,9 +332,9 @@ export const ARSENAL_GATE3_V7C_BATCH_01 = Object.freeze([
       "rationale": "Isolating a subseries identifies the comparison object but not which positivity or size conditions justify the inference."
     },
     "output": {
-      "boundaryDecision": "CLEAR",
-      "witness": "control convergence/divergence",
-      "rationale": "The claim explicitly obtains control of convergence or divergence through subseries comparison, a named convergence conclusion."
+      "boundaryDecision": "PARTIAL",
+      "witness": "compares it to control convergence/divergence",
+      "rationale": "The accepted claim isolates and compares a subseries to control convergence or divergence, but does not say which convergence conclusion is established, or even that the comparison decides one of the alternatives. The source supports a genuine comparison-related partial payoff, not an identified final convergence/divergence decision. Contrast official 060, where the claim explicitly says the comparison is made to decide convergence or divergence."
     },
     "context": {
       "boundaryDecision": "GENERAL",
@@ -362,8 +362,8 @@ export const ARSENAL_GATE3_V7C_BATCH_01 = Object.freeze([
     "candidateId": "RAW-OFFICIAL-025",
     "trigger": {
       "boundaryDecision": "PARTIAL",
-      "witness": "triangle inequality",
-      "rationale": "The norm/metric estimate is invited by a triangle-inequality setting, but the input vectors or equality conditions are unrecorded."
+      "witness": "for the upper bound",
+      "rationale": "The phrase 'for the upper bound' is a preexisting proof goal inviting a triangle-inequality estimate; the triangle inequality itself is the tool, not a triggering hypothesis. The specific normed objects and equality/sharpness conditions are not specified, so the goal establishes only PARTIAL trigger information. The resulting upper bound and aligned sharpness construction remain a CLEAR output."
     },
     "output": {
       "boundaryDecision": "CLEAR",
