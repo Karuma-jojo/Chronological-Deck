@@ -14,6 +14,26 @@
 // CROSS_SCALE sentinel is the already-reviewed Zeitz Crux Move calibration row.
 
 import { ARSENAL_GATE3_MASS_BUNDLE_REVIEW_V4 } from "./granularity-bundle-review-v1.mjs";
+import {
+  ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7D,
+} from "./granularity-official-adjudication-v7d.mjs";
+
+// Independently accepted official semantic research ledger:
+// https://github.com/Karuma-jojo/Chronological-Deck/pull/186#issuecomment-6295323783
+// This is ONLY a candidate-owned trigger/output/context integration. The
+// accepted 45-case ruler, nine official calibration rows, and all other
+// orthogonal classifier dimensions remain unchanged.
+const officialReviewRows = new Map(ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7D.map(r=>[r.candidateId,r]));
+if (officialReviewRows.size!==127 || ARSENAL_GATE3_OFFICIAL_ADJUDICATION_V7D.length!==127 ||
+    [...officialReviewRows.values()].filter(r=>r.frozenCalibration).length!==9)
+  throw new Error("V7 official semantic ledger must contain 127 unique cases and nine frozen observations.");
+const reviewedOfficialMass = new Map(
+  [...officialReviewRows].filter(([, r])=>!r.frozenCalibration)
+);
+if (reviewedOfficialMass.size!==118)
+  throw new Error("V7 semantic overlay is restricted to exactly 118 non-calibration official cases.");
+const ACCEPTED_RESEARCH_REVIEW_SHA = "8e874c5ba32aecd43bbb178348677df4e7756f8b";
+
 
 const lower = value => String(value ?? "").toLowerCase();
 
@@ -325,7 +345,7 @@ const boundaryForAction = ({ candidate, evidenceRecords, actionShape, operationS
 
   return { triggerBoundary, operationBoundary, outputBoundary };
 }
-export function buildGate3MassAssessment(candidate, evidenceRecords) {
+export function buildGate3LexicalMassAssessment(candidate, evidenceRecords) {
   if (!candidate || typeof candidate !== "object") {
     throw new Error("Gate-3 mass classifier requires a raw candidate.");
   }
@@ -564,8 +584,61 @@ export function buildGate3MassAssessment(candidate, evidenceRecords) {
   };
 }
 
+// Apply accepted, candidate-owned semantic-role judgments AFTER the unchanged
+// v6 grain/bundle/action/operation/confidence calculation. Keeping the baseline
+// separate allows complete orthogonality and nonofficial-equivalence probes.
+// Modified synthetic/paraphrased claims are NOT allowed to inherit a verdict
+// grounded in different accepted text; they remain baseline interpretation.
+export function buildGate3MassAssessment(candidate, evidenceRecords) {
+  const baseline = buildGate3LexicalMassAssessment(candidate, evidenceRecords);
+  const review = reviewedOfficialMass.get(candidate?.candidateId);
+  if (!review) return baseline; // Nonofficial AND all nine frozen official calibration IDs.
+
+  const exactClaim = evidenceRecords.length === 1 && evidenceRecords[0]?.claim === review.sourceClaim;
+  const exactCandidate = candidate?.candidateName === review.candidateName &&
+    candidate?.origin === "OFFICIAL_SMMC_SOLUTION";
+  const exactOwnedRecord = evidenceRecords.length === 1 && evidenceRecords[0]?.recordId ===
+    `E-${review.candidateId}-source` &&
+    evidenceRecords[0]?.candidateId === candidate.candidateId &&
+    evidenceRecords[0]?.evidenceBasis === "SOURCE_FACT" &&
+    evidenceRecords[0]?.recordChannel === "BATTLE" &&
+    evidenceRecords[0]?.claimKind === "HISTORICAL_OCCURRENCE" &&
+    evidenceRecords[0]?.verificationStatus === "VERIFIED";
+  // Synthetic rephrasings used by legacy regression tests are not an accepted
+  // Gate-2 claim; do not misuse the independently reviewed *different text*.
+  if (!exactClaim || !exactCandidate || !exactOwnedRecord) return baseline;
+
+  for (const role of ["trigger","output","context"]) {
+    const r=review[role];
+    if (!r || r.boundaryDecision === null ||
+        !["CLEAR","PARTIAL","UNRESOLVED","ABSENT","GENERAL","PROBLEM_LOCAL","SOURCE_LOCAL"].includes(r.boundaryDecision))
+      throw new Error(`V7 accepted official role is missing or invalid: ${candidate.candidateId}/${role}`);
+    if (role!=="context" && r.witness !== null &&
+        !((r.witnessSource==="ACCEPTED_CLAIM" && review.sourceClaim.includes(r.witness)) ||
+          (r.witnessSource==="RAW_EXPRESSION" && review.candidateName.includes(r.witness))))
+      throw new Error(`V7 accepted official role witness is not candidate-owned: ${candidate.candidateId}/${role}`);
+  }
+  const roleDetail=["trigger","output","context"].map(role =>
+    `${role}=${review[role].boundaryDecision} (${review[role].rationale})`
+  ).join("; ");
+  return {
+    ...baseline,
+    contextReach: review.context.boundaryDecision,
+    triggerBoundary: review.trigger.boundaryDecision,
+    outputBoundary: review.output.boundaryDecision,
+    rationale: `${baseline.rationale} G3-V7 semantic integration (accepted research ledger ${ACCEPTED_RESEARCH_REVIEW_SHA}; exact candidate-owned verified Battle evidence): ${roleDetail}. This supersedes lexical role guesses only; referenceScale, bundleStructure, actionShape, operationBoundary, confidence and MP rule remain as independently separate preexisting assessments.`,
+  };
+}
+
 export const ARSENAL_GATE3_MASS_CLASSIFIER_META = Object.freeze({
-  version: "v6",
+  version: "v7-owned-official-semantics",
+  semanticReviewAcceptanceSha: ACCEPTED_RESEARCH_REVIEW_SHA,
+  integratedOfficialMassCandidates: reviewedOfficialMass.size,
+  frozenOfficialCalibrationExcluded: 9,
+  semanticOverrideFields: Object.freeze(["triggerBoundary","outputBoundary","contextReach"]),
+  nonofficialClassifier: "UNCHANGED_V6",
+  grainBundleOperationPolicy: "V6_ORTHOGONAL_UNCHANGED",
+  requiresIndependentGraduation: true,
   calibrationAcceptanceSha: "177a8efa24ebca15e2c84dbb18e96a72be5e1d08",
   evidenceMode: "STRICT_CANDIDATE_OWNED_GATE2",
   crossScaleMode: "SOURCE_SCALE_VARIABLE_ROLE_ONLY",

@@ -697,5 +697,5 @@ export const ARSENAL_GATE3_GRANULARITY_META = Object.freeze({
   candidateRelationsStarted: false,
   learnerGamificationStarted: false,
   strictEvidenceReauditVersion: "v2-45-boundary-normalized",
-  massPassVersion: "v6-616-context-evidence-role-repair",
+  massPassVersion: "v7-118-owned-official-semantic-integration",
 });
