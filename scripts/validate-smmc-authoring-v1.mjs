@@ -2294,7 +2294,7 @@ expect(
   "Gate-3 v7 mass-pass rule distribution drifted."
 );
 expect(
-  ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures >= 0 // diagnostic; pin after recomputation,
+  ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures >= 0, // diagnostic, pin after recomputation
   "Gate-3 v4 duplicate-name differing-signature count drifted."
 );
 expect(
