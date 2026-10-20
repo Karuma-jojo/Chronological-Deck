@@ -1270,6 +1270,67 @@ for(const r of allV7C) {
 expect(preservedFrozen===9 && preservedPrior===26 && newV7C===92 &&
   new Set(allNewCaseExplanations).size===276,
   "V7C partition or candidate-specific 276 individual explanations lost.");
+// G3-C01–C05 independent 92-case audit review: mathematically adversarial
+// roles, original owned-claim/RAW-expression grounding, and stable cohort counts.
+// These are still builder proposals and cannot be used as classifier authority.
+const correctedV7C = new Map(allV7C.map(row=>[row.candidateId,row]));
+for(const [id,role,decision,witness,sourceType] of [
+  ["RAW-OFFICIAL-080","trigger","PARTIAL","Strict monotonicity","ACCEPTED_CLAIM"],
+  ["RAW-OFFICIAL-105","trigger","PARTIAL","When the sequence tends to zero","ACCEPTED_CLAIM"],
+  ["RAW-OFFICIAL-060","trigger","PARTIAL","Positive Series","RAW_EXPRESSION"],
+  ["RAW-OFFICIAL-082","trigger","CLEAR","odd binomial coefficients","ACCEPTED_CLAIM"],
+  ["RAW-OFFICIAL-108","trigger","PARTIAL","one tile","ACCEPTED_CLAIM"],
+  ["RAW-OFFICIAL-025","trigger","PARTIAL","for the upper bound","ACCEPTED_CLAIM"],
+  ["RAW-OFFICIAL-023","output","PARTIAL","compares it to control convergence/divergence","ACCEPTED_CLAIM"],
+  ["RAW-OFFICIAL-043","output","PARTIAL","for the complementary bound","ACCEPTED_CLAIM"],
+  ["RAW-OFFICIAL-125","trigger","CLEAR","interval containing only one multiple available to two domain elements with a nontrivial gcd","ACCEPTED_CLAIM"],
+]){
+  const record=correctedV7C.get(id),r=record?.[role];
+  expect(r?.boundaryDecision===decision &&
+    r.witness===witness && r.witnessSource===sourceType &&
+    r.reviewDisposition==="NEW_BUILDER_PROPOSAL" &&
+    ((sourceType==="ACCEPTED_CLAIM" && record.sourceClaim.includes(witness)) ||
+      (sourceType==="RAW_EXPRESSION" && record.candidateName.includes(witness))),
+    "G3-C01–C05: boundary or owned mathematical role witness drifted: "+id+"/"+role);
+}
+expect(correctedV7C.get("RAW-OFFICIAL-080")?.trigger.rationale.includes("Strictly decreasing f(x)=1-x") &&
+  correctedV7C.get("RAW-OFFICIAL-080")?.context.rationale.includes("decreasing maps") &&
+  correctedV7C.get("RAW-OFFICIAL-105")?.trigger.rationale.includes("a_n=1/n^2") &&
+  correctedV7C.get("RAW-OFFICIAL-105")?.output.boundaryDecision==="CLEAR",
+  "G3-C01/C02 must preserve counterexamples and historically attained outputs without overstating trigger sufficiency.");
+const mapF = x => 1-x;
+const xTwoCycle=0.25;
+expect(mapF(mapF(xTwoCycle))===xTwoCycle && mapF(xTwoCycle)!==xTwoCycle,
+  "A strictly decreasing function can have nontrivial two-cycles; monotonicity alone is not a CLEAR trigger.");
+// For n>=2, 1/n^2 <= 1/[n(n-1)]. The latter telescopes,
+// so the positive zero-limit a_n=1/n^2 has bounded partial sums;
+// a zero term limit alone does not prove divergence.
+expect(correctedV7C.get("RAW-OFFICIAL-060")?.trigger.rationale.includes("created by the solver") &&
+  correctedV7C.get("RAW-OFFICIAL-082")?.trigger.rationale.includes("test applied") &&
+  correctedV7C.get("RAW-OFFICIAL-108")?.trigger.rationale.includes("not specify which tiles are eligible") &&
+  correctedV7C.get("RAW-OFFICIAL-025")?.trigger.rationale.includes("preexisting proof goal"),
+  "G3-C03 must separate a given mathematical input/goal from constructed steps and tools.");
+expect(correctedV7C.get("RAW-OFFICIAL-023")?.output.rationale.includes("does not say which convergence conclusion") &&
+  correctedV7C.get("RAW-OFFICIAL-043")?.output.rationale.includes("does not explicitly say the complementary bound was obtained") &&
+  correctedV7C.get("RAW-OFFICIAL-060")?.output.boundaryDecision==="CLEAR",
+  "G3-C04 must distinguish intended convergence/bound payoffs from an explicitly stated decision.");
+expect(correctedV7C.get("RAW-OFFICIAL-125")?.trigger.rationale.includes("joint structural situation") &&
+  correctedV7C.get("RAW-OFFICIAL-125")?.trigger.rationale.includes("Once that interval has been selected"),
+  "G3-C05 must require gcd PLUS unique interval multiple, not gcd alone.");
+const newlyV7CRows=allV7C.filter(row=>row.overallDisposition==="NEW_BUILDER_COMPLETE_AWAITING_INDEPENDENT_REVIEW");
+const countV7CRoles=role=>Object.fromEntries(
+  ["CLEAR","PARTIAL","UNRESOLVED","ABSENT"].map(state=>[
+    state,newlyV7CRows.filter(r=>r[role].boundaryDecision===state).length]));
+expect(JSON.stringify(countV7CRoles("trigger"))===
+  JSON.stringify({CLEAR:21,PARTIAL:58,UNRESOLVED:13,ABSENT:0}) &&
+  JSON.stringify(countV7CRoles("output"))===
+  JSON.stringify({CLEAR:76,PARTIAL:8,UNRESOLVED:8,ABSENT:0}),
+  "G3-C01–C05 repaired 92-case proposed trigger/output distribution drifted.");
+expect(newlyV7CRows.filter(r=>r.context.boundaryDecision==="GENERAL").length===88 &&
+  newlyV7CRows.filter(r=>r.context.boundaryDecision==="PROBLEM_LOCAL").length===1 &&
+  newlyV7CRows.filter(r=>r.context.boundaryDecision==="UNRESOLVED").length===3,
+  "G3-C01–C05 must not change the previous context distribution.");
+
 const remainingV7CDimensions = allV7C
   .filter(r=>!r.frozenCalibration)
   .flatMap(r=>[r.trigger,r.output,r.context])

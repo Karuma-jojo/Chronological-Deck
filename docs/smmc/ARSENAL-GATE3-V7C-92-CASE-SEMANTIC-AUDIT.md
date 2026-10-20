@@ -32,8 +32,8 @@ The prior 26 mass records retain their **30 proposed** decisions (15 trigger, 11
 
 | Proposed boundary | Trigger | Output |
 |---|---:|---:|
-| CLEAR | 24 | 78 |
-| PARTIAL | 55 | 6 |
+| CLEAR | 21 | 76 |
+| PARTIAL | 58 | 8 |
 | UNRESOLVED | 13 | 8 |
 | ABSENT | 0 | 0 |
 | **Total** | **92** | **92** |
@@ -43,7 +43,7 @@ Context proposals: **88 GENERAL**, **1 PROBLEM_LOCAL**, **3 UNRESOLVED**, **0 SO
 ## Mathematical consistency principles to attack
 
 1. **Inputs versus solver-created objects.** E.g. `RAW-OFFICIAL-051` builds its nested compact sets before applying the intersection theorem: the intermediate construction is not silently treated as a pre-given trigger; the proposed trigger is PARTIAL. Similarly `RAW-OFFICIAL-083` conditions on a first occupied seat, but full probabilistic hypotheses are not in its claim. Inspect the other 55 PARTIAL input decisions to ensure they really identify some positive deployment condition rather than a procedure.
-2. **Tool mention versus achieved result.** `RAW-OFFICIAL-024` merely invokes IVT, hence its proposed immediate output is UNRESOLVED; `RAW-OFFICIAL-022` applies a comparison test without stating the convergence conclusion, so output is UNRESOLVED. In contrast `RAW-OFFICIAL-061` expressly solves a recurrence and `RAW-OFFICIAL-117` expressly factors its determinant by cycle blocks. The very high **78 CLEAR** output count merits independent checks for false positives, not automatic trust.
+2. **Tool mention versus achieved result.** `RAW-OFFICIAL-024` merely invokes IVT, hence its proposed immediate output is UNRESOLVED; `RAW-OFFICIAL-022` applies a comparison test without stating the convergence conclusion, so output is UNRESOLVED. In contrast `RAW-OFFICIAL-061` expressly solves a recurrence and `RAW-OFFICIAL-117` expressly factors its determinant by cycle blocks. The very high **76 CLEAR** output count merits independent checks for false positives, not automatic trust.
 3. **Grain and mathematical identification.** Following independently accepted `RAW-OFFICIAL-098` and reviewed `077`, a factorization can be a CLEAR mathematical output even without its expanded symbolic factors. This principle informs `015` (explicit Gaussian-integer factorization), `124` (root-orbit factorization), `097` (identified Vandermonde factor structure), and must be challenged where the claim merely mentions factorization as a technique.
 4. **Context is semantic, not historical provenance.** `RAW-OFFICIAL-044`'s recoverability procedure is proposed PROBLEM_LOCAL because the move-reversal logic is specific to that claimed state space; `010`, `069`, `126` stay UNRESOLVED for insufficiently specified scope. **88 GENERAL** suggestions require review of positive source-independent mathematical content, not a blanket presumption.
 5. **Multi-move and setup boundaries are not silently retyped.** A CLEAR result from a partial operation does **not** assert a one-move ontology, a merge/split decision, an importance rank, or proof of later Gate 4+ suitability. The existing 87 structural bundle decisions are untouched.
@@ -61,3 +61,23 @@ This validator establishes **traceability**, not independent correctness of 276 
 3. Only after the **entire 127-case semantic ledger** is substantively and independently accepted: implement a bounded candidate-owned integration for the **118** official mass cases while preserving the nine frozen official calibration records, regenerate all **616** mass rows and the full 661-row distribution/duplicate audit, run exact-head CI, and request a **separate Gate 3 graduation review**.
 
 **No Gate 4 Tribunal work, ontology, rankings, prerequisites, merge/split, gamification or product release is authorized by this document.**
+
+## Bounded v7C correction of independent G3-C01–C05 review
+
+The [independent adversarial review](https://github.com/Karuma-jojo/Chronological-Deck/pull/186#issuecomment-6292168704) **BLOCKED mathematical acceptance** of the 92-case proposal tranche at SHA `e534a6de8471d8cad8a1a82dc6a13404b6029287`, while verifying source ownership, all frozen protections and the research-infrastructure boundary. This amendment changes **nine** of the 92 builder case records, not the accepted upstream evidence, previous 26 v7B cases, nine frozen calibration observations or existing v6 classifier.
+
+| Finding | Candidate | Revised role | Source-bound mathematical reason |
+|---|---|---|---|
+| G3-C01 | `RAW-OFFICIAL-080` | Trigger **CLEAR → PARTIAL** | Monotonicity without increasing/decreasing direction is insufficient: `f(x)=1-x` has genuine period-two orbits. The official claim does not supply all sufficient hypotheses. Its historically reported output remains CLEAR. |
+| G3-C02 | `RAW-OFFICIAL-105` | Trigger **CLEAR → PARTIAL** | Positive terms tending to zero do **not** alone force divergent partial sums (`a_n=1/n²` provides a convergent counterexample). The special reciprocal comparison remains part of the historically supported output, but its exact applicability conditions are absent. |
+| G3-C03 | `RAW-OFFICIAL-060` | Trigger **PARTIAL**, witness revised | A *Positive Series* from the RAW expression is input. Grouping into fixed-size blocks is the solver's operation. |
+| G3-C03 | `RAW-OFFICIAL-082` | Trigger **CLEAR**, witness revised | Counting odd binomial coefficients is the existing parity-counting task; the base-two no-carry criterion is the applied test, not the trigger. |
+| G3-C03 | `RAW-OFFICIAL-108` | Trigger **CLEAR → PARTIAL** | An eligible existing tile is the input; the one-to-four replacement is an operation and not all admissibility conditions are supplied. |
+| G3-C03 | `RAW-OFFICIAL-025` | Trigger **PARTIAL**, witness revised | Establishing an upper bound is the proof goal; the triangle inequality is the tool chosen for that goal. |
+| G3-C04 | `RAW-OFFICIAL-023` | Output **CLEAR → PARTIAL** | The claim reports a comparison intended to control convergence/divergence but does not identify a decided conclusion; unlike `060` it does not say the comparison decides the alternative. |
+| G3-C04 | `RAW-OFFICIAL-043` | Output **CLEAR → PARTIAL** | A surjective recurrence argument *for* a complementary bound identifies a partial payoff/goal but does not expressly state the bound was obtained. Do not borrow another proof route's bound. |
+| G3-C05 | `RAW-OFFICIAL-125` | Trigger **CLEAR**, witness strengthened | The relevant conjunction is a nontrivial gcd **and** a constructed interval containing exactly one common available multiple. Gcd alone is not sufficient; the joint condition is a recognizable intermediate-stage collision trigger. |
+
+The builder's 92-case v7C role proposals now distribute as **trigger CLEAR 21 / PARTIAL 58 / UNRESOLVED 13**, **output CLEAR 76 / PARTIAL 8 / UNRESOLVED 8**, with context still **GENERAL 88 / PROBLEM_LOCAL 1 / UNRESOLVED 3**. Every amended literal witness is owned by that same candidate's frozen official claim or RAW expression. These are **not independently accepted mathematical judgments**; an exact-head independent review is still required. The 48 other DEFER(null) dimensions within the prior 26 mass rows remain unchanged.
+
+**No v7C proposal controls the 616-row v6 mass classifier. Gate 3 is unaccepted; Gate 4 is locked.**
