@@ -1517,6 +1517,22 @@ for(const candidate of ARSENAL_GATE2_RAW_CANDIDATES) {
         "V7 nonofficial row cannot inherit official semantics: "+candidate.candidateId+"/"+prop);
   }
 }
+// Acceptance-SHA-backed 127-case integrated official research distribution.
+const officialResultRows=gate3ReviewedRows.filter(r=>r.origin==="OFFICIAL_SMMC_SOLUTION");
+const countOfficial=key=>Object.fromEntries(
+  [...new Set(officialResultRows.map(r=>r[key]))].sort().map(val=>[
+    val, officialResultRows.filter(r=>r[key]===val).length]));
+expect(officialResultRows.length===127 &&
+  JSON.stringify(countOfficial("triggerBoundary"))===JSON.stringify({CLEAR:31,PARTIAL:74,UNRESOLVED:22}) &&
+  JSON.stringify(countOfficial("outputBoundary"))===JSON.stringify({CLEAR:105,PARTIAL:11,UNRESOLVED:11}) &&
+  JSON.stringify(countOfficial("contextReach"))===JSON.stringify({GENERAL:122,PROBLEM_LOCAL:2,UNRESOLVED:3}),
+  "Gate-3 v7 must reproduce all 381 independently accepted official semantic roles.");
+expect(ARSENAL_GATE3_MASS_CLASSIFIER_META.nonofficialClassifier==="UNCHANGED_V6" &&
+  ARSENAL_GATE3_MASS_CLASSIFIER_META.grainBundleOperationPolicy==="V6_ORTHOGONAL_UNCHANGED" &&
+  JSON.stringify(ARSENAL_GATE3_MASS_CLASSIFIER_META.semanticOverrideFields)===
+    JSON.stringify(["triggerBoundary","outputBoundary","contextReach"]),
+  "Gate-3 v7 semantics must not alter grain/bundle/action/operation.");
+
 expect(officialIntegrated===118 && nonofficialUnchanged===498,
   "V7 mass population must be exactly 118 reviewed official + 498 unchanged nonofficial.");
 for (const id of ["RAW-OFFICIAL-039","RAW-OFFICIAL-048","RAW-OFFICIAL-057",
@@ -2267,10 +2283,10 @@ const EXPECTED_GATE3_MASS_DISTRIBUTION = Object.freeze({
   referenceScale: Object.freeze({ CROSS_SCALE: 1, DEPLOYABLE: 189, MACRO: 93, MICRO: 1, UNRESOLVED: 377 }),
   bundleStructure: Object.freeze({ BUNDLED_MOVES: 12, SINGLE_PRIMARY_MOVE: 190, UNRESOLVED: 459 }),
   actionShape: Object.freeze({ EXPLICIT_ACTION: 55, IMPLICIT_ACTION: 236, LABEL_ONLY: 369, UNRESOLVED: 1 }),
-  contextReach: gate3CountBy("contextReach"), // TEMP: after CI diagnostics pin measured V7 distribution
-  triggerBoundary: gate3CountBy("triggerBoundary"), // TEMP: after CI diagnostics pin measured V7 distribution
+  contextReach: Object.freeze({ GENERAL: 455, PROBLEM_LOCAL: 4, SOURCE_LOCAL: 6, UNRESOLVED: 196 }),
+  triggerBoundary: Object.freeze({ ABSENT: 82, CLEAR: 42, PARTIAL: 81, UNRESOLVED: 456 }),
   operationBoundary: Object.freeze({ ABSENT: 82, CLEAR: 181, PARTIAL: 110, UNRESOLVED: 288 }),
-  outputBoundary: gate3CountBy("outputBoundary"), // TEMP: after CI diagnostics pin measured V7 distribution
+  outputBoundary: Object.freeze({ ABSENT: 81, CLEAR: 120, PARTIAL: 65, UNRESOLVED: 395 }),
   confidence: Object.freeze({ HIGH: 616, LOW: 1, MEDIUM: 44 }),
   ruleUsage: Object.freeze({ MP01: 39, MP02: 8, MP03: 112, MP04: 14, MP05: 12, MP06: 25, MP07: 9, MP08: 177, MP09: 31, MP10: 189 }),
 });
@@ -2295,7 +2311,7 @@ expect(
   "Gate-3 v7 mass-pass rule distribution drifted."
 );
 expect(
-  ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures >= 0, // diagnostic, pin after recomputation
+  ARSENAL_GATE3_MASS_AUDIT_META.duplicateNameGroupsWithDifferentSignatures === 14,
   "Gate-3 v4 duplicate-name differing-signature count drifted."
 );
 expect(

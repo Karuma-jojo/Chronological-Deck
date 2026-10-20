@@ -1,3 +1,41 @@
+# SMMC Arsenal — Gate 3 v7 owned-semantics mass-pass report
+
+> **v7 measured builder implementation; independent graduation review PENDING.** The 127-case semantic research ledger was accepted on [PR #186 comment 6295323783](https://github.com/Karuma-jojo/Chronological-Deck/pull/186#issuecomment-6295323783) at exact SHA 8e874c5ba32aecd43bbb178348677df4e7756f8b. This approval is NOT acceptance of the new classifier or Gate 3 graduation. PR stays draft/unmerged; Tribunal LOCKED.
+
+## Current implementation
+
+The 118 non-calibration official mass candidates receive only three semantic fields — triggerBoundary, outputBoundary, contextReach — from their own EXACT accepted, verified candidate-owned Battle evidence and reviewed raw expression. Their referenceScale, bundleStructure, actionShape, operationBoundary, confidence, and MP rule are kept from the v6 classifier. The other 498 nonofficial mass records are identical to v6 across ALL fields and rationale. All 45 frozen calibration records, including nine official entries, remain unchanged. Synthetic modified evidence is ineligible for the exact-source adjudication overlay.
+
+## Measured full 661-row distribution
+
+| Dimension | Values |
+|---|---|
+| Reference scale | MICRO 1; DEPLOYABLE 189; MACRO 93; CROSS_SCALE 1; UNRESOLVED 377 |
+| Bundle | SINGLE_PRIMARY_MOVE 190; BUNDLED_MOVES 12; UNRESOLVED 459 |
+| Action shape | EXPLICIT_ACTION 55; IMPLICIT_ACTION 236; LABEL_ONLY 369; UNRESOLVED 1 |
+| Context | GENERAL 455; PROBLEM_LOCAL 4; SOURCE_LOCAL 6; UNRESOLVED 196 |
+| Trigger | CLEAR 42; PARTIAL 81; ABSENT 82; UNRESOLVED 456 |
+| Operation | CLEAR 181; PARTIAL 110; ABSENT 82; UNRESOLVED 288 |
+| Output | CLEAR 120; PARTIAL 65; ABSENT 81; UNRESOLVED 395 |
+| Confidence | HIGH 616; MEDIUM 44; LOW 1 |
+
+661 = 45 frozen accepted calibration + 616 regenerated mass. The independently reviewed 127 official research cases now match exactly: trigger CLEAR 31 / PARTIAL 74 / UNRESOLVED 22; output CLEAR 105 / PARTIAL 11 / UNRESOLVED 11; context GENERAL 122 / PROBLEM_LOCAL 2 / UNRESOLVED 3. No ABSENT boundaries were inferred for these operation-rich official cases.
+
+The ten unchanged MP rule counts: MP01 39, MP02 8, MP03 112, MP04 14, MP05 12, MP06 25, MP07 9, MP08 177, MP09 31, MP10 189. There are still 12 BUNDLED_MOVES (4 frozen accepted calibration and 8 audited mass), 87 structural bundle reviews (8 BUNDLE / 79 NOT_BUNDLE), and 25 duplicate normalized-name groups with 14 differing signatures. No names are merged or harmonized.
+
+## Independent graduation attack surface
+
+1. Verify exact frozen source evidence/claim identity and that only 118 eligible mass-official candidates receive new semantic roles. The other nine official cases are frozen calibration.
+2. Compare all 498 nonofficial mass rows byte/field-for-field to v6 and verify 45 frozen calibration/11 protected Gate 2 blobs against their immutable pins.
+3. Attack the preserved v6 grain/bundle/action/operation/confidence classifications for all official cases. CLEAR output does not prove DEPLOYABLE; GENERAL meaning does not prove universal transfer.
+4. Validate official special cases (016 and 018 output UNRESOLVED; 029 and 052 boundedness/subsequence; 080 and 105 trigger PARTIAL; 098 factorization CLEAR; 044 vs 045 locality; 069 vs 114 scope), paraphrases, cross-source contamination, 87 bundle decisions and all orthogonal dimensions.
+5. Verify all 661 records, measured distribution/regression locks, 25 duplicate-name groups with 14 differences, the sole CROSS_SCALE sentinel, and absence of ontology, merge/split, rank, prerequisites or gamification fields.
+
+**Gate 3 remains unaccepted and Gate 4 locked pending independent implementation-SHA graduation review.**
+
+---
+
+## Historical v6 report retained below (not current distribution)
 # SMMC Arsenal — Gate 3 repaired mass-pass report
 
 > **v6 measured and regression-pinned repair candidate; NOT independently accepted.** All numbers below were regenerated on the exact v6 code. The Tribunal remains locked.
