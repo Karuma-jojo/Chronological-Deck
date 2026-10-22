@@ -6,7 +6,8 @@ import { readFileSync } from "node:fs";
 import { ARSENAL_GATE2_RAW_CANDIDATES as raw, ARSENAL_GATE2_RAW_EVIDENCE as evidence } from "../course/smmc/arsenal/candidates-v0.mjs";
 import { ARSENAL_GATE3_GRANULARITY_RECORDS as g3 } from "../course/smmc/arsenal/granularity-ledger-v0.mjs";
 import { ARSENAL_GATE4_PENDING_BUNDLE as pending } from "../course/smmc/arsenal/tribunal-ledger-v0.mjs";
-import { validateGate4Bundle, createGate4PendingBundle, gate3Ref } from "../course/smmc/arsenal/tribunal-contract-v1.mjs";
+import { validateGate4Bundle, createGate4PendingBundle, gate3Ref,
+  gate4ContentDigest, gate4TerminalCaseDigest, gate4RelationClaimIdentity } from "../course/smmc/arsenal/tribunal-contract-v1.mjs";
 const sha = b => createHash("sha256").update(b).digest("hex");
 const checkBlob=(path,expected)=>{
   const bytes=readFileSync(path);
@@ -219,6 +220,28 @@ reviewed.relationHypotheses.push({
  reviewStatus:"PROPOSED",laterGateOwner:"Gate 5"
 });
 assert.equal(validateGate4Bundle(reviewed,raw,evidence,g3).relations,1);
+// G4-R194-06: duplicate exact mathematical claim cannot acquire a fresh ID
+// merely by changing JavaScript property insertion or unordered domain order.
+const duplicateClaim=structuredClone(reviewed);
+const clonedHyp=structuredClone(duplicateClaim.relationHypotheses[0]);
+clonedHyp.hypothesisId="G4-HYP-synthetic-equivalence-reencoded";
+clonedHyp.mathematicalClaim=Object.fromEntries(
+  Object.entries(clonedHyp.mathematicalClaim).reverse());
+clonedHyp.mathematicalClaim.intendedDomains.reverse();
+duplicateClaim.relationHypotheses.push(clonedHyp);
+for(const id of ids)
+  duplicateClaim.cases.find(c=>c.candidateId===id).relationHypothesisIds.push(clonedHyp.hypothesisId);
+assert.equal(gate4RelationClaimIdentity(duplicateClaim.relationHypotheses[0]),
+  gate4RelationClaimIdentity(clonedHyp));
+assert.throws(()=>validateGate4Bundle(duplicateClaim,raw,evidence,g3),
+  /duplicated exact relation claim must share one hypothesis ID/);
+negativeCount++;
+const distinctClaim=structuredClone(duplicateClaim);
+distinctClaim.relationHypotheses[1].mathematicalClaim.description=
+  "SYNTHETIC distinct operation, separately evidenced and challenged";
+assert.notEqual(gate4RelationClaimIdentity(distinctClaim.relationHypotheses[0]),
+  gate4RelationClaimIdentity(distinctClaim.relationHypotheses[1]));
+assert.equal(validateGate4Bundle(distinctClaim,raw,evidence,g3).relations,2);
 // PR #194 R194-01: compare against the frozen ID set and demand explicit
 // research/evidence context for each named candidate.
 const unknownComparison=structuredClone(reviewed);
@@ -522,9 +545,109 @@ assert.throws(()=>validateGate4Bundle(complete,raw,evidence,g3),
 negativeCount++;
 const digest=x=>createHash("sha256").update(JSON.stringify(x)).digest("hex");
 const approvedScope=new Map([[scopeRef,digest(scope)]]);
-assert.equal(validateGate4Bundle(complete,raw,evidence,g3,{
+// An independently accepted content-addressed treatment must be supplied
+// separately from the live tribunal bundle. These synthetic pins only
+// simulate an independent approval for regression, not real acceptance.
+assert.throws(()=>validateGate4Bundle(complete,raw,evidence,g3,{
  trustedScopeReviews:approvedScope
-}).completed,1);
+}),/terminal case content differs from independently accepted snapshot/);
+negativeCount++;
+const acceptedTerminalCases=new Map([[first.tribunalCaseId,{
+ acceptedVersion:eventVersion,
+ sha256:gate4TerminalCaseDigest(first,new Map(
+   complete.relationHypotheses.map(r=>[r.hypothesisId,r])))
+}]]);
+const terminalOpts={trustedScopeReviews:approvedScope,
+ trustedTerminalCases:acceptedTerminalCases};
+assert.equal(validateGate4Bundle(complete,raw,evidence,g3,terminalOpts).completed,1);
+// G4-R194-05: neither the rationale, hypothesis nor supporting mathematical
+// relation may be rewritten after a first accepted terminal decision.
+const rewrittenRationale=structuredClone(complete);
+rewrittenRationale.cases.find(c=>c.candidateId===ids[0]).rationale=
+ "Different synthetic justification substituted without any review or reopen";
+assert.throws(()=>validateGate4Bundle(rewrittenRationale,raw,evidence,g3,terminalOpts),
+ /terminal case content differs from independently accepted snapshot/);
+negativeCount++;
+const rewrittenHypothesis=structuredClone(complete);
+rewrittenHypothesis.cases.find(c=>c.candidateId===ids[0]).hypothesis=
+ "Different mathematical identity claim substituted silently";
+assert.throws(()=>validateGate4Bundle(rewrittenHypothesis,raw,evidence,g3,terminalOpts),
+ /terminal case content differs from independently accepted snapshot/);
+negativeCount++;
+const rewrittenRelatedRelation=structuredClone(complete);
+rewrittenRelatedRelation.relationHypotheses[0].mathematicalClaim.description=
+ "A new proof of an incompatible operation, not originally reviewed";
+assert.throws(()=>validateGate4Bundle(rewrittenRelatedRelation,raw,evidence,g3,terminalOpts),
+ /terminal case content differs from independently accepted snapshot/);
+negativeCount++;
+// Merely reordering JSON object properties does NOT change substantive
+// accepted mathematical content under stable canonical content hashing.
+const propertyReordered=structuredClone(complete);
+propertyReordered.cases.find(c=>c.candidateId===ids[0]).hypothesis=
+ first.hypothesis; // no substantive change
+propertyReordered.relationHypotheses[0].mathematicalClaim=Object.fromEntries(
+ Object.entries(propertyReordered.relationHypotheses[0].mathematicalClaim).reverse()
+);
+assert.equal(validateGate4Bundle(propertyReordered,raw,evidence,g3,terminalOpts).completed,1);
+// A terminal relation additionally requires its own independently pinned
+// whole-record snapshot, not only the accepted participant-case closure.
+const completeBoth=structuredClone(complete);
+const otherId=ids[1],otherCase=completeBoth.cases.find(c=>c.candidateId===otherId);
+const secondScope={
+ ...scope,scopeReviewRecordId:"G4-SCOPE-certified-second-synthetic",
+ candidateIds:[otherId],decision:"Second independent synthetic terminal classification"
+};
+completeBoth.scopeReviews.push(secondScope);
+Object.assign(otherCase,{
+ workStatus:"REVIEWED_FOR_HANDOFF",scopeClassification:"LATER_GATE_ONLY",
+ scopeReviewRecordId:secondScope.scopeReviewRecordId,handoffOwners:["Gate 5"],
+ reviewerFindings:["Second synthetic reviewer checked final hypothesis"]
+});
+completeBoth.statusHistory.push({
+ eventId:"G4-EVENT-synthetic-completed-second",candidateId:otherId,
+ fromStatus:"PROPOSED",toStatus:"REVIEWED_FOR_HANDOFF",
+ evidenceRecordIds:[ex.get(otherId).recordId],reviewer:"Second synthetic reviewer",
+ acceptedVersion:eventVersion,reopenedFromVersion:null
+});
+completeBoth.relationHypotheses[0].reviewStatus="REVIEWED_FOR_HANDOFF";
+const relation=completeBoth.relationHypotheses[0];
+const casesById=new Map(completeBoth.cases.map(c=>[c.candidateId,c]));
+const relationsById=new Map(completeBoth.relationHypotheses.map(r=>[r.hypothesisId,r]));
+const trustedCasesBoth=new Map(ids.map(id=>{
+ const x=casesById.get(id);
+ return [x.tribunalCaseId,{acceptedVersion:eventVersion,
+  sha256:gate4TerminalCaseDigest(x,relationsById)}];
+}));
+const trustedScopeBoth=new Map([...approvedScope,
+ [secondScope.scopeReviewRecordId,digest(secondScope)]]);
+const trustedRelations=new Map([[relation.hypothesisId,{
+ acceptedVersion:eventVersion,sha256:gate4ContentDigest(relation)
+}]]);
+const bothOpts={trustedScopeReviews:trustedScopeBoth,
+ trustedTerminalCases:trustedCasesBoth,trustedTerminalRelations:trustedRelations};
+assert.throws(()=>validateGate4Bundle(completeBoth,raw,evidence,g3,{
+ trustedScopeReviews:trustedScopeBoth,trustedTerminalCases:trustedCasesBoth
+}),/terminal relation content differs from independently accepted snapshot/);
+negativeCount++;
+assert.equal(validateGate4Bundle(completeBoth,raw,evidence,g3,bothOpts).completed,2);
+const changedAcceptedRelation=structuredClone(completeBoth);
+changedAcceptedRelation.relationHypotheses[0].mathematicalClaim.description=
+ "SILENT NEW MATHEMATICAL CLAIM WITHOUT REVIEW";
+assert.throws(()=>validateGate4Bundle(changedAcceptedRelation,raw,evidence,g3,bothOpts),
+ /terminal case content differs from independently accepted snapshot/);
+negativeCount++;
+// Even replacing self-reported case pins with the author's new hashes cannot
+// evade a separately accepted immutable terminal-relation hash.
+const forgedCasePins=new Map(ids.map(id=>{
+ const c=changedAcceptedRelation.cases.find(z=>z.candidateId===id);
+ return [c.tribunalCaseId,{acceptedVersion:eventVersion,
+  sha256:gate4TerminalCaseDigest(c,new Map(changedAcceptedRelation.relationHypotheses
+    .map(r=>[r.hypothesisId,r])))}];
+}));
+assert.throws(()=>validateGate4Bundle(changedAcceptedRelation,raw,evidence,g3,{
+ ...bothOpts,trustedTerminalCases:forgedCasePins
+}),/terminal relation content differs from independently accepted snapshot/);
+negativeCount++;
 const forged=structuredClone(complete);
 forged.scopeReviews[0].decision="Builder changed the approved rationale";
 assert.throws(()=>validateGate4Bundle(forged,raw,evidence,g3,{
