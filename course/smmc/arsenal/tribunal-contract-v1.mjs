@@ -300,7 +300,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     }
     known.set(e.recordId,e);
   }
-  const scopes=new Map(),relations=new Map(),handleOwner=new Map();
+  const scopes=new Map(),relations=new Map(),handleOwner=new Map(),claimFingerprints=new Set();
   for(const p of bundle.scopeReviews){
     exact(p,G4_SCOPE_KEYS,"scope review");
     invariant(scopeId.test(p.scopeReviewRecordId)&&!scopes.has(p.scopeReviewRecordId),"duplicate/invalid scope review");
@@ -313,6 +313,9 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   }
   for(const r of bundle.relationHypotheses){
     invariant(plain(r)&&hypId.test(r.hypothesisId)&&!relations.has(r.hypothesisId),"relation ID duplicate/invalid");
+    const fingerprint=JSON.stringify([r.relationKind,[...r.participantRawCandidateIds].sort(),r.mathematicalClaim]);
+    invariant(!claimFingerprints.has(fingerprint),"duplicated exact relation claim must share one hypothesis ID");
+    claimFingerprints.add(fingerprint);
     relations.set(r.hypothesisId,r);
   }
   for(const c of bundle.cases){
@@ -335,6 +338,41 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     const from=r.relationDirection.sourceId,to=r.relationDirection.targetIds[0];
     invariant(!directional.has(to+"->"+from),"unchallenged reversed parent-child");
     directional.set(from+"->"+to,r.hypothesisId);
+  }
+  // Structural transitivity challenge: when same-domain MERGE proposals connect
+  // A≈B≈C, an explicitly supported separating witness A≠C (encoded by a
+  // proper-containment hypothesis) cannot coexist unchallenged. This detects
+  // declared contradictions only; it cannot invent unrecorded mathematical facts.
+  const mergeNeighbors=new Map();
+  for(const r of active.filter(x=>x.relationKind==="MERGE")){
+    const domains=r.mathematicalClaim.intendedDomains;
+    const allSame=domains.length===r.participantRawCandidateIds.length &&
+      domains.every(d=>d.domain===domains[0]?.domain);
+    if(!allSame)continue;
+    for(const x of r.participantRawCandidateIds){
+      const key=x+"|"+domains[0].domain;
+      const old=mergeNeighbors.get(key)||new Set();
+      for(const y of r.participantRawCandidateIds)if(y!==x)old.add(y);
+      mergeNeighbors.set(key,old);
+    }
+  }
+  const connected=(a,b,domain)=>{
+    const seen=new Set([a]),q=[a];
+    while(q.length){
+      const x=q.shift();
+      for(const y of mergeNeighbors.get(x+"|"+domain)||[]){
+        if(y===b)return true;
+        if(!seen.has(y)){seen.add(y);q.push(y);}
+      }
+    }
+    return false;
+  };
+  for(const r of active.filter(x=>x.relationKind==="PARENT_CHILD" &&
+    nonempty(x.mathematicalClaim.separatingWitness))){
+    const [a,b]=r.participantRawCandidateIds;
+    const d=r.mathematicalClaim.intendedDomains;
+    if(d.length===2&&d.every(x=>x.domain===d[0].domain))
+      invariant(!connected(a,b,d[0].domain),"same-scope transitive MERGE contradicted by explicit separating witness; mark hypotheses CHALLENGED");
   }
   function visit(x,chain=new Set()){
     invariant(!chain.has(x),"unchallenged containment cycle");
