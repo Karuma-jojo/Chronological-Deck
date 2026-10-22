@@ -124,6 +124,11 @@ heldMissingScope.cases[0].scopeClassification=null;
 assert.throws(()=>validateGate4Bundle(heldMissingScope,raw,evidence,g3),
  /held action\/scope|scope review not owned or different classification/);
 negativeCount++;
+const heldMisownedUpstream=structuredClone(held);
+heldMisownedUpstream.cases[0].holdReason="SOURCE_IDENTITY_GAP";
+assert.throws(()=>validateGate4Bundle(heldMisownedUpstream,raw,evidence,g3),
+ /held action\/scope/);
+negativeCount++;
 const heldMissingQuestion=structuredClone(held);
 heldMissingQuestion.cases[0].missingEvidence=null;
 assert.throws(()=>validateGate4Bundle(heldMissingQuestion,raw,evidence,g3),
@@ -383,6 +388,11 @@ combo.relationHypotheses.push({
 });
 for(const id of ids)combo.cases.find(x=>x.candidateId===id).relationHypothesisIds.push("G4-HYP-synthetic-combo");
 assert.equal(validateGate4Bundle(combo,raw,evidence,g3).relations,2);
+const prematureComboHandoff=structuredClone(combo);
+prematureComboHandoff.relationHypotheses[1].reviewStatus="REVIEWED_FOR_HANDOFF";
+assert.throws(()=>validateGate4Bundle(prematureComboHandoff,raw,evidence,g3),
+ /reviewed relation missing completed participants or downstream handoff owner/);
+negativeCount++;
 const bogusComboSource=structuredClone(combo);
 bogusComboSource.relationHypotheses[1].relationDirection.sourceId="RAW-DOES-NOT-EXIST";
 assert.throws(()=>validateGate4Bundle(bogusComboSource,raw,evidence,g3),
