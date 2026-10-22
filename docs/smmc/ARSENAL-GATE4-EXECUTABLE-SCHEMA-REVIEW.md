@@ -78,3 +78,30 @@ The terminal-history pin binds an exact prefix of status events by SHA-256, so i
 **Review cautions:** An explicit recorded comparison context is a structural link, not evidence that the mathematical comparison is correct. In particular, a held-case action stating a real compared raw ID is only a tracked research obligation. It cannot graduate an evidentiary hold. The field-by-field component comparison does not declare two different mathematical components equivalent; it only permits identical typed definitions to share a temporary review handle.
 
 **New acceptance required:** All four workflows must finish successfully on the repaired PR head; an independent reviewer must again challenge the exact SHA. Even green CI is not an independent mathematical or implementation PASS. **PR remains draft and unmerged.** Gate 4 calibration, 661 research adjudications and all Gates 5–15 remain locked.
+
+
+## PR #194 third independent adversarial re-review — immutable terminal content + claim identities
+
+**Rejected prior exact head:** `e6daed4511066f7c33a502bdb96058621fd3f9fe`. This is a **builder implementation-only repair response**; the accepted Gate 4 v0.3 prose contract, all Gate 0–3 artifacts and all 661 raw candidates remain unmodified.
+
+### G4-R194-05 — Externally accepted terminal case and relation snapshots
+
+- Added `gate4TerminalCaseDigest(case, relationById)`: a SHA-256 of the **entire substantive case object together with full authoritative records for all relation IDs that case references**. It includes even nonterminal `PROPOSED` hypotheses referenced by a terminal case; otherwise changing those could indirectly rewrite an accepted treatment.
+- `validateGate4Bundle` requires a `trustedTerminalCases` Map supplied by an **independent governance caller** for **every** `REVIEWED_FOR_HANDOFF` case. Each entry has `{acceptedVersion,sha256}`. The version must exactly equal the last checked status-history event's terminal accepted SHA; the digest must match the current case plus its relation closure.
+- Independently, every `REVIEWED_FOR_HANDOFF` relation requires `trustedTerminalRelations` with `{acceptedVersion,sha256}` of the entire exact reviewed relation. Its participants' last terminal event versions must agree with that reviewed version. Cases and relations that are not terminal do not assert this independent content acceptance.
+- **Initial acceptance is fail-closed** without those external pins, rather than relying on a self-declared reviewer name or locally computed current hash. Later validation rejects changes to accepted rationale, hypothesis, or a referenced mathematical relation unless the accepted case is reopened by the separately required versioned, externally pinned history pathway.
+- **Trust root caveat:** A builder-supplied Map cannot prove a prior independent approval by itself. The accepted immutable external registry must be version-pinned and authenticated at the caller/acceptance layer. **Do not construct trust pins from the mutable bundle under inspection.** The test harness uses synthetic digest fixtures only to exercise this trust boundary.
+
+### G4-R194-06 — Canonicalized exact-claim duplicate detection
+
+- Added `gate4RelationClaimIdentity(relation)`, a deterministic serialization with recursive object-property key sorting. Unordered participant IDs and `intendedDomains` (sorted by candidate ID) are normalized; SPLIT component target collections are normalized. It preserves typed relation direction, split/component definitions, full claim description, domain statements, separating witness and coupling when those materially distinguish a claim.
+- This identity intentionally **excludes record ID, status, reviewer, and evidence-support lists**: separate citations or review metadata do not justify minting two authoritative hypothesis IDs for the *same exact mathematical proposal*. This is syntactic identity, **not** a claim that two semantically similar but differently worded methods are mathematically the same.
+- Two full-content-equal mathematical hypotheses with different IDs and reordered object keys / reversed domain order now fail; genuinely distinct claims between the same candidate IDs remain permissible.
+
+### Regression evidence and precise release limit
+
+Added synthetic negative fixtures for missing terminal-case certificate, changed terminal rationale, changed terminal hypothesis, changed linked mathematical relation, absent terminal-relation certificate, changed reviewed relation with a forged current case-pin, and duplicate exact mathematical claim under reordering. Added positive fixtures for initial externally pinned case acceptance, independently pinned two-case/one-terminal-relation acceptance, harmless property reordering, and two genuinely distinct proposals between the same raw IDs.
+
+**No source-faithfulness or mathematical truth is mechanically certified.** The synthetic approvals are test data, not real independent acceptance. All 661 actual cases remain `PENDING`, with zero dispositions or shared relations. **No Gate 4 calibration, mass adjudication or Gate 5–15 work is authorized.**
+
+Independent exact-head review must verify the updated invariants and repeat both original attacks *without trusting the developer-created test pins*. Do not merge without a fresh independent exact-head PASS.
