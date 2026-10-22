@@ -114,7 +114,7 @@ function validateFacts(facts,known,owner,where) {
 function nonemptyArrayOfText(value,where) {
   invariant(stringArray(value),where+" requires unique strings");
 }
-function validateCase(c,raw,gr,known,relationsById,scopeById) {
+function validateCase(c,raw,gr,known,relationsById,scopeById,caseById) {
   const w="case "+raw.candidateId;
   exact(c,G4_CASE_KEYS,w);
   invariant(c.tribunalCaseId==="G4-CASE-"+raw.candidateId,w+" invalid stable case ID");
@@ -134,6 +134,8 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
   nonemptyArrayOfText(c.comparisonEvidenceRecordIds,w+" comparisonEvidenceRecordIds");
   const compared=new Set(c.comparisonCandidateIds);
   invariant(!compared.has(c.candidateId),w+" cannot compare itself");
+  for(const id of compared)
+    invariant(caseById.has(id),w+" unknown comparison candidate "+id);
   for(const id of c.comparisonEvidenceRecordIds) {
     invariant(known.has(id) && compared.has(known.get(id).candidateId),w+" borrowed comparison evidence");
   }
@@ -154,6 +156,27 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
   invariant(Array.isArray(c.contraryHypotheses) && c.contraryHypotheses.every(nonempty),w+" contrary hypotheses invalid");
   optionalText(c.triggerOperationOutputAnalysis,w+" operation analysis");
   optionalText(c.nonEquivalenceOrCountertest,w+" countertest");
+  // A compared candidate can be supported by another candidate's owned evidence,
+  // by a documented comparative fact, or by an exact shared relation. A hold may
+  // instead document an explicit, not-yet-evidenced comparison work item.
+  // No evidence may silently migrate into this candidate's ownership.
+  for(const comparedId of compared){
+    const evidenceContext=[...c.comparisonEvidenceRecordIds,
+      ...c.comparativeFacts.map(f=>f.evidenceRecordId)].some(id=>
+      known.get(id)?.candidateId===comparedId);
+    const relationContext=c.relationHypothesisIds.some(id=>{
+      const r=relationsById.get(id);
+      return r?.participantRawCandidateIds.includes(c.candidateId) &&
+        r.participantRawCandidateIds.includes(comparedId);
+    });
+    const synthesisContext=c.synthesisRecordIds.some(id=>
+      known.get(id)?.linkedRecordIds?.some(ref=>known.get(ref)?.candidateId===comparedId));
+    const heldActionContext=c.workStatus==="EVIDENCE_HOLD" &&
+      nonempty(c.nextEvidenceOrAction) &&
+      c.nextEvidenceOrAction.includes(comparedId);
+    invariant(evidenceContext||relationContext||synthesisContext||heldActionContext,
+      w+" comparison candidate lacks explicit supporting or held-research context: "+comparedId);
+  }
   nonemptyArrayOfText(c.relationHypothesisIds,w+" relations");
   for(const id of c.relationHypothesisIds)
     invariant(relationsById.has(id) && relationsById.get(id).participantRawCandidateIds.includes(c.candidateId),w+" relation does not include participant");
@@ -194,7 +217,10 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
       invariant(c.relationHypothesisIds.some(id=>{
         const r=relationsById.get(id);
         return r && r.relationKind===c.proposedPrimaryDisposition &&
-          r.reviewStatus!=="CHALLENGED" && r.participantRawCandidateIds.includes(c.candidateId);
+          r.reviewStatus!=="CHALLENGED" && r.participantRawCandidateIds.includes(c.candidateId) &&
+          (!["SPLIT","COMBO"].includes(c.proposedPrimaryDisposition) ||
+            r.relationDirection?.sourceId===c.candidateId);
+
       }),w+" relational primary lacks matching authoritative nonchallenged hypothesis");
     }
     if(c.workStatus==="REVIEWED_FOR_HANDOFF"){
@@ -292,7 +318,9 @@ function validateRelation(r,known,caseById,hypById) {
     invariant(r.localComponentHandles.length>=2 && r.relationDirection?.kind==="SOURCE_TO_COMPONENTS" &&
       r.relationDirection.targetIds.length===r.localComponentHandles.length &&
       same([...r.relationDirection.targetIds].sort(),[...r.localComponentHandles].sort()) &&
-      r.participantRawCandidateIds.includes(r.relationDirection.sourceId),r.hypothesisId+" incomplete split");
+      r.participantRawCandidateIds.includes(r.relationDirection.sourceId) &&
+      r.componentDefinitions.every(def=>def.ownerRawCandidateId===r.relationDirection.sourceId),
+      r.hypothesisId+" incomplete split or component not owned by split source");
   } else {
     invariant(r.relationDirection?.kind==="COMPOSED_FROM" &&
       r.participantRawCandidateIds.includes(r.relationDirection.sourceId) &&
@@ -339,6 +367,8 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     invariant(plain(e)&&Object.keys(e).every(k=>ALLOWED_EXTRA_EVIDENCE_KEYS.has(k)),"unrecognized supplemental evidence key");
     invariant(evId.test(e.recordId)&&!known.has(e.recordId),"supplemental evidence ID invalid/colliding");
     invariant(caseById.has(e.candidateId),"supplemental evidence candidate missing");
+    invariant(e.candidateName===rawById.get(e.candidateId).candidateName,
+      "supplemental evidence candidateName differs from frozen raw candidate");
     validateGate1EvidenceRecord(e);
     invariant(e.recordChannel!=="BATTLE","Gate4 supplemental evidence cannot fabricate or replace frozen official Battle claims");
     invariant(nonempty(e.doesNotEstablish) && nonempty(e.claim),"supplemental evidence missing limitation/claim");
@@ -370,7 +400,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     relations.set(r.hypothesisId,r);
   }
   for(const c of bundle.cases){
-    validateCase(c,rawById.get(c.candidateId),grById.get(c.candidateId),known,relations,scopes);
+    validateCase(c,rawById.get(c.candidateId),grById.get(c.candidateId),known,relations,scopes,caseById);
     if(c.workStatus==="REVIEWED_FOR_HANDOFF"){
       const p=scopes.get(c.scopeReviewRecordId);
       invariant(trustedScopeReviews instanceof Map && trustedScopeReviews.get(p.scopeReviewRecordId)===sha256(p),
@@ -382,7 +412,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   for(const r of bundle.relationHypotheses) {
     validateRelation(r,known,caseById,relations);
     for(const def of r.componentDefinitions){
-      if(handleOwner.has(def.handle))invariant(same(handleOwner.get(def.handle),def),
+      if(handleOwner.has(def.handle))invariant(G4_COMPONENT_KEYS.every(k=>handleOwner.get(def.handle)[k]===def[k]),
         r.hypothesisId+" component definition conflict across relations");
       else handleOwner.set(def.handle,Object.freeze({...def}));
     }
