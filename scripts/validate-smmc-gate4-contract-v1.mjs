@@ -121,6 +121,7 @@ reject("661 individually signed scope certificates cannot graduate",b=>{
  successorObligation:"Complete the actual Gate-4 treatment before graduation"
  }));
  // A direct graduation attempt is below; here, waiver records alone must not confer progress.
+ b.cases[0].scopeClassification="GATE4_OWNED";
  b.cases[0].scopeReviewRecordId="G4-SCOPE-synthetic-0";
 },/PENDING must remain unadjudicated/);
 const w=cp();w.scopeReviews=w.cases.map((c,i)=>({
