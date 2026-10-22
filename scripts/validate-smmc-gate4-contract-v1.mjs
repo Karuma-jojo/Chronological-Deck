@@ -307,6 +307,187 @@ contra.relationHypotheses.push({
 assert.throws(()=>validateGate4Bundle(contra,raw,evidence,g3),
  /same-scope transitive MERGE contradicted/);
 negativeCount++;
+
+// Independent PR #194 I01–I06 regression set. Every example is synthetic.
+for(const kind of ["MERGE","SPLIT","PARENT_CHILD","COMBO"]){
+ const b=structuredClone(reviewed);
+ b.relationHypotheses=[];
+ for(const id of ids){
+   const c=b.cases.find(x=>x.candidateId===id);
+   c.proposedPrimaryDisposition=kind;c.relationHypothesisIds=[];
+ }
+ assert.throws(()=>validateGate4Bundle(b,raw,evidence,g3),
+   /relational primary lacks matching authoritative/,kind+" without relation");
+ negativeCount++;
+}
+const componentOwner=ids[0],partHandles=[
+ "G4-TMP-G4-CASE-"+componentOwner+"-part1",
+ "G4-TMP-G4-CASE-"+componentOwner+"-part2"
+];
+const partDefs=partHandles.map((handle,i)=>({
+ handle,ownerRawCandidateId:componentOwner,definition:"Synthetic part "+(i+1),
+ scope:"Synthetic operation domain",operation:"Synthetic operation "+(i+1)
+}));
+const splitRel=(name,description)=>({
+ hypothesisId:name,relationKind:"SPLIT",
+ participantRawCandidateIds:[componentOwner],
+ localComponentHandles:[...partHandles],
+ componentDefinitions:structuredClone(partDefs),
+ conflictsWithHypothesisIds:[],
+ relationDirection:{kind:"SOURCE_TO_COMPONENTS",sourceId:componentOwner,targetIds:[...partHandles]},
+ mathematicalClaim:{
+   description,comparisonScope:"NOT_EQUIVALENCE_CLAIM",
+   intendedDomains:[{candidateId:componentOwner,domain:"Synthetic domain",
+     evidenceRecordIds:[ex.get(componentOwner).recordId]}],
+   separatingWitness:null,coupling:null
+ },
+ supportEvidenceRecordIds:[ex.get(componentOwner).recordId],
+ synthesisRecordIds:["G4-EVID-synthetic-0"],counterEvidenceRecordIds:[],
+ nonEquivalenceOrCountertest:"Synthetic component operation differentiation",
+ limitationsAndScope:"Purely synthetic; no canonical abilities",
+ reviewStatus:"PROPOSED",laterGateOwner:"Gate 5"
+});
+const multi=structuredClone(reviewed);
+const split1=splitRel("G4-HYP-synthetic-split-1","Synthetic decomposition hypothesis one");
+const split2=splitRel("G4-HYP-synthetic-split-2","Synthetic decomposition hypothesis two");
+multi.relationHypotheses.push(split1,split2);
+multi.cases.find(x=>x.candidateId===componentOwner).relationHypothesisIds.push(
+ split1.hypothesisId,split2.hypothesisId
+);
+assert.equal(validateGate4Bundle(multi,raw,evidence,g3).relations,3);
+const conflictingDefinition=structuredClone(multi);
+conflictingDefinition.relationHypotheses[2].componentDefinitions[0].operation="INCOMPATIBLE NEW OPERATION";
+assert.throws(()=>validateGate4Bundle(conflictingDefinition,raw,evidence,g3),
+ /component definition conflict across relations/);
+negativeCount++;
+const duplicateHandle=structuredClone(multi);
+duplicateHandle.relationHypotheses[1].componentDefinitions[1].handle=partHandles[0];
+assert.throws(()=>validateGate4Bundle(duplicateHandle,raw,evidence,g3),
+ /duplicate local component definition/);
+negativeCount++;
+// A COMBO secondary may coexist with a MERGE primary. Its temporary handle
+// must belong to a named participating raw candidate.
+const combo=structuredClone(reviewed);
+const comboHandle=partHandles[0];
+combo.relationHypotheses.push({
+ hypothesisId:"G4-HYP-synthetic-combo",relationKind:"COMBO",
+ participantRawCandidateIds:ids,localComponentHandles:[comboHandle],
+ componentDefinitions:[structuredClone(partDefs[0])],
+ conflictsWithHypothesisIds:[],
+ relationDirection:{kind:"COMPOSED_FROM",sourceId:componentOwner,
+   targetIds:[ids[1],comboHandle]},
+ mathematicalClaim:{
+   description:"Synthetic joint method distinct from standalone equivalence",
+   comparisonScope:"NOT_EQUIVALENCE_CLAIM",
+   intendedDomains:ids.map(id=>({candidateId:id,domain:"Synthetic inputs",
+     evidenceRecordIds:[ex.get(id).recordId]})),
+   separatingWitness:null,coupling:"Synthetic sequencing of distinct operations"
+ },
+ supportEvidenceRecordIds:ids.map(id=>ex.get(id).recordId),
+ synthesisRecordIds:["G4-EVID-synthetic-0","G4-EVID-synthetic-1"],
+ counterEvidenceRecordIds:[],nonEquivalenceOrCountertest:"Synthetic independence challenge",
+ limitationsAndScope:"Only a hypothetical combination",reviewStatus:"PROPOSED",
+ laterGateOwner:"Gate 8"
+});
+for(const id of ids)combo.cases.find(x=>x.candidateId===id).relationHypothesisIds.push("G4-HYP-synthetic-combo");
+assert.equal(validateGate4Bundle(combo,raw,evidence,g3).relations,2);
+const bogusComboSource=structuredClone(combo);
+bogusComboSource.relationHypotheses[1].relationDirection.sourceId="RAW-DOES-NOT-EXIST";
+assert.throws(()=>validateGate4Bundle(bogusComboSource,raw,evidence,g3),
+ /COMBO requires specific coupling and components/);
+negativeCount++;
+// Source registration is not made up by either the status history or synthesis.
+const holdRecovery=structuredClone(reviewed);
+holdRecovery.statusHistory.unshift({
+ eventId:"G4-EVENT-initial-hold",candidateId:ids[0],fromStatus:"PENDING",
+ toStatus:"EVIDENCE_HOLD",evidenceRecordIds:[],reviewer:"Synthetic held reviewer",
+ acceptedVersion:eventVersion,reopenedFromVersion:null
+});
+const recovering=holdRecovery.statusHistory.find(e=>e.candidateId===ids[0] &&
+ e.toStatus==="PROPOSED");
+recovering.fromStatus="EVIDENCE_HOLD";recovering.evidenceRecordIds=[];
+assert.throws(()=>validateGate4Bundle(holdRecovery,raw,evidence,g3),
+ /leaving evidence hold requires newly cited candidate-owned supplemental evidence/);
+negativeCount++;
+recovering.evidenceRecordIds=["G4-EVID-synthetic-0"];
+assert.equal(validateGate4Bundle(holdRecovery,raw,evidence,g3).relations,1);
+// Authored scope-review text is not independent approval. Only a separately
+// supplied, pinned immutable digest can authorize REVIEWED_FOR_HANDOFF.
+const complete=structuredClone(reviewed);
+const first=complete.cases.find(x=>x.candidateId===ids[0]);
+const scopeRef="G4-SCOPE-certified-synthetic";
+const scope={
+ scopeReviewRecordId:scopeRef,candidateIds:[ids[0]],
+ question:"Synthetic completed Gate-4 treatment; canonical question remains",
+ scopeClassification:"LATER_GATE_ONLY",reviewer:"External synthetic reviewer",
+ decision:"Approve only classification of remaining ontology question",
+ acceptedVersion:eventVersion,permittedProceduralEffect:"CLASSIFY_ONLY",
+ successorObligation:"Gate 5 must independently decide canonical identity"
+};
+complete.scopeReviews.push(scope);
+Object.assign(first,{
+ workStatus:"REVIEWED_FOR_HANDOFF",scopeClassification:"LATER_GATE_ONLY",
+ scopeReviewRecordId:scopeRef,handoffOwners:["Gate 5"],
+ reviewerFindings:["Synthetic independent reviewer checked status and relations"]
+});
+complete.statusHistory.push({
+ eventId:"G4-EVENT-synthetic-completed",candidateId:ids[0],
+ fromStatus:"PROPOSED",toStatus:"REVIEWED_FOR_HANDOFF",
+ evidenceRecordIds:[ex.get(ids[0]).recordId],reviewer:"Synthetic accepted reviewer",
+ acceptedVersion:eventVersion,reopenedFromVersion:null
+});
+assert.throws(()=>validateGate4Bundle(complete,raw,evidence,g3),
+ /independent scope-review certificate missing/);
+negativeCount++;
+const digest=x=>createHash("sha256").update(JSON.stringify(x)).digest("hex");
+const approvedScope=new Map([[scopeRef,digest(scope)]]);
+assert.equal(validateGate4Bundle(complete,raw,evidence,g3,{
+ trustedScopeReviews:approvedScope
+}).completed,1);
+const forged=structuredClone(complete);
+forged.scopeReviews[0].decision="Builder changed the approved rationale";
+assert.throws(()=>validateGate4Bundle(forged,raw,evidence,g3,{
+ trustedScopeReviews:approvedScope
+}),/independent scope-review certificate missing/);
+negativeCount++;
+const pinnedPrefix=new Map([[eventVersion,{
+ eventsCount:complete.statusHistory.length,sha256:digest(complete.statusHistory)
+}]]);
+const reopened=structuredClone(complete);
+reopened.cases.find(x=>x.candidateId===ids[0]).workStatus="CHALLENGED";
+reopened.statusHistory.push({
+ eventId:"G4-EVENT-synthetic-reopened",candidateId:ids[0],
+ fromStatus:"REVIEWED_FOR_HANDOFF",toStatus:"CHALLENGED",
+ evidenceRecordIds:[],reviewer:"Synthetic reopen review",
+ acceptedVersion:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ reopenedFromVersion:eventVersion
+});
+assert.equal(validateGate4Bundle(reopened,raw,evidence,g3,{
+ trustedStatusHistoryPrefixes:pinnedPrefix
+}).challenged,1);
+const unpinned=structuredClone(reopened);
+assert.throws(()=>validateGate4Bundle(unpinned,raw,evidence,g3),
+ /externally pinned accepted prior-history prefix/);
+negativeCount++;
+const inventedVersion=structuredClone(reopened);
+inventedVersion.statusHistory.at(-1).reopenedFromVersion="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+assert.throws(()=>validateGate4Bundle(inventedVersion,raw,evidence,g3,{
+ trustedStatusHistoryPrefixes:pinnedPrefix
+}),/reopenedFromVersion does not match/);
+negativeCount++;
+const terminalToTerminal=structuredClone(reopened);
+terminalToTerminal.cases.find(x=>x.candidateId===ids[0]).workStatus="REVIEWED_FOR_HANDOFF";
+terminalToTerminal.statusHistory.at(-1).toStatus="REVIEWED_FOR_HANDOFF";
+assert.throws(()=>validateGate4Bundle(terminalToTerminal,raw,evidence,g3,{
+ trustedScopeReviews:approvedScope,trustedStatusHistoryPrefixes:pinnedPrefix
+}),/terminal reopen must enter substantive review/);
+negativeCount++;
+const mutatedHistory=structuredClone(reopened);
+mutatedHistory.statusHistory[0].reviewer="Rewritten historical reviewer";
+assert.throws(()=>validateGate4Bundle(mutatedHistory,raw,evidence,g3,{
+ trustedStatusHistoryPrefixes:pinnedPrefix
+}),/externally pinned accepted prior-history prefix/);
+negativeCount++;
 console.log("Gate4 REVIEW CANDIDATE structural checks passed:",
  JSON.stringify({population:summary.cases,pending:summary.pending,relations:summary.relations,
  negativeFixtures:negativeCount,calibrationStarted:false,gate5Started:false}));
