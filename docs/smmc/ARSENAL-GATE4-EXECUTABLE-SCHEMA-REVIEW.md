@@ -61,3 +61,20 @@ Review target: the exact independent `CHANGES REQUIRED` report on head `8c06532f
 The terminal-history pin binds an exact prefix of status events by SHA-256, so it protects prior events only when that hash was independently accepted; no mutable object containing both the records and its own hash constitutes an external attestation. Structural equivalence-domain names and countertest phrases are not mathematical verification and still require independent human/source review.
 
 **This branch changes no accepted Gate 0–3 files or the frozen Gate 4 prose contract, creates no final ontology IDs, performs no calibration and leaves all 661 cases PENDING. Do not merge pending independent exact-head acceptance.**
+
+
+## PR #194 second independent re-review — builder repair (2026-10-22)
+
+**Reviewed/rejected former head:** `48518f0181a70f7aabb902f847f57d7c803992aa`.
+**Scope:** Preserve the independently accepted Gate 4 v0.3 contract and predecessor sources. These are executable-consistency repairs **only**, without actual mathematical adjudications.
+
+| Finding | Implementation change | Synthetic adversarial regression |
+|---|---|---|
+| G4-R194-01 (SEV-1) | `validateCase` now requires each `comparisonCandidateId` to appear in the frozen raw/case inventory. Every named comparison additionally requires explicit evidence, a comparative fact, an exact shared relation, synthesis linked to the compared owner, or an explicit held-case research action naming the real ID. | Reject a fictional raw ID appended to a valid comparison; reject an otherwise-valid but undocumented real third candidate. Accept a relation-backed comparison with no duplicated comparison-evidence entry. |
+| G4-R194-02 (SEV-1) | A SPLIT/COMBO **primary** must match a nonchallenged hypothesis whose typed `relationDirection.sourceId` equals that exact case's `candidateId`. SPLIT component definitions must be owned by the split source. Being listed as a component supplier/participant alone is insufficient. | Reject B's stolen SPLIT or COMBO primary where A is the source; accept A routing SPLIT or COMBO while retaining valid secondary relation references. Reject non-source-owned SPLIT components. |
+| G4-R194-03 (SEV-2) | Gate 4 supplemental-evidence `candidateName` must equal the frozen raw name at the named `candidateId`. | Reject synthetic contradictory candidate-name provenance. |
+| G4-R194-04 (SEV-3) | Component-definition reuse compares every contractually allowed component field by value, not whole-object `JSON.stringify` key order. | Accept identical definitions serialized with reversed property order; continue rejecting conflicting source/scope/operation definitions. |
+
+**Review cautions:** An explicit recorded comparison context is a structural link, not evidence that the mathematical comparison is correct. In particular, a held-case action stating a real compared raw ID is only a tracked research obligation. It cannot graduate an evidentiary hold. The field-by-field component comparison does not declare two different mathematical components equivalent; it only permits identical typed definitions to share a temporary review handle.
+
+**New acceptance required:** All four workflows must finish successfully on the repaired PR head; an independent reviewer must again challenge the exact SHA. Even green CI is not an independent mathematical or implementation PASS. **PR remains draft and unmerged.** Gate 4 calibration, 661 research adjudications and all Gates 5–15 remain locked.
