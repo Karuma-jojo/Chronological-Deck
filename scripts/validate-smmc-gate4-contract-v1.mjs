@@ -209,6 +209,79 @@ relationReject("unowned temporary handle",b=>{
  r.relationDirection={kind:"COMPOSED_FROM",sourceId:ids[0],targetIds:[ids[1],h]};
  r.mathematicalClaim.comparisonScope="NOT_EQUIVALENCE_CLAIM";r.mathematicalClaim.coupling="Synthetic coupling";
 },/missing component owner/);
+relationReject("borrowed synthesis record",b=>{
+ const one=b.cases.find(x=>x.candidateId===ids[0]);
+ one.synthesisRecordIds=["G4-EVID-synthetic-1"];
+},/borrowed or invalid synthesis reference/);
+// Explicit same-scope A≈B and B≈C with supported A≠C is not allowed to
+// slip through as a nonchallenged pair of relations. Synthetic graph only.
+const tri=structuredClone(reviewed);
+const cE=sourceFacts.find(x=>!ids.includes(x.candidateId));
+assert.ok(cE);
+const c=tri.cases.find(x=>x.candidateId===cE.candidateId);
+const common="SYNTHETIC SHARED INTENDED DOMAIN";
+for(const d of tri.relationHypotheses[0].mathematicalClaim.intendedDomains)d.domain=common;
+tri.supplementalEvidence.push({
+ recordId:"G4-EVID-synthetic-2",candidateId:cE.candidateId,candidateName:c.rawNameSnapshot,
+ evidenceBasis:"PROJECT_SYNTHESIS",recordChannel:"NONE",
+ claimKind:"RELATION_PROPOSAL",verificationStatus:"SYNTHESIS_PROPOSAL",
+ ontologyType:null,linkedRecordIds:[cE.recordId],
+ claim:"SYNTHETIC TOY CLAIM ONLY",doesNotEstablish:"No mathematical equivalence established"
+});
+Object.assign(c,{
+ workStatus:"PROPOSED",proposedPrimaryDisposition:"MERGE",scopeClassification:"GATE4_OWNED",
+ candidateOwnedFacts:[{evidenceRecordId:cE.recordId,note:"Synthetic owned reference"}],
+ comparisonCandidateIds:[ids[1]],comparisonEvidenceRecordIds:[ex.get(ids[1]).recordId],
+ synthesisRecordIds:["G4-EVID-synthetic-2"],hypothesis:"Synthetic equivalence",
+ contraryHypotheses:["Potential synthetic separating witness"],
+ nonEquivalenceOrCountertest:"Synthetic check covering full common domain",
+ relationHypothesisIds:["G4-HYP-synthetic-bc"],rationale:"TEST FIXTURE ONLY"
+});
+tri.statusHistory.push({
+ eventId:"G4-EVENT-synthetic-2",candidateId:cE.candidateId,fromStatus:"PENDING",
+ toStatus:"PROPOSED",evidenceRecordIds:[cE.recordId],reviewer:"Test harness",
+ acceptedVersion:eventVersion,reopenedFromVersion:null
+});
+const bId=ids[1],third=cE.candidateId;
+const bCase=tri.cases.find(x=>x.candidateId===bId);
+bCase.relationHypothesisIds.push("G4-HYP-synthetic-bc");
+const base=tri.relationHypotheses[0];
+tri.relationHypotheses.push({
+ ...structuredClone(base),
+ hypothesisId:"G4-HYP-synthetic-bc",
+ participantRawCandidateIds:[bId,third].sort(),
+ mathematicalClaim:{
+   ...structuredClone(base.mathematicalClaim),
+   description:"SYNTHETIC B=C toy claim",
+   intendedDomains:[bId,third].sort().map(id=>({
+     candidateId:id,domain:common,evidenceRecordIds:[id===third?cE.recordId:ex.get(id).recordId]
+   }))
+ },
+ supportEvidenceRecordIds:[ex.get(bId).recordId,cE.recordId],
+ synthesisRecordIds:["G4-EVID-synthetic-1","G4-EVID-synthetic-2"]
+});
+assert.equal(validateGate4Bundle(tri,raw,evidence,g3).relations,2);
+const contra=structuredClone(tri);
+contra.cases.find(x=>x.candidateId===ids[0]).relationHypothesisIds.push("G4-HYP-synthetic-ac-unequal");
+contra.cases.find(x=>x.candidateId===third).relationHypothesisIds.push("G4-HYP-synthetic-ac-unequal");
+contra.relationHypotheses.push({
+ ...structuredClone(base),
+ hypothesisId:"G4-HYP-synthetic-ac-unequal",relationKind:"PARENT_CHILD",
+ participantRawCandidateIds:[ids[0],third].sort(),
+ relationDirection:{kind:"PARENT_TO_CHILD",sourceId:ids[0],targetIds:[third]},
+ mathematicalClaim:{
+   description:"SYNTHETIC A not equal to C",comparisonScope:"NOT_EQUIVALENCE_CLAIM",
+   intendedDomains:[ids[0],third].map(id=>({
+     candidateId:id,domain:common,evidenceRecordIds:[id===third?cE.recordId:ex.get(id).recordId]
+   })),
+   separatingWitness:"SYNTHETIC mathematical differentiating example",coupling:null
+ },
+ supportEvidenceRecordIds:[ex.get(ids[0]).recordId,cE.recordId],
+ synthesisRecordIds:["G4-EVID-synthetic-0","G4-EVID-synthetic-2"]
+});
+assert.throws(()=>validateGate4Bundle(contra,raw,evidence,g3),
+ /same-scope transitive MERGE contradicted/);
+negativeCount++;
 console.log("Gate4 REVIEW CANDIDATE structural checks passed:",
  JSON.stringify({population:summary.cases,pending:summary.pending,relations:summary.relations,
  negativeFixtures:negativeCount,calibrationStarted:false,gate5Started:false}));
