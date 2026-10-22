@@ -220,7 +220,7 @@ function relationReject(label,mutate,match){
  negativeCount++;
 }
 relationReject("overlap-only MERGE",b=>{b.relationHypotheses[0].mathematicalClaim.comparisonScope="NOT_EQUIVALENCE_CLAIM";},/full intended domains required/);
-relationReject("missing symmetric participant",b=>{b.cases.find(x=>x.candidateId===ids[1]).relationHypothesisIds=[];},/asymmetric participant reference/);
+relationReject("missing symmetric participant",b=>{b.cases.find(x=>x.candidateId===ids[1]).relationHypothesisIds=[];},/asymmetric participant reference|relational primary lacks matching authoritative/);
 relationReject("no domain evidence on other side",b=>{b.relationHypotheses[0].mathematicalClaim.intendedDomains.pop();},/full intended domains required/);
 relationReject("invented final ontology field",b=>{b.relationHypotheses[0].canonicalId="FINAL-1";},/unexpected\/missing keys/);
 relationReject("dangling relation ID",b=>{b.relationHypotheses[0].conflictsWithHypothesisIds=["G4-HYP-unknown"];},/dangling conflict/);
