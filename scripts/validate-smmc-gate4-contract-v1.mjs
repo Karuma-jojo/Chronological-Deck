@@ -68,7 +68,14 @@ reject("bogus supplemental hash",b=>{b.supplementalEvidence.push({
 const battle=evidence.find(x=>x.recordChannel==="BATTLE"&&x.claimKind==="HISTORICAL_OCCURRENCE");
 assert.ok(battle,"frozen Battle fixture source missing");
 reject("altered synthetic official Battle claim",b=>{b.supplementalEvidence.push({
- ...structuredClone(battle),recordId:"G4-EVID-altered-battle",claim:"ALTERED OFFICIAL CLAIM"
+ recordId:"G4-EVID-altered-battle",candidateId:battle.candidateId,
+ candidateName:battle.candidateName,evidenceBasis:battle.evidenceBasis,
+ recordChannel:battle.recordChannel,claimKind:battle.claimKind,
+ verificationStatus:battle.verificationStatus,ontologyType:null,
+ sourceId:battle.sourceId,sourceArtifactSha256:battle.sourceArtifactSha256,
+ sourceLocator:structuredClone(battle.sourceLocator),
+ historicalProblemIds:structuredClone(battle.historicalProblemIds),
+ claim:"ALTERED OFFICIAL CLAIM",doesNotEstablish:battle.doesNotEstablish
 });},/cannot fabricate or replace frozen official Battle claims/);
 reject("illegal status history jump",b=>{b.statusHistory.push({
  eventId:"G4-EVENT-illegal",candidateId:b.cases[0].candidateId,fromStatus:"PENDING",
