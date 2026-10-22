@@ -301,7 +301,16 @@ function validateRelation(r,known,caseById,hypById) {
     invariant(r.participantRawCandidateIds.every(id=>caseById.get(id).workStatus==="REVIEWED_FOR_HANDOFF"),r.hypothesisId+" reviewed relation has unfinished owner case");
 }
 
-export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{graduation=false}={}) {
+export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
+  graduation=false,
+  // External, independently accepted immutable attestation registry; never obtain
+  // it from cases/scopeReviews themselves. Keys are review IDs; values are SHA-256
+  // digests of exact approved scopeReview JSON. Missing approvals fail closed.
+  trustedScopeReviews=null,
+  // Map accepted historical commit -> externally pinned {eventsCount,sha256}
+  // over the append-only statusHistory prefix. Never build pins from current input.
+  trustedStatusHistoryPrefixes=null,
+}={}) {
   exact(bundle,G4_BUNDLE_KEYS,"bundle");
   for(const k of G4_BUNDLE_KEYS)mustArray(bundle[k],k);
   invariant(rawCandidates.length===661&&gate3Rows.length===661&&rawEvidence.length===661,
@@ -356,6 +365,13 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   }
   for(const c of bundle.cases){
     validateCase(c,rawById.get(c.candidateId),grById.get(c.candidateId),known,relations,scopes);
+    if(c.workStatus==="REVIEWED_FOR_HANDOFF"){
+      const p=scopes.get(c.scopeReviewRecordId);
+      invariant(trustedScopeReviews instanceof Map && trustedScopeReviews.get(p.scopeReviewRecordId)===sha256(p),
+        "independent scope-review certificate missing or does not match approved bytes");
+      invariant(p.scopeClassification==="LATER_GATE_ONLY" && /^[0-9a-f]{40}$/.test(p.acceptedVersion),
+        "approved scope review must identify a versioned downstream-only claim");
+    }
   }
   for(const r of bundle.relationHypotheses) {
     validateRelation(r,known,caseById,relations);
@@ -418,7 +434,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   for(const k of directional.keys())visit(k.split("->")[0]);
   const historyByCase=new Map();
   const eventIDs=new Set();
-  for(const e of bundle.statusHistory){
+  for(const [eventIndex,e] of bundle.statusHistory.entries()){
     exact(e,G4_HISTORY_KEYS,"status event");
     invariant(histId.test(e.eventId)&&!eventIDs.has(e.eventId),"invalid or duplicate status history event");
     eventIDs.add(e.eventId);
@@ -427,14 +443,40 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     invariant(e.fromStatus===null||G4_STATUSES.includes(e.fromStatus),"event fromStatus");
     invariant(stringArray(e.evidenceRecordIds)&&e.evidenceRecordIds.every(id=>known.has(id)),"event evidence invalid");
     someText(e.reviewer,"event reviewer");
-    someText(e.acceptedVersion,"event version");
+    invariant(/^[0-9a-f]{40}$/.test(e.acceptedVersion),"event acceptedVersion must be an exact commit SHA");
     optionalText(e.reopenedFromVersion,"event reopen");
+    if(e.reopenedFromVersion!==null)
+      invariant(/^[0-9a-f]{40}$/.test(e.reopenedFromVersion),"reopenedFromVersion must be an exact commit SHA");
     const seq=historyByCase.get(e.candidateId)||[];
     if(seq.length===0)invariant(e.fromStatus==="PENDING","first status event must start at PENDING");
     else invariant(e.fromStatus===seq[seq.length-1].toStatus,"history transition broken");
-    if(e.fromStatus==="REVIEWED_FOR_HANDOFF")
-      invariant(nonempty(e.reopenedFromVersion),"terminal status requires explicit versioned reopen");
-    else invariant(transitions[e.fromStatus]?.includes(e.toStatus),"illegal status transition");
+    for(const id of e.evidenceRecordIds)
+      invariant(known.get(id).candidateId===e.candidateId,"status event borrows another candidate's evidence");
+    if(e.fromStatus==="REVIEWED_FOR_HANDOFF"){
+      invariant(["EVIDENCE_HOLD","PROPOSED","CHALLENGED"].includes(e.toStatus),
+        "terminal reopen must enter substantive review, not terminal again");
+      const prev=seq[seq.length-1];
+      invariant(e.reopenedFromVersion===prev.acceptedVersion,
+        "reopenedFromVersion does not match the previous terminal review");
+      const pin=trustedStatusHistoryPrefixes instanceof Map
+        ?trustedStatusHistoryPrefixes.get(e.reopenedFromVersion):null;
+      invariant(pin && Number.isInteger(pin.eventsCount) && pin.eventsCount>0 &&
+        pin.eventsCount<=eventIndex && /^[0-9a-f]{64}$/.test(pin.sha256) &&
+        sha256(bundle.statusHistory.slice(0,pin.eventsCount))===pin.sha256 &&
+        bundle.statusHistory.slice(0,pin.eventsCount).some(z=>z.candidateId===e.candidateId &&
+          z.toStatus==="REVIEWED_FOR_HANDOFF" && z.acceptedVersion===e.reopenedFromVersion),
+        "terminal reopen needs an externally pinned accepted prior-history prefix");
+    } else {
+      invariant(e.reopenedFromVersion===null,"nonterminal event cannot assert reopenedFromVersion");
+      invariant(transitions[e.fromStatus]?.includes(e.toStatus),"illegal status transition");
+    }
+    if(e.fromStatus==="EVIDENCE_HOLD" && ["PROPOSED","CHALLENGED"].includes(e.toStatus)){
+      const previously=new Set(seq.flatMap(event=>event.evidenceRecordIds));
+      invariant(e.evidenceRecordIds.length>0 &&
+        e.evidenceRecordIds.some(id=>id.startsWith("G4-EVID-") &&
+          !previously.has(id) && known.get(id)?.candidateId===e.candidateId),
+        "leaving evidence hold requires newly cited candidate-owned supplemental evidence");
+    }
     seq.push(e);historyByCase.set(e.candidateId,seq);
   }
   for(const c of bundle.cases){
