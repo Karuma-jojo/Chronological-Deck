@@ -32,7 +32,7 @@ export const G4_CASE_KEYS = Object.freeze([
   "tribunalCaseId","candidateId","rawNameSnapshot","rawOriginSnapshot","rawEvidenceRecordIds",
   "comparisonCandidateIds","comparisonEvidenceRecordIds","frozenGate3SnapshotRef",
   "workStatus","proposedPrimaryDisposition","holdReason","scopeClassification",
-  "nextEvidenceOrAction","scopeReviewRecordId","candidateOwnedFacts","comparativeFacts",
+  "nextEvidenceOrAction","holdQuestion","missingEvidence","accountableOwner","scopeReviewRecordId","candidateOwnedFacts","comparativeFacts",
   "synthesisRecordIds","hypothesis","contraryHypotheses","triggerOperationOutputAnalysis",
   "nonEquivalenceOrCountertest","relationHypothesisIds","scopeLimitations","handoffOwners",
   "reviewerFindings","rationale"
@@ -87,7 +87,7 @@ export function createGate4PendingBundle(rawCandidates,gate3Rows) {
       comparisonCandidateIds:Object.freeze([]),comparisonEvidenceRecordIds:Object.freeze([]),
       frozenGate3SnapshotRef:gate3Ref(row),workStatus:"PENDING",
       proposedPrimaryDisposition:null,holdReason:null,scopeClassification:null,
-      nextEvidenceOrAction:null,scopeReviewRecordId:null,
+      nextEvidenceOrAction:null,holdQuestion:null,missingEvidence:null,accountableOwner:null,scopeReviewRecordId:null,
       candidateOwnedFacts:Object.freeze([]),comparativeFacts:Object.freeze([]),
       synthesisRecordIds:Object.freeze([]),hypothesis:null,contraryHypotheses:Object.freeze([]),
       triggerOperationOutputAnalysis:null,nonEquivalenceOrCountertest:null,
@@ -127,6 +127,7 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
   invariant(c.holdReason===null||G4_HOLD_REASONS.includes(c.holdReason),w+" bad holdReason");
   invariant(c.scopeClassification===null||G4_SCOPE.includes(c.scopeClassification),w+" bad scope");
   optionalText(c.nextEvidenceOrAction,w+" next action");
+  for(const k of ["holdQuestion","missingEvidence","accountableOwner"]) optionalText(c[k],w+" "+k);
   invariant(c.scopeReviewRecordId===null||scopeById.has(c.scopeReviewRecordId),w+" scopeReviewRecordId unknown");
   if(c.scopeReviewRecordId!==null) invariant(scopeById.get(c.scopeReviewRecordId).candidateIds.includes(c.candidateId) && scopeById.get(c.scopeReviewRecordId).scopeClassification===c.scopeClassification,w+" scope review not owned or different classification");
   nonemptyArrayOfText(c.comparisonCandidateIds,w+" comparisonCandidateIds");
@@ -163,7 +164,8 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
   if(c.workStatus==="PENDING"){
     invariant(c.proposedPrimaryDisposition===null && c.holdReason===null &&
       c.scopeClassification===null && c.scopeReviewRecordId===null &&
-      c.nextEvidenceOrAction===null && c.hypothesis===null && c.rationale===null &&
+      c.nextEvidenceOrAction===null && c.holdQuestion===null && c.missingEvidence===null &&
+      c.accountableOwner===null && c.hypothesis===null && c.rationale===null &&
       c.relationHypothesisIds.length===0 && c.synthesisRecordIds.length===0 &&
       c.comparisonCandidateIds.length===0 && c.comparisonEvidenceRecordIds.length===0 &&
       c.candidateOwnedFacts.length===0 && c.comparativeFacts.length===0 &&
@@ -174,13 +176,24 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
   } else if(c.workStatus==="EVIDENCE_HOLD"){
     invariant(c.proposedPrimaryDisposition===null,w+" held primary must be null");
     invariant(G4_HOLD_REASONS.includes(c.holdReason) && c.holdReason!=="LATER_GATE_CANONICAL_CHOICE",w+" cannot evade hold via later gate");
-    invariant(c.scopeClassification!=="LATER_GATE_ONLY" && nonempty(c.nextEvidenceOrAction),w+" held action/scope invalid");
+    invariant(["GATE4_OWNED","UPSTREAM_AMENDMENT_REQUIRED"].includes(c.scopeClassification) &&
+      nonempty(c.nextEvidenceOrAction) && nonempty(c.holdQuestion) &&
+      nonempty(c.missingEvidence) && nonempty(c.accountableOwner) &&
+      c.reviewerFindings.length>0 && c.scopeReviewRecordId!==null,
+      w+" held action/scope, question, accountable owner or review provenance invalid");
   } else if(c.workStatus==="CHALLENGED"){
     invariant(c.reviewerFindings.length>0 && c.contraryHypotheses.length>0,w+" challenged case lacks objections");
   } else {
     invariant(c.proposedPrimaryDisposition!==null && nonempty(c.rationale) &&
       nonempty(c.hypothesis) && c.candidateOwnedFacts.length+c.comparativeFacts.length>0 &&
       c.synthesisRecordIds.length>0 && c.candidateOwnedFacts.length>0,w+" proposed/reviewed decision lacks review evidence");
+    if(["MERGE","SPLIT","PARENT_CHILD","COMBO"].includes(c.proposedPrimaryDisposition)){
+      invariant(c.relationHypothesisIds.some(id=>{
+        const r=relationsById.get(id);
+        return r && r.relationKind===c.proposedPrimaryDisposition &&
+          r.reviewStatus!=="CHALLENGED" && r.participantRawCandidateIds.includes(c.candidateId);
+      }),w+" relational primary lacks matching authoritative nonchallenged hypothesis");
+    }
     if(c.workStatus==="REVIEWED_FOR_HANDOFF"){
       invariant(c.scopeReviewRecordId!==null && c.scopeClassification==="LATER_GATE_ONLY" && c.handoffOwners.length>0 &&
         c.reviewerFindings.length>0 && c.holdReason===null,
@@ -243,17 +256,25 @@ function validateRelation(r,known,caseById,hypById) {
   for(const id of r.conflictsWithHypothesisIds)
     invariant(hypById.get(id).conflictsWithHypothesisIds.includes(r.hypothesisId) && r.reviewStatus==="CHALLENGED" &&
       hypById.get(id).reviewStatus==="CHALLENGED",r.hypothesisId+" unresolved unchallenged conflict");
+  const relationHandles=new Set();
   for(const def of r.componentDefinitions){
+    invariant(!relationHandles.has(def.handle),r.hypothesisId+" duplicate local component definition");
+    relationHandles.add(def.handle);
     exact(def,G4_COMPONENT_KEYS,r.hypothesisId+" component");
     invariant(tempId.test(def.handle) && def.handle.startsWith("G4-TMP-G4-CASE-"+def.ownerRawCandidateId+"-"),r.hypothesisId+" invalid handle ownership");
     invariant(r.localComponentHandles.includes(def.handle),r.hypothesisId+" unlisted handle");
     invariant(r.participantRawCandidateIds.includes(def.ownerRawCandidateId),r.hypothesisId+" missing component owner");
     for(const k of ["definition","scope","operation"])someText(def[k],r.hypothesisId+" "+k);
   }
+  invariant(relationHandles.size===r.localComponentHandles.length &&
+    r.localComponentHandles.every(id=>relationHandles.has(id)),r.hypothesisId+" component handle-definition bijection");
   if(r.relationKind==="MERGE"){
-    if(r.reviewStatus!=="CHALLENGED")for(const id of r.participantRawCandidateIds)
+    // Equivalence-group participants normally route MERGE, unless another independently
+    // evidenced higher-priority proposal is under active challenge. Do not reject
+    // secondary hypotheses of a different kind solely for not being primary.
+    if(r.reviewStatus==="REVIEWED_FOR_HANDOFF")for(const id of r.participantRawCandidateIds)
       invariant(caseById.get(id).proposedPrimaryDisposition==="MERGE",
-        r.hypothesisId+" nonchallenged MERGE requires MERGE primary in every case");
+        r.hypothesisId+" reviewed MERGE requires MERGE primary in every case");
     invariant(r.participantRawCandidateIds.length>=2 && r.localComponentHandles.length===0 &&
       r.relationDirection===null && r.mathematicalClaim.comparisonScope==="FULL_INTENDED_DOMAINS" &&
       r.mathematicalClaim.intendedDomains.length===r.participantRawCandidateIds.length &&
@@ -271,6 +292,7 @@ function validateRelation(r,known,caseById,hypById) {
       r.participantRawCandidateIds.includes(r.relationDirection.sourceId),r.hypothesisId+" incomplete split");
   } else {
     invariant(r.relationDirection?.kind==="COMPOSED_FROM" &&
+      r.participantRawCandidateIds.includes(r.relationDirection.sourceId) &&
       r.relationDirection.targetIds.length>=2 && nonempty(r.mathematicalClaim.coupling) &&
       r.relationDirection.targetIds.every(id=>r.participantRawCandidateIds.includes(id)||r.localComponentHandles.includes(id)),
       r.hypothesisId+" COMBO requires specific coupling and components");
@@ -338,9 +360,9 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   for(const r of bundle.relationHypotheses) {
     validateRelation(r,known,caseById,relations);
     for(const def of r.componentDefinitions){
-      if(handleOwner.has(def.handle))invariant(handleOwner.get(def.handle)===def.ownerRawCandidateId,
-        r.hypothesisId+" foreign/unowned handle collision");
-      else handleOwner.set(def.handle,def.ownerRawCandidateId);
+      if(handleOwner.has(def.handle))invariant(same(handleOwner.get(def.handle),def),
+        r.hypothesisId+" component definition conflict across relations");
+      else handleOwner.set(def.handle,Object.freeze({...def}));
     }
     for(const handle of r.localComponentHandles)invariant(handleOwner.has(handle),"unresolved handle");
   }
