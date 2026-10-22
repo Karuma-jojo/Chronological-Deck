@@ -177,6 +177,9 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
     invariant(c.proposedPrimaryDisposition===null,w+" held primary must be null");
     invariant(G4_HOLD_REASONS.includes(c.holdReason) && c.holdReason!=="LATER_GATE_CANONICAL_CHOICE",w+" cannot evade hold via later gate");
     invariant(["GATE4_OWNED","UPSTREAM_AMENDMENT_REQUIRED"].includes(c.scopeClassification) &&
+      (c.holdReason!=="CONFLICTING_EVIDENCE" || c.scopeClassification==="GATE4_OWNED") &&
+      (!["SOURCE_IDENTITY_GAP","UPSTREAM_DEFECT"].includes(c.holdReason) ||
+        c.scopeClassification==="UPSTREAM_AMENDMENT_REQUIRED") &&
       nonempty(c.nextEvidenceOrAction) && nonempty(c.holdQuestion) &&
       nonempty(c.missingEvidence) && nonempty(c.accountableOwner) &&
       c.reviewerFindings.length>0 && c.scopeReviewRecordId!==null,
@@ -298,7 +301,10 @@ function validateRelation(r,known,caseById,hypById) {
       r.hypothesisId+" COMBO requires specific coupling and components");
   }
   if(r.reviewStatus==="REVIEWED_FOR_HANDOFF")
-    invariant(r.participantRawCandidateIds.every(id=>caseById.get(id).workStatus==="REVIEWED_FOR_HANDOFF"),r.hypothesisId+" reviewed relation has unfinished owner case");
+    invariant(r.participantRawCandidateIds.every(id=>
+      caseById.get(id).workStatus==="REVIEWED_FOR_HANDOFF" &&
+      caseById.get(id).handoffOwners.includes(r.laterGateOwner)),
+      r.hypothesisId+" reviewed relation missing completed participants or downstream handoff owner");
 }
 
 export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
