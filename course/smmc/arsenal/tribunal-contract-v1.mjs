@@ -22,6 +22,55 @@ const mustArray = (x,k) => invariant(Array.isArray(x), k + " must be an array");
 const noDup = (x,k) => invariant(unique(x), k + " duplicate");
 const same = (a,b) => JSON.stringify(a) === JSON.stringify(b);
 const sha256 = obj => createHash("sha256").update(JSON.stringify(obj)).digest("hex");
+// Deterministic normalization for review identities and immutable content pins:
+// plain-object property insertion order is never evidence of mathematical difference.
+function stableValue(x) {
+  if(Array.isArray(x))return x.map(stableValue);
+  if(plain(x))return Object.fromEntries(
+    Object.keys(x).sort().map(k=>[k,stableValue(x[k])]));
+  return x;
+}
+const stableJson = obj => JSON.stringify(stableValue(obj));
+export const gate4ContentDigest = obj =>
+  createHash("sha256").update(stableJson(obj)).digest("hex");
+// Only the mathematically claim-defining fields belong in a hypothesis identity.
+// Evidence/reviewer/status metadata are attributes of ONE shared record, not a
+// reason to invent another authoritative ID for the same exact proposed claim.
+export function gate4RelationClaimIdentity(r) {
+  const claim = r.mathematicalClaim;
+  return stableJson({
+    relationKind:r.relationKind,
+    participants:[...r.participantRawCandidateIds].sort(),
+    direction:r.relationDirection===null ? null : {
+      kind:r.relationDirection.kind,
+      sourceId:r.relationDirection.sourceId,
+      targetIds:r.relationKind==="SPLIT"
+        ? [...r.relationDirection.targetIds].sort()
+        : [...r.relationDirection.targetIds],
+    },
+    components:[...r.componentDefinitions].sort((a,b)=>a.handle.localeCompare(b.handle)),
+    mathematicalClaim:{
+      description:claim.description,
+      comparisonScope:claim.comparisonScope,
+      intendedDomains:[...claim.intendedDomains]
+        .map(d=>({candidateId:d.candidateId,domain:d.domain}))
+        .sort((a,b)=>a.candidateId.localeCompare(b.candidateId)),
+      separatingWitness:claim.separatingWitness,
+      coupling:claim.coupling
+    }
+  });
+}
+// Captures the substantive case PLUS its authoritative shared hypotheses,
+// including PROPOSED hypotheses not yet terminal as separate records. A changed
+// mathematical relation cannot silently rewrite an accepted case's rationale.
+export function gate4TerminalCaseDigest(c,relationById) {
+  const related=c.relationHypothesisIds.map(id=>{
+    const r=relationById.get(id);
+    if(!r)throw Error("Gate4: terminal case references missing relation "+id);
+    return r;
+  }).sort((a,b)=>a.hypothesisId.localeCompare(b.hypothesisId));
+  return gate4ContentDigest({case:c,related});
+}
 export const gate3Ref = row => "G3-SHA256-" + sha256(row);
 
 export const G4_DISPOSITIONS = Object.freeze(["ACCEPT","MERGE","SPLIT","PARENT_CHILD","COMBO","REJECT"]);
@@ -344,6 +393,13 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   // Map accepted historical commit -> externally pinned {eventsCount,sha256}
   // over the append-only statusHistory prefix. Never build pins from current input.
   trustedStatusHistoryPrefixes=null,
+  // Two independent trust roots. Entries must be loaded from *previously
+  // accepted immutable review artifacts*, NOT computed from the candidate
+  // bundle under inspection:
+  //   trustedTerminalCases: Map<caseId,{acceptedVersion,sha256}>
+  //   trustedTerminalRelations: Map<hypothesisId,{acceptedVersion,sha256}>
+  trustedTerminalCases=null,
+  trustedTerminalRelations=null,
 }={}) {
   exact(bundle,G4_BUNDLE_KEYS,"bundle");
   for(const k of G4_BUNDLE_KEYS)mustArray(bundle[k],k);
@@ -394,7 +450,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   }
   for(const r of bundle.relationHypotheses){
     invariant(plain(r)&&hypId.test(r.hypothesisId)&&!relations.has(r.hypothesisId),"relation ID duplicate/invalid");
-    const fingerprint=JSON.stringify([r.relationKind,[...r.participantRawCandidateIds].sort(),r.mathematicalClaim]);
+    const fingerprint=gate4RelationClaimIdentity(r);
     invariant(!claimFingerprints.has(fingerprint),"duplicated exact relation claim must share one hypothesis ID");
     claimFingerprints.add(fingerprint);
     relations.set(r.hypothesisId,r);
@@ -519,6 +575,35 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     const seq=historyByCase.get(c.candidateId)||[];
     invariant((seq.length===0&&c.workStatus==="PENDING")||
       (seq.length>0&&seq[seq.length-1].toStatus===c.workStatus),"case state not supported by append-only history");
+  }
+  // Immutable external terminal snapshots are mandatory for the FIRST
+  // accepted handoff as well as subsequent validation. The local status event
+  // is only a version reference, never evidence that a reviewer approved bytes.
+  for(const c of bundle.cases.filter(x=>x.workStatus==="REVIEWED_FOR_HANDOFF")){
+    const seq=historyByCase.get(c.candidateId)||[];
+    const accepted=seq.at(-1);
+    invariant(accepted?.toStatus==="REVIEWED_FOR_HANDOFF",
+      "terminal case requires exact versioned terminal acceptance event");
+    const pin=trustedTerminalCases instanceof Map
+      ? trustedTerminalCases.get(c.tribunalCaseId):null;
+    invariant(pin && /^[0-9a-f]{40}$/.test(pin.acceptedVersion) &&
+      /^[0-9a-f]{64}$/.test(pin.sha256) &&
+      pin.acceptedVersion===accepted.acceptedVersion &&
+      pin.sha256===gate4TerminalCaseDigest(c,relations),
+      "terminal case content differs from independently accepted snapshot; versioned reopen required");
+  }
+  for(const r of bundle.relationHypotheses.filter(x=>x.reviewStatus==="REVIEWED_FOR_HANDOFF")){
+    const pin=trustedTerminalRelations instanceof Map
+      ? trustedTerminalRelations.get(r.hypothesisId):null;
+    invariant(pin && /^[0-9a-f]{40}$/.test(pin.acceptedVersion) &&
+      /^[0-9a-f]{64}$/.test(pin.sha256) &&
+      pin.sha256===gate4ContentDigest(r) &&
+      r.participantRawCandidateIds.every(id=>{
+        const seq=historyByCase.get(id)||[];
+        return seq.at(-1)?.toStatus==="REVIEWED_FOR_HANDOFF" &&
+          seq.at(-1).acceptedVersion===pin.acceptedVersion;
+      }),
+      "terminal relation content differs from independently accepted snapshot; versioned reopen required");
   }
   if(graduation){
     invariant(bundle.cases.every(c=>c.workStatus==="REVIEWED_FOR_HANDOFF" &&
