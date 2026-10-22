@@ -77,6 +77,32 @@ reject("illegal status history jump",b=>{b.statusHistory.push({
 });},/illegal status transition/);
 assert.throws(()=>validateGate4Bundle(pending,raw,evidence,g3,{graduation:true}),/full graduation requires 661 completed treatments/);
 negativeCount++;
+// The literal all-661-holds scenario is structurally valid as work in progress,
+ // but explicitly invalid as a graduated Tribunal.
+const held=cp();
+for(let i=0;i<held.cases.length;i++){
+ const c=held.cases[i];
+ c.workStatus="EVIDENCE_HOLD";
+ c.proposedPrimaryDisposition=null;
+ c.holdReason="THIN_CANDIDATE_EVIDENCE";
+ c.scopeClassification="GATE4_OWNED";
+ c.nextEvidenceOrAction="Inspect registered passage and test candidate identity";
+ held.statusHistory.push({
+   eventId:"G4-EVENT-held-"+i,candidateId:c.candidateId,
+   fromStatus:"PENDING",toStatus:"EVIDENCE_HOLD",evidenceRecordIds:[],
+   reviewer:"Synthetic fixture only",acceptedVersion:"604c3e9715024f3248e493eb2d2d73254d4ef318",
+   reopenedFromVersion:null
+ });
+}
+assert.equal(validateGate4Bundle(held,raw,evidence,g3).held,661);
+assert.throws(()=>validateGate4Bundle(held,raw,evidence,g3,{graduation:true}),
+ /full graduation requires 661 completed treatments/);
+negativeCount++;
+const falseHandoff=structuredClone(held);
+falseHandoff.cases[0].holdReason="LATER_GATE_CANONICAL_CHOICE";
+assert.throws(()=>validateGate4Bundle(falseHandoff,raw,evidence,g3),
+ /cannot evade hold via later gate/);
+negativeCount++;
 // A signed review/waiver is never a substitute for 661 substantive verdicts.
 reject("661 individually signed scope certificates cannot graduate",b=>{
  const version="604c3e9715024f3248e493eb2d2d73254d4ef318";
