@@ -219,6 +219,32 @@ reviewed.relationHypotheses.push({
  reviewStatus:"PROPOSED",laterGateOwner:"Gate 5"
 });
 assert.equal(validateGate4Bundle(reviewed,raw,evidence,g3).relations,1);
+// PR #194 R194-01: compare against the frozen ID set and demand explicit
+// research/evidence context for each named candidate.
+const unknownComparison=structuredClone(reviewed);
+unknownComparison.cases.find(c=>c.candidateId===ids[0]).comparisonCandidateIds.push("RAW-NOT-IN-ORE");
+assert.throws(()=>validateGate4Bundle(unknownComparison,raw,evidence,g3),
+ /unknown comparison candidate RAW-NOT-IN-ORE/);
+negativeCount++;
+const extraRealComparison=structuredClone(reviewed);
+const extraCandidate=raw.find(c=>!ids.includes(c.candidateId));
+assert.ok(extraCandidate);
+extraRealComparison.cases.find(c=>c.candidateId===ids[0])
+ .comparisonCandidateIds.push(extraCandidate.candidateId);
+assert.throws(()=>validateGate4Bundle(extraRealComparison,raw,evidence,g3),
+ /comparison candidate lacks explicit supporting or held-research context/);
+negativeCount++;
+// Shared mathematical relation alone is a documented comparison context;
+// duplicate citation of the other source is not universally mandatory.
+const legitimateRelationOnlyComparison=structuredClone(reviewed);
+legitimateRelationOnlyComparison.cases.find(c=>c.candidateId===ids[0]).comparisonEvidenceRecordIds=[];
+assert.equal(validateGate4Bundle(legitimateRelationOnlyComparison,raw,evidence,g3).relations,1);
+// R194-03: supplemental source labels must not impersonate other raw candidates.
+const badSupplementalName=structuredClone(reviewed);
+badSupplementalName.supplementalEvidence[0].candidateName="NOT THE FROZEN NAME";
+assert.throws(()=>validateGate4Bundle(badSupplementalName,raw,evidence,g3),
+ /supplemental evidence candidateName differs from frozen raw candidate/);
+negativeCount++;
 function relationReject(label,mutate,match){
  const b=structuredClone(reviewed);mutate(b);
  assert.throws(()=>validateGate4Bundle(b,raw,evidence,g3),match,label);
@@ -352,6 +378,37 @@ multi.cases.find(x=>x.candidateId===componentOwner).relationHypothesisIds.push(
  split1.hypothesisId,split2.hypothesisId
 );
 assert.equal(validateGate4Bundle(multi,raw,evidence,g3).relations,3);
+// R194-02: being a participant in A's SPLIT cannot make B the source.
+const stolenSplitPrimary=structuredClone(multi);
+const nonSource=ids.find(id=>id!==componentOwner);
+const stolenSplit=stolenSplitPrimary.relationHypotheses.find(r=>r.relationKind==="SPLIT");
+stolenSplit.participantRawCandidateIds.push(nonSource);
+stolenSplitPrimary.cases.find(c=>c.candidateId===nonSource)
+ .relationHypothesisIds.push(stolenSplit.hypothesisId);
+stolenSplitPrimary.cases.find(c=>c.candidateId===nonSource).proposedPrimaryDisposition="SPLIT";
+assert.throws(()=>validateGate4Bundle(stolenSplitPrimary,raw,evidence,g3),
+ /relational primary lacks matching authoritative nonchallenged hypothesis/);
+negativeCount++;
+// The mathematical source *can* route SPLIT, retaining MERGE as a secondary.
+const ownedSplitPrimary=structuredClone(multi);
+ownedSplitPrimary.cases.find(c=>c.candidateId===componentOwner)
+ .proposedPrimaryDisposition="SPLIT";
+assert.equal(validateGate4Bundle(ownedSplitPrimary,raw,evidence,g3).relations,3);
+const foreignOwnedSplitComponents=structuredClone(multi);
+foreignOwnedSplitComponents.relationHypotheses[1].componentDefinitions[0]
+ .ownerRawCandidateId=nonSource;
+foreignOwnedSplitComponents.relationHypotheses[1].participantRawCandidateIds.push(nonSource);
+foreignOwnedSplitComponents.cases.find(c=>c.candidateId===nonSource)
+ .relationHypothesisIds.push(foreignOwnedSplitComponents.relationHypotheses[1].hypothesisId);
+assert.throws(()=>validateGate4Bundle(foreignOwnedSplitComponents,raw,evidence,g3),
+ /invalid handle ownership|incomplete split or component not owned by split source/);
+negativeCount++;
+// R194-04: exact component-definition identity does not depend on object key insertion order.
+const reorderedComponentFields=structuredClone(multi);
+reorderedComponentFields.relationHypotheses[2].componentDefinitions[0]=Object.fromEntries(
+ Object.entries(reorderedComponentFields.relationHypotheses[2].componentDefinitions[0]).reverse()
+);
+assert.equal(validateGate4Bundle(reorderedComponentFields,raw,evidence,g3).relations,3);
 const conflictingDefinition=structuredClone(multi);
 conflictingDefinition.relationHypotheses[2].componentDefinitions[0].operation="INCOMPATIBLE NEW OPERATION";
 assert.throws(()=>validateGate4Bundle(conflictingDefinition,raw,evidence,g3),
@@ -388,6 +445,19 @@ combo.relationHypotheses.push({
 });
 for(const id of ids)combo.cases.find(x=>x.candidateId===id).relationHypothesisIds.push("G4-HYP-synthetic-combo");
 assert.equal(validateGate4Bundle(combo,raw,evidence,g3).relations,2);
+// R194-02: the COMBO's component supplier is not the source expression.
+const stolenComboPrimary=structuredClone(combo);
+stolenComboPrimary.cases.find(c=>c.candidateId!==componentOwner &&
+ c.relationHypothesisIds.includes("G4-HYP-synthetic-combo"))
+ .proposedPrimaryDisposition="COMBO";
+assert.throws(()=>validateGate4Bundle(stolenComboPrimary,raw,evidence,g3),
+ /relational primary lacks matching authoritative nonchallenged hypothesis/);
+negativeCount++;
+// A source-owned COMBO primary must remain legal with a secondary MERGE.
+const ownedComboPrimary=structuredClone(combo);
+ownedComboPrimary.cases.find(c=>c.candidateId===componentOwner)
+ .proposedPrimaryDisposition="COMBO";
+assert.equal(validateGate4Bundle(ownedComboPrimary,raw,evidence,g3).relations,2);
 const prematureComboHandoff=structuredClone(combo);
 prematureComboHandoff.relationHypotheses[1].reviewStatus="REVIEWED_FOR_HANDOFF";
 assert.throws(()=>validateGate4Bundle(prematureComboHandoff,raw,evidence,g3),
