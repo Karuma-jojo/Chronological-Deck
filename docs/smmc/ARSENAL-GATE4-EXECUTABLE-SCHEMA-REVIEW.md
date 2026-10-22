@@ -39,3 +39,25 @@ The independent reviewer must examine both *completeness and overreach*:
 **Stop rule:** This PR, even if structurally green, does **not** authorize calibration. A reviewer must issue an independently accepted exact-head implementation decision first. The heterogeneous calibration/held-out protocol is a *subsequent* stage with its own freeze, reviewer and adversarial approval.
 
 **Potential limitations to scrutinize:** Exact-key/schema checks cannot enforce original-source mathematical semantics; explicit A≠C witness handling is only as complete as the research annotations; some relation direction/handle conditions are structural approximations pending independent calibration. The independent reviewer is entitled to require repairs rather than treating green CI as graduation.
+
+
+## Independent PR #194 source-review repair — builder response, not acceptance
+
+Review target: the exact independent `CHANGES REQUIRED` report on head `8c06532f83a3c27472cb121c2a27869457d39e34`. This remains an **implementation-only** repair proposal; the original reviewer must reassess the new PR head.
+
+| Review ID | Implemented fail-closed check | Synthetic regression |
+|---|---|---|
+| G4-I01 (blocking) | Nonchallenged matching shared relation required whenever a case proposes MERGE, SPLIT, PARENT_CHILD or COMBO. | All four missing-relation primaries rejected; MERGE plus supported secondary COMBO remains allowed. |
+| G4-I02 (blocking) | All occurrences of one temporary handle must agree on every defined field, not merely owner; within-relation definitions form an exact bijection with handles. | Two same-owner SPLIT relationships with identical handles pass; changing one operation or duplicating a handle fails. |
+| G4-I03 (blocking) | Held scope must be explicitly GATE4_OWNED or UPSTREAM_AMENDMENT_REQUIRED, consistent with hold reason; requires named owner, affected question, missing evidence, next action, scope review and reviewer findings. A hold-to-proposal/challenge transition cites at least one newly referenced, candidate-owned G4 supplemental evidence record. | 661 structurally valid holds block graduation; null/misowned scope, missing question, or uncited hold exit fail. |
+| G4-I04 (blocking) | Events require exact 40-hex accepted SHA; terminal reopen targets only substantive review, must reference prior terminal event SHA, and must match an **externally supplied immutable accepted status-history prefix SHA-256**. Nonterminal reopen markers are forbidden. | Valid pinned synthetic reopen passes; arbitrary SHA, terminal-to-terminal, unpinned or mutated prior history fail. |
+| G4-I05 (moderate) | COMBO composed expression source must be a participating raw candidate, and completed relation requires each participant's named Gate-8 handoff. | Valid secondary COMBO with an owned temporary handle passes; nonexistent composed source, foreign handle or prematurely completed COMBO fail. |
+| G4-I06 (moderate) | A REVIEWED_FOR_HANDOFF scope decision requires a matching SHA-256 in **trustedScopeReviews**, an external independently approved registry not taken from candidate-provided case/claim data. A bare reviewer's name or SHA-shaped string cannot suffice. | Completed case without certificate fails; matching independent synthetic pin passes; altered certified text fails. |
+
+### Trust boundary / limitations for independent reviewer
+
+`validateGate4Bundle` accepts separate `trustedScopeReviews` and `trustedStatusHistoryPrefixes` options **only from the independent governance/acceptance context**, never the current untrusted tribunal bundle. The script cannot determine whether a supplied registry is truly independent merely from its type. The implementing caller and future calibration acceptance procedure must pin those registries in separately accepted artifacts and verify authentic GitHub review provenance, not generate them by hashing the mutable proposal itself. Absence of the externally pinned registry fails closed for a completed handoff or terminal reopen.
+
+The terminal-history pin binds an exact prefix of status events by SHA-256, so it protects prior events only when that hash was independently accepted; no mutable object containing both the records and its own hash constitutes an external attestation. Structural equivalence-domain names and countertest phrases are not mathematical verification and still require independent human/source review.
+
+**This branch changes no accepted Gate 0–3 files or the frozen Gate 4 prose contract, creates no final ontology IDs, performs no calibration and leaves all 661 cases PENDING. Do not merge pending independent exact-head acceptance.**
