@@ -128,7 +128,7 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
   invariant(c.scopeClassification===null||G4_SCOPE.includes(c.scopeClassification),w+" bad scope");
   optionalText(c.nextEvidenceOrAction,w+" next action");
   invariant(c.scopeReviewRecordId===null||scopeById.has(c.scopeReviewRecordId),w+" scopeReviewRecordId unknown");
-  if(c.scopeReviewRecordId!==null) invariant(scopeById.get(c.scopeReviewRecordId).candidateIds.includes(c.candidateId),w+" scope review not owned");
+  if(c.scopeReviewRecordId!==null) invariant(scopeById.get(c.scopeReviewRecordId).candidateIds.includes(c.candidateId) && scopeById.get(c.scopeReviewRecordId).scopeClassification===c.scopeClassification,w+" scope review not owned or different classification");
   nonemptyArrayOfText(c.comparisonCandidateIds,w+" comparisonCandidateIds");
   nonemptyArrayOfText(c.comparisonEvidenceRecordIds,w+" comparisonEvidenceRecordIds");
   const compared=new Set(c.comparisonCandidateIds);
@@ -141,7 +141,14 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
   for(const f of c.comparativeFacts)
     invariant(compared.has(known.get(f.evidenceRecordId).candidateId),w+" comparative fact owner not named");
   nonemptyArrayOfText(c.synthesisRecordIds,w+" synthesis IDs");
-  for(const id of c.synthesisRecordIds) invariant(known.has(id) && known.get(id).evidenceBasis==="PROJECT_SYNTHESIS",w+" invalid synthesis reference");
+  for(const id of c.synthesisRecordIds) {
+    const e=known.get(id);
+    invariant(e && e.evidenceBasis==="PROJECT_SYNTHESIS" && e.candidateId===c.candidateId,
+      w+" borrowed or invalid synthesis reference");
+    invariant(e.linkedRecordIds.every(ref=>known.has(ref) &&
+      (known.get(ref).candidateId===c.candidateId||compared.has(known.get(ref).candidateId))),
+      w+" synthesis support borrowed without named comparison owner");
+  }
   optionalText(c.hypothesis,w+" hypothesis");
   invariant(Array.isArray(c.contraryHypotheses) && c.contraryHypotheses.every(nonempty),w+" contrary hypotheses invalid");
   optionalText(c.triggerOperationOutputAnalysis,w+" operation analysis");
@@ -173,7 +180,7 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
   } else {
     invariant(c.proposedPrimaryDisposition!==null && nonempty(c.rationale) &&
       nonempty(c.hypothesis) && c.candidateOwnedFacts.length+c.comparativeFacts.length>0 &&
-      c.synthesisRecordIds.length>0,w+" proposed/reviewed decision lacks review evidence");
+      c.synthesisRecordIds.length>0 && c.candidateOwnedFacts.length>0,w+" proposed/reviewed decision lacks review evidence");
     if(c.workStatus==="REVIEWED_FOR_HANDOFF"){
       invariant(c.scopeReviewRecordId!==null && c.scopeClassification==="LATER_GATE_ONLY" && c.handoffOwners.length>0 &&
         c.reviewerFindings.length>0 && c.holdReason===null,
@@ -222,7 +229,11 @@ function validateRelation(r,known,caseById,hypById) {
   for(const id of [...r.supportEvidenceRecordIds,...r.counterEvidenceRecordIds])
     invariant(known.has(id) && r.participantRawCandidateIds.includes(known.get(id).candidateId),
       r.hypothesisId+" evidence not owned by participants");
-  for(const id of r.synthesisRecordIds) invariant(known.has(id) && known.get(id).evidenceBasis==="PROJECT_SYNTHESIS",r.hypothesisId+" non-synthesis record");
+  for(const id of r.synthesisRecordIds) invariant(known.has(id) && known.get(id).evidenceBasis==="PROJECT_SYNTHESIS" &&
+    r.participantRawCandidateIds.includes(known.get(id).candidateId) &&
+    known.get(id).linkedRecordIds.every(ref=>known.has(ref) &&
+      r.participantRawCandidateIds.includes(known.get(ref).candidateId)),
+    r.hypothesisId+" synthesis source outside participant set");
   someText(r.nonEquivalenceOrCountertest,r.hypothesisId+" non-equivalence test");
   someText(r.limitationsAndScope,r.hypothesisId+" limitations");
   enumValue(r.reviewStatus,["PROPOSED","CHALLENGED","REVIEWED_FOR_HANDOFF"],r.hypothesisId+" status");
@@ -240,6 +251,9 @@ function validateRelation(r,known,caseById,hypById) {
     for(const k of ["definition","scope","operation"])someText(def[k],r.hypothesisId+" "+k);
   }
   if(r.relationKind==="MERGE"){
+    if(r.reviewStatus!=="CHALLENGED")for(const id of r.participantRawCandidateIds)
+      invariant(caseById.get(id).proposedPrimaryDisposition==="MERGE",
+        r.hypothesisId+" nonchallenged MERGE requires MERGE primary in every case");
     invariant(r.participantRawCandidateIds.length>=2 && r.localComponentHandles.length===0 &&
       r.relationDirection===null && r.mathematicalClaim.comparisonScope==="FULL_INTENDED_DOMAINS" &&
       r.mathematicalClaim.intendedDomains.length===r.participantRawCandidateIds.length &&
@@ -332,7 +346,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   }
   // Constrained syntactic cross-hypothesis checks. True mathematical equivalence
   // and its counterexamples cannot be inferred from strings and need a reviewer.
-  const active=bundle.relationHypotheses.filter(r=>r.reviewStatus==="REVIEWED_FOR_HANDOFF");
+  const active=bundle.relationHypotheses.filter(r=>r.reviewStatus!=="CHALLENGED");
   const directional=new Map();
   for(const r of active.filter(x=>x.relationKind==="PARENT_CHILD")){
     const from=r.relationDirection.sourceId,to=r.relationDirection.targetIds[0];
