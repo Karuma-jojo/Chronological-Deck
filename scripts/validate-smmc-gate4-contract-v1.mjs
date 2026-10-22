@@ -225,15 +225,7 @@ relationReject("no domain evidence on other side",b=>{b.relationHypotheses[0].ma
 relationReject("invented final ontology field",b=>{b.relationHypotheses[0].canonicalId="FINAL-1";},/unexpected\/missing keys/);
 relationReject("dangling relation ID",b=>{b.relationHypotheses[0].conflictsWithHypothesisIds=["G4-HYP-unknown"];},/dangling conflict/);
 relationReject("unsupported source domain",b=>{b.relationHypotheses[0].mathematicalClaim.intendedDomains[0].evidenceRecordIds=[ex.get(ids[1]).recordId];},/borrowed domain support/);
-relationReject("unowned temporary handle",b=>{
- const r=b.relationHypotheses[0],h="G4-TMP-G4-CASE-RAW-OTHER-not-owned";
- r.relationKind="COMBO";r.laterGateOwner="Gate 8";
- r.localComponentHandles=[h];r.componentDefinitions=[{
-   handle:h,ownerRawCandidateId:"RAW-OTHER",definition:"Synthetic",scope:"Synthetic",operation:"Synthetic"
- }];
- r.relationDirection={kind:"COMPOSED_FROM",sourceId:ids[0],targetIds:[ids[1],h]};
- r.mathematicalClaim.comparisonScope="NOT_EQUIVALENCE_CLAIM";r.mathematicalClaim.coupling="Synthetic coupling";
-},/missing component owner/);
+
 relationReject("borrowed synthesis record",b=>{
  const one=b.cases.find(x=>x.candidateId===ids[0]);
  one.synthesisRecordIds=["G4-EVID-synthetic-1"];
@@ -395,6 +387,15 @@ const bogusComboSource=structuredClone(combo);
 bogusComboSource.relationHypotheses[1].relationDirection.sourceId="RAW-DOES-NOT-EXIST";
 assert.throws(()=>validateGate4Bundle(bogusComboSource,raw,evidence,g3),
  /COMBO requires specific coupling and components/);
+negativeCount++;
+const foreignHandle=structuredClone(combo);
+const foreign="G4-TMP-G4-CASE-RAW-OTHER-part1";
+foreignHandle.relationHypotheses[1].localComponentHandles=[foreign];
+foreignHandle.relationHypotheses[1].componentDefinitions[0].handle=foreign;
+foreignHandle.relationHypotheses[1].componentDefinitions[0].ownerRawCandidateId="RAW-OTHER";
+foreignHandle.relationHypotheses[1].relationDirection.targetIds=[ids[1],foreign];
+assert.throws(()=>validateGate4Bundle(foreignHandle,raw,evidence,g3),
+ /missing component owner/);
 negativeCount++;
 // Source registration is not made up by either the status history or synthesis.
 const holdRecovery=structuredClone(reviewed);
