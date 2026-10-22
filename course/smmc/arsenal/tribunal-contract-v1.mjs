@@ -175,7 +175,7 @@ function validateCase(c,raw,gr,known,relationsById,scopeById) {
       nonempty(c.hypothesis) && c.candidateOwnedFacts.length+c.comparativeFacts.length>0 &&
       c.synthesisRecordIds.length>0,w+" proposed/reviewed decision lacks review evidence");
     if(c.workStatus==="REVIEWED_FOR_HANDOFF"){
-      invariant(c.scopeClassification==="LATER_GATE_ONLY" && c.handoffOwners.length>0 &&
+      invariant(c.scopeReviewRecordId!==null && c.scopeClassification==="LATER_GATE_ONLY" && c.handoffOwners.length>0 &&
         c.reviewerFindings.length>0 && c.holdReason===null,
         w+" handoff needs independently verified downstream-only scope");
     }
@@ -289,6 +289,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     invariant(evId.test(e.recordId)&&!known.has(e.recordId),"supplemental evidence ID invalid/colliding");
     invariant(caseById.has(e.candidateId),"supplemental evidence candidate missing");
     validateGate1EvidenceRecord(e);
+    invariant(e.recordChannel!=="BATTLE","Gate4 supplemental evidence cannot fabricate or replace frozen official Battle claims");
     invariant(nonempty(e.doesNotEstablish) && nonempty(e.claim),"supplemental evidence missing limitation/claim");
     if(e.evidenceBasis==="PROJECT_SYNTHESIS"){
       invariant(e.recordChannel==="NONE"&&stringArray(e.linkedRecordIds)&&e.linkedRecordIds.length>0,
@@ -306,6 +307,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     invariant(stringArray(p.candidateIds)&&p.candidateIds.length>0&&p.candidateIds.every(id=>caseById.has(id)),"scope review participant missing");
     enumValue(p.scopeClassification,G4_SCOPE,"scope review class");
     for(const k of ["question","reviewer","decision","acceptedVersion","permittedProceduralEffect","successorObligation"])someText(p[k],"scope review "+k);
+    invariant(/^[0-9a-f]{40}$/.test(p.acceptedVersion),"scope review must cite exact reviewed commit SHA");
     invariant(!/waiv|exempt|override.*661|skip.*treatment/i.test(p.permittedProceduralEffect),"scope review cannot waive Gate4 treatment");
     scopes.set(p.scopeReviewRecordId,p);
   }
