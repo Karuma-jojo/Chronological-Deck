@@ -89,6 +89,20 @@ negativeCount++;
 const held=cp();
 for(let i=0;i<held.cases.length;i++){
  const c=held.cases[i];
+ const scopeId="G4-SCOPE-held-"+i;
+ held.scopeReviews.push({
+   scopeReviewRecordId:scopeId,candidateIds:[c.candidateId],
+   question:"Identify whether frozen evidence suffices for candidate treatment",
+   scopeClassification:"GATE4_OWNED",reviewer:"Synthetic independent-review marker",
+   decision:"Unresolved Gate4-owned evidence investigation",acceptedVersion:"604c3e9715024f3248e493eb2d2d73254d4ef318",
+   permittedProceduralEffect:"OWNERSHIP_CLASSIFICATION_ONLY",
+   successorObligation:"Complete source investigation and provisional treatment"
+ });
+ c.scopeReviewRecordId=scopeId;
+ c.holdQuestion="Which mathematical action does this candidate name?";
+ c.missingEvidence="No adequate candidate-owned mathematical identity evidence yet";
+ c.accountableOwner="Gate 4 research reviewer";
+ c.reviewerFindings=["SYNTHETIC held-scope review; unapproved and not graduation"];
  c.workStatus="EVIDENCE_HOLD";
  c.proposedPrimaryDisposition=null;
  c.holdReason="THIN_CANDIDATE_EVIDENCE";
@@ -104,6 +118,16 @@ for(let i=0;i<held.cases.length;i++){
 assert.equal(validateGate4Bundle(held,raw,evidence,g3).held,661);
 assert.throws(()=>validateGate4Bundle(held,raw,evidence,g3,{graduation:true}),
  /full graduation requires 661 completed treatments/);
+negativeCount++;
+const heldMissingScope=structuredClone(held);
+heldMissingScope.cases[0].scopeClassification=null;
+assert.throws(()=>validateGate4Bundle(heldMissingScope,raw,evidence,g3),
+ /held action\/scope|scope review not owned or different classification/);
+negativeCount++;
+const heldMissingQuestion=structuredClone(held);
+heldMissingQuestion.cases[0].missingEvidence=null;
+assert.throws(()=>validateGate4Bundle(heldMissingQuestion,raw,evidence,g3),
+ /held action\/scope/);
 negativeCount++;
 const falseHandoff=structuredClone(held);
 falseHandoff.cases[0].holdReason="LATER_GATE_CANONICAL_CHOICE";
