@@ -132,6 +132,25 @@ export function gate4TerminalRelationDigest(r,evidenceById) {
     evidence:gate4EvidenceClosure(gate4RelationEvidenceRoots(r),evidenceById)
   });
 }
+// Independently accepted historical supplemental-evidence manifests freeze the
+// ENTIRE previously accepted record-ID set and exact contents at that version.
+// A versioned reopening can add new IDs, never rewrite/delete accepted old IDs.
+// The caller must source these manifests from immutable independent approvals.
+export function gate4HistoricalEvidenceDigest(recordIds,evidenceById) {
+  invariant(Array.isArray(recordIds) && stringArray(recordIds),
+    "historical evidence manifest requires unique record IDs");
+  invariant(recordIds.length>0 && recordIds.every(id=>/^G4-EVID-/.test(id)),
+    "historical evidence manifest must contain accepted Gate4 supplemental IDs");
+  invariant(evidenceById instanceof Map,"historical evidence manifest requires evidence index");
+  const sorted=[...recordIds].sort();
+  const records=sorted.map(id=>{
+    const record=evidenceById.get(id);
+    invariant(record && record.recordId===id,
+      "previously accepted historical evidence missing: "+id);
+    return {recordId:id,record};
+  });
+  return gate4ContentDigest(records);
+}
 export const gate3Ref = row => "G3-SHA256-" + sha256(row);
 
 export const G4_DISPOSITIONS = Object.freeze(["ACCEPT","MERGE","SPLIT","PARENT_CHILD","COMBO","REJECT"]);
@@ -407,6 +426,11 @@ function validateRelation(r,known,caseById,hypById) {
   }
   invariant(relationHandles.size===r.localComponentHandles.length &&
     r.localComponentHandles.every(id=>relationHandles.has(id)),r.hypothesisId+" component handle-definition bijection");
+  if(r.relationKind==="SPLIT"){
+    const declared=new Set(r.componentDefinitions.map(def=>stableJson(componentMeaning(def))));
+    invariant(declared.size===r.componentDefinitions.length,
+      r.hypothesisId+" SPLIT has duplicate mathematical component meanings under different handles");
+  }
   if(r.relationKind==="MERGE"){
     // Equivalence-group participants normally route MERGE, unless another independently
     // evidenced higher-priority proposal is under active challenge. Do not reject
@@ -461,6 +485,13 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
   //   trustedTerminalRelations: Map<hypothesisId,{acceptedVersion,sha256}>
   trustedTerminalCases=null,
   trustedTerminalRelations=null,
+  // Immutable, independently accepted *complete* supplemental-evidence
+  // manifests for every previously terminal version that is later reopened:
+  // Map<acceptedVersion,{acceptedVersion,evidenceRecordIds:string[],sha256:string}>
+  // Registry membership and completeness must be authenticated externally.
+  // Evidence IDs accepted by that version may NEVER be modified or removed,
+  // even while all related cases are CHALLENGED, PROPOSED, or held.
+  trustedHistoricalEvidenceManifests=null,
 }={}) {
   exact(bundle,G4_BUNDLE_KEYS,"bundle");
   for(const k of G4_BUNDLE_KEYS)mustArray(bundle[k],k);
@@ -611,6 +642,15 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
       const prev=seq[seq.length-1];
       invariant(e.reopenedFromVersion===prev.acceptedVersion,
         "reopenedFromVersion does not match the previous terminal review");
+      const historical=trustedHistoricalEvidenceManifests instanceof Map
+        ?trustedHistoricalEvidenceManifests.get(prev.acceptedVersion):null;
+      invariant(historical && historical.acceptedVersion===prev.acceptedVersion &&
+        Array.isArray(historical.evidenceRecordIds) &&
+        /^[0-9a-f]{64}$/.test(historical.sha256) &&
+        historical.sha256===gate4HistoricalEvidenceDigest(
+          historical.evidenceRecordIds,known),
+        "previously accepted historical evidence was changed, deleted or lacks independent manifest");
+
       const pin=trustedStatusHistoryPrefixes instanceof Map
         ?trustedStatusHistoryPrefixes.get(e.reopenedFromVersion):null;
       invariant(pin && Number.isInteger(pin.eventsCount) && pin.eventsCount>0 &&
