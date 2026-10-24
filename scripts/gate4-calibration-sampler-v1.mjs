@@ -1,7 +1,8 @@
-// Gate 4 calibration v0.2 — SELECTION-ONLY library. No real cohort drawn at import.
+// Gate 4 calibration v0.3 — SELECTION-ONLY library. No real cohort drawn at import.
 // No dispositions, judgments, canonical ontology objects, or trusted pins are produced.
-import { createHash } from 'node:crypto';
-export const VERSION='G4-CAL-SAMPLER-v0.3.0';
+import { createHash, verify as verifySignature } from 'node:crypto';
+export const VERSION='G4-CAL-SAMPLER-v0.3.1';
+export const REQUIREMENTS_VERSION='G4-CAL-REQUIREMENTS-v0.3.1';
 // Keep the pinned 661-row canonical pool serialization byte-identical.
 export const POOL_VERSION='G4-CAL-SAMPLER-v0.2.0';
 export const BASE='eeb54bb0cf25a2022e1b7e40d6e15ee2e46f82ad';
@@ -30,7 +31,38 @@ export const REAL_PROBES=Object.freeze([
  'COMPONENT_OWNER_CLOSURE','DIRECTIONAL_CONTAINMENT_CYCLE',
  'STANDALONE_COMPOUND','SPLIT_COMBO_DUAL','POTENTIAL_EVIDENCE_HOLD'
 ]);
-const certifiedRealRegistries=new WeakSet();
+// WeakMap provenance is process-local: external reviewer authentication is a separate gate.
+const certifiedRealRegistries=new WeakMap();
+const certificateDomain='SMMC-G4-CAL-CERTIFIED-OPTIONS-v1';
+const inventoryDomain='SMMC-G4-CAL-CERTIFIED-INVENTORY-v1';
+const requirementDomain='SMMC-G4-CAL-REQUIREMENTS-v1';
+export const PRECOMMIT_RECEIPT_DOMAIN='SMMC-G4-CAL-ARCHIVED-RECEIPT-v1';
+export const PRECOMMIT_SIGNATURE_DOMAIN='SMMC-G4-CAL-PRECOMMIT-SIGN-v1';
+const deepFreeze=value=>{
+ if(value&&typeof value==='object'&&!Object.isFrozen(value)){
+  for(const child of Object.values(value))deepFreeze(child);
+  Object.freeze(value);
+ }
+ return value;
+};
+const certificateInventory=inv=>({
+ poolSha256:inv.poolSha256,
+ clusters:inv.clusters.map(c=>({id:c.id,members:c.members})),
+ evidenceOwners:inv.evidenceOwners
+});
+function requireCertifiedRealProbes(inv,certificate){
+ const attested=certificate&&certifiedRealRegistries.get(certificate);
+ yes(attested&&certificate.digest===attested.sourceDigest&&
+  certificate.poolSha256===inv.poolSha256&&
+  digest(certificateDomain,certificate)===attested.certificateDigest&&
+  digest(inventoryDomain,certificateInventory(inv))===attested.inventoryDigest,
+  'certified real-probe option content or inventory changed after approval; STOP');
+ yes(Object.isFrozen(certificate)&&Object.isFrozen(certificate.probes)&&
+  certificate.probes.every(p=>Object.isFrozen(p)&&Object.isFrozen(p.options)&&
+   p.options.every(o=>Object.isFrozen(o)&&Object.isFrozen(o.candidateIds)&&Object.isFrozen(o.clusterIds))),
+  'uncertified mutable real-probe options; STOP');
+ return certificate;
+}
 const realProbeDomain='SMMC-G4-CAL-REAL-PROBES-v1';
 const eq=(x,y)=>canonicalJson(x)===canonicalJson(y);
 // Only frozen observation fields; a name match is a research probe, not a verdict.
@@ -128,18 +160,22 @@ export function requirements(inv){
 // The caller-supplied digest is an external trust root, NOT a self-approval.
 export function certifyRealProbes(inv,registry,independentApprovedDigest){
  yes(registry&&typeof registry==='object'&&!Array.isArray(registry),'independent real-probe register required; STOP');
- yes(registry.version==='G4-CAL-REAL-PROBES-v1'&&registry.poolSha256===inv.poolSha256,
-  'real-probe register references wrong version/pool');
  yes(exactHex(independentApprovedDigest)&&
   digest(realProbeDomain,registry)===independentApprovedDigest,
   'independently approved real-probe register digest absent/incorrect; STOP');
- yes(Array.isArray(registry.probes)&&registry.probes.length===REAL_PROBES.length,
+ // Defensive snapshot: the caller retains no mutable alias into the certified options.
+ const approved=structuredClone(registry);
+ yes(digest(realProbeDomain,approved)===independentApprovedDigest,
+  'real-probe register changed during certification; STOP');
+ yes(approved.version==='G4-CAL-REAL-PROBES-v1'&&approved.poolSha256===inv.poolSha256,
+  'real-probe register references wrong version/pool');
+ yes(Array.isArray(approved.probes)&&approved.probes.length===REAL_PROBES.length,
   'real-probe register incomplete; STOP');
- const kinds=registry.probes.map(p=>p.kind);
+ const kinds=approved.probes.map(p=>p.kind);
  yes(eq(sorted(kinds),sorted(REAL_PROBES)),
   'real-probe register missing mandatory section-7 investigation; STOP');
  const memberToCluster=new Map(inv.clusters.flatMap(c=>c.members.map(id=>[id,c.id])));
- const probes=registry.probes.map(p=>{
+ const probes=approved.probes.map(p=>{
   yes(typeof p.researchQuestion==='string'&&p.researchQuestion.trim().length>14 &&
    typeof p.sourceFirstReviewRef==='string'&&p.sourceFirstReviewRef.trim().length>7,
    'real-probe investigation lacks source-first question/provenance');
@@ -152,6 +188,7 @@ export function certifyRealProbes(inv,registry,independentApprovedDigest){
    yes(Array.isArray(option.witnesses)&&option.witnesses.length===option.candidateIds.length,
     'real-probe group must cite each candidate-owned source evidence');
    const ids=sorted(option.candidateIds);
+   yes(ids.every(id=>memberToCluster.has(id)),'real-probe group contains foreign candidate ID; STOP');
    yes(option.witnesses.every(w=>ids.includes(w.candidateId)&&
       Array.isArray(w.evidenceRecordIds)&&w.evidenceRecordIds.length>0&&
       w.evidenceRecordIds.every(id=>inv.evidenceOwners[w.candidateId]?.includes(id))),
@@ -162,14 +199,17 @@ export function certifyRealProbes(inv,registry,independentApprovedDigest){
   });
   return {kind:p.kind,options:opts};
  });
- const certificate=Object.freeze({digest:independentApprovedDigest,probes});
- certifiedRealRegistries.add(certificate);
+ const certificate=deepFreeze({digest:independentApprovedDigest,poolSha256:inv.poolSha256,probes});
+ certifiedRealRegistries.set(certificate,{
+  sourceDigest:independentApprovedDigest,
+  certificateDigest:digest(certificateDomain,certificate),
+  inventoryDigest:digest(inventoryDomain,certificateInventory(inv))
+ });
  return certificate;
 }
 function prepareRealDraw(inv,req){
+ if(req.realProbeCertification)requireCertifiedRealProbes(inv,req.realProbeCertification);
  if(inv.poolCount===661)yes(req.realProbeCertification &&
-   certifiedRealRegistries.has(req.realProbeCertification) &&
-   exactHex(req.realProbeCertification.digest)&&
    Array.isArray(req.realProbeCertification.probes)&&
    req.realProbeCertification.probes.length===REAL_PROBES.length,
    '661-case real cohort requires an independently approved complete source-first investigation register; STOP');
@@ -297,18 +337,67 @@ export function allocate(inv,publicSeed,privateSeed,req=requirements(inv)){
  return {visibleManifest,hiddenPrivate};
 }
 // Nonenumerable public commitment: nonce + private 256-bit seed must remain sealed.
-export function sealHidden(hiddenPrivate,nonce){enforceSeed(nonce);return {version:VERSION,poolSha256:hiddenPrivate.poolSha256,commitment:digest('SMMC-G4-CAL-SEALED-CHALLENGE-v1',{nonce,...hiddenPrivate})}}
+export function sealHidden(hiddenPrivate,nonce){
+ enforceSeed(nonce);
+ return {version:VERSION,poolSha256:hiddenPrivate.poolSha256,
+  commitment:digest('SMMC-G4-CAL-SEALED-CHALLENGE-v1',{nonce,...hiddenPrivate})};
+}
+// Custodian constructs this body AFTER a protocol head is independently accepted.
+// The custodian signs PRECOMMIT_SIGNATURE_DOMAIN + canonical body; governance archives
+// SHA256 of the complete {body,signature} BEFORE the calibration rubric is frozen.
+// A self-supplied digest/public key is not evidence of trusted prior custody.
+export function hiddenPrecommitmentBody(commitment,visibleManifest,req,{
+ signerId,protocolHeadSha,issuedAtUtc
+}={}){
+ yes(commitment&&commitment.version===VERSION&&commitment.poolSha256===visibleManifest.poolSha256,
+  'precommitment does not bind the selected pool/version');
+ yes(typeof signerId==='string'&&signerId.trim().length>0,
+  'precommitment signer identity missing');
+ yes(typeof protocolHeadSha==='string'&&/^[0-9a-f]{40}$/.test(protocolHeadSha),
+  'accepted exact protocol commit SHA missing');
+ yes(typeof issuedAtUtc==='string'&&!Number.isNaN(Date.parse(issuedAtUtc))&&
+  new Date(issuedAtUtc).toISOString()===issuedAtUtc,
+  'precommitment UTC timestamp missing or noncanonical');
+ return {
+  version:'G4-CAL-HIDDEN-PRECOMMIT-v1',protocolVersion:VERSION,
+  poolPayloadVersion:POOL_VERSION,requirementsVersion:REQUIREMENTS_VERSION,
+  protocolHeadSha,poolSha256:commitment.poolSha256,
+  requirementsSha256:digest(requirementDomain,req),
+  visibleManifestSha256:digest('SMMC-G4-CAL-VISIBLE-v1',visibleManifest),
+  commitment:commitment.commitment,signerId,issuedAtUtc
+ };
+}
+export function precommitmentSignaturePayload(body){
+ return Buffer.from(PRECOMMIT_SIGNATURE_DOMAIN+'\n'+canonicalJson(body)+'\n','utf8');
+}
 export function verifyHidden(commitment,hiddenPrivate,nonce,context){
- // Reveal only after an independently pinned visible manifest and rubric freeze.
+ // Trust anchors MUST come from an external, independently authenticated archive
+ // and governance keyring; never compute them from the submitted reveal.
  if(!context||!context.inventory||!context.visibleManifest||!context.requirements||
-    !exactHex(context.trustedVisibleManifestSha256))return false;
+    !exactHex(context.trustedVisibleManifestSha256)||
+    !exactHex(context.trustedArchivedReceiptSha256)||
+    !/^[0-9a-f]{40}$/.test(context.trustedProtocolHeadSha||'')||
+    !context.signedPrecommitmentReceipt||!context.trustedCustodianPublicKeys)return false;
  try{
   const {inventory:inv,visibleManifest:visible,requirements:req}=context;
+  const signed=context.signedPrecommitmentReceipt,body=signed.body;
+  if(!body||typeof signed.signature!=='string'||
+     !/^[A-Za-z0-9+/]+={0,2}$/.test(signed.signature))return false;
+  if(digest(PRECOMMIT_RECEIPT_DOMAIN,signed)!==context.trustedArchivedReceiptSha256)return false;
+  const trustedKey=Object.hasOwn(context.trustedCustodianPublicKeys,body.signerId)
+    ?context.trustedCustodianPublicKeys[body.signerId]:null;
+  if(typeof trustedKey!=='string'||!verifySignature(null,
+    precommitmentSignaturePayload(body),trustedKey,Buffer.from(signed.signature,'base64')))return false;
   if(digest('SMMC-G4-CAL-VISIBLE-v1',visible)!==context.trustedVisibleManifestSha256)return false;
+  if(!eq(body,hiddenPrecommitmentBody(commitment,visible,req,{
+   signerId:body.signerId,protocolHeadSha:context.trustedProtocolHeadSha,
+   issuedAtUtc:body.issuedAtUtc
+  })))return false;
+  if(body.visibleManifestSha256!==context.trustedVisibleManifestSha256)return false;
+  if(body.commitment!==commitment?.commitment||commitment.version!==VERSION||
+     commitment.poolSha256!==inv.poolSha256||commitment.poolSha256!==visible.poolSha256)return false;
   const replay=allocate(inv,visible.publicSeed,hiddenPrivate.privateSeed,req);
   if(!eq(replay.visibleManifest,visible)||!eq(replay.hiddenPrivate,hiddenPrivate))return false;
-  if(commitment.version!==VERSION||commitment.poolSha256!==inv.poolSha256||
-     commitment.poolSha256!==visible.poolSha256)return false;
   return sealHidden(hiddenPrivate,nonce).commitment===commitment.commitment;
  }catch{return false;}
 }
