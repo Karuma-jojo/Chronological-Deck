@@ -133,3 +133,26 @@ Independent exact-head review must verify the updated invariants and repeat both
 The review-only scaffold remains **661 PENDING / 0 adjudications / 0 relation proposals**. All changes are confined to the existing five draft-PR files. Gate 0–3 and the accepted Gate 4 contract are unchanged. External accepted-case, relation, scope, and history pins must be independently authenticated; test-produced hashes are not governance certificates. Future validation after reopening also needs the independently accepted *historical* evidence/decision artifacts to establish that old evidence was not rewritten as part of the reopening process.
 
 **DO NOT MERGE** without a fresh exact-head independent implementation PASS. Calibration, mass adjudication, Gate 5 and later gates remain locked.
+
+
+## PR #194 fifth independent review — historical acceptance and within-SPLIT distinctness
+
+**Rejected exact head:** `e3298d14766e2307d242ae9dcecba97d6371fc8e`. Findings **G4-R194-09** and **G4-R194-10** are addressed in the executable implementation only. This is a builder repair, **not independent acceptance**.
+
+### G4-R194-09 — Historical supplemental evidence cannot be overwritten after reopening
+
+The validator accepts an externally sourced `trustedHistoricalEvidenceManifests` registry keyed by prior terminal accepted commit version. Each manifest contains an exact `acceptedVersion`, a frozen list of **all previously accepted Gate-4 supplemental evidence record IDs** (including records cited by status events or not currently referenced), and a SHA-256 of the complete canonical content records, ordered by ID. For every `REVIEWED_FOR_HANDOFF → CHALLENGED / PROPOSED / EVIDENCE_HOLD` transition, the validator checks the accepted historical manifest *regardless of current case status*. Therefore a legitimate reopen can add newly named evidence, but may not silently modify or delete any previously accepted ID.
+
+The original accepted historical status-history prefix hash and terminal case/relation content hashes remain separate requirements. This is an **append-only evidence-ID contract**, not merely status-history append-only enforcement. No immutable-trust claim is made from mutable bundle contents alone: reviewers or callers must verify that the manifest originated from a separately independently accepted original-version artifact, complete at that version. A developer-produced test manifest only simulates that trust root.
+
+**Regression evidence:** Previously accepted synthesis claim rewritten while CHALLENGED rejects; deleting or changing an **accepted but not currently referenced** archived supplemental record rejects; missing external prior-evidence manifest rejects; a one-record manifest contradicting the accepted full-manifest digest rejects. A versioned reopen and subsequent reapproval can cite a **new** supplemental record with a fresh ID when its independent new scope/case certificates are supplied; the old accepted records are unchanged.
+
+### G4-R194-10 — SPLIT's component count represents distinct mathematical descriptions
+
+Within each `SPLIT`, each temporary component now has a distinct canonical `componentMeaning` (owner candidate ID, definition, scope, operation). Distinct arbitrary handle strings **cannot** make two identical component descriptions count as a two-way SPLIT. The existing handle-owner and exact definitions tests remain, and the earlier alpha-renaming invariance across *different* proposed hypotheses continues to work. A genuine different component operation is allowed. This structural check is **not** proof of mathematical nonequivalence; similarly phrased but genuinely different or differently phrased but equivalent components remain for independent mathematical review.
+
+### Security and release boundary
+
+This implementation checks externally pinned historical evidence manifests when reopening. A trusted manifest must cover **every accepted prior supplemental record**, not merely records cited by currently active cases. A caller capable of forging the trusted registry is outside the validator's security boundary; such registries must be independently approved, versioned, immutable and separately authenticated in the eventual accepted governance procedure. The provisional initial scaffold contains 661 `PENDING` cases, zero adjudications and zero proposed relations. Gates 0–3 and the previously accepted Gate 4 prose contract are not edited.
+
+**DO NOT MERGE** until the newly amended exact head receives independent executable-contract PASS. Independent calibration design/held-out evaluation, 661 candidate treatments and Gates 5–15 stay locked.
