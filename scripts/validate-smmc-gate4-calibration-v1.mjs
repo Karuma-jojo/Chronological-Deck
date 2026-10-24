@@ -118,6 +118,39 @@ const alteredInv=structuredClone(inv);
 alteredInv.clusters[0].members=[...alteredInv.clusters[0].members,'INJECTED-ID'];
 assert.throws(()=>allocate(alteredInv,seedA,seedB,certifiedReq),
  /certified real-probe option content or inventory changed/,'inventory mutated since certification must fail');
+// Full-inventory acceptance boundary: these mutations keep the original
+// members, ownership and pool digest intact. Each must fail before selection.
+const inventoryTamperCases=[
+ ['sampling label',tampered=>{tampered.clusters[0].labels[0]='INJECTED:LABEL';}],
+ ['coverage count',tampered=>{const key=Object.keys(tampered.counts)[0];tampered.counts[key]++;}],
+ ['cross-owner exposure edge',tampered=>{
+   tampered.crossEdges.push([certifiedResult.visibleManifest.visibleIds[0],
+    certifiedResult.hiddenPrivate.hiddenIds[0],'SYNTH-OWNER-A','SYNTH-OWNER-B']);
+ }],
+ ['cluster diagnostic register',tampered=>{tampered.edgeRegister.push({
+  type:'FORGED_COALLOC',from:'RAW-SYN-003',to:'RAW-SYN-004',name:'forged'
+ });}],
+ ['inventory scalar',tampered=>{tampered.poolBytes++;}]
+];
+for(const [attack,mutate] of inventoryTamperCases){
+ const altered=structuredClone(inv);
+ mutate(altered);
+ assert.equal(altered.poolSha256,inv.poolSha256,attack+' retains pool SHA');
+ assert.deepEqual(altered.clusters.map(c=>c.members),inv.clusters.map(c=>c.members),
+  attack+' retains all cluster memberships');
+ assert.deepEqual(altered.evidenceOwners,inv.evidenceOwners,
+  attack+' retains candidate-owned evidence');
+ assert.throws(()=>allocate(altered,seedA,seedB,certifiedReq),
+  /certified real-probe option content or inventory changed/,
+  attack+' must be rejected by allocation at certification boundary');
+ assert.throws(()=>validateRealVisibleCoverage(altered,certifiedResult.visibleManifest,certifiedReq),
+  /certified real-probe option content or inventory changed/,
+  attack+' must be rejected by visible-coverage validation');
+}
+assert.deepEqual(allocate(inv,seedA,seedB,certifiedReq),certifiedResult,
+ 'unchanged approved inventory continues to allocate deterministically');
+assert.equal(validateRealVisibleCoverage(inv,certifiedResult.visibleManifest,certifiedReq),true,
+ 'unchanged approved inventory still validates');
 const omitted=structuredClone(certifiedResult.visibleManifest);
 omitted.visibleIds=omitted.visibleIds.filter(id=>id!==designated);
 assert.throws(()=>validateRealVisibleCoverage(inv,omitted,certifiedReq),/real investigation visible coverage missing/);
