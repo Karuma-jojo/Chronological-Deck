@@ -1,12 +1,13 @@
-name: SMMC Gate 4 calibration protocol v0.3 checks
+name: SMMC Gate 4 calibration protocol v0.3.1 checks
 on:
   pull_request:
     paths:
       - "scripts/gate4-calibration-sampler-v1.mjs"
       - "scripts/validate-smmc-gate4-calibration-v1.mjs"
       - "scripts/verify-smmc-gate4-pool-independent.py"
-      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.2-DRAFT.md"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.3-DRAFT.md"
       - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.3-DRAFT.md"
       - ".github/workflows/smmc-gate4-calibration.yml"
   push:
     branches:
