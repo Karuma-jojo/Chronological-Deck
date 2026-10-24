@@ -742,6 +742,60 @@ reopened.statusHistory.push({
 assert.equal(validateGate4Bundle(reopened,raw,evidence,g3,{
  trustedStatusHistoryPrefixes:pinnedPrefix
 }).challenged,1);
+// Proper versioned reopening MAY add genuinely new evidence; previously
+// accepted supplemental records remain unchanged. The new terminal decision
+// requires a NEW externally supplied review and exact content pin.
+const reaccepted=structuredClone(reopened);
+const reopenedCase=reaccepted.cases.find(c=>c.candidateId===ids[0]);
+const oldAcceptedSynthesis=structuredClone(complete.supplementalEvidence
+ .find(e=>e.recordId==="G4-EVID-synthetic-0"));
+const newEvidence={
+ ...structuredClone(oldAcceptedSynthesis),
+ recordId:"G4-EVID-synthetic-reopen-new",
+ claim:"NEW synthetic post-reopen source interpretation, not a rewrite",
+ linkedRecordIds:[ex.get(ids[0]).recordId],
+ doesNotEstablish:"Does not establish official occurrence or a canonical ability"
+};
+reaccepted.supplementalEvidence.push(newEvidence);
+reopenedCase.synthesisRecordIds.push(newEvidence.recordId);
+const oldAfterReopen=reaccepted.supplementalEvidence.find(
+ e=>e.recordId==="G4-EVID-synthetic-0");
+assert.deepEqual(oldAfterReopen,oldAcceptedSynthesis);
+const newProposalSha="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+const newApprovalSha="cccccccccccccccccccccccccccccccccccccccc";
+reaccepted.statusHistory.push({
+ eventId:"G4-EVENT-synthetic-new-proposal",candidateId:ids[0],
+ fromStatus:"CHALLENGED",toStatus:"PROPOSED",
+ evidenceRecordIds:[newEvidence.recordId],reviewer:"New hypothetical reviewer",
+ acceptedVersion:newProposalSha,reopenedFromVersion:null
+},{
+ eventId:"G4-EVENT-synthetic-reapproved",candidateId:ids[0],
+ fromStatus:"PROPOSED",toStatus:"REVIEWED_FOR_HANDOFF",
+ evidenceRecordIds:[newEvidence.recordId],reviewer:"New hypothetical independent reviewer",
+ acceptedVersion:newApprovalSha,reopenedFromVersion:null
+});
+reopenedCase.workStatus="REVIEWED_FOR_HANDOFF";
+const newScope={...scope,
+ scopeReviewRecordId:"G4-SCOPE-certified-after-reopen",acceptedVersion:newApprovalSha,
+ decision:"New hypothetical independently reviewed scope decision after added evidence"};
+reaccepted.scopeReviews.push(newScope);
+reopenedCase.scopeReviewRecordId=newScope.scopeReviewRecordId;
+const newTerminalPin=new Map([[reopenedCase.tribunalCaseId,{
+ acceptedVersion:newApprovalSha,
+ sha256:gate4TerminalCaseDigest(reopenedCase,new Map(
+  reaccepted.relationHypotheses.map(r=>[r.hypothesisId,r])),
+  indexEvidence(reaccepted))
+}]]);
+const newScopePins=new Map([[newScope.scopeReviewRecordId,digest(newScope)]]);
+assert.throws(()=>validateGate4Bundle(reaccepted,raw,evidence,g3,{
+ trustedStatusHistoryPrefixes:pinnedPrefix,
+ trustedScopeReviews:newScopePins,trustedTerminalCases:acceptedTerminalCases
+}),/terminal case content differs from independently accepted snapshot/);
+negativeCount++;
+assert.equal(validateGate4Bundle(reaccepted,raw,evidence,g3,{
+ trustedStatusHistoryPrefixes:pinnedPrefix,
+ trustedScopeReviews:newScopePins,trustedTerminalCases:newTerminalPin
+}).completed,1);
 const unpinned=structuredClone(reopened);
 assert.throws(()=>validateGate4Bundle(unpinned,raw,evidence,g3),
  /externally pinned accepted prior-history prefix/);
