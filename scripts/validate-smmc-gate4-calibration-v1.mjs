@@ -1,6 +1,6 @@
 // Synthetic selection-only adversarial tests + real-pool digest (NO real draw).
 import assert from 'node:assert/strict';
-import { poolManifest,inventory,requirements,preflight,proveJointFeasibility,allocate,sealHidden,verifyHidden,canonicalJson,digest } from './gate4-calibration-sampler-v1.mjs';
+import { poolManifest,inventory,requirements,preflight,proveJointFeasibility,allocate,sealHidden,verifyHidden,certifyRealProbes,validateRealVisibleCoverage,REAL_PROBES,canonicalJson,digest } from './gate4-calibration-sampler-v1.mjs';
 const seedA='a'.repeat(64),seedB='b'.repeat(64),nonce='c'.repeat(64);
 const raw=[],g3=[],evidence=[];
 for(let i=0;i<18;i++){
@@ -26,16 +26,65 @@ assert.deepEqual(result,allocate(again,seedA,seedB,req));
 assert.equal(result.visibleManifest.visibleSha256,'63b8ec3fd532a3b2abcf36ee39b842d34a2cf45f17f1f5d326cd88ada9c642ed');
 assert.ok(!result.visibleManifest.visibleIds.some(x=>result.hiddenPrivate.hiddenIds.includes(x)));
 const sealed=sealHidden(result.hiddenPrivate,nonce);
-assert.ok(verifyHidden(sealed,result.hiddenPrivate,nonce));
-assert.equal(sealed.commitment,'106f22ea4c034f4cbfacdcc4232637cf4ce9745546b49e1998a2c0e454e1c3f2','sealed commitment golden SHA');
-assert.equal(verifyHidden(sealed,result.hiddenPrivate,'d'.repeat(64)),false);
+const context={inventory:inv,visibleManifest:result.visibleManifest,requirements:req,
+ trustedVisibleManifestSha256:digest('SMMC-G4-CAL-VISIBLE-v1',result.visibleManifest)};
+assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce),false,'old contextless hash verification must fail');
+assert.ok(verifyHidden(sealed,result.hiddenPrivate,nonce,context));
+const fabricatedHidden=structuredClone(result.hiddenPrivate);
+fabricatedHidden.hiddenIds=['RAW-SYN-NOT-IN-THE-POOL'];
+fabricatedHidden.hiddenClusters=['C:RAW-SYN-NOT-IN-THE-POOL'];
+const forgedCommitment=sealHidden(fabricatedHidden,nonce);
+assert.equal(verifyHidden(forgedCommitment,fabricatedHidden,nonce,context),false,
+ 'properly sealed but mathematically impossible hidden challenge must FAIL');
+const staleHash=structuredClone(result.hiddenPrivate);staleHash.hiddenSha256='0'.repeat(64);
+assert.equal(verifyHidden(sealHidden(staleHash,nonce),staleHash,nonce,context),false);
+const fakeVisible=structuredClone(result.visibleManifest);fakeVisible.visibleIds=['RAW-UNKNOWN'];
+assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce,{...context,visibleManifest:fakeVisible}),false);
+const wrongSeed={...result.visibleManifest,publicSeed:'f'.repeat(64)};
+assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce,{...context,visibleManifest:wrongSeed}),false);
+assert.equal(sealed.commitment,'80f56afad2b9c0d403987b23fe6591625cb0625cd350ba8b77a430dfdbee2b60','sealed commitment golden SHA');
+assert.equal(verifyHidden(sealed,result.hiddenPrivate,'d'.repeat(64),context),false);
 assert.ok(!JSON.stringify(sealed).includes('RAW-SYN'));
 assert.ok(!JSON.stringify(result.visibleManifest).includes(result.hiddenPrivate.privateSeed));
+// Only a source-first reviewer may approve a REAL eligibility register.
+// Synthetic probes below check the protocol, not genuine mathematical outcomes.
+const designated=result.visibleManifest.visibleIds[0];
+const syntheticRegister={version:'G4-CAL-REAL-PROBES-v1',poolSha256:inv.poolSha256,
+ probes:REAL_PROBES.map(kind=>({kind,
+ researchQuestion:'Which source-bounded competing interpretations need adversarial comparison? '+kind,
+ sourceFirstReviewRef:'SYNTHETIC-REVIEW-NOT-PRODUCTION',
+ options:[{candidateIds:[designated],
+  witnesses:[{candidateId:designated,evidenceRecordIds:['E-'+designated]}]}]}))};
+const certDigest=digest('SMMC-G4-CAL-REAL-PROBES-v1',syntheticRegister);
+const cert=certifyRealProbes(inv,syntheticRegister,certDigest);
+assert.equal(cert.probes.length,REAL_PROBES.length);
+const certifiedReq={...req,realProbeCertification:cert};
+const certifiedResult=allocate(inv,seedA,seedB,certifiedReq);
+assert.ok(validateRealVisibleCoverage(inv,certifiedResult.visibleManifest,certifiedReq));
+const certifiedContext={inventory:inv,visibleManifest:certifiedResult.visibleManifest,requirements:certifiedReq,
+ trustedVisibleManifestSha256:digest('SMMC-G4-CAL-VISIBLE-v1',certifiedResult.visibleManifest)};
+assert.ok(verifyHidden(sealHidden(certifiedResult.hiddenPrivate,nonce),
+ certifiedResult.hiddenPrivate,nonce,certifiedContext));
+const omitted=structuredClone(certifiedResult.visibleManifest);
+omitted.visibleIds=omitted.visibleIds.filter(id=>id!==designated);
+assert.throws(()=>validateRealVisibleCoverage(inv,omitted,certifiedReq),/real investigation visible coverage missing/);
+const incomplete=structuredClone(syntheticRegister);incomplete.probes.pop();
+assert.throws(()=>certifyRealProbes(inv,incomplete,
+ digest('SMMC-G4-CAL-REAL-PROBES-v1',incomplete)),/register incomplete/);
+assert.throws(()=>certifyRealProbes(inv,syntheticRegister,'0'.repeat(64)),/digest absent\/incorrect/);
+const borrowed=structuredClone(syntheticRegister);
+borrowed.probes[0].options[0].witnesses[0].evidenceRecordIds=['UNKNOWN-EVIDENCE'];
+assert.throws(()=>certifyRealProbes(inv,borrowed,
+ digest('SMMC-G4-CAL-REAL-PROBES-v1',borrowed)),/missing\/foreign evidence/);
+assert.throws(()=>allocate({...inv,poolCount:661},seedA,seedB,req),/661-case real cohort requires/);
 // Deliberately crossed, source-linked hidden/visible case IDs must fail closed.
 const exposureTamper=structuredClone(inv);
 exposureTamper.crossEdges=[[result.visibleManifest.visibleIds[0],result.hiddenPrivate.hiddenIds[0],
   'SYNTHETIC-VISIBLE-REF','SYNTHETIC-HIDDEN-REF']];
-assert.throws(()=>allocate(exposureTamper,seedA,seedB,req),/evidence leakage/);
+const exposureSafe=allocate(exposureTamper,seedA,seedB,req);
+assert.ok(!exposureSafe.visibleManifest.visibleIds.includes(exposureTamper.crossEdges[0][0]) ||
+ !exposureSafe.hiddenPrivate.hiddenIds.includes(exposureTamper.crossEdges[0][1]),
+ 'source-linked candidate ownership may never cross visible-hidden boundary');
 // A stratum with exactly one supplier cannot serve both sealed and visible sets.
 const singleton=structuredClone(inv);
 let found=false;for(const c of singleton.clusters){if(c.labels.includes('REF:UNRESOLVED')){if(found)c.labels=c.labels.filter(x=>x!=='REF:UNRESOLVED');else found=true;}}
