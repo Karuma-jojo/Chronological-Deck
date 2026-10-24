@@ -742,6 +742,16 @@ assert.throws(()=>validateGate4Bundle(forged,raw,evidence,g3,{
  trustedScopeReviews:approvedScope
 }),/independent scope-review certificate missing/);
 negativeCount++;
+// Accepted historical record without a CURRENT case reference: the history
+// manifest, rather than ordinary case-reference checks, must preserve it.
+const archivalOnly={
+ ...structuredClone(complete.supplementalEvidence.find(
+  e=>e.recordId==="G4-EVID-synthetic-0")),
+ recordId:"G4-EVID-archived-only",
+ claim:"SYNTHETIC archived evidence accepted before later reopening",
+ doesNotEstablish:"Not a real theorem or official occurrence"
+};
+complete.supplementalEvidence.push(archivalOnly);
 const pinnedPrefix=new Map([[eventVersion,{
  eventsCount:complete.statusHistory.length,sha256:digest(complete.statusHistory)
 }]]);
@@ -779,9 +789,16 @@ assert.throws(()=>validateGate4Bundle(tamperedHistoricalEvidence,raw,evidence,g3
 negativeCount++;
 const deletedHistoricalEvidence=structuredClone(reopened);
 deletedHistoricalEvidence.supplementalEvidence=deletedHistoricalEvidence.supplementalEvidence
- .filter(e=>e.recordId!=="G4-EVID-synthetic-1");
+ .filter(e=>e.recordId!=="G4-EVID-archived-only");
 assert.throws(()=>validateGate4Bundle(deletedHistoricalEvidence,raw,evidence,g3,
  historicalOptions),/previously accepted historical evidence missing/);
+negativeCount++;
+const rewrittenArchivedOnly=structuredClone(reopened);
+rewrittenArchivedOnly.supplementalEvidence.find(
+ e=>e.recordId==="G4-EVID-archived-only").doesNotEstablish=
+ "Unapproved rewrite of accepted historical-only evidence";
+assert.throws(()=>validateGate4Bundle(rewrittenArchivedOnly,raw,evidence,g3,
+ historicalOptions),/previously accepted historical evidence was changed/);
 negativeCount++;
 // Without an externally accepted historical manifest the reopen fails even
 // when the old status event prefix itself has been pinned.
