@@ -11,6 +11,7 @@ for(let i=0;i<18;i++){
 }
 const inv=inventory(raw,g3,evidence,{expected:18});
 assert.equal(inv.poolCount,18);
+assert.equal(inv.poolSha256,'046b73e03f5b262bbf1678c733565f7791d545b67cfaa66dc40ae054da8600ad','synthetic pool golden SHA');
 assert.equal(inv.clusters.find(c=>c.members.includes('RAW-SYN-000')).members.length,3,'chain closed');
 assert.equal(inv.edgeRegister.length,2);
 assert.ok(inv.clusters.length>1,'diagnostic grouping did not collapse pool');
@@ -26,6 +27,7 @@ assert.equal(result.visibleManifest.visibleSha256,'63b8ec3fd532a3b2abcf36ee39b84
 assert.ok(!result.visibleManifest.visibleIds.some(x=>result.hiddenPrivate.hiddenIds.includes(x)));
 const sealed=sealHidden(result.hiddenPrivate,nonce);
 assert.ok(verifyHidden(sealed,result.hiddenPrivate,nonce));
+assert.equal(sealed.commitment,'106f22ea4c034f4cbfacdcc4232637cf4ce9745546b49e1998a2c0e454e1c3f2','sealed commitment golden SHA');
 assert.equal(verifyHidden(sealed,result.hiddenPrivate,'d'.repeat(64)),false);
 assert.ok(!JSON.stringify(sealed).includes('RAW-SYN'));
 assert.ok(!JSON.stringify(result.visibleManifest).includes(result.hiddenPrivate.privateSeed));
