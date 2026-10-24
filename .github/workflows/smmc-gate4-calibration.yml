@@ -1,4 +1,4 @@
-name: SMMC Gate 4 calibration protocol v0.3.1 checks
+name: SMMC Gate 4 calibration protocol v0.3.2 checks
 on:
   pull_request:
     paths:
@@ -7,7 +7,6 @@ on:
       - "scripts/verify-smmc-gate4-pool-independent.py"
       - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.3-DRAFT.md"
       - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
-      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.3-DRAFT.md"
       - ".github/workflows/smmc-gate4-calibration.yml"
   push:
     branches:
@@ -18,6 +17,7 @@ on:
       - "scripts/validate-smmc-gate4-calibration-v1.mjs"
       - "scripts/verify-smmc-gate4-pool-independent.py"
       - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.3-DRAFT.md"
       - ".github/workflows/smmc-gate4-calibration.yml"
 jobs:
   sampler-determinism-only:
