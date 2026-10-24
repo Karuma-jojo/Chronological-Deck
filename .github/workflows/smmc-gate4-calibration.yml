@@ -1,0 +1,37 @@
+name: SMMC Gate 4 calibration protocol v0.2 checks
+on:
+  pull_request:
+    paths:
+      - "scripts/gate4-calibration-sampler-v1.mjs"
+      - "scripts/validate-smmc-gate4-calibration-v1.mjs"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.2-DRAFT.md"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
+      - ".github/workflows/smmc-gate4-calibration.yml"
+  push:
+    branches:
+      - main
+      - "codex/smmc-gate4-calibration-*"
+    paths:
+      - "scripts/gate4-calibration-sampler-v1.mjs"
+      - "scripts/validate-smmc-gate4-calibration-v1.mjs"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
+      - ".github/workflows/smmc-gate4-calibration.yml"
+jobs:
+  sampler-determinism-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify frozen predecessor blob pins (not a cohort draw)
+        run: |
+          test "$(git hash-object course/smmc/arsenal/candidates-v0.mjs)" = "a9cbeb55a2a829a881e228be6d6b22f667baa2c7"
+          test "$(git hash-object course/smmc/arsenal/granularity-ledger-v0.mjs)" = "a968f71f567d86242d183412ef5df64aefa73c70"
+          test "$(git hash-object course/smmc/arsenal/tribunal-ledger-v0.mjs)" = "9dac5f6b6e21ad144d541ccea9088cd875b44163"
+      - name: Validate accepted SMMC/Gate 4 contract
+        run: |
+          node scripts/validate-smmc-authoring-v1.mjs
+          node scripts/validate-smmc-gate4-contract-v1.mjs
+      - name: Run synthetic sampler adversarial tests and hash real frozen pool (NO DRAW)
+        run: node scripts/validate-smmc-gate4-calibration-v1.mjs
