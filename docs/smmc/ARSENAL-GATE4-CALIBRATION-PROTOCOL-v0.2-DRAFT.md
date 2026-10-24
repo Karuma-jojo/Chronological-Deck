@@ -1,0 +1,81 @@
+# SMMC Arsenal — Gate 4 heterogeneous calibration protocol v0.2
+
+**Status:** UNACCEPTED, SELECTION-ONLY PROPOSAL. No seed chosen; no real candidate cohort drawn; no mathematical dispositions authored. No GitHub merge/authorization arises from this document.
+
+**Authority:** frozen Gate 4 contract §7, accepted `604c3e9715024f3248e493eb2d2d73254d4ef318`; implementation accepted `12810bc99b3e29c816905f8341bd593e17192ecf`; accepted `main` baseline `eeb54bb0cf25a2022e1b7e40d6e15ee2e46f82ad`. All frozen predecessor bytes must remain unchanged. Distinct selection-protocol PASS, calibration execution PASS, 661-treatment graduation PASS, and Gate 5 are four separate decisions.
+
+## 1. Corrections to six independent findings
+
+| Finding | v0.2 binding change |
+|---|---|
+| G4-CAL-P01 | Runnable source-controlled sampler; exact immutable strata, objective, seed grammar, deterministic scoring, tie rules, resource limits, and fail-closed stopping. |
+| G4-CAL-P02 | Only *equal normalized frozen candidate names* create pre-treatment co-allocation edges. Gate 3 rows, shared themes, source chapter headings, and co-occurrence do **not** imply candidate identity. Evidence cross-owner references are tracked separately as exposure constraints. |
+| G4-CAL-P03 | Joint feasibility search, bounded hidden and visible allocations, explicit zero-overlap rule, cross-exposure fail closed, 256-bit private challenge seed and salted commitment. Unavailable coverage or solver cap means STOP; never reseed to get a preferred sample. |
+| G4-CAL-P04 | Real names/diagnostics create investigative probes only, not answer classes. Separate *synthetic* logical counterexamples cannot enter real candidate evidence, coverage counts or the 661-case ledger. No disposition/hold quota. |
+| G4-CAL-P05 | Independently authenticated attestation and private-custody lifecycle (§6); authored comments and self-hashed registries are not independent approvals. |
+| G4-CAL-P06 | Canonical UTF-8 pool byte contract, manifest SHA-256 anchored to 3 Git blobs and 661 exact rows, seed-independent golden fixture (§2). The final production SHA must be filled from independently reproduced CI output **before protocol PASS**. |
+
+## 2. Exact input-byte and canonical pool contract
+
+Read-only inputs: `ARSENAL_GATE2_RAW_CANDIDATES`, `ARSENAL_GATE2_RAW_EVIDENCE` and `ARSENAL_GATE3_GRANULARITY_RECORDS`. These must each have **exactly 661** entries; candidate IDs and evidence IDs are unique; raw and Gate-3 candidate IDs form the same set; original names, origins and candidate-owned evidence references must match. No evidence ownership borrowing.
+
+Git blob pins for `candidates-v0.mjs`, `granularity-ledger-v0.mjs`, `tribunal-ledger-v0.mjs`: `a9cbeb55a2a829a881e228be6d6b22f667baa2c7`, `a968f71f567d86242d183412ef5df64aefa73c70`, `9dac5f6b6e21ad144d541ccea9088cd875b44163`. All eleven Gate-2 predecessor pins and other Gate 0–3 invariants remain enforced by inherited Gate 4/SMMC CI. Verify actual file bytes against these pins before using the pool.
+
+Build payload `{version,base,pins,rows,evidence}`: `version="G4-CAL-SAMPLER-v0.2.0"`, `base=main` accepted merge SHA above; `pins` as above; `rows` consists of `{candidateId,raw,gate3}` sorted in ascending Unicode code-unit order of exact ID; `evidence` consists of the *complete* frozen evidence objects sorted by `recordId`. Canonical JSON recursively sorts keys lexically; preserves array ordering within original raw and Gate-3 records; emits their exact string/null/number values and no whitespace, using Node 22 `JSON.stringify` UTF-8 semantics. The pool SHA-256 hashes **exact bytes** `SMMC-G4-CAL-POOL-v1\n` + canonical JSON + `\n`. An independently reproduced hash and byte length are normative. No real selections are needed to calculate this digest.
+
+**Canonical digest: PENDING CI/integrity-attested fill before independent v0.2 PASS.** Do not claim approval while this marker remains. A synthetic (18-case) golden fixture checks both the pool digest and deterministic visible cohort digest; actual 661-case digest requires independent reconstruction from frozen files.
+
+## 3. Edge-source register and mechanical strata (not verdicts)
+
+The normalized-name key is `name.normalize('NFKC').toLowerCase().replace(/[^\\p{L}\\p{N}]+/gu,' ').trim()`. All raw IDs sharing this key must be allocated together; build the transitive connected components by unioning the lexically first ID with remaining same-key IDs. Stable cluster ID is `C:` + lexically smallest exact raw ID. **An identical normalized name does not mean MERGE.** This grouping only guards matched-name leakage.
+
+- **Co-allocation (hard):** exact normalized frozen name and any future explicitly independently admitted typed raw comparison-edge register. The accepted `candidateRelations` fields are null; an unreviewed non-null value is STOP rather than a guessed edge. Do not link all cases bearing the same Gate 3 bundle, reference scale or source ID.
+- **Exposure (hard separation):** `linkedRecordIds` across *different candidate owners* induce a source/reference leakage edge, recorded by exact record and owner IDs. Such an edge crossing visible versus hidden is STOP. Shared widely published books/source IDs are public, not candidate-identity links; do not automatically union a whole book.
+- **Coverage only:** exact origin, Gate-3 `referenceScale`, `bundleStructure`, `actionShape`, official verified Battle occurrence owned by the candidate, source-lead-only thin candidate, differing Gate-3 signature within a normalized-name group, and lexical probes built from frozen raw `candidateName` using only the static sampler source regexes. Coverage probes investigate Recast, Small Cases, Minimal/Descent, Contrapositive/DIRECT, CRT (conditional on presence), Graph, Auxiliary, Crux; they do **not** establish mathematical equivalence or final dispositions.
+
+All labels are computed from frozen read-only values before any judgments. Record label-to-ID traceability *privately* for hidden challenges and publicly only for selected visible cases. Report component-count histogram, largest component, orphan count, exact edge counts and cross-owner evidence edge count. Giant components larger than 64 raw IDs STOP; this conservatively protects the smaller hidden-ID cap. No missing mandatory label can be inferred or replaced from a model's memory.
+
+## 4. Deterministic objective, caps, tie-breaking and STOP
+
+Mandatory visible requirements: one cluster for **each exact frozen origin**; at least one investigative probe each for Recast, Small Cases, Minimal/Descent, Contrapositive/DIRECT, Graph, Auxiliary, Crux, Gate-3 `BUNDLED_MOVES`, Gate-3 `UNRESOLVED`, and a normalized-name group with divergent Gate-3 signatures. CRT is required **if present**; otherwise report absence explicitly. These are overlapping *coverage labels*, so one cluster may satisfy multiple labels. No quota for ACCEPT, MERGE, SPLIT, PARENT_CHILD, COMBO, REJECT or HOLD.
+
+Reviewer-private held-out requirements: one cluster covering each of Gate-3 `UNRESOLVED`, `BUNDLED_MOVES`, verified official Battle occurrence and `LABEL_ONLY` diagnostic shape. These stress properties are *input-observable*, not expected verdicts. Each dual-set required stratum needs at least two qualifying clusters, otherwise STOP. Hidden sample may satisfy multiple held-out requirements per selected cluster.
+
+Caps (resources, **not target sizes**): visible ≤48 clusters and ≤160 distinct raw IDs; hidden ≤16 clusters and ≤64 IDs. Require all labels satisfied and disjoint exact clusters. Every step chooses the eligible cluster covering the largest current number of unmet tags, then the least SHA-256 score of `SMMC-G4-CAL-SELECT-v1\nPHASE\nPOOL_SHA256\nSEED_HEX\nCLUSTER_ID\n`, then smallest cluster ID. The independent private phase runs first while excluding candidates that would leave any visible stratum with no supplier; the visible phase uses the remaining clusters. If allocation fails due to a cross-owner exposure, caps, missing coverage or bad seed, **STOP; no rescue picks and no silent seed changes**.
+
+Before a real seed exists, the independent custodian must run the finite joint-feasibility witness search: a deterministic branch-and-bound search chooses the least-eligible unmet required stratum, tries maximum-cover and then lexically sorted cluster choices, enforces caps and cross-owner separation, and returns **only feasibility, nodes examined and withheld-witness flag**. The private witness IDs are never disclosed. The node cap is 200,000; timeout/cap is an explicit STOP, *not a finding that all solutions are impossible*. Feasibility proves one allocation exists in principle, not that all future seeded greedy draws succeed; a failing seeded draw STOPs rather than being manipulated by reseeding.
+
+## 5. Reproducibility, confidentiality and independent seeds
+
+Both independent seeds must be exactly 32 cryptographically random bytes encoded as 64 **lowercase hexadecimal** characters. The builder cannot select or know the private seed. No seed is chosen during protocol drafting. The public seed must be committed by an independent reviewer after the protocol PR and pool hash are frozen. A different authorized private reviewer/custodian generates the private seed, and runs the sampler on an isolated machine outside builder-controlled PR/workspace.
+
+The private manifest contains the seed, exact hidden clusters, exact IDs and hidden cohort digest. The custodian publishes only `{version,poolSha256,commitment}` where commitment is SHA-256 of domain-separated canonical JSON containing a fresh independent 256-bit secret nonce plus complete private manifest. Keep nonce, seed and list under independent access control. The public manifest contains only selected visible IDs/clusters, exact pool hash, public seed and visible SHA-256; **never** per-hidden-ID/exclusion detail or low-entropy hints to hidden membership. The custodian signs the public sealed commitment before builder sees cases. On challenge release, reveal nonce and exact private manifest and verify byte-for-byte; mismatches STOP and report breach. Do not treat mere SHA-256 value or a GitHub comment from a builder actor as independent custody.
+
+Any use of held-out failure for tuning spends the entire held-out allocation. Independently approve any protocol code change, then allocate a newly sealed challenge from a genuinely unseen pool with newly approved seed and public commitment. If its required coverage cannot be met, STOP. Do not recycle cases or relabel old hidden cases as fresh.
+
+## 6. Mathematical calibration, custody and audit signatures
+
+Two sharply separated tracks follow **protocol acceptance + merge**, not before:
+
+**Real mechanically selected probes.** On the unaltered 661-case scaffold, source-first reviewers examine candidate-owned records and the strongest alternative explanations, mathematical deployment domain, countertests and negative outcomes. The reviewer may genuinely conclude an evidenced provisional relation or an EVIDENCE_HOLD, but the procedure may never assign that outcome merely because the probe's label sounded promising. If no legitimate hold or actual full-scope alias is supported, report that honestly; do not add convenient cases adaptively. A contract-mandated hold demonstration not achieved is a *calibration acceptance failure* requiring an independently precommitted fresh reseat or reviewed protocol amendment. No synthetic test qualifies as an actual candidate disposition.
+
+**Synthetic logical controls.** Separately mark fixtures with `SYNTHETIC_ONLY`; exercise A≈B, B≈C, A≠C consistency, overlap-only MERGE, specialized PARENT_CHILD, foreign-owned SPLIT/COMBO handles, inverse cycles, mass holds/waivers, evidence mutation, archived-evidence manifes​​ts and illicit reviewer hashes. These examples never enter the 661 raw candidate pool, visible/hidden real-cohort counts or any real evidence. They cannot satisfy §7's genuine real-case investigation obligations.
+
+**Trust roles.** Builder: writes procedures and proposed judgments, cannot sign their acceptance. Calibration reviewer: reads canonical source records independently, records signed rationale/countertests, source citations, case/relationship/hold decisions with exact source and PR SHAs. Challenge custodian: keeps and commits the private challenge, cannot reveal to builder before rubric freeze. Governance verifier: validates author identities, independent reviewer approval provenance, signed receipt, externally archived immutable artifact bytes, complete `recordId` inventory for each accepted evidence version, terminal `trustedTerminalCases`/`trustedTerminalRelations`/`trustedScopeReviews` and `trustedHistoricalEvidenceManifests`; the source of these pins must **not** be the live proposed bundle itself.
+
+Authenticate signed acceptance using a platform-verifiable reviewer identity and exact immutable GitHub PR/commit artifact (or independently verifiable digital signature with its public key pinned in the acceptance record). Required receipt fields: reviewer principal, role and authority, reviewed PR/head SHA, prior accepted base, full file/pool SHA-256, result PASS/CHANGES REQUIRED, scope, disposition-specific evidence references, reviewed manifest path/hash and complete evidence-ID inventory hash. Builder-authored comments merely quoting an outside review are *transcriptions*, not a native independent GitHub approval. Unauthenticated records STOP actual terminal closure. Every Gate-4 evidence history must be immutable and continuously audited across later reopens.
+
+## 7. Versioned authorization flow and submission checklist
+
+1. **Protocol PR (now):** include this draft, the selection-only module, synthetic tests, CI, production pool SHA and preflight report. Independently confirm reproducibility with a second implementation and no real draw. Obtain exact-head independent PASS. No hidden challenge or real seed released at this stage.
+2. **Protocol merge/freeze:** preserve exact reviewed source parent in merge commit, verify every blob and post-merge CI.
+3. **Selection precommit:** independent public seed + sealed private seed, joint feasibility proof, deterministic cohort selection, public manifest/hidden commitment; both subsets cluster-disjoint and exposure-safe or STOP. This is the first authorized candidate draw.
+4. **Visible bounded calibration:** separate PR with actual source-based proposals, serious alternatives, audit of relation consistency and legitimate holds; preserve all nonsampled cases PENDING. No 661-case graduation claim.
+5. **Private challenge:** reveal only after tuning/rubric freeze and verify previous commitment. Independently check real and synthetic tracks; spent hidden set cannot be re-used as new evidence of unseen performance.
+6. **Calibration acceptance:** another independently signed exact-head PASS precedes any 661-case mass adjudication. All later Gates 5–15 remain locked until Gate 4's subsequent independent substantive graduation.
+
+### Reviewer-facing STOP tests
+
+Same seed/pool gives byte-identical visible manifest; reordered source arrays preserve pool SHA; swapped object property insertion order preserves fingerprints; normalized-name chain closes transitively; a shared Gate-3 bundle does not union; unknown source links block; duplicate or missing 661 IDs block; missing mandatory real stratum blocks; shared singleton stratum blocks; joint infeasibility/cap blocks; greedy allocation that exhausts any mandatory coverage blocks; visible/hidden overlap or cross-owner evidence leakage blocks; weak/changed seed and commitment mismatch block; hidden IDs never appear in public manifest; outcome labels never influence coverage; synthetic claims never count as real dispositions. Terminal approval without independent source/record custody blocks.
+
+**Current status: DRAFT v0.2 — pending independently reproduced production pool hash, preflight feasibility and external adversarial review.** No seed or real cohort has been selected. No Gate 4 cases have been adjudicated, no official evidence or accepted predecessor files changed, and Gate 5 remains locked.
