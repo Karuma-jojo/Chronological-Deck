@@ -97,7 +97,7 @@ export function inventory(raw,g3,evidence,{expected=661}={}) {
    labels.add('ACTION:'+g.actionShape);
    const owned=c.evidenceRecordIds.map(id=>evBy.get(id));
    if(owned.some(e=>e.recordChannel==='BATTLE'&&e.claimKind==='HISTORICAL_OCCURRENCE'))labels.add('EVIDENCE:OFFICIAL');
-   if(owned.every(e=>e.evidenceBasis==='SOURCE_LEAD'))labels.add('EVIDENCE:THIN');
+   if(!owned.some(e=>e.evidenceBasis==='SOURCE_FACT' || (e.recordChannel==='BATTLE'&&e.claimKind==='HISTORICAL_OCCURRENCE')))labels.add('EVIDENCE:THIN');
    for(const [name,re] of FAMILIES)if(re.test(c.candidateName))labels.add('PROBE:'+name);
    const group=byName.get(norm(c.candidateName));
    if(group.length>1){const sig=x=>canonicalJson([x.g.referenceScale,x.g.bundleStructure,x.g.actionShape,x.g.contextReach,x.g.triggerBoundary,x.g.operationBoundary,x.g.outputBoundary]);if(new Set(group.map(sig)).size>1)labels.add('NAME:DIVERGENT_G3')}
