@@ -1,6 +1,7 @@
 // Synthetic selection-only adversarial tests + real-pool digest (NO real draw).
 import assert from 'node:assert/strict';
-import { poolManifest,inventory,requirements,preflight,proveJointFeasibility,allocate,sealHidden,verifyHidden,certifyRealProbes,validateRealVisibleCoverage,REAL_PROBES,canonicalJson,digest } from './gate4-calibration-sampler-v1.mjs';
+import {createHash,generateKeyPairSync,sign} from 'node:crypto';
+import { poolManifest,inventory,requirements,preflight,proveJointFeasibility,allocate,sealHidden,verifyHidden,certifyRealProbes,validateRealVisibleCoverage,REAL_PROBES,canonicalJson,digest,hiddenPrecommitmentBody,precommitmentSignaturePayload,PRECOMMIT_RECEIPT_DOMAIN } from './gate4-calibration-sampler-v1.mjs';
 const seedA='a'.repeat(64),seedB='b'.repeat(64),nonce='c'.repeat(64);
 const raw=[],g3=[],evidence=[];
 for(let i=0;i<18;i++){
@@ -26,8 +27,26 @@ assert.deepEqual(result,allocate(again,seedA,seedB,req));
 assert.equal(result.visibleManifest.visibleSha256,'63b8ec3fd532a3b2abcf36ee39b842d34a2cf45f17f1f5d326cd88ada9c642ed');
 assert.ok(!result.visibleManifest.visibleIds.some(x=>result.hiddenPrivate.hiddenIds.includes(x)));
 const sealed=sealHidden(result.hiddenPrivate,nonce);
-const context={inventory:inv,visibleManifest:result.visibleManifest,requirements:req,
- trustedVisibleManifestSha256:digest('SMMC-G4-CAL-VISIBLE-v1',result.visibleManifest)};
+const {privateKey:syntheticSigningKey,publicKey:syntheticVerifyKey}=generateKeyPairSync('ed25519');
+const syntheticSigner='SYNTHETIC-CUSTODIAN-KEY-NOT-FOR-PRODUCTION';
+const acceptedProtocolHead='e'.repeat(40);
+function signSyntheticReceipt(commitment,draw,requirement){
+ const body=hiddenPrecommitmentBody(commitment,draw.visibleManifest,requirement,{
+  signerId:syntheticSigner,protocolHeadSha:acceptedProtocolHead,
+  issuedAtUtc:'2026-10-24T00:00:00.000Z'
+ });
+ return {body,signature:sign(null,precommitmentSignaturePayload(body),syntheticSigningKey).toString('base64')};
+}
+function approvedContext(inventoryX,requirement,draw,commitment=sealHidden(draw.hiddenPrivate,nonce)){
+ const receipt=signSyntheticReceipt(commitment,draw,requirement);
+ return {inventory:inventoryX,visibleManifest:draw.visibleManifest,requirements:requirement,
+  trustedVisibleManifestSha256:digest('SMMC-G4-CAL-VISIBLE-v1',draw.visibleManifest),
+  trustedArchivedReceiptSha256:digest(PRECOMMIT_RECEIPT_DOMAIN,receipt),
+  trustedProtocolHeadSha:acceptedProtocolHead,
+  signedPrecommitmentReceipt:receipt,
+  trustedCustodianPublicKeys:{[syntheticSigner]:syntheticVerifyKey.export({type:'spki',format:'pem'})}};
+}
+const context=approvedContext(inv,req,result);
 assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce),false,'old contextless hash verification must fail');
 assert.ok(verifyHidden(sealed,result.hiddenPrivate,nonce,context));
 const fabricatedHidden=structuredClone(result.hiddenPrivate);
@@ -42,7 +61,22 @@ const fakeVisible=structuredClone(result.visibleManifest);fakeVisible.visibleIds
 assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce,{...context,visibleManifest:fakeVisible}),false);
 const wrongSeed={...result.visibleManifest,publicSeed:'f'.repeat(64)};
 assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce,{...context,visibleManifest:wrongSeed}),false);
-assert.equal(sealed.commitment,'80f56afad2b9c0d403987b23fe6591625cb0625cd350ba8b77a430dfdbee2b60','sealed commitment golden SHA');
+// Independently compute salted commitment bytes after the protocol version bump.
+const independentSealed=createHash('sha256').update('SMMC-G4-CAL-SEALED-CHALLENGE-v1\n'+
+ canonicalJson({nonce,...result.hiddenPrivate})+'\n','utf8').digest('hex');
+assert.equal(sealed.commitment,independentSealed,'independent commitment byte contract');
+assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce,{
+ ...context,trustedArchivedReceiptSha256:'0'.repeat(64)}),false,'unarchived receipt must fail');
+assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce,{
+ ...context,trustedProtocolHeadSha:'f'.repeat(40)}),false,'wrong exact protocol head must fail');
+const changedSignature=structuredClone(context.signedPrecommitmentReceipt);
+changedSignature.signature='A'+changedSignature.signature.slice(1);
+assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce,{
+ ...context,signedPrecommitmentReceipt:changedSignature}),false,'signature/receipt tamper must fail');
+const rogueKeys={...context.trustedCustodianPublicKeys,[syntheticSigner]:
+ generateKeyPairSync('ed25519').publicKey.export({type:'spki',format:'pem'})};
+assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce,{
+ ...context,trustedCustodianPublicKeys:rogueKeys}),false,'unauthorized verification key must fail');
 assert.equal(verifyHidden(sealed,result.hiddenPrivate,'d'.repeat(64),context),false);
 assert.ok(!JSON.stringify(sealed).includes('RAW-SYN'));
 assert.ok(!JSON.stringify(result.visibleManifest).includes(result.hiddenPrivate.privateSeed));
@@ -58,13 +92,32 @@ const syntheticRegister={version:'G4-CAL-REAL-PROBES-v1',poolSha256:inv.poolSha2
 const certDigest=digest('SMMC-G4-CAL-REAL-PROBES-v1',syntheticRegister);
 const cert=certifyRealProbes(inv,syntheticRegister,certDigest);
 assert.equal(cert.probes.length,REAL_PROBES.length);
+const certifiedBytes=canonicalJson(cert);
+assert.ok(Object.isFrozen(cert.probes[0].options[0].candidateIds));
+assert.ok(Object.isFrozen(cert.probes[0].options[0].clusterIds));
+assert.throws(()=>{cert.probes[0].options[0].candidateIds[0]='RAW-SYN-017';},TypeError,
+ 'certified option must be deeply immutable');
+assert.throws(()=>{cert.probes[0].options[0].clusterIds.push('C:RAW-SYN-017');},TypeError,
+ 'certified cluster option must be deeply immutable');
+const sourceOriginal=syntheticRegister.probes[0].options[0].candidateIds[0];
+syntheticRegister.probes[0].options[0].candidateIds[0]='RAW-SYN-017';
+syntheticRegister.probes[0].options[0].witnesses[0].candidateId='RAW-SYN-017';
+assert.equal(canonicalJson(cert),certifiedBytes,'source mutations may not affect an approved certificate');
+syntheticRegister.probes[0].options[0].candidateIds[0]=sourceOriginal;
+syntheticRegister.probes[0].options[0].witnesses[0].candidateId=sourceOriginal;
+const forgedCert=structuredClone(cert);
+assert.throws(()=>allocate(inv,seedA,seedB,{...req,realProbeCertification:forgedCert}),
+ /certified real-probe option content/,'a matching-looking copy without approved provenance must fail');
 const certifiedReq={...req,realProbeCertification:cert};
 const certifiedResult=allocate(inv,seedA,seedB,certifiedReq);
 assert.ok(validateRealVisibleCoverage(inv,certifiedResult.visibleManifest,certifiedReq));
-const certifiedContext={inventory:inv,visibleManifest:certifiedResult.visibleManifest,requirements:certifiedReq,
- trustedVisibleManifestSha256:digest('SMMC-G4-CAL-VISIBLE-v1',certifiedResult.visibleManifest)};
+const certifiedContext=approvedContext(inv,certifiedReq,certifiedResult);
 assert.ok(verifyHidden(sealHidden(certifiedResult.hiddenPrivate,nonce),
  certifiedResult.hiddenPrivate,nonce,certifiedContext));
+const alteredInv=structuredClone(inv);
+alteredInv.clusters[0].members=[...alteredInv.clusters[0].members,'INJECTED-ID'];
+assert.throws(()=>allocate(alteredInv,seedA,seedB,certifiedReq),
+ /certified real-probe option content or inventory changed/,'inventory mutated since certification must fail');
 const omitted=structuredClone(certifiedResult.visibleManifest);
 omitted.visibleIds=omitted.visibleIds.filter(id=>id!==designated);
 assert.throws(()=>validateRealVisibleCoverage(inv,omitted,certifiedReq),/real investigation visible coverage missing/);
@@ -77,6 +130,43 @@ borrowed.probes[0].options[0].witnesses[0].evidenceRecordIds=['UNKNOWN-EVIDENCE'
 assert.throws(()=>certifyRealProbes(inv,borrowed,
  digest('SMMC-G4-CAL-REAL-PROBES-v1',borrowed)),/missing\/foreign evidence/);
 assert.throws(()=>allocate({...inv,poolCount:661},seedA,seedB,req),/661-case real cohort requires/);
+// Historical precommitment substitution: two valid hidden draws, one identical visible
+// manifest, and even TWO valid custodian signatures. Only the originally archived
+// receipt is authorized; replay/hash/signature validity alone must not suffice.
+const tiny={
+ poolCount:3,poolSha256:'1'.repeat(64),largest:1,edgeRegister:[],crossEdges:[],
+ clusters:[
+  {id:'C:V',members:['V'],labels:['PROBE:VISIBLE']},
+  {id:'C:H1',members:['H1'],labels:['PROBE:HIDDEN']},
+  {id:'C:H2',members:['H2'],labels:['PROBE:HIDDEN']}
+ ],
+ counts:{'PROBE:VISIBLE':1,'PROBE:HIDDEN':2}
+};
+const tinyReq={visible:['PROBE:VISIBLE'],hidden:['PROBE:HIDDEN'],
+ limits:{visibleClusters:1,visibleIds:1,hiddenClusters:1,hiddenIds:1,giantComponentMax:2}};
+const tinyA=allocate(tiny,seedA,seedB,tinyReq);
+let tinyB;
+for(const c of '0123456789abcdef'){
+ const tryDraw=allocate(tiny,seedA,c.repeat(64),tinyReq);
+ if(tryDraw.hiddenPrivate.hiddenIds[0]!==tinyA.hiddenPrivate.hiddenIds[0]){tinyB=tryDraw;break;}
+}
+assert.ok(tinyB,'synthetic fixture must exhibit alternate valid hidden selection');
+assert.deepEqual(tinyB.visibleManifest,tinyA.visibleManifest,'visible manifest is the same across commitments');
+const originalTinyCommit=sealHidden(tinyA.hiddenPrivate,nonce);
+const alternateTinyCommit=sealHidden(tinyB.hiddenPrivate,nonce);
+const trustedTinyContext=approvedContext(tiny,tinyReq,tinyA,originalTinyCommit);
+assert.ok(verifyHidden(originalTinyCommit,tinyA.hiddenPrivate,nonce,trustedTinyContext));
+const lateSigned=signSyntheticReceipt(alternateTinyCommit,tinyB,tinyReq);
+assert.equal(verifyHidden(alternateTinyCommit,tinyB.hiddenPrivate,nonce,{
+ ...trustedTinyContext,signedPrecommitmentReceipt:lateSigned}),false,
+ 'a later validly signed commitment cannot replace the historically archived receipt');
+assert.equal(verifyHidden(alternateTinyCommit,tinyB.hiddenPrivate,nonce,trustedTinyContext),false,
+ 'a different valid challenge cannot borrow the original signed commitment');
+assert.equal(verifyHidden(alternateTinyCommit,tinyB.hiddenPrivate,nonce,{
+ ...trustedTinyContext,
+ signedPrecommitmentReceipt:lateSigned,
+ trustedArchivedReceiptSha256:digest(PRECOMMIT_RECEIPT_DOMAIN,lateSigned)}),true,
+ 'replacement is valid only when the OUTSIDE verifier changes its pinned trust anchor; custody must forbid this');
 // Deliberately crossed, source-linked hidden/visible case IDs must fail closed.
 const exposureTamper=structuredClone(inv);
 exposureTamper.crossEdges=[[result.visibleManifest.visibleIds[0],result.hiddenPrivate.hiddenIds[0],
