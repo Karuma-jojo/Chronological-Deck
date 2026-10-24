@@ -1,0 +1,28 @@
+name: SMMC Gate 4 executable contract checks
+on:
+  pull_request:
+    paths:
+      - "course/smmc/arsenal/tribunal-*.mjs"
+      - "scripts/validate-smmc-gate4-contract-v1.mjs"
+      - "docs/smmc/ARSENAL-GATE4-EXECUTABLE-SCHEMA-REVIEW.md"
+      - ".github/workflows/smmc-gate4-contract.yml"
+  push:
+    branches:
+      - main
+      - "codex/smmc-arsenal-gate4-*"
+    paths:
+      - "course/smmc/arsenal/tribunal-*.mjs"
+      - "scripts/validate-smmc-gate4-contract-v1.mjs"
+      - ".github/workflows/smmc-gate4-contract.yml"
+jobs:
+  contract-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify inherited SMMC/Gate 0-3 source invariants
+        run: node scripts/validate-smmc-authoring-v1.mjs
+      - name: Validate Gate 4 PENDING scaffolding and negative fixtures
+        run: node scripts/validate-smmc-gate4-contract-v1.mjs
