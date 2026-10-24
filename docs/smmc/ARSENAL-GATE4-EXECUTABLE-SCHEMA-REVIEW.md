@@ -105,3 +105,31 @@ Added synthetic negative fixtures for missing terminal-case certificate, changed
 **No source-faithfulness or mathematical truth is mechanically certified.** The synthetic approvals are test data, not real independent acceptance. All 661 actual cases remain `PENDING`, with zero dispositions or shared relations. **No Gate 4 calibration, mass adjudication or Gate 5–15 work is authorized.**
 
 Independent exact-head review must verify the updated invariants and repeat both original attacks *without trusting the developer-created test pins*. Do not merge without a fresh independent exact-head PASS.
+
+
+## PR #194 fourth independent review — evidence closure and handle alpha-renaming
+
+**Rejected exact head:** `b2404ce1ad84299ef58130dbd387e2b78f019523`. Two SEV-1 builder-level corrections are submitted for **new independent exact-head review**, not self-accepted as Gate-4 implementation.
+
+### G4-R194-07 — Protect substantive evidence as well as evidence IDs
+
+- `gate4TerminalCaseDigest(case, relationById, evidenceById)` now hashes `{case, related, evidence}`; the `evidence` field includes complete, stable serialized records for every source reference in the case and *all linked relations*.
+- `gate4TerminalRelationDigest(relation, evidenceById)` independently hashes `{relation, evidence}`. Evidence roots include support/synthesis/counterevidence and each declared intended-domain evidence ID; case roots include owned/raw/comparison facts and syntheses.
+- Evidence closure follows `linkedRecordIds` **transitively**, validates every dependency's presence and stable ID, rejects cycles, and sorts by `recordId` for deterministic content addressing. This protects the entire reachable evidence chain against same-ID rewriting (claim, limitations, source fields or linked descendants) while preserving frozen Gate-2 evidence under the inherited Gate-2 source pins.
+- Terminal acceptance requires matching content hashes from **externally accepted immutable review records**, which must be computed from the complete evidence index at original independent review. No digest can prove reviewer independence when the caller supplies a self-authored trusted map.
+
+**Executed synthetic fixtures:** Modify an accepted direct synthesis's `claim` or `doesNotEstablish` → reject. Modify the same fields on a transitively linked synthesis → reject. Reorder independent evidence records in dependency-topological order → accept. A valid versioned terminal reopen can introduce a *new*, separately named synthesis without changing the old accepted record, but needs fresh scope/content pins before handing off again. Existing silent rationale/relation changes and history-reopen checks remain intact.
+
+### G4-R194-08 — Normalize review-only temporary component handles
+
+- `gate4RelationClaimIdentity` maps each handle to its `{ownerRawCandidateId,definition,scope,operation}` and substitutes tagged, normalized component meaning where the handle is used in the direction's targets. The normalized `components` multiset is deterministically sorted.
+- **SPLIT** target order is not mathematically significant; its component targets are sorted by normalized meaning. **COMBO** target order *is* significant and is retained, including distinctions between raw-candidate inputs and local component targets.
+- Literal handle names remain unchanged in the stored source records, with the established owner/bijection/full-definition checks. Normalization changes only the *claim-identity fingerprint*: it is neither a canonical Gate-5 object nor a mathematical proof of equivalence between differently described operations.
+
+**Executed synthetic fixtures:** A second SPLIT record with the same mathematical claim but consistently renamed component handles now fails the one-authoritative-record check. A genuinely changed component operation still produces a distinct claim; distinct ordered COMBO operations remain distinct.
+
+### Explicit release and trust boundary
+
+The review-only scaffold remains **661 PENDING / 0 adjudications / 0 relation proposals**. All changes are confined to the existing five draft-PR files. Gate 0–3 and the accepted Gate 4 contract are unchanged. External accepted-case, relation, scope, and history pins must be independently authenticated; test-produced hashes are not governance certificates. Future validation after reopening also needs the independently accepted *historical* evidence/decision artifacts to establish that old evidence was not rewritten as part of the reopening process.
+
+**DO NOT MERGE** without a fresh exact-head independent implementation PASS. Calibration, mass adjudication, Gate 5 and later gates remain locked.
