@@ -695,7 +695,13 @@ for(const [evidenceId,field,value] of [
  negativeCount++;
 }
 const evidenceOrderChange=structuredClone(completeBoth);
-evidenceOrderChange.supplementalEvidence.reverse();
+// Reorder INDEPENDENT records while preserving the declared linkedRecordIds
+// topological order (dependency before dependent synthesis).
+const unrelated=evidenceOrderChange.supplementalEvidence
+ .find(x=>x.recordId==="G4-EVID-synthetic-1");
+evidenceOrderChange.supplementalEvidence=[
+ unrelated,...evidenceOrderChange.supplementalEvidence.filter(x=>x!==unrelated)
+];
 assert.equal(validateGate4Bundle(evidenceOrderChange,raw,evidence,g3,bothOpts).completed,2);
 const changedAcceptedRelation=structuredClone(completeBoth);
 changedAcceptedRelation.relationHypotheses[0].mathematicalClaim.description=
