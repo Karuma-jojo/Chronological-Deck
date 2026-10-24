@@ -29,6 +29,17 @@ assert.ok(verifyHidden(sealed,result.hiddenPrivate,nonce));
 assert.equal(verifyHidden(sealed,result.hiddenPrivate,'d'.repeat(64)),false);
 assert.ok(!JSON.stringify(sealed).includes('RAW-SYN'));
 assert.ok(!JSON.stringify(result.visibleManifest).includes(result.hiddenPrivate.privateSeed));
+// Deliberately crossed, source-linked hidden/visible case IDs must fail closed.
+const exposureTamper=structuredClone(inv);
+exposureTamper.crossEdges=[[result.visibleManifest.visibleIds[0],result.hiddenPrivate.hiddenIds[0],
+  'SYNTHETIC-VISIBLE-REF','SYNTHETIC-HIDDEN-REF']];
+assert.throws(()=>allocate(exposureTamper,seedA,seedB,req),/evidence leakage/);
+// A stratum with exactly one supplier cannot serve both sealed and visible sets.
+const singleton=structuredClone(inv);
+let found=false;for(const c of singleton.clusters){if(c.labels.includes('REF:UNRESOLVED')){if(found)c.labels=c.labels.filter(x=>x!=='REF:UNRESOLVED');else found=true;}}
+singleton.counts['REF:UNRESOLVED']=1;
+assert.throws(()=>preflight(singleton,{...req,visible:['REF:UNRESOLVED'],hidden:['REF:UNRESOLVED']}),/singleton dual-set stratum/);
+
 assert.throws(()=>allocate(inv,'weak',seedB,req),/seed must/);
 assert.throws(()=>allocate(inv,seedA,seedA,req),/seeds must differ/);
 assert.throws(()=>preflight(inv,{...req,visible:['PROBE:NONEXISTENT']}),/missing mandatory/);
