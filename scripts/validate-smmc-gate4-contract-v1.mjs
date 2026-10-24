@@ -7,8 +7,10 @@ import { ARSENAL_GATE2_RAW_CANDIDATES as raw, ARSENAL_GATE2_RAW_EVIDENCE as evid
 import { ARSENAL_GATE3_GRANULARITY_RECORDS as g3 } from "../course/smmc/arsenal/granularity-ledger-v0.mjs";
 import { ARSENAL_GATE4_PENDING_BUNDLE as pending } from "../course/smmc/arsenal/tribunal-ledger-v0.mjs";
 import { validateGate4Bundle, createGate4PendingBundle, gate3Ref,
-  gate4ContentDigest, gate4TerminalCaseDigest, gate4RelationClaimIdentity } from "../course/smmc/arsenal/tribunal-contract-v1.mjs";
+  gate4ContentDigest, gate4TerminalCaseDigest,
+  gate4TerminalRelationDigest, gate4RelationClaimIdentity } from "../course/smmc/arsenal/tribunal-contract-v1.mjs";
 const sha = b => createHash("sha256").update(b).digest("hex");
+const indexEvidence=b=>new Map([...evidence,...b.supplementalEvidence].map(x=>[x.recordId,x]));
 const checkBlob=(path,expected)=>{
   const bytes=readFileSync(path);
   const actual=createHash("sha1").update("blob "+bytes.length+"\0").update(bytes).digest("hex");
@@ -401,6 +403,32 @@ multi.cases.find(x=>x.candidateId===componentOwner).relationHypothesisIds.push(
  split1.hypothesisId,split2.hypothesisId
 );
 assert.equal(validateGate4Bundle(multi,raw,evidence,g3).relations,3);
+// G4-R194-08: identical SPLIT components with ALPHA-RENAMED review handles
+// must not mint a second authoritative hypothesis ID.
+const alphaRename=structuredClone(multi);
+const alphaA=alphaRename.relationHypotheses[1];
+const alphaB=alphaRename.relationHypotheses[2];
+alphaB.mathematicalClaim=structuredClone(alphaA.mathematicalClaim);
+const renamed=new Map(alphaB.localComponentHandles.map((handle,i)=>[
+ handle,"G4-TMP-G4-CASE-"+componentOwner+"-alias"+(i+1)
+]));
+alphaB.localComponentHandles=alphaB.localComponentHandles.map(x=>renamed.get(x));
+alphaB.componentDefinitions=alphaB.componentDefinitions.map(def=>({
+ ...def,handle:renamed.get(def.handle)
+}));
+alphaB.relationDirection.targetIds=alphaB.relationDirection.targetIds.map(x=>renamed.get(x));
+assert.equal(gate4RelationClaimIdentity(alphaA),gate4RelationClaimIdentity(alphaB));
+assert.throws(()=>validateGate4Bundle(alphaRename,raw,evidence,g3),
+ /duplicated exact relation claim must share one hypothesis ID/);
+negativeCount++;
+// Reusing review-only handle names with different mathematical operations
+// remains a DIFFERENT claim, rather than a forced structural merge.
+const genuinelyDifferentSplit=structuredClone(alphaRename);
+genuinelyDifferentSplit.relationHypotheses[2].componentDefinitions[0].operation=
+ "A demonstrably different synthetic component operation";
+assert.notEqual(gate4RelationClaimIdentity(genuinelyDifferentSplit.relationHypotheses[1]),
+ gate4RelationClaimIdentity(genuinelyDifferentSplit.relationHypotheses[2]));
+assert.equal(validateGate4Bundle(genuinelyDifferentSplit,raw,evidence,g3).relations,3);
 // R194-02: being a participant in A's SPLIT cannot make B the source.
 const stolenSplitPrimary=structuredClone(multi);
 const nonSource=ids.find(id=>id!==componentOwner);
@@ -468,6 +496,12 @@ combo.relationHypotheses.push({
 });
 for(const id of ids)combo.cases.find(x=>x.candidateId===id).relationHypothesisIds.push("G4-HYP-synthetic-combo");
 assert.equal(validateGate4Bundle(combo,raw,evidence,g3).relations,2);
+// Ordered COMBO target sequence is NOT erased by alpha-normalization.
+const sequenceA=combo.relationHypotheses.find(x=>x.relationKind==="COMBO");
+const sequenceB=structuredClone(sequenceA);
+sequenceB.relationDirection.targetIds.reverse();
+assert.notEqual(gate4RelationClaimIdentity(sequenceA),
+ gate4RelationClaimIdentity(sequenceB));
 // R194-02: the COMBO's component supplier is not the source expression.
 const stolenComboPrimary=structuredClone(combo);
 stolenComboPrimary.cases.find(c=>c.candidateId!==componentOwner &&
@@ -555,7 +589,7 @@ negativeCount++;
 const acceptedTerminalCases=new Map([[first.tribunalCaseId,{
  acceptedVersion:eventVersion,
  sha256:gate4TerminalCaseDigest(first,new Map(
-   complete.relationHypotheses.map(r=>[r.hypothesisId,r])))
+   complete.relationHypotheses.map(r=>[r.hypothesisId,r])),indexEvidence(complete))
 }]]);
 const terminalOpts={trustedScopeReviews:approvedScope,
  trustedTerminalCases:acceptedTerminalCases};
@@ -592,6 +626,21 @@ assert.equal(validateGate4Bundle(propertyReordered,raw,evidence,g3,terminalOpts)
 // A terminal relation additionally requires its own independently pinned
 // whole-record snapshot, not only the accepted participant-case closure.
 const completeBoth=structuredClone(complete);
+// A second-layer synthesis dependency proves the accepted digest protects a
+// TRANSITIVE referenced support chain, not merely the directly cited record.
+const baseSynthesis=completeBoth.supplementalEvidence.find(x=>x.recordId==="G4-EVID-synthetic-0");
+const priorSupport=baseSynthesis.linkedRecordIds[0];
+const nestedSupport={
+ ...structuredClone(baseSynthesis),
+ recordId:"G4-EVID-synthetic-dependency",
+ claim:"SYNTHETIC nested supporting interpretation",
+ linkedRecordIds:[priorSupport],
+ doesNotEstablish:"No actual official occurrence or accepted mathematical truth"
+};
+completeBoth.supplementalEvidence.splice(
+ completeBoth.supplementalEvidence.findIndex(x=>x.recordId===baseSynthesis.recordId),
+ 0,nestedSupport);
+baseSynthesis.linkedRecordIds.push(nestedSupport.recordId);
 const otherId=ids[1],otherCase=completeBoth.cases.find(c=>c.candidateId===otherId);
 const secondScope={
  ...scope,scopeReviewRecordId:"G4-SCOPE-certified-second-synthetic",
@@ -616,12 +665,12 @@ const relationsById=new Map(completeBoth.relationHypotheses.map(r=>[r.hypothesis
 const trustedCasesBoth=new Map(ids.map(id=>{
  const x=casesById.get(id);
  return [x.tribunalCaseId,{acceptedVersion:eventVersion,
-  sha256:gate4TerminalCaseDigest(x,relationsById)}];
+  sha256:gate4TerminalCaseDigest(x,relationsById,indexEvidence(completeBoth))}];
 }));
 const trustedScopeBoth=new Map([...approvedScope,
  [secondScope.scopeReviewRecordId,digest(secondScope)]]);
 const trustedRelations=new Map([[relation.hypothesisId,{
- acceptedVersion:eventVersion,sha256:gate4ContentDigest(relation)
+ acceptedVersion:eventVersion,sha256:gate4TerminalRelationDigest(relation,indexEvidence(completeBoth))
 }]]);
 const bothOpts={trustedScopeReviews:trustedScopeBoth,
  trustedTerminalCases:trustedCasesBoth,trustedTerminalRelations:trustedRelations};
@@ -630,6 +679,24 @@ assert.throws(()=>validateGate4Bundle(completeBoth,raw,evidence,g3,{
 }),/terminal relation content differs from independently accepted snapshot/);
 negativeCount++;
 assert.equal(validateGate4Bundle(completeBoth,raw,evidence,g3,bothOpts).completed,2);
+// G4-R194-07: neither a directly cited interpretation, its limitations,
+// nor a transitively linked synthesis may be silently replaced.
+for(const [evidenceId,field,value] of [
+ ["G4-EVID-synthetic-0","claim","Contradictory replacement never accepted"],
+ ["G4-EVID-synthetic-0","doesNotEstablish","Changed limitation secretly"],
+ ["G4-EVID-synthetic-dependency","claim","Changed underlying nested evidence"],
+ ["G4-EVID-synthetic-dependency","doesNotEstablish","Different dependency scope"]
+]){
+ const altered=structuredClone(completeBoth);
+ altered.supplementalEvidence.find(x=>x.recordId===evidenceId)[field]=value;
+ assert.throws(()=>validateGate4Bundle(altered,raw,evidence,g3,bothOpts),
+  /terminal case content differs from independently accepted snapshot/,
+  "silent evidence edit: "+evidenceId+"."+field);
+ negativeCount++;
+}
+const evidenceOrderChange=structuredClone(completeBoth);
+evidenceOrderChange.supplementalEvidence.reverse();
+assert.equal(validateGate4Bundle(evidenceOrderChange,raw,evidence,g3,bothOpts).completed,2);
 const changedAcceptedRelation=structuredClone(completeBoth);
 changedAcceptedRelation.relationHypotheses[0].mathematicalClaim.description=
  "SILENT NEW MATHEMATICAL CLAIM WITHOUT REVIEW";
@@ -642,7 +709,7 @@ const forgedCasePins=new Map(ids.map(id=>{
  const c=changedAcceptedRelation.cases.find(z=>z.candidateId===id);
  return [c.tribunalCaseId,{acceptedVersion:eventVersion,
   sha256:gate4TerminalCaseDigest(c,new Map(changedAcceptedRelation.relationHypotheses
-    .map(r=>[r.hypothesisId,r])))}];
+    .map(r=>[r.hypothesisId,r])),indexEvidence(changedAcceptedRelation))}];
 }));
 assert.throws(()=>validateGate4Bundle(changedAcceptedRelation,raw,evidence,g3,{
  ...bothOpts,trustedTerminalCases:forgedCasePins
