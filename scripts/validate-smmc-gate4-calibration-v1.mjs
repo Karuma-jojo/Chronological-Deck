@@ -167,6 +167,25 @@ assert.equal(verifyHidden(alternateTinyCommit,tinyB.hiddenPrivate,nonce,{
  signedPrecommitmentReceipt:lateSigned,
  trustedArchivedReceiptSha256:digest(PRECOMMIT_RECEIPT_DOMAIN,lateSigned)}),true,
  'replacement is valid only when the OUTSIDE verifier changes its pinned trust anchor; custody must forbid this');
+// Greedy can die even when an exact joint witness exists. Never reseed or
+// silently replace a seeded draw with the feasibility oracle's witness.
+const greedyTrap={
+ poolCount:5,poolSha256:'2'.repeat(64),largest:1,edgeRegister:[],crossEdges:[],
+ clusters:[
+  {id:'C:A',members:['A'],labels:['H1','H2','V1','V2']},
+  {id:'C:B',members:['B'],labels:['H1']},
+  {id:'C:C',members:['C'],labels:['H2']},
+  {id:'C:D',members:['D'],labels:['V1']},
+  {id:'C:E',members:['E'],labels:['V2']}
+ ],
+ counts:{H1:2,H2:2,V1:2,V2:2}
+};
+const greedyReq={visible:['V1','V2'],hidden:['H1','H2'],
+ limits:{visibleClusters:1,visibleIds:1,hiddenClusters:2,hiddenIds:2,giantComponentMax:2}};
+assert.equal(proveJointFeasibility(greedyTrap,greedyReq).feasible,true,
+ 'non-seeded exact feasibility exists');
+assert.throws(()=>allocate(greedyTrap,seedA,seedB,greedyReq),/VISIBLE infeasible/,
+ 'greedy hidden selection must STOP rather than secretly backtrack or reseed');
 // Deliberately crossed, source-linked hidden/visible case IDs must fail closed.
 const exposureTamper=structuredClone(inv);
 exposureTamper.crossEdges=[[result.visibleManifest.visibleIds[0],result.hiddenPrivate.hiddenIds[0],
