@@ -36,19 +36,36 @@ export const gate4ContentDigest = obj =>
 // Only the mathematically claim-defining fields belong in a hypothesis identity.
 // Evidence/reviewer/status metadata are attributes of ONE shared record, not a
 // reason to invent another authoritative ID for the same exact proposed claim.
+// Temporary component names are alpha-bound review handles, not part of a
+// mathematical claim's identity. Normalize every handle by the mathematical
+// content it denotes, including owner, definition, scope, and operation.
+const componentMeaning = def => ({
+  ownerRawCandidateId:def.ownerRawCandidateId,
+  definition:def.definition,scope:def.scope,operation:def.operation
+});
 export function gate4RelationClaimIdentity(r) {
-  const claim = r.mathematicalClaim;
+  const claim=r.mathematicalClaim;
+  const components=new Map(r.componentDefinitions.map(def=>[def.handle,componentMeaning(def)]));
+  const normalizedComponents=[...components.values()].sort((a,b)=>
+    stableJson(a).localeCompare(stableJson(b)));
+  const normalizedTarget=id => components.has(id)
+    ? {role:"LOCAL_COMPONENT",meaning:components.get(id)}
+    : {role:"RAW_CANDIDATE",candidateId:id};
+  // An SPLIT is a set of source-owned decomposed components, not an ordered
+  // series. COMBO IS ordered: A then B may differ from B then A.
+  const targets=r.relationDirection?.targetIds.map(normalizedTarget)||[];
+  const normalizedTargets=r.relationKind==="SPLIT"
+    ? [...targets].sort((a,b)=>stableJson(a).localeCompare(stableJson(b)))
+    : targets;
   return stableJson({
     relationKind:r.relationKind,
     participants:[...r.participantRawCandidateIds].sort(),
     direction:r.relationDirection===null ? null : {
       kind:r.relationDirection.kind,
       sourceId:r.relationDirection.sourceId,
-      targetIds:r.relationKind==="SPLIT"
-        ? [...r.relationDirection.targetIds].sort()
-        : [...r.relationDirection.targetIds],
+      targets:normalizedTargets
     },
-    components:[...r.componentDefinitions].sort((a,b)=>a.handle.localeCompare(b.handle)),
+    components:normalizedComponents,
     mathematicalClaim:{
       description:claim.description,
       comparisonScope:claim.comparisonScope,
@@ -60,16 +77,60 @@ export function gate4RelationClaimIdentity(r) {
     }
   });
 }
-// Captures the substantive case PLUS its authoritative shared hypotheses,
-// including PROPOSED hypotheses not yet terminal as separate records. A changed
-// mathematical relation cannot silently rewrite an accepted case's rationale.
-export function gate4TerminalCaseDigest(c,relationById) {
+// Protect the CONTENT of every evidence record relied upon by a terminal
+// treatment, not just the record IDs. Follow synthesis-linked dependencies
+// transitively. Frozen Gate-2 records remain anchored to the accepted ore;
+// every Gate-4 supplemental record is included as an exact stable snapshot.
+function gate4EvidenceClosure(rootIds,evidenceById) {
+  invariant(evidenceById instanceof Map,"terminal digest requires full frozen/supplemental evidence index");
+  const visited=new Set(),inProgress=new Set(),collected=new Map();
+  const visit=id=>{
+    invariant(nonempty(id),"terminal evidence closure contains invalid reference");
+    if(visited.has(id))return;
+    invariant(!inProgress.has(id),"terminal evidence dependency cycle "+id);
+    const e=evidenceById.get(id);
+    invariant(e && e.recordId===id,"terminal evidence dependency missing: "+id);
+    inProgress.add(id);
+    for(const child of e.linkedRecordIds||[]){
+      invariant(nonempty(child),"terminal evidence has invalid linked dependency: "+id);
+      visit(child);
+    }
+    inProgress.delete(id);
+    visited.add(id);
+    collected.set(id,e);
+  };
+  for(const id of rootIds)visit(id);
+  return [...collected.entries()].sort(([a],[b])=>a.localeCompare(b))
+    .map(([recordId,record])=>({recordId,record}));
+}
+const gate4CaseEvidenceRoots=c=>[
+  ...c.rawEvidenceRecordIds,...c.comparisonEvidenceRecordIds,
+  ...c.candidateOwnedFacts.map(f=>f.evidenceRecordId),
+  ...c.comparativeFacts.map(f=>f.evidenceRecordId),
+  ...c.synthesisRecordIds
+];
+const gate4RelationEvidenceRoots=r=>[
+  ...r.supportEvidenceRecordIds,...r.synthesisRecordIds,
+  ...r.counterEvidenceRecordIds,
+  ...r.mathematicalClaim.intendedDomains.flatMap(dom=>dom.evidenceRecordIds)
+];
+export function gate4TerminalCaseDigest(c,relationById,evidenceById) {
+  invariant(relationById instanceof Map,"terminal case digest requires relation index");
   const related=c.relationHypothesisIds.map(id=>{
     const r=relationById.get(id);
     if(!r)throw Error("Gate4: terminal case references missing relation "+id);
     return r;
   }).sort((a,b)=>a.hypothesisId.localeCompare(b.hypothesisId));
-  return gate4ContentDigest({case:c,related});
+  const evidence=gate4EvidenceClosure([
+    ...gate4CaseEvidenceRoots(c),
+    ...related.flatMap(gate4RelationEvidenceRoots)
+  ],evidenceById);
+  return gate4ContentDigest({case:c,related,evidence});
+}
+export function gate4TerminalRelationDigest(r,evidenceById) {
+  return gate4ContentDigest({relation:r,
+    evidence:gate4EvidenceClosure(gate4RelationEvidenceRoots(r),evidenceById)
+  });
 }
 export const gate3Ref = row => "G3-SHA256-" + sha256(row);
 
@@ -589,7 +650,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
     invariant(pin && /^[0-9a-f]{40}$/.test(pin.acceptedVersion) &&
       /^[0-9a-f]{64}$/.test(pin.sha256) &&
       pin.acceptedVersion===accepted.acceptedVersion &&
-      pin.sha256===gate4TerminalCaseDigest(c,relations),
+      pin.sha256===gate4TerminalCaseDigest(c,relations,known),
       "terminal case content differs from independently accepted snapshot; versioned reopen required");
   }
   for(const r of bundle.relationHypotheses.filter(x=>x.reviewStatus==="REVIEWED_FOR_HANDOFF")){
@@ -597,7 +658,7 @@ export function validateGate4Bundle(bundle,rawCandidates,rawEvidence,gate3Rows,{
       ? trustedTerminalRelations.get(r.hypothesisId):null;
     invariant(pin && /^[0-9a-f]{40}$/.test(pin.acceptedVersion) &&
       /^[0-9a-f]{64}$/.test(pin.sha256) &&
-      pin.sha256===gate4ContentDigest(r) &&
+      pin.sha256===gate4TerminalRelationDigest(r,known) &&
       r.participantRawCandidateIds.every(id=>{
         const seq=historyByCase.get(id)||[];
         return seq.at(-1)?.toStatus==="REVIEWED_FOR_HANDOFF" &&
