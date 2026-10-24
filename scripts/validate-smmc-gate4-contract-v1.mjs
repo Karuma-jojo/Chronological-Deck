@@ -8,7 +8,8 @@ import { ARSENAL_GATE3_GRANULARITY_RECORDS as g3 } from "../course/smmc/arsenal/
 import { ARSENAL_GATE4_PENDING_BUNDLE as pending } from "../course/smmc/arsenal/tribunal-ledger-v0.mjs";
 import { validateGate4Bundle, createGate4PendingBundle, gate3Ref,
   gate4ContentDigest, gate4TerminalCaseDigest,
-  gate4TerminalRelationDigest, gate4RelationClaimIdentity } from "../course/smmc/arsenal/tribunal-contract-v1.mjs";
+  gate4TerminalRelationDigest, gate4HistoricalEvidenceDigest,
+  gate4RelationClaimIdentity } from "../course/smmc/arsenal/tribunal-contract-v1.mjs";
 const sha = b => createHash("sha256").update(b).digest("hex");
 const indexEvidence=b=>new Map([...evidence,...b.supplementalEvidence].map(x=>[x.recordId,x]));
 const checkBlob=(path,expected)=>{
@@ -403,6 +404,20 @@ multi.cases.find(x=>x.candidateId===componentOwner).relationHypothesisIds.push(
  split1.hypothesisId,split2.hypothesisId
 );
 assert.equal(validateGate4Bundle(multi,raw,evidence,g3).relations,3);
+// G4-R194-10: duplicate mathematical components cannot count as a two-way
+// SPLIT merely because different temporary handles were assigned.
+const duplicateSplitComponents=structuredClone(multi);
+const dupSplit=duplicateSplitComponents.relationHypotheses.find(r=>r.relationKind==="SPLIT");
+for(const field of ["definition","scope","operation"])
+  dupSplit.componentDefinitions[1][field]=dupSplit.componentDefinitions[0][field];
+assert.notEqual(dupSplit.componentDefinitions[0].handle,
+  dupSplit.componentDefinitions[1].handle);
+assert.throws(()=>validateGate4Bundle(duplicateSplitComponents,raw,evidence,g3),
+  /SPLIT has duplicate mathematical component meanings under different handles/);
+negativeCount++;
+// Existing multi fixture passes with truly distinct declared operations.
+assert.notEqual(split1.componentDefinitions[0].operation,
+  split1.componentDefinitions[1].operation);
 // G4-R194-08: identical SPLIT components with ALPHA-RENAMED review handles
 // must not mint a second authoritative hypothesis ID.
 const alphaRename=structuredClone(multi);
@@ -730,6 +745,19 @@ negativeCount++;
 const pinnedPrefix=new Map([[eventVersion,{
  eventsCount:complete.statusHistory.length,sha256:digest(complete.statusHistory)
 }]]);
+// This map is synthetic fixture data standing in for an INDEPENDENTLY
+// ACCEPTED immutable manifest, not something production can mint from the
+// currently inspected Gate4 bundle.
+const historicalIds=complete.supplementalEvidence.map(e=>e.recordId).sort();
+const acceptedEvidenceManifest={
+ acceptedVersion:eventVersion,evidenceRecordIds:historicalIds,
+ sha256:gate4HistoricalEvidenceDigest(historicalIds,indexEvidence(complete))
+};
+const trustedHistoryEvidence=new Map([[eventVersion,acceptedEvidenceManifest]]);
+const historicalOptions={
+ trustedStatusHistoryPrefixes:pinnedPrefix,
+ trustedHistoricalEvidenceManifests:trustedHistoryEvidence
+};
 const reopened=structuredClone(complete);
 reopened.cases.find(x=>x.candidateId===ids[0]).workStatus="CHALLENGED";
 reopened.statusHistory.push({
@@ -739,9 +767,35 @@ reopened.statusHistory.push({
  acceptedVersion:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
  reopenedFromVersion:eventVersion
 });
-assert.equal(validateGate4Bundle(reopened,raw,evidence,g3,{
+assert.equal(validateGate4Bundle(reopened,raw,evidence,g3,historicalOptions).challenged,1);
+// G4-R194-09: history status can move back into review, but accepted evidence
+// bytes under each prior ID remain fixed by the independent historical manifest.
+const tamperedHistoricalEvidence=structuredClone(reopened);
+tamperedHistoricalEvidence.supplementalEvidence.find(
+ e=>e.recordId==="G4-EVID-synthetic-0").claim=
+ "Contradiction replacing the earlier accepted synthesis after reopening";
+assert.throws(()=>validateGate4Bundle(tamperedHistoricalEvidence,raw,evidence,g3,
+ historicalOptions),/previously accepted historical evidence was changed/);
+negativeCount++;
+const deletedHistoricalEvidence=structuredClone(reopened);
+deletedHistoricalEvidence.supplementalEvidence=deletedHistoricalEvidence.supplementalEvidence
+ .filter(e=>e.recordId!=="G4-EVID-synthetic-1");
+assert.throws(()=>validateGate4Bundle(deletedHistoricalEvidence,raw,evidence,g3,
+ historicalOptions),/previously accepted historical evidence missing/);
+negativeCount++;
+// Without an externally accepted historical manifest the reopen fails even
+// when the old status event prefix itself has been pinned.
+assert.throws(()=>validateGate4Bundle(reopened,raw,evidence,g3,{
  trustedStatusHistoryPrefixes:pinnedPrefix
-}).challenged,1);
+}),/previously accepted historical evidence was changed, deleted or lacks independent manifest/);
+negativeCount++;
+const historicalManifestWithOmission=new Map([[eventVersion,{
+ ...acceptedEvidenceManifest,evidenceRecordIds:[historicalIds[0]]
+}]]);
+assert.throws(()=>validateGate4Bundle(reopened,raw,evidence,g3,{
+ ...historicalOptions,trustedHistoricalEvidenceManifests:historicalManifestWithOmission
+}),/previously accepted historical evidence was changed, deleted or lacks independent manifest/);
+negativeCount++;
 // Proper versioned reopening MAY add genuinely new evidence; previously
 // accepted supplemental records remain unchanged. The new terminal decision
 // requires a NEW externally supplied review and exact content pin.
@@ -788,17 +842,29 @@ const newTerminalPin=new Map([[reopenedCase.tribunalCaseId,{
 }]]);
 const newScopePins=new Map([[newScope.scopeReviewRecordId,digest(newScope)]]);
 assert.throws(()=>validateGate4Bundle(reaccepted,raw,evidence,g3,{
- trustedStatusHistoryPrefixes:pinnedPrefix,
+ ...historicalOptions,
  trustedScopeReviews:newScopePins,trustedTerminalCases:acceptedTerminalCases
 }),/terminal case content differs from independently accepted snapshot/);
 negativeCount++;
 assert.equal(validateGate4Bundle(reaccepted,raw,evidence,g3,{
- trustedStatusHistoryPrefixes:pinnedPrefix,
+ ...historicalOptions,
  trustedScopeReviews:newScopePins,trustedTerminalCases:newTerminalPin
 }).completed,1);
+// A completed newly reviewed case also cannot launder a retroactive edit to
+// an earlier accepted evidence ID through a newly signed terminal-case digest.
+const rewrittenAfterReapproval=structuredClone(reaccepted);
+rewrittenAfterReapproval.supplementalEvidence.find(
+ e=>e.recordId==="G4-EVID-synthetic-0").doesNotEstablish=
+ "Earlier independent evidence limitation secretly changed during reopen";
+assert.throws(()=>validateGate4Bundle(rewrittenAfterReapproval,raw,evidence,g3,{
+ ...historicalOptions,trustedScopeReviews:newScopePins,
+ trustedTerminalCases:newTerminalPin
+}),/previously accepted historical evidence was changed/);
+negativeCount++;
 const unpinned=structuredClone(reopened);
-assert.throws(()=>validateGate4Bundle(unpinned,raw,evidence,g3),
- /externally pinned accepted prior-history prefix/);
+assert.throws(()=>validateGate4Bundle(unpinned,raw,evidence,g3,{
+ trustedHistoricalEvidenceManifests:trustedHistoryEvidence
+}),/externally pinned accepted prior-history prefix/);
 negativeCount++;
 const inventedVersion=structuredClone(reopened);
 inventedVersion.statusHistory.at(-1).reopenedFromVersion="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
@@ -816,7 +882,7 @@ negativeCount++;
 const mutatedHistory=structuredClone(reopened);
 mutatedHistory.statusHistory[0].reviewer="Rewritten historical reviewer";
 assert.throws(()=>validateGate4Bundle(mutatedHistory,raw,evidence,g3,{
- trustedStatusHistoryPrefixes:pinnedPrefix
+ ...historicalOptions
 }),/externally pinned accepted prior-history prefix/);
 negativeCount++;
 console.log("Gate4 REVIEW CANDIDATE structural checks passed:",
