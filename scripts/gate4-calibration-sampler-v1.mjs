@@ -1,8 +1,8 @@
 // Gate 4 calibration v0.3 — SELECTION-ONLY library. No real cohort drawn at import.
 // No dispositions, judgments, canonical ontology objects, or trusted pins are produced.
 import { createHash, verify as verifySignature } from 'node:crypto';
-export const VERSION='G4-CAL-SAMPLER-v0.3.1';
-export const REQUIREMENTS_VERSION='G4-CAL-REQUIREMENTS-v0.3.1';
+export const VERSION='G4-CAL-SAMPLER-v0.3.2';
+export const REQUIREMENTS_VERSION='G4-CAL-REQUIREMENTS-v0.3.2';
 // Keep the pinned 661-row canonical pool serialization byte-identical.
 export const POOL_VERSION='G4-CAL-SAMPLER-v0.2.0';
 export const BASE='eeb54bb0cf25a2022e1b7e40d6e15ee2e46f82ad';
@@ -45,17 +45,17 @@ const deepFreeze=value=>{
  }
  return value;
 };
-const certificateInventory=inv=>({
- poolSha256:inv.poolSha256,
- clusters:inv.clusters.map(c=>({id:c.id,members:c.members})),
- evidenceOwners:inv.evidenceOwners
-});
+// Snapshot the ENTIRE canonical inventory, including coverage labels, counts,
+// cross-owner evidence-exposure edges, cluster topology and auxiliary registers.
+// A field allowlist here is unsafe: allocation consumes more than just ID ownership.
+const certificateInventory=inv=>deepFreeze(structuredClone(inv));
+const inventoryFingerprint=inv=>digest(inventoryDomain,inv);
 function requireCertifiedRealProbes(inv,certificate){
  const attested=certificate&&certifiedRealRegistries.get(certificate);
  yes(attested&&certificate.digest===attested.sourceDigest&&
   certificate.poolSha256===inv.poolSha256&&
   digest(certificateDomain,certificate)===attested.certificateDigest&&
-  digest(inventoryDomain,certificateInventory(inv))===attested.inventoryDigest,
+  inventoryFingerprint(inv)===attested.inventoryDigest,
   'certified real-probe option content or inventory changed after approval; STOP');
  yes(Object.isFrozen(certificate)&&Object.isFrozen(certificate.probes)&&
   certificate.probes.every(p=>Object.isFrozen(p)&&Object.isFrozen(p.options)&&
@@ -200,10 +200,12 @@ export function certifyRealProbes(inv,registry,independentApprovedDigest){
   return {kind:p.kind,options:opts};
  });
  const certificate=deepFreeze({digest:independentApprovedDigest,poolSha256:inv.poolSha256,probes});
+ const approvedInventory=certificateInventory(inv);
  certifiedRealRegistries.set(certificate,{
   sourceDigest:independentApprovedDigest,
   certificateDigest:digest(certificateDomain,certificate),
-  inventoryDigest:digest(inventoryDomain,certificateInventory(inv))
+  inventoryDigest:inventoryFingerprint(approvedInventory),
+  inventorySnapshot:approvedInventory
  });
  return certificate;
 }
