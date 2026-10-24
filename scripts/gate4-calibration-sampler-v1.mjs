@@ -1,7 +1,9 @@
 // Gate 4 calibration v0.2 — SELECTION-ONLY library. No real cohort drawn at import.
 // No dispositions, judgments, canonical ontology objects, or trusted pins are produced.
 import { createHash } from 'node:crypto';
-export const VERSION='G4-CAL-SAMPLER-v0.2.0';
+export const VERSION='G4-CAL-SAMPLER-v0.3.0';
+// Keep the pinned 661-row canonical pool serialization byte-identical.
+export const POOL_VERSION='G4-CAL-SAMPLER-v0.2.0';
 export const BASE='eeb54bb0cf25a2022e1b7e40d6e15ee2e46f82ad';
 export const PINS=Object.freeze({
   raw:'a9cbeb55a2a829a881e228be6d6b22f667baa2c7',
@@ -18,6 +20,19 @@ export const norm=s=>s.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/g
 const uniq=x=>[...new Set(x)];
 const sorted=x=>[...x].sort();
 const exactHex=s=>typeof s==='string'&&/^[0-9a-f]{64}$/.test(s);
+// All names denote SOURCE-FIRST INVESTIGATIONS, never preassigned dispositions.
+export const REAL_PROBES=Object.freeze([
+ 'RECAST_SYNONYM_SPECIFIC','SMALL_CASES_UMBRELLA','MINIMAL_DESCENT_DISTINCTION',
+ 'CONTRAPOSITIVE_DIRECT_OPAQUE','CRT_THIN_RICH_SCOPE','GRAPH_FAMILY_TRANSFORM',
+ 'AUXILIARY_UMBRELLA_MOVE','OFFICIAL_BUNDLED','CRUX_SOURCE_DEFINED',
+ 'GATE3_UNRESOLVED','DIVERGENT_SAME_NAME','EVIDENCE_RICH_THIN_PAIR',
+ 'SOURCE_SCOPE_CONFLICT','FULL_DOMAIN_ALIAS_SPECIALIZATION','SAME_SCOPE_TRANSITIVITY_FALSIFIER',
+ 'COMPONENT_OWNER_CLOSURE','DIRECTIONAL_CONTAINMENT_CYCLE',
+ 'STANDALONE_COMPOUND','SPLIT_COMBO_DUAL','POTENTIAL_EVIDENCE_HOLD'
+]);
+const certifiedRealRegistries=new WeakSet();
+const realProbeDomain='SMMC-G4-CAL-REAL-PROBES-v1';
+const eq=(x,y)=>canonicalJson(x)===canonicalJson(y);
 // Only frozen observation fields; a name match is a research probe, not a verdict.
 const FAMILIES=Object.freeze([
  ['RECAST',/(recast|change your point of view|cross.domain|translation|reformulation)/i],
@@ -51,9 +66,9 @@ export function poolManifest(raw,g3,evidence,{expected=661}={}){
   return {candidateId:id,raw:r,gate3:byG3.get(id)};
  });
  const ev=sorted(evidence.map(e=>e.recordId)).map(id=>evidence.find(e=>e.recordId===id));
- const payload={version:VERSION,base:BASE,pins:PINS,rows,evidence:ev};
+ const payload={version:POOL_VERSION,base:BASE,pins:PINS,rows,evidence:ev};
  const bytes=Buffer.from('SMMC-G4-CAL-POOL-v1\n'+canonicalJson(payload)+'\n','utf8');
- return {version:VERSION,sha256:createHash('sha256').update(bytes).digest('hex'),byteLength:bytes.length,payload};
+ return {version:POOL_VERSION,sha256:createHash('sha256').update(bytes).digest('hex'),byteLength:bytes.length,payload};
 }
 // Diagnostic labels are strata ONLY. They NEVER create connected-component edges.
 export function inventory(raw,g3,evidence,{expected=661}={}) {
@@ -96,16 +111,103 @@ export function inventory(raw,g3,evidence,{expected=661}={}) {
  const clusterById=new Map(clusters.flatMap(c=>c.members.map(id=>[id,c.id])));
  const crossEdges=sorted(uniq(crossing.filter(([a,b])=>clusterById.get(a)!==clusterById.get(b)).map(x=>canonicalJson(x)))).map(x=>JSON.parse(x));
  const counts={};for(const x of clusters)for(const t of x.labels)counts[t]=(counts[t]||0)+1;
- return {poolSha256:manifest.sha256,poolBytes:manifest.byteLength,poolCount:raw.length,clusters,edgeRegister,crossEdges,counts,largest:Math.max(...clusters.map(c=>c.members.length))};
+ const evidenceOwners=Object.fromEntries(raw.map(c=>[c.candidateId,sorted(c.evidenceRecordIds)]));
+ return {poolSha256:manifest.sha256,poolBytes:manifest.byteLength,poolCount:raw.length,clusters,edgeRegister,crossEdges,counts,largest:Math.max(...clusters.map(c=>c.members.length)),evidenceOwners};
 }
 // Fixed selection requirements, no trial-disposition labels. CRT probe only if present.
 export function requirements(inv){
  const origin=sorted(Object.keys(inv.counts).filter(x=>x.startsWith('ORIGIN:')));
  const must=['PROBE:RECAST','PROBE:SMALL_CASES','PROBE:MINIMAL_DESCENT','PROBE:CONTRAPOSITIVE_DIRECT','PROBE:GRAPH','PROBE:AUXILIARY','PROBE:CRUX','BUNDLE:BUNDLED_MOVES','REF:UNRESOLVED','NAME:DIVERGENT_G3'];
  if(inv.counts['PROBE:CRT'])must.push('PROBE:CRT');
- const visible=sorted([...origin,...must]);
+ const visible=sorted([...origin,...must,'EVIDENCE:THIN','EVIDENCE:OFFICIAL']);
  const hidden=['REF:UNRESOLVED','BUNDLE:BUNDLED_MOVES','EVIDENCE:OFFICIAL','ACTION:LABEL_ONLY'];
  return {visible,hidden,limits:{visibleClusters:48,visibleIds:160,hiddenClusters:16,hiddenIds:64,giantComponentMax:64}};
+}
+// An external reviewer accepts a source-first register of possible real
+// investigations. It cannot attest that a MERGE/SPLIT/HOLD outcome is true.
+// The caller-supplied digest is an external trust root, NOT a self-approval.
+export function certifyRealProbes(inv,registry,independentApprovedDigest){
+ yes(registry&&typeof registry==='object'&&!Array.isArray(registry),'independent real-probe register required; STOP');
+ yes(registry.version==='G4-CAL-REAL-PROBES-v1'&&registry.poolSha256===inv.poolSha256,
+  'real-probe register references wrong version/pool');
+ yes(exactHex(independentApprovedDigest)&&
+  digest(realProbeDomain,registry)===independentApprovedDigest,
+  'independently approved real-probe register digest absent/incorrect; STOP');
+ yes(Array.isArray(registry.probes)&&registry.probes.length===REAL_PROBES.length,
+  'real-probe register incomplete; STOP');
+ const kinds=registry.probes.map(p=>p.kind);
+ yes(eq(sorted(kinds),sorted(REAL_PROBES)),
+  'real-probe register missing mandatory section-7 investigation; STOP');
+ const memberToCluster=new Map(inv.clusters.flatMap(c=>c.members.map(id=>[id,c.id])));
+ const probes=registry.probes.map(p=>{
+  yes(typeof p.researchQuestion==='string'&&p.researchQuestion.trim().length>14 &&
+   typeof p.sourceFirstReviewRef==='string'&&p.sourceFirstReviewRef.trim().length>7,
+   'real-probe investigation lacks source-first question/provenance');
+  yes(Array.isArray(p.options)&&p.options.length>0,
+   'real-probe investigation has no eligible frozen group: '+p.kind);
+  const opts=p.options.map(option=>{
+   yes(Array.isArray(option.candidateIds)&&option.candidateIds.length>=1 &&
+    new Set(option.candidateIds).size===option.candidateIds.length,
+    'invalid real-probe candidate group');
+   yes(Array.isArray(option.witnesses)&&option.witnesses.length===option.candidateIds.length,
+    'real-probe group must cite each candidate-owned source evidence');
+   const ids=sorted(option.candidateIds);
+   yes(option.witnesses.every(w=>ids.includes(w.candidateId)&&
+      Array.isArray(w.evidenceRecordIds)&&w.evidenceRecordIds.length>0&&
+      w.evidenceRecordIds.every(id=>inv.evidenceOwners[w.candidateId]?.includes(id))),
+      'real-probe witness missing/foreign evidence: '+p.kind);
+   yes(new Set(option.witnesses.map(w=>w.candidateId)).size===ids.length,
+    'real-probe witness ownership not bijective');
+   return {candidateIds:ids,clusterIds:sorted(new Set(ids.map(id=>memberToCluster.get(id))))};
+  });
+  return {kind:p.kind,options:opts};
+ });
+ const certificate=Object.freeze({digest:independentApprovedDigest,probes});
+ certifiedRealRegistries.add(certificate);
+ return certificate;
+}
+function prepareRealDraw(inv,req){
+ if(inv.poolCount===661)yes(req.realProbeCertification &&
+   certifiedRealRegistries.has(req.realProbeCertification) &&
+   exactHex(req.realProbeCertification.digest)&&
+   Array.isArray(req.realProbeCertification.probes)&&
+   req.realProbeCertification.probes.length===REAL_PROBES.length,
+   '661-case real cohort requires an independently approved complete source-first investigation register; STOP');
+}
+function mustNotCross(inv,a,b){return !crosses(inv,a,b).length;}
+function selectRegisteredProbes(inv,req,seed,hidden){
+ const reg=req.realProbeCertification;
+ if(!reg)return [];
+ const byId=new Map(inv.clusters.map(c=>[c.id,c]));
+ const hiddenIds=new Set(hidden.map(c=>c.id)),selected=new Map();
+ for(const probe of [...reg.probes].sort((a,b)=>a.kind.localeCompare(b.kind))){
+  const ranked=[];
+  for(const opt of probe.options){
+   if(opt.clusterIds.some(id=>hiddenIds.has(id)))continue;
+   const additions=opt.clusterIds.filter(id=>!selected.has(id)).map(id=>byId.get(id));
+   if(additions.some(x=>!x))continue;
+   const trial=[...selected.values(),...additions];
+   if(trial.length>req.limits.visibleClusters||
+      trial.reduce((n,c)=>n+c.members.length,0)>req.limits.visibleIds||
+      !mustNotCross(inv,trial,hidden))continue;
+   ranked.push({additions,addedCount:additions.length,
+    addedIds:additions.reduce((n,c)=>n+c.members.length,0),
+    score:randomScore(seed,inv.poolSha256,'REAL:'+probe.kind,opt.clusterIds.join('|'))});
+  }
+  yes(ranked.length>0,'real investigation source-first coverage infeasible: '+probe.kind+'; STOP');
+  ranked.sort((a,b)=>a.addedCount-b.addedCount||a.addedIds-b.addedIds||
+    a.score.localeCompare(b.score));
+  for(const c of ranked[0].additions)selected.set(c.id,c);
+ }
+ return [...selected.values()].sort((a,b)=>a.id.localeCompare(b.id));
+}
+export function validateRealVisibleCoverage(inv,visibleManifest,req){
+ prepareRealDraw(inv,req);
+ const selected=new Set(visibleManifest.visibleIds);
+ const missing=(req.realProbeCertification?.probes||[]).filter(p=>
+  !p.options.some(o=>o.candidateIds.every(id=>selected.has(id)))).map(p=>p.kind);
+ yes(!missing.length,'real investigation visible coverage missing: '+missing.join(',')+'; STOP');
+ return true;
 }
 export function preflight(inv,req=requirements(inv)){
  yes(inv.poolCount>0 && inv.clusters.length>0,'empty candidate pool');
@@ -160,8 +262,10 @@ export function proveJointFeasibility(inv,req=requirements(inv),maxNodes=200000)
 }
 const randomScore=(seed,pool,phase,id)=>sha('SMMC-G4-CAL-SELECT-v1\n'+phase+'\n'+pool+'\n'+seed+'\n'+id+'\n');
 const enforceSeed=s=>yes(exactHex(s),'seed must be 64 lowercase hex chars from independent 256-bit CSPRNG');
-function cover(pool,required,seed,poolHash,phase,limits,forbidden=[],viability=()=>true){
- let left=new Set(required),chosen=[],forbid=new Set(forbidden),usedIds=0;
+function cover(pool,required,seed,poolHash,phase,limits,forbidden=[],viability=()=>true,initial=[]){
+ let left=new Set(required),chosen=[...initial],forbid=new Set(forbidden),usedIds=chosen.reduce((n,c)=>n+c.members.length,0);
+ for(const c of chosen)for(const tag of c.labels)left.delete(tag);
+ yes(chosen.length<=limits.clusters&&usedIds<=limits.ids,phase+' mandatory investigations exceed caps; STOP');
  while(left.size){
   const opts=pool.filter(c=>!forbid.has(c.id)&&chosen.every(x=>x.id!==c.id)&&c.members.length+usedIds<=limits.ids&&chosen.length<limits.clusters)
    .map(c=>({c,gain:c.labels.filter(x=>left.has(x)).length,score:randomScore(seed,poolHash,phase,c.id)}))
@@ -174,20 +278,37 @@ function cover(pool,required,seed,poolHash,phase,limits,forbidden=[],viability=(
 }
 function crosses(inv,visible,hidden){const v=new Set(visible.flatMap(c=>c.members)),h=new Set(hidden.flatMap(c=>c.members));return inv.crossEdges.filter(([a,b])=>(v.has(a)&&h.has(b))||(v.has(b)&&h.has(a)))}
 export function allocate(inv,publicSeed,privateSeed,req=requirements(inv)){
- preflight(inv,req);enforceSeed(publicSeed);enforceSeed(privateSeed);
+ prepareRealDraw(inv,req);preflight(inv,req);enforceSeed(publicSeed);enforceSeed(privateSeed);
  yes(publicSeed!==privateSeed,'public/private seeds must differ');
  const hidden=cover(inv.clusters,req.hidden,privateSeed,inv.poolSha256,'HIDDEN',{clusters:req.limits.hiddenClusters,ids:req.limits.hiddenIds},[],current=>{
   const used=new Set(current.map(x=>x.id));
   return req.visible.every(t=>inv.clusters.some(c=>!used.has(c.id)&&c.labels.includes(t)));
  });
  const hIds=new Set(hidden.map(c=>c.id));
- const visible=cover(inv.clusters,req.visible,publicSeed,inv.poolSha256,'VISIBLE',{clusters:req.limits.visibleClusters,ids:req.limits.visibleIds},[...hIds]);
+ const initial=selectRegisteredProbes(inv,req,publicSeed,hidden);
+ const visible=cover(inv.clusters,req.visible,publicSeed,inv.poolSha256,'VISIBLE',
+   {clusters:req.limits.visibleClusters,ids:req.limits.visibleIds},[...hIds],
+   current=>mustNotCross(inv,current,hidden),initial);
  yes(!crosses(inv,visible,hidden).length,'hidden/visible cross-cluster evidence leakage; STOP');
  const hashIds=arr=>digest('SMMC-G4-CAL-COHORT-v1',arr.map(x=>({cluster:x.id,ids:x.members})).sort((a,b)=>a.cluster.localeCompare(b.cluster)));
  const visibleManifest={version:VERSION,poolSha256:inv.poolSha256,publicSeed,visibleClusters:visible.map(x=>x.id),visibleIds:sorted(visible.flatMap(x=>x.members)),visibleSha256:hashIds(visible)};
  const hiddenPrivate={version:VERSION,poolSha256:inv.poolSha256,privateSeed,hiddenClusters:hidden.map(x=>x.id),hiddenIds:sorted(hidden.flatMap(x=>x.members)),hiddenSha256:hashIds(hidden)};
+ validateRealVisibleCoverage(inv,visibleManifest,req);
  return {visibleManifest,hiddenPrivate};
 }
 // Nonenumerable public commitment: nonce + private 256-bit seed must remain sealed.
 export function sealHidden(hiddenPrivate,nonce){enforceSeed(nonce);return {version:VERSION,poolSha256:hiddenPrivate.poolSha256,commitment:digest('SMMC-G4-CAL-SEALED-CHALLENGE-v1',{nonce,...hiddenPrivate})}}
-export function verifyHidden(commitment,hiddenPrivate,nonce){return sealHidden(hiddenPrivate,nonce).commitment===commitment.commitment&&commitment.poolSha256===hiddenPrivate.poolSha256;}
+export function verifyHidden(commitment,hiddenPrivate,nonce,context){
+ // Reveal only after an independently pinned visible manifest and rubric freeze.
+ if(!context||!context.inventory||!context.visibleManifest||!context.requirements||
+    !exactHex(context.trustedVisibleManifestSha256))return false;
+ try{
+  const {inventory:inv,visibleManifest:visible,requirements:req}=context;
+  if(digest('SMMC-G4-CAL-VISIBLE-v1',visible)!==context.trustedVisibleManifestSha256)return false;
+  const replay=allocate(inv,visible.publicSeed,hiddenPrivate.privateSeed,req);
+  if(!eq(replay.visibleManifest,visible)||!eq(replay.hiddenPrivate,hiddenPrivate))return false;
+  if(commitment.version!==VERSION||commitment.poolSha256!==inv.poolSha256||
+     commitment.poolSha256!==visible.poolSha256)return false;
+  return sealHidden(hiddenPrivate,nonce).commitment===commitment.commitment;
+ }catch{return false;}
+}
