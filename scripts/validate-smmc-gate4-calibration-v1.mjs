@@ -43,6 +43,12 @@ assert.ok(!Object.keys(result.visibleManifest).some(k=>/disposition|canonical|ju
 import { ARSENAL_GATE2_RAW_CANDIDATES as realRaw, ARSENAL_GATE2_RAW_EVIDENCE as realEvidence } from '../course/smmc/arsenal/candidates-v0.mjs';
 import { ARSENAL_GATE3_GRANULARITY_RECORDS as realG3 } from '../course/smmc/arsenal/granularity-ledger-v0.mjs';
 const real=inventory(realRaw,realG3,realEvidence);
+assert.equal(real.poolSha256,'d404cf6b3b4810df7843881a9ffb27ea106753db9e753966ef0a6000a671ca5a','frozen canonical pool drift');
+assert.equal(real.poolBytes,1739956,'frozen canonical pool byte count drift');
+const realReq=requirements(real);
+const necessary=preflight(real,realReq);
+const joint=proveJointFeasibility(real,realReq);
+console.log('G4_CAL_PREFLIGHT',JSON.stringify({clusterCount:real.clusters.length,largest:real.largest,dualSetFeasible:joint.feasible,exploredNodes:joint.exploredNodes,hiddenIDsNotDrawn:true}));
 const summary={sha256:real.poolSha256,bytes:real.poolBytes,raw:real.poolCount,clusters:real.clusters.length,largest:real.largest,coallocationEdges:real.edgeRegister.length,crossEvidenceEdges:real.crossEdges.length,originTags:Object.keys(real.counts).filter(x=>x.startsWith('ORIGIN:')).sort(),coverage:requirements(real).visible.map(k=>[k,real.counts[k]||0])};
 console.log('G4_CAL_POOL_MANIFEST',JSON.stringify(summary));
 console.log('G4_CAL_TESTS_PASS',JSON.stringify({synthetic:true,realDraw:false,realAdjudications:0}));
