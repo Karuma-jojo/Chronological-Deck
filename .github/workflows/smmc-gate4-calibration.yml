@@ -1,9 +1,10 @@
-name: SMMC Gate 4 calibration protocol v0.2 checks
+name: SMMC Gate 4 calibration protocol v0.3 checks
 on:
   pull_request:
     paths:
       - "scripts/gate4-calibration-sampler-v1.mjs"
       - "scripts/validate-smmc-gate4-calibration-v1.mjs"
+      - "scripts/verify-smmc-gate4-pool-independent.py"
       - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.2-DRAFT.md"
       - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
       - ".github/workflows/smmc-gate4-calibration.yml"
@@ -14,6 +15,7 @@ on:
     paths:
       - "scripts/gate4-calibration-sampler-v1.mjs"
       - "scripts/validate-smmc-gate4-calibration-v1.mjs"
+      - "scripts/verify-smmc-gate4-pool-independent.py"
       - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
       - ".github/workflows/smmc-gate4-calibration.yml"
 jobs:
@@ -35,3 +37,11 @@ jobs:
           node scripts/validate-smmc-gate4-contract-v1.mjs
       - name: Run synthetic sampler adversarial tests and hash real frozen pool (NO DRAW)
         run: node scripts/validate-smmc-gate4-calibration-v1.mjs
+      - name: Independently rebuild 661-row pool bytes in Python (NO DRAW)
+        run: |
+          node --input-type=module -e '
+            import { ARSENAL_GATE2_RAW_CANDIDATES as raw, ARSENAL_GATE2_RAW_EVIDENCE as evidence } from "./course/smmc/arsenal/candidates-v0.mjs";
+            import { ARSENAL_GATE3_GRANULARITY_RECORDS as g3 } from "./course/smmc/arsenal/granularity-ledger-v0.mjs";
+            process.stdout.write(JSON.stringify({raw,g3,evidence}));
+          ' > "$RUNNER_TEMP/g4cal-frozen-inputs.json"
+          python3 scripts/verify-smmc-gate4-pool-independent.py "$RUNNER_TEMP/g4cal-frozen-inputs.json"
