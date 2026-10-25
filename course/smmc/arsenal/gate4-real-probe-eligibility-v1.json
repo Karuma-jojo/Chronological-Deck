@@ -1,0 +1,840 @@
+{
+  "version": "G4-CAL-REAL-PROBES-v1",
+  "poolSha256": "d404cf6b3b4810df7843881a9ffb27ea106753db9e753966ef0a6000a671ca5a",
+  "probes": [
+    {
+      "kind": "RECAST_SYNONYM_SPECIFIC",
+      "researchQuestion": "Across the two Zeitz expressions and a concrete official graph transformation, what candidate-owned evidence distinguishes full-domain identity, a particular reformulation, and only overlapping purposes?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p01",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-z-recast",
+            "RAW-SOURCE-z-change-point-view",
+            "RAW-OFFICIAL-116"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-z-recast",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-recast-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-change-point-view",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-change-point-view-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-OFFICIAL-116",
+              "evidenceRecordIds": [
+                "E-RAW-OFFICIAL-116-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "SMALL_CASES_UMBRELLA",
+      "researchQuestion": "Does numerical experimentation denote one operation or a source-supported family involving smaller instances, tabulation and pattern search, and how are its outputs distinguished from proof?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p02",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-z-numerical-experiment",
+            "RAW-SOURCE-z-make-easier",
+            "RAW-SOURCE-z-hands-dirty"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-z-numerical-experiment",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-numerical-experiment-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-make-easier",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-make-easier-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-hands-dirty",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-hands-dirty-source"
+              ]
+            }
+          ]
+        },
+        {
+          "candidateIds": [
+            "RAW-SOURCE-z-numerical-experiment",
+            "RAW-SOURCE-z-look-patterns"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-z-numerical-experiment",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-numerical-experiment-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-look-patterns",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-look-patterns-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "MINIMAL_DESCENT_DISTINCTION",
+      "researchQuestion": "How do smallest-counterexample proof and infinite descent differ in their assumed objects, well-founded measure and contradiction, across the source expressions and thin project tags?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p03",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-smallest-counterexample",
+            "RAW-SOURCE-e-infinite-descent",
+            "RAW-SOURCE-p-infinite-descent",
+            "RAW-LEGACY-minimal-counterexample",
+            "RAW-LEGACY-descent"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-smallest-counterexample",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-smallest-counterexample-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-e-infinite-descent",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-e-infinite-descent-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-p-infinite-descent",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-p-infinite-descent-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-LEGACY-minimal-counterexample",
+              "evidenceRecordIds": [
+                "E-RAW-LEGACY-minimal-counterexample-schema"
+              ]
+            },
+            {
+              "candidateId": "RAW-LEGACY-descent",
+              "evidenceRecordIds": [
+                "E-RAW-LEGACY-descent-schema"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "CONTRAPOSITIVE_DIRECT_OPAQUE",
+      "researchQuestion": "What do the frozen DIRECT/CONTRAPOSITIVE project tags establish beyond vocabulary, and how should their unresolved meanings be compared with separately sourced proof outlines?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p04",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-LEGACY-direct",
+            "RAW-LEGACY-contrapositive",
+            "RAW-SOURCE-h-direct-proof",
+            "RAW-SOURCE-h-contrapositive-proof",
+            "RAW-SOURCE-v-contrapositive",
+            "RAW-SOURCE-z-contrapositive"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-LEGACY-direct",
+              "evidenceRecordIds": [
+                "E-RAW-LEGACY-direct-schema"
+              ]
+            },
+            {
+              "candidateId": "RAW-LEGACY-contrapositive",
+              "evidenceRecordIds": [
+                "E-RAW-LEGACY-contrapositive-schema"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-direct-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-direct-proof-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-contrapositive-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-contrapositive-proof-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-v-contrapositive",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-v-contrapositive-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-contrapositive",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-contrapositive-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "CRT_THIN_RICH_SCOPE",
+      "researchQuestion": "Across the project bridge, book theorem and official use, which CRT hypotheses and deployment domains are evidenced for each expression, and which remain missing?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p05",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-BRIDGE-090",
+            "RAW-OFFICIAL-011",
+            "RAW-SOURCE-p-crt"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-BRIDGE-090",
+              "evidenceRecordIds": [
+                "E-RAW-BRIDGE-090-01"
+              ]
+            },
+            {
+              "candidateId": "RAW-OFFICIAL-011",
+              "evidenceRecordIds": [
+                "E-RAW-OFFICIAL-011-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-p-crt",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-p-crt-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "GRAPH_FAMILY_TRANSFORM",
+      "researchQuestion": "Which expressions denote graph vocabulary or a method family, which describe representation change, and what operations are actually supported by the official and bridge expressions?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p06",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-e-graph-theory",
+            "RAW-SOURCE-z-graph-tactic",
+            "RAW-LEGACY-graph-reformulation",
+            "RAW-BRIDGE-063",
+            "RAW-OFFICIAL-116"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-e-graph-theory",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-e-graph-theory-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-graph-tactic",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-graph-tactic-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-LEGACY-graph-reformulation",
+              "evidenceRecordIds": [
+                "E-RAW-LEGACY-graph-reformulation-schema"
+              ]
+            },
+            {
+              "candidateId": "RAW-BRIDGE-063",
+              "evidenceRecordIds": [
+                "E-RAW-BRIDGE-063-01"
+              ]
+            },
+            {
+              "candidateId": "RAW-OFFICIAL-116",
+              "evidenceRecordIds": [
+                "E-RAW-OFFICIAL-116-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "AUXILIARY_UMBRELLA_MOVE",
+      "researchQuestion": "What evidence distinguishes the auxiliary-object project tag, Zeitz's geometric drawing technique and the source-defined phantom-point construction?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p07",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-LEGACY-auxiliary-object",
+            "RAW-SOURCE-z-draw-auxiliary",
+            "RAW-SOURCE-z-phantom-point"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-LEGACY-auxiliary-object",
+              "evidenceRecordIds": [
+                "E-RAW-LEGACY-auxiliary-object-schema"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-draw-auxiliary",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-draw-auxiliary-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-phantom-point",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-phantom-point-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "OFFICIAL_BUNDLED",
+      "researchQuestion": "For the official basis-extension/counting expression, what independently intelligible roles and operational coupling are supported by its own occurrence?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p08",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-OFFICIAL-088"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-OFFICIAL-088",
+              "evidenceRecordIds": [
+                "E-RAW-OFFICIAL-088-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "CRUX_SOURCE_DEFINED",
+      "researchQuestion": "Does Zeitz use Crux Move as an operation, an explanatory role played by different operations, or another source-local concept relative to strategy/tactic/tool?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p09",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-z-crux-move",
+            "RAW-SOURCE-z-strategy-term",
+            "RAW-SOURCE-z-tactic-term",
+            "RAW-SOURCE-z-tool-term"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-z-crux-move",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-crux-move-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-strategy-term",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-strategy-term-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-tactic-term",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-tactic-term-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-tool-term",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-tool-term-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "GATE3_UNRESOLVED",
+      "researchQuestion": "For a real candidate assessed UNRESOLVED by Gate 3, which boundaries can direct source inspection clarify, and which treatment questions remain genuinely open?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p10",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-smallest-counterexample"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-smallest-counterexample",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-smallest-counterexample-source"
+              ]
+            }
+          ]
+        },
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-direct-proof"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-direct-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-direct-proof-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "DIVERGENT_SAME_NAME",
+      "researchQuestion": "Why do the two Contrapositive Proof expressions have differing Gate-3 signatures, and what does their separately inspected evidence support about identity and scope?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p11",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-contrapositive-proof",
+            "RAW-SOURCE-v-contrapositive"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-contrapositive-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-contrapositive-proof-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-v-contrapositive",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-v-contrapositive-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "EVIDENCE_RICH_THIN_PAIR",
+      "researchQuestion": "How can comparison preserve the difference between an opaque project lead and a source-described method or occurrence with the same normalized name?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p12",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-LEGACY-contrapositive",
+            "RAW-SOURCE-z-contrapositive"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-LEGACY-contrapositive",
+              "evidenceRecordIds": [
+                "E-RAW-LEGACY-contrapositive-schema"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-contrapositive",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-contrapositive-source"
+              ]
+            }
+          ]
+        },
+        {
+          "candidateIds": [
+            "RAW-BRIDGE-090",
+            "RAW-OFFICIAL-011",
+            "RAW-SOURCE-p-crt"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-BRIDGE-090",
+              "evidenceRecordIds": [
+                "E-RAW-BRIDGE-090-01"
+              ]
+            },
+            {
+              "candidateId": "RAW-OFFICIAL-011",
+              "evidenceRecordIds": [
+                "E-RAW-OFFICIAL-011-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-p-crt",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-p-crt-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "SOURCE_SCOPE_CONFLICT",
+      "researchQuestion": "How do Engel's positive-real trigonometric substitution and Putnam and Beyond's cosine-parametrized functional equation constrain a full intended-domain comparison?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p13",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-e-trig-substitution",
+            "RAW-SOURCE-p-trig-substitution"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-e-trig-substitution",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-e-trig-substitution-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-p-trig-substitution",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-p-trig-substitution-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "FULL_DOMAIN_ALIAS_SPECIALIZATION",
+      "researchQuestion": "Do the general contradiction outline and its conditional-target outline support full identity, proper specialization, or only a common logical core after target re-encoding?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p14",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-statements-contradiction",
+            "RAW-SOURCE-h-conditional-contradiction"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-statements-contradiction",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-statements-contradiction-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-conditional-contradiction",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-conditional-contradiction-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "SAME_SCOPE_TRANSITIVITY_FALSIFIER",
+      "researchQuestion": "If pairwise identity hypotheses are proposed among contradiction expressions, do they use the same supported domains, and can a sourced distinction falsify a transitive group?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p15",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-z-argument-contradiction",
+            "RAW-SOURCE-p-contradiction",
+            "RAW-SOURCE-h-contradiction-proof",
+            "RAW-SOURCE-h-conditional-contradiction"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-z-argument-contradiction",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-argument-contradiction-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-p-contradiction",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-p-contradiction-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-contradiction-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-contradiction-proof-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-conditional-contradiction",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-conditional-contradiction-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "COMPONENT_OWNER_CLOSURE",
+      "researchQuestion": "Which obligations in the existence-and-uniqueness expression could support potential components, and how must their raw ownership remain coherent across later hypotheses?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p16",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-existence-uniqueness",
+            "RAW-SOURCE-h-existence-proof",
+            "RAW-SOURCE-h-uniqueness-proof"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-existence-uniqueness",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-existence-uniqueness-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-existence-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-existence-proof-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-uniqueness-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-uniqueness-proof-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "DIRECTIONAL_CONTAINMENT_CYCLE",
+      "researchQuestion": "If proper specialization is supported, what determines its direction, and can an inverse claim survive a broader-domain separating case?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p17",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-z-draw-auxiliary",
+            "RAW-SOURCE-z-phantom-point"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-z-draw-auxiliary",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-draw-auxiliary-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-phantom-point",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-phantom-point-source"
+              ]
+            }
+          ]
+        },
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-statements-contradiction",
+            "RAW-SOURCE-h-conditional-contradiction"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-statements-contradiction",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-statements-contradiction-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-conditional-contradiction",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-conditional-contradiction-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "STANDALONE_COMPOUND",
+      "researchQuestion": "When does an expression name a coherent joint proof procedure rather than a list or family of proof roles?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p18",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-existence-uniqueness",
+            "RAW-SOURCE-h-existence-proof",
+            "RAW-SOURCE-h-uniqueness-proof"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-existence-uniqueness",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-existence-uniqueness-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-existence-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-existence-proof-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-uniqueness-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-uniqueness-proof-source"
+              ]
+            }
+          ]
+        },
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-combining-techniques",
+            "RAW-SOURCE-h-direct-proof",
+            "RAW-SOURCE-h-contradiction-proof"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-combining-techniques",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-combining-techniques-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-direct-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-direct-proof-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-contradiction-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-contradiction-proof-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "SPLIT_COMBO_DUAL",
+      "researchQuestion": "For a source-supported multi-role expression, which evidence bears on separable components versus essential coupling, and what contrary reading must survive?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p19",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-BRIDGE-070",
+            "RAW-OFFICIAL-054"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-BRIDGE-070",
+              "evidenceRecordIds": [
+                "E-RAW-BRIDGE-070-01"
+              ]
+            },
+            {
+              "candidateId": "RAW-OFFICIAL-054",
+              "evidenceRecordIds": [
+                "E-RAW-OFFICIAL-054-source"
+              ]
+            }
+          ]
+        },
+        {
+          "candidateIds": [
+            "RAW-SOURCE-h-smallest-counterexample",
+            "RAW-SOURCE-h-induction",
+            "RAW-SOURCE-h-contradiction-proof"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-h-smallest-counterexample",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-smallest-counterexample-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-induction",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-induction-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-contradiction-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-contradiction-proof-source"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "POTENTIAL_EVIDENCE_HOLD",
+      "researchQuestion": "Can legitimate research resolve a thin or role-like expression sufficiently for treatment, and what precisely remains missing if it cannot?",
+      "sourceFirstReviewRef": "docs/smmc/ARSENAL-GATE4-REAL-PROBE-ELIGIBILITY-RESEARCH-v1.md#p20",
+      "options": [
+        {
+          "candidateIds": [
+            "RAW-LEGACY-direct",
+            "RAW-SOURCE-h-direct-proof"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-LEGACY-direct",
+              "evidenceRecordIds": [
+                "E-RAW-LEGACY-direct-schema"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-h-direct-proof",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-h-direct-proof-source"
+              ]
+            }
+          ]
+        },
+        {
+          "candidateIds": [
+            "RAW-SOURCE-z-crux-move",
+            "RAW-SOURCE-z-strategy-term",
+            "RAW-SOURCE-z-tactic-term",
+            "RAW-SOURCE-z-tool-term"
+          ],
+          "witnesses": [
+            {
+              "candidateId": "RAW-SOURCE-z-crux-move",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-crux-move-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-strategy-term",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-strategy-term-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-tactic-term",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-tactic-term-source"
+              ]
+            },
+            {
+              "candidateId": "RAW-SOURCE-z-tool-term",
+              "evidenceRecordIds": [
+                "E-RAW-SOURCE-z-tool-term-source"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
