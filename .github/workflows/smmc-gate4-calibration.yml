@@ -1,0 +1,48 @@
+name: SMMC Gate 4 calibration protocol v0.3.3 checks
+on:
+  pull_request:
+    paths:
+      - "scripts/gate4-calibration-sampler-v1.mjs"
+      - "scripts/validate-smmc-gate4-calibration-v1.mjs"
+      - "scripts/verify-smmc-gate4-pool-independent.py"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.3-DRAFT.md"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
+      - ".github/workflows/smmc-gate4-calibration.yml"
+  push:
+    branches:
+      - main
+      - "codex/smmc-gate4-calibration-*"
+    paths:
+      - "scripts/gate4-calibration-sampler-v1.mjs"
+      - "scripts/validate-smmc-gate4-calibration-v1.mjs"
+      - "scripts/verify-smmc-gate4-pool-independent.py"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-POOL-MANIFEST-v0.2.json"
+      - "docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.3-DRAFT.md"
+      - ".github/workflows/smmc-gate4-calibration.yml"
+jobs:
+  sampler-determinism-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify frozen predecessor blob pins (not a cohort draw)
+        run: |
+          test "$(git hash-object course/smmc/arsenal/candidates-v0.mjs)" = "a9cbeb55a2a829a881e228be6d6b22f667baa2c7"
+          test "$(git hash-object course/smmc/arsenal/granularity-ledger-v0.mjs)" = "a968f71f567d86242d183412ef5df64aefa73c70"
+          test "$(git hash-object course/smmc/arsenal/tribunal-ledger-v0.mjs)" = "9dac5f6b6e21ad144d541ccea9088cd875b44163"
+      - name: Validate accepted SMMC/Gate 4 contract
+        run: |
+          node scripts/validate-smmc-authoring-v1.mjs
+          node scripts/validate-smmc-gate4-contract-v1.mjs
+      - name: Run synthetic sampler adversarial tests and hash real frozen pool (NO DRAW)
+        run: node scripts/validate-smmc-gate4-calibration-v1.mjs
+      - name: Independently rebuild 661-row pool bytes in Python (NO DRAW)
+        run: |
+          node --input-type=module -e '
+            import { ARSENAL_GATE2_RAW_CANDIDATES as raw, ARSENAL_GATE2_RAW_EVIDENCE as evidence } from "./course/smmc/arsenal/candidates-v0.mjs";
+            import { ARSENAL_GATE3_GRANULARITY_RECORDS as g3 } from "./course/smmc/arsenal/granularity-ledger-v0.mjs";
+            process.stdout.write(JSON.stringify({raw,g3,evidence}));
+          ' > "$RUNNER_TEMP/g4cal-frozen-inputs.json"
+          python3 scripts/verify-smmc-gate4-pool-independent.py "$RUNNER_TEMP/g4cal-frozen-inputs.json"
