@@ -1,0 +1,33 @@
+name: SMMC Gate 4 real-option feasibility (no draw)
+on:
+  pull_request:
+    paths:
+      - "course/smmc/arsenal/**"
+      - "scripts/gate4-calibration-sampler-v1.mjs"
+      - "scripts/gate4-real-option-feasibility-v1.mjs"
+      - "scripts/validate-smmc-gate4-real-feasibility-v1.mjs"
+      - "docs/smmc/ARSENAL-GATE4-STEP3-*"
+      - ".github/workflows/smmc-gate4-real-feasibility.yml"
+  push:
+    branches: [main, "codex/smmc-gate4-joint-feasibility-*"]
+    paths:
+      - "course/smmc/arsenal/**"
+      - "scripts/gate4-calibration-sampler-v1.mjs"
+      - "scripts/gate4-real-option-feasibility-v1.mjs"
+      - "scripts/validate-smmc-gate4-real-feasibility-v1.mjs"
+      - "docs/smmc/ARSENAL-GATE4-STEP3-*"
+      - ".github/workflows/smmc-gate4-real-feasibility.yml"
+jobs:
+  seed-free-engineering-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Cross-check finite search against an exhaustive artificial oracle
+        run: node scripts/validate-smmc-gate4-real-feasibility-v1.mjs
+      - name: Verify joint real-option feasibility without producing seeds or cohorts
+        run: |
+          node scripts/gate4-real-option-feasibility-v1.mjs > "$RUNNER_TEMP/g4-real-feasibility.json"
+          diff -u docs/smmc/ARSENAL-GATE4-STEP3-FEASIBILITY-RESULT-v1.json "$RUNNER_TEMP/g4-real-feasibility.json"
