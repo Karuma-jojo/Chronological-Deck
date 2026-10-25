@@ -1,0 +1,27 @@
+{
+  "version": "G4-CAL-JOINT-REAL-FEASIBILITY-v1",
+  "engineeringResult": "FEASIBLE_UNATTESTED",
+  "scope": "ALL_REAL_OPTIONS_AND_MECHANICAL_VISIBLE_HIDDEN_CONSTRAINTS",
+  "researchHeadSha": "a542a312f3b799b06b9e23b3863ffc50f4ae84be",
+  "acceptedSamplerHeadSha": "e9882b895d7adde9b855c93687883f6e1216214c",
+  "poolSha256": "d404cf6b3b4810df7843881a9ffb27ea106753db9e753966ef0a6000a671ca5a",
+  "registryDigest": "dc969b78ea183cfdfbb9adabbb9acd9ad208cb9187c73a414b219df2f8ab9e23",
+  "limits": {
+    "visibleClusters": 48,
+    "visibleIds": 160,
+    "hiddenClusters": 16,
+    "hiddenIds": 64,
+    "giantComponentMax": 64
+  },
+  "maxNodes": 200000,
+  "investigationKinds": 20,
+  "prospectiveOptions": 27,
+  "feasible": true,
+  "exploredNodes": 20,
+  "witnessWithheld": true,
+  "independentCustodianAttestation": "PENDING",
+  "independentApproval": "PENDING",
+  "seedsGenerated": false,
+  "realDraw": false,
+  "productionCertificateCreated": false
+}
