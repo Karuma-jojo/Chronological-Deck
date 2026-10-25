@@ -1,7 +1,8 @@
 // Synthetic selection-only adversarial tests + real-pool digest (NO real draw).
 import assert from 'node:assert/strict';
 import {createHash,generateKeyPairSync,sign} from 'node:crypto';
-import { poolManifest,inventory,requirements,preflight,proveJointFeasibility,allocate,sealHidden,verifyHidden,certifyRealProbes,validateRealVisibleCoverage,REAL_PROBES,canonicalJson,digest,hiddenPrecommitmentBody,precommitmentSignaturePayload,PRECOMMIT_RECEIPT_DOMAIN } from './gate4-calibration-sampler-v1.mjs';
+import { poolManifest,inventory,requirements,preflight,proveJointFeasibility,allocate as allocateProduction,sealHidden,verifyHidden as verifyProductionHidden,certifyRealProbes,validateRealVisibleCoverage as validateProductionCoverage,syntheticOnly,REAL_PROBES,canonicalJson,digest,hiddenPrecommitmentBody,precommitmentSignaturePayload,PRECOMMIT_RECEIPT_DOMAIN } from './gate4-calibration-sampler-v1.mjs';
+const {allocate,verifyHidden,validateRealVisibleCoverage}=syntheticOnly;
 const seedA='a'.repeat(64),seedB='b'.repeat(64),nonce='c'.repeat(64);
 const raw=[],g3=[],evidence=[];
 for(let i=0;i<18;i++){
@@ -47,6 +48,12 @@ function approvedContext(inventoryX,requirement,draw,commitment=sealHidden(draw.
   trustedCustodianPublicKeys:{[syntheticSigner]:syntheticVerifyKey.export({type:'spki',format:'pem'})}};
 }
 const context=approvedContext(inv,req,result);
+assert.equal(result.visibleManifest.syntheticOnly,true);
+assert.equal(result.hiddenPrivate.syntheticOnly,true);
+assert.equal(sealed.syntheticOnly,true);
+assert.equal(context.signedPrecommitmentReceipt.body.syntheticOnly,true);
+assert.equal(verifyProductionHidden(sealed,result.hiddenPrivate,nonce,context),false,
+ 'a valid synthetic receipt/replay must never authorize production');
 assert.equal(verifyHidden(sealed,result.hiddenPrivate,nonce),false,'old contextless hash verification must fail');
 assert.ok(verifyHidden(sealed,result.hiddenPrivate,nonce,context));
 const fabricatedHidden=structuredClone(result.hiddenPrivate);
@@ -162,7 +169,8 @@ const borrowed=structuredClone(syntheticRegister);
 borrowed.probes[0].options[0].witnesses[0].evidenceRecordIds=['UNKNOWN-EVIDENCE'];
 assert.throws(()=>certifyRealProbes(inv,borrowed,
  digest('SMMC-G4-CAL-REAL-PROBES-v1',borrowed)),/missing\/foreign evidence/);
-assert.throws(()=>allocate({...inv,poolCount:661},seedA,seedB,req),/661-case real cohort requires/);
+assert.throws(()=>allocateProduction({...inv,poolCount:661},seedA,seedB,req),
+ /frozen 661-case production inventory/,'caller-declared size cannot establish a production context');
 // Historical precommitment substitution: two valid hidden draws, one identical visible
 // manifest, and even TWO valid custodian signatures. Only the originally archived
 // receipt is authorized; replay/hash/signature validity alone must not suffice.
@@ -250,6 +258,54 @@ const real=inventory(realRaw,realG3,realEvidence);
 assert.equal(real.poolSha256,'d404cf6b3b4810df7843881a9ffb27ea106753db9e753966ef0a6000a671ca5a','frozen canonical pool drift');
 assert.equal(real.poolBytes,1739956,'frozen canonical pool byte count drift');
 const realReq=requirements(real);
+// G4-CR195-01/02: guard checks only. No real register, seed selection or draw.
+// These calls must fail BEFORE either supplied synthetic test seed can be used.
+assert.throws(()=>allocateProduction(real,seedA,seedB,realReq),
+ /independently approved complete source-first investigation register/);
+assert.throws(()=>validateProductionCoverage(real,{visibleIds:[]},realReq),
+ /independently approved complete source-first investigation register/);
+const requirementsAttacks=[
+ ['removed visible tag',q=>{q.visible.pop();}],
+ ['empty visible requirements',q=>{q.visible=[];}],
+ ['empty hidden requirements',q=>{q.hidden=[];}],
+ ['relaxed visible cluster cap',q=>{q.limits.visibleClusters++;}],
+ ['relaxed visible ID cap',q=>{q.limits.visibleIds++;}],
+ ['relaxed hidden cluster cap',q=>{q.limits.hiddenClusters++;}],
+ ['relaxed hidden ID cap',q=>{q.limits.hiddenIds++;}],
+ ['relaxed giant component cap',q=>{q.limits.giantComponentMax++;}]
+];
+for(const [attack,mutate] of requirementsAttacks){
+ const changed=structuredClone(realReq);mutate(changed);
+ // Retain the same certificate object: erasing requirements cannot bypass its use.
+ changed.realProbeCertification=cert;
+ assert.throws(()=>allocateProduction(real,seedA,seedB,changed),
+  /fixed production requirements or caps changed/,attack+' must fail before allocation');
+ assert.throws(()=>validateProductionCoverage(real,{visibleIds:[]},changed),
+  /fixed production requirements or caps changed/,attack+' must fail before validation');
+}
+const downgraded=structuredClone(real),removedCluster=downgraded.clusters.pop();
+downgraded.poolCount-=removedCluster.members.length;downgraded.counts={};
+for(const c of downgraded.clusters)for(const t of c.labels)
+ downgraded.counts[t]=(downgraded.counts[t]||0)+1;
+for(const id of removedCluster.members)delete downgraded.evidenceOwners[id];
+assert.equal(downgraded.poolSha256,real.poolSha256,'retain the real digest in the attack');
+assert.equal(downgraded.poolCount,660);
+assert.throws(()=>allocateProduction(downgraded,seedA,seedB,requirements(downgraded)),
+ /frozen 661-case production inventory/,'count downgrade must not opt out of certification');
+assert.throws(()=>validateProductionCoverage(downgraded,{visibleIds:[]},requirements(downgraded)),
+ /frozen 661-case production inventory/,'empty real coverage must not pass after count downgrade');
+assert.throws(()=>syntheticOnly.allocate(downgraded,seedA,seedB,requirements(downgraded)),
+ /production pool cannot use SYNTHETIC_ONLY/,'real pool cannot escape through the test API');
+assert.throws(()=>syntheticOnly.allocate(real,seedA,seedB,realReq),
+ /production pool cannot use SYNTHETIC_ONLY/);
+const forgedProductionVisible=structuredClone(result.visibleManifest);
+const forgedProductionHidden=structuredClone(result.hiddenPrivate);
+delete forgedProductionVisible.syntheticOnly;delete forgedProductionHidden.syntheticOnly;
+const forgedProductionCommitment=sealHidden(forgedProductionHidden,nonce);
+const forgedProductionContext=approvedContext(inv,req,
+ {visibleManifest:forgedProductionVisible,hiddenPrivate:forgedProductionHidden},forgedProductionCommitment);
+assert.equal(verifyProductionHidden(forgedProductionCommitment,forgedProductionHidden,nonce,
+ forgedProductionContext),false,'stripping test markers and signing again cannot authorize production');
 const necessary=preflight(real,realReq);
 const joint=proveJointFeasibility(real,realReq);
 console.log('G4_CAL_PREFLIGHT',JSON.stringify({clusterCount:real.clusters.length,largest:real.largest,dualSetFeasible:joint.feasible,exploredNodes:joint.exploredNodes,hiddenIDsNotDrawn:true}));

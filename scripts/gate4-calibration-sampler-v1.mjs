@@ -1,10 +1,14 @@
 // Gate 4 calibration v0.3 — SELECTION-ONLY library. No real cohort drawn at import.
 // No dispositions, judgments, canonical ontology objects, or trusted pins are produced.
 import { createHash, verify as verifySignature } from 'node:crypto';
-export const VERSION='G4-CAL-SAMPLER-v0.3.2';
-export const REQUIREMENTS_VERSION='G4-CAL-REQUIREMENTS-v0.3.2';
+export const VERSION='G4-CAL-SAMPLER-v0.3.3';
+export const REQUIREMENTS_VERSION='G4-CAL-REQUIREMENTS-v0.3.3';
 // Keep the pinned 661-row canonical pool serialization byte-identical.
 export const POOL_VERSION='G4-CAL-SAMPLER-v0.2.0';
+const PRODUCTION_POOL=Object.freeze({
+ count:661,bytes:1739956,
+ sha256:'d404cf6b3b4810df7843881a9ffb27ea106753db9e753966ef0a6000a671ca5a'
+});
 export const BASE='eeb54bb0cf25a2022e1b7e40d6e15ee2e46f82ad';
 export const PINS=Object.freeze({
   raw:'a9cbeb55a2a829a881e228be6d6b22f667baa2c7',
@@ -210,11 +214,21 @@ export function certifyRealProbes(inv,registry,independentApprovedDigest){
  return certificate;
 }
 function prepareRealDraw(inv,req){
+ yes(inv&&inv.poolCount===PRODUCTION_POOL.count&&
+  inv.poolBytes===PRODUCTION_POOL.bytes&&inv.poolSha256===PRODUCTION_POOL.sha256,
+  'frozen 661-case production inventory required; STOP');
+ yes(req&&Object.keys(req).every(k=>
+  ['visible','hidden','limits','realProbeCertification'].includes(k))&&
+  eq({visible:req.visible,hidden:req.hidden,limits:req.limits},requirements(inv)),
+  'fixed production requirements or caps changed; STOP');
+ yes(req.realProbeCertification,
+  '661-case real cohort requires an independently approved complete source-first investigation register; STOP');
+ requireCertifiedRealProbes(inv,req.realProbeCertification);
+}
+function prepareSyntheticDraw(inv,req){
+ yes(inv&&inv.poolSha256!==PRODUCTION_POOL.sha256,
+  'production pool cannot use SYNTHETIC_ONLY entry points; STOP');
  if(req.realProbeCertification)requireCertifiedRealProbes(inv,req.realProbeCertification);
- if(inv.poolCount===661)yes(req.realProbeCertification &&
-   Array.isArray(req.realProbeCertification.probes)&&
-   req.realProbeCertification.probes.length===REAL_PROBES.length,
-   '661-case real cohort requires an independently approved complete source-first investigation register; STOP');
 }
 function mustNotCross(inv,a,b){return !crosses(inv,a,b).length;}
 function selectRegisteredProbes(inv,req,seed,hidden){
@@ -245,6 +259,11 @@ function selectRegisteredProbes(inv,req,seed,hidden){
 }
 export function validateRealVisibleCoverage(inv,visibleManifest,req){
  prepareRealDraw(inv,req);
+ yes(visibleManifest?.syntheticOnly===undefined,
+  'synthetic manifest cannot authorize real coverage; STOP');
+ return validateProbeCoverage(inv,visibleManifest,req);
+}
+function validateProbeCoverage(inv,visibleManifest,req){
  const selected=new Set(visibleManifest.visibleIds);
  const missing=(req.realProbeCertification?.probes||[]).filter(p=>
   !p.options.some(o=>o.candidateIds.every(id=>selected.has(id)))).map(p=>p.kind);
@@ -320,7 +339,11 @@ function cover(pool,required,seed,poolHash,phase,limits,forbidden=[],viability=(
 }
 function crosses(inv,visible,hidden){const v=new Set(visible.flatMap(c=>c.members)),h=new Set(hidden.flatMap(c=>c.members));return inv.crossEdges.filter(([a,b])=>(v.has(a)&&h.has(b))||(v.has(b)&&h.has(a)))}
 export function allocate(inv,publicSeed,privateSeed,req=requirements(inv)){
- prepareRealDraw(inv,req);preflight(inv,req);enforceSeed(publicSeed);enforceSeed(privateSeed);
+ return allocateWithMode(inv,publicSeed,privateSeed,req,false);
+}
+function allocateWithMode(inv,publicSeed,privateSeed,req,syntheticOnly){
+ (syntheticOnly?prepareSyntheticDraw:prepareRealDraw)(inv,req);
+ preflight(inv,req);enforceSeed(publicSeed);enforceSeed(privateSeed);
  yes(publicSeed!==privateSeed,'public/private seeds must differ');
  const hidden=cover(inv.clusters,req.hidden,privateSeed,inv.poolSha256,'HIDDEN',{clusters:req.limits.hiddenClusters,ids:req.limits.hiddenIds},[],current=>{
   const used=new Set(current.map(x=>x.id));
@@ -335,13 +358,15 @@ export function allocate(inv,publicSeed,privateSeed,req=requirements(inv)){
  const hashIds=arr=>digest('SMMC-G4-CAL-COHORT-v1',arr.map(x=>({cluster:x.id,ids:x.members})).sort((a,b)=>a.cluster.localeCompare(b.cluster)));
  const visibleManifest={version:VERSION,poolSha256:inv.poolSha256,publicSeed,visibleClusters:visible.map(x=>x.id),visibleIds:sorted(visible.flatMap(x=>x.members)),visibleSha256:hashIds(visible)};
  const hiddenPrivate={version:VERSION,poolSha256:inv.poolSha256,privateSeed,hiddenClusters:hidden.map(x=>x.id),hiddenIds:sorted(hidden.flatMap(x=>x.members)),hiddenSha256:hashIds(hidden)};
- validateRealVisibleCoverage(inv,visibleManifest,req);
+ if(syntheticOnly){visibleManifest.syntheticOnly=true;hiddenPrivate.syntheticOnly=true;}
+ validateProbeCoverage(inv,visibleManifest,req);
  return {visibleManifest,hiddenPrivate};
 }
 // Nonenumerable public commitment: nonce + private 256-bit seed must remain sealed.
 export function sealHidden(hiddenPrivate,nonce){
  enforceSeed(nonce);
  return {version:VERSION,poolSha256:hiddenPrivate.poolSha256,
+  ...(hiddenPrivate.syntheticOnly===true?{syntheticOnly:true}:{}),
   commitment:digest('SMMC-G4-CAL-SEALED-CHALLENGE-v1',{nonce,...hiddenPrivate})};
 }
 // Custodian constructs this body AFTER a protocol head is independently accepted.
@@ -353,6 +378,8 @@ export function hiddenPrecommitmentBody(commitment,visibleManifest,req,{
 }={}){
  yes(commitment&&commitment.version===VERSION&&commitment.poolSha256===visibleManifest.poolSha256,
   'precommitment does not bind the selected pool/version');
+ yes(commitment.syntheticOnly===visibleManifest.syntheticOnly,
+  'precommitment synthetic/production mode mismatch');
  yes(typeof signerId==='string'&&signerId.trim().length>0,
   'precommitment signer identity missing');
  yes(typeof protocolHeadSha==='string'&&/^[0-9a-f]{40}$/.test(protocolHeadSha),
@@ -362,6 +389,7 @@ export function hiddenPrecommitmentBody(commitment,visibleManifest,req,{
   'precommitment UTC timestamp missing or noncanonical');
  return {
   version:'G4-CAL-HIDDEN-PRECOMMIT-v1',protocolVersion:VERSION,
+  ...(visibleManifest.syntheticOnly===true?{syntheticOnly:true}:{}),
   poolPayloadVersion:POOL_VERSION,requirementsVersion:REQUIREMENTS_VERSION,
   protocolHeadSha,poolSha256:commitment.poolSha256,
   requirementsSha256:digest(requirementDomain,req),
@@ -373,6 +401,9 @@ export function precommitmentSignaturePayload(body){
  return Buffer.from(PRECOMMIT_SIGNATURE_DOMAIN+'\n'+canonicalJson(body)+'\n','utf8');
 }
 export function verifyHidden(commitment,hiddenPrivate,nonce,context){
+ return verifyHiddenWithMode(commitment,hiddenPrivate,nonce,context,false);
+}
+function verifyHiddenWithMode(commitment,hiddenPrivate,nonce,context,syntheticOnly){
  // Trust anchors MUST come from an external, independently authenticated archive
  // and governance keyring; never compute them from the submitted reveal.
  if(!context||!context.inventory||!context.visibleManifest||!context.requirements||
@@ -382,6 +413,15 @@ export function verifyHidden(commitment,hiddenPrivate,nonce,context){
     !context.signedPrecommitmentReceipt||!context.trustedCustodianPublicKeys)return false;
  try{
   const {inventory:inv,visibleManifest:visible,requirements:req}=context;
+  if(syntheticOnly){
+   if(visible.syntheticOnly!==true||hiddenPrivate?.syntheticOnly!==true||
+    commitment?.syntheticOnly!==true)return false;
+   prepareSyntheticDraw(inv,req);
+  }else{
+   if(visible.syntheticOnly!==undefined||hiddenPrivate?.syntheticOnly!==undefined||
+    commitment?.syntheticOnly!==undefined)return false;
+   prepareRealDraw(inv,req);
+  }
   const signed=context.signedPrecommitmentReceipt,body=signed.body;
   if(!body||typeof signed.signature!=='string'||
      !/^[A-Za-z0-9+/]+={0,2}$/.test(signed.signature))return false;
@@ -398,8 +438,21 @@ export function verifyHidden(commitment,hiddenPrivate,nonce,context){
   if(body.visibleManifestSha256!==context.trustedVisibleManifestSha256)return false;
   if(body.commitment!==commitment?.commitment||commitment.version!==VERSION||
      commitment.poolSha256!==inv.poolSha256||commitment.poolSha256!==visible.poolSha256)return false;
-  const replay=allocate(inv,visible.publicSeed,hiddenPrivate.privateSeed,req);
+  const replay=allocateWithMode(inv,visible.publicSeed,hiddenPrivate.privateSeed,req,syntheticOnly);
   if(!eq(replay.visibleManifest,visible)||!eq(replay.hiddenPrivate,hiddenPrivate))return false;
   return sealHidden(hiddenPrivate,nonce).commitment===commitment.commitment;
  }catch{return false;}
 }
+// Explicit test-only operations. Every resulting manifest, commitment and receipt
+// is marked SYNTHETIC_ONLY; production validation/replay never takes this path.
+export const syntheticOnly=Object.freeze({
+ allocate:(inv,publicSeed,privateSeed,req=requirements(inv))=>
+  allocateWithMode(inv,publicSeed,privateSeed,req,true),
+ validateRealVisibleCoverage:(inv,visible,req)=>{
+  prepareSyntheticDraw(inv,req);
+  yes(visible?.syntheticOnly===true,'SYNTHETIC_ONLY manifest required; STOP');
+  return validateProbeCoverage(inv,visible,req);
+ },
+ verifyHidden:(commitment,hidden,nonce,context)=>
+  verifyHiddenWithMode(commitment,hidden,nonce,context,true)
+});

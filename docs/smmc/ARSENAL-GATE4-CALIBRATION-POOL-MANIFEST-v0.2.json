@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "G4-CAL-POOL-MANIFEST-v0.3.2",
-  "samplerVersion": "G4-CAL-SAMPLER-v0.3.2",
+  "schemaVersion": "G4-CAL-POOL-MANIFEST-v0.3.3",
+  "samplerVersion": "G4-CAL-SAMPLER-v0.3.3",
   "repo": "Karuma-jojo/Chronological-Deck",
   "acceptedBase": "eeb54bb0cf25a2022e1b7e40d6e15ee2e46f82ad",
   "sourceBlobsSha1": {
@@ -25,8 +25,11 @@
   "realProbeRegisterAccepted": false,
   "realCohortDrawAuthorized": false,
   "independentSecondLanguageVerifierAdded": true,
-  "requirementsVersion": "G4-CAL-REQUIREMENTS-v0.3.2",
+  "requirementsVersion": "G4-CAL-REQUIREMENTS-v0.3.3",
   "priorHiddenReceiptArchived": false,
   "authorizedCustodianKeyPinned": false,
-  "realOptionJointFeasibilityProved": false
+  "realOptionJointFeasibilityProved": false,
+  "productionRequirementsFixed": true,
+  "productionContextRequired": true,
+  "syntheticOutputsMarked": true
 }

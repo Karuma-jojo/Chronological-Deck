@@ -1,4 +1,4 @@
-# SMMC Arsenal — Gate 4 heterogeneous calibration protocol v0.3.2
+# SMMC Arsenal — Gate 4 heterogeneous calibration protocol v0.3.3
 
 **Status:** UNACCEPTED, SELECTION-ONLY PROPOSAL. No seed chosen; no real candidate cohort drawn; no mathematical dispositions authored. No GitHub merge/authorization arises from this document.
 
@@ -123,3 +123,18 @@ The inventory clone is retained only in private certification state; no frozen c
 **G4-A195-09 — workflow trigger correctness.** The active protocol Markdown path `docs/smmc/ARSENAL-GATE4-CALIBRATION-PROTOCOL-v0.3-DRAFT.md` occurs **once** in `pull_request.paths` and **once** in `push.paths` on the calibration workflow. Documentation-only pushes to covered branches must now trigger the dedicated verification workflow.
 
 **Version alignment:** live sampler `G4-CAL-SAMPLER-v0.3.2`, requirement contract `G4-CAL-REQUIREMENTS-v0.3.2`, manifest schema `G4-CAL-POOL-MANIFEST-v0.3.2` and dedicated CI workflow v0.3.2. Canonical 661-row **pool payload** version deliberately stays `G4-CAL-SAMPLER-v0.2.0`, preserving the previously published immutable pool digest/byte length. PR #195 remains DRAFT, UNMERGED, and UNACCEPTED pending independent exact-head review. All 20 genuine eligibility investigations, signed external approval/custody, real-option joint feasibility, independent seeds and actual selection remain separate blocked stages. There is NO real draw, mathematical treatment or Gate 5 authorization.
+
+
+## v0.3.3 bounded repair — consolidated findings G4-CR195-01/02
+
+**Builder repair only; independent exact-head acceptance remains pending.** Both findings were reproduced on `da009182ce3239dc1a1c7f06231c7b12374406dd`. This repair changes selection authorization and its tests; the accepted Tribunal, frozen predecessor inputs and canonical pool payload remain unchanged.
+
+**G4-CR195-01 — fixed production requirements.** Production `allocate`, `validateRealVisibleCoverage` and `verifyHidden` now require the exact mechanical configuration returned by `requirements(inv)`, including all visible/hidden tags and all five resource limits. A caller may supply the independently certified real-probe certificate, but cannot remove tags, empty the hidden requirements, relax caps or introduce an alternate mechanical configuration. Mismatches STOP before selection or coverage acceptance. Signature binding of a caller's weakened configuration does not make that configuration compliant.
+
+**G4-CR195-02 — mandatory production context.** The production entry points always require the frozen population of 661 rows, the pinned 1,739,956-byte pool and exact canonical pool SHA-256, plus a valid complete source-first probe certificate bound to the entire approved inventory snapshot. Certification is no longer conditional on a caller-declared count. Changing 661 to 660, retaining the real pool digest and omitting certification fails before allocation and coverage validation.
+
+**Explicit synthetic isolation.** Artificial fixtures use only the exported `syntheticOnly` allocation/coverage/replay functions. Those calls reject the actual frozen production pool digest. Their visible/private manifests, sealed commitments and signed receipt bodies carry `syntheticOnly:true`. Production validation/replay rejects these artifacts; removing their markers and signing again does not bypass the production pool and certificate checks. Test flexibility never authorizes a real draw. The production API has no caller-controlled synthetic-mode argument.
+
+**Regression scope.** Tests retain the prior immutability, archive signature, replay, exposure-separation, deterministic positive and greedy-STOP controls. New guards reject removed/empty coverage, each relaxed cap, population downgrade without certification, use of the real pool through synthetic entry points, and promotion of a signed synthetic challenge into production. Checks involving actual frozen input rows fail at guards before any supplied test seed is used; no real register is authored, no real cohort is selected and no mathematical treatment is produced.
+
+**Versions and pending work.** Live sampler, requirements, manifest schema and dedicated workflow are v0.3.3. Canonical pool payload stays v0.2.0 with the same digest and byte length. Independent implementation review is still required. All 20 source-first eligibility investigations, actual-option joint feasibility, authenticated real custody, independent seeds and visible/held-out calibration remain pending. The ledger remains 661 PENDING with zero dispositions and zero relation hypotheses. Gate 4 graduation and Gate 5 remain unavailable under the unchanged charter.

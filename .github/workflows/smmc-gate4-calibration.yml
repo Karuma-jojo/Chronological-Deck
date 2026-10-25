@@ -1,4 +1,4 @@
-name: SMMC Gate 4 calibration protocol v0.3.2 checks
+name: SMMC Gate 4 calibration protocol v0.3.3 checks
 on:
   pull_request:
     paths:
