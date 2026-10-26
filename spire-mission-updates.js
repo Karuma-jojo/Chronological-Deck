@@ -1,6 +1,6 @@
 "use strict";
 (function () {
- const PATCH_SCHEMA="spire-mission-patch-v1", BACKUP_KEY="spire42-before-last-quick-update", HISTORY_KEY="spire42-mission-patches";
+ const PATCH_SCHEMA="spire-mission-patch-v1", BACKUP_KEY="spire42-before-last-quick-update";
  const $q=id=>document.getElementById(id);
  const levelRank={unassessed:0,introduced:1,assisted:2,independent:3,retained_transfer:4};
  function decode(input) {
@@ -28,7 +28,8 @@
  function addUniqueText(existing,addition,max,joiner) {
    const prior=safeText(existing,max);
    if(!addition||prior.includes(addition))return prior;
-   return (prior?prior+joiner:"")+addition.length<=max?(prior?prior+joiner:"")+addition:prior;
+   const merged=(prior?prior+joiner:"")+addition;
+   return merged.length<=max?merged:prior;
  }
  function previewText(p){
    const lines=[ "Mission update: "+(p.mission?.title||p.id),"", "Evidence claims:" ];
