@@ -22,10 +22,19 @@ dialog::backdrop{background:#060b14df}.entry{padding:10px 0;border-bottom:1px so
 <section class="panel warning"><strong>Evidence rule:</strong> Zero means unassessed, not incapable. Manually selecting “tutor reviewed” does not authenticate evidence. Independent and delayed-transfer credit requires identifiable fresh work. This page is separate from official SMMC exposure and T22/T25 academic clearance.</section>
 <section class="metrics" aria-label="Progress summary">
 <div class="panel metric"><strong id="score">0.0</strong><span>Spire Ascent / 100</span></div>
-<div class="panel metric"><strong id="assessed">0 / 42</strong><span>Verified seals</span></div>
-<div class="panel metric"><strong id="provisional">0</strong><span>Provisional seals</span></div>
+<div class="panel metric"><strong id="assessed">0 / 42</strong><span>Assessed seals (not completed)</span></div>
+<div class="panel metric"><strong id="mastered">0 / 42</strong><span>Mastered seals · delayed transfer</span></div>
 <div class="panel metric"><strong id="arena">0</strong><span>Recorded mock tests</span></div>
 </section>
+<section class="panel"><details><summary>How scoring works · Calibration v1 (fixed)</summary>
+<p class="hint">The 100-point Spire score is a weighted measure of demonstrated broad competencies, not a percentage of textbook problems completed. An assessed seal can still be only introduced; it is not “finished.” Introductory tutorials are learning evidence, not automatic independent mastery.</p>
+<p><strong>Introduced · 0.10:</strong> One correctly understood primer or guided proof, with assistance clearly recorded.</p>
+<p><strong>Assisted · 0.30:</strong> At least three varied successful tasks for that competence, including a fresh medium challenge; learner constructs general proofs with recorded coaching.</p>
+<p><strong>Independent · 0.70:</strong> At least three varied, unseen medium-or-harder tasks over at least two sessions, with technique chosen and rigorous solution completed without strategic hints. Routine rule clarification is permitted; solution-repair coaching is not.</p>
+<p><strong>Retained transfer · 1.00:</strong> At least two further varied fresh tasks after a gap of seven or more days, without hints, including one timed task of appropriate competition difficulty. The full stated seal criterion must be represented.</p>
+<p class="hint">One task can be documented under several skills, but repetitive proofs of the same simple invariant cannot independently qualify multiple broad seals for promotion. Existing gate weights and 42 seal definitions are frozen; retrospective score corrections need explicit evidence and a user-approved audit.</p>
+<p><a href="spire-calibration-v1.md">Read the complete fixed calibration contract</a></p>
+</details></section>
 <section class="panel"><h2>Current mission</h2><div id="mission"></div><p class="hint">Mission information is a study pointer, not a proof verdict.</p><div class="actions"><button id="editMission">Edit mission pointer</button></div></section>
 <section class="panel" id="quickMissionUpdates"><h2>⚡ One-click mission updates</h2>
 <p class="hint">ChatGPT can provide a private review link after a solved mission. Opening that link here previews the evidence and merges it into your own browser ledger; it never replaces unrelated progress or publishes your study history to GitHub.</p>
@@ -65,7 +74,7 @@ function stats(){let by={};let s=0,v=0,p=0;for(const g of ledger.gates){let a=le
 function save(){try{localStorage.setItem(STORE,JSON.stringify(ledger));$('storageStatus').textContent="Saved to this browser · "+new Date().toLocaleString()+" · export a backup for another device.";}catch(e){$('storageStatus').textContent="Local storage unavailable! Export a JSON backup now.";}}
 function download(name,content,type){const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement("a");a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
 function render(){
- const n=stats();$('score').textContent=n.score.toFixed(1);$('assessed').textContent=n.verified+" / 42";$('provisional').textContent=n.provisional;$('arena').textContent=ledger.mocks.length;
+ const n=stats();$('score').textContent=n.score.toFixed(1);$('assessed').textContent=n.verified+" / 42";$('mastered').textContent=ledger.anchors.filter(a=>a.level==="retained_transfer"&&reviewed(a)).length+" / 42";$('arena').textContent=ledger.mocks.length;
  const m=ledger.mission||{};$('mission').innerHTML="<strong>"+esc(m.id||"Unassigned")+" · "+esc(m.title||"No current mission")+"</strong><p>"+esc(m.status||"")+"</p><p class='hint'>"+esc(m.source||"")+"</p><p>Next: "+esc(m.next||"Not specified")+"</p>";
  $('fog').textContent=(42-n.verified)+" / 42 seals lack referenced verified evidence; measured coverage "+n.verified+"/42. The Ascent score is evidence credit, not a competition percentile.";
  $('gates').replaceChildren();$('report').replaceChildren();
