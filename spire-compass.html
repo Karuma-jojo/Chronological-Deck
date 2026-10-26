@@ -27,6 +27,12 @@ dialog::backdrop{background:#060b14df}.entry{padding:10px 0;border-bottom:1px so
 <div class="panel metric"><strong id="arena">0</strong><span>Recorded mock tests</span></div>
 </section>
 <section class="panel"><h2>Current mission</h2><div id="mission"></div><p class="hint">Mission information is a study pointer, not a proof verdict.</p><div class="actions"><button id="editMission">Edit mission pointer</button></div></section>
+<section class="panel" id="quickMissionUpdates"><h2>⚡ One-click mission updates</h2>
+<p class="hint">ChatGPT can provide a private review link after a solved mission. Opening that link here previews the evidence and merges it into your own browser ledger; it never replaces unrelated progress or publishes your study history to GitHub.</p>
+<label for="quickCode">Mission update code (alternative to the review link)</label><textarea id="quickCode" rows="2" placeholder="Paste the reviewed mission update code supplied in chat"></textarea>
+<div class="actions"><button id="applyQuick" class="primary">Review &amp; merge mission</button><button id="undoQuick" type="button">Undo last quick merge</button></div>
+<p id="quickStatus" class="status hint" role="status">Existing evidence is preserved. Cloud sync is not enabled on this tracker.</p>
+</section>
 <div class="two"><section class="panel"><h2>Evidence map</h2><div id="gates"></div></section>
 <section class="panel"><h2>Detailed progress report</h2><p id="fog" class="hint"></p><div id="report"></div><h3>Latest checkpoint notes</h3><div id="checkpoints"></div></section></div>
 <section class="panel"><h2>Expedition journal</h2><p class="hint">Chronological notes, attempts, feedback, repairs, and decisions. A journal note awards no credit by itself.</p><div class="actions"><button id="addJournal">+ Record an event</button></div><div id="journal"></div></section>
@@ -111,4 +117,4 @@ $('importJson').onchange=async e=>{const file=e.target.files?.[0];if(!file)retur
  }catch(err){alert("Import failed: "+err.message)}finally{e.target.value=""}};
 $('importMd').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>250000)throw Error("Checkpoint exceeds 250 KB");const t=await file.text();if(!t.trim())throw Error("Empty checkpoint");ledger.checkpoints??=[];ledger.checkpoints.push({date:new Date().toISOString().slice(0,10),name:file.name,content:t});ledger.journal??=[];ledger.journal.push({id:"checkpoint-"+Date.now(),date:new Date().toISOString().slice(0,10),mission:ledger.mission?.id||"",type:"checkpoint",title:"Checkpoint attached: "+file.name,details:"Imported source text for later review; no competency seal awarded automatically.",seal_delta:"none"});save();render();}catch(err){alert("Checkpoint failed: "+err.message)}finally{e.target.value=""}};
 ledger=read();render();
-</script></body></html>
+</script><script src="spire-mission-updates.js" defer></script></body></html>
