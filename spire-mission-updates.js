@@ -3,11 +3,20 @@
  const PATCH_SCHEMA="spire-mission-patch-v1", BACKUP_KEY="spire42-before-last-quick-update";
  const $q=id=>document.getElementById(id);
  const levelRank={unassessed:0,introduced:1,assisted:2,independent:3,retained_transfer:4};
- function decode(input) {
-   const code=String(input||"").trim();
+ async function decode(input) {
+   let code=String(input||"").trim();
+   const compressed=code.startsWith("z.");
+   if(compressed)code=code.slice(2);
    if(!code||code.length>14000||!/^[A-Za-z0-9_-]+$/.test(code))throw Error("Invalid or oversized mission code.");
    const binary=atob(code.replace(/-/g,"+").replace(/_/g,"/"));
-   return JSON.parse(new TextDecoder().decode(Uint8Array.from(binary,ch=>ch.charCodeAt(0))));
+   const bytes=Uint8Array.from(binary,ch=>ch.charCodeAt(0));
+   if(compressed){
+     if(typeof DecompressionStream==="undefined")throw Error("Your browser cannot expand this compact code; use a full JSON import.");
+     const decompressed=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text();
+     if(decompressed.length>40000)throw Error("Expanded mission code is too large.");
+     return JSON.parse(decompressed);
+   }
+   return JSON.parse(new TextDecoder().decode(bytes));
  }
  function safeText(x,max=3500) {return String(x??"").slice(0,max)}
  function validatePatch(p) {
@@ -39,9 +48,9 @@
      "A private local backup is saved. Apply this update?");
    return lines.join("\n");
  }
- function applyMissionCode(code) {
+ async function applyMissionCode(code) {
    let p;
-   try{p=validatePatch(decode(code))}catch(e){$q("quickStatus").textContent="Could not read update: "+e.message;return}
+   try{p=validatePatch(await decode(code))}catch(e){$q("quickStatus").textContent="Could not read update: "+e.message;return}
    const applied=Array.isArray(ledger.appliedMissionPatches)?ledger.appliedMissionPatches:[];
    if(applied.includes(p.id)){$q("quickStatus").textContent="Already merged: "+p.id+". No changes made.";return}
    if(!confirm(previewText(p))){$q("quickStatus").textContent="Update not applied.";return}
@@ -99,11 +108,11 @@
    $q("undoQuick").disabled=true;$q("quickStatus").textContent="Previous ledger restored.";
  };
  const hash=location.hash;
- if(hash.startsWith("#mission-update=")){
+ if(hash.startsWith("#mission-update=")||hash.startsWith("#mission-update-z=")){
    let code="";
-   try{code=decodeURIComponent(hash.slice("#mission-update=".length))}
+   try{code=decodeURIComponent(hash.slice(hash.indexOf("=")+1))}
    catch(e){$q("quickStatus").textContent="Invalid mission update URL."}
    history.replaceState(null,"",location.pathname+location.search);
-   if(code){$q("quickCode").value=code;applyMissionCode(code)}
+   if(code){const value=hash.startsWith("#mission-update-z=")?"z."+code:code;$q("quickCode").value=value;applyMissionCode(value)}
  }
 })();
