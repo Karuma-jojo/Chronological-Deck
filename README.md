@@ -28,6 +28,12 @@ T25 atomic cards also have a small cloud-backed [review / retention layer](docs/
 
 The [ChatGPT-native app](chatgpt-app/) is a separate T22 vertical slice with its own launch coverage. Adding T25 to this website does not automatically add T25 game launches to that app.
 
+## Spire Compass — independent SMMC evidence tracker
+
+The [Spire Compass](spire-compass.html) is a separate seven-gate, 42-seal mathematical maturity progress ledger. It opens from the SMMC Companion and home page. Each seal stores an evidence tier, claimed review status, task reference, and note. Scores count only referenced tutor/official review claims **as recorded**; the browser cannot authenticate them. The original 42-seal JSON pack can be imported, and JSON/Markdown exports plus Markdown checkpoint attachments support handoffs between ChatGPT sessions. Mission M001 records a notation clarification, with no awarded mastery.
+
+This first integration intentionally uses browser-local persistence. **No automatic assistant-to-site updating or Supabase cloud synchronization is enabled for this ledger yet.** Existing SMMC exposure, T22/T25 clearance, and other account-synced records are untouched. To update via ChatGPT, export JSON, upload it in the conversation for evidence review, and import the revised JSON; save private learner evidence outside the public repository.
+
 ## Validation
 
 ```sh
