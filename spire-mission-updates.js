@@ -32,6 +32,13 @@
       typeof e.details!=="string"||e.details.length>7000))throw Error("Mission update contains an invalid journal entry.");
    if(p.mission&&(typeof p.mission.id!=="string"||p.mission.id.length>100||
       typeof p.mission.title!=="string"||p.mission.title.length>180))throw Error("Mission pointer is invalid.");
+   if(p.corrections!==undefined&&(!Array.isArray(p.corrections)||p.corrections.length>6||
+     p.corrections.some(e=>!e||!TEMPLATE.anchors.some(a=>a.id===e.id)||
+       !(e.from in levelRank)||!(e.to in levelRank)||
+       levelRank[e.to]>=levelRank[e.from]||
+       !/^\d{4}-\d{2}-\d{2}$/.test(e.not_after||"")||
+       typeof e.reason!=="string"||!e.reason.trim()||e.reason.length>750)))
+     throw Error("Invalid explicit calibration correction.");
    return p;
  }
  function addUniqueText(existing,addition,max,joiner) {
@@ -43,6 +50,11 @@
  function previewText(p){
    const lines=[ "Mission update: "+(p.mission?.title||p.id),"", "Evidence claims:" ];
    p.evidence.forEach(e=>lines.push(e.id+" · "+e.level+" · "+e.evidence_ref));
+   if(p.corrections?.length){
+     lines.push("","CALIBRATION CORRECTIONS (requested downgrade):");
+     p.corrections.forEach(e=>lines.push(e.id+" · "+e.from+" → "+e.to+" · "+e.reason));
+     lines.push("Corrections only apply when the stored tier is exactly the older tier and the evidence has not been updated since the specified cutoff.");
+   }
    lines.push("","Adds "+p.journal.length+" dated journal entries (duplicates skipped).",
      "Existing notes, unrelated seals, and stronger evidence are retained.",
      "A private local backup is saved. Apply this update?");
@@ -74,6 +86,19 @@
      if(target.level==="independent" && e.level==="independent" && !target.provenance)
        target.provenance="Strategy independently identified; review/repair and task context are specified in evidence note.";
    }
+   let appliedCorrections=0,skippedCorrections=0;
+   for(const e of p.corrections||[]){
+     const target=updated.anchors.find(a=>a.id===e.id);
+     if(!target||target.level!==e.from||!target.date||target.date>e.not_after){
+       skippedCorrections++;continue;
+     }
+     target.level=e.to;
+     target.evidence_note=addUniqueText(target.evidence_note,
+       "Calibration v1: "+e.reason,3500,"\n\n");
+     target.provenance=addUniqueText(target.provenance||"",
+       "Tier corrected under frozen calibration v1; source mission record and assistance remain preserved.",500,"; ");
+     appliedCorrections++;
+   }
    const known=new Set(updated.journal.map(x=>x.id));
    for(const event of p.journal)if(!known.has(event.id)){
      updated.journal.push({id:safeText(event.id,140),date:safeText(event.date,10),
@@ -94,7 +119,7 @@
    catch(e){$q("quickStatus").textContent="Could not save a safety backup, so no change was applied.";return}
    ledger=updated;
    save(); render();
-   $q("quickStatus").textContent="Merged "+p.id+" · All existing data retained · Previous ledger backed up on this device.";
+   $q("quickStatus").textContent="Merged "+p.id+" · Corrections: "+appliedCorrections+" applied, "+skippedCorrections+" safely skipped · Existing records retained · Previous ledger backed up.";
    $q("undoQuick").disabled=false;
  }
  $q("applyQuick").onclick=()=>applyMissionCode($q("quickCode").value);
